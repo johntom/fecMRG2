@@ -4,11 +4,11 @@ import { inject } from 'aurelia-framework';
 import { ApiService } from './utils/servicesApi';
 import { ApplicationService } from './services/application-service';
 import { MyDataService } from "./services/my-data-service";
- 
+
 @inject(ApplicationService, ApiService, MyDataService)
 export class Welcome {
   // ndate = moment(new Date()).format('M/D/YYYY')
-  heading = 'Welcome to BCInmate Medical Services App! version: v4F  / Press Ctrl+F5 for latest version in development'// + ndate;
+  heading = 'MRG Convert Zone! version: v1a / Press Ctrl+F5 for latest version in development'// + ndate;
   // heading2 = ' v3a'// + ndate;
 
   firstName = 'John ';
@@ -62,9 +62,28 @@ export class Welcome {
 
   async attached() {
     this.appService.payeelist = await this.dataService.loadPayeeAsync()
+    this.appService.artistlist = await this.dataService.loadArtistsAsync()
 
-    console.log(' await payeelist ', this.appService.payeelist)
+    console.log(' await payeelist 1', this.appService.payeelist)
+    console.log(' await artistlist  1 ', this.appService.artistlist)
+    return Promise.all([
+      this.dataService.loadPayee(),
+      this.dataService.loadArtists()
+    ]).then(values => {
+      this.appService.payeelist2 = values[0];
+      this.appService.artistlist2 = values[1];
+      console.log(' await payeelist 2', this.appService.payeelist2)
+      console.log(' load artistlist 2 ', this.appService.artistlist2)
+
+    });
+
+
+
+
+
   }
+
+
   // attached() {
   // let Promise = this.dataService.loadPayee()
   //     .then(response => {
@@ -96,7 +115,7 @@ export class Welcome {
     console.log('in activate')
     let cCodes = [{ id: 1, code: 'County' }, { id: 2, code: 'ICE' }, { id: 3, code: 'State' }, { id: 4, code: 'Fed' }]
     this.appService.classificationList = cCodes //" model.bind="opt.code
-    let cCodes2 = [{ id: 1, code: 'Outpatient' }, { id: 2, code: 'Emergency' }, { id: 3, code: 'Inpatient' },{ id: 4, code: 'ER/IP'}]
+    let cCodes2 = [{ id: 1, code: 'Outpatient' }, { id: 2, code: 'Emergency' }, { id: 3, code: 'Inpatient' }, { id: 4, code: 'ER/IP' }]
     this.appService.serviceprovidedList = cCodes2
     let cCodes3 = [{ id: 1, code: 'Jail Transport' }, { id: 2, code: 'Ambulance Service' }, { id: 3, code: 'Other Agency' }]
     this.appService.transportList = cCodes3
@@ -109,15 +128,15 @@ export class Welcome {
       , { id: 'O', code: 'Other' }]
     this.appService.genderList = cCodes6
     let cCodes7 = [{ id: '1', code: 'NBMC' }, { id: '2', code: 'HUMC' },
-   { id: '3', code: 'Holy Name Hospital' },    { id: '4', code: 'Englewood' },{ id: '5', code: 'North Hudson Regional' },
-   { id: '6', code: 'Beth Israel' }
+    { id: '3', code: 'Holy Name Hospital' }, { id: '4', code: 'Englewood' }, { id: '5', code: 'North Hudson Regional' },
+    { id: '6', code: 'Beth Israel' }
     ]
-     this.appService.designatedproviderList = cCodes7
-   
+    this.appService.designatedproviderList = cCodes7
+
     let cCodes8 = [{ id: 1, code: 'BC Jail' }, { id: 2, code: 'Other' }]
-    
+
     this.appService.sendingproviderList = cCodes8
-    
+
     // let cCodes9 = [{ "payeename" : "NBMD", 
     //                         "payeefein" : "NA", 
     //                         "payeeaddr" : "230 E Ridgewood Ave", 

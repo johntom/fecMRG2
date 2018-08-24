@@ -6,7 +6,7 @@ import { inject } from 'aurelia-dependency-injection';
 @inject(Router) //, DialogService
 export class ApplicationService {
   constructor(router) { //, dialogService
-  //  this.dialogService = dialogService
+    //  this.dialogService = dialogService
     this.router = router
   }
   currentView;
@@ -23,7 +23,7 @@ export class ApplicationService {
   asyncHandleDirty() {
     const model = 'You have unsaved changes. Cancel to stay OK to leave';
     const options = { viewModel: Prompt, model: model, lock: false };
-   // return this.dialogService.open(options).whenClosed(response => response);
+    // return this.dialogService.open(options).whenClosed(response => response);
   }
 
   navigate(route) {
@@ -47,42 +47,42 @@ export class ApplicationService {
   //     name: "Adjusters",
   //     viewModel: "./one-to-many/adjusters",
   //     isSelected: false,
-      
-    // }, {
-    //   name: "Adjuster Notes",
-    //   viewModel: "./one-to-many/adjusternotes",
-    //   isSelected: false
-    // },
-    // {
-    //   name: "Diary",
-    //   viewModel: "./one-to-many/diary",
-    //   isSelected: false
-    // },
-    // {
-    //   name: "Docs",
-    //   viewModel: "./one-to-many/docs",
-    //   isSelected: false
-    // },
-    // {
-    //   name: "Invoices",
-    //   viewModel: "./one-to-many/invoices",
-    //   isSelected: false
-    // },
-  
-    // {
-    //   name: "Carrieremails",
-    //   viewModel: "./one-to-many/carrieremails",
-    //   isSelected: false
-    // },
-    // {
-    //   name: "Claimemails",
-    //   viewModel: "./one-to-many/claimemails",
+
+  // }, {
+  //   name: "Adjuster Notes",
+  //   viewModel: "./one-to-many/adjusternotes",
+  //   isSelected: false
+  // },
+  // {
+  //   name: "Diary",
+  //   viewModel: "./one-to-many/diary",
+  //   isSelected: false
+  // },
+  // {
+  //   name: "Docs",
+  //   viewModel: "./one-to-many/docs",
+  //   isSelected: false
+  // },
+  // {
+  //   name: "Invoices",
+  //   viewModel: "./one-to-many/invoices",
+  //   isSelected: false
+  // },
+
+  // {
+  //   name: "Carrieremails",
+  //   viewModel: "./one-to-many/carrieremails",
+  //   isSelected: false
+  // },
+  // {
+  //   name: "Claimemails",
+  //   viewModel: "./one-to-many/claimemails",
   //     isSelected: false
   //   }
   // ];
 
   // dataFormOneToManyTabs2 = [
-   
+
   //   {
   //     name: "Contacts",
   //     viewModel: "./one-to-many/adjuster",
@@ -95,7 +95,7 @@ export class ApplicationService {
   //     viewModel: "./one-to-many/payments",
   //     isSelected: true
   //   }
-   
+
   // ]
 
   //null;
@@ -105,11 +105,11 @@ export class ApplicationService {
   searchDataLoaded = false;
   curentClaim;
   currentRecord;
- classificationList = []
-    serviceprovidedList = []
-    transportList = []
-    servicetypeList = []
-    approvedList = []
+  classificationList = []
+  serviceprovidedList = []
+  transportList = []
+  servicetypeList = []
+  approvedList = []
   // curentDaily;
   // currentAdjuster;
   // currentSearchadj = {}

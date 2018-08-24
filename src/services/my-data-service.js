@@ -124,6 +124,17 @@ export class MyDataService {
     });
   }
 
+  loadArtists() {
+    return new Promise((resolve, reject) => {
+      this.api.findArtists()
+        .then((jsonRes) => {
+          var artistList = jsonRes
+          console.log('artistList', artistList)
+          resolve(artistList);
+        });
+    });
+  }
+
   async  loadPayeeAsync() {
     let payeeList
     await this.api.findPayees()
@@ -134,9 +145,16 @@ export class MyDataService {
     return await (payeeList)
   }
 
+  async  loadArtistsAsync() {
+    let artistList
+    await this.api.findArtists()
+      .then((jsonRes) => {
+        artistList = jsonRes.data
+      });
+    return await (artistList)
+  }
 
   getadjusterList() {
-
     this.api.findAdjusters()
       .then((jsonRes) => {
         var adjusterList = jsonRes// .data;
