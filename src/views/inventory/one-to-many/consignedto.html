@@ -1,0 +1,131 @@
+<template>
+	<require from="./docs.css"></require>
+	<!-- section class="customer-orders au-animate" -->
+	<section class="docs full-height flex-column-1 overflow-y-auto ignore">
+		<h4>
+			<i class="fa fa-folder-open"></i>Consigned To 
+			<a slot="buttons-slot" class="btn btn-primary" click.delegate="addDetail()">
+				<i class="fa fa-plus"></i> Add Consigned To	</a>
+		</h4>
+
+
+		<table class="table-condensed table">
+			<thead class="table-header-blue" data-sort="items.bind: currentItem.consignedto; cols: ['ConsignedStartDate','ConsignedEndDate']">
+				<tr>
+					<th class="header">To </th>
+					<th class="header">Start</br>Date </th>
+					<th class="header">End</br>Date </th>
+					<th class="header">Retail</br>Price </th>
+					<th class="header">Netto</br>MRG </th>
+					<th class="header">Netto</br>MRGAmt </th>
+					<th class="header">Retail</br>PriceAmt </th>
+					<th class="header">Retail</br>Price </th>
+					<th class="header">Artwork</br>Released </th>
+					<th class="header">Signed </th>
+					<th class="header">PDF </th>
+					<th class="header">Notes </th>
+					<th class="header">Sold </th>
+					<th class="header">Created</br>Date </th>
+					<th class="header">Modified</br>Date </th>
+
+				</tr>
+			</thead>
+			<tfoot>
+				<tr>
+					<td></td>
+					<td></td>
+
+				</tr>
+			</tfoot>
+			<tbody>
+				<tr repeat.for="consignedto of currentItem.consignedto" with.bind="consignedto">
+
+
+					<td width="225px">
+					      <!-- <select disabled show.bind="!consignedto.edit" id="ConsignedTo" class="form-control input-sm" value.two-way="consignedto.ConsignedTo" > 
+              <option model.bind="null">Choose...</option> 
+              <option repeat.for="opt of appService.orgsList" model.bind="opt._id">
+                ${opt.OrgName} 
+              </option> 
+              </select> -->
+            			<input click.delegate="showModal('ConsignedTo',$index)" type="text" id="ConsignedTo" class="form-control input-sm" value.bind="consignedto.consignedtoname">
+      
+					<!-- <select show.bind="consignedto.edit" id="ConsignedTo2" class="form-control input-sm" value.two-way="consignedto.ConsignedTo" > 
+              <option model.bind="null">Choose...</option> 
+              <option repeat.for="opt of appService.orgsList" model.bind="opt._id">
+                ${opt.OrgName} 
+              </option> 
+              </select> -->
+					</td>
+
+					<td width="105px">
+						<span show.bind="!consignedto.edit">${ConsignedStartDate}</span>
+						<input show.bind="consignedto.edit" class="form-control input-sm" disabled.bind="!consignedto.edit" type="date" value.bind="ConsignedStartDate">
+					</td>
+					<td width="105px">
+						<span show.bind="!consignedto.edit">${ConsignedEndDate}</span>
+						<input show.bind="consignedto.edit" class="form-control input-sm" disabled.bind="!consignedto.edit" type="date" value.bind="ConsignedEndDate">
+					</td>
+					<td width="125px">
+						<span show.bind="!consignedto.edit">${ConsignmentRetailPrice}</span>
+						<input show.bind="consignedto.edit" class="form-control input-sm" disabled.bind="!consignedto.edit" type="text" value.bind="ConsignmentRetailPrice">
+					</td>
+					<td width="125px">
+						<span show.bind="!consignedto.edit">${NettoMRG}</span>
+						<input show.bind="consignedto.edit" class="form-control input-sm" disabled.bind="!consignedto.edit" type="text" value.bind="NettoMRG">						</td>
+					</td>
+					<td width="125px">
+						<span show.bind="!consignedto.edit">${NettoMRGAmt}</span>
+						<input show.bind="consignedto.edit" class="form-control input-sm" disabled.bind="!consignedto.edit" type="text" value.bind="NettoMRGAmt">						</td>
+					</td>
+
+					<td width="125px">
+						<span show.bind="!consignedto.edit">${ConsignmentRetailPriceAmt}</span>
+						<input show.bind="consignedto.edit" class="form-control input-sm" disabled.bind="!consignedto.edit" type="text" value.bind="ConsignmentRetailPriceAmt">
+					</td>
+					<td width="125px">
+						<span show.bind="!consignedto.edit">${ConsignmentRetailPrice}</span>
+						<input show.bind="consignedto.edit" class="form-control input-sm" disabled.bind="!consignedto.edit" type="text" value.bind="ConsignmentRetailPrice">
+					</td>
+					<td width="105px">
+						<span show.bind="!consignedto.edit">${ArtworkReleased}</span>
+						<input show.bind="consignedto.edit" class="form-control input-sm" disabled.bind="!consignedto.edit" type="date" value.bind="ArtworkReleased">
+					</td>
+					<td width="85px">
+						<span show.bind="!consignedto.edit">${Signed}</span>
+						<input show.bind="consignedto.edit" disabled.bind="!consignedto.edit" type="checkbox" checked.bind="Signed"> </td>
+					</td>
+
+
+					<td width="85px">
+						<span show.bind="!consignedto.edit">${PDF}</span>
+						<input show.bind="consignedto.edit" disabled.bind="!consignedto.edit" type="checkbox" checked.bind="PDF"> </td>
+					</td>
+
+					<td width="145px">
+						<span show.bind="!consignedto.edit">${ConsignmentNotes}</span>
+						<input show.bind="consignedto.edit" disabled.bind="!consignedto.edit" type="text" value.bind="ConsignmentNotes">
+					</td>
+
+					<td width="85px">
+						<span show.bind="!consignedto.edit">${Sold}</span>
+						<input show.bind="consignedto.edit" disabled.bind="!consignedto.edit" type="checkbox" checked.bind="Sold"> </td>
+					</td>
+	<td width="75px">
+					${CreatedDate}
+					</td>
+          	<td width="75px">
+					${ModifiedDate}
+					</td>
+		
+					<td width="225px">
+						<button class="btn btn-primary" click.delegate="consignedto.edit=!consignedto.edit">${ !consignedto.edit ? 'Update' : 'Done' }</button>
+						<button class="btn btn-danger" click.delegate="remove(consignedto,$index)">Delete</button>
+
+					</td>
+  			</tr>
+			</tbody>
+		</table>
+
+	</section>
+</template>

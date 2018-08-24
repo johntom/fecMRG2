@@ -1,0 +1,210 @@
+<template>
+	<require from="aurelia-kendoui-bridge/grid/grid"></require>
+	<require from="aurelia-kendoui-bridge/grid/col"></require>
+	<require from="aurelia-kendoui-bridge/common/template"></require>
+	<require from="../../../styles/kendo.css"></require>
+	<require from="./flex.css"></require>
+	<!-- jrt -->
+	<style>
+		.k-grid tbody tr {
+			height: 50px;
+		}
+
+		.k-grid td {
+			white-space: nowrap;
+		}
+	</style>
+	<section class="full-height flex-column-1 au-animate ignore">
+		<div class="form-group flex-column-1">
+
+			<div class="Rtable Rtable--2cols">
+				<div class="Rtable-cell-1">
+					<h1> ${item.savedlist}/ ${item.savedlist.length} / ${datasource.length}</h1>
+					<button id="factsheet1" class="btn btn-primary" type="button" click.delegate="action1()">Transport</button>
+					<button id="factsheet2" class="btn btn-primary" type="button" click.delegate="action2()">Exhibit</button>
+					<button id="factsheet3" class="btn btn-primary" type="button" click.delegate="action3()">Reproduction</button>
+					<button id="factsheet4" class="btn btn-primary" type="button" click.delegate="action4()">Provenance</button>
+					<button id="factsheet5" class="btn btn-primary" type="button" click.delegate="action5()">Mrg location</button>
+					<button id="factsheet6" class="btn btn-primary" type="button" click.delegate="action6()">Temp location</button>
+					<button id="factsheet7" class="btn btn-primary" type="button" click.delegate="action8()">Offerings</button>
+
+
+					<button id="image1" class="btn btn-primary" type="button" click.delegate="action7()">merge images</button>
+
+					<div show.bind="!hide1">
+						TransportDate <input type="date" id="TransportDate" class="form-control input-sm" value.bind="item.TransportDate">
+
+						<!-- <select id="tt" class="form-control input-sm" value.two-way="item.TransportTo" change.delegate="selectChanged1(transport, ID)"> 
+						<option model.bind="null">Choose...</option> 
+						<option repeat.for="opt of appService.codesListLocation" model.bind="opt.ID">
+							${opt.Description} 
+						</option> 
+						</select> --> 
+
+						TransportTo
+						<aubs-typeahead ref='dtransporto' data.bind="appService.codesListLocation" value.bind="Description" debounce.bind="350" placeholder="TransportTo"
+						 open-on-focus.bind="true" key="Description" results-limit.bind="12" select-single-result.bind="true">
+						</aubs-typeahead>
+						<hr> TransportFrom
+						<aubs-typeahead ref='dtransportfrom' data.bind="appService.codesListLocation" value.bind="Description2" debounce.bind="350"
+						 placeholder="TransportFrom" open-on-focus.bind="true" key="Description" results-limit.bind="12" select-single-result.bind="true">
+						</aubs-typeahead>
+						<hr> TransportNotes
+						<input type="text" id="TransportNotes" class="form-control input-sm" value.bind="item.TransportNotes">
+						<button id="save1" class="btn btn-primary" type="button" click.delegate="save1()">save Transport </button>
+
+					</div>
+					<div show.bind="!hide2">
+
+						ExhibitTitle <input type="text" id="ExhibitTitle" class="form-control input-sm" value.bind="item.ExhibitTitle"> ExhibitSponser
+						<input type="text" id="ExhibitSponser" class="form-control input-sm" value.bind="item.ExhibitSponser"> ExhibitLocation
+						<aubs-typeahead ref='exhibitlocation' data.bind="appService.codesListLocation" value.bind="Description" debounce.bind="350"
+						 placeholder="reproduction location" open-on-focus.bind="true" key="Description" results-limit.bind="12" select-single-result.bind="true">
+						</aubs-typeahead>
+
+
+
+
+						ExhibitDates
+						<input type="text" id="ExhibitDates" class="form-control input-sm" value.bind="item.ExhibitDates"> ExhibitSortDate
+						<input type="text" id="ExhibitSortDate" class="form-control input-sm" value.bind="item.ExhibitSortDate"> Traveled
+						<input type="text" id="Traveled" class="form-control input-sm" value.bind="item.Traveled"> ExhibitMemo
+						<input type="text" id="ExhibitMemo" class="form-control input-sm" value.bind="item.ExhibitMemo">
+						<button id="save2" class="btn btn-primary" type="button" click.delegate="save2()">save 	Exhibit</button>
+
+					</div>
+
+					<div show.bind="!hide3">
+						ExhibitID <input type="text" id="ExhibitID" class="form-control input-sm" value.bind="item.ExhibitID"> ReproductionType
+						<input type="text" id="ReproductionType" class="form-control input-sm" value.bind="item.ReproductionType"> ReproductionTitle
+						<input type="text" id="ReproductionTitle" class="form-control input-sm" value.bind="item.ReproductionTitle"> ReproductionPage
+						<input type="text" id="ReproductionPage" class="form-control input-sm" value.bind="item.ReproductionPage"> ColorBW
+						<input type="text" id="ColorBW" class="form-control input-sm" value.bind="item.ColorBW"> ReproductionDate <input type="text"
+						 id="ReproductionDate" class="form-control input-sm" value.bind="item.ReproductionDate"> ReproductionSortDate
+						<input type="text" id="ReproductionSortDate" class="form-control input-sm" value.bind="item.ReproductionSortDate">						ReproductionName <input type="text" id="ReproductionName" class="form-control input-sm" value.bind="item.ReproductionName">						ReproductionAuthor
+						<input type="text" id="ReproductionAuthor" class="form-control input-sm" value.bind="item.ReproductionAuthor"> ReproductionLocation
+						<!-- <input type="text" id="ReproductionLocation" class="form-control input-sm" value.bind="item.ReproductionLocation">						AuthorFirst <input type="text" id="AuthorFirst" class="form-control input-sm" value.bind="item.AuthorFirst"> AuthorLast -->
+
+						<aubs-typeahead ref='reproductionlocation' data.bind="appService.codesListLocation" value.bind="Description" debounce.bind="350"
+						 placeholder="reproduction location" open-on-focus.bind="true" key="Description" results-limit.bind="12" select-single-result.bind="true">
+						</aubs-typeahead>
+
+
+						<input type="text" id="ExhibitMemo" class="form-control input-sm" value.bind="item.AuthorLast">
+						<button id="save3" class="btn btn-primary" type="button" click.delegate="save3()">save Reproduction</button>
+
+					</div>
+
+					<div show.bind="!hide4">
+						ProvOwner <input type="text" id="ProvOwner" class="form-control input-sm" value.bind="item.ProvOwner"> ProvLoc
+						<aubs-typeahead ref='provlocation' data.bind="appService.codesListLocation" value.bind="Description" debounce.bind="350"
+						 placeholder="mrg location" open-on-focus.bind="true" key="Description" results-limit.bind="12" select-single-result.bind="true">
+						</aubs-typeahead>
+
+
+						ProvDate <input type="text" id="v" class="form-control input-sm" value.bind="item.v"> ProvMemo <input type="text" id="ProvMemo"
+						 class="form-control input-sm" value.bind="item.ProvMemo"> ProvSortDate <input type="text" id="ProvSortDate" class="form-control input-sm"
+						 value.bind="item.ProvSortDate"> Sequence <input type="text" id="Sequence" class="form-control input-sm" value.bind="item.Sequence">
+						<button id="save4" class="btn btn-primary" type="button" click.delegate="save4()">save Prov</button>
+
+					</div>
+
+					<div show.bind="!hide5">
+						MRG Location
+						<aubs-typeahead ref='mrglocation' data.bind="appService.codesListLocation" value.bind="Description5" debounce.bind="350"
+						 placeholder="mrg location" open-on-focus.bind="true" key="Description" results-limit.bind="12" select-single-result.bind="true">
+						</aubs-typeahead>
+
+						<button id="save5" class="btn btn-primary" type="button" click.delegate="save5()">save 1</button>
+
+					</div>
+
+					<div show.bind="!hide6">
+						Temp Location
+
+						<aubs-typeahead ref='templocation' data.bind="appService.codesListLocation" value.bind="Description6" debounce.bind="350"
+						 placeholder="temp location" open-on-focus.bind="true" key="Description" results-limit.bind="12" select-single-result.bind="true">
+						</aubs-typeahead>
+						<button id="save6" class="btn btn-primary" type="button" click.delegate="save6()">save 1</button>
+					</div>
+					<div show.bind="!hide7">
+						<button id="i1" class="btn btn-primary" type="button" click.delegate="image1()">image 1</button>
+						<button id="i2" class="btn btn-primary" type="button" click.delegate="image2()">image 2</button>
+						<button id="i3" class="btn btn-primary" type="button" click.delegate="image3()">image 3</button>
+					</div>
+					<div show.bind="!hide8">
+						Client Date <input type="date" ref="date" class="form-control input-sm" value.bind="offerdate">
+						<aubs-typeahead ref='doffering' data.bind="appService.orgsList" value.bind="OrgName" debounce.bind="350" placeholder="offering"
+						 open-on-focus.bind="true" key="OrgName" results-limit.bind="12" select-single-result.bind="true">
+						</aubs-typeahead>
+						<button id="save8" class="btn btn-primary" type="button" click.delegate="save8()">save Offering</button>
+
+					</div>
+
+				</div>
+				<div class="Rtable-cell-2">
+
+					<!-- <div class="form-group flex-column-1 margin-left-10"> -->
+					<!-- <ak-grid class="flex-row-1 overflow-y-auto" id="grid" k-data-source.bind="datasource" k-widget.bind="grid" k-sortable.bind="{ mode: 'multiple',   allowUnsort: 'true'}"
+						 k-filterable.bind="{  mode: 'row' }" k-reorderable.bind="true" k-groupable.bind="true" k-resizable.bind="true"
+						 k-selectable="[row,multiple]" k-on-change.delegate="rowSelected($event.detail)" k-column-menu.bind="true" k-pageable.bind="true"
+						 k-editable="inline">
+							<ak-col k-width="120px" k-filterable.bind="false" k-title="command" k-command.bind="['edit']" k-title="&nbsp;" k-locked.bind="true"
+							 k-lockable.bind="false"></ak-col>
+
+							<ak-col k-editable="false" k-filterable.bind="false" k-field="InventoryCode" k-filterable.bind="true" k-title="Open" k-width.bind="120px"
+							 k-template="<button click.delegate='detailsEdit($event)' class='k-button'>#=InventoryCode#</button>">
+							</ak-col>
+							<ak-col k-editable="false" k-filterable.bind="false" k-field="InventoryCode" k-filterable.bind="true" k-title="factsheet"
+							 k-width.bind="110" k-template="<button click.delegate='detailsFactSheet($event)' class='k-button'>#=InventoryCode#</button>">
+							</ak-col>
+							<ak-col k-editable="false" k-filterable.bind="false" k-title="Image" k-field="InventoryCode" k-width="110px">
+								<ak-template>
+									<div class='customer-photo' style="background-image: url(http://gtztest.com/api/v1/getonePdf/inv/${InventoryCode}.jpg)"></div>
+								</ak-template>
+							</ak-col>
+							<ak-col k-editor.bind="offeramount" k-editable="true"  k-title="Offer Amt" 
+              k-width="120px" k-field="offeramount"></ak-col>
+							<ak-col k-editable="false" k-title="Artist last" k-width="110px" k-field="artist.lastName"></ak-col>
+							<ak-col k-editable="false" k-title="Artist First" k-width="110px" k-field="artist.firstName"></ak-col>
+						</ak-grid> -->
+
+					<ak-grid class="flex-row-1 overflow-y-auto" id="grid" k-data-source.bind="datasource" k-widget.bind="grid" k-sortable.bind="{ mode: 'multiple',   allowUnsort: 'true'}"
+					 k-filterable.bind="{  mode: 'row' }" k-editable="inline" k-reorderable.bind="true" k-groupable.bind="true" k-resizable.bind="true"
+					 k-on-edit.delegate="onEdit($event.detail)" k-selectable="[row,multiple]" k-on-change.delegate="rowSelected($event.detail)"
+					 k-column-menu.bind="true" k-pageable.bind="true">
+						<ak-col k-filterable.bind="false" k-width="120px" k-title="command" k-command.bind="['edit']" k-title="&nbsp;" k-locked.bind="true"
+						 k-lockable.bind="false"></ak-col>
+						<ak-col k-title="Offer Amount" k-width="140px" k-field="offeramount"></ak-col>
+
+						<ak-col k-field="InventoryCode" k-filterable.bind="true" k-title="Edit-" k-width.bind="140" k-template="<button click.delegate='detailsEdit($event)' class='k-button'>#=InventoryCode#</button>">
+						</ak-col>
+						<ak-col k-filterable.bind="false" k-field="InventoryCode" k-filterable.bind="true" k-title="factsheet" k-width.bind="110"
+						 k-template="<button click.delegate='detailsFactSheet($event)' class='k-button'>#=InventoryCode#</button>">
+						</ak-col>
+						<ak-col k-filterable.bind="false" k-title="Image" k-field="InventoryCode" k-width="110px">
+							<ak-template>
+								<div class='customer-photo' style="background-image: url(https://gtztest.com/api/v1/getonePdf/inv/${InventoryCode}.jpg)"></div>
+							</ak-template>
+						</ak-col>
+
+						<ak-col k-title="Artist last" k-width="110px" k-field="artist.lastName"></ak-col>
+						<ak-col k-filterable.bind="false" k-title="Artist First" k-width="110px" k-field="artist.firstName"></ak-col>
+						<ak-col k-title="Title" k-width="110px" k-field="Title"></ak-col>
+						<!-- <ak-col k-title="InvYear" k-width="180px" k-field="InvYear"></ak-col>
+							<ak-col k-title="MediumText" k-width="180px" k-field="MediumText"></ak-col>
+							<ak-col k-title="Bin" k-width="180px" k-field="Bin"></ak-col> -->
+					</ak-grid>
+
+
+					<div class="flex-row-none section-footer">
+						${footer} <span>  ${queryParams}</span> <span>&nbsp;&nbsp;	<button id="searchInputBtn" class="btn btn-primary" type="button" click.delegate="performAction1()">Action1</button></span>
+
+					</div>
+				</div>
+			</div>
+		<!-- </div> -->
+		</div>
+	</section>
+
+</template>

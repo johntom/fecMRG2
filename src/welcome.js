@@ -8,7 +8,7 @@ import { MyDataService } from "./services/my-data-service";
 @inject(ApplicationService, ApiService, MyDataService)
 export class Welcome {
   // ndate = moment(new Date()).format('M/D/YYYY')
-  heading = 'Welcome to BCInmate Medical Services App! version: v4F  / Press Ctrl+F5 for latest version in development'// + ndate;
+  heading = 'Welcome to MRG Convert Zone '
   // heading2 = ' v3a'// + ndate;
 
   firstName = 'John ';

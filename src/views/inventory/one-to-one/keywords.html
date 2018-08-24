@@ -1,0 +1,75 @@
+<template>
+	<require from="aurelia-kendoui-bridge/multiselect/multiselect"></require>
+	<require from="aurelia-kendoui-bridge/button/button"></require>
+	<section class="full-height flex-column-1 ignore">
+
+		<div class="flex-row-none">
+
+
+			<div class="form-group flex-column-1">
+				<h2>Keywords</h2>
+				<div class="form-group flex-column-1">
+				</div>
+		
+				<ak-multiselect k-value.two-way="currentItem.keywords">
+					<select multiple="multiple" data-placeholder="Select keywords...">
+                       <option repeat.for="opt of appService.codesGenre" model.bind="opt.Description">
+                        ${opt.Description} 
+                      </option> 
+                    </select>
+				</ak-multiselect>
+				<button ak-button click.delegate="showAttendees()">Show keywords</button>
+			</div>
+		</div>
+	</section>
+</template>
+
+
+			<!-- <div class="form-group flex-column-1">
+				<label for="codes">TaxAmtPaid</label>
+				<input type="text" id="TaxAmtPaid" class="form-control" value.bind="currentItem.TaxAmtPaid">
+
+			</div>
+      	<div class="form-group flex-column-1">
+				<label for="codes">TaxPrepaid</label>
+				<input type="text" id="TaxPrepaid" class="form-control" value.bind="currentItem.TaxPrepaid">
+
+			</div>
+      	<div class="form-group flex-column-1">
+				<label for="codes">ReimbuseDateRequested</label>
+				<input type="checkbox" id="ReimbuseDateRequested" class="form-control" checked.bind="ReimbuseDateRequested.TaxAmtPaid">
+
+			</div>
+      	<div class="form-group flex-column-1">
+				<label for="codes">ReimbuseDate</label>
+				<input type="date" id="ReimbuseDate" class="form-control" value.bind="currentItem.ReimbuseDate">
+
+			</div> -->
+			<!-- /////////// -->
+			<!-- <div class="form-group flex-column-1 margin-left-10"> -->
+			<!-- <select id="OwnedBy" class="form-control" value.bind="currentItem.OwnedBy"> 
+                      <option model.bind="null">Choose...</option> 
+                       <option repeat.for="opt of appService.codesOwnership" model.bind="opt.id">
+                        ${opt.Description} 
+                      </option> 
+                    </select> -->
+			<!-- <div class="demo-section wide k-content"> -->
+<!-- <option>Steven White</option>
+                      <option>Nancy King</option>
+                      <option>Nancy Davolio</option>
+                      <option>Robert Davolio</option>
+                      <option>Michael Leverling</option>
+                      <option>Andrew Callahan</option>
+                      <option>Michael Suyama</option>
+                      <option selected>Anne King</option>
+                      <option>Laura Peacock</option>
+                      <option>Robert Fuller</option>
+                      <option>Janet White</option>
+                      <option>Nancy Leverling</option>
+                      <option>Robert Buchanan</option>
+                      <option>Margaret Buchanan</option>
+                      <option selected>Andrew Fuller</option>
+                      <option>Anne Davolio</option>
+                      <option>Andrew Suyama</option>
+                      <option>Nige Buchanan</option>
+                      <option>Laura Fuller</option> -->

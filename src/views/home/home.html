@@ -1,0 +1,63 @@
+<template>
+	<require from="../../../styles/styles.css"></require>
+	<style>
+		img {
+			background-color: #38162E;
+		}
+
+		/* html,body,.fluid-container {
+   height: 100%;
+}
+
+.flexbox-container {
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    -webkit-box-align: center;.
+    align-items: center;
+    height: 100%;
+} */
+
+		.Aligner {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			height: 100%;
+		}
+
+		.Aligner-item {
+			max-width: 50%;
+			/* align-self: center; */
+			vertical-align: middle;
+			height: 100%;
+		}
+
+		.Aligner-item--top {
+			align-self: flex-start;
+		}
+
+		.Aligner-item--bottom {
+			align-self: flex-end;
+		}
+	</style>
+	<section class="au-animate">
+		<div class="section-header flex-row-none">
+			${heading} version:v111c
+		</div>
+		<div class="section-content flex-row-1 Aligner">
+			<!-- <img class="logo" src="http://www.michaelrosenfeldart.com/bundles/exhibitedefault/images/MRG_logo-white.png"> -->
+			<div class="Aligner-item">
+				</br>
+				</br>
+				</br>
+				<img background-color="#38162E" src="https://5924b98cbd966f546312882f.blob.core.windows.net/mrg-new/src/images/MRG_logo-white.png">
+			</div>
+		</div>
+		<!-- <a href="#" id="username" data-type="text" data-pk="1" data-url="/post" data-title="Enter username">superuser</a> -->
+		<!-- <div id="films"></div> -->
+		<!-- <img background-color="#38162E" src="https://5924b98cbd966f546312882f.blob.core.windows.net/mrg-new/src/images/MRG_logo-white.png"> -->
+
+	</section>
+</template>

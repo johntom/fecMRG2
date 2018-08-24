@@ -1,0 +1,136 @@
+<template>
+	<require from="./docs.css"></require>
+
+	<section class="docs full-height flex-column-1 overflow-y-auto ignore">
+		<h4>
+			<!-- href="#/provenance/new"> -->
+			<i class="fa fa-folder-open"></i> Reproduction
+			<a slot="buttons-slot" class="btn btn-primary" click.delegate="addRepro()">
+
+				<i class="fa fa-plus"></i> Add Reproduction
+			</a>
+		</h4>
+
+
+		<table class="table-condensed table">
+			<thead class="table-header-blue" data-sort="items.bind: currentItem.reproduction; cols: ['WorkDate','Notes']">
+				<tr>
+					<th class="header">Author</th>
+					<th class="header">First</th>
+					<th class="header">Last</th>
+
+					<th class="header">Title </th>
+					<th class="header">Publisher </th>
+					<th class="header">Location </th>
+					<th class="header">Date </th>
+					<th class="header">Page </th>
+					<th class="header">Type </th>
+
+					<th class="header">Color/BW </th>
+					<th class="header">Sort Date </th>
+					<th class="header">Sel Exhibition </th>
+					<th class="header"> </th>
+				</tr>
+			</thead>
+			<tfoot>
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+			</tfoot>
+			<tbody>
+
+				<tr repeat.for="reproduction of currentItem.reproduction " with.bind="reproduction">
+					<!-- <td width="120px"><input type="text" id="ProvOwner" class="form-control  input-sm" value.bind="ProvOwner"></td> -->
+					<td width="125px">
+						<span show.bind="!reproduction.edit">${ReproductionAuthor}</span>
+						<input show.bind="reproduction.edit" id="ReproductionAuthor" class="form-control input-sm" disabled.bind="!reproduction.edit"
+						 type="text" value.bind="ReproductionAuthor">
+					</td>
+					<td width="125px">
+						<span show.bind="!reproduction.edit">${AuthorFirst}</span>
+						<input show.bind="reproduction.edit" id="AuthorFirst" class="form-control input-sm" disabled.bind="!reproduction.edit" type="text"
+						 value.bind="AuthorFirst">
+					</td>
+					<td width="125px">
+						<span show.bind="!reproduction.edit">${AuthorLast}</span>
+						<input show.bind="reproduction.edit" id="AuthorLast" class="form-control input-sm" disabled.bind="!reproduction.edit" type="text"
+						 value.bind="AuthorLast">
+					</td>
+					<td width="125px">
+						<span show.bind="!reproduction.edit">${ReproductionTitle}</span>
+						<input show.bind="reproduction.edit" id="ReproductionTitle" class="form-control input-sm" disabled.bind="!reproduction.edit"
+						 type="text" value.bind="ReproductionTitle">
+					</td>
+					<td width="125px">
+						<span show.bind="!reproduction.edit">${ReproductionName}</span>
+						<input show.bind="reproduction.edit" id="ReproductionAuthor" class="form-control input-sm" disabled.bind="!reproduction.edit"
+						 type="text" value.bind="ReproductionName">
+					</td>
+					<td width="200px">
+						<select id="ReproductionLocation" class="form-control  input-sm" value.bind="ReproductionLocation"> 
+                      <option model.bind="null">Choose...filterOnCode</option> 
+                         <option repeat.for="opt of appService.codesProvenanceLocation " model.bind="opt.id">
+                    ${opt.Description} 
+                      </option> 
+                    </select>
+
+					</td>
+
+					<td width="120px"><input type="text" id="ReproductionDate" class="form-control  input-sm" value.bind="ReproductionDate"></td>
+					<td width="200px"><input type="text" id="ReproductionPage" class="form-control  input-sm" value.bind="ReproductionPage"></td>
+					<!-- <td width="120px"><input type="text" id="Sequence" class="form-control  input-sm" value.bind="Sequence"></td>
+						<td width="120px"><input type="date" id="ReproductionType" class="form-control  input-sm" value.bind="ReproductionType"></td>
+					 -->
+					<td width="200px">
+						<select id="ReproductionType" class="form-control  input-sm" value.bind="ReproductionType"> 
+                      <option model.bind="null">Choose...</option> 
+                         <option repeat.for="opt of appService.codesPublicationType " model.bind="opt.id">
+                    ${opt.Description} 
+                      </option> 
+                    </select>
+
+					</td>
+
+					<!-- <td width="120px"><input type="text" id="ColorBW" class="form-control  input-sm" value.bind="ColorBW"></td> -->
+					<td width="120px">
+						<select id="ColorBW" class="form-control  input-sm" value.bind="ColorBW"> 
+                      <option model.bind="null">Choose...</option> 
+                         <option repeat.for="opt of appService.codesReproductionType " model.bind="opt.id">
+                    ${opt.Description} 
+                      </option> 
+                    </select>
+
+					</td>
+
+					<td width="60px"><input type="date" id="ReproductionSortDate" class="form-control  input-sm"
+          value.bind="ReproductionSortDate"></td>
+
+					<td width="220px">
+						<select ref='ReproductionExhibit' id="ReproductionExhibit" class="form-control input-sm"
+             value.bind="ReproductionExhibit"
+						 change.delegate="selectChanged(ReproductionExhibit,$index,opt)"> 
+                      <option model.bind="null">Choose...</option> 
+                     <option repeat.for="opt of currentItem.exhibition" model.bind="opt._id">
+                          ${opt.ExhibitTitle} 
+                      </option> 
+                    </select>
+
+
+					</td>
+
+					<td width="225px">
+						<button class="btn btn-primary" click.delegate="reproduction.edit=!reproduction.edit">${ !reproduction.edit ? 'Update' : 'Done' }</button>
+						<button class="btn btn-danger" click.delegate="remove(reproduction,$index)">Delete</button>
+					</td>
+
+				</tr>
+			</tbody>
+		</table>
+
+
+	</section>
+</template>

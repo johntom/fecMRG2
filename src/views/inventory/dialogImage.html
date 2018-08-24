@@ -1,0 +1,16 @@
+<template>
+  <ux-dialog>
+    <!-- <ux-dialog-header>${question}</ux-dialog-header> -->
+<ux-dialog-header>  <button click.trigger="controller.cancel()">Close</button></ux-dialog-header>
+
+    <ux-dialog-body>
+    		<img class="responsive-img"  src="https://gtztest.com/api/v1/getonePdf/inv/${currentItem.InventoryCode}.jpg"
+						>
+    </ux-dialog-body>
+
+    <ux-dialog-footer>
+    
+      <!-- <button click.trigger="controller.ok(answer)">Ok</button> -->
+    </ux-dialog-footer>
+  </ux-dialog>
+</template>
