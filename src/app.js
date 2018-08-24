@@ -15,7 +15,7 @@ import { PLATFORM } from 'aurelia-pal';
 
 export class App {
   configureRouter(config, router) {
-    config.title = 'Inmate Medical'//Aurelia Babel SystemJS';
+    config.title = 'Michael Rosenfeld'//Aurelia Babel SystemJS';
     config.map([
       { "route": ["", "welcome"], "name": "welcome", "moduleId": PLATFORM.moduleName("./welcome"), "nav": true, "title": "Welcome" },
       { "route": "grid", "name": "grid", "moduleId": PLATFORM.moduleName("./views/grid/grid"), "nav": true, "title": "Imates-Srv-Inv Grid" },
