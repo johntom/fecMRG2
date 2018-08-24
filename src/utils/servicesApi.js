@@ -9,13 +9,9 @@ export class ApiService {
   constructor(http) {
     this.http = http;
     this.upmess = ''
-    //   this.baseweb = 'http://localhost:8080/api/';
-    //  this.baseweb = 'http://jif.bergenrisk.com:8080/api/';
-    // t
-    // this.baseweb = 'http://74.114.164.24/api/'
+   
     this.baseweb = 'https://gtztest.com/api/'
-    //https://gtztest.com/api/v1/inventory/PORTERC008
-  }
+   
 
 
   getUserJwt(username, pass) {

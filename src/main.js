@@ -14,7 +14,12 @@ export async function configure(aurelia) {
     .plugin('aurelia-bootstrap-select');
 //  .plugin('aurelia-bootstrap-tagsinput');
   await aurelia.start();
-  await aurelia.setRoot('app');
+  await aurelia.setRoot('views/shell/shell');
+  // await aurelia.setRoot('app');
+  
+ //aurelia.start().then(a => a.setRoot('views/shell/shell'));
+
+
 }
 
 
