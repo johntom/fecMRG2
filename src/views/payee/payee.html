@@ -1,0 +1,135 @@
+<template>
+	<!-- <require from="./blur-image"></require> -->
+	<require from="../../resources/value-converters/date-format"></require>
+	<require from="../../resources/value-converters/number-format"></require>
+	<require from="../../resources/value-converters/currency-format"></require>
+	<require from="../../resources/value-converters/social-format"></require>
+	<require from="../../resources/value-converters/stringify"></require>
+
+	<require from="../../../styles/flex.css"></require>
+	<section class="au-animate">
+
+		<section class="au-animate">
+			<h4>${heading}
+				<a slot="buttons-slot">
+					<input id="icon_prefix" type="text" value.bind="searchdoc & debounce" class="validate">
+
+					<i class="material-icons search">search</i>
+				</a>
+				<a slot="buttons-slot" class="btn btn-success" click.delegate="addPayee()">
+					<i class="fa fa-plus"></i> Add Payee
+				</a>
+				${updateinmatesmess}
+			</h4>
+
+
+
+			<!-- <table class="table-condensed table"> -->
+
+
+			<table class="table-condensed table" id="table" ref="table" data-toggle="table">
+				<thead class="table-header-blue" data-sort="items.bind: appService.currentRecord.booking; cols: ['bookingDate','classification']">
+					<tr>
+						<tr>
+
+							<th class="header">Name (Full)
+							</th>
+
+							<th class="header">Fein
+							</th>
+							<th class="header">Address
+							</th>
+							<th class="header">City
+							</th>
+							<th class="header">State
+							</th>
+							<th class="header">Zip
+							</th>
+							<th class="header">Cmd
+
+							</th>
+						</tr>
+				</thead>
+				<tfoot>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+				</tfoot>
+				<tbody>
+					<!-- <tr repeat.for="payee of payees" with.bind="payee" class="${isSelected ? 'is-row-selected' : 'is-row-not-selected'}" click.trigger="juice.changeColor()"> -->
+					<!-- <tr repeat.for="payee of payees" class="${isSelected ? 'is-row-selected' : 'is-row-not-selected'}" click.trigger="juice.changeColor()"> -->
+					<tr repeat.for="payee of payees" with.bind="payee" class="${isSelected ? 'is-row-selected' : 'is-row-not-selected'}">
+
+						<td width="125px">
+							<span show.bind="!payee.edit">${payeename  }</span>
+							<input show.bind="payee.edit" class="form-control input-sm" disabled.bind="!payee.edit" type="text" value.bind="payeename">
+						</td>
+
+						<td width="125px">
+							<span show.bind="!payee.edit">${payeefein}</span>
+
+							<input show.bind="payee.edit" class="form-control input-sm" disabled.bind="!payee.edit" type="text" value.bind="payeefein">
+						</td>
+
+
+						<td width="125px">
+							<span show.bind="!payee.edit">${payeeaddr}</span>
+
+							<input show.bind="payee.edit" class="form-control input-sm" disabled.bind="!payee.edit" type="text" value.bind="payeeaddr">
+						</td>
+						<td width="125px">
+							<span show.bind="!payee.edit">${payeecity}</span>
+
+							<input show.bind="payee.edit" class="form-control input-sm" disabled.bind="!payee.edit" type="text" value.bind="payeecity">
+						</td>
+						<td width="125px">
+							<span show.bind="!payee.edit">${payeestate}</span>
+
+							<input show.bind="payee.edit" class="form-control input-sm" disabled.bind="!payee.edit" type="text" value.bind="payeestate">
+						</td>
+						<td width="125px">
+							<span show.bind="!payee.edit">${payeezip}</span>
+
+							<input show.bind="payee.edit" class="form-control input-sm" disabled.bind="!payee.edit" type="text" value.bind="payeezip">
+						</td>
+
+						<td width="325px">
+							<!-- <button class="btn btn-primary" click.delegate="editPayee(payee,payee.edit,$index)"  disabled.bind="!disabledbtn">
+                  ${$index}-${currentIndex}     ${payee.edit}               ${ !payee.edit ? 'Update' : 'Done' }</button> disabled.bind="$index==!currentIndex&&currentIndex!==-1">-->
+							<input ref="checkbox" type="checkbox" disabled.bind="!payee.edit" >updateInmates: </input>
+
+							<button class="btn btn-primary" click.delegate="editPayee(payee,payee.edit,$index)" disabled.bind="$index!==currentIndex&&currentIndex!==-1">
+                ${ !payee.edit ? 'Update' : 'Done' }</button>
+							<button class="btn btn-danger" disabled.bind="!payee.edit" click.delegate="cancelPayee(payee,payee.edit,$index)">Cancel</button>
+							<!-- <button class="btn  btn-info" disabled.bind="!payee.edit" click.delegate="updateInmates(payee)">Update Inmates</button> -->
+						</td>
+
+						<!-- https://stackoverflow.com/questions/45844344/aurelia-js-inserting-css-class-after-click-and-bind-just-the-row-clicked -->
+
+						</span>
+					</tr>
+
+				</tbody>
+			</table>
+			<!--  end booking table -->
+
+		</section>
+		<!-- </form> -->
+		<div class="flex-column-none section-footer">
+			<span>&nbsp;&nbsp;
+                    <!-- <button class="btn btn-sm btn-danger" click.delegate="savePayee(0)">
+                    Save   ${message}  
+                    </button> -->
+
+                    <button class="btn btn-sm btn-danger" click.delegate="close()">
+                        Close
+                    </button>
+                </span>
+		</div>
+
+	</section>
+</template>

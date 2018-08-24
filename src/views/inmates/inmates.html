@@ -1,0 +1,43 @@
+
+<template>
+    <!-- <require from="./blur-image"></require> -->
+<require from="./date-format"></require>
+	<require from="./number-format"></require>
+  <require from="./currency-format"></require> 
+	<require from="./social-format"></require>
+
+  <section class="au-animate">
+    <h4>${heading}
+      	<a slot="buttons-slot">
+          <input id="icon_prefix" type="text" value.bind="searchdoc & debounce" class="validate">
+                            
+			 <i class="material-icons search">search</i>
+       </a>
+       	<a slot="buttons-slot" class="btn btn-success" click.delegate="openrecord('create')">
+						<i class="fa fa-plus"></i> Add Inmate
+					</a>
+    </h4>
+    <div class="row au-stagger">
+      <div class="col-sm-6 col-md-3 card-container au-animate" repeat.for="inmate of inmates">
+        <div class="card">
+          <div class="content">
+            <p class="name">${inmate.inmate.lastname}, ${inmate.inmate.firstname}</p>
+             <p class="name">gender:${inmate.inmate.gender} ss: ${inmate.inmate.ss | socialFormat } dob:${inmate.inmate.DOB | dateFormat  } </p>
+            <!--ss:${inmate.inmate.ss| ssFormat } <p><a target="_blank" class="btn btn-default" click.delegate="openrecord(inmate)">Records</a></p> -->
+          <p><button class="btn btn-default" click.delegate="openrecord(inmate)">Records</button></p>
+          
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</template>
+<!-- <template>
+  <h1>Hello World</h1>
+  inmates: ${inmates[0]} -->        <!-- inmate: {
+lastname: "UPSHAW",
+firstname: "TERRANCE",
+gender: "M",
+ss: "058-41-4412",
+DOB: "2018-06-19T16:46:14.973Z"
+}, -->

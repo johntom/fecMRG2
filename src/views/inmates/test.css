@@ -1,0 +1,58 @@
+
+	/*
+  	.is-row-selected {
+			background: yellow !important;
+		}
+
+		.is-row-not-selected {
+			background: #f9f9f9 !important;
+		}
+
+		 .is-row-selected {
+   background:#f9f9f9 !important;
+}
+
+.is-row-not-selected {
+
+  background: yellow !important;
+} 
+
+		 .background-animation-add {
+			-webkit-animation: changeBack 0.5s;
+			animation: changeBack 0.5s;
+		}
+
+		.background-animation-remove {
+			-webkit-animation: fadeIn 0.5s;
+			animation: fadeIn 0.5s;
+		}
+
+		@-webkit-keyframes changeBack {
+			0% {
+				background-color: white;
+			}
+			50% {
+				background-color: lightgreen;
+			}
+			100% {
+				background-color: white;
+			}
+		}
+
+		@keyframes changeBack {
+			0% {
+				background-color: white;
+			}
+			50% {
+				background-color: lightgreen;
+			}
+			100% {
+				background-color: white;
+			}
+		}
+
+		tr.selected td {
+			background-color: #333;
+			color: #fff;
+		}
+    */

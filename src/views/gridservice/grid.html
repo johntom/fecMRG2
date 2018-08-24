@@ -1,0 +1,78 @@
+<template>
+	<style>
+		.weekend {
+			background-color: #F7DCAA;
+			text-align: right;
+		}
+	</style>
+	<require from="aurelia-kendoui-bridge/grid/grid"></require>
+	<require from="aurelia-kendoui-bridge/grid/col"></require>
+	<require from="aurelia-kendoui-bridge/common/template"></require>
+	<require from="aurelia-kendoui-bridge/grid/grid-command"></require>
+
+	<section class="customers au-animate">
+		<h2>Inmates ${heading}</h2>
+
+	</section>
+	<section class="full-height flex-column-1 au-animate ignore">
+		<script>
+			excelExport:
+                        function (e) {
+
+                            var sheet = e.workbook.sheets[0];
+                            var template = kendo.template(this.columns[8].template);
+
+                            for (var i = 1; i < sheet.rows.length; i++) {
+                                var row = sheet.rows[i];
+
+                                let diff = row.cells[6].value - row.cells[7].value
+                                row.cells.push({ 'value': diff })
+                            }
+                        }
+		</script>
+		<!-- k-selectable="[row,multiple]" k-on-change.delegate="rowSelected($event.detail) -->
+		<ak-grid class="flex-row-1 overflow-y-auto" id="grid" k-data-source.bind="datasource" k-widget.bind="grid" k-sortable.bind="{ mode: 'multiple',   allowUnsort: 'true'}"
+		 k-selectable="[row,multiple]" k-filterable.bind="{  mode: 'row' }" k-editable="inline" k-reorderable.bind="true" k-groupable.bind="true"
+		 k-resizable.bind="true" k-toolbar.bind="['excel']" k-excel.bind="{ fileName: 'inmates.xlsx' }" k-column-menu.bind="true "
+		 k-pageable.bind="false ">
+
+			<ak-col k-title="Last " k-width="100px " k-field="lastname " k-locked.bind="true "></ak-col>
+			<ak-col k-title="First " k-width="90px " k-field="firstname " k-locked.bind="true "></ak-col>
+			<ak-col k-title="ss " k-width="100px " k-field="ss " k-locked.bind="true "></ak-col>
+			<ak-col k-title="Gender " k-width="110px " k-field="gender " k-locked.bind="true "></ak-col>
+
+			<!-- true -->
+
+			<ak-col k-title="DOB " k-width="100px " k-lockable.bind="true " k-field="DOB " k-filterable.bind="true " k-format="{0:MM/dd/yyyy} "></ak-col>
+
+			<ak-col k-title="Booking<br>Date" k-width="100px" k-locked.bind="false" k-lockable.bind="false" k-field="bookingDate" k-filterable.bind="false"
+			 k-format="{0:MM/dd/yyyy}">
+			</ak-col>
+			<ak-col k-title="Booking#" k-width="100px" k-field="bookingNo"></ak-col>
+			<!-- <ak-col k-title="Date<br>of Sentencing" k-width="100px" k-locked.bind="false" k-lockable.bind="false" k-field="sentencingDate"
+			 k-filterable.bind="false" k-format="{0:MM/dd/yyyy}"></ak-col> -->
+			<ak-col k-title="Srv Provided" k-width="120px" k-field="serviceProvided"></ak-col>
+
+
+
+
+			<ak-col k-title="Srv DateFrom" k-width="120px" k-locked.bind="false" k-lockable.bind="false" k-field="serviceDateFrom" k-filterable.bind="false"
+			 k-format="{0:MM/dd/yyyy}"></ak-col>
+			<ak-col k-title="Srv DateTo" k-width="120px" k-locked.bind="false" k-lockable.bind="false" k-field="serviceDateTo" k-filterable.bind="false"
+			 k-format="{0:MM/dd/yyyy}"></ak-col>
+			<ak-col k-title="Service Days" k-width="120px" k-field="serviceDays"></ak-col>
+
+
+
+			<ak-col k-title="Trans Method" k-width="180px" k-field="transportMethod"></ak-col>
+			<ak-col k-title="Srv Reason" k-width="180px" k-field="serviceReason"></ak-col>
+			<ak-col k-title="Inv info" k-width="280px" k-field="invoiceinfo"></ak-col>
+
+
+		</ak-grid>
+		<!-- <div class="flex-row-none section-footer">
+			${footer} <span>  ${queryParams}</span> <span>&nbsp;&nbsp;	<button id="searchInputBtn" class="btn btn-primary" type="button" click.delegate="performRefresh()">Refresh</button></span>
+		</div> -->
+	</section>
+</template>
+</template>
