@@ -13,6 +13,8 @@ export class Home {
   }
   //   this.dataService.loadCodes(values[1]), resolve all lists
   activate() {
+    this.appService.artistList = await this.dataService.loadArtistAsync()
+
     if (this.appService.LookupDataLoaded) {
       console.log('using data cache from home....')
       return Promise.resolve(true);

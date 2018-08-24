@@ -158,6 +158,18 @@ export class MyDataService {
 
     });
   }
+
+async  loadArtistAsync() {
+    let artistList
+    await this.api.findArtists()
+      .then((jsonRes) => {
+        artistList = jsonRes.data
+        
+      });
+    return await (artistList)
+  }
+
+
   loadCodes() {
     return new Promise((resolve, reject) => {
       this.api.findCodes()
