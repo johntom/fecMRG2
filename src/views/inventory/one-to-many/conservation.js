@@ -13,8 +13,7 @@ export class Conservation {
   recordId = '';
   done = false;
   edit = false;
-  // todos: Todo[] = [];
-  notes: Note[] = [];
+  // notes: Note[] = [];
   newNoteWorkDate = '';
   newNote = '';
 

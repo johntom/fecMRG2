@@ -11,7 +11,7 @@ export class Photo {
   heading = 'DataForm HEADER...';
   footer = 'DataForm FOOTER...';
    recordId = '';
-    provenance: Provenance[] = []
+ //   provenance: Provenance[] = []
   done = false;
   edit = false;
   constructor(api, appService, dialogService) {

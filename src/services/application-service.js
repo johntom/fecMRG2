@@ -1,57 +1,3 @@
-
-// import { Router } from 'aurelia-router';
-// import { inject } from 'aurelia-dependency-injection';
-// import { DialogService } from 'aurelia-dialog';
-// //MATT  import { Prompt } from './prompt';
-
-// @inject(Router, DialogService)
-// // @inject(Router) //, DialogService
-// export class ApplicationService {
-//   constructor(router) { //, dialogService
-//     //  this.dialogService = dialogService
-//     this.router = router
-//   }
-//   currentView;
-//   tabs = [];
-
-//   asyncHandleDirty() {
-//     const model = 'You have unsaved changes. Cancel to stay OK to leave';
-//     // const options = { viewModel: Prompt, model: model, lock: false };
-//     //// return this.dialogService.open(options).whenClosed(response => response);
-//   }
-
-//   navigate(route) {
-//     this.router.navigate(route);
-//   }
-
-//   dataFormOneToOneTabs = [
-//     {
-//       name: "extend",
-//       viewModel: "./one-to-one/extend",
-//       isSelected: false
-//     },
-//     {
-//       name: "Pdfupload",
-//       viewModel: "./one-to-one/pdfupload",
-//       isSelected: false
-//     }
-//   ];
- 
-//   testrec = 0;
-//   originalrec = 0;
-//   claimLookupDataLoaded = false;
-//   searchDataLoaded = false;
-//   curentClaim;
-//   currentRecord;
-//   classificationList = []
-//   serviceprovidedList = []
-//   transportList = []
-//   servicetypeList = []
-//   approvedList = []
-  
-
-// }
-
 import { DialogService } from 'aurelia-dialog';
 // import { Prompt } from './prompt';
 import { Router } from 'aurelia-router';
@@ -402,3 +348,56 @@ export class ApplicationService {
   currentItem = 0;
 }
 
+
+// import { Router } from 'aurelia-router';
+// import { inject } from 'aurelia-dependency-injection';
+// import { DialogService } from 'aurelia-dialog';
+// //MATT  import { Prompt } from './prompt';
+
+// @inject(Router, DialogService)
+// // @inject(Router) //, DialogService
+// export class ApplicationService {
+//   constructor(router) { //, dialogService
+//     //  this.dialogService = dialogService
+//     this.router = router
+//   }
+//   currentView;
+//   tabs = [];
+
+//   asyncHandleDirty() {
+//     const model = 'You have unsaved changes. Cancel to stay OK to leave';
+//     // const options = { viewModel: Prompt, model: model, lock: false };
+//     //// return this.dialogService.open(options).whenClosed(response => response);
+//   }
+
+//   navigate(route) {
+//     this.router.navigate(route);
+//   }
+
+//   dataFormOneToOneTabs = [
+//     {
+//       name: "extend",
+//       viewModel: "./one-to-one/extend",
+//       isSelected: false
+//     },
+//     {
+//       name: "Pdfupload",
+//       viewModel: "./one-to-one/pdfupload",
+//       isSelected: false
+//     }
+//   ];
+ 
+//   testrec = 0;
+//   originalrec = 0;
+//   claimLookupDataLoaded = false;
+//   searchDataLoaded = false;
+//   curentClaim;
+//   currentRecord;
+//   classificationList = []
+//   serviceprovidedList = []
+//   transportList = []
+//   servicetypeList = []
+//   approvedList = []
+  
+
+// }

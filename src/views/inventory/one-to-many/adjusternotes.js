@@ -13,7 +13,7 @@ export class Adjusternotes {
   done = false;
   edit = false;
   // todos: Todo[] = [];
-  notes: Note[] = [];
+ // notes: Note[] = [];
   newNoteWorkDate = '';
   newNote = '';
 

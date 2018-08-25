@@ -12,9 +12,12 @@ export class Transport {
   heading = 'DataForm HEADER...';
   footer = 'DataForm FOOTER...';
    recordId = '';
-    transport: Transport[] = []
+  //  transport: Transport[] = []
   done = false;
   edit = false;
+
+  
+
   constructor(router, api, appService, dialogService) {
     this.api = api;
     this.appService = appService;

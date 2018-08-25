@@ -12,10 +12,9 @@ export class Condition {
   done = false;
   edit = false;
   // todos: Todo[] = [];
-  condition: Condition[] = [];
-  //newNoteWorkDate = '';
-  //newNote = '';
-
+ 
+ // condition: Condition[] = []; ASK Matt
+ 
   constructor(api, appService, dialogService) {
     this.api = api;
     this.appService = appService;

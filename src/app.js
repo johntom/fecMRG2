@@ -39,4 +39,19 @@ export class App {
 
     this.router = router;
   }
+  
+  selectTab(e, tab) {
+    e.preventDefault();
+    e.stopPropagation();
+ // by calling router if canDeactivate is false it wont allow route
+ // the canDeactivate raises a dialog
+    this.appService.navigate(tab.href);
+    return true;
+  }
+  closeTab(tab, index) {
+    let newIndex = (index > 0) ? index - 1 : 0;
+    let newTab = this.appService.tabs[newIndex];
+    this.appService.tryCloseTab(this.appService.currentView, tab, newTab.href);
+  }
 }
+

@@ -19,9 +19,7 @@ export class Offering {
   done = false;
   edit = false;
 
-  // todos: Todo[] = [];
-  // notes: Note[] = [];
-  adjusters: Adjuster[] = []
+  // adjusters: Adjuster[] = []
   newNoteWorkDate = '';
   newNote = '';
   typeList = [
