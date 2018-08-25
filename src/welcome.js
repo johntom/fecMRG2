@@ -8,7 +8,7 @@ import { MyDataService } from "./services/my-data-service";
 @inject(ApplicationService, ApiService, MyDataService)
 export class Welcome {
   // ndate = moment(new Date()).format('M/D/YYYY')
-  heading = 'MRG Convert Zone! version: v1a / Press Ctrl+F5 for latest version in development'// + ndate;
+  heading = 'MRG Convert Zone! version: betaC6 / Press Ctrl+F5 for latest version in development'// + ndate;
   // heading2 = ' v3a'// + ndate;
 
   firstName = 'John ';
@@ -65,6 +65,12 @@ export class Welcome {
 
     // console.log(' await payeelist 1', this.appService.payeelist)
     // console.log(' await artistlist  1 ', this.appService.artistlist)
+
+// had it on activate
+if (this.appService.LookupDataLoaded) {
+      console.log('using data cache from home....')
+      return Promise.resolve(true);
+    } else {
 
     return Promise.all([
       //   this.dataService.loadPayee(),
@@ -319,6 +325,7 @@ export class Welcome {
       console.error("Error encountered while trying to get data.", error);
     });
   }
+ }
 
 
 async attached2() {

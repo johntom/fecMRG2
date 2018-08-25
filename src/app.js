@@ -12,24 +12,38 @@
 //   }
 // }
 import { PLATFORM } from 'aurelia-pal';
+import { ApplicationService } from './services/application-service';
+import { AuthorizeStep } from './services/authorize-step';
 
 export class App {
+   static inject = [ApplicationService];
+
+  constructor(appService) {
+    this.appService = appService;
+  }
   configureRouter(config, router) {
-    config.title = 'Inmate Medical'//Aurelia Babel SystemJS';
+   config.title = 'MRG Layout';
+    config.addPipelineStep('authorize', AuthorizeStep);
     config.map([
-      { "route": ["", "welcome"], "name": "welcome", "moduleId": PLATFORM.moduleName("./welcome"), "nav": true, "title": "Welcome" },
-      { "route": "grid", "name": "grid", "moduleId": PLATFORM.moduleName("./views/grid/grid"), "nav": true, "title": "Imates-Srv-Inv Grid" },
+      // { "route": ["", "welcome"], "name": "welcome", "moduleId": PLATFORM.moduleName("./welcome"), "nav": true, "title": "Welcome" },
+      { "route": '', redirect: 'home' },
+      { "route": 'home', name: 'home', moduleId: PLATFORM.moduleName('./views/home/home'), nav: true, title: 'Home' },
+    
       { "route": 'inventory/:id', name: 'inventory-search-results', "moduleId":PLATFORM.moduleName('./views/inventory/search-results'), title: 'Search Results' },
       { "route": 'inventory/data/:id', name: 'inventory-data-form', "moduleId":PLATFORM.moduleName('./views/inventory/data-form'), title: 'Data Form' },
       { "route": 'inventory', name: 'inventory', "moduleId": PLATFORM.moduleName('./views/inventory/inventory'), nav: true, title: 'Inventory' },
 
+       { route: 'contact', name: 'contact', moduleId: './views/contact/contact', nav: true, title: 'Contact' },
+      { route: 'contact/:id', name: 'contact-search-results', moduleId: './views/contact/search-results', title: 'Search Results' },
+      { route: 'contact/data/:id', name: 'contact-data-form', moduleId: './views/contact/data-form', title: 'Data Form' },
+
+    //  { "route": "grid", "name": "grid", "moduleId": PLATFORM.moduleName("./views/grid/grid"), "nav": true, "title": "Imates-Srv-Inv Grid" },
      
-     
-      { "route": "gridservice", "name": "gridservice", "moduleId": PLATFORM.moduleName("./views/gridservice/grid"), "nav": true, "title": "Service Grid" },
-      { "route": "inmates", "name": "inmates", "moduleId": PLATFORM.moduleName("./views/inmates/inmates"), "nav": true, "title": "Inmates" },
-      { "route": "inmatesdata", "name": "inmatesdata", "moduleId": PLATFORM.moduleName("./views/inmates/data-form"), "nav": false, "title": "InmatesData" },
-      { "route": "inmates/:id", "name": "inmates-data-form", "moduleId": PLATFORM.moduleName("./views/inmates/data-form"), "nav": false, "title": "InmatesData" },
-      { "route": "payee", "name": "payee", "moduleId": PLATFORM.moduleName("./views/payee/payee"), "nav": true, "title": "Payee" },
+      // { "route": "gridservice", "name": "gridservice", "moduleId": PLATFORM.moduleName("./views/gridservice/grid"), "nav": true, "title": "Service Grid" },
+      // { "route": "inmates", "name": "inmates", "moduleId": PLATFORM.moduleName("./views/inmates/inmates"), "nav": true, "title": "Inmates" },
+      // { "route": "inmatesdata", "name": "inmatesdata", "moduleId": PLATFORM.moduleName("./views/inmates/data-form"), "nav": false, "title": "InmatesData" },
+      // { "route": "inmates/:id", "name": "inmates-data-form", "moduleId": PLATFORM.moduleName("./views/inmates/data-form"), "nav": false, "title": "InmatesData" },
+      // { "route": "payee", "name": "payee", "moduleId": PLATFORM.moduleName("./views/payee/payee"), "nav": true, "title": "Payee" },
 
 
       { "route": "ab-select", "name": "ab-select", "moduleId": PLATFORM.moduleName("./views/ab-select/ab-select"), "nav": true, "title": "AB Select" }

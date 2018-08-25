@@ -7,12 +7,19 @@ import { MyDataService } from "../../services/my-data-service";
 
 export class Home {
   heading = "Welcome to the MRG Home page!";
+  version = 200
   constructor(appService, dataService) {
     this.appService = appService;
     this.dataService = dataService;
   }
   //   this.dataService.loadCodes(values[1]), resolve all lists
   activate() {
+     // this.appService.payeelist = await this.dataService.loadPayeeAsync()
+    // this.appService.artistlist = await this.dataService.loadArtistsAsync()
+
+    // console.log(' await payeelist 1', this.appService.payeelist)
+    // console.log(' await artistlist  1 ', this.appService.artistlist)
+
     if (this.appService.LookupDataLoaded) {
       console.log('using data cache from home....')
       return Promise.resolve(true);
@@ -86,15 +93,7 @@ export class Home {
           // newi._id=item._id
           newi.ID = item.ID
           newi.id = item.id
-          // "Description" : "Art Fair", 
-          // "Integer Value" : "", 
-          // "String Value" : "", 
-          // "Sort Order" : NumberInt(0), 
-          // "Security Level" : "", 
-          // "Protected" : "N", 
-          // "Currency Value" : "", 
-          // "CodeType" : NumberInt(17), 
-          // "CodeTypeDesc" : "Location"
+        
           switch (ct) {
             case 1:
               codesInventoryLocation.push(newi)
