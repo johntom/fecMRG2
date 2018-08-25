@@ -1,0 +1,53 @@
+<template>
+  <require from="../../../styles/styles.css"></require>
+  <section class="fec-web full-height flex-column-1">
+    <!-- <header class="flex-row-none">
+      <nav-bar router.bind="router"></nav-bar>
+    </header>     src="http://www.michaelrosenfeldart.com/bundles/exhibitedefault/images/MRG_logo-white.png">
+    	<img background-color="#38162E" src="https://5924b98cbd966f546312882f.blob.core.windows.net/mrg-new/src/images/MRG_logo-white.png">
+  -->
+    <div class="main-menu flex-row-1">
+      <aside class="flex-column-none">
+        <div class="logo-wrapper flex-column-none">
+          <img class="logo" 
+         src="https://5924b98cbd966f546312882f.blob.core.windows.net/mrg-new/src/images/MRG_logo-white.png">
+         
+          
+        </div>
+        <ul class="menu flex-column-1">
+          <li repeat.for="row of router.navigation" 
+            class="menu-item ${row.isActive ? 'active' : ''}">
+            <a href.bind="row.href">${row.title}</a>
+          </li>
+        </ul>        
+      </aside>
+      <main class="flex-column-4 ignore">
+        <div class="flex-column-1 ignore">
+          <div class="flex-column-none ignore">
+            <div class="flex-row-1">
+              <div repeat.for="tab of appService.tabs" 
+                class="tab ${tab.isSelected ? 'tab-selected' : ''}">
+                <a class="tab-close" 
+                  show.bind="appService.tabs.length > 1"
+                  click.delegate="closeTab(tab, $index)">
+                  <i class="tab-close-icon fa fa-times"></i>
+                  <i class="tab-close-icon tab-close-icon-hover fa fa-times-circle"></i>
+                </a>
+                <a class="tab-box" href="${tab.href}"
+                    click.delegate="selectTab($event, tab)">
+                  <span>${tab.name}</span>
+                </a>
+              </div>
+            </div>
+          </div>
+          <article class="flex-column-1 ignore">
+            <router-view></router-view>
+          </article>
+        </div>
+        <footer class="flex-row-none">
+          FOOTER
+        </footer>
+      </main>
+    </div>
+  </section>
+</template>  
