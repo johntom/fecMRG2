@@ -767,8 +767,9 @@ export class ApiService {
   }
 
   findCodes() {
-    var url = this.baseweb + 'v1/code';
+    var url = this.baseweb + 'v1/codes';
     return this.http.fetch(url, {
+        method: 'get',
       mode: 'cors'
     }).then((res) => res.json())
 

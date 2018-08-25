@@ -32,9 +32,11 @@ export async function configure(aurelia) {
     .plugin('aurelia-dialog')
     .plugin('aurelia-bootstrap-select');
   await aurelia.start();
-  // await aurelia.setRoot('app');
-  // aurelia.start().then(a => a.setRoot('src/views/shell/shell'));
-  await aurelia.setRoot('views/shell/shell');
+  await aurelia.setRoot('app');
+  //// aurelia.start().then(a => a.setRoot('src/views/shell/shell'));
+  //or
+  
+ // await aurelia.setRoot('views/shell/shell');
   
 }
 
