@@ -36,3 +36,10 @@ see inventory/data-form.html
           FOOTER--
         </footer>
       version info in home view
+
+      todo
+      1. Fix FactSheet processing DELANE0215 LEWIS00114 HOFMAN0015 BONTEC0051 GROSSM0029
+      2. Import data catalog again and document
+      3. Check Look-Feel
+      4. Contact
+      5.  

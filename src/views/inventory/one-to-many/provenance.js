@@ -4,6 +4,10 @@ import { ApplicationService } from '../../../services/application-service';
 import { Aurelia } from 'aurelia-framework';
 import { DialogService } from 'aurelia-dialog';
 import { Prompt } from '../../../services/prompt';
+
+
+
+
 @inject(ApiService, ApplicationService, DialogService)
 export class Provenance {
   heading = 'DataForm HEADER...';
