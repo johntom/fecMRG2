@@ -2,14 +2,23 @@ import { Router, Redirect } from 'aurelia-router';
 import { UtilService } from '../../services/util-service';
 import { ApplicationService } from '../../services/application-service';
 import { MyDataService } from "../../services/my-data-service";
-
+import 'bootstrap-select/css/bootstrap-select.min.css';
+import { bindable, inject } from 'aurelia-framework';
+// @inject()
 export class Action {
+    @bindable picker;
   static inject = [Router, UtilService, ApplicationService, MyDataService];
 
   heading = 'Welcome to the Action page';
   counter = 1;
   search = {}
-
+  selectOptions = {
+    liveSearch: true,
+    showSubtext: true,
+    showTick: true,
+    selectedTextFormat: 'count > 3',
+    actionsBox: true
+  };
   states = [
     { OrgName: 'Alabama', id: 'al' },
     { OrgName: 'Alaska', id: 'ak' },

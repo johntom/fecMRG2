@@ -4,7 +4,7 @@
 
 	<section class="full-height flex-column-1 au-animate ignore">
 		<div class="flex-row-none section-header">
-			${heading} 102
+			${heading} 103
 		</div>
 		<div class="flex-row-1 ignore">
 			<div class="flex-column-1 search-panel">
@@ -15,9 +15,14 @@
 						<input id="searchInput" type="text" class="form-control" placeholder="Search for name..." value.bind="search.name">
 					</div> -->
 					<div class="form-group flex-column-1 margin-left-10">
-						<aubs-typeahead ref='savedlist' data.bind="appService.savedlists" value.bind="name" debounce.bind="350" placeholder="search on 1 sl"
+						<!-- <aubs-typeahead ref='savedlist' data.bind="appService.savedlists" value.bind="name" debounce.bind="350" placeholder="search on 1 sl"
 						 open-on-focus.bind="true" key="name" results-limit.bind="12" select-single-result.bind="true">
-						</aubs-typeahead>
+						</aubs-typeahead> -->
+<abp-select empty-on-null="true" ref='savedlist' picker-options.bind="{ liveSearch: true ,liveSearchPlaceholder:'search',actionsBox:true}"
+   collection.bind="appService.savedlists"></abp-select>
+
+
+
 					</div>
 				</div>
 
