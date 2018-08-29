@@ -11,7 +11,11 @@ export class ApiService {
   constructor(http) {
     this.http = http;
     this.upmess = ''
-    this.baseweb = 'https://gtztest.com/api/' /// https://gtztest.com/api/v1/inmate
+//    this.baseweb = 'https://gtztest.com/api/' 
+
+    this.baseweb = 'https://artbased.com/api/' 
+    
+    /// https://gtztest.com/api/v1/inmate
     // https://gtztest.com/api/v1/getonePdf/:template/:filename
     this.basewebjif = 'https://jif.bergenrisk.com/api/';
   }
