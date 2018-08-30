@@ -7,10 +7,10 @@ import { DialogService } from 'aurelia-dialog';
 import { PromptServ } from '../../services/promptserv';
 import { ApiService } from '../../utils/servicesApi';
 
-import 'bootstrap-select/css/bootstrap-select.min.css';
+//import 'bootstrap-select/css/bootstrap-select.min.css';
 
 export class Prompt {
-    @bindable picker;
+  //  @bindable picker;
   static inject = [DialogController, ApplicationService, MyDataService, DialogService, ApiService];
 mappingDataStructure = {
     class: 'class',
@@ -225,7 +225,7 @@ selectOptions = {
         let orgobj = this.appService.orgsList[mid]//10]
         // console.log('orgobj', orgobj)
         this.OrgName = orgobj
-        this.dconservedby.value = this.OrgName
+        this.S.value = this.OrgName
       }
     }
     if (this.fieldname === 'PhotographerID') {

@@ -66,7 +66,7 @@
 
 					<aubs-typeahead ref='dsoldtoid' data.bind="appService.orgsList" value.bind="OrgName" debounce.bind="350" placeholder="SoldToID"
 					 open-on-focus.bind="true" key="OrgName" results-limit.bind="12" select-single-result.bind="true">
-					</aubs-typeahead>
+					<!-- </aubs-typeahead>
 
 
 	
@@ -74,7 +74,7 @@
                    selected-value.bind="orgValue"
 									 disabled="false" collection.bind="appService.orgsList" data-mapping-structure.bind="mappingorgDataStructure" 
                    object-key="id"
-									 element.bind="selectorgList"></abp-select>
+									 element.bind="selectorgList"></abp-select> -->
 							
 
 
@@ -84,9 +84,9 @@
 			<div show.bind="fieldname==='LoanTo'">
 				<div class="form-group flex-column-1">
 					<h2> ${doc} </h2>
-					<aubs-typeahead ref='dloanto' data.bind="appService.orgsList" value.bind="OrgName" debounce.bind="350" placeholder="SoldToID"
+					<!-- <aubs-typeahead ref='dloanto' data.bind="appService.orgsList" value.bind="OrgName" debounce.bind="350" placeholder="SoldToID"
 					 open-on-focus.bind="true" key="OrgName" results-limit.bind="12" select-single-result.bind="true">
-					</aubs-typeahead>
+					</aubs-typeahead> -->
 				</div>
 			</div>
 
@@ -94,18 +94,19 @@
 			<div show.bind="fieldname==='ConservedBy'">
 				<div class="form-group flex-column-1">
 					<h2> ${doc} </h2>
-					<aubs-typeahead ref='dconservedby' data.bind="appService.orgsList" value.bind="OrgName" debounce.bind="350" placeholder="ConservedBy"
+          <span ref='dconservedby' ></span>
+					<!-- <aubs-typeahead ref='dconservedby' data.bind="appService.orgsList" value.bind="OrgName" debounce.bind="350" placeholder="ConservedBy"
 					 open-on-focus.bind="true" key="OrgName" results-limit.bind="12" select-single-result.bind="true">
-					</aubs-typeahead>
+					</aubs-typeahead> -->
 				</div>
 			</div>
 
 	<div show.bind="fieldname==='PhotographerID'">
 				<div class="form-group flex-column-1">
 					<h2> ${doc} </h2>
-					<aubs-typeahead ref='dphotographerid' data.bind="appService.orgsList" value.bind="OrgName" debounce.bind="350" placeholder="PhotographerID"
+					<!-- <aubs-typeahead ref='dphotographerid' data.bind="appService.orgsList" value.bind="OrgName" debounce.bind="350" placeholder="PhotographerID"
 					 open-on-focus.bind="true" key="OrgName" results-limit.bind="12" select-single-result.bind="true">
-					</aubs-typeahead>
+					</aubs-typeahead> -->
 				</div>
 			</div>
 
@@ -113,9 +114,9 @@
 			<div show.bind="fieldname==='PurchasedFrom'">
 				<div class="form-group flex-column-1">
 					<h2> ${doc} </h2>
-					<aubs-typeahead ref='dpurchasedfrom' data.bind="appService.orgsList" value.bind="OrgName" debounce.bind="350" placeholder="ConservedBy"
+					<!-- <aubs-typeahead ref='dpurchasedfrom' data.bind="appService.orgsList" value.bind="OrgName" debounce.bind="350" placeholder="ConservedBy"
 					 open-on-focus.bind="true" key="OrgName" results-limit.bind="12" select-single-result.bind="true">
-					</aubs-typeahead>
+					</aubs-typeahead> -->
 				</div>
 			</div>
 
@@ -131,9 +132,9 @@
 				<div class="form-group flex-column-1">
 					<h2> ${doc} </h2>
 
-					<aubs-typeahead ref='dconsignedto' data.bind="appService.orgsList" value.bind="OrgName" debounce.bind="350" placeholder="ConsignedFromID"
+					<!-- <aubs-typeahead ref='dconsignedto' data.bind="appService.orgsList" value.bind="OrgName" debounce.bind="350" placeholder="ConsignedFromID"
 					 open-on-focus.bind="true" key="OrgName" results-limit.bind="12" select-single-result.bind="true">
-					</aubs-typeahead>
+					</aubs-typeahead> -->
 				</div>
 
 			</div>
@@ -141,9 +142,9 @@
 				<div class="form-group flex-column-1">
 					<h2> ${doc} </h2>
 
-					<aubs-typeahead ref='dconsignedfromid' data.bind="appService.orgsList" value.bind="OrgName" debounce.bind="350" placeholder="ConsignedFromID"
+					<!-- <aubs-typeahead ref='dconsignedfromid' data.bind="appService.orgsList" value.bind="OrgName" debounce.bind="350" placeholder="ConsignedFromID"
 					 open-on-focus.bind="true" key="OrgName" results-limit.bind="12" select-single-result.bind="true">
-					</aubs-typeahead>
+					</aubs-typeahead> -->
 				</div>
 
 			</div>
@@ -151,9 +152,9 @@
 				<div class="form-group flex-column-1">
 					<h2> ${doc} </h2>
 
-					<aubs-typeahead ref='dconsignmentshippingid' data.bind="appService.orgsList" value.bind="OrgName" debounce.bind="350" placeholder="ConsignmentShippingID"
+					<!-- <aubs-typeahead ref='dconsignmentshippingid' data.bind="appService.orgsList" value.bind="OrgName" debounce.bind="350" placeholder="ConsignmentShippingID"
 					 open-on-focus.bind="true" key="OrgName" results-limit.bind="12" select-single-result.bind="true">
-					</aubs-typeahead>
+					</aubs-typeahead> -->
 				</div>
 
 			</div>
@@ -162,9 +163,9 @@
 				<div class="form-group flex-column-1">
 					<h2> ${doc} </h2>
 
-					<aubs-typeahead ref='dorg' data.bind="appService.orgsList" value.bind="OrgName" debounce.bind="350" placeholder="OwnerID"
+					<!-- <aubs-typeahead ref='dorg' data.bind="appService.orgsList" value.bind="OrgName" debounce.bind="350" placeholder="OwnerID"
 					 open-on-focus.bind="true" key="OrgName" results-limit.bind="12" select-single-result.bind="true">
-					</aubs-typeahead>
+					</aubs-typeahead> -->
 				</div>
 
 			</div>
@@ -172,9 +173,9 @@
 				<div class="form-group flex-column-1">
 					<h2> ${doc} </h2>
 
-					<aubs-typeahead ref='dsaved' data.bind="appService.savedlists" value.bind="name" debounce.bind="350" placeholder="savedlists"
+					<!-- <aubs-typeahead ref='dsaved' data.bind="appService.savedlists" value.bind="name" debounce.bind="350" placeholder="savedlists"
 					 open-on-focus.bind="true" key="name" results-limit.bind="12" select-single-result.bind="true">
-					</aubs-typeahead>
+					</aubs-typeahead> -->
 
 					<div>
 						<input ref="addtextref" id="addlist" type="text" class="form-control" placeholder="Enter a New SaveList name" value.bind="addlist">
