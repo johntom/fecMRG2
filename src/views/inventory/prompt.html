@@ -93,7 +93,7 @@
 			<div show.bind="fieldname==='ConservedBy'">
 				<div class="form-group flex-column-1">
 					<h2> ${doc} </h2>
-					<span ref='dconservedby' ></span>
+					<!-- <span ref='dconservedby' ></span> -->
 					<!-- <aubs-typeahead ref='dconservedby' data.bind="appService.orgsList" value.bind="OrgName" debounce.bind="350" placeholder="ConservedBy"
 					 open-on-focus.bind="true" key="OrgName" results-limit.bind="12" select-single-result.bind="true">
 					</aubs-typeahead>
@@ -118,11 +118,20 @@
          selected-item.bind="orgSelection.selectedOrgItem" 
          selected-value.bind="orgSelection.selectedOrgValue"
 				 collection.bind="appService.orgsList" 
-         data-mapping-structure.bind="mappingDataStructure" object-key="id">
+         data-mapping-structure.bind="mappingorgDataStructure" object-key="_id">
 				</abp-select>
 			</div>
 
-
+<label class="control-label">Object Collection</label>
+			<div>Value: ${condimentSelection.selectedCondimentValue} <br /> Item: ${condimentSelection.selectedCondimentItem | stringify}</div>
+			<div>
+				<abp-select element.bind="mypicker"
+         selected-item.bind="condimentSelection.selectedCondimentItem" 
+         selected-value.bind="condimentSelection.selectedCondimentValue"
+				 collection.bind="allCampingStuffObject" 
+         data-mapping-structure.bind="mappingDataStructure" object-key="id">
+				</abp-select>
+			</div>
 
 				</div>
 			</div>

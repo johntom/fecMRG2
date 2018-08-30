@@ -18,6 +18,8 @@ export class Prompt {
   @bindable orgItem;
   @bindable orgValue;
 
+@bindable condimentItem;
+  @bindable condimentValue;
 
 
 
@@ -43,6 +45,15 @@ export class Prompt {
     selectedTextFormat: 'count > 3',
     actionsBox: true
   };
+  allCampingStuffObject = [
+    { id: 1, name: 'Tent', company: 'Sweet' },
+    { id: 2, name: 'Flashlight', company: 'Sour' },
+    { id: 3, name: 'Sleeping Bag', company: 'Spice' },
+    { id: 4, name: 'Rum', company: 'Mt Gay' },
+    
+
+
+  ];
 
   constructor(controller, appService, dataService, dialogService, api) {
     this.controller = controller;
@@ -101,22 +112,22 @@ export class Prompt {
       }
     }
 
-    if (this.fieldname === 'ConservedBy') {
-      let orgcbs = this.appService.orgsList
-      let origid
-      this.orgobj={}
-      if ((this.currentItem.ConservedBy === undefined) || (this.currentItem.ConservedBy === null)) {
-      } else {
-        origid = orgcbs.findIndex(x => x._id === this.currentItem.ConservedBy)
-        this.orgobj = orgcbs[origid]
-        //this.OrgName = orgobj
-        //    this.dconsignedto.value = this.OrgName
-        this.orgSelection = {
-          selectedOrgItem: this.orgobj,
-          selectedOrgValue: this.orgobj._id
-        };
-      }
-    }
+    // if (this.fieldname === 'ConservedBy') {
+    //   let orgcbs = this.appService.orgsList
+    //   let origid
+    //   this.orgobj={}
+    //   if ((this.currentItem.ConservedBy === undefined) || (this.currentItem.ConservedBy === null)) {
+    //   } else {
+    //     origid = orgcbs.findIndex(x => x._id === this.currentItem.ConservedBy)
+    //     this.orgobj = orgcbs[origid]
+    //     //this.OrgName = orgobj
+    //     //    this.dconsignedto.value = this.OrgName
+    //     this.orgSelection = {
+    //       selectedOrgItem: this.orgobj,
+    //       selectedOrgValue: this.orgobj._id
+    //     };
+    //   }
+    // }
   }
 
   // created(SearchResults,prompt){
@@ -151,6 +162,39 @@ export class Prompt {
     // this.dow.value = this.name
     // this.appService.currentsavedlist
     this.doc = `type any characters of the ${this.fieldname} to select.`
+
+
+if (this.fieldname === 'ConservedBy') {
+      let orgcbs = this.appService.orgsList
+      let origid
+      this.orgobj={}
+      if ((this.currentItem.ConservedBy === undefined) || (this.currentItem.ConservedBy === null)) {
+      } else {
+        origid = orgcbs.findIndex(x => x._id === this.currentItem.ConservedBy)
+        this.orgobj = orgcbs[origid]
+        //this.OrgName = orgobj
+        //    this.dconsignedto.value = this.OrgName
+        this.orgSelection = {
+          selectedOrgItem: this.orgobj,
+          selectedOrgValue: this.orgobj._id
+        };
+      }
+    
+    
+     this.condimentSelection = {
+      selectedCondimentItem: this.allCampingStuffObject[1], //'Flashlight',
+      selectedCondimentValue: this.allCampingStuffObject[1] //'Flashlight'
+      
+    };
+    
+    
+    }
+
+
+
+
+
+
     if (this.fieldname === 'SoldTo') {
       let meds = this.appService.orgsList
       if ((this.currentItem.SoldTo === undefined) || (this.currentItem.SoldTo === null)) {
