@@ -1,5 +1,6 @@
 <template>
 	<require from="aurelia-kendoui-bridge/multiselect/multiselect"></require>
+<require from="../../resources/value-converters/stringify"></require>
 
 	<ux-dialog>
 		<ux-dialog-header class="modal-header modal-header-success">
@@ -64,18 +65,16 @@
 				<div class="form-group flex-column-1">
 					<h2> ${doc} </h2>
 
-					<aubs-typeahead ref='dsoldtoid' data.bind="appService.orgsList" value.bind="OrgName" debounce.bind="350" placeholder="SoldToID"
+					<!-- <aubs-typeahead ref='dsoldtoid' data.bind="appService.orgsList" value.bind="OrgName" debounce.bind="350" placeholder="SoldToID"
 					 open-on-focus.bind="true" key="OrgName" results-limit.bind="12" select-single-result.bind="true">
-					<!-- </aubs-typeahead>
+					</aubs-typeahead> -->
 
 
-	
-									<abp-select picker-options.bind="selectOptions" empty-on-null="true" selected-item.bind="OrgName" 
-                   selected-value.bind="orgValue"
-									 disabled="false" collection.bind="appService.orgsList" data-mapping-structure.bind="mappingorgDataStructure" 
-                   object-key="id"
-									 element.bind="selectorgList"></abp-select> -->
-							
+<!-- 
+					<abp-select picker-options.bind="selectOptions" empty-on-null="true" selected-item.bind="OrgName" selected-value.bind="orgValue"
+					 disabled="false" collection.bind="appService.orgsList" data-mapping-structure.bind="mappingorgDataStructure" object-key="id"
+					 element.bind="selectorgList"></abp-select> -->
+
 
 
 				</div>
@@ -94,14 +93,28 @@
 			<div show.bind="fieldname==='ConservedBy'">
 				<div class="form-group flex-column-1">
 					<h2> ${doc} </h2>
-          <span ref='dconservedby' ></span>
+					<span ref='dconservedby' ></span>
 					<!-- <aubs-typeahead ref='dconservedby' data.bind="appService.orgsList" value.bind="OrgName" debounce.bind="350" placeholder="ConservedBy"
 					 open-on-focus.bind="true" key="OrgName" results-limit.bind="12" select-single-result.bind="true">
-					</aubs-typeahead> -->
+					</aubs-typeahead>
+          <label class="control-label">Object Collection - 1 sl mappingDataStructure</label>
+								<div>Value: ${SaveListValue} <br /> Item: ${name.InventoryCodes | stringify}</div>
+								<div>
+									<abp-select picker-options.bind="selectOptions" empty-on-null="true" selected-item.bind="name" selected-value.bind="SaveListValue"
+									 disabled="false" collection.bind="appService.savedlists" data-mapping-structure.bind="mappingDataStructure" object-key="id"
+									 element.bind="selectSaveList"></abp-select>
+								</div>
+          selectorgList OrgName
+           -->
+					<abp-select  picker-options.bind="selectOptions" empty-on-null="true" selected-item.bind="OrgName"
+           selected-value.bind="orgValue"
+					 disabled="false" collection.bind="appService.orgsList" data-mapping-structure.bind="mappingorgDataStructure" object-key="id"
+					 element.bind="selectorgList"></abp-select>
+
 				</div>
 			</div>
 
-	<div show.bind="fieldname==='PhotographerID'">
+			<div show.bind="fieldname==='PhotographerID'">
 				<div class="form-group flex-column-1">
 					<h2> ${doc} </h2>
 					<!-- <aubs-typeahead ref='dphotographerid' data.bind="appService.orgsList" value.bind="OrgName" debounce.bind="350" placeholder="PhotographerID"

@@ -7,11 +7,15 @@ import { DialogService } from 'aurelia-dialog';
 import { PromptServ } from '../../services/promptserv';
 import { ApiService } from '../../utils/servicesApi';
 
-//import 'bootstrap-select/css/bootstrap-select.min.css';
+import 'bootstrap-select/css/bootstrap-select.min.css';
+import { bindable, inject } from 'aurelia-framework';
+// @inject()
+
+@inject(DialogController, ApplicationService, MyDataService, DialogService, ApiService)
 
 export class Prompt {
-  //  @bindable picker;
-  static inject = [DialogController, ApplicationService, MyDataService, DialogService, ApiService];
+   @bindable picker;
+  // static inject = [DialogController, ApplicationService, MyDataService, DialogService, ApiService];
 mappingDataStructure = {
     class: 'class',
     option: 'name',
@@ -21,7 +25,7 @@ mappingDataStructure = {
   }
   mappingorgDataStructure= {
     class: 'class',
-    option: 'name'
+    option: 'OrgName'
     // style: 'style',
     // title: 'title',
     // tokens: 'tokens'
@@ -218,14 +222,19 @@ selectOptions = {
       }
     }
     if (this.fieldname === 'ConservedBy') {
-      let meds = this.appService.orgsList
+      let cby = this.appService.orgsList
       if ((this.currentItem.ConservedBy === undefined) || (this.currentItem.ConservedBy === null)) {
       } else {
-        let mid = meds.findIndex(x => x._id === this.currentItem.ConservedBy)
+        let mid = cby.findIndex(x => x._id === this.currentItem.ConservedBy)
         let orgobj = this.appService.orgsList[mid]//10]
         // console.log('orgobj', orgobj)
+        // selectorgList OrgName
         this.OrgName = orgobj
-        this.S.value = this.OrgName
+        this.orgValue = orgobj.id
+
+        this.selectorgList= orgobj.id
+
+        //this.dconservedby.value = this.OrgName
       }
     }
     if (this.fieldname === 'PhotographerID') {
@@ -365,7 +374,14 @@ selectOptions = {
     }
 
     if (this.fieldname === 'ConservedBy') {
-      let orgid = `${this.OrgName._id}`
+      alert('in cby')
+       // selectorgList OrgName
+        // this.OrgName = orgobj
+        // this.orgValue = orgobj.id
+
+        // this.selectorgList= orgobj.id
+
+      let orgid = `${this.OrgName.id}`
       let orgname = `${this.OrgName.OrgName}`
       this.currentItem.ConservedBy = orgid
       this.currentItem.conservedbyname = orgname
