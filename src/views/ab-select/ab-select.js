@@ -27,6 +27,9 @@ export class AbSelect {
   @bindable selectStyledCondiment;
   @bindable selectPicnic;
 
+    @bindable condimentItem;
+  @bindable condimentValue;
+
   // @bindable condimentItem;
   // @bindable condimentValue;
   //  condimentItemChanged(newItem) {

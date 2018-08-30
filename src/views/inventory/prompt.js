@@ -14,23 +14,29 @@ import { bindable, inject } from 'aurelia-framework';
 @inject(DialogController, ApplicationService, MyDataService, DialogService, ApiService)
 
 export class Prompt {
-   @bindable picker;
+  @bindable picker;
+  @bindable orgItem;
+  @bindable orgValue;
+
+
+
+
   // static inject = [DialogController, ApplicationService, MyDataService, DialogService, ApiService];
-mappingDataStructure = {
+  mappingDataStructure = {
     class: 'class',
     option: 'name',
     style: 'style',
     title: 'title',
     tokens: 'tokens'
   }
-  mappingorgDataStructure= {
+  mappingorgDataStructure = {
     class: 'class',
     option: 'OrgName'
     // style: 'style',
     // title: 'title',
     // tokens: 'tokens'
   }
-selectOptions = {
+  selectOptions = {
     liveSearch: true,
     showSubtext: true,
     showTick: true,
@@ -75,6 +81,42 @@ selectOptions = {
   activate(fieldname) {
     this.fieldname = fieldname;
 
+
+
+    if (this.fieldname === 'ConsignedTo') {
+      let meds = this.appService.orgsList
+      if ((this.currentItem.ConsignedTo === undefined) || (this.currentItem.ConsignedTo === null)) {
+      } else {
+        let mid = meds.findIndex(x => x._id === this.currentItem.ConsignedTo)
+        let orgobj = this.appService.orgsList[mid]//10]
+        this.OrgName = orgobj
+        //    this.dconsignedto.value = this.OrgName
+        this.orgSelection = {
+          selectedOrgItem: orgobj,
+          selectedOrgValue: orgobj._id
+
+        };
+
+
+      }
+    }
+
+    if (this.fieldname === 'ConservedBy') {
+      let orgcbs = this.appService.orgsList
+      let origid
+      this.orgobj={}
+      if ((this.currentItem.ConservedBy === undefined) || (this.currentItem.ConservedBy === null)) {
+      } else {
+        origid = orgcbs.findIndex(x => x._id === this.currentItem.ConservedBy)
+        this.orgobj = orgcbs[origid]
+        //this.OrgName = orgobj
+        //    this.dconsignedto.value = this.OrgName
+        this.orgSelection = {
+          selectedOrgItem: this.orgobj,
+          selectedOrgValue: this.orgobj._id
+        };
+      }
+    }
   }
 
   // created(SearchResults,prompt){
@@ -107,7 +149,7 @@ selectOptions = {
     //   value: 'NY'
     // }
     // this.dow.value = this.name
-// this.appService.currentsavedlist
+    // this.appService.currentsavedlist
     this.doc = `type any characters of the ${this.fieldname} to select.`
     if (this.fieldname === 'SoldTo') {
       let meds = this.appService.orgsList
@@ -161,17 +203,7 @@ selectOptions = {
 
 
 
-    if (this.fieldname === 'ConsignedTo') {
-      let meds = this.appService.orgsList
-      if ((this.currentItem.ConsignedTo === undefined) || (this.currentItem.ConsignedTo === null)) {
-      } else {
-        let mid = meds.findIndex(x => x._id === this.currentItem.ConsignedTo)
-        let orgobj = this.appService.orgsList[mid]//10]
-        // console.log('orgobj', orgobj)
-        this.OrgName = orgobj
-        this.dconsignedto.value = this.OrgName
-      }
-    }
+
 
     if (this.fieldname === 'PurchasedFrom') {
       let meds = this.appService.orgsList
@@ -221,22 +253,7 @@ selectOptions = {
         this.dsoldtoid.value = this.OrgName
       }
     }
-    if (this.fieldname === 'ConservedBy') {
-      let cby = this.appService.orgsList
-      if ((this.currentItem.ConservedBy === undefined) || (this.currentItem.ConservedBy === null)) {
-      } else {
-        let mid = cby.findIndex(x => x._id === this.currentItem.ConservedBy)
-        let orgobj = this.appService.orgsList[mid]//10]
-        // console.log('orgobj', orgobj)
-        // selectorgList OrgName
-        this.OrgName = orgobj
-        this.orgValue = orgobj.id
 
-        this.selectorgList= orgobj.id
-
-        //this.dconservedby.value = this.OrgName
-      }
-    }
     if (this.fieldname === 'PhotographerID') {
       let meds = this.appService.orgsList
       if ((this.currentItem.PhotographerID === undefined) || (this.currentItem.PhotographerID === null)) {
@@ -269,7 +286,7 @@ selectOptions = {
 
     if (this.fieldname === 'selectedids') {
       // this.appService.currentsavedlist
-    this.doc = this.appService.currentsavedlist+` has the following Inventory codes.`
+      this.doc = this.appService.currentsavedlist + ` has the following Inventory codes.`
 
       // we dont send a name of the list
       // let meds = this.appService.savedlists 
@@ -375,16 +392,20 @@ selectOptions = {
 
     if (this.fieldname === 'ConservedBy') {
       alert('in cby')
-       // selectorgList OrgName
-        // this.OrgName = orgobj
-        // this.orgValue = orgobj.id
+      // selectorgList OrgName
+      // this.OrgName = orgobj
+      // this.orgValue = orgobj.id
+      // this.selectorgList= orgobj.id
+      alert(JSON.stringify(`${this.orgSelection.selectedOrgtItem}`))
+      alert(JSON.stringify(this.orgSelection.selectedOrgtItem))
 
-        // this.selectorgList= orgobj.id
+      // let orgid = `${this.OrgName.id}`
+      // let orgname = `${this.OrgName.OrgName}`
+      // this.currentItem.ConservedBy = orgid
+      // this.currentItem.conservedbyname = orgname
 
-      let orgid = `${this.OrgName.id}`
-      let orgname = `${this.OrgName.OrgName}`
-      this.currentItem.ConservedBy = orgid
-      this.currentItem.conservedbyname = orgname
+
+
     }
 
 
@@ -401,14 +422,14 @@ selectOptions = {
       this.currentItem.PurchasedFrom = orgid
       this.currentItem.purchasedfromname = orgname
     }
-  
-   if (this.fieldname === 'LoanTo') {
+
+    if (this.fieldname === 'LoanTo') {
       let orgid = `${this.OrgName._id}`
       let orgname = `${this.OrgName.OrgName}`
       this.currentItem.LoanTo = orgid
       this.currentItem.loantoname = orgname
     }
-   if (this.fieldname === 'PhotographerID') {
+    if (this.fieldname === 'PhotographerID') {
       let orgid = `${this.OrgName._id}`
       let orgname = `${this.OrgName.OrgName}`
       this.currentItem.PhotographerID = orgid

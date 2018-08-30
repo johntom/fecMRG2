@@ -106,10 +106,23 @@
 								</div>
           selectorgList OrgName
            -->
-					<abp-select  picker-options.bind="selectOptions" empty-on-null="true" selected-item.bind="OrgName"
+					<!-- <abp-select  picker-options.bind="selectOptions" empty-on-null="true" selected-item.bind="OrgName"
            selected-value.bind="orgValue"
 					 disabled="false" collection.bind="appService.orgsList" data-mapping-structure.bind="mappingorgDataStructure" object-key="id"
-					 element.bind="selectorgList"></abp-select>
+					 element.bind="selectorgList"></abp-select> -->
+
+		<label class="control-label">Object Collection</label>
+			<div>Value: ${orgSelection.selectedOrgValue} <br /> Item: ${orgSelection.selectedOrgItem | stringify}</div>
+			<div>
+				<abp-select element.bind="mypicker"
+         selected-item.bind="orgSelection.selectedOrgItem" 
+         selected-value.bind="orgSelection.selectedOrgValue"
+				 collection.bind="appService.orgsList" 
+         data-mapping-structure.bind="mappingDataStructure" object-key="id">
+				</abp-select>
+			</div>
+
+
 
 				</div>
 			</div>
