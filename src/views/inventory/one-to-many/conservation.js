@@ -65,9 +65,9 @@ export class Conservation {
     });
   }
 
-showModal(fieldname,index) {
-   this.currentItem.ConservedBy=   this.currentItem.consignedto[index].ConservedBy  
-  this.currentItem.conservedbyname=  this.currentItem.consignedto[index].conservedbyname
+  showModal(fieldname, index) {
+    this.currentItem.ConservedBy = this.currentItem.conservation[index].ConservedBy // mongoid
+    this.currentItem.conservedbyname = this.currentItem.conservation[index].conservedbyname
 
     this.dialogService.open({ viewModel: Prompt, model: fieldname, lock: false }).whenClosed(response => {
       this.currentItem.conservation[index].ConservedBy = this.currentItem.ConservedBy
@@ -83,20 +83,20 @@ showModal(fieldname,index) {
     });
   }
 
-//  showModal(fieldname,index) {
-//     this.dialogService.open({ viewModel: Prompt, model: fieldname, lock: false }).whenClosed(response => {
-//     this.currentItem.consignedto[index].ConsignedTo = this.currentItem.ConsignedTo
-//     this.currentItem.consignedto[index].consignedtoname = this.currentItem.consignedtoname
-//       if (!response.wasCancelled) {
-//         // console.log('Delete') InsuredBy
-//         // let notes = this.currentItem.notes
-//         // notes.splice(index, 1)// start, deleteCount)
-//       } else {
-//         console.log('cancel');
-//       }
-//       console.log(response.output);
-//     });
-//   }
+  //  showModal(fieldname,index) {
+  //     this.dialogService.open({ viewModel: Prompt, model: fieldname, lock: false }).whenClosed(response => {
+  //     this.currentItem.consignedto[index].ConsignedTo = this.currentItem.ConsignedTo
+  //     this.currentItem.consignedto[index].consignedtoname = this.currentItem.consignedtoname
+  //       if (!response.wasCancelled) {
+  //         // console.log('Delete') InsuredBy
+  //         // let notes = this.currentItem.notes
+  //         // notes.splice(index, 1)// start, deleteCount)
+  //       } else {
+  //         console.log('cancel');
+  //       }
+  //       console.log(response.output);
+  //     });
+  //   }
 
   addDetail() {
     let conservation = this.currentItem.conservation

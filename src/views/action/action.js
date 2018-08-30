@@ -5,20 +5,49 @@ import { MyDataService } from "../../services/my-data-service";
 import 'bootstrap-select/css/bootstrap-select.min.css';
 import { bindable, inject } from 'aurelia-framework';
 // @inject()
+@inject(Router, UtilService, ApplicationService, MyDataService)
+
+
 export class Action {
-    @bindable picker;
-  static inject = [Router, UtilService, ApplicationService, MyDataService];
+  @bindable picker;
+  // @bindable selectCamping;
+  // @bindable selectCondiment;
+  // @bindable selectStyledCondiment;
+  // @bindable selectPicnic;
 
   heading = 'Welcome to the Action page';
   counter = 1;
   search = {}
-  selectOptions = {
+  mappingDataStructure = {
+    class: 'class',
+    // content: 'content',
+    // disabled: 'disabled',
+    // divider: 'divider',
+    // groupLabel: 'group',       // used by optgroup
+    // groupDisabled: 'disabled', // used by optgroup
+    // icon: 'icon',
+    // maxOptions: 'maxOptions',  // used by optgroup
+    option: 'name',
+    // option: 'option',
+    // subtext: 'subtext',
+    style: 'style',
+    title: 'title',
+    tokens: 'tokens'
+  }
+selectOptions = {
     liveSearch: true,
     showSubtext: true,
     showTick: true,
     selectedTextFormat: 'count > 3',
     actionsBox: true
   };
+  isEditing = false;
+  isOptgroupBreadDisabled = false;
+  selectMappingStructure = {
+    subtext: 'company'
+  };
+
+  
   states = [
     { OrgName: 'Alabama', id: 'al' },
     { OrgName: 'Alaska', id: 'ak' },
@@ -63,6 +92,7 @@ export class Action {
     { id: 2, name: 'NFS' },
     { id: 3, name: 'DON' },
   ];
+
   constructor(router, utilService, appService, dataService) {
     this.router = router;
     this.utilService = utilService;
@@ -113,32 +143,34 @@ export class Action {
   //       let path = `Search${counter}${qs}`;
   performSearch() {
     let savedlist = `${this.name}`
-        if ( savedlist === 'undefined' || savedlist === undefined ) {
-         alert('Please make a selection')
+    if (savedlist === 'undefined' || savedlist === undefined) {
+      alert('Please make a selection')
     } else
-    if (this.search ) {
-      if (savedlist !== 'undefined' && savedlist !== 'null') this.search.savedlists = `${this.name.name}`
-      let qs = this.utilService.generateQueryString(this.search);
-      let counter = this.utilService.counter++
-     // let path = `ActSearch${counter}${qs}`;
-      let path = `list${counter}${qs}`;
-     // let path = `list:${qs}`;// name on tab
-     // console.log('this.search  path ', this.search, path)
-       this.appService.currentActionlist =this.search.savedlists 
-      // let path = `SL:${this.search.savedlists}`;
-      this.router.navigate(`#/action/${path}`);
-      this.appService.currentSearch = path //`Search${counter}`
-    } else alert('Please make a selection')
+      if (this.search) {
+        if (savedlist !== 'undefined' && savedlist !== 'null') this.search.savedlists = `${this.name.name}`
+        let qs = this.utilService.generateQueryString(this.search);
+        let counter = this.utilService.counter++
+        // let path = `ActSearch${counter}${qs}`;
+        let path = `list${counter}${qs}`;
+        // let path = `list:${qs}`;// name on tab
+        // console.log('this.search  path ', this.search, path)
+        this.appService.currentActionlist = this.search.savedlists
+        // let path = `SL:${this.search.savedlists}`;
+        this.router.navigate(`#/action/${path}`);
+        this.appService.currentSearch = path //`Search${counter}`
+      } else alert('Please make a selection')
   }
 
   performClear() {
     this.search = {}
   }
   attached() {
-
+    // this.savedlists = this.appService.savedlists
   }
 
-
+  activate() {
+    this.savedlists = this.appService.savedlists
+  }
 
 }
 

@@ -7,11 +7,32 @@ import { DialogService } from 'aurelia-dialog';
 import { PromptServ } from '../../services/promptserv';
 import { ApiService } from '../../utils/servicesApi';
 
-
+import 'bootstrap-select/css/bootstrap-select.min.css';
 
 export class Prompt {
+    @bindable picker;
   static inject = [DialogController, ApplicationService, MyDataService, DialogService, ApiService];
-
+mappingDataStructure = {
+    class: 'class',
+    option: 'name',
+    style: 'style',
+    title: 'title',
+    tokens: 'tokens'
+  }
+  mappingorgDataStructure= {
+    class: 'class',
+    option: 'name'
+    // style: 'style',
+    // title: 'title',
+    // tokens: 'tokens'
+  }
+selectOptions = {
+    liveSearch: true,
+    showSubtext: true,
+    showTick: true,
+    selectedTextFormat: 'count > 3',
+    actionsBox: true
+  };
 
   constructor(controller, appService, dataService, dialogService, api) {
     this.controller = controller;

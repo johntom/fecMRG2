@@ -67,6 +67,17 @@
 					<aubs-typeahead ref='dsoldtoid' data.bind="appService.orgsList" value.bind="OrgName" debounce.bind="350" placeholder="SoldToID"
 					 open-on-focus.bind="true" key="OrgName" results-limit.bind="12" select-single-result.bind="true">
 					</aubs-typeahead>
+
+
+	
+									<abp-select picker-options.bind="selectOptions" empty-on-null="true" selected-item.bind="OrgName" 
+                   selected-value.bind="orgValue"
+									 disabled="false" collection.bind="appService.orgsList" data-mapping-structure.bind="mappingorgDataStructure" 
+                   object-key="id"
+									 element.bind="selectorgList"></abp-select>
+							
+
+
 				</div>
 
 			</div>
