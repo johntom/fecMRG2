@@ -261,7 +261,7 @@ export class Prompt {
 
   }
   save() {
-    if (this.fieldbase) {
+    if (this.fieldbase==='ORG') {
       //   let orgid = `${this.OrgName._id}`
       // let orgname = `${this.OrgName.OrgName}`
       let orgid = this.orgSelection.selectedOrgItem._id//`${this.OrgName.id}`
