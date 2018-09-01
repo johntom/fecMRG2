@@ -50,12 +50,11 @@ export class Prompt {
     { id: 1, name: 'Tent', company: 'Sweet' },
     { id: 2, name: 'Flashlight', company: 'Sour' },
     { id: 3, name: 'Sleeping Bag', company: 'Spice' },
-    { id: 4, name: 'Rum', company: 'Mt Gay' },
-
-
+    { id: 4, name: 'Rum', company: 'Mt Gay' }
 
   ];
-
+  orgfields = [ 'ConsignedTo', 'ConsignedFromID','ConsignmentShippingID','OwnerID','PhotographerID' ,'PurchasedFrom','ConservedBy', 'PurchasedFrom','ConservedBy','SoldToID','SoldTo']
+    
   constructor(controller, appService, dataService, dialogService, api) {
     this.controller = controller;
     this.answer = null;
@@ -99,12 +98,15 @@ export class Prompt {
     //PhotographerID PurchasedFrom ConsignedTo ConsignedTo ConsignedFromID ConsignmentShippingID OwnerID 
     //  LoanTo ConsignedFromID InsuredBy PurchasedFrom 
     // OwnerID SoldTo or SoldToID
-    if (this.fieldname === 'ConsignedTo' || this.fieldname === 'ConsignedFromID'
-      || this.fieldname === 'ConsignmentShippingID' || this.fieldname === 'OwnerID'
-      || this.fieldname === 'PhotographerID' || this.fieldname === 'PurchasedFrom'
-      || this.fieldname === 'ConservedBy' || this.fieldname === 'SoldToID'
-      || this.fieldname === 'SoldTo'
-    ) {
+    // if (this.fieldname === 'ConsignedTo' || this.fieldname === 'ConsignedFromID'
+    //   || this.fieldname === 'ConsignmentShippingID' || this.fieldname === 'OwnerID'
+    //   || this.fieldname === 'PhotographerID' || this.fieldname === 'PurchasedFrom'
+    //   || this.fieldname === 'ConservedBy' || this.fieldname === 'SoldToID'
+    //   || this.fieldname === 'SoldTo'
+    // )
+    
+      let opos = this.orgfields.findIndex(x => x === fieldname) ;
+      if (opos!==-1){
       this.fieldbase = 'ORG'
 
       let orgcbs = this.appService.orgsList
