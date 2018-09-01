@@ -12,7 +12,7 @@
 		<table class="table-condensed table">
 			<thead class="table-header-blue" data-sort="items.bind: currentItem.museumloan; cols: ['WorkDate','Notes']">
 				<tr>
-					<th class="header">Loan To </th>
+					<th class="header">Loan To>> </th>
 					<th class="header">Ins Value </th>
 					<th class="header">Ins Value Amt </th>
 					<th class="header">Exh Title </th>
@@ -66,7 +66,7 @@
                         ${opt.OrgName} 
                       </option> 
                     </select> -->
-						<input click.delegate="showModal('LoanTo',$index)" type="text" id="LoanTo" class="form-control input-sm" value.bind="loantoname">
+						<input dblclick.delegate="showModal('LoanTo',$index)" type="text" id="LoanTo" class="form-control input-sm" value.bind="loantoname">
 					</td>
 
 					<td width="120px"><input type="text" id="InsValue" class="form-control  input-sm" value.bind="museumloan.InsuranceValue"></td>

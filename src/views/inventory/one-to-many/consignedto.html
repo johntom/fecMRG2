@@ -12,7 +12,7 @@
 		<table class="table-condensed table">
 			<thead class="table-header-blue" data-sort="items.bind: currentItem.consignedto; cols: ['ConsignedStartDate','ConsignedEndDate']">
 				<tr>
-					<th class="header">To </th>
+					<th class="header">To >></th>
 					<th class="header">Start</br>Date </th>
 					<th class="header">End</br>Date </th>
 					<th class="header">Retail</br>Price </th>
@@ -48,7 +48,7 @@
                 ${opt.OrgName} 
               </option> 
               </select> -->
-            			<input click.delegate="showModal('ConsignedTo',$index)" type="text" id="ConsignedTo" class="form-control input-sm" value.bind="consignedto.consignedtoname">
+            			<input dblclick.delegate="showModal('ConsignedTo',$index)" type="text" id="ConsignedTo" class="form-control input-sm" value.bind="consignedto.consignedtoname">
       
 					<!-- <select show.bind="consignedto.edit" id="ConsignedTo2" class="form-control input-sm" value.two-way="consignedto.ConsignedTo" > 
               <option model.bind="null">Choose...</option> 

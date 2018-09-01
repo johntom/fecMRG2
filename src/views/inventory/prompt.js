@@ -319,9 +319,23 @@ export class Prompt {
       }
     } else {
 
-    if (this.fieldname === 'Treatment') {
-      this.currentItem.Treatment
-    }
+	// <div show.bind="fieldname==='Description'">
+	// 			<textarea rows="8" cols="100" id="Description" class="form-control input-sm" value.bind="currentItem.Description"></textarea>
+	// 		</div>
+	// 		<div show.bind="fieldname==='Comment'">
+	// 			<textarea rows="8" cols="100" id="Comment" class="form-control input-sm" value.bind="currentItem.Comment"></textarea>
+	// 		</div>
+	// 		<div show.bind="fieldname==='Inscribed'">
+	// 			<textarea rows="8" cols="100" id="Inscribed" class="form-control input-sm" value.bind="currentItem.Inscribed"></textarea>
+	// 		</div>
+
+
+//			<div show.bind="fieldname==='Treatment'">
+
+
+    // if (this.fieldname === 'Treatment') {
+    //   this.currentItem.Treatment
+    // }
     if (this.fieldname === 'SavedList') {
       let name = `${this.name.name}`
       console.log(' dsaved.value', name)//, this.dsaved.value)

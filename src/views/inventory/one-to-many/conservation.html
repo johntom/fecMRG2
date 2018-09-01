@@ -15,7 +15,7 @@
 			<thead class="table-header-blue" data-sort="items.bind: currentItem.conservation; cols: ['WorkDate','Notes']">
 				<tr>
 					<tr>
-						<th class="header">ConservedBy>
+						<th class="header">ConservedBy>>
 						</th>
 						<th class="header">Dates
 						</th>
@@ -54,7 +54,7 @@
 
 
 					<td width="225px">
-        			<input click.delegate="showModal('ConservedBy',$index)" type="text" id="ConservedBy" class="form-control input-sm" value.bind="conservedbyname">
+        			<input dblclick.delegate="showModal('ConservedBy',$index)" type="text" id="ConservedBy" class="form-control input-sm" value.bind="conservedbyname">
 			</td>
 
 					<td width="325px">
