@@ -72,20 +72,20 @@ export class Prompt {
   }
 
 
-  getStates(filter, limit) {
-    let filterlc = filter.toLowerCase()
-    let states
-    let Promise = this.dataService.loadStates()
-      .then(response => {
-        states = response
-        console.log('states', states)
-        return states //response // .json();
-      })
-      .then(states => filter.length > 0 ? states.filter(item => item.name.toLowerCase().indexOf(filter.toLowerCase()) > -1) : states)
-      .then(states => filter.length > 0 ? states.filter(item => item.name.toLowerCase().indexOf(filterlc) > -1) : states)
+  // getStates(filter, limit) {
+  //   let filterlc = filter.toLowerCase()
+  //   let states
+  //   let Promise = this.dataService.loadStates()
+  //     .then(response => {
+  //       states = response
+  //       console.log('states', states)
+  //       return states //response // .json();
+  //     })
+  //     .then(states => filter.length > 0 ? states.filter(item => item.name.toLowerCase().indexOf(filter.toLowerCase()) > -1) : states)
+  //     .then(states => filter.length > 0 ? states.filter(item => item.name.toLowerCase().indexOf(filterlc) > -1) : states)
 
-    return Promise
-  }
+  //   return Promise
+  // }
 
   // activate(question) {
   //    this.question = question;
@@ -109,7 +109,8 @@ export class Prompt {
       let orgcbs = this.appService.orgsList
       let origid
       this.orgobj = {}
-
+//  origid = this.appService.orgsList.findIndex(x => x._id === this.currentItem.ConservedBy)
+//           this.orgobj = this.appService.orgsList[origid]
       if (this.fieldname === 'ConservedBy') {
 
         if ((this.currentItem.ConservedBy === undefined) || (this.currentItem.ConservedBy === null)) {
@@ -183,43 +184,43 @@ export class Prompt {
 
 
     //add DonatedBy
-    if (this.fieldname === 'SavedList') {
-      // we dont send a name of the list
-      // let meds = this.appService.savedlists 
-      // if ((this.currentItem.SoldTo === undefined) || (this.currentItem.orgsList === null)) {
-      // } else {
-      //   let mid = meds.findIndex(x => x._id === this.currentItem.OwnerID)
-      //   let orgobj = this.appService.orgsList[mid]//10]
-      //   // console.log('orgobj', orgobj)
-      //   this.OrgName = orgobj
-      //   this.dsaved.value = this.OrgName
-      // }
-    }
+    // if (this.fieldname === 'SavedList') {
+    //   // we dont send a name of the list
+    //   // let meds = this.appService.savedlists 
+    //   // if ((this.currentItem.SoldTo === undefined) || (this.currentItem.orgsList === null)) {
+    //   // } else {
+    //   //   let mid = meds.findIndex(x => x._id === this.currentItem.OwnerID)
+    //   //   let orgobj = this.appService.orgsList[mid]//10]
+    //   //   // console.log('orgobj', orgobj)
+    //   //   this.OrgName = orgobj
+    //   //   this.dsaved.value = this.OrgName
+    //   // }
+    // }
 
 
 
-    if (this.fieldname === 'selectedids') {
-      // this.appService.currentsavedlist
-      this.doc = this.appService.currentsavedlist + ` has the following Inventory codes.`
+    // if (this.fieldname === 'selectedids') {
+    //   // this.appService.currentsavedlist
+    //   this.doc = this.appService.currentsavedlist + ` has the following Inventory codes.`
 
-      // we dont send a name of the list
-      // let meds = this.appService.savedlists 
-      // if ((this.currentItem.SoldTo === undefined) || (this.currentItem.orgsList === null)) {
-      // } else {
-      //   let mid = meds.findIndex(x => x._id === this.currentItem.OwnerID)
-      //   let orgobj = this.appService.orgsList[mid]//10]
-      //   // console.log('orgobj', orgobj)
-      //   this.OrgName = orgobj
-      //   this.dsaved.value = this.OrgName
-      // }
-      // let meds = this.appService.savedlists
-      // let orgobj = this.appService.savedlists[0]
-      // this.appService.selectedids = orgobj.InventoryCodes
-      //this.myMultiSelect.kWidget.dataSource.add(this.appService.selectedids);
-      //  let ss = this.appService.selectedids
-      //   this.myMultiSelect.kWidget.setDataSource(ss);
+    //   // we dont send a name of the list
+    //   // let meds = this.appService.savedlists 
+    //   // if ((this.currentItem.SoldTo === undefined) || (this.currentItem.orgsList === null)) {
+    //   // } else {
+    //   //   let mid = meds.findIndex(x => x._id === this.currentItem.OwnerID)
+    //   //   let orgobj = this.appService.orgsList[mid]//10]
+    //   //   // console.log('orgobj', orgobj)
+    //   //   this.OrgName = orgobj
+    //   //   this.dsaved.value = this.OrgName
+    //   // }
+    //   // let meds = this.appService.savedlists
+    //   // let orgobj = this.appService.savedlists[0]
+    //   // this.appService.selectedids = orgobj.InventoryCodes
+    //   //this.myMultiSelect.kWidget.dataSource.add(this.appService.selectedids);
+    //   //  let ss = this.appService.selectedids
+    //   //   this.myMultiSelect.kWidget.setDataSource(ss);
 
-    }
+    // }
 
   }
 
