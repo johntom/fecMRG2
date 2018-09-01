@@ -23,7 +23,7 @@
 			<div class="form-group flex-column-1 ">
 				<div class="Rtable Rtable--2cols">
 					<div class="Rtable-cell-30 Rtable-cell--highlight">
-						<strong> From</strong>
+						<strong> From>></strong>
 					</div>
 					<div class="Rtable-cell-70  Rtable-cell--highlight">
 						<!-- <select id="OwnerID" class="form-control" value.bind='currentItem.PurchasedFrom'> 
@@ -32,7 +32,7 @@
                         ${opt.OrgName} 
                       </option> 
                     </select> -->
-                    <input click.delegate="showModal('PurchasedFrom')" type="text" id="PurchasedFrom" class="form-control input-sm" value.bind="currentItem.purchasedfromname">
+                    <input dblclick.delegate="showModal('PurchasedFrom')" type="text" id="PurchasedFrom" class="form-control input-sm" value.bind="currentItem.purchasedfromname">
 
 					</div>
 

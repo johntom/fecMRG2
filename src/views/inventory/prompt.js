@@ -103,6 +103,7 @@ export class Prompt {
       || this.fieldname === 'ConsignmentShippingID' || this.fieldname === 'OwnerID'
       || this.fieldname === 'PhotographerID' || this.fieldname === 'PurchasedFrom'
       || this.fieldname === 'ConservedBy' || this.fieldname === 'SoldToID'
+      || this.fieldname === 'SoldTo'
     ) {
       this.fieldbase = 'ORG'
 
@@ -140,7 +141,15 @@ export class Prompt {
         }
       }
 
-      if (this.fieldname === 'SoldToID') {
+        if (this.fieldname === 'SoldTo') {
+
+        if ((this.currentItem.SoldTo === undefined) || (this.currentItem.SoldTo === null)) {
+        } else {
+          origid = orgcbs.findIndex(x => x._id === this.currentItem.SoldTo)
+          this.orgobj = orgcbs[origid]
+        }
+        
+      } if (this.fieldname === 'SoldToID') {
 
         if ((this.currentItem.SoldToID === undefined) || (this.currentItem.SoldToID === null)) {
         } else {
@@ -279,7 +288,10 @@ export class Prompt {
         this.currentItem.SoldToID = orgid
         this.currentItem.soldtoname = orgname
       }
-
+ if (this.fieldname === 'SoldTo') {
+        this.currentItem.SoldTo = orgid
+        this.currentItem.soldtoname = orgname
+      }
       if (this.fieldname === 'ConsignedFromID') {
         this.currentItem.ConsignedFromID = orgid
         this.currentItem.consignedfromname = orgname
