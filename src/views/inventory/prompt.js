@@ -135,7 +135,7 @@ export class Prompt {
        alert('act ' + fieldname+ this.orgobj)
     }
    
-    this.doc = `Search ${this.fieldname} to select.`
+    this.heading = `Search ${this.fieldname} to select.`
 
   }
 
