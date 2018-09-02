@@ -60,8 +60,8 @@
 			<div show.bind="fieldbase==='ORG'">
 				<div class="form-group flex-column-1">
 					<!-- <h2> ${doc}  </h2> -->
-					<!-- <label class="control-label">Object ${fieldname} Collection</label> -->
-					<div>Value: ${orgSelection.selectedOrgValue} <br /> Item: ${orgSelection.selectedOrgItem | stringify}</div>
+					<!-- <label class="control-label">Object ${fieldname} Collection</label>Value: ${orgSelection.selectedOrgValue} <br /> -->
+					<div> Item: ${orgSelection.selectedOrgItem | stringify}</div>
 					<div>
 						<abp-select element.bind="mypicker" selected-item.bind="orgSelection.selectedOrgItem"
              selected-value.bind="orgSelection.selectedOrgValue"
