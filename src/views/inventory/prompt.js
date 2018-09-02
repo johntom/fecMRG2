@@ -126,78 +126,13 @@ export class Prompt {
         }
 
       }
-      // if (this.fieldname === 'ConservedBy') {
-
-      //   if ((this.currentItem.ConservedBy === undefined) || (this.currentItem.ConservedBy === null)) {
-      //   } else {
-      //     origid = orgcbs.findIndex(x => x._id === this.currentItem.ConservedBy)
-      //     this.orgobj = orgcbs[origid]
-      //   }
-
-      // }
-
-      // if (this.fieldname === 'ConsignedTo') {
-
-      //   if ((this.currentItem.ConsignedTo === undefined) || (this.currentItem.ConsignedTo === null)) {
-      //   } else {
-      //     origid = orgcbs.findIndex(x => x._id === this.currentItem.ConsignedTo)
-      //     this.orgobj = orgcbs[origid]
-      //   }
-
-      // }
-
-      // if (this.fieldname === 'ConsignmentShippingID') {
-
-      //   if ((this.currentItem.ConsignmentShippingID === undefined) || (this.currentItem.ConsignmentShippingID === null)) {
-      //   } else {
-      //     origid = orgcbs.findIndex(x => x._id === this.currentItem.ConsignmentShippingID)
-      //     this.orgobj = orgcbs[origid]
-      //   }
-      // }
-
-      //   if (this.fieldname === 'SoldTo') {
-
-      //   if ((this.currentItem.SoldTo === undefined) || (this.currentItem.SoldTo === null)) {
-      //   } else {
-      //     origid = orgcbs.findIndex(x => x._id === this.currentItem.SoldTo)
-      //     this.orgobj = orgcbs[origid]
-      //   }
-
-      // } if (this.fieldname === 'SoldToID') {
-
-      //   if ((this.currentItem.SoldToID === undefined) || (this.currentItem.SoldToID === null)) {
-      //   } else {
-      //     origid = orgcbs.findIndex(x => x._id === this.currentItem.SoldToID)
-      //     this.orgobj = orgcbs[origid]
-      //   }
-      // }
-      // if (this.fieldname === 'OwnerID') {
-      //   if ((this.currentItem.OwnerID === undefined) || (this.currentItem.OwnerID === null)) {
-      //   } else {
-      //     origid = orgcbs.findIndex(x => x._id === this.currentItem.OwnerID)
-      //     this.orgobj = orgcbs[origid]
-      //   }
-      // }
-      // if (this.fieldname === 'PhotographerID') {
-      //   if ((this.currentItem.PhotographerID === undefined) || (this.currentItem.PhotographerID === null)) {
-      //   } else {
-      //     origid = orgcbs.findIndex(x => x._id === this.currentItem.PhotographerID)
-      //     this.orgobj = orgcbs[origid]
-      //   }
-      // }
-      // if (this.fieldname === 'PurchasedFrom') {
-      //   if ((this.currentItem.PurchasedFrom === undefined) || (this.currentItem.PurchasedFrom === null)) {
-      //   } else {
-      //     origid = orgcbs.findIndex(x => x._id === this.currentItem.PurchasedFrom)
-      //     this.orgobj = orgcbs[origid]
-      //   }
-      // }
-
+     
       this.orgSelection = {
         selectedOrgItem: this.orgobj,
         selectedOrgValue: this.orgobj._id
       };
     }
+    alert('act '+fieldname)
   }
 
   attached() {
@@ -220,31 +155,7 @@ export class Prompt {
     //   // }
     // }
 
-
-
-    // if (this.fieldname === 'selectedids') {
-    //   // this.appService.currentsavedlist
-    //   this.doc = this.appService.currentsavedlist + ` has the following Inventory codes.`
-
-    //   // we dont send a name of the list
-    //   // let meds = this.appService.savedlists 
-    //   // if ((this.currentItem.SoldTo === undefined) || (this.currentItem.orgsList === null)) {
-    //   // } else {
-    //   //   let mid = meds.findIndex(x => x._id === this.currentItem.OwnerID)
-    //   //   let orgobj = this.appService.orgsList[mid]//10]
-    //   //   // console.log('orgobj', orgobj)
-    //   //   this.OrgName = orgobj
-    //   //   this.dsaved.value = this.OrgName
-    //   // }
-    //   // let meds = this.appService.savedlists
-    //   // let orgobj = this.appService.savedlists[0]
-    //   // this.appService.selectedids = orgobj.InventoryCodes
-    //   //this.myMultiSelect.kWidget.dataSource.add(this.appService.selectedids);
-    //   //  let ss = this.appService.selectedids
-    //   //   this.myMultiSelect.kWidget.setDataSource(ss);
-
-    // }
-
+ 
   }
 
 
@@ -345,7 +256,23 @@ export class Prompt {
       }
     } else {
 
-      // <div show.bind="fieldname==='Description'">
+      
+      if (this.fieldname === 'SavedList') {
+        let name = `${this.name.name}`
+        console.log(' dsaved.value', name)//, this.dsaved.value)
+        // this.dsaved.value = this.name//this.addlist
+        this.appService.currentsavedlist = name// dsaved.value
+      }
+    }
+    this.controller.cancel()
+  }
+  detached() {
+    //  this.businessesSubscription.dispose();
+  }
+}
+
+
+// <div show.bind="fieldname==='Description'">
       // 			<textarea rows="8" cols="100" id="Description" class="form-control input-sm" value.bind="currentItem.Description"></textarea>
       // 		</div>
       // 		<div show.bind="fieldname==='Comment'">
@@ -362,16 +289,93 @@ export class Prompt {
       // if (this.fieldname === 'Treatment') {
       //   this.currentItem.Treatment
       // }
-      if (this.fieldname === 'SavedList') {
-        let name = `${this.name.name}`
-        console.log(' dsaved.value', name)//, this.dsaved.value)
-        // this.dsaved.value = this.name//this.addlist
-        this.appService.currentsavedlist = name// dsaved.value
-      }
-    }
-    this.controller.cancel()
-  }
-  detached() {
-    //  this.businessesSubscription.dispose();
-  }
-}
+// if (this.fieldname === 'ConservedBy') {
+
+      //   if ((this.currentItem.ConservedBy === undefined) || (this.currentItem.ConservedBy === null)) {
+      //   } else {
+      //     origid = orgcbs.findIndex(x => x._id === this.currentItem.ConservedBy)
+      //     this.orgobj = orgcbs[origid]
+      //   }
+
+      // }
+
+      // if (this.fieldname === 'ConsignedTo') {
+
+      //   if ((this.currentItem.ConsignedTo === undefined) || (this.currentItem.ConsignedTo === null)) {
+      //   } else {
+      //     origid = orgcbs.findIndex(x => x._id === this.currentItem.ConsignedTo)
+      //     this.orgobj = orgcbs[origid]
+      //   }
+
+      // }
+
+      // if (this.fieldname === 'ConsignmentShippingID') {
+
+      //   if ((this.currentItem.ConsignmentShippingID === undefined) || (this.currentItem.ConsignmentShippingID === null)) {
+      //   } else {
+      //     origid = orgcbs.findIndex(x => x._id === this.currentItem.ConsignmentShippingID)
+      //     this.orgobj = orgcbs[origid]
+      //   }
+      // }
+
+      //   if (this.fieldname === 'SoldTo') {
+
+      //   if ((this.currentItem.SoldTo === undefined) || (this.currentItem.SoldTo === null)) {
+      //   } else {
+      //     origid = orgcbs.findIndex(x => x._id === this.currentItem.SoldTo)
+      //     this.orgobj = orgcbs[origid]
+      //   }
+
+      // } if (this.fieldname === 'SoldToID') {
+
+      //   if ((this.currentItem.SoldToID === undefined) || (this.currentItem.SoldToID === null)) {
+      //   } else {
+      //     origid = orgcbs.findIndex(x => x._id === this.currentItem.SoldToID)
+      //     this.orgobj = orgcbs[origid]
+      //   }
+      // }
+      // if (this.fieldname === 'OwnerID') {
+      //   if ((this.currentItem.OwnerID === undefined) || (this.currentItem.OwnerID === null)) {
+      //   } else {
+      //     origid = orgcbs.findIndex(x => x._id === this.currentItem.OwnerID)
+      //     this.orgobj = orgcbs[origid]
+      //   }
+      // }
+      // if (this.fieldname === 'PhotographerID') {
+      //   if ((this.currentItem.PhotographerID === undefined) || (this.currentItem.PhotographerID === null)) {
+      //   } else {
+      //     origid = orgcbs.findIndex(x => x._id === this.currentItem.PhotographerID)
+      //     this.orgobj = orgcbs[origid]
+      //   }
+      // }
+      // if (this.fieldname === 'PurchasedFrom') {
+      //   if ((this.currentItem.PurchasedFrom === undefined) || (this.currentItem.PurchasedFrom === null)) {
+      //   } else {
+      //     origid = orgcbs.findIndex(x => x._id === this.currentItem.PurchasedFrom)
+      //     this.orgobj = orgcbs[origid]
+      //   }
+      // }
+
+
+    // if (this.fieldname === 'selectedids') {
+    //   // this.appService.currentsavedlist
+    //   this.doc = this.appService.currentsavedlist + ` has the following Inventory codes.`
+
+    //   // we dont send a name of the list
+    //   // let meds = this.appService.savedlists 
+    //   // if ((this.currentItem.SoldTo === undefined) || (this.currentItem.orgsList === null)) {
+    //   // } else {
+    //   //   let mid = meds.findIndex(x => x._id === this.currentItem.OwnerID)
+    //   //   let orgobj = this.appService.orgsList[mid]//10]
+    //   //   // console.log('orgobj', orgobj)
+    //   //   this.OrgName = orgobj
+    //   //   this.dsaved.value = this.OrgName
+    //   // }
+    //   // let meds = this.appService.savedlists
+    //   // let orgobj = this.appService.savedlists[0]
+    //   // this.appService.selectedids = orgobj.InventoryCodes
+    //   //this.myMultiSelect.kWidget.dataSource.add(this.appService.selectedids);
+    //   //  let ss = this.appService.selectedids
+    //   //   this.myMultiSelect.kWidget.setDataSource(ss);
+
+    // }
