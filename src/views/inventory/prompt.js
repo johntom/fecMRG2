@@ -117,46 +117,50 @@ export class Prompt {
       if (this.fieldname === this.orgfields[opos]) {
 
         if ((this.currentItem[this.orgfields[opos]] === undefined) || (this.currentItem[this.orgfields[opos]] === null)) {
-       
-       
-       
+
+
+
         } else {
           origid = orgcbs.findIndex(x => x._id === this.currentItem[this.orgfields[opos]])
           this.orgobj = orgcbs[origid]
         }
 
       }
-     
+
       this.orgSelection = {
         selectedOrgItem: this.orgobj,
         selectedOrgValue: this.orgobj._id
+        
       };
+       alert('act ' + fieldname+ this.orgobj)
     }
-    alert('act '+fieldname)
+   
+    this.doc = `Search ${this.fieldname} to select.`
+
   }
 
-  attached() {
+  //attached() {
 
-    this.doc = `type any characters of the ${this.fieldname} to select.`
+  // this.doc = `type any characters of the ${this.fieldname} to select.`
 
 
 
-    //add DonatedBy
-    // if (this.fieldname === 'SavedList') {
-    //   // we dont send a name of the list
-    //   // let meds = this.appService.savedlists 
-    //   // if ((this.currentItem.SoldTo === undefined) || (this.currentItem.orgsList === null)) {
-    //   // } else {
-    //   //   let mid = meds.findIndex(x => x._id === this.currentItem.OwnerID)
-    //   //   let orgobj = this.appService.orgsList[mid]//10]
-    //   //   // console.log('orgobj', orgobj)
-    //   //   this.OrgName = orgobj
-    //   //   this.dsaved.value = this.OrgName
-    //   // }
-    // }
+  //add DonatedBy
+  // if (this.fieldname === 'SavedList') {
+  //   // we dont send a name of the list
+  //   // let meds = this.appService.savedlists 
+  //   // if ((this.currentItem.SoldTo === undefined) || (this.currentItem.orgsList === null)) {
+  //   // } else {
+  //   //   let mid = meds.findIndex(x => x._id === this.currentItem.OwnerID)
+  //   //   let orgobj = this.appService.orgsList[mid]//10]
+  //   //   // console.log('orgobj', orgobj)
+  //   //   this.OrgName = orgobj
+  //   //   this.dsaved.value = this.OrgName
+  //   // }
+  // }
 
- 
-  }
+
+  // }
 
 
   //  alert(`${this.addlist} Exists in list already!`)
@@ -256,7 +260,7 @@ export class Prompt {
       }
     } else {
 
-      
+
       if (this.fieldname === 'SavedList') {
         let name = `${this.name.name}`
         console.log(' dsaved.value', name)//, this.dsaved.value)
