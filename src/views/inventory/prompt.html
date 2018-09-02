@@ -1,17 +1,13 @@
 <template>
-	<require from="aurelia-kendoui-bridge/multiselect/multiselect"></require>
+	<!-- <require from="aurelia-kendoui-bridge/multiselect/multiselect"></require> -->
 	<require from="../../resources/value-converters/stringify"></require>
 
 	<ux-dialog>
 		<ux-dialog-header class="modal-header modal-header-success">
-			<!-- <h2> ${fieldname} </h2> -->
 			<div class="alert alert-danger">
 				<h1> ${fieldname}</h1>
 			</div>
-			<!-- <div class="alert alert-danger">${fieldname}</div> -->
-			<!-- <div class="alert alert-danger" if.bind="error">${error}</div> k-multiselect.ref="myMultiSelect"  -->
-
-
+		
 		</ux-dialog-header>
 		<ux-dialog-body>
 
@@ -40,7 +36,7 @@
 					<table class="table-condensed table">
 						<thead class="table-header-blue" data-sort="items.bind: currentItem.docs; cols: ['FILE_NAME','FILE_EXT']">
 							<tr>
-								<th class="header">Inv </th>
+								<th class="header">Inv  </th>
 
 							</tr>
 						</thead>
@@ -61,16 +57,9 @@
 				</div>
 			</div>
 
-		
-		
-
-			<!-- PhotographerID PurchasedFrom ConsignedTo ConsignedTo ConsignedFromID ConsignmentShippingID OwnerID -->
-			<!-- <div show.bind="fieldname==='ConservedBy'"> -->
 			<div show.bind="fieldbase==='ORG'">
 				<div class="form-group flex-column-1">
 					<h2> ${doc}  </h2>
-
-
 					<label class="control-label">Object ${fieldname} Collection</label>
 					<div>Value: ${orgSelection.selectedOrgValue} <br /> Item: ${orgSelection.selectedOrgItem | stringify}</div>
 					<div>
@@ -79,87 +68,8 @@
 						 collection.bind="appService.orgsList" data-mapping-structure.bind="mappingorgDataStructure" object-key="_id">
 						</abp-select>
 					</div>
-
-
-
 				</div>
 			</div>
-			<!-- <label class="control-label">Object Collection</label>
-			<div>Value: ${condimentSelection.selectedCondimentValue} <br /> Item: ${condimentSelection.selectedCondimentItem | stringify}</div>
-			<div>
-				<abp-select element.bind="mypicker"
-         selected-item.bind="condimentSelection.selectedCondimentItem" 
-         selected-value.bind="condimentSelection.selectedCondimentValue"
-				 collection.bind="allCampingStuffObject" 
-         data-mapping-structure.bind="mappingDataStructure" object-key="id">
-				</abp-select>
-			</div> -->
-			<!-- <div show.bind="fieldname==='PhotographerID'">
-				<div class="form-group flex-column-1">
-					<h2> ${doc} </h2>
-				
-				</div>
-			</div>
-
-
-			<div show.bind="fieldname==='PurchasedFrom'">
-				<div class="form-group flex-column-1">
-					<h2> ${doc} </h2>
-					>
-				</div>
-			</div>
-
-			
-
-			<div show.bind="fieldname==='ConsignedTo'">
-				<div class="form-group flex-column-1">
-					<h2> ${doc} </h2>
-
-					<label class="control-label">Object ConservedBy Collection</label>
-					<div>Value: ${orgSelection.selectedOrgValue} <br /> Item: ${orgSelection.selectedOrgItem | stringify}</div>
-					<div>
-						<abp-select element.bind="mypickerConservedBy" selected-item.bind="orgSelection.selectedOrgItem" selected-value.bind="orgSelection.selectedOrgValue"
-						 collection.bind="appService.orgsList" data-mapping-structure.bind="mappingorgDataStructure" object-key="_id">
-						</abp-select>
-					</div>
-
-				</div>
-
-			</div>
-			<div show.bind="fieldname==='ConsignedFromID'">
-				<div class="form-group flex-column-1">
-					<h2> ${doc} </h2>
-					<label class="control-label">Object ConservedBy Collection</label>
-					<div>Value: ${orgSelection.selectedOrgValue} <br /> Item: ${orgSelection.selectedOrgItem | stringify}</div>
-					<div>
-						<abp-select element.bind="mypickerConsignedFromID" selected-item.bind="orgSelection.selectedOrgItem" selected-value.bind="orgSelection.selectedOrgValue"
-						 collection.bind="appService.orgsList" data-mapping-structure.bind="mappingorgDataStructure" object-key="_id">
-						</abp-select>
-					</div>
-
-				</div>
-
-			</div>
-			<div show.bind="fieldname==='ConsignmentShippingID'">
-				<div class="form-group flex-column-1">
-					<h2> ${doc} </h2>
-
-				
-				</div>
-
-			</div> 
-
-			<div show.bind="fieldname==='OwnerID'">
-				<div class="form-group flex-column-1">
-					<h2> ${doc} </h2>
-
-				
-				</div>
-
-			</div> -->
-
-
-
 
 			<div show.bind="fieldname==='SavedList'">
 				<div class="form-group flex-column-1">
@@ -176,13 +86,7 @@
 				</div>
 			</div>
 
-			<!-- <div show.bind="fieldname==='SoldTo'">
-				<h2> ${doc} </h2>
-				<div class="form-group flex-column-1">
-					<aubs-typeahead ref='dorg' data.bind="appService.orgsList" value.bind="OrgName" debounce.bind="350" placeholder="SoldTo"
-					 open-on-focus.bind="true" key="OrgName" results-limit.bind="12" select-single-result.bind="true">
-					</aubs-typeahead>
-				</div> -->
+		
 			</div>
 			<hr>
 		</ux-dialog-body>
