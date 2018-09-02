@@ -53,8 +53,8 @@ export class Prompt {
     { id: 4, name: 'Rum', company: 'Mt Gay' }
 
   ];
-  orgfields = [ 'ConsignedTo', 'ConsignedFromID','ConsignmentShippingID','OwnerID','PhotographerID' ,'PurchasedFrom','ConservedBy', 'PurchasedFrom','ConservedBy','SoldToID','SoldTo']
-    
+  orgfields = ['ConsignedTo', 'ConsignedFromID', 'ConsignmentShippingID', 'OwnerID', 'PhotographerID', 'PurchasedFrom', 'ConservedBy', 'PurchasedFrom', 'ConservedBy', 'SoldToID', 'SoldTo']
+
   constructor(controller, appService, dataService, dialogService, api) {
     this.controller = controller;
     this.answer = null;
@@ -104,82 +104,91 @@ export class Prompt {
     //   || this.fieldname === 'ConservedBy' || this.fieldname === 'SoldToID'
     //   || this.fieldname === 'SoldTo'
     // )
-    
-      let opos = this.orgfields.findIndex(x => x === fieldname) ;
-      if (opos!==-1){
+
+    let opos = this.orgfields.findIndex(x => x === fieldname);
+    if (opos !== -1) {
       this.fieldbase = 'ORG'
 
       let orgcbs = this.appService.orgsList
       let origid
       this.orgobj = {}
-//  origid = this.appService.orgsList.findIndex(x => x._id === this.currentItem.ConservedBy)
-//           this.orgobj = this.appService.orgsList[origid]
-      if (this.fieldname === 'ConservedBy') {
+      //  origid = this.appService.orgsList.findIndex(x => x._id === this.currentItem.ConservedBy)
+      //  this.orgobj = this.appService.orgsList[origid]
+      if (this.fieldname === this.orgfields[opos]) {
 
-        if ((this.currentItem.ConservedBy === undefined) || (this.currentItem.ConservedBy === null)) {
+        if ((this.currentItem(this.orgfields) === undefined) || (this.currentItem(this.orgfields) === null)) {
         } else {
-          origid = orgcbs.findIndex(x => x._id === this.currentItem.ConservedBy)
+          origid = orgcbs.findIndex(x => x._id === this.currentItem(this.orgfields))
           this.orgobj = orgcbs[origid]
         }
 
       }
+      // if (this.fieldname === 'ConservedBy') {
 
-      if (this.fieldname === 'ConsignedTo') {
+      //   if ((this.currentItem.ConservedBy === undefined) || (this.currentItem.ConservedBy === null)) {
+      //   } else {
+      //     origid = orgcbs.findIndex(x => x._id === this.currentItem.ConservedBy)
+      //     this.orgobj = orgcbs[origid]
+      //   }
 
-        if ((this.currentItem.ConsignedTo === undefined) || (this.currentItem.ConsignedTo === null)) {
-        } else {
-          origid = orgcbs.findIndex(x => x._id === this.currentItem.ConsignedTo)
-          this.orgobj = orgcbs[origid]
-        }
+      // }
 
-      }
+      // if (this.fieldname === 'ConsignedTo') {
 
-      if (this.fieldname === 'ConsignmentShippingID') {
+      //   if ((this.currentItem.ConsignedTo === undefined) || (this.currentItem.ConsignedTo === null)) {
+      //   } else {
+      //     origid = orgcbs.findIndex(x => x._id === this.currentItem.ConsignedTo)
+      //     this.orgobj = orgcbs[origid]
+      //   }
 
-        if ((this.currentItem.ConsignmentShippingID === undefined) || (this.currentItem.ConsignmentShippingID === null)) {
-        } else {
-          origid = orgcbs.findIndex(x => x._id === this.currentItem.ConsignmentShippingID)
-          this.orgobj = orgcbs[origid]
-        }
-      }
+      // }
 
-        if (this.fieldname === 'SoldTo') {
+      // if (this.fieldname === 'ConsignmentShippingID') {
 
-        if ((this.currentItem.SoldTo === undefined) || (this.currentItem.SoldTo === null)) {
-        } else {
-          origid = orgcbs.findIndex(x => x._id === this.currentItem.SoldTo)
-          this.orgobj = orgcbs[origid]
-        }
-        
-      } if (this.fieldname === 'SoldToID') {
+      //   if ((this.currentItem.ConsignmentShippingID === undefined) || (this.currentItem.ConsignmentShippingID === null)) {
+      //   } else {
+      //     origid = orgcbs.findIndex(x => x._id === this.currentItem.ConsignmentShippingID)
+      //     this.orgobj = orgcbs[origid]
+      //   }
+      // }
 
-        if ((this.currentItem.SoldToID === undefined) || (this.currentItem.SoldToID === null)) {
-        } else {
-          origid = orgcbs.findIndex(x => x._id === this.currentItem.SoldToID)
-          this.orgobj = orgcbs[origid]
-        }
-      }
-      if (this.fieldname === 'OwnerID') {
-        if ((this.currentItem.OwnerID === undefined) || (this.currentItem.OwnerID === null)) {
-        } else {
-          origid = orgcbs.findIndex(x => x._id === this.currentItem.OwnerID)
-          this.orgobj = orgcbs[origid]
-        }
-      }
-      if (this.fieldname === 'PhotographerID') {
-        if ((this.currentItem.PhotographerID === undefined) || (this.currentItem.PhotographerID === null)) {
-        } else {
-          origid = orgcbs.findIndex(x => x._id === this.currentItem.PhotographerID)
-          this.orgobj = orgcbs[origid]
-        }
-      }
-      if (this.fieldname === 'PurchasedFrom') {
-        if ((this.currentItem.PurchasedFrom === undefined) || (this.currentItem.PurchasedFrom === null)) {
-        } else {
-          origid = orgcbs.findIndex(x => x._id === this.currentItem.PurchasedFrom)
-          this.orgobj = orgcbs[origid]
-        }
-      }
+      //   if (this.fieldname === 'SoldTo') {
+
+      //   if ((this.currentItem.SoldTo === undefined) || (this.currentItem.SoldTo === null)) {
+      //   } else {
+      //     origid = orgcbs.findIndex(x => x._id === this.currentItem.SoldTo)
+      //     this.orgobj = orgcbs[origid]
+      //   }
+
+      // } if (this.fieldname === 'SoldToID') {
+
+      //   if ((this.currentItem.SoldToID === undefined) || (this.currentItem.SoldToID === null)) {
+      //   } else {
+      //     origid = orgcbs.findIndex(x => x._id === this.currentItem.SoldToID)
+      //     this.orgobj = orgcbs[origid]
+      //   }
+      // }
+      // if (this.fieldname === 'OwnerID') {
+      //   if ((this.currentItem.OwnerID === undefined) || (this.currentItem.OwnerID === null)) {
+      //   } else {
+      //     origid = orgcbs.findIndex(x => x._id === this.currentItem.OwnerID)
+      //     this.orgobj = orgcbs[origid]
+      //   }
+      // }
+      // if (this.fieldname === 'PhotographerID') {
+      //   if ((this.currentItem.PhotographerID === undefined) || (this.currentItem.PhotographerID === null)) {
+      //   } else {
+      //     origid = orgcbs.findIndex(x => x._id === this.currentItem.PhotographerID)
+      //     this.orgobj = orgcbs[origid]
+      //   }
+      // }
+      // if (this.fieldname === 'PurchasedFrom') {
+      //   if ((this.currentItem.PurchasedFrom === undefined) || (this.currentItem.PurchasedFrom === null)) {
+      //   } else {
+      //     origid = orgcbs.findIndex(x => x._id === this.currentItem.PurchasedFrom)
+      //     this.orgobj = orgcbs[origid]
+      //   }
+      // }
 
       this.orgSelection = {
         selectedOrgItem: this.orgobj,
@@ -273,7 +282,7 @@ export class Prompt {
 
   }
   save() {
-    if (this.fieldbase==='ORG') {
+    if (this.fieldbase === 'ORG') {
       //   let orgid = `${this.OrgName._id}`
       // let orgname = `${this.OrgName.OrgName}`
       let orgid = this.orgSelection.selectedOrgItem._id//`${this.OrgName.id}`
@@ -290,7 +299,7 @@ export class Prompt {
         this.currentItem.SoldToID = orgid
         this.currentItem.soldtoname = orgname
       }
- if (this.fieldname === 'SoldTo') {
+      if (this.fieldname === 'SoldTo') {
         this.currentItem.SoldTo = orgid
         this.currentItem.soldtoname = orgname
       }
@@ -333,33 +342,33 @@ export class Prompt {
       }
     } else {
 
-	// <div show.bind="fieldname==='Description'">
-	// 			<textarea rows="8" cols="100" id="Description" class="form-control input-sm" value.bind="currentItem.Description"></textarea>
-	// 		</div>
-	// 		<div show.bind="fieldname==='Comment'">
-	// 			<textarea rows="8" cols="100" id="Comment" class="form-control input-sm" value.bind="currentItem.Comment"></textarea>
-	// 		</div>
-	// 		<div show.bind="fieldname==='Inscribed'">
-	// 			<textarea rows="8" cols="100" id="Inscribed" class="form-control input-sm" value.bind="currentItem.Inscribed"></textarea>
-	// 		</div>
+      // <div show.bind="fieldname==='Description'">
+      // 			<textarea rows="8" cols="100" id="Description" class="form-control input-sm" value.bind="currentItem.Description"></textarea>
+      // 		</div>
+      // 		<div show.bind="fieldname==='Comment'">
+      // 			<textarea rows="8" cols="100" id="Comment" class="form-control input-sm" value.bind="currentItem.Comment"></textarea>
+      // 		</div>
+      // 		<div show.bind="fieldname==='Inscribed'">
+      // 			<textarea rows="8" cols="100" id="Inscribed" class="form-control input-sm" value.bind="currentItem.Inscribed"></textarea>
+      // 		</div>
 
 
-//			<div show.bind="fieldname==='Treatment'">
+      //			<div show.bind="fieldname==='Treatment'">
 
 
-    // if (this.fieldname === 'Treatment') {
-    //   this.currentItem.Treatment
-    // }
-    if (this.fieldname === 'SavedList') {
-      let name = `${this.name.name}`
-      console.log(' dsaved.value', name)//, this.dsaved.value)
-      // this.dsaved.value = this.name//this.addlist
-      this.appService.currentsavedlist = name// dsaved.value
-    }
+      // if (this.fieldname === 'Treatment') {
+      //   this.currentItem.Treatment
+      // }
+      if (this.fieldname === 'SavedList') {
+        let name = `${this.name.name}`
+        console.log(' dsaved.value', name)//, this.dsaved.value)
+        // this.dsaved.value = this.name//this.addlist
+        this.appService.currentsavedlist = name// dsaved.value
+      }
     }
     this.controller.cancel()
   }
-detached() {
-  //  this.businessesSubscription.dispose();
-   }
+  detached() {
+    //  this.businessesSubscription.dispose();
+  }
 }
