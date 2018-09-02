@@ -116,9 +116,12 @@ export class Prompt {
       //  this.orgobj = this.appService.orgsList[origid]
       if (this.fieldname === this.orgfields[opos]) {
 
-        if ((this.currentItem(this.orgfields) === undefined) || (this.currentItem(this.orgfields) === null)) {
+        if ((this.currentItem[this.orgfields[opos]] === undefined) || (this.currentItem[this.orgfields[opos]] === null)) {
+       
+       
+       
         } else {
-          origid = orgcbs.findIndex(x => x._id === this.currentItem(this.orgfields))
+          origid = orgcbs.findIndex(x => x._id === this.currentItem[this.orgfields[opos]])
           this.orgobj = orgcbs[origid]
         }
 
