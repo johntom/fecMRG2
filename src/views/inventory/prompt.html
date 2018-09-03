@@ -56,7 +56,7 @@
 					</table>
 				</div>
 			</div>
-
+<!-- https://developer.snapappointments.com/bootstrap-select/options/#bootstrap-version -->
 			<div show.bind="fieldbase==='ORG'">
 
 				<div class="form-group flex-column-1">
@@ -69,7 +69,9 @@
 							<!-- <div show.bind="showitval">	 collection.bind="appService.orgsList allorgs" -->
 								<abp-select element.bind="mypicker" selected-item.bind="orgSelection.selectedOrgItem" 
                 selected-value.bind="orgSelection.selectedOrgValue"
-								 collection.bind="appService.orgsList" data-mapping-structure.bind="mappingorgDataStructure" 
+								 collection.bind="appService.orgsList" 
+                 picker-options.bind="{ liveSearch: true ,liveSearchPlaceholder:'search',actionsBox:true,size:20}"
+                 data-mapping-structure.bind="mappingorgDataStructure" 
                  object-key="_id">
 								</abp-select>
 							<!-- </div> -->
