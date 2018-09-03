@@ -10,8 +10,10 @@ import { ApiService } from '../../utils/servicesApi';
 import 'bootstrap-select/css/bootstrap-select.min.css';
 import { bindable, inject } from 'aurelia-framework';
 // @inject()
+import { TaskQueue } from 'aurelia-task-queue';
 
-@inject(DialogController, ApplicationService, MyDataService, DialogService, ApiService)
+//,Element,
+@inject(DialogController, ApplicationService, MyDataService, DialogService, ApiService ,TaskQueue,Element)
 
 export class Prompt {
   @bindable picker;
@@ -54,8 +56,8 @@ export class Prompt {
 
   ];
   orgfields = ['ConsignedTo', 'ConsignedFromID', 'ConsignmentShippingID', 'OwnerID', 'PhotographerID', 'PurchasedFrom', 'ConservedBy', 'PurchasedFrom', 'ConservedBy', 'SoldToID', 'SoldTo']
-
-  constructor(controller, appService, dataService, dialogService, api) {
+showitval=false
+  constructor(controller, appService, dataService, dialogService, api,taskQueue,element) {
     this.controller = controller;
     this.answer = null;
 
@@ -68,6 +70,8 @@ export class Prompt {
     this.addlist//='aaa'
     this.dialogService = dialogService
     this.api = api
+    this.element = element;
+    this.taskQueue = taskQueue;
   }
 
 
@@ -89,11 +93,20 @@ export class Prompt {
   // activate(question) {
   //    this.question = question;
   //} person
+
+	// <button click.trigger="showit()">showit</button>
+	// 						<div show.bind="showitval">
+showit() {
+  this.showitval=true
+  this.allorgs=this.appService.orgsList
+ //  this.taskQueue.queueMicroTask(() => {
+      $(this.mypicker).selectpicker("refresh");
+   // });
+}
+
   activate(fieldname) {
     this.fieldname = fieldname;
     this.fieldbase = ''
-
-
     // if (this.fieldname === 'ConsignedTo') {
     //PhotographerID PurchasedFrom ConsignedTo ConsignedTo ConsignedFromID ConsignmentShippingID OwnerID 
     //  LoanTo ConsignedFromID InsuredBy PurchasedFrom 
@@ -104,7 +117,7 @@ export class Prompt {
     //   || this.fieldname === 'ConservedBy' || this.fieldname === 'SoldToID'
     //   || this.fieldname === 'SoldTo'
     // )
-
+    // this.allorgs=this.appService.orgsList
     let opos = this.orgfields.findIndex(x => x === fieldname);
     if (opos !== -1) {
       this.fieldbase = 'ORG'
@@ -115,27 +128,26 @@ export class Prompt {
       //  origid = this.appService.orgsList.findIndex(x => x._id === this.currentItem.ConservedBy)
       //  this.orgobj = this.appService.orgsList[origid]
       if (this.fieldname === this.orgfields[opos]) {
-
         if ((this.currentItem[this.orgfields[opos]] === undefined) || (this.currentItem[this.orgfields[opos]] === null)) {
-
-
-
         } else {
           origid = orgcbs.findIndex(x => x._id === this.currentItem[this.orgfields[opos]])
           this.orgobj = orgcbs[origid]
         }
-
       }
-
       this.orgSelection = {
         selectedOrgItem: this.orgobj,
         selectedOrgValue: this.orgobj._id
-        
       };
-       alert('act ' + fieldname+ this.orgobj)
+      //  alert('act ' + fieldname+ this.orgobj)
     }
    
     this.heading = `Search ${this.fieldname} to select.`
+    // setTimeout(()=>{
+    //   //  $(this.element).selectpicker("refresh");
+    //    this.allorgs=this.appService.orgsList
+    //    alert('act ' + this.allorgs.length)
+    // },300)
+
 
   }
 

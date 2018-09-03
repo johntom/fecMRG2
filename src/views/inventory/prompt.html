@@ -7,10 +7,9 @@
 			<div class="alert alert-danger">
 				<h1> ${heading}</h1>
 			</div>
-		
+
 		</ux-dialog-header>
 		<ux-dialog-body>
-
 			<div show.bind="fieldname==='Description'">
 				<textarea rows="8" cols="100" id="Description" class="form-control input-sm" value.bind="currentItem.Description"></textarea>
 			</div>
@@ -24,7 +23,8 @@
 
 			<div show.bind="fieldname==='Treatment'">
 				<textarea rows="8" cols="100" ref="dTreatment" id="dTreatment" class="form-control input-sm" value.bind="currentItem.Treatment"></textarea>
-			</div>
+			
+      </div>
 
 
 
@@ -36,7 +36,7 @@
 					<table class="table-condensed table">
 						<thead class="table-header-blue" data-sort="items.bind: currentItem.docs; cols: ['FILE_NAME','FILE_EXT']">
 							<tr>
-								<th class="header">Inv  </th>
+								<th class="header">Inv </th>
 
 							</tr>
 						</thead>
@@ -58,37 +58,30 @@
 			</div>
 
 			<div show.bind="fieldbase==='ORG'">
+
 				<div class="form-group flex-column-1">
 					<!-- <h2> ${doc}  </h2> -->
 					<!-- <label class="control-label">Object ${fieldname} Collection</label>Value: ${orgSelection.selectedOrgValue} <br /> -->
 					<div> Item: ${orgSelection.selectedOrgItem | stringify}</div>
 					<div>
-						<abp-select element.bind="mypicker" selected-item.bind="orgSelection.selectedOrgItem"
-             selected-value.bind="orgSelection.selectedOrgValue"
-						 collection.bind="appService.orgsList" data-mapping-structure.bind="mappingorgDataStructure" object-key="_id">
-						</abp-select>
+						<div show.bind="fieldbase==='ORG'">
+							<button click.trigger="showit()">showit</button>
+							<!-- <div show.bind="showitval">	 collection.bind="appService.orgsList allorgs" -->
+								<abp-select element.bind="mypicker" selected-item.bind="orgSelection.selectedOrgItem" 
+                selected-value.bind="orgSelection.selectedOrgValue"
+								 collection.bind="appService.orgsList" data-mapping-structure.bind="mappingorgDataStructure" 
+                 object-key="_id">
+								</abp-select>
+							<!-- </div> -->
+						</div>
 					</div>
 				</div>
-			</div>
 
-			<div show.bind="fieldname==='SavedList'">
-				<div class="form-group flex-column-1">
-					<h2> ${doc} </h2>
 
-					<!-- <aubs-typeahead ref='dsaved' data.bind="appService.savedlists" value.bind="name" debounce.bind="350" placeholder="savedlists"
-					 open-on-focus.bind="true" key="name" results-limit.bind="12" select-single-result.bind="true">
-					</aubs-typeahead> -->
 
-					<div>
-						<input ref="addtextref" id="addlist" type="text" class="form-control" placeholder="Enter a New SaveList name" value.bind="addlist">
-					</div>
-
-				</div>
-			</div>
-
-		
 			</div>
 			<hr>
+
 		</ux-dialog-body>
 
 		<ux-dialog-footer>
