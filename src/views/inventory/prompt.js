@@ -73,7 +73,9 @@ showitval=false
     this.element = element;
     this.taskQueue = taskQueue;
   }
-
+ add(){
+    alert(this.dd)
+  }
 
   // getStates(filter, limit) {
   //   let filterlc = filter.toLowerCase()

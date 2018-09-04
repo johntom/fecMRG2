@@ -23,8 +23,8 @@
 
 			<div show.bind="fieldname==='Treatment'">
 				<textarea rows="8" cols="100" ref="dTreatment" id="dTreatment" class="form-control input-sm" value.bind="currentItem.Treatment"></textarea>
-			
-      </div>
+
+			</div>
 
 
 
@@ -56,32 +56,49 @@
 					</table>
 				</div>
 			</div>
-<!-- https://developer.snapappointments.com/bootstrap-select/options/#bootstrap-version -->
-			<div show.bind="fieldbase==='ORG'">
-
+			<!-- https://developer.snapappointments.com/bootstrap-select/options/#bootstrap-version -->
+			<!-- <h2> ${doc}  </h2> -->
+			<!-- <label class="control-label">Object ${fieldname} Collection</label>Value: ${orgSelection.selectedOrgValue} <br /> -->
+			<!-- picker-options.bind="{ liveSearch: true ,liveSearchPlaceholder:'search',actionsBox:true,size:20}" -->
+			<!-- <div show.bind="showitval">	 collection.bind="appService.orgsList allorgs" -->
+			<!-- </div> -->
+			<!-- <div show.bind="fieldbase==='ORG'">
 				<div class="form-group flex-column-1">
-					<!-- <h2> ${doc}  </h2> -->
-					<!-- <label class="control-label">Object ${fieldname} Collection</label>Value: ${orgSelection.selectedOrgValue} <br /> -->
+
 					<div> Item: ${orgSelection.selectedOrgItem | stringify}</div>
 					<div>
 						<div show.bind="fieldbase==='ORG'">
 							<button click.trigger="showit()">showit</button>
-							<!-- <div show.bind="showitval">	 collection.bind="appService.orgsList allorgs" -->
-								<abp-select element.bind="mypicker" selected-item.bind="orgSelection.selectedOrgItem" 
-                selected-value.bind="orgSelection.selectedOrgValue"
-								 collection.bind="appService.orgsList" 
-                 picker-options.bind="{ liveSearch: true ,liveSearchPlaceholder:'search',actionsBox:true,size:20}"
-                 data-mapping-structure.bind="mappingorgDataStructure" 
-                 object-key="_id">
-								</abp-select>
-							<!-- </div> -->
+							<abp-select element.bind="mypicker" selected-item.bind="orgSelection.selectedOrgItem" empty-on-null="true" selected-value.bind="orgSelection.selectedOrgValue"
+							 collection.bind="appService.orgsList" picker-options.bind="selectOptions" data-mapping-structure.bind="mappingorgDataStructure"
+							 object-key="_id">
+							</abp-select>
+
 						</div>
 					</div>
 				</div>
+			</div> -->
 
 
+			<div show.bind="fieldbase==='ORG'">
 
+				<div class="form-group flex-column-1">
+
+					<div> Item: ${orgSelection.selectedOrgItem | stringify}</div>
+					<div>
+						<div show.bind="fieldbase==='ORG'">
+
+
+							<abp-select ref='dd' picker-options.bind="selectOptions" disabled="false" collection.bind="appService.orgsList" selected-item.bind="orgSelection.selectedOrgItem"
+							 empty-on-null="true" selected-value.bind="orgSelection.selectedOrgValue" data-mapping-structure.bind="mappingorgDataStructure"
+							 object-key="_id" element.bind="mypicker"></abp-select>
+
+						</div>
+
+					</div>
+				</div>
 			</div>
+
 			<hr>
 
 		</ux-dialog-body>
@@ -91,6 +108,7 @@
 			<button show.bind="addlist" click.trigger="addit()">Add New Saved List</button>
 			<button click.trigger="controller.cancel()">Cancel and Close </button>
 			<button click.trigger="save()">Save and Close </button>
+	<button click.trigger="add()">Add </button>
 
 		</ux-dialog-footer>
 	</ux-dialog>
