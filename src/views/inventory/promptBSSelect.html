@@ -1,0 +1,117 @@
+<template>
+	<!-- <require from="aurelia-kendoui-bridge/multiselect/multiselect"></require> -->
+	<require from="../../resources/value-converters/stringify"></require>
+
+	<ux-dialog>
+		<ux-dialog-header class="modal-header modal-header-success">
+			<div class="alert alert-danger">
+				<h1> ${heading}</h1>
+			</div>
+
+		</ux-dialog-header>
+		<ux-dialog-body>
+			<div show.bind="fieldname==='Description'">
+				<textarea rows="8" cols="100" id="Description" class="form-control input-sm" value.bind="currentItem.Description"></textarea>
+			</div>
+			<div show.bind="fieldname==='Comment'">
+				<textarea rows="8" cols="100" id="Comment" class="form-control input-sm" value.bind="currentItem.Comment"></textarea>
+			</div>
+			<div show.bind="fieldname==='Inscribed'">
+				<textarea rows="8" cols="100" id="Inscribed" class="form-control input-sm" value.bind="currentItem.Inscribed"></textarea>
+			</div>
+
+
+			<div show.bind="fieldname==='Treatment'">
+				<textarea rows="8" cols="100" ref="dTreatment" id="dTreatment" class="form-control input-sm" value.bind="currentItem.Treatment"></textarea>
+
+			</div>
+
+
+
+			<!-- a -->
+			<div show.bind="fieldname==='selectedids'">
+				<div class="form-group flex-column-1">
+					<h2> ${doc} </h2>
+
+					<table class="table-condensed table">
+						<thead class="table-header-blue" data-sort="items.bind: currentItem.docs; cols: ['FILE_NAME','FILE_EXT']">
+							<tr>
+								<th class="header">Inv </th>
+
+							</tr>
+						</thead>
+						<tfoot>
+							<tr>
+								<td></td>
+
+							</tr>
+						</tfoot>
+						<tbody>
+							<tr repeat.for="doc of appService.selectedids">
+								<td>
+								</td>
+								<td><input type="text" id="InventoryCodes" class="form-control  input-sm" value.bind="doc"></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<!-- https://developer.snapappointments.com/bootstrap-select/options/#bootstrap-version -->
+			<!-- <h2> ${doc}  </h2> -->
+			<!-- <label class="control-label">Object ${fieldname} Collection</label>Value: ${orgSelection.selectedOrgValue} <br /> -->
+			<!-- picker-options.bind="{ liveSearch: true ,liveSearchPlaceholder:'search',actionsBox:true,size:20}" -->
+			<!-- <div show.bind="showitval">	 collection.bind="appService.orgsList allorgs" -->
+			<!-- </div> -->
+			<!-- <div show.bind="fieldbase==='ORG'">
+				<div class="form-group flex-column-1">
+
+					<div> Item: ${orgSelection.selectedOrgItem | stringify}</div>
+					<div>
+						<div show.bind="fieldbase==='ORG'">
+							<button click.trigger="showit()">showit</button>
+							<abp-select element.bind="mypicker" selected-item.bind="orgSelection.selectedOrgItem" empty-on-null="true" selected-value.bind="orgSelection.selectedOrgValue"
+							 collection.bind="appService.orgsList" picker-options.bind="selectOptions" data-mapping-structure.bind="mappingorgDataStructure"
+							 object-key="_id">
+							</abp-select>
+
+						</div>
+					</div>
+				</div>
+			</div> -->
+
+		<!-- picker-options.bind="{maxOptions: 1}" multiple -->
+			<div show.bind="fieldbase==='ORG'">
+
+				<div class="form-group flex-column-1">
+
+					<div> Item: ${orgSelection.selectedOrgItem | stringify}</div>
+					<div>
+						<div show.bind="fieldbase==='ORG'">
+							<abp-select ref='dd' 
+           
+              picker-options.bind="selectOptions" disabled="false" collection.bind="appService.orgsList" 
+              selected-item.bind="orgSelection.selectedOrgItem"
+							empty-on-null="true" selected-value.bind="orgSelection.selectedOrgValue"
+              data-mapping-structure.bind="mappingorgDataStructure"
+					    object-key="_id" element.bind="mypicker"></abp-select>
+
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+			<hr>
+
+		</ux-dialog-body>
+
+		<ux-dialog-footer>
+
+			<button show.bind="addlist" click.trigger="addit()">Add New Saved List</button>
+			<button click.trigger="controller.cancel()">Cancel and Close </button>
+			<button click.trigger="save()">Save and Close </button>
+	<!-- <button click.trigger="add()">Add +</button> -->
+
+		</ux-dialog-footer>
+	</ux-dialog>
+</template>
