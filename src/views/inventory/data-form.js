@@ -10,8 +10,25 @@ import { DialogService } from 'aurelia-dialog';
 import { Prompt } from './prompt';
 import { DialogImage } from './dialogImage';
 
-@inject(Router, ApiService, ApplicationService, MyDataService, DialogService)
+import {
+  ValidationControllerFactory,
+  ValidationController,
+  ValidationRules,
+  validateTrigger
+} from 'aurelia-validation';
+import { BootstrapFormRenderer } from '../../bootstrap-form-renderer';
+
+
+@inject(Router, ApiService, ApplicationService, MyDataService, DialogService, ValidationControllerFactory)
 export class DataForm {
+  controller = null;
+  MediumSupportobj = '';
+  Title = '';
+  InvYear = '';
+  InventoryCode = '';
+  // user = new User();
+  currentItem = new currentItem();
+
   heading = 'DataForm HEADER...'
   footer = 'DataForm FOOTER...'
   recordId = '';
@@ -77,7 +94,7 @@ export class DataForm {
     div_name: "Secondary"
   };
 
-  constructor(router, api, appService, dataService, dialogService) {
+  constructor(router, api, appService, dataService, dialogService, controllerFactory) {
     this.api = api
     this.appService = appService
     this.inv = ''
@@ -85,6 +102,11 @@ export class DataForm {
     this.router = router
     this.dialogService = dialogService
     this.skippromt = false
+    this.controller = controllerFactory.createForCurrentScope();
+    this.controller.addRenderer(new BootstrapFormRenderer());
+    this.controller.addObject(this);
+    this.controller.addObject(this.currentItem);
+
   }
   showModal(fieldname) {
     // alert('in m')
@@ -93,7 +115,18 @@ export class DataForm {
     // this.dialogService.open({ viewModel: Prompt, model: 'Delete or Cancel?', lock: false }).whenClosed(response => {
     // this.dialogService.open({ viewModel: Prompt, model: this.person, lock: false }).whenClosed(response => {
     this.dialogService.open({ viewModel: Prompt, model: fieldname, lock: false }).whenClosed(response => {
-
+      if (fieldname === 'Artist') {
+        let artistsel = this.appService.currentItem.artist;//.INSURANCE_COMPANY_ID * 1 // or insco.IN...
+        this.currentItem.artist =  artistsel //JSON.stringify(artistsel)
+        // let insco = this.appService.artistList
+        // if (serviceinsco !== undefined) {
+        //   let aid = insco.findIndex(x => x.INSURANCE_COMPANY_ID === serviceinsco)
+        //   let item = insco[aid];
+        //   this.inscoAdjusters = item.contacts
+        //   this.inscoAddresses = item.addresses
+        // //  this.appService.currentItem.insco = this.appService.currentItem.insco
+        // }
+      }
       if (!response.wasCancelled) {
         // console.log('Delete')
         // let notes = this.currentItem.notes
@@ -227,6 +260,13 @@ export class DataForm {
       console.log('finihed heading', this.heading)
       if (this.recordId === 'create') {
         //return 'new'
+        //     this.currentItem={}    
+        // // this.currentItem.MediumSupportobj = '';
+        // this.currentItem.Title = '';
+        // this.currentItem.InvYear = '';
+        // this.currentItem.InventoryCode = '';
+        this.appService.currentItem = {}
+        this.currentItem = {}
       } else {
         console.log('this.recordId ', this.recordId);
         // if (!this.appService.currentClaim) { // not sure about this condition
@@ -248,7 +288,7 @@ export class DataForm {
             this.appService.currentView = this.appService.currentItem; // must set on every view
 
             this.appService.originalrec = JSON.parse(JSON.stringify(this.appService.currentItem))// inv[0]));
-            
+
 
             // still needed if obj 		  value.two-way="currentItem.MediumSupportobj"   vs value.bind > 
             let meds = this.appService.codesListMediumSupport
@@ -288,7 +328,7 @@ export class DataForm {
 
             }
 
-          console.log('finihed active1')
+            console.log('finihed active1')
             // return inv
           });
         console.log('finihed activ2')
@@ -325,24 +365,29 @@ export class DataForm {
   }
 
   saveinventory(option) {
+    this.controller.validate();
+    if (this.recordId === 'create') {
+      console.log(this.appService.currentItem, this.currentItem)
 
-    console.log(' call save ', JSON.stringify(this.appService.currentItem) === JSON.stringify(this.appService.testrec)) //this.appService.currentClaim)
-    //return 
-    if (JSON.stringify(this.appService.currentItem) !== JSON.stringify(this.appService.originalrec)) {
+    } else {
+      console.log(' call save ', JSON.stringify(this.appService.currentItem) === JSON.stringify(this.appService.testrec)) //this.appService.currentClaim)
+      //return 
+      if (JSON.stringify(this.appService.currentItem) !== JSON.stringify(this.appService.originalrec)) {
 
-      this.api.saveinventory(this.appService.currentItem).then((jsonRes) => {
-        console.log('jsonRes ', jsonRes);
-        let tab = this.appService.tabs.find(f => f.isSelected);
-        window.alert("Save successful!");
-        this.skippromt = true
-        if (option === 1) {
+        this.api.saveinventory(this.appService.currentItem).then((jsonRes) => {
+          console.log('jsonRes ', jsonRes);
           let tab = this.appService.tabs.find(f => f.isSelected);
-          this.closeTab(tab);
-          this.close()
-        } else {
-          this.appService.originalrec = this.appService.currentItem
-        }
-      });
+          window.alert("Save successful!");
+          this.skippromt = true
+          if (option === 1) {
+            let tab = this.appService.tabs.find(f => f.isSelected);
+            this.closeTab(tab);
+            this.close()
+          } else {
+            this.appService.originalrec = this.appService.currentItem
+          }
+        });
+      }
     }
   }
   //  canDeactivate() {
@@ -357,8 +402,8 @@ export class DataForm {
 
   // }
   canDeactivate() {
-   return new Promise((resolve, reject) => {
-      if (this.appService.currentItem && 
+    return new Promise((resolve, reject) => {
+      if (this.appService.currentItem &&
         this.appService.currentItem.isDirty &&
         this.appService.currentItem.isDirty()) {
         // Now, we need to query the user... result => makes it a closure
@@ -372,15 +417,15 @@ export class DataForm {
       } else {
         resolve(true);
       }
-    }); 
-    }
-   requestclose() {
-    const resetFunc = () => { this.appService.originalrec = this.appService.currentItem;};
+    });
+  }
+  requestclose() {
+    const resetFunc = () => { this.appService.originalrec = this.appService.currentItem; };
     let cand = this.canDeactivate()
     let tab = this.appService.tabs.find(f => f.isSelected);
     let rt2 = '#/inventory/' + this.tabname ///claim'//Search?'cant use when search has a number 
     this.appService.tryCloseTab(this.appService.currentItem, tab, rt2);
-  
+
   }
   // close() {
   //   let tab = this.appService.tabs.find(f => f.isSelected);
@@ -392,13 +437,30 @@ export class DataForm {
   //   this.router.navigate(rt2);
   // }
 
- closeTab(tab) {
+  closeTab(tab) {
 
-  let index = this.appService.tabs.indexOf(tab);
-  tab.isSelected = false;
-  this.appService.tabs.splice(index, 1);
+    let index = this.appService.tabs.indexOf(tab);
+    tab.isSelected = false;
+    this.appService.tabs.splice(index, 1);
+
+  }
+
 
 }
 
-
+export class currentItem {
+  MediumSupportobj;
+  Title;
+  InvYear;
+  InventoryCode;
+  artist;
 }
+ValidationRules
+  .ensure(a => a.MediumSupportobj).required()
+  .ensure(a => a.Title).required()
+  .ensure(a => a.InvYear).required()
+  .ensure(a => a.InventoryCode).required()
+  .ensure(a => a.artist).required()
+  // .ensure(a => a.email).required().email()
+  // .on(DataForm);
+  .on(currentItem);

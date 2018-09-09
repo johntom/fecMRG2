@@ -70,6 +70,28 @@
 				</div>
 
 			</div>
+	<div show.bind="fieldname==='Artist'">
+				<div class="form-group flex-column-1">
+					<h2> ${doc} </h2>
+
+					<aubs-typeahead ref='dartist' data.bind="appService.artistList" value.bind="ArtistName" debounce.bind="350" placeholder="enter Artist"
+					 open-on-focus.bind="true" key="ArtistName" results-limit.bind="12" select-single-result.bind="true">
+					</aubs-typeahead>
+				</div>
+
+			</div>
+	<!-- <div show.bind="fieldname==='Artist'">
+				<div class="form-group flex-column-1">
+					<h2> ${doc} </h2>
+
+					<aubs-typeahead ref='dartist' data.bind="appService.artistList" value.bind="lastName" debounce.bind="350" placeholder="Artist"
+					 open-on-focus.bind="true" key="lastName" results-limit.bind="12" select-single-result.bind="true">
+					</aubs-typeahead>
+				</div>
+
+			</div> -->
+
+
 			<div show.bind="fieldname==='LoanTo'">
 				<div class="form-group flex-column-1">
 					<h2> ${doc} </h2>

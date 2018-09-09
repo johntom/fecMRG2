@@ -158,7 +158,7 @@ export class Inventory {
 
 
 addinventory() {
-alert ('add')
+// alert ('add')
  this.router.navigate(`#/inventory/data/create`);
 }
 

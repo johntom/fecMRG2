@@ -84,6 +84,8 @@ export class Prompt {
     // }
     // this.dow.value = this.name
 // this.appService.currentsavedlist
+
+     this.currentItem= this.appService.currentItem
     this.doc = `type any characters of the ${this.fieldname} to select.`
     if (this.fieldname === 'SoldTo') {
       let meds = this.appService.orgsList
@@ -96,7 +98,18 @@ export class Prompt {
         this.dorg.value = this.OrgName
       }
     }
-
+ if (this.fieldname === 'Artist') {
+      let meds = this.appService.artistList
+      if ((this.currentItem.artist === undefined) || (this.currentItem.artist === null)) {
+       // this.currentItem={}// for create only
+      } else {
+        let mid = meds.findIndex(x => x._id === this.currentItem.Artist)
+        let orgobj = this.appService.artistList[mid]//10]
+    
+        this.ArtistName = orgobj
+        this.dartist.value = this.ArtistName
+      }
+    }
 
 
     if (this.fieldname === 'LoanTo') {
@@ -309,11 +322,26 @@ export class Prompt {
     //   this.currentItem.SoldTo = orgid
     //   this.currentItem.soldtoname = orgname
     // }
+     if (this.fieldname === 'Artist') {
+      // let orgid = `${this.ArtistName.id}`
+      // let orgname = `${this.ArtistName.ArtistName}`
+      //   let artist = `${this.ArtistName}`
+       this.currentItem.artist = this.ArtistName
+      // this.currentItem.artistname = orgname
+      //  this.currentItem.artist = this.ArtistName
+     this.appService.currentItem.artist = this.ArtistName
+    }
+    //   if (this.fieldname === 'Artist') {
+    //   let orgid = `${this.lastName.id}`
+    //   let orgname = `${this.lastName.lastName}`
+    //   this.currentItem.Artist = orgid
+    //   this.currentItem.artistname = orgname
+    // }
     if (this.fieldname === 'OwnerID') {
       let orgid = `${this.OrgName._id}`
       let orgname = `${this.OrgName.OrgName}`
-      this.currentItem.OwnerID = orgid
-      this.currentItem.ownername = orgname
+      this.appService.currentItem.OwnerID = orgid
+      this.appService.currentItem.ownername = orgname
     }
     if (this.fieldname === 'SoldToID') {
       let orgid = `${this.OrgName._id}`

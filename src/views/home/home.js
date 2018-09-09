@@ -7,7 +7,7 @@ import { MyDataService } from "../../services/my-data-service";
 
 export class Home {
   heading = "Welcome to the MRG Home page!";
-  version = 220.0
+  version = 220.3
   constructor(appService, dataService) {
     this.appService = appService;
     this.dataService = dataService;
@@ -269,9 +269,17 @@ export class Home {
         // console.log(' this.orgsList', this.appService.orgsList)
         console.log(' this.appService.codesGenre', this.appService.codesGenre)
         console.log(' this.artistList', this.appService.artistList.length)
-        // console.log(' this.codesList', values[1])
+        // bad   this.currentItem = this.items.find(f => f.id == params.id);
+         for (i = 0; i < this.appService.artistList.length; i++) {
+          this.appService.artistList[i].ArtistName = this.appService.artistList[i].lastName + ', ' + this.appService.artistList[i].firstName
+        }
+        // let pct
+// for (let bk of this.appService.artistList) {
+//       //  console.log('bk2 ', bk2)
+//       bk.ArtistName = bk.lastName+', '+bk.firstName
+//     }
 
-        //bad   this.currentItem = this.items.find(f => f.id == params.id);
+
       }).catch(error => {
         console.error("Error encountered while trying to get data.", error);
       });
