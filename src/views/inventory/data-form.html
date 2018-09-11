@@ -137,7 +137,7 @@
 	    	</div> -->
 									<!-- control-label turns red for validate -->
 									<div class=" Rtable-cell-30 Rtable-cell--highlight">
-										<strong> Artist > <span click.delegate="showModal('Artist')"></spam></strong>
+										<strong> Artist >> <span click.delegate="showModal('Artist')"></spam></strong>
 									</div>
 									<div class="Rtable-cell-70  Rtable-cell--highlight">
 										<span click.delegate="showModal('Artist')"> <strong> ${currentItem.artist.lastName},
@@ -438,10 +438,10 @@
 									</div>
 
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
-										<strong> SoldTo</strong>
+										<strong> SoldTo >></strong>
 									</div>
 									<div class="Rtable-cell-70  Rtable-cell--highlight">
-										<input click.delegate="showModal('SoldToID')" type="text" xid="SoldToID" class="form-control input-sm"
+										<input dblclick.delegate="showModal('SoldToID')" type="text" xid="SoldToID" class="form-control input-sm"
 										 value.bind="currentItem.soldtoname">
 
 									</div>
@@ -461,10 +461,10 @@
 									</div>
 
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
-										<strong> Owner</strong>
+										<strong> Owner >> </strong>
 									</div>
 									<div class="Rtable-cell-70  Rtable-cell--highlight">
-										<input click.delegate="showModal('OwnerID')" type="text" xid="OwnerID" 
+										<input dblclick.delegate="showModal('OwnerID')" type="text" xid="OwnerID" 
                     class="form-control input-sm"
 										 value.bind="currentItem.ownername">
 

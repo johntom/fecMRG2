@@ -69,10 +69,15 @@ export class Conservation {
   }
 
   showModal(fieldname, index) {
+    this.currentItem.fieldname = fieldname
     this.currentItem.ConservedBy = this.currentItem.conservation[index].ConservedBy // mongoid
     this.currentItem.conservedbyname = this.currentItem.conservation[index].conservedbyname
 
-    this.dialogService.open({ viewModel: Prompt, model: fieldname, lock: false }).whenClosed(response => {
+    // this.dialogService.open({ viewModel: Prompt, model: fieldname, lock: false }).whenClosed(response => {
+        
+    this.dialogService.open({ viewModel: Prompt, model: this.currentItem, lock: false }).whenClosed(response => {
+
+    
       this.currentItem.conservation[index].ConservedBy = this.currentItem.ConservedBy
       this.currentItem.conservation[index].conservedbyname = this.currentItem.conservedbyname
       if (!response.wasCancelled) {

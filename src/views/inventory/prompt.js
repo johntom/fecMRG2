@@ -11,8 +11,13 @@ import { ApiService } from '../../utils/servicesApi';
 
 export class Prompt {
   static inject = [DialogController, ApplicationService, MyDataService, DialogService, ApiService];
-
-  orgfields = ['ConsignedTo', 'ConsignedFromID', 'ConsignmentShippingID', 'OwnerID', 'PhotographerID', 'PurchasedFrom', 'ConservedBy', 'PurchasedFrom', 'ConservedBy', 'SoldToID', 'SoldTo']
+  // ConsignmentShippingID=ConservedFrom
+  orgfields = ['ConsignedTo', 'ConsignedFromID', 'ConsignmentShippingID', 'OwnerID',
+    'PhotographerID', 'PurchasedFrom', 'ConservedBy',
+    'ConservedBy', 'SoldToID', 'SoldTo', 'LoanTo']
+  orgfielddesc = ['Consigned To', 'Consigned From', 'Consignment From (Shipping)', 'Owner',
+    'Photographer', 'Purchased From', 'Conserved By',
+    'Conserved By', 'Sold To', 'Sold To', 'Museum Loan To']
 
   constructor(controller, appService, dataService, dialogService, api) {
     this.controller = controller;
@@ -87,11 +92,17 @@ export class Prompt {
     // this.dow.value = this.name
     // this.appService.currentsavedlist
 
- //   this.currentItem = this.appService.currentItem
-    this.doc = `type any characters of the ${this.fieldname} to select.`
-    this.heading = `Search ${this.fieldname} to select.`
-    this.placeholder = `Enter any characters on ${this.fieldname} to select.`
+    //   this.currentItem = this.appService.currentItem
+    let opos = this.orgfields.findIndex(x => x === this.fieldname);
+    if (opos !== -1) {
+      this.orgfielddescription = orgfielddesc[opos]
 
+    } else {
+      this.orgfielddescription = this.fieldname
+    }
+    this.doc = `type any characters of the ${this.orgfielddescription} to select.`
+    this.heading = `Search ${this.orgfielddescription} to select.`
+    this.placeholder = `Enter any characters on ${this.orgfielddescription} to select.`
 
     // if (this.fieldname === 'ArtistX') {
     //   let artists = this.appService.artistList
@@ -105,24 +116,24 @@ export class Prompt {
     //   }
     // }
 
-     if (this.fieldname === 'Artist') {
+    if (this.fieldname === 'Artist') {
       //let artists = this.appService.artistList
-     // if ((this.currentItem.artist === undefined) || (this.currentItem.artist === null)) {
+      // if ((this.currentItem.artist === undefined) || (this.currentItem.artist === null)) {
       //  // this.currentItem={}// for create only
-     // } else {
-       // let artid = artists.findIndex(x => x.id === this.currentItem.artist.id)
-       // let artobj = this.appService.artistList[artid]//10]
-       //
-       //
-       // sep since artist is an object no need to find it
-        this.ArtistName = this.currentItem.artist
-        this.dartist.value = this.ArtistName
-      }
-   
-    
-    let opos = this.orgfields.findIndex(x => x ===  this.fieldname);
+      // } else {
+      // let artid = artists.findIndex(x => x.id === this.currentItem.artist.id)
+      // let artobj = this.appService.artistList[artid]//10]
+      //
+      //
+      // sep since artist is an object no need to find it
+      this.ArtistName = this.currentItem.artist
+      this.dartist.value = this.ArtistName
+    }
+
+
+    let opos = this.orgfields.findIndex(x => x === this.fieldname);
     if (opos !== -1) {
-      this.fieldbase = 'ORG' 
+      this.fieldbase = 'ORG'
 
       let orgs = this.appService.orgsList
       let origid
@@ -233,61 +244,44 @@ export class Prompt {
     //   let orgname = `${this.OrgName.OrgName}`
     //   this.currentItem.SoldTo = orgid
     //   this.currentItem.soldtoname = orgname
+     // let orgid = `${this.OrgName._id}`
+      // let orgname = `${this.OrgName.OrgName}`
+      // this.appService.currentItem.OwnerID = orgid
+      // this.appService.currentItem.ownername = orgname
     // }
-    if (this.fieldname === 'Artist') {
-      // let orgid = `${this.ArtistName.id}`
+     // let orgid = `${this.ArtistName.id}`
       // let orgname = `${this.ArtistName.ArtistName}`
       //   let artist = `${this.ArtistName}`
       // this.currentItem.artistname = orgname
       //  this.currentItem.artist = this.ArtistName
+    if (this.fieldname === 'Artist') {
+     
       this.currentItem.artist = this.ArtistName
       this.appService.currentItem.artist = this.ArtistName
     }
-    //   if (this.fieldname === 'Artist') {
-    //   let orgid = `${this.lastName.id}`
-    //   let orgname = `${this.lastName.lastName}`
-    //   this.currentItem.Artist = orgid
-    //   this.currentItem.artistname = orgname
-    // }
+
+  
     if (this.fieldname === 'OwnerID') {
       this.currentItem.OwnerID = this.OrgName._id
-      this.currentItem.ownername = this.OrgName.OrgName 
-      // let orgid = `${this.OrgName._id}`
-      // let orgname = `${this.OrgName.OrgName}`
-      // this.appService.currentItem.OwnerID = orgid
-      // this.appService.currentItem.ownername = orgname
+      this.currentItem.ownername = this.OrgName.OrgName
+     
     }
     if (this.fieldname === 'SoldToID') {
-      // let orgid = `${this.OrgName._id}`
-      // let orgname = `${this.OrgName.OrgName}`
-      // this.currentItem.SoldToID = orgid
-      // this.currentItem.soldtoname = orgname
+     
       this.currentItem.SoldToID = this.OrgName._id
       this.currentItem.soldtoname = this.OrgName.OrgName
     }
     if (this.fieldname === 'ConsignedFromID') {
-      // let orgid = `${this.OrgName._id}`
-      // let orgname = `${this.OrgName.OrgName}`
-      // this.currentItem.ConsignedFromID = orgid
-      // this.currentItem.consignedfromname = orgname
+      
       this.currentItem.ConsignedFromID = this.OrgName._id
       this.currentItem.consignedfromname = this.OrgName.OrgName
     }
     if (this.fieldname === 'ConsignmentShippingID') {
-      // let orgid = `${this.OrgName._id}`
-      // let orgname = `${this.OrgName.OrgName}`
-      // this.currentItem.ConsignmentShippingID = orgid
-      // this.currentItem.consignmentshippingname = orgname
+   
       this.currentItem.ConsignmentShippingID = this.OrgName._id
       this.currentItem.consignmentshippingname = this.OrgName.OrgName
     }
 
-    if (this.fieldname === 'InsuredBy') {
-      // let orgid = `${this.OrgName._id}`
-      // let orgname = `${this.OrgName.OrgName}`
-      this.currentItem.InsuredBy = this.OrgName._id
-      this.currentItem.insuredbyname = this.OrgName.OrgName
-    }
 
     if (this.fieldname === 'ConservedBy') {
       // let orgid = `${this.OrgName._id}`
@@ -323,8 +317,15 @@ export class Prompt {
       this.currentItem.PhotographerID = this.OrgName.orgid
       this.currentItem.photographername = this.OrgName.orgname
     }
+    if (this.fieldname === 'ConsignmentShippingID') {
+      // let orgid = `${this.OrgName._id}`
+      // let orgname = `${this.OrgName.OrgName}`
+      this.currentItem.ConsignmentShippingID = this.OrgName.orgid
+      this.currentItem.consignmentshippingname = this.OrgName.orgname
+    }
 
-
+  
+   
 
 
     if (this.fieldname === 'Treatment') {

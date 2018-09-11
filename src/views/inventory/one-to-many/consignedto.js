@@ -80,10 +80,15 @@ export class Conssignedto {
 
   }
  showModal(fieldname,index) {
-  this.currentItem.ConsignedTo=   this.currentItem.consignedto[index].ConsignedTo  
-  this.currentItem.consignedtoname=  this.currentItem.consignedto[index].consignedtoname
+    this.currentItem.fieldname = fieldname
+   this.currentItem.ConsignedTo=   this.currentItem.consignedto[index].ConsignedTo  
+   this.currentItem.consignedtoname=  this.currentItem.consignedto[index].consignedtoname
+  
+  //   this.dialogService.open({ viewModel: Prompt, model: fieldname, lock: false }).whenClosed(response => {
+ .currentItem.consignedto[index].consignedtoname
   
     this.dialogService.open({ viewModel: Prompt, model: fieldname, lock: false }).whenClosed(response => {
+
     this.currentItem.consignedto[index].ConsignedTo = this.currentItem.ConsignedTo
     this.currentItem.consignedto[index].consignedtoname = this.currentItem.consignedtoname
       if (!response.wasCancelled) {

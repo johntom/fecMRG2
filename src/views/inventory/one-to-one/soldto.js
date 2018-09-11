@@ -22,7 +22,11 @@ export class Soldto {
 
   }
   showModal(fieldname) {
-    this.dialogService.open({ viewModel: Prompt, model: fieldname, lock: false }).whenClosed(response => {
+    // this.dialogService.open({ viewModel: Prompt, model: fieldname, lock: false }).whenClosed(response => {
+      this.currentItem.fieldname = fieldname
+    this.dialogService.open({ viewModel: Prompt, model: this.currentItem, lock: false }).whenClosed(response => {
+
+     
       if (!response.wasCancelled) {
         // console.log('Delete')
         // let notes = this.currentItem.notes

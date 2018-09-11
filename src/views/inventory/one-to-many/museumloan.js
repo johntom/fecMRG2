@@ -99,11 +99,15 @@ export class Museamloan {
   // <input click.delegate="showModal('LoanTo',$index)" type="text" id="LoanTo" class="form-control input-sm"
   // value.bind="loantoname">
 
-  showModal(fieldname, index) {
+  // showModal(fieldname, index) {
+  showModal(fieldname,index) {
+    // this.dialogService.open({ viewModel: Prompt, model: fieldname, lock: false }).whenClosed(response => {
+    this.currentItem.fieldname = fieldname
     this.currentItem.LoanTo = this.currentItem.museumloan[index].LoanTo
     this.currentItem.loantoname = this.currentItem.museumloan[index].loantoname
+    this.dialogService.open({ viewModel: Prompt, model: this.currentItem, lock: false }).whenClosed(response => {
 
-    this.dialogService.open({ viewModel: Prompt, model: fieldname, lock: false }).whenClosed(response => {
+    // this.dialogService.open({ viewModel: Prompt, model: fieldname, lock: false }).whenClosed(response => {
       this.currentItem.museumloan[index].LoanTo = this.currentItem.LoanTo
       this.currentItem.museumloan[index].loantoname = this.currentItem.loantoname
       if (!response.wasCancelled) {
