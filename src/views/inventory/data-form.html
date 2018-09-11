@@ -422,7 +422,7 @@
 
 								</div>
 							</div>
-
+<!-- xid no form store id hs prev vals -->
 							<div class="form-group flex-column-1 margin-left-10">
 								<div class="Rtable Rtable--2cols">
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
@@ -441,7 +441,7 @@
 										<strong> SoldTo</strong>
 									</div>
 									<div class="Rtable-cell-70  Rtable-cell--highlight">
-										<input click.delegate="showModal('SoldToID')" type="text" id="SoldToID" class="form-control input-sm"
+										<input click.delegate="showModal('SoldToID')" type="text" ="SoldToID" class="form-control input-sm"
 										 value.bind="currentItem.soldtoname">
 
 									</div>
@@ -464,7 +464,8 @@
 										<strong> Owner</strong>
 									</div>
 									<div class="Rtable-cell-70  Rtable-cell--highlight">
-										<input click.delegate="showModal('OwnerID')" type="text" id="OwnerID" class="form-control input-sm"
+										<input click.delegate="showModal('OwnerID')" type="text" xid="OwnerID" 
+                    class="form-control input-sm"
 										 value.bind="currentItem.ownername">
 
 									</div>

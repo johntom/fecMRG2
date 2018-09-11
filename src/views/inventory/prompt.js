@@ -93,31 +93,36 @@ export class Prompt {
     this.placeholder = `Enter any characters on ${this.fieldname} to select.`
 
 
-    if (this.fieldname === 'Artist') {
-      let artists = this.appService.artistList
-      if ((this.currentItem.artist === undefined) || (this.currentItem.artist === null)) {
-        // this.currentItem={}// for create only
-      } else {
-        let artid = artists.findIndex(x => x.id === this.currentItem.artist.id)
-        let artobj = this.appService.artistList[artid]//10]
-        this.ArtistName = artobj
+    // if (this.fieldname === 'ArtistX') {
+    //   let artists = this.appService.artistList
+    //   if ((this.currentItem.artist === undefined) || (this.currentItem.artist === null)) {
+    //     // this.currentItem={}// for create only
+    //   } else {
+    //     let artid = artists.findIndex(x => x.id === this.currentItem.artist.id)
+    //     let artobj = this.appService.artistList[artid]//10]
+    //     this.ArtistName = artobj
+    //     this.dartist.value = this.ArtistName
+    //   }
+    // }
+
+     if (this.fieldname === 'Artist') {
+      //let artists = this.appService.artistList
+     // if ((this.currentItem.artist === undefined) || (this.currentItem.artist === null)) {
+      //  // this.currentItem={}// for create only
+     // } else {
+       // let artid = artists.findIndex(x => x.id === this.currentItem.artist.id)
+       // let artobj = this.appService.artistList[artid]//10]
+       //
+       //
+       // sep since artist is an object no need to find it
+        this.ArtistName = this.currentItem.artist
         this.dartist.value = this.ArtistName
       }
-    }
-    if (this.fieldname === 'SoldTo') {
-      let meds = this.appService.orgsList
-      if ((this.currentItem.SoldTo === undefined) || (this.currentItem.SoldTo === null)) {
-      } else {
-        let mid = meds.findIndex(x => x._id === this.currentItem.SoldTo)
-        let orgobj = this.appService.orgsList[mid]//10]
-        // console.log('orgobj', orgobj)
-        this.OrgName = orgobj
-        this.dorg.value = this.OrgName
-      }
-    }
-    let opos = this.orgfields.findIndex(x => x === fieldname);
+   
+    
+    let opos = this.orgfields.findIndex(x => x ===  this.fieldname);
     if (opos !== -1) {
-      this.fieldbase = 'ORG'
+      this.fieldbase = 'ORG' 
 
       let orgs = this.appService.orgsList
       let origid
@@ -128,9 +133,20 @@ export class Prompt {
           this.orgobj = orgs[origid]
         }
       }
-      this.OrgName = orgobj
+      this.OrgName = this.orgobj
       this.dorg.value = this.OrgName
     }
+    // if (this.fieldname === 'SoldTo') {
+    //   let meds = this.appService.orgsList
+    //   if ((this.currentItem.SoldTo === undefined) || (this.currentItem.SoldTo === null)) {
+    //   } else {
+    //     let mid = meds.findIndex(x => x._id === this.currentItem.SoldTo)
+    //     let orgobj = this.appService.orgsList[mid]//10]
+    //     // console.log('orgobj', orgobj)
+    //     this.OrgName = orgobj
+    //     this.dorg.value = this.OrgName
+    //   }
+    // }
     //add DonatedBy
     if (this.fieldname === 'SavedList') {
       // we dont send a name of the list

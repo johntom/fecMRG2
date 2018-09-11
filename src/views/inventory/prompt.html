@@ -79,11 +79,18 @@
 			</div>
 	<div show.bind="fieldname==='Artist'">
 				<div class="form-group flex-column-1">
-					<h2> ${doc} </h2>
+					<!-- <h2> ${doc} </h2> -->
 
-					<aubs-typeahead ref='dartist' data.bind="appService.artistList" value.bind="currentItem.ArtistName" debounce.bind="350" placeholder="${placeholder}"
+				
+
+	<aubs-typeahead ref='dartist' data.bind="appService.artistList" value.bind="ArtistName" debounce.bind="350" placeholder="${placeholder}"
 					 open-on-focus.bind="true" key="ArtistName" results-limit.bind="12" select-single-result.bind="true">
 					</aubs-typeahead>
+	<!-- <div> Artist: ${ArtistName | stringify}</div> -->
+
+	<div> Artist: b. ${ArtistName.yearofBirth | stringify } d. ${ArtistName.died | stringify}  </div>
+	<div> Artist: b. ${ArtistName.yearofBirth } d. ${ArtistName.died}  </div>
+
 				</div>
 
 			</div>
@@ -94,15 +101,14 @@
 
 				<div class="form-group flex-column-1">
 
-					<div> Item: ${OrgName | stringify}</div>
+			
 					<div>
 						<div show.bind="fieldbase==='ORG'">
-							<!-- <abp-select ref='dd' picker-options.bind="selectOptions" disabled="false" collection.bind="appService.orgsList" selected-item.bind="orgSelection.selectedOrgItem"
-							 empty-on-null="true" selected-value.bind="orgSelection.selectedOrgValue" data-mapping-structure.bind="mappingorgDataStructure"
-							 object-key="_id" element.bind="mypicker"></abp-select> -->
-	<aubs-typeahead ref='dorg' data.bind="appService.orgsList" value.bind="currentItem.OrgName" debounce.bind="350" placeholder="${placeholder}"
+						
+	<aubs-typeahead ref='dorg' data.bind="appService.orgsList" value.bind="OrgName" debounce.bind="350" placeholder="${placeholder}"
 					 open-on-focus.bind="true" key="OrgName" results-limit.bind="12" select-single-result.bind="true">
 					</aubs-typeahead>
+          		<div> Org: ${OrgName | stringify}</div>
 						</div>
 
 					</div>
