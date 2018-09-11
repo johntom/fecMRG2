@@ -82,10 +82,11 @@ section.fec-web {
 }
 
 .fec-web footer {
-  background-color: rgb(70, 116, 90);
+  background-color: lightblue;
 }
 
 /* .fec-web footer {
+   rgb(70, 116, 90);
   background-color: orange;
 } */
 
