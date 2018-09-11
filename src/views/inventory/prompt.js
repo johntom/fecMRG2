@@ -95,7 +95,7 @@ export class Prompt {
     //   this.currentItem = this.appService.currentItem
     let opos = this.orgfields.findIndex(x => x === this.fieldname);
     if (opos !== -1) {
-      this.orgfielddescription = orgfielddesc[opos]
+      this.orgfielddescription = this.orgfielddesc[opos]
 
     } else {
       this.orgfielddescription = this.fieldname
