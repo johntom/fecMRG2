@@ -67,10 +67,10 @@ export class Provenance {
     });
   }
   addit() {
-    alert('in addit prov')
+    //alert('in addit prov')
   }
   addDetail() {
-    alert('in prov')
+    //alert('in prov')
     let provenance = this.currentItem.provenance
     let flag = false
     let item

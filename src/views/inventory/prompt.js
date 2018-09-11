@@ -87,7 +87,7 @@ export class Prompt {
     // this.dow.value = this.name
     // this.appService.currentsavedlist
 
-    this.currentItem = this.appService.currentItem
+ //   this.currentItem = this.appService.currentItem
     this.doc = `type any characters of the ${this.fieldname} to select.`
     this.heading = `Search ${this.fieldname} to select.`
     this.placeholder = `Enter any characters on ${this.fieldname} to select.`

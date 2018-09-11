@@ -88,8 +88,8 @@
 					</aubs-typeahead>
 	<!-- <div> Artist: ${ArtistName | stringify}</div> -->
 
-	<div> Artist: b. ${ArtistName.yearofBirth | stringify } d. ${ArtistName.died | stringify}  </div>
-	<div> Artist: b. ${ArtistName.yearofBirth } d. ${ArtistName.died}  </div>
+
+	<div> born: ${ArtistName.yearofBirth } died: ${ArtistName.died}  </div>
 
 				</div>
 
@@ -108,7 +108,8 @@
 	<aubs-typeahead ref='dorg' data.bind="appService.orgsList" value.bind="OrgName" debounce.bind="350" placeholder="${placeholder}"
 					 open-on-focus.bind="true" key="OrgName" results-limit.bind="12" select-single-result.bind="true">
 					</aubs-typeahead>
-          		<div> Org: ${OrgName | stringify}</div>
+          		<!-- <div> Org: ${OrgName | stringify}</div> -->
+              Address: ${OrgName.Addess} ${OrgName.City} ${OrgName.State} 
 						</div>
 
 					</div>

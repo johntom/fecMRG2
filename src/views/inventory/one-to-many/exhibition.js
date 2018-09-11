@@ -35,12 +35,17 @@ export class Exhibition {
     let exhibition = this.currentItem.exhibition
     let flag = false
     let item
-    // 
+        if (exhibition === undefined) {
+      flag = true
+      exhibition = []
+    }
     item = {
       addExhibit: '', ExhibitSponser: '', ExhibitLocation: '', ExhibitRepro: '',
       ExhibitDates: '', ExhibitSortDate: '',
       Traveled: '', ExhibitMemo: '', edit: true
     }
+
+
     exhibition.unshift(item)
     if (flag) this.currentItem.exhibition = exhibition
   }
