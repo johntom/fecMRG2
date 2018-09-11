@@ -536,6 +536,26 @@
 
 				</div>
 				<!--  class="tab tab-top ${tab.isSelected ? 'tab-selected' : ''}"> -->
+			<div class="flex-column-none section-footer">
+
+				<span>&nbsp;&nbsp;
+					<button class="btn btn-sm btn-danger" click.delegate="saveinventory(0)">
+						Save & Stay
+					</button>
+					<button class="btn btn-sm btn-danger" click.delegate="saveinventory(1)">
+						Save & Close
+					</button>
+				</span>
+				<button class="btn btn-sm btn-danger" click.delegate="factsheet()">
+					FactSheet
+				</button>
+				</span>
+				<span>&nbsp;&nbsp;
+					<button class="btn btn-sm btn-danger" click.delegate="requestclose()">
+						Close
+					</button>
+				</span>
+			</div>
 				<div if.bind="recordId==='create'">Create Mode. Please save record before entering tabs </div>
 				<div else>
 
@@ -560,9 +580,10 @@
 						</li>
 					</ul> -->
 			<!-- </form> -->
-			<!-- after the form -->
-			<div class="flex-column-none section-footer">
+			<!-- after or before the form -->
 				<!-- ${footer} -->
+
+			<!-- <div class="flex-column-none section-footer">
 
 				<span>&nbsp;&nbsp;
 					<button class="btn btn-sm btn-danger" click.delegate="saveinventory(0)">
@@ -572,25 +593,16 @@
 						Save & Close
 					</button>
 				</span>
-				<!-- <button class="btn btn-sm btn-danger" click.delegate="addinventory()">
-						Add Inventory
-					</button> -->
 				<button class="btn btn-sm btn-danger" click.delegate="factsheet()">
 					FactSheet
 				</button>
-
-
-
 				</span>
-
-
-
 				<span>&nbsp;&nbsp;
 					<button class="btn btn-sm btn-danger" click.delegate="requestclose()">
 						Close
 					</button>
 				</span>
-			</div>
+			</div> -->
 </form>
 
 		</div>
