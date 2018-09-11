@@ -104,13 +104,17 @@
 											<strong> InventoryCode</strong>
 										</div>
 										<div class="Rtable-cell Rtable-cell--highlight">
-											<input type="text" id="InventoryCode" class="form-control input-sm" value.bind="currentItem.InventoryCode">
+											<input type="text" id="InventoryCode" class="form-control input-sm" value.bind="currentItem.InventoryCode & validate"
+											 ">
 										</div>
-										<div class="Rtable-cell Rtable-cell--highlight">
+										<div class=" Rtable-cell Rtable-cell--highlight
+											 ">
 											<strong> InvYear</strong>
 										</div>
-										<div class="Rtable-cell  Rtable-cell--highlight">
-											<input type="text" id="InvYear" class="form-control input-sm" value.bind="currentItem.InvYear">
+										<div class=" Rtable-cell
+											 Rtable-cell--highlight ">
+											<input type=" text " id=" InvYear " class=" form-control input-sm
+											 " value.bind=" currentItem.InvYear & validate "">
 										</div>
 									</div>
 
@@ -131,409 +135,409 @@
 
 									</div>
 	    	</div> -->
-									<div class="control-label Rtable-cell-30 Rtable-cell--highlight">
-										<strong> Artist</strong>
+									<!-- control-label turns red for validate -->
+									<div class=" Rtable-cell-30 Rtable-cell--highlight">
+										<strong> Artist > <span click.delegate="showModal('Artist')"></spam></strong>
 									</div>
 									<div class="Rtable-cell-70  Rtable-cell--highlight">
-										<span> <strong> ${currentItem.artist.lastName}, ${currentItem.artist.firstName}  
-                       <span show.bind="currentItem.artist.died===''">  (b.${currentItem.artist.yearofBirth}) </span>
-										<span show.bind="currentItem.artist.died!==''"> (${currentItem.artist.yearofBirth} - ${currentItem.artist.died})</span>
-										</strong>
-										<span>
-                        <div if.bind="recordId === 'create'">
-										<input click.delegate="showModal('Artist')" type="text" id="Artist" class="form-control input-sm" value.bind="currentItem.artist & validate"/>
-	                </div>
+										<span click.delegate="showModal('Artist')"> <strong> ${currentItem.artist.lastName},
+												${currentItem.artist.firstName}
+												<span show.bind="currentItem.artist.died===''"> (b.${currentItem.artist.yearofBirth}) </span>
+												<span show.bind="currentItem.artist.died!==''"> (${currentItem.artist.yearofBirth} -
+													${currentItem.artist.died})</span>
+											</strong>
+											<span>
+												<!-- <div if.bind="recordId === 'Artist'"> -->
+												<!-- <input click.delegate="showModal('Artist')" type="text" id="Artist" class="form-control input-sm" value.bind="currentItem.artistname"> -->
+
+												<!-- <input click.delegate="showModal('Artist')" type="text" id="Artist" class="form-control input-sm" value.bind="currentItem.artist.ArtistName"> -->
+												<!-- <input click.delegate="showModal('Artist')" type="text" id="Artist" class="form-control input-sm" value.bind="currentItem.artist & validate"> -->
+												<!-- </div> -->
 									</div>
-	    	
-
-
-
-										<div class="control-label Rtable-cell-30 Rtable-cell--highlight">
-											<strong> Title</strong>
-										</div>
-										<div class="Rtable-cell-70  Rtable-cell--highlight">
-											<input type="text" id="Title" class="form-control input-sm" value.bind="currentItem.Title & validate">
-										</div>
-										<div class="Rtable-cell-30 Rtable-cell--highlight">
-											<strong> MediumSupport</strong>
-										</div>
-										<div class="Rtable-cell-70  Rtable-cell--highlight">
-											<select ref="MediumSupport11" id="MediumSupport11" class="form-control input-sm" value.bind="currentItem.MediumSupportobj"> 
-                      <option model.bind="null">Choose...</option> 
-                       <option ref="MediumSupport21" repeat.for="opt of appService.codesListMediumSupport" model.bind="opt">
-                        ${opt.Description} 
-                      </option> 
-                    </select>
-										</div>
-
-										<div class="Rtable Rtable--4cols">
-											<div class="Rtable-cell Rtable-cell--highlight">
-												<strong> CatalogueNo</strong>
-											</div>
-
-											<div class="Rtable-cell Rtable-cell--highlight">
-												<input type="text" id="CatalogueNo" class="form-control input-sm" value.bind="currentItem.CatalogueNo">
-											</div>
-
-											<div class="Rtable-cell Rtable-cell--highlight">
-												<strong> AltID </strong>
-											</div>
-											<div class="Rtable-cell  Rtable-cell--highlight">
-												<input type="text" id="Description" class="form-control input-sm" value.bind="currentItem.AltID">
-											</div>
-										</div>
 
 
 
 
-
-										<div class="Rtable Rtable--7cols">
-											<div class="Rtable-cell Rtable-cell--alert">Dimens</div>
-											<div class="Rtable-cell Rtable-cell--highlight">Height</div>
-											<div class="Rtable-cell Rtable-cell--highlight">x/16</div>
-											<div class="Rtable-cell Rtable-cell--highlight">Depth</div>
-											<div class="Rtable-cell Rtable-cell--highlight">x/16</div>
-											<div class="Rtable-cell Rtable-cell--highlight">Width</div>
-											<div class="Rtable-cell Rtable-cell--highlight">x/16</div>
-											<div class="Rtable-cell Rtable-cell--highlight">
-												<strong>Size</strong>
-											</div>
-											<div class="Rtable-cell">
-												<input type="text" id="UnframedHeight" class="form-control input-sm" value.bind="currentItem.UnframedHeight">
-											</div>
-											<div class="Rtable-cell">
-												<select style="width: 65px" value.bind="currentItem.UnframedHeight16">
-                          <option model.bind="null">Choose...</option>
-                          <option repeat.for="measure of measures"
-                                  model.bind="measure.id">
-                            ${measure.name}
-                          </option>
-                        </select>
-											</div>
-											<div class="Rtable-cell">
-												<input type="text" id="UnframedWidth" class="form-control input-sm" value.bind="currentItem.UnframedWidth">
-											</div>
-											<div class="Rtable-cell">
-												<select style="width: 65px" value.bind="currentItem.UnframedWidth16">
-                          <option model.bind="null">Choose...</option>
-                          <option repeat.for="measure of measures"
-                                  model.bind="measure.id">
-                            ${measure.name}
-                          </option>
-                        </select>
-											</div>
-											<div class="Rtable-cell">
-												<input type="text" id="UnframedDepth" class="form-control input-sm" value.bind="currentItem.UnframedDepth">
-											</div>
-											<div class="Rtable-cell">
-												<select style="width: 65px" value.bind="currentItem.UnframedDepth16">
-                          <option model.bind="null">Choose...</option>
-                          <option repeat.for="measure of measures"
-                                  model.bind="measure.id">
-                            ${measure.name}
-                          </option>
-                        </select>
-											</div>
-											<!-- end unframed -->
-
-
-											<!-- framed -->
-											<div class="Rtable-cell Rtable-cell--highlight">
-												<strong>framed</strong>
-											</div>
-											<div class="Rtable-cell">
-												<input type="number" id="framedHeight" class="form-control input-sm" value.bind="currentItem.framedHeight">
-
-											</div>
-											<div class="Rtable-cell">
-
-												<select style="width: 65px" value.bind="currentItem.framedHeight16">
-                          <option model.bind="null">Choose...</option>
-                          <option repeat.for="measure of measures"
-                                  model.bind="measure.id">
-                            ${measure.name}
-                          </option>
-                        </select>
-											</div>
-											<div class="Rtable-cell">
-												<input type="number" id="framedWidth" class="form-control input-sm" value.bind="currentItem.framedWidth">
-
-											</div>
-											<div class="Rtable-cell">
-
-												<select style="width: 65px" value.bind="currentItem.framedWidth16">
-                          <option model.bind="null">Choose...</option>
-                          <option repeat.for="measure of measures"
-                                  model.bind="measure.id">
-                            ${measure.name}
-                          </option>
-                        </select>
-											</div>
-											<div class="Rtable-cell">
-												<input type="number" id="framedDepth" class="form-control input-sm" value.bind="currentItem.framedDepth">
-
-											</div>
-											<div class="Rtable-cell">
-
-												<select style="width: 65px" value.bind="currentItem.framedDepth16">
-                          <option model.bind="null">Choose...</option>
-                          <option repeat.for="measure of measures"
-                                  model.bind="measure.id">
-                            ${measure.name}
-                          </option>
-                        </select>
-											</div>
-											<!-- end framed -->
-
-											<!--image  -->
-											<div class="Rtable-cell Rtable-cell--highlight">
-												<strong>image</strong>
-											</div>
-											<div class="Rtable-cell">
-												<input type="number" id="imageHeight" class="form-control input-sm" value.bind="currentItem.imageHeight">
-
-											</div>
-											<div class="Rtable-cell">
-
-												<select style="width: 65px" value.bind="currentItem.imageHeight16">
-                          <option model.bind="null">Choose...</option>
-                          <option repeat.for="measure of measures"
-                                  model.bind="measure.id">
-                            ${measure.name}
-                          </option>
-                        </select>
-											</div>
-											<div class="Rtable-cell">
-												<input type="number" id="imageWidth" class="form-control input-sm" value.bind="currentItem.imageWidth">
-
-											</div>
-											<div class="Rtable-cell">
-
-												<select style="width: 65px" value.bind="currentItem.imageWidth16">
-                          <option model.bind="null">Choose...</option>
-                          <option repeat.for="measure of measures"
-                                  model.bind="measure.id">
-                            ${measure.name}
-                          </option>
-                        </select>
-											</div>
-											<div class="Rtable-cell">
-												<input type="number" id="imageDepth" class="form-control input-sm" value.bind="currentItem.imageDepth">
-
-											</div>
-											<div class="Rtable-cell">
-
-												<select style="width: 65px" value.bind="currentItem.imageDepth16">
-                          <option model.bind="null">Choose...</option>
-                          <option repeat.for="measure of measures"
-                                  model.bind="measure.id">
-                            ${measure.name}
-                          </option>
-                        </select>
-											</div>
-											<!-- end image -->
-
-
-										</div>
-
-
-
-
-
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong> Title</strong>
 									</div>
-								</div>
-								<!-- end <div class="Rtable Rtable--7cols"> -->
+									<div class="Rtable-cell-70  Rtable-cell--highlight">
 
-								<!-- demo middle col -->
-								<div class="form-group flex-column-1 margin-left-10">
-									<div class="Rtable Rtable--2cols">
+										<input type="text" id="Title" class="form-control input-sm" value.bind="currentItem.Title & validate">
+									</div>
 
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong> MediumSupport</strong>
+									</div>
+									<div class="Rtable-cell-70  Rtable-cell--highlight">
+										<select ref="MediumSupport11" id="MediumSupport11" class="form-control input-sm" value.bind="currentItem.MediumSupportobj & validate""> 
+                      <option model.bind="
+										 null">Choose...</option>
+											<option ref="MediumSupport21" repeat.for="opt of appService.codesListMediumSupport" model.bind="opt">
+												${opt.Description}
+											</option>
+										</select>
+									</div>
 
-
-
-										<div class="Rtable-cell-30 Rtable-cell--highlight">
-											<strong> Keywords </strong>
-											<button ak-button click.delegate="showKeywords()">Show keywords</button>
-
-										</div>
-										<div class="Rtable-cell-70 Rtable-cell--highlight ">
-
-											<ak-multiselect k-value.two-way="currentItem.keywords">
-												<select multiple="multiple" data-placeholder="Select keywords...">
-                       <option repeat.for="opt of appService.codesGenre" model.bind="opt.Description">
-                        ${opt.Description} 
-                      </option> 
-                    </select>
-											</ak-multiselect>
-										</div>
-
-
+									<div class="Rtable Rtable--4cols">
 										<div class="Rtable-cell Rtable-cell--highlight">
-											<strong> Signed?</strong>
-											<input type="checkbox" id="Signed" checked.bind="currentItem.Signed">
+											<strong> CatalogueNo</strong>
 										</div>
 
 										<div class="Rtable-cell Rtable-cell--highlight">
-											<strong> Dated?</strong>
-											<input type="checkbox" id="Dated" checked.bind="currentItem.Dated">
+											<input type="text" id="CatalogueNo" class="form-control input-sm" value.bind="currentItem.CatalogueNo">
 										</div>
 
-
-
-
-
-
-										<div class="Rtable-cell-30 Rtable-cell--highlight">
-											<strong> Edition</strong>
+										<div class="Rtable-cell Rtable-cell--highlight">
+											<strong> AltID </strong>
 										</div>
-										<div class="Rtable-cell-70  Rtable-cell--highlight">
-											<input type="text" id="Edition" class="form-control input-sm" value.bind="currentItem.Edition">
+										<div class="Rtable-cell  Rtable-cell--highlight">
+											<input type="text" id="Description" class="form-control input-sm" value.bind="currentItem.AltID">
 										</div>
-										<div class="Rtable-cell-30 Rtable-cell--highlight">
-											<strong> EditionComment</strong>
-										</div>
-										<div class="Rtable-cell-70  Rtable-cell--highlight">
-											<input type="text" id="EditionComment" class="form-control input-sm" value.bind="currentItem.EditionComment">
-										</div>
-										<div class="Rtable-cell-30 Rtable-cell--highlight">
-											<strong> Condition</strong>
-										</div>
-										<div class="Rtable-cell-70  Rtable-cell--highlight">
-											<input type="text" id="Condition" class="form-control input-sm" value.bind="currentItem.Condition">
-										</div>
-										<div class="Rtable-cell-30 Rtable-cell--highlight">
-											<strong> Inscribed>></strong>
-										</div>
-										<div class="Rtable-cell-70  Rtable-cell--highlight">
-											<input dblclick.delegate="showModal('Inscribed')" type="text" id="Inscribed" class="form-control input-sm" value.bind="currentItem.Inscribed">
-
-										</div>
+									</div>
 
 
 
-										<div class="Rtable-cell-30 Rtable-cell--highlight">
-											<strong>Added/modified</strong>
-										</div>
-										<div class="Rtable-cell-70 Rtable-cell--highlight">
-											${currentItem.DateAdded} / ${currentItem.ModifiedDate}
-										</div>
 
 
+									<div class="Rtable Rtable--7cols">
+										<div class="Rtable-cell Rtable-cell--alert">Dimens</div>
+										<div class="Rtable-cell Rtable-cell--highlight">Height</div>
+										<div class="Rtable-cell Rtable-cell--highlight">x/16</div>
+										<div class="Rtable-cell Rtable-cell--highlight">Depth</div>
+										<div class="Rtable-cell Rtable-cell--highlight">x/16</div>
+										<div class="Rtable-cell Rtable-cell--highlight">Width</div>
+										<div class="Rtable-cell Rtable-cell--highlight">x/16</div>
+										<div class="Rtable-cell Rtable-cell--highlight">
+											<strong>Size</strong>
+										</div>
+										<div class="Rtable-cell">
+											<input type="text" id="UnframedHeight" class="form-control input-sm" value.bind="currentItem.UnframedHeight">
+										</div>
+										<div class="Rtable-cell">
+											<select style="width: 65px" value.bind="currentItem.UnframedHeight16">
+												<option model.bind="null">Choose...</option>
+												<option repeat.for="measure of measures" model.bind="measure.id">
+													${measure.name}
+												</option>
+											</select>
+										</div>
+										<div class="Rtable-cell">
+											<input type="text" id="UnframedWidth" class="form-control input-sm" value.bind="currentItem.UnframedWidth">
+										</div>
+										<div class="Rtable-cell">
+											<select style="width: 65px" value.bind="currentItem.UnframedWidth16">
+												<option model.bind="null">Choose...</option>
+												<option repeat.for="measure of measures" model.bind="measure.id">
+													${measure.name}
+												</option>
+											</select>
+										</div>
+										<div class="Rtable-cell">
+											<input type="text" id="UnframedDepth" class="form-control input-sm" value.bind="currentItem.UnframedDepth">
+										</div>
+										<div class="Rtable-cell">
+											<select style="width: 65px" value.bind="currentItem.UnframedDepth16">
+												<option model.bind="null">Choose...</option>
+												<option repeat.for="measure of measures" model.bind="measure.id">
+													${measure.name}
+												</option>
+											</select>
+										</div>
+										<!-- end unframed -->
+
+
+										<!-- framed -->
+										<div class="Rtable-cell Rtable-cell--highlight">
+											<strong>framed</strong>
+										</div>
+										<div class="Rtable-cell">
+											<input type="number" id="framedHeight" class="form-control input-sm" value.bind="currentItem.framedHeight">
+
+										</div>
+										<div class="Rtable-cell">
+
+											<select style="width: 65px" value.bind="currentItem.framedHeight16">
+												<option model.bind="null">Choose...</option>
+												<option repeat.for="measure of measures" model.bind="measure.id">
+													${measure.name}
+												</option>
+											</select>
+										</div>
+										<div class="Rtable-cell">
+											<input type="number" id="framedWidth" class="form-control input-sm" value.bind="currentItem.framedWidth">
+
+										</div>
+										<div class="Rtable-cell">
+
+											<select style="width: 65px" value.bind="currentItem.framedWidth16">
+												<option model.bind="null">Choose...</option>
+												<option repeat.for="measure of measures" model.bind="measure.id">
+													${measure.name}
+												</option>
+											</select>
+										</div>
+										<div class="Rtable-cell">
+											<input type="number" id="framedDepth" class="form-control input-sm" value.bind="currentItem.framedDepth">
+
+										</div>
+										<div class="Rtable-cell">
+
+											<select style="width: 65px" value.bind="currentItem.framedDepth16">
+												<option model.bind="null">Choose...</option>
+												<option repeat.for="measure of measures" model.bind="measure.id">
+													${measure.name}
+												</option>
+											</select>
+										</div>
+										<!-- end framed -->
+
+										<!--image  -->
+										<div class="Rtable-cell Rtable-cell--highlight">
+											<strong>image</strong>
+										</div>
+										<div class="Rtable-cell">
+											<input type="number" id="imageHeight" class="form-control input-sm" value.bind="currentItem.imageHeight">
+
+										</div>
+										<div class="Rtable-cell">
+
+											<select style="width: 65px" value.bind="currentItem.imageHeight16">
+												<option model.bind="null">Choose...</option>
+												<option repeat.for="measure of measures" model.bind="measure.id">
+													${measure.name}
+												</option>
+											</select>
+										</div>
+										<div class="Rtable-cell">
+											<input type="number" id="imageWidth" class="form-control input-sm" value.bind="currentItem.imageWidth">
+
+										</div>
+										<div class="Rtable-cell">
+
+											<select style="width: 65px" value.bind="currentItem.imageWidth16">
+												<option model.bind="null">Choose...</option>
+												<option repeat.for="measure of measures" model.bind="measure.id">
+													${measure.name}
+												</option>
+											</select>
+										</div>
+										<div class="Rtable-cell">
+											<input type="number" id="imageDepth" class="form-control input-sm" value.bind="currentItem.imageDepth">
+
+										</div>
+										<div class="Rtable-cell">
+
+											<select style="width: 65px" value.bind="currentItem.imageDepth16">
+												<option model.bind="null">Choose...</option>
+												<option repeat.for="measure of measures" model.bind="measure.id">
+													${measure.name}
+												</option>
+											</select>
+										</div>
+										<!-- end image -->
 
 
 									</div>
+
+
+
 								</div>
+							</div>
+							<!-- end <div class="Rtable Rtable--7cols"> -->
 
-								<div class="form-group flex-column-1 margin-left-10">
-									<div class="Rtable Rtable--2cols">
-										<div class="Rtable-cell-30 Rtable-cell--highlight">
-											<strong> Sold </strong>
-										</div>
-										<div class="Rtable-cell-70 Rtable-cell--highlight ">
-											<div class="form-group"> ${search.selectedSoldId}
-												<label repeat.for="sold of searchsold">
-                        <input type="radio" name="group1"
-                              model.bind="sold.id" checked.bind="search.selectedSoldId">
-                      ${sold.name} &nbsp;
-                      </label>
-											</div>
-										</div>
-
-										<div class="Rtable-cell-30 Rtable-cell--highlight">
-											<strong> SoldTo</strong>
-										</div>
-										<div class="Rtable-cell-70  Rtable-cell--highlight">
-											<input click.delegate="showModal('SoldToID')" type="text" id="SoldToID" class="form-control input-sm" value.bind="currentItem.soldtoname">
-
-										</div>
-
-
-
-										<div class="Rtable-cell-30 Rtable-cell--highlight">
-											<strong> OwnedStatus</strong>
-										</div>
-										<div class="Rtable-cell-70  Rtable-cell--highlight">
-											<select id="OwnedBy" class="form-control" value.bind="currentItem.OwnedBy"> 
-                      <option model.bind="null">Choose...</option> 
-                      <option repeat.for="opt of appService.codesOwnership" model.bind="opt.id">
-                          ${opt.Description} 
-                      </option> 
-                      </select>
-										</div>
-
-										<div class="Rtable-cell-30 Rtable-cell--highlight">
-											<strong> Owner</strong>
-										</div>
-										<div class="Rtable-cell-70  Rtable-cell--highlight">
-											<input click.delegate="showModal('OwnerID')" type="text" id="OwnerID" class="form-control input-sm" value.bind="currentItem.ownername">
-
-										</div>
-
-
-										<div class="Rtable-cell-30 Rtable-cell--highlight">
-											<strong> RetailPrice</strong>
-										</div>
-										<div class="Rtable-cell-70  Rtable-cell--highlight">
-											<input type="text" id="ArtValue" class="form-control input-sm" value.bind="currentItem.ArtValue">
-										</div>
-
-										<div class="Rtable-cell-30 Rtable-cell--highlight">
-											<strong> CurrentLocation</strong>
-										</div>
-										<div class="Rtable-cell-70  Rtable-cell--highlight">
-											<select id="CurrentLocation" class="form-control input-sm" value.bind="currentItem.CurrentLocation"> 
-                      <option model.bind="null">Choose...</option> 
-                       <option repeat.for="opt of appService.codesListLocation" model.bind="opt.id">
-                        ${opt.Description} 
-                      </option> 
-                    </select>
-										</div>
-
-										<div class="Rtable-cell-30 Rtable-cell--highlight">
-											<strong> MRGLocation</strong>
-										</div>
-										<div class="Rtable-cell-70  Rtable-cell--highlight">
-											<select id="MRGLocation" class="form-control input-sm" value.bind="currentItem.MRGLocation"> 
-                      <option model.bind="null">Choose...</option> 
-                       <option repeat.for="opt of appService.codesListLocation" model.bind="opt.id">
-                        ${opt.Description} 
-                      </option> 
-                    </select>
-										</div>
-
-
-										<div class="Rtable-cell-30 Rtable-cell--highlight">
-											<strong> Bin</strong>
-										</div>
-										<div class="Rtable-cell-70  Rtable-cell--highlight">
-											<input type="text" id="Bin" class="form-control input-sm" value.bind="currentItem.Bin">
-										</div>
+							<!-- demo middle col -->
+							<div class="form-group flex-column-1 margin-left-10">
+								<div class="Rtable Rtable--2cols">
 
 
 
 
-
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong> Keywords </strong>
+										<button ak-button click.delegate="showKeywords()">Show keywords</button>
 
 									</div>
-									<!-- 2nd -->
+									<div class="Rtable-cell-70 Rtable-cell--highlight ">
+
+										<ak-multiselect k-value.two-way="currentItem.keywords">
+											<select multiple="multiple" data-placeholder="Select keywords...">
+												<option repeat.for="opt of appService.codesGenre" model.bind="opt.Description">
+													${opt.Description}
+												</option>
+											</select>
+										</ak-multiselect>
+									</div>
+
+
+									<div class="Rtable-cell Rtable-cell--highlight">
+										<strong> Signed?</strong>
+										<input type="checkbox" id="Signed" checked.bind="currentItem.Signed">
+									</div>
+
+									<div class="Rtable-cell Rtable-cell--highlight">
+										<strong> Dated?</strong>
+										<input type="checkbox" id="Dated" checked.bind="currentItem.Dated">
+									</div>
+
+
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong> Edition</strong>
+									</div>
+									<div class="Rtable-cell-70  Rtable-cell--highlight">
+										<input type="text" id="Edition" class="form-control input-sm" value.bind="currentItem.Edition">
+									</div>
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong> EditionComment</strong>
+									</div>
+									<div class="Rtable-cell-70  Rtable-cell--highlight">
+										<input type="text" id="EditionComment" class="form-control input-sm" value.bind="currentItem.EditionComment">
+									</div>
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong> Condition</strong>
+									</div>
+									<div class="Rtable-cell-70  Rtable-cell--highlight">
+										<input type="text" id="Condition" class="form-control input-sm" value.bind="currentItem.Condition">
+									</div>
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong> Inscribed>></strong>
+									</div>
+									<div class="Rtable-cell-70  Rtable-cell--highlight">
+										<input dblclick.delegate="showModal('Inscribed')" type="text" id="Inscribed" class="form-control input-sm"
+										 value.bind="currentItem.Inscribed">
+
+									</div>
+
+
+
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong>Added/modified</strong>
+									</div>
+									<div class="Rtable-cell-70 Rtable-cell--highlight">
+										${currentItem.DateAdded} / ${currentItem.ModifiedDate}
+									</div>
+
+
+
+
 								</div>
 							</div>
 
-							<!-- flex row none -->
+							<div class="form-group flex-column-1 margin-left-10">
+								<div class="Rtable Rtable--2cols">
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong> Sold </strong>
+									</div>
+									<div class="Rtable-cell-70 Rtable-cell--highlight ">
+										<div class="form-group"> ${search.selectedSoldId}
+											<label repeat.for="sold of searchsold">
+												<input type="radio" name="group1" model.bind="sold.id" checked.bind="search.selectedSoldId">
+												${sold.name} &nbsp;
+											</label>
+										</div>
+									</div>
+
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong> SoldTo</strong>
+									</div>
+									<div class="Rtable-cell-70  Rtable-cell--highlight">
+										<input click.delegate="showModal('SoldToID')" type="text" id="SoldToID" class="form-control input-sm"
+										 value.bind="currentItem.soldtoname">
+
+									</div>
+
+
+
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong> OwnedStatus</strong>
+									</div>
+									<div class="Rtable-cell-70  Rtable-cell--highlight">
+										<select id="OwnedBy" class="form-control" value.bind="currentItem.OwnedBy">
+											<option model.bind="null">Choose...</option>
+											<option repeat.for="opt of appService.codesOwnership" model.bind="opt.id">
+												${opt.Description}
+											</option>
+										</select>
+									</div>
+
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong> Owner</strong>
+									</div>
+									<div class="Rtable-cell-70  Rtable-cell--highlight">
+										<input click.delegate="showModal('OwnerID')" type="text" id="OwnerID" class="form-control input-sm"
+										 value.bind="currentItem.ownername">
+
+									</div>
+
+
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong> RetailPrice</strong>
+									</div>
+									<div class="Rtable-cell-70  Rtable-cell--highlight">
+										<input type="text" id="ArtValue" class="form-control input-sm" value.bind="currentItem.ArtValue">
+									</div>
+
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong> CurrentLocation</strong>
+									</div>
+									<div class="Rtable-cell-70  Rtable-cell--highlight">
+										<select id="CurrentLocation" class="form-control input-sm" value.bind="currentItem.CurrentLocation">
+											<option model.bind="null">Choose...</option>
+											<option repeat.for="opt of appService.codesListLocation" model.bind="opt.id">
+												${opt.Description}
+											</option>
+										</select>
+									</div>
+
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong> MRGLocation</strong>
+									</div>
+									<div class="Rtable-cell-70  Rtable-cell--highlight">
+										<select id="MRGLocation" class="form-control input-sm" value.bind="currentItem.MRGLocation">
+											<option model.bind="null">Choose...</option>
+											<option repeat.for="opt of appService.codesListLocation" model.bind="opt.id">
+												${opt.Description}
+											</option>
+										</select>
+									</div>
+
+
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong> Bin</strong>
+									</div>
+									<div class="Rtable-cell-70  Rtable-cell--highlight">
+										<input type="text" id="Bin" class="form-control input-sm" value.bind="currentItem.Bin">
+									</div>
+
+
+
+
+
+
+								</div>
+								<!-- 2nd -->
+							</div>
 						</div>
-						<!--top left  -->
+
+						<!-- flex row none -->
+					</div>
+					<!--top left  -->
 
 
 
-						<div id="top-right" class="flex-column-none data-form-image">
-							<img class="responsive-img" src="https://artbased.com/api/v1/getonePdf/inv/${currentItem.InventoryCode}.jpg" click.delegate="showModalImg()">
-
-						</div>
-						<!-- end middle and top right -->
-
+					<div id="top-right" class="flex-column-none data-form-image">
+						<img class="responsive-img" src="https://artbased.com/api/v1/getonePdf/inv/${currentItem.InventoryCode}.jpg"
+						 click.delegate="showModalImg()">
 
 					</div>
-					<!--  class="tab tab-top ${tab.isSelected ? 'tab-selected' : ''}"> -->
+					<!-- end middle and top right -->
+
+
+				</div>
+				<!--  class="tab tab-top ${tab.isSelected ? 'tab-selected' : ''}"> -->
+				<div if.bind="recordId==='create'">Create Mode. Please save record before entering tabs </div>
+				<div else>
+
 					<div id="bottom-left" class="flex-row-3">
 						<div id="data-form-ext" class="flex-column-1">
 							<div id="data-form-one-to-many-tabs" class="flex-row-none flex-wrap">
@@ -548,30 +552,31 @@
 							</div>
 						</div>
 					</div>
-					<ul>
+				</div>
+				<!-- <ul>
 						<li repeat.for='e of controller.errors'>
 							${e.message}
 						</li>
-					</ul>
+					</ul> -->
 			</form>
 			<!-- after the form -->
 			<div class="flex-column-none section-footer">
 				<!-- ${footer} -->
 
-				<span>&nbsp;&nbsp;	
-          	<button class="btn btn-sm btn-danger" click.delegate="saveinventory(0)">
-							Save & Stay
+				<span>&nbsp;&nbsp;
+					<button class="btn btn-sm btn-danger" click.delegate="saveinventory(0)">
+						Save & Stay
 					</button>
 					<button class="btn btn-sm btn-danger" click.delegate="saveinventory(1)">
-							Save & Close
+						Save & Close
 					</button>
-					</span>
+				</span>
 				<!-- <button class="btn btn-sm btn-danger" click.delegate="addinventory()">
 						Add Inventory
 					</button> -->
 				<button class="btn btn-sm btn-danger" click.delegate="factsheet()">
-						FactSheet
-					</button>
+					FactSheet
+				</button>
 
 
 
@@ -579,12 +584,12 @@
 
 
 
-				<span>&nbsp;&nbsp;	
+				<span>&nbsp;&nbsp;
 					<button class="btn btn-sm btn-danger" click.delegate="requestclose()">
-							Close
+						Close
 					</button>
-					</span>
+				</span>
 			</div>
-			</div>
+		</div>
 	</section>
 </template>

@@ -7,7 +7,8 @@ import { MyDataService } from "../../services/my-data-service";
 
 export class Home {
   heading = "Welcome to the MRG Home page!";
-  version = 220.3
+  version = 230.1
+  versiondate=Date();
   constructor(appService, dataService) {
     this.appService = appService;
     this.dataService = dataService;

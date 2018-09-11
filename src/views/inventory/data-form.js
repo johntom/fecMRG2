@@ -9,7 +9,6 @@ import { DialogService } from 'aurelia-dialog';
 //import { Prompt } from '../../../services/prompt';
 import { Prompt } from './prompt';
 import { DialogImage } from './dialogImage';
-
 import {
   ValidationControllerFactory,
   ValidationController,
@@ -17,7 +16,6 @@ import {
   validateTrigger
 } from 'aurelia-validation';
 import { BootstrapFormRenderer } from '../../bootstrap-form-renderer';
-
 
 @inject(Router, ApiService, ApplicationService, MyDataService, DialogService, ValidationControllerFactory)
 export class DataForm {
@@ -27,29 +25,11 @@ export class DataForm {
   InvYear = '';
   InventoryCode = '';
   // user = new User();
-  currentItem = new currentItem();
-
+  currentItem = new currentItem(); // for validate
   heading = 'DataForm HEADER...'
   footer = 'DataForm FOOTER...'
   recordId = '';
-  people = ['Nancy King', 'Nancy Davolio',
-    'Robert Davolio',
-    'Michael Leverling',
-    'Andrew Callahan',
-    'Michael Suyama',
-    'Anne King',
-    'Laura Peacock',
-    'Robert Fuller',
-    'Janet White',
-    'Nancy Leverling',
-    'Robert Buchanan',
-    'Margaret Buchanan',
-    'Andrew Fuller',
-    'Anne Davolio',
-    'Andrew Suyama',
-    'Nige Buchanan',
-    'Laura Fuller',
-  ]
+  // people = ['Nancy King', 'Nancy Davolio', 'Robert Davolio' ]
   measuresOld = [
     { id: 0, name: '1/16' },
     { id: 1, name: '2/16' },
@@ -66,7 +46,6 @@ export class DataForm {
     { id: 13, name: '13/16' },
     { id: 14, name: '14/16' },
     { id: 15, name: '15/16' },
-
   ];
   measures = [
     { id: 0, name: '1/8' },
@@ -77,7 +56,6 @@ export class DataForm {
     { id: 6, name: '3/4' },
     { id: 7, name: '7/8' }
   ];
-
 
   searchsold = [
     { id: 0, name: 'Y' },
@@ -114,27 +92,34 @@ export class DataForm {
 
     // this.dialogService.open({ viewModel: Prompt, model: 'Delete or Cancel?', lock: false }).whenClosed(response => {
     // this.dialogService.open({ viewModel: Prompt, model: this.person, lock: false }).whenClosed(response => {
-    this.dialogService.open({ viewModel: Prompt, model: fieldname, lock: false }).whenClosed(response => {
-      if (fieldname === 'Artist') {
-        let artistsel = this.appService.currentItem.artist;//.INSURANCE_COMPANY_ID * 1 // or insco.IN...
-        this.currentItem.artist =  artistsel //JSON.stringify(artistsel)
-        // let insco = this.appService.artistList
-        // if (serviceinsco !== undefined) {
-        //   let aid = insco.findIndex(x => x.INSURANCE_COMPANY_ID === serviceinsco)
-        //   let item = insco[aid];
-        //   this.inscoAdjusters = item.contacts
-        //   this.inscoAddresses = item.addresses
-        // //  this.appService.currentItem.insco = this.appService.currentItem.insco
-        // }
-      }
+    // this.dialogService.open({ viewModel: Prompt, model: fieldname, lock: false }).whenClosed(response => {
+    this.currentItem.fieldname = fieldname
+    this.dialogService.open({ viewModel: Prompt, model: this.currentItem, lock: false }).whenClosed(response => {
+
+      // if (fieldname === 'Artist') {
+      //   let artistsel = this.appService.currentItem.artist;
+      //    if (artistsel===undefined){
+      //      artistsel=null
+      //  //    this.currentItem.ArtistName=null
+      //    }
+      //   this.currentItem.artist = artistsel 
+      //  //  this.currentItem.ArtistName=this.appService.currentItem.artistname
+      //  //(this.currentItem.artist); 
+
+      // }
       if (!response.wasCancelled) {
         // console.log('Delete')
         // let notes = this.currentItem.notes
         // notes.splice(index, 1)// start, deleteCount)
+
       } else {
+        if (this.currentItem.artist === null) {
+          // this.currentItem.artist.ArtistName=undefined
+          this.controller.validate()
+        }
         console.log('cancel');
       }
-      console.log(response.output);
+      console.log(response)//.output);
     });
   }
 
@@ -266,7 +251,7 @@ export class DataForm {
         // this.currentItem.InvYear = '';
         // this.currentItem.InventoryCode = '';
         this.appService.currentItem = {}
-        this.currentItem = {}
+        // 09-10 this.currentItem = this.appService.currentItem  //{}
       } else {
         console.log('this.recordId ', this.recordId);
         // if (!this.appService.currentClaim) { // not sure about this condition
@@ -328,6 +313,16 @@ export class DataForm {
 
             }
 
+
+
+            if ((this.currentItem.artist === undefined) || (this.currentItem.artist === null)) {
+              // this.currentItem={}// for create only
+            } else {
+              let arts = this.appService.artistList
+              let aid = arts.findIndex(x => x.id === this.currentItem.artist.id)
+              let artistobj = this.appService.artistList[aid]//10]
+              if (artistobj !== undefined) this.currentItem.aritst = artistobj//.OrgName
+            }
             console.log('finihed active1')
             // return inv
           });
@@ -335,9 +330,7 @@ export class DataForm {
       }
       console.log('finihed active3')
     }
-
     console.log('finihed active4')
-
   }
 
   attached() {
@@ -368,16 +361,51 @@ export class DataForm {
     this.controller.validate();
     if (this.recordId === 'create') {
       console.log(this.appService.currentItem, this.currentItem)
+      this.api.createinventory(this.currentItem).then((jsonRes) => {
+        console.log('jsonRes ', jsonRes);
+        this.recordId = jsonRes.id
+        let tab = this.appService.tabs.find(f => f.isSelected);
+        window.alert("Save successful!");
+        this.skippromt = true
 
+        ///
+        let inv = jsonRes
+        //this.currentItem = inv[0]
+        this.appService.currentItem = inv
+        this.appService.testrec = inv
+        // this.appService.currentItem.isDirty = () => {
+        //   return JSON.stringify(this.appService.currentItem) !== JSON.stringify(this.appService.originalrec)
+        // };
+        // this.appService.currentItem.reset = () => {
+        //   this.appService.originalrec = this.appService.currentItem;
+        // }
+        this.appService.currentView = this.appService.currentItem; // must set on every view
+
+        this.appService.originalrec = JSON.parse(JSON.stringify(this.appService.currentItem))
+
+
+
+        ///
+
+        if (option === 1) {
+          let tab = this.appService.tabs.find(f => f.isSelected);
+          this.closeTab(tab);
+          this.close()
+        } else {
+          this.appService.originalrec = this.appService.currentItem
+        }
+      });
     } else {
       console.log(' call save ', JSON.stringify(this.appService.currentItem) === JSON.stringify(this.appService.testrec)) //this.appService.currentClaim)
       //return 
-      if (JSON.stringify(this.appService.currentItem) !== JSON.stringify(this.appService.originalrec)) {
+      // if (JSON.stringify(this.appService.currentItem) !== JSON.stringify(this.appService.originalrec)) {
+      if (JSON.stringify(this.currentItem) !== JSON.stringify(this.appService.originalrec)) {
 
         this.api.saveinventory(this.appService.currentItem).then((jsonRes) => {
           console.log('jsonRes ', jsonRes);
           let tab = this.appService.tabs.find(f => f.isSelected);
           window.alert("Save successful!");
+
           this.skippromt = true
           if (option === 1) {
             let tab = this.appService.tabs.find(f => f.isSelected);
@@ -454,6 +482,7 @@ export class currentItem {
   InvYear;
   InventoryCode;
   artist;
+
 }
 ValidationRules
   .ensure(a => a.MediumSupportobj).required()
@@ -461,6 +490,8 @@ ValidationRules
   .ensure(a => a.InvYear).required()
   .ensure(a => a.InventoryCode).required()
   .ensure(a => a.artist).required()
+
   // .ensure(a => a.email).required().email()
   // .on(DataForm);
   .on(currentItem);
+

@@ -1,11 +1,11 @@
 <template>
 	<require from="aurelia-kendoui-bridge/multiselect/multiselect"></require>
-
+	<require from="../../resources/value-converters/stringify"></require>
 	<ux-dialog>
 		<ux-dialog-header class="modal-header modal-header-success">
 			<!-- <h2> ${fieldname} </h2> -->
 			<div class="alert alert-danger">
-				<h1> ${fieldname}</h1>
+				<h1> ${heading}</h1>
 			</div>
 			<!-- <div class="alert alert-danger">${fieldname}</div> -->
 			<!-- <div class="alert alert-danger" if.bind="error">${error}</div> k-multiselect.ref="myMultiSelect"  -->
@@ -60,125 +60,9 @@
 				</div>
 			</div>
 
-			<div show.bind="fieldname==='SoldToID'">
-				<div class="form-group flex-column-1">
-					<h2> ${doc} </h2>
 
-					<aubs-typeahead ref='dsoldtoid' data.bind="appService.orgsList" value.bind="OrgName" debounce.bind="350" placeholder="SoldToID"
-					 open-on-focus.bind="true" key="OrgName" results-limit.bind="12" select-single-result.bind="true">
-					</aubs-typeahead>
-				</div>
+		
 
-			</div>
-	<div show.bind="fieldname==='Artist'">
-				<div class="form-group flex-column-1">
-					<h2> ${doc} </h2>
-
-					<aubs-typeahead ref='dartist' data.bind="appService.artistList" value.bind="ArtistName" debounce.bind="350" placeholder="enter Artist"
-					 open-on-focus.bind="true" key="ArtistName" results-limit.bind="12" select-single-result.bind="true">
-					</aubs-typeahead>
-				</div>
-
-			</div>
-	<!-- <div show.bind="fieldname==='Artist'">
-				<div class="form-group flex-column-1">
-					<h2> ${doc} </h2>
-
-					<aubs-typeahead ref='dartist' data.bind="appService.artistList" value.bind="lastName" debounce.bind="350" placeholder="Artist"
-					 open-on-focus.bind="true" key="lastName" results-limit.bind="12" select-single-result.bind="true">
-					</aubs-typeahead>
-				</div>
-
-			</div> -->
-
-
-			<div show.bind="fieldname==='LoanTo'">
-				<div class="form-group flex-column-1">
-					<h2> ${doc} </h2>
-					<aubs-typeahead ref='dloanto' data.bind="appService.orgsList" value.bind="OrgName" debounce.bind="350" placeholder="SoldToID"
-					 open-on-focus.bind="true" key="OrgName" results-limit.bind="12" select-single-result.bind="true">
-					</aubs-typeahead>
-				</div>
-			</div>
-
-
-			<div show.bind="fieldname==='ConservedBy'">
-				<div class="form-group flex-column-1">
-					<h2> ${doc} </h2>
-					<aubs-typeahead ref='dconservedby' data.bind="appService.orgsList" value.bind="OrgName" debounce.bind="350" placeholder="ConservedBy"
-					 open-on-focus.bind="true" key="OrgName" results-limit.bind="12" select-single-result.bind="true">
-					</aubs-typeahead>
-				</div>
-			</div>
-
-	<div show.bind="fieldname==='PhotographerID'">
-				<div class="form-group flex-column-1">
-					<h2> ${doc} </h2>
-					<aubs-typeahead ref='dphotographerid' data.bind="appService.orgsList" value.bind="OrgName" debounce.bind="350" placeholder="PhotographerID"
-					 open-on-focus.bind="true" key="OrgName" results-limit.bind="12" select-single-result.bind="true">
-					</aubs-typeahead>
-				</div>
-			</div>
-
-
-			<div show.bind="fieldname==='PurchasedFrom'">
-				<div class="form-group flex-column-1">
-					<h2> ${doc} </h2>
-					<aubs-typeahead ref='dpurchasedfrom' data.bind="appService.orgsList" value.bind="OrgName" debounce.bind="350" placeholder="ConservedBy"
-					 open-on-focus.bind="true" key="OrgName" results-limit.bind="12" select-single-result.bind="true">
-					</aubs-typeahead>
-				</div>
-			</div>
-
-			<!-- <div class="form-group flex-column-1">
-				<h2> ${doc} add new </h2>
-
-				<aubs-typeahead ref='dinsuredby' data.bind="appService.orgsList" value.bind="OrgName" debounce.bind="350" placeholder="InsuredBy"
-				 open-on-focus.bind="true" key="OrgName" results-limit.bind="12" select-single-result.bind="true">
-				</aubs-typeahead>
-			</div> -->
-
-			<div show.bind="fieldname==='ConsignedTo'">
-				<div class="form-group flex-column-1">
-					<h2> ${doc} </h2>
-
-					<aubs-typeahead ref='dconsignedto' data.bind="appService.orgsList" value.bind="OrgName" debounce.bind="350" placeholder="ConsignedFromID"
-					 open-on-focus.bind="true" key="OrgName" results-limit.bind="12" select-single-result.bind="true">
-					</aubs-typeahead>
-				</div>
-
-			</div>
-			<div show.bind="fieldname==='ConsignedFromID'">
-				<div class="form-group flex-column-1">
-					<h2> ${doc} </h2>
-
-					<aubs-typeahead ref='dconsignedfromid' data.bind="appService.orgsList" value.bind="OrgName" debounce.bind="350" placeholder="ConsignedFromID"
-					 open-on-focus.bind="true" key="OrgName" results-limit.bind="12" select-single-result.bind="true">
-					</aubs-typeahead>
-				</div>
-
-			</div>
-			<div show.bind="fieldname==='ConsignmentShippingID'">
-				<div class="form-group flex-column-1">
-					<h2> ${doc} </h2>
-
-					<aubs-typeahead ref='dconsignmentshippingid' data.bind="appService.orgsList" value.bind="OrgName" debounce.bind="350" placeholder="ConsignmentShippingID"
-					 open-on-focus.bind="true" key="OrgName" results-limit.bind="12" select-single-result.bind="true">
-					</aubs-typeahead>
-				</div>
-
-			</div>
-
-			<div show.bind="fieldname==='OwnerID'">
-				<div class="form-group flex-column-1">
-					<h2> ${doc} </h2>
-
-					<aubs-typeahead ref='dorg' data.bind="appService.orgsList" value.bind="OrgName" debounce.bind="350" placeholder="OwnerID"
-					 open-on-focus.bind="true" key="OrgName" results-limit.bind="12" select-single-result.bind="true">
-					</aubs-typeahead>
-				</div>
-
-			</div>
 			<div show.bind="fieldname==='SavedList'">
 				<div class="form-group flex-column-1">
 					<h2> ${doc} </h2>
@@ -193,15 +77,39 @@
 
 				</div>
 			</div>
-
-			<!-- <div show.bind="fieldname==='SoldTo'">
-				<h2> ${doc} </h2>
+	<div show.bind="fieldname==='Artist'">
 				<div class="form-group flex-column-1">
-					<aubs-typeahead ref='dorg' data.bind="appService.orgsList" value.bind="OrgName" debounce.bind="350" placeholder="SoldTo"
+					<h2> ${doc} </h2>
+
+					<aubs-typeahead ref='dartist' data.bind="appService.artistList" value.bind="currentItem.ArtistName" debounce.bind="350" placeholder="${placeholder}"
+					 open-on-focus.bind="true" key="ArtistName" results-limit.bind="12" select-single-result.bind="true">
+					</aubs-typeahead>
+				</div>
+
+			</div>
+
+
+
+			<div show.bind="fieldbase==='ORG'">
+
+				<div class="form-group flex-column-1">
+
+					<div> Item: ${OrgName | stringify}</div>
+					<div>
+						<div show.bind="fieldbase==='ORG'">
+							<!-- <abp-select ref='dd' picker-options.bind="selectOptions" disabled="false" collection.bind="appService.orgsList" selected-item.bind="orgSelection.selectedOrgItem"
+							 empty-on-null="true" selected-value.bind="orgSelection.selectedOrgValue" data-mapping-structure.bind="mappingorgDataStructure"
+							 object-key="_id" element.bind="mypicker"></abp-select> -->
+	<aubs-typeahead ref='dorg' data.bind="appService.orgsList" value.bind="currentItem.OrgName" debounce.bind="350" placeholder="${placeholder}"
 					 open-on-focus.bind="true" key="OrgName" results-limit.bind="12" select-single-result.bind="true">
 					</aubs-typeahead>
-				</div> -->
+						</div>
+
+					</div>
+				</div>
 			</div>
+
+
 			<hr>
 		</ux-dialog-body>
 
