@@ -6,12 +6,12 @@ import { MyDataService } from "../../services/my-data-service";
 
 export class Home {
   heading = "Welcome to the MRG Home page!";
-  version = 230.20  
+  version = 230.21
   versiondate=Date();
   issues=['Save when on a tab will negate abilty to track dirty forms',
   
   'Make tabs like mas w/scrollbar with sticky header',
-  'edit tab data blows up all apps',
+ 
   'make all prompt dblclick',
   'check all ogs prompts'
   ]
