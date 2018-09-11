@@ -294,34 +294,34 @@ export class Prompt {
     if (this.fieldname === 'ConsignedTo') {
       // let orgid = `${this.OrgName._id}`
       // let orgname = `${this.OrgName.OrgName}`
-      this.currentItem.ConsignedTo = this.OrgName.orgid
+      this.currentItem.ConsignedTo = this.OrgName._id
       this.currentItem.consignedtoname = this.OrgName.OrgName
     }
 
     if (this.fieldname === 'PurchasedFrom') {
       // let orgid = `${this.OrgName._id}`
       // let orgname = `${this.OrgName.OrgName}`
-      this.currentItem.PurchasedFrom = this.OrgName.orgid
-      this.currentItem.purchasedfromname = this.OrgName.orgname
+      this.currentItem.PurchasedFrom = this.OrgName._id
+      this.currentItem.purchasedfromname = this.OrgName.OrgName
     }
 
     if (this.fieldname === 'LoanTo') {
       // let orgid = `${this.OrgName._id}`
       // let orgname = `${this.OrgName.OrgName}`
-      this.currentItem.LoanTo = this.OrgName.orgid
-      this.currentItem.loantoname = this.OrgName.orgname
+      this.currentItem.LoanTo = this.OrgName._id
+      this.currentItem.loantoname = this.OrgName.OrgName
     }
     if (this.fieldname === 'PhotographerID') {
       // let orgid = `${this.OrgName._id}`
       // let orgname = `${this.OrgName.OrgName}`
-      this.currentItem.PhotographerID = this.OrgName.orgid
-      this.currentItem.photographername = this.OrgName.orgname
+      this.currentItem.PhotographerID = this.OrgName._id
+      this.currentItem.photographername = this.OrgName.OrgName
     }
     if (this.fieldname === 'ConsignmentShippingID') {
       // let orgid = `${this.OrgName._id}`
       // let orgname = `${this.OrgName.OrgName}`
-      this.currentItem.ConsignmentShippingID = this.OrgName.orgid
-      this.currentItem.consignmentshippingname = this.OrgName.orgname
+      this.currentItem.ConsignmentShippingID = this.OrgName._id
+      this.currentItem.consignmentshippingname = this.OrgName.OrgName
     }
 
   
