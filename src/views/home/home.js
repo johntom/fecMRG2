@@ -12,10 +12,10 @@ export class Home {
   
   'Make tabs like mas w/scrollbar with sticky header',
  
-  'make all prompt dblclick',
-  'check all ogs prompts'
   ]
 
+  // 'make all prompt dblclick',
+  // 'check all ogs prompts'
   constructor(appService, dataService) {
     this.appService = appService;
     this.dataService = dataService;
