@@ -40,8 +40,10 @@
 						<input show.bind="condition.edit" class="form-control input-sm" disabled.bind="!condition.edit" type="text" value.bind="Condition">						</td>
 
 					<td width="225px">
-					<button class="btn btn-primary" click.delegate="condition.edit=!condition.edit">${ !note.edit ? 'Update' : 'Done' }</button>
-					<button class="btn btn-danger" click.delegate="remove(condition,$index)">Delete</button> 
+					<!-- <button class="btn btn-primary" click.delegate="condition.edit=!condition.edit">${ !note.edit ? 'Update' : 'Done' }</button> -->
+				 	<button class="btn btn-primary" click.delegate="saveitem(condition,$index)">${ !condition.edit ? 'Update' : 'Done' }</button>
+
+        	<button class="btn btn-danger" click.delegate="remove(condition,$index)">Delete</button> 
        
 					</td>
 	

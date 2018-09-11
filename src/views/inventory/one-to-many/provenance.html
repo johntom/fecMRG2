@@ -62,8 +62,11 @@
 					<td width="120px"><input type="text" id="Sequence" class="form-control  input-sm" value.bind="Sequence"></td>
 
 					<td width="225px">
-						<button class="btn btn-primary" click.delegate="provenance.edit=!provenance.edit">${ !provenance.edit ? 'Update' : 'Done' }</button>
-						<button class="btn btn-danger" click.delegate="remove(provenance,$index)">Delete</button>
+						<!-- <button class="btn btn-primary" click.delegate="provenance.edit=!provenance.edit">${ !provenance.edit ? 'Update' : 'Done' }</button> -->
+					
+          	<button class="btn btn-primary" click.delegate="saveitem(provenance,$index)">${ !provenance.edit ? 'Update' : 'Done' }</button>
+
+          	<button class="btn btn-danger" click.delegate="remove(provenance,$index)">Delete</button>
 					</td>
 					<!-- <td> <button class="btn btn-sm btn-danger" click.delegate="remove(provenance)">
                   Delete

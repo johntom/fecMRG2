@@ -34,7 +34,10 @@ export class Conservation {
     return !(index === this.editrec && this.mode > 0)
 
   }
-
+   saveitem(item,index) {
+    item.edit = !item.edit
+   
+  }
   activate(params, routeConfig) {
     let oid
     let orgobj

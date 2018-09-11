@@ -35,7 +35,16 @@ export class Adjusternotes {
 
   }
 
+  saveitem(item,index) {
+    item.edit = !item.edit
+    // console.log('saveitem ', item);
+    // this.currentAdjuster = item.ADJUSTER
+    // this.currentClaim = item.CLAIM
+    // //this.flag = 1
 
+    // this.openCount -= 1
+
+  }
 
 
   activate(params, routeConfig) {

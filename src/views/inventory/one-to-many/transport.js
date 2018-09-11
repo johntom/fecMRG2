@@ -60,6 +60,14 @@ export class Transport {
     transport.unshift(item)
     if (flag) this.currentItem.transport = transport
   }
+
+  saveitem(item, index) {
+    item.edit = !item.edit
+
+  }
+  
+
+
   remove(item, index) {
     //alert('you are about to delete ' + item.Notes + ' ' + index)
     this.mode = 0

@@ -19,8 +19,28 @@ export class Exhibition {
   activate(params, routeConfig) {
     this.repro = this.currentItem.reproduction
   }
-  remove(item) {
-    alert('you are about to delete ' + item.ProvMemo)
+  // remove(item) {
+  //   alert('you are about to delete ' + item.ProvMemo)
+  // }
+  saveitem(item,index) {
+    item.edit = !item.edit
+   
+  }
+  remove(item, index) {
+    this.mode = 0
+
+    // let notes = this.currentItem.notes
+    // notes.splice(index, 1)// start, deleteCount)
+    this.dialogService.open({ viewModel: ynPrompt, model: 'Delete or Cancel?', lock: false }).whenClosed(response => {
+      if (!response.wasCancelled) {
+        console.log('Delete')
+        let exhibition = this.currentItem.exhibition
+        exhibition.splice(index, 1)// start, deleteCount)
+      } else {
+        console.log('cancel');
+      }
+      console.log(response.output);
+    });
   }
 
   selectChanged(reproid) {

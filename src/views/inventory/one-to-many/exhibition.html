@@ -84,8 +84,10 @@
           </td>
 					<td width="220px"><input type="text" id="ExhibitMemo" class="form-control  input-sm" value.bind="exhibition.ExhibitMemo"></td>
 					<td width="225px">
-						<button class="btn btn-primary" click.delegate="exhibition.edit=!exhibition.edit">${ !exhibition.edit ? 'Update' : 'Done' }</button>
-						<button class="btn btn-sm btn-danger" click.delegate="remove(exhibition)">           Delete            </button>
+						<!-- <button class="btn btn-primary" click.delegate="exhibition.edit=!exhibition.edit">${ !exhibition.edit ? 'Update' : 'Done' }</button> -->
+				<button class="btn btn-primary" click.delegate="saveitem(exhibition,$index)">${ !exhibition.edit ? 'Update' : 'Done' }</button>
+
+          	<button class="btn btn-sm btn-danger" click.delegate="remove(exhibition,$index)">           Delete            </button>
 					</td>
 
 

@@ -36,14 +36,33 @@ export class Reproduction {
 
   selectChanged(ReproductionExhibit, index, opt) {
     let rid = ReproductionExhibit// this.currentItem.reproduction[index]._id// ReproductionTitle
-    let mid = this.currentItem.exhibition.findIndex(x => x._id  === rid)
-   // alert(this.currentItem.reproduction[index].ReproductionTitle)
+    let mid = this.currentItem.exhibition.findIndex(x => x._id === rid)
+    // alert(this.currentItem.reproduction[index].ReproductionTitle)
     this.currentItem.reproduction[index].ReproductionType = "59d282beb777d41f42a5a2c9"
-    this.currentItem.reproduction[index].ReproductionTitle =  this.currentItem.exhibition[mid].ExhibitTitle 
-    this.currentItem.reproduction[index].ReproductionExhibit =  rid 
-    console.log('rep ' +  this.currentItem.exhibition[mid].ExhibitTitle +' '+`${this.ReproductionExhibit}` + ' ' + opt)
+    this.currentItem.reproduction[index].ReproductionTitle = this.currentItem.exhibition[mid].ExhibitTitle
+    this.currentItem.reproduction[index].ReproductionExhibit = rid
+    console.log('rep ' + this.currentItem.exhibition[mid].ExhibitTitle + ' ' + `${this.ReproductionExhibit}` + ' ' + opt)
   }
+  saveitem(item, index) {
+    item.edit = !item.edit
 
+  }
+  remove(item, index) {
+    //alert('you are about to delete ' + item.Notes + ' ' + index)
+    this.mode = 0
+    // let adjusters = this.currentItem.adjusters
+    // adjusters.splice(index, 1)
+    this.dialogService.open({ viewModel: ynPrompt, model: 'Delete or Cancel?', lock: false }).whenClosed(response => {
+      if (!response.wasCancelled) {
+        console.log('Delete')
+        let adjusters = this.currentItem.reproduction
+        reproduction.splice(index, 1)
+      } else {
+        console.log('cancel');
+      }
+      console.log(response.output);
+    });
+  }
   addRepro() {
     let reproduction = this.currentItem.reproduction
     let flag = false

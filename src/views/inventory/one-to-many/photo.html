@@ -66,8 +66,12 @@
 
 
 						<td width="225px">
-							<button class="btn btn-primary" click.delegate="museumloan.edit=!museumloan.edit">${ !museumloan.edit ? 'Update' : 'Done' }</button>
-							<button class="btn btn-sm btn-danger" click.delegate="remove(museumloan)">           Delete            </button>
+							<!-- <button class="btn btn-primary" click.delegate="museumloan.edit=!museumloan.edit">${ !museumloan.edit ? 'Update' : 'Done' }</button> -->
+						
+            			<button class="btn btn-primary" click.delegate="saveitem(photo,$index)">${ !photo.edit ? 'Update' : 'Done' }</button>
+
+            
+            	<button class="btn btn-sm btn-danger" click.delegate="remove(photo)">           Delete            </button>
 						</td>
 
 

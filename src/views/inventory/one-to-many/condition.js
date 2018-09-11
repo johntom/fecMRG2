@@ -35,6 +35,11 @@ export class Condition {
   activate(params, routeConfig) {
 
   }
+   saveitem(item,index) {
+    item.edit = !item.edit
+  
+  }
+
   remove(item, index) {
     // alert('you are about to delete ' + item.Notes + ' ' + index)
     // this.mode = 0

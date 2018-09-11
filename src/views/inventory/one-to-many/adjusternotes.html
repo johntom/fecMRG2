@@ -8,11 +8,12 @@
 			</a>
 		</h4>
 		<!-- //( ${currentItem.Title} ct:${currentItem.notes.length}) -->
+    <!-- <thead class="table-header-blue" data-sort="items.bind: currentItem.notes; cols: ['WorkDate','Notes']"> -->
 		<table class="table-condensed table">
-			<thead class="table-header-blue" data-sort="items.bind: currentItem.notes; cols: ['WorkDate','Notes']">
+			<thead class="table-header-blue" > 
 				<tr>
 					<tr>
-						<th class="header">WorkDate
+						<th class="header">WorkDate  
 						</th>
 						<th class="header">Notes
 						</th>
@@ -37,11 +38,15 @@
 					<td width="325px">
 						<span show.bind="!note.edit">${Notes}</span>
 
-						<input show.bind="note.edit" class="form-control input-sm" disabled.bind="!note.edit" type="text" value.bind="Notes">						</td>
+						<input show.bind="note.edit" class="form-control input-sm" disabled.bind="!note.edit" type="text" value.bind="Notes">
+         	</td>
 
 					<td width="225px">
-					<button class="btn btn-primary" click.delegate="note.edit=!note.edit">${ !note.edit ? 'Update' : 'Done' }</button>
-					<button class="btn btn-danger" click.delegate="remove(note,$index)">Delete</button> 
+					<!-- <button class="btn btn-primary" click.delegate="note.edit=!note.edit">${ !note.edit ? 'Update' : 'Done' }</button> -->
+			 
+         	<button class="btn btn-primary" click.delegate="saveitem(note,$index)">${ !note.edit ? 'Update' : 'Done' }</button>
+
+      		<button class="btn btn-danger" click.delegate="remove(note,$index)">Delete</button> 
        
 					</td>
 	

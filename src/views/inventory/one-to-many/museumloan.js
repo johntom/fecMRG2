@@ -28,7 +28,7 @@ export class Museamloan {
   ];
 
   // constructor(taskQueue, signaler, api, appService, dialogService) {
-    constructor(api, appService, dialogService) {
+  constructor(api, appService, dialogService) {
     // this.taskQueue = taskQueue;
     // this.signaler = signaler;
     this.api = api;
@@ -75,6 +75,11 @@ export class Museamloan {
       if (orgobj !== undefined) this.currentItem.conservedbyname = orgobj.OrgName
     }
   }
+
+  saveitem(item, index) {
+    item.edit = !item.edit
+
+  }
   remove(item, index) {
     //alert('you are about to delete ' + item.Notes + ' ' + index)
     this.mode = 0
@@ -91,12 +96,12 @@ export class Museamloan {
       console.log(response.output);
     });
   }
-			// <input click.delegate="showModal('LoanTo',$index)" type="text" id="LoanTo" class="form-control input-sm"
-      // value.bind="loantoname">
-			
-showModal(fieldname,index) {
-  this.currentItem.LoanTo=   this.currentItem.museumloan[index].LoanTo  
-  this.currentItem.loantoname=  this.currentItem.museumloan[index].loantoname
+  // <input click.delegate="showModal('LoanTo',$index)" type="text" id="LoanTo" class="form-control input-sm"
+  // value.bind="loantoname">
+
+  showModal(fieldname, index) {
+    this.currentItem.LoanTo = this.currentItem.museumloan[index].LoanTo
+    this.currentItem.loantoname = this.currentItem.museumloan[index].loantoname
 
     this.dialogService.open({ viewModel: Prompt, model: fieldname, lock: false }).whenClosed(response => {
       this.currentItem.museumloan[index].LoanTo = this.currentItem.LoanTo

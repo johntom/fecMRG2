@@ -52,6 +52,10 @@ export class Conssignedto {
     consignedto.unshift(item)
     if (flag) this.currentItem.consignedto = consignedto
   }
+     saveitem(item,index) {
+    item.edit = !item.edit
+   
+  }
   remove(item, index) {
     this.mode = 0
 

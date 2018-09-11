@@ -60,8 +60,9 @@ section.fec-web {
   grid-row-start: 2;
   grid-row-end: 3;
 
-  background-color: rgb(59, 116, 163);
-  /* background-color: orange; */
+  background-color: lightblue;
+  /*  rgb(59, 116, 163);
+  background-color: orange; */
   
     /* position: relative; */
    /* display: flex;
