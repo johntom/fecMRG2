@@ -52,7 +52,7 @@ section.fec-web {
 .fec-web header,
 .fec-web .section-header {
   height: 50px;
-  background-color: lightblue;
+  background-color: rgb(160, 207, 180);
 }
 .fec-web .section-footer {
   height: 40px;
@@ -60,7 +60,7 @@ section.fec-web {
   grid-row-start: 2;
   grid-row-end: 3;
 
-  background-color: lightseagreen;
+  background-color: rgb(129, 171, 248);
   /* background-color: orange; */
   
     /* position: relative; */
