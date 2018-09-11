@@ -85,8 +85,7 @@ export class Conssignedto {
    this.currentItem.consignedtoname=  this.currentItem.consignedto[index].consignedtoname
   
   //   this.dialogService.open({ viewModel: Prompt, model: fieldname, lock: false }).whenClosed(response => {
- .currentItem.consignedto[index].consignedtoname
-  
+ 
     this.dialogService.open({ viewModel: Prompt, model: fieldname, lock: false }).whenClosed(response => {
 
     this.currentItem.consignedto[index].ConsignedTo = this.currentItem.ConsignedTo

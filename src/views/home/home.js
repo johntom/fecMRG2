@@ -6,7 +6,7 @@ import { MyDataService } from "../../services/my-data-service";
 
 export class Home {
   heading = "Welcome to the MRG Home page!";
-  version = 230.25
+  version = 230.26
   versiondate=Date();
   issues=['Save when on a tab will negate abilty to track dirty forms',
   
