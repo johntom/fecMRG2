@@ -1,4 +1,23 @@
+
+
 <template>
+  
+<style>
+table thead tr{
+    display:block;
+}
+
+table th,table td{ 
+    width:80%//1200px;//fixed width
+}
+
+
+table  tbody{
+  display:block;
+  height:200px;
+  overflow:auto;//set tbody to auto
+}
+</style>
 	<require from="./docs.css"></require>
 	<section class="docs full-height flex-column-1 overflow-y-auto ignore">
 		<h4>
@@ -12,12 +31,14 @@
 		<table class="table-condensed table">
 			<thead class="table-header-blue" > 
 				<tr>
-					<tr>
-						<th class="header">WorkDate  
+				
+          	<tr>
+						<th width="300px"class="header">WorkDate
 						</th>
-						<th class="header">Notes
+						<th width="400px" class="header">Notes
+             
 						</th>
-						<th class="header">
+						<th width="225px" class="header">Cmd
 						
 						</th>
 					</tr>
@@ -31,16 +52,19 @@
 			</tfoot>
 			<tbody>
 			<tr repeat.for="note of currentItem.notes" with.bind="note">
-					<td width="125px">
-						<span show.bind="!note.edit">${WorkDate}</span>
+					<td width="300px">
+          
+          <!-- <td width="30%"> -->
+          	<span show.bind="!note.edit">${WorkDate}</span>
 						<input show.bind="note.edit" class="form-control input-sm" disabled.bind="!note.edit" type="date" value.bind="WorkDate">
 					</td>
-					<td width="325px">
+					<td width="400px">
+            <!-- <td width="50%"> -->
 						<span show.bind="!note.edit">${Notes}</span>
 
 						<input show.bind="note.edit" class="form-control input-sm" disabled.bind="!note.edit" type="text" value.bind="Notes">
          	</td>
-
+<!-- <td width="20%"> -->
 					<td width="225px">
 					<!-- <button class="btn btn-primary" click.delegate="note.edit=!note.edit">${ !note.edit ? 'Update' : 'Done' }</button> -->
 			 

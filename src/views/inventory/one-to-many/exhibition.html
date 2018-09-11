@@ -1,4 +1,21 @@
 <template>
+  
+<style>
+table thead tr{
+    display:block;
+}
+
+table th,table td{ 
+    width:95%//1200px;//fixed width
+}
+
+
+table  tbody{
+  display:block;
+  height:200px;
+  overflow:auto;//set tbody to auto
+}
+</style>
 	<require from="./docs.css"></require>
 	<!-- <require from="../../../value-converters/filter-by-code"></require> -->
 
@@ -14,18 +31,23 @@
 		<table class="table-condensed table">
 			<thead class="table-header-blue" data-sort="items.bind: currentItem.exhibition; cols: ['WorkDate','Notes']">
 				<tr>
-					<th class="header">Title </th>
-					<th class="header">Sponser </th>
-					<th class="header">Location </th>
-					<th class="header">Reproduction </th>
-					<th class="header">Dates </th>
-          		<th class="header">Sort Date </th>
-					<th class="header">Traveled </th>
-					<th class="header">Note </th>
+
+					<th width="220px" class="header">Title </th>
+					<th width="220px" class="header">Sponser </th>
+					<th width="220px" class="header">Location </th>
+					<th width="220px" class="header">Reproduction </th>
+					<th width="220px" class="header">Dates </th>
+					<th width="220px" class="header">Sort Date </th>
+					<th width="120px" class="header">Traveled </th>
+					<th width="220px" class="header">Note </th>
+					<th width="225px" class="header">Cmd</th>
+
 				</tr>
 			</thead>
 			<tfoot>
 				<tr>
+					<td></td>
+					<td></td>
 					<td></td>
 					<td></td>
 					<td></td>
@@ -43,7 +65,7 @@
 					<td width="220px"><input type="text" id="ExhibitSponser" class="form-control  input-sm" value.bind="exhibition.ExhibitSponser"></td>
 
 					<!--why id & _id below <td> ${ExhibitSponser} / ${ExhibitLocation}</td> -->
-				<td width="220px">
+					<td width="220px">
 						<select id="ExhibitLocation" class="form-control input-sm" value.bind="ExhibitLocation"> 
                       <option model.bind="null">Choose...</option> 
                      <option repeat.for="opt of appService.codesProvenanceLocation" model.bind="opt.id">
@@ -52,42 +74,21 @@
                     </select>
 
 					</td>
-					
-          <!-- <td width="220px">
-						<select id="ExhibitRepro" class="form-control input-sm" value.bind="ExhibitRepro" change.delegate="selectChanged(ExhibitRepro)"> 
-                      <option model.bind="null">Choose...</option> 
-                     <option repeat.for="opt of currentItem.reproduction" model.bind="opt._id">
-                          ${opt.ReproductionTitle} /  ${opt.ReproductionName} 
-                      </option> 
-                    </select>
-
-
-					</td> -->
-
-					<!-- <td width="220px">
-             try using object id
-							<select id="ExhibitRepro" class="form-control input-sm" value.bind="ExhibitRepro"> 
-                      <option model.bind="null">Choose...</option> 
-                     <option repeat.for="opt of currentItem.reproduction" model.bind="opt">
-
-                          ${opt.ReproductionTitle} /  ${opt.ReproductionName} 
-                      </option> 
-                    </select>
-
-						</td> -->
+          	<td width="220px"><input type="text" id="Reproduction" class="form-control  input-sm" value.bind="exhibition.Reproduction"></td>
+				
 					<td width="220px"><input type="text" id="ExhibitDates" class="form-control  input-sm" value.bind="exhibition.ExhibitDates"></td>
-						<td width="220px"><input type="text" id="ExhibitSortDate" class="form-control  input-sm" value.bind="exhibition.ExhibitSortDate"></td>
-				<td width="220px">
-          <!-- <input type="text" id="Traveled" class="form-control  input-sm" value.bind="exhibition.Traveled"> -->
-        <input type="checkbox" checked.bind="exhibition.Traveled" />
-			    
-          </td>
+					<td width="220px"><input type="text" id="ExhibitSortDate" class="form-control  input-sm" value.bind="exhibition.ExhibitSortDate"></td>
+					<td width="120px">
+						<!-- <input type="text" id="Traveled" class="form-control  input-sm" value.bind="exhibition.Traveled"> -->
+						<input type="checkbox" id="Traveled" checked.bind="exhibition.Traveled" >
+
+					</td>
 					<td width="220px"><input type="text" id="ExhibitMemo" class="form-control  input-sm" value.bind="exhibition.ExhibitMemo"></td>
 					<td width="225px">
 						<!-- <button class="btn btn-primary" click.delegate="exhibition.edit=!exhibition.edit">${ !exhibition.edit ? 'Update' : 'Done' }</button> -->
-				<button class="btn btn-primary" click.delegate="saveitem(exhibition,$index)">${ !exhibition.edit ? 'Update' : 'Done' }</button>
+						<button class="btn btn-primary" click.delegate="saveitem(exhibition,$index)">${ !exhibition.edit ? 'Update' : 'Done' }</button>
 
-          	<button class="btn btn-sm btn-danger" click.delegate="remove(exhibition,$index)">           Delete            </button>
+						<button class="btn btn-sm btn-danger" click.delegate="remove(exhibition,$index)">           Delete            </button>
 					</td>
 
 
@@ -98,3 +99,26 @@
 
 	</section>
 </template>
+
+<!-- <td width="220px">
+						<select id="ExhibitRepro" class="form-control input-sm" value.bind="ExhibitRepro" change.delegate="selectChanged(ExhibitRepro)"> 
+                      <option model.bind="null">Choose...</option> 
+                     <option repeat.for="opt of currentItem.reproduction" model.bind="opt._id">
+                          ${opt.ReproductionTitle} /  ${opt.ReproductionName} 
+                      </option> 
+                    </select>
+
+
+					</td> -->
+
+<!-- <td width="220px">
+             try using object id
+							<select id="ExhibitRepro" class="form-control input-sm" value.bind="ExhibitRepro"> 
+                      <option model.bind="null">Choose...</option> 
+                     <option repeat.for="opt of currentItem.reproduction" model.bind="opt">
+
+                          ${opt.ReproductionTitle} /  ${opt.ReproductionName} 
+                      </option> 
+                    </select>
+
+						</td> -->
