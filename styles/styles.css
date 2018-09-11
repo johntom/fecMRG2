@@ -79,9 +79,14 @@ section.fec-web {
 .fec-web article {
   /* background-color: cornsilk; */
 }
+
 .fec-web footer {
-  background-color: orange;
+  background-color: rgb(70, 116, 90);
 }
+
+/* .fec-web footer {
+  background-color: orange;
+} */
 
 .fec-web footerform {
   background-color: rgb(160, 207, 180);
