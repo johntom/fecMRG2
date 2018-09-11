@@ -39,7 +39,7 @@ section.fec-web {
 /* .fec-web aside, */
 .fec-web sidebar,
 /* .fec-web article, */
-.fec-web footer,
+.fec-web footer,footerform,
 .fec-web .section-header,
 .fec-web .section-footer,
 .fec-web .section-content,
@@ -81,6 +81,10 @@ section.fec-web {
 }
 .fec-web footer {
   background-color: orange;
+}
+
+.fec-web footerform {
+  background-color: rgb(160, 207, 180);
 }
 .fec-web .search-panel {
   /* background-color: lightskyblue; */

@@ -6,9 +6,12 @@ import { MyDataService } from "../../services/my-data-service";
 
 export class Home {
   heading = "Welcome to the MRG Home page!";
-  version = 230.12   
+  version = 230.13   
   versiondate=Date();
-  issues=['Save when on a tab will negate abilty to track dirty forms','S2']
+  issues=['Save when on a tab will negate abilty to track dirty forms',
+  
+  'Make tabs like mas w/scrollbar'
+  ]
 
   constructor(appService, dataService) {
     this.appService = appService;
