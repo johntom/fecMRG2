@@ -254,7 +254,7 @@ export class ApiService {
     console.log('url ', url)
     //return {'data': true}
     return this.http.fetch(url, {
-      method: 'put',
+      method: 'post',
       mode: 'cors',
       headers: {
         'Accept': 'application/json',
