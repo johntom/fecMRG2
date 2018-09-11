@@ -60,7 +60,11 @@ showModal(fieldname,index) {
     photo.unshift(item)
     if (flag) this.currentItem.photo = photo
   }
+ saveitem(item,index) {
+    item.edit = !item.edit
+   
 
+  }
   remove(item, index) {
      this.mode = 0
 
