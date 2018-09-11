@@ -131,7 +131,7 @@ export class Prompt {
     }
 
 
-    let opos = this.orgfields.findIndex(x => x === this.fieldname);
+    // let opos = this.orgfields.findIndex(x => x === this.fieldname);
     if (opos !== -1) {
       this.fieldbase = 'ORG'
 
