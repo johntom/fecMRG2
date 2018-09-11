@@ -12,7 +12,7 @@
 		<table class="table-condensed table">
 			<thead class="table-header-blue" data-sort="items.bind: currentItem.consignedto; cols: ['ConsignedStartDate','ConsignedEndDate']">
 				<tr>
-					<th class="header">To >></th>
+					<th class="header">Considgned To >></th>
 					<th class="header">Start</br>Date </th>
 					<th class="header">End</br>Date </th>
 					<th class="header">Retail</br>Price </th>
@@ -58,11 +58,11 @@
               </select> -->
 					</td>
 
-					<td width="105px">
+					<td width="95px">
 						<span show.bind="!consignedto.edit">${ConsignedStartDate}</span>
 						<input show.bind="consignedto.edit" class="form-control input-sm" disabled.bind="!consignedto.edit" type="date" value.bind="ConsignedStartDate">
 					</td>
-					<td width="105px">
+					<td width="95px">
 						<span show.bind="!consignedto.edit">${ConsignedEndDate}</span>
 						<input show.bind="consignedto.edit" class="form-control input-sm" disabled.bind="!consignedto.edit" type="date" value.bind="ConsignedEndDate">
 					</td>
