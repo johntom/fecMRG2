@@ -251,7 +251,7 @@ export class Prompt {
     // }
     if (this.fieldname === 'OwnerID') {
       this.currentItem.OwnerID = this.OrgName._id
-      this.currentItem.ownername = this.OrgName.OrgName
+      this.currentItem.ownername = this.OrgName.OrgName 
       // let orgid = `${this.OrgName._id}`
       // let orgname = `${this.OrgName.OrgName}`
       // this.appService.currentItem.OwnerID = orgid

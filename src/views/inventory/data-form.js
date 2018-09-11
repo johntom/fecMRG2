@@ -273,6 +273,7 @@ export class DataForm {
             this.appService.currentView = this.appService.currentItem; // must set on every view
 
             this.appService.originalrec = JSON.parse(JSON.stringify(this.appService.currentItem))// inv[0]));
+            
 
 
             // still needed if obj 		  value.two-way="currentItem.MediumSupportobj"   vs value.bind > 
@@ -365,27 +366,19 @@ export class DataForm {
         console.log('jsonRes ', jsonRes);
         this.recordId = jsonRes.id
         let tab = this.appService.tabs.find(f => f.isSelected);
-        window.alert("Save successful!");
+        window.alert("Save successful!");  
         this.skippromt = true
 
-        ///
-        let inv = jsonRes
-        //this.currentItem = inv[0]
-        this.appService.currentItem = inv
-        this.appService.testrec = inv
-        // this.appService.currentItem.isDirty = () => {
-        //   return JSON.stringify(this.appService.currentItem) !== JSON.stringify(this.appService.originalrec)
-        // };
-        // this.appService.currentItem.reset = () => {
-        //   this.appService.originalrec = this.appService.currentItem;
-        // }
-        this.appService.currentView = this.appService.currentItem; // must set on every view
-
-        this.appService.originalrec = JSON.parse(JSON.stringify(this.appService.currentItem))
-
-
-
-        ///
+        // ///
+         let inv = jsonRes
+        // this.currentItem = inv
+        // this.appService.currentItem = inv
+        // this.appService.testrec = inv
+        // this.appService.currentView = this.currentItem; // must set on every view
+        // this.appService.originalrec = JSON.parse(JSON.stringify(this.currentItem))
+        // //  this.appService.currentView = this.appService.currentItem; // must set on every view
+        // //  this.appService.originalrec = JSON.parse(JSON.stringify(this.appService.currentItem))// inv[0]));
+        // ///
 
         if (option === 1) {
           let tab = this.appService.tabs.find(f => f.isSelected);
@@ -401,7 +394,8 @@ export class DataForm {
       // if (JSON.stringify(this.appService.currentItem) !== JSON.stringify(this.appService.originalrec)) {
       if (JSON.stringify(this.currentItem) !== JSON.stringify(this.appService.originalrec)) {
 
-        this.api.saveinventory(this.appService.currentItem).then((jsonRes) => {
+    //    this.api.saveinventory(this.appService.currentItem).then((jsonRes) => {
+        this.api.saveinventory(this.currentItem).then((jsonRes) => {
           console.log('jsonRes ', jsonRes);
           let tab = this.appService.tabs.find(f => f.isSelected);
           window.alert("Save successful!");
@@ -412,7 +406,34 @@ export class DataForm {
             this.closeTab(tab);
             this.close()
           } else {
-            this.appService.originalrec = this.appService.currentItem
+            //// this.appService.originalrec = this.appService.currentItem
+            // this.appService.originalrec = this.currentItem
+//2
+ this.api.findInventoryOne(this.currentItem.InventoryCode)
+          .then((jsonRes) => {
+            console.log('jsonRes ', jsonRes);
+            let inv = jsonRes.data;
+            this.currentItem = inv[0]
+            this.appService.currentItem = inv[0]
+            this.appService.testrec = inv[0]
+            this.appService.currentItem.isDirty = () => {
+              return JSON.stringify(this.appService.currentItem) !== JSON.stringify(this.appService.originalrec)
+            };
+            this.appService.currentItem.reset = () => {
+              this.appService.originalrec = this.appService.currentItem;
+            }
+            // // this.appService.currentView = this.appService.currentItem; // must set on every view
+            // // this.appService.originalrec = JSON.parse(JSON.stringify(this.appService.currentItem))// inv[0]));
+            this.appService.currentView = this.currentItem
+            this.appService.originalrec = JSON.parse(JSON.stringify(this.currentItem))
+          
+          
+          })
+           
+//2
+
+
+
           }
         });
       }

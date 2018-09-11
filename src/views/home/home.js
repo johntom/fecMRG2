@@ -4,11 +4,12 @@ import { MyDataService } from "../../services/my-data-service";
 
 @inject(ApplicationService, MyDataService)
 
-
 export class Home {
   heading = "Welcome to the MRG Home page!";
-  version = 230.7 
+  version = 230.9   
   versiondate=Date();
+  issues=['Save when on a tab will negate abilty to track dirty forms','S2']
+
   constructor(appService, dataService) {
     this.appService = appService;
     this.dataService = dataService;
