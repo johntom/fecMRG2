@@ -88,12 +88,6 @@ export class DataForm {
 
   }
   showModal(fieldname) {
-    // alert('in m')
-    // this.dialogService.open({ viewModel: EditPerson, model: this.person, lock: false }).whenClosed(response => {
-
-    // this.dialogService.open({ viewModel: Prompt, model: 'Delete or Cancel?', lock: false }).whenClosed(response => {
-    // this.dialogService.open({ viewModel: Prompt, model: this.person, lock: false }).whenClosed(response => {
-    // this.dialogService.open({ viewModel: Prompt, model: fieldname, lock: false }).whenClosed(response => {
     this.currentItem.fieldname = fieldname
 
     this.currentItem.recordId = this.recordId
@@ -234,20 +228,40 @@ export class DataForm {
     alert(changedVal);
   }
   activate(params, routeConfig) {
-    this.tabname = this.appService.currentSearch
+    //12  this.tabname = this.appService.currentSearch
     if (params.id) {
       this.recordId = params.id;
       this.heading = `DataForm for record ${this.recordId}`;
-      console.log('finihed heading', this.heading)
+      //console.log('finihed heading', this.heading)
       if (this.recordId === 'create') {
-        //return 'new'
-        //     this.currentItem={}    
-        // // this.currentItem.MediumSupportobj = '';
-        // this.currentItem.Title = '';
-        // this.currentItem.InvYear = '';
-        // this.currentItem.InventoryCode = '';
+
         this.appService.currentItem = {}
-        // 09-10 this.currentItem = this.appService.currentItem  //{}
+        this.appService.currentItem.id = 'create'
+        this.appService.testrec = {}
+        this.appService.originalrec = {}
+        // this.appService.currentItem.STATUS = 1
+        // this.appService.currentItem.insured = {}
+        // this.appService.currentItem.claimant = {}
+        // this.appService.currentItem.insco = {}
+        // this.appService.currentItem.insaddress = {}
+        // this.appService.currentItem.inscontact = {}
+        this.appService.currentItem.provenance = []
+        this.appService.currentItem.notes = []
+        this.appService.currentItem.exhibitions = []
+        this.appService.currentItem.reproductions = []
+        this.appService.currentItem.transport = []
+        this.appService.currentItem.conservation = []
+        this.appService.currentItem.condition = []
+        this.appService.currentItem.purchased = []
+        this.appService.currentItem.soldto = []
+        this.appService.currentItem.museumloan = []
+        this.appService.currentItem.consignedto = []
+        this.appService.currentItem.offering = []
+        this.appService.currentItem.consigned = []
+        this.appService.currentItem.photo = []
+        this.appService.currentItem.docs = []
+
+
       } else {
         console.log('this.recordId ', this.recordId);
         // if (!this.appService.currentClaim) { // not sure about this condition
@@ -267,58 +281,57 @@ export class DataForm {
               this.appService.originalrec = this.appService.currentItem;
             }
             this.appService.currentView = this.appService.currentItem; // must set on every view
-
             this.appService.originalrec = JSON.parse(JSON.stringify(this.appService.currentItem))// inv[0]));
 
 
 
             // still needed if obj 		  value.two-way="currentItem.MediumSupportobj"   vs value.bind > 
             let meds = this.appService.codesListMediumSupport
-            if ((this.currentItem.MediumSupportobj === undefined) || (this.currentItem.MediumSupportobj === null)) {
+            if ((this.appService.currentItem.MediumSupportobj === undefined) || (this.currentItem.MediumSupportobj === null)) {
             } else {
               // if( this.currentItem.MediumSupportobj!==undefined){
               let mid = meds.findIndex(x => x.id === this.currentItem.MediumSupportobj.id)
-              this.currentItem.MediumSupportobj = this.appService.codesListMediumSupport[mid]//10]// test
+              this.appService.currentItem.MediumSupportobj = this.appService.codesListMediumSupport[mid]//10]// test
             }
 
             let oid
             let orgobj
             let orgs = this.appService.orgsList
-            if ((this.currentItem.SoldTo === undefined) || (this.currentItem.orgsList === null)) {
+            if ((this.appService.currentItem.SoldTo === undefined) || (this.currentItem.orgsList === null)) {
             } else {
               oid = orgs.findIndex(x => x._id === this.currentItem.SoldTo)
               orgobj = this.appService.orgsList[oid]//10]
-              if (orgobj !== undefined) this.currentItem.soldtoname = orgobj.OrgName
+              if (orgobj !== undefined) this.appService.currentItem.soldtoname = orgobj.OrgName
             }
 
-            if ((this.currentItem.OwnerID === undefined) || (this.currentItem.orgsList === null)) {
+            if ((this.appService.currentItem.OwnerID === undefined) || (this.appService.orgsList === null)) {
             } else {
               oid = orgs.findIndex(x => x._id === this.currentItem.OwnerID)
               orgobj = this.appService.orgsList[oid]//10]
-              if (orgobj !== undefined) this.currentItem.ownername = orgobj.OrgName
+              if (orgobj !== undefined) this.currentItem.appService.ownername = orgobj.OrgName
               // this.OrgName = orgobj
               // this.dorg.value = this.OrgName  this.currentItem.ownername this.currentItem.soldtoname
             }
 
 
 
-            if ((this.currentItem.SoldToID === undefined) || (this.currentItem.orgsList === null)) {
+            if ((this.appService.currentItem.SoldToID === undefined) || (this.appService.orgsList === null)) {
             } else {
-              oid = orgs.findIndex(x => x._id === this.currentItem.SoldToID)
+              oid = orgs.findIndex(x => x._id === this.appService.currentItem.SoldToID)
               orgobj = this.appService.orgsList[oid]//10]
-              if (orgobj !== undefined) this.currentItem.soldtoname = orgobj.OrgName
+              if (orgobj !== undefined) this.appService.currentItem.soldtoname = orgobj.OrgName
 
             }
 
 
 
-            if ((this.currentItem.artist === undefined) || (this.currentItem.artist === null)) {
+            if ((this.appService.currentItem.artist === undefined) || (this.appService.currentItem.artist === null)) {
               // this.currentItem={}// for create only
             } else {
               let arts = this.appService.artistList
-              let aid = arts.findIndex(x => x.id === this.currentItem.artist.id)
+              let aid = arts.findIndex(x => x.id === this.appService.currentItem.artist.id)
               let artistobj = this.appService.artistList[aid]//10]
-              if (artistobj !== undefined) this.currentItem.aritst = artistobj//.OrgName
+              if (artistobj !== undefined) this.appService.currentItem.aritst = artistobj//.OrgName
             }
             console.log('finihed active1')
             // return inv
@@ -331,10 +344,10 @@ export class DataForm {
   }
 
   attached() {
-    if (this.appService.dataFormOneToOneTabs.length > 0) {
-      let tab = this.appService.dataFormOneToOneTabs[0];
-      this.selectOneToOneTab(tab);
-    }
+    // if (this.appService.dataFormOneToOneTabs.length > 0) {
+    //   let tab = this.appService.dataFormOneToOneTabs[0];
+    //   this.selectOneToOneTab(tab);
+    // }
     if (this.appService.dataFormOneToManyTabs.length > 0) {
       let tab = this.appService.dataFormOneToManyTabs[0];
       this.selectOneToManyTab(tab);
@@ -359,18 +372,19 @@ export class DataForm {
     let savetime = moment().format('MM/DD/YY h:mm:ss a')
 
     if (this.recordId === 'create') {
-      console.log(this.appService.currentItem, this.currentItem)
-      this.api.createinventory(this.currentItem).then((jsonRes) => {
+      // console.log(this.appService.currentItem, this.currentItem)
+      this.api.createinventory(this.appService.currentItem).then((jsonRes) => {
         console.log('jsonRes ', jsonRes);
         this.recordId = jsonRes.id
-        let tab = this.appService.tabs.find(f => f.isSelected);
-        // window.alert("Save successful!");  
-        this.message = "Save successful. Inventory added @ " + savetime
+        //let tab = this.appService.tabs.find(f => f.isSelected);
+        if (this.appService.currentItem.id === 'create') {
+          this.appService.currentItem.id = ''
 
-        this.skippromt = true
+          this.message = "Save successful. Claim added @ " + savetime
+        }
+        //  this.skippromt = true
 
-        // ///
-        let inv = jsonRes
+        // let inv = jsonRes
         // this.currentItem = inv
         // this.appService.currentItem = inv
         // this.appService.testrec = inv
@@ -389,51 +403,43 @@ export class DataForm {
         }
       });
     } else {
-      console.log(' call save ', JSON.stringify(this.appService.currentItem) === JSON.stringify(this.appService.testrec)) //this.appService.currentClaim)
+      // console.log(' call save ', JSON.stringify(this.appService.currentItem) === JSON.stringify(this.appService.testrec)) //this.appService.currentClaim)
       //return 
       // if (JSON.stringify(this.appService.currentItem) !== JSON.stringify(this.appService.originalrec)) {
-      if (JSON.stringify(this.currentItem) !== JSON.stringify(this.appService.originalrec)) {
-
-        //    this.api.saveinventory(this.appService.currentItem).then((jsonRes) => {
-        this.api.saveinventory(this.currentItem).then((jsonRes) => {
+      if (JSON.stringify(this.appService.currentItem) !== JSON.stringify(this.appService.originalrec)) {
+        this.api.saveinventory(this.appService.currentItem).then((jsonRes) => {
           console.log('jsonRes ', jsonRes);
           let tab = this.appService.tabs.find(f => f.isSelected);
           // window.alert("Save successful!");
           this.message = "Save successful. Inventory updated @ " + savetime
 
+          this.appService.testrec = this.appService.currentItem
+          this.appService.currentView = this.appService.currentItem
+          this.appService.originalrec = JSON.parse(JSON.stringify(this.appService.currentItem))
           this.skippromt = true
+
           if (option === 1) {
             let tab = this.appService.tabs.find(f => f.isSelected);
             this.closeTab(tab);
             this.close()
           } else {
-            //// this.appService.originalrec = this.appService.currentItem
-            // this.appService.originalrec = this.currentItem
-            //2
-            this.api.findInventoryOne(this.currentItem.InventoryCode)
-              .then((jsonRes) => {
-                console.log('jsonRes ', jsonRes);
-                let inv = jsonRes.data;
-                this.currentItem = inv[0]
-                this.appService.currentItem = inv[0]
-                this.appService.testrec = inv[0]
-                this.appService.currentItem.isDirty = () => {
-                  return JSON.stringify(this.appService.currentItem) !== JSON.stringify(this.appService.originalrec)
-                };
-                this.appService.currentItem.reset = () => {
-                  this.appService.originalrec = this.appService.currentItem;
-                }
-                // // this.appService.currentView = this.appService.currentItem; // must set on every view
-                // // this.appService.originalrec = JSON.parse(JSON.stringify(this.appService.currentItem))// inv[0]));
-                this.appService.currentView = this.currentItem
-                this.appService.originalrec = JSON.parse(JSON.stringify(this.currentItem))
 
-
-              })
-
-            //2
-
-
+            // this.api.findInventoryOne(this.currentItem.InventoryCode)
+            //   .then((jsonRes) => {
+            //     console.log('jsonRes ', jsonRes);
+            //     let inv = jsonRes.data;
+            //     this.currentItem = inv[0]
+            //     this.appService.currentItem = inv[0]
+            //     this.appService.testrec = inv[0]
+            //     this.appService.currentItem.isDirty = () => {
+            //       return JSON.stringify(this.appService.currentItem) !== JSON.stringify(this.appService.originalrec)
+            //     };
+            //     this.appService.currentItem.reset = () => {
+            //       this.appService.originalrec = this.appService.currentItem;
+            //     }
+            //     this.appService.currentView = this.currentItem
+            //     this.appService.originalrec = JSON.parse(JSON.stringify(this.appService.currentItem))
+            //   })
 
           }
         });
