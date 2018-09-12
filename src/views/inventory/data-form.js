@@ -86,7 +86,7 @@ export class DataForm {
     this.controller.addObject(this.currentItem);
 
   }
-  showModal(fieldname) {
+  showModal(fieldname) { 
     // alert('in m')
     // this.dialogService.open({ viewModel: EditPerson, model: this.person, lock: false }).whenClosed(response => {
 
@@ -94,6 +94,8 @@ export class DataForm {
     // this.dialogService.open({ viewModel: Prompt, model: this.person, lock: false }).whenClosed(response => {
     // this.dialogService.open({ viewModel: Prompt, model: fieldname, lock: false }).whenClosed(response => {
     this.currentItem.fieldname = fieldname
+    
+    this.currentItem.recordId =   this.recordId 
     this.dialogService.open({ viewModel: Prompt, model: this.currentItem, lock: false }).whenClosed(response => {
 
       // if (fieldname === 'Artist') {
