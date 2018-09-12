@@ -12,17 +12,25 @@ export class ApplicationService {
 
   currentView;
   tabs = [];
-  asyncHandleDirty() {
-    // const model = 'Do you really want to discard your changes?';
-    const model = 'You have unsaved changes.'// Cancel to stay OK to leave';
+ asyncHandleDirty() {
+    // const model = 'You have unsaved changes.</b> Cancel to stay OK to leave';
+    const model = 'You have unsaved changes. '//Cancel to stay OK to leave';
+ 
     const options = { viewModel: Prompt, model: model, lock: false };
+    // return this.dialogService.open(options);
     return this.dialogService.open(options).whenClosed(response => response);
   }
+
   navigate(route) {
     this.router.navigate(route);
   }
+
+
   tryCloseTab(item, tab, route) {
-    if (this.currentView && this.currentView.isDirty && this.currentView.isDirty()) {
+  //  alert('try')
+   //console.log('1 2 3', this.currentView )//,this.currentView.isDirty , this.currentView.isDirty())
+   //this.originalrec==={} in create
+    if (this.currentView!==undefined && this.originalrec!=={} && this.currentView && this.currentView.isDirty && this.currentView.isDirty()) {
       this.asyncHandleDirty().then(result => {
         if (!result.wasCancelled) {
           this.closeTab(tab, item);
@@ -38,13 +46,15 @@ export class ApplicationService {
       }
     }
   }
-  closeTab(tab, item) {
-    // if (item.reset) {
+   closeTab(tab, item) {
+    //console.log('1 2',tab,item)
+    
     if (item && item.reset) {
       item.reset();
     }
     //this.currentClaim.isRecordDirty = false;
     //this.originalrec = this.currentClaim;
+
     let index = this.tabs.indexOf(tab);
     tab.isSelected = false;
     this.tabs.splice(index, 1);
@@ -310,7 +320,7 @@ export class ApplicationService {
   currentRecord = 0;//null;
   currentsavedlist = ''
   currentActionlist = ''
-  testrec = 0;
+  
   LookupDataLoaded = false;
   searchDataLoaded = false;
   curentInventory;
@@ -369,6 +379,7 @@ export class ApplicationService {
   originalrec = 0;
   testrec = 0;
   currentItem = 0;
+   
 }
 
 

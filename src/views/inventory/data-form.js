@@ -308,7 +308,7 @@ export class DataForm {
             } else {
               oid = orgs.findIndex(x => x._id === this.currentItem.OwnerID)
               orgobj = this.appService.orgsList[oid]//10]
-              if (orgobj !== undefined) this.currentItem.appService.ownername = orgobj.OrgName
+              if (orgobj !== undefined) this.appService.currentItem.ownername = orgobj.OrgName
               // this.OrgName = orgobj
               // this.dorg.value = this.OrgName  this.currentItem.ownername this.currentItem.soldtoname
             }
@@ -320,7 +320,6 @@ export class DataForm {
               oid = orgs.findIndex(x => x._id === this.appService.currentItem.SoldToID)
               orgobj = this.appService.orgsList[oid]//10]
               if (orgobj !== undefined) this.appService.currentItem.soldtoname = orgobj.OrgName
-
             }
 
 
@@ -446,41 +445,69 @@ export class DataForm {
       }
     }
   }
-  //  canDeactivate() {
-  //   // always boolean make isDirty
-  //   if (this.appService.currentItem && this.appService.currentItem.isDirty()) {
-  //     return false;
 
-
-  //   } else {
-  //     return true
-  //   }
-
+  // canDeactivate() {
+  //   return new Promise((resolve, reject) => {
+  //     if (this.appService.currentItem &&
+  //       this.appService.currentItem.isDirty &&
+  //       this.appService.currentItem.isDirty()) {
+  //       // Now, we need to query the user... result => makes it a closure
+  //       this.appService.asyncHandleDirty().then(result => {
+  //         if (!result.wasCancelled) {
+  //           resolve(true);
+  //         } else {
+  //           resolve(false);
+  //         }
+  //       });
+  //     } else {
+  //       resolve(true);
+  //     }
+  //   });
   // }
-  canDeactivate() {
+
+    canDeactivate() {
     return new Promise((resolve, reject) => {
-      if (this.appService.currentItem &&
-        this.appService.currentItem.isDirty &&
-        this.appService.currentItem.isDirty()) {
+     
+      console.log('canDeactivate ')
+      if (this.appService.currentView !== undefined && this.appService.originalrec !== {} &&
+        this.appService.currentItem.id !== 'create' &&
+        this.appService.currentView && this.appService.currentView.isDirty &&
+        this.appService.currentView.isDirty()) {
+
         // Now, we need to query the user... result => makes it a closure
         this.appService.asyncHandleDirty().then(result => {
           if (!result.wasCancelled) {
-            resolve(true);
+            // need whenu have multi claims opened
+            // this.appService.currentClaim = this.appService.originalrec
+            resolve(true); // ok to leave
           } else {
-            resolve(false);
+
+            resolve(false); // cancel to stay
+
           }
         });
       } else {
         resolve(true);
       }
     });
-  }
+    }
   requestclose() {
+    // const resetFunc = () => { this.appService.originalrec = this.appService.currentItem; };
+    // let cand = this.canDeactivate()
+    // let tab = this.appService.tabs.find(f => f.isSelected);
+    // let rt2 = '#/inventory/' + this.tabname ///claim'//Search?'cant use when search has a number 
+    // this.appService.tryCloseTab(this.appService.currentItem, tab, rt2);
+ 
+    // alert ('in requestclose')
+
     const resetFunc = () => { this.appService.originalrec = this.appService.currentItem; };
-    let cand = this.canDeactivate()
     let tab = this.appService.tabs.find(f => f.isSelected);
-    let rt2 = '#/inventory/' + this.tabname ///claim'//Search?'cant use when search has a number 
-    this.appService.tryCloseTab(this.appService.currentItem, tab, rt2);
+    let index = this.appService.tabs.findIndex(f => f.isSelected)
+    let rt2 = '#/claim/' + this.tabname
+
+    let newIndex = (index > 0) ? index - 1 : 0;
+    let newTab = this.appService.tabs[newIndex];
+    this.appService.tryCloseTab(this.appService.currentView, tab, newTab.href);
 
   }
   // close() {
