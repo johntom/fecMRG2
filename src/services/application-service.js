@@ -25,6 +25,7 @@ export class ApplicationService {
     this.router.navigate(route);
   }
 
+//  this.appService.tryCloseTab(this.appService.currentView, tab, newTab.href);
 
   tryCloseTab(item, tab, route) {
   //  alert('try')

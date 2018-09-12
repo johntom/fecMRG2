@@ -140,14 +140,16 @@
 										<strong> Artist >> <span dblsclick.delegate="showModal('Artist')"></spam></strong>
 									</div>
 									<div class="Rtable-cell-70  Rtable-cell--highlight">
-										<span click.delegate="showModal('Artist')"> <strong> ${currentItem.artist.lastName},
+									<div if.bind="recordId === 'Create'">
+                  	<span click.delegate="showModal('Artist')"> <strong> ${currentItem.artist.lastName},
 												${currentItem.artist.firstName}
 												<span show.bind="appService.currentItem.artist.died===''"> (b.${currentItem.artist.yearofBirth}) </span>
 												<span show.bind="appService.currentItem.artist.died!==''"> (${currentItem.artist.yearofBirth} -
 													${currentItem.artist.died})</span>
 											</strong>
 											<span>
-												<!-- <div if.bind="recordId === 'Artist'"> -->
+                        </div>
+												<!-- <div if.bind="recordId === 'Create'"> -->
 												<!-- <input click.delegate="showModal('Artist')" type="text" id="Artist" class="form-control input-sm" value.bind="appService.currentItem.artistname"> -->
 
 												<!-- <input click.delegate="showModal('Artist')" type="text" id="Artist" class="form-control input-sm" value.bind="appService.currentItem.artist.ArtistName"> -->

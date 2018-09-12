@@ -6,16 +6,17 @@ import { MyDataService } from "../../services/my-data-service";
 
 export class Home {
   heading = "Welcome to the MRG Home page!";
-  version = 240.2
+  version = 240.3
   versiondate=Date();
   issues=[
   'Make tabs like mas w/scrollbar with sticky header',
- ' use brm2 app as base'
+'shortcut keys'
   ]
 //Save when on a tab will negate abilty to track dirty forms',
   
   // 'make all prompt dblclick',
   // 'check all ogs prompts'
+  //  ' use brm2 app as base'
   constructor(appService, dataService) {
     this.appService = appService;
     this.dataService = dataService;
