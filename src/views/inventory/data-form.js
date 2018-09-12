@@ -8,6 +8,7 @@ import { Router } from 'aurelia-router';
 import { DialogService } from 'aurelia-dialog';
 //import { Prompt } from '../../../services/prompt';
 import { Prompt } from './prompt';
+import moment from 'moment';
 import { DialogImage } from './dialogImage';
 import {
   ValidationControllerFactory,
@@ -86,7 +87,7 @@ export class DataForm {
     this.controller.addObject(this.currentItem);
 
   }
-  showModal(fieldname) { 
+  showModal(fieldname) {
     // alert('in m')
     // this.dialogService.open({ viewModel: EditPerson, model: this.person, lock: false }).whenClosed(response => {
 
@@ -94,8 +95,8 @@ export class DataForm {
     // this.dialogService.open({ viewModel: Prompt, model: this.person, lock: false }).whenClosed(response => {
     // this.dialogService.open({ viewModel: Prompt, model: fieldname, lock: false }).whenClosed(response => {
     this.currentItem.fieldname = fieldname
-    
-    this.currentItem.recordId =   this.recordId 
+
+    this.currentItem.recordId = this.recordId
     this.dialogService.open({ viewModel: Prompt, model: this.currentItem, lock: false }).whenClosed(response => {
 
       // if (fieldname === 'Artist') {
@@ -141,8 +142,6 @@ export class DataForm {
     }
     $("#my-input").val("JQuery is working" + Date.now());
     // this.myauinput = "JQuery is working" + Date.now()
-
-
     $(this.edit_division).find(".modal").modal();
   }
 
@@ -155,8 +154,6 @@ export class DataForm {
     }
     // $("#my-input").val("JQuery is working" + Date.now());
     this.myauinput = "JQuery is working" + Date.now()
-
-
     $(this.edit_division).find(".modal").modal();
   }
   showModalImg() {
@@ -197,7 +194,6 @@ export class DataForm {
   }
 
   factsheet() {
-
     let rt2 = this.currentItem.InventoryCode;
     this.api.createFactSheet(rt2)
       .then((jsonRes) => {
@@ -208,7 +204,6 @@ export class DataForm {
 
         } else alert(' factsheet  failed ')
       });
-
   }
 
 
@@ -240,7 +235,6 @@ export class DataForm {
   }
   activate(params, routeConfig) {
     this.tabname = this.appService.currentSearch
-
     if (params.id) {
       this.recordId = params.id;
       this.heading = `DataForm for record ${this.recordId}`;
@@ -275,7 +269,7 @@ export class DataForm {
             this.appService.currentView = this.appService.currentItem; // must set on every view
 
             this.appService.originalrec = JSON.parse(JSON.stringify(this.appService.currentItem))// inv[0]));
-            
+
 
 
             // still needed if obj 		  value.two-way="currentItem.MediumSupportobj"   vs value.bind > 
@@ -362,17 +356,21 @@ export class DataForm {
 
   saveinventory(option) {
     this.controller.validate();
+    let savetime = moment().format('MM/DD/YY h:mm:ss a')
+
     if (this.recordId === 'create') {
       console.log(this.appService.currentItem, this.currentItem)
       this.api.createinventory(this.currentItem).then((jsonRes) => {
         console.log('jsonRes ', jsonRes);
         this.recordId = jsonRes.id
         let tab = this.appService.tabs.find(f => f.isSelected);
-        window.alert("Save successful!");  
+        // window.alert("Save successful!");  
+        this.message = "Save successful. Inventory added @ " + savetime
+
         this.skippromt = true
 
         // ///
-         let inv = jsonRes
+        let inv = jsonRes
         // this.currentItem = inv
         // this.appService.currentItem = inv
         // this.appService.testrec = inv
@@ -396,11 +394,12 @@ export class DataForm {
       // if (JSON.stringify(this.appService.currentItem) !== JSON.stringify(this.appService.originalrec)) {
       if (JSON.stringify(this.currentItem) !== JSON.stringify(this.appService.originalrec)) {
 
-    //    this.api.saveinventory(this.appService.currentItem).then((jsonRes) => {
+        //    this.api.saveinventory(this.appService.currentItem).then((jsonRes) => {
         this.api.saveinventory(this.currentItem).then((jsonRes) => {
           console.log('jsonRes ', jsonRes);
           let tab = this.appService.tabs.find(f => f.isSelected);
-          window.alert("Save successful!");
+          // window.alert("Save successful!");
+          this.message = "Save successful. Inventory updated @ " + savetime
 
           this.skippromt = true
           if (option === 1) {
@@ -410,29 +409,29 @@ export class DataForm {
           } else {
             //// this.appService.originalrec = this.appService.currentItem
             // this.appService.originalrec = this.currentItem
-//2
- this.api.findInventoryOne(this.currentItem.InventoryCode)
-          .then((jsonRes) => {
-            console.log('jsonRes ', jsonRes);
-            let inv = jsonRes.data;
-            this.currentItem = inv[0]
-            this.appService.currentItem = inv[0]
-            this.appService.testrec = inv[0]
-            this.appService.currentItem.isDirty = () => {
-              return JSON.stringify(this.appService.currentItem) !== JSON.stringify(this.appService.originalrec)
-            };
-            this.appService.currentItem.reset = () => {
-              this.appService.originalrec = this.appService.currentItem;
-            }
-            // // this.appService.currentView = this.appService.currentItem; // must set on every view
-            // // this.appService.originalrec = JSON.parse(JSON.stringify(this.appService.currentItem))// inv[0]));
-            this.appService.currentView = this.currentItem
-            this.appService.originalrec = JSON.parse(JSON.stringify(this.currentItem))
-          
-          
-          })
-           
-//2
+            //2
+            this.api.findInventoryOne(this.currentItem.InventoryCode)
+              .then((jsonRes) => {
+                console.log('jsonRes ', jsonRes);
+                let inv = jsonRes.data;
+                this.currentItem = inv[0]
+                this.appService.currentItem = inv[0]
+                this.appService.testrec = inv[0]
+                this.appService.currentItem.isDirty = () => {
+                  return JSON.stringify(this.appService.currentItem) !== JSON.stringify(this.appService.originalrec)
+                };
+                this.appService.currentItem.reset = () => {
+                  this.appService.originalrec = this.appService.currentItem;
+                }
+                // // this.appService.currentView = this.appService.currentItem; // must set on every view
+                // // this.appService.originalrec = JSON.parse(JSON.stringify(this.appService.currentItem))// inv[0]));
+                this.appService.currentView = this.currentItem
+                this.appService.originalrec = JSON.parse(JSON.stringify(this.currentItem))
+
+
+              })
+
+            //2
 
 
 

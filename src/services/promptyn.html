@@ -1,14 +1,22 @@
 <template>
-  <ux-dialog>
-    <ux-dialog-header>${question}</ux-dialog-header>
+  <ux-dialog style="width:200px; height: 150px;">
+    <ux-dialog-header><h4>${question}</h4></ux-dialog-header>
     <ux-dialog-body>
-      <!-- <form submit.trigger="controller.ok(answer)">
+      <!-- 
+        <form submit.trigger="controller.ok(answer)">
         <input type="text" value.bind="answer" style="width: 100%; line-height: 16px; font-size: 16px" attach-focus>
-      </form> -->
+      </form> 
+      -->
     </ux-dialog-body>
     <ux-dialog-footer>
-      <button click.trigger="controller.cancel()">Cancel</button>
-      <button click.trigger="controller.ok(answer)">Ok</button>
+   
+       <button class="btn btn btn-success" click.trigger="controller.cancel()">Stay</button>
+      <button class="btn btn btn-danger" click.trigger="controller.ok(answer)">Leave</button>
+  
     </ux-dialog-footer>
   </ux-dialog>
 </template>
+<!-- this is active for yn dialog -->
+<!-- <ai-dialog style="width:600px; height: 350px;"> -->
+     <!-- <button  click.trigger="controller.cancel()">Cancel</button>
+      <button click.trigger="controller.ok(answer)">Ok</button> -->

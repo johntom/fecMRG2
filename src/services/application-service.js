@@ -14,7 +14,7 @@ export class ApplicationService {
   tabs = [];
   asyncHandleDirty() {
     // const model = 'Do you really want to discard your changes?';
-    const model = 'You have unsaved changes. Cancel to stay OK to leave';
+    const model = 'You have unsaved changes.'// Cancel to stay OK to leave';
     const options = { viewModel: Prompt, model: model, lock: false };
     return this.dialogService.open(options).whenClosed(response => response);
   }
