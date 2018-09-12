@@ -118,34 +118,16 @@
 
 
 
-									<!-- <div if.bind="recordId === 'create'">
-										<div class="Rtable-cell-30 Rtable-cell--highlight">
-											<strong> Artist</strong>
-										</div>
-										<div class="Rtable-cell-70  Rtable-cell--highlight">
-											<span> <strong> ${currentItem.artist.lastName}, ${currentItem.artist.firstName}  
-                       <span show.bind="appService.currentItem.artist.died===''">  (b.${currentItem.artist.yearofBirth}) </span>
-											<span show.bind="appService.currentItem.artist.died!==''"> (${currentItem.artist.yearofBirth} - ${currentItem.artist.died})</span>
-											</strong>
-											<span>
-										<input click.delegate="showModal('Artist')" type="text" id="Artist" class="form-control input-sm" value.bind="appService.currentItem.Artist"/>
-
-									</div>
-	    	</div> -->
-									<!-- control-label turns red for validate -->
-
-									<!-- <!-- <div if.bind="recordId !== 'Create'"> -->
-
-
+					
 
 									<div class=" Rtable-cell-30 Rtable-cell--highlight">
 
-										<div if.bind="recordId === 'Create'"><strong> Artist >></strong></div>
+										<div if.bind="recordId === 'create'"><strong> Artist >></strong></div>
 										<div else><strong> Artist </strong></div>
 									</div>
 
 									<div class="Rtable-cell-70  Rtable-cell--highlight">
-										<div if.bind="recordId === 'Create'">
+										<div if.bind="recordId === 'create'">
 											<span click.delegate="showModal('Artist')"> <strong> ${currentItem.artist.lastName},
 												${currentItem.artist.firstName}
 												<span show.bind="currentItem.artist.died===''"> (b.${currentItem.artist.yearofBirth}) </span>
