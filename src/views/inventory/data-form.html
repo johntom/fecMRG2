@@ -104,17 +104,14 @@
 											<strong> InventoryCode</strong>
 										</div>
 										<div class="Rtable-cell Rtable-cell--highlight">
-											<input type="text" id="InventoryCode" class="form-control input-sm" value.bind="appService.currentItem.InventoryCode & validate"
-											 ">
+											<input type="text" id="InventoryCode" class="form-control input-sm" value.bind="appService.currentItem.InventoryCode & validate" ">
 										</div>
-										<div class=" Rtable-cell Rtable-cell--highlight
-											 ">
+										<div class=" Rtable-cell Rtable-cell--highlight ">
 											<strong> InvYear</strong>
 										</div>
-										<div class=" Rtable-cell
-											 Rtable-cell--highlight ">
-											<input type=" text " id=" InvYear " class=" form-control input-sm
-											 " value.bind=" currentItem.InvYear & validate "">
+										<div class=" Rtable-cell Rtable-cell--highlight ">
+											<input type=" text " id=" InvYear " class=" form-control input-sm " value.bind=" currentItem.InvYear & validate
+											 "">
 										</div>
 									</div>
 
@@ -136,28 +133,37 @@
 									</div>
 	    	</div> -->
 									<!-- control-label turns red for validate -->
+
+									<!-- <!-- <div if.bind="recordId !== 'Create'"> -->
+
+
+
 									<div class=" Rtable-cell-30 Rtable-cell--highlight">
-										<strong> Artist >> <span dblsclick.delegate="showModal('Artist')"></spam></strong>
+
+										<div if.bind="recordId === 'Create'"><strong> Artist >></strong></div>
+										<div else><strong> Artist </strong></div>
 									</div>
+
 									<div class="Rtable-cell-70  Rtable-cell--highlight">
-									<div if.bind="recordId === 'Create'">
-                  	<span click.delegate="showModal('Artist')"> <strong> ${currentItem.artist.lastName},
+										<div if.bind="recordId === 'Create'">
+											<span click.delegate="showModal('Artist')"> <strong> ${currentItem.artist.lastName},
 												${currentItem.artist.firstName}
-												<span show.bind="appService.currentItem.artist.died===''"> (b.${currentItem.artist.yearofBirth}) </span>
-												<span show.bind="appService.currentItem.artist.died!==''"> (${currentItem.artist.yearofBirth} -
+												<span show.bind="currentItem.artist.died===''"> (b.${currentItem.artist.yearofBirth}) </span>
+											<span show.bind="currentItem.artist.died!==''"> (${currentItem.artist.yearofBirth} -
 													${currentItem.artist.died})</span>
 											</strong>
-											<span>
-                        </div>
-												<!-- <div if.bind="recordId === 'Create'"> -->
-												<!-- <input click.delegate="showModal('Artist')" type="text" id="Artist" class="form-control input-sm" value.bind="appService.currentItem.artistname"> -->
+											</span>
+										</div>
+										<div else> <span> <strong> ${currentItem.artist.lastName},
+												${currentItem.artist.firstName}
+												<span show.bind="currentItem.artist.died===''"> (b.${currentItem.artist.yearofBirth}) </span>
+											<span show.bind="currentItem.artist.died!==''"> (${currentItem.artist.yearofBirth} -
+													${currentItem.artist.died})</span> </strong>
 
-												<!-- <input click.delegate="showModal('Artist')" type="text" id="Artist" class="form-control input-sm" value.bind="appService.currentItem.artist.ArtistName"> -->
-												<!-- <input click.delegate="showModal('Artist')" type="text" id="Artist" class="form-control input-sm" value.bind="appService.currentItem.artist & validate"> -->
-												<!-- </div> -->
+											</span>
+										</div>
+
 									</div>
-
-
 
 
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
@@ -172,29 +178,28 @@
 										<strong> MediumSupport</strong>
 									</div>
 									<div class="Rtable-cell-70  Rtable-cell--highlight">
-										<select ref="MediumSupport11" id="MediumSupport11" class="form-control input-sm" value.bind="appService.currentItem.MediumSupportobj & validate""> 
-                      <option model.bind="
-										 null">Choose...</option>
-											<option ref="MediumSupport21" repeat.for="opt of appService.codesListMediumSupport" model.bind="opt">
+										<select ref="MediumSupport11" id="MediumSupport11" class="form-control input-sm" value.bind="appService.currentItem.MediumSupportobj & validate" "> 
+                      <option model.bind=" null ">Choose...</option>
+											<option ref="MediumSupport21 " repeat.for="opt of appService.codesListMediumSupport " model.bind="opt ">
 												${opt.Description}
 											</option>
 										</select>
 									</div>
 
-									<div class="Rtable Rtable--4cols">
-										<div class="Rtable-cell Rtable-cell--highlight">
+									<div class="Rtable Rtable--4cols ">
+										<div class="Rtable-cell Rtable-cell--highlight ">
 											<strong> CatalogueNo</strong>
 										</div>
 
-										<div class="Rtable-cell Rtable-cell--highlight">
-											<input type="text" id="CatalogueNo" class="form-control input-sm" value.bind="appService.currentItem.CatalogueNo">
+										<div class="Rtable-cell Rtable-cell--highlight ">
+											<input type="text " id="CatalogueNo " class="form-control input-sm " value.bind="appService.currentItem.CatalogueNo ">
 										</div>
 
-										<div class="Rtable-cell Rtable-cell--highlight">
+										<div class="Rtable-cell Rtable-cell--highlight ">
 											<strong> AltID </strong>
 										</div>
-										<div class="Rtable-cell  Rtable-cell--highlight">
-											<input type="text" id="Description" class="form-control input-sm" value.bind="appService.currentItem.AltID">
+										<div class="Rtable-cell Rtable-cell--highlight ">
+											<input type="text " id="Description " class="form-control input-sm " value.bind="appService.currentItem.AltID ">
 										</div>
 									</div>
 
@@ -202,46 +207,46 @@
 
 
 
-									<div class="Rtable Rtable--7cols">
-										<div class="Rtable-cell Rtable-cell--alert">Dimens</div>
-										<div class="Rtable-cell Rtable-cell--highlight">Height</div>
-										<div class="Rtable-cell Rtable-cell--highlight">x/16</div>
-										<div class="Rtable-cell Rtable-cell--highlight">Depth</div>
-										<div class="Rtable-cell Rtable-cell--highlight">x/16</div>
-										<div class="Rtable-cell Rtable-cell--highlight">Width</div>
-										<div class="Rtable-cell Rtable-cell--highlight">x/16</div>
-										<div class="Rtable-cell Rtable-cell--highlight">
+									<div class="Rtable Rtable--7cols ">
+										<div class="Rtable-cell Rtable-cell--alert ">Dimens</div>
+										<div class="Rtable-cell Rtable-cell--highlight ">Height</div>
+										<div class="Rtable-cell Rtable-cell--highlight ">x/16</div>
+										<div class="Rtable-cell Rtable-cell--highlight ">Depth</div>
+										<div class="Rtable-cell Rtable-cell--highlight ">x/16</div>
+										<div class="Rtable-cell Rtable-cell--highlight ">Width</div>
+										<div class="Rtable-cell Rtable-cell--highlight ">x/16</div>
+										<div class="Rtable-cell Rtable-cell--highlight ">
 											<strong>Size</strong>
 										</div>
-										<div class="Rtable-cell">
-											<input type="text" id="UnframedHeight" class="form-control input-sm" value.bind="appService.currentItem.UnframedHeight">
+										<div class="Rtable-cell ">
+											<input type="text " id="UnframedHeight " class="form-control input-sm " value.bind="appService.currentItem.UnframedHeight ">
 										</div>
-										<div class="Rtable-cell">
-											<select style="width: 65px" value.bind="appService.currentItem.UnframedHeight16">
-												<option model.bind="null">Choose...</option>
-												<option repeat.for="measure of measures" model.bind="measure.id">
+										<div class="Rtable-cell ">
+											<select style="width: 65px " value.bind="appService.currentItem.UnframedHeight16 ">
+												<option model.bind="null ">Choose...</option>
+												<option repeat.for="measure of measures " model.bind="measure.id ">
 													${measure.name}
 												</option>
 											</select>
 										</div>
-										<div class="Rtable-cell">
-											<input type="text" id="UnframedWidth" class="form-control input-sm" value.bind="appService.currentItem.UnframedWidth">
+										<div class="Rtable-cell ">
+											<input type="text " id="UnframedWidth " class="form-control input-sm " value.bind="appService.currentItem.UnframedWidth ">
 										</div>
-										<div class="Rtable-cell">
-											<select style="width: 65px" value.bind="appService.currentItem.UnframedWidth16">
-												<option model.bind="null">Choose...</option>
-												<option repeat.for="measure of measures" model.bind="measure.id">
+										<div class="Rtable-cell ">
+											<select style="width: 65px " value.bind="appService.currentItem.UnframedWidth16 ">
+												<option model.bind="null ">Choose...</option>
+												<option repeat.for="measure of measures " model.bind="measure.id ">
 													${measure.name}
 												</option>
 											</select>
 										</div>
-										<div class="Rtable-cell">
-											<input type="text" id="UnframedDepth" class="form-control input-sm" value.bind="appService.currentItem.UnframedDepth">
+										<div class="Rtable-cell ">
+											<input type="text " id="UnframedDepth " class="form-control input-sm " value.bind="appService.currentItem.UnframedDepth ">
 										</div>
-										<div class="Rtable-cell">
-											<select style="width: 65px" value.bind="appService.currentItem.UnframedDepth16">
-												<option model.bind="null">Choose...</option>
-												<option repeat.for="measure of measures" model.bind="measure.id">
+										<div class="Rtable-cell ">
+											<select style="width: 65px " value.bind="appService.currentItem.UnframedDepth16 ">
+												<option model.bind="null ">Choose...</option>
+												<option repeat.for="measure of measures " model.bind="measure.id ">
 													${measure.name}
 												</option>
 											</select>
@@ -250,44 +255,44 @@
 
 
 										<!-- framed -->
-										<div class="Rtable-cell Rtable-cell--highlight">
+										<div class="Rtable-cell Rtable-cell--highlight ">
 											<strong>framed</strong>
 										</div>
-										<div class="Rtable-cell">
-											<input type="number" id="framedHeight" class="form-control input-sm" value.bind="appService.currentItem.framedHeight">
+										<div class="Rtable-cell ">
+											<input type="number " id="framedHeight " class="form-control input-sm " value.bind="appService.currentItem.framedHeight ">
 
 										</div>
-										<div class="Rtable-cell">
+										<div class="Rtable-cell ">
 
-											<select style="width: 65px" value.bind="appService.currentItem.framedHeight16">
-												<option model.bind="null">Choose...</option>
-												<option repeat.for="measure of measures" model.bind="measure.id">
+											<select style="width: 65px " value.bind="appService.currentItem.framedHeight16 ">
+												<option model.bind="null ">Choose...</option>
+												<option repeat.for="measure of measures " model.bind="measure.id ">
 													${measure.name}
 												</option>
 											</select>
 										</div>
-										<div class="Rtable-cell">
-											<input type="number" id="framedWidth" class="form-control input-sm" value.bind="appService.currentItem.framedWidth">
+										<div class="Rtable-cell ">
+											<input type="number " id="framedWidth " class="form-control input-sm " value.bind="appService.currentItem.framedWidth ">
 
 										</div>
-										<div class="Rtable-cell">
+										<div class="Rtable-cell ">
 
-											<select style="width: 65px" value.bind="appService.currentItem.framedWidth16">
-												<option model.bind="null">Choose...</option>
-												<option repeat.for="measure of measures" model.bind="measure.id">
+											<select style="width: 65px " value.bind="appService.currentItem.framedWidth16 ">
+												<option model.bind="null ">Choose...</option>
+												<option repeat.for="measure of measures " model.bind="measure.id ">
 													${measure.name}
 												</option>
 											</select>
 										</div>
-										<div class="Rtable-cell">
-											<input type="number" id="framedDepth" class="form-control input-sm" value.bind="appService.currentItem.framedDepth">
+										<div class="Rtable-cell ">
+											<input type="number " id="framedDepth " class="form-control input-sm " value.bind="appService.currentItem.framedDepth ">
 
 										</div>
-										<div class="Rtable-cell">
+										<div class="Rtable-cell ">
 
-											<select style="width: 65px" value.bind="appService.currentItem.framedDepth16">
-												<option model.bind="null">Choose...</option>
-												<option repeat.for="measure of measures" model.bind="measure.id">
+											<select style="width: 65px " value.bind="appService.currentItem.framedDepth16 ">
+												<option model.bind="null ">Choose...</option>
+												<option repeat.for="measure of measures " model.bind="measure.id ">
 													${measure.name}
 												</option>
 											</select>
@@ -295,44 +300,44 @@
 										<!-- end framed -->
 
 										<!--image  -->
-										<div class="Rtable-cell Rtable-cell--highlight">
+										<div class="Rtable-cell Rtable-cell--highlight ">
 											<strong>image</strong>
 										</div>
-										<div class="Rtable-cell">
-											<input type="number" id="imageHeight" class="form-control input-sm" value.bind="appService.currentItem.imageHeight">
+										<div class="Rtable-cell ">
+											<input type="number " id="imageHeight " class="form-control input-sm " value.bind="appService.currentItem.imageHeight ">
 
 										</div>
-										<div class="Rtable-cell">
+										<div class="Rtable-cell ">
 
-											<select style="width: 65px" value.bind="appService.currentItem.imageHeight16">
-												<option model.bind="null">Choose...</option>
-												<option repeat.for="measure of measures" model.bind="measure.id">
+											<select style="width: 65px " value.bind="appService.currentItem.imageHeight16 ">
+												<option model.bind="null ">Choose...</option>
+												<option repeat.for="measure of measures " model.bind="measure.id ">
 													${measure.name}
 												</option>
 											</select>
 										</div>
-										<div class="Rtable-cell">
-											<input type="number" id="imageWidth" class="form-control input-sm" value.bind="appService.currentItem.imageWidth">
+										<div class="Rtable-cell ">
+											<input type="number " id="imageWidth " class="form-control input-sm " value.bind="appService.currentItem.imageWidth ">
 
 										</div>
-										<div class="Rtable-cell">
+										<div class="Rtable-cell ">
 
-											<select style="width: 65px" value.bind="appService.currentItem.imageWidth16">
-												<option model.bind="null">Choose...</option>
-												<option repeat.for="measure of measures" model.bind="measure.id">
+											<select style="width: 65px " value.bind="appService.currentItem.imageWidth16 ">
+												<option model.bind="null ">Choose...</option>
+												<option repeat.for="measure of measures " model.bind="measure.id ">
 													${measure.name}
 												</option>
 											</select>
 										</div>
-										<div class="Rtable-cell">
-											<input type="number" id="imageDepth" class="form-control input-sm" value.bind="appService.currentItem.imageDepth">
+										<div class="Rtable-cell ">
+											<input type="number " id="imageDepth " class="form-control input-sm " value.bind="appService.currentItem.imageDepth ">
 
 										</div>
-										<div class="Rtable-cell">
+										<div class="Rtable-cell ">
 
-											<select style="width: 65px" value.bind="appService.currentItem.imageDepth16">
-												<option model.bind="null">Choose...</option>
-												<option repeat.for="measure of measures" model.bind="measure.id">
+											<select style="width: 65px " value.bind="appService.currentItem.imageDepth16 ">
+												<option model.bind="null ">Choose...</option>
+												<option repeat.for="measure of measures " model.bind="measure.id ">
 													${measure.name}
 												</option>
 											</select>
@@ -346,25 +351,25 @@
 
 								</div>
 							</div>
-							<!-- end <div class="Rtable Rtable--7cols"> -->
+							<!-- end <div class="Rtable Rtable--7cols "> -->
 
 							<!-- demo middle col -->
-							<div class="form-group flex-column-1 margin-left-10">
-								<div class="Rtable Rtable--2cols">
+							<div class="form-group flex-column-1 margin-left-10 ">
+								<div class="Rtable Rtable--2cols ">
 
 
 
 
-									<div class="Rtable-cell-30 Rtable-cell--highlight">
+									<div class="Rtable-cell-30 Rtable-cell--highlight ">
 										<strong> Keywords </strong>
-										<button ak-button click.delegate="showKeywords()">Show keywords</button>
+										<button ak-button click.delegate="showKeywords() ">Show keywords</button>
 
 									</div>
 									<div class="Rtable-cell-70 Rtable-cell--highlight ">
 
-										<ak-multiselect k-value.two-way="appService.currentItem.keywords">
-											<select multiple="multiple" data-placeholder="Select keywords...">
-												<option repeat.for="opt of appService.codesGenre" model.bind="opt.Description">
+										<ak-multiselect k-value.two-way="appService.currentItem.keywords ">
+											<select multiple="multiple " data-placeholder="Select keywords... ">
+												<option repeat.for="opt of appService.codesGenre " model.bind="opt.Description ">
 													${opt.Description}
 												</option>
 											</select>
@@ -372,50 +377,50 @@
 									</div>
 
 
-									<div class="Rtable-cell Rtable-cell--highlight">
+									<div class="Rtable-cell Rtable-cell--highlight ">
 										<strong> Signed?</strong>
-										<input type="checkbox" id="Signed" checked.bind="appService.currentItem.Signed">
+										<input type="checkbox " id="Signed " checked.bind="appService.currentItem.Signed ">
 									</div>
 
-									<div class="Rtable-cell Rtable-cell--highlight">
+									<div class="Rtable-cell Rtable-cell--highlight ">
 										<strong> Dated?</strong>
-										<input type="checkbox" id="Dated" checked.bind="appService.currentItem.Dated">
+										<input type="checkbox " id="Dated " checked.bind="appService.currentItem.Dated ">
 									</div>
 
 
-									<div class="Rtable-cell-30 Rtable-cell--highlight">
+									<div class="Rtable-cell-30 Rtable-cell--highlight ">
 										<strong> Edition</strong>
 									</div>
-									<div class="Rtable-cell-70  Rtable-cell--highlight">
-										<input type="text" id="Edition" class="form-control input-sm" value.bind="appService.currentItem.Edition">
+									<div class="Rtable-cell-70 Rtable-cell--highlight ">
+										<input type="text " id="Edition " class="form-control input-sm " value.bind="appService.currentItem.Edition ">
 									</div>
-									<div class="Rtable-cell-30 Rtable-cell--highlight">
+									<div class="Rtable-cell-30 Rtable-cell--highlight ">
 										<strong> EditionComment</strong>
 									</div>
-									<div class="Rtable-cell-70  Rtable-cell--highlight">
-										<input type="text" id="EditionComment" class="form-control input-sm" value.bind="appService.currentItem.EditionComment">
+									<div class="Rtable-cell-70 Rtable-cell--highlight ">
+										<input type="text " id="EditionComment " class="form-control input-sm " value.bind="appService.currentItem.EditionComment ">
 									</div>
-									<div class="Rtable-cell-30 Rtable-cell--highlight">
+									<div class="Rtable-cell-30 Rtable-cell--highlight ">
 										<strong> Condition</strong>
 									</div>
-									<div class="Rtable-cell-70  Rtable-cell--highlight">
-										<input type="text" id="Condition" class="form-control input-sm" value.bind="appService.currentItem.Condition">
+									<div class="Rtable-cell-70 Rtable-cell--highlight ">
+										<input type="text " id="Condition " class="form-control input-sm " value.bind="appService.currentItem.Condition ">
 									</div>
-									<div class="Rtable-cell-30 Rtable-cell--highlight">
+									<div class="Rtable-cell-30 Rtable-cell--highlight ">
 										<strong> Inscribed>></strong>
 									</div>
-									<div class="Rtable-cell-70  Rtable-cell--highlight">
-										<input dblclick.delegate="showModal('Inscribed')" type="text" id="Inscribed" class="form-control input-sm"
-										 value.bind="appService.currentItem.Inscribed">
+									<div class="Rtable-cell-70 Rtable-cell--highlight ">
+										<input dblclick.delegate="showModal( 'Inscribed') " type="text " id="Inscribed " class="form-control input-sm "
+										 value.bind="appService.currentItem.Inscribed ">
 
 									</div>
 
 
 
-									<div class="Rtable-cell-30 Rtable-cell--highlight">
+									<div class="Rtable-cell-30 Rtable-cell--highlight ">
 										<strong>Added/modified</strong>
 									</div>
-									<div class="Rtable-cell-70 Rtable-cell--highlight">
+									<div class="Rtable-cell-70 Rtable-cell--highlight ">
 										${currentItem.DateAdded} / ${currentItem.ModifiedDate}
 									</div>
 
@@ -425,91 +430,91 @@
 								</div>
 							</div>
 <!-- xid no form store id hs prev vals -->
-							<div class="form-group flex-column-1 margin-left-10">
-								<div class="Rtable Rtable--2cols">
-									<div class="Rtable-cell-30 Rtable-cell--highlight">
+							<div class="form-group flex-column-1 margin-left-10 ">
+								<div class="Rtable Rtable--2cols ">
+									<div class="Rtable-cell-30 Rtable-cell--highlight ">
 										<strong> Sold </strong>
 									</div>
 									<div class="Rtable-cell-70 Rtable-cell--highlight ">
-										<div class="form-group"> ${search.selectedSoldId}
-											<label repeat.for="sold of searchsold">
-												<input type="radio" name="group1" model.bind="sold.id" checked.bind="search.selectedSoldId">
+										<div class="form-group "> ${search.selectedSoldId}
+											<label repeat.for="sold of searchsold ">
+												<input type="radio " name="group1 " model.bind="sold.id " checked.bind="search.selectedSoldId ">
 												${sold.name} &nbsp;
 											</label>
 										</div>
 									</div>
 
-									<div class="Rtable-cell-30 Rtable-cell--highlight">
+									<div class="Rtable-cell-30 Rtable-cell--highlight ">
 										<strong> SoldTo >></strong>
 									</div>
-									<div class="Rtable-cell-70  Rtable-cell--highlight">
-										<input dblclick.delegate="showModal('SoldToID')" type="text" xid="SoldToID" class="form-control input-sm"
-										 value.bind="appService.currentItem.soldtoname">
+									<div class="Rtable-cell-70 Rtable-cell--highlight ">
+										<input dblclick.delegate="showModal( 'SoldToID') " type="text " xid="SoldToID " class="form-control input-sm "
+										 value.bind="appService.currentItem.soldtoname ">
 
 									</div>
 
 
 
-									<div class="Rtable-cell-30 Rtable-cell--highlight">
+									<div class="Rtable-cell-30 Rtable-cell--highlight ">
 										<strong> OwnedStatus</strong>
 									</div>
-									<div class="Rtable-cell-70  Rtable-cell--highlight">
-										<select id="OwnedBy" class="form-control" value.bind="appService.currentItem.OwnedBy">
-											<option model.bind="null">Choose...</option>
-											<option repeat.for="opt of appService.codesOwnership" model.bind="opt.id">
+									<div class="Rtable-cell-70 Rtable-cell--highlight ">
+										<select id="OwnedBy " class="form-control " value.bind="appService.currentItem.OwnedBy ">
+											<option model.bind="null ">Choose...</option>
+											<option repeat.for="opt of appService.codesOwnership " model.bind="opt.id ">
 												${opt.Description}
 											</option>
 										</select>
 									</div>
 
-									<div class="Rtable-cell-30 Rtable-cell--highlight">
+									<div class="Rtable-cell-30 Rtable-cell--highlight ">
 										<strong> Owner >> </strong>
 									</div>
-									<div class="Rtable-cell-70  Rtable-cell--highlight">
-										<input dblclick.delegate="showModal('OwnerID')" type="text" xid="OwnerID" 
-                    class="form-control input-sm"
-										 value.bind="appService.currentItem.ownername">
+									<div class="Rtable-cell-70 Rtable-cell--highlight ">
+										<input dblclick.delegate="showModal( 'OwnerID') " type="text " xid="OwnerID " 
+                    class="form-control input-sm "
+										 value.bind="appService.currentItem.ownername ">
 
 									</div>
 
 
-									<div class="Rtable-cell-30 Rtable-cell--highlight">
+									<div class="Rtable-cell-30 Rtable-cell--highlight ">
 										<strong> RetailPrice</strong>
 									</div>
-									<div class="Rtable-cell-70  Rtable-cell--highlight">
-										<input type="text" id="ArtValue" class="form-control input-sm" value.bind="appService.currentItem.ArtValue">
+									<div class="Rtable-cell-70 Rtable-cell--highlight ">
+										<input type="text " id="ArtValue " class="form-control input-sm " value.bind="appService.currentItem.ArtValue ">
 									</div>
 
-									<div class="Rtable-cell-30 Rtable-cell--highlight">
+									<div class="Rtable-cell-30 Rtable-cell--highlight ">
 										<strong> CurrentLocation</strong>
 									</div>
-									<div class="Rtable-cell-70  Rtable-cell--highlight">
-										<select id="CurrentLocation" class="form-control input-sm" value.bind="appService.currentItem.CurrentLocation">
-											<option model.bind="null">Choose...</option>
-											<option repeat.for="opt of appService.codesListLocation" model.bind="opt.id">
+									<div class="Rtable-cell-70 Rtable-cell--highlight ">
+										<select id="CurrentLocation " class="form-control input-sm " value.bind="appService.currentItem.CurrentLocation ">
+											<option model.bind="null ">Choose...</option>
+											<option repeat.for="opt of appService.codesListLocation " model.bind="opt.id ">
 												${opt.Description}
 											</option>
 										</select>
 									</div>
 
-									<div class="Rtable-cell-30 Rtable-cell--highlight">
+									<div class="Rtable-cell-30 Rtable-cell--highlight ">
 										<strong> MRGLocation</strong>
 									</div>
-									<div class="Rtable-cell-70  Rtable-cell--highlight">
-										<select id="MRGLocation" class="form-control input-sm" value.bind="appService.currentItem.MRGLocation">
-											<option model.bind="null">Choose...</option>
-											<option repeat.for="opt of appService.codesListLocation" model.bind="opt.id">
+									<div class="Rtable-cell-70 Rtable-cell--highlight ">
+										<select id="MRGLocation " class="form-control input-sm " value.bind="appService.currentItem.MRGLocation ">
+											<option model.bind="null ">Choose...</option>
+											<option repeat.for="opt of appService.codesListLocation " model.bind="opt.id ">
 												${opt.Description}
 											</option>
 										</select>
 									</div>
 
 
-									<div class="Rtable-cell-30 Rtable-cell--highlight">
+									<div class="Rtable-cell-30 Rtable-cell--highlight ">
 										<strong> Bin</strong>
 									</div>
-									<div class="Rtable-cell-70  Rtable-cell--highlight">
-										<input type="text" id="Bin" class="form-control input-sm" value.bind="appService.currentItem.Bin">
+									<div class="Rtable-cell-70 Rtable-cell--highlight ">
+										<input type="text " id="Bin " class="form-control input-sm " value.bind="appService.currentItem.Bin ">
 									</div>
 
 
@@ -528,31 +533,32 @@
 
 
 
-					<div id="top-right" class="flex-column-none data-form-image">
-						<img class="responsive-img" src="https://artbased.com/api/v1/getonePdf/inv/${currentItem.InventoryCode}.jpg"
-						 click.delegate="showModalImg()">
+					<div id="top-right " class="flex-column-none data-form-image ">
+						<img class="responsive-img " src="https://artbased.com/api/v1/getonePdf/inv/${currentItem.InventoryCode}.jpg "
+						 click.delegate="showModalImg() ">
 
 					</div>
 					<!-- end middle and top right -->
 
 
 				</div>
-				<!--  class="tab tab-top ${tab.isSelected ? 'tab-selected' : ''}"> -->
+				<!--  class="tab tab-top ${tab.isSelected ? 'tab-selected' : ''} "> -->
 		
-				<div if.bind="recordId==='create'">Create Mode. Please save record before entering tabs </div>
+				<div if.bind="recordId==='create' ">Create Mode. Please save record before entering tabs </div>
 				<div else>
 
-					<div id="bottom-left" class="flex-row-3">
-						<div id="data-form-ext" class="flex-column-1">
-							<div id="data-form-one-to-many-tabs" class="flex-row-none flex-wrap">
-								<div repeat.for="tab of appService.dataFormOneToManyTabs" class="tab ${tab.isSelected ? 'tab-selected' : ''}">
-									<div class="form-tab-box" click.delegate="selectOneToManyTab(tab)">
+					<div id="bottom-left " class="flex-row-3 ">
+						<div id="data-form-ext " class="flex-column-1 ">
+							<div id="data-form-one-to-many-tabs " class="flex-row-none flex-wrap ">
+								<div repeat.for="tab of appService.dataFormOneToManyTabs " class="tab ${tab.isSelected ? 'tab-selected' : ''} ">
+									<div class="form-tab-box " click.delegate="selectOneToManyTab(tab) ">
 										<span>${tab.name}</span>
 									</div>
 								</div>
 							</div>
-							<div id="data-form-one-to-many-tab-content overflow-y-hidden" class="data-form flex-row-1" style="background: darkgray;">
-								<compose view-model.bind="currentOneToManyTab.viewModel"></compose>
+							<div id="data-form-one-to-many-tab-content overflow-y-hidden " class="data-form flex-row-1 " style="background:
+										 darkgray; ">
+								<compose view-model.bind="currentOneToManyTab.viewModel "></compose>
 							</div>
 						</div>
 					</div>
@@ -562,32 +568,32 @@
 							${e.message}
 						</li>
 					</ul> -->
-			<!-- </form> -->
-			<!-- after or before the form -->
-			
-</form>
- 
+				<!-- </form> -->
+				<!-- after or before the form -->
+
+			</form>
+
 		</div>
-     <footerform class="flex-row-none">
-        inventory-
-         	<span>&nbsp;&nbsp;
-					<button class="btn btn-sm btn-danger" click.delegate="saveinventory(0)">
+		<footerform class="flex-row-none ">
+			inventory-
+			<span>&nbsp;&nbsp;
+					<button class="btn btn-sm btn-danger " click.delegate="saveinventory(0) ">
 						Save & Stay
 					</button>
-					<button class="btn btn-sm btn-danger" click.delegate="saveinventory(1)">
+					<button class="btn btn-sm btn-danger " click.delegate="saveinventory(1) ">
 						Save & Close
 					</button>
 				</span>
-				<button class="btn btn-sm btn-danger" click.delegate="factsheet()">
+			<button class="btn btn-sm btn-danger " click.delegate="factsheet() ">
 					FactSheet
 				</button>
-				</span>
-				<span>&nbsp;&nbsp;
-					<button class="btn btn-sm btn-danger" click.delegate="requestclose()">
+			</span>
+			<span>&nbsp;&nbsp;
+					<button class="btn btn-sm btn-danger " click.delegate="requestclose() ">
 						Close
 					</button>
           <b>  ${message} </b>
 				</span>
-        </footerform>
+		</footerform>
 	</section>
 </template>
