@@ -128,7 +128,7 @@
 
 									<div class="Rtable-cell-70  Rtable-cell--highlight">
 										<div if.bind="recordId === 'create'">
-											<span click.delegate="showModal('Artist')"> <strong> ${currentItem.artist.lastName},
+											<span dblclick.delegate="showModal('Artist')"> <strong> ${currentItem.artist.lastName},
 												${currentItem.artist.firstName}
 												<span show.bind="currentItem.artist.died===''"> (b.${currentItem.artist.yearofBirth}) </span>
 											<span show.bind="currentItem.artist.died!==''"> (${currentItem.artist.yearofBirth} -
@@ -359,14 +359,14 @@
 									</div>
 
 
-									<div class="Rtable-cell Rtable-cell--highlight ">
+									<div class="Rtable-cell Rtable-cell--highlight">
 										<strong> Signed?</strong>
-										<input type="checkbox " id="Signed " checked.bind="appService.currentItem.Signed ">
+										<input type="checkbox" id="Signed" checked.bind="currentItem.Signed">
 									</div>
 
-									<div class="Rtable-cell Rtable-cell--highlight ">
+									<div class="Rtable-cell Rtable-cell--highlight">
 										<strong> Dated?</strong>
-										<input type="checkbox " id="Dated " checked.bind="appService.currentItem.Dated ">
+										<input type="checkbox" id="Dated" checked.bind="currentItem.Dated">
 									</div>
 
 
@@ -420,7 +420,7 @@
 									<div class="Rtable-cell-70 Rtable-cell--highlight ">
 										<div class="form-group "> ${search.selectedSoldId}
 											<label repeat.for="sold of searchsold ">
-												<input type="radio " name="group1 " model.bind="sold.id " checked.bind="search.selectedSoldId ">
+												<input type="radio" name="group1" model.bind="sold.id " checked.bind="search.selectedSoldId ">
 												${sold.name} &nbsp;
 											</label>
 										</div>
