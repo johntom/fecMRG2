@@ -127,6 +127,7 @@ export class Prompt {
       //
       // sep since artist is an object no need to find it
       this.ArtistName = this.currentItem.artist
+      if (this.ArtistName.ArtistName===undefined) this.ArtistName.ArtistName=this.currentItem.artist.lastName + ', ' +this.currentItem.artist.firstName
       this.dartist.value = this.ArtistName
     }
 
