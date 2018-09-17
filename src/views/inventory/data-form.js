@@ -284,6 +284,11 @@ export class DataForm {
             this.appService.originalrec = JSON.parse(JSON.stringify(this.appService.currentItem))// inv[0]));
 
 
+         
+          this.appService.currentView = this.appService.currentItem
+          this.appService.originalrec = JSON.parse(JSON.stringify(this.appService.currentItem))
+
+///2
 
             // still needed if obj 		  value.two-way="currentItem.MediumSupportobj"   vs value.bind > 
             let meds = this.appService.codesListMediumSupport
@@ -330,7 +335,7 @@ export class DataForm {
               let arts = this.appService.artistList
               let aid = arts.findIndex(x => x.id === this.appService.currentItem.artist.id)
               let artistobj = this.appService.artistList[aid]//10]
-              if (artistobj !== undefined) this.appService.currentItem.aritst = artistobj//.OrgName
+              if (artistobj !== undefined) this.appService.currentItem.artist = artistobj//.OrgName
             }
             console.log('finihed active1')
             // return inv
@@ -492,22 +497,25 @@ export class DataForm {
     });
     }
   requestclose() {
-    // const resetFunc = () => { this.appService.originalrec = this.appService.currentItem; };
-    // let cand = this.canDeactivate()
+   
     // let tab = this.appService.tabs.find(f => f.isSelected);
-    // let rt2 = '#/inventory/' + this.tabname ///claim'//Search?'cant use when search has a number 
-    // this.appService.tryCloseTab(this.appService.currentItem, tab, rt2);
- 
-    // alert ('in requestclose')
+    // let index = this.appService.tabs.findIndex(f => f.isSelected)
+    // let rt2 = '#/claim/' + this.tabname
 
-    const resetFunc = () => { this.appService.originalrec = this.appService.currentItem; };
+    // let newIndex = (index > 0) ? index - 1 : 0;
+    // let newTab = this.appService.tabs[newIndex];
+    // const resetFunc = () => { this.appService.originalrec = this.appService.currentItem; };
+ const resetFunc = () => { this.appService.originalrec = this.appService.currentItem; };
+    // let cand = this.canDeactivate()
     let tab = this.appService.tabs.find(f => f.isSelected);
     let index = this.appService.tabs.findIndex(f => f.isSelected)
-    let rt2 = '#/claim/' + this.tabname
+    let rt2 = '#/inventory/' + this.tabname
+
 
     let newIndex = (index > 0) ? index - 1 : 0;
     let newTab = this.appService.tabs[newIndex];
     this.appService.tryCloseTab(this.appService.currentView, tab, newTab.href);
+
 
   }
   // close() {

@@ -136,15 +136,15 @@
 											</strong>
 											</span>
 										</div>
-										<div else> <span> <strong> ${currentItem.artist.lastName},
+                    	<div else> <span dblclick.delegate="showModal('Artist')"> <strong> ${currentItem.artist.lastName},
+										
+										<!-- <div else> <span> <strong> ${currentItem.artist.lastName}, -->
 												${currentItem.artist.firstName}
 												<span show.bind="currentItem.artist.died===''"> (b.${currentItem.artist.yearofBirth}) </span>
 											<span show.bind="currentItem.artist.died!==''"> (${currentItem.artist.yearofBirth} -
 													${currentItem.artist.died})</span> </strong>
-
 											</span>
 										</div>
-
 									</div>
 
 
