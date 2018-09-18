@@ -104,14 +104,15 @@
 											<strong> InventoryCode</strong>
 										</div>
 										<div class="Rtable-cell Rtable-cell--highlight">
-											<input type="text" id="InventoryCode" class="form-control input-sm" value.bind="appService.currentItem.InventoryCode & validate" ">
-										</div>
+											<input type="text" id="InventoryCode" class="form-control input-sm" value.bind="appService.currentItem.InventoryCode">
+										<!-- & validate -->
+                    </div>
 										<div class=" Rtable-cell Rtable-cell--highlight ">
 											<strong> InvYear</strong>
 										</div>
 										<div class=" Rtable-cell Rtable-cell--highlight ">
-											<input type=" text " id=" InvYear " class=" form-control input-sm " value.bind=" currentItem.InvYear & validate
-											 "">
+											<!-- <input type=" text " id="InvYear" class=" form-control input-sm " value.bind=" currentItem.InvYear & validate"> -->
+                       <input type=" text " id="InvYear" class=" form-control input-sm " value.bind="appService.currentItem.InvYear">
 										</div>
 									</div>
 
@@ -136,13 +137,13 @@
 											</strong>
 											</span>
 										</div>
-                    	<div else> <span dblclick.delegate="showModal('Artist')"> <strong> ${currentItem.artist.lastName},
+                    	<div else> <span dblclick.delegate="showModal('Artist')"> <strong> ${appService.currentItem.artist.lastName},
 										
 										<!-- <div else> <span> <strong> ${currentItem.artist.lastName}, -->
-												${currentItem.artist.firstName}
-												<span show.bind="currentItem.artist.died===''"> (b.${currentItem.artist.yearofBirth}) </span>
-											<span show.bind="currentItem.artist.died!==''"> (${currentItem.artist.yearofBirth} -
-													${currentItem.artist.died})</span> </strong>
+												${appService.currentItem.artist.firstName}
+												<span show.bind="appService.currentItem.artist.died===''"> (b.${appService.currentItem.artist.yearofBirth}) </span>
+											<span show.bind="appService.currentItem.artist.died!==''"> (${appService.currentItem.artist.yearofBirth} -
+													${appService.currentItem.artist.died})</span> </strong>
 											</span>
 										</div>
 									</div>
@@ -153,14 +154,16 @@
 									</div>
 									<div class="Rtable-cell-70  Rtable-cell--highlight">
 
-										<input type="text" id="Title" class="form-control input-sm" value.bind="appService.currentItem.Title & validate">
+										<input type="text" id="Title" class="form-control input-sm" value.bind="appService.currentItem.Title">
+                    <!--  & validate -->
 									</div>
 
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
 										<strong> MediumSupport</strong>
 									</div>
 									<div class="Rtable-cell-70  Rtable-cell--highlight">
-										<select ref="MediumSupport11" id="MediumSupport11" class="form-control input-sm" value.bind="appService.currentItem.MediumSupportobj & validate" "> 
+										<select ref="MediumSupport11" id="MediumSupport11" class="form-control input-sm" value.bind="appService.currentItem.MediumSupportobj"> 
+                      <!-- & validate -->
                       <option model.bind=" null ">Choose...</option>
 											<option ref="MediumSupport21 " repeat.for="opt of appService.codesListMediumSupport " model.bind="opt ">
 												${opt.Description}
@@ -361,12 +364,12 @@
 
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
 										<strong> Signed?</strong>
-										<input type="checkbox" id="Signed" checked.bind="currentItem.Signed">
+										<input type="checkbox" id="Signed" checked.bind="appService.currentItem.Signed">
 									</div>
 
 									<div class="Rtable-cell-70 Rtable-cell--highlight">
 										<strong> Dated?</strong>
-										<input type="checkbox" id="Dated" checked.bind="currentItem.Dated">
+										<input type="checkbox" id="Dated" checked.bind="appService.currentItem.Dated">
 									</div>
 
 
@@ -403,7 +406,7 @@
 										<strong>Added/modified</strong>
 									</div>
 									<div class="Rtable-cell-70 Rtable-cell--highlight ">
-										${currentItem.DateAdded} / ${currentItem.ModifiedDate}
+										${appService.currentItem.DateAdded} / ${appService.currentItem.ModifiedDate}
 									</div>
 
 
@@ -516,7 +519,7 @@
 
 
 					<div id="top-right " class="flex-column-none data-form-image ">
-						<img class="responsive-img " src="https://artbased.com/api/v1/getonePdf/inv/${currentItem.InventoryCode}.jpg "
+						<img class="responsive-img " src="https://artbased.com/api/v1/getonePdf/inv/${appService.currentItem.InventoryCode}.jpg "
 						 click.delegate="showModalImg() ">
 
 					</div>

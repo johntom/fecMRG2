@@ -27,7 +27,10 @@ export class DataForm {
   InvYear = '';
   InventoryCode = '';
   // user = new User();
-  currentItem = new currentItem(); // for validate
+  
+  // currentItem = new currentItem(); // for validate
+  
+  
   heading = 'DataForm HEADER...'
   footer = 'DataForm FOOTER...'
   recordId = '';
@@ -89,10 +92,10 @@ export class DataForm {
 // this.currentItem={}
   }
   showModal(fieldname) {
-    this.currentItem.fieldname = fieldname
+    this.appService.currentItem.fieldname = fieldname
 
-    this.currentItem.recordId = this.recordId
-    this.dialogService.open({ viewModel: Prompt, model: this.currentItem, lock: false }).whenClosed(response => {
+    this.appService.currentItem.recordId = this.recordId
+    this.dialogService.open({ viewModel: Prompt, model: this.appService.currentItem, lock: false }).whenClosed(response => {
 
       // if (fieldname === 'Artist') {
       //   let artistsel = this.appService.currentItem.artist;
@@ -111,7 +114,7 @@ export class DataForm {
         // notes.splice(index, 1)// start, deleteCount)
 
       } else {
-        if (this.currentItem.artist === null) {
+        if (this.appService.currentItem.artist === null) {
           //// this.currentItem.artist.ArtistName=undefined
         //  this.controller.validate()
         }
@@ -184,12 +187,12 @@ export class DataForm {
   // }
 
   showKeywords() {
-    alert(`GenreTypes: ${this.currentItem.keywords}`);
+    alert(`GenreTypes: ${this.appService.currentItem.keywords}`);
     //  alert(`Attendees: ${this.required}, \nOptional: ${this.optional}`);
   }
 
   factsheet() {
-    let rt2 = this.currentItem.InventoryCode;
+    let rt2 = this.appService.currentItem.InventoryCode;
     this.api.createFactSheet(rt2)
       .then((jsonRes) => {
         let success = jsonRes.data;
@@ -212,7 +215,7 @@ export class DataForm {
   }
 
   showAttendees() {
-    alert(`GenreTypes: ${this.currentItem.genretypes}`);
+    alert(`GenreTypes: ${this.appService.currentItem.genretypes}`);
     //  alert(`Attendees: ${this.required}, \nOptional: ${this.optional}`);
   }
   // (MediumSupport,currentItem.MediumSupport)
@@ -296,7 +299,7 @@ export class DataForm {
             if ((this.appService.currentItem.MediumSupportobj === undefined) || (this.currentItem.MediumSupportobj === null)) {
             } else {
               // if( this.currentItem.MediumSupportobj!==undefined){
-              let mid = meds.findIndex(x => x.id === this.currentItem.MediumSupportobj.id)
+              let mid = meds.findIndex(x => x.id === this.appService.currentItem.MediumSupportobj.id)
               this.appService.currentItem.MediumSupportobj = this.appService.codesListMediumSupport[mid]//10]// test
             }
 
@@ -312,7 +315,7 @@ export class DataForm {
 
             if ((this.appService.currentItem.OwnerID === undefined) || (this.appService.orgsList === null)) {
             } else {
-              oid = orgs.findIndex(x => x._id === this.currentItem.OwnerID)
+              oid = orgs.findIndex(x => x._id === this.appService.currentItem.OwnerID)
               orgobj = this.appService.orgsList[oid]//10]
               if (orgobj !== undefined) this.appService.currentItem.ownername = orgobj.OrgName
               // this.OrgName = orgobj

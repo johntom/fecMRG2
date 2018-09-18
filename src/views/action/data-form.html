@@ -181,13 +181,12 @@
 							<div class="form-group flex-column-1 margin-left-10">
 								<div class="Rtable Rtable--2cols">
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
-										<strong> Keywords </strong>
-										<button ak-button click.delegate="showKeywords()">Show keywords</button>
+velegate="showKeywords()">Show keywords</button>
 
 									</div>
 									<div class="Rtable-cell-70 Rtable-cell--highlight ">
 
-										<ak-multiselect k-value.two-way="currentItem.keywords">
+										<ak-multiselect k-value.two-way="appService.currentItem.keywords">
 											<select multiple="multiple" data-placeholder="Select keywords...">
                        <option repeat.for="opt of appService.codesGenre" model.bind="opt.Description">
                         ${opt.Description} 
