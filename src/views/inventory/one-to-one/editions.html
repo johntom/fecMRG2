@@ -44,7 +44,7 @@
 			<strong> Publisher Location</strong>
 		</div>
 		<div class="Rtable-cell-70  Rtable-cell--highlight">
-			<select id="ExhibitLocation" class="form-control input-sm" value.bind="PublisherLocation"> 
+			<select id="ExhibitLocation" class="form-control input-sm" value.bind="currentItem.PublisherLocation"> 
                       <option model.bind="null">Choose...</option> 
                      <option repeat.for="opt of appService.codesProvenanceLocation" model.bind="opt.id">
                            ${opt.Description} 
@@ -68,7 +68,7 @@
 		</div>
 
 		<div class="Rtable-cell-70  Rtable-cell--highlight">
-			<select id="ExhibitLocation" class="form-control input-sm" value.bind="PrinterLocation"> 
+			<select id="ExhibitLocation" class="form-control input-sm" value.bind="currentItem.PrinterLocation"> 
                       <option model.bind="null">Choose...</option> 
                      <option repeat.for="opt of appService.codesProvenanceLocation" model.bind="opt.id">
                            ${opt.Description} 

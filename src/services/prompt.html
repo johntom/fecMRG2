@@ -10,9 +10,12 @@
     </ux-dialog-body>
     <ux-dialog-footer>
    
-       <button class="btn btn btn-success" click.trigger="controller.cancel()">Stay</button>
-      <button class="btn btn btn-danger" click.trigger="controller.ok(answer)">Leave</button>
+       <!-- <button class="btn btn btn-success" click.trigger="controller.cancel()">Stay</button>
+      <button class="btn btn btn-danger" click.trigger="controller.ok(answer)">Leave</button> -->
+     <button class="btn btn btn-danger" click.trigger="controller.ok(answer)">Delete</button>
   
+   <button class="btn btn btn-success" click.trigger="controller.cancel()">Cancel</button>
+   
     </ux-dialog-footer>
   </ux-dialog>
 </template>

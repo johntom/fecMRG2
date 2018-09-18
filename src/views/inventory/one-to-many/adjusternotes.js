@@ -51,11 +51,8 @@ export class Adjusternotes {
    
   }
   remove(item, index) {
-    // alert('you are about to delete ' + item.Notes + ' ' + index)
-    // this.mode = 0
-
-    // let notes = this.currentItem.notes
-    // notes.splice(index, 1)// start, deleteCount)
+    //import { Prompt } from '../../../services/prompt';
+ 
     this.dialogService.open({ viewModel: Prompt, model: 'Delete or Cancel?', lock: false }).whenClosed(response => {
       if (!response.wasCancelled) {
         console.log('Delete')

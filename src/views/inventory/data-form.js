@@ -425,11 +425,17 @@ export class DataForm {
           this.appService.currentView = this.appService.currentItem
           this.appService.originalrec = JSON.parse(JSON.stringify(this.appService.currentItem))
           this.skippromt = true
-
+//  if (!fail) {
+//           if (option === 1) {
+//             let tab = this.appService.tabs.find(f => f.isSelected);
+//             this.closeTab(tab);
+//             this.close()
+//             this.requestclose()
           if (option === 1) {
-            let tab = this.appService.tabs.find(f => f.isSelected);
-            this.closeTab(tab);
-            this.close()
+            // let tab = this.appService.tabs.find(f => f.isSelected);
+            // this.closeTab(tab);
+            // this.close()
+             this.requestclose()
           } else {
 
             // this.api.findInventoryOne(this.currentItem.InventoryCode)

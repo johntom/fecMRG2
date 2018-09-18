@@ -6,7 +6,8 @@ import { MyDataService } from "../../services/my-data-service";
 
 export class Home {
   heading = "Welcome to the MRG Home page!";
-  version = 240.12
+  version = 240.15
+  versionDate= 'Tue 09/17/2018'
   versiondate=Date();
   issues=[
   'Make tabs like mas w/scrollbar with sticky header',

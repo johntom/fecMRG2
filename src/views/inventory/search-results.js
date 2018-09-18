@@ -63,7 +63,7 @@ export class SearchResults {
       }
     },
     pageSize: 12,
-
+   sort: { field: 'Title', dir: 'asc' },
     // aggregate: [{ field: "type", aggregate: "count" },
     //   { field: "template", aggregate: "count" }
     // ]

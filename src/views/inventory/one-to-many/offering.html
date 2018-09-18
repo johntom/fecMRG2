@@ -2,18 +2,12 @@
 	<require from="./docs.css"></require>
 	<!-- <section class="customer-orders au-animate"> -->
 	<section class="docs full-height flex-column-1 overflow-y-auto ignore">
-		<h4>
-			<!-- <i class="fa fa-folder-open"></i> offering 
-<a slot="buttons-slot" class="btn btn-primary" click.delegate="addDiary()">
-				<i class="fa fa-plus"></i> Add consignedto
-			</a> -->
-		</h4>
-		<!--   "OrgID" : 11946.0, 
-            "ContactID" : 13880.0, 
-            "OfferDate" : "2013-10-23", 
-            "OfferPrice" : "125,000", 
-            "SoldPrice" : 0.0, 
-            "OfferNotes" : "" -->
+		<h3>
+			<!-- <i class="fa fa-folder-open"></i> Conservation (${currentItem.Title} ct:${currentItem.conservation.length}) -->
+	<i class="fa fa-folder-open"></i> Offfering
+
+		
+		</h3>
 
 		<table class="table-condensed table">
 			<thead class="table-header-blue" data-sort="items.bind: currentItem.offerings; cols: ['ENTERED','REMIND','CANCELED','NOTES']">

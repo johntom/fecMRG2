@@ -13,7 +13,8 @@ export class Editions {
     this.api = api;
     this.appService = appService;
     this.inv = '';
-     this.currentItem = this.appService.testrec;
+    //  this.currentItem = this.appService.testrec;
+     this.currentItem = this.appService.currentItem;
   }
 
   activate(params, routeConfig) {

@@ -1,8 +1,13 @@
 import { inject } from 'aurelia-dependency-injection';
 import { ApiService } from '../../../utils/servicesApi';
 import { ApplicationService } from '../../../services/application-service';
-
-@inject(ApiService, ApplicationService)
+// import { Promptyn } from '../../../services/promptyn';
+// import {Prompt} from '../../../services/prompt';
+import { Prompt } from '../../../services/prompt';
+ 
+// import { ynPrompt } from '../../../services/prompt';
+@inject(ApiService, ApplicationService) 
+// import { ynPrompt } from '../../../services/prompt';
 export class Exhibition {
   heading = 'DataForm HEADER...';
   footer = 'DataForm FOOTER...';
@@ -26,12 +31,11 @@ export class Exhibition {
     item.edit = !item.edit
    
   }
+ 
   remove(item, index) {
-    this.mode = 0
-
-    // let notes = this.currentItem.notes
-    // notes.splice(index, 1)// start, deleteCount)
-    this.dialogService.open({ viewModel: ynPrompt, model: 'Delete or Cancel?', lock: false }).whenClosed(response => {
+    //import { Prompt } from '../../../services/prompt';
+ 
+    this.dialogService.open({ viewModel: Prompt, model: 'Delete or Cancel?', lock: false }).whenClosed(response => {
       if (!response.wasCancelled) {
         console.log('Delete')
         let exhibition = this.currentItem.exhibition
@@ -39,9 +43,10 @@ export class Exhibition {
       } else {
         console.log('cancel');
       }
-      console.log(response.output);
+      console.log(response)//.output);
     });
   }
+
 
   selectChanged(reproid) {
     //  let insco = this.appService.InsurancecompanyList
