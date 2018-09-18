@@ -10,15 +10,16 @@ import { DialogService } from 'aurelia-dialog';
 import { Prompt } from './prompt';
 import moment from 'moment';
 import { DialogImage } from './dialogImage';
-import {
-  ValidationControllerFactory,
-  ValidationController,
-  ValidationRules,
-  validateTrigger
-} from 'aurelia-validation';
-import { BootstrapFormRenderer } from '../../bootstrap-form-renderer';
+// import {
+//   ValidationControllerFactory,
+//   ValidationController,
+//   ValidationRules,
+//   validateTrigger
+// } from 'aurelia-validation';
+// import { BootstrapFormRenderer } from '../../bootstrap-form-renderer';
 
-@inject(Router, ApiService, ApplicationService, MyDataService, DialogService, ValidationControllerFactory)
+// @inject(Router, ApiService, ApplicationService, MyDataService, DialogService, ValidationControllerFactory)
+@inject(Router, ApiService, ApplicationService, MyDataService, DialogService)
 export class DataForm {
   controller = null;
   MediumSupportobj = '';
@@ -81,11 +82,11 @@ export class DataForm {
     this.router = router
     this.dialogService = dialogService
     this.skippromt = false
-    this.controller = controllerFactory.createForCurrentScope();
-    this.controller.addRenderer(new BootstrapFormRenderer());
-    this.controller.addObject(this);
-    this.controller.addObject(this.currentItem);
-
+    // this.controller = controllerFactory.createForCurrentScope();
+    // this.controller.addRenderer(new BootstrapFormRenderer());
+    // this.controller.addObject(this);
+    // this.controller.addObject(this.currentItem);
+// this.currentItem={}
   }
   showModal(fieldname) {
     this.currentItem.fieldname = fieldname
@@ -111,8 +112,8 @@ export class DataForm {
 
       } else {
         if (this.currentItem.artist === null) {
-          // this.currentItem.artist.ArtistName=undefined
-          this.controller.validate()
+          //// this.currentItem.artist.ArtistName=undefined
+        //  this.controller.validate()
         }
         console.log('cancel');
       }
@@ -372,7 +373,7 @@ export class DataForm {
   }
 
   saveinventory(option) {
-    this.controller.validate();
+    //this.controller.validate();
     let savetime = moment().format('MM/DD/YY h:mm:ss a')
 
     if (this.recordId === 'create') {
@@ -539,22 +540,22 @@ export class DataForm {
 
 }
 
-export class currentItem {
-  MediumSupportobj;
-  Title;
-  InvYear;
-  InventoryCode;
-  artist;
+// export class currentItem {
+//   MediumSupportobj;
+//   Title;
+//   InvYear;
+//   InventoryCode;
+//   artist;
 
-}
-ValidationRules
-  .ensure(a => a.MediumSupportobj).required()
-  .ensure(a => a.Title).required()
-  .ensure(a => a.InvYear).required()
-  .ensure(a => a.InventoryCode).required()
-  .ensure(a => a.artist).required()
+// }
+// ValidationRules
+//   .ensure(a => a.MediumSupportobj).required()
+//   .ensure(a => a.Title).required()
+//   .ensure(a => a.InvYear).required()
+//   .ensure(a => a.InventoryCode).required()
+//   .ensure(a => a.artist).required()
 
-  // .ensure(a => a.email).required().email()
-  // .on(DataForm);
-  .on(currentItem);
+//   // .ensure(a => a.email).required().email()
+//   // .on(DataForm);
+//   .on(currentItem);
 
