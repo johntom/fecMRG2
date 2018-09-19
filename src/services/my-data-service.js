@@ -125,7 +125,7 @@ export class MyDataService {
         });
     });
   }
-
+// loadCodesGenre()
   loadArtists() {
     return new Promise((resolve, reject) => {
       this.api.findArtists()

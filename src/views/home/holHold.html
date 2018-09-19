@@ -1,11 +1,9 @@
 <template>
-  <require from="../../../styles/styles.css"></require>
-	
-  <style>
+	<require from="../../../styles/styles.css"></require>
+	<style>
 		img {
 			background-color: #38162E;
 		}
- 
 		.Aligner {
 			display: flex;
 			align-items: center;
@@ -27,32 +25,26 @@
 	</style>
 	<section class="au-animate">
 		<div class="section-header flex-row-none">
-			${heading}
+			<h4> ${heading} version: ${version} ${versionDate} </h4>
 		</div>
-		<div class="section-content flex-row-1">
-			<h3> mrg.version ${version} date: ${versionDate}</h3>
+		<div class="section-content flex-row-1 Aligner">
+			<div class="Aligner-item">
+				<!-- </br>
+				</br> -->
+				</br>
 				<img background-color="#38162E" src="https://5924b98cbd966f546312882f.blob.core.windows.net/mrg-new/src/images/MRG_logo-white.png">
-	  </div>
-
+			</div>
+		</div>
 
 		<div class="flex-column-1 overflow-y-auto">
 			<div id="top" class="flex-row-3">
-						<div id="top-left" class="data-form overflow-y-auto flex-column-1">
-				<h4> Known Issues </h4>
+			<div id="top-left" class="data-form overflow-y-auto flex-column-1">
+					<h4> Known Issues </h4>
 					<ul>
 						<li repeat.for='e of issues'>
 							${e}
 						</li>
 					</ul>
-
-	<h4> Features </h4>
-					<ul>
-						<li repeat.for='e of features'>
-							${e}
-				
-						</li>
-					</ul>
-
 				</div>
 				<div class="form-group flex-column-1 margin-left-10">
 
@@ -60,24 +52,28 @@
 					<ul>
 						<li repeat.for='e of todo'>
 							${e}
-				
 						</li>
 					</ul>
 				</div>
-        	<div class="form-group flex-column-1 margin-left-10">
+				<div class="form-group flex-column-1 margin-left-10">
 
 					<h4> Todo Complete</h4>
 					<ul>
 						<li repeat.for='e of todocomplete'>
 							${e}
-					
 						</li>
 					</ul>
 				</div>
 
-				
+				<div class="form-group flex-column-1 margin-left-10">
+					<h4> Features </h4>
+					<ul>
+						<li repeat.for='e of features'>
+							${e}
+						</li>
+					</ul>
+				</div>
 			</div>
 		</div>
-	
 	</section>
 </template>

@@ -2,10 +2,7 @@
   
 
 	<require from="./docs.css"></require>
-	<!-- <require from="../../../value-converters/filter-by-code"></require> -->
-
-	<!-- <section class="customer-orders au-animate"> -->
-	<section class="docs full-height flex-column-1 overflow-y-auto ignore">
+		<section class="docs full-height flex-column-1 overflow-y-auto ignore">
 		<h4>
 			<i class="fa fa-folder-open"></i> Exhibition
 			<a slot="buttons-slot" class="btn btn-primary" click.delegate="addExhibit()">
@@ -57,10 +54,9 @@
                            ${opt.Description} 
                       </option> 
                     </select>
-
 					</td>
           	<td width="220px"><input type="text" id="Reproduction" class="form-control  input-sm" value.bind="exhibition.Reproduction"></td>
-				
+			
 					<td width="220px"><input type="text" id="ExhibitDates" class="form-control  input-sm" value.bind="exhibition.ExhibitDates"></td>
 					<td width="220px"><input type="text" id="ExhibitSortDate" class="form-control  input-sm" value.bind="exhibition.ExhibitSortDate"></td>
 					<td width="120px">
@@ -72,10 +68,8 @@
 					<td width="225px">
 						<!-- <button class="btn btn-primary" click.delegate="exhibition.edit=!exhibition.edit">${ !exhibition.edit ? 'Update' : 'Done' }</button> -->
 						<button class="btn btn-primary" click.delegate="saveitem(exhibition,$index)">${ !exhibition.edit ? 'Update' : 'Done' }</button>
-
 						<button class="btn btn-sm btn-danger" click.delegate="remove(exhibition,$index)">           Delete            </button>
 					</td>
-
 
 				</tr>
 			</tbody>
@@ -84,26 +78,3 @@
 
 	</section>
 </template>
-
-<!-- <td width="220px">
-						<select id="ExhibitRepro" class="form-control input-sm" value.bind="ExhibitRepro" change.delegate="selectChanged(ExhibitRepro)"> 
-                      <option model.bind="null">Choose...</option> 
-                     <option repeat.for="opt of currentItem.reproduction" model.bind="opt._id">
-                          ${opt.ReproductionTitle} /  ${opt.ReproductionName} 
-                      </option> 
-                    </select>
-
-
-					</td> -->
-
-<!-- <td width="220px">
-             try using object id
-							<select id="ExhibitRepro" class="form-control input-sm" value.bind="ExhibitRepro"> 
-                      <option model.bind="null">Choose...</option> 
-                     <option repeat.for="opt of currentItem.reproduction" model.bind="opt">
-
-                          ${opt.ReproductionTitle} /  ${opt.ReproductionName} 
-                      </option> 
-                    </select>
-
-						</td> -->

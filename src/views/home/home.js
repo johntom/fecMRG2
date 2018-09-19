@@ -6,13 +6,44 @@ import { MyDataService } from "../../services/my-data-service";
 
 export class Home {
   heading = "Welcome to the MRG Home page!";
-  version = 240.15
+  version = 240.16
   versionDate= 'Tue 09/17/2018'
-  versiondate=Date();
+  // versiondate=Date();
   issues=[
   'Make tabs like mas w/scrollbar with sticky header',
-'shortcut keys'
+  'shortcut keys',
+  'tab hilite in detail',
+'fix dirty',
+'when going to home not refreshed',
+'tab shows on dialog',
+
   ]
+    features=[
+    'CTRL+SHIFT+F',
+    'GUARD CLOSURE FOR MATACHER'
+   ]
+  todo=[
+
+'leave prov open (edit save)',
+'add keyword',
+'inv code not change',
+'catno, alitid edition ed commnet ret proceno type a head',
+'Edit Inscribed not swearch',
+'med support prompt add on fly',
+'mod date header',
+'sort date',
+'Set Ex not work display sponser with exhi',
+   ]
+    todocomplete=[
+
+'x save and close',
+'x sort order on search title',
+'x ynPrompt on exhibition',
+'x Icon for offering'
+
+   ] 
+
+
 //Save when on a tab will negate abilty to track dirty forms',
   
   // 'make all prompt dblclick',
@@ -237,7 +268,8 @@ export class Home {
         console.log(' ===================codes 39', codesPhotographers  )
         this.appService.codesInventoryLocation = codesInventoryLocation//1,
         this.appService.codesInventoryType = codesInventoryType//2,
-        this.appService.codesGenre = codesGenre//3,
+        this.appService.codesGenre = codesGenre//3,  codesGenre.push(newi)
+        
         this.appService.codesOwnership = codesOwnership//4,
         this.appService.codesFormat = codesFormat//5
         this.appService.codesPaymentMethod = codesPaymentMethod//6

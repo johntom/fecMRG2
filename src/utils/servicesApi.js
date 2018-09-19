@@ -11,10 +11,10 @@ export class ApiService {
   constructor(http) {
     this.http = http;
     this.upmess = ''
-//    this.baseweb = 'https://gtztest.com/api/' 
+    //    this.baseweb = 'https://gtztest.com/api/' 
 
-    this.baseweb = 'https://artbased.com/api/' 
-    
+    this.baseweb = 'https://artbased.com/api/'
+
     /// https://gtztest.com/api/v1/inmate
     // https://gtztest.com/api/v1/getonePdf/:template/:filename
     this.basewebjif = 'https://jif.bergenrisk.com/api/';
@@ -37,7 +37,7 @@ export class ApiService {
 
   }
 
-// mrg
+  // mrg
 
   findInventory(search) {
     // search has fullu formed query string
@@ -75,7 +75,7 @@ export class ApiService {
     var url = this.baseweb + 'v1/inventory';
     return this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())
   }
-  
+
   findusers() {
     var url = this.baseweb + 'v1/findusers';
     return this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())
@@ -88,14 +88,14 @@ export class ApiService {
 
   }
 
-//  findArtists() {
-//     var url = this.baseweb + 'v1/artist/'
-//     console.log('url artist ', url)
-//     return this.http.fetch(url, {
-//       method: 'get',
-//       mode: 'cors'
-//     }).then((res) => res.json());
-//   }
+  //  findArtists() {
+  //     var url = this.baseweb + 'v1/artist/'
+  //     console.log('url artist ', url)
+  //     return this.http.fetch(url, {
+  //       method: 'get',
+  //       mode: 'cors'
+  //     }).then((res) => res.json());
+  //   }
 
 
   //http://localhost:8080/api/v1/artist
@@ -110,7 +110,7 @@ export class ApiService {
 
   }
 
-//1
+  //1
   batchTransport(rec) {
     let url = this.baseweb + `v1/inventory/batchTransport`
     console.log('url ', url)
@@ -144,7 +144,7 @@ export class ApiService {
     }).then((res) => res.json());
   }
 
-//3
+  //3
   batchReproduction(rec) {
     let url = this.baseweb + `v1/inventory/batchReproduction`
     console.log('url ', url)
@@ -160,7 +160,7 @@ export class ApiService {
       body: JSON.stringify(rec)
     }).then((res) => res.json());
   }
-//4
+  //4
   batchProvenance(rec) {
     let url = this.baseweb + `v1/inventory/batchProvenance`
     console.log('url ', url)
@@ -192,9 +192,9 @@ export class ApiService {
       body: JSON.stringify(rec)
     }).then((res) => res.json());
   }
-//6
+  //6
   batchTemplocation(rec) {
-    let url = this.baseweb + `v1/inventory/batchTemplocation` 
+    let url = this.baseweb + `v1/inventory/batchTemplocation`
     console.log('url ', url)
     // return {'data': true}
     return this.http.fetch(url, {
@@ -209,7 +209,7 @@ export class ApiService {
     }).then((res) => res.json());
   }
 
-//7 inventory/Transport Exhibit Reproduction Provenance batchMrglocation batchTemplocation batchOfferings
+  //7 inventory/Transport Exhibit Reproduction Provenance batchMrglocation batchTemplocation batchOfferings
   addOfferings(offerings) {
 
     var url = this.baseweb + 'v1/inventory/offerings';
@@ -248,7 +248,7 @@ export class ApiService {
   //     return this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())
 
   // }
- createinventory(rec) {
+  createinventory(rec) {
     //alert('in saveclaim')
     let url = this.baseweb + `v1/inventory/create`
     console.log('url ', url)
@@ -439,6 +439,23 @@ export class ApiService {
     }).then((res) => res.json());
   }
 
+  addcodegenre(rec) {
+    let sl = {}
+    var url = this.baseweb + `v1/codes`;
+    return this.http.fetch(url, {
+      method: 'post',
+      mode: 'cors',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+        // , 'Authorization': 'JWT ' + token
+      },
+      body: JSON.stringify(rec)
+    }).then((res) => res.json());
+  }
+
+
+  
   createFactSheet(rt2) {
 
     // { method: ['get'], path: '/api/v1/docx/create/:id', handler: 'DocxController.create' },
@@ -471,7 +488,7 @@ export class ApiService {
 
 
 
-// inmates
+  // inmates
 
 
   findPayees() {
@@ -482,7 +499,7 @@ export class ApiService {
       mode: 'cors'
     }).then((res) => res.json());
   }
- 
+
 
 
 
@@ -608,15 +625,15 @@ export class ApiService {
 
     console.log('url ', url, formData);
     return this.http.fetch(url, {
-        mode: 'cors',
-        method: 'POST',
-        headers: {
-          'enctype': "multipart/form-data"
-        },
-        body: formData
+      mode: 'cors',
+      method: 'POST',
+      headers: {
+        'enctype': "multipart/form-data"
+      },
+      body: formData
 
-        // body: JSON.stringify(formData)
-      }).then((res) => res.json())
+      // body: JSON.stringify(formData)
+    }).then((res) => res.json())
       .then(data => console.log('data.message', data.message))
       .catch(error => console.log(error));
   }
@@ -626,15 +643,15 @@ export class ApiService {
     ///  var url = this.basewebjif + `v1/upload/01-03166`
     console.log('url ', url, formData);
     return this.http.fetch(url, {
-        mode: 'cors',
-        method: 'POST',
-        headers: {
-          'enctype': "multipart/form-data"
-        },
-        body: formData
-        //body: json(formData)
-        // body: JSON.stringify(formData)
-      }).then((res) => res.json())
+      mode: 'cors',
+      method: 'POST',
+      headers: {
+        'enctype': "multipart/form-data"
+      },
+      body: formData
+      //body: json(formData)
+      // body: JSON.stringify(formData)
+    }).then((res) => res.json())
       .then(data => console.log('data.message', data.message))
       .catch(error => console.log(error));
   }
@@ -788,7 +805,7 @@ export class ApiService {
   findCodes() {
     var url = this.baseweb + 'v1/codes';
     return this.http.fetch(url, {
-        method: 'get',
+      method: 'get',
       mode: 'cors'
     }).then((res) => res.json())
 

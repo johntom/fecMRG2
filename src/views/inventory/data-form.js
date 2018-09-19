@@ -27,10 +27,10 @@ export class DataForm {
   InvYear = '';
   InventoryCode = '';
   // user = new User();
-  
+
   // currentItem = new currentItem(); // for validate
-  
-  
+
+
   heading = 'DataForm HEADER...'
   footer = 'DataForm FOOTER...'
   recordId = '';
@@ -89,7 +89,7 @@ export class DataForm {
     // this.controller.addRenderer(new BootstrapFormRenderer());
     // this.controller.addObject(this);
     // this.controller.addObject(this.currentItem);
-// this.currentItem={}
+    // this.currentItem={}
   }
   showModal(fieldname) {
     this.appService.currentItem.fieldname = fieldname
@@ -116,7 +116,7 @@ export class DataForm {
       } else {
         if (this.appService.currentItem.artist === null) {
           //// this.currentItem.artist.ArtistName=undefined
-        //  this.controller.validate()
+          //  this.controller.validate()
         }
         console.log('cancel');
       }
@@ -288,11 +288,11 @@ export class DataForm {
             this.appService.originalrec = JSON.parse(JSON.stringify(this.appService.currentItem))// inv[0]));
 
 
-         
-          this.appService.currentView = this.appService.currentItem
-          this.appService.originalrec = JSON.parse(JSON.stringify(this.appService.currentItem))
 
-///2
+            this.appService.currentView = this.appService.currentItem
+            this.appService.originalrec = JSON.parse(JSON.stringify(this.appService.currentItem))
+
+            ///2
 
             // still needed if obj 		  value.two-way="currentItem.MediumSupportobj"   vs value.bind > 
             let meds = this.appService.codesListMediumSupport
@@ -375,6 +375,71 @@ export class DataForm {
     return true;
   }
 
+  addKeyword() {
+    if (this.appService.currentItem.addkeyword === undefined || this.appService.currentItem.addkeyword === undefined) {
+      alert('Must enter keyword')
+    } else {
+      //   "Description" : "photography", 
+      // "Integer Value" : "", 
+      // "String Value" : "", 
+      // "Sort Order" : NumberInt(0), 
+      // "Security Level" : "", 
+      // "Protected" : "N", 
+      // "Currency Value" : "", 
+      // "CodeType" : NumberInt(3), 
+      // "CodeTypeDesc" : "Genre"
+      let newword =this.appService.currentItem.addkeyword
+      let ibod = {
+        'Description': newword,
+        'CodeType': 3,
+        'CodeTypeDesc': "Genre"
+      }
+      this.appService.currentItem.addkeyword = ''
+      // "keywords" : [
+      //     "Painting", 
+      //     "American Surrealism", 
+      //     "Abstract Art"
+      // ], 
+      // let codesGenre = []//3, change to keyword
+      //       codesGenre.push(newi)
+      if (this.appService.currentItem.keywords === undefined) this.appService.currentItem.keywords = []
+
+      // this.appService.codesGenre = codesGenre//3,
+      // this.appService.currentItem.inscontact = {
+      //   'NAME_LAST': this.appService.currentItem.INS_NAME_LAST,
+      //   'NAME_FIRST': this.appService.currentItem.INS_NAME_FIRST,
+      //   'NAME_PREFIX': this.appService.currentItem.INS_NAME_PREFIX
+      // }
+      // <ak-multiselect k-value.two-way="appService.currentItem.keywords ">
+      // 							<select multiple="multiple " data-placeholder="Select keywords... ">
+      // 								<option repeat.for="opt of appService.codesGenre" model.bind="opt.Description ">
+      // 									${opt.Description}
+      // 								</option>
+      // 							</select>
+//       <ak-multiselect ak-multiselect.ref="myMultiSelect" k-data-source.bind="allFunctions"> 
+// </ak-multiselect>
+// view-model.js
+
+      this.api.addcodegenre(ibod).then((jsonRes) => {
+        //return Promise.resolve(this.dataService.loadInsurancecompany()).then(value => {
+        this.appService.codesGenre = jsonRes.data// return new codes
+  // var multiselect = $("#multiselect").data("kendoMultiSelect");
+  // let multiselect = this.multiselect.data("kendoMultiSelect");
+  // multiselect.refresh();
+  // this.multiselect.refresh()
+
+this.multiselect.kWidget.dataSource.add( newword );
+
+// you can also set the datasource again if you want to refresh all options
+//this.multiselect.kWidget.setDataSource(this.appService.codesGenre);
+
+        this.appService.currentItem.keywords.push(newword)
+        
+      })
+    }
+
+  }
+
   saveinventory(option) {
     //this.controller.validate();
     let savetime = moment().format('MM/DD/YY h:mm:ss a')
@@ -425,17 +490,17 @@ export class DataForm {
           this.appService.currentView = this.appService.currentItem
           this.appService.originalrec = JSON.parse(JSON.stringify(this.appService.currentItem))
           this.skippromt = true
-//  if (!fail) {
-//           if (option === 1) {
-//             let tab = this.appService.tabs.find(f => f.isSelected);
-//             this.closeTab(tab);
-//             this.close()
-//             this.requestclose()
+          //  if (!fail) {
+          //           if (option === 1) {
+          //             let tab = this.appService.tabs.find(f => f.isSelected);
+          //             this.closeTab(tab);
+          //             this.close()
+          //             this.requestclose()
           if (option === 1) {
             // let tab = this.appService.tabs.find(f => f.isSelected);
             // this.closeTab(tab);
             // this.close()
-             this.requestclose()
+            this.requestclose()
           } else {
 
             // this.api.findInventoryOne(this.currentItem.InventoryCode)
@@ -480,9 +545,9 @@ export class DataForm {
   //   });
   // }
 
-    canDeactivate() {
+  canDeactivate() {
     return new Promise((resolve, reject) => {
-     
+
       console.log('canDeactivate ')
       if (this.appService.currentView !== undefined && this.appService.originalrec !== {} &&
         this.appService.currentItem.id !== 'create' &&
@@ -505,9 +570,9 @@ export class DataForm {
         resolve(true);
       }
     });
-    }
+  }
   requestclose() {
-   
+
     // let tab = this.appService.tabs.find(f => f.isSelected);
     // let index = this.appService.tabs.findIndex(f => f.isSelected)
     // let rt2 = '#/claim/' + this.tabname
@@ -515,7 +580,7 @@ export class DataForm {
     // let newIndex = (index > 0) ? index - 1 : 0;
     // let newTab = this.appService.tabs[newIndex];
     // const resetFunc = () => { this.appService.originalrec = this.appService.currentItem; };
- const resetFunc = () => { this.appService.originalrec = this.appService.currentItem; };
+    const resetFunc = () => { this.appService.originalrec = this.appService.currentItem; };
     // let cand = this.canDeactivate()
     let tab = this.appService.tabs.find(f => f.isSelected);
     let index = this.appService.tabs.findIndex(f => f.isSelected)

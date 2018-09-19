@@ -132,6 +132,12 @@ if (this.currentItem.recordId !== 'create') {
         this.dartist.value = this.ArtistName
       }
 
+ if (this.fieldname === 'MediumSupportobj') {
+this.ArtistName = this.currentItem.artist
+        if (this.ArtistName.ArtistName === undefined) this.ArtistName.ArtistName = this.currentItem.artist.lastName + ', ' + this.currentItem.artist.firstName
+        this.dmediumsupport.value = this.ArtistName
+      }
+
 
       // let opos = this.orgfields.findIndex(x => x === this.fieldname);
       if (opos !== -1) {
