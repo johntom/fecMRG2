@@ -133,9 +133,17 @@ if (this.currentItem.recordId !== 'create') {
       }
 
  if (this.fieldname === 'MediumSupportobj') {
-this.ArtistName = this.currentItem.artist
-        if (this.ArtistName.ArtistName === undefined) this.ArtistName.ArtistName = this.currentItem.artist.lastName + ', ' + this.currentItem.artist.firstName
-        this.dmediumsupport.value = this.ArtistName
+   this.MediumSupportobj = this.currentItem.MediumSupportobj
+        if (this.MediumSupportobj.Description === undefined) this.MediumSupportobj.Description = this.currentItem.artist.lastName + ', ' + this.currentItem.artist.firstName
+        this.dmediumsupprt.value = this.MediumSupportobj
+	//  <select ref="MediumSupport11" id="MediumSupport11" class="form-control input-sm" value.bind="appService.currentItem.MediumSupportobj"> 
+  //                     <!-- & validate -->
+  //                     <!-- <option model.bind=" null ">Choose...</option>
+	// 										<option ref="MediumSupport21 " repeat.for="opt of appService.codesListMediumSupport " model.bind="opt ">
+	// 											${opt.Description}
+	// 										</option>
+	// 									</select>  
+
       }
 
 
