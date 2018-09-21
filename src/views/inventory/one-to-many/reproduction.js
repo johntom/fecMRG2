@@ -12,7 +12,7 @@ export class Reproduction {
     this.api = api;
     this.appService = appService;
     this.inv = '';
-    this.currentItem = this.appService.testrec;
+    this.currentItem = this.appService.currentItem//testrec;
   }
 
   activate(params, routeConfig) {

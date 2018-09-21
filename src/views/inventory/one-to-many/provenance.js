@@ -20,7 +20,7 @@ export class Provenance {
     this.api = api;
     this.appService = appService;
     this.provenance = '';
-    this.currentItem = this.appService.testrec;
+    this.currentItem = this.appService.currentItem//testrec;
     this.mode = 0;
     this.editrec = '';
     this.isDisableEdit = true

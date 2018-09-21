@@ -104,10 +104,24 @@ export class ApiService {
     return this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())
 
   }
+  addmediumsupport(rec) {
+    let url = this.baseweb + `v1/code/create`
+    console.log('url ', url)
+    return this.http.fetch(url, {
+      method: 'post',
+      mode: 'cors',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(rec)
+    }).then((res) => res.json());
+  }
+
+
   findOrgs() {
     var url = this.baseweb + 'v1/orgs';
     return this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())
-
   }
 
   //1

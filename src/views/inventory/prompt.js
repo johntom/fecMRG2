@@ -208,7 +208,23 @@ export class Prompt {
 
   }
 
+addnewms() {
+   
+    let ibod = { 'MediumSupportobj': this.currentItem.newms }
+    this.api.addmediumsupport(ibod).then((jsonRes) => {
 
+      let ms = jsonRes.data;
+      // this.appService.currentItem.insured.INSURED_ID = ins.id
+      this.appService.MediumSupportobj.id = ins.id
+      this.appService.currentItem.MediumSupportobj.Description = ins.Description
+      //this.appService.currentItem
+      this.controller.cancel()
+
+      // return Promise.resolve( this.dataService.loadInsured() ).then(values => {})
+      return Promise.resolve(this.dataService.loadInsured()) //.then(values => {})
+
+    })
+  }
   //  alert(`${this.addlist} Exists in list already!`)
   addit() {
     let meds = this.appService.savedlists

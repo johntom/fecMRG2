@@ -6,46 +6,50 @@ import { MyDataService } from "../../services/my-data-service";
 
 export class Home {
   heading = "Welcome to the MRG Home page!";
-  version = 240.18
-  versionDate= 'Thur 09/20/2018'
+  version = 240.20
+  versionDate = 'Fri 09/21/2018'
   // versiondate=Date();
-  issues=[
-  'Make tabs like mas w/scrollbar with sticky header',
-  'shortcut keys',
-  'tab hilite in detail',
-'fix dirty',
-'when going to home not refreshed',
-'lower tab shows on dialog',
+
+  issues = [
+    'Make tabs like mas w/scrollbar with sticky header',
+    'shortcut keys',
+    'tab hilite in detail',
+    'fix dirty',
+    'when going to home not refreshed',
+    'lower tab shows on dialog- see styles .tab.tab-selected {  /* z-index:40; */',
+'version = 240.20 uses   this.currentItem not this.appService.currentItem (which is a singleton)'
 
   ]
-    features=[
+  features = [
     'CTRL+SHIFT+F',
     'GUARD CLOSURE FOR MATACHER'
-   ]
-  todo=[
+  ]
+  todo = [
 
-'leave prov open (edit save)',
-'add keyword',
-'inv code not change',
-'catno, alitid edition ed commnet ret proceno type a head',
-'Edit Inscribed not swearch',
-'med support prompt add on fly',
-'mod date header',
-'sort date',
-'Set Ex not work display sponser with exhi',
-   ]
-    todocomplete=[
+    'leave prov open (edit save)',
+    'add keyword',
+    'inv code not change',
+    'catno, alitid edition ed commnet ret proceno type a head',
+    'Edit Inscribed not swearch',
+    'med support prompt add on fly',
+    'mod date header',
+    'sort date',
+    'Set Ex not work display sponser with exhi',
+    'restore GROSSM0029 and jpollack untitled '
+    
+  ]
+  todocomplete = [
 
-'x save and close',
-'x sort order on search title',
-'x ynPrompt on exhibition',
-'x Icon for offering'
+    'x save and close',
+    'x sort order on search title',
+    'x ynPrompt on exhibition',
+    'x Icon for offering'
 
-   ] 
+  ]
 
 
-//Save when on a tab will negate abilty to track dirty forms',
-  
+  //Save when on a tab will negate abilty to track dirty forms',
+
   // 'make all prompt dblclick',
   // 'check all ogs prompts'
   //  ' use brm2 app as base'
@@ -55,7 +59,7 @@ export class Home {
   }
   //   this.dataService.loadCodes(values[1]), resolve all lists
   activate() {
-     // this.appService.payeelist = await this.dataService.loadPayeeAsync()
+    // this.appService.payeelist = await this.dataService.loadPayeeAsync()
     // this.appService.artistlist = await this.dataService.loadArtistsAsync()
 
     // console.log(' await payeelist 1', this.appService.payeelist)
@@ -121,7 +125,7 @@ export class Home {
         let codesSuffix = []//40,
         let codesAdmin = []//41,
         let newi //= {}
-      
+
         for (i = 0; i < this.appService.codesList.length; i++) {
           item = this.appService.codesList[i]
           // console.log(' item ', item)
@@ -134,7 +138,7 @@ export class Home {
           // newi._id=item._id
           newi.ID = item.ID
           newi.id = item.id
-        
+
           switch (ct) {
             case 1:
               codesInventoryLocation.push(newi)
@@ -159,7 +163,7 @@ export class Home {
               break;
             case 8:
               codesPublicationType.push(newi)
-              break; 
+              break;
             case 9:
               codesReproductionType.push(newi)
               break;
@@ -265,11 +269,11 @@ export class Home {
             // allothers.push(newi)
           }
         }
-        console.log(' ===================codes 39', codesPhotographers  )
+        console.log(' ===================codes 39', codesPhotographers)
         this.appService.codesInventoryLocation = codesInventoryLocation//1,
         this.appService.codesInventoryType = codesInventoryType//2,
         this.appService.codesGenre = codesGenre//3,  codesGenre.push(newi)
-        
+
         this.appService.codesOwnership = codesOwnership//4,
         this.appService.codesFormat = codesFormat//5
         this.appService.codesPaymentMethod = codesPaymentMethod//6
@@ -312,14 +316,14 @@ export class Home {
         console.log(' this.appService.codesGenre', this.appService.codesGenre)
         console.log(' this.artistList', this.appService.artistList.length)
         // bad   this.currentItem = this.items.find(f => f.id == params.id);
-         for (i = 0; i < this.appService.artistList.length; i++) {
+        for (i = 0; i < this.appService.artistList.length; i++) {
           this.appService.artistList[i].ArtistName = this.appService.artistList[i].lastName + ', ' + this.appService.artistList[i].firstName
         }
         // let pct
-// for (let bk of this.appService.artistList) {
-//       //  console.log('bk2 ', bk2)
-//       bk.ArtistName = bk.lastName+', '+bk.firstName
-//     }
+        // for (let bk of this.appService.artistList) {
+        //       //  console.log('bk2 ', bk2)
+        //       bk.ArtistName = bk.lastName+', '+bk.firstName
+        //     }
 
 
       }).catch(error => {

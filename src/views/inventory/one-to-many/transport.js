@@ -22,7 +22,7 @@ export class Transport {
     this.api = api;
     this.appService = appService;
     this.transport = '';
-    this.currentItem = this.appService.testrec;
+    this.currentItem = this.appService.currentItem//testrec;
     this.mode = 0;
     this.editrec = '';
     this.isDisableEdit = true

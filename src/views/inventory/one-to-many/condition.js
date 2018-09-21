@@ -19,7 +19,7 @@ export class Condition {
     this.api = api;
     this.appService = appService;
     this.inv = '';
-    this.currentItem = this.appService.testrec;
+    this.currentItem = this.appService.currentItem;//testrec;
     this.mode = 0;
     this.editrec = '';
     // this.inputable='disabled'

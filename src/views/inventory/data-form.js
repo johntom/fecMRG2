@@ -92,19 +92,18 @@ export class DataForm {
     // this.currentItem={}
   }
   showModal(fieldname) {
-    this.appService.currentItem.fieldname = fieldname
-
-    this.appService.currentItem.recordId = this.recordId
-    this.dialogService.open({ viewModel: Prompt, model: this.appService.currentItem, lock: false }).whenClosed(response => {
+    this.currentItem.fieldname = fieldname
+    this.currentItem.recordId = this.recordId
+    this.dialogService.open({ viewModel: Prompt, model: this.currentItem, lock: false }).whenClosed(response => {
 
       // if (fieldname === 'Artist') {
-      //   let artistsel = this.appService.currentItem.artist;
+      //   let artistsel =   this.currentItem.artist;
       //    if (artistsel===undefined){
       //      artistsel=null
       //  //    this.currentItem.ArtistName=null
       //    }
       //   this.currentItem.artist = artistsel 
-      //  //  this.currentItem.ArtistName=this.appService.currentItem.artistname
+      //  //  this.currentItem.ArtistName=  this.currentItem.artistname
       //  //(this.currentItem.artist); 
 
       // }
@@ -114,7 +113,7 @@ export class DataForm {
         // notes.splice(index, 1)// start, deleteCount)
 
       } else {
-        if (this.appService.currentItem.artist === null) {
+        if (this.currentItem.artist === null) {
           //// this.currentItem.artist.ArtistName=undefined
           //  this.controller.validate()
         }
@@ -187,12 +186,12 @@ export class DataForm {
   // }
 
   showKeywords() {
-    alert(`GenreTypes: ${this.appService.currentItem.keywords}`);
+    alert(`GenreTypes: ${this.currentItem.keywords}`);
     //  alert(`Attendees: ${this.required}, \nOptional: ${this.optional}`);
   }
 
   factsheet() {
-    let rt2 = this.appService.currentItem.InventoryCode;
+    let rt2 = this.currentItem.InventoryCode;
     this.api.createFactSheet(rt2)
       .then((jsonRes) => {
         let success = jsonRes.data;
@@ -215,7 +214,7 @@ export class DataForm {
   }
 
   showAttendees() {
-    alert(`GenreTypes: ${this.appService.currentItem.genretypes}`);
+    alert(`GenreTypes: ${this.currentItem.genretypes}`);
     //  alert(`Attendees: ${this.required}, \nOptional: ${this.optional}`);
   }
   // (MediumSupport,currentItem.MediumSupport)
@@ -239,31 +238,31 @@ export class DataForm {
       //console.log('finihed heading', this.heading)
       if (this.recordId === 'create') {
 
-        this.appService.currentItem = {}
-        this.appService.currentItem.id = 'create'
+        this.currentItem = {}
+        this.currentItem.id = 'create'
         this.appService.testrec = {}
         this.appService.originalrec = {}
-        // this.appService.currentItem.STATUS = 1
-        // this.appService.currentItem.insured = {}
-        // this.appService.currentItem.claimant = {}
-        // this.appService.currentItem.insco = {}
-        // this.appService.currentItem.insaddress = {}
-        // this.appService.currentItem.inscontact = {}
-        this.appService.currentItem.provenance = []
-        this.appService.currentItem.notes = []
-        this.appService.currentItem.exhibitions = []
-        this.appService.currentItem.reproductions = []
-        this.appService.currentItem.transport = []
-        this.appService.currentItem.conservation = []
-        this.appService.currentItem.condition = []
-        this.appService.currentItem.purchased = []
-        this.appService.currentItem.soldto = []
-        this.appService.currentItem.museumloan = []
-        this.appService.currentItem.consignedto = []
-        this.appService.currentItem.offering = []
-        this.appService.currentItem.consigned = []
-        this.appService.currentItem.photo = []
-        this.appService.currentItem.docs = []
+        //   this.currentItem.STATUS = 1
+        //   this.currentItem.insured = {}
+        //   this.currentItem.claimant = {}
+        //   this.currentItem.insco = {}
+        //   this.currentItem.insaddress = {}
+        //   this.currentItem.inscontact = {}
+        this.currentItem.provenance = []
+        this.currentItem.notes = []
+        this.currentItem.exhibitions = []
+        this.currentItem.reproductions = []
+        this.currentItem.transport = []
+        this.currentItem.conservation = []
+        this.currentItem.condition = []
+        this.currentItem.purchased = []
+        this.currentItem.soldto = []
+        this.currentItem.museumloan = []
+        this.currentItem.consignedto = []
+        this.currentItem.offering = []
+        this.currentItem.consigned = []
+        this.currentItem.photo = []
+        this.currentItem.docs = []
 
 
       } else {
@@ -274,72 +273,57 @@ export class DataForm {
           .then((jsonRes) => {
             console.log('jsonRes ', jsonRes);
             let inv = jsonRes.data;
-            //  this.inv = inv[0]
             this.currentItem = inv[0]
-            this.appService.currentItem = inv[0]
-            this.appService.testrec = inv[0]
-            this.appService.currentItem.isDirty = () => {
-              return JSON.stringify(this.appService.currentItem) !== JSON.stringify(this.appService.originalrec)
+            this.appService.currentItem =  this.currentItem//inv[0]
+            this.currentItem.isDirty = () => {
+              return JSON.stringify(this.currentItem) !== JSON.stringify(this.appService.originalrec)
             };
-            this.appService.currentItem.reset = () => {
-              this.appService.originalrec = this.appService.currentItem;
+            this.currentItem.reset = () => {
+              // this.appService.originalrec =   this.currentItem;
+              this.appService.originalrec = JSON.parse(JSON.stringify(this.currentItem))
             }
-            this.appService.currentView = this.appService.currentItem; // must set on every view
-            this.appService.originalrec = JSON.parse(JSON.stringify(this.appService.currentItem))// inv[0]));
+            this.appService.currentView = this.currentItem; // must set on every view
+            this.appService.originalrec = JSON.parse(JSON.stringify(this.currentItem))// inv[0]));
 
-
-
-            this.appService.currentView = this.appService.currentItem
-            this.appService.originalrec = JSON.parse(JSON.stringify(this.appService.currentItem))
-
-            ///2
-
-            // still needed if obj 		  value.two-way="currentItem.MediumSupportobj"   vs value.bind > 
             let meds = this.appService.codesListMediumSupport
-            if ((this.appService.currentItem.MediumSupportobj === undefined) || (this.currentItem.MediumSupportobj === null)) {
+            if ((this.currentItem.MediumSupportobj === undefined) || (this.currentItem.MediumSupportobj === null)) {
             } else {
               // if( this.currentItem.MediumSupportobj!==undefined){
-              let mid = meds.findIndex(x => x.id === this.appService.currentItem.MediumSupportobj.id)
-              this.appService.currentItem.MediumSupportobj = this.appService.codesListMediumSupport[mid]//10]// test
+              let mid = meds.findIndex(x => x.id === this.currentItem.MediumSupportobj.id)
+              this.currentItem.MediumSupportobj = this.appService.codesListMediumSupport[mid]//10]// test
             }
 
             let oid
             let orgobj
             let orgs = this.appService.orgsList
-            if ((this.appService.currentItem.SoldTo === undefined) || (this.currentItem.orgsList === null)) {
+            if ((this.currentItem.SoldTo === undefined) || (this.currentItem.orgsList === null)) {
             } else {
               oid = orgs.findIndex(x => x._id === this.currentItem.SoldTo)
               orgobj = this.appService.orgsList[oid]//10]
-              if (orgobj !== undefined) this.appService.currentItem.soldtoname = orgobj.OrgName
+              if (orgobj !== undefined) this.currentItem.soldtoname = orgobj.OrgName
             }
 
-            if ((this.appService.currentItem.OwnerID === undefined) || (this.appService.orgsList === null)) {
+            if ((this.currentItem.OwnerID === undefined) || (this.appService.orgsList === null)) {
             } else {
-              oid = orgs.findIndex(x => x._id === this.appService.currentItem.OwnerID)
+              oid = orgs.findIndex(x => x._id === this.currentItem.OwnerID)
               orgobj = this.appService.orgsList[oid]//10]
-              if (orgobj !== undefined) this.appService.currentItem.ownername = orgobj.OrgName
-              // this.OrgName = orgobj
-              // this.dorg.value = this.OrgName  this.currentItem.ownername this.currentItem.soldtoname
+              if (orgobj !== undefined) this.currentItem.ownername = orgobj.OrgName
             }
 
-
-
-            if ((this.appService.currentItem.SoldToID === undefined) || (this.appService.orgsList === null)) {
+            if ((this.currentItem.SoldToID === undefined) || (this.appService.orgsList === null)) {
             } else {
-              oid = orgs.findIndex(x => x._id === this.appService.currentItem.SoldToID)
+              oid = orgs.findIndex(x => x._id === this.currentItem.SoldToID)
               orgobj = this.appService.orgsList[oid]//10]
-              if (orgobj !== undefined) this.appService.currentItem.soldtoname = orgobj.OrgName
+              if (orgobj !== undefined) this.currentItem.soldtoname = orgobj.OrgName
             }
 
-
-
-            if ((this.appService.currentItem.artist === undefined) || (this.appService.currentItem.artist === null)) {
+            if ((this.currentItem.artist === undefined) || (this.currentItem.artist === null)) {
               // this.currentItem={}// for create only
             } else {
               let arts = this.appService.artistList
-              let aid = arts.findIndex(x => x.id === this.appService.currentItem.artist.id)
+              let aid = arts.findIndex(x => x.id === this.currentItem.artist.id)
               let artistobj = this.appService.artistList[aid]//10]
-              if (artistobj !== undefined) this.appService.currentItem.artist = artistobj//.OrgName
+              if (artistobj !== undefined) this.currentItem.artist = artistobj//.OrgName
             }
             console.log('finihed active1')
             // return inv
@@ -376,7 +360,7 @@ export class DataForm {
   }
 
   addKeyword() {
-    if (this.appService.currentItem.addkeyword === undefined || this.appService.currentItem.addkeyword === undefined) {
+    if (this.currentItem.addkeyword === undefined || this.currentItem.addkeyword === undefined) {
       alert('Must enter keyword')
     } else {
       //   "Description" : "photography", 
@@ -388,13 +372,13 @@ export class DataForm {
       // "Currency Value" : "", 
       // "CodeType" : NumberInt(3), 
       // "CodeTypeDesc" : "Genre"
-      let newword =this.appService.currentItem.addkeyword
+      let newword = this.currentItem.addkeyword
       let ibod = {
         'Description': newword,
         'CodeType': 3,
         'CodeTypeDesc': "Genre"
       }
-      this.appService.currentItem.addkeyword = ''
+      this.currentItem.addkeyword = ''
       // "keywords" : [
       //     "Painting", 
       //     "American Surrealism", 
@@ -402,13 +386,13 @@ export class DataForm {
       // ], 
       // let codesGenre = []//3, change to keyword
       //       codesGenre.push(newi)
-      if (this.appService.currentItem.keywords === undefined) this.appService.currentItem.keywords = []
+      if (this.currentItem.keywords === undefined) this.currentItem.keywords = []
 
       // this.appService.codesGenre = codesGenre//3,
-      // this.appService.currentItem.inscontact = {
-      //   'NAME_LAST': this.appService.currentItem.INS_NAME_LAST,
-      //   'NAME_FIRST': this.appService.currentItem.INS_NAME_FIRST,
-      //   'NAME_PREFIX': this.appService.currentItem.INS_NAME_PREFIX
+      //   this.currentItem.inscontact = {
+      //   'NAME_LAST':   this.currentItem.INS_NAME_LAST,
+      //   'NAME_FIRST':   this.currentItem.INS_NAME_FIRST,
+      //   'NAME_PREFIX':   this.currentItem.INS_NAME_PREFIX
       // }
       // <ak-multiselect k-value.two-way="appService.currentItem.keywords ">
       // 							<select multiple="multiple " data-placeholder="Select keywords... ">
@@ -416,25 +400,25 @@ export class DataForm {
       // 									${opt.Description}
       // 								</option>
       // 							</select>
-//       <ak-multiselect ak-multiselect.ref="myMultiSelect" k-data-source.bind="allFunctions"> 
-// </ak-multiselect>
-// view-model.js
+      //       <ak-multiselect ak-multiselect.ref="myMultiSelect" k-data-source.bind="allFunctions"> 
+      // </ak-multiselect>
+      // view-model.js
 
       this.api.addcodegenre(ibod).then((jsonRes) => {
         //return Promise.resolve(this.dataService.loadInsurancecompany()).then(value => {
         this.appService.codesGenre = jsonRes.data// return new codes
-  // var multiselect = $("#multiselect").data("kendoMultiSelect");
-  // let multiselect = this.multiselect.data("kendoMultiSelect");
-  // multiselect.refresh();
-  // this.multiselect.refresh()
+        // var multiselect = $("#multiselect").data("kendoMultiSelect");
+        // let multiselect = this.multiselect.data("kendoMultiSelect");
+        // multiselect.refresh();
+        this.multiselect.refresh()
 
-this.multiselect.kWidget.dataSource.add( newword );
+        // this.multiselect.kWidget.dataSource.add( newword );
 
-// you can also set the datasource again if you want to refresh all options
-//this.multiselect.kWidget.setDataSource(this.appService.codesGenre);
+        // you can also set the datasource again if you want to refresh all options
+        //this.multiselect.kWidget.setDataSource(this.appService.codesGenre);
 
-        this.appService.currentItem.keywords.push(newword)
-        
+        this.currentItem.keywords.push(newword)
+
       })
     }
 
@@ -445,13 +429,13 @@ this.multiselect.kWidget.dataSource.add( newword );
     let savetime = moment().format('MM/DD/YY h:mm:ss a')
 
     if (this.recordId === 'create') {
-      // console.log(this.appService.currentItem, this.currentItem)
-      this.api.createinventory(this.appService.currentItem).then((jsonRes) => {
+      // console.log(  this.currentItem, this.currentItem)
+      this.api.createinventory(this.currentItem).then((jsonRes) => {
         console.log('jsonRes ', jsonRes);
         this.recordId = jsonRes.id
         //let tab = this.appService.tabs.find(f => f.isSelected);
-        if (this.appService.currentItem.id === 'create') {
-          this.appService.currentItem.id = ''
+        if (this.currentItem.id === 'create') {
+          this.currentItem.id = ''
 
           this.message = "Save successful. Claim added @ " + savetime
         }
@@ -459,12 +443,12 @@ this.multiselect.kWidget.dataSource.add( newword );
 
         // let inv = jsonRes
         // this.currentItem = inv
-        // this.appService.currentItem = inv
+        //   this.currentItem = inv
         // this.appService.testrec = inv
         // this.appService.currentView = this.currentItem; // must set on every view
         // this.appService.originalrec = JSON.parse(JSON.stringify(this.currentItem))
-        // //  this.appService.currentView = this.appService.currentItem; // must set on every view
-        // //  this.appService.originalrec = JSON.parse(JSON.stringify(this.appService.currentItem))// inv[0]));
+        // //  this.appService.currentView =   this.currentItem; // must set on every view
+        // //  this.appService.originalrec = JSON.parse(JSON.stringify(  this.currentItem))// inv[0]));
         // ///
 
         if (option === 1) {
@@ -472,23 +456,23 @@ this.multiselect.kWidget.dataSource.add( newword );
           this.closeTab(tab);
           this.close()
         } else {
-          this.appService.originalrec = this.appService.currentItem
+          this.appService.originalrec = this.currentItem
         }
       });
     } else {
-      // console.log(' call save ', JSON.stringify(this.appService.currentItem) === JSON.stringify(this.appService.testrec)) //this.appService.currentClaim)
+      // console.log(' call save ', JSON.stringify(  this.currentItem) === JSON.stringify(this.appService.testrec)) //this.appService.currentClaim)
       //return 
-      // if (JSON.stringify(this.appService.currentItem) !== JSON.stringify(this.appService.originalrec)) {
-      if (JSON.stringify(this.appService.currentItem) !== JSON.stringify(this.appService.originalrec)) {
-        this.api.saveinventory(this.appService.currentItem).then((jsonRes) => {
+      // if (JSON.stringify(  this.currentItem) !== JSON.stringify(this.appService.originalrec)) {
+      if (JSON.stringify(this.currentItem) !== JSON.stringify(this.appService.originalrec)) {
+        this.api.saveinventory(this.currentItem).then((jsonRes) => {
           console.log('jsonRes ', jsonRes);
           let tab = this.appService.tabs.find(f => f.isSelected);
           // window.alert("Save successful!");
           this.message = "Save successful. Inventory updated @ " + savetime
 
-          this.appService.testrec = this.appService.currentItem
-          this.appService.currentView = this.appService.currentItem
-          this.appService.originalrec = JSON.parse(JSON.stringify(this.appService.currentItem))
+          this.appService.testrec = this.currentItem
+          this.appService.currentView = this.currentItem
+          this.appService.originalrec = JSON.parse(JSON.stringify(this.currentItem))
           this.skippromt = true
           //  if (!fail) {
           //           if (option === 1) {
@@ -508,16 +492,16 @@ this.multiselect.kWidget.dataSource.add( newword );
             //     console.log('jsonRes ', jsonRes);
             //     let inv = jsonRes.data;
             //     this.currentItem = inv[0]
-            //     this.appService.currentItem = inv[0]
+            //       this.currentItem = inv[0]
             //     this.appService.testrec = inv[0]
-            //     this.appService.currentItem.isDirty = () => {
-            //       return JSON.stringify(this.appService.currentItem) !== JSON.stringify(this.appService.originalrec)
+            //       this.currentItem.isDirty = () => {
+            //       return JSON.stringify(  this.currentItem) !== JSON.stringify(this.appService.originalrec)
             //     };
-            //     this.appService.currentItem.reset = () => {
-            //       this.appService.originalrec = this.appService.currentItem;
+            //       this.currentItem.reset = () => {
+            //       this.appService.originalrec =   this.currentItem;
             //     }
             //     this.appService.currentView = this.currentItem
-            //     this.appService.originalrec = JSON.parse(JSON.stringify(this.appService.currentItem))
+            //     this.appService.originalrec = JSON.parse(JSON.stringify(  this.currentItem))
             //   })
 
           }
@@ -528,9 +512,9 @@ this.multiselect.kWidget.dataSource.add( newword );
 
   // canDeactivate() {
   //   return new Promise((resolve, reject) => {
-  //     if (this.appService.currentItem &&
-  //       this.appService.currentItem.isDirty &&
-  //       this.appService.currentItem.isDirty()) {
+  //     if (  this.currentItem &&
+  //         this.currentItem.isDirty &&
+  //         this.currentItem.isDirty()) {
   //       // Now, we need to query the user... result => makes it a closure
   //       this.appService.asyncHandleDirty().then(result => {
   //         if (!result.wasCancelled) {
@@ -550,7 +534,7 @@ this.multiselect.kWidget.dataSource.add( newword );
 
       console.log('canDeactivate ')
       if (this.appService.currentView !== undefined && this.appService.originalrec !== {} &&
-        this.appService.currentItem.id !== 'create' &&
+        this.currentItem.id !== 'create' &&
         this.appService.currentView && this.appService.currentView.isDirty &&
         this.appService.currentView.isDirty()) {
 
@@ -579,8 +563,8 @@ this.multiselect.kWidget.dataSource.add( newword );
 
     // let newIndex = (index > 0) ? index - 1 : 0;
     // let newTab = this.appService.tabs[newIndex];
-    // const resetFunc = () => { this.appService.originalrec = this.appService.currentItem; };
-    const resetFunc = () => { this.appService.originalrec = this.appService.currentItem; };
+    // const resetFunc = () => { this.appService.originalrec =   this.currentItem; };
+    const resetFunc = () => { this.appService.originalrec = this.currentItem; };
     // let cand = this.canDeactivate()
     let tab = this.appService.tabs.find(f => f.isSelected);
     let index = this.appService.tabs.findIndex(f => f.isSelected)
