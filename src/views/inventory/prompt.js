@@ -93,18 +93,18 @@ export class Prompt {
     // this.appService.currentsavedlist
 
     //   this.currentItem = this.appService.currentItem
-    
-      let opos = this.orgfields.findIndex(x => x === this.fieldname);
-      if (opos !== -1) {
-        this.orgfielddescription = this.orgfielddesc[opos]
 
-      } else {
-        this.orgfielddescription = this.fieldname
-      }
-      this.doc = `type any characters of the ${this.orgfielddescription} to select.`
-      this.heading = `Search ${this.orgfielddescription} to select.`
-      this.placeholder = `Enter any characters on ${this.orgfielddescription} to select.`
-if (this.currentItem.recordId !== 'create') { 
+    let opos = this.orgfields.findIndex(x => x === this.fieldname);
+    if (opos !== -1) {
+      this.orgfielddescription = this.orgfielddesc[opos]
+
+    } else {
+      this.orgfielddescription = this.fieldname
+    }
+    this.doc = `type any characters of the ${this.orgfielddescription} to select.`
+    this.heading = `Search ${this.orgfielddescription} to select.`
+    this.placeholder = `Enter any characters on ${this.orgfielddescription} to select.`
+    if (this.currentItem.recordId !== 'create') {
       // if (this.fieldname === 'ArtistX') {
       //   let artists = this.appService.artistList
       //   if ((this.currentItem.artist === undefined) || (this.currentItem.artist === null)) {
@@ -132,17 +132,20 @@ if (this.currentItem.recordId !== 'create') {
         this.dartist.value = this.ArtistName
       }
 
- if (this.fieldname === 'MediumSupportobj') {
-   this.MediumSupportobj = this.currentItem.MediumSupportobj
-        if (this.MediumSupportobj.Description === undefined) this.MediumSupportobj.Description = this.currentItem.artist.lastName + ', ' + this.currentItem.artist.firstName
-        this.dmediumsupprt.value = this.MediumSupportobj
-	//  <select ref="MediumSupport11" id="MediumSupport11" class="form-control input-sm" value.bind="appService.currentItem.MediumSupportobj"> 
-  //                     <!-- & validate -->
-  //                     <!-- <option model.bind=" null ">Choose...</option>
-	// 										<option ref="MediumSupport21 " repeat.for="opt of appService.codesListMediumSupport " model.bind="opt ">
-	// 											${opt.Description}
-	// 										</option>
-	// 									</select>  
+      if (this.fieldname === 'MediumSupportobj') {
+        // this.MediumSupportobj = this.currentItem.MediumSupportobj
+        // if (this.MediumSupportobj.Description === undefined) this.MediumSupportobj.Description = this.currentItem.MediumSupportobj.Description
+       
+        this.MedSup = this.currentItem.MediumSupportobj
+        if (this.MedSup.Description === undefined) this.MedSup.Description = this.currentItem.MediumSupportobj.Description
+        this.dmediumsupport.value = this.MedSup
+        //  <select ref="MediumSupport11" id="MediumSupport11" class="form-control input-sm" value.bind="appService.currentItem.MediumSupportobj"> 
+        //                     <!-- & validate -->
+        //                     <!-- <option model.bind=" null ">Choose...</option>
+        // 										<option ref="MediumSupport21 " repeat.for="opt of appService.codesListMediumSupport " model.bind="opt ">
+        // 											${opt.Description}
+        // 										</option>
+        // 									</select>  
 
       }
 
@@ -265,8 +268,10 @@ if (this.currentItem.recordId !== 'create') {
       this.currentItem.artist = this.ArtistName
       this.appService.currentItem.artist = this.ArtistName
     }
-
-
+    if (this.fieldname === 'MediumSupportobj') {
+      this.currentItem.MediumSupportobj = this.MedSup
+      this.appService.currentItem.MediumSupportobj = this.MedSup
+    }
     if (this.fieldname === 'OwnerID') {
       this.currentItem.OwnerID = this.OrgName._id
       this.currentItem.ownername = this.OrgName.OrgName

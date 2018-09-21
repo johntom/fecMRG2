@@ -185,7 +185,7 @@
 											</option>
 										</select>  -->
 										<input dblclick.delegate="showModal( 'MediumSupportobj') " type="text " xid="MediumSupportobj " class="form-control input-sm "
-										 value.bind="appService.currentItem.Description ">
+										 value.bind="appService.currentItem.MediumSupportobj.Description ">
 									</div>
 									<div class="Rtable Rtable--4cols ">
 										<div class="Rtable-cell Rtable-cell--highlight ">
@@ -556,18 +556,18 @@
 				<div if.bind="recordId==='create' ">Create Mode. Please save record before entering tabs </div>
 				<div else>
 
-					<div id="bottom-left " class="flex-row-3 ">
-						<div id="data-form-ext " class="flex-column-1 ">
-							<div id="data-form-one-to-many-tabs " class="flex-row-none flex-wrap ">
-								<div repeat.for="tab of appService.dataFormOneToManyTabs " class="tab ${tab.isSelected ? 'tab-selected' : ''} ">
-									<div class="form-tab-box " click.delegate="selectOneToManyTab(tab) ">
+					<div id="bottom-left" class="flex-row-3">
+						<div id="data-form-ext" class="flex-column-1">
+							<div id="data-form-one-to-many-tabs" class="flex-row-none flex-wrap">
+								<div repeat.for="tab of appService.dataFormOneToManyTabs" class="tab ${tab.isSelected ? 'tab-selected' : ''} ">
+									<div class="form-tab-box" click.delegate="selectOneToManyTab(tab) ">
 										<span>${tab.name}</span>
 									</div>
 								</div>
 							</div>
-							<div id="data-form-one-to-many-tab-content overflow-y-hidden " class="data-form flex-row-1 " style="background:
+							<div id="data-form-one-to-many-tab-content overflow-y-hidden" class="data-form flex-row-1" style="background:
 										 darkgray; ">
-								<compose view-model.bind="currentOneToManyTab.viewModel "></compose>
+								<compose view-model.bind="currentOneToManyTab.viewModel"></compose>
 							</div>
 						</div>
 					</div>
@@ -579,9 +579,7 @@
 					</ul> -->
 				<!-- </form> -->
 				<!-- after or before the form -->
-
 			</form>
-
 		</div>
 		<footerform class="flex-row-none ">
 			inventory-

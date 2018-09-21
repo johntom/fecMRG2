@@ -6,7 +6,7 @@ import { MyDataService } from "../../services/my-data-service";
 
 export class Home {
   heading = "Welcome to the MRG Home page!";
-  version = 240.17
+  version = 240.17a
   versionDate= 'Thur 09/20/2018'
   // versiondate=Date();
   issues=[
@@ -15,7 +15,7 @@ export class Home {
   'tab hilite in detail',
 'fix dirty',
 'when going to home not refreshed',
-'tab shows on dialog',
+'lower tab shows on dialog',
 
   ]
     features=[
