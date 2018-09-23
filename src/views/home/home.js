@@ -6,7 +6,7 @@ import { MyDataService } from "../../services/my-data-service";
 
 export class Home {
   heading = "Welcome to the MRG Home page!";
-  version = 240.23
+  version = 240.24
   versionDate = 'Sun 09/23/2018'
   // versiondate=Date();
 
@@ -17,7 +17,7 @@ export class Home {
     'fix dirty',
     'when going to home not refreshed',
     'lower tab shows on dialog- see styles .tab.tab-selected {  /* z-index:40; */',
-'version = 240.20 uses   this.currentItem not this.appService.currentItem (which is a singleton)'
+    'version = 240.20 uses   this.currentItem not this.appService.currentItem (which is a singleton)'
 
   ]
   features = [
@@ -36,7 +36,7 @@ export class Home {
     'sort date',
     'Set Ex not work display sponser with exhi',
     'restore GROSSM0029 and jpollack untitled '
-    
+
   ]
   todocomplete = [
 

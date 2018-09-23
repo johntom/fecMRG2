@@ -132,6 +132,7 @@ export class DataForm {
           "CodeTypeDesc": "Genre",
           id: codeobj.id
         }
+        this.currentItem.keywords.push(value)
         dataSource.add(rec)
       });
 

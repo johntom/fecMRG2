@@ -372,20 +372,26 @@
 									<!-- ak-multiselect.ref="myMultiSelect" k-data-source.bind="allFunctions" -->
 									<div class="Rtable-cell-70 Rtable-cell--highlight ">
 
-										<!-- <ak-multiselect ak-multiselect.ref='multiselect' k-widget.two-way="multiselect" k-value.two-way="currentItem.keywords">
+										<!-- <ak-multiselect ak-multiselect.ref='multiselect' k-widget.two-way="multiselect"
+                     k-value.two-way="currentItem.keywords">
 											<select multiple="multiple " data-placeholder="Select keywords... ">
 												<option repeat.for="opt of appService.codesGenre" model.bind="opt.Description ">
 													${opt.Description}
 												</option>
 											</select>
-										</ak-multiselect> -->
-										<ak-multiselect ak-multiselect.ref="multiselect" 
-                    k-value.two-way="currentItem.keywords" k-placeholder="Select keywords..."
-										 k-data-text-field="Description"
+										</ak-multiselect> 
+                       k-widget.bind="multiselect" 
+                     ak-multiselect.ref="multiselect"  k-value.bind="currentItem.keywords" Description-->
+										<ak-multiselect
+                      k-value.two-way="currentItem.keywords" k-placeholder="Select keywords..."
+										  k-data-text-field="Description"
                       k-data-value-field="Description" 
                       k-height.bind="400" k-data-source.bind="dataSource"
-										 k-value.bind="currentItem.keywords"
-                      k-widget.bind="multiselect" id="multiselect-customizing-templates-codes">
+										  k-value.bind="currentItem.keywords"
+                      
+                   
+                      k-widget.two-way="multiselect" 
+                      id="multiselect-customizing-templates-codes">
 											<ak-template for="noDataTemplate">
 												<div>
 													<button ak-button click.delegate="addNew()">addNew</button>
