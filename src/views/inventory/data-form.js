@@ -77,6 +77,81 @@ export class DataForm {
     div_name: "Secondary"
   };
 
+  dataSource = new kendo.data.DataSource({
+    transport: {
+      read: (options) => {
+        options.success(this.appService.codesGenre);
+      },
+      // create: {
+      //     url: "https://demos.telerik.com/kendo-ui/service/Products/Create",
+      //     dataType: "jsonp"
+      // },
+      parameterMap: function (options, operation) {
+        if (operation !== "read" && options.models) {
+          return { models: kendo.stringify(options.models) };
+        }
+      }
+
+    },
+    schema: {
+      model: {
+        id: "id",
+        fields: {
+          "CodeType": { type: "number" },
+          "Description": { type: "string" },
+          "CodeTypeDesc": { type: "string" },
+        }
+      }
+    }
+  });
+  /*
+    "CodeType" : NumberInt(3), 
+     "CodeTypeDesc" : "Genre"
+      */
+  // addNew(ctx) {
+    addNew() {
+    var value = this.multiselect.input.val();
+    var dataSource = this.multiselect.dataSource;
+    var widget = this.multiselect
+
+    //  if (confirm("Are you sure?")) {
+    let bod = {
+      "CodeType": 3,
+      "Description": value,
+      "CodeTypeDesc": "Genre"
+    }
+
+    this.api.addmediumsupport(bod)
+      .then((jsonRes) => {
+        this.appService.codesGenre = jsonRes.data;
+        oid = this.appService.codesGenre.findIndex(x => x.Description === value)
+        codeobj = this.appService.codesGenre[oid]
+        let rec = {
+          "CodeType": 3,
+          "Description": value,
+          "CodeTypeDesc": "Genre",
+          id: codeobj.id
+        }
+        dataSource.add(rec)
+      });
+
+    // dataSource.one("requestEnd", function (args) {
+    //   if (args.type !== "create") {
+    //     return;
+    //   }
+
+    //   var newValue = args.response[0].ProductID;
+    //   alert(newValue)
+    //   dataSource.one("sync", function () {
+    //     alert(newValue)
+    //     widget.value(widget.value().concat([newValue]));
+    //   });
+    // });
+
+    dataSource.sync();
+    widget.refresh();// keep the focus
+  }
+
   constructor(router, api, appService, dataService, dialogService, controllerFactory) {
     this.api = api
     this.appService = appService
@@ -274,7 +349,7 @@ export class DataForm {
             console.log('jsonRes ', jsonRes);
             let inv = jsonRes.data;
             this.currentItem = inv[0]
-            this.appService.currentItem =  this.currentItem//inv[0]
+            this.appService.currentItem = this.currentItem//inv[0]
             this.currentItem.isDirty = () => {
               return JSON.stringify(this.currentItem) !== JSON.stringify(this.appService.originalrec)
             };
@@ -359,70 +434,70 @@ export class DataForm {
     return true;
   }
 
-  addKeyword() {
-    if (this.currentItem.addkeyword === undefined || this.currentItem.addkeyword === undefined) {
-      alert('Must enter keyword')
-    } else {
-      //   "Description" : "photography", 
-      // "Integer Value" : "", 
-      // "String Value" : "", 
-      // "Sort Order" : NumberInt(0), 
-      // "Security Level" : "", 
-      // "Protected" : "N", 
-      // "Currency Value" : "", 
-      // "CodeType" : NumberInt(3), 
-      // "CodeTypeDesc" : "Genre"
-      let newword = this.currentItem.addkeyword
-      let ibod = {
-        'Description': newword,
-        'CodeType': 3,
-        'CodeTypeDesc': "Genre"
-      }
-      this.currentItem.addkeyword = ''
-      // "keywords" : [
-      //     "Painting", 
-      //     "American Surrealism", 
-      //     "Abstract Art"
-      // ], 
-      // let codesGenre = []//3, change to keyword
-      //       codesGenre.push(newi)
-      if (this.currentItem.keywords === undefined) this.currentItem.keywords = []
+  // addKeyword() {
+  //   if (this.currentItem.addkeyword === undefined || this.currentItem.addkeyword === undefined) {
+  //     alert('Must enter keyword')
+  //   } else {
+  //     //   "Description" : "photography", 
+  //     // "Integer Value" : "", 
+  //     // "String Value" : "", 
+  //     // "Sort Order" : NumberInt(0), 
+  //     // "Security Level" : "", 
+  //     // "Protected" : "N", 
+  //     // "Currency Value" : "", 
+  //     // "CodeType" : NumberInt(3), 
+  //     // "CodeTypeDesc" : "Genre"
+  //     let newword = this.currentItem.addkeyword
+  //     let ibod = {
+  //       'Description': newword,
+  //       'CodeType': 3,
+  //       'CodeTypeDesc': "Genre"
+  //     }
+  //     this.currentItem.addkeyword = ''
+  //     // "keywords" : [
+  //     //     "Painting", 
+  //     //     "American Surrealism", 
+  //     //     "Abstract Art"
+  //     // ], 
+  //     // let codesGenre = []//3, change to keyword
+  //     //       codesGenre.push(newi)
+  //     if (this.currentItem.keywords === undefined) this.currentItem.keywords = []
 
-      // this.appService.codesGenre = codesGenre//3,
-      //   this.currentItem.inscontact = {
-      //   'NAME_LAST':   this.currentItem.INS_NAME_LAST,
-      //   'NAME_FIRST':   this.currentItem.INS_NAME_FIRST,
-      //   'NAME_PREFIX':   this.currentItem.INS_NAME_PREFIX
-      // }
-      // <ak-multiselect k-value.two-way="appService.currentItem.keywords ">
-      // 							<select multiple="multiple " data-placeholder="Select keywords... ">
-      // 								<option repeat.for="opt of appService.codesGenre" model.bind="opt.Description ">
-      // 									${opt.Description}
-      // 								</option>
-      // 							</select>
-      //       <ak-multiselect ak-multiselect.ref="myMultiSelect" k-data-source.bind="allFunctions"> 
-      // </ak-multiselect>
-      // view-model.js
+  //     // this.appService.codesGenre = codesGenre//3,
+  //     //   this.currentItem.inscontact = {
+  //     //   'NAME_LAST':   this.currentItem.INS_NAME_LAST,
+  //     //   'NAME_FIRST':   this.currentItem.INS_NAME_FIRST,
+  //     //   'NAME_PREFIX':   this.currentItem.INS_NAME_PREFIX
+  //     // }
+  //     // <ak-multiselect k-value.two-way="appService.currentItem.keywords ">
+  //     // 							<select multiple="multiple " data-placeholder="Select keywords... ">
+  //     // 								<option repeat.for="opt of appService.codesGenre" model.bind="opt.Description ">
+  //     // 									${opt.Description}
+  //     // 								</option>
+  //     // 							</select>
+  //     //       <ak-multiselect ak-multiselect.ref="myMultiSelect" k-data-source.bind="allFunctions"> 
+  //     // </ak-multiselect>
+  //     // view-model.js
 
-      this.api.addcodegenre(ibod).then((jsonRes) => {
-        //return Promise.resolve(this.dataService.loadInsurancecompany()).then(value => {
-        this.appService.codesGenre = jsonRes.data// return new codes
-        // var multiselect = $("#multiselect").data("kendoMultiSelect");
-        // let multiselect = this.multiselect.data("kendoMultiSelect");
-        // multiselect.refresh();
-        this.multiselect.refresh()
+  //     this.api.addcodegenre(ibod).then((jsonRes) => {
+  //       //return Promise.resolve(this.dataService.loadInsurancecompany()).then(value => {
+  //       this.appService.codesGenre = jsonRes.data// return new codes
+  //       // var multiselect = $("#multiselect").data("kendoMultiSelect");
+  //       // let multiselect = this.multiselect.data("kendoMultiSelect");
+  //       // multiselect.refresh();
+  //       this.multiselect.refresh()
 
-        // this.multiselect.kWidget.dataSource.add( newword );
+  //       // this.multiselect.kWidget.dataSource.add( newword );
 
-        // you can also set the datasource again if you want to refresh all options
-        //this.multiselect.kWidget.setDataSource(this.appService.codesGenre);
+  //       // you can also set the datasource again if you want to refresh all options
+  //       //this.multiselect.kWidget.setDataSource(this.appService.codesGenre);
 
-        this.currentItem.keywords.push(newword)
+  //       this.currentItem.keywords.push(newword)
 
-      })
-    }
+  //     })
+  //   }
 
-  }
+  // }
 
   saveinventory(option) {
     //this.controller.validate();
