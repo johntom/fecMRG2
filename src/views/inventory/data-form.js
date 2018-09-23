@@ -124,8 +124,8 @@ export class DataForm {
     this.api.addmediumsupport(bod)
       .then((jsonRes) => {
         this.appService.codesGenre = jsonRes.data;
-        oid = this.appService.codesGenre.findIndex(x => x.Description === value)
-        codeobj = this.appService.codesGenre[oid]
+        let oid = this.appService.codesGenre.findIndex(x => x.Description === value)
+        let codeobj = this.appService.codesGenre[oid]
         let rec = {
           "CodeType": 3,
           "Description": value,

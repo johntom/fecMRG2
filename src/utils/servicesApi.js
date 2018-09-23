@@ -105,7 +105,7 @@ export class ApiService {
 
   }
   addmediumsupport(rec) {
-    let url = this.baseweb + `v1/code/create`
+    let url = this.baseweb + `v1/codes/create`
     console.log('url ', url)
     return this.http.fetch(url, {
       method: 'post',
