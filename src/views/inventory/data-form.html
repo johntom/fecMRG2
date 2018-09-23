@@ -4,7 +4,7 @@
   -->
 	<require from="aurelia-kendoui-bridge/multiselect/multiselect"></require>
 	<require from="aurelia-kendoui-bridge/button/button"></require>
-   <require from="aurelia-kendoui-bridge/common/template"></require>
+	<require from="aurelia-kendoui-bridge/common/template"></require>
 	<require from="./modal-form"></require>
 	<require from="./flex.css"></require>
 	<style>
@@ -72,7 +72,7 @@
 	<!-- /.modal -->
 	<!-- /.modal form-->
 	<modal-form ref="edit_division" record_id.bind="division.div_id" title="${division.div_id ? 'Edit_Division' : 'New_Division'}"
-	 error.bind="error"> 
+	 error.bind="error">
 		<form>
 			<div class="form-group">
 				<label class="control-label" for="div_code">Division code2</label>
@@ -366,8 +366,8 @@
 										<strong> Keywords </strong>
 										<!-- <button ak-button click.delegate="showKeywords() ">Show keywords</button> -->
 
-										<button class="btn btn-success" click.trigger="addKeyword()">Add Keyword</button>
-										<input xid="keyword" type="text" class="form-control" placeholder="enter keyword" value.bind="currentItem.addkeyword">
+										<!-- <button class="btn btn-success" click.trigger="addKeyword()">Add Keyword</button>
+										<input xid="keyword" type="text" class="form-control" placeholder="enter keyword" value.bind="currentItem.addkeyword"> -->
 									</div>
 									<!-- ak-multiselect.ref="myMultiSelect" k-data-source.bind="allFunctions" -->
 									<div class="Rtable-cell-70 Rtable-cell--highlight ">
@@ -379,7 +379,18 @@
 												</option>
 											</select>
 										</ak-multiselect>
-
+										<ak-multiselect ak-multiselect.ref="multiselect" k-value.two-way="currentItem.keywords" k-placeholder="Select keywords..."
+										 k-data-text-field="Description"
+                      k-data-value-field="Description" 
+                      k-height.bind="400" k-data-source.bind="dataSource"
+										 k-value.bind="currentItem.keywords"
+                      k-widget.bind="multiselect" id="multiselect-customizing-templates-codes">
+											<ak-template for="noDataTemplate">
+												<div>
+													<button ak-button click.delegate="addNew()">addNew</button>
+												</div>
+											</ak-template>
+										</ak-multiselect>
 									</div>
 
 									<!-- <div class="Rtable-cell-30 Rtable-cell--highlight ">
@@ -544,8 +555,7 @@
 
 
 					<div id="top-right " class="flex-column-none data-form-image ">
-						<img class="responsive-img " src="https://artbased.com/api/v1/getonePdf/inv/${currentItem.InventoryCode}.jpg "
-						 click.delegate="showModalImg() ">
+						<img class="responsive-img " src="https://artbased.com/api/v1/getonePdf/inv/${currentItem.InventoryCode}.jpg " click.delegate="showModalImg() ">
 
 					</div>
 					<!-- end middle and top right -->
