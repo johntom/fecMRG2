@@ -416,13 +416,17 @@ export class DataForm {
     //   let tab = this.appService.dataFormOneToOneTabs[0];
     //   this.selectOneToOneTab(tab);
     // }
-    let tabinfo
-    tabinfo = localStorage.getItem('tabinfo');
-    tabinfo = JSON.parse(tabinfo);
+    let tabinfo,tabindex
+    // tabinfo = localStorage.getItem('tabinfo');
 
-    if (tabinfo.tabindex === undefined) tabinfo.tabindex = 0
+    tabinfo = localStorage.getItem('tabinfo' + this.currentItem.InventoryCode);
+    if (tabinfo === null) {
+      tabindex = 0} else  { tabinfo = JSON.parse(tabinfo)
+      tabindex=tabinfo.tabindex
+      }
+   
     if (this.appService.dataFormOneToManyTabs.length > 0) {
-      let tab = this.appService.dataFormOneToManyTabs[tabinfo.tabindex];
+      let tab = this.appService.dataFormOneToManyTabs[tabindex];
       this.selectOneToManyTab(tab);
     }
   }
@@ -445,7 +449,8 @@ export class DataForm {
     }
     var temp = [this.currentItem.InventoryCode, tabindex];
     tabinfo = new tabinfo(temp);
-    localStorage.setItem('tabinfo', JSON.stringify(tabinfo));
+    // localStorage.setItem('tabinfo', JSON.stringify(tabinfo));
+    localStorage.setItem('tabinfo' + this.currentItem.InventoryCode, JSON.stringify(tabinfo));
     return true;
   }
 
