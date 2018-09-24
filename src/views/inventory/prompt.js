@@ -135,10 +135,19 @@ export class Prompt {
       if (this.fieldname === 'MediumSupportobj') {
         // this.MediumSupportobj = this.currentItem.MediumSupportobj
         // if (this.MediumSupportobj.Description === undefined) this.MediumSupportobj.Description = this.currentItem.MediumSupportobj.Description
-       
-        this.MedSup = this.currentItem.MediumSupportobj
-        if (this.MedSup.Description === undefined) this.MedSup.Description = this.currentItem.MediumSupportobj.Description
+if(this.currentItem.MediumSupportobj===undefined) {
+
+ this.MedSup =this.appService.codesListMediumSupport[1]
+} else    this.MedSup = this.currentItem.MediumSupportobj
+        // if (this.MedSup.Description === undefined) this.MedSup.Description = this.currentItem.MediumSupportobj.Description
+        // this.dmediumsupport.value = this.MedSup
+
+//  if (this.MedSup.Description === undefined) {
+   
+//  }
         this.dmediumsupport.value = this.MedSup
+
+
         //  <select ref="MediumSupport11" id="MediumSupport11" class="form-control input-sm" value.bind="appService.currentItem.MediumSupportobj"> 
         //                     <!-- & validate -->
         //                     <!-- <option model.bind=" null ">Choose...</option>
@@ -208,21 +217,40 @@ export class Prompt {
 
   }
 
-addnewms() {
-   
-    let ibod = { 'MediumSupportobj': this.currentItem.newms }
-    this.api.addmediumsupport(ibod).then((jsonRes) => {
+  addnewms() {
 
+    let ibod = { 'MediumSupportobj': this.currentItem.newms }
+    let bod = {
+      "CodeType": 12,
+      "Description": this.currentItem.newms,
+      "CodeTypeDesc": "Medium/Support"
+    }
+    this.api.addmediumsupport(ibod).then((jsonRes) => {
       let ms = jsonRes.data;
-      // this.appService.currentItem.insured.INSURED_ID = ins.id
-      this.appService.MediumSupportobj.id = ins.id
-      this.appService.currentItem.MediumSupportobj.Description = ins.Description
+      this.appService.codesListMediumSupport = ms
+      // this.appService.currentItem.MediumSupportobj.id = ins.id
+      // this.appService.currentItem.MediumSupportobj.Description = ins.Description
+
+      let oid = this.appService.codesListMediumSupport.findIndex(x => x.Description === this.currentItem.newms)
+      let codeobj = this.appService.codesGenre[oid]
+      this.currentItem.MediumSupportobj.id = codeobj.id
+      this.currentItem.MediumSupportobj.Description = codeobj.Description
+
       //this.appService.currentItem
       this.controller.cancel()
 
-      // return Promise.resolve( this.dataService.loadInsured() ).then(values => {})
-      return Promise.resolve(this.dataService.loadInsured()) //.then(values => {})
+      // Promise.resolve(this.dataService.MediumSupportobj()) //.then(values => {})
 
+
+
+
+      //       let rec = {
+      //         "CodeType": 3,
+      //         "Description": value,
+      //         "CodeTypeDesc": "Genre",
+      //         id: codeobj.id
+      //       }
+      return
     })
   }
   //  alert(`${this.addlist} Exists in list already!`)
@@ -285,8 +313,9 @@ addnewms() {
       this.appService.currentItem.artist = this.ArtistName
     }
     if (this.fieldname === 'MediumSupportobj') {
+     // this.currentItem.MediumSupportobj.id = this.MedSup.id
       this.currentItem.MediumSupportobj = this.MedSup
-      this.appService.currentItem.MediumSupportobj = this.MedSup
+      // this.appService.currentItem.MediumSupportobj = this.MedSup
     }
     if (this.fieldname === 'OwnerID') {
       this.currentItem.OwnerID = this.OrgName._id

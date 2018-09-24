@@ -109,7 +109,7 @@ export class DataForm {
      "CodeTypeDesc" : "Genre"
       */
   // addNew(ctx) {
-    addNew() {
+  addNew() {
     var value = this.multiselect.input.val();
     var dataSource = this.multiselect.dataSource;
     var widget = this.multiselect
@@ -416,8 +416,13 @@ export class DataForm {
     //   let tab = this.appService.dataFormOneToOneTabs[0];
     //   this.selectOneToOneTab(tab);
     // }
+    let tabinfo
+    tabinfo = localStorage.getItem('tabinfo');
+    tabinfo = JSON.parse(tabinfo);
+
+    if (tabinfo.tabindex === undefined) tabinfo.tabindex = 0
     if (this.appService.dataFormOneToManyTabs.length > 0) {
-      let tab = this.appService.dataFormOneToManyTabs[0];
+      let tab = this.appService.dataFormOneToManyTabs[tabinfo.tabindex];
       this.selectOneToManyTab(tab);
     }
   }
@@ -432,6 +437,15 @@ export class DataForm {
     this.appService.dataFormOneToManyTabs.forEach(t => t.isSelected = false);
     tab.isSelected = true;
     this.currentOneToManyTab = tab;
+    let tabindex = this.appService.dataFormOneToManyTabs.findIndex(f => f.isSelected)
+    function tabinfo(temp) {
+      this.recid = temp[0];
+      this.tabindex = temp[1];
+
+    }
+    var temp = [this.currentItem.InventoryCode, tabindex];
+    tabinfo = new tabinfo(temp);
+    localStorage.setItem('tabinfo', JSON.stringify(tabinfo));
     return true;
   }
 
