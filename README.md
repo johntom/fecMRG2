@@ -1,7 +1,19 @@
 # au-kendo
 https://unpkg.com/bootstrap-select@1.13.1/dist/js/bootstrap-select.js
-https://unpkg.com/bootstrap-tagsinput@0.7.1/dist/js/bootstrap-tagsinput.js
+deprecated and not supported https://unpkg.com/bootstrap-tagsinput@0.7.1/dist/js/bootstrap-tagsinput.js
+https://unpkg.com/npm:moment@2.22.2
 
+
+find unpkg
+https://unpkg.com/select2@4.0.6-rc.1/dist/js/select2.js
+http://nthrbldyblg.blogspot.com/2017/01/aurelia-and-select2.html
+use in package.json
+ "select2": {
+      "map": "npm:select2@4.0.6-rc.1/dist/js/select2.js",
+      "package": {
+        "defaultExtension": "js",
+        "main": "index.js"
+      },
 
 form footer
 see inventory/data-form.html
