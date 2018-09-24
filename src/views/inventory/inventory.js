@@ -131,18 +131,18 @@ export class Inventory {
   performSearch() {
     let keywd = `${this.Description}`
 
-//search.savedlists
-  let savedlist = `${this.name}`
+    //search.savedlists
+    let savedlist = `${this.name}`
 
     let medsupport = `${this.DescriptionMS}`
     let currentlocation = `${this.DescriptionLoc}`
     let multikeys = `${this.multikeywords}`
-    console.log('selectedSoldId',this.search.selectedSoldId)
+    console.log('selectedSoldId', this.search.selectedSoldId)
     // alert(keywd)
     if (this.search) {
-      if (keywd !== 'undefined' && keywd !=='null' ) this.search.keywords = `${this.Description.Description}`
-       if (savedlist !== 'undefined' && savedlist !=='null' ) this.search.savedlists = `${this.name.name}`
-     
+      if (keywd !== 'undefined' && keywd !== 'null') this.search.keywords = `${this.Description.Description}`
+      if (savedlist !== 'undefined' && savedlist !== 'null') this.search.savedlists = `${this.name.name}`
+
       if (medsupport !== 'undefined') this.search.mediumsupport = `${this.DescriptionMS.Description}`
       if (currentlocation !== 'undefined') this.search.currentlocation = `${this.DescriptionLoc.Description}`
       if (multikeys !== 'undefined') this.search.multikeywords = `${this.multikeywords}`
@@ -157,10 +157,10 @@ export class Inventory {
   }
 
 
-addinventory() {
-// alert ('add')
- this.router.navigate(`#/inventory/data/create`);
-}
+  addinventory() {
+    // alert ('add')
+    this.router.navigate(`#/inventory/data/create`);
+  }
 
   genreSelected(item) {
     if (item) {
@@ -197,13 +197,28 @@ addinventory() {
     // }
     // this.dows.value = this.OrgName
 
-
-
-
   }
+  activate() {
+    console.log('name-tag activate before attached ');
+    this.mru = []
+    let mruinfo, tabindex
+    mruinfo = localStorage.getItem('mru-mrg');
+    if (mruinfo === null) {
+      // tabindex = 0
+      this.mruinfo = 0
+    } else {
+      this.mruinfo = JSON.parse(mruinfo)
+    
+      this.mru.push(this.mruinfo.mru1)
+      this.mru.push(this.mruinfo.mru2)
+      this.mru.push(this.mruinfo.mru3)
+      this.mru.push(this.mruinfo.mru4)
+      this.mru.push(this.mruinfo.mru5)
+    }
+  }
+
 
 }
 
 
 
-  

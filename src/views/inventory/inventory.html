@@ -79,7 +79,16 @@
 							 open-on-focus.bind="true" key="name" results-limit.bind="12" select-single-result.bind="true">
 							</aubs-typeahead>
 						</div>
+	<div class="form-group flex-column-1 margin-left-10">
+							<label for="adjuster">mru</label> 
+            
+							<ul>
+								<li repeat.for='e of mru'>
+									${e}
 
+								</li>
+							</ul>
+						</div>
 
 					</div>
 
@@ -119,7 +128,16 @@
 
 
 					<div class="flex-row-none">
+	<div class="form-group flex-column-1 margin-left-10">
+							<label for="adjuster">mru</label> 
+            
+							<ul>
+								<li repeat.for='e of mru'>
+									${e}
 
+								</li>
+							</ul>
+						</div>
 						<div class="form-group flex-column-1 margin-left-10">
 							<label for="searchdrcvdatel">(Start Date>=</label>
 							<input id="searchdrcvdatel" type="date" class="form-control" placeholder="Search for Date Start >=..." value.bind="search.startdate">

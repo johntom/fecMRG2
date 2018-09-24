@@ -343,8 +343,34 @@ export class DataForm {
 
       } else {
         console.log('this.recordId ', this.recordId);
-        // if (!this.appService.currentClaim) { // not sure about this condition
-        // need return for promise
+        let mruget = localStorage.getItem('mru-mrg');
+        if (mruget === null) {
+          // tabindex = 0
+          mruget = 0
+        } else {
+          mruget = JSON.parse(mruget)
+        }
+
+        // let get the mru list and bump it
+        function mruinfo(temp) {
+          this.mru1 = temp[0];
+          this.mru2 = temp[1];
+          this.mru3 = temp[2];
+          this.mru4 = temp[3];
+          this.mru5 = temp[4];
+          //  this.tabindex = temp[1];
+        }
+        var temp = [this.recordId, mruget.mru1, mruget.mru2, mruget.mru3, mruget.mru4];
+
+        if (this.recordId === mruget.mru1 || this.recordId === mruget.mru2 || this.recordId === mruget.mru3 ||
+          this.recordId === mruget.mru4 || this.recordId === mruget.mru5) { } else {
+          mruinfo = new mruinfo(temp);
+          // localStorage.setItem('tabinfo', JSON.stringify(tabinfo));
+          localStorage.setItem('mru-mrg', JSON.stringify(mruinfo));
+        }
+       
+
+
         return this.api.findInventoryOne(this.recordId)
           .then((jsonRes) => {
             console.log('jsonRes ', jsonRes);
@@ -416,15 +442,17 @@ export class DataForm {
     //   let tab = this.appService.dataFormOneToOneTabs[0];
     //   this.selectOneToOneTab(tab);
     // }
-    let tabinfo,tabindex
+    let tabinfo, tabindex
     // tabinfo = localStorage.getItem('tabinfo');
 
     tabinfo = localStorage.getItem('tabinfo' + this.currentItem.InventoryCode);
     if (tabinfo === null) {
-      tabindex = 0} else  { tabinfo = JSON.parse(tabinfo)
-      tabindex=tabinfo.tabindex
-      }
-   
+      tabindex = 0
+    } else {
+      tabinfo = JSON.parse(tabinfo)
+      tabindex = tabinfo.tabindex
+    }
+
     if (this.appService.dataFormOneToManyTabs.length > 0) {
       let tab = this.appService.dataFormOneToManyTabs[tabindex];
       this.selectOneToManyTab(tab);
