@@ -1,7 +1,8 @@
 <template>
   <select value.two-way="selected" name.one-way="name" id.one-way="name"
    class="form-control" multiple data-placeholder.one-way="placeholder" 
-  tags.bind="true" tokenSeparators data-allow-clear.one-way="allow_clear" size="1">
+ tags data-allow-clear.one-way="allow_clear" size="1">
     <option repeat.for="option of options" value.bind="option.value">${option.label}</option>
   </select>
 </template>
+<!-- tags tokenSeparators  -->

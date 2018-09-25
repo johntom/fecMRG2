@@ -17,6 +17,9 @@ use in package.json
         "main": "js/select2.js"
       },
 
+
+https://github.com/selectize/selectize.js
+https://unpkg.com/selectize@0.12.6/dist/js/selectize.js
 form footer
 see inventory/data-form.html
 	<div class="flex-column-none section-footer">

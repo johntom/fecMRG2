@@ -12,7 +12,7 @@ export class Select2CustomMultiselect {
   @bindable options = {};   // array of options with id/name properties
   @bindable placeholder = "";
   @bindable allow_clear = false;
-  @bindable tags="";//true";
+  @bindable tags = null;//true";
  // @bindable  tokenSeparators= [',', ' ']
   constructor(element) {
     this.element = element;
@@ -24,7 +24,10 @@ export class Select2CustomMultiselect {
   attached() {
     var el = $(this.element).find('select');
     var sel = el.select2();
-
+// sel.tags=true
+sel.js-example-tags.select2({
+  tags: true
+})
     // preload selected values
     sel.val(this.selected).trigger('change');
 

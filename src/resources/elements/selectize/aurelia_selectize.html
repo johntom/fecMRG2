@@ -1,0 +1,5 @@
+<template>
+  <select value.two-way="selected" name.one-way="name" id.one-way="name" class="form-control" multiple data-placeholder.one-way="placeholder" size="1">
+    <option repeat.for="option of options" value.bind="option.value">${option.label}</option>
+  </select>
+</template>
