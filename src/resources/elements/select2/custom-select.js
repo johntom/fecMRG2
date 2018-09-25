@@ -4,7 +4,8 @@ import {bindable, inject, customElement} from 'aurelia-framework';
 // Import JSPM modules we installed earlier
 import $ from 'jquery';
 import 'select2';
-import 'select2/css/select2.css!'
+import './select2.css!'
+//import 'select2/css/select2.css!'
 
 @customElement('select2') // Define the name of our custom element
 @inject(Element) // Inject the instance of this element

@@ -7,12 +7,14 @@ https://unpkg.com/npm:moment@2.22.2
 find unpkg
 https://unpkg.com/select2@4.0.6-rc.1/dist/js/select2.js
 http://nthrbldyblg.blogspot.com/2017/01/aurelia-and-select2.html
+https://ilikekillnerds.com/2015/08/aurelia-custom-element-using-select2-tutorial/
+
 use in package.json
  "select2": {
-      "map": "npm:select2@4.0.6-rc.1/dist/js/select2.js",
+      "map": "npm:select2@4.0.6-rc.1/dist",
       "package": {
         "defaultExtension": "js",
-        "main": "index.js"
+        "main": "js/select2.js"
       },
 
 form footer

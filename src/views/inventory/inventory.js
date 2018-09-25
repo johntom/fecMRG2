@@ -215,8 +215,23 @@ export class Inventory {
       this.mru.push(this.mruinfo.mru4)
       this.mru.push(this.mruinfo.mru5)
     }
-  }
+// for select2
+ this.selectOptions = [
+            {label: 'My Option', value: 'my-value'},
+            {label: 'Some Value', value: '1212'},
+            {label: 'Select Me!', value: 'fsdf32423_312'},
+        ];
 
+        this.defaultSelected = this.selectOptions[0];
+
+
+  }
+changeCallback(evt) {
+        // The selected value will be printed out to the browser console
+      
+      let val = evt.detail.value
+        console.log(val);  
+    }
 
 }
 

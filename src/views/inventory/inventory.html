@@ -130,23 +130,20 @@
 
 
 					<div class="flex-row-none">
-	<div class="form-group flex-column-1 margin-left-10">
-							<label for="adjuster">mru</label> 
-            
-							<ul>
-								<li repeat.for='e of mru'>
-									${e}
 
-								</li>
-							</ul>
-						</div>
-						<div class="form-group flex-column-1 margin-left-10">
+						<div class="form-group flex-column-1">
 							<label for="searchdrcvdatel">(Start Date>=</label>
 							<input id="searchdrcvdatel" type="date" class="form-control" placeholder="Search for Date Start >=..." value.bind="search.startdate">
 						</div>
 						<div class="form-group flex-column-1 margin-left-10">
 							<label for="lastName">Stop Date<=)</label>
 							<input id="searchdrcvdate2" type="date" class="form-control" placeholder="Search for Date Stop <=.." value.bind="search.stopdate">
+						</div>
+            	<div class="form-group flex-column-1 margin-left-10">
+					<select2 name="myCustomSelect" 
+          selected.bind="defaultSelected" 
+          options.bind="selectOptions" 
+          change.delegate="changeCallback($event)"></select2>
 						</div>
 					</div>
 
