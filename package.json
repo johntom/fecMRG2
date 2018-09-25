@@ -61,7 +61,7 @@
       }
     },
       "select2": {
-      "map": "npm:select2@4.0.6-rc.1/dist/js",
+      "map": "npm:select2@4.0.6-rc.1",
       "package": {
         "defaultExtension": "js",
         "main": "select2.js"
