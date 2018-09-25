@@ -12,12 +12,32 @@ export class ApiService {
     this.http = http;
     this.upmess = ''
     //    this.baseweb = 'https://gtztest.com/api/' 
-
     this.baseweb = 'https://artbased.com/api/'
-
     /// https://gtztest.com/api/v1/inmate
     // https://gtztest.com/api/v1/getonePdf/:template/:filename
     this.basewebjif = 'https://jif.bergenrisk.com/api/';
+    this.baseBB = 'https://buildings-207021.appspot.com/query'// bin/1022709
+
+  }
+  getBB(bin) {
+    let bod = { bin: bin, name: bin }
+    console.log(bod)
+    // var url = this.baseBB + `/bin/${bin}`;
+    // var url = this.baseBB + `/bin?bin=${bin}`;
+    var url = this.baseBB + `?bin=${bin}`;
+    //var url = this.baseBB + '/bin'
+    return this.http.fetch(url, {
+      method: 'get', //post
+      mode: 'no-cors',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'encoding': "application/x-www-form-urlencoded",
+        'enctype': "application/x-www-form-urlencoded"
+      }
+      //, body: JSON.stringify(bod)
+    }).then((res) => res.json());
+
   }
   getUserJwt(username, pass) {
     var token = {};
@@ -469,7 +489,7 @@ export class ApiService {
   }
 
 
-  
+
   createFactSheet(rt2) {
 
     // { method: ['get'], path: '/api/v1/docx/create/:id', handler: 'DocxController.create' },

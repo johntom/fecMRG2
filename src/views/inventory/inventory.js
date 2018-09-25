@@ -19,6 +19,8 @@ export class Inventory {
         </label> */
   // search.selectedSoldId search.selectedDateId search.startdate search.stopdate
   // value
+  options = [];//multiselect select2
+  selected = [];//multiselect select2
   states = [
     { OrgName: 'Alabama', id: 'al' },
     { OrgName: 'Alaska', id: 'ak' },
@@ -223,7 +225,14 @@ export class Inventory {
         ];
 
         this.defaultSelected = this.selectOptions[0];
+        // for select2 ms
+ this.options = [
+      {label: 'First Option', value: "1"},
+      {label: 'Second Option', value: "2"},
+      {label: 'Third Option', value: "3"}
+    ];
 
+    this.selected = ["3","1"];
 
   }
 changeCallback(evt) {
@@ -232,7 +241,12 @@ changeCallback(evt) {
       let val = evt.detail.value
         console.log(val);  
     }
-
+changeCallbackM(evt) {
+        // The selected value will be printed out to the browser console
+      
+    
+        console.log( this.selected);   
+    }
 }
 
 
