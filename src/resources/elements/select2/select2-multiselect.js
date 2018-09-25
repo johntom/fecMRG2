@@ -1,7 +1,7 @@
 import {bindable, inject, customElement} from 'aurelia-framework';
 import $ from 'jquery';
 import 'select2';
-import './select2.min.css!'
+import './select2.css!'
 import _ from 'lodash'
 
 @customElement('select2m')
@@ -13,7 +13,7 @@ export class Select2CustomMultiselect {
   @bindable placeholder = "";
   @bindable allow_clear = false;
   @bindable tags="";//true";
-  @bindable  tokenSeparators= [',', ' ']
+ // @bindable  tokenSeparators= [',', ' ']
   constructor(element) {
     this.element = element;
   }
