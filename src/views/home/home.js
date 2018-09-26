@@ -24,7 +24,8 @@ export class Home {
   ]
   features = [
     'CTRL+SHIFT+F',
-    'GUARD CLOSURE FOR MATACHER'
+    'GUARD CLOSURE FOR MATACHER',
+   ' for (const item of items) {  console.log("loopitem ====")  sav = await saveMongoPermits(ctx, item) console.log("",sav))          }'
   ]
   todo = [
 
