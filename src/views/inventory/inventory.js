@@ -210,47 +210,47 @@ export class Inventory {
       this.mruinfo = 0
     } else {
       this.mruinfo = JSON.parse(mruinfo)
-    
+
       this.mru.push(this.mruinfo.mru1)
       this.mru.push(this.mruinfo.mru2)
       this.mru.push(this.mruinfo.mru3)
       this.mru.push(this.mruinfo.mru4)
       this.mru.push(this.mruinfo.mru5)
     }
-// for select2
- this.selectOptions = [
-            {label: 'My Option', value: 'my-value'},
-            {label: 'Some Value', value: '1212'},
-            {label: 'Select Me!', value: 'fsdf32423_312'},
-        ];
-
-        this.defaultSelected = this.selectOptions[0];
-        // for select2 ms
- this.options = [
-      {label: 'First Option', value: "1"},
-      {label: 'Second Option', value: "2"},
-      {label: 'Third Option', value: "3"}
+    // for select2
+    this.selectOptions = [
+      { label: 'My Option', value: 'my-value' },
+      { label: 'Some Value', value: '1212' },
+      { label: 'Select Me!', value: 'fsdf32423_312' },
     ];
 
-    this.selected = ["3","1"];
-this.optionsMatt = ['First Option', 'Second Option', 'Third Option' ];
-  }
-changeCallback(evt) {
-        // The selected value will be printed out to the browser console
-      
-      let val = evt.detail.value
-        console.log(val);  
-    }
-changeCallbackM(evt) {
-        // The selected value will be printed out to the browser console
-      
-    
-        console.log( this.selected);   
-    }
-    checkms(){
-console.log(this.selectedOptions)
+    this.defaultSelected = this.selectOptions[0];
+    // for select2 ms
+    this.options = [
+      { label: 'First Option', value: "1" },
+      { label: 'Second Option', value: "2" },
+      { label: 'Third Option', value: "3" }
+    ];
 
-    }
+    this.selected = ["3", "1"];
+    this.optionsMatt = ['First Option', 'Second Option', 'Third Option'];
+  }
+  changeCallback(evt) {
+    // The selected value will be printed out to the browser console
+
+    let val = evt.detail.value
+    console.log(val);
+  }
+  changeCallbackM(evt) {
+    // The selected value will be printed out to the browser console
+
+
+    console.log(this.selected);
+  }
+  checkms() {
+    console.log(this.selectedOptions)
+
+  }
 
 }
 
