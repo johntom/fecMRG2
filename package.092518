@@ -1,3 +1,20 @@
+     "selectize": {
+      "map": "npm:selectize@0.12.6/dist",
+      "package": {
+        "defaultExtension": "js",
+        "main": "js/selectize.js"
+      },
+      "meta": {
+        "deps": [
+          "jquery"
+        ]
+      }
+    }
+  
+  },
+,
+    "selectize":"0.12.6"
+
 {
   "name": "fecMRG2",
   "version": "1.0.0",

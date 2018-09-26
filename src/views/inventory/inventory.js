@@ -233,7 +233,7 @@ export class Inventory {
     ];
 
     this.selected = ["3","1"];
-
+this.optionsMatt = ['First Option', 'Second Option', 'Third Option' ];
   }
 changeCallback(evt) {
         // The selected value will be printed out to the browser console
@@ -247,6 +247,11 @@ changeCallbackM(evt) {
     
         console.log( this.selected);   
     }
+    checkms(){
+console.log(this.selectedOptions)
+
+    }
+
 }
 
 

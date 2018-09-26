@@ -84,20 +84,7 @@
         ]
       }
     },
-     "selectize": {
-      "map": "npm:selectize@0.12.6/dist",
-      "package": {
-        "defaultExtension": "js",
-        "main": "js/selectize.js"
-      },
-      "meta": {
-        "deps": [
-          "jquery"
-        ]
-      }
-    }
-  
-  },
+
   "dependencies": {
     "aurelia-animator-css": "1.0.4",
     "aurelia-binding": "1.7.1",
@@ -142,8 +129,7 @@
     "aurelia-bootstrap-select": "1.3.1",
     "moment": "2.22.2",
     "numeral": "2.0.6",
-    "select2": "4.0.6-rc.1",
-    "selectize":"0.12.6"
+    "select2": "4.0.6-rc.1"
   },
   "peerDependencies": {},
   "devDependencies": {

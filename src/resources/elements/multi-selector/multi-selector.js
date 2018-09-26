@@ -9,6 +9,7 @@ export class MultiSelector {
   @bindable instanceOptions = [];
   @bindable selectedOptions = [];
   options = [];
+//  @bindable options = []; //jrt
   @bindable placeholder = '';
 
   constructor(element) {

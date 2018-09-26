@@ -9,6 +9,10 @@ https://unpkg.com/select2@4.0.6-rc.1/dist/js/select2.js
 http://nthrbldyblg.blogspot.com/2017/01/aurelia-and-select2.html
 https://ilikekillnerds.com/2015/08/aurelia-custom-element-using-select2-tutorial/
 
+
+https://gist.github.com/mujimu
+
+
 use in package.json
  "select2": {
       "map": "npm:select2@4.0.6-rc.1/dist",

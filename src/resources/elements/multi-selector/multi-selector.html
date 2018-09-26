@@ -16,7 +16,7 @@
         class="multi-selector-input"
         list="multi-datalist">
       <datalist id="multi-datalist">
-        <option repeat.for="word of options">${word}</option>
+        <option repeat.for="word of options">word:${word}</option>
       </datalist>
 
       <span class="multi-selector-clear" 
@@ -26,3 +26,11 @@
     </div>
   </div>
 </template>
+
+<!-- <template>
+  <select ref="msl" value.two-way="selected" name.one-way="name" id.one-way="name"
+   class="js-example-tags form-control" multiple data-placeholder.one-way="placeholder" 
+ data-allow-clear.one-way="allow_clear" size="1">
+    <option repeat.for="option of options" value.bind="option.value">${option.label}</option>
+  </select>
+</template> -->

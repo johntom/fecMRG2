@@ -4,10 +4,12 @@
 
 	<require from="../../resources/elements/select2/custom-select"></require>
 	<require from="../../resources/elements/select2/select2-multiselect"></require>
+	<require from="../../resources/elements/multi-selector/multi-selector"></require>
+
 	<!-- <require from="../../resources/value-converters/stringify"></require> -->
-  <require from="selectize-multiselect"></require>
-	
-  <section class="full-height flex-column-1 au-animate ignore">
+	<!-- <require from="selectize-multiselect"></require> -->
+
+	<section class="full-height flex-column-1 au-animate ignore">
 		<div class="flex-row-none section-header">
 			${heading} 102
 		</div>
@@ -145,37 +147,53 @@
 						</div>
 
 
-
-
 					</div>
- 
+
 					<div class="flex-row-none">
 						<div class="form-group flex-column-1">
 							<select2m name="options" selected.bind="selected" options.bind="options" placeholder="Enter a selection" allow_clear="true"
-					tags="true"	 change.delegate="changeCallbackM($event)"></select2m>
+							 tags="true" change.delegate="changeCallbackM($event)"></select2m>
 						</div>
 						<div class="form-group flex-column-1 margin-left-10">
-
 							<select2 name="myCustomSelect" selected.bind="defaultSelected" options.bind="selectOptions" change.delegate="changeCallback($event)"></select2>
 						</div>
-
 					</div>
-	<div class="flex-row-none">
+					<!-- <div class="flex-row-none">
 						<div class="form-group flex-column-1">
-    <selectize name="options" selected.bind="selected" options.bind="options" placeholder="Enter a selection"></selectize>
-    
-	</div>
+							<selectize name="options" selected.bind="selected" options.bind="options" placeholder="Enter a selection"></selectize>
 
+						</div>
+
+					</div> -->
+					<!-- <multi-selector-item repeat.for="item of selectedOptions" 
+        item.bind="item" 
+        parent.bind="$parent">  
+      </multi-selector-item>
+      <input ref="dynamicOption"
+        spellcheck="false" 
+        placeholder.bind="placeholder" 
+        keydown.delegate="processKeydown($event)" 
+        autocomplete="on"
+        class="multi-selector-input"
+        list="multi-datalist"> -->
+					<!-- @bindable instanceOptions = [];
+  @bindable selectedOptions = []; -->
+					<!-- <multi-selector name="msoptions" selectedOptions.bind="options" item.bind="selected" placeholder="Enter a selection"></multi-selector> -->
+					<!-- <multi-selector name="msoptions"   selectedOptions.bind="optionsMat" item.bind="selected" placeholder="Enter a selection"></multi-selector> -->
+					<!-- ${options.length}:			<multi-selector name="msoptions"   selectedOptions.bind="options"  item.bind="value" placeholder="Enter a selection.."></multi-selector> -->
+
+					<div class="flex-row-none">
+
+						<div class="form-group flex-column-1">
+							<multi-selector name="msoptions" instance-options.bind="options" selected-options.bind="selectOptions.value" placeholder="Enter a selection.."></multi-selector>
+						</div>
+						<button id="checkms" class="btn btn-primary" type="button" click.delegate="checkms()">checkms</button>
 					</div>
-
-
 
 					<div class="flex-row-none">
 						<div class="form-group flex-column-1">
-
 							<button id="searchInputBtn" class="btn btn-primary" type="button" click.delegate="performSearch()">Search!</button>
 						</div>
-
 						<div class="form-group flex-column-1 margin-left-10">
 							<button id="searchInputBtn" class="btn btn-primary" type="button" click.delegate="addinventory()">Add Inventory</button>
 						</div>
@@ -183,9 +201,7 @@
 							<button id="searchInputBtn" class="btn btn-primary" type="button" click.delegate="performClear()">Clear</button>
 						</div>
 					</div>
-
 				</form>
-
 			</div>
 		</div>
 

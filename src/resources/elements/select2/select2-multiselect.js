@@ -1,4 +1,4 @@
-import {bindable, inject, customElement} from 'aurelia-framework';
+import { bindable, inject, customElement } from 'aurelia-framework';
 import $ from 'jquery';
 import 'select2';
 import './select2.css!'
@@ -13,21 +13,29 @@ export class Select2CustomMultiselect {
   @bindable placeholder = "";
   @bindable allow_clear = false;
   @bindable tags = null;//true";
- // @bindable  tokenSeparators= [',', ' ']
+  // @bindable  tokenSeparators= [',', ' ']
   constructor(element) {
     this.element = element;
   }
-// (".js-example-tokenizer").select2({
-//     tags: true,
-//     tokenSeparators: [',', ' ']
-// })
+  // (".js-example-tokenizer").select2({
+  //     tags: true,
+  //     tokenSeparators: [',', ' ']
+  // })
+
+  // $(".js-example-tags").select2({
+  //   tags: true
+  // });
   attached() {
     var el = $(this.element).find('select');
     var sel = el.select2();
-// sel.tags=true
-sel.js-example-tags.select2({
-  tags: true
-})
+   // alert('sel ', sel)
+    // sel.tags=true
+    // "sel.js-example-tags".select2({
+    //   el.js-example-tags.select2({
+    //   tags: true
+    // })
+    // sel.add.name = 'tags="true"'
+    // alert('tag ', el.js - example - tags)
     // preload selected values
     sel.val(this.selected).trigger('change');
 
@@ -38,7 +46,7 @@ sel.js-example-tags.select2({
       if (event.originalEvent) { return; }
       // dispatch to raw select within the custom element
       // bubble it up to allow change handler on custom element
-      var notice = new Event('change', {bubbles: true});
+      var notice = new Event('change', { bubbles: true });
       $(el)[0].dispatchEvent(notice);
     });
 
