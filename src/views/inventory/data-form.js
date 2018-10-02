@@ -387,46 +387,47 @@ export class DataForm {
             this.appService.currentView = this.currentItem; // must set on every view
             this.appService.originalrec = JSON.parse(JSON.stringify(this.currentItem))// inv[0]));
 
-            let meds = this.appService.codesListMediumSupport
-            if ((this.currentItem.MediumSupportobj === undefined) || (this.currentItem.MediumSupportobj === null)) {
-            } else {
-              // if( this.currentItem.MediumSupportobj!==undefined){
-              let mid = meds.findIndex(x => x.id === this.currentItem.MediumSupportobj.id)
-              this.currentItem.MediumSupportobj = this.appService.codesListMediumSupport[mid]//10]// test
-            }
+          // 09/30/2018 Converted data has all the lookups
+            // let meds = this.appService.codesListMediumSupport
+            // if ((this.currentItem.MediumSupportobj === undefined) || (this.currentItem.MediumSupportobj === null)) {
+            // } else {
+            //   // if( this.currentItem.MediumSupportobj!==undefined){
+            //   let mid = meds.findIndex(x => x.id === this.currentItem.MediumSupportobj.id)
+            //   this.currentItem.MediumSupportobj = this.appService.codesListMediumSupport[mid]//10]// test
+            // }
 
-            let oid
-            let orgobj
-            let orgs = this.appService.orgsList
-            if ((this.currentItem.SoldTo === undefined) || (this.currentItem.orgsList === null)) {
-            } else {
-              oid = orgs.findIndex(x => x._id === this.currentItem.SoldTo)
-              orgobj = this.appService.orgsList[oid]//10]
-              if (orgobj !== undefined) this.currentItem.soldtoname = orgobj.OrgName
-            }
+            // let oid
+            // let orgobj
+            // let orgs = this.appService.orgsList
+            // if ((this.currentItem.SoldTo === undefined) || (this.currentItem.orgsList === null)) {
+            // } else {
+            //   oid = orgs.findIndex(x => x._id === this.currentItem.SoldTo)
+            //   orgobj = this.appService.orgsList[oid]//10]
+            //   if (orgobj !== undefined) this.currentItem.soldtoname = orgobj.OrgName
+            // }
 
-            if ((this.currentItem.OwnerID === undefined) || (this.appService.orgsList === null)) {
-            } else {
-              oid = orgs.findIndex(x => x._id === this.currentItem.OwnerID)
-              orgobj = this.appService.orgsList[oid]//10]
-              if (orgobj !== undefined) this.currentItem.ownername = orgobj.OrgName
-            }
+            // if ((this.currentItem.OwnerID === undefined) || (this.appService.orgsList === null)) {
+            // } else {
+            //   oid = orgs.findIndex(x => x._id === this.currentItem.OwnerID)
+            //   orgobj = this.appService.orgsList[oid]//10]
+            //   if (orgobj !== undefined) this.currentItem.ownername = orgobj.OrgName
+            // }
 
-            if ((this.currentItem.SoldToID === undefined) || (this.appService.orgsList === null)) {
-            } else {
-              oid = orgs.findIndex(x => x._id === this.currentItem.SoldToID)
-              orgobj = this.appService.orgsList[oid]//10]
-              if (orgobj !== undefined) this.currentItem.soldtoname = orgobj.OrgName
-            }
+            // if ((this.currentItem.SoldToID === undefined) || (this.appService.orgsList === null)) {
+            // } else {
+            //   oid = orgs.findIndex(x => x._id === this.currentItem.SoldToID)
+            //   orgobj = this.appService.orgsList[oid]//10]
+            //   if (orgobj !== undefined) this.currentItem.soldtoname = orgobj.OrgName
+            // }
 
-            if ((this.currentItem.artist === undefined) || (this.currentItem.artist === null)) {
-              // this.currentItem={}// for create only
-            } else {
-              let arts = this.appService.artistList
-              let aid = arts.findIndex(x => x.id === this.currentItem.artist.id)
-              let artistobj = this.appService.artistList[aid]//10]
-              if (artistobj !== undefined) this.currentItem.artist = artistobj//.OrgName
-            }
+            // if ((this.currentItem.artist === undefined) || (this.currentItem.artist === null)) {
+            //   // this.currentItem={}// for create only
+            // } else {
+            //   let arts = this.appService.artistList
+            //   let aid = arts.findIndex(x => x.id === this.currentItem.artist.id)
+            //   let artistobj = this.appService.artistList[aid]//10]
+            //   if (artistobj !== undefined) this.currentItem.artist = artistobj//.OrgName
+            // }
             console.log('finihed active1')
             // return inv
           });
