@@ -110,15 +110,20 @@
           value.bind="ReproductionSortDate"></td>
 
 					<td width="220px">
-						<select ref='ReproductionExhibit' id="ReproductionExhibit" class="form-control input-sm"
+						<!-- <select ref='ReproductionExhibit' id="ReproductionExhibit" class="form-control input-sm"
              value.bind="ReproductionExhibit"
 						 change.delegate="selectChanged(ReproductionExhibit,$index,opt)"> 
                       <option model.bind="null">Choose...</option> 
                      <option repeat.for="opt of currentItem.exhibition" model.bind="opt._id">
                           ${opt.ExhibitTitle} 
                       </option> 
+                    </select> -->
+	<select id="ReproductionExhibit" class="form-control  input-sm" value.bind="ReproductionExhibit"> 
+                      <option model.bind="null">Choose...</option> 
+                         <option repeat.for="opt of currentItem.exhibition " model.bind="opt.id">
+                 ${opt.id}     ${opt.ExhibitTitle}  ${opt.ExhibitSponser}
+                      </option> 
                     </select>
-
 
 					</td>
 

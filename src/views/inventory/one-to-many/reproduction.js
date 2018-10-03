@@ -34,15 +34,15 @@ export class Reproduction {
     // }
   }
 
-  selectChanged(ReproductionExhibit, index, opt) {
-    let rid = ReproductionExhibit// this.currentItem.reproduction[index]._id// ReproductionTitle
-    let mid = this.currentItem.exhibition.findIndex(x => x._id === rid)
-    // alert(this.currentItem.reproduction[index].ReproductionTitle)
-    this.currentItem.reproduction[index].ReproductionType = "59d282beb777d41f42a5a2c9"
-    this.currentItem.reproduction[index].ReproductionTitle = this.currentItem.exhibition[mid].ExhibitTitle
-    this.currentItem.reproduction[index].ReproductionExhibit = rid
-    console.log('rep ' + this.currentItem.exhibition[mid].ExhibitTitle + ' ' + `${this.ReproductionExhibit}` + ' ' + opt)
-  }
+  // selectChanged(ReproductionExhibit, index, opt) {
+  //   let rid = ReproductionExhibit// this.currentItem.reproduction[index]._id// ReproductionTitle
+  //   let mid = this.currentItem.exhibition.findIndex(x => x._id === rid)
+  //   // alert(this.currentItem.reproduction[index].ReproductionTitle)
+  //   this.currentItem.reproduction[index].ReproductionType = "59d282beb777d41f42a5a2c9"
+  //   this.currentItem.reproduction[index].ReproductionTitle = this.currentItem.exhibition[mid].ExhibitTitle
+  //   this.currentItem.reproduction[index].ReproductionExhibit = rid
+  //   console.log('rep ' + this.currentItem.exhibition[mid].ExhibitTitle + ' ' + `${this.ReproductionExhibit}` + ' ' + opt)
+  // }
   saveitem(item, index) {
     item.edit = !item.edit
 
