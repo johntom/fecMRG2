@@ -6,7 +6,7 @@ import { MyDataService } from "../../services/my-data-service";
 
 export class Home {
   heading = "Welcome to the MRG Home page!";
-  version = 240.51
+  version = 240.52
   versionDate = 'Thr 10/04/2018'
   // versiondate=Date();
 //  "select2": {
@@ -74,6 +74,7 @@ export class Home {
   }
   //   this.dataService.loadCodes(values[1]), resolve all lists
   activate() {
+    alert('in a')
     // this.appService.payeelist = await this.dataService.loadPayeeAsync()
     // this.appService.artistlist = await this.dataService.loadArtistsAsync()
 
