@@ -43,10 +43,14 @@
 						<div class="col-md-12">
 							<div class="form-group">
 								<label class="control-label">Object Collection - 1 sl mappingDataStructure</label>
-								<div>Value: ${SaveListValue} <br /> Item: ${name.InventoryCodes | stringify}</div>
+								<div>Value: ${SaveListValue}
+                   <!-- <br /> Item: ${name.InventoryCodes | stringify} -->
+                   </div>
 								<div>
-									<abp-select picker-options.bind="selectOptions" empty-on-null="true" selected-item.bind="name" selected-value.bind="SaveListValue"
-									 disabled="false" collection.bind="appService.savedlists" data-mapping-structure.bind="mappingDataStructure" object-key="id"
+									<abp-select picker-options.bind="selectOptions" empty-on-null="true" 
+                  selected-item.bind="name" selected-value.bind="SaveListValue"
+									 disabled="false" collection.bind="appService.savedlists"
+                    data-mapping-structure.bind="mappingDataStructure" object-key="id"
 									 element.bind="selectSaveList"></abp-select>
 								</div>
 								<!-- <div>

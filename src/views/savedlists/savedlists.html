@@ -22,7 +22,16 @@
 				<div id="top-left" class="data-form overflow-y-auto flex-column-2">
 					<!-- row1 -->
 					<div class="flex-row-none">
-						<ul>
+						<!-- <ul>
+							<li repeat.for="savedlist of appService.savedlists">
+								<a href="#/savedlists/${contact.id}" click.delegate="$parent.select(contact)">
+									<h4>${savedlist.name} </h4>
+									<p>${contact.email}</p>
+								</a>
+							</li>
+						</ul> -->
+
+<ul>
 							<li repeat.for="savedlist of appService.savedlists">
 								<a href="#/savedlists/${contact.id}" click.delegate="$parent.select(contact)">
 									<h4>${savedlist.name} </h4>
@@ -30,6 +39,9 @@
 								</a>
 							</li>
 						</ul>
+
+
+
 					</div>
 				</div>
 

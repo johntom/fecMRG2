@@ -39,14 +39,14 @@
 						<option repeat.for="opt of appService.codesListLocation" model.bind="opt.ID">
 							${opt.Description} 
 						</option> 
-						</select> --> 
+						</select> -->
 
-						TransportTo
-						<aubs-typeahead ref='dtransporto' data.bind="appService.codesListLocation" value.bind="Description" debounce.bind="350" placeholder="TransportTo"
-						 open-on-focus.bind="true" key="Description" results-limit.bind="12" select-single-result.bind="true">
+						TransportTo ?
+						<aubs-typeahead ref='dtransporto' data.bind="appService.codesListLocation" value.bind="item.Description" debounce.bind="350"
+						 placeholder="TransportTo" open-on-focus.bind="true" key="Description" results-limit.bind="12" select-single-result.bind="true">
 						</aubs-typeahead>
-						<hr> TransportFrom
-						<aubs-typeahead ref='dtransportfrom' data.bind="appService.codesListLocation" value.bind="Description2" debounce.bind="350"
+						<hr> TransportFrom ?
+						<aubs-typeahead ref='dtransportfrom' data.bind="appService.codesListLocation" value.bind="item.Description2" debounce.bind="350"
 						 placeholder="TransportFrom" open-on-focus.bind="true" key="Description" results-limit.bind="12" select-single-result.bind="true">
 						</aubs-typeahead>
 						<hr> TransportNotes
@@ -58,10 +58,23 @@
 
 						ExhibitTitle <input type="text" id="ExhibitTitle" class="form-control input-sm" value.bind="item.ExhibitTitle"> ExhibitSponser
 						<input type="text" id="ExhibitSponser" class="form-control input-sm" value.bind="item.ExhibitSponser"> ExhibitLocation
-						<aubs-typeahead ref='exhibitlocation' data.bind="appService.codesListLocation" value.bind="Description" debounce.bind="350"
+						<aubs-typeahead ref='exhibitlocation' data.bind="appService.codesProvenanceLocation" value.bind="item.Description" debounce.bind="350"
 						 placeholder="reproduction location" open-on-focus.bind="true" key="Description" results-limit.bind="12" select-single-result.bind="true">
 						</aubs-typeahead>
 
+
+
+						<!--codesListLocation <abp-select 
+  
+    picker-options.bind="selectOptions" disabled="false" collection.bind="claimListFilter" 
+    selected-item.bind="claimSelection.selectedClaimItem"
+    empty-on-null="true" selected-value.bind="claimSelection.selectedClaimValue"
+    data-mapping-structure.bind="mappingclaimDataStructure"
+    object-key="_id" element.bind="mypicker"></abp-select>
+
+<aubs-typeahead ref='dinsco' data.bind="appService.InsurancecompanyList" value.bind="FullName" custom-entry.bind="true" placeholder="Enter your Insurance Co"
+  open-on-focus.bind="true" debounce.bind="0" key="FullName" results-limit.bind="12" select-single-result.bind="true">
+</aubs-typeahead> -->
 
 
 
@@ -76,34 +89,50 @@
 
 					<div show.bind="!hide3">
 						ExhibitID <input type="text" id="ExhibitID" class="form-control input-sm" value.bind="item.ExhibitID"> ReproductionType
-						<input type="text" id="ReproductionType" class="form-control input-sm" value.bind="item.ReproductionType"> ReproductionTitle
-						<input type="text" id="ReproductionTitle" class="form-control input-sm" value.bind="item.ReproductionTitle"> ReproductionPage
-						<input type="text" id="ReproductionPage" class="form-control input-sm" value.bind="item.ReproductionPage"> ColorBW
-						<input type="text" id="ColorBW" class="form-control input-sm" value.bind="item.ColorBW"> ReproductionDate <input type="text"
-						 id="ReproductionDate" class="form-control input-sm" value.bind="item.ReproductionDate"> ReproductionSortDate
-						<input type="text" id="ReproductionSortDate" class="form-control input-sm" value.bind="item.ReproductionSortDate">						ReproductionName <input type="text" id="ReproductionName" class="form-control input-sm" value.bind="item.ReproductionName">						ReproductionAuthor
-						<input type="text" id="ReproductionAuthor" class="form-control input-sm" value.bind="item.ReproductionAuthor"> ReproductionLocation
-						<!-- <input type="text" id="ReproductionLocation" class="form-control input-sm" value.bind="item.ReproductionLocation">						AuthorFirst <input type="text" id="AuthorFirst" class="form-control input-sm" value.bind="item.AuthorFirst"> AuthorLast -->
+						<!-- <input type="text" id="ReproductionType" class="form-control input-sm" value.bind="item.ReproductionType"> ReproductionTitle -->
 
-						<aubs-typeahead ref='reproductionlocation' data.bind="appService.codesListLocation" value.bind="Description" debounce.bind="350"
-						 placeholder="reproduction location" open-on-focus.bind="true" key="Description" results-limit.bind="12" select-single-result.bind="true">
+						<select id="ReproductionType" class="form-control  input-sm" value.bind="item.ReproductionType"> 
+                      <option model.bind="null">Choose...</option> 
+                         <option repeat.for="opt of appService.codesPublicationType " model.bind="opt.id">
+                    ${opt.Description} 
+                      </option> 
+                    </select> ReproductionTitle <input type="text" id="ReproductionTitle" class="form-control input-sm"
+						 value.bind="item.ReproductionTitle"> ReproductionPage <input type="text" id="ReproductionPage" class="form-control input-sm"
+						 value.bind="item.ReproductionPage"> ColorBW
+						<!-- <input type="text" id="ColorBW" class="form-control input-sm" 
+            value.bind="item.ColorBW">  -->
+						ColorBW <select id="ColorBW" class="form-control  input-sm" value.bind="item.ColorBW"> 
+                      <option model.bind="null">Choose...</option> 
+                         <option repeat.for="opt of appService.codesReproductionType " model.bind="opt.id">
+                    ${opt.Description} 
+                      </option> 
+                    </select> ReproductionDate <input type="text" id="ReproductionDate" class="form-control input-sm" value.bind="item.ReproductionDate">						ReproductionSortDate
+						<input type="text" id="ReproductionSortDate" class="form-control input-sm" value.bind="item.ReproductionSortDate">						ReproductionName <input type="text" id="ReproductionName" class="form-control input-sm" value.bind="item.ReproductionName">						ReproductionAuthor
+						<input type="text" id="ReproductionAuthor" class="form-control input-sm" value.bind="item.ReproductionAuthor"> 
+						<!-- <input type="text" id="ReproductionLocation" class="form-control input-sm" value.bind="item.ReproductionLocation">						AuthorFirst <input type="text" id="AuthorFirst" class="form-control input-sm" value.bind="item.AuthorFirst"> AuthorLast -->
+						<!-- codesListLocation -->
+				ReproductionLocation		<aubs-typeahead ref='reproductionlocation' data.bind="appService.codesProvenanceLocation" value.bind="item.Description" debounce.bind="350"
+						 placeholder="reproduction location" open-on-focus.bind="true"
+              key="DescriptionLoc" results-limit.bind="12" select-single-result.bind="true">
 						</aubs-typeahead>
 
 
-						<input type="text" id="ExhibitMemo" class="form-control input-sm" value.bind="item.AuthorLast">
+				ExhibitMemo		<input type="text" id="ExhibitMemo" class="form-control input-sm" value.bind="item.AuthorLast">
 						<button id="save3" class="btn btn-primary" type="button" click.delegate="save3()">save Reproduction</button>
 
 					</div>
 
 					<div show.bind="!hide4">
 						ProvOwner <input type="text" id="ProvOwner" class="form-control input-sm" value.bind="item.ProvOwner"> ProvLoc
-						<aubs-typeahead ref='provlocation' data.bind="appService.codesListLocation" value.bind="Description" debounce.bind="350"
+						<aubs-typeahead ref='provlocation' data.bind="appService.codesListLocation" value.bind="DescriptionProvOwner" debounce.bind="350"
 						 placeholder="mrg location" open-on-focus.bind="true" key="Description" results-limit.bind="12" select-single-result.bind="true">
 						</aubs-typeahead>
 
 
-						ProvDate <input type="text" id="v" class="form-control input-sm" value.bind="item.v"> ProvMemo <input type="text" id="ProvMemo"
-						 class="form-control input-sm" value.bind="item.ProvMemo"> ProvSortDate <input type="text" id="ProvSortDate" class="form-control input-sm"
+						ProvDate <input type="text" id="ProvDate" class="form-control input-sm" value.bind="item.ProvDate">
+            ProvMemo <input type="text" id="ProvMemo"
+						 class="form-control input-sm" value.bind="item.ProvMemo">
+            ProvSortDate <input type="text" id="ProvSortDate" class="form-control input-sm"
 						 value.bind="item.ProvSortDate"> Sequence <input type="text" id="Sequence" class="form-control input-sm" value.bind="item.Sequence">
 						<button id="save4" class="btn btn-primary" type="button" click.delegate="save4()">save Prov</button>
 
@@ -203,7 +232,7 @@
 					</div>
 				</div>
 			</div>
-		<!-- </div> -->
+			<!-- </div> -->
 		</div>
 	</section>
 

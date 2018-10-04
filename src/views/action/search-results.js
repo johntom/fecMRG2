@@ -38,7 +38,7 @@ export class SearchResults {
       },
       update: (options) => {
         let updatedItem = options.data;
-        updatedItem.offerdate=this.offerdate
+        updatedItem.offerdate = this.offerdate
         console.log('   updatedItem ', updatedItem)
         this.updateData(updatedItem)
           .then((scans) => {
@@ -132,6 +132,7 @@ export class SearchResults {
     // or
     this.item.savedlist = this.appService.currentActionlist
 
+    this.savedlist = this.appService.currentActionlist
 
     this.datasource.read()
     // make a dupe of folllowing to accoumodate 2 typeaheads
@@ -222,15 +223,16 @@ export class SearchResults {
     this.router.navigate(rt2);// `#/inventory/${path}`);
 
   }
-		//      <button id="factsheet1" action1() >Transport</button>
-		// 			<button id="factsheet2" action2()">Exhibit</button>
-		// 			<button id="factsheet3" action3()">Reproduction</button>
-		// 			<button id="factsheet4" action4()">Provenance</button>
-		// 			<button id="factsheet5" action5()">Mrg location</button>
-		// 			<button id="factsheet6" action6()">Temp location</button>
-		// 			<button id="factsheet7" action8()">Offerings</button>
+  //      <button id="factsheet1" action1() >Transport</button>
+  // 			<button id="factsheet2" action2()">Exhibit</button>
+  // 			<button id="factsheet3" action3()">Reproduction</button>
+  // 			<button id="factsheet4" action4()">Provenance</button>
+  // 			<button id="factsheet5" action5()">Mrg location</button>
+  // 			<button id="factsheet6" action6()">Temp location</button>
+  // 			<button id="factsheet7" action8()">Offerings</button>
 
   action1() {
+    this.item = {}
     this.hide2 = true
     this.hide3 = true
     this.hide4 = true
@@ -243,6 +245,7 @@ export class SearchResults {
   }
 
   action2() {
+    this.item = {}
     this.hide1 = true
     this.hide3 = true
     this.hide4 = true
@@ -255,6 +258,7 @@ export class SearchResults {
   }
 
   action3() {
+    this.item = {}
     this.hide1 = true
     this.hide2 = true
     this.hide4 = true
@@ -337,58 +341,72 @@ export class SearchResults {
     //   this.currentItem.OwnerID = orgid
     //   this.currentItem.ownername = orgname
 
-
+    this.item.savedlist = this.savedlist
     //  let dtransportto = `${this.dtransportto._id}`
     let dtransportto = `${this.Description.Description}`
     let dtransportfrom = `${this.Description2.Description}`
 
-   // alert(dtransportto + '-' + dtransportfrom)
+    // alert(dtransportto + '-' + dtransportfrom)
     this.api.batchTransport(this.item)
       .then((jsonRes) => {
         if (jsonRes.data === 'success') {
           alert(' batch updated ')
-         this.item.TransportDate=''
-         this.Description =''
-         this.Description2 =''
-         this.item.TransportNotes=''
+          this.item.TransportDate = ''
+          //  this.Description =''
+          //  this.Description2 =''
+          this.item.Description = ''
+          this.item.Description2 = ''
+
+
+          this.item.TransportNotes = ''
 
         } else alert(' batch failed ')
       })
   }
 
   save2() {
+    this.item.savedlist = this.savedlist
+    this.api.batchExhibit(this.item)
+      .then((jsonRes) => {
+        if (jsonRes.data === 'success') {
+          alert(' batch updated ')
+          this.item = {}
+          // this.item.ExhibitTitle = ''
+          // this.item.ExhibitSponser = ''
+          // this.item.Description2 = ''
+          // this.item.exhibitlocation = ''
+          // this.item.ExhibitDates = ''
+          // this.item.ExhibitSortDate = ''
+          // this.item.Traveled = ''
+          // this.item.ExhibitMemo = ''
 
-    // this.api.batchExhibit(this.item)
-    //   .then((jsonRes) => {
-    //     if (jsonRes.data === 'success') {
-    //       alert(' batch updated ')
-
-    //     } else alert(' batch failed ')
-    //   })
+        } else alert(' batch failed ')
+      })
   }
 
   save3() {
-// Reproduction Provenance batchMrglocation batchTemplocation batchOfferings
-    // this.api.batchReproduction(this.item)
-    //   .then((jsonRes) => {
-    //     if (jsonRes.data === 'success') {
-    //       alert(' batch updated ')
+    // Reproduction Provenance batchMrglocation batchTemplocation batchOfferings
+    this.item.savedlist = this.savedlist
+    this.api.batchReproduction(this.item)
+      .then((jsonRes) => {
+        if (jsonRes.data === 'success') {
+          alert(' batch updated ')
 
-    //     } else alert(' batch failed ')
-    //   })
+        } else alert(' batch failed ')
+      })
   }
 
   save4() {
-    let loc = `${this.Description.Description}`
+   // let loc = `${this.Description.Description}`
 
-    alert(loc)
-    // this.api.batchProvenance(this.item)
-    //   .then((jsonRes) => {
-    //     if (jsonRes.data === 'success') {
-    //       alert(' batch updated ')
+   // alert(loc)
+    this.api.batchProvenance(this.item)
+      .then((jsonRes) => {
+        if (jsonRes.data === 'success') {
+          alert(' batch updated ')
 
-    //     } else alert(' batch failed ')
-    //   })
+        } else alert(' batch failed ')
+      })
   }
 
   save5() {
@@ -417,10 +435,10 @@ export class SearchResults {
     //   })
   }
 
-//   save7() {
-// batchOfferings
+  //   save7() {
+  // batchOfferings
 
-//   }
+  //   }
   save8() {
     let orgid = `${this.OrgName._id}`
     let orgname = `${this.OrgName.OrgName}`
@@ -436,7 +454,7 @@ export class SearchResults {
       rec.offerdate = offerdate
       rec.InventoryCode = item.InventoryCode
       rec.offeramount = item.offeramount
-     
+
       offerings.push(rec)
       console.log('after item', rec)// item.InventoryCode,+item.offeramount)
 

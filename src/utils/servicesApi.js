@@ -457,6 +457,26 @@ export class ApiService {
 
   }
 
+
+
+  // updateSavedlists(recid, rec) {
+  //   let url = this.baseweb + `v1/savedlists/update/${recid}`
+  //   console.log('url ', url)
+
+  //   return this.http.fetch(url, {
+  //     method: 'put',
+  //     mode: 'cors',
+  //     headers: {
+  //       'Accept': 'application/json',
+  //       'Content-Type': 'application/json'
+  //       // , 'Authorization': 'JWT ' + token
+  //     },
+  //     body: JSON.stringify(rec)
+  //   }).then((res) => res.json());
+  // }
+
+
+
   createSavedlists(slname) {
     //all http://74.114.164.24/api/v1/savedlists/create/ 
     let sl = {}
@@ -1073,22 +1093,6 @@ export class ApiService {
   // { method: ['put'], path: '/api/v1/savedlists/update', handler: 'SavedlistsController.update' },
   // { method: ['post'], path: '/api/v1/savedlists/create', handler: 'SavedlistsController.create' },
 
-
-  updateSavedlists(recid, rec) {
-    let url = this.baseweb + `v1/savedlists/update/${recid}`
-    console.log('url ', url)
-
-    return this.http.fetch(url, {
-      method: 'put',
-      mode: 'cors',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-        // , 'Authorization': 'JWT ' + token
-      },
-      body: JSON.stringify(rec)
-    }).then((res) => res.json());
-  }
 
 
   // insco

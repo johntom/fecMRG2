@@ -116,12 +116,13 @@
                       <option model.bind="null">Choose...</option> 
                      <option repeat.for="opt of currentItem.exhibition" model.bind="opt._id">
                           ${opt.ExhibitTitle} 
+                          ${opt.id}   ${opt.ExhibitTitle}    ${opt.ExhibitSponser}
                       </option> 
                     </select> -->
 	<select id="ReproductionExhibit" class="form-control  input-sm" value.bind="ReproductionExhibit"> 
                       <option model.bind="null">Choose...</option> 
-                         <option repeat.for="opt of currentItem.exhibition " model.bind="opt.id">
-                 ${opt.id}     ${opt.ExhibitTitle}  ${opt.ExhibitSponser}
+                         <option repeat.for="opt of currentItem.exhibition " model.bind="opt.ExhibitTitle">
+                 ${opt.ExhibitTitle}
                       </option> 
                     </select>
 

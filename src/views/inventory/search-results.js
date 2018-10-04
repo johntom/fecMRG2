@@ -63,7 +63,7 @@ export class SearchResults {
       }
     },
     pageSize: 12,
-   sort: { field: 'Title', dir: 'asc' },
+    sort: { field: 'Title', dir: 'asc' },
     // aggregate: [{ field: "type", aggregate: "count" },
     //   { field: "template", aggregate: "count" }
     // ]
@@ -99,46 +99,62 @@ export class SearchResults {
   }
 
   showSavedlists() {
-    // alert(`selectedids: ${this.selectedids}`);
-    this.appService.selectedids = this.selectedids
-    this.dialogService.open({ viewModel: Prompt, model: 'selectedids', lock: false }).whenClosed(response => {
-      if (this.appService.currentsavedlist) {
-        console.log('Not Cancelled')
-        let meds = this.appService.savedlists
-        let mid = meds.findIndex(x => x.name === this.appService.currentsavedlist)//'savedlist1')
-        if (mid !== -1) {
-          let orgobj = this.appService.savedlists[mid]
-          /////// ? jrt 
-         //3-19 this.selectedids = orgobj.InventoryCodes
+    //// alert(`selectedids: ${this.selectedids}`);
+    this.currentItem = {}
+    this.currentItem.fieldname = 'SavedList'
+    //this.currentItem.recordId = this.recordId
+    this.dialogService.open({ viewModel: Prompt, model: this.currentItem, lock: false }).whenClosed(response => {
 
+// this.appService.currentsavedlist
+// this.appService.selectedids = this.selectedids
+     // this.dialogService.open({ viewModel: Prompt, model: 'selectedids', lock: false }).whenClosed(response => {
+        if (this.appService.currentsavedlist) {
+          console.log('Not Cancelled')
+          let meds = this.appService.savedlists
+          let mid = meds.findIndex(x => x.name === this.appService.currentsavedlist)//'savedlist1')
+          if (mid !== -1) {
+            let orgobj = this.appService.savedlists[mid]
+            /////// ? jrt 
+            //3-19 this.selectedids = orgobj.InventoryCodes
+
+          }
+        } else {
+          console.log('cancel');
         }
-      } else {
-        console.log('cancel');
-      }
-      console.log(response.output);
-    });
-  }
+        console.log(response.output);
+      });
+    }
+ 
+  // showModal(fieldname) {
+
+
+
+  //   this.dialogService.open({ viewModel: Prompt, model: fieldname, lock: false }).whenClosed(response => {
+
 
   showModal(fieldname) {
-    this.dialogService.open({ viewModel: Prompt, model: fieldname, lock: false }).whenClosed(response => {
-      //   alert(response.wasCancelled + ' ' + this.appService.currentsavedlist)
-      // if (!response.wasCancelled) {
-      if (this.appService.currentsavedlist) {
+    //     this.currentItem = {}
+    // //     this.currentItem.fieldname = {}
+    // // this.currentItem.recordId = this.recordId
+    // this.dialogService.open({ viewModel: Prompt, model: this.currentItem, lock: false }).whenClosed(response => {
 
-        console.log('Not Cancelled')
-        let meds = this.appService.savedlists
-       // let mid = meds.findIndex(x => x.name === 'savedlist1')
-         let mid = meds.findIndex(x => x.name === this.appService.currentsavedlist)
-        if (mid !== -1) {
-          let orgobj = this.appService.savedlists[mid]
-          this.selectedids = orgobj.InventoryCodes
 
-        }
-      } else {
-        console.log('cancel');
-      }
-      console.log(response.output);
-    });
+    //       if (this.appService.currentsavedlist) {
+
+    //         console.log('Not Cancelled')
+    //         let meds = this.appService.savedlists
+    //         // let mid = meds.findIndex(x => x.name === 'savedlist1')
+    //         let mid = meds.findIndex(x => x.name === this.appService.currentsavedlist)
+    //         if (mid !== -1) {
+    //           let orgobj = this.appService.savedlists[mid]
+    //           this.selectedids = orgobj.InventoryCodes
+
+    //         }
+    //       } else {
+    //         console.log('cancel');
+    //       }
+    //       console.log(response.output);
+    //     });
   }
   activate(params, routeConfig) {
     //http://74.114.164.24/api/v1/inventorycontent?artistl=s%26artistf=c 
@@ -257,22 +273,22 @@ export class SearchResults {
   }
   addexistingCB() {
     alert('cb')
-   var maxRows = datasource.length-1;
-   for (i = 0; i < maxRows; i++) {
+    var maxRows = this.datasource.length - 1;
+    for (i = 0; i < maxRows; i++) {
       a1 = selectedRows[i];
-      let dataItem = grid.dataItem(a1);
-      
-      if (a1.isChecked===true) {
-        alert('a1 '+a1.InventoryCode)
-         // this.api.updateSavedlists(this.appService.currentsavedlist, this.selectedids).then((jsonRes) => {
+      let dataItem = thid.grid.dataItem(a1);
+
+      if (a1.isChecked === true) {
+        alert('a1 ' + a1.InventoryCode)
+        // this.api.updateSavedlists(this.appService.currentsavedlist, this.selectedids).then((jsonRes) => {
         //   console.log('jsonRes ', jsonRes);
         //   // let tab = this.appService.tabs.find(f => f.isSelected);
         // });
       }
-  }
+    }
   }
   addexistingSelection() {
-    alert('addexistingSelection')
+   
     let sels
     if (this.selectedids === undefined) {
       sels = []
@@ -301,6 +317,7 @@ export class SearchResults {
       }
       if (i === maxRows - 1) {
         this.selectedids = sels;
+         alert('addexistingSelection')
         this.api.updateSavedlists(this.appService.currentsavedlist, this.selectedids).then((jsonRes) => {
           console.log('jsonRes ', jsonRes);
           // let tab = this.appService.tabs.find(f => f.isSelected);
@@ -351,7 +368,7 @@ export class SearchResults {
 
     selectedRows.each(function (idx, el) {
       let dataItem = grid.dataItem(el);
-         sels.push(dataItem.InventoryCode);
+      sels.push(dataItem.InventoryCode);
     });
 
     // var i;
