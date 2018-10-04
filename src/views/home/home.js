@@ -6,7 +6,7 @@ import { MyDataService } from "../../services/my-data-service";
 
 export class Home {
   heading = "Welcome to the MRG Home page!";
-  version = 240.45
+  version = 240.46
   versionDate = 'Thr 10/04/2018'
   // versiondate=Date();
 
@@ -288,7 +288,7 @@ export class Home {
         this.appService.codesView = codesView//  10
         this.appService.codesCountry = codesCountry //11
         this.appService.codesListMediumSupport = codesListMediumSupport //12
-        this.appService.codesContactType = codesContactType//13
+        this.appService.codesOrgContactTypes = codesOrgContactTypes //codesContactType//13
         this.appService.codesProvenanceLocation = codesProvenanceLocation //14
         this.appService.codesConditon = codesConditon//15
         this.appService.codesMailingType = codesMailingType//16
