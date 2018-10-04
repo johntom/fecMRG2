@@ -276,7 +276,6 @@ export class ApplicationService {
   codesView = []//  1 0
   codesCountry = []//11
   // codesContactType = []//13
-  //  this.appService.codesOrgContactTypes =
     codesOrgContactTypes = []
        
   codesProvenanceLocation = []//14
