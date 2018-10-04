@@ -97,8 +97,10 @@ export class Home {
         let codesReproductionType = []//9
         let codesView = []//  1 0
         let codesCountry = []//11
-        let codesListMediumSupport = []
-        let codesContactType = []//13
+        let codesListMediumSupport = [] //12
+        // let codesContactType = []//13
+
+          let codesOrgContactTypes = []//13
         let codesProvenanceLocation = []//14
         let codesConditon = []//15
         let codesMailingType = []//16
