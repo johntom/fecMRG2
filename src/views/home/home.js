@@ -6,10 +6,22 @@ import { MyDataService } from "../../services/my-data-service";
 
 export class Home {
   heading = "Welcome to the MRG Home page!";
-  version = 240.47
+  version = 240.50
   versionDate = 'Thr 10/04/2018'
   // versiondate=Date();
-
+  // "select2": {
+  //     "map": "npm:select2@4.0.6-rc.1/dist",
+  //     "package": {
+  //       "defaultExtension": "js",
+  //       "main": "js/select2.js"
+  //     },
+  //     "meta": {
+  //       "deps": [
+  //         "jquery"
+  //       ]
+  //     }
+  //   },
+    // "select2": "4.0.6-rc.1"
   issues = [
     'Make tabs like mas w/scrollbar with sticky header',
     'shortcut keys',
