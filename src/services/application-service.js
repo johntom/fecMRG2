@@ -275,7 +275,10 @@ export class ApplicationService {
   codesReproductionType = []//9
   codesView = []//  1 0
   codesCountry = []//11
-  codesContactType = []//13
+  // codesContactType = []//13
+  //  this.appService.codesOrgContactTypes =
+    codesOrgContactTypes = []
+       
   codesProvenanceLocation = []//14
   codesConditon = []//15
   codesMailingType = []//16
