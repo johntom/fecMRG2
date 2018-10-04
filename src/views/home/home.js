@@ -6,8 +6,8 @@ import { MyDataService } from "../../services/my-data-service";
 
 export class Home {
   heading = "Welcome to the MRG Home page!";
-  version = 240.44
-  versionDate = 'Thr 10/01/2018'
+  version = 240.45
+  versionDate = 'Thr 10/04/2018'
   // versiondate=Date();
 
   issues = [
@@ -180,7 +180,7 @@ export class Home {
               codesListMediumSupport.push(newi)
               break;
             case 13:
-              codesInventoryLocation.push(newi)
+              codesOrgContactTypes.push(newi)
               break;
             case 14:
               codesProvenanceLocation.push(newi)
