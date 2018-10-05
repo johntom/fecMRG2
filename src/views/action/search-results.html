@@ -79,11 +79,13 @@
 
 
 
-						ExhibitDates
+						
 						<input type="text" id="ExhibitDates" class="form-control input-sm" value.bind="item.ExhibitDates"> ExhibitSortDate
 						<input type="text" id="ExhibitSortDate" class="form-control input-sm" value.bind="item.ExhibitSortDate"> Traveled
-						<input type="text" id="Traveled" class="form-control input-sm" value.bind="item.Traveled"> ExhibitMemo
-						<input type="text" id="ExhibitMemo" class="form-control input-sm" value.bind="item.ExhibitMemo">
+						<!-- <input type="text" id="Traveled" class="form-control input-sm" value.bind="item.Traveled"> ExhibitMemo -->
+						<input type="checkbox" id="Traveled" checked.bind="item.Traveled" ><br>
+ExhibitMemo
+          	<input type="text" id="ExhibitMemo" class="form-control input-sm" value.bind="item.ExhibitMemo">
 						<button id="save2" class="btn btn-primary" type="button" click.delegate="save2()">save 	Exhibit</button>
 
 					</div>
