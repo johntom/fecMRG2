@@ -710,7 +710,7 @@ export class DataForm {
   //   console.log('this.tabname ', this.tabname)
   //   this.router.navigate(rt2);
   // }
-
+ 
   closeTab(tab) {
 
     let index = this.appService.tabs.indexOf(tab);

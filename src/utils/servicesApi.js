@@ -457,6 +457,23 @@ export class ApiService {
 
   }
 
+deleteSavedlists(slname, slids) {
+    //all   this.api.updateSavedlists(this.appService.currentsavedlist, this.selectedids).then((jsonRes) => {
+
+    var url = this.baseweb + `v1/savedlists/delete/${slname}`;
+    return this.http.fetch(url, {
+      method: 'put',
+      mode: 'cors',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+        // , 'Authorization': 'JWT ' + token
+      },
+      body: JSON.stringify(slids)
+    }).then((res) => res.json());
+
+
+  }
 
 
   // updateSavedlists(recid, rec) {

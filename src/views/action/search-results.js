@@ -24,7 +24,7 @@ export class SearchResults {
   hide7 = true
   hide8 = true
   item = {}
-  
+
   //  console.log(' inv SearchResults ');
   message = 'Hello Inventory 101- a!';
   datasource = new kendo.data.DataSource({
@@ -121,9 +121,9 @@ export class SearchResults {
   activate(params, routeConfig) {
     //http://74.114.164.24/api/v1/inventorycontent?artistl=s%26artistf=c 
     // 3/19
-// if (  this.appService.actionlist ==='closed'){
+    // if (  this.appService.actionlist ==='closed'){
 
-//  if ( this.appService.actionlist ===undefined){
+    //  if ( this.appService.actionlist ===undefined){
     this.queryParams = this.utilService.parseQueryStringUrl();
     // const qs = this.queryParams.substring(this.queryParams.indexOf('?') + 1)
     //   const pairs = qs.split('&')
@@ -143,10 +143,10 @@ export class SearchResults {
     // make a dupe of folllowing to accoumodate 2 typeaheads
     this.codesListLocation = this.appService.codesListLocation
 
-// this.appService.actionlist ='opened'
-// } 
-// else     this.datasource.read()
-   
+    // this.appService.actionlist ='opened'
+    // } 
+    // else     this.datasource.read()
+
   }
 
   loadGrid() {
@@ -213,11 +213,10 @@ export class SearchResults {
     var grid = this.grid;
     var selectedRows = grid.select();
     var maxRows = selectedRows.length / 2;
-   
     // selectedRows.each(function (idx, el) {
     //   let dataItem = grid.dataItem(el);
     // });
-   
+
     var i;
     var a1;
     for (i = 0; i < maxRows; i++) {
@@ -230,306 +229,329 @@ export class SearchResults {
       }
       if (i === maxRows - 1) {
         this.selectedids = sels;
-        alert('you are about to remove the following '+this.selectedids+' from saved list '+  this.savedlist )
-        // this.api.updateSavedlists(this.appService.currentsavedlist, this.selectedids).then((jsonRes) => {
-        //   console.log('jsonRes ', jsonRes);
-        //   // let tab = this.appService.tabs.find(f => f.isSelected);
-        // });
+        alert('you are about to remove the following ' + this.selectedids + ' from saved list ' + this.savedlist)
+        this.api.deleteSavedlists(this.savedlist, this.selectedids).then((jsonRes) => {
+          console.log('jsonRes ', jsonRes);
+          // let tab = this.appService.tabs.find(f => f.isSelected);
+          let tab = this.appService.tabs.find(f => f.isSelected);
+          this.closeTab(tab);
+
+         // this.requestclose()
+
+        });
       }
-
-
-
       // this.allselectedids.push(dataItem.InventoryCode);
       //  this.selectedids.push(dataItem.InventoryCode);
     }
-
     // this.myMultiSelect.kWidget.dataSource.add(this.selectedids);
     // this.myMultiSelect.kWidget.setDataSource(this.selectedids);
     //   this.allselectedids =   this.allselectedids+sels;
   }
+  closeTab(tab) {
+  
+    let index = this.appService.tabs.indexOf(tab);
+    // tab.isSelected = false;
+    this.appService.tabs.splice(index, 1);
+   //   tab.isSelected = false;
+  // this.appService.tabs[index - 1].isSelected = true
+   this.requestclose(index)
+  }
+  requestclose(index) {
+    // alert ('in requestclose')
+ 
+   //// const resetFunc = () => { this.appService.originalrec = this.currentItem; };
+    //// let cand = this.canDeactivate()
+   //let tab = this.appService.tabs.find(f => f.isSelected);
+    // let index = this.appService.tabs.findIndex(f => f.isSelected)
+    let rt2 = '#/action/' + this.tabname
 
 
-
-detailsFactSheet(e) {
-  let grid = this.grid;
-  let targetRow = $(e.target).closest("tr");
-  grid.select(targetRow);
-  let selectedRow = grid.select();
-  let dataItem = grid.dataItem(selectedRow);
-
-  let rt2 = dataItem.InventoryCode;
-  this.api.createFactSheet(rt2)
-    .then((jsonRes) => {
-      let success = jsonRes.data;
-      if (success === true) {
-        alert(' factsheet  created ')
-
-      } alert(' factsheet  failed ')
-    });
-
-}
-
-detailsEdit(e) {
-  let grid = this.grid;
-  let targetRow = $(e.target).closest("tr");
-  grid.select(targetRow);
-  let selectedRow = grid.select();
-  let dataItem = grid.dataItem(selectedRow);
-  let rt2 = '#/inventory/data/' + dataItem.InventoryCode;
-
-  this.router.navigate(rt2);// `#/inventory/${path}`);
-
-}
-//      <button id="factsheet1" action1() >Transport</button>
-// 			<button id="factsheet2" action2()">Exhibit</button>
-// 			<button id="factsheet3" action3()">Reproduction</button>
-// 			<button id="factsheet4" action4()">Provenance</button>
-// 			<button id="factsheet5" action5()">Mrg location</button>
-// 			<button id="factsheet6" action6()">Temp location</button>
-// 			<button id="factsheet7" action8()">Offerings</button>
-
-action1() {
-  this.item = {}
-  this.hide2 = true
-  this.hide3 = true
-  this.hide4 = true
-  this.hide5 = true
-  this.hide6 = true
-  this.hide7 = true
-  this.hide8 = true
-  this.hide1 ? this.hide1 = false : this.hide1 = true
-
-}
-
-action2() {
-  this.item = {}
-  this.hide1 = true
-  this.hide3 = true
-  this.hide4 = true
-  this.hide5 = true
-  this.hide6 = true
-  this.hide7 = true
-  this.hide8 = true
-  this.hide2 ? this.hide2 = false : this.hide2 = true
-
-}
-
-action3() {
-  this.item = {}
-  this.hide1 = true
-  this.hide2 = true
-  this.hide4 = true
-  this.hide5 = true
-  this.hide6 = true
-  this.hide7 = true
-  this.hide8 = true
-  this.hide3 ? this.hide3 = false : this.hide3 = true
-
-}
-
-action4() {
-  this.hide1 = true
-  this.hide2 = true
-  this.hide3 = true
-  this.hide5 = true
-  this.hide6 = true
-  this.hide7 = true
-  this.hide8 = true
-  this.hide4 ? this.hide4 = false : this.hide4 = true
-
-}
-
-action5() {
-  this.hide1 = true
-  this.hide2 = true
-  this.hide3 = true
-  this.hide4 = true
-  this.hide6 = true
-  this.hide7 = true
-  this.hide8 = true
-  this.hide5 ? this.hide5 = false : this.hide5 = true
-
-}
-
-action6() {
-  this.hide1 = true
-  this.hide2 = true
-  this.hide3 = true
-  this.hide4 = true
-  this.hide5 = true
-  this.hide7 = true
-  this.hide8 = true
-  this.hide6 ? this.hide6 = false : this.hide6 = true
-
-}
-action7() {
-  this.hide1 = true
-  this.hide2 = true
-  this.hide3 = true
-  this.hide4 = true
-  this.hide5 = true
-  this.hide6 = true
-  this.hide7 ? this.hide7 = false : this.hide7 = true
-  this.hide8 = true
-}
-
-action8() {
-  this.hide1 = true
-  this.hide2 = true
-  this.hide3 = true
-  this.hide4 = true
-  this.hide5 = true
-  this.hide6 = true
-  this.hide7 = true
-  this.hide8 ? this.hide8 = false : this.hide8 = true
-}
-
-//  "ExhibitTitle" : "", 
-//             "ExhibitSponser" : "Palace of the Legion of Honor", 
-//             "ExhibitLocation" : 1226.0, 
-//             "ExhibitDates" : "", 
-//             "ExhibitSortDate" : "", 
-//             "Traveled" : "N", 
-//             "ExhibitMemo" : ""
-
-save1() {
-  //     //  let orgid = `${this.OrgName._id}`
-  //     //   let orgname = `${this.OrgName.OrgName}`
-  //     //   this.currentItem.OwnerID = orgid
-  //     //   this.currentItem.ownername = orgname
-  //  //  let dtransportto = `${this.dtransportto._id}`
-
-  //     this.item.savedlist = this.savedlist
-  //     let dtransportto = `${this.Description.Description}`
-  //     let dtransportfrom = `${this.Description2.Description}`
-
-  // alert(dtransportto + '-' + dtransportfrom)
-  this.api.batchTransport(this.item)
-   this.item.savedlist = this.savedlist
-    .then((jsonRes) => {
-      if (jsonRes.data === 'success') {
-        alert(' batch updated ')
-        this.item = {}//.TransportDate = ''
-        //  this.Description =''
-        //  this.Description2 =''
-        // this.item.Description = ''
-        // this.item.Description2 = ''
-
-
-        // this.item.TransportNotes = ''
-
-      } else alert(' batch failed ')
-    })
-}
-
-save2() {
-  this.item.savedlist = this.savedlist
-  this.api.batchExhibit(this.item)
-    .then((jsonRes) => {
-      if (jsonRes.data === 'success') {
-        alert(' batch updated ')
-        this.item = {}
-        // this.item.ExhibitTitle = ''
-        // this.item.ExhibitSponser = ''
-        // this.item.Description2 = ''
-        // this.item.exhibitlocation = ''
-        // this.item.ExhibitDates = ''
-        // this.item.ExhibitSortDate = ''
-        // this.item.Traveled = ''
-        // this.item.ExhibitMemo = ''
-
-      } else alert(' batch failed ')
-    })
-}
-
-save3() {
-  // Reproduction Provenance batchMrglocation batchTemplocation batchOfferings
-  this.item.savedlist = this.savedlist
-  this.api.batchReproduction(this.item)
-    .then((jsonRes) => {
-      if (jsonRes.data === 'success') {
-        alert(' batch updated ')
-        this.item = {}
-      } else alert(' batch failed ')
-    })
-}
-
-save4() {
-  // let loc = `${this.Description.Description}`
-
-  // alert(loc)
-  this.item.savedlist = this.savedlist
-  this.api.batchProvenance(this.item)
-    .then((jsonRes) => {
-      if (jsonRes.data === 'success') {
-        alert(' batch updated ')
-        this.item = {}
-      } else alert(' batch failed ')
-    })
-}
-
-save5() {
-  //  let loc = `${this.Description5.Description}`
-
-  //alert(loc)
-  this.item.savedlist = this.savedlist
-  this.api.batchMrglocation(this.item)
-    .then((jsonRes) => {
-      if (jsonRes.data === 'success') {
-        alert(' batch updated ')
-        this.item = {}
-      } else alert(' batch failed ')
-    })
-}
-
-save6() {
-  // let loc = `${this.Description6.Description}`
-
-  //  alert(loc)
-  this.item.savedlist = this.savedlist
-  this.api.batchTemplocation(this.item)
-    .then((jsonRes) => {
-      if (jsonRes.data === 'success') {
-        alert(' batch updated ')
-        this.item = {}
-      } else alert(' batch failed ')
-    })
-}
-
-//   save7() {
-// images???
-// batchOfferings
-
-//   }
-save8() {
-  this.item.savedlist = this.savedlist
-  let orgid = this.item.OrgName._id //`${this.OrgName._id}`
-  let orgname = this.item.OrgName.OrgName // `${this.OrgName.OrgName}`
-  let offerdate = this.item.offerdate //`${this.date}`
-  let rec
-  // loop 
-  //  console.log('after orgid orgname', orgid, orgname)
-  let offerings = []
-  for (const invitem of this.datasource._data) {
-    rec = {}
-    rec.client = orgid
-    rec.clientname = orgname
-    rec.offerdate = offerdate
-    rec.InventoryCode = invitem.InventoryCode
-    rec.offeramount = invitem.offeramount
-
-    offerings.push(rec)
-    console.log('after item', rec)// item.InventoryCode,+item.offeramount)
+    let newIndex = (index > 0) ? index - 1 : 0;
+    let newTab = this.appService.tabs[newIndex];
+    //    this.appService.tryCloseTab(this.appService.currentView, tab, newTab.href);
+    //  this.appService.tryCloseTab(undefined, index, newTab.href);
+this.appService.tabs[newIndex].isSelected = true
 
   }
-  console.log('after offerings', offerings)
+  detailsFactSheet(e) {
+    let grid = this.grid;
+    let targetRow = $(e.target).closest("tr");
+    grid.select(targetRow);
+    let selectedRow = grid.select();
+    let dataItem = grid.dataItem(selectedRow);
 
-  this.api.addOfferings(offerings).then((jsonRes) => {
-    // let tab = this.appService.tabs.find(f => f.isSelected);
-    // this.closeTab(tab);
-    window.alert("Save successful!");
-  });
-}
+    let rt2 = dataItem.InventoryCode;
+    this.api.createFactSheet(rt2)
+      .then((jsonRes) => {
+        let success = jsonRes.data;
+        if (success === true) {
+          alert(' factsheet  created ')
+
+        } alert(' factsheet  failed ')
+      });
+
+  }
+
+  detailsEdit(e) {
+    let grid = this.grid;
+    let targetRow = $(e.target).closest("tr");
+    grid.select(targetRow);
+    let selectedRow = grid.select();
+    let dataItem = grid.dataItem(selectedRow);
+    let rt2 = '#/inventory/data/' + dataItem.InventoryCode;
+
+    this.router.navigate(rt2);// `#/inventory/${path}`);
+
+  }
+  //      <button id="factsheet1" action1() >Transport</button>
+  // 			<button id="factsheet2" action2()">Exhibit</button>
+  // 			<button id="factsheet3" action3()">Reproduction</button>
+  // 			<button id="factsheet4" action4()">Provenance</button>
+  // 			<button id="factsheet5" action5()">Mrg location</button>
+  // 			<button id="factsheet6" action6()">Temp location</button>
+  // 			<button id="factsheet7" action8()">Offerings</button>
+
+  action1() {
+    this.item = {}
+    this.hide2 = true
+    this.hide3 = true
+    this.hide4 = true
+    this.hide5 = true
+    this.hide6 = true
+    this.hide7 = true
+    this.hide8 = true
+    this.hide1 ? this.hide1 = false : this.hide1 = true
+
+  }
+
+  action2() {
+    this.item = {}
+    this.hide1 = true
+    this.hide3 = true
+    this.hide4 = true
+    this.hide5 = true
+    this.hide6 = true
+    this.hide7 = true
+    this.hide8 = true
+    this.hide2 ? this.hide2 = false : this.hide2 = true
+
+  }
+
+  action3() {
+    this.item = {}
+    this.hide1 = true
+    this.hide2 = true
+    this.hide4 = true
+    this.hide5 = true
+    this.hide6 = true
+    this.hide7 = true
+    this.hide8 = true
+    this.hide3 ? this.hide3 = false : this.hide3 = true
+
+  }
+
+  action4() {
+    this.hide1 = true
+    this.hide2 = true
+    this.hide3 = true
+    this.hide5 = true
+    this.hide6 = true
+    this.hide7 = true
+    this.hide8 = true
+    this.hide4 ? this.hide4 = false : this.hide4 = true
+
+  }
+
+  action5() {
+    this.hide1 = true
+    this.hide2 = true
+    this.hide3 = true
+    this.hide4 = true
+    this.hide6 = true
+    this.hide7 = true
+    this.hide8 = true
+    this.hide5 ? this.hide5 = false : this.hide5 = true
+
+  }
+
+  action6() {
+    this.hide1 = true
+    this.hide2 = true
+    this.hide3 = true
+    this.hide4 = true
+    this.hide5 = true
+    this.hide7 = true
+    this.hide8 = true
+    this.hide6 ? this.hide6 = false : this.hide6 = true
+
+  }
+  action7() {
+    this.hide1 = true
+    this.hide2 = true
+    this.hide3 = true
+    this.hide4 = true
+    this.hide5 = true
+    this.hide6 = true
+    this.hide7 ? this.hide7 = false : this.hide7 = true
+    this.hide8 = true
+  }
+
+  action8() {
+    this.hide1 = true
+    this.hide2 = true
+    this.hide3 = true
+    this.hide4 = true
+    this.hide5 = true
+    this.hide6 = true
+    this.hide7 = true
+    this.hide8 ? this.hide8 = false : this.hide8 = true
+  }
+
+  //  "ExhibitTitle" : "", 
+  //             "ExhibitSponser" : "Palace of the Legion of Honor", 
+  //             "ExhibitLocation" : 1226.0, 
+  //             "ExhibitDates" : "", 
+  //             "ExhibitSortDate" : "", 
+  //             "Traveled" : "N", 
+  //             "ExhibitMemo" : ""
+
+  save1() {
+    //     //  let orgid = `${this.OrgName._id}`
+    //     //   let orgname = `${this.OrgName.OrgName}`
+    //     //   this.currentItem.OwnerID = orgid
+    //     //   this.currentItem.ownername = orgname
+    //  //  let dtransportto = `${this.dtransportto._id}`
+
+    //     this.item.savedlist = this.savedlist
+    //     let dtransportto = `${this.Description.Description}`
+    //     let dtransportfrom = `${this.Description2.Description}`
+
+    // alert(dtransportto + '-' + dtransportfrom)
+    this.api.batchTransport(this.item)
+    this.item.savedlist = this.savedlist
+      .then((jsonRes) => {
+        if (jsonRes.data === 'success') {
+          alert(' batch updated ')
+          this.item = {}//.TransportDate = ''
+          //  this.Description =''
+          //  this.Description2 =''
+          // this.item.Description = ''
+          // this.item.Description2 = ''
+
+
+          // this.item.TransportNotes = ''
+
+        } else alert(' batch failed ')
+      })
+  }
+
+  save2() {
+    this.item.savedlist = this.savedlist
+    this.api.batchExhibit(this.item)
+      .then((jsonRes) => {
+        if (jsonRes.data === 'success') {
+          alert(' batch updated ')
+          this.item = {}
+          // this.item.ExhibitTitle = ''
+          // this.item.ExhibitSponser = ''
+          // this.item.Description2 = ''
+          // this.item.exhibitlocation = ''
+          // this.item.ExhibitDates = ''
+          // this.item.ExhibitSortDate = ''
+          // this.item.Traveled = ''
+          // this.item.ExhibitMemo = ''
+
+        } else alert(' batch failed ')
+      })
+  }
+
+  save3() {
+    // Reproduction Provenance batchMrglocation batchTemplocation batchOfferings
+    this.item.savedlist = this.savedlist
+    this.api.batchReproduction(this.item)
+      .then((jsonRes) => {
+        if (jsonRes.data === 'success') {
+          alert(' batch updated ')
+          this.item = {}
+        } else alert(' batch failed ')
+      })
+  }
+
+  save4() {
+    // let loc = `${this.Description.Description}`
+
+    // alert(loc)
+    this.item.savedlist = this.savedlist
+    this.api.batchProvenance(this.item)
+      .then((jsonRes) => {
+        if (jsonRes.data === 'success') {
+          alert(' batch updated ')
+          this.item = {}
+        } else alert(' batch failed ')
+      })
+  }
+
+  save5() {
+    //  let loc = `${this.Description5.Description}`
+
+    //alert(loc)
+    this.item.savedlist = this.savedlist
+    this.api.batchMrglocation(this.item)
+      .then((jsonRes) => {
+        if (jsonRes.data === 'success') {
+          alert(' batch updated ')
+          this.item = {}
+        } else alert(' batch failed ')
+      })
+  }
+
+  save6() {
+    // let loc = `${this.Description6.Description}`
+
+    //  alert(loc)
+    this.item.savedlist = this.savedlist
+    this.api.batchTemplocation(this.item)
+      .then((jsonRes) => {
+        if (jsonRes.data === 'success') {
+          alert(' batch updated ')
+          this.item = {}
+        } else alert(' batch failed ')
+      })
+  }
+
+  //   save7() {
+  // images???
+  // batchOfferings
+
+  //   }
+  save8() {
+    this.item.savedlist = this.savedlist
+    let orgid = this.item.OrgName._id //`${this.OrgName._id}`
+    let orgname = this.item.OrgName.OrgName // `${this.OrgName.OrgName}`
+    let offerdate = this.item.offerdate //`${this.date}`
+    let rec
+    // loop 
+    //  console.log('after orgid orgname', orgid, orgname)
+    let offerings = []
+    for (const invitem of this.datasource._data) {
+      rec = {}
+      rec.client = orgid
+      rec.clientname = orgname
+      rec.offerdate = offerdate
+      rec.InventoryCode = invitem.InventoryCode
+      rec.offeramount = invitem.offeramount
+      offerings.push(rec)
+      console.log('after item', rec)// item.InventoryCode,+item.offeramount)
+
+    }
+    console.log('after offerings', offerings)
+
+    this.api.addOfferings(offerings).then((jsonRes) => {
+      // let tab = this.appService.tabs.find(f => f.isSelected);
+      // this.closeTab(tab);
+      window.alert("Save successful!");
+    });
+  }
 
 
 }
