@@ -1,10 +1,14 @@
-// https://codepen.io/johntom/pen/ypZVaM
+
+
+
+/* https://codepen.io/johntom/pen/ypZVaM*/
 /* https://codepen.io/anon/pen/VygKvz */
 	img.responsive-img,
 		video.responsive-video {
 			max-width: 100%;
 			height: auto;
 		}
+
 		/* Variables
 ================================== */
 		/* Tables
@@ -313,19 +317,18 @@
 			border-color: #e2e6e9;
 		}
 
-		/* .Rtable-cell--highlight {
-			background-color: lightgreen;
-			border-color: #64e764;
-		} */
-
-
-	.Rtable-cell--highlight {
-		 background-color: lightblue;
+		.Rtable-cell--highlight {
+			/* background-color: lightgreen; */
+      	/* border-color: #64e764; */
+      background-color: lightblue;
       border-color: #7bbbce 
-    
+      /* #5a6673 */
+
 		}
-
-
+	.Rtable-cell--green {
+			background-color: lightgreen; 
+       border-color: #64e764;
+  	}
 		.Rtable-cell--alert {
 			background-color: darkorange;
 			border-color: #cc7000;
@@ -360,3 +363,33 @@
 			background-color: #b8c0c8;
 			border-color: #a9b3bc;
 		}
+
+    /* non flex */
+    .is-row-selected {
+        background: yellow !important;
+      }
+
+      .is-row-not-selected {
+        background: #f9f9f9 !important;
+      }
+
+        /* .is-row-selected {
+      background:#f9f9f9 !important;
+    }
+
+    .is-row-not-selected {
+
+    background: yellow !important;
+    }  */
+    /* renderjson http://caldwell.github.io/renderjson/ */
+    /* .renderjson a              { text-decoration: none; }
+.renderjson .disclosure    { color: crimson;
+                             font-size: 150%; }
+.renderjson .syntax        { color: grey; }
+.renderjson .string        { color: red; }
+.renderjson .number        { color: cyan; }
+.renderjson .boolean       { color: plum; }
+.renderjson .key           { color: lightblue; }
+.renderjson .keyword       { color: lightgoldenrodyellow; }
+.renderjson .object.syntax { color: lightseagreen; }
+.renderjson .array.syntax  { color: lightsalmon; } */

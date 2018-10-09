@@ -20,7 +20,7 @@ export class Consigned {
     this.api = api;
     this.appService = appService;
     this.inv = '';
-    this.currentItem = this.appService.testrec;
+    this.currentItem = this.appService.currentItem//testrec;
      this.dialogService = dialogService
   }
   // constructor(router, api, appService, dataService, dialogService) {

@@ -3,7 +3,9 @@
 	<require from="aurelia-kendoui-bridge/grid/col"></require>
 	<require from="aurelia-kendoui-bridge/common/template"></require>
 	<require from="../../../styles/kendo.css"></require>
-	<require from="./flex.css"></require>
+  <require from="../../../styles/flex.css"></require>
+
+	<!-- <require from="./flex.css"></require> -->
 	<!-- jrt -->
 	<style>
 		.k-grid tbody tr {
@@ -80,7 +82,7 @@
 
 
 						
-						<input type="text" id="ExhibitDates" class="form-control input-sm" value.bind="item.ExhibitDates"> ExhibitSortDate
+						Exhibit Date<input type="text" id="ExhibitDates" class="form-control input-sm" value.bind="item.ExhibitDates"> Exhibit SortDate
 						<input type="text" id="ExhibitSortDate" class="form-control input-sm" value.bind="item.ExhibitSortDate"> Traveled
 						<!-- <input type="text" id="Traveled" class="form-control input-sm" value.bind="item.Traveled"> ExhibitMemo -->
 						<input type="checkbox" id="Traveled" checked.bind="item.Traveled" ><br>
