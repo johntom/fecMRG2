@@ -135,16 +135,16 @@ export class Prompt {
       if (this.fieldname === 'MediumSupportobj') {
         // this.MediumSupportobj = this.currentItem.MediumSupportobj
         // if (this.MediumSupportobj.Description === undefined) this.MediumSupportobj.Description = this.currentItem.MediumSupportobj.Description
-if(this.currentItem.MediumSupportobj===undefined) {
+        if (this.currentItem.MediumSupportobj === undefined) {
 
- this.MedSup =this.appService.codesListMediumSupport[1]
-} else    this.MedSup = this.currentItem.MediumSupportobj
+          this.MedSup = this.appService.codesListMediumSupport[1]
+        } else this.MedSup = this.currentItem.MediumSupportobj
         // if (this.MedSup.Description === undefined) this.MedSup.Description = this.currentItem.MediumSupportobj.Description
         // this.dmediumsupport.value = this.MedSup
 
-//  if (this.MedSup.Description === undefined) {
-   
-//  }
+        //  if (this.MedSup.Description === undefined) {
+
+        //  }
         this.dmediumsupport.value = this.MedSup
 
 
@@ -225,14 +225,14 @@ if(this.currentItem.MediumSupportobj===undefined) {
       "Description": this.currentItem.newms,
       "CodeTypeDesc": "Medium/Support"
     }
-    this.api.addmediumsupport(ibod).then((jsonRes) => {
+    this.api.addmediumsupport(bod).then((jsonRes) => {
       let ms = jsonRes.data;
       this.appService.codesListMediumSupport = ms
       // this.appService.currentItem.MediumSupportobj.id = ins.id
       // this.appService.currentItem.MediumSupportobj.Description = ins.Description
 
       let oid = this.appService.codesListMediumSupport.findIndex(x => x.Description === this.currentItem.newms)
-      let codeobj = this.appService.codesGenre[oid]
+      let codeobj = this.appService.codesListMediumSupport[oid]
       this.currentItem.MediumSupportobj.id = codeobj.id
       this.currentItem.MediumSupportobj.Description = codeobj.Description
 
@@ -313,7 +313,7 @@ if(this.currentItem.MediumSupportobj===undefined) {
       this.appService.currentItem.artist = this.ArtistName
     }
     if (this.fieldname === 'MediumSupportobj') {
-     // this.currentItem.MediumSupportobj.id = this.MedSup.id
+      // this.currentItem.MediumSupportobj.id = this.MedSup.id
       this.currentItem.MediumSupportobj = this.MedSup
       // this.appService.currentItem.MediumSupportobj = this.MedSup
     }
