@@ -1,8 +1,8 @@
 <template>
-  
+
 
 	<require from="./docs.css"></require>
-		<section class="docs full-height flex-column-1 overflow-y-auto ignore">
+	<section class="docs full-height flex-column-1 overflow-y-auto ignore">
 		<h4>
 			<i class="fa fa-folder-open"></i> Exhibition
 			<a slot="buttons-slot" class="btn btn-primary" click.delegate="addExhibit()">
@@ -21,6 +21,10 @@
 					<th width="220px" class="header">Dates </th>
 					<th width="220px" class="header">Sort Date </th>
 					<th width="120px" class="header">Traveled </th>
+
+					<th width="120px" class="header">batchno </th>
+
+
 					<th width="220px" class="header">Note </th>
 					<th width="225px" class="header">Cmd</th>
 
@@ -55,15 +59,17 @@
                       </option> 
                     </select>
 					</td>
-          	<td width="220px"><input type="text" id="Reproduction" class="form-control  input-sm" value.bind="exhibition.Reproduction"></td>
-			
+					<td width="220px"><input type="text" id="Reproduction" class="form-control  input-sm" value.bind="exhibition.Reproduction"></td>
+
 					<td width="220px"><input type="text" id="ExhibitDates" class="form-control  input-sm" value.bind="exhibition.ExhibitDates"></td>
 					<td width="220px"><input type="text" id="ExhibitSortDate" class="form-control  input-sm" value.bind="exhibition.ExhibitSortDate"></td>
 					<td width="120px">
 						<!-- <input type="text" id="Traveled" class="form-control  input-sm" value.bind="exhibition.Traveled"> -->
-						<input type="checkbox" id="Traveled" checked.bind="exhibition.Traveled" >
+						<input type="checkbox" id="Traveled" checked.bind="exhibition.Traveled">
 
 					</td>
+					<td width="120px"><span> ${batchno}</span></td>
+				
 					<td width="220px"><input type="text" id="ExhibitMemo" class="form-control  input-sm" value.bind="exhibition.ExhibitMemo"></td>
 					<td width="225px">
 						<!-- <button class="btn btn-primary" click.delegate="exhibition.edit=!exhibition.edit">${ !exhibition.edit ? 'Update' : 'Done' }</button> -->

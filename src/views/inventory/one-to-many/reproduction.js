@@ -1,18 +1,20 @@
 import { inject } from 'aurelia-dependency-injection';
 import { ApiService } from '../../../utils/servicesApi';
 import { ApplicationService } from '../../../services/application-service';
-
-@inject(ApiService, ApplicationService)
+import { DialogService } from 'aurelia-dialog';
+import { Prompt } from '../../../services/prompt';
+@inject(ApiService, ApplicationService, DialogService)
 export class Reproduction {
   heading = 'DataForm HEADER...';
   footer = 'DataForm FOOTER...';
   recordId = '';
 
-  constructor(api, appService) {
+  constructor(api, appService,dialogService) {
     this.api = api;
     this.appService = appService;
     this.inv = '';
-    this.currentItem = this.appService.currentItem//testrec;
+    this.currentItem = this.appService.currentItem
+     this.dialogService = dialogService
   }
 
   activate(params, routeConfig) {
@@ -87,9 +89,22 @@ export class Reproduction {
   }
 
 
+  remove(item, index) {
 
-
-  remove(item) {
-    alert('you are about to delete ' + item.ProvMemo)
+    //     alert('you are about to delete ' + item.ProvMemo)
+    //     this.currentItem.reproduction[$index].
+    //   }
+    this.dialogService.open({ viewModel: Prompt, model: 'Delete or Cancel?', lock: false }).whenClosed(response => {
+      if (!response.wasCancelled) {
+        console.log('Delete')
+        // let reproduction = this.currentItem.reproduction
+        this.currentItem.reproduction.splice(index, 1)// start, deleteCount)
+      } else {
+        console.log('cancel');
+      }
+      console.log(response.output);
+    });
   }
+
+
 }

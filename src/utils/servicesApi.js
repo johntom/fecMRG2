@@ -438,7 +438,16 @@ export class ApiService {
     var url = this.baseweb + 'v1/savedlists';
     return this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())
   }
+  getbatchno() {
+    // search has fullu formed query string
+    var url = this.baseweb + 'v1/batch/'
+    console.log('url ', url)
+    return this.http.fetch(url, {
+      method: 'get',
+      mode: 'cors'
+    }).then((res) => res.json());
 
+  }
   updateSavedlists(slname, slids) {
     //all   this.api.updateSavedlists(this.appService.currentsavedlist, this.selectedids).then((jsonRes) => {
 
@@ -457,7 +466,7 @@ export class ApiService {
 
   }
 
-deleteSavedlists(slname, slids) {
+  deleteSavedlists(slname, slids) {
     //all   this.api.updateSavedlists(this.appService.currentsavedlist, this.selectedids).then((jsonRes) => {
 
     var url = this.baseweb + `v1/savedlists/delete/${slname}`;

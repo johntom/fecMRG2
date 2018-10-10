@@ -105,26 +105,26 @@ export class SearchResults {
     //this.currentItem.recordId = this.recordId
     this.dialogService.open({ viewModel: Prompt, model: this.currentItem, lock: false }).whenClosed(response => {
 
-// this.appService.currentsavedlist
-// this.appService.selectedids = this.selectedids
-     // this.dialogService.open({ viewModel: Prompt, model: 'selectedids', lock: false }).whenClosed(response => {
-        if (this.appService.currentsavedlist) {
-          console.log('Not Cancelled')
-          let meds = this.appService.savedlists
-          let mid = meds.findIndex(x => x.name === this.appService.currentsavedlist)//'savedlist1')
-          if (mid !== -1) {
-            let orgobj = this.appService.savedlists[mid]
-            /////// ? jrt 
-            //3-19 this.selectedids = orgobj.InventoryCodes
+      // this.appService.currentsavedlist
+      // this.appService.selectedids = this.selectedids
+      // this.dialogService.open({ viewModel: Prompt, model: 'selectedids', lock: false }).whenClosed(response => {
+      if (this.appService.currentsavedlist) {
+        console.log('Not Cancelled')
+        let meds = this.appService.savedlists
+        let mid = meds.findIndex(x => x.name === this.appService.currentsavedlist)//'savedlist1')
+        if (mid !== -1) {
+          let orgobj = this.appService.savedlists[mid]
+          /////// ? jrt 
+          //3-19 this.selectedids = orgobj.InventoryCodes
 
-          }
-        } else {
-          console.log('cancel');
         }
-        console.log(response.output);
-      });
-    }
- 
+      } else {
+        console.log('cancel');
+      }
+      console.log(response.output);
+    });
+  }
+
   // showModal(fieldname) {
 
 
@@ -288,7 +288,7 @@ export class SearchResults {
     }
   }
   addexistingSelection() {
-   
+
     let sels
     if (this.selectedids === undefined) {
       sels = []
@@ -300,41 +300,45 @@ export class SearchResults {
     // var sels = this.selectedids//[];
     var grid = this.grid;
     var selectedRows = grid.select();
-    var maxRows = selectedRows.length / 2;
-    //  this.allselectedids.push('JOHNTOM01')
-    selectedRows.each(function (idx, el) {
-      let dataItem = grid.dataItem(el);
-    });
-    var i;
-    var a1;
-    for (i = 0; i < maxRows; i++) {
-      a1 = selectedRows[i];
-      let dataItem = grid.dataItem(a1);
-      // let mid = sels.findIndex(x => x.InventoryCode === dataItem.InventoryCode)
-      let mid = sels.findIndex(x => x === dataItem.InventoryCode)
-      if (mid === -1) {
-        sels.push(dataItem.InventoryCode);
+    if (selectedRows.length === 0) {
+      alert('please select a row to add'
+      )
+    } else {
+      var maxRows = selectedRows.length / 2;
+      //  this.allselectedids.push('JOHNTOM01')
+      selectedRows.each(function (idx, el) {
+        let dataItem = grid.dataItem(el);
+      });
+      var i;
+      var a1;
+      for (i = 0; i < maxRows; i++) {
+        a1 = selectedRows[i];
+        let dataItem = grid.dataItem(a1);
+        // let mid = sels.findIndex(x => x.InventoryCode === dataItem.InventoryCode)
+        let mid = sels.findIndex(x => x === dataItem.InventoryCode)
+        if (mid === -1) {
+          sels.push(dataItem.InventoryCode);
+        }
+        if (i === maxRows - 1) {
+          this.selectedids = sels;
+          alert('addexistingSelection')
+          this.api.updateSavedlists(this.appService.currentsavedlist, this.selectedids).then((jsonRes) => {
+            console.log('jsonRes ', jsonRes);
+            // let tab = this.appService.tabs.find(f => f.isSelected);
+          });
+        }
+
+
+
+        // this.allselectedids.push(dataItem.InventoryCode);
+        //  this.selectedids.push(dataItem.InventoryCode);
       }
-      if (i === maxRows - 1) {
-        this.selectedids = sels;
-         alert('addexistingSelection')
-        this.api.updateSavedlists(this.appService.currentsavedlist, this.selectedids).then((jsonRes) => {
-          console.log('jsonRes ', jsonRes);
-          // let tab = this.appService.tabs.find(f => f.isSelected);
-        });
-      }
 
-
-
-      // this.allselectedids.push(dataItem.InventoryCode);
-      //  this.selectedids.push(dataItem.InventoryCode);
+      // this.myMultiSelect.kWidget.dataSource.add(this.selectedids);
+      // this.myMultiSelect.kWidget.setDataSource(this.selectedids);
+      //   this.allselectedids =   this.allselectedids+sels;
     }
-
-    // this.myMultiSelect.kWidget.dataSource.add(this.selectedids);
-    // this.myMultiSelect.kWidget.setDataSource(this.selectedids);
-    //   this.allselectedids =   this.allselectedids+sels;
   }
-
   //saveSelection()">Save Selection</button>			Selected IDs: ${selectedids}
   // addnewSelection() {
   //   var sels = [];

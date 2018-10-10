@@ -232,11 +232,12 @@ export class SearchResults {
         alert('you are about to remove the following ' + this.selectedids + ' from saved list ' + this.savedlist)
         this.api.deleteSavedlists(this.savedlist, this.selectedids).then((jsonRes) => {
           console.log('jsonRes ', jsonRes);
-          // let tab = this.appService.tabs.find(f => f.isSelected);
-          let tab = this.appService.tabs.find(f => f.isSelected);
-          this.closeTab(tab);
 
-         // this.requestclose()
+          //  this.loadData(); 
+          this.datasource.read();
+          // let tab = this.appService.tabs.find(f => f.isSelected);
+          // this.closeTab(tab);
+          // // this.requestclose()
 
         });
       }
@@ -247,32 +248,41 @@ export class SearchResults {
     // this.myMultiSelect.kWidget.setDataSource(this.selectedids);
     //   this.allselectedids =   this.allselectedids+sels;
   }
-  closeTab(tab) {
-  
-    let index = this.appService.tabs.indexOf(tab);
-    // tab.isSelected = false;
-    this.appService.tabs.splice(index, 1);
-   //   tab.isSelected = false;
-  // this.appService.tabs[index - 1].isSelected = true
-   this.requestclose(index)
-  }
-  requestclose(index) {
-    // alert ('in requestclose')
- 
-   //// const resetFunc = () => { this.appService.originalrec = this.currentItem; };
-    //// let cand = this.canDeactivate()
-   //let tab = this.appService.tabs.find(f => f.isSelected);
-    // let index = this.appService.tabs.findIndex(f => f.isSelected)
-    let rt2 = '#/action/' + this.tabname
+  // closeTab(tab) {
+
+  //   let index = this.appService.tabs.indexOf(tab);
+  //   // tab.isSelected = false;
+  //   this.appService.tabs.splice(index, 1);
+  //   tab.isSelected = false;
+  //   //  
+
+  //   // this.appService.tabs[0].isSelected = true
+  //   this.appService.tabs[index - 1].isSelected = true
+  //   let tabn = this.appService.tabs.find(f => f.isSelected);
+  //   let rt2 = '#/action/' + tabn.name
+  //   this.router.navigate(rt2);// `#/inventory/${path}`);
+
+  //   // this.requestclose(index)
+  // }
+  // requestclose(index) {
+  //   // alert ('in requestclose')
+
+  //   //// const resetFunc = () => { this.appService.originalrec = this.currentItem; };
+  //   //// let cand = this.canDeactivate()
+  //   //let tab = this.appService.tabs.find(f => f.isSelected);
+  //   // let index = this.appService.tabs.findIndex(f => f.isSelected)
+  //   let rt2 = '#/action/' + this.tab.name
 
 
-    let newIndex = (index > 0) ? index - 1 : 0;
-    let newTab = this.appService.tabs[newIndex];
-    //    this.appService.tryCloseTab(this.appService.currentView, tab, newTab.href);
-    //  this.appService.tryCloseTab(undefined, index, newTab.href);
-this.appService.tabs[newIndex].isSelected = true
+  //   let newIndex = (index > 0) ? index - 1 : 0;
+  //   let newTab = this.appService.tabs[newIndex];
+  //   //    this.appService.tryCloseTab(this.appService.currentView, tab, newTab.href);
+  //   //  this.appService.tryCloseTab(undefined, index, newTab.href);
+  //   this.appService.tabs[newIndex].isSelected = true
+  //   this.router.navigate(rt2);// `#/inventory/${path}`);
 
-  }
+
+  // }
   detailsFactSheet(e) {
     let grid = this.grid;
     let targetRow = $(e.target).closest("tr");
@@ -416,65 +426,69 @@ this.appService.tabs[newIndex].isSelected = true
   //             "ExhibitMemo" : ""
 
   save1() {
-    //     //  let orgid = `${this.OrgName._id}`
-    //     //   let orgname = `${this.OrgName.OrgName}`
-    //     //   this.currentItem.OwnerID = orgid
-    //     //   this.currentItem.ownername = orgname
-    //  //  let dtransportto = `${this.dtransportto._id}`
 
-    //     this.item.savedlist = this.savedlist
     //     let dtransportto = `${this.Description.Description}`
     //     let dtransportfrom = `${this.Description2.Description}`
+    this.api.getbatchno().then((jsonResna) => {
+      let batchno = jsonResna[0].nextavail
+      this.item.batchno = batchno
+      this.api.batchTransport(this.item)
+      this.item.savedlist = this.savedlist
+        .then((jsonRes) => {
+          if (jsonRes.data === 'success') {
+            alert(' batch updated  batchno= '+batchno)
+            this.item = {}//.TransportDate = ''
+            //  this.Description =''
+            //  this.Description2 =''
+            // this.item.Description = ''
+            // this.item.Description2 = ''
 
-    // alert(dtransportto + '-' + dtransportfrom)
-    this.api.batchTransport(this.item)
-    this.item.savedlist = this.savedlist
-      .then((jsonRes) => {
-        if (jsonRes.data === 'success') {
-          alert(' batch updated ')
-          this.item = {}//.TransportDate = ''
-          //  this.Description =''
-          //  this.Description2 =''
-          // this.item.Description = ''
-          // this.item.Description2 = ''
 
+            // this.item.TransportNotes = ''
 
-          // this.item.TransportNotes = ''
-
-        } else alert(' batch failed ')
-      })
+          } else alert(' batch failed ')
+        })
+    })
   }
 
   save2() {
     this.item.savedlist = this.savedlist
-    this.api.batchExhibit(this.item)
-      .then((jsonRes) => {
-        if (jsonRes.data === 'success') {
-          alert(' batch updated ')
-          this.item = {}
-          // this.item.ExhibitTitle = ''
-          // this.item.ExhibitSponser = ''
-          // this.item.Description2 = ''
-          // this.item.exhibitlocation = ''
-          // this.item.ExhibitDates = ''
-          // this.item.ExhibitSortDate = ''
-          // this.item.Traveled = ''
-          // this.item.ExhibitMemo = ''
+    this.api.getbatchno().then((jsonResna) => {
+      let batchno = jsonResna[0].nextavail
+      this.item.batchno = batchno
+      this.api.batchExhibit(this.item)
+        .then((jsonRes) => {
+          if (jsonRes.data === 'success') {
+            alert(' batch updated batchno= '+batchno)
+            this.item = {}
+            // this.item.ExhibitTitle = ''
+            // this.item.ExhibitSponser = ''
+            // this.item.Description2 = ''
+            // this.item.exhibitlocation = ''
+            // this.item.ExhibitDates = ''
+            // this.item.ExhibitSortDate = ''
+            // this.item.Traveled = ''
+            // this.item.ExhibitMemo = ''
 
-        } else alert(' batch failed ')
-      })
+          } else alert(' batch failed ')
+        })
+    })
   }
 
   save3() {
     // Reproduction Provenance batchMrglocation batchTemplocation batchOfferings
     this.item.savedlist = this.savedlist
-    this.api.batchReproduction(this.item)
-      .then((jsonRes) => {
-        if (jsonRes.data === 'success') {
-          alert(' batch updated ')
-          this.item = {}
-        } else alert(' batch failed ')
-      })
+    this.api.getbatchno().then((jsonResna) => {
+      let batchno = jsonResna[0].nextavail
+      this.item.batchno = batchno
+      this.api.batchReproduction(this.item)
+        .then((jsonRes) => {
+          if (jsonRes.data === 'success') {
+            alert(' batch updated  batchno= '+batchno)
+            this.item = {}
+          } else alert(' batch failed ')
+        })
+    })
   }
 
   save4() {

@@ -29,6 +29,8 @@
 					<th class="header">Color/BW </th>
 					<th class="header">Sort Date </th>
 					<th class="header">Sel Exhibition </th>
+					<th class="header">batchno </th>
+
 					<th class="header"> </th>
 				</tr>
 			</thead>
@@ -106,8 +108,7 @@
 
 					</td>
 
-					<td width="60px"><input type="date" id="ReproductionSortDate" class="form-control  input-sm"
-          value.bind="ReproductionSortDate"></td>
+					<td width="60px"><input type="date" id="ReproductionSortDate" class="form-control  input-sm" value.bind="ReproductionSortDate"></td>
 
 					<td width="220px">
 						<!-- <select ref='ReproductionExhibit' id="ReproductionExhibit" class="form-control input-sm"
@@ -119,7 +120,7 @@
                           ${opt.id}   ${opt.ExhibitTitle}    ${opt.ExhibitSponser}
                       </option> 
                     </select> -->
-	<select id="ReproductionExhibit" class="form-control  input-sm" value.bind="ReproductionExhibit"> 
+						<select id="ReproductionExhibit" class="form-control  input-sm" value.bind="ReproductionExhibit"> 
                       <option model.bind="null">Choose...</option> 
                          <option repeat.for="opt of currentItem.exhibition " model.bind="opt.ExhibitTitle">
                  ${opt.ExhibitTitle} /     ${opt.ExhibitSponser}
@@ -127,12 +128,13 @@
                     </select>
 
 					</td>
+					<td width="120px"><span> ${batchno}</span></td>
 
 					<td width="225px">
 						<!-- <button class="btn btn-primary" click.delegate="reproduction.edit=!reproduction.edit">${ !reproduction.edit ? 'Update' : 'Done' }</button>					 -->
-          	<button class="btn btn-primary" click.delegate="saveitem(reproduction,$index)">${ !reproduction.edit ? 'Update' : 'Done' }</button>
+						<button class="btn btn-primary" click.delegate="saveitem(reproduction,$index)">${ !reproduction.edit ? 'Update' : 'Done' }</button>
 
-          	<button class="btn btn-danger" click.delegate="remove(reproduction,$index)">Delete</button>
+						<button class="btn btn-danger" click.delegate="remove(reproduction,$index)">Delete</button>
 					</td>
 
 				</tr>
