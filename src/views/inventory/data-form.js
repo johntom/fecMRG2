@@ -76,7 +76,7 @@ export class DataForm {
     div_code: "S",
     div_name: "Secondary"
   };
-
+  // this is keywords
   dataSource = new kendo.data.DataSource({
     transport: {
       read: (options) => {
@@ -136,18 +136,7 @@ export class DataForm {
         dataSource.add(rec)
       });
 
-    // dataSource.one("requestEnd", function (args) {
-    //   if (args.type !== "create") {
-    //     return;
-    //   }
-
-    //   var newValue = args.response[0].ProductID;
-    //   alert(newValue)
-    //   dataSource.one("sync", function () {
-    //     alert(newValue)
-    //     widget.value(widget.value().concat([newValue]));
-    //   });
-    // });
+ 
 
     dataSource.sync();
     widget.refresh();// keep the focus
@@ -368,7 +357,7 @@ export class DataForm {
           // localStorage.setItem('tabinfo', JSON.stringify(tabinfo));
           localStorage.setItem('mru-mrg', JSON.stringify(mruinfo));
         }
-       
+       //////////////////// end mru
 
 
         return this.api.findInventoryOne(this.recordId)
@@ -376,6 +365,14 @@ export class DataForm {
             console.log('jsonRes ', jsonRes);
             let inv = jsonRes.data;
             this.currentItem = inv[0]
+            // never been saved from view
+            if( !this.currentItem.savedonce || this.currentItem.savedonce===undefined) {
+                this.currentItem.savedonce=true
+              this.saveinventory(0)
+            
+            }
+
+            this.currentItem.newms='' // 10-10
             this.appService.currentItem = this.currentItem//inv[0]
             this.currentItem.isDirty = () => {
               return JSON.stringify(this.currentItem) !== JSON.stringify(this.appService.originalrec)

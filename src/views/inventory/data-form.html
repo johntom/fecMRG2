@@ -229,8 +229,8 @@
 										<input type="text " xid="UnframedHeight" class="form-control input-sm " value.bind="currentItem.UnframedHeight">
 									</div>
 									<div class="Rtable-cell">
-										<select style="width: 65px " value.bind="currentItem.UnframedHeight16">
-												<option model.bind="null">size</option>
+										<select style="width: 45px " value.bind="currentItem.UnframedHeight16">
+												<option model.bind="null">0/0</option>
 												<option repeat.for="measure of measures " model.bind="measure.name">
 													${measure.name}
 												</option>
@@ -240,8 +240,8 @@
 										<input type="text " xid="UnframedWidth" class="form-control input-sm " value.bind="currentItem.UnframedWidth">
 									</div>
 									<div class="Rtable-cell">
-										<select style="width: 65px " value.bind="currentItem.UnframedWidth16">
-												<option model.bind="null">Choose...</option>
+										<select style="width: 45px " value.bind="currentItem.UnframedWidth16">
+												<option model.bind="null">0/0</option>
 												<option repeat.for="measure of measures" model.bind="measure.name">
 													${measure.name}
 												</option>
@@ -251,8 +251,8 @@
 										<input type="text " xid="UnframedDepth " class="form-control input-sm " value.bind="currentItem.UnframedDepth">
 									</div>
 									<div class="Rtable-cell">
-										<select style="width: 65px " value.bind="currentItem.UnframedDepth16">
-												<option model.bind="null">Choose...</option>
+										<select style="width: 45px " value.bind="currentItem.UnframedDepth16">
+												<option model.bind="null">0/0</option>
 												<option repeat.for="measure of measures " model.bind="measure.name">
 													${measure.name}
 												</option>
@@ -271,8 +271,8 @@
 									</div>
 									<div class="Rtable-cell">
 
-										<select style="width: 65px " value.bind="currentItem.FramedHeight16">
-												<option model.bind="null">Choose...</option>
+										<select style="width: 45px " value.bind="currentItem.FramedHeight16">
+												<option model.bind="null">0/0</option>
 												<option repeat.for="measure of measures " model.bind="measure.name">
 													${measure.name}
 												</option>
@@ -284,8 +284,8 @@
 									</div>
 									<div class="Rtable-cell">
 
-										<select style="width: 65px " value.bind="currentItem.FramedWidth16">
-												<option model.bind="null">Choose...</option>
+										<select style="width: 45px " value.bind="currentItem.FramedWidth16">
+												<option model.bind="null">0/0</option>
 												<option repeat.for="measure of measures " model.bind="measure.name">
 													${measure.name}
 												</option>
@@ -297,8 +297,8 @@
 									</div>
 									<div class="Rtable-cell">
 
-										<select style="width: 65px " value.bind="currentItem.FramedDepth16">
-												<option model.bind="null">Choose...</option>
+										<select style="width: 45px " value.bind="currentItem.FramedDepth16">
+												<option model.bind="null">0/0</option>
 												<option repeat.for="measure of measures " model.bind="measure.name">
 													${measure.name}
 												</option>
@@ -316,8 +316,8 @@
 									</div>
 									<div class="Rtable-cell">
 
-										<select style="width: 65px " value.bind="currentItem.imageHeight16">
-												<option model.bind="null">Choose...</option>
+										<select style="width: 45px " value.bind="currentItem.imageHeight16">
+												<option model.bind="null">0/0</option>
 												<option repeat.for="measure of measures " model.bind="measure.name">
 													${measure.name}
 												</option>
@@ -329,8 +329,8 @@
 									</div>
 									<div class="Rtable-cell">
 
-										<select style="width: 65px " value.bind="currentItem.imageWidth16">
-												<option model.bind="null">Choose...</option>
+										<select style="width: 45px " value.bind="currentItem.imageWidth16">
+												<option model.bind="null">0/0</option>
 												<option repeat.for="measure of measures " model.bind="measure.name">
 													${measure.name}
 												</option>
@@ -342,8 +342,8 @@
 									</div>
 									<div class="Rtable-cell">
 
-										<select style="width: 65px " value.bind="currentItem.imageDepth16">
-												<option model.bind="null">Choose...</option>
+										<select style="width: 45px " value.bind="currentItem.imageDepth16">
+												<option model.bind="null">0/0</option>
 												<option repeat.for="measure of measures " model.bind="measure.name">
 													${measure.name}
 												</option>
@@ -369,10 +369,8 @@
 
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
 										<strong> Keywords </strong>
-										<!-- <button ak-button click.delegate="showKeywords()">Show keywords</button> -->
+										<!-- <button ak-button click.delegate="showKeywords()">Show keywords </button> -->
 
-										<!-- <button class="btn btn-success" click.trigger="addKeyword()">Add Keyword</button>
-										<input xid="keyword" type="text" class="form-control" placeholder="enter keyword" value.bind="currentItem.addkeyword"> -->
 									</div>
 									<!-- ak-multiselect.ref="myMultiSelect" k-data-source.bind="allFunctions" -->
 									<div class="Rtable-cell-70 Rtable-cell--highlight">
@@ -387,9 +385,13 @@
 										</ak-multiselect> 
                        k-widget.bind="multiselect" 
                      ak-multiselect.ref="multiselect"  k-value.bind="currentItem.keywords" Description-->
-										<ak-multiselect k-value.two-way="currentItem.keywords" k-placeholder="Select keywords..." k-data-text-field="Description"
-										 k-data-value-field="Description" k-height.bind="400" k-data-source.bind="dataSource" k-value.bind="currentItem.keywords"
-										 k-widget.two-way="multiselect" id="multiselect-customizing-templates-codes">
+                     <!-- currentItem.keywords 
+                         k-value.bind="currentItem.keywords"
+								                     -->
+										<ak-multiselect k-value.two-way="currentItem.keywords" k-placeholder="Select keywords..."
+                     k-data-text-field="Description"
+										 k-data-value-field="Description" k-height.bind="400" k-data-source.bind="dataSource"
+                 		 k-widget.two-way="multiselect" id="multiselect-customizing-templates-codes">
 											<ak-template for="noDataTemplate">
 												<div>
 													<button ak-button click.delegate="addNew()">addNew</button>
