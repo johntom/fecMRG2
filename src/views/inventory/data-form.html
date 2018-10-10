@@ -192,7 +192,7 @@
 									</div>
 
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
-										<strong> MediumSupport >></strong>
+									<span dblclick.delegate="showModal( 'MediumSupportobj') ">	<strong> Medium. >></strong></span>
 									</div>
 									<div class="Rtable-cell-70  Rtable-cell--highlight">
 										<!-- <select ref="MediumSupport11" id="MediumSupport11" class="form-control input-sm" value.bind="currentItem.MediumSupportobj"> 
@@ -202,25 +202,13 @@
 												${opt.Description}
 											</option>
 										</select>  -->
-										<input dblclick.delegate="showModal( 'MediumSupportobj') " type="text " xid="MediumSupportobj " class="form-control input-sm "
+										<input disabled dblclick.delegate="showModal( 'MediumSupportobj') " type="text " xid="MediumSupportobj " class="form-control input-sm "
 										 value.bind="currentItem.MediumSupportobj.Description">
 									</div>
-									<!-- <div class="Rtable Rtable--4cols">
-										<div class="Rtable-cell Rtable-cell--highlight">
-											<strong> CatalogueNo</strong>
-										</div>
-
-										<div class="Rtable-cell Rtable-cell--highlight">
-											<input type="text " xid="CatalogueNo " class="form-control input-sm " value.bind="currentItem.CatalogueNo">
-										</div>
-
-										<div class="Rtable-cell Rtable-cell--highlight">
-											<strong> AltID </strong>
-										</div>
-										<div class="Rtable-cell Rtable-cell--highlight">
-											<input type="text " xid="AltID " class="form-control input-sm " value.bind="currentItem.AltID">
-										</div>
-									</div> -->
+									<!-- 					<span dblclick.delegate="showModal( 'MediumSupportobj') "
+                     type="text " xid="MediumSupportobj " class="form-control input-sm "
+										 value.bind="currentItem.MediumSupportobj.Description">${currentItem.MediumSupportobj.Description}</span>
+									</div>-->
 
 
 								</div>
