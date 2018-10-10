@@ -6,7 +6,7 @@ import { MyDataService } from "../../services/my-data-service";
 
 export class Home {
   heading = "Welcome to the MRG Home page!";
-  version = 240.60
+  version = 240.61
   versionDate = 'Tues 10/08/2018'
   // versiondate=Date();
 //  "select2": {
@@ -50,7 +50,8 @@ export class Home {
     'mod date header',
     'sort date',
     'Set Ex not work display sponser with exhi',
-    'restore GROSSM0029 and jpollack untitled '
+    'restore GROSSM0029 and jpollack untitled ',
+    'fix tags '
 
   ]
   todocomplete = [
