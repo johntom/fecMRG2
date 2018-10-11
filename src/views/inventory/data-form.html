@@ -202,14 +202,12 @@
 												${opt.Description}
 											</option>
 										</select>  -->
-										<input disabled dblclick.delegate="showModal( 'MediumSupportobj') " type="text " xid="MediumSupportobj " class="form-control input-sm "
-										 value.bind="currentItem.MediumSupportobj.Description">
-									</div>
-									<!-- 					<span dblclick.delegate="showModal( 'MediumSupportobj') "
-                     type="text " xid="MediumSupportobj " class="form-control input-sm "
-										 value.bind="currentItem.MediumSupportobj.Description">${currentItem.MediumSupportobj.Description}</span>
-									</div>-->
-
+										<!-- <input disabled dblclick.delegate="showModal( 'MediumSupportobj') " type="text " xid="MediumSupportobj " class="form-control input-sm "
+										 value.bind="currentItem.MediumSupportobj.Description"> -->
+								
+														<span dblclick.delegate="showModal( 'MediumSupportobj') "urrentItem.MediumSupportobj.Description}</span>
+									
+	</div>
 
 								</div>
 
@@ -447,8 +445,9 @@
 										<strong> Inscribed>></strong>
 									</div>
 									<div class="Rtable-cell-70 Rtable-cell--highlight">
-										<input dblclick.delegate="showModal( 'Inscribed') " type="text " xid="Inscribed " class="form-control input-sm " value.bind="currentItem.Inscribed">
-
+										<!-- <input dblclick.delegate="showModal( 'Inscribed') " type="text " xid="Inscribed " class="form-control input-sm " value.bind="currentItem.Inscribed"> -->
+	<span dblclick.delegate="showModal( 'Inscribed') ">${currentItem.Inscribed}</span>
+	
 									</div>
 
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
@@ -477,11 +476,14 @@
 									</div>
 
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
-										<strong> SoldTo >></strong>
+
+                    	<span dblclick.delegate="showModal( 'SoldToID') ">	<strong> SoldTo. >></strong></span>
+								
 									</div>
 									<div class="Rtable-cell-70 Rtable-cell--highlight">
-										<input dblclick.delegate="showModal( 'SoldToID') " type="text " xid="SoldToID " class="form-control input-sm " value.bind="currentItem.soldtoname">
-
+										<!-- <input dblclick.delegate="showModal( 'SoldToID') " type="text " xid="SoldToID " class="form-control input-sm " value.bind="currentItem.soldtoname"> -->
+					<span dblclick.delegate="showModal( 'SoldToID') ">${currentItem.soldtoname}</span>
+									
 									</div>
 
 
@@ -499,11 +501,15 @@
 									</div>
 
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
-										<strong> Owner >> </strong>
+									
+                    	<span dblclick.delegate="showModal( 'OwnerID') ">	<strong> Owner >></strong></span>
+								
 									</div>
 									<div class="Rtable-cell-70 Rtable-cell--highlight">
-										<input dblclick.delegate="showModal( 'OwnerID') " type="text " xid="OwnerID " class="form-control input-sm " value.bind="currentItem.ownername">
-
+										<!-- <input dblclick.delegate="showModal( 'OwnerID') " type="text " xid="OwnerID " 
+                    class="form-control input-sm " value.bind="currentItem.ownername"> -->
+	<span dblclick.delegate="showModal( 'OwnerID') ">${currentItem.ownername}</span>
+				
 									</div>
 
 

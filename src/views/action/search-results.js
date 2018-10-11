@@ -69,7 +69,7 @@ export class SearchResults {
         }
       }
     },
-    pageSize: 5,
+    pageSize: 12,
     // aggregate: [{ field: "type", aggregate: "count" },
     //   { field: "template", aggregate: "count" }
     // ]

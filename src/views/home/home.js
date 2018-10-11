@@ -6,7 +6,7 @@ import { MyDataService } from "../../services/my-data-service";
 
 export class Home {
   heading = "Welcome to the MRG Home page!";
-  version = 240.64 
+  version = 240.65 
   versionDate = 'Wed 10/10/2018'
   // versiondate=Date();
 //  "select2": {
@@ -51,18 +51,25 @@ export class Home {
     'sort date',
     'Set Ex not work display sponser with exhi',
     'restore GROSSM0029 and jpollack untitled ',
-    'fix tags '
+      'convert images '
 
+  
   ]
   todocomplete = [
 
     'x save and close',
     'x sort order on search title',
     'x ynPrompt on exhibition',
-    'x Icon for offering'
+    'x Icon for offering',
+  'x fix tags '
 
   ]
+ askmatt = [
 
+    'why google code complete stops',
+    'select2 ',
+
+  ]
 
   //Save when on a tab will negate abilty to track dirty forms',
 

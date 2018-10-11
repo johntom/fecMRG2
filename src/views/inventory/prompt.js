@@ -314,75 +314,87 @@ export class Prompt {
     }
     if (this.fieldname === 'MediumSupportobj') {
       // this.currentItem.MediumSupportobj.id = this.MedSup.id
-     
-    if(this.MedSup !== this.currentItem.MediumSupportobj)
-      this.currentItem.MediumSupportobj = this.MedSup
-     
+
+      if (this.MedSup !== this.currentItem.MediumSupportobj)
+        this.currentItem.MediumSupportobj = this.MedSup
+
     }
     if (this.fieldname === 'OwnerID') {
-      this.currentItem.OwnerID = this.OrgName._id
-      this.currentItem.ownername = this.OrgName.OrgName
+      if (this.OrgName.OrgName !== this.currentItem.ownername) {
+        this.currentItem.OwnerID = this.OrgName._id
+        this.currentItem.ownername = this.OrgName.OrgName
+      }
 
     }
     if (this.fieldname === 'SoldToID') {
+      if (this.OrgName.OrgName !== this.currentItem.soldtoname) {
 
-      this.currentItem.SoldToID = this.OrgName._id
-      this.currentItem.soldtoname = this.OrgName.OrgName
+        this.currentItem.SoldToID = this.OrgName._id
+        this.currentItem.soldtoname = this.OrgName.OrgName
+      }
     }
     if (this.fieldname === 'ConsignedFromID') {
+      if (this.OrgName.OrgName !== this.currentItem.consignedfromname) {
 
-      this.currentItem.ConsignedFromID = this.OrgName._id
-      this.currentItem.consignedfromname = this.OrgName.OrgName
+        this.currentItem.ConsignedFromID = this.OrgName._id
+        this.currentItem.consignedfromname = this.OrgName.OrgName
+      }
     }
     if (this.fieldname === 'ConsignmentShippingID') {
+      if (this.OrgName.OrgName !== this.currentItem.consignmentshippingname) {
 
-      this.currentItem.ConsignmentShippingID = this.OrgName._id
-      this.currentItem.consignmentshippingname = this.OrgName.OrgName
+        this.currentItem.ConsignmentShippingID = this.OrgName._id
+        this.currentItem.consignmentshippingname = this.OrgName.OrgName
+      }
+
     }
-
-
     if (this.fieldname === 'ConservedBy') {
       // let orgid = `${this.OrgName._id}`
       // let orgname = `${this.OrgName.OrgName}`
-      this.currentItem.ConservedBy = this.OrgName._id
-      this.currentItem.conservedbyname = this.OrgName.OrgName
+      if (this.OrgName.OrgName !== this.currentItem.conservedbyname) {
+
+        this.currentItem.ConservedBy = this.OrgName._id
+        this.currentItem.conservedbyname = this.OrgName.OrgName
+      }
+
     }
-
-
     if (this.fieldname === 'ConsignedTo') {
-      // let orgid = `${this.OrgName._id}`
-      // let orgname = `${this.OrgName.OrgName}`
-      this.currentItem.ConsignedTo = this.OrgName._id
-      this.currentItem.consignedtoname = this.OrgName.OrgName
+      if (this.OrgName.OrgName !== this.currentItem.consignedtoname) {
+
+        this.currentItem.ConsignedTo = this.OrgName._id
+        this.currentItem.consignedtoname = this.OrgName.OrgName
+      }
     }
 
     if (this.fieldname === 'PurchasedFrom') {
-      // let orgid = `${this.OrgName._id}`
-      // let orgname = `${this.OrgName.OrgName}`
-      this.currentItem.PurchasedFrom = this.OrgName._id
-      this.currentItem.purchasedfromname = this.OrgName.OrgName
-    }
+      if (this.OrgName.OrgName !== this.currentItem.purchasedfromname) {
 
+        this.currentItem.PurchasedFrom = this.OrgName._id
+        this.currentItem.purchasedfromname = this.OrgName.OrgName
+      }
+    }
     if (this.fieldname === 'LoanTo') {
-      // let orgid = `${this.OrgName._id}`
-      // let orgname = `${this.OrgName.OrgName}`
-      this.currentItem.LoanTo = this.OrgName._id
-      this.currentItem.loantoname = this.OrgName.OrgName
+      if (this.OrgName.OrgName !== this.currentItem.loantoname) {
+
+        this.currentItem.LoanTo = this.OrgName._id
+        this.currentItem.loantoname = this.OrgName.OrgName
+      }
     }
     if (this.fieldname === 'PhotographerID') {
-      // let orgid = `${this.OrgName._id}`
-      // let orgname = `${this.OrgName.OrgName}`
-      this.currentItem.PhotographerID = this.OrgName._id
-      this.currentItem.photographername = this.OrgName.OrgName
+      if (this.OrgName.OrgName !== this.currentItem.photographername) {
+
+        this.currentItem.PhotographerID = this.OrgName._id
+        this.currentItem.photographername = this.OrgName.OrgName
+      }
     }
     if (this.fieldname === 'ConsignmentShippingID') {
-      // let orgid = `${this.OrgName._id}`
-      // let orgname = `${this.OrgName.OrgName}`
-      this.currentItem.ConsignmentShippingID = this.OrgName._id
-      this.currentItem.consignmentshippingname = this.OrgName.OrgName
+      if (this.OrgName.OrgName !== this.currentItem.consignmentshippingname) {
+
+        this.currentItem.ConsignmentShippingID = this.OrgName._id
+        this.currentItem.consignmentshippingname = this.OrgName.OrgName
+      }
+
     }
-
-
 
 
 
