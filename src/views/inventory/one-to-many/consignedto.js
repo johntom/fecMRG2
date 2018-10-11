@@ -46,9 +46,11 @@ export class Conssignedto {
     // let newNoteWorkDate = moment().format('YYYY-MM-DD')
     if (consignedto === undefined) {
       flag = true
-      consignedto = []
+      consignedto = [] 
     }
-    item = { ConsignmentNotes: '', edit: true }
+     let cDate = moment().format('YYYY-MM-DD')
+  
+    item = { ConsignmentNotes: '', CreatedDate:cDate, edit: true }
     consignedto.unshift(item)
     if (flag) this.currentItem.consignedto = consignedto
   }

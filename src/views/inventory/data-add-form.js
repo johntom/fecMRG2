@@ -32,7 +32,7 @@ export class DataAddForm {
      this.inscoAddresses= []
     //breaks form
     //    this.currentnewItem={}
-    //         let newNoteWorkDate = moment().format('YYYY-MM-DD')
+    //      import moment from 'moment';   let newNoteWorkDate = moment().format('YYYY-MM-DD')
     // this.currentnewItem.EDITED =newNoteWorkDate
     // this.currentnewItem.RECEIVED =newNoteWorkDate
 

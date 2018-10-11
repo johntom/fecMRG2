@@ -19,14 +19,14 @@
 					<th class="header">Netto</br>MRG </th>
 					<th class="header">Netto</br>MRGAmt </th>
 					<th class="header">Retail</br>PriceAmt </th>
-					<th class="header">Retail</br>Price </th>
+				
 					<th class="header">Artwork</br>Released </th>
 					<th class="header">Signed </th>
 					<th class="header">PDF </th>
 					<th class="header">Notes </th>
 					<th class="header">Sold </th>
-					<th class="header">Created</br>Date </th>
-					<th class="header">Modified</br>Date </th>
+					<!-- <th class="header">Created</br>Date </th>
+					<th class="header">Modified</br>Date </th> -->
 
 				</tr>
 			</thead>
@@ -83,10 +83,7 @@
 						<span show.bind="!consignedto.edit">${ConsignmentRetailPriceAmt}</span>
 						<input show.bind="consignedto.edit" class="form-control input-sm" disabled.bind="!consignedto.edit" type="text" value.bind="ConsignmentRetailPriceAmt">
 					</td>
-					<td width="125px">
-						<span show.bind="!consignedto.edit">${ConsignmentRetailPrice}</span>
-						<input show.bind="consignedto.edit" class="form-control input-sm" disabled.bind="!consignedto.edit" type="text" value.bind="ConsignmentRetailPrice">
-					</td>
+			
 					<td width="105px">
 						<span show.bind="!consignedto.edit">${ArtworkReleased}</span>
 						<input show.bind="consignedto.edit" class="form-control input-sm" disabled.bind="!consignedto.edit" type="date" value.bind="ArtworkReleased">
@@ -114,9 +111,9 @@
 	<td width="75px">
 					${CreatedDate}
 					</td>
-          	<td width="75px">
+          	<!--td width="75px">
 					${ModifiedDate}
-					</td>
+					</td> -->
 		
 					<td width="225px">
 						<!-- <button class="btn btn-primary" click.delegate="consignedto.edit=!consignedto.edit">${ !consignedto.edit ? 'Update' : 'Done' }</button> -->

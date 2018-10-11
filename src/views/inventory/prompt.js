@@ -133,9 +133,13 @@ export class Prompt {
       }
 
       if (this.fieldname === 'MediumSupportobj') {
-        // this.MediumSupportobj = this.currentItem.MediumSupportobj
-        // if (this.MediumSupportobj.Description === undefined) this.MediumSupportobj.Description = this.currentItem.MediumSupportobj.Description
-        if (this.currentItem.MediumSupportobj === undefined) {
+        
+      
+    this.doc = `type any characters of the   "Medium/Support: select or add new to select."`
+    this.heading = `Search Medium/Support: select or add new to select.`
+    this.placeholder = `Enter any characters on Medium/Support: select or add new to select.`
+        
+          if (this.currentItem.MediumSupportobj === undefined) {
 
           this.MedSup = this.appService.codesListMediumSupport[1]
         } else this.MedSup = this.currentItem.MediumSupportobj

@@ -28,7 +28,7 @@
 		<div class="Rtable-cell-70  Rtable-cell--highlight">
 			<select id="SoldPayment" class="form-control input-sm" value.bind="SoldPayment"> 
                       <option model.bind="null">Choose...</option> 
-                     <option repeat.for="opt of appService.codesProvenanceLocation" model.bind="opt.id">
+                     <option repeat.for="opt of appService.codesPaymentMethod" model.bind="opt.id">
                            ${opt.Description} 
                       </option> 
                     </select>
