@@ -314,8 +314,10 @@ export class Prompt {
     }
     if (this.fieldname === 'MediumSupportobj') {
       // this.currentItem.MediumSupportobj.id = this.MedSup.id
+     
+    if(this.MedSup !== this.currentItem.MediumSupportobj)
       this.currentItem.MediumSupportobj = this.MedSup
-      // this.appService.currentItem.MediumSupportobj = this.MedSup
+     
     }
     if (this.fieldname === 'OwnerID') {
       this.currentItem.OwnerID = this.OrgName._id
