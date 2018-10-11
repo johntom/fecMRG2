@@ -3,7 +3,7 @@ import { inject } from 'aurelia-dependency-injection';
 // import { Router } from 'aurelia-router';
 import { Router, Redirect } from 'aurelia-router';
 import { UtilService } from '../../services/util-service';
-// import moment from 'moment';
+ import moment from 'moment';
 import { ApplicationService } from '../../services/application-service';
 import { MyDataService } from "../../services/my-data-service";
 // jrt
@@ -26,7 +26,7 @@ export class SearchResults {
   item = {}
 
   //  console.log(' inv SearchResults ');
-  message = 'Hello Inventory 101- a!';
+  message = 'Hello Batch Updates';
   datasource = new kendo.data.DataSource({
     transport: {
       read: (options) => {
@@ -53,20 +53,20 @@ export class SearchResults {
     schema: {
       model: {
         id: "id", // Must assign id for update to work
-        fields: {
-          offeramount: { type: "number" }, // scan template
-          // Artist: { type: "string" }, // barcode insured
-          //  ArtistRegistra: { type: "string" },
-          InventoryCode: { type: "string", editable: false },
-          Title: { type: "string", editable: false },
-          //  "artist.lastName": { type: "string", editable: false },
-          // MediumSupport: { type: "string" },
-          // CurrentLocation: { type: "string" },
-          // Bin: { type: "string" }, // barcode insured
-          // Owner: { type: "string" },
-          // InvYear: { type: "string" },
-          // UnframedHeight: { type: "string" },
-        }
+        // fields: {
+        //   offeramount: { type: "number" }, // scan template
+        //   // Artist: { type: "string" }, // barcode insured
+        //   //  ArtistRegistra: { type: "string" },
+        //   InventoryCode: { type: "string", editable: false },
+        //   Title: { type: "string", editable: false },
+        //   //  "artist.lastName": { type: "string", editable: false },
+        //   // MediumSupport: { type: "string" },
+        //   // CurrentLocation: { type: "string" },
+        //   // Bin: { type: "string" }, // barcode insured
+        //   // Owner: { type: "string" },
+        //   // InvYear: { type: "string" },
+        //   // UnframedHeight: { type: "string" },
+        // }
       }
     },
     pageSize: 12,
@@ -86,11 +86,6 @@ export class SearchResults {
   }
   updateData(e) {
     console.log('updateData ', e)
-    // return this.api.updatecase(e, this.user)
-    //     .then((jsonRes) => {
-    //         console.log('this.scans ', jsonRes)
-    //         return jsonRes
-    //     })
 
 
     return this.api.saveinventory(e).then((jsonRes) => {
@@ -119,33 +114,15 @@ export class SearchResults {
 
 
   activate(params, routeConfig) {
-    //http://74.114.164.24/api/v1/inventorycontent?artistl=s%26artistf=c 
-    // 3/19
-    // if (  this.appService.actionlist ==='closed'){
 
-    //  if ( this.appService.actionlist ===undefined){
-    this.queryParams = this.utilService.parseQueryStringUrl();
-    // const qs = this.queryParams.substring(this.queryParams.indexOf('?') + 1)
-    //   const pairs = qs.split('&')
-    //   const queryParams = {}
-    //   let slname
-    //   pairs.forEach(p => {
-    //     const kv = p.split('=')
-    //     slname = kv[1]
-    //   });
-    //   this.item.savedlist = slname 
-    // or
-    this.item.savedlist = this.appService.currentActionlist
+    // this.queryParams = this.utilService.parseQueryStringUrl();
 
-    this.savedlist = this.appService.currentActionlist
+    // this.item.savedlist = this.appService.currentActionlist
+
+    // this.savedlist = this.appService.currentActionlist
 
     this.datasource.read()
-    // make a dupe of folllowing to accoumodate 2 typeaheads
-    this.codesListLocation = this.appService.codesListLocation
 
-    // this.appService.actionlist ='opened'
-    // } 
-    // else     this.datasource.read()
 
   }
 
@@ -161,17 +138,12 @@ export class SearchResults {
     let s2 = '1-1-2016';
     let s3 = '10-21-2016';
     let inv;
-    ///api/v1/inventory/getall
-    // let searchrec={}
-    // if (this.title)  searchrec.title=this.title;
-    // if (this.invcode) searchrec.invcode=this.invcode;
-    // console.log(this.queryParams)
 
-    return this.api.findInventory(this.queryParams)
-      //return this.api.findInventoryKeywords(this.queryParams)
+    // return this.api.findInventory(this.queryParams)
+    return this.api.findbatchupdates()
 
       .then((jsonRes) => {
-        inv = jsonRes.data;
+        inv = jsonRes//.data;
         if (inv === 0 || inv.length === 0) {
           alert(' no records found ')
           let tab = this.appService.tabs.find(f => f.isSelected);
@@ -189,40 +161,45 @@ export class SearchResults {
     tab.isSelected = false;
     this.appService.tabs.splice(index, 1);
   }
-
-
+ 
+//////////////// main
   rowSelected(e) {
     console.log('e ' + e.sender)
     let grid = e.sender;
     let selectedRow = grid.select();
     let dataItem = grid.dataItem(selectedRow);
-    //   alert(dataItem.assignto);
+    if (dataItem.type === 'Reproduction') {
+      this.item = dataItem.rec
+      this.item.id = dataItem.id
+        this.item.savedlist =dataItem.savedlist
+      this.action3();
+    }
+    if (dataItem.type === 'Exhibit') {
+      this.item = dataItem.rec
+       this.item.id = dataItem.id
+        this.item.savedlist =dataItem.savedlist
+      this.action2();
+    }
+    //   
   }
   performAction1() {
-    // console.log('Action1 ')
-    // alert('You have selected Action 1')
+
     let sels
     if (this.selectedids === undefined) {
       sels = []
-      // if (!this.selectedids.length > 0) {
-      //   sels = []//this.selectedids//[];
+
 
     } else sels = this.selectedids
     console.log('Action1 sels', sels)
-    // var sels = this.selectedids//[];
     var grid = this.grid;
     var selectedRows = grid.select();
     var maxRows = selectedRows.length / 2;
-    // selectedRows.each(function (idx, el) {
-    //   let dataItem = grid.dataItem(el);
-    // });
 
     var i;
     var a1;
     for (i = 0; i < maxRows; i++) {
       a1 = selectedRows[i];
       let dataItem = grid.dataItem(a1);
-      // let mid = sels.findIndex(x => x.InventoryCode === dataItem.InventoryCode)
       let mid = sels.findIndex(x => x === dataItem.InventoryCode)
       if (mid === -1) {
         sels.push(dataItem.InventoryCode);
@@ -233,56 +210,15 @@ export class SearchResults {
         this.api.deleteSavedlists(this.savedlist, this.selectedids).then((jsonRes) => {
           console.log('jsonRes ', jsonRes);
 
-          //  this.loadData(); 
+
           this.datasource.read();
-          // let tab = this.appService.tabs.find(f => f.isSelected);
-          // this.closeTab(tab);
-          // // this.requestclose()
+
 
         });
       }
-      // this.allselectedids.push(dataItem.InventoryCode);
-      //  this.selectedids.push(dataItem.InventoryCode);
     }
-    // this.myMultiSelect.kWidget.dataSource.add(this.selectedids);
-    // this.myMultiSelect.kWidget.setDataSource(this.selectedids);
-    //   this.allselectedids =   this.allselectedids+sels;
   }
-  // closeTab(tab) {
 
-  //   let index = this.appService.tabs.indexOf(tab);
-  //   // tab.isSelected = false;
-  //   this.appService.tabs.splice(index, 1);
-  //   tab.isSelected = false;
-  //   //  
-
-  //   // this.appService.tabs[0].isSelected = true
-  //   this.appService.tabs[index - 1].isSelected = true
-  //   let tabn = this.appService.tabs.find(f => f.isSelected);
-  //   let rt2 = '#/action/' + tabn.name
-  //   this.router.navigate(rt2);// `#/inventory/${path}`);
-
-  //   // this.requestclose(index)
-  // }
-  // requestclose(index) {
-  //   // alert ('in requestclose')
-
-  //   //// const resetFunc = () => { this.appService.originalrec = this.currentItem; };
-  //   //// let cand = this.canDeactivate()
-  //   //let tab = this.appService.tabs.find(f => f.isSelected);
-  //   // let index = this.appService.tabs.findIndex(f => f.isSelected)
-  //   let rt2 = '#/action/' + this.tab.name
-
-
-  //   let newIndex = (index > 0) ? index - 1 : 0;
-  //   let newTab = this.appService.tabs[newIndex];
-  //   //    this.appService.tryCloseTab(this.appService.currentView, tab, newTab.href);
-  //   //  this.appService.tryCloseTab(undefined, index, newTab.href);
-  //   this.appService.tabs[newIndex].isSelected = true
-  //   this.router.navigate(rt2);// `#/inventory/${path}`);
-
-
-  // }
   detailsFactSheet(e) {
     let grid = this.grid;
     let targetRow = $(e.target).closest("tr");
@@ -313,16 +249,9 @@ export class SearchResults {
     this.router.navigate(rt2);// `#/inventory/${path}`);
 
   }
-  //      <button id="factsheet1" action1() >Transport</button>
-  // 			<button id="factsheet2" action2()">Exhibit</button>
-  // 			<button id="factsheet3" action3()">Reproduction</button>
-  // 			<button id="factsheet4" action4()">Provenance</button>
-  // 			<button id="factsheet5" action5()">Mrg location</button>
-  // 			<button id="factsheet6" action6()">Temp location</button>
-  // 			<button id="factsheet7" action8()">Offerings</button>
 
   action1() {
-    this.item = {}
+    // this.item = {}
     this.hide2 = true
     this.hide3 = true
     this.hide4 = true
@@ -335,7 +264,7 @@ export class SearchResults {
   }
 
   action2() {
-    this.item = {}
+    // this.item = {}
     this.hide1 = true
     this.hide3 = true
     this.hide4 = true
@@ -343,12 +272,13 @@ export class SearchResults {
     this.hide6 = true
     this.hide7 = true
     this.hide8 = true
-    this.hide2 ? this.hide2 = false : this.hide2 = true
+  //  this.hide2 ? this.hide2 = false : this.hide2 = true
+this.hide2 = false 
 
   }
 
   action3() {
-    this.item = {}
+    //  this.item = {}
     this.hide1 = true
     this.hide2 = true
     this.hide4 = true
@@ -356,8 +286,8 @@ export class SearchResults {
     this.hide6 = true
     this.hide7 = true
     this.hide8 = true
-    this.hide3 ? this.hide3 = false : this.hide3 = true
-
+  // this.hide3 ? this.hide3 = false : this.hide3 = true
+this.hide3 = false
   }
 
   action4() {
@@ -417,18 +347,10 @@ export class SearchResults {
     this.hide8 ? this.hide8 = false : this.hide8 = true
   }
 
-  //  "ExhibitTitle" : "", 
-  //             "ExhibitSponser" : "Palace of the Legion of Honor", 
-  //             "ExhibitLocation" : 1226.0, 
-  //             "ExhibitDates" : "", 
-  //             "ExhibitSortDate" : "", 
-  //             "Traveled" : "N", 
-  //             "ExhibitMemo" : ""
+
 
   save1() {
 
-    //     let dtransportto = `${this.Description.Description}`
-    //     let dtransportfrom = `${this.Description2.Description}`
     this.api.getbatchno().then((jsonResna) => {
       let batchno = jsonResna[0].nextavail
       this.item.batchno = batchno
@@ -436,15 +358,9 @@ export class SearchResults {
       this.item.savedlist = this.savedlist
         .then((jsonRes) => {
           if (jsonRes.data === 'success') {
-            alert(' batch updated  batchno= '+batchno)
+            alert(' batch updated  batchno= ' + batchno)
             this.item = {}//.TransportDate = ''
-            //  this.Description =''
-            //  this.Description2 =''
-            // this.item.Description = ''
-            // this.item.Description2 = ''
 
-
-            // this.item.TransportNotes = ''
 
           } else alert(' batch failed ')
         })
@@ -452,43 +368,36 @@ export class SearchResults {
   }
 
   save2() {
-    this.item.savedlist = this.savedlist
-    this.api.getbatchno().then((jsonResna) => {
-      let batchno = jsonResna[0].nextavail
-      this.item.batchno = batchno
-      this.api.batchExhibit(this.item)
+    let savetime = moment().format('MM/DD/YY h:mm:ss a')
+
+      this.api.batchExhibitUpdate(this.item)
         .then((jsonRes) => {
           if (jsonRes.data === 'success') {
-            alert(' batch updated batchno= '+batchno)
-            this.item = {}
-            // this.item.ExhibitTitle = ''
-            // this.item.ExhibitSponser = ''
-            // this.item.Description2 = ''
-            // this.item.exhibitlocation = ''
-            // this.item.ExhibitDates = ''
-            // this.item.ExhibitSortDate = ''
-            // this.item.Traveled = ''
-            // this.item.ExhibitMemo = ''
+          //  alert(' batch updated batchno= ' + this.item.batchno)
+          this.message = "batch updated batchno= " + this.item.batchno+" @ " + savetime
+        
+          //  this.item = {}
+            
 
-          } else alert(' batch failed ')
+          } else 
+          this.message = "batch update failed for  batchno= " + this.item.batchno+" @ " + savetime
+        
         })
-    })
+    
   }
 
   save3() {
-    // Reproduction Provenance batchMrglocation batchTemplocation batchOfferings
-    this.item.savedlist = this.savedlist
-    this.api.getbatchno().then((jsonResna) => {
-      let batchno = jsonResna[0].nextavail
-      this.item.batchno = batchno
-      this.api.batchReproduction(this.item)
-        .then((jsonRes) => {
-          if (jsonRes.data === 'success') {
-            alert(' batch updated  batchno= '+batchno)
-            this.item = {}
-          } else alert(' batch failed ')
-        })
-    })
+     let savetime = moment().format('MM/DD/YY h:mm:ss a')
+
+   alert(' Not avail yet ')
+      // this.api.batchReproductionUpdate(this.item)
+      //   .then((jsonRes) => {
+      //     if (jsonRes.data === 'success') {
+      //       alert(' batch updated  batchno= ' + this.item.batchno)
+      //       this.item = {}
+      //     } else alert(' batch failed ')
+      //   })
+   
   }
 
   save4() {
@@ -533,11 +442,7 @@ export class SearchResults {
       })
   }
 
-  //   save7() {
-  // images???
-  // batchOfferings
 
-  //   }
   save8() {
     this.item.savedlist = this.savedlist
     let orgid = this.item.OrgName._id //`${this.OrgName._id}`
@@ -570,38 +475,3 @@ export class SearchResults {
 
 }
 
-
-          // OwnershipStatus: { type: "string" },
-          // RetailPriceAlpha: { type: "string" },
-          // RetailPrice: { type: "string" },
-          // RetailPriceDate: { type: "date" },
-          // DateAdded: { type: "date" },
-          // PurchasedDate: { type: "string" },
-          // PurchasedFrom: { type: "string" },
-          // PurchasedPrice: { type: "string" },
-          // PurchasedForPrice: { type: "string" },
-          // Sold: { type: "string" },
-          // // Not Sold": { type: "string" },,
-          // SoldToID: { type: "string" },
-          // // Sold Date : { type: "date" },
-          // SoldFor:  { type: "string" },
-          // SoldPrice:  { type: "string" },
-          // //Min SellingPrice : "",
-          // NetToOwner: { type: "string" },
-          // ConsignedStartDate:  { type: "string" },
-          // ConsignedEndDate:  { type: "date" },
-          // MRGLocation: { type: "string" },
-          // SoldDesc:  { type: "string" },
-
-          // link: { type: "string" },workername  workeraddr workercity
-          //  "First Name": { type: "string" },
-          // workeraddr: { type: "string" },
-          // workercity: { type: "string" },
-          // filename: { type: "string" },
-          // contents: { type: "string" },
-          // createdAt: { type: "date" },
-          //  billedamt: { type: "number" },
-          //    payamt: { type: "number" },      
-          // // assignto:{ type: "string" },
-          // assignto: { defaultValue: { staffid: 1, username: 'jrt' } }
-          // // contents: { type: "memo" } billedamt payamt

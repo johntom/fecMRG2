@@ -135,9 +135,9 @@ export class Prompt {
       if (this.fieldname === 'MediumSupportobj') {
         
       
-    this.doc = `type any characters of the   "Medium/Support: select or add new to select."`
-    this.heading = `Search Medium/Support: select or add new to select.`
-    this.placeholder = `Enter any characters on Medium/Support: select or add new to select.`
+    this.doc = `type any characters of the   "Medium/Support: select or add new."`
+    this.heading = `Search Medium/Support: select or add new.`
+    this.placeholder = `Enter any characters on Medium/Support: select or add new.`
         
           if (this.currentItem.MediumSupportobj === undefined) {
 

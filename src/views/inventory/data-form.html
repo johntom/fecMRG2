@@ -7,6 +7,9 @@
 	<require from="aurelia-kendoui-bridge/common/template"></require>
 	<require from="./modal-form"></require>
 	<require from="./flex.css"></require>
+  <require from="../../resources/value-converters/date-format"></require> 
+  
+
 	<style>
 		img.responsive-img {
 			max-height: 300px;
@@ -205,7 +208,7 @@
 										<!-- <input disabled dblclick.delegate="showModal( 'MediumSupportobj') " type="text " xid="MediumSupportobj " class="form-control input-sm "
 										 value.bind="currentItem.MediumSupportobj.Description"> -->
 								
-														<span dblclick.delegate="showModal( 'MediumSupportobj') "urrentItem.MediumSupportobj.Description}</span>
+											<span dblclick.delegate="showModal( 'MediumSupportobj') ">${currentItem.MediumSupportobj.Description}</span>
 									
 	</div>
 
@@ -456,7 +459,7 @@
 									<div class="Rtable-cell-70 Rtable-cell--highlight">
 										<!-- ${currentItem.DateAdded} / ${currentItem.ModifiedDate} -->
 							<!-- after convert use createdAt -->
-              	${currentItem.created} / ${currentItem.updatedAt}		</div>
+              	${currentItem.DateAdded} / ${currentItem.updatedAt | dateFormat }		</div>
 
 								</div>
 							</div>

@@ -19,26 +19,30 @@ export class ApiService {
     this.baseBB = 'https://buildings-207021.appspot.com/query'// bin/1022709
 
   }
-  getBB(bin) {
-    let bod = { bin: bin, name: bin }
-    console.log(bod)
-    // var url = this.baseBB + `/bin/${bin}`;
-    // var url = this.baseBB + `/bin?bin=${bin}`;
-    var url = this.baseBB + `?bin=${bin}`;
-    //var url = this.baseBB + '/bin'
-    return this.http.fetch(url, {
-      method: 'get', //post
-      mode: 'no-cors',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'encoding': "application/x-www-form-urlencoded",
-        'enctype': "application/x-www-form-urlencoded"
-      }
-      //, body: JSON.stringify(bod)
-    }).then((res) => res.json());
+  // getBB(bin) {
+  //   let bod = { bin: bin, name: bin }
+  //   console.log(bod)
+  //   // var url = this.baseBB + `/bin/${bin}`;
+  //   // var url = this.baseBB + `/bin?bin=${bin}`;
+  //   var url = this.baseBB + `?bin=${bin}`;
+  //   //var url = this.baseBB + '/bin'
+  //   return this.http.fetch(url, {
+  //     method: 'get', //post
+  //     mode: 'no-cors',
+  //     headers: {
+  //       'Accept': 'application/json',
+  //       'Content-Type': 'application/json',
+  //       'encoding': "application/x-www-form-urlencoded",
+  //       'enctype': "application/x-www-form-urlencoded"
+  //     }
+  //     //, body: JSON.stringify(bod)
+  //   }).then((res) => res.json());
 
-  }
+  // }
+
+
+
+  
   getUserJwt(username, pass) {
     var token = {};
     token.username = username;
@@ -58,7 +62,17 @@ export class ApiService {
   }
 
   // mrg
+// https://artbased.com/api/v1/batchupdates
 
+  findbatchupdates() {
+    // search has fullu formed query string
+    var url = this.baseweb + 'v1/batchupdates'// + search
+    console.log('url ', url)
+    return this.http.fetch(url, {
+      method: 'get',
+      mode: 'cors'
+    }).then((res) => res.json());
+  }
   findInventory(search) {
     // search has fullu formed query string
     var url = this.baseweb + 'v1/inventorycontent' + search
@@ -194,6 +208,41 @@ export class ApiService {
       body: JSON.stringify(rec)
     }).then((res) => res.json());
   }
+
+ batchExhibitUpdate(rec) {
+    let url = this.baseweb + `v1/inventory/batchExhibitUpdate`
+    console.log('url ', url)
+    // return {'data': true}
+    return this.http.fetch(url, {
+      method: 'put',
+      mode: 'cors',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+        // , 'Authorization': 'JWT ' + token
+      },
+      body: JSON.stringify(rec)
+    }).then((res) => res.json());
+  }
+
+  //3
+  batchReproductionUpdate(rec) {
+    let url = this.baseweb + `v1/inventory/batchReproductionUpdate`
+    console.log('url ', url)
+    // return {'data': true}
+    return this.http.fetch(url, {
+      method: 'put',
+      mode: 'cors',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+        // , 'Authorization': 'JWT ' + token
+      },
+      body: JSON.stringify(rec)
+    }).then((res) => res.json());
+  }
+
+
   //4
   batchProvenance(rec) {
     let url = this.baseweb + `v1/inventory/batchProvenance`

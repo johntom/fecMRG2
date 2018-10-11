@@ -24,18 +24,18 @@
 	<!-- <require from="./flex.css"></require> -->
 	<require from="aurelia-kendoui-bridge/multiselect/multiselect"></require>
 	<require from="aurelia-kendoui-bridge/button/button"></require>
-	<section class="customers au-animate">
-		<!-- <a slot="buttons-slot" class="btn btn-primary" click.delegate="addInventory()">
+	<!--<section class="customers au-animate">
+		 <a slot="buttons-slot" class="btn btn-primary" click.delegate="addInventory()">
 			<i class="fa fa-plus"></i> Add Inventory
       	<button style='width:200px' id="searchInputBtn" class="btn btn-primary" type="button" click.delegate="showSavedlists()">Show Inv Codes (from list) </button>
 		</a> 
     fa-home
-    -->
+   
 		<a slot="buttons-slot" class="btn btn-primary" click.delegate="showSavedlists()">
 			<i class="fa fa-spinner"></i> Show Saved Lists (Ctrl+Click to select or de-select)
 		</a>
 	</section>
-
+ -->
 	<ak-grid class="flex-row-1 overflow-y-auto" id="grid" k-data-source.bind="datasource" k-widget.bind="grid" k-sortable.bind="{ mode: 'multiple',   allowUnsort: 'true'}"
 	 k-filterable.bind="{  mode: 'row' }" k-editable="inline" k-reorderable.bind="true" k-groupable.bind="true" k-resizable.bind="true"
 	 k-selectable="[row,multiple]" k-on-edit.delegate="onEdit($event.detail)" k-on-data-bound.delegate="onDataBound($event.detail)"
