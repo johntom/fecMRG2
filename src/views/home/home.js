@@ -6,7 +6,7 @@ import { MyDataService } from "../../services/my-data-service";
 
 export class Home {
   heading = "Welcome to the MRG Home page!";
-  version = 240.69 
+  version = 240.70
   versionDate = 'Thur 10/10/2018'
   // versiondate=Date();
 //  "select2": {
@@ -51,7 +51,7 @@ export class Home {
     'sort date',
     'Set Ex not work display sponser with exhi',
     'restore GROSSM0029 and jpollack untitled ',
-      'convert images '
+      'convert images id: 21248 with 20289 images'
 
   
   ]
