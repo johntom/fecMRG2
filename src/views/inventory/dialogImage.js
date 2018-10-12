@@ -10,12 +10,14 @@ export class DialogImage {
     this.answer = null;
 
    this.appService = appService;
-  //  this.inv = '';
-    this.currentItem = this.appService.testrec;
+ 
+    // this.currentItem = this.appService.currentItem;
     controller.settings.lock = false;
   }
 
-  // activate(question) {
-  //   this.question = question;
-  // }
+  activate(currentitem) {
+    this.currentItem = currentitem;
+    // this.fieldname = currentitem.fieldname;
+  }
+
 }

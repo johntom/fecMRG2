@@ -219,8 +219,13 @@ export class DataForm {
     $(this.edit_division).find(".modal").modal();
   }
   showModalImg() {
-    // alert('in m')
-    this.dialogService.open({ viewModel: DialogImage, model: 'Delete or Cancel?', lock: false }).whenClosed(response => {
+      // this.dialogService.open({ viewModel: Prompt, model: this.currentItem, lock: false }).whenClosed(response => {
+
+    // this.dialogService.open({ viewModel: DialogImage, model: 'Delete or Cancel?', lock: false }).whenClosed(response => {
+     this.dialogService.open({ viewModel: DialogImage,  model: this.currentItem, lock: false }).whenClosed(response => {
+ 
+   
+    
       if (!response.wasCancelled) {
         // console.log('Delete')
         // let notes = this.currentItem.notes

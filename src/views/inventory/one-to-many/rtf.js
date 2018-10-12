@@ -41,8 +41,7 @@ export class Rtf {
   activate(params, routeConfig) {
 
   }
-
-  attached() {
+  setInitialValue() {
 
 
     // l1 = '&lt;p&gt;&lt;img src=&quot;https://demos.telerik.com/kendo-ui/content/web/editor/kendo-ui-web.png&quot; alt=&quot;Editor for ASP.NET MVC logo&quot; style=&quot;display:block;margin-left:auto;margin-right:auto;&quot; /&gt;&lt;/p&gt;'
@@ -53,7 +52,15 @@ export class Rtf {
     // l1 += 'accessibility standards and provides API for content manipulation.'
 
     // this.editor.value(l1)
-    //  this.editor.value(this.setValueText);
+    // if (this.currentItem.rtf1 !== undefined) this.editor.value(this.currentItem.rtf1);
+ 
+  }
+  attached() {
+//  $(document).ready(function () {
+//       // $('.collapsible').collapsible();
+//        this.editor.value(this.currentItem.rtf1);
+//     });
+
   }
   createRTF() {
     // https://www.npmjs.com/package/docxtemplater
@@ -191,7 +198,7 @@ export class Rtf {
     //  this.editor.value('<p>' + artist_name + '</p>');
     this.editor.value('<p>' + artist_name + '</p>' + '<hr><p>' + segment2 + '</p>');
 
-    this.currentItem.rtf1 = '<p>' + artist_name + '</p>'
+    this.currentItem.rtf1 = this.editor.value()
 
 
 
