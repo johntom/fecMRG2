@@ -150,7 +150,8 @@ buildProv() {
      
         this.segment2 += '<br>' + item.ReproductionName + ' ' + item.ReproductionTitle + ' '
        + item.ReproductionAuthor
-         + item.ReproductionDate + ' ' + item.ReproductionType + ' '
+         + item.ReproductionDate 
+        //  + ' ' + item.ReproductionType + ' '
          
       }
      
@@ -253,17 +254,19 @@ buildProv() {
 
     this.buildExhibit()// (segment2)
     this.buildProv()
-  this.buildRepro()
+    this.buildRepro()
     //  this.editor.value('<p>' + artist_name + '</p>');
 
-    this.editor.value('<p>' + artist_name + '</p>' + '<hr><p>' + segment2 + '</p>');
+    this.editor.value('<p>' + artist_name + '</p>' + '<hr><p>' + this.segment2 + '</p>');
     // this.editor.value('<p>' + this.segment2 + '</p>');
 
     this.currentItem.rtf1 = this.editor.value()
 
 
   }
-
+  saveChanges() {
+    this.currentItem.rtf1 = this.editor.value()
+  }
   remove(item, index) {
     //alert('you are about to delete ' + item.Notes + ' ' + index)
     this.mode = 0

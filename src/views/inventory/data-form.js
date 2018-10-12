@@ -550,6 +550,8 @@ export class DataForm {
       //return 
       // if (JSON.stringify(  this.currentItem) !== JSON.stringify(this.appService.originalrec)) {
       if (JSON.stringify(this.currentItem) !== JSON.stringify(this.appService.originalrec)) {
+        
+        
         this.api.saveinventory(this.currentItem).then((jsonRes) => {
           console.log('jsonRes ', jsonRes);
           let tab = this.appService.tabs.find(f => f.isSelected);

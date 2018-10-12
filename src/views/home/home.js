@@ -6,7 +6,7 @@ import { MyDataService } from "../../services/my-data-service";
 
 export class Home {
   heading = "Welcome to the MRG Home page!";
-  version = 240.73
+  version = 240.74
   versionDate = 'Thur 10/10/2018'
   // versiondate=Date();
 //  "select2": {
@@ -37,7 +37,8 @@ export class Home {
   features = [
     'CTRL+SHIFT+F',
     'GUARD CLOSURE FOR MATACHER',
-   ' for (const item of items) {  console.log("loopitem ====")  sav = await saveMongoPermits(ctx, item) console.log("",sav))          }'
+   ' for (const item of items) {  console.log("loopitem ====")  sav = await saveMongoPermits(ctx, item) console.log("",sav))          }',
+   ' open html in word https://smallbusiness.chron.com/edit-html-word-54837.html'
   ]
   todo = [
 
