@@ -153,6 +153,11 @@ export class ApplicationService {
       viewModel: "./one-to-one/editions",
       isSelected: false
     },
+    {
+      name: "Vat",
+      viewModel: "./one-to-one/vat",
+      isSelected: false
+    }
 
 
 
@@ -187,11 +192,6 @@ export class ApplicationService {
     {
       name: "Insurance",
       viewModel: "./one-to-one/insurance",
-      isSelected: false
-    },
-    {
-      name: "Vat",
-      viewModel: "./one-to-one/vat",
       isSelected: false
     }
   ];

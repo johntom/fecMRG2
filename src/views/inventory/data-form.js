@@ -369,7 +369,6 @@ export class DataForm {
             if( !this.currentItem.savedonce || this.currentItem.savedonce===undefined) {
                 this.currentItem.savedonce=true
               this.saveinventory(0)
-            
             }
 
             this.currentItem.newms='' // 10-10

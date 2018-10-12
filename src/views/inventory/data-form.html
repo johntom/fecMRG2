@@ -7,8 +7,8 @@
 	<require from="aurelia-kendoui-bridge/common/template"></require>
 	<require from="./modal-form"></require>
 	<require from="./flex.css"></require>
-  <require from="../../resources/value-converters/date-format"></require> 
-  
+	<require from="../../resources/value-converters/date-format"></require>
+
 
 	<style>
 		img.responsive-img {
@@ -195,33 +195,48 @@
 									</div>
 
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
-									<span dblclick.delegate="showModal( 'MediumSupportobj') ">	<strong> Medium. >></strong></span>
+										<span dblclick.delegate="showModal( 'MediumSupportobj') ">	<strong> Medium. >></strong></span>
+
 									</div>
 									<div class="Rtable-cell-70  Rtable-cell--highlight">
-										<!-- <select ref="MediumSupport11" id="MediumSupport11" class="form-control input-sm" value.bind="currentItem.MediumSupportobj"> 
+
+										<span dblclick.delegate="showModal( 'MediumSupportobj') ">${currentItem.MediumSupportobj.Description}</span>
+
+									</div>
+                  <div class="Rtable-cell-30 Rtable-cell--highlight">
+										<span>	<strong> Medium. >></strong></span>
+
+									</div>
+									<div class="Rtable-cell-70  Rtable-cell--light">
+
+										<a click.delegate="showModal( 'MediumSupportobj')">${currentItem.MediumSupportobj.Description} </a>
+
+									</div>
+								</div>
+								<!--
+                           <a class=" waves-effect waves-lightd tooltipped" data-position="bottom"
+                                  data-delay="50" data-tooltip="Zoning Owned Public Space"
+                                   target='_blank' href="${building.Zoning}">Click Here
+                                </a>
+                      
+                       <select ref="MediumSupport11" id="MediumSupport11" class="form-control input-sm" value.bind="currentItem.MediumSupportobj"> 
                       <!-- & validate -->
-										<!-- <option model.bind=" null">Choose...</option>
+								<!-- <option model.bind=" null">Choose...</option>
 											<option ref="MediumSupport21 " repeat.for="opt of appService.codesListMediumSupport " model.bind="opt">
 												${opt.Description}
 											</option>
 										</select>  -->
-										<!-- <input disabled dblclick.delegate="showModal( 'MediumSupportobj') " type="text " xid="MediumSupportobj " class="form-control input-sm "
+								<!-- <input disabled dblclick.delegate="showModal( 'MediumSupportobj') " type="text " xid="MediumSupportobj " class="form-control input-sm "
 										 value.bind="currentItem.MediumSupportobj.Description"> -->
-								
-											<span dblclick.delegate="showModal( 'MediumSupportobj') ">${currentItem.MediumSupportobj.Description}</span>
-									
-	</div>
-
-								</div>
 
 
 								<div class="Rtable Rtable--7cols">
 									<div class="Rtable-cell Rtable-cell--alert">Dimens</div>
 									<div class="Rtable-cell Rtable-cell--highlight">Height</div>
 									<div class="Rtable-cell Rtable-cell--highlight">x/8</div>
-									<div class="Rtable-cell Rtable-cell--highlight">Depth</div>
-									<div class="Rtable-cell Rtable-cell--highlight">x/8</div>
 									<div class="Rtable-cell Rtable-cell--highlight">Width</div>
+									<div class="Rtable-cell Rtable-cell--highlight">x/8</div>
+									<div class="Rtable-cell Rtable-cell--highlight">Depth</div>
 									<div class="Rtable-cell Rtable-cell--highlight">x/8</div>
 									<div class="Rtable-cell Rtable-cell--highlight">
 										<strong>Size</strong>
@@ -386,13 +401,12 @@
 										</ak-multiselect> 
                        k-widget.bind="multiselect" 
                      ak-multiselect.ref="multiselect"  k-value.bind="currentItem.keywords" Description-->
-                     <!-- currentItem.keywords 
+										<!-- currentItem.keywords 
                          k-value.bind="currentItem.keywords"
 								                     -->
-										<ak-multiselect k-value.two-way="currentItem.keywords" k-placeholder="Select keywords..."
-                     k-data-text-field="Description"
-										 k-data-value-field="Description" k-height.bind="400" k-data-source.bind="dataSource"
-                 		 k-widget.two-way="multiselect" id="multiselect-customizing-templates-codes">
+										<ak-multiselect k-value.two-way="currentItem.keywords" k-placeholder="Select keywords..." k-data-text-field="Description"
+										 k-data-value-field="Description" k-height.bind="400" k-data-source.bind="dataSource" k-widget.two-way="multiselect"
+										 id="multiselect-customizing-templates-codes">
 											<ak-template for="noDataTemplate">
 												<div>
 													<button ak-button click.delegate="addNew()">addNew</button>
@@ -449,8 +463,8 @@
 									</div>
 									<div class="Rtable-cell-70 Rtable-cell--highlight">
 										<!-- <input dblclick.delegate="showModal( 'Inscribed') " type="text " xid="Inscribed " class="form-control input-sm " value.bind="currentItem.Inscribed"> -->
-	<span dblclick.delegate="showModal( 'Inscribed') ">${currentItem.Inscribed}</span>
-	
+										<span dblclick.delegate="showModal( 'Inscribed') ">${currentItem.Inscribed}</span>
+
 									</div>
 
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
@@ -458,8 +472,8 @@
 									</div>
 									<div class="Rtable-cell-70 Rtable-cell--highlight">
 										<!-- ${currentItem.DateAdded} / ${currentItem.ModifiedDate} -->
-							<!-- after convert use createdAt -->
-              	${currentItem.DateAdded} / ${currentItem.updatedAt | dateFormat }		</div>
+										<!-- after convert use createdAt -->
+										${currentItem.DateAdded} / ${currentItem.updatedAt | dateFormat } </div>
 
 								</div>
 							</div>
@@ -481,13 +495,13 @@
 
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
 
-                    	<span dblclick.delegate="showModal( 'SoldToID') ">	<strong> SoldTo. >></strong></span>
-								
+										<span dblclick.delegate="showModal( 'SoldToID') ">	<strong> SoldTo. >></strong></span>
+
 									</div>
 									<div class="Rtable-cell-70 Rtable-cell--highlight">
 										<!-- <input dblclick.delegate="showModal( 'SoldToID') " type="text " xid="SoldToID " class="form-control input-sm " value.bind="currentItem.soldtoname"> -->
-					<span dblclick.delegate="showModal( 'SoldToID') ">${currentItem.soldtoname}</span>
-									
+										<span dblclick.delegate="showModal( 'SoldToID') ">${currentItem.soldtoname}</span>
+
 									</div>
 
 
@@ -505,15 +519,15 @@
 									</div>
 
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
-									
-                    	<span dblclick.delegate="showModal( 'OwnerID') ">	<strong> Owner >></strong></span>
-								
+
+										<span dblclick.delegate="showModal( 'OwnerID') ">	<strong> Owner >></strong></span>
+
 									</div>
 									<div class="Rtable-cell-70 Rtable-cell--highlight">
 										<!-- <input dblclick.delegate="showModal( 'OwnerID') " type="text " xid="OwnerID " 
                     class="form-control input-sm " value.bind="currentItem.ownername"> -->
-	<span dblclick.delegate="showModal( 'OwnerID') ">${currentItem.ownername}</span>
-				
+										<span dblclick.delegate="showModal( 'OwnerID') ">${currentItem.ownername}</span>
+
 									</div>
 
 
