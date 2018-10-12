@@ -1,0 +1,37 @@
+<template>
+	<div class="Rtable Rtable--2cols">
+
+		<div class="Rtable-cell-30 Rtable-cell--highlight">
+			<strong> Amout of Tax Paid</strong>
+		</div>
+		<div class="Rtable-cell-70  Rtable-cell--highlight">
+			<input type="text" id="Edition" class="form-control input-sm" value.bind="currentItem.TaxAmtPaid">
+		</div>
+
+		<div class="Rtable-cell-30 Rtable-cell--highlight">
+			<strong> TaxPrepaid</strong>
+		</div>
+		<div class="Rtable-cell-70  Rtable-cell--highlight">
+				<input type="checkbox" id="TaxPrepaid" checked.bind="currentItem.TaxPrepaid">
+								
+    
+    </div>
+
+		<div class="Rtable-cell-30 Rtable-cell--highlight">
+			<strong> PurchasedDate</strong>
+		</div>
+		<div class="Rtable-cell-70  Rtable-cell--highlight">
+			<input type="date" id="PurchasedDate" class="form-control input-sm" value.bind="currentItem.ReimbuseDateRequested">
+				
+		</div>
+		<div class="Rtable-cell-30 Rtable-cell--highlight">
+			<strong> ReimbuseDate</strong>
+		</div>
+		<div class="Rtable-cell-70  Rtable-cell--highlight">
+				<input type="date" id="ReimbuseDate" class="form-control input-sm" value.bind="currentItem.ReimbuseDate">
+
+    </div>
+
+	</div>	
+
+</template>

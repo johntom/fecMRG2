@@ -188,6 +188,11 @@ export class ApplicationService {
       name: "Insurance",
       viewModel: "./one-to-one/insurance",
       isSelected: false
+    },
+    {
+      name: "Vat",
+      viewModel: "./one-to-one/vat",
+      isSelected: false
     }
   ];
   dataFormOneToManyTabs2 = [
