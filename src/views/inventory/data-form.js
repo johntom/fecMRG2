@@ -136,7 +136,7 @@ export class DataForm {
         dataSource.add(rec)
       });
 
- 
+
 
     dataSource.sync();
     widget.refresh();// keep the focus
@@ -219,13 +219,13 @@ export class DataForm {
     $(this.edit_division).find(".modal").modal();
   }
   showModalImg() {
-      // this.dialogService.open({ viewModel: Prompt, model: this.currentItem, lock: false }).whenClosed(response => {
+    // this.dialogService.open({ viewModel: Prompt, model: this.currentItem, lock: false }).whenClosed(response => {
 
     // this.dialogService.open({ viewModel: DialogImage, model: 'Delete or Cancel?', lock: false }).whenClosed(response => {
-     this.dialogService.open({ viewModel: DialogImage,  model: this.currentItem, lock: false }).whenClosed(response => {
- 
-   
-    
+    this.dialogService.open({ viewModel: DialogImage, model: this.currentItem, lock: false }).whenClosed(response => {
+
+
+
       if (!response.wasCancelled) {
         // console.log('Delete')
         // let notes = this.currentItem.notes
@@ -362,7 +362,7 @@ export class DataForm {
           // localStorage.setItem('tabinfo', JSON.stringify(tabinfo));
           localStorage.setItem('mru-mrg', JSON.stringify(mruinfo));
         }
-       //////////////////// end mru
+        //////////////////// end mru
 
 
         return this.api.findInventoryOne(this.recordId)
@@ -372,12 +372,13 @@ export class DataForm {
             this.currentItem = inv[0]
             // never been saved from view
             if( !this.currentItem.savedonce || this.currentItem.savedonce===undefined) {
-                this.currentItem.savedonce=true
+            // if (!this.currentItem.savedonce || this.currentItem.savedonce === true) {
+              // force it all the time
+              this.currentItem.savedonce = true
               this.saveinventory(0)
             }
 
-            this.currentItem.newms='' // 10-10
-            this.appService.currentItem = this.currentItem//inv[0]
+             this.appService.currentItem = this.currentItem//inv[0]
             this.currentItem.isDirty = () => {
               return JSON.stringify(this.currentItem) !== JSON.stringify(this.appService.originalrec)
             };
@@ -388,47 +389,7 @@ export class DataForm {
             this.appService.currentView = this.currentItem; // must set on every view
             this.appService.originalrec = JSON.parse(JSON.stringify(this.currentItem))// inv[0]));
 
-          // 09/30/2018 Converted data has all the lookups
-            // let meds = this.appService.codesListMediumSupport
-            // if ((this.currentItem.MediumSupportobj === undefined) || (this.currentItem.MediumSupportobj === null)) {
-            // } else {
-            //   // if( this.currentItem.MediumSupportobj!==undefined){
-            //   let mid = meds.findIndex(x => x.id === this.currentItem.MediumSupportobj.id)
-            //   this.currentItem.MediumSupportobj = this.appService.codesListMediumSupport[mid]//10]// test
-            // }
-
-            // let oid
-            // let orgobj
-            // let orgs = this.appService.orgsList
-            // if ((this.currentItem.SoldTo === undefined) || (this.currentItem.orgsList === null)) {
-            // } else {
-            //   oid = orgs.findIndex(x => x._id === this.currentItem.SoldTo)
-            //   orgobj = this.appService.orgsList[oid]//10]
-            //   if (orgobj !== undefined) this.currentItem.soldtoname = orgobj.OrgName
-            // }
-
-            // if ((this.currentItem.OwnerID === undefined) || (this.appService.orgsList === null)) {
-            // } else {
-            //   oid = orgs.findIndex(x => x._id === this.currentItem.OwnerID)
-            //   orgobj = this.appService.orgsList[oid]//10]
-            //   if (orgobj !== undefined) this.currentItem.ownername = orgobj.OrgName
-            // }
-
-            // if ((this.currentItem.SoldToID === undefined) || (this.appService.orgsList === null)) {
-            // } else {
-            //   oid = orgs.findIndex(x => x._id === this.currentItem.SoldToID)
-            //   orgobj = this.appService.orgsList[oid]//10]
-            //   if (orgobj !== undefined) this.currentItem.soldtoname = orgobj.OrgName
-            // }
-
-            // if ((this.currentItem.artist === undefined) || (this.currentItem.artist === null)) {
-            //   // this.currentItem={}// for create only
-            // } else {
-            //   let arts = this.appService.artistList
-            //   let aid = arts.findIndex(x => x.id === this.currentItem.artist.id)
-            //   let artistobj = this.appService.artistList[aid]//10]
-            //   if (artistobj !== undefined) this.currentItem.artist = artistobj//.OrgName
-            // }
+           
             console.log('finihed active1')
             // return inv
           });
@@ -635,25 +596,7 @@ export class DataForm {
     }
   }
 
-  // canDeactivate() {
-  //   return new Promise((resolve, reject) => {
-  //     if (  this.currentItem &&
-  //         this.currentItem.isDirty &&
-  //         this.currentItem.isDirty()) {
-  //       // Now, we need to query the user... result => makes it a closure
-  //       this.appService.asyncHandleDirty().then(result => {
-  //         if (!result.wasCancelled) {
-  //           resolve(true);
-  //         } else {
-  //           resolve(false);
-  //         }
-  //       });
-  //     } else {
-  //       resolve(true);
-  //     }
-  //   });
-  // }
-
+  
   canDeactivate() {
     return new Promise((resolve, reject) => {
 
@@ -702,16 +645,8 @@ export class DataForm {
 
 
   }
-  // close() {
-  //   let tab = this.appService.tabs.find(f => f.isSelected);
-  //   // Next, we navigate to the newly created claim
-  //   // Finally, we close out this tab
-  //   this.closeTab(tab);
-  //   let rt2 = '#/inventory/' + this.tabname ///claim'//Search?'cant use when search has a number 
-  //   console.log('this.tabname ', this.tabname)
-  //   this.router.navigate(rt2);
-  // }
- 
+  
+
   closeTab(tab) {
 
     let index = this.appService.tabs.indexOf(tab);
@@ -742,3 +677,75 @@ export class DataForm {
 //   // .on(DataForm);
 //   .on(currentItem);
 
+/////////////////////////////////////////////////////////////////////////
+// close() {
+  //   let tab = this.appService.tabs.find(f => f.isSelected);
+  //   // Next, we navigate to the newly created claim
+  //   // Finally, we close out this tab
+  //   this.closeTab(tab);
+  //   let rt2 = '#/inventory/' + this.tabname ///claim'//Search?'cant use when search has a number 
+  //   console.log('this.tabname ', this.tabname)
+  //   this.router.navigate(rt2);
+  // }
+// canDeactivate() {
+  //   return new Promise((resolve, reject) => {
+  //     if (  this.currentItem &&
+  //         this.currentItem.isDirty &&
+  //         this.currentItem.isDirty()) {
+  //       // Now, we need to query the user... result => makes it a closure
+  //       this.appService.asyncHandleDirty().then(result => {
+  //         if (!result.wasCancelled) {
+  //           resolve(true);
+  //         } else {
+  //           resolve(false);
+  //         }
+  //       });
+  //     } else {
+  //       resolve(true);
+  //     }
+  //   });
+  // }
+
+
+
+ // 09/30/2018 Converted data has all the lookups
+            // let meds = this.appService.codesListMediumSupport
+            // if ((this.currentItem.MediumSupportobj === undefined) || (this.currentItem.MediumSupportobj === null)) {
+            // } else {
+            //   // if( this.currentItem.MediumSupportobj!==undefined){
+            //   let mid = meds.findIndex(x => x.id === this.currentItem.MediumSupportobj.id)
+            //   this.currentItem.MediumSupportobj = this.appService.codesListMediumSupport[mid]//10]// test
+            // }
+
+            // let oid
+            // let orgobj
+            // let orgs = this.appService.orgsList
+            // if ((this.currentItem.SoldTo === undefined) || (this.currentItem.orgsList === null)) {
+            // } else {
+            //   oid = orgs.findIndex(x => x._id === this.currentItem.SoldTo)
+            //   orgobj = this.appService.orgsList[oid]//10]
+            //   if (orgobj !== undefined) this.currentItem.soldtoname = orgobj.OrgName
+            // }
+
+            // if ((this.currentItem.OwnerID === undefined) || (this.appService.orgsList === null)) {
+            // } else {
+            //   oid = orgs.findIndex(x => x._id === this.currentItem.OwnerID)
+            //   orgobj = this.appService.orgsList[oid]//10]
+            //   if (orgobj !== undefined) this.currentItem.ownername = orgobj.OrgName
+            // }
+
+            // if ((this.currentItem.SoldToID === undefined) || (this.appService.orgsList === null)) {
+            // } else {
+            //   oid = orgs.findIndex(x => x._id === this.currentItem.SoldToID)
+            //   orgobj = this.appService.orgsList[oid]//10]
+            //   if (orgobj !== undefined) this.currentItem.soldtoname = orgobj.OrgName
+            // }
+
+            // if ((this.currentItem.artist === undefined) || (this.currentItem.artist === null)) {
+            //   // this.currentItem={}// for create only
+            // } else {
+            //   let arts = this.appService.artistList
+            //   let aid = arts.findIndex(x => x.id === this.currentItem.artist.id)
+            //   let artistobj = this.appService.artistList[aid]//10]
+            //   if (artistobj !== undefined) this.currentItem.artist = artistobj//.OrgName
+            // }

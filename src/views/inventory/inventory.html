@@ -13,7 +13,7 @@
 		<div class="flex-row-none section-header">
 			${heading} 102
 		</div>
-<!-- searchInvCode -->
+		<!-- searchInvCode -->
 		<div class="flex-row-1 ignore">
 			<div class="flex-column-1 search-panel">
 				<form>
@@ -90,7 +90,8 @@
 
 							<ul>
 								<li repeat.for='e of mru'>
-									${e}
+
+									<a click.delegate="populateInv(e)"> ${e}</a>
 
 								</li>
 							</ul>
@@ -185,7 +186,7 @@
 
 					<div class="flex-row-none">
 
-					<div class="form-group flex-column-1">
+						<div class="form-group flex-column-1">
 							<multi-selector name="msoptions" instance-options.bind="optionsMatt" selected-options.bind="selectOptions" placeholder="Enter a selection.."></multi-selector>
 						</div>
 						<button id="checkms" class="btn btn-primary" type="button" click.delegate="checkms()">checkms</button>

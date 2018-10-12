@@ -3,7 +3,7 @@ import { ApiService } from '../../../utils/servicesApi';
 import { ApplicationService } from '../../../services/application-service';
 
 import { Prompt } from '../../../services/prompt';
- import { DialogService } from 'aurelia-dialog';
+import { DialogService } from 'aurelia-dialog';
 @inject(ApiService, ApplicationService, DialogService)
 
 export class Exhibition {
@@ -11,7 +11,7 @@ export class Exhibition {
   footer = 'DataForm FOOTER...';
   recordId = '';
 
-  constructor(api, appService,dialogService) {
+  constructor(api, appService, dialogService) {
     this.api = api;
     this.appService = appService;
     this.inv = '';
@@ -21,21 +21,21 @@ export class Exhibition {
   }
 
 
-    
+
   activate(params, routeConfig) {
     this.exhibition = this.appService.currentItem.exhibition   // this.currentItem.exhibition
   }
   // remove(item) {
   //   alert('you are about to delete ' + item.ProvMemo)
   // }
-  saveitem(item,index) {
+  saveitem(item, index) {
     item.edit = !item.edit
-   
+
   }
- 
+
   remove(item, index) {
     //import { Prompt } from '../../../services/prompt';
- 
+
     this.dialogService.open({ viewModel: Prompt, model: 'Delete or Cancel?', lock: false }).whenClosed(response => {
       if (!response.wasCancelled) {
         console.log('Delete')
@@ -61,7 +61,7 @@ export class Exhibition {
     let exhibition = this.currentItem.exhibition
     let flag = false
     let item
-        if (exhibition === undefined) {
+    if (exhibition === undefined) {
       flag = true
       exhibition = []
     }
@@ -70,8 +70,6 @@ export class Exhibition {
       ExhibitDates: '', ExhibitSortDate: '',
       Traveled: '', ExhibitMemo: '', edit: true
     }
-
-
     exhibition.unshift(item)
     if (flag) this.currentItem.exhibition = exhibition
   }

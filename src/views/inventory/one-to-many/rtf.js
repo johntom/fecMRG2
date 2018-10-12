@@ -7,6 +7,41 @@ import { DialogService } from 'aurelia-dialog';
 import { Prompt } from '../../../services/prompt';
 @inject(ApiService, ApplicationService, DialogService)
 export class Rtf {
+   tools = [
+    'bold',
+    'italic',
+    'underline',
+    'strikethrough',
+    'justifyLeft',
+    'justifyCenter',
+    'justifyRight',
+    'justifyFull',
+    'insertUnorderedList',
+    'insertOrderedList',
+    'indent',
+    'outdent',
+    'createLink',
+    'unlink',
+    'insertImage',
+    'insertFile',
+    'subscript',
+    'superscript',
+    'createTable',
+    'addRowAbove',
+    'addRowBelow',
+    'addColumnLeft',
+    'addColumnRight',
+    'deleteRow',
+    'deleteColumn',
+    'viewHtml',
+    'formatting',
+    'cleanFormatting',
+    'fontName',
+    'fontSize',
+    'foreColor',
+    'backColor',
+    'print'
+  ];
   resizable = {
     content: true,
     toolbar: true
@@ -38,76 +73,95 @@ export class Rtf {
     // Invoked once the databinding is activated...
     //  if (this.currentItem.rtf1 !== undefined)      this.editor.value(this.currentItem.rtf1);
   }
-  activate(params, routeConfig) {
+  // activate(params, routeConfig) {
 
+  // }
+
+  setInitialValue(edt) {
+    if (this.currentItem.rtf1 !== undefined) edt.value(this.currentItem.rtf1);
   }
-  setInitialValue() {
+  // attached() {
 
+  // }
+  // buildExhibit(segment2) {
+  buildExhibit() {
+    let exhibition = this.currentItem.exhibition
+    if (exhibition !== undefined) {
+      // this.currentItem.exhibition
+      let iarray = []
+      this.segment2 += ` <br><p>EXHIBITION HISTORY: </p>`
+      for (const item of exhibition) {
+        console.log("loopitem ====", item)
+        //  iarray.push(item)
 
-    // l1 = '&lt;p&gt;&lt;img src=&quot;https://demos.telerik.com/kendo-ui/content/web/editor/kendo-ui-web.png&quot; alt=&quot;Editor for ASP.NET MVC logo&quot; style=&quot;display:block;margin-left:auto;margin-right:auto;&quot; /&gt;&lt;/p&gt;'
-    // l1 += '&lt;p&gt;'
-    // l1 += 'Kendo UI Editor allows your users to edit HTML in a familiar, user-friendly way.&lt;br /&gt;'
-    // l1 += 'In this version, the Editor provides the core HTML editing engine, which includes basic text formatting, hyperlinks, lists,'
-    // l1 += 'and image handling. The widget &lt;strong&gt;outputs identical HTML&lt;/strong&gt; across all major browsers, follows'
-    // l1 += 'accessibility standards and provides API for content manipulation.'
-
-    // this.editor.value(l1)
-    // if (this.currentItem.rtf1 !== undefined) this.editor.value(this.currentItem.rtf1);
- 
+        this.segment2 += '<br>' + item.ExhibitTitle + ' ' + item.ExhibitSponser + ' ' + item.Reproduction + ' ' + item.ExhibitDates + ' '
+      }
+      // return segment2
+    }
   }
-  attached() {
-//  $(document).ready(function () {
-//       // $('.collapsible').collapsible();
-//        this.editor.value(this.currentItem.rtf1);
-//     });
-
+buildProv() {
+    let provenance = this.currentItem.provenance
+    if (provenance !== undefined) {
+       let iarray = []
+      this.segment2 += ` <br><p>PROVONANCE HISTORY: </p>`
+      for (const item of provenance) {
+        console.log("loopitem ====", item)
+     
+        this.segment2 += '<br>' + item.ProvOwner + ' ' + item.ProvSortDate
+      }
+     
+    }
   }
+    // let ProvOwner = req.param('ProvOwner')
+    //     let ProvDate = req.param('ProvDate')
+    //     let ProvSortDate = req.param('ProvSortDate')
+    //     let ProvMemo = req.param('ProvMemo');
+    //     let Sequence = req.param('Sequence')
+    //     let ProvLoc = req.param('Description');
+
+//  let ExhibitTitle = req.param('ExhibitTitle')
+//         let ExhibitSponser = req.param('ExhibitSponser')
+//         let ExhibitLocation = req.param('Description') //typeahead
+//         let ExhibitDates = req.param('ExhibitDates')
+//         let ExhibitSortDate = req.param('ExhibitSortDate')
+//         let Traveled = req.param('Traveled')
+//         let batchno = req.param('batchno')
+//         let ExhibitMemo = req.param('ExhibitMemo')
+
+
+    //  let ExhibitID = req.param('ExhibitID')
+    //     let ReproductionType = req.param('ReproductionType')//TransportTo')
+    //     let ReproductionPage = req.param('ReproductionPage')//TransportFrom')
+    //     let ColorBW = req.param('ColorBW');
+    //     let ReproductionDate = req.param('ReproductionDate')
+    //     let ReproductionSortDate = req.param('ReproductionSortDate')//TransportTo')
+    //     let ReproductionLocation = req.param('DescriptionLoc')//TransportFrom')
+    //     let ReproductionAuthor = req.param('ReproductionAuthor');
+    //     let ReproductionName = req.param('ReproductionName');
+    //     let ReproductionTitle = req.param('ReproductionTitle');
+
+  buildRepro() {
+    let reproduction = this.currentItem.reproduction
+    if (reproduction !== undefined) {
+       let iarray = []
+      this.segment2 += ` <br><p>REPRODUCTION HISTORY: </p>`
+      for (const item of reproduction) {
+        console.log("loopitem ====", item)
+     
+        this.segment2 += '<br>' + item.ReproductionName + ' ' + item.ReproductionTitle + ' '
+       + item.ReproductionAuthor
+         + item.ReproductionDate + ' ' + item.ReproductionType + ' '
+         
+      }
+     
+    }
+  }
+  
+
+
   createRTF() {
     // https://www.npmjs.com/package/docxtemplater
 
-
-    /**Charles Ethan Porter (1847-1923)
- Untitled (Peonies), c.1890
- oil on canvas
- 20" x 16" unframed 
- signed 
- signed lower right: CE Porter
-  ==============================
-  Charles Porter ( 1847 - 1923 )
- 
- undefined , c.2003
- 
- )
- 59d282beb777d41f42a5b2ee
- 
- )
- signed
- 
- )
- signed lower right: "C E Porter"
- 
- )
-  
-  
-  */
-    // artist.yearofBirth artist.died
-    //   "firstName" : "Charles", 
-    // "lastName" : "Porter", 
-    // if (this.currentItem.rtf1 !== undefined) {
-    //   this.editor.value(this.currentItem.rtf1)
-    // } else {
-    /* "UnframedHeight" : 20.0, 
-  "UnframedHeight16" : null, 
-  "UnframedWidth" : 16.0, 
-  "UnframedWidth16" : null, 
-  "UnframedDepth" : 0.0, 
-  "UnframedDepth16" : null, 
-  "FramedHeight" : 0.0, 
-  "FramedHeight16" : null, 
-  "FramedWidth" : 0.0, 
-  "FramedWidth16" : null, 
-  "FramedDepth" : 0.0, 
-  "FramedDepth16" : null,  */
     let dims
     let dimscm
     if (this.currentItem.UnframedHeight16 === null) {
@@ -183,22 +237,91 @@ export class Rtf {
     // dated "1999" lower right and verso
     // EXHIBITION HISTORY: 
     // Letters and Shadows: African American Art and Literature Since the Harlem Renaissance, Bowdoin College Museum of Art, Brunswick, ME, January 22, 2015 - March 15, 2015
-    let segment2 = `<p>ARTIST:  ${holdname}</p>`
-    segment2 += ` <p>TITLE: <em> ${this.currentItem.Title}</em>, ${this.currentItem.InvYear} </p>  `
-    segment2 += ` <p>DATE: ${this.currentItem.InvYear} </p> `
-    segment2 += ` <p>MEDIUM: ${this.currentItem.MediumSupportobj.Description} </p>  `
-    segment2 += ` SIZE: ${dimsf} in framed<br> `
-    segment2 += ` SIZE: ${dimscmf} cm framed<br>  `
-    segment2 += ` SIZE: ${dims} in unframed<br> `
-    segment2 += ` SIZE: ${dimscm} cm unframed<br>  `
-    segment2 += ` <br>DETAILS:<br>`
-    segment2 += ` ${this.currentItem.SignedLocation} <br>`
-    segment2 += ` titled verso:${this.currentItem.SignedLocation} <br>`
-    segment2 += ` <br><p>EXHIBITION HISTORY: </p>`
+    // let segment2 = `<p>ARTIST:  ${holdname}</p>`
+    this.segment2 = `<p>ARTIST:  ${holdname}</p>`
+
+    this.segment2 += ` <p>TITLE: <em> ${this.currentItem.Title}</em>, ${this.currentItem.InvYear} </p>  `
+    this.segment2 += ` <p>DATE: ${this.currentItem.InvYear} </p> `
+    this.segment2 += ` <p>MEDIUM: ${this.currentItem.MediumSupportobj.Description} </p>  `
+    this.segment2 += ` SIZE: ${dimsf} in framed<br> `
+    this.segment2 += ` SIZE: ${dimscmf} cm framed<br>  `
+    this.segment2 += ` SIZE: ${dims} in unframed<br> `
+    this.segment2 += ` SIZE: ${dimscm} cm unframed<br>  `
+    this.segment2 += ` <br>DETAILS:<br>`
+    this.segment2 += ` ${this.currentItem.SignedLocation} <br>`
+    this.segment2 += ` titled verso:${this.currentItem.SignedLocation} <br>`
+
+    this.buildExhibit()// (segment2)
+    this.buildProv()
+  this.buildRepro()
     //  this.editor.value('<p>' + artist_name + '</p>');
+
     this.editor.value('<p>' + artist_name + '</p>' + '<hr><p>' + segment2 + '</p>');
+    // this.editor.value('<p>' + this.segment2 + '</p>');
 
     this.currentItem.rtf1 = this.editor.value()
+
+
+  }
+
+  remove(item, index) {
+    //alert('you are about to delete ' + item.Notes + ' ' + index)
+    this.mode = 0
+    this.dialogService.open({ viewModel: Prompt, model: 'Delete or Cancel?', lock: false }).whenClosed(response => {
+      if (!response.wasCancelled) {
+        console.log('Delete')
+        let provenance = this.currentItem.provenance
+        provenance.splice(index, 1)
+      } else {
+        console.log('cancel');
+      }
+      console.log(response.output);
+    });
+  }
+}
+
+ /**Charles Ethan Porter (1847-1923)
+ Untitled (Peonies), c.1890
+ oil on canvas
+ 20" x 16" unframed 
+ signed 
+ signed lower right: CE Porter
+  ==============================
+  Charles Porter ( 1847 - 1923 )
+ 
+ undefined , c.2003
+ 
+ )
+ 59d282beb777d41f42a5b2ee
+ 
+ )
+ signed
+ 
+ )
+ signed lower right: "C E Porter"
+ 
+ )
+  
+  
+  */
+    // artist.yearofBirth artist.died
+    //   "firstName" : "Charles", 
+    // "lastName" : "Porter", 
+    // if (this.currentItem.rtf1 !== undefined) {
+    //   this.editor.value(this.currentItem.rtf1)
+    // } else {
+    /* "UnframedHeight" : 20.0, 
+  "UnframedHeight16" : null, 
+  "UnframedWidth" : 16.0, 
+  "UnframedWidth16" : null, 
+  "UnframedDepth" : 0.0, 
+  "UnframedDepth16" : null, 
+  "FramedHeight" : 0.0, 
+  "FramedHeight16" : null, 
+  "FramedWidth" : 0.0, 
+  "FramedWidth16" : null, 
+  "FramedDepth" : 0.0, 
+  "FramedDepth16" : null,  */
 
 
 
@@ -244,23 +367,3 @@ export class Rtf {
     // 			</button>
     // 			</span>
     // <textarea ak-rich-editor style="height:440px">
-  }
-
-  remove(item, index) {
-    //alert('you are about to delete ' + item.Notes + ' ' + index)
-    this.mode = 0
-
-
-    this.dialogService.open({ viewModel: Prompt, model: 'Delete or Cancel?', lock: false }).whenClosed(response => {
-      if (!response.wasCancelled) {
-        console.log('Delete')
-        let provenance = this.currentItem.provenance
-        provenance.splice(index, 1)
-      } else {
-        console.log('cancel');
-      }
-      console.log(response.output);
-    });
-  }
-}
-

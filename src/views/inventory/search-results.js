@@ -20,15 +20,20 @@ export class SearchResults {
   queryParams = '';
   checkedIds = {};
   //  console.log(' inv SearchResults ');
-  message = 'Hello Inventory 101- a!';
+  message = 'Hello Inventory !';
   datasource = new kendo.data.DataSource({
     transport: {
       read: (options) => {
         //  this.loadData(this.capColor, this.prevtown)
         this.loadData()
           .then((inv) => {
-            console.log(' inv datasource ', inv[0]);
+            console.log(' inv datasource ', inv.length,inv[0]);
             options.success(inv);
+            if ( inv.length===1 && this.appService.onlyonce===0 ) {
+               let rt2 = '#/inventory/data/' + inv[0].InventoryCode;
+             this.router.navigate(rt2);
+             this.appService.onlyonce=1
+            }
           });
       },
       // update: (options) => {

@@ -200,6 +200,11 @@ export class Inventory {
     // this.dows.value = this.OrgName
 
   }
+  populateInv(e) {
+    this.search.inventorycode = e
+    this.appService.onlyonce=0
+    this.performSearch()
+  }
   activate() {
     console.log('name-tag activate before attached ');
     this.mru = []
