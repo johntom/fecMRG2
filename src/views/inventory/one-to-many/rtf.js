@@ -84,8 +84,37 @@ export class Rtf {
 
   // }
   // buildExhibit(segment2) {
-  buildExhibit() {
-    let exhibition = this.currentItem.exhibition
+  // buildExhibit() {
+  //   let exhibition = this.currentItem.exhibition
+  //   if (exhibition !== undefined) {
+  //     // this.currentItem.exhibition
+  //     let iarray = []
+  //     this.segment2 += ` <br><p>EXHIBITION HISTORY: </p>`
+  //     for (const item of exhibition) {
+  //       console.log("loopitem ====", item)
+  //       //  iarray.push(item)
+
+  //       this.segment2 += '<br>' + item.ExhibitTitle + ' ' + item.ExhibitSponser + ' ' + item.Reproduction + ' ' + item.ExhibitDates + ' '
+  //     }
+  //     // return segment2
+  //   }
+  // }
+buildProv() {
+    let provenance = this.currentItem.provenance
+    if (provenance !== undefined) {
+       let iarray = []
+      // this.segment2 += ` <br><p>PROVONANCE HISTORY: </p>`
+  this.segment2 += `<p><span style="text-decoration-line:underline;"><strong>PROVONANCE</strong></span></p>`
+this.segment2 += ` <p><br />`
+
+
+      for (const item of provenance) {
+        console.log("loopitem ====", item)
+     
+        this.segment2 += '<br>' + item.ProvOwner + ' ' + item.ProvSortDate
+      }
+  this.segment2 += ` <br />`
+ let exhibition = this.currentItem.exhibition
     if (exhibition !== undefined) {
       // this.currentItem.exhibition
       let iarray = []
@@ -98,17 +127,7 @@ export class Rtf {
       }
       // return segment2
     }
-  }
-buildProv() {
-    let provenance = this.currentItem.provenance
-    if (provenance !== undefined) {
-       let iarray = []
-      this.segment2 += ` <br><p>PROVONANCE HISTORY: </p>`
-      for (const item of provenance) {
-        console.log("loopitem ====", item)
-     
-        this.segment2 += '<br>' + item.ProvOwner + ' ' + item.ProvSortDate
-      }
+
      
     }
   }
@@ -144,7 +163,8 @@ buildProv() {
     let reproduction = this.currentItem.reproduction
     if (reproduction !== undefined) {
        let iarray = []
-      this.segment2 += ` <br><p>REPRODUCTION HISTORY: </p>`
+            this.segment2 += `<p><span style="text-decoration-line:underline;"><strong>EXHIBITION & PUBLICATION HISTORY</strong></span></p>`
+
       for (const item of reproduction) {
         console.log("loopitem ====", item)
      
@@ -157,7 +177,55 @@ buildProv() {
      
     }
   }
-  
+//   <p>Charles Porter ( 1847 -  1923 )<br />
+// <em>Untitled (Peonies)</em>, c.1890 <br />
+// box assemblage of wood, glass, <br />
+// 24 x 20 in framed<br />
+// 60.96 cm  x 50.8 cm framed<br />
+// 20 3/8 x 16 1/4 in unframed<br />
+// 50.8 NaN x 40.64 NaN cm unframed<br />
+// signed <br />
+// signed lower right: "C E Porter"<br />
+// </p>
+
+//=======================================\\
+// <hr />
+// <p><img src="https://artbased.com/api/v1/getonePdf/inv/PORTERC008.jpg" alt="" width="300" height="300" /></p>
+// <p><strong>Charles Porter ( 1847 -  1923 )</strong><br />
+// </p>
+// <p><em>Untitled (Peonies)</em>, c.1890</p>
+// <p>box assemblage of wood, glass,<br />
+// </p>
+// <p><br />
+// </p>
+// <p>20 3/8 x 16 1/4 in unframed<br />
+// 50.8 NaN x 40.64 NaN cm unframed<br />
+// <br />
+// signed lower right: "C E Porter" <br />
+// titled verso:signed lower right: "C E Porter" <br />
+// </p>
+// <p><span style="text-decoration-line:underline;"><strong>PROVONANCE</strong></span></p>
+// <p><br />
+// Charles Ethan Porter&nbsp;<br />
+// Farmington Fine Arts Auction&nbsp;<br />
+// Private Collection&nbsp;<br />
+// Michael Rosenfeld Gallery LLC&nbsp;</p>
+// <p>REPRODUCTION HISTORY:</p>
+// <p><br />
+// <br />
+// undefined undefined undefined10/1/2018<br />
+// undefined undefined undefined01/01/2018</p>
+// <p><br />
+// </p>
+// <p><span style="text-decoration:underline;"><strong>EXHIBITION &amp; PUBLICATION HISTORY</strong></span></p>
+// <p><br />
+// Test1 Sponser1 undefined  <br />
+// Windows on the City: Looking Out at Gracie&rsquo;s New York The Gracie Mansion Conservancy undefined November 10, 2013-November 30, 2016 <br />
+// nancy nancy2 undefined Da  <br />
+// </p>
+// <p><br />
+// </p>
+// <p>&nbsp;</p>
 
 
   createRTF() {
@@ -202,12 +270,17 @@ buildProv() {
         dimscmf += this.currentItem.FramedWidth * 2.54 + ' ' + this.currentItem.FramedWidth16 * 2.54
       }
     }
-
-    let artist_name = this.currentItem.artist.firstName + ' ' + this.currentItem.artist.lastName
+// <p><img src="https://artbased.com/api/v1/getonePdf/inv/PORTERC008.jpg" alt="" width="300" height="300" /></p>
+// <p><strong>Charles Porter ( 1847 -  1923 )</strong><br />
+// </p>
+// <p><em>Untitled (Peonies)</em>, c.1890</p>
+    let artist_name
+    artist_name += `<p><strong> ${this.currentItem.artist.firstName}  ${this.currentItem.artist.lastName}`
     if (this.currentItem.artist.died != undefined) {
       // artist_name += ` (this.currentItem.Artist.yearofBirth -  this.currentItem.Artist.died ) `
-      artist_name += ` ( ${this.currentItem.artist.yearofBirth} -  ${this.currentItem.artist.died} )<br> `
-    }
+      artist_name += ` ( ${this.currentItem.artist.yearofBirth} -  ${this.currentItem.artist.died} )</strong><br> `
+    } else artist_name += `, ${this.currentItem.artist.yearofBirth}</strong><br> `
+   
     let holdname = artist_name
     artist_name += ` <em> ${this.currentItem.Title}</em>, ${this.currentItem.InvYear} <br> `
     artist_name += `  ${this.currentItem.MediumSupportobj.Description}<br> `
@@ -223,40 +296,25 @@ buildProv() {
 
     //////////////////////
 
-    // ARTIST: Betye Saar (b.1926)
-    // TITLE: "Now You Cookin' with Gas" c.1942
-    // DATE: 1999
-    // MEDIUM: mixed media collage on printed paper
-    // SIZE: 11 1/2" x 7 3/4" framed 
-    // SIZE: 29.2 x 19.7 cm framed 
-    // SIZE: 15 3/8" x 11 1/2" unframed 
-    // SIZE: 39.1 x 29.2 cm unframed 
-    // DETAILS: 
-    // signed and dated
-    // titled verso: 'Now You Cookin' with Gas' c.1942"
-    // signed lower right "Betye Saar" and verso "B.Saar"
-    // dated "1999" lower right and verso
-    // EXHIBITION HISTORY: 
-    // Letters and Shadows: African American Art and Literature Since the Harlem Renaissance, Bowdoin College Museum of Art, Brunswick, ME, January 22, 2015 - March 15, 2015
-    // let segment2 = `<p>ARTIST:  ${holdname}</p>`
-    this.segment2 = `<p>ARTIST:  ${holdname}</p>`
+   
+    this.segment2 = `<p><img src="https://artbased.com/api/v1/getonePdf/inv/PORTERC008.jpg" alt="" width="300" height="300" /></p>`
+    this.segment2 += ` ${holdname}<br>`
 
-    this.segment2 += ` <p>TITLE: <em> ${this.currentItem.Title}</em>, ${this.currentItem.InvYear} </p>  `
-    this.segment2 += ` <p>DATE: ${this.currentItem.InvYear} </p> `
-    this.segment2 += ` <p>MEDIUM: ${this.currentItem.MediumSupportobj.Description} </p>  `
-    this.segment2 += ` SIZE: ${dimsf} in framed<br> `
-    this.segment2 += ` SIZE: ${dimscmf} cm framed<br>  `
-    this.segment2 += ` SIZE: ${dims} in unframed<br> `
-    this.segment2 += ` SIZE: ${dimscm} cm unframed<br>  `
-    this.segment2 += ` <br>DETAILS:<br>`
+    this.segment2 += ` <br> <em> ${this.currentItem.Title}</em>, ${this.currentItem.InvYear}   `
+    this.segment2 += ` <br> ${this.currentItem.MediumSupportobj.Description}  `
+    
+    // this.segment2 += ` <p> ${this.currentItem.InvYear} </p> `
+    this.segment2 += `  ${dimsf} in framed<br> `
+    this.segment2 += `  ${dimscmf} cm framed<br>  `
+    this.segment2 += `  ${dims} in unframed<br> `
+    this.segment2 += `  ${dimscm} cm unframed<br>  `
+    this.segment2 += `<br> ${this.currentItem.SignedLocation} <br>`
     this.segment2 += ` ${this.currentItem.SignedLocation} <br>`
-    this.segment2 += ` titled verso:${this.currentItem.SignedLocation} <br>`
-
-    this.buildExhibit()// (segment2)
+    this.segment2 += `<br><br>no. P606 <br>`
+    
     this.buildProv()
     this.buildRepro()
-    //  this.editor.value('<p>' + artist_name + '</p>');
-
+   
     this.editor.value('<p>' + artist_name + '</p>' + '<hr><p>' + this.segment2 + '</p>');
     // this.editor.value('<p>' + this.segment2 + '</p>');
 
