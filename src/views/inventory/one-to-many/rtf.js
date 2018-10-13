@@ -54,6 +54,13 @@ export class Rtf {
   // provenance: Provenance[] = []
   done = false;
   edit = false;
+  pre = '<p>'
+  post = '</p>'
+  prebefore = '</p>'
+  preafter = ' '
+  preitalic = '<em>'
+  postitalic = '</em>'
+  lineBreak = '<br>'
   constructor(api, appService, dialogService) {
     this.api = api;
     this.appService = appService;
@@ -210,9 +217,16 @@ export class Rtf {
     //      myObjects = {}
     // }
   }
- 
+
   createRTF() {
     // https://www.npmjs.com/package/docxtemplater
+    // let pre = '<p>'
+    // let post = '</p>'
+    // let prebefore = '</p>'
+    // let preafter = ' '
+    // let preitalic = '<em>'
+    // let postitalic = '</em>'
+    // let lineBreak = '<br>'
 
     let dims
     let dimscm
@@ -257,43 +271,56 @@ export class Rtf {
     // <p><strong>Charles Porter ( 1847 -  1923 )</strong><br />
     // </p>
     // <p><em>Untitled (Peonies)</em>, c.1890</p>
-  //  let artist_name
+    //  let artist_name
     // artist_name += `<p><strong> ${this.currentItem.artist.firstName}  ${this.currentItem.artist.lastName}`
     // if (this.currentItem.artist.died != undefined) {
     //   // artist_name += ` (this.currentItem.Artist.yearofBirth -  this.currentItem.Artist.died ) `
     //   artist_name += ` ( ${this.currentItem.artist.yearofBirth} -  ${this.currentItem.artist.died} )</strong><br> `
     // } else artist_name += `, ${this.currentItem.artist.yearofBirth}</strong><br> `
 
- 
-        let artist = this.currentItem.artist
-        let artistWdates
-        if (artist.died) {
-          artistWdates = artist.yearofBirth + '-' + artist.died
-        } else {
-          artistWdates = 'b.' + inv.artist.yearofBirth
-        }
 
-//1
-        let inscribed = this.currentItem.Inscribed
-        console.log('inscribed==================== ', inscribed)
-        if (inscribed !== undefined) {
-          let a2, a3, inscribedText;
-          let n1 = inscribed.indexOf(":");
-          let a1 = inscribed.substr(0, n1);
-          a2 = inscribed.substr(n1, inscribed.length)
+    let artist = this.currentItem.artist
+    let artistWdates
+    if (artist.died) {
+      artistWdates = artist.yearofBirth + '-' + artist.died
+    } else {
+      artistWdates = 'b.' + inv.artist.yearofBirth
+    }
 
-          let n2 = a2.indexOf(";");
-          console.log('n2', n2)
-          if (n2 > -1) {
-            a3 = a2.substr(n2 + 1, inscribed.length)
-            a2 = inscribed.substr(n1, n2)
-          }
-          // let rawInsribed
-          (a3 === undefined) ? inscribedText = pre + a1 + preitalic + a2 + postitalic + preafter + post : inscribedText = pre + a1 + preitalic + a2 + postitalic + preafter + ',' + a3 + post
- 
-        }
+    //1
+    let inscribed = this.currentItem.Inscribed
+    let inscribedText
+    console.log('inscribed==================== ', inscribed)
+    if (inscribed !== undefined) {
+      let a2 = ''
+      let a3 = ''
+      let inscribedText = '';
+      let n1 = inscribed.indexOf(":");
+      let a1 = inscribed.substr(0, n1);
+      a2 = inscribed.substr(n1, inscribed.length)
 
-//1
+      let n2 = a2.indexOf(";");
+      console.log('n2', n2)
+      if (n2 > -1) {
+        a3 = a2.substr(n2 + 1, inscribed.length)
+        a2 = inscribed.substr(n1, n2)
+      }
+      // let rawInsribed
+      // (a3 === undefined) ? inscribedText = pre + a1 + preitalic + a2 + postitalic +
+      //  preafter + post : inscribedText = pre + a1 + preitalic + a2 + postitalic + preafter + ',' + a3 + post
+
+      // (a3 === undefined) ? inscribedText = this.pre + a1 + this.preitalic + a2 + this.postitalic + this.post : inscribedText = pre + a1 + this.preitalic + a2 + this.postitalic + this.preafter + ',' + a3 + this.post
+      if (a3 === '') {
+        inscribedText = this.pre + a1 + this.preitalic + a2 + this.postitalic + this.post
+      } else {
+        inscribedText = pre + a1 + this.preitalic + a2 + this.postitalic + this.preafter + ',' + a3 + this.post
+      }
+      this.inscribedText = inscribedText
+
+      console.log('inscribedText', this.inscribedText)
+    }
+
+    //1
     let segment1 = ` ${artistWdates}<br>`
     segment1 += ` <em> ${this.currentItem.Title}</em>, ${this.currentItem.InvYear} <br> `
     segment1 += `  ${this.currentItem.MediumSupportobj.Description}<br> `
@@ -310,10 +337,8 @@ export class Rtf {
 
     this.segment2 = `<p><img src="https://artbased.com/api/v1/getonePdf/inv/PORTERC008.jpg" alt="" width="300" height="300" /></p>`
     this.segment2 += ` ${artistWdates}<br>`
-
     this.segment2 += ` <br> <em> ${this.currentItem.Title}</em>, ${this.currentItem.InvYear}   `
     this.segment2 += ` <br> ${this.currentItem.MediumSupportobj.Description}  `
-
     // this.segment2 += ` <p> ${this.currentItem.InvYear} </p> `
     this.segment2 += `  ${dimsf} in framed<br> `
     this.segment2 += `  ${dimscmf} cm framed<br>  `
@@ -325,12 +350,9 @@ export class Rtf {
     this.segment2 += `  ${inscribedText} <br>  `
     this.buildProv()
     this.buildRepro()
-
     this.editor.value('<p>' + segment1 + '</p>' + '<hr><p>' + this.segment2 + '</p>');
     // this.editor.value('<p>' + this.segment2 + '</p>');
-
     this.currentItem.rtf1 = this.editor.value()
-
 
   }
   saveChanges() {
