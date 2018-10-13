@@ -5,7 +5,8 @@ import { ApplicationService } from '../../../services/application-service';
 import { Aurelia } from 'aurelia-framework';
 import { DialogService } from 'aurelia-dialog';
 import { Prompt } from '../../../services/prompt';
-import { lodash } from 'lodash';
+import lodash from 'lodash';
+import EXIF from './exif';
 //import _ from 'lodash'
 @inject(ApiService, ApplicationService, DialogService)
 export class Rtf {
@@ -114,13 +115,11 @@ export class Rtf {
       let iarray = []
       // this.segment2 += ` <br><p>PROVONANCE HISTORY: </p>`
       this.segment2 += `<p><span style="text-decoration-line:underline;"><strong>PROVONANCE</strong></span></p>`
-      this.segment2 += ` <p><br />`
-
-
+   
       for (const item of provenance) {
-        console.log("loopitem ====", item)
+       // console.log("loopitem ====", item)
 
-        this.segment2 += '<br>' + item.ProvOwner + ' ' + item.ProvSortDate
+        this.segment2 +=  item.ProvOwner + ' ' + item.ProvSortDate+'<br>'
       }
 
 
@@ -142,13 +141,15 @@ export class Rtf {
     let preitalic = '<em>'
     let postitalic = '</em>'
     let lineBreak = '<br>'
+    this.segment2 += `<br><p><span style="text-decoration-line:underline;"><strong>EXHIBITION & PUBLICATION <strong></span></p>`
 
-
+    let tryex = []
     let reproduction = this.currentItem.reproduction
     if (reproduction !== undefined) {
       for (const item of reproduction) {
         if (item.ExhibitRepro !== undefined) {
-          item.splice(i, 1)
+          //?  item.splice(i, 1)// take away
+
         } else {
           // exhibition ExhibitSortDate  ReproductionSortDate  
           // use 1 date in combined array tryex
@@ -157,29 +158,43 @@ export class Rtf {
         }
       }
     } else reproduction = []
-
+    console.log('aa ', this.currentItem.reproduction)
     // conbine both tables
+    /**  let ExhibitID = req.param('ExhibitID')
+        let ReproductionType = req.param('ReproductionType')//TransportTo')
+        let ReproductionPage = req.param('ReproductionPage')//TransportFrom')
+        let ColorBW = req.param('ColorBW');
+        let ReproductionDate = req.param('ReproductionDate')
+        let ReproductionSortDate = req.param('ReproductionSortDate')//TransportTo')
+        let ReproductionLocation = req.param('DescriptionLoc')//TransportFrom')
+        let ReproductionAuthor = req.param('ReproductionAuthor');
+        let ReproductionName = req.param('ReproductionName');
+        let ReproductionTitle = req.param('ReproductionTitle');
+ */
     let exhibition = this.currentItem.exhibition
-
+    let rec = {}
     if (exhibition !== undefined) {
       for (const item of exhibition) {
         if (item.repropage === 'none') {
           //  console.log('==================-none1==========')
           rec = {
             date: item.ExhibitSortDate,
-            exception: pre + item.ExhibitTitle + ', ' + item.location + ', ' + item.ExhibitDates + post
+            exception: pre + item.ExhibitTitle + ', ' + item.ReproductionLocation + ', ' + item.ExhibitDates + post
           }
         } else {
-          if (item.repropage !== undefined) {
+          if (item.ReproductionPage !== undefined) {
             //   console.log('==================defined==========')
             rec = {
               date: item.ExhibitSortDate,
-              exception: prebefore + preitalic + item.ExhibitTitle + postitalic + preafter + ', ' + inv.exhibition[i].location + ', ' + exhibition[i].ExhibitDates + ', ' + lineBreak + item.repropage + post
+              exception: prebefore + preitalic + item.ExhibitTitle + postitalic + preafter + ', ' + item.ReproductionLocation + ', ' + exhibition[i].ExhibitDates + ', ' + lineBreak + item.ReproductionPage + post
             }
           } else {
             rec = {
               date: item.ExhibitSortDate,
-              exception: pre + item.ExhibitTitle + ', ' + item.location + ', ' + item.ExhibitDates + post
+              //   exception: pre + item.ExhibitTitle + ', ' + item.ReproductionLocation + ', ' + item.ExhibitDates + post
+              exception: pre + item.ExhibitTitle + ', ' + item.ReproductionLocation
+              //+ ', ' + item.ExhibitDates + post
+
             }
           }
 
@@ -196,28 +211,31 @@ export class Rtf {
           exception: pre + item.AuthorLast + ', ' +
             item.AuthorFirst + '.  ' + preitalic +
             +' ' + item.ReproductionTitle + ' ' + postitalic + preafter + '(' +
-            item.ReproductionLocationDesc + ': ' +
+            // item.ReproductionLocationDesc + ': ' +
+            item.ReproductionLocation + ': ' +
             item.ReproductionName + ', ' +
             item.ReproductionSortDate + ') ' + lineBreak +
-            item.color + ', on page ' + item.ReproductionPage + lineBreak + post
+            item.ColorBW + ', on page ' + item.ReproductionPage + lineBreak + post
         }
         console.log('in repo rec', rec)
         console.log('=======================================================')
-        console.log('=======================================================reproduction', i)
 
         tryex.push(rec)
       }
       myObjects = lodash.sortBy(tryex, 'date');
-      lodash.forEach(myObjects, function (result) {
-        console.log('result ', result);
-      });
-      this.segment2 += myObjects
-    }
-    // } else {
-    //      myObjects = {}
-    // }
-  }
+      //  console.log('============myObjects===========================================')
 
+      // lodash.forEach(myObjects, function (result) {
+      //   console.log('result ', result);
+      // });
+      for (const obj of myObjects) {
+        this.segment2 += obj.date+ obj.exception
+      }
+      // } else {
+      //      myObjects = {}
+      // }
+    }
+  }
   createRTF() {
     // https://www.npmjs.com/package/docxtemplater
     // let pre = '<p>'
@@ -278,15 +296,31 @@ export class Rtf {
     //   artist_name += ` ( ${this.currentItem.artist.yearofBirth} -  ${this.currentItem.artist.died} )</strong><br> `
     // } else artist_name += `, ${this.currentItem.artist.yearofBirth}</strong><br> `
 
-
+    // ArtistName: "Porter, Charles"
+    // died: (...)
+    // firstName: (...)
+    // id: "5bad1afe459dbacdea188d8b"
+    // lastName: (...)
+    // yearofBirth: (...)
     let artist = this.currentItem.artist
-    let artistWdates
-    if (artist.died) {
-      artistWdates = artist.yearofBirth + '-' + artist.died
-    } else {
-      artistWdates = 'b.' + inv.artist.yearofBirth
-    }
 
+    let artistWdates = `<strong> ${artist.firstName}  ${artist.lastName}`
+
+    if (artist.died) {
+      artistWdates += `( ${artist.yearofBirth}  -  ${artist.died} )`
+    } else {
+      artistWdates += 'b.' + inv.artist.yearofBirth
+    }
+    artistWdates += '</strong>'
+
+let artistWdates1 = ` ${artist.firstName}  ${artist.lastName}`
+
+    if (artist.died) {
+      artistWdates1 += `( ${artist.yearofBirth} - ${artist.died} )`
+    } else {
+      artistWdates1 += 'b.' + inv.artist.yearofBirth
+    }
+   
     //1
     let inscribed = this.currentItem.Inscribed
     let inscribedText
@@ -321,7 +355,7 @@ export class Rtf {
     }
 
     //1
-    let segment1 = ` ${artistWdates}<br>`
+    let segment1 = ` ${artistWdates1}<br>`
     segment1 += ` <em> ${this.currentItem.Title}</em>, ${this.currentItem.InvYear} <br> `
     segment1 += `  ${this.currentItem.MediumSupportobj.Description}<br> `
     if (dimsf !== undefined) {
@@ -335,10 +369,11 @@ export class Rtf {
     segment1 += `  ${this.currentItem.SignedLocation}<br>  `
 
 
-    this.segment2 = `<p><img src="https://artbased.com/api/v1/getonePdf/inv/PORTERC008.jpg" alt="" width="300" height="300" /></p>`
+    this.segment2 = `<p><img src="https://artbased.com/api/v1/getonePdf/inv/${this.currentItem.InventoryCode}.jpg" alt="" width="300" height="300" /></p>`
+  
     this.segment2 += ` ${artistWdates}<br>`
-    this.segment2 += ` <br> <em> ${this.currentItem.Title}</em>, ${this.currentItem.InvYear}   `
-    this.segment2 += ` <br> ${this.currentItem.MediumSupportobj.Description}  `
+    this.segment2 += `  <em> ${this.currentItem.Title}</em>, ${this.currentItem.InvYear}   `
+    this.segment2 += ` ${this.currentItem.MediumSupportobj.Description}  <br> `
     // this.segment2 += ` <p> ${this.currentItem.InvYear} </p> `
     this.segment2 += `  ${dimsf} in framed<br> `
     this.segment2 += `  ${dimscmf} cm framed<br>  `
@@ -347,7 +382,7 @@ export class Rtf {
     // this.segment2 += `<br> ${this.currentItem.SignedLocation} <br>`
     // this.segment2 += ` ${this.currentItem.SignedLocation} <br>`
     // this.segment2 += `<br><br>no. P606 <br>`
-    this.segment2 += `  ${inscribedText} <br>  `
+    this.segment2 += `  ${this.inscribedText} <br>  `
     this.buildProv()
     this.buildRepro()
     this.editor.value('<p>' + segment1 + '</p>' + '<hr><p>' + this.segment2 + '</p>');
@@ -356,7 +391,17 @@ export class Rtf {
 
   }
   saveChanges() {
-    this.currentItem.rtf1 = this.editor.value()
+    // this.currentItem.rtf1 = this.editor.value()
+    
+let img1 = `https://artbased.com/api/v1/getonePdf/inv/${this.currentItem.InventoryCode}.jpg" `
+            EXIF.getData(img1, function() {
+                var make = EXIF.getTag(this, "Make");
+                var model = EXIF.getTag(this, "Model");
+                var makeAndModel = document.getElementById("makeAndModel");
+             this.makeAndModel = `${make} ${model}`;
+            });
+
+
   }
   remove(item, index) {
     //alert('you are about to delete ' + item.Notes + ' ' + index)

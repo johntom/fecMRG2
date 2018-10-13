@@ -509,7 +509,11 @@ export class DataForm {
   //   }
 
   // }
+mainimage(){
+  alert ('im')
+console.log(this.mainimage)
 
+}
   saveinventory(option) {
     //this.controller.validate();
     let savetime = moment().format('MM/DD/YY h:mm:ss a')
