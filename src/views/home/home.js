@@ -6,7 +6,7 @@ import { MyDataService } from "../../services/my-data-service";
 
 export class Home {
   heading = "Welcome to the MRG Home page!";
-  version = 240.84
+  version = 240.85
   versionDate = 'Sat 10/13/2018'
   // versiondate=Date();
 //  "select2": {

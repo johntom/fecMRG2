@@ -15,6 +15,9 @@ import lodash from 'lodash';
 @inject(ApiService, ApplicationService, DialogService)
 export class Rtf {
   tools = [
+    'pdf',
+    'html',
+    
     'bold',
     'italic',
     'underline',
@@ -66,6 +69,31 @@ export class Rtf {
   preitalic = '<em>'
   postitalic = '</em>'
   lineBreak = '<br>'
+
+ 
+  stylesheets = ['https://demos.telerik.com/kendo-ui/content/web/editor/pdf-export-styles.css'];
+  pdf = {
+    fileName: 'NewDocument.pdf',
+    proxyURL: '//demos.telerik.com/kendo-ui/service/export',
+    paperSize: 'letter',
+    margin: {
+      bottom: 20,
+      left: 30,
+      right: 20,
+      top: 20
+    }
+  };
+ html = {
+    fileName: 'NewDocument.html',
+    proxyURL: '//demos.telerik.com/kendo-ui/service/export',
+    paperSize: 'letter',
+    margin: {
+      bottom: 20,
+      left: 20,
+      right: 20,
+      top: 20
+    }
+  };
 
   //  imagesizes = [
   //         { id: 0, name: 'normal',factor:1 },
@@ -549,6 +577,9 @@ export class Rtf {
     let ww = this.appService.clientWidth * fac.factor
     let hh = this.appService.clientHeight * fac.factor
     console.log(hh, ww)
+    if (ww===0)ww=450
+    if (hh===0)hh=450
+    
     this.segment2 = `<p><img src="https://artbased.com/api/v1/getonepdf/inv/${this.currentItem.InventoryCode}.jpg" alt="" width="${ww}" height="${hh}" /></p>`
 
     // this.segment2 = `<p><img src="https://artbased.com/api/v1/getonepdf/inv/POLLOCJ005.jpg" alt="" width="${ww}" height="${hh}" /></p>`
