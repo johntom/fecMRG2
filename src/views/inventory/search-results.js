@@ -91,6 +91,7 @@ export class SearchResults {
     //   this.currentsavedlist;
 
   }
+  
   selectAll() {
     // var movid;
     // var   movies=this.dataSource._data;
@@ -238,6 +239,9 @@ export class SearchResults {
     let dataItem = grid.dataItem(selectedRow);
     //   alert(dataItem.assignto);
   }
+
+
+
   performAction1() {
     console.log('Action1 ')
     alert('You have selected Action 1')
@@ -256,6 +260,28 @@ export class SearchResults {
     this.router.navigate(rt2);// `#/inventory/${path}`);
 
   }
+
+ showModalImg(e) {
+    let grid = this.grid;
+    let targetRow = $(e.target).closest("tr");
+    grid.select(targetRow);
+    let selectedRow = grid.select();
+    let dataItem = grid.dataItem(selectedRow);
+    this.dialogService.open({ viewModel: DialogImage, model: dataItem, lock: false }).whenClosed(response => {
+
+
+
+      if (!response.wasCancelled) {
+        // console.log('Delete')
+        // let notes = this.currentItem.notes
+        // notes.splice(index, 1)// start, deleteCount)
+      } else {
+        console.log('cancel');
+      }
+      console.log(response.output);
+    });
+  }
+
   ////////////////////
 
   onDataBound(e) {

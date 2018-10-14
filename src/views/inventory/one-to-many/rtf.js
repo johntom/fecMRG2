@@ -6,7 +6,11 @@ import { Aurelia } from 'aurelia-framework';
 import { DialogService } from 'aurelia-dialog';
 import { Prompt } from '../../../services/prompt';
 import lodash from 'lodash';
-import EXIF from './exif';
+// import EXIF from './exif';
+	// <require from="../../resources/value-converters/round-format"></require>
+// import RoundFormat from "../../../resources/value-converters/round-format";
+//  RoundFormat RoundFormatValueConverter
+
 //import _ from 'lodash'
 @inject(ApiService, ApplicationService, DialogService)
 export class Rtf {
@@ -62,6 +66,26 @@ export class Rtf {
   preitalic = '<em>'
   postitalic = '</em>'
   lineBreak = '<br>'
+
+  //  imagesizes = [
+  //         { id: 0, name: 'normal',factor:1 },
+  //         { id: 1, name: 'x1.5' ,factor:1.5},
+  //         { id: 2, name: 'x2' ,factor:2},
+  //         { id: 3,  name: 'x3' ,factor:3},
+  //       ];
+
+  //       selectedimagesize = imagesizes[0];
+  searchsold = [
+    // { id: 0, name: 'Y' },
+    // { id: 1, name: 'N' },
+    // { id: 2, name: 'NFS' },
+    // { id: 3, name: 'DON' },
+    { id: 0, name: 'normal size', factor: 1 },
+    { id: 1, name: '1.5 size', factor: 1.5 },
+    { id: 2, name: '2 size', factor: 2 },
+    { id: 3, name: '3 size', factor: 3 },
+  ];
+  selectedimagesize = 0;//null searchsold[0];
   constructor(api, appService, dialogService) {
     this.api = api;
     this.appService = appService;
@@ -115,11 +139,11 @@ export class Rtf {
       let iarray = []
       // this.segment2 += ` <br><p>PROVONANCE HISTORY: </p>`
       this.segment2 += `<p><span style="text-decoration-line:underline;"><strong>PROVONANCE</strong></span></p>`
-   
-      for (const item of provenance) {
-       // console.log("loopitem ====", item)
 
-        this.segment2 +=  item.ProvOwner + ' ' + item.ProvSortDate+'<br>'
+      for (const item of provenance) {
+        // console.log("loopitem ====", item)
+
+        this.segment2 += item.ProvOwner + ' ' + item.ProvSortDate + '<br>'
       }
 
 
@@ -141,7 +165,7 @@ export class Rtf {
     let preitalic = '<em>'
     let postitalic = '</em>'
     let lineBreak = '<br>'
-    this.segment2 += `<br><p><span style="text-decoration-line:underline;"><strong>EXHIBITION & PUBLICATION <strong></span></p>`
+    this.segment2 += `<br><p><span style="text-decoration-line:underline;"><strong>EXHIBITION & PUBLICATION </strong></span></p>`
 
     let tryex = []
     let reproduction = this.currentItem.reproduction
@@ -229,7 +253,7 @@ export class Rtf {
       //   console.log('result ', result);
       // });
       for (const obj of myObjects) {
-        this.segment2 += obj.date+ obj.exception
+        this.segment2 += obj.date + obj.exception
       }
       // } else {
       //      myObjects = {}
@@ -245,23 +269,160 @@ export class Rtf {
     // let preitalic = '<em>'
     // let postitalic = '</em>'
     // let lineBreak = '<br>'
-
+    // 1811 3/4 in unframed
+    // 45.72 cm x 27.94 NaN cm unframed
     let dims
     let dimscm
+
+    let cmuh = this.currentItem.UnframedHeight16
+    let cmfh = this.currentItem.FramedHeight16
+
+    let cmuw = this.currentItem.UnframedWidth16
+    let cmfw = this.currentItem.FramedWidth16
+    let factor = 0.3175 //.125 * 2.54 
+    switch (cmuh) {
+      case null:
+        cmuh = 0
+        break;
+
+      case 0:
+        cmuh = 0
+        break;
+      case 1:
+        cmuh = factor
+        break;
+      case 2:
+        cmuh = factor * 2
+      case 3:
+        cmuh = factor * 3
+        break;
+      case 4:
+        cmuh = factor * 4
+        break;
+      case 5:
+        cmuh = factor * 5
+        break;
+      case 6:
+        cmuh = factor * 6
+        break;
+      case 7:
+        cmuh = factor * 7
+        break;
+      
+    }
+
+    switch (cmfh) {
+      case null:
+        cmfh = 0
+        break;
+
+      case 0:
+        cmfh = 0
+        break;
+      case 1:
+        cmfh = factor
+        break;
+      case 2:
+        cmfh = factor * 2
+      case 3:
+        cmfh = factor * 3
+        break;
+      case 4:
+        cmfh = factor * 4
+        break;
+      case 5:
+        cmfh = factor * 5
+        break;
+      case 6:
+        cmfh = factor * 6
+        break;
+      case 7:
+        cmfh = factor * 7
+        break;
+    }
+    switch (cmuw) {
+      case null:
+        cmuw = 0
+        break;
+
+      case '0/0':
+        cmuw = 0
+        break;
+      case '1/8':
+        cmuw = factor
+        break;
+      case '1/4':
+        cmuw = factor * 2
+      case '3/8':
+        cmuw = factor * 3
+        break;
+      case '1/2':
+        cmuw = factor * 4
+        break;
+       case '5/8':
+        cmuw = factor * 5
+        break;
+      case '3/4':
+        cmuw = factor * 6
+        break;
+        case '7/8':
+        cmuw = factor * 7
+        break;
+      
+    }
+
+switch (cmfw) {
+      case null:
+        cmfw = 0
+        break;
+
+      case 0:
+        cmfw = 0
+        break;
+      case 1:
+        cmfw = factor
+        break;
+      case 2:
+        cmfw = factor * 2
+      case 3:
+        cmfw = factor * 3
+        break;
+      case 4:
+        cmfw = factor * 4
+        break;
+      case 5:
+        cmfw = factor * 5
+        break;
+      case 6:
+        cmfw = factor * 6
+        break;
+      case 7:
+        cmfw = factor * 7
+        break;
+      
+    }
+
+
     if (this.currentItem.UnframedHeight16 === null) {
       dims = this.currentItem.UnframedHeight + ' x '
       dimscm = this.currentItem.UnframedHeight * 2.54 + ' cm ' + ' x '
     } else {
-      dims = this.currentItem.UnframedHeight + ' ' + this.currentItem.UnframedHeight16 + ' x '
-      dimscm = this.currentItem.UnframedHeight * 2.54 + ' ' + this.currentItem.UnframedHeight16 * 2.54 + ' x '
+      // dims = this.currentItem.UnframedHeight + ' ' + this.currentItem.UnframedHeight16 + ' x '
+      dims = `${this.currentItem.UnframedHeight} <span style="font-size:x-small;"> ${this.currentItem.UnframedHeight16}   </span> ' x '`
+
+      // dimscm = this.currentItem.UnframedHeight * 2.54 + ' ' + this.currentItem.UnframedHeight16 * 2.54 + ' x '
+      dimscm =  Math.round((this.currentItem.UnframedHeight * 2.54)+ cmuh) + ' x '
+    // Math.round(num * 100) / 100
     }
 
     if (this.currentItem.UnframedWidth16 === null) {
+      // dims += `<span style="font-size:x-small;"> ${this.currentItem.UnframedWidth} </span>`
       dims += this.currentItem.UnframedWidth
+
       dimscm += this.currentItem.UnframedWidth * 2.54
     } else {
-      dims += this.currentItem.UnframedWidth + ' ' + this.currentItem.UnframedWidth16
-      dimscm += this.currentItem.UnframedWidth * 2.54 + ' ' + this.currentItem.UnframedWidth16 * 2.54
+      dims += `${this.currentItem.UnframedWidth} <span style="font-size:x-small;"> ${this.currentItem.UnframedWidth16} </span>`
+      dimscm +=  Math.round( ( (this.currentItem.UnframedWidth * 2.54)  + cmuw))
     }
     /////////////////////////////
 
@@ -270,38 +431,27 @@ export class Rtf {
     let dimscmf
     if (this.currentItem.FramedHeight !== 0) {
       if (this.currentItem.FramedHeight16 === null) {
-        dimsf = this.currentItem.FramedHeight + ' x '
+        //   dimsf = this.currentItem.FramedHeight + ' x '
+        dimsf = `${this.currentItem.FramedHeight} <span style="font-size:x-small;"> ${this.currentItem.FramedHeight} </span> x `
+
         dimscmf = this.currentItem.FramedHeight * 2.54 + ' cm ' + ' x '
       } else {
-        dimsf = this.currentItem.FramedHeight + ' ' + this.currentItem.FramedHeight16 + ' x '
-        dimscmf = this.currentItem.FramedHeight * 2.54 + ' ' + this.currentItem.FramedHeight16 * 2.54 + ' x '
+        dimsf = `${this.currentItem.FramedHeight}  + ' ' + <span style="font-size:x-small;"> ${this.currentItem.FramedHeight16} </span> x `
+        dimscmf = ((this.currentItem.FramedHeight * 2.54) +cmfh) + ' x '
+        //  this.currentItem.FramedHeight16 * 2.54 + ' x '
       }
 
       if (this.currentItem.FramedWidth16 === null) {
         dimsf += this.currentItem.FramedWidth
         dimscmf += this.currentItem.FramedWidth * 2.54
       } else {
-        dimsf += this.currentItem.FramedWidth + ' ' + this.currentItem.FramedWidth16
-        dimscmf += this.currentItem.FramedWidth * 2.54 + ' ' + this.currentItem.FramedWidth16 * 2.54
+        // dimsf += this.currentItem.FramedWidth + ' ' + this.currentItem.FramedWidth16
+        dimsf += `${this.currentItem.FramedWidth}  <span style="font-size:x-small;"> ${this.currentItem.FramedWidth16} </span>  `
+
+        dimscmf += ((this.currentItem.FramedWidth * 2.54) +cmfw)
       }
     }
-    // <p><img src="https://artbased.com/api/v1/getonePdf/inv/PORTERC008.jpg" alt="" width="300" height="300" /></p>
-    // <p><strong>Charles Porter ( 1847 -  1923 )</strong><br />
-    // </p>
-    // <p><em>Untitled (Peonies)</em>, c.1890</p>
-    //  let artist_name
-    // artist_name += `<p><strong> ${this.currentItem.artist.firstName}  ${this.currentItem.artist.lastName}`
-    // if (this.currentItem.artist.died != undefined) {
-    //   // artist_name += ` (this.currentItem.Artist.yearofBirth -  this.currentItem.Artist.died ) `
-    //   artist_name += ` ( ${this.currentItem.artist.yearofBirth} -  ${this.currentItem.artist.died} )</strong><br> `
-    // } else artist_name += `, ${this.currentItem.artist.yearofBirth}</strong><br> `
 
-    // ArtistName: "Porter, Charles"
-    // died: (...)
-    // firstName: (...)
-    // id: "5bad1afe459dbacdea188d8b"
-    // lastName: (...)
-    // yearofBirth: (...)
     let artist = this.currentItem.artist
 
     let artistWdates = `<strong> ${artist.firstName}  ${artist.lastName}`
@@ -313,14 +463,14 @@ export class Rtf {
     }
     artistWdates += '</strong>'
 
-let artistWdates1 = ` ${artist.firstName}  ${artist.lastName}`
+    let artistWdates1 = ` ${artist.firstName}  ${artist.lastName}`
 
     if (artist.died) {
       artistWdates1 += `( ${artist.yearofBirth} - ${artist.died} )`
     } else {
       artistWdates1 += 'b.' + inv.artist.yearofBirth
     }
-   
+
     //1
     let inscribed = this.currentItem.Inscribed
     let inscribedText
@@ -355,7 +505,7 @@ let artistWdates1 = ` ${artist.firstName}  ${artist.lastName}`
     }
 
     //1
-    let segment1 = ` ${artistWdates1}<br>`
+    let segment1 = ` ${artistWdates1}<br><br>`
     segment1 += ` <em> ${this.currentItem.Title}</em>, ${this.currentItem.InvYear} <br> `
     segment1 += `  ${this.currentItem.MediumSupportobj.Description}<br> `
     if (dimsf !== undefined) {
@@ -368,9 +518,20 @@ let artistWdates1 = ` ${artist.firstName}  ${artist.lastName}`
     segment1 += `  signed <br>  `
     segment1 += `  ${this.currentItem.SignedLocation}<br>  `
 
+    // this.appService.clientHeight = this.mainimage.clientHeight
+    // this.appService.clientWidth = this.mainimage.clientWidth
+    let fac = this.searchsold[this.selectedimagesize] // - ${this.sold.factor}
+    //  alert(`${this.selectedimagesize}- ${fac.factor} `  )
+    //   - ${fac}
 
-    this.segment2 = `<p><img src="https://artbased.com/api/v1/getonePdf/inv/${this.currentItem.InventoryCode}.jpg" alt="" width="300" height="300" /></p>`
-  
+    let ww = this.appService.clientWidth * fac.factor
+    let hh = this.appService.clientHeight * fac.factor
+    console.log(hh, ww)
+    this.segment2 = `<p><img src="https://artbased.com/api/v1/getonePdf/inv/${this.currentItem.InventoryCode}.jpg" alt="" width="${ww}" height="${hh}" /></p>`
+
+
+    // this.segment2 = `<p><img src="https://artbased.com/api/v1/getonePdf/inv/${this.currentItem.InventoryCode}.jpg" alt="" width="${this.appService.clientWidth}*${fac.factor}" height="${this.appService.clientHeight}*${fac.factor}" /></p>`
+
     this.segment2 += ` ${artistWdates}<br>`
     this.segment2 += `  <em> ${this.currentItem.Title}</em>, ${this.currentItem.InvYear}   `
     this.segment2 += ` ${this.currentItem.MediumSupportobj.Description}  <br> `
@@ -391,15 +552,15 @@ let artistWdates1 = ` ${artist.firstName}  ${artist.lastName}`
 
   }
   saveChanges() {
-    // this.currentItem.rtf1 = this.editor.value()
-    
-let img1 = `https://artbased.com/api/v1/getonePdf/inv/${this.currentItem.InventoryCode}.jpg" `
-            EXIF.getData(img1, function() {
-                var make = EXIF.getTag(this, "Make");
-                var model = EXIF.getTag(this, "Model");
-                var makeAndModel = document.getElementById("makeAndModel");
-             this.makeAndModel = `${make} ${model}`;
-            });
+    this.currentItem.rtf1 = this.editor.value()
+
+    // let img1 = `https://artbased.com/api/v1/getonePdf/inv/${this.currentItem.InventoryCode}.jpg" `
+    // EXIF.getData(img1, function () {
+    //   var make = EXIF.getTag(this, "Make");
+    //   var model = EXIF.getTag(this, "Model");
+    //   var makeAndModel = document.getElementById("makeAndModel");
+    //   this.makeAndModel = `${make} ${model}`;
+    // });
 
 
   }

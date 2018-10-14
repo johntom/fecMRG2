@@ -6,7 +6,7 @@ import { MyDataService } from "../../services/my-data-service";
 export class Inventory {
   static inject = [Router, UtilService, ApplicationService, MyDataService];
 
-  heading = 'Welcome to the Inventory page';
+  heading = 'Welcome to the Inventory page PORTERC007 PORTERC009 PORTERC008 PORTERC013';
   counter = 1;
   search = {}
   //   title: 0,

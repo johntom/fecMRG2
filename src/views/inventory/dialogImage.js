@@ -14,9 +14,12 @@ export class DialogImage {
     // this.currentItem = this.appService.currentItem;
     controller.settings.lock = false;
   }
-
+  attached() {
+this.iwidth="600px"
+  }
   activate(currentitem) {
     this.currentItem = currentitem;
+    //this.iwidth="width=600px"
     // this.fieldname = currentitem.fieldname;
   }
 

@@ -371,14 +371,20 @@ export class DataForm {
             let inv = jsonRes.data;
             this.currentItem = inv[0]
             // never been saved from view
-            if( !this.currentItem.savedonce || this.currentItem.savedonce===undefined) {
-            // if (!this.currentItem.savedonce || this.currentItem.savedonce === true) {
+            if (!this.currentItem.savedonce || this.currentItem.savedonce === undefined) {
+              // if (!this.currentItem.savedonce || this.currentItem.savedonce === true) {
               // force it all the time
               this.currentItem.savedonce = true
               this.saveinventory(0)
             }
 
-             this.appService.currentItem = this.currentItem//inv[0]
+
+            //      this.appService.onlyonce=1
+            // clientWidth: 404
+
+            // naturalHeight: 1112
+            // naturalWidth: 1499
+            this.appService.currentItem = this.currentItem//inv[0]
             this.currentItem.isDirty = () => {
               return JSON.stringify(this.currentItem) !== JSON.stringify(this.appService.originalrec)
             };
@@ -389,7 +395,6 @@ export class DataForm {
             this.appService.currentView = this.currentItem; // must set on every view
             this.appService.originalrec = JSON.parse(JSON.stringify(this.currentItem))// inv[0]));
 
-           
             console.log('finihed active1')
             // return inv
           });
@@ -405,6 +410,9 @@ export class DataForm {
     //   let tab = this.appService.dataFormOneToOneTabs[0];
     //   this.selectOneToOneTab(tab);
     // }
+    this.appService.clientHeight = this.mainimage.clientHeight
+    this.appService.clientWidth = this.mainimage.clientWidth
+
     let tabinfo, tabindex
     // tabinfo = localStorage.getItem('tabinfo');
 
@@ -509,11 +517,16 @@ export class DataForm {
   //   }
 
   // }
-mainimage(){
-  alert ('im')
-console.log(this.mainimage)
+  getmainimage() {
+    //alert ('im')
+    console.log(this.mainimage)
+    // clientHeight: 300
+    //      this.appService.onlyonce=1
+    // clientWidth: 404
 
-}
+    // naturalHeight: 1112
+    // naturalWidth: 1499
+  }
   saveinventory(option) {
     //this.controller.validate();
     let savetime = moment().format('MM/DD/YY h:mm:ss a')
@@ -554,8 +567,8 @@ console.log(this.mainimage)
       //return 
       // if (JSON.stringify(  this.currentItem) !== JSON.stringify(this.appService.originalrec)) {
       if (JSON.stringify(this.currentItem) !== JSON.stringify(this.appService.originalrec)) {
-        
-        
+
+
         this.api.saveinventory(this.currentItem).then((jsonRes) => {
           console.log('jsonRes ', jsonRes);
           let tab = this.appService.tabs.find(f => f.isSelected);
@@ -602,7 +615,7 @@ console.log(this.mainimage)
     }
   }
 
-  
+
   canDeactivate() {
     return new Promise((resolve, reject) => {
 
@@ -651,7 +664,7 @@ console.log(this.mainimage)
 
 
   }
-  
+
 
   closeTab(tab) {
 

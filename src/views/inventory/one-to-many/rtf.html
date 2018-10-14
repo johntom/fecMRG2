@@ -7,9 +7,20 @@
 						Create Label and Fact Sheet v103
 					</button>
 <button class="btn btn-sm btn-danger" click.delegate="saveChanges()">
-						saveChanges ${makeAndModel}
+						saveChanges
 					</button>
-
+					 <!-- <label repeat.for="imagesize of imagesizes"> -->
+          <!-- <input type="radio" name="group1"
+                 model.bind="imagesize.id" checked.bind="selectedimagesize">
+          ${imagesize.id} - ${imagesize.factor} - ${imagesize.name} 
+        </label> -->
+					<label repeat.for="sold of searchsold">
+              <input type="radio" name="group1"
+                    model.bind="sold.id" checked.bind="selectedimagesize">
+               <!-- ${sold.id} - ${sold.factor} - -->
+                ${sold.name} &nbsp;  
+                  <!-- ${sold.name} &nbsp; -->
+            </label>
         
 					</span>
     <!-- <textarea  ak-rich-editor style="height:440px"> k-on-ready.delegate="onReady($event.detail)"  -->
