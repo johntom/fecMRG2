@@ -412,7 +412,6 @@ export class DataForm {
     // }
     this.appService.clientHeight = this.mainimage.clientHeight
     this.appService.clientWidth = this.mainimage.clientWidth
-
     let tabinfo, tabindex
     // tabinfo = localStorage.getItem('tabinfo');
 

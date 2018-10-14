@@ -7,7 +7,7 @@ import { DialogService } from 'aurelia-dialog';
 import { Prompt } from '../../../services/prompt';
 import lodash from 'lodash';
 // import EXIF from './exif';
-	// <require from="../../resources/value-converters/round-format"></require>
+// <require from="../../resources/value-converters/round-format"></require>
 // import RoundFormat from "../../../resources/value-converters/round-format";
 //  RoundFormat RoundFormatValueConverter
 
@@ -84,6 +84,9 @@ export class Rtf {
     { id: 1, name: '1.5 size', factor: 1.5 },
     { id: 2, name: '2 size', factor: 2 },
     { id: 3, name: '3 size', factor: 3 },
+    { id: 4, name: '.5 size', factor: .5 },
+    { id: 5, name: '.3 size', factor: .3 },
+ 
   ];
   selectedimagesize = 0;//null searchsold[0];
   constructor(api, appService, dialogService) {
@@ -138,15 +141,33 @@ export class Rtf {
     if (provenance !== undefined) {
       let iarray = []
       // this.segment2 += ` <br><p>PROVONANCE HISTORY: </p>`
-      this.segment2 += `<p><span style="text-decoration-line:underline;"><strong>PROVONANCE</strong></span></p>`
+      // this.segment2 += `<p><span style="text-decoration-line:underline;"><strong>PROVONANCE</strong></span></p>`
+      this.segment2 += `<p><span style='text-decoration-line:underline'><strong><u>PROVENANCE</u></strong></span><u></u></p>`
+
 
       for (const item of provenance) {
-        // console.log("loopitem ====", item)
+        console.log("loopitem ====", item)
+        // let ProvOwner = req.param('ProvOwner')
+        // let ProvDate = req.param('ProvDate')
+        // let ProvSortDate = req.param('ProvSortDate')
+        // let ProvMemo = req.param('ProvMemo');
+        // let Sequence = req.param('Sequence')
+        // let ProvLoc = req.param('Description');
+        
+        let pl = this.appService.codesProvenanceLocation
+        let oid
+          if ( (item.ProvLoc+'' ).length <6 ){  
 
-        this.segment2 += item.ProvOwner + ' ' + item.ProvSortDate + '<br>'
+          oid = pl.findIndex(x => x.ID === item.ProvLoc)
+          } else {
+          oid = pl.findIndex(x => x.id === item.ProvLoc)
+
+          }
+          if (oid==-1)oid=1
+        let ProvLoc = this.appService.codesProvenanceLocation[oid].Description
+        // this.segment2 += item.ProvOwner + ' ' + item.ProvSortDate + ' ' + item.ProvLoc+ '<br>'
+        this.segment2 += item.ProvOwner + ', ' + ProvLoc + '<br>'
       }
-
-
     }
   }
   buildRepro() {
@@ -165,7 +186,8 @@ export class Rtf {
     let preitalic = '<em>'
     let postitalic = '</em>'
     let lineBreak = '<br>'
-    this.segment2 += `<br><p><span style="text-decoration-line:underline;"><strong>EXHIBITION & PUBLICATION </strong></span></p>`
+    // this.segment2 += `<br><p><span style="text-decoration-line:underline;"><strong>EXHIBITION & PUBLICATION </strong></span></p>`
+    this.segment2 += `<br><p><span style='text-decoration-line:underline'><strong><u>EXHIBITION & PUBLICATION</u></strong></span><u></u></p><br>`
 
     let tryex = []
     let reproduction = this.currentItem.reproduction
@@ -284,31 +306,29 @@ export class Rtf {
       case null:
         cmuh = 0
         break;
-
-      case 0:
+      case '0/0':
         cmuh = 0
         break;
-      case 1:
+      case '1/8':
         cmuh = factor
         break;
-      case 2:
+      case '1/4':
         cmuh = factor * 2
-      case 3:
+      case '3/8':
         cmuh = factor * 3
         break;
-      case 4:
+      case '1/2':
         cmuh = factor * 4
         break;
-      case 5:
+      case '5/8':
         cmuh = factor * 5
         break;
-      case 6:
+      case '3/4':
         cmuh = factor * 6
         break;
-      case 7:
+      case '7/8':
         cmuh = factor * 7
         break;
-      
     }
 
     switch (cmfh) {
@@ -316,29 +336,30 @@ export class Rtf {
         cmfh = 0
         break;
 
-      case 0:
+      case '0/0':
         cmfh = 0
         break;
-      case 1:
+      case '1/8':
         cmfh = factor
         break;
-      case 2:
+      case '1/4':
         cmfh = factor * 2
-      case 3:
+      case '3/8':
         cmfh = factor * 3
         break;
-      case 4:
+      case '1/2':
         cmfh = factor * 4
         break;
-      case 5:
+      case '5/8':
         cmfh = factor * 5
         break;
-      case 6:
+      case '3/4':
         cmfh = factor * 6
         break;
-      case 7:
+      case '7/8':
         cmfh = factor * 7
         break;
+
     }
     switch (cmuw) {
       case null:
@@ -359,47 +380,48 @@ export class Rtf {
       case '1/2':
         cmuw = factor * 4
         break;
-       case '5/8':
+      case '5/8':
         cmuw = factor * 5
         break;
       case '3/4':
         cmuw = factor * 6
         break;
-        case '7/8':
+      case '7/8':
         cmuw = factor * 7
         break;
-      
+
     }
 
-switch (cmfw) {
+    switch (cmfw) {
       case null:
         cmfw = 0
         break;
 
-      case 0:
+      case '0/0':
         cmfw = 0
         break;
-      case 1:
+      case '1/8':
         cmfw = factor
         break;
-      case 2:
+      case '1/4':
         cmfw = factor * 2
-      case 3:
+      case '3/8':
         cmfw = factor * 3
         break;
-      case 4:
+      case '1/2':
         cmfw = factor * 4
         break;
-      case 5:
+      case '5/8':
         cmfw = factor * 5
         break;
-      case 6:
+      case '3/4':
         cmfw = factor * 6
         break;
-      case 7:
+      case '7/8':
         cmfw = factor * 7
         break;
-      
+
+
     }
 
 
@@ -411,8 +433,8 @@ switch (cmfw) {
       dims = `${this.currentItem.UnframedHeight} <span style="font-size:x-small;"> ${this.currentItem.UnframedHeight16}   </span> ' x '`
 
       // dimscm = this.currentItem.UnframedHeight * 2.54 + ' ' + this.currentItem.UnframedHeight16 * 2.54 + ' x '
-      dimscm =  Math.round((this.currentItem.UnframedHeight * 2.54)+ cmuh) + ' x '
-    // Math.round(num * 100) / 100
+      dimscm = Math.round((this.currentItem.UnframedHeight * 2.54) + cmuh) + ' x '
+      // Math.round(num * 100) / 100
     }
 
     if (this.currentItem.UnframedWidth16 === null) {
@@ -422,7 +444,7 @@ switch (cmfw) {
       dimscm += this.currentItem.UnframedWidth * 2.54
     } else {
       dims += `${this.currentItem.UnframedWidth} <span style="font-size:x-small;"> ${this.currentItem.UnframedWidth16} </span>`
-      dimscm +=  Math.round( ( (this.currentItem.UnframedWidth * 2.54)  + cmuw))
+      dimscm += Math.round(((this.currentItem.UnframedWidth * 2.54) + cmuw))
     }
     /////////////////////////////
 
@@ -437,7 +459,7 @@ switch (cmfw) {
         dimscmf = this.currentItem.FramedHeight * 2.54 + ' cm ' + ' x '
       } else {
         dimsf = `${this.currentItem.FramedHeight}  + ' ' + <span style="font-size:x-small;"> ${this.currentItem.FramedHeight16} </span> x `
-        dimscmf = ((this.currentItem.FramedHeight * 2.54) +cmfh) + ' x '
+        dimscmf = ((this.currentItem.FramedHeight * 2.54) + cmfh) + ' x '
         //  this.currentItem.FramedHeight16 * 2.54 + ' x '
       }
 
@@ -448,7 +470,7 @@ switch (cmfw) {
         // dimsf += this.currentItem.FramedWidth + ' ' + this.currentItem.FramedWidth16
         dimsf += `${this.currentItem.FramedWidth}  <span style="font-size:x-small;"> ${this.currentItem.FramedWidth16} </span>  `
 
-        dimscmf += ((this.currentItem.FramedWidth * 2.54) +cmfw)
+        dimscmf += ((this.currentItem.FramedWidth * 2.54) + cmfw)
       }
     }
 
@@ -527,19 +549,19 @@ switch (cmfw) {
     let ww = this.appService.clientWidth * fac.factor
     let hh = this.appService.clientHeight * fac.factor
     console.log(hh, ww)
-    this.segment2 = `<p><img src="https://artbased.com/api/v1/getonePdf/inv/${this.currentItem.InventoryCode}.jpg" alt="" width="${ww}" height="${hh}" /></p>`
+    this.segment2 = `<p><img src="https://artbased.com/api/v1/getonepdf/inv/${this.currentItem.InventoryCode}.jpg" alt="" width="${ww}" height="${hh}" /></p>`
 
-
-    // this.segment2 = `<p><img src="https://artbased.com/api/v1/getonePdf/inv/${this.currentItem.InventoryCode}.jpg" alt="" width="${this.appService.clientWidth}*${fac.factor}" height="${this.appService.clientHeight}*${fac.factor}" /></p>`
+    // this.segment2 = `<p><img src="https://artbased.com/api/v1/getonepdf/inv/POLLOCJ005.jpg" alt="" width="${ww}" height="${hh}" /></p>`
+    // this.segment2 = `<p><img src="https://artbased.com/api/v1/getonepdf/inv/${this.currentItem.InventoryCode}.jpg" alt="" width="${this.appService.cli}" height="${hh}" /></p>`
 
     this.segment2 += ` ${artistWdates}<br>`
     this.segment2 += `  <em> ${this.currentItem.Title}</em>, ${this.currentItem.InvYear}   `
     this.segment2 += ` ${this.currentItem.MediumSupportobj.Description}  <br> `
     // this.segment2 += ` <p> ${this.currentItem.InvYear} </p> `
-    this.segment2 += `  ${dimsf} in framed<br> `
-    this.segment2 += `  ${dimscmf} cm framed<br>  `
-    this.segment2 += `  ${dims} in unframed<br> `
-    this.segment2 += `  ${dimscm} cm unframed<br>  `
+    if (dimsf !== undefined) this.segment2 += `  ${dimsf} in framed<br> `
+    if (dimscmf !== undefined) this.segment2 += `  ${dimscmf} cm framed<br>  `
+    if (dims !== undefined) this.segment2 += `  ${dims} in unframed<br> `
+    if (dimscm !== undefined) this.segment2 += `  ${dimscm} cm unframed<br>  `
     // this.segment2 += `<br> ${this.currentItem.SignedLocation} <br>`
     // this.segment2 += ` ${this.currentItem.SignedLocation} <br>`
     // this.segment2 += `<br><br>no. P606 <br>`
