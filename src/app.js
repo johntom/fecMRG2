@@ -3,11 +3,17 @@ import { PLATFORM } from 'aurelia-pal';
 import { ApplicationService } from './services/application-service';
 import { AuthorizeStep } from './services/authorize-step';
 
-export class App {
-  static inject = [ApplicationService];
 
-  constructor(appService) {
+import {EventAggregator} from 'aurelia-event-aggregator';
+
+
+
+export class App {
+  static inject = [ApplicationService,EventAggregator];
+
+  constructor(appService,eventAggregator) {
     this.appService = appService;
+    this.eventAggregator = eventAggregator;
   }
 
 // use activationStrategy for all wildcards 
@@ -35,11 +41,7 @@ export class App {
       { "route": 'action', name: 'action', moduleId: PLATFORM.moduleName('./views/action/action'), nav: true, title: 'Actions' },
       { "route": 'action/:id', name: 'action-search-results', moduleId: PLATFORM.moduleName('./views/action/search-results'), title: 'Search Results' ,activationStrategy:'replace'  },
       { "route": 'action/data/:id', name: 'action-data-form', moduleId: PLATFORM.moduleName('./views/action/data-form'), title: 'Data Form'  }, // ,activationStrategy:'replace'
-
-
       { "route": 'batchupdate', name: 'batchupdate', moduleId: PLATFORM.moduleName('./views/batchupdate/search-results'), nav: true, title: 'Batch' },
-
-
 
       // { route: '', name: 'no-selection',      moduleId: './no-selection',      nav: true, title: 'Select' },
       //  { "route": "grid", "name": "grid", "moduleId": PLATFORM.moduleName("./views/grid/grid"), "nav": true, "title": "Imates-Srv-Inv Grid" },
@@ -54,7 +56,19 @@ export class App {
 
     this.router = router;
   }
-
+  attached() {
+    const body = document.querySelector('body');
+    if (body) {
+      body.addEventListener('keydown', this.onKeyDown.bind(this));
+    }
+  }
+  onKeyDown(e) {
+    if (e.key === "a" && e.altKey) {
+      e.preventDefault();
+      e.stopPropagation();
+      this.eventAggregator.publish('keydown:alt-a');
+    }
+  }
   selectTab(e, tab) {
     e.preventDefault();
     e.stopPropagation();

@@ -2,9 +2,10 @@ import { Router, Redirect } from 'aurelia-router';
 import { UtilService } from '../../services/util-service';
 import { ApplicationService } from '../../services/application-service';
 import { MyDataService } from "../../services/my-data-service";
+import {EventAggregator} from 'aurelia-event-aggregator';
 
 export class Inventory {
-  static inject = [Router, UtilService, ApplicationService, MyDataService];
+  static inject = [Router, UtilService, ApplicationService, MyDataService, EventAggregator];
 
   heading = 'Welcome to the Inventory page PORTERC007 PORTERC009 PORTERC008 PORTERC013';
   counter = 1;
@@ -74,14 +75,16 @@ export class Inventory {
     { id: 2, name: 'NFS' },
     { id: 3, name: 'DON' },
   ];
-  constructor(router, utilService, appService, dataService) {
+  altAKeyPressSubscription;
+
+  constructor(router, utilService, appService, dataService, eventAggregator) {
     this.router = router;
     this.utilService = utilService;
     this.appService = appService;
     this.page = '#/inventory'
     // this.search.inventorycode = 'PORTERC008'
     this.dataService = dataService;
-
+    this.eventAggregator = eventAggregator
   }
   getStatesExample(filter, limit) {
 
@@ -177,6 +180,7 @@ export class Inventory {
     //this.router.navigate(`#/inventory/`);
   }
   attached() {
+    this.altAKeyPressSubscription = this.eventAggregator.subscribe('keydown:alt-a', this.addinventory.bind(this));
     // this.stateList
     // set typahead value for state
     // console.log('sl', this.stateList)
@@ -199,6 +203,9 @@ export class Inventory {
     // }
     // this.dows.value = this.OrgName
 
+  }
+  detached() {
+    this.altAKeyPressSubscription.dispose();
   }
   populateInv(e) {
     this.search.inventorycode = e
