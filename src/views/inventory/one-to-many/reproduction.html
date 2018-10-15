@@ -28,7 +28,7 @@
 
 					<th class="header">Color/BW </th>
 					<th class="header">Sort Date </th>
-					<th class="header">Sel Exhibition </th>
+					<th class="header">Select<br>Exhibition</th>
 					<th class="header">batchno </th>
 
 					<th class="header"> </th>
@@ -75,8 +75,9 @@
 					<td width="200px">
 						<select id="ReproductionLocation" class="form-control  input-sm" value.bind="ReproductionLocation"> 
                       <option model.bind="null">Choose...filterOnCode</option> 
-                         <option repeat.for="opt of appService.codesProvenanceLocation " model.bind="opt.id">
+                         <option repeat.for="opt of appService.codesProvenanceLocation" model.bind="opt.id">
                     ${opt.Description} 
+                    <!-- codesProvenanceLocation -->
                       </option> 
                     </select>
 

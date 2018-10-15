@@ -2,7 +2,7 @@ import { Router, Redirect } from 'aurelia-router';
 import { UtilService } from '../../services/util-service';
 import { ApplicationService } from '../../services/application-service';
 import { MyDataService } from "../../services/my-data-service";
-import {EventAggregator} from 'aurelia-event-aggregator';
+import { EventAggregator } from 'aurelia-event-aggregator';
 
 export class Inventory {
   static inject = [Router, UtilService, ApplicationService, MyDataService, EventAggregator];
@@ -133,6 +133,15 @@ export class Inventory {
 
     return Promise
   }
+
+  populateInv(e) {
+    this.search.inventorycode = e
+    this.appService.onlyonce = 0
+    this.performSearch()
+    //https://johntom.github.io/fecMRG2/#/inventory/data/PORTERC008
+     this.router.navigate(`#/inventory/data/${ this.search.inventorycode}`);
+   //   this.appService.currentSearch = path
+  }
   performSearch() {
     let keywd = `${this.Description}`
 
@@ -207,11 +216,7 @@ export class Inventory {
   detached() {
     this.altAKeyPressSubscription.dispose();
   }
-  populateInv(e) {
-    this.search.inventorycode = e
-    this.appService.onlyonce=0
-    this.performSearch()
-  }
+
   activate() {
     console.log('name-tag activate before attached ');
     this.mru = []

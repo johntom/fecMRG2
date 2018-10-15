@@ -371,12 +371,14 @@ export class DataForm {
             let inv = jsonRes.data;
             this.currentItem = inv[0]
             // never been saved from view
-            if (!this.currentItem.savedonce || this.currentItem.savedonce === undefined) {
-              // if (!this.currentItem.savedonce || this.currentItem.savedonce === true) {
-              // force it all the time
-              this.currentItem.savedonce = true
-              this.saveinventory(0)
-            }
+
+            // // move to attach
+            // if (!this.currentItem.savedonce || this.currentItem.savedonce === undefined) {
+            //   // if (!this.currentItem.savedonce || this.currentItem.savedonce === true) {
+            //   // force it all the time
+            //   this.currentItem.savedonce = true
+            //   this.saveinventory(0)
+            // }
 
 
             //      this.appService.onlyonce=1
@@ -410,6 +412,14 @@ export class DataForm {
     //   let tab = this.appService.dataFormOneToOneTabs[0];
     //   this.selectOneToOneTab(tab);
     // }
+
+    // move to attach
+    if (!this.currentItem.savedonce || this.currentItem.savedonce === undefined) {
+      // if (!this.currentItem.savedonce || this.currentItem.savedonce === true) {
+      // force it all the time
+      this.currentItem.savedonce = true
+      this.saveinventory(0)
+    }
     this.appService.clientHeight = this.mainimage.clientHeight
     this.appService.clientWidth = this.mainimage.clientWidth
     let tabinfo, tabindex
@@ -567,6 +577,35 @@ export class DataForm {
       // if (JSON.stringify(  this.currentItem) !== JSON.stringify(this.appService.originalrec)) {
       if (JSON.stringify(this.currentItem) !== JSON.stringify(this.appService.originalrec)) {
 
+
+        // calc ratio of image
+        let imgh, imgw
+        let imageHeight, imageWidth
+
+        if (this.mainimage.clientHeight === undefined) {
+          // no image
+          imageWidth = 1
+          imageHeight = 1
+        } else {
+          imgw = this.mainimage.clientWidth
+          imgh = this.mainimage.clientHeight
+          if (imgh === imgw) {
+            imageHeight = 1
+            imageWidth = 1
+          } else if (imgh > imgw) {
+            imageHeight = 1
+            imageWidth =  (imgw / imgh).toPrecision(2)  //Math.round(imgw / imgh)
+          } if (imgw > imgh) {
+            imageWidth = 1
+            imageHeight =  (imgh / imgw).toPrecision(2) //Math.round(imgh / imgw)
+          }
+        }
+        this.currentItem.clientHeightRatio = imageHeight
+        this.currentItem.clientWidthRatio = imageWidth
+        //  this.currentItem.clientHeightRatio  = his.mainimage.clientHeight
+        //     this.currentItem.clientWidthRatio  =  this.mainimage.clientWidth
+
+        // end of calc ratio
 
         this.api.saveinventory(this.currentItem).then((jsonRes) => {
           console.log('jsonRes ', jsonRes);

@@ -194,7 +194,11 @@
 
             
        </textarea>
-   
+
+		<a href="https://artbased.com/api/v1/downloadonepdf/lists/${item.savedlist}.doc" class="btn btn-sm btn-primary">
+				<span class="glyphicon glyphicon-th-list"></span> Download Doc FactSheet
+			</a>
+
 					</div>
 
 
@@ -242,8 +246,12 @@
 						</ak-col>
 						<ak-col k-filterable.bind="false" k-title="Image" k-field="InventoryCode" k-width="110px">
 							<ak-template>
-								<div class='customer-photo' style="background-image: url(https://gtztest.com/api/v1/getonePdf/inv/${InventoryCode}.jpg)"></div>
-							</ak-template>
+								<!-- <div class='customer-photo' style="background-image: url(https://gtztest.com/api/v1/getonePdf/inv/${InventoryCode}.jpg)"></div> -->
+						<!-- -->
+            			<div class='customer-photo' style="background-image: url(https://artbased.com/api/v1/getonePdf/inv/${InventoryCode}.jpg)"  click.delegate="showModalImg($event)" ></div>
+   
+            
+            	</ak-template>
 						</ak-col>
 
 						<ak-col k-title="Artist last" k-width="110px" k-field="artist.lastName"></ak-col>

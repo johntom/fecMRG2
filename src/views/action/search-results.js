@@ -6,9 +6,10 @@ import { UtilService } from '../../services/util-service';
 // import moment from 'moment';
 import { ApplicationService } from '../../services/application-service';
 import { MyDataService } from "../../services/my-data-service";
-
+import { DialogImage } from '../inventory/dialogImage'
+import { DialogService } from 'aurelia-dialog'
 // jrt
-@inject(Router, ApiService, UtilService, ApplicationService, MyDataService)
+@inject(Router, ApiService, UtilService, ApplicationService, MyDataService, DialogService)
 export class SearchResults {
   heading = 'Search Results HEADER...';
   footer = 'Search Results FOOTER...';
@@ -65,7 +66,7 @@ export class SearchResults {
     'print'
   ];
   //  console.log(' inv SearchResults ');
-   pdf = {
+  pdf = {
     fileName: 'NewDocument.pdf',
     proxyURL: '//demos.telerik.com/kendo-ui/service/export',
     paperSize: 'letter',
@@ -125,13 +126,14 @@ export class SearchResults {
     // ]
   })
 
-  constructor(router, api, utilService, appService, dataService) {
+  constructor(router, api, utilService, appService, dataService, dialogService) {
     this.router = router;
     this.api = api;
     this.utilService = utilService;
     this.appService = appService;
     this.dataService = dataService;
     this.ImageID = '20150921_153441_resized_2'
+    this.dialogService = dialogService
     // this.appService.actionlist ='closed'
   }
   updateData(e) {
@@ -363,6 +365,28 @@ export class SearchResults {
     this.router.navigate(rt2);// `#/inventory/${path}`);
 
   }
+
+  showModalImg(e) {
+    let grid = this.grid;
+    let targetRow = $(e.target).closest("tr");
+    grid.select(targetRow);
+    let selectedRow = grid.select();
+    let dataItem = grid.dataItem(selectedRow);
+    this.dialogService.open({ viewModel: DialogImage, model: dataItem, lock: false }).whenClosed(response => {
+
+
+
+      if (!response.wasCancelled) {
+        // console.log('Delete')
+        // let notes = this.currentItem.notes
+        // notes.splice(index, 1)// start, deleteCount)
+      } else {
+        console.log('cancel');
+      }
+      console.log(response.output);
+    });
+  }
+
   //      <button id="factsheet1" action1() >Transport</button>
   // 			<button id="factsheet2" action2()">Exhibit</button>
   // 			<button id="factsheet3" action3()">Reproduction</button>
@@ -488,28 +512,49 @@ export class SearchResults {
     this.hide8 = true
 
     let segment
+
+    segment = '<table><tbody>'
+
     for (const invitem of this.datasource._data) {
       //this.currentImage=`${invitem.InventoryCode}.jpg`
       // let ww = this.mainimage.clientWidth //* fac.factor
-      // let hh = this.mainimage.clientHeight //* fac.factor
-   
-   // we have to store the ratio of each image
-   // ie h=1 w=1
-   // w h-1 w=.5
-   
-      segment += `<table><tbody><tr style="height:33"><td style="width:50%;">${invitem.InventoryCode}</td> `
-      // segment += `<td style="width:50%;"><img src="https://artbased.com/api/v1/getonepdf/inv/${invitem.InventoryCode}.jpg"
-      //  alt="" width="225" height="225" /></td></tr>`
- segment += `<td style="width:50%;"><img src="https://artbased.com/api/v1/getonepdf/inv/${invitem.InventoryCode}.jpg"
-       alt="" class="responsivemerge-img" /></td></tr>`
- 
+      // lmaet hh = this.mainimage.clientHeight //* fac.factor
+      // "imageWidth":.5,
+      // "imageHeight":1
 
-      //  segment += `<td style="width:50%;"><img src="https://artbased.com/api/v1/getonepdf/inv/${invitem.InventoryCode}.jpg"
-      //  alt="" width="${ww}" height="${hh} /></td></tr>`
+      let ww = invitem.clientWidthRatio
+      let hh = invitem.clientHeightRatio
+
+        // this.currentItem.clientHeightRatio  = imageHeight
+        // this.currentItem.clientWidthRatio  = imageWidth
+//  this.currentItem.clientHeightRatio  = his.mainimage.clientHeight
+//     this.currentItem.clientWidthRatio  =  this.mainimage.clientWidth
+
+      if (ww === undefined) ww = 1
+      if (hh === undefined) hh = 1
+      ww = 225 * ww
+      hh = 225 * hh
+
+      // we have to store the ratio of each image
+      // ie h=1 w=1
+      // w h-1 w=.5
+      // save to    https://artbased.com/api/v1/downloadonepdf/lists/sl2.doc
+      //      segment += `<table><tbody><tr style="height:33"><td style="width:50%;">${invitem.InventoryCode}</td> `
+      ///      // segment += `<td style="width:50%;"><img src="https://artbased.com/api/v1/getonepdf/inv/${invitem.InventoryCode}.jpg"
+      //     //  alt="" width="225" height="225" /></td></tr>`
+      // // segment += `<td style="width:50%;"><img src="https://artbased.com/api/v1/getonepdf/inv/${invitem.InventoryCode}.jpg"
+      //   //     alt="" class="responsivemerge-img" /></td></tr>`
+
+      segment += `<tr style="height:17%;">${invitem.InventoryCode}<td style="width:35%;">${invitem.InventoryCode}</td>`
+      segment += `<td style="width:65%;"><img src="https://artbased.com/api/v1/getonepdf/inv/${invitem.InventoryCode}.jpg" alt="" width="${ww}" height=${hh} /></td>`
+      segment += `</tr>`
+
+
+
     }
     segment += `</tbody></table>`
     // edt.value(segment)
- this.editor.value(segment)
+    this.editor.value(segment)
   }
   setInitialValue(edt) {
     // if (this.currentItem.rtf1 !== undefined)

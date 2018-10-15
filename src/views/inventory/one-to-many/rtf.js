@@ -6,6 +6,7 @@ import { Aurelia } from 'aurelia-framework';
 import { DialogService } from 'aurelia-dialog';
 import { Prompt } from '../../../services/prompt';
 import lodash from 'lodash';
+import moment from 'moment';
 // import EXIF from './exif';
 // <require from="../../resources/value-converters/round-format"></require>
 // import RoundFormat from "../../../resources/value-converters/round-format";
@@ -17,7 +18,7 @@ export class Rtf {
   tools = [
     'pdf',
     'html',
-    
+
     'bold',
     'italic',
     'underline',
@@ -70,7 +71,7 @@ export class Rtf {
   postitalic = '</em>'
   lineBreak = '<br>'
 
- 
+
   stylesheets = ['https://demos.telerik.com/kendo-ui/content/web/editor/pdf-export-styles.css'];
   pdf = {
     fileName: 'NewDocument.pdf',
@@ -83,7 +84,7 @@ export class Rtf {
       top: 20
     }
   };
- html = {
+  html = {
     fileName: 'NewDocument.html',
     proxyURL: '//demos.telerik.com/kendo-ui/service/export',
     paperSize: 'letter',
@@ -114,7 +115,7 @@ export class Rtf {
     { id: 3, name: '3 size', factor: 3 },
     { id: 4, name: '.5 size', factor: .5 },
     { id: 5, name: '.3 size', factor: .3 },
- 
+
   ];
   selectedimagesize = 0;//null searchsold[0];
   constructor(api, appService, dialogService) {
@@ -181,20 +182,20 @@ export class Rtf {
         // let ProvMemo = req.param('ProvMemo');
         // let Sequence = req.param('Sequence')
         // let ProvLoc = req.param('Description');
-        
+
         let pl = this.appService.codesProvenanceLocation
         let oid
-          if ( (item.ProvLoc+'' ).length <6 ){  
+        if ((item.ProvLoc + '').length < 6) {
 
           oid = pl.findIndex(x => x.ID === item.ProvLoc)
-          } else {
+        } else {
           oid = pl.findIndex(x => x.id === item.ProvLoc)
 
-          }
-          if (oid==-1)oid=1
+        }
+        if (oid == -1) oid = 1
         let ProvLoc = this.appService.codesProvenanceLocation[oid].Description
         // this.segment2 += item.ProvOwner + ' ' + item.ProvSortDate + ' ' + item.ProvLoc+ '<br>'
-        this.segment2 += item.ProvOwner + ', ' + ProvLoc + '<br>'
+        this.segment2 += `${item.ProvOwner}, ${ProvLoc} <br> ${item.ProvMemo}<br>`
       }
     }
   }
@@ -215,25 +216,102 @@ export class Rtf {
     let postitalic = '</em>'
     let lineBreak = '<br>'
     // this.segment2 += `<br><p><span style="text-decoration-line:underline;"><strong>EXHIBITION & PUBLICATION </strong></span></p>`
-    this.segment2 += `<br><p><span style='text-decoration-line:underline'><strong><u>EXHIBITION & PUBLICATION</u></strong></span><u></u></p><br>`
+    this.segment2 += `<br><br><br><p><span style='text-decoration-line:underline'><strong><u>EXHIBITION & PUBLICATION HISTORY</u></strong></span><u></u></p><br>`
 
-    let tryex = []
-    let reproduction = this.currentItem.reproduction
-    if (reproduction !== undefined) {
-      for (const item of reproduction) {
-        if (item.ExhibitRepro !== undefined) {
-          //?  item.splice(i, 1)// take away
+    let exhibitandpubs = []
 
+
+    // let reproduction = this.currentItem.reproduction
+    // if (reproduction !== undefined) {
+    //   for (const item of reproduction) {
+    //     if (item.ExhibitRepro !== undefined) {
+    //       //?  item.splice(i, 1)// take away
+
+    //     } else {
+    //       // exhibition ExhibitSortDate  ReproductionSortDate  
+    //       // use 1 date in combined array tryex
+    //       item.ExhibitSortDate = item.ReproductionSortDate
+
+    //     }
+    //   }
+    // } else reproduction = []
+    // console.log('aa ', this.currentItem.reproduction)
+
+
+
+    // conbine both tables
+
+    let exhibition = this.currentItem.exhibition
+    let rec = {}
+    if (exhibition !== undefined) {
+      for (const item of exhibition) {
+        console.log('==================-item==========', item.ExhibitTitle)
+        // if (item.ReproductionPage === 'none' || item.ReproductionPage === 'none') {
+        //   //  console.log('==================-none1==========')
+        //   rec = {
+        //     date: item.ExhibitSortDate,
+        //     exception: pre + item.ExhibitTitle + ', ' + item.ReproductionLocation + ', ' + item.ReproductionDate + post
+        //   }
+        // } else {
+        //   if (item.ReproductionPage !== undefined) {
+        //     //   console.log('==================defined==========')
+        //     rec = {
+        //       date: item.ExhibitSortDate,
+        //       exception: prebefore + preitalic + item.ExhibitTitle + postitalic + preafter + ', ' + item.ReproductionLocation + ', ' + exhibition[i].ExhibitDates + ', ' + lineBreak + item.ReproductionPage + post
+        //     }
+        //   } else {
+        //     rec = {
+        //       date: item.ExhibitSortDate,
+        //       //   exception: pre + item.ExhibitTitle + ', ' + item.ReproductionLocation + ', ' + item.ExhibitDates + post
+        //       exception: pre + item.ExhibitTitle + ', ' + item.ReproductionLocation
+        //       //+ ', ' + item.ExhibitDates + post
+        //     }
+        //   }
+        // }
+        // let ExhibitTitle = req.param('ExhibitTitle')
+        // let ExhibitSponser = req.param('ExhibitSponser')
+        // let ExhibitLocation = req.param('Description') //typeahead
+        // let ExhibitDates = req.param('ExhibitDates')
+        // let ExhibitSortDate = req.param('ExhibitSortDate')
+        // let Traveled = req.param('Traveled')
+        // let batchno = req.param('batchno')
+        // let ExhibitMemo = req.param('ExhibitMemo')
+
+        let pl = this.appService.codesProvenanceLocation
+        let oid
+        if ((item.ExhibitLocation + '').length < 6) {
+
+          oid = pl.findIndex(x => x.ID === item.ExhibitLocation)
         } else {
-          // exhibition ExhibitSortDate  ReproductionSortDate  
-          // use 1 date in combined array tryex
-          item.ExhibitSortDate = item.ReproductionSortDate
+          oid = pl.findIndex(x => x.id === item.ExhibitLocation)
 
         }
+        if (oid == -1) oid = 1
+        let ExhibitLocationDesc = pl[oid].Description
+        // , ${item.ExhibitMemo}`
+        // console.log('moment', moment(item.ExhibitSortDate,'YYYYmmdd'))
+        rec = {
+          // date: moment(item.ExhibitSortDate,'YYYYmmdd'),
+          date: item.ExhibitSortDate,
+          //   exception: pre + item.ExhibitTitle + ', ' + item.ReproductionLocation + ', ' + item.ExhibitDates + post
+          exception: pre + `${item.ExhibitTitle}, ${item.ExhibitSponser}, ${ExhibitLocationDesc}, ${item.ExhibitDates}`
+            + post
+        }
+        exhibitandpubs.push(rec)
       }
-    } else reproduction = []
-    console.log('aa ', this.currentItem.reproduction)
-    // conbine both tables
+    } else exhibition = []
+
+
+
+    //       console.log('inv.reproduction.length', inv.reproduction.length)
+    let reproduction = this.currentItem.reproduction
+    let myObjects
+
+
+
+// 2014-01-01
+// Villiger, Suzi. 0Hans Hofmann Catalogue Raisonné of Paintings Vol. II (5bae1dff459dbacdea25a716: Lund Humphries, 2014-01-01) 
+// null, on page Illustrated in color on page 368, no. P606
     /**  let ExhibitID = req.param('ExhibitID')
         let ReproductionType = req.param('ReproductionType')//TransportTo')
         let ReproductionPage = req.param('ReproductionPage')//TransportFrom')
@@ -242,74 +320,51 @@ export class Rtf {
         let ReproductionSortDate = req.param('ReproductionSortDate')//TransportTo')
         let ReproductionLocation = req.param('DescriptionLoc')//TransportFrom')
         let ReproductionAuthor = req.param('ReproductionAuthor');
-        let ReproductionName = req.param('ReproductionName');
+        let ReproductionName = req.param('ReproductionName'); //publishr
         let ReproductionTitle = req.param('ReproductionTitle');
  */
-    let exhibition = this.currentItem.exhibition
-    let rec = {}
-    if (exhibition !== undefined) {
-      for (const item of exhibition) {
-        if (item.repropage === 'none') {
-          //  console.log('==================-none1==========')
-          rec = {
-            date: item.ExhibitSortDate,
-            exception: pre + item.ExhibitTitle + ', ' + item.ReproductionLocation + ', ' + item.ExhibitDates + post
-          }
-        } else {
-          if (item.ReproductionPage !== undefined) {
-            //   console.log('==================defined==========')
-            rec = {
-              date: item.ExhibitSortDate,
-              exception: prebefore + preitalic + item.ExhibitTitle + postitalic + preafter + ', ' + item.ReproductionLocation + ', ' + exhibition[i].ExhibitDates + ', ' + lineBreak + item.ReproductionPage + post
-            }
-          } else {
-            rec = {
-              date: item.ExhibitSortDate,
-              //   exception: pre + item.ExhibitTitle + ', ' + item.ReproductionLocation + ', ' + item.ExhibitDates + post
-              exception: pre + item.ExhibitTitle + ', ' + item.ReproductionLocation
-              //+ ', ' + item.ExhibitDates + post
-
-            }
-          }
-
-        }
-        tryex.push(rec)
-      }
-    } else exhibition = []
-    //       console.log('inv.reproduction.length', inv.reproduction.length)
-    let myObjects
     if (reproduction !== undefined) {
       for (const item of reproduction) {
-        rec = {
-          date: item.ReproductionSortDate,
-          exception: pre + item.AuthorLast + ', ' +
-            item.AuthorFirst + '.  ' + preitalic +
-            +' ' + item.ReproductionTitle + ' ' + postitalic + preafter + '(' +
-            // item.ReproductionLocationDesc + ': ' +
-            item.ReproductionLocation + ': ' +
-            item.ReproductionName + ', ' +
-            item.ReproductionSortDate + ') ' + lineBreak +
-            item.ColorBW + ', on page ' + item.ReproductionPage + lineBreak + post
+        if (item.ReproductionExhibit === null){//undefined)
+          let oid
+        if ((item.ReproductionLocation + '').length < 6) {
+
+          oid = pl.findIndex(x => x.ID === item.ReproductionLocation)
+        } else {
+          oid = pl.findIndex(x => x.id === item.ReproductionLocation)
+
         }
-        console.log('in repo rec', rec)
-        console.log('=======================================================')
+        if (oid == -1) oid = 1
+        let ReproductionLocationDesc = pl[oid].Description
+        let data= pre + `${item.ReproductionAuthor}, ${preitalic} ${item.ReproductionTitle} ${postitalic} ${preafter} '(' `
+              data+=`${item.ReproductionLocationDesc} ${item.ReproductionName}, ${item.ReproductionDate}) ${lineBreak}`     
+              data+=`${item.ColorBW}, on page ${item.ReproductionPage} ${lineBreak} ${post}`
+          rec = {
+            date: item.ReproductionSortDate,
+          
+              exception: data
+          }
 
-        tryex.push(rec)
+        exhibitandpubs.push(rec)
+        }
       }
-      myObjects = lodash.sortBy(tryex, 'date');
-      //  console.log('============myObjects===========================================')
-
-      // lodash.forEach(myObjects, function (result) {
-      //   console.log('result ', result);
-      // });
-      for (const obj of myObjects) {
-        this.segment2 += obj.date + obj.exception
-      }
-      // } else {
-      //      myObjects = {}
-      // }
     }
+
+
+    myObjects = lodash.sortBy(exhibitandpubs, 'date');
+    //  console.log('============myObjects===========================================')
+
+    // lodash.forEach(myObjects, function (result) {
+    //   console.log('result ', result);
+    // });
+    for (const obj of myObjects) {
+      this.segment2 += obj.date + ' ' + obj.exception
+    }
+    // } else {
+    //      myObjects = {}
+    // }
   }
+
   createRTF() {
     // https://www.npmjs.com/package/docxtemplater
     // let pre = '<p>'
@@ -452,7 +507,7 @@ export class Rtf {
 
     }
 
-
+    // num.toPrecision(2)
     if (this.currentItem.UnframedHeight16 === null) {
       dims = this.currentItem.UnframedHeight + ' x '
       dimscm = this.currentItem.UnframedHeight * 2.54 + ' cm ' + ' x '
@@ -462,6 +517,9 @@ export class Rtf {
 
       // dimscm = this.currentItem.UnframedHeight * 2.54 + ' ' + this.currentItem.UnframedHeight16 * 2.54 + ' x '
       dimscm = Math.round((this.currentItem.UnframedHeight * 2.54) + cmuh) + ' x '
+
+      dimscm = ((this.currentItem.UnframedHeight * 2.54) + cmuh).toPrecision(2)
+
       // Math.round(num * 100) / 100
     }
 
@@ -472,7 +530,9 @@ export class Rtf {
       dimscm += this.currentItem.UnframedWidth * 2.54
     } else {
       dims += `${this.currentItem.UnframedWidth} <span style="font-size:x-small;"> ${this.currentItem.UnframedWidth16} </span>`
-      dimscm += Math.round(((this.currentItem.UnframedWidth * 2.54) + cmuw))
+      // dimscm += Math.round(((this.currentItem.UnframedWidth * 2.54) + cmuw))
+      dimscm = ((this.currentItem.UnframedWidth * 2.54) + cmuw).toPrecision(2)
+
     }
     /////////////////////////////
 
@@ -487,18 +547,22 @@ export class Rtf {
         dimscmf = this.currentItem.FramedHeight * 2.54 + ' cm ' + ' x '
       } else {
         dimsf = `${this.currentItem.FramedHeight}  + ' ' + <span style="font-size:x-small;"> ${this.currentItem.FramedHeight16} </span> x `
-        dimscmf = ((this.currentItem.FramedHeight * 2.54) + cmfh) + ' x '
-        //  this.currentItem.FramedHeight16 * 2.54 + ' x '
+        // dimscmf = ((this.currentItem.FramedHeight * 2.54) + cmfh) + ' x '
+        dimscmf = ((this.currentItem.FramedHeight * 2.54) + cmfh).toPrecision(2)
+
       }
 
       if (this.currentItem.FramedWidth16 === null) {
         dimsf += this.currentItem.FramedWidth
-        dimscmf += this.currentItem.FramedWidth * 2.54
+        dimscmf += (this.currentItem.FramedWidth * 2.54).toPrecision(2)
+
       } else {
         // dimsf += this.currentItem.FramedWidth + ' ' + this.currentItem.FramedWidth16
         dimsf += `${this.currentItem.FramedWidth}  <span style="font-size:x-small;"> ${this.currentItem.FramedWidth16} </span>  `
 
-        dimscmf += ((this.currentItem.FramedWidth * 2.54) + cmfw)
+        // dimscmf += ((this.currentItem.FramedWidth * 2.54) + cmfw)
+        dimscmf += ((this.currentItem.FramedWidth * 2.54) + cmfw).toPrecision(2)
+
       }
     }
 
@@ -507,7 +571,7 @@ export class Rtf {
     let artistWdates = `<strong> ${artist.firstName}  ${artist.lastName}`
 
     if (artist.died) {
-      artistWdates += `( ${artist.yearofBirth}  -  ${artist.died} )`
+      artistWdates += ` (${artist.yearofBirth} - ${artist.died})`
     } else {
       artistWdates += 'b.' + inv.artist.yearofBirth
     }
@@ -516,7 +580,7 @@ export class Rtf {
     let artistWdates1 = ` ${artist.firstName}  ${artist.lastName}`
 
     if (artist.died) {
-      artistWdates1 += `( ${artist.yearofBirth} - ${artist.died} )`
+      artistWdates1 += ` (${artist.yearofBirth} - ${artist.died})`
     } else {
       artistWdates1 += 'b.' + inv.artist.yearofBirth
     }
@@ -577,29 +641,35 @@ export class Rtf {
     let ww = this.appService.clientWidth * fac.factor
     let hh = this.appService.clientHeight * fac.factor
     console.log(hh, ww)
-    if (ww===0)ww=450
-    if (hh===0)hh=450
-    
+    if (ww === 0) ww = 450
+    if (hh === 0) hh = 450
+
     this.segment2 = `<p><img src="https://artbased.com/api/v1/getonepdf/inv/${this.currentItem.InventoryCode}.jpg" alt="" width="${ww}" height="${hh}" /></p>`
 
     // this.segment2 = `<p><img src="https://artbased.com/api/v1/getonepdf/inv/POLLOCJ005.jpg" alt="" width="${ww}" height="${hh}" /></p>`
     // this.segment2 = `<p><img src="https://artbased.com/api/v1/getonepdf/inv/${this.currentItem.InventoryCode}.jpg" alt="" width="${this.appService.cli}" height="${hh}" /></p>`
 
-    this.segment2 += ` ${artistWdates}<br>`
-    this.segment2 += `  <em> ${this.currentItem.Title}</em>, ${this.currentItem.InvYear}   `
+    this.segment2 += ` ${artistWdates}<br><br><br>`
+    this.segment2 += `  <em> ${this.currentItem.Title}</em>, ${this.currentItem.InvYear} <br>  `
     this.segment2 += ` ${this.currentItem.MediumSupportobj.Description}  <br> `
     // this.segment2 += ` <p> ${this.currentItem.InvYear} </p> `
-    if (dimsf !== undefined) this.segment2 += `  ${dimsf} in framed<br> `
-    if (dimscmf !== undefined) this.segment2 += `  ${dimscmf} cm framed<br>  `
-    if (dims !== undefined) this.segment2 += `  ${dims} in unframed<br> `
-    if (dimscm !== undefined) this.segment2 += `  ${dimscm} cm unframed<br>  `
+    // if (dimsf !== undefined) this.segment2 += `  ${dimsf} in framed<br> `
+    // if (dimscmf !== undefined) this.segment2 += `  ${dimscmf} cm framed<br>  `
+    if (dims !== undefined) this.segment2 += `  ${dims} in`
+    if (dimscm !== undefined) this.segment2 += ` / ${dimscm} cm <br>  `
+
     // this.segment2 += `<br> ${this.currentItem.SignedLocation} <br>`
     // this.segment2 += ` ${this.currentItem.SignedLocation} <br>`
     // this.segment2 += `<br><br>no. P606 <br>`
     this.segment2 += `  ${this.inscribedText} <br>  `
+    this.segment2 += ` Catalogue No: ${this.currentItem.CatalogueNo} <br>  <br> <br> `
+
+
+
     this.buildProv()
     this.buildRepro()
-    this.editor.value('<p>' + segment1 + '</p>' + '<hr><p>' + this.segment2 + '</p>');
+    this.editor.value('<p>' + segment1 + '</p>' + '<hr><p>' +
+      this.segment2 + '</p>');
     // this.editor.value('<p>' + this.segment2 + '</p>');
     this.currentItem.rtf1 = this.editor.value()
 

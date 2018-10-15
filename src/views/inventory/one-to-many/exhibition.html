@@ -55,6 +55,7 @@
 						<select id="ExhibitLocation" class="form-control input-sm" value.bind="ExhibitLocation"> 
                       <option model.bind="null">Choose...</option> 
                      <option repeat.for="opt of appService.codesProvenanceLocation" model.bind="opt.id">
+                       <!-- codesProvenanceLocation -->
                            ${opt.Description} 
                       </option> 
                     </select>
@@ -62,7 +63,7 @@
 					<td width="220px"><input type="text" id="Reproduction" class="form-control  input-sm" value.bind="exhibition.Reproduction"></td>
 
 					<td width="220px"><input type="text" id="ExhibitDates" class="form-control  input-sm" value.bind="exhibition.ExhibitDates"></td>
-					<td width="220px"><input type="text" id="ExhibitSortDate" class="form-control  input-sm" value.bind="exhibition.ExhibitSortDate"></td>
+					<td width="220px"><input type="date" id="ExhibitSortDate" class="form-control  input-sm" value.bind="exhibition.ExhibitSortDate"></td>
 					<td width="120px">
 						<!-- <input type="text" id="Traveled" class="form-control  input-sm" value.bind="exhibition.Traveled"> -->
 						<input type="checkbox" id="Traveled" checked.bind="exhibition.Traveled">
