@@ -72,6 +72,7 @@
           "jquery"
         ]
       }
+     }
   },
   "dependencies": {
     "aurelia-animator-css": "1.0.4",
