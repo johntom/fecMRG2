@@ -498,8 +498,12 @@ export class SearchResults {
    // w h-1 w=.5
    
       segment += `<table><tbody><tr style="height:33"><td style="width:50%;">${invitem.InventoryCode}</td> `
-      segment += `<td style="width:50%;"><img src="https://artbased.com/api/v1/getonepdf/inv/${invitem.InventoryCode}.jpg"
-       alt="" width="225" height="225" /></td></tr>`
+      // segment += `<td style="width:50%;"><img src="https://artbased.com/api/v1/getonepdf/inv/${invitem.InventoryCode}.jpg"
+      //  alt="" width="225" height="225" /></td></tr>`
+ segment += `<td style="width:50%;"><img src="https://artbased.com/api/v1/getonepdf/inv/${invitem.InventoryCode}.jpg"
+       alt="" class="responsivemerge-img" /></td></tr>`
+ 
+
       //  segment += `<td style="width:50%;"><img src="https://artbased.com/api/v1/getonepdf/inv/${invitem.InventoryCode}.jpg"
       //  alt="" width="${ww}" height="${hh} /></td></tr>`
     }
