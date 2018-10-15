@@ -22,7 +22,8 @@ function buildDependencyMap() {
   return new Promise((resolve, reject) => {
     // read the package.json file
     return axios.get('package.json').then(response => {
-      const {status, data} = response;
+      let {status, data} = response;
+      data = JSON.parse(data);
       // Compute a hash of the loaded package.json file
       const hash = hashCode(JSON.stringify(data.dependencies));
       // Next, compare the hash of the file with the hash stored
