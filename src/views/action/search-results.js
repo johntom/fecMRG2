@@ -6,6 +6,7 @@ import { UtilService } from '../../services/util-service';
 // import moment from 'moment';
 import { ApplicationService } from '../../services/application-service';
 import { MyDataService } from "../../services/my-data-service";
+
 // jrt
 @inject(Router, ApiService, UtilService, ApplicationService, MyDataService)
 export class SearchResults {
@@ -23,9 +24,58 @@ export class SearchResults {
   hide6 = true
   hide7 = true
   hide8 = true
+  hide9 = true
   item = {}
+  tools = [
+    'pdf',
+    'html',
 
+    'bold',
+    'italic',
+    'underline',
+    'strikethrough',
+    'justifyLeft',
+    'justifyCenter',
+    'justifyRight',
+    'justifyFull',
+    'insertUnorderedList',
+    'insertOrderedList',
+    'indent',
+    'outdent',
+    'createLink',
+    'unlink',
+    'insertImage',
+    'insertFile',
+    'subscript',
+    'superscript',
+    'createTable',
+    'addRowAbove',
+    'addRowBelow',
+    'addColumnLeft',
+    'addColumnRight',
+    'deleteRow',
+    'deleteColumn',
+    'viewHtml',
+    'formatting',
+    'cleanFormatting',
+    'fontName',
+    'fontSize',
+    'foreColor',
+    'backColor',
+    'print'
+  ];
   //  console.log(' inv SearchResults ');
+   pdf = {
+    fileName: 'NewDocument.pdf',
+    proxyURL: '//demos.telerik.com/kendo-ui/service/export',
+    paperSize: 'letter',
+    margin: {
+      bottom: 20,
+      left: 66,
+      right: 20,
+      top: 20
+    }
+  };
   message = 'Hello Inventory 101- a!';
   datasource = new kendo.data.DataSource({
     transport: {
@@ -330,6 +380,7 @@ export class SearchResults {
     this.hide6 = true
     this.hide7 = true
     this.hide8 = true
+    this.hide9 = true
     this.hide1 ? this.hide1 = false : this.hide1 = true
 
   }
@@ -343,6 +394,7 @@ export class SearchResults {
     this.hide6 = true
     this.hide7 = true
     this.hide8 = true
+    this.hide9 = true
     this.hide2 ? this.hide2 = false : this.hide2 = true
 
   }
@@ -356,6 +408,7 @@ export class SearchResults {
     this.hide6 = true
     this.hide7 = true
     this.hide8 = true
+    this.hide9 = true
     this.hide3 ? this.hide3 = false : this.hide3 = true
 
   }
@@ -368,6 +421,7 @@ export class SearchResults {
     this.hide6 = true
     this.hide7 = true
     this.hide8 = true
+    this.hide9 = true
     this.hide4 ? this.hide4 = false : this.hide4 = true
 
   }
@@ -380,6 +434,7 @@ export class SearchResults {
     this.hide6 = true
     this.hide7 = true
     this.hide8 = true
+    this.hide9 = true
     this.hide5 ? this.hide5 = false : this.hide5 = true
 
   }
@@ -392,6 +447,7 @@ export class SearchResults {
     this.hide5 = true
     this.hide7 = true
     this.hide8 = true
+    this.hide9 = true
     this.hide6 ? this.hide6 = false : this.hide6 = true
 
   }
@@ -404,6 +460,7 @@ export class SearchResults {
     this.hide6 = true
     this.hide7 ? this.hide7 = false : this.hide7 = true
     this.hide8 = true
+    this.hide9 = true
   }
 
   action8() {
@@ -415,7 +472,57 @@ export class SearchResults {
     this.hide6 = true
     this.hide7 = true
     this.hide8 ? this.hide8 = false : this.hide8 = true
+    this.hide9 = true
   }
+
+  action9() {
+    this.hide1 = true
+    this.hide2 = true
+    this.hide3 = true
+    this.hide4 = true
+    this.hide5 = true
+    this.hide6 = true
+    this.hide7 = true
+    // this.hide9 ? this.hide9 = false : this.hide9 = true
+    this.hide9 = false
+    this.hide8 = true
+
+    let segment
+    for (const invitem of this.datasource._data) {
+      //this.currentImage=`${invitem.InventoryCode}.jpg`
+      // let ww = this.mainimage.clientWidth //* fac.factor
+      // let hh = this.mainimage.clientHeight //* fac.factor
+   
+   // we have to store the ratio of each image
+   // ie h=1 w=1
+   // w h-1 w=.5
+   
+      segment += `<table><tbody><tr style="height:33"><td style="width:50%;">${invitem.InventoryCode}</td> `
+      segment += `<td style="width:50%;"><img src="https://artbased.com/api/v1/getonepdf/inv/${invitem.InventoryCode}.jpg"
+       alt="" width="225" height="225" /></td></tr>`
+      //  segment += `<td style="width:50%;"><img src="https://artbased.com/api/v1/getonepdf/inv/${invitem.InventoryCode}.jpg"
+      //  alt="" width="${ww}" height="${hh} /></td></tr>`
+    }
+    segment += `</tbody></table>`
+    // edt.value(segment)
+ this.editor.value(segment)
+  }
+  setInitialValue(edt) {
+    // if (this.currentItem.rtf1 !== undefined)
+    //  edt.value(this.currentItem.rtf1);
+    //  let segment
+    //     for (const invitem of this.datasource._data) {
+
+    //  segment+= `<table><tbody><tr style="height:33"><td style="width:50%;">${invitem.InventoryCode}</td> `
+    //  segment+=`<td style="width:50%;"><img src="https://artbased.com/api/v1/getonepdf/inv/${invitem.InventoryCode}.jpg" alt="" width="225" height="225" /><img src="https://artbased.com/api/v1/getonepdf/inv/VYTLAC0074.jpg" alt="" width="225" height="225" /></td></tr>`
+    //     }
+    // segment+= `</tbody></table>`
+    // edt.value(segment)
+
+  }
+  // actionhide(activeaction){
+
+  // }
 
   //  "ExhibitTitle" : "", 
   //             "ExhibitSponser" : "Palace of the Legion of Honor", 
@@ -436,7 +543,7 @@ export class SearchResults {
       this.item.savedlist = this.savedlist
         .then((jsonRes) => {
           if (jsonRes.data === 'success') {
-            alert(' batch updated  batchno= '+batchno)
+            alert(' batch updated  batchno= ' + batchno)
             this.item = {}//.TransportDate = ''
             //  this.Description =''
             //  this.Description2 =''
@@ -459,7 +566,7 @@ export class SearchResults {
       this.api.batchExhibit(this.item)
         .then((jsonRes) => {
           if (jsonRes.data === 'success') {
-            alert(' batch updated batchno= '+batchno)
+            alert(' batch updated batchno= ' + batchno)
             this.item = {}
             // this.item.ExhibitTitle = ''
             // this.item.ExhibitSponser = ''
@@ -484,7 +591,7 @@ export class SearchResults {
       this.api.batchReproduction(this.item)
         .then((jsonRes) => {
           if (jsonRes.data === 'success') {
-            alert(' batch updated  batchno= '+batchno)
+            alert(' batch updated  batchno= ' + batchno)
             this.item = {}
           } else alert(' batch failed ')
         })

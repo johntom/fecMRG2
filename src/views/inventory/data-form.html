@@ -203,7 +203,7 @@
 										<span dblclick.delegate="showModal( 'MediumSupportobj') ">${currentItem.MediumSupportobj.Description}</span>
 
 									</div>
-                  <div class="Rtable-cell-30 Rtable-cell--highlight">
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
 										<span>	<strong> Medium. >></strong></span>
 
 									</div>
@@ -483,7 +483,7 @@
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
 										<strong> Sold </strong>
 									</div>
-									<!-- ${search.selectedSoldId} -->
+									<!-- ${search.httpsselectedSoldId} -->
 									<div class="Rtable-cell-70 Rtable-cell--highlight">
 										<div class="form-group">
 											<label repeat.for="sold of searchsold">
@@ -583,8 +583,9 @@
 
 
 					<div id="top-right " class="flex-column-none data-form-image">
-						<img ref = "mainimage" class="responsive-img " src="https://artbased.com/api/v1/getonepdf/inv/${currentItem.InventoryCode}.jpg " click.delegate="showModalImg()">
-<span>https://artbased.com/api/v1/getonepdf/inv/${currentItem.InventoryCode}.jpg</span>
+						<img ref="mainimage" class="responsive-img " src="https://artbased.com/api/v1/getonepdf/inv/${currentItem.InventoryCode}.jpg "
+						 click.delegate="showModalImg()">
+						<span>https://artbased.com/api/v1/getonepdf/inv/${currentItem.InventoryCode}.jpg</span>
 					</div>
 					<!-- end middle and top right -->
 
@@ -623,17 +624,19 @@
 		<footerform class="flex-row-none">
 			inventory-
 			<span>&nbsp;&nbsp;
-					<button class="btn btn-sm btn-danger " click.delegate="saveinventory(0)">
+					<button class="btn btn-sm btn-primary " click.delegate="saveinventory(0)">
 						Save & Stay
 					</button>
-					<button class="btn btn-sm btn-danger " click.delegate="saveinventory(1)">
+					<button class="btn btn-sm btn-info " click.delegate="saveinventory(1)">
 						Save & Close
 					</button>
 				</span>
-			<button class="btn btn-sm btn-danger " click.delegate="factsheet()">
+			<!-- <button class="btn btn-sm btn-primary " click.delegate="factsheet()">
 					FactSheet
-				</button>
-			</span>
+				</button> -->
+			<a href="https://artbased.com/api/v1/downloadonepdf/output/${currentItem.InventoryCode}.doc" class="btn btn-sm btn-primary">
+				<span class="glyphicon glyphicon-th-list"></span> Download Doc FactSheet
+			</a>
 			<span>&nbsp;&nbsp;
 					<button class="btn btn-sm btn-danger " click.delegate="requestclose()">
 						Close
@@ -641,10 +644,20 @@
           <b>  ${message} </b>
 				</span>
 
-<button class="btn btn-sm btn-danger " click.delegate="getmainimage()">
+			<!-- <button class="btn btn-sm btn-danger " click.delegate="getmainimage()">
 					mainimage
-				</button>
-     
+				</button> .btn.
+.btn-default.
+.btn-primary.
+.btn-success.
+.btn-info.
+.btn-warning.
+.btn-danger.
+.btn-link.-->
+
+			<!-- https://artbased.com/api/v1/downloadonepdf/output/POLLOCJ005.html -->
+			<!-- <a class="btn btn-primary"href='https://artbased.com/api/v1/downloadonepdf/output/${currentItem.InventoryCode}.doc' > Download doc (html format)</a> -->
+
 		</footerform>
 	</section>
 </template>
