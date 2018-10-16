@@ -283,13 +283,13 @@ export class Rtf {
 
 
         // check to see if link in repo
-        let eid = reproduction.findIndex(x => x.ReproductionExhibit === item.ExhibitTitle)
+        let eid = reproduction.findIndex(x =>  x.ExhibitTitle=== item.ReproductionExhibit )
         let reporec
            let ColorBWDesc1 = ''
         if (eid !== -1) {
           reporec = reproduction[eid]
          
-
+console.log('reporec', reporec.ExhibitTitle )
 
 
        
