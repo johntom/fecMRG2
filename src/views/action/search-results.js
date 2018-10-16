@@ -525,25 +525,20 @@ export class SearchResults {
       let ww = invitem.clientWidthRatio
       let hh = invitem.clientHeightRatio
 
-        // this.currentItem.clientHeightRatio  = imageHeight
-        // this.currentItem.clientWidthRatio  = imageWidth
-//  this.currentItem.clientHeightRatio  = his.mainimage.clientHeight
-//     this.currentItem.clientWidthRatio  =  this.mainimage.clientWidth
+      // this.currentItem.clientHeightRatio  = imageHeight
+      // this.currentItem.clientWidthRatio  = imageWidth
+      //  this.currentItem.clientHeightRatio  = his.mainimage.clientHeight
+      //     this.currentItem.clientWidthRatio  =  this.mainimage.clientWidth
 
       if (ww === undefined) ww = 1
       if (hh === undefined) hh = 1
       ww = 225 * ww
       hh = 225 * hh
 
-      // we have to store the ratio of each image
+      // we have  the ratio of each image
       // ie h=1 w=1
       // w h-1 w=.5
       // save to    https://artbased.com/api/v1/downloadonepdf/lists/sl2.doc
-      //      segment += `<table><tbody><tr style="height:33"><td style="width:50%;">${invitem.InventoryCode}</td> `
-      ///      // segment += `<td style="width:50%;"><img src="https://artbased.com/api/v1/getonepdf/inv/${invitem.InventoryCode}.jpg"
-      //     //  alt="" width="225" height="225" /></td></tr>`
-      // // segment += `<td style="width:50%;"><img src="https://artbased.com/api/v1/getonepdf/inv/${invitem.InventoryCode}.jpg"
-      //   //     alt="" class="responsivemerge-img" /></td></tr>`
 
       segment += `<tr style="height:17%;">${invitem.InventoryCode}<td style="width:35%;">${invitem.InventoryCode}</td>`
       segment += `<td style="width:65%;"><img src="https://artbased.com/api/v1/getonepdf/inv/${invitem.InventoryCode}.jpg" alt="" width="${ww}" height=${hh} /></td>`
@@ -555,7 +550,23 @@ export class SearchResults {
     segment += `</tbody></table>`
     // edt.value(segment)
     this.editor.value(segment)
+    this.saveMerge()
+
+
   }
+  saveMerge() {
+
+    let savetime = moment().format('MM/DD/YY h:mm:ss a')
+
+    this.api.saveMerge(this.savedlist, this.editor.value())
+      .then((jsonRes) => {
+        if (jsonRes.data === 'success') {
+          this.message = "Save successful. merge added @ " + savetime
+        } this.message = "Save Failed  @ " + savetime
+      })
+
+  }
+
   setInitialValue(edt) {
     // if (this.currentItem.rtf1 !== undefined)
     //  edt.value(this.currentItem.rtf1);
@@ -588,8 +599,8 @@ export class SearchResults {
     this.api.getbatchno().then((jsonResna) => {
       let batchno = jsonResna[0].nextavail
       this.item.batchno = batchno
-      this.api.batchTransport(this.item)
       this.item.savedlist = this.savedlist
+      this.api.batchTransport(this.item)
         .then((jsonRes) => {
           if (jsonRes.data === 'success') {
             alert(' batch updated  batchno= ' + batchno)

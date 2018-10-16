@@ -550,8 +550,23 @@ export class ApiService {
   //   }).then((res) => res.json());
   // }
 
-
-
+//  this.api.saveMerge(this.savedlist, this.editor.value())
+  
+saveMerge(slname, editorval) {
+    //all http://74.114.164.24/api/v1/savedlists/create/ 
+   // let sl = {}
+    var url = this.baseweb + `v1/savedlists/saveMerge/${slname}`;
+    return this.http.fetch(url, {
+      method: 'post',
+      mode: 'cors',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+        // , 'Authorization': 'JWT ' + token
+      },
+      body: JSON.stringify(editorval)
+    }).then((res) => res.json());
+  }
   createSavedlists(slname) {
     //all http://74.114.164.24/api/v1/savedlists/create/ 
     let sl = {}

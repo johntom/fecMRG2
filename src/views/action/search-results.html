@@ -15,13 +15,15 @@
 		.k-grid td {
 			white-space: nowrap;
 		}
-    	/* img.responsive-img,
+
+		/* img.responsive-img,
 		video.responsive-video {
 			max-width: 100%;
 			height: auto;
 		}
     class="responsivemerge-img */
-    img.responsivemerge-img {
+
+		img.responsivemerge-img {
 			max-width: 225;
 			height: auto;
 		}
@@ -190,19 +192,18 @@
 					<div show.bind="!hide9">
 
 						<textarea ak-rich-editor="k-tools.bind: tools; k-resizable.bind: resizable; k-widget.two-way: editor" style="height:440px">
-             <table><tbody><tr style="height:20%;"><td style="width:50%;">1</td>
-
+           
             
        </textarea>
-
-		<a href="https://artbased.com/api/v1/downloadonepdf/lists/${item.savedlist}.doc" class="btn btn-sm btn-primary">
-				<span class="glyphicon glyphicon-th-list"></span> Download Doc FactSheet
-			</a>
+						<button id="i9" class="btn btn-primary" type="button" click.delegate="saveMerge()">Save Doc Image Merge</button>
+						<a href="https://artbased.com/api/v1/downloadonepdf/lists/${item.savedlist}.doc" class="btn btn-sm btn-primary">
+							<span class="glyphicon glyphicon-th-list"></span> Download Doc Image Merge
+						</a>
 
 					</div>
 
 
-
+  <b>  ${message} </b>
 				</div>
 				<div class="Rtable-cell-2">
 
@@ -247,11 +248,12 @@
 						<ak-col k-filterable.bind="false" k-title="Image" k-field="InventoryCode" k-width="110px">
 							<ak-template>
 								<!-- <div class='customer-photo' style="background-image: url(https://gtztest.com/api/v1/getonePdf/inv/${InventoryCode}.jpg)"></div> -->
-						<!-- -->
-            			<div class='customer-photo' style="background-image: url(https://artbased.com/api/v1/getonePdf/inv/${InventoryCode}.jpg)"  click.delegate="showModalImg($event)" ></div>
-   
-            
-            	</ak-template>
+								<!-- -->
+								<div class='customer-photo' style="background-image: url(https://artbased.com/api/v1/getonePdf/inv/${InventoryCode}.jpg)"
+								 click.delegate="showModalImg($event)"></div>
+
+
+							</ak-template>
 						</ak-col>
 
 						<ak-col k-title="Artist last" k-width="110px" k-field="artist.lastName"></ak-col>
@@ -267,8 +269,7 @@
 						${footer} <span>  ${queryParams}</span> <span>&nbsp;&nbsp;	<button id="searchInputBtn" class="btn btn-primary" type="button" click.delegate="performAction1()">Action1 Delete Items from sl</button></span>
 
 					</div>
-              <img ref="mainimage" class="responsive-img " 
-src="https://artbased.com/api/v1/getonepdf/inv/${currentImage}">
+					<!-- <img ref="mainimage" class="responsive-img " src="https://artbased.com/api/v1/getonepdf/inv/${currentImage}"> -->
 				</div>
 			</div>
 			<!-- </div> -->

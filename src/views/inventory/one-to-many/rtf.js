@@ -283,23 +283,23 @@ export class Rtf {
 
 
         // check to see if link in repo
-        let eid = reproduction.findIndex(x =>  x.ExhibitTitle=== item.ReproductionExhibit )
+        let eid = reproduction.findIndex(x => x.ExhibitTitle === item.ReproductionExhibit)
         let reporec
-           let ColorBWDesc1 = ''
+        let ColorBWDesc1 = ''
         if (eid !== -1) {
           reporec = reproduction[eid]
-         
-console.log('reporec', reporec.ExhibitTitle )
+
+          console.log('reporec', reporec.ExhibitTitle)
 
 
-       
+
           // if (item.ColorBW === null || item.ColorBW === undefined) {} else {
           //   let cid1 = this.appService.codesReproductionType.findIndex(x => x.id === item.ColorBW)
           //   ColorBWDesc1 = `, on ${reporec.ReproductionPage} ${this.appService.codesReproductionType[cid1].Description} `
           // }
-// color on page 6
-    ColorBWDesc1 = `, on ${reporec.ReproductionPage}  `
-        
+          // color on page 6
+          ColorBWDesc1 = `, on ${reporec.ReproductionPage}  `
+
         }
 
 
@@ -320,7 +320,7 @@ console.log('reporec', reporec.ExhibitTitle )
         // console.log('moment', moment(item.ExhibitSortDate,'YYYYmmdd'))
         rec = {
           // date: moment(item.ExhibitSortDate,'YYYYmmdd'),
-          date: item.ExhibitSortDate, 
+          date: item.ExhibitSortDate,
           //   exception: pre + item.ExhibitTitle + ', ' + item.ReproductionLocation + ', ' + item.ExhibitDates + post
           exception: pre + `${item.ExhibitTitle}, ${item.ExhibitSponser}, ${ExhibitLocationDesc}, ${item.ExhibitDates} ${ColorBWDesc1}`
             + post
@@ -362,7 +362,7 @@ console.log('reporec', reporec.ExhibitTitle )
 
           // }
 
-         let oid = pl.findIndex(x => x.id === item.ReproductionLocation)
+          let oid = pl.findIndex(x => x.id === item.ReproductionLocation)
 
           if (oid == -1) oid = 1
           let ReproductionLocationDesc = pl[oid].Description

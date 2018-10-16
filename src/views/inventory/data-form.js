@@ -549,7 +549,7 @@ export class DataForm {
         if (this.currentItem.id === 'create') {
           this.currentItem.id = ''
 
-          this.message = "Save successful. Claim added @ " + savetime
+          this.message = "Save successful. Inventory added @ " + savetime
         }
         //  this.skippromt = true
 
