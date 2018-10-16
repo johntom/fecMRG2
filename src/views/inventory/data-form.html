@@ -516,15 +516,20 @@
 												${opt.Description}
 											</option>
 										</select>
+
+										
 									</div>
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
 										<span dblclick.delegate="showModal( 'OwnerID') ">	<strong> Owner >></strong></span>
 									</div>
 									<div class="Rtable-cell-70 Rtable-cell--highlight">
-										<!-- <input dblclick.delegate="showModal( 'OwnerID') " type="text " xid="OwnerID " 
-                    class="form-control input-sm " value.bind="currentItem.ownername"> -->
-										<span dblclick.delegate="showModal( 'OwnerID') ">${currentItem.ownername}</span>
+										<a click.delegate="showModal( 'OwnerID')" dblclick.delegate="showModal( 'OwnerID')">${currentItem.ownername}&nbsp; </a>
 									</div>
+	<!---- <input dblclick.delegate="showModal( 'OwnerID') " type="text " xid="OwnerID " 
+                    class="form-control input-sm " value.bind="currentItem.ownername"> -->
+										<!-- <span dblclick.delegate="showModal( 'OwnerID') ">${currentItem.ownername}</span> -->
+								
+
 
 
 									<div class="Rtable-cell-30 Rtable-cell--highlight">

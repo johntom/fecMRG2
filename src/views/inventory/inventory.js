@@ -20,6 +20,11 @@ export class Inventory {
         </label> */
   // search.selectedSoldId search.selectedDateId search.startdate search.stopdate
   // value
+// 	export class App {
+  selectedValue = null;
+  // options1 = [ { id: 1, name: 'one' }, { id: 2, name: 'two' } ];
+  // findOption = value => this.options1.find(x => x.name === value);
+  findOption = value => this.mru.find(x => x === value);
   options = [];//multiselect select2
   selected = [];//multiselect select2
   states = [
@@ -263,6 +268,16 @@ export class Inventory {
 
 
     console.log(this.selected);
+  }
+	  changeCallbackMru(selectedvalue) {
+    // The selected value will be printed out to the browser console
+
+
+    console.log('selectedvalue ',selectedvalue,"myDatalist",this.myDatalist.value);
+		if (selectedvalue===undefined){
+			this.mru.push(this.myDatalist.value)
+			this.populateInv(this.myDatalist.value)
+		} else this.populateInv(selectedvalue)
   }
   checkms() {
     console.log(this.selectedOptions)
