@@ -66,12 +66,12 @@ export class Home {
   'x fix tags '
 
   ]
- askmatt = [
+//  askmatt = [
 
-    'why google code complete stops',
-    'select2 ',
+//     'why google code complete stops',
+//     'select2 ',
 
-  ]
+//   ]
 
   //Save when on a tab will negate abilty to track dirty forms',
 

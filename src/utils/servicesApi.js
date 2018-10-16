@@ -552,10 +552,11 @@ export class ApiService {
 
 //  this.api.saveMerge(this.savedlist, this.editor.value())
   
-saveMerge(slname, editorval) {
+saveMerge(slname, editorval) { 
     //all http://74.114.164.24/api/v1/savedlists/create/ 
    // let sl = {}
-    var url = this.baseweb + `v1/savedlists/saveMerge/${slname}`;
+   let rec={merge:editorval}
+    var url = this.baseweb + `v1/savedlists/savemerge/${slname}`;
     return this.http.fetch(url, {
       method: 'post',
       mode: 'cors',
@@ -564,7 +565,7 @@ saveMerge(slname, editorval) {
         'Content-Type': 'application/json'
         // , 'Authorization': 'JWT ' + token
       },
-      body: JSON.stringify(editorval)
+      body: JSON.stringify(rec)
     }).then((res) => res.json());
   }
   createSavedlists(slname) {

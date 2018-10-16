@@ -203,34 +203,11 @@
 					</div>
 
 
-  <b>  ${message} </b>
+					<b>  ${message} </b>
 				</div>
 				<div class="Rtable-cell-2">
 
-					<!-- <div class="form-group flex-column-1 margin-left-10"> -->
-					<!-- <ak-grid class="flex-row-1 overflow-y-auto" id="grid" k-data-source.bind="datasource" k-widget.bind="grid" k-sortable.bind="{ mode: 'multiple',   allowUnsort: 'true'}"
-						 k-filterable.bind="{  mode: 'row' }" k-reorderable.bind="true" k-groupable.bind="true" k-resizable.bind="true"
-						 k-selectable="[row,multiple]" k-on-change.delegate="rowSelected($event.detail)" k-column-menu.bind="true" k-pageable.bind="true"
-						 k-editable="inline">
-							<ak-col k-width="120px" k-filterable.bind="false" k-title="command" k-command.bind="['edit']" k-title="&nbsp;" k-locked.bind="true"
-							 k-lockable.bind="false"></ak-col>
 
-							<ak-col k-editable="false" k-filterable.bind="false" k-field="InventoryCode" k-filterable.bind="true" k-title="Open" k-width.bind="120px"
-							 k-template="<button click.delegate='detailsEdit($event)' class='k-button'>#=InventoryCode#</button>">
-							</ak-col>
-							<ak-col k-editable="false" k-filterable.bind="false" k-field="InventoryCode" k-filterable.bind="true" k-title="factsheet"
-							 k-width.bind="110" k-template="<button click.delegate='detailsFactSheet($event)' class='k-button'>#=InventoryCode#</button>">
-							</ak-col>
-							<ak-col k-editable="false" k-filterable.bind="false" k-title="Image" k-field="InventoryCode" k-width="110px">
-								<ak-template>
-									<div class='customer-photo' style="background-image: url(http://gtztest.com/api/v1/getonePdf/inv/${InventoryCode}.jpg)"></div>
-								</ak-template>
-							</ak-col>
-							<ak-col k-editor.bind="offeramount" k-editable="true"  k-title="Offer Amt" 
-              k-width="120px" k-field="offeramount"></ak-col>
-							<ak-col k-editable="false" k-title="Artist last" k-width="110px" k-field="artist.lastName"></ak-col>
-							<ak-col k-editable="false" k-title="Artist First" k-width="110px" k-field="artist.firstName"></ak-col>
-						</ak-grid> -->
 					<h3>Press Ctrl+Left Mouse to toggle row selection</h3>
 					<ak-grid class="flex-row-1 overflow-y-auto" id="grid" k-data-source.bind="datasource" k-widget.bind="grid" k-sortable.bind="{ mode: 'multiple',   allowUnsort: 'true'}"
 					 k-filterable.bind="{  mode: 'row' }" k-editable="inline" k-reorderable.bind="true" k-groupable.bind="true" k-resizable.bind="true"
@@ -242,23 +219,31 @@
 
 						<ak-col k-field="InventoryCode" k-filterable.bind="true" k-title="Edit-" k-width.bind="140" k-template="<button click.delegate='detailsEdit($event)' class='k-button'>#=InventoryCode#</button>">
 						</ak-col>
-						<ak-col k-filterable.bind="false" k-field="InventoryCode" k-filterable.bind="true" k-title="factsheet" k-width.bind="110"
+						<ak-col k-filterable.bind="false" k-field="InventoryCode" k-filterable.bind="true" k-title="factsheet<br>download" k-width.bind="125"
 						 k-template="<button click.delegate='detailsFactSheet($event)' class='k-button'>#=InventoryCode#</button>">
 						</ak-col>
+
+
+
+						<!-- <ak-col k-filterable.bind="false" k-field="InventoryCode" k-filterable.bind="true" k-title="factsheetdownld" k-width.bind="110"
+							k-template="<a href='https://artbased.com/api/v1/downloadonepdf/output/${InventoryCode}.doc' class='btn btn-sm btn-primary'>
+								<span class='glyphicon glyphicon-th-list'></span> Download Doc FactSheet</a>
+
+						</ak-col> -->
+
 						<ak-col k-filterable.bind="false" k-title="Image" k-field="InventoryCode" k-width="110px">
 							<ak-template>
-								<!-- <div class='customer-photo' style="background-image: url(https://gtztest.com/api/v1/getonePdf/inv/${InventoryCode}.jpg)"></div> -->
-								<!-- -->
-								<div class='customer-photo' style="background-image: url(https://artbased.com/api/v1/getonePdf/inv/${InventoryCode}.jpg)"
+
+								<div class='customer-photo' style="background-image: url(https://artbased.com/api/v1/getonepdf/inv/${InventoryCode}.jpg)"
 								 click.delegate="showModalImg($event)"></div>
 
 
 							</ak-template>
 						</ak-col>
-
-						<ak-col k-title="Artist last" k-width="110px" k-field="artist.lastName"></ak-col>
-						<ak-col k-filterable.bind="false" k-title="Artist First" k-width="110px" k-field="artist.firstName"></ak-col>
 						<ak-col k-title="Title" k-width="110px" k-field="Title"></ak-col>
+
+						<ak-col k-title="Artist" k-width="200px" k-field="artist.ArtistName"></ak-col>
+						<!-- <ak-col k-filterable.bind="false" k-title="Artist First" k-width="110px" k-field="artist.firstName"></ak-col> -->
 						<!-- <ak-col k-title="InvYear" k-width="180px" k-field="InvYear"></ak-col>
 							<ak-col k-title="MediumText" k-width="180px" k-field="MediumText"></ak-col>
 							<ak-col k-title="Bin" k-width="180px" k-field="Bin"></ak-col> -->

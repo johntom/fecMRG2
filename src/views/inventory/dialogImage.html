@@ -1,20 +1,26 @@
 <template>
-  <ux-dialog>
-    <!-- <ux-dialog-header>${question}</ux-dialog-header> -->
-<ux-dialog-header>  <button click.trigger="controller.cancel()">Close</button></ux-dialog-header>
+  <!--  style="height:500px;top:50px"> -->
+	<ux-dialog style="height:500px;top:125px">
+		<!-- <ux-dialog-header>${question}</ux-dialog-header> -->
+		<ux-dialog-header> 
+      
+        	<!-- <ux-dialog-header class="modal-header modal-header-success"> -->
+	<h2>${currentItem.Title}
+      <button class="btn btn-sm btn-default" click.trigger="controller.cancel()">Close</button></h2>
+      </ux-dialog-header>
 
-    <ux-dialog-body>
-    		<!-- <img class="responsive-img" src="https://artbased.com/api/v1/getonePdf/inv/${currentItem.InventoryCode}.jpg " click.delegate="showModalImg()"> -->
-		<!-- <img src="https://artbased.com/api/v1/getonePdf/inv/${currentItem.InventoryCode}.jpg " click.delegate="showModalImg()">
+		<ux-dialog-body>
+			<!-- <img class="responsive-img" src="https://artbased.com/api/v1/getonePdf/inv/${currentItem.InventoryCode}.jpg " click.delegate="showModalImg()"> -->
+			<!-- <img src="https://artbased.com/api/v1/getonePdf/inv/${currentItem.InventoryCode}.jpg " click.delegate="showModalImg()">
 <img width="500px" src="https://artbased.com/api/v1/getonePdf/inv/${currentItem.InventoryCode}.jpg " click.delegate="showModalImg()"> -->
-<!-- width=${iwidth} -->
-<img  width="600" src="https://artbased.com/api/v1/getonepdf/inv/${currentItem.InventoryCode}.jpg " click.delegate="showModalImg()">
+			<!-- width=${iwidth} -->
+			<img width="500" height="auto" src="https://artbased.com/api/v1/getonepdf/inv/${currentItem.InventoryCode}.jpg " click.delegate="showModalImg()">
 
-    </ux-dialog-body>
+		</ux-dialog-body>
 
-    <ux-dialog-footer>
-    
-      <!-- <button click.trigger="controller.ok(answer)">Ok</button> -->
-    </ux-dialog-footer>
-  </ux-dialog>
+		<ux-dialog-footer>
+    <button click.trigger="controller.cancel()">Close</button>
+			<!-- <button click.trigger="controller.ok(answer)">Ok</button> -->
+		</ux-dialog-footer>
+	</ux-dialog>
 </template>

@@ -3,7 +3,7 @@ import { inject } from 'aurelia-dependency-injection';
 // import { Router } from 'aurelia-router';
 import { Router, Redirect } from 'aurelia-router';
 import { UtilService } from '../../services/util-service';
-// import moment from 'moment';
+import moment from 'moment';
 import { ApplicationService } from '../../services/application-service';
 import { MyDataService } from "../../services/my-data-service";
 import { DialogImage } from '../inventory/dialogImage'
@@ -77,7 +77,7 @@ export class SearchResults {
       top: 20
     }
   };
-  message = 'Hello Inventory 101- a!';
+  message = ''//Hello Inventory 101- a!';
   datasource = new kendo.data.DataSource({
     transport: {
       read: (options) => {
@@ -342,16 +342,20 @@ export class SearchResults {
     let selectedRow = grid.select();
     let dataItem = grid.dataItem(selectedRow);
 
-    let rt2 = dataItem.InventoryCode;
-    this.api.createFactSheet(rt2)
-      .then((jsonRes) => {
-        let success = jsonRes.data;
-        if (success === true) {
-          alert(' factsheet  created ')
+    // let rt2 = dataItem.InventoryCode;
+    // this.api.createFactSheet(rt2)
+    //   .then((jsonRes) => {
+    //     let success = jsonRes.data;
+    //     if (success === true) {
+    //       alert(' factsheet  created ')
 
-        } alert(' factsheet  failed ')
-      });
-
+    //     } alert(' factsheet  failed ')
+    //   });
+		//https://artbased.com/api/v1/downloadonepdf/output/SELIGE0327.doc
+let rt2 = `https://artbased.com/api/v1/downloadonepdf/output/${dataItem.InventoryCode}.doc`
+        
+        //  alert('rt2 '+rt2)
+        window.open(rt2);
   }
 
   detailsEdit(e) {
@@ -513,7 +517,7 @@ export class SearchResults {
 
     let segment
 
-    segment = '<table><tbody>'
+    segment = `<h1 style="text-align:center;">${this.savedlist}</h1> <table><tbody>`
 
     for (const invitem of this.datasource._data) {
       //this.currentImage=`${invitem.InventoryCode}.jpg`
@@ -540,7 +544,7 @@ export class SearchResults {
       // w h-1 w=.5
       // save to    https://artbased.com/api/v1/downloadonepdf/lists/sl2.doc
 
-      segment += `<tr style="height:17%;">${invitem.InventoryCode}<td style="width:35%;">${invitem.InventoryCode}</td>`
+      segment += `<tr style="height:17%;"><td style="width:35%;">${invitem.InventoryCode}</td>`
       segment += `<td style="width:65%;"><img src="https://artbased.com/api/v1/getonepdf/inv/${invitem.InventoryCode}.jpg" alt="" width="${ww}" height=${hh} /></td>`
       segment += `</tr>`
 
@@ -557,12 +561,12 @@ export class SearchResults {
   saveMerge() {
 
     let savetime = moment().format('MM/DD/YY h:mm:ss a')
-
+    console.log('this.editor.value()', this.editor.value())
     this.api.saveMerge(this.savedlist, this.editor.value())
       .then((jsonRes) => {
         if (jsonRes.data === 'success') {
           this.message = "Save successful. merge added @ " + savetime
-        } this.message = "Save Failed  @ " + savetime
+        } else this.message = "Save Failed  @ " + savetime
       })
 
   }
