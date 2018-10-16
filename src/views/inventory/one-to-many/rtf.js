@@ -240,9 +240,13 @@ export class Rtf {
 
 
     // conbine both tables
+    let pl = this.appService.codesProvenanceLocation
 
     let exhibition = this.currentItem.exhibition
+    let reproduction = this.currentItem.reproduction
+    let myObjects
     let rec = {}
+
     if (exhibition !== undefined) {
       for (const item of exhibition) {
         console.log('==================-item==========', item.ExhibitTitle)
@@ -277,7 +281,30 @@ export class Rtf {
         // let batchno = req.param('batchno')
         // let ExhibitMemo = req.param('ExhibitMemo')
 
-        let pl = this.appService.codesProvenanceLocation
+
+        // check to see if link in repo
+        let eid = reproduction.findIndex(x => x.ReproductionExhibit === item.ExhibitTitle)
+        let reporec
+           let ColorBWDesc1 = ''
+        if (eid !== -1) {
+          reporec = reproduction[eid]
+         
+
+
+
+       
+          // if (item.ColorBW === null || item.ColorBW === undefined) {} else {
+          //   let cid1 = this.appService.codesReproductionType.findIndex(x => x.id === item.ColorBW)
+          //   ColorBWDesc1 = `, on ${reporec.ReproductionPage} ${this.appService.codesReproductionType[cid1].Description} `
+          // }
+
+    ColorBWDesc1 = `, on ${reporec.ReproductionPage}  `
+        
+        }
+
+
+
+
         let oid
         if ((item.ExhibitLocation + '').length < 6) {
 
@@ -286,15 +313,16 @@ export class Rtf {
           oid = pl.findIndex(x => x.id === item.ExhibitLocation)
 
         }
+        //  oid = pl.findIndex(x => x.id === item.ExhibitLocation) 
         if (oid == -1) oid = 1
         let ExhibitLocationDesc = pl[oid].Description
         // , ${item.ExhibitMemo}`
         // console.log('moment', moment(item.ExhibitSortDate,'YYYYmmdd'))
         rec = {
           // date: moment(item.ExhibitSortDate,'YYYYmmdd'),
-          date: item.ExhibitSortDate,
+          date: item.ExhibitSortDate, 
           //   exception: pre + item.ExhibitTitle + ', ' + item.ReproductionLocation + ', ' + item.ExhibitDates + post
-          exception: pre + `${item.ExhibitTitle}, ${item.ExhibitSponser}, ${ExhibitLocationDesc}, ${item.ExhibitDates}`
+          exception: pre + `${item.ExhibitTitle}, ${item.ExhibitSponser}, ${ExhibitLocationDesc}, ${item.ExhibitDates} ${ColorBWDesc1}`
             + post
         }
         exhibitandpubs.push(rec)
@@ -304,14 +332,13 @@ export class Rtf {
 
 
     //       console.log('inv.reproduction.length', inv.reproduction.length)
-    let reproduction = this.currentItem.reproduction
-    let myObjects
 
 
 
-// 2014-01-01
-// Villiger, Suzi. 0Hans Hofmann Catalogue Raisonné of Paintings Vol. II (5bae1dff459dbacdea25a716: Lund Humphries, 2014-01-01) 
-// null, on page Illustrated in color on page 368, no. P606
+
+    // 2014-01-01
+    // Villiger, Suzi. 0Hans Hofmann Catalogue Raisonné of Paintings Vol. II (5bae1dff459dbacdea25a716: Lund Humphries, 2014-01-01) 
+    // null, on page Illustrated in color on page 368, no. P606
     /**  let ExhibitID = req.param('ExhibitID')
         let ReproductionType = req.param('ReproductionType')//TransportTo')
         let ReproductionPage = req.param('ReproductionPage')//TransportFrom')
@@ -325,27 +352,40 @@ export class Rtf {
  */
     if (reproduction !== undefined) {
       for (const item of reproduction) {
-        if (item.ReproductionExhibit === null){//undefined)
-          let oid
-        if ((item.ReproductionLocation + '').length < 6) {
+        if (item.ReproductionExhibit === null) {//undefined)
+          // let oid
+          // if ((item.ReproductionLocation + '').length < 6) {
 
-          oid = pl.findIndex(x => x.ID === item.ReproductionLocation)
-        } else {
-          oid = pl.findIndex(x => x.id === item.ReproductionLocation)
+          //   oid = pl.findIndex(x => x.ID === item.ReproductionLocation)
+          // } else {
+          //   oid = pl.findIndex(x => x.id === item.ReproductionLocation)
 
-        }
-        if (oid == -1) oid = 1
-        let ReproductionLocationDesc = pl[oid].Description
-        let data= pre + `${item.ReproductionAuthor}, ${preitalic} ${item.ReproductionTitle} ${postitalic} ${preafter} '(' `
-              data+=`${item.ReproductionLocationDesc} ${item.ReproductionName}, ${item.ReproductionDate}) ${lineBreak}`     
-              data+=`${item.ColorBW}, on page ${item.ReproductionPage} ${lineBreak} ${post}`
+          // }
+
+         let oid = pl.findIndex(x => x.id === item.ReproductionLocation)
+
+          if (oid == -1) oid = 1
+          let ReproductionLocationDesc = pl[oid].Description
+
+
+          let ColorBWDesc = ''
+          if (item.ColorBW !== null) {
+            let cid = this.appService.codesReproductionType.findIndex(x => x.id === item.ColorBW)
+            ColorBWDesc = `${this.appService.codesReproductionType[cid].Description}, `
+          }
+          let data = pre + `${item.ReproductionAuthor}, ${preitalic} ${item.ReproductionTitle} ${postitalic} ${preafter} ( `
+          //   let data= pre + ` ${item.AuthorLast}, ${item.AuthorFirst}, ${preitalic} ${item.ReproductionTitle} ${postitalic} ${preafter} ( `
+
+
+          data += `${ReproductionLocationDesc} name${item.ReproductionName}, rd${item.ReproductionDate}) ${lineBreak}`
+          data += `${ColorBWDesc} on page ${item.ReproductionPage} ${lineBreak} ${post}`
           rec = {
             date: item.ReproductionSortDate,
-          
-              exception: data
+
+            exception: data
           }
 
-        exhibitandpubs.push(rec)
+          exhibitandpubs.push(rec)
         }
       }
     }
