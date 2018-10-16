@@ -297,7 +297,7 @@ export class Rtf {
           //   let cid1 = this.appService.codesReproductionType.findIndex(x => x.id === item.ColorBW)
           //   ColorBWDesc1 = `, on ${reporec.ReproductionPage} ${this.appService.codesReproductionType[cid1].Description} `
           // }
-
+// color on page 6
     ColorBWDesc1 = `, on ${reporec.ReproductionPage}  `
         
         }
