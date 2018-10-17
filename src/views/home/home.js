@@ -6,7 +6,7 @@ import { MyDataService } from "../../services/my-data-service";
 
 export class Home {
   heading = "Welcome to the MRG Home page!";
-  version = 240.96 
+  version = 240.97 
   versionDate = 'Tue 10/15/2018'
   // versiondate=Date();
 //  "select2": {
@@ -32,7 +32,7 @@ export class Home {
     'version = 240.20 uses   this.currentItem not this.appService.currentItem (which is a singleton)',
     
     '* working on local storage with invcode',
-    'PORTERC007 PORTERC009 PORTERC008 PORTERC013',
+    'HOFMAN0015 POLLOCJ005 PORTERC007 PORTERC009 PORTERC008 PORTERC013',
 
   ]
   features = [
