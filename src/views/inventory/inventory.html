@@ -24,6 +24,17 @@
 						<div class="form-group flex-column-1 margin-left-10">
 							<input id="searchInvCode" type="text" class="form-control" placeholder="Search for inv code...PORTERC008" value.bind="search.inventorycode">
 						</div>
+			
+			<!-- <div class="form-group flex-column-1 margin-left-10">
+							<label for="adjuster">mru2</label>
+								<input ref="myDatalist" type="text" list="myDatalist" change.delegate="changeCallbackMru(selectedValue)" input.delegate="selectedValue = findOption($event.target.value)"
+							/>
+							<datalist id="myDatalist">
+									<option repeat.for="option of mru">${option}</option>
+							</datalist>
+							<pre style="margin-top: 100px"><code>${selectedValue}</code></pre>
+						</div> -->
+			
 					</div>
 					<div class="flex-row-none">
 						<div class="form-group flex-column-1">
@@ -96,32 +107,16 @@
 								</li>
 							</ul>
 						</div>
-						<!--  <select value.bind="changedValue" change.delegate="DropdownChanged(changedValue)">
-    -->
-						<div class="form-group flex-column-1 margin-left-10">
+					
+						<!-- <div class="form-group flex-column-1 margin-left-10">
 							<label for="adjuster">mru2</label>
-							<!-- <label for="mru">mru ${option.name}</label> -->
-							<input ref="myDatalist" type="text" list="myDatalist" change.delegate="changeCallbackMru(selectedValue)" input.delegate="selectedValue = findOption($event.target.value)"
+								<input ref="myDatalist" type="text" list="myDatalist" change.delegate="changeCallbackMru(selectedValue)" input.delegate="selectedValue = findOption($event.target.value)"
 							/>
 							<datalist id="myDatalist">
-								<!-- <option repeat.for="option of options1">${option.name}</option> -->
-								<!-- <option repeat.for="option of mru" change.delegate="changeCallbackMru($event)" >${option}</option> -->
-								<option repeat.for="option of mru">${option}</option>
+									<option repeat.for="option of mru">${option}</option>
 							</datalist>
 							<pre style="margin-top: 100px"><code>${selectedValue}</code></pre>
-
-							<!-- 
-  <datalist id="myDatalist">
-    <option repeat.for="e of mru">${option.optionz}</option>
-  </datalist> -->
-							<!-- <datalist id="myDatalist">
-    <option repeat.for="option of options">${option.name}</option>
-  </datalist> -->
-
-
-						</div>
-
-
+						</div> -->
 					</div>
 
 
