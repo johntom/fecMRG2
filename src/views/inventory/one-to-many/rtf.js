@@ -173,29 +173,34 @@ export class Rtf {
 
   buildEdition() {
     this.segment2 += `<p><span style='text-decoration-line:underline'><strong><u>EDITION</u></strong></span><u></u></p>`
-
+let PublisherLoc
+ let PrinterLoc
     //  this.currentItem.EditionComment this.currentItem.Chop
     //  this.currentItem.Publisher this.currentItem.PublisherLocation-codesProvenanceLocation 
     //  this.currentItem.Printer-codesProvenanceLocation
 
-    this.currentItem.Edition
+    //this.currentItem.Edition
     let pl = this.appService.codesProvenanceLocation
     // let oid
     // if ((item.PublisherLocation + '').length < 6) {
 
     // 	oid = pl.findIndex(x => x.ID === item.ProvLoc)
     // } else {
-    let oid = pl.findIndex(x => x.id === item.PublisherLocation)
+      if (this.currentItem.PublisherLocation!==undefined){
+    let oid = pl.findIndex(x => x.id === this.currentItem.PublisherLocation)
 
 
     if (oid == -1) oid = 1
-    let PublisherLoc = pl[oid].Description
-    oidp = pl.findIndex(x => x.id === item.PrinterLocation)
-
+     PublisherLoc = pl[oid].Description
+    } else PublisherLoc=''
+      if (this.currentItem.PrinterLocation!==undefined){
+    
+    oidp = pl.findIndex(x => x.id === this.currentItem.PrinterLocation)
+      
 
     if (oidp == -1) oidp = 1
-    let PrinterLoc = pl[oidp].Description
-
+     PrinterLoc = pl[oidp].Description
+} else PrinterLoc=''
 
     this.segment2 += `${this.currentItem.Edition} <br>`
     this.segment2 += `${this.currentItem.Publisher}, ${PublisherLoc}<br>`
