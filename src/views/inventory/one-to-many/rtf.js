@@ -194,7 +194,7 @@ export class Rtf {
 
 
     if (oidp == -1) oidp = 1
-    let PublisherLoc = pl[oidp].Description
+    let PrinterLoc = pl[oidp].Description
 
 
     this.segment2 += `${this.currentItem.Edition} <br>`
