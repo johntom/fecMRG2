@@ -140,12 +140,12 @@ export class Inventory {
   }
 
   populateInv(e) {
-    this.search.inventorycode = e
+     //10-17 this.search.inventorycode = e
     this.appService.onlyonce = 0
-    this.performSearch()
+  //10-17  this.performSearch()
     //https://johntom.github.io/fecMRG2/#/inventory/data/PORTERC008
-     this.router.navigate(`#/inventory/data/${ this.search.inventorycode}`);
-   //   this.appService.currentSearch = path
+    //10-17   this.router.navigate(`#/inventory/data/${ this.search.inventorycode}`);
+  this.router.navigate(`#/inventory/data/${e}`);
   }
   performSearch() {
     let keywd = `${this.Description}`

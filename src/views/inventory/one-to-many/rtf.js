@@ -173,8 +173,8 @@ export class Rtf {
 
   buildEdition() {
     this.segment2 += `<p><span style='text-decoration-line:underline'><strong><u>EDITION</u></strong></span><u></u></p>`
-let PublisherLoc
- let PrinterLoc
+    let PublisherLoc
+    let PrinterLoc
     //  this.currentItem.EditionComment this.currentItem.Chop
     //  this.currentItem.Publisher this.currentItem.PublisherLocation-codesProvenanceLocation 
     //  this.currentItem.Printer-codesProvenanceLocation
@@ -186,25 +186,49 @@ let PublisherLoc
 
     // 	oid = pl.findIndex(x => x.ID === item.ProvLoc)
     // } else {
-      if (this.currentItem.PublisherLocation!==undefined){
-    let oid = pl.findIndex(x => x.id === this.currentItem.PublisherLocation)
 
 
-    if (oid == -1) oid = 1
-     PublisherLoc = pl[oid].Description
-    } else PublisherLoc=''
-      if (this.currentItem.PrinterLocation!==undefined){
-    
-    oidp = pl.findIndex(x => x.id === this.currentItem.PrinterLocation)
-      
+    // //1
+    //   if (oid == -1) {PublisherLoc = ''} else
+    //         PublisherLoc = ', '+pl[oid].Description
+    //     if (this.currentItem.PrinterLocation !== undefined) {
 
-    if (oidp == -1) oidp = 1
-     PrinterLoc = pl[oidp].Description
-} else PrinterLoc=''
+    //      let oidp = pl.findIndex(x => x.id === this.currentItem.PrinterLocation)
+
+
+    //       if (oidp == -1) {PrinterLoc = ''} else
+    //       PrinterLoc = ', '+pl[oidp].Description
+
+    // //1
+
+    if (this.currentItem.PublisherLocation !== undefined) {
+      let oid = pl.findIndex(x => x.id === this.currentItem.PublisherLocation)
+
+
+      // if (oid == -1) { PublisherLoc = '' } else
+      //   PublisherLoc = ', ' + pl[oidp].Description
+          oid == -1 ? PublisherLoc = '' : PublisherLoc = ', ' + pl[oid].Description
+    } else PublisherLoc = ''
+
+
+    if (this.currentItem.PrinterLocation !== undefined) {
+
+      let oidp = pl.findIndex(x => x.id === this.currentItem.PrinterLocation)
+
+        // if (oidp == -1) { PrinterLoc = '' } else
+        //   PrinterLoc = ', ' + pl[oidp].Description
+        oidp == -1 ? PrinterLoc = '' : PrinterLoc = ', ' + pl[oidp].Description
+
+    } else PrinterLoc = ''
 
     this.segment2 += `${this.currentItem.Edition} <br>`
-    this.segment2 += `${this.currentItem.Publisher}, ${PublisherLoc}<br>`
-    this.segment2 += `${this.currentItem.Printer}, ${PrinterLoc}<br>`
+    if (this.currentItem.Publisher !== undefined) {
+      this.segment2 += `${this.currentItem.Publisher}${PublisherLoc}<br>`
+    }
+    if (this.currentItem.Printer !== undefined) {
+      this.segment2 += `${this.currentItem.Printer}${PrinterLoc}<br>`
+    }
+    this.segment2 += `<br>`
 
     // if	(item.ProvMemo===null || item.ProvMemo===undefined || item.ProvMemo==='' ) {
     // 	 	this.segment2 += `${this.currentItem.Edition}, ${EdLoc}<br>`} else {
