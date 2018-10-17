@@ -200,7 +200,13 @@ export class Rtf {
 				if (oid == -1) oid = 1
 				let ProvLoc = this.appService.codesProvenanceLocation[oid].Description
 				// this.segment2 += item.ProvOwner + ' ' + item.ProvSortDate + ' ' + item.ProvLoc+ '<br>'
-				this.segment2 += `${item.ProvOwner}, ${ProvLoc} <br> ${item.ProvMemo}<br>`
+				// (item.ProvMemo===null || item.ProvMemo===undefined || item.ProvMemo==='' ) ? 	this.segment2 += `${item.ProvOwner}, ${ProvLoc}<br>` :	this.segment2 += `${item.ProvOwner}, ${ProvLoc}<br>${item.ProvMemo}<br>`
+		if	(item.ProvMemo===null || item.ProvMemo===undefined || item.ProvMemo==='' ) {
+			 	this.segment2 += `${item.ProvOwner}, ${ProvLoc}<br>`} else {
+					 	this.segment2 += `${item.ProvOwner}, ${ProvLoc}<br>${item.ProvMemo}<br>`
+				 }
+		//
+		//	this.segment2 += `${item.ProvOwner}, ${ProvLoc}<br> ${item.ProvMemo}`
 			}
 		}
 	}
@@ -251,7 +257,7 @@ export class Rtf {
 		let reproduction = this.currentItem.reproduction
 		let myObjects
 		let rec = {}
-		let ColorBWDesc1
+		let linkPageNo
 		if (exhibition !== undefined) {
 			for (const item of exhibition) {
 				console.log('==================-item==========', item.ExhibitTitle)
@@ -269,17 +275,17 @@ export class Rtf {
 				// check to see if link in repo
 				let eid = reproduction.findIndex(x => x.ReproductionExhibit === item.ExhibitTitle)
 				let reporec
-				ColorBWDesc1 = ''
-				console.log('eid ', eid, ColorBWDesc1)
+				linkPageNo = ''
+				console.log('eid ', eid, linkPageNo) //ColorBWDesc1)
 
 				if (eid !== -1) {
 					reporec = reproduction[eid]
 					console.log('reporec', reporec.ReproductionPage, reporec)
 			
-					ColorBWDesc1 = `, ${reporec.ReproductionPage}  `
+					linkPageNo = `, ${reporec.ReproductionPage} `
 
 				}
-				console.log('item.ReproductionExhibit ', eid, item.ReproductionExhibit, 'ColorBWDesc1', ColorBWDesc1)
+				console.log('item.ReproductionExhibit ', eid, item.ReproductionExhibit, 'linkPageNo', linkPageNo)
 				let oid
 				if ((item.ExhibitLocation + '').length < 6) {
 
@@ -294,13 +300,22 @@ export class Rtf {
 				// , ${item.ExhibitMemo}`
 				// console.log('moment', moment(item.ExhibitSortDate,'YYYYmmdd'))
 				let ExhibitMemo
-				item.ExhibitMemo === undefined ? ExhibitMemo = '' : ExhibitMemo = ', ' + item.ExhibitMemo
+			//	item.ExhibitMemo === undefined ? ExhibitMemo = '' : ExhibitMemo = ', ' + item.ExhibitMemo
+				let exceptline
+					if	(item.ExhibitMemo===null || item.ExhibitMemo===undefined || item.ExhibitMemo==='' ) {
+			    		exceptline= pre + `${item.ExhibitTitle}, ${item.ExhibitSponser}, ${ExhibitLocationDesc}, ${item.ExhibitDates}${linkPageNo} `	+ post}
+							 else {
+							exceptline= pre + `${item.ExhibitTitle}, ${item.ExhibitSponser}, ${ExhibitLocationDesc}, ${item.ExhibitDates}${linkPageNo}, ${item.ExhibitMemo}`	+ post
+							}
+				
 				rec = {
 					// date: moment(item.ExhibitSortDate,'YYYYmmdd'),
 					date: item.ExhibitSortDate,
 					//   exception: pre + item.ExhibitTitle + ', ' + item.ReproductionLocation + ', ' + item.ExhibitDates + post
-					exception: pre + `${item.ExhibitTitle}, ${item.ExhibitSponser}, ${ExhibitLocationDesc}, ${item.ExhibitDates}${ColorBWDesc1} ${ExhibitMemo}`
-						+ post
+					exception: exceptline
+						
+					
+					
 				}
 				console.log('rec ', rec)
 
@@ -356,7 +371,7 @@ export class Rtf {
 					//   let data= pre + ` ${item.AuthorLast}, ${item.AuthorFirst}, ${preitalic} ${item.ReproductionTitle} ${postitalic} ${preafter} ( `
 
 
-					data += `${ReproductionLocationDesc} name${item.ReproductionName}, ${item.ReproductionDate}) ${lineBreak}`
+					data += `${ReproductionLocationDesc}: ${item.ReproductionName}, ${item.ReproductionDate}) ${lineBreak}`
 					data += `${ColorBWDesc} on page ${item.ReproductionPage} ${lineBreak} ${post}`
 					rec = {
 						date: item.ReproductionSortDate,
@@ -637,7 +652,7 @@ export class Rtf {
 		}
 
 		//1
-		let segment1 = ` ${artistWdates1}<br><br>`
+		let segment1 = ` ${artistWdates1}<br>`
 		segment1 += ` <em> ${this.currentItem.Title}</em>, ${this.currentItem.InvYear} <br> `
 		segment1 += `  ${this.currentItem.MediumSupportobj.Description}<br> `
 		if (dimsf !== undefined) {
