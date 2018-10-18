@@ -193,24 +193,25 @@
 										<input type="text" xid="Title" class="form-control input-sm" value.bind="currentItem.Title">
 										<!--  & validate -->
 									</div>
-
-									<!-- <div class="Rtable-cell-30 Rtable-cell--highlight">
-										<span dblclick.delegate="showModal( 'MediumSupportobj') ">	<strong> Medium. >></strong></span>
-
-									</div>
-									<div class="Rtable-cell-70  Rtable-cell--highlight">
-
-										<span dblclick.delegate="showModal( 'MediumSupportobj') ">${currentItem.MediumSupportobj.Description}</span>
-
-									</div> -->
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
 										<span dblclick.delegate="showModal( 'MediumSupportobj') ">	<strong> Medium. >></strong></span>
 
 									</div>
+									<!-- <div class="Rtable-cell-70  Rtable-cell--highlight">
+
+									<a click.delegate="showModal( 'MediumSupportobj')">${currentItem.MediumSupportobj.Description} </a>
+
+									</div> -->
+
 									<div class="Rtable-cell-70  Rtable-cell--light">
 
-								<span dblclick.delegate="showModal( 'MediumSupportobj') ">
-                  <a click.delegate="showModal( 'MediumSupportobj')">${currentItem.MediumSupportobj.Description} </a></span>
+
+										<div if.bind="currentItem.MediumSupportobj===undefined">select_link </div>
+										<div else>
+											<a click.delegate="showModal( 'MediumSupportobj')">${currentItem.MediumSupportobj.Description} </a>
+
+										</div>
+
 
 									</div>
 								</div>
@@ -462,13 +463,19 @@
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
 										<strong> Inscribed>></strong>
 									</div>
-									<!-- <div class="Rtable-cell-70 Rtable-cell--highlight">
-										<span dblclick.delegate="showModal( 'Inscribed') ">${currentItem.Inscribed}</span>
 
-									</div> -->
 									<div class="Rtable-cell-70  Rtable-cell--light">
 
-										<a click.delegate="showModal( 'Inscribed')">${currentItem.Inscribed} </a>
+										<!-- <a click.delegate="showModal( 'Inscribed')">${currentItem.Inscribed} </a> -->
+										<div if.bind="currentItem.Inscribed===undefined || currentItem.Inscribed==='' ">
+											<a click.delegate="showModal( 'Inscribed')">select_link </a>
+										</div>
+										<div else>
+											<a click.delegate="showModal( 'Inscribed')">${currentItem.Inscribed} </a>
+
+										</div>
+
+
 
 									</div>
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
@@ -507,10 +514,17 @@
 
 									</div> -->
 
-	<div class="Rtable-cell-70  Rtable-cell--light">
+									<div class="Rtable-cell-70  Rtable-cell--light">
 
-			<span dblclick.delegate="showModal( 'SoldToID') ">
-        								<a click.delegate="showModal( 'SoldToID')">${currentItem.soldtoname} </a></span>
+
+										<!-- <a click.delegate="showModal( 'SoldToID')">${currentItem.soldtoname} </a> -->
+										<div if.bind="currentItem.soldtoname===undefined">
+											<a click.delegate="showModal( 'SoldToID')">select_link </a>
+										</div>
+										<div else>
+											<a click.delegate="showModal( 'SoldToID')">${currentItem.soldtoname} </a>
+
+										</div>
 
 									</div>
 
@@ -534,7 +548,7 @@
 										<a click.delegate="showModal( 'OwnerID')" dblclick.delegate="showModal( 'OwnerID')">${currentItem.ownername}&nbsp; </a>
 									</div> -->
 
-                  	<div class="Rtable-cell-70  Rtable-cell--light">
+									<div class="Rtable-cell-70  Rtable-cell--light">
 
 										<a click.delegate="showModal( 'OwnerID')">${currentItem.OwnerID} </a>
 

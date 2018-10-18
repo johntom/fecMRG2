@@ -107,6 +107,20 @@
 			</div>
 
 
+	<!-- <div show.bind="fieldname ==='MediumSupportobj'">
+    <div class="form-group flex-column-1">
+<label for="adjuster">mru2</label>
+								<input ref="myDatalist" type="text" list="myDatalist"
+                 change.delegate="changeCallbackMru(selectedValue)" 
+                 input.delegate="selectedValue = findOption($event.target.value)"
+							/>
+							<datalist id="myDatalist">
+									<option repeat.for="option of appService.codesListMediumSupport">${option}</option>
+							</datalist>
+							<pre style="margin-top: 100px"><code>${selectedValue}</code></pre>
+		</div>
+			</div> -->
+
 			<div show.bind="fieldbase==='ORG'">
 				<div class="form-group flex-column-1">
 					<div>
