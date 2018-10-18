@@ -6,7 +6,7 @@ import { MyDataService } from "../../services/my-data-service";
 
 export class Home {
   heading = "Welcome to the MRG Home page!";
-  version = 241.06
+  version = 241.07
   versionDate = 'Wed 10/17/2018'
   // versiondate=Date();
 //  "select2": {
@@ -42,7 +42,7 @@ export class Home {
   ]
   todo = [
 'Link option',
-
+'repo color type',
     'leave prov open (edit save)',
     'add keyword',
     'inv code not change',

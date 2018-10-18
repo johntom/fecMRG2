@@ -204,12 +204,13 @@
 
 									</div> -->
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
-										<span>	<strong> Medium. >></strong></span>
+										<span dblclick.delegate="showModal( 'MediumSupportobj') ">	<strong> Medium. >></strong></span>
 
 									</div>
 									<div class="Rtable-cell-70  Rtable-cell--light">
 
-										<a click.delegate="showModal( 'MediumSupportobj')">${currentItem.MediumSupportobj.Description} </a>
+								<span dblclick.delegate="showModal( 'MediumSupportobj') ">
+                  <a click.delegate="showModal( 'MediumSupportobj')">${currentItem.MediumSupportobj.Description} </a></span>
 
 									</div>
 								</div>
@@ -508,7 +509,8 @@
 
 	<div class="Rtable-cell-70  Rtable-cell--light">
 
-										<a click.delegate="showModal( 'SoldToID')">${currentItem.soldtoname} </a>
+			<span dblclick.delegate="showModal( 'SoldToID') ">
+        								<a click.delegate="showModal( 'SoldToID')">${currentItem.soldtoname} </a></span>
 
 									</div>
 
