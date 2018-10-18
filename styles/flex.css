@@ -310,13 +310,14 @@
 
 		.Rtable-cell--light {
 			background-color: white;
-			border-color: #e2e6e9;
+			/* border-color: #e2e6e9; */
+       border-color: #7bbbce 
 		}
 
-		/* .Rtable-cell--highlight {
+		.Rtable-cell--highlightgreen {
 			background-color: lightgreen;
 			border-color: #64e764;
-		} */
+		}
 
 
 	.Rtable-cell--highlight {
