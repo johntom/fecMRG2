@@ -15,7 +15,7 @@ export class Action {
   // @bindable selectStyledCondiment;
   // @bindable selectPicnic;
 
-  heading = 'Welcome to the Action page';
+  heading = 'Actions';
   counter = 1;
   search = {}
   mappingDataStructure = {

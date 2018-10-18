@@ -11,7 +11,7 @@ import { bindable, inject } from 'aurelia-framework';
 export class Batchupdate {
   @bindable picker;
  
-  heading = 'Welcome to the Batchupdate page';
+  heading = 'Batch Update';
   counter = 1;
   search = {}
   mappingDataStructure = {

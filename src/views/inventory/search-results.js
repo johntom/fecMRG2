@@ -12,8 +12,8 @@ import { DialogImage } from './dialogImage'
 
 @inject(Router, ApiService, UtilService, ApplicationService, MyDataService, DialogService)
 export class SearchResults {
-	heading = 'Search Results HEADER...';
-	footer = 'Search Results FOOTER...';
+	heading = 'Search Results...';
+	footer = 'Search Results...';
 	recordId = '';
 	title = '';
 	invcode = '';

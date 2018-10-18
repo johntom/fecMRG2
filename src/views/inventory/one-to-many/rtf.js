@@ -408,7 +408,7 @@ export class Rtf {
             // ColorBWDesc = `${this.appService.codesReproductionType}[${cid}].Description, `
             ColorBWDesc = this.appService.codesReproductionType[cid].Description + ', '
           }
-          let data = pre + `${item.AuthorLast}, ${item.AuthorFirst}, <em>${item.ReproductionTitle}<em> ${preafter}`
+          let data = pre + `${item.AuthorLast}, ${item.AuthorFirst}, <em>${item.ReproductionTitle}</em> ${preafter}`
           //   let data= pre + ` ${item.AuthorLast}, ${item.AuthorFirst}, ${preitalic} ${item.ReproductionTitle} ${postitalic} ${preafter} ( `
 
 
@@ -440,7 +440,7 @@ export class Rtf {
     }
   }
   //1
-  buildInscribed(){
+ buildInscribed(){
 // rules:
 // 1 everying to left of : is plain text and to right is em
 // 2 until it finds a ; (convert ; to </em> <br>)  
@@ -709,7 +709,7 @@ there are extra ' when there are fractions
 
 
 
-this.buildInscribed()
+    // this.buildInscribed()
   
 
     //1

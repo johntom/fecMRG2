@@ -7,7 +7,7 @@ import { EventAggregator } from 'aurelia-event-aggregator';
 export class Inventory {
   static inject = [Router, UtilService, ApplicationService, MyDataService, EventAggregator];
 
-  heading = 'Welcome to the Inventory page PORTERC007 PORTERC009 PORTERC008 PORTERC013';
+  heading = 'Inventory Search'// PORTERC007 PORTERC009 PORTERC008 PORTERC013';
   counter = 1;
   search = {}
   //   title: 0,

@@ -5,8 +5,8 @@ import { MyDataService } from "../../services/my-data-service";
 @inject(ApplicationService, MyDataService)
 
 export class Home {
-  heading = "Welcome to the MRG Home page!";
-  version = 241.10
+  heading = "MRG Home Page";
+  version = 241.11
   versionDate = 'Thur 10/17/2018'
   // versiondate=Date();
 //  "select2": {
