@@ -6,7 +6,7 @@ import { MyDataService } from "../../services/my-data-service";
 
 export class Home {
   heading = "Welcome to the MRG Home page!";
-  version = 241.05
+  version = 241.06
   versionDate = 'Wed 10/17/2018'
   // versiondate=Date();
 //  "select2": {
@@ -41,6 +41,7 @@ export class Home {
    ' open html in word https://smallbusiness.chron.com/edit-html-word-54837.html'
   ]
   todo = [
+'Link option',
 
     'leave prov open (edit save)',
     'add keyword',
