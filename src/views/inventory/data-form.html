@@ -206,7 +206,7 @@
 									<div class="Rtable-cell-70  Rtable-cell--light">
 
 
-										<div if.bind="currentItem.MediumSupportobj===undefined">select_link </div>
+										<div if.bind="currentItem.MediumSupportobj===undefined || currentItem.MediumSupportobj===''">select_link </div>
 										<div else>
 											<a click.delegate="showModal( 'MediumSupportobj')">${currentItem.MediumSupportobj.Description} </a>
 
@@ -518,7 +518,7 @@
 
 
 										<!-- <a click.delegate="showModal( 'SoldToID')">${currentItem.soldtoname} </a> -->
-										<div if.bind="currentItem.soldtoname===undefined">
+										<div if.bind="currentItem.soldtoname===undefined || currentItem.soldtoname==='' ">
 											<a click.delegate="showModal( 'SoldToID')">select_link </a>
 										</div>
 										<div else>
