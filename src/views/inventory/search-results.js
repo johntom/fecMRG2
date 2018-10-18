@@ -20,7 +20,7 @@ export class SearchResults {
 	queryParams = '';
 	checkedIds = {};
 	//  console.log(' inv SearchResults ');
-	message = 'Hello Inventory !';
+	message = ''//Hello Inventory !';
 	datasource = new kendo.data.DataSource({
 		transport: {
 			read: (options) => {
@@ -29,19 +29,20 @@ export class SearchResults {
 					.then((inv) => {
 						console.log(' inv datasource ', inv.length, inv[0]);
 						options.success(inv);
-						console.log('inv.length===1 && this.appService.onlyonce===0 ', inv.length === 1 && this.appService.onlyonce === 0, inv.length, inv.length)
-						if (inv.length === 1 && this.appService.onlyonce === 0) {
-							let rt2 = '#/inventory/data/' + inv[0].InventoryCode;
+				//		console.log('inv.length===1 && this.appService.onlyonce===0 ', inv.length === 1 && this.appService.onlyonce === 0, inv.length, inv.length)
+						//10-18 if (inv.length === 1 && this.appService.onlyonce === 0) {
+						// if (inv.length === 1 ) {
+						// 	let rt2 = '#/inventory/data/' + inv[0].InventoryCode;
 
-							console.log('rt2 ', rt2)
+						// 	console.log('rt2 ', rt2)
 
-							let tab = this.appService.tabs.find(f => f.isSelected);
-							this.closeTab(tab);
+						// 	let tab = this.appService.tabs.find(f => f.isSelected);
+						// 	this.closeTab(tab);
  
 
-							this.router.navigate(rt2);
-							this.appService.onlyonce = 1
-						}
+						// 	this.router.navigate(rt2);
+						// 	//10-18 this.appService.onlyonce = 1
+						// }
 					});
 			},
 			// update: (options) => {
@@ -222,7 +223,8 @@ export class SearchResults {
 			.then((jsonRes) => {
 				inv = jsonRes.data;
 				if (inv === 0 || inv.length === 0) {
-					alert(' no records found ')
+					// alert(' no records found ')
+          this.message=' no records found '
 					let tab = this.appService.tabs.find(f => f.isSelected);
 					this.closeTab(tab);
 					let rt2 = '#/home'// inventory'
@@ -251,8 +253,9 @@ export class SearchResults {
 
 
 	performAction1() {
-		console.log('Action1 ')
-		alert('You have selected Action 1')
+		// console.log('Action1 ')
+		// alert('You have selected Action 1')
+     this.message=' You have selected Action 1 '
 	}
 
 	detailsEdit(e) {
@@ -317,7 +320,7 @@ export class SearchResults {
 		grid.select(targetRow);
 	}
 	addexistingCB() {
-		alert('cb')
+		// alert('cb')
 		var maxRows = this.datasource.length - 1;
 		for (i = 0; i < maxRows; i++) {
 			a1 = selectedRows[i];
@@ -366,7 +369,7 @@ export class SearchResults {
 				}
 				if (i === maxRows - 1) {
 					this.selectedids = sels;
-					alert('addexistingSelection')
+					// alert('addexistingSelection')
 					this.api.updateSavedlists(this.appService.currentsavedlist, this.selectedids).then((jsonRes) => {
 						console.log('jsonRes ', jsonRes);
 						// let tab = this.appService.tabs.find(f => f.isSelected);
@@ -383,6 +386,7 @@ export class SearchResults {
 			// this.myMultiSelect.kWidget.setDataSource(this.selectedids);
 			//   this.allselectedids =   this.allselectedids+sels;
 		}
+    this.message=`  all items added to list ${this.appService.currentsavedlist} `
 	}
 	//saveSelection()">Save Selection</button>			Selected IDs: ${selectedids}
 	// addnewSelection() {
@@ -464,61 +468,62 @@ export class SearchResults {
 	//on click of the checkbox:
 	selectRow() {
 		// debugger;
-		alert('sel')
+		// alert('sel')
 	}
 	clearSelection() {
-		//  alert('clearSelection')
+		
 		this.appService.currentsavedlist = '';
 		this.checkedIds = [];
-		// this.selectedOrders = [];
+	
 	}
 	saveSelection() {
-		alert('saveSelection')
+		// alert('saveSelection')
+    message = 'selection saved';
 	}
 
-	onDataBoundx(e, that) {
-		alert('in ob')
+	// onDataBoundx(e, that) {
+	// 	// alert('in ob')
 
-		console.log('e', e);
-		console.log('that', that);
-		// alert('on onDataBound loading 1 time '+e)
-		// alert('on o that'+that)
-		let checkedIds = [];
+	// 	console.log('e', e);
+	// 	console.log('that', that);
+	// 	// alert('on onDataBound loading 1 time '+e)
+	// 	// alert('on o that'+that)
+	// 	let checkedIds = [];
 
-		let grid = e.sender;
-		kendo.jQuery('a[href*=\'#\']', grid.tbody).removeAttr('href');
-		//grid.element.on("click", ".checkbox" ,selectRow()));// does not work
+	// 	let grid = e.sender;
+	// 	kendo.jQuery('a[href*=\'#\']', grid.tbody).removeAttr('href');
+	// 	//grid.element.on("click", ".checkbox" ,selectRow()));// does not work
 
-		grid.element.on("click", ".checkbox", function () {
-			var checked = this.checked,
-				row = $(this).closest("tr"),
-				dataItem = grid.dataItem(row);
+	// 	grid.element.on("click", ".checkbox", function () {
+	// 		var checked = this.checked,
+	// 			row = $(this).closest("tr"),
+	// 			dataItem = grid.dataItem(row);
 
-			var idValue = grid.dataItem(row).get(this.idField);
-			console.log('idValue', idValue);
+	// 		var idValue = grid.dataItem(row).get(this.idField);
+	// 		console.log('idValue', idValue);
 
-			if (checked) {
-				//-select the row 
-				checkedIds.push(dataItem.InventoryCode);
-				that.selectedids = checkedIds;
-				that.selectedOrders.push(dataItem);
-
-
-				$("[data-uid='" + dataItem.uid + "']").addClass("k-state-selected");
-			} else {
-				delete that.selectedOrders[idValue];
-
-				that.selectedids = lodash.pull(that.selectedids, dataItem.InventoryCode);
-				that.selectedOrders = lodash.pull(that.selectedOrders, dataItem);
+	// 		if (checked) {
+	// 			//-select the row 
+	// 			checkedIds.push(dataItem.InventoryCode);
+	// 			that.selectedids = checkedIds;
+	// 			that.selectedOrders.push(dataItem);
 
 
-				$("[data-uid='" + dataItem.uid + "']").removeClass("k-state-selected");
-				//row.removeClass("k-state-selected");
-				$("[data-uid='" + dataItem.uid + "']")
+	// 			$("[data-uid='" + dataItem.uid + "']").addClass("k-state-selected");
+	// 		} else {
+	// 			delete that.selectedOrders[idValue];
 
-			}
-		});
-	}
+	// 			that.selectedids = lodash.pull(that.selectedids, dataItem.InventoryCode);
+	// 			that.selectedOrders = lodash.pull(that.selectedOrders, dataItem);
+
+
+	// 			$("[data-uid='" + dataItem.uid + "']").removeClass("k-state-selected");
+	// 			//row.removeClass("k-state-selected");
+	// 			$("[data-uid='" + dataItem.uid + "']")
+
+	// 		}
+	// 	});
+	// }
 
 }
 //   onDataBound(e, that) {

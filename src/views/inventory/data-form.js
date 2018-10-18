@@ -652,7 +652,43 @@ export class DataForm {
       }
     }
   }
+// addexistingSelection(){
+//   let sels
+// 		if (this.selectedids === undefined) {
+// 			sels = []
+		
+// 		} else sels = this.selectedids
 
+// 		var grid = this.grid;
+// 		var selectedRows = grid.select();
+// 		if (selectedRows.length === 0) {
+// 			alert('please select a row to add'
+// 			)
+// 		} else {
+// 			var maxRows = selectedRows.length / 2;
+// 			selectedRows.each(function (idx, el) {
+// 				let dataItem = grid.dataItem(el);
+// 			});
+// 			var i;
+// 			var a1;
+// 			for (i = 0; i < maxRows; i++) {
+// 				a1 = selectedRows[i];
+// 				let dataItem = grid.dataItem(a1);
+// 				let mid = sels.findIndex(x => x === dataItem.InventoryCode)
+// 				if (mid === -1) {
+// 					sels.push(dataItem.InventoryCode);
+// 				}
+// 				if (i === maxRows - 1) {
+// 					this.selectedids = sels;
+// 					alert('addexistingSelection')
+// 					this.api.updateSavedlists(this.appService.currentsavedlist, this.selectedids).then((jsonRes) => {
+// 						console.log('jsonRes ', jsonRes);
+// 					});
+// 				}
+// 			}
+			
+// 		}
+// }
 
   canDeactivate() {
     return new Promise((resolve, reject) => {

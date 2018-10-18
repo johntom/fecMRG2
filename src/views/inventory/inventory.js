@@ -148,7 +148,7 @@ export class Inventory {
   this.router.navigate(`#/inventory/data/${e}`);
   }
   performSearch() {
-    let keywd = `${this.Description}`
+    let keyword = `${this.keywordDescription}`//.Description}` //aubs-typeahead 
 
     //search.savedlists
     let savedlist = `${this.name}`
@@ -159,7 +159,9 @@ export class Inventory {
     console.log('selectedSoldId', this.search.selectedSoldId)
     // alert(keywd)
     if (this.search) {
-      if (keywd !== 'undefined' && keywd !== 'null') this.search.keywords = `${this.Description.Description}`
+      // if (keywd !== 'undefined' && keywd !== 'null') this.search.keywords = `${this.Description.Description}`
+   if (keyword !== 'undefined' && keyword !== 'null') this.search.keywords = `${this.keywordDescription.Description}`
+   
       if (savedlist !== 'undefined' && savedlist !== 'null') this.search.savedlists = `${this.name.name}`
 
       if (medsupport !== 'undefined') this.search.mediumsupport = `${this.DescriptionMS.Description}`
