@@ -496,11 +496,11 @@
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
 										<strong> Sold </strong>
 									</div>
-									<!-- ${search.httpsselectedSoldId} -->
+									<!-- ${search.httpsselectedSoldId} checked.bind="search.selectedSoldId selectedSoldId"-->
 									<div class="Rtable-cell-70 Rtable-cell--highlight">
 										<div class="form-group">
 											<label repeat.for="sold of searchsold">
-												<input type="radio" name="group1" model.bind="sold.id " checked.bind="search.selectedSoldId">
+												<input type="radio" name="group1" model.bind="sold.id " checked.bind="currentItem.Sold" >
 												${sold.name} &nbsp;
 											</label>
 										</div>

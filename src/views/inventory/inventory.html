@@ -73,6 +73,29 @@
 
 						</div>
 					</div>
+
+	<div class="flex-row-none">
+						<div class="form-group flex-column-1">
+							<input id="searchMediumSupport" type="text" class="form-control" placeholder="Search for MediumSupport ..." value.bind="search.mediumsupport"> 
+
+					
+
+						</div>
+						<div class="form-group flex-column-1 margin-left-10">
+
+							<!-- <input id="location" type="text" class="form-control" placeholder="not avail - Search for Current Location ..." value.bind="search.location"> -->
+							<aubs-typeahead ref='InventoryLocation' data.bind="appService.codesInventoryLocation" value.bind="DescriptionLoc" debounce.bind="350"
+							 placeholder="not avail -codesInventoryLocation" open-on-focus.bind="true" key="Description" results-limit.bind="12"
+							 select-single-result.bind="true">
+							</aubs-typeahead>
+
+
+						</div>
+					</div>
+
+
+
+
 					<div class="flex-row-none">
 						<div class="form-group flex-column-1">
 							<input id="ownershipstatus" type="text" class="form-control" placeholder="Search for Ownership Status ..." value.bind="search.ownershipstatus">
@@ -80,9 +103,9 @@
 						<div class="form-group flex-column-1 margin-left-10">
 							<input id="AltID" type="text" class="form-control" placeholder="Search for AltID ..." value.bind="search.altid">
 						</div>
-						<div class="form-group flex-column-1 margin-left-10">
+						<!-- <div class="form-group flex-column-1 margin-left-10">
 							<input id="comment" type="text" class="form-control" placeholder="Search for comment ..." value.bind="search.comment">
-						</div>
+						</div> -->
 					</div>
 
 					<div class="flex-row-none">
@@ -135,11 +158,17 @@
 						</ak-multiselect>
 
 					</div>
-
-					<div class="form-group">Sold - Selected : ${search.selectedSoldId}
+		<!-- <div class="form-group">Sold - Selected : ${search.selectedSoldId}
 						<label repeat.for="sold of searchsold">
               <input type="radio" name="group1"
-                    model.bind="sold.id" checked.bind="search.selectedSoldId">
+                    model.bind="sold.id" checked.bind="search.sold">
+                 ${sold.name} &nbsp;
+            </label>
+					</div> -->
+					<div class="form-group">Sold - Selected : ${search.sold}
+						<label repeat.for="sold of searchsold">
+              <input type="radio" name="group1"
+                    model.bind="sold.id" checked.bind="search.sold">
                  ${sold.name} &nbsp;
             </label>
 					</div>

@@ -156,7 +156,12 @@ export class Inventory {
     let medsupport = `${this.DescriptionMS}`
     let currentlocation = `${this.DescriptionLoc}`
     let multikeys = `${this.multikeywords}`
-    console.log('selectedSoldId', this.search.selectedSoldId)
+   // console.log('selectedSoldId', this.search.selectedSoldId)
+    let sold = `${this.search.sold}`
+
+     console.log('sold', sold,this.search.sold)
+     this.search.sold=`${this.search.sold}`
+     this.search.inventorycode='soldit'
     // alert(keywd)
     if (this.search) {
       // if (keywd !== 'undefined' && keywd !== 'null') this.search.keywords = `${this.Description.Description}`

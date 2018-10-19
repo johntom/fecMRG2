@@ -375,21 +375,17 @@ this.hide3 = false
           if (jsonRes.data === 'success') {
           //  alert(' batch updated batchno= ' + this.item.batchno)
           this.message = "batch updated batchno= " + this.item.batchno+" @ " + savetime
-        
           //  this.item = {}
-            
-
           } else 
           this.message = "batch update failed for  batchno= " + this.item.batchno+" @ " + savetime
-        
         })
-    
+   
   }
 
   save3() {
      let savetime = moment().format('MM/DD/YY h:mm:ss a')
 
-  //  alert(' Not avail yet ')
+    // alert(' Not avail yet '+this.item.)
       this.api.batchReproductionUpdate(this.item)
         .then((jsonRes) => {
           if (jsonRes.data === 'success') {

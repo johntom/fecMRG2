@@ -33,6 +33,17 @@ export class Home {
     '* working on local storage with invcode',
     'HOFMAN0015 POLLOCJ005 PORTERC007 PORTERC009 PORTERC008 PORTERC013',
   ]
+    ninalist = [
+    'when selecting saved list inv/actions/batch go directly ...',
+    'shortcut keys',
+    'tab hilite in detail',
+    'fix dirty',
+    'when going to home not refreshed',
+    'lower tab shows on dialog- see styles .tab.tab-selected {  /* z-index:40; */',
+    'version = 240.20 uses   this.currentItem not this.appService.currentItem (which is a singleton)',
+    '* working on local storage with invcode',
+    'HOFMAN0015 POLLOCJ005 PORTERC007 PORTERC009 PORTERC008 PORTERC013',
+  ]
   features = [
     'CTRL+SHIFT+F',
     'GUARD CLOSURE FOR MATACHER',

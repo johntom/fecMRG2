@@ -94,15 +94,19 @@
               key="Description" results-limit.bind="12"
 						 select-single-result.bind="true">
 						</aubs-typeahead> -->
-						<select id="ProvLoc" class="form-control  input-sm" value.bind="item.ReproductionLocation"> 
+						<select id="ReproductionLocation" class="form-control  input-sm" value.bind="item.ReproductionLocation"> 
                       <option model.bind="null">Choose</option> 
-                         <option repeat.for="opt of appService.codesProvenanceLocation "
+                         <option repeat.for="opt of appService.codesProvenanceLocation"
                           model.bind="opt.id">
                     ${opt.Description} 
                       </option> 
-                    </select> ReproductionTitle <input type="text" id="ReproductionTitle" class="form-control input-sm"
-						 value.bind="item.ReproductionTitle"> ReproductionPage <input type="text" id="ReproductionPage" class="form-control input-sm"
-						 value.bind="item.ReproductionPage"> ColorBW
+                    </select> 
+                    ReproductionTitle 
+                    <input type="text" id="ReproductionTitle" class="form-control input-sm"
+						 value.bind="item.ReproductionTitle">
+              ReproductionPage <input type="text" id="ReproductionPage" class="form-control input-sm"
+						 value.bind="item.ReproductionPage">
+              
 						<!-- <input type="text" id="ColorBW" class="form-control input-sm" 
             value.bind="item.ColorBW">  -->
 						ColorBW <select id="ColorBW" class="form-control  input-sm" value.bind="item.ColorBW"> 
