@@ -308,7 +308,7 @@ export class Rtf {
         // check to see if link in repo
         if (reproduction !== undefined) {
           // let eid = reproduction.findIndex(x => x.ReproductionExhibit === item.ExhibitTitle)
-          let eid = reproduction.findIndex(x => x.id === item.ExhibitTitle)
+          let eid = reproduction.findIndex(x => x.id === item.id)
           let reporec
           linkPageNo = ''
           console.log('eid ', eid, linkPageNo) //ColorBWDesc1)
@@ -446,7 +446,6 @@ export class Rtf {
     // 1 everying to left of : is plain text and to right is em
     // 2 until it finds a ; (convert ; to </em> <br>)  
     // 3 repeat 1 from new position
-
     let inscribed = this.currentItem.Inscribed
     let iLines = []
     console.log('inscribed==================== ', inscribed)
@@ -743,7 +742,7 @@ there are extra ' when there are fractions
     if (artist.died) {
       artistWdates += ` (${artist.yearofBirth} - ${artist.died})`
     } else {
-      artistWdates +=  ` b. ${artist.yearofBirth}`
+     artistWdates += ` (b.${artist.yearofBirth})`
     }
     artistWdates += '</strong>'
 
@@ -752,7 +751,9 @@ there are extra ' when there are fractions
     if (artist.died) {
       artistWdates1 += ` (${artist.yearofBirth} - ${artist.died})`
     } else {
-      artistWdates1 += ` b. ${artist.yearofBirth}`
+      // (b.1950)
+
+      artistWdates1 += ` (b.${artist.yearofBirth})`
     }
 
 
@@ -772,9 +773,7 @@ there are extra ' when there are fractions
     segment1 += `  ${dims} in. unframed<br> `
     segment1 += `  ${dimscm} cm unframed<br> `
     
-    // segment1 += `  signed <br>  `
-    // segment1 += `  ${this.currentItem.SignedLocation}<br>  `
-
+   
 if (this.currentItem.Signed)  segment1 += 'signed'
 
 

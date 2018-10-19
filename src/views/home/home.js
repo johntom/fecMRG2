@@ -6,22 +6,22 @@ import { MyDataService } from "../../services/my-data-service";
 
 export class Home {
   heading = "MRG Home Page";
-  version = 241.18
-  versionDate = 'Thur 10/18/2018'
+  version = 241.19
+  versionDate = 'Fri 10/19/2018'
   // versiondate=Date();
-//  "select2": {
-//       "map": "npm:select2@4.0.6-rc.1/dist",
-//       "package": {
-//         "defaultExtension": "js",
-//         "main": "js/select2.js"
-//       },
-//       "meta": {
-//         "deps": [
-//           "jquery"
-//         ]
-//       }
-//     },
-//           "select2": "4.0.6-rc.1"
+  //  "select2": {
+  //       "map": "npm:select2@4.0.6-rc.1/dist",
+  //       "package": {
+  //         "defaultExtension": "js",
+  //         "main": "js/select2.js"
+  //       },
+  //       "meta": {
+  //         "deps": [
+  //           "jquery"
+  //         ]
+  //       }
+  //     },
+  //           "select2": "4.0.6-rc.1"
   issues = [
     'Make tabs like mas w/scrollbar with sticky header',
     'shortcut keys',
@@ -37,12 +37,17 @@ export class Home {
   features = [
     'CTRL+SHIFT+F',
     'GUARD CLOSURE FOR MATACHER',
-   ' for (const item of items) {  console.log("loopitem ====")  sav = await saveMongoPermits(ctx, item) console.log("",sav))          }',
-   ' open html in word https://smallbusiness.chron.com/edit-html-word-54837.html'
+    'for (const item of items) {  console.log("loopitem ====")  sav = await saveMongoPermits(ctx, item) console.log("",sav))          }',
+    'open html in word https://smallbusiness.chron.com/edit-html-word-54837.html',
+    'Open the Word Options. (Word 2007: click the Office button and then click Word Options ',
+    'At the left side of the dialog box click Advanced.',
+    'Scroll through the options until you see the General section.',
+    'Make sure the Confirm File Format Conversion On Open check box is selected.',
+    'Click on OK.'
   ]
   todo = [
-'Link option',
-'repo color type',
+    'Link option',
+    'repo color type',
     'leave prov open (edit save)',
     'add keyword',
     'inv code not change',
@@ -51,11 +56,9 @@ export class Home {
     'med support prompt add on fly',
     'mod date header',
     'sort date',
-    'Set Ex not work display sponser with exhi',
+    'Set Ex not work display sponser with exhi ',
     'restore GROSSM0029 and jpollack untitled ',
-    'convert images id: 21248 with 20289 images'
-
-  
+    'convert images id: 21248 with 20289 images ',
   ]
   todocomplete = [
 
@@ -63,15 +66,15 @@ export class Home {
     'x sort order on search title',
     'x ynPrompt on exhibition',
     'x Icon for offering',
-  'x fix tags '
+    'x fix tags '
 
   ]
-//  askmatt = [
+  //  askmatt = [
 
-//     'why google code complete stops',
-//     'select2 ',
+  //     'why google code complete stops',
+  //     'select2 ',
 
-//   ]
+  //   ]
 
   //Save when on a tab will negate abilty to track dirty forms',
 
@@ -79,15 +82,15 @@ export class Home {
   // 'check all ogs prompts'
   //  ' use brm2 app as base'
   constructor(appService, dataService) {
-     this.appService = appService;
-     this.dataService = dataService;
+    this.appService = appService;
+    this.dataService = dataService;
   }
   //   this.dataService.loadCodes(values[1]), resolve all lists
   activate() {
-  
-   // this.appService.payeelist = await this.dataService.loadPayeeAsync()
-  //  this.appService.artistlist = await this.dataService.loadArtistsAsync()
- // alert('in aa' +this.appService.artistlist.length)
+
+    // this.appService.payeelist = await this.dataService.loadPayeeAsync()
+    //  this.appService.artistlist = await this.dataService.loadArtistsAsync()
+    // alert('in aa' +this.appService.artistlist.length)
     // console.log(' await payeelist 1', this.appService.payeelist)
     // console.log(' await artistlist  1 ', this.appService.artistlist)
 
@@ -123,7 +126,7 @@ export class Home {
         let codesListMediumSupport = [] //12
         // let codesContactType = []//13
 
-          let codesOrgContactTypes = []//13
+        let codesOrgContactTypes = []//13
         let codesProvenanceLocation = []//14
         let codesConditon = []//15
         let codesMailingType = []//16

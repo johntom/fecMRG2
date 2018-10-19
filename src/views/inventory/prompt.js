@@ -22,13 +22,11 @@ export class Prompt {
 
 textfields=['Description', 'Comment', 'Inscribed', 'Treatment']
 
-textfielddesc = ['Enter Description', 'Enter Comment', 'Enter Inscribed with "," and ";', 'Enter Treatment']
+textfielddesc = ['Enter Alt ID', 'Enter Comment', 'Enter Inscribed with left of ":" as reg text right as ialtics till "; repeat' , 'Enter Treatment']
   constructor(controller, appService, dataService, dialogService, api) {
     this.controller = controller;
     this.answer = null;
-
     this.appService = appService;
-    //  this.inv = '';
     this.currentItem = this.appService.testrec;
     this.thefield = 1
     this.dataService = dataService;
