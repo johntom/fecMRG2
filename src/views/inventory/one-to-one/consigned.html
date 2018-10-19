@@ -3,17 +3,19 @@
 		<div class="Rtable-cell-30 Rtable-cell--highlight">
 			<strong> Shipping From >></strong>
 		</div>
-		<div class="Rtable-cell-70  Rtable-cell--highlight">
-			<!-- <select id="OwnerID" class="form-control" value.bind='currentItem.ConsignmentShippingID'> 
-                      <option model.bind="null">Choose...</option> 
-                       <option repeat.for="opt of appService.orgsList" model.bind="opt._id">
-                        ${opt.OrgName} 
-                      </option> 
-                    </select> -->
+		<div class="Rtable-cell-70  Rtable-cell--light">
+	
 
-<input click.delegate="showModal('ConsignmentShippingID')" type="text" id="ConsignmentShippingID" class="form-control input-sm" value.bind="currentItem.consignmentshippingname">
+<!-- <input click.delegate="showModal('ConsignmentShippingID')" type="text"
+ id="ConsignmentShippingID" class="form-control input-sm" value.bind="currentItem.consignmentshippingname"> -->
 
+<div if.bind="currentItem.consignmentshippingname===undefined || currentItem.consignmentshippingname===''">
+							<a click.delegate="showModal( 'ConsignmentShippingID')">select_link </a>
+						</div>
+						<div else>
+							<a click.delegate="showModal('ConsignmentShippingID')">${currentItem.consignmentshippingname}</a>
 
+						</div>
 
 		</div>
 		<div class="Rtable-cell-30 Rtable-cell--highlight">

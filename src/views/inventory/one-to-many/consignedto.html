@@ -42,20 +42,18 @@
 
 
 					<td width="225px">
-					      <!-- <select disabled show.bind="!consignedto.edit" id="ConsignedTo" class="form-control input-sm" value.two-way="consignedto.ConsignedTo" > 
-              <option model.bind="null">Choose...</option> 
-              <option repeat.for="opt of appService.orgsList" model.bind="opt._id">
-                ${opt.OrgName} 
-              </option> 
-              </select> -->
-            			<input dblclick.delegate="showModal('ConsignedTo',$index)" type="text" id="ConsignedTo" class="form-control input-sm" value.bind="consignedto.consignedtoname">
-      
-					<!-- <select show.bind="consignedto.edit" id="ConsignedTo2" class="form-control input-sm" value.two-way="consignedto.ConsignedTo" > 
-              <option model.bind="null">Choose...</option> 
-              <option repeat.for="opt of appService.orgsList" model.bind="opt._id">
-                ${opt.OrgName} 
-              </option> 
-              </select> -->
+					   
+            			<!-- <input dblclick.delegate="showModal('ConsignedTo',$index)"
+                   type="text" id="ConsignedTo" class="form-control input-sm" 
+                   value.bind="consignedto.consignedtoname"> -->
+      	<div class="form-control  input-sm" if.bind="consignedtoname===undefined || consignedtoname===''">
+							<a click.delegate="showModal( 'ConsignedTo',$index)">select_link </a>
+						</div>
+						<div class="form-control  input-sm" else>
+							<a click.delegate="showModal('ConsignedTo',$index)">${consignedto.consignedtoname}</a>
+
+						</div>
+				
 					</td>
 
 					<td width="95px">

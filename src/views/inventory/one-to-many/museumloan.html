@@ -46,14 +46,15 @@
 					
 						<!-- <input dblclick.delegate="showModal('LoanTo',$index)" type="text" id="LoanTo" 
             class="form-control input-sm" value.bind="loantoname"> -->
-					 
-          	<div if.bind="loantoname===undefined || loantoname===''">
+					<!-- <div class="Rtable-cell-30 Rtable-cell--highlight"> -->
+          	<div class="form-control  input-sm" if.bind="loantoname===undefined || loantoname===''">
 							<a click.delegate="showModal( 'LoanTo',$index)">select_link </a>
 						</div>
-						<div else>
+						<div class="form-control  input-sm" else>
 							<a click.delegate="showModal('LoanTo',$index)">${museumloan.loantoname}</a>
 
 						</div>
+           
           </td>
 
 					<td width="120px"><input type="text" id="InsValue" class="form-control  input-sm" value.bind="museumloan.InsuranceValue"></td>
