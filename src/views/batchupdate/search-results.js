@@ -390,13 +390,13 @@ this.hide3 = false
      let savetime = moment().format('MM/DD/YY h:mm:ss a')
 
    alert(' Not avail yet ')
-      // this.api.batchReproductionUpdate(this.item)
-      //   .then((jsonRes) => {
-      //     if (jsonRes.data === 'success') {
-      //       alert(' batch updated  batchno= ' + this.item.batchno)
-      //       this.item = {}
-      //     } else alert(' batch failed ')
-      //   })
+      this.api.batchReproductionUpdate(this.item)
+        .then((jsonRes) => {
+          if (jsonRes.data === 'success') {
+            alert(' batch updated  batchno= ' + this.item.batchno)
+            this.item = {}
+          } else alert(' batch failed ')
+        })
    
   }
 
