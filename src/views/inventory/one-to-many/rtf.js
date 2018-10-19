@@ -738,19 +738,19 @@ there are extra ' when there are fractions
 
     let artist = this.currentItem.artist
 
-    let artistWdates = `<strong> ${artist.firstName}  ${artist.lastName}`
+    let artistWdates = `<strong>${artist.firstName} ${artist.lastName}`
 
     if (artist.died) {
-      artistWdates += ` (${artist.yearofBirth} - ${artist.died})`
+      artistWdates += `(${artist.yearofBirth} - ${artist.died})`
     } else {
       artistWdates += 'b.' + artist.yearofBirth
     }
     artistWdates += '</strong>'
 
-    let artistWdates1 = ` ${artist.firstName}  ${artist.lastName}`
+    let artistWdates1 = `${artist.firstName} ${artist.lastName}`
 
     if (artist.died) {
-      artistWdates1 += ` (${artist.yearofBirth} - ${artist.died})`
+      artistWdates1 += `(${artist.yearofBirth} - ${artist.died})`
     } else {
       artistWdates1 += `b. ${artist.yearofBirth}`
     }
