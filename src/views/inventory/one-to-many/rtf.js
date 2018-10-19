@@ -743,7 +743,7 @@ there are extra ' when there are fractions
     if (artist.died) {
       artistWdates += ` (${artist.yearofBirth} - ${artist.died})`
     } else {
-      artistWdates += 'b.' + artist.yearofBirth
+      artistWdates +=  ` b. ${artist.yearofBirth}`
     }
     artistWdates += '</strong>'
 
@@ -752,7 +752,7 @@ there are extra ' when there are fractions
     if (artist.died) {
       artistWdates1 += ` (${artist.yearofBirth} - ${artist.died})`
     } else {
-      artistWdates1 += `b. ${artist.yearofBirth}`
+      artistWdates1 += ` b. ${artist.yearofBirth}`
     }
 
 
