@@ -775,7 +775,18 @@ there are extra ' when there are fractions
     // segment1 += `  signed <br>  `
     // segment1 += `  ${this.currentItem.SignedLocation}<br>  `
 
-    segment1 += ` ${this.inscribedText}<br> ` 
+if (this.currentItem.Signed)  segment1 += 'signed'
+
+
+if (this.currentItem.Dated) {
+  
+   if (this.currentItem.Signed){ 
+    segment1 += ' and dated '
+   }  else   segment1 += 'dated '
+}
+    // segment1 += ` ${this.inscribedText}<br> ` 
+
+
 
     // this.appService.clientHeight = this.mainimage.clientHeight
     // this.appService.clientWidth = this.mainimage.clientWidth
