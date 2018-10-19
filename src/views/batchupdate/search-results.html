@@ -32,10 +32,7 @@
 					<!-- <button id="image1" class="btn btn-primary" type="button" click.delegate="action7()">merge images</button> -->
 
 					<div show.bind="!hide1">
-						TransportDate <input type="date" id="TransportDate" class="form-control input-sm" value.bind="item.TransportDate">
-
-
-						TransportTo ?
+						TransportDate <input type="date" id="TransportDate" class="form-control input-sm" value.bind="item.TransportDate">						TransportTo ?
 						<aubs-typeahead ref='dtransporto' data.bind="appService.codesListLocation" value.bind="item.Description" debounce.bind="350"
 						 placeholder="TransportTo" open-on-focus.bind="true" key="Description" results-limit.bind="12" select-single-result.bind="true">
 						</aubs-typeahead>
@@ -51,8 +48,7 @@
 					<div show.bind="!hide2">
 
 						ExhibitTitle <input type="text" id="ExhibitTitle" class="form-control input-sm" value.bind="item.ExhibitTitle"> ExhibitSponser
-						 <input type="text" id="ExhibitSponser" class="form-control input-sm" value.bind="item.ExhibitSponser">
-             ExhibitLocation 
+						<input type="text" id="ExhibitSponser" class="form-control input-sm" value.bind="item.ExhibitSponser"> ExhibitLocation
 						<!--<aubs-typeahead ref='exhibitlocation'
              data.bind="appService.codesProvenanceLocation" 
              value.bind="item.Description" debounce.bind="350"
@@ -62,17 +58,14 @@
 
 
 
-  
-		<select id="ExhibitLocation" class="form-control input-sm" value.bind="item.ExhibitLocation"> 
+
+						<select id="ExhibitLocation" class="form-control input-sm" value.bind="item.ExhibitLocation"> 
                       <option model.bind="null">Choose...</option> 
                      <option repeat.for="opt of appService.codesProvenanceLocation" 
                      model.bind="opt.id">
                            ${opt.Description} 
                       </option> 
-                    </select>
-
-						Exhibit Date<input type="text" id="ExhibitDates" class="form-control input-sm" value.bind="item.ExhibitDates"> Exhibit
-						SortDate
+                    </select> Exhibit Date<input type="text" id="ExhibitDates" class="form-control input-sm" value.bind="item.ExhibitDates">						Exhibit SortDate
 						<input type="text" id="ExhibitSortDate" class="form-control input-sm" value.bind="item.ExhibitSortDate"> Traveled
 						<!-- <input type="text" id="Traveled" class="form-control input-sm" value.bind="item.Traveled"> ExhibitMemo -->
 						<input type="checkbox" id="Traveled" checked.bind="item.Traveled"><br> ExhibitMemo
@@ -84,35 +77,31 @@
 					<div show.bind="!hide3">
 						<!-- ExhibitID <input type="text" id="ExhibitID" class="form-control input-sm" value.bind="item.ExhibitID"> ReproductionType -->
 						<!-- <input type="text" id="ReproductionType" class="form-control input-sm" value.bind="item.ReproductionType"> ReproductionTitle -->
-${item.id}
+						${item.id}
 						<select id="ReproductionType" class="form-control  input-sm" value.bind="item.ReproductionType"> 
                       <option model.bind="null">Choose...</option> 
                          <option repeat.for="opt of appService.codesPublicationType " model.bind="opt.id">
                     ${opt.Description} 
                       </option> 
              
-                    </select> 
-                    
-                    	<!--   value.bind="item.DescriptionLoc" -->
-                      ReproductionLocation
+                    </select>
+
+						<!--   value.bind="item.DescriptionLoc" -->
+						ReproductionLocation
 						<!-- <aubs-typeahead ref='reproductionlocation' data.bind="appService.codesProvenanceLocation"
              value.bind="item.ReproductionLocation"
 						 debounce.bind="350" placeholder="reproduction location" open-on-focus.bind="true"
               key="Description" results-limit.bind="12"
 						 select-single-result.bind="true">
 						</aubs-typeahead> -->
-                    <select id="ProvLoc" class="form-control  input-sm" value.bind="item.ReproductionLocation"> 
+						<select id="ProvLoc" class="form-control  input-sm" value.bind="item.ReproductionLocation"> 
                       <option model.bind="null">Choose</option> 
                          <option repeat.for="opt of appService.codesProvenanceLocation "
                           model.bind="opt.id">
                     ${opt.Description} 
                       </option> 
-                    </select>
-                    ReproductionTitle <input type="text" id="ReproductionTitle" class="form-control input-sm"
-						 value.bind="item.ReproductionTitle">
-             
-             
-              ReproductionPage <input type="text" id="ReproductionPage" class="form-control input-sm"
+                    </select> ReproductionTitle <input type="text" id="ReproductionTitle" class="form-control input-sm"
+						 value.bind="item.ReproductionTitle"> ReproductionPage <input type="text" id="ReproductionPage" class="form-control input-sm"
 						 value.bind="item.ReproductionPage"> ColorBW
 						<!-- <input type="text" id="ColorBW" class="form-control input-sm" 
             value.bind="item.ColorBW">  -->
@@ -126,7 +115,7 @@ ${item.id}
 						<input type="text" id="ReproductionAuthor" class="form-control input-sm" value.bind="item.ReproductionAuthor">
 						<!-- <input type="text" id="ReproductionLocation" class="form-control input-sm" value.bind="item.ReproductionLocation">						AuthorFirst <input type="text" id="AuthorFirst" class="form-control input-sm" value.bind="item.AuthorFirst"> AuthorLast -->
 						<!-- codesListLocation -->
-					
+
 
 
 						<!-- ExhibitMemo <input type="text" id="ExhibitMemo" class="form-control input-sm" value.bind="item.AuthorLast"> -->
@@ -142,11 +131,10 @@ ${item.id}
 
 
 						ProvDate <input type="text" id="ProvDate" class="form-control input-sm" value.bind="item.ProvDate"> ProvMemo
-						<input
-						 type="text" id="ProvMemo" class="form-control input-sm" value.bind="item.ProvMemo">
-							ProvSortDate <input type="text" id="ProvSortDate" class="form-control input-sm" value.bind="item.ProvSortDate"> Sequence
-							<input type="text" id="Sequence" class="form-control input-sm" value.bind="item.Sequence">
-							<button id="save4" class="btn btn-primary" type="button" click.delegate="save4()">save Prov</button>
+						<input type="text" id="ProvMemo" class="form-control input-sm" value.bind="item.ProvMemo"> ProvSortDate <input type="text"
+						 id="ProvSortDate" class="form-control input-sm" value.bind="item.ProvSortDate"> Sequence
+						<input type="text" id="Sequence" class="form-control input-sm" value.bind="item.Sequence">
+						<button id="save4" class="btn btn-primary" type="button" click.delegate="save4()">save Prov</button>
 
 					</div>
 
@@ -168,13 +156,12 @@ ${item.id}
 						</aubs-typeahead>
 						<button id="save6" class="btn btn-primary" type="button" click.delegate="save6()">save 1</button>
 					</div>
-				
+
 					<div show.bind="!hide8">
 						Client Date
 						<input type="date" ref="date" class="form-control input-sm" value.bind="item.offerdate"> Org
-						<aubs-typeahead ref='doffering'
-						 data.bind="appService.orgsList" value.bind="item.OrgName" debounce.bind="350" placeholder="offering to arg" open-on-focus.bind="true"
-						 key="OrgName" results-limit.bind="12" select-single-result.bind="true">
+						<aubs-typeahead ref='doffering' data.bind="appService.orgsList" value.bind="item.OrgName" debounce.bind="350" placeholder="offering to arg"
+						 open-on-focus.bind="true" key="OrgName" results-limit.bind="12" select-single-result.bind="true">
 						</aubs-typeahead>
 
 						<button id="save8" class="btn btn-primary" type="button" click.delegate="save8()">save Offering</button>
@@ -183,7 +170,7 @@ ${item.id}
 
 				</div>
 				<div class="Rtable-cell-2">
-<!-- type: "Reproduction",
+					<!-- type: "Reproduction",
 savedlist: "sl1",
 rec: {
 ExhibitID: null,
@@ -199,15 +186,12 @@ batchno: 7,
 createdAt: "2018-10-11T03:09:17.689Z",
 updatedAt: "2018-10-11T03:09:17.689Z",
 id: "5bbebeddbae969982351103d" -->
-			
+
 					<h3>Press Ctrl+Left Mouse to toggle row selection</h3>
-					<ak-grid class="flex-row-1 overflow-y-auto" id="grid" k-data-source.bind="datasource" 
-          k-widget.bind="grid" k-sortable.bind="{ mode: 'multiple',   allowUnsort: 'true'}"
-					 k-filterable.bind="{  mode: 'row' }" k-editable="inline" 
-           k-reorderable.bind="true" k-groupable.bind="true" k-resizable.bind="true"
-					 k-on-edit.delegate="onEdit($event.detail)"
-            k-selectable="[row]" k-on-change.delegate="rowSelected($event.detail)"
-					 k-column-menu.bind="true" k-pageable.bind="true">
+					<ak-grid class="flex-row-1 overflow-y-auto" id="grid" k-data-source.bind="datasource" k-widget.bind="grid" k-sortable.bind="{ mode: 'multiple',   allowUnsort: 'true'}"
+					 k-filterable.bind="{  mode: 'row' }" k-editable="inline" k-reorderable.bind="true" k-groupable.bind="true" k-resizable.bind="true"
+					 k-on-edit.delegate="onEdit($event.detail)" k-selectable="[row]" k-on-change.delegate="rowSelected($event.detail)" k-column-menu.bind="true"
+					 k-pageable.bind="true">
 						<!-- <ak-col k-filterable.bind="false" k-width="120px" k-title="command" k-command.bind="['edit']" k-title="&nbsp;" k-locked.bind="true"
 						 k-lockable.bind="false"></ak-col>
 						<ak-col k-title="type" k-width="140px" k-field="type"></ak-col>
@@ -218,15 +202,15 @@ id: "5bbebeddbae969982351103d" -->
 						 k-template="<button click.delegate='detailsFactSheet($event)' class='k-button'>#=InventoryCode#</button>">
 						</ak-col>
 					 -->
-           	<ak-col k-title="type" k-width="75px" k-field="type"></ak-col>
-					
+						<ak-col k-title="type" k-width="75px" k-field="type"></ak-col>
+
 						<ak-col k-title="savedlist" k-width="75px" k-field="savedlist"></ak-col>
 						<ak-col k-title="batchno" k-width="75px" k-field="batchno"></ak-col>
 
-	<ak-col k-filterable.bind="false" k-title="batchno" k-width="75px" k-field="rec.batchno"></ak-col>
-					
-<ak-col k-filterable.bind="false" k-title="batchno" k-width="75px" k-field="rec"></ak-col>
-	
+						<ak-col k-filterable.bind="false" k-title="batchno" k-width="75px" k-field="rec.batchno"></ak-col>
+
+						<ak-col k-filterable.bind="false" k-title="batchno" k-width="75px" k-field="rec"></ak-col>
+
 						<!-- <ak-col k-title="InvYear" k-width="180px" k-field="InvYear"></ak-col>
 							<ak-col k-title="MediumText" k-width="180px" k-field="MediumText"></ak-col>
 							<ak-col k-title="Bin" k-width="180px" k-field="Bin"></ak-col> -->
@@ -235,7 +219,7 @@ id: "5bbebeddbae969982351103d" -->
 
 					<div class="flex-row-none section-footer">
 						<!-- ${footer} <span>  ${queryParams}</span> <span>&nbsp;&nbsp;	<button id="searchInputBtn" class="btn btn-primary" type="button" click.delegate="performAction1()">Action1 Delete Items from sl</button></span> -->
- <b>  ${message} </b>
+						<b>  ${message} </b>
 					</div>
 				</div>
 			</div>

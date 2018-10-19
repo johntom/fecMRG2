@@ -6,8 +6,18 @@
 		</div>
 
 		<div class="Rtable-cell-70  Rtable-cell--highlight">
-			<input click.delegate="showModal('SoldToID')" type="text" id="SoldTo" class="form-control input-sm" value.bind="currentItem.soldtoname">
-		</div>
+			<!-- <input click.delegate="showModal('SoldToID')" type="text" 
+      id="SoldTo" class="form-control input-sm" value.bind="currentItem.soldtoname"> -->
+	
+  	<div if.bind="currentItem.soldtoname===undefined || currentItem.soldtoname===''">
+							<a click.delegate="showModal( 'SoldToID')">select_link </a>
+						</div>
+						<div else>
+							<a click.delegate="showModal('SoldToID')">${currentItem.soldtoname}</a>
+
+						</div>
+  
+  	</div>
 
 		<div class="Rtable-cell-30 Rtable-cell--highlight">
 			<strong> Date</strong>

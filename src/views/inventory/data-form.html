@@ -207,7 +207,9 @@
 									<div class="Rtable-cell-70  Rtable-cell--light">
 
 
-										<div if.bind="currentItem.MediumSupportobj===undefined || currentItem.MediumSupportobj===''">select_link </div>
+										<div if.bind="currentItem.MediumSupportobj===undefined || currentItem.MediumSupportobj===''">
+                      	<a click.delegate="showModal( 'MediumSupportobj')">select_link </a>
+                   </div>
 										<div else>
 											<a click.delegate="showModal( 'MediumSupportobj')">${currentItem.MediumSupportobj.Description} </a>
 
@@ -462,7 +464,7 @@
 										<input type="text " xid="Condition " class="form-control input-sm " value.bind="currentItem.Condition">
 									</div>
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
-										<strong> Inscribed>></strong>
+										<strong> Inscribed></strong>
 									</div>
 
 									<div class="Rtable-cell-70  Rtable-cell--light">

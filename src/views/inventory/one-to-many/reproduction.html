@@ -111,7 +111,6 @@
 
 					<td width="60px"><input type="date" id="ReproductionSortDate" class="form-control  input-sm" value.bind="ReproductionSortDate"></td>
 
-					<td width="225px">
 						<!-- <select ref='ReproductionExhibit' id="ReproductionExhibit" class="form-control input-sm"
              value.bind="ReproductionExhibit"
 						 change.delegate="selectChanged(ReproductionExhibit,$index,opt)"> 
@@ -121,24 +120,31 @@
                           ${opt.id}   ${opt.ExhibitTitle}    ${opt.ExhibitSponser}
                       </option> 
                     </select> -->
-						<select id="ReproductionExhibit" class="form-control  input-sm" value.bind="ReproductionExhibit"> 
+          
+          <td width="300px">
+           
+						<select    id="ReproductionExhibit" class="form-control  input-sm" value.bind="ReproductionExhibit"> 
                       <option model.bind="null">Choose...</option> 
-                         <option repeat.for="opt of currentItem.exhibition " model.bind="opt.ExhibitTitle">
-                 ${opt.ExhibitTitle} /     ${opt.ExhibitSponser}
+                         <option change.delegate="changeSelect(opt)" repeat.for="opt of currentItem.exhibition " model.bind="opt.id">
+               ${opt.id}  /  ${opt.ExhibitTitle} /  ${opt.ExhibitSponser}
                       </option> 
                     </select>
-
+		
+					
 					</td>
-					<td width="120px"><span> ${batchno}</span></td>
+					<td width="60px"><span> ${batchno}</span></td>
 
-					<td width="225px">
+					<td width="325px">
 						<!-- <button class="btn btn-primary" click.delegate="reproduction.edit=!reproduction.edit">${ !reproduction.edit ? 'Update' : 'Done' }</button>					 -->
-						<button class="btn btn-primary" click.delegate="saveitem(reproduction,$index)">${ !reproduction.edit ? 'Update' : 'Done' }</button>
-
-						<button class="btn btn-danger" click.delegate="remove(reproduction,$index)">Delete</button>
-					</td>
-
+						<button class="btn btn-primary" click.delegate="saveitem(reproduction,$index)">${!reproduction.edit ? 'Edit' : 'Save' }</button>
+					
+          	<button class="btn btn-success" click.delegate="modal(reproduction,$index)">Pop</button>
+					<button class="btn btn-danger" click.delegate="remove(reproduction,$index)">Del</button>
+					
+          </td>
+      
 				</tr>
+       
 			</tbody>
 		</table>
 

@@ -307,7 +307,8 @@ export class Rtf {
 
         // check to see if link in repo
         if (reproduction !== undefined) {
-          let eid = reproduction.findIndex(x => x.ReproductionExhibit === item.ExhibitTitle)
+          // let eid = reproduction.findIndex(x => x.ReproductionExhibit === item.ExhibitTitle)
+          let eid = reproduction.findIndex(x => x.id === item.ExhibitTitle)
           let reporec
           linkPageNo = ''
           console.log('eid ', eid, linkPageNo) //ColorBWDesc1)
@@ -453,29 +454,49 @@ export class Rtf {
       let a2 = ''
       let a3 = ''
       let inscribedText = '';
-      let n1 = inscribed.indexOf(":");
-      let a1 = inscribed.substr(0, n1);
-      a2 = inscribed.substr(n1, inscribed.length)
 
-      let n2 = a2.indexOf(";");
-      console.log('n2', n2)
-      if (n2 > -1) {
-        a3 = a2.substr(n2 + 1, inscribed.length)
-        a2 = inscribed.substr(n1, n2)
-      } // else a2=inscribedText
-      // let rawInsribed
-      // (a3 === undefined) ? inscribedText = pre + a1 + preitalic + a2 + postitalic +
-      //  preafter + post : inscribedText = pre + a1 + preitalic + a2 + postitalic + preafter + ',' + a3 + post
 
-      // (a3 === undefined) ? inscribedText = this.pre + a1 + this.preitalic + a2 + this.postitalic + this.post : inscribedText = pre + a1 + this.preitalic + a2 + this.postitalic + this.preafter + ',' + a3 + this.post
-      if (a3 === '') {
-        inscribedText = this.pre + a1 + this.preitalic + a2 + this.postitalic + this.post
-      } else {
-        inscribedText = pre + a1 + this.preitalic + a2 + this.postitalic + this.preafter + ',' + a3 + this.post
-      }
-      this.inscribedText = inscribedText
+// let semis = inscribed.count(';')
+// const semisCount = (inscribed, ";") => lodash.countBy(inscribed)[';'] || 0;
+// let semisCount =   lodash.count(inscribed, ";")
+// console.log(("str1,str2,str3,str4".match(/,/g) || []).length); //logs 3
+// console.log(("str1,str2,str3,str4".match(new RegExp("str", "g")) || []).length); //logs 4
 
-      console.log('inscribedText', this.inscribedText)
+  
+  let semisCount = (inscribed).match('/;/g')
+  let strCount = (inscribed).match(new RegExp(";", "g"))
+
+  console.log(semisCount,strCount);
+   let semisPos = inscribed.indexOf(";"); 
+   let colonPos = inscribed.indexOf(":");
+   let leftofcolonText=inscribed.substr(0, colonPos);
+  //  let leftofcolonText=inscribed.substr(colonpos, colonpos);
+   let rightofcolonText=inscribed.substr(colonPos+1, semisPos-1);
+
+   console.log('semis',semisCount,semisPos ,colonPos ,leftofcolonText ,rightofcolonText)
+      // let n1 = inscribed.indexOf(":");
+      // let a1 = inscribed.substr(0, n1);
+      // a2 = inscribed.substr(n1, inscribed.length)
+
+      // let n2 = a2.indexOf(";");
+      // console.log('n2', n2)
+      // if (n2 > -1) {
+      //   a3 = a2.substr(n2 + 1, inscribed.length)
+      //   a2 = inscribed.substr(n1, n2)
+      // } // else a2=inscribedText
+      // // let rawInsribed
+      // // (a3 === undefined) ? inscribedText = pre + a1 + preitalic + a2 + postitalic +
+      // //  preafter + post : inscribedText = pre + a1 + preitalic + a2 + postitalic + preafter + ',' + a3 + post
+
+      // // (a3 === undefined) ? inscribedText = this.pre + a1 + this.preitalic + a2 + this.postitalic + this.post : inscribedText = pre + a1 + this.preitalic + a2 + this.postitalic + this.preafter + ',' + a3 + this.post
+      // if (a3 === '') {
+      //   inscribedText = this.pre + a1 + this.preitalic + a2 + this.postitalic + this.post
+      // } else {
+      //   inscribedText = pre + a1 + this.preitalic + a2 + this.postitalic + this.preafter + ',' + a3 + this.post
+      // }
+      // this.inscribedText = inscribedText
+
+      // console.log('inscribedText', this.inscribedText)
     }
 
   }
@@ -709,7 +730,7 @@ there are extra ' when there are fractions
 
 
 
-    // this.buildInscribed()
+    this.buildInscribed()
   
 
     //1

@@ -13,7 +13,7 @@
 			width: 70%;
 		}
 	</style>
-	
+
 	<div class="flex-row-none">
 		<!-- style="width:50%" <div id="top-left" class="data-form overflow-y-auto flex-column-2"> -->
 		<div class="RLeft">
@@ -32,8 +32,17 @@
                         ${opt.OrgName} 
                       </option> 
                     </select> -->
-                    <input dblclick.delegate="showModal('PurchasedFrom')" type="text" id="PurchasedFrom" class="form-control input-sm" value.bind="currentItem.purchasedfromname">
+						<!-- <input dblclick.delegate="showModal('PurchasedFrom')" type="text" 
+                    id="PurchasedFrom"
+                     class="form-control input-sm" value.bind="currentItem.purchasedfromname"> -->
 
+						<div if.bind="currentItem.purchasedfromname===undefined || currentItem.purchasedfromname===''">
+							<a click.delegate="showModal( 'PurchasedFrom')">select_link </a>
+						</div>
+						<div else>
+							<a click.delegate="showModal('PurchasedFrom')">${currentItem.purchasedfromname}</a>
+
+						</div>
 					</div>
 
 
@@ -77,7 +86,7 @@
 					</div>
 
 				</div>
-			
+
 			</div>
 		</div>
 	</div>

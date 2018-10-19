@@ -3,6 +3,7 @@ import { ApiService } from '../../../utils/servicesApi';
 import { ApplicationService } from '../../../services/application-service';
 import { DialogService } from 'aurelia-dialog';
 import { Prompt } from '../../../services/prompt';
+import { PromptForm } from '../promptForm';
 @inject(ApiService, ApplicationService, DialogService)
 export class Reproduction {
   heading = 'DataForm HEADER...';
@@ -35,7 +36,27 @@ export class Reproduction {
     //     });
     // }
   }
+modal(item, index){
 
+  // this.currentItem.recordId = this.recordId model:this.currentItem
+  let currentModel={}
+  currentModel.currentItem = this.currentItem
+  currentModel.item = item
+
+  
+    // this.dialogService.open({ viewModel: PromptForm, model: item, lock: false }).whenClosed(response => {
+  this.dialogService.open({ viewModel: PromptForm, model: currentModel, lock: false }).whenClosed(response => {
+
+      if (!response.wasCancelled) {
+         console.log('item',item);
+
+      } else {
+       
+        console.log('cancel');
+      }
+      console.log(response)//.output);
+    });
+}
   // selectChanged(ReproductionExhibit, index, opt) {
   //   let rid = ReproductionExhibit// this.currentItem.reproduction[index]._id// ReproductionTitle
   //   let mid = this.currentItem.exhibition.findIndex(x => x._id === rid)
@@ -87,7 +108,10 @@ export class Reproduction {
     // this.newNoteNote = '';
 
   }
+changeSelect(opt){
 
+  console.log('opt',opt)  
+}
 
   remove(item, index) {
 

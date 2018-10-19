@@ -42,32 +42,19 @@
 			</tfoot>
 			<tbody>
 				<tr repeat.for="museumloan of currentItem.museumloan" with.bind="museumloan">
-					<!-- <td> ${ExhibitTitle} </td> -->
-					<!-- <td width="125px">
-						<span show.bind="!transport.edit">	
-              <select disabled show.bind="!transport.edit" id="tt1" class="form-control input-sm" value.two-way="TransportTo" > 
-						<option model.bind="null">Choose...</option> 
-						<option repeat.for="opt of appService.codesListLocation" model.bind="opt.ID">
-							${opt.Description} 
-						</option> 
-						</select></span>
-						<select show.bind="transport.edit" id="tt" class="form-control input-sm" value.two-way="TransportTo" change.delegate="selectChanged(transport, ID)"> 
-						<option model.bind="null">Choose...</option> 
-						<option repeat.for="opt of appService.codesListLocation" model.bind="opt.ID">
-							${opt.Description} 
-						</option> 
-						</select>
-					</td>
-					<td width="220px"><input type="text" id="LoanTo" class="form-control  input-sm" value.bind="museumloan.LoanTo"></td> -->
-					<td width="250px">
-						<!-- <select id="LoanTo" class="form-control input-sm" value.bind="museumloan.LoanTo"> 
-                    <option model.bind="null">Choose...</option> 
-                       <option repeat.for="opt of appService.orgsList" model.bind="opt._id">
-                        ${opt.OrgName} 
-                      </option> 
-                    </select> -->
-						<input dblclick.delegate="showModal('LoanTo',$index)" type="text" id="LoanTo" class="form-control input-sm" value.bind="loantoname">
-					</td>
+								<td width="250px">
+					
+						<!-- <input dblclick.delegate="showModal('LoanTo',$index)" type="text" id="LoanTo" 
+            class="form-control input-sm" value.bind="loantoname"> -->
+					 
+          	<div if.bind="loantoname===undefined || loantoname===''">
+							<a click.delegate="showModal( 'LoanTo',$index)">select_link </a>
+						</div>
+						<div else>
+							<a click.delegate="showModal('LoanTo',$index)">${museumloan.loantoname}</a>
+
+						</div>
+          </td>
 
 					<td width="120px"><input type="text" id="InsValue" class="form-control  input-sm" value.bind="museumloan.InsuranceValue"></td>
 					<td width="120px"><input type="text" id="InsValueAmt" class="form-control  input-sm" value.bind="museumloan.InsuranceValueAmt"></td>
@@ -91,7 +78,7 @@
 
 					<td width="225px">
 						<!-- <button class="btn btn-primary" click.delegate="museumloan.edit=!museumloan.edit">${ !museumloan.edit ? 'Update' : 'Done' }</button> -->
-								<button class="btn btn-primary" click.delegate="saveitem(museumloan,$index)">${ !museumloan.edit ? 'Update' : 'Done' }</button>
+								<button class="btn btn-primary" click.delegate="saveitem(museumloan,$index)">${ !museumloan.edit ? 'Edit' : 'Save' }</button>
 
           	<button class="btn btn-sm btn-danger" click.delegate="remove(museumloan)">           Delete            </button>
 					</td>

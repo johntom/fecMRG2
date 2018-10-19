@@ -4,7 +4,9 @@ import { ApiService } from '../../../utils/servicesApi';
 import { ApplicationService } from '../../../services/application-service';
 import moment from 'moment';
 import { DialogService } from 'aurelia-dialog';
-import { ynPrompt } from '../../../services/prompt';
+// import { ynPrompt } from '../../../services/prompt';
+
+import { Promptyn } from '../../../services/promptyn';
 import { Prompt } from '../prompt';
 @inject(ApiService, ApplicationService, DialogService)
 export class Conservation {
@@ -56,10 +58,12 @@ export class Conservation {
 
     // let notes = this.currentItem.notes
     // notes.splice(index, 1)// start, deleteCount)
-    this.dialogService.open({ viewModel: ynPrompt, model: 'Delete or Cancel?', lock: false }).whenClosed(response => {
+    // this.dialogService.open({ viewModel: ynPrompt, model: 'Delete or Cancel?', lock: false }).whenClosed(response => {
+    this.dialogService.open({ viewModel: Promptyn, model: 'Delete or Cancel?', lock: false }).whenClosed(response => {
+  
       if (!response.wasCancelled) {
         console.log('Delete')
-        let notes = this.currentItem.notes
+        let notes = this.currentItem.conservation
         notes.splice(index, 1)// start, deleteCount)
       } else {
         console.log('cancel');

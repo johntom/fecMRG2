@@ -19,6 +19,10 @@ export class Prompt {
     'Photographer', 'Purchased From', 'Conserved By',
     'Conserved By', 'Sold To', 'Sold To', 'Museum Loan To']
 
+
+textfields=['Description', 'Comment', 'Inscribed', 'Treatment']
+
+textfielddesc = ['Enter Description', 'Enter Comment', 'Enter Inscribed with "," and ";', 'Enter Treatment']
   constructor(controller, appService, dataService, dialogService, api) {
     this.controller = controller;
     this.answer = null;
@@ -101,9 +105,21 @@ export class Prompt {
     } else {
       this.orgfielddescription = this.fieldname
     }
-    this.doc = `type any characters of the ${this.orgfielddescription} to select.`
+    let topos = this.textfields.findIndex(x => x === this.fieldname);
+    if (topos !== -1) {
+      this.textfielddescription = this.textfielddesc[topos]
+    this.doc = ` ${this.textfielddescription} .`
+    this.heading = ` ${this.textfielddescription} .`
+    this.placeholder = `${this.textfielddescription}`
+    } else {
+ this.doc = `type any characters of the ${this.orgfielddescription} to select.`
     this.heading = `Search ${this.orgfielddescription} to select.`
     this.placeholder = `Enter any characters on ${this.orgfielddescription} to select.`
+
+    }
+
+
+   
     if (this.currentItem.recordId !== 'create') {
       // if (this.fieldname === 'ArtistX') {
       //   let artists = this.appService.artistList

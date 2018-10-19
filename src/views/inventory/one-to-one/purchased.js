@@ -52,4 +52,7 @@ export class Purchased {
       console.log(response.output);
     });
   }
+
+
+  
 }

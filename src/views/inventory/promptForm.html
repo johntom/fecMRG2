@@ -1,0 +1,87 @@
+<template>
+	<require from="aurelia-kendoui-bridge/multiselect/multiselect"></require>
+	<require from="../../resources/value-converters/stringify"></require>
+	<ux-dialog>
+		<ux-dialog-header class="modal-header modal-header-success">
+			<!-- <h2> ${fieldname} </h2> -->
+			<div class="alert alert-danger">
+				<h1> ${heading}</h1>
+			</div>
+			<!-- <div class="alert alert-danger">${fieldname}</div> -->
+			<!-- <div class="alert alert-danger" if.bind="error">${error}</div> k-multiselect.ref="myMultiSelect"  -->
+
+
+		</ux-dialog-header>
+		<ux-dialog-body>
+
+			<!-- <div show.bind="fieldname==='Description'"> -->
+			<!-- <div show.bind="!hide3"> -->
+			<!-- ExhibitID <input type="text" id="ExhibitID" class="form-control input-sm" value.bind="item.ExhibitID"> ReproductionType -->
+			<!-- <input type="text" id="ReproductionType" class="form-control input-sm" value.bind="item.ReproductionType"> ReproductionTitle -->
+			${item.id} <br>
+      AuthorFirst <input id="AuthorFirst" class="form-control input-sm" type="text" 
+      value.bind="item.AuthorFirst"><br>
+      	
+			<!-- ${AuthorLast} -->
+			AuthorLast <input  id="AuthorLast" 
+      class="form-control input-sm" type="text" value.bind="item.AuthorLast">	<br>
+      ReproductionTitle <input show.bind="reproduction.edit" id="ReproductionTitle" 
+      class="form-control input-sm" type="text"
+			 value.bind="item.ReproductionTitle">
+		<br>
+
+
+ReproductionType			<select id="ReproductionType" class="form-control  input-sm" value.bind="item.ReproductionType"> 
+                      <option model.bind="null">Choose...</option> 
+                         <option repeat.for="opt of appService.codesPublicationType " model.bind="opt.id">
+                    ${opt.Description} 
+                      </option> 
+             
+                    </select>
+                    	<br> ReproductionLocation
+
+			<select id="ProvLoc" class="form-control  input-sm" value.bind="item.ReproductionLocation"> 
+                      <option model.bind="null">Choose</option> 
+                         <option repeat.for="opt of appService.codesProvenanceLocation "
+                          model.bind="opt.id">
+                    ${opt.Description} 
+                      </option> 
+                    </select> 
+                    	<br>ReproductionTitle <input type="text" id="ReproductionTitle" 
+                      class="form-control input-sm"
+			 value.bind="item.ReproductionTitle"> 	<br>
+       ReproductionPage <input type="text" id="ReproductionPage" class="form-control input-sm"
+			 value.bind="item.ReproductionPage">	<br> ColorBW ColorBW <select id="ColorBW" class="form-control  input-sm" value.bind="item.ColorBW"> 
+                      <option model.bind="null">Choose...</option> 
+                         <option repeat.for="opt of appService.codesReproductionType " model.bind="opt.id">
+                    ${opt.Description} 
+                      </option> 
+                    </select> ReproductionDate <input type="text" id="ReproductionDate" class="form-control input-sm" value.bind="item.ReproductionDate">	
+                    	<br>		ReproductionSortDate
+			<input type="text" id="ReproductionSortDate" class="form-control input-sm" value.bind="item.ReproductionSortDate">
+      	<br> ReproductionName
+			<input type="text" id="ReproductionName" class="form-control input-sm" value.bind="item.ReproductionName">
+      <br> Select Exhibition
+        
+						<select    id="ReproductionExhibit" class="form-control  input-sm" value.bind="item.ReproductionExhibit"> 
+                      <option model.bind="null">Choose...</option> 
+                         <option change.delegate="changeSelect(opt)" repeat.for="opt of currentItem.exhibition " model.bind="opt.id">
+               ${opt.id}  /  ${opt.ExhibitTitle} /  ${opt.ExhibitSponser}
+                      </option> 
+                    </select>
+			<!-- <button id="save3" class="btn btn-primary" type="button" click.delegate="save()">Save Reproduction Item </button> -->
+
+			</div>
+
+			<hr>
+		</ux-dialog-body>
+
+		<ux-dialog-footer>
+
+			<!-- <button show.bind="addlist" click.trigger="addit()">Add New Saved List</button> -->
+			<button click.trigger="controller.cancel()">Cancel and Close </button>
+			<button click.trigger="save()">Save and Close </button>
+
+		</ux-dialog-footer>
+	</ux-dialog>
+</template>

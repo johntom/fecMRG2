@@ -13,7 +13,7 @@
 		<table class="table-condensed table">
 			<thead class="table-header-blue" data-sort="items.bind: currentItem.exhibition; cols: ['WorkDate','Notes']">
 				<tr>
-
+	<th width="70px" class="header">Id </th>
 					<th width="220px" class="header">Title </th>
 					<th width="220px" class="header">Sponser </th>
 					<th width="220px" class="header">Location </th>
@@ -46,7 +46,8 @@
 			<tbody>
 				<tr repeat.for="exhibition of currentItem.exhibition" with.bind="exhibition">
 					<!-- <td> ${ExhibitTitle} </td> -->
-
+		<td width="70px"><input type="text" id="id" class="form-control  input-sm" value.bind="exhibition.id"></td>
+			
 					<td width="220px"><input type="text" id="ExhibitTitle" class="form-control  input-sm" value.bind="exhibition.ExhibitTitle"></td>
 					<td width="220px"><input type="text" id="ExhibitSponser" class="form-control  input-sm" value.bind="exhibition.ExhibitSponser"></td>
 
@@ -74,7 +75,7 @@
 					<td width="220px"><input type="text" id="ExhibitMemo" class="form-control  input-sm" value.bind="exhibition.ExhibitMemo"></td>
 					<td width="225px">
 						<!-- <button class="btn btn-primary" click.delegate="exhibition.edit=!exhibition.edit">${ !exhibition.edit ? 'Update' : 'Done' }</button> -->
-						<button class="btn btn-primary" click.delegate="saveitem(exhibition,$index)">${ !exhibition.edit ? 'Update' : 'Done' }</button>
+						<button class="btn btn-primary" click.delegate="saveitem(exhibition,$index)">${ !exhibition.edit ? 'Edit' : 'Save' }</button>
 						<button class="btn btn-sm btn-danger" click.delegate="remove(exhibition,$index)">           Delete            </button>
 					</td>
 
