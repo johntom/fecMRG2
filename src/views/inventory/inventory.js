@@ -195,9 +195,9 @@ export class Inventory {
     this.search = {}
     //this.router.navigate(`#/inventory/`);
   }
-  attached() {
-    this.altAKeyPressSubscription = this.eventAggregator.subscribe('keydown:alt-a', this.addinventory.bind(this));
-    // this.stateList
+  // attached() {
+  //   this.altAKeyPressSubscription = this.eventAggregator.subscribe('keydown:alt-a', this.addinventory.bind(this));
+  //   // this.stateList
     // set typahead value for state
     // console.log('sl', this.stateList)
     // // this.name = {
@@ -218,10 +218,14 @@ export class Inventory {
     //   value: this.states[1].id
     // }
     // this.dows.value = this.OrgName
-
+attached() {
+    this.altAKeyPressSubscription = this.eventAggregator.subscribe('keydown:alt-a', this.addinventory.bind(this));
+     this.altSKeyPressSubscription = this.eventAggregator.subscribe('keydown:alt-s', this.performSearch.bind(this));
+ 
   }
   detached() {
     this.altAKeyPressSubscription.dispose();
+     this.altSKeyPressSubscription.dispose();
   }
 
   activate() {

@@ -9,8 +9,9 @@ import { MyDataService } from "../../services/my-data-service"
 import { DialogService } from 'aurelia-dialog'
 import { Prompt } from './prompt'
 import { DialogImage } from './dialogImage'
+import { EventAggregator } from 'aurelia-event-aggregator';
 
-@inject(Router, ApiService, UtilService, ApplicationService, MyDataService, DialogService)
+@inject(Router, ApiService, UtilService, ApplicationService, MyDataService, DialogService,EventAggregator)
 export class SearchResults {
 	heading = 'Search Results...';
 	footer = 'Search Results...';
@@ -84,7 +85,7 @@ export class SearchResults {
 	})
 
 
-	constructor(router, api, utilService, appService, dataService, dialogService) {
+	constructor(router, api, utilService, appService, dataService, dialogService,eventAggregator) {
 		this.router = router;
 		this.api = api;
 		this.utilService = utilService;
@@ -97,6 +98,7 @@ export class SearchResults {
 		this.selectedOrders = [];
 		this.router = router
 		this.dialogService = dialogService
+    this.eventAggregator = eventAggregator
 		//   this.currentsavedlist;
 
 	}
@@ -194,7 +196,6 @@ export class SearchResults {
 		// this.selectedids = orgobj.InventoryCodes
 
 	}
-
 
 
 	loadGrid() {
@@ -298,7 +299,13 @@ export class SearchResults {
 			console.log(response.output);
 		});
 	}
-
+// attached() {
+//     this.altAKeyPressSubscription = this.eventAggregator.subscribe('keydown:alt-s', this.addinventory.bind(this));
+ 
+//   }
+//   detached() {
+//     this.altAKeyPressSubscription.dispose();
+//   }
 	////////////////////
 
 	onDataBound(e) {

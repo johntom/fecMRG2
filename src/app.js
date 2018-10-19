@@ -68,6 +68,11 @@ export class App {
       e.stopPropagation();
       this.eventAggregator.publish('keydown:alt-a');
     }
+      if (e.key === "s" && e.altKey) {
+      e.preventDefault();
+      e.stopPropagation();
+      this.eventAggregator.publish('keydown:alt-s');
+    }
   }
   selectTab(e, tab) {
     e.preventDefault();

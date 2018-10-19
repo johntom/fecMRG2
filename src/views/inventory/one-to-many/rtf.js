@@ -193,7 +193,7 @@ export class Rtf {
 
     } else PrinterLoc = ''
     if (this.currentItem.Edition !== undefined && this.currentItem.Edition !== '')
-      segmentEdition += `${this.currentItem.Edition} <br>`
+      segmentEdition += `Edition: ${this.currentItem.Edition} <br>`
     if (this.currentItem.Publisher !== undefined && this.currentItem.Publisher !== '') {
       segmentEdition += `${this.currentItem.Publisher}${PublisherLoc}<br>`
     }
@@ -202,7 +202,7 @@ export class Rtf {
     }
     if (segmentEdition !== '') {
       this.segment2 += segmentEditionHead
-      this.segment2 += segmentEdition + `<br>`
+      this.segment2 += segmentEdition + `<br> ${this.currentItem.EditionComment}<br>`
 
 
 
@@ -441,39 +441,66 @@ export class Rtf {
     }
   }
   //1
- buildInscribed(){
-// rules:
-// 1 everying to left of : is plain text and to right is em
-// 2 until it finds a ; (convert ; to </em> <br>)  
-// 3 repeat 1 from new position
+  buildInscribed() {
+    // rules:
+    // 1 everying to left of : is plain text and to right is em
+    // 2 until it finds a ; (convert ; to </em> <br>)  
+    // 3 repeat 1 from new position
 
     let inscribed = this.currentItem.Inscribed
-    let inscribedText
+    let iLines = []
     console.log('inscribed==================== ', inscribed)
     if (inscribed !== undefined) {
       let a2 = ''
       let a3 = ''
-      let inscribedText = '';
+
+      this.inscribedText = ''
+      // let semis = inscribed.count(';')
+      // const semisCount = (inscribed, ";") => lodash.countBy(inscribed)[';'] || 0;
+      // let semisCount =   lodash.count(inscribed, ";")
+      // console.log(("str1,str2,str3,str4".match(/,/g) || []).length); //logs 3
+      // console.log(("str1,str2,str3,str4".match(new RegExp("str", "g")) || []).length); //logs 4
+
+      //inscribed verso with orientation information and Museum of Modern Art numbers: [up arrow] top / 57.424 / 56.1276; 
+      //signed and dated by Lee Krasner, the artist's widow, verso on backing board: Jackson Pollock 1952 ca. / Lee Krasner Pollock 1960
+
+      // inscribed verso with orientation information and Museum of Modern Art numbers em [up arrow] top / 57.424 / 56.1276
+      //signed and dated by Lee Krasner, the artist's widow, verso on backing board em Jackson Pollock 1952 ca. / Lee Krasner Pollock 1960
+
+      let semisCount = (inscribed).match('/;/g')
+      let strCount = (inscribed).match(new RegExp(";", "g"))
+      let colonPos
+      let leftofcolonText
+      let rightofcolonbaseText
+      let semisPos
+      let rightofcolonTextem
+      let restoftext
+      console.log(semisCount, strCount);
+      //  let semisPos = inscribed.indexOf(";"); 
+      colonPos = inscribed.indexOf(":");
+      leftofcolonText = inscribed.substr(0, colonPos);
+      rightofcolonbaseText = inscribed.substr(colonPos + 1, inscribed.length - colonPos);
+      semisPos = rightofcolonbaseText.indexOf(";");
+      rightofcolonTextem = '<em>' + rightofcolonbaseText.substr(1, semisPos - 1) + '</em>';
+      iLines.push(leftofcolonText + ' ' + rightofcolonTextem)
+      restoftext = rightofcolonbaseText.substr(semisPos + 1, rightofcolonbaseText.length);
+
+      colonPos = restoftext.indexOf(":");
+      leftofcolonText = restoftext.substr(0, colonPos);
+      rightofcolonTextem = '<em>' + restoftext.substr(colonPos + 1, restoftext.length - colonPos) + '</em>';
+      iLines.push(leftofcolonText + ' ' + rightofcolonTextem)
 
 
-// let semis = inscribed.count(';')
-// const semisCount = (inscribed, ";") => lodash.countBy(inscribed)[';'] || 0;
-// let semisCount =   lodash.count(inscribed, ";")
-// console.log(("str1,str2,str3,str4".match(/,/g) || []).length); //logs 3
-// console.log(("str1,str2,str3,str4".match(new RegExp("str", "g")) || []).length); //logs 4
+      // semisPos = inscribed.indexOf(";");
+      // //  let leftofcolonText=inscribed.substr(colonpos, colonpos);
+      // rightofcolonText = inscribed.substr(colonPos + 1, semisPos - 1);
 
-  
-  let semisCount = (inscribed).match('/;/g')
-  let strCount = (inscribed).match(new RegExp(";", "g"))
+      for (const item of iLines) {
+        this.inscribedText += item + '<br>'
+      }
 
-  console.log(semisCount,strCount);
-   let semisPos = inscribed.indexOf(";"); 
-   let colonPos = inscribed.indexOf(":");
-   let leftofcolonText=inscribed.substr(0, colonPos);
-  //  let leftofcolonText=inscribed.substr(colonpos, colonpos);
-   let rightofcolonText=inscribed.substr(colonPos+1, semisPos-1);
 
-   console.log('semis',semisCount,semisPos ,colonPos ,leftofcolonText ,rightofcolonText)
+      //console.log('semis',semisCount,semisPos ,colonPos ,leftofcolonText ,rightofcolonText)
       // let n1 = inscribed.indexOf(":");
       // let a1 = inscribed.substr(0, n1);
       // a2 = inscribed.substr(n1, inscribed.length)
@@ -731,7 +758,7 @@ there are extra ' when there are fractions
 
 
     this.buildInscribed()
-  
+
 
     //1
     let segment1 = ` ${artistWdates1}<br>`
@@ -744,8 +771,11 @@ there are extra ' when there are fractions
 
     segment1 += `  ${dims} in. unframed<br> `
     segment1 += `  ${dimscm} cm unframed<br> `
-    segment1 += `  signed <br>  `
-    segment1 += `  ${this.currentItem.SignedLocation}<br>  `
+    
+    // segment1 += `  signed <br>  `
+    // segment1 += `  ${this.currentItem.SignedLocation}<br>  `
+
+    segment1 += ` ${this.inscribedText}<br> ` 
 
     // this.appService.clientHeight = this.mainimage.clientHeight
     // this.appService.clientWidth = this.mainimage.clientWidth
