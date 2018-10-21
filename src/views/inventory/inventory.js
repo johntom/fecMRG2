@@ -161,7 +161,7 @@ export class Inventory {
 
      console.log('sold', sold,this.search.sold)
      this.search.sold=`${this.search.sold}`
-     this.search.inventorycode='soldit'
+    //  // this.search.inventorycode='soldit'
     // alert(keywd)
     if (this.search) {
       // if (keywd !== 'undefined' && keywd !== 'null') this.search.keywords = `${this.Description.Description}`
