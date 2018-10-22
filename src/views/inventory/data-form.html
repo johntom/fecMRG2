@@ -7,7 +7,7 @@
 	<require from="aurelia-kendoui-bridge/common/template"></require>
 	<require from="./modal-form"></require>
 	<!-- <require from="./flex.css"></require> -->
-  <require from="../../../styles/flex.css"></require>
+	<require from="../../../styles/flex.css"></require>
 	<require from="../../resources/value-converters/date-format"></require>
 
 
@@ -27,11 +27,9 @@
  } */
 
 		#data-form-ext .tab.tab-selected .form-tab-box {
-
 			background-color: lightblue;
 			border-color: #7bbbce
 		}
-
 
 		#cap {
 			// width: 242px;
@@ -122,7 +120,6 @@
 										<!-- & validate -->
 										<!-- <div if.bind="recordId === 'create'">
 												<input type="text" id="InventoryCode" class="form-control input-sm" value.bind="currentItem.InventoryCode">
-
 											</div>
 											<div else>${currentItem.InventoryCode}</div> -->
 
@@ -199,18 +196,16 @@
 
 									</div>
 									<!-- <div class="Rtable-cell-70  Rtable-cell--highlight">
-
 									<a click.delegate="showModal( 'MediumSupportobj')">${currentItem.MediumSupportobj.Description} </a>
-
 									</div> -->
 
 									<div class="Rtable-cell-70  Rtable-cell--light">
 
 
-										<div if.bind="currentItem.MediumSupportobj===undefined || currentItem.MediumSupportobj===''">
-                      	<a click.delegate="showModal( 'MediumSupportobj')">select_link </a>
-                   </div>
-										<div else>
+									<div style="height:15px;margin-left:10px;margin-top:5px;margin-bottom:10px"  if.bind="currentItem.MediumSupportobj===undefined || currentItem.MediumSupportobj===''">
+											<a click.delegate="showModal( 'MediumSupportobj')">select_link </a>
+										</div>
+									<div style="height:15px;margin-left:10px;margin-top:5px;margin-bottom:10px"  else>
 											<a click.delegate="showModal( 'MediumSupportobj')">${currentItem.MediumSupportobj.Description} </a>
 
 										</div>
@@ -428,7 +423,6 @@
                     value.bind="currentItem.addkeyword">
 									</div>
 										<div class="Rtable-cell-70 Rtable-cell--highlight">
-
 										<ak-multiselect k-placeholder="Select keywords..." 
                     k-data-text-field="Description" k-data-value-field="id" k-auto-bind.bind="false"
 										 k-data-source.bind="dataSource" k-value.bind="currentItem.keywords"></ak-multiselect>
@@ -470,12 +464,12 @@
 									<div class="Rtable-cell-70  Rtable-cell--light">
 
 										<!-- <a click.delegate="showModal( 'Inscribed')">${currentItem.Inscribed} </a> -->
-										<div if.bind="currentItem.Inscribed===undefined || currentItem.Inscribed==='' ">
+										<div style="height:15px;margin-left:10px;margin-top:5px;margin-bottom:10px"  if.bind="currentItem.Inscribed===undefined || currentItem.Inscribed==='' ">
 											<a click.delegate="showModal( 'Inscribed')">select_link </a>
 										</div>
-										<div else>
+										<div style="height:15px;margin-left:10px;margin-top:5px;margin-bottom:10px"  else>
 											<a click.delegate="showModal( 'Inscribed')">${currentItem.Inscribed} </a>
-                			</div>
+										</div>
 
 
 
@@ -498,12 +492,24 @@
 									</div>
 									<!-- ${search.httpsselectedSoldId} checked.bind="search.selectedSoldId selectedSoldId"-->
 									<div class="Rtable-cell-70 Rtable-cell--highlight">
-										<div class="form-group">
-											<label repeat.for="sold of searchsold">
-												<input type="radio" name="group1" model.bind="sold.id " checked.bind="currentItem.Sold" >
+										<!-- <div class="form-group"> -->
+										<!-- <label repeat.for="sold of searchsold">
+												<input type="radio" name="group1" model.bind="sold.id" checked.bind="currentItem.Sold" >
 											${sold.id} / ${sold.name} &nbsp;
-											</label>
-										</div>
+											</label> -->
+                      	<!-- </div> -->
+										<!-- only radio string works with flex -->
+										<select id="Sold" class="form-control " value.bind="currentItem.Sold">
+											<option model.bind="null">Choose...</option>
+											<option repeat.for="opt of searchsold " model.bind="opt.id">
+												${opt.name}
+											</option>
+										</select>
+
+
+									
+
+
 									</div>
 
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
@@ -513,17 +519,16 @@
 									</div>
 									<!-- <div class="Rtable-cell-70 Rtable-cell--highlight">
 										<span dblclick.delegate="showModal( 'SoldToID') ">${currentItem.soldtoname}</span>
-
 									</div> -->
 
 									<div class="Rtable-cell-70  Rtable-cell--light">
 
 
 										<!-- <a click.delegate="showModal( 'SoldToID')">${currentItem.soldtoname} </a> -->
-										<div if.bind="currentItem.soldtoname===undefined || currentItem.soldtoname==='' ">
+										<div style="height:15px;margin-left:10px;margin-top:5px;margin-bottom:10px"  if.bind="currentItem.soldtoname===undefined || currentItem.soldtoname==='' ">
 											<a click.delegate="showModal( 'SoldToID')">select_link </a>
 										</div>
-										<div else>
+										<div style="height:15px;margin-left:10px;margin-top:5px;margin-bottom:10px" else>
 											<a click.delegate="showModal( 'SoldToID')">${currentItem.soldtoname} </a>
 
 										</div>
@@ -552,7 +557,15 @@
 
 									<div class="Rtable-cell-70  Rtable-cell--light">
 
-										<a click.delegate="showModal( 'OwnerID')">${currentItem.OwnerID} </a>
+	<div style="height:15px;margin-left:10px;margin-top:5px;margin-bottom:10px"  if.bind="currentItem.ownername===undefined || currentItem.ownername==='' ">
+											<a click.delegate="showModal( 'OwnerID')">select_link </a>
+										</div>
+										<div style="height:15px;margin-left:10px;margin-top:5px;margin-bottom:10px" else>
+											<a click.delegate="showModal( 'OwnerID')">${currentItem.ownername} </a>
+
+										</div>
+
+
 
 									</div>
 									<!---- <input dblclick.delegate="showModal( 'OwnerID') " type="text " xid="OwnerID " 

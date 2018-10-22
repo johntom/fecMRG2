@@ -124,9 +124,21 @@
                     ${opt.Description} 
                       </option> 
                     </select> ReproductionDate <input type="text" id="ReproductionDate" class="form-control input-sm" value.bind="item.ReproductionDate">						ReproductionSortDate
-						<input type="text" id="ReproductionSortDate" class="form-control input-sm" value.bind="item.ReproductionSortDate">						ReproductionName <input type="text" id="ReproductionName" class="form-control input-sm" value.bind="item.ReproductionName">						ReproductionAuthor
-						<input type="text" id="ReproductionAuthor" class="form-control input-sm" value.bind="item.ReproductionAuthor">
-						<!-- <input type="text" id="ReproductionLocation" class="form-control input-sm" value.bind="item.ReproductionLocation">						AuthorFirst <input type="text" id="AuthorFirst" class="form-control input-sm" value.bind="item.AuthorFirst"> AuthorLast -->
+						<input type="date" id="ReproductionSortDate" class="form-control input-sm" value.bind="item.ReproductionSortDate">	
+            				Publisher
+                      <input type="text" id="ReproductionName" class="form-control input-sm" value.bind="item.ReproductionName">
+            
+	ReproductionAuthor 
+       <input type="text" id="ReproductionAuthor" class="form-control input-sm" value.bind="item.ReproductionAuthor">
+            
+            	 Author First
+						<input type="text" id="AuthorLast" class="form-control input-sm" value.bind="item.AuthorLast">
+					
+            Author Last
+						<input type="text" id="AuthorFirst" class="form-control input-sm" value.bind="item.AuthorFirst">
+					
+
+            <!-- <input type="text" id="ReproductionLocation" class="form-control input-sm" value.bind="item.ReproductionLocation">						AuthorFirst <input type="text" id="AuthorFirst" class="form-control input-sm" value.bind="item.AuthorFirst"> AuthorLast -->
 						<!-- codesListLocation -->
 						ReproductionLocation
 						<aubs-typeahead ref='reproductionlocation' data.bind="appService.codesProvenanceLocation" value.bind="item.DescriptionLoc"

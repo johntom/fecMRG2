@@ -10,6 +10,14 @@ export class Inventory {
   heading = 'Inventory Search'// PORTERC007 PORTERC009 PORTERC008 PORTERC013';
   counter = 1;
   search = {}
+  //  products = [
+  //       { id: 0, name: 'Motherboard' },
+  //       { id: 1, name: 'CPU' },
+  //       { id: 2, name: 'Memory' },
+  //     ];
+
+  //     selectedProductId = 1;
+
   //   title: 0,
   //   invcode: 0
   // };
@@ -159,8 +167,8 @@ export class Inventory {
    // console.log('selectedSoldId', this.search.selectedSoldId)
     let sold = `${this.search.sold}`
 
-     console.log('sold', sold,this.search.sold)
-     this.search.sold=`${this.search.sold}`
+     console.log('selectedDateId', this.search.selectedDateId) //sold', sold,sold)
+    //  this.search.sold=`${this.search.sold}`
     //  // this.search.inventorycode='soldit'
     // alert(keywd)
     if (this.search) {

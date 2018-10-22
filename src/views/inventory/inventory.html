@@ -24,17 +24,17 @@
 						<div class="form-group flex-column-1 margin-left-10">
 							<input id="searchInvCode" type="text" class="form-control" placeholder="Search for inv code...PORTERC008" value.bind="search.inventorycode">
 						</div>
-			
-			<!-- <div class="form-group flex-column-1 margin-left-10">
+
+						<!-- <div class="form-group flex-column-1 margin-left-10">
 							<label for="adjuster">mru2</label>
 								<input ref="myDatalist" type="text" list="myDatalist" change.delegate="changeCallbackMru(selectedValue)" input.delegate="selectedValue = findOption($event.target.value)"
 							/>
 							<datalist id="myDatalist">
 									<option repeat.for="option of mru">${option}</option>
-							</datalist>
+							</sold>
 							<pre style="margin-top: 100px"><code>${selectedValue}</code></pre>
 						</div> -->
-			
+
 					</div>
 					<div class="flex-row-none">
 						<div class="form-group flex-column-1">
@@ -74,11 +74,11 @@
 						</div>
 					</div>
 
-	<div class="flex-row-none">
+					<div class="flex-row-none">
 						<div class="form-group flex-column-1">
-							<input id="searchMediumSupport" type="text" class="form-control" placeholder="Search for MediumSupport ..." value.bind="search.mediumsupport"> 
+							<input id="searchMediumSupport" type="text" class="form-control" placeholder="Search for MediumSupport ..." value.bind="search.mediumsupport">
 
-					
+
 
 						</div>
 						<div class="form-group flex-column-1 margin-left-10">
@@ -143,7 +143,7 @@
 
 
 					<div class="form-group">
-						<label><input type="checkbox" checked.bind="search.andor">  Every keyord(checked) or any keyword(unchecked)</label>
+						<label><input type="checkbox" checked.bind="search.andor">  Checked: search on every keyword, unchecked: search on any keyword"</label>
 
 					</div>
 
@@ -158,7 +158,7 @@
 						</ak-multiselect>
 
 					</div>
-		<!-- <div class="form-group">Sold - Selected : ${search.selectedSoldId}
+					<!-- <div class="form-group">Sold - Selected : ${search.selectedSoldId}
 						<label repeat.for="sold of searchsold">
               <input type="radio" name="group1"
                     model.bind="sold.id" checked.bind="search.sold">
@@ -186,17 +186,41 @@
 
 						<div class="form-group flex-column-1">
 							<label for="searchdrcvdatel">(Start Date>=</label>
-							<input id="searchdrcvdatel" type="date" class="form-control" placeholder="Search for Date Start >=..." value.bind="search.startdate">
+							<input id="searchdrcvdatel" type="date" class="form-control" placeholder="Search for Start Date (> or =)  ..." value.bind="search.startdate">
 						</div>
 						<div class="form-group flex-column-1 margin-left-10">
 							<label for="lastName">Stop Date<=)</label>
-							<input id="searchdrcvdate2" type="date" class="form-control" placeholder="Search for Date Stop <=.." value.bind="search.stopdate">
+							<input id="searchdrcvdate2" type="date" class="form-control" placeholder="Search for Stop Date (< or =)  .." value.bind="search.stopdate">
 						</div>
 
 
 					</div>
 
-					<!-- <div class="flex-row-none">
+				
+
+
+				<div class="flex-row-none">
+					<div class="form-group flex-column-1">
+						<button id="searchInputBtn" class="btn btn-primary" type="submit"><strong>S</strong>earch!</button>
+						<!-- <button id="searchInputBtn" class="btn btn-primary" type="button" click.delegate="performSearch()">Search!</button> -->
+
+					</div>
+					<div class="form-group flex-column-1 margin-left-10">
+						<button id="searchInputBtn" class="btn btn-primary" type="button" click.delegate="addinventory()"><strong>A</strong>dd Inventory</button>
+					</div>
+					<div class="form-group flex-column-1 margin-left-10">
+						<button id="searchInputBtn" class="btn btn-primary" type="button" click.delegate="performClear()">Clear</button>
+					</div>
+				</div>
+				</form>
+			</div>
+		</div>
+
+	</section>
+</template>
+
+
+<!-- <div class="flex-row-none">
 						<div class="form-group flex-column-1">
 							<select2m name="options" selected.bind="selected" options.bind="options" placeholder="Enter a selection" allow_clear="true"
 							 tags="true" change.delegate="changeCallbackM($event)"></select2m>
@@ -208,14 +232,14 @@
 
 
 
-					<!-- <div class="flex-row-none">
+<!-- <div class="flex-row-none">
 						<div class="form-group flex-column-1">
 							<selectize name="options" selected.bind="selected" options.bind="options" placeholder="Enter a selection"></selectize>
 
 						</div>
 
 					</div> -->
-					<!-- <multi-selector-item repeat.for="item of selectedOptions" 
+<!-- <multi-selector-item repeat.for="item of selectedOptions" 
         item.bind="item" 
         parent.bind="$parent">  
       </multi-selector-item>
@@ -226,36 +250,16 @@
         autocomplete="on"
         class="multi-selector-input"
         list="multi-datalist"> -->
-					<!-- @bindable instanceOptions = [];
+<!-- @bindable instanceOptions = [];
   @bindable selectedOptions = []; -->
-					<!-- <multi-selector name="msoptions" selectedOptions.bind="options" item.bind="selected" placeholder="Enter a selection"></multi-selector> -->
-					<!-- <multi-selector name="msoptions"   selectedOptions.bind="optionsMat" item.bind="selected" placeholder="Enter a selection"></multi-selector> -->
-					<!-- ${options.length}:			<multi-selector name="msoptions"   selectedOptions.bind="options"  item.bind="value" placeholder="Enter a selection.."></multi-selector> -->
+<!-- <multi-selector name="msoptions" selectedOptions.bind="options" item.bind="selected" placeholder="Enter a selection"></multi-selector> -->
+<!-- <multi-selector name="msoptions"   selectedOptions.bind="optionsMat" item.bind="selected" placeholder="Enter a selection"></multi-selector> -->
+<!-- ${options.length}:			<multi-selector name="msoptions"   selectedOptions.bind="options"  item.bind="value" placeholder="Enter a selection.."></multi-selector> -->
 
-					<!-- <div class="flex-row-none">
+<!-- <div class="flex-row-none">
 
 						<div class="form-group flex-column-1">
 							<multi-selector name="msoptions" instance-options.bind="optionsMatt" selected-options.bind="selectOptions" placeholder="Enter a selection.."></multi-selector>
 						</div>
 						<button id="checkms" class="btn btn-primary" type="button" click.delegate="checkms()">checkms</button>
 					</div> -->
-
-					<div class="flex-row-none">
-						<div class="form-group flex-column-1">
-							<button id="searchInputBtn" class="btn btn-primary" type="submit"><strong>S</strong>earch!</button>
-							<!-- <button id="searchInputBtn" class="btn btn-primary" type="button" click.delegate="performSearch()">Search!</button> -->
-
-						</div>
-						<div class="form-group flex-column-1 margin-left-10">
-							<button id="searchInputBtn" class="btn btn-primary" type="button" click.delegate="addinventory()"><strong>A</strong>dd Inventory</button>
-						</div>
-						<div class="form-group flex-column-1 margin-left-10">
-							<button id="searchInputBtn" class="btn btn-primary" type="button" click.delegate="performClear()">Clear</button>
-						</div>
-					</div>
-				</form>
-			</div>
-		</div>
-
-	</section>
-</template>

@@ -6,8 +6,8 @@ import { MyDataService } from "../../services/my-data-service";
 
 export class Home {
   heading = "MRG Home Page";
-  version = 241.22
-  versionDate = 'Fri 10/19/2018'
+  version = 241.23
+  versionDate = 'Sun 10/21/2018'
   // versiondate=Date();
   //  "select2": {
   //       "map": "npm:select2@4.0.6-rc.1/dist",
@@ -32,6 +32,7 @@ export class Home {
     'version = 240.20 uses   this.currentItem not this.appService.currentItem (which is a singleton)',
     '* working on local storage with invcode',
     'HOFMAN0015 POLLOCJ005 PORTERC007 PORTERC009 PORTERC008 PORTERC013',
+    'radio has issue with flex only primitive string works'
   ]
     ninalist = [
     'when selecting saved list inv/actions/batch go directly ...',

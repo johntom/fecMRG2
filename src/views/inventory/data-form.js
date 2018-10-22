@@ -63,11 +63,30 @@ export class DataForm {
   ];
 
   searchsold = [
+    
     { id: 0, name: 'Y' },
     { id: 1, name: 'N' },
     { id: 2, name: 'NFS' },
     { id: 3, name: 'DON' },
-  ];
+  ]; 
+  
+  products = [
+        { id: '0', name: 'Motherboard' },
+        { id: '1', name: 'CPU' },
+        { id: '2', name: 'Memory' },
+      ];
+
+      selectedProductId = 'CPU';//1';
+// products = ['Motherboard', 'CPU', 'Memory'];
+//       selectedProduct = 'CPU';//null;
+
+  //   searchsold = [
+  //   {id:-1,name:'Y'},
+  //   { id: 0, name: 'N' },
+  //   { id: 1, name: 'BLK' },
+  //   { id: 2, name: 'NFS' },
+  //   { id: 3, name: 'DON' },
+  // ];
   // person = { firstName: 'Wade', middleName: 'Owen', lastName: 'Watts' };
   fieldname = ''
   error = "";
