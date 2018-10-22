@@ -28,7 +28,7 @@ export class SearchResults {
 				//  this.loadData(this.capColor, this.prevtown)
 				this.loadData()
 					.then((inv) => {
-						console.log(' inv datasource ', inv.length, inv[0]);
+					//	console.log(' inv datasource ', inv.length, inv[0]);
 						options.success(inv);
 				//		console.log('inv.length===1 && this.appService.onlyonce===0 ', inv.length === 1 && this.appService.onlyonce === 0, inv.length, inv.length)
 						//10-18 if (inv.length === 1 && this.appService.onlyonce === 0) {

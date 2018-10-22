@@ -115,10 +115,37 @@
 							</aubs-typeahead>
 						</div>
 						<div class="form-group flex-column-1 margin-left-10">
-							<aubs-typeahead ref='savedlist' data.bind="appService.savedlists" value.bind="name" debounce.bind="350" placeholder="search on one savedlist "
-							 open-on-focus.bind="true" key="name" results-limit.bind="12" select-single-result.bind="true">
-							</aubs-typeahead>
+							<!-- <aubs-typeahead ref='savedlist' data.bind="appService.savedlists" 
+              value.bind="name" debounce.bind="350" placeholder="search on one savedlist "
+							 open-on-focus.bind="true" key="name" results-limit.bind="12" 
+               select-single-result.bind="true"
+							 change.delegate="performSearch()">
+              </aubs-typeahead> -->
+
+
+
+							<!-- <label for="SL">SL</label>
+						<input ref="myDatalistSL" type="text" list="appService.savedlists" 
+                    change.delegate="performSearchX()" 
+                    input.delegate="selectedValue = findOption($event.target.value)"/>		
+							<datalist id="myDatalistSL">
+									<option repeat.for="option of appService.savedlists">${option}</option>
+							</datalist> -->
+							<!-- change.delegate="changeCallbackMru(selectedValue)"  -->
+							<div class="form-group flex-column-1 margin-left-10">
+								<!-- <label for="adjuster">mru2</label> -->
+								<input ref="myDatalist" type="text" list="myDatalist" placeholder="search on savedlist" 
+                change.delegate="performSearchSL()"
+								 input.delegate="selectedValue = findOption($event.target.value)" />
+								<datalist id="myDatalist">
+									<option repeat.for="option of appService.savedlists">${option.name}</option>
+								</datalist>
+								<!-- <pre style="margin-top: 100px"><code>${selectedValue}</code></pre> -->
+							</div>
 						</div>
+
+
+
 						<div class="form-group flex-column-1 margin-left-10">
 							<label for="adjuster">mru</label>
 
@@ -130,16 +157,19 @@
 								</li>
 							</ul>
 						</div>
-						<!-- <div class="form-group flex-column-1 margin-left-10">
+					</div>
+					<!-- <div class="form-group flex-column-1 margin-left-10">
 							<label for="adjuster">mru2</label>
-								<input ref="myDatalist" type="text" list="myDatalist" change.delegate="changeCallbackMru(selectedValue)" input.delegate="selectedValue = findOption($event.target.value)"
+								<input ref="myDatalist" type="text" list="myDatalist" 
+                change.delegate="changeCallbackMru(selectedValue)" 
+                input.delegate="selectedValue = findOption($event.target.value)"
 							/>
 							<datalist id="myDatalist">
 									<option repeat.for="option of mru">${option}</option>
 							</datalist>
 							<pre style="margin-top: 100px"><code>${selectedValue}</code></pre>
-						</div> -->
-					</div>
+						</div>
+					</div> -->
 
 
 					<div class="form-group">
@@ -196,22 +226,22 @@
 
 					</div>
 
-				
 
 
-				<div class="flex-row-none">
-					<div class="form-group flex-column-1">
-						<button id="searchInputBtn" class="btn btn-primary" type="submit"><strong>S</strong>earch!</button>
-						<!-- <button id="searchInputBtn" class="btn btn-primary" type="button" click.delegate="performSearch()">Search!</button> -->
 
+					<div class="flex-row-none">
+						<div class="form-group flex-column-1">
+							<button id="searchInputBtn" class="btn btn-primary" type="submit"><strong>S</strong>earch!</button>
+							<!-- <button id="searchInputBtn" class="btn btn-primary" type="button" click.delegate="performSearch()">Search!</button> -->
+
+						</div>
+						<div class="form-group flex-column-1 margin-left-10">
+							<button id="searchInputBtn" class="btn btn-primary" type="button" click.delegate="addinventory()"><strong>A</strong>dd Inventory</button>
+						</div>
+						<div class="form-group flex-column-1 margin-left-10">
+							<button id="searchInputBtn" class="btn btn-primary" type="button" click.delegate="performClear()">Clear</button>
+						</div>
 					</div>
-					<div class="form-group flex-column-1 margin-left-10">
-						<button id="searchInputBtn" class="btn btn-primary" type="button" click.delegate="addinventory()"><strong>A</strong>dd Inventory</button>
-					</div>
-					<div class="form-group flex-column-1 margin-left-10">
-						<button id="searchInputBtn" class="btn btn-primary" type="button" click.delegate="performClear()">Clear</button>
-					</div>
-				</div>
 				</form>
 			</div>
 		</div>

@@ -155,11 +155,22 @@ export class Inventory {
     //10-17   this.router.navigate(`#/inventory/data/${ this.search.inventorycode}`);
   this.router.navigate(`#/inventory/data/${e}`);
   }
+
+   performSearchSL() {
+    let savedlist = this.myDatalist.value //datalist
+    if (savedlist !== 'undefined' && savedlist !== 'null') this.search.savedlists = savedlist// `${this.name.name}`
+    let qs = this.utilService.generateQueryString(this.search);
+    console.log('this.search ', this.search)
+    let counter = this.utilService.counter++
+    let path = `Search${counter}${qs}`;
+    this.router.navigate(`#/inventory/${path}`);
+    this.appService.currentSearch = path
+  }
   performSearch() {
     let keyword = `${this.keywordDescription}`//.Description}` //aubs-typeahead 
-
+  
     //search.savedlists
-    let savedlist = `${this.name}`
+    //let savedlist = `${this.name}`
 
     let medsupport = `${this.DescriptionMS}`
     let currentlocation = `${this.DescriptionLoc}`
@@ -175,7 +186,7 @@ export class Inventory {
       // if (keywd !== 'undefined' && keywd !== 'null') this.search.keywords = `${this.Description.Description}`
    if (keyword !== 'undefined' && keyword !== 'null') this.search.keywords = `${this.keywordDescription.Description}`
    
-      if (savedlist !== 'undefined' && savedlist !== 'null') this.search.savedlists = `${this.name.name}`
+    //  if (savedlist !== 'undefined' && savedlist !== 'null') this.search.savedlists = `${this.name.name}`
 
       if (medsupport !== 'undefined') this.search.mediumsupport = `${this.DescriptionMS.Description}`
       if (currentlocation !== 'undefined') this.search.currentlocation = `${this.DescriptionLoc.Description}`
@@ -304,6 +315,3 @@ attached() {
   }
 
 }
-
-
-
