@@ -293,12 +293,27 @@
 										<strong> Artist</strong>
 									</div>
 									<div class="Rtable-cell-70  Rtable-cell--highlight">
-										<span> ${currentItem.artist.lastName}, ${currentItem.artist.firstName}    ${currentItem.artist.yearofBirth} 
-                                          <span show.bind="currentItem.artist.died!==''">  (d.${currentItem.artist.died}) </span>
-										<span>
+                    	<div if.bind="recordId === 'create'">
+										<a click.delegate="showModal( 'Artist')">select_link </a>
 									</div>
+									<div else>
+										<a click.delegate="showModal('Artist')"> <strong> ${currentItem.artist.lastName},
+												${currentItem.artist.firstName}
+												<span show.bind="currentItem.artist.died===''"> (b.${currentItem.artist.yearofBirth}) </span>
+										<span show.bind="currentItem.artist.died!==''"> (${currentItem.artist.yearofBirth} -
+													${currentItem.artist.died})</span>
+										</strong>
+										</a>
+									</div>
+									
+									</div>
+                  	<!-- <span> ${currentItem.artist.lastName}, ${currentItem.artist.firstName}    ${currentItem.artist.yearofBirth} 
+                                          <span show.bind="currentItem.artist.died!==''">  (d.${currentItem.artist.died}) </span>
+										<span> -->
                   <!-- only for new rec -->
-									<!-- <div class="Rtable-cell-30 Rtable-cell--highlight">
+									<!-- 
+                    
+                    <div class="Rtable-cell-30 Rtable-cell--highlight">
 										<strong> Artist</strong>
 									</div>
 									<div class="Rtable-cell-70  Rtable-cell--highlight">

@@ -136,29 +136,30 @@ selectOptions = {
     console.log('this.search ', this.search)
     let counter = this.utilService.counter++
     let path = `Search${counter}${qs}`;
-    this.router.navigate(`#/inventory/${path}`);
+    //  let path = `Search${counter}${qs}`;
+    this.router.navigate(`#/action/${path}`);
     this.appService.currentSearch = path
     } else alert('Please make a selection')
   }
-  // performSearch() {
-  //   let savedlist = `${this.name}`
-  //   if (savedlist === 'undefined' || savedlist === undefined) {
-  //     alert('Please make a selection')
-  //   } else
-  //     if (this.search) {
-  //       if (savedlist !== 'undefined' && savedlist !== 'null') this.search.savedlists = `${this.name.name}`
-  //       let qs = this.utilService.generateQueryString(this.search);
-  //       let counter = this.utilService.counter++
-  //       // let path = `ActSearch${counter}${qs}`;
-  //       let path = `list${counter}${qs}`;
-  //       // let path = `list:${qs}`;// name on tab
-  //       // console.log('this.search  path ', this.search, path)
-  //       this.appService.currentActionlist = this.search.savedlists
-  //       // let path = `SL:${this.search.savedlists}`;
-  //       this.router.navigate(`#/action/${path}`);
-  //       this.appService.currentSearch = path //`Search${counter}`
-  //     } else alert('Please make a selection')
-  // }
+  performSearch() {
+    let savedlist = `${this.name}`
+    if (savedlist === 'undefined' || savedlist === undefined) {
+      alert('Please make a selection')
+    } else
+      if (this.search) {
+        if (savedlist !== 'undefined' && savedlist !== 'null') this.search.savedlists = `${this.name.name}`
+        let qs = this.utilService.generateQueryString(this.search);
+        let counter = this.utilService.counter++
+        // let path = `ActSearch${counter}${qs}`;
+        let path = `list${counter}${qs}`;
+        // let path = `list:${qs}`;// name on tab
+        // console.log('this.search  path ', this.search, path)
+        this.appService.currentActionlist = this.search.savedlists
+        // let path = `SL:${this.search.savedlists}`;
+        this.router.navigate(`#/action/${path}`);
+        this.appService.currentSearch = path //`Search${counter}`
+      } else alert('Please make a selection')
+  }
 
   performClear() {
     this.search = {}

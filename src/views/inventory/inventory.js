@@ -28,7 +28,7 @@ export class Inventory {
         </label> */
   // search.selectedSoldId search.selectedDateId search.startdate search.stopdate
   // value
-// 	export class App {
+  // 	export class App {
   selectedValue = null;
   // options1 = [ { id: 1, name: 'one' }, { id: 2, name: 'two' } ];
   // findOption = value => this.options1.find(x => x.name === value);
@@ -148,15 +148,15 @@ export class Inventory {
   }
 
   populateInv(e) {
-     //10-17 this.search.inventorycode = e
+    //10-17 this.search.inventorycode = e
     this.appService.onlyonce = 0
-  //10-17  this.performSearch()
+    //10-17  this.performSearch()
     //https://johntom.github.io/fecMRG2/#/inventory/data/PORTERC008
     //10-17   this.router.navigate(`#/inventory/data/${ this.search.inventorycode}`);
-  this.router.navigate(`#/inventory/data/${e}`);
+    this.router.navigate(`#/inventory/data/${e}`);
   }
 
-   performSearchSL() {
+  performSearchSL() {
     let savedlist = this.myDatalist.value //datalist
     if (savedlist !== 'undefined' && savedlist !== 'null') this.search.savedlists = savedlist// `${this.name.name}`
     let qs = this.utilService.generateQueryString(this.search);
@@ -168,25 +168,25 @@ export class Inventory {
   }
   performSearch() {
     let keyword = `${this.keywordDescription}`//.Description}` //aubs-typeahead 
-  
+
     //search.savedlists
     //let savedlist = `${this.name}`
 
     let medsupport = `${this.DescriptionMS}`
     let currentlocation = `${this.DescriptionLoc}`
     let multikeys = `${this.multikeywords}`
-   // console.log('selectedSoldId', this.search.selectedSoldId)
+    // console.log('selectedSoldId', this.search.selectedSoldId)
     let sold = `${this.search.sold}`
 
-     console.log('selectedDateId', this.search.selectedDateId) //sold', sold,sold)
+    console.log('selectedDateId', this.search.selectedDateId) //sold', sold,sold)
     //  this.search.sold=`${this.search.sold}`
     //  // this.search.inventorycode='soldit'
     // alert(keywd)
     if (this.search) {
       // if (keywd !== 'undefined' && keywd !== 'null') this.search.keywords = `${this.Description.Description}`
-   if (keyword !== 'undefined' && keyword !== 'null') this.search.keywords = `${this.keywordDescription.Description}`
-   
-    //  if (savedlist !== 'undefined' && savedlist !== 'null') this.search.savedlists = `${this.name.name}`
+      if (keyword !== 'undefined' && keyword !== 'null') this.search.keywords = `${this.keywordDescription.Description}`
+
+      //  if (savedlist !== 'undefined' && savedlist !== 'null') this.search.savedlists = `${this.name.name}`
 
       if (medsupport !== 'undefined') this.search.mediumsupport = `${this.DescriptionMS.Description}`
       if (currentlocation !== 'undefined') this.search.currentlocation = `${this.DescriptionLoc.Description}`
@@ -222,34 +222,34 @@ export class Inventory {
   // attached() {
   //   this.altAKeyPressSubscription = this.eventAggregator.subscribe('keydown:alt-a', this.addinventory.bind(this));
   //   // this.stateList
-    // set typahead value for state
-    // console.log('sl', this.stateList)
-    // // this.name = {
-    // //   name: 'New York',
-    // //   value: 'NY'
-    // // }
-    // this.oname = {
-    //   oname: 'Alabama', id: 'al'
-    // }
-    // this.dow.value = this.oname
+  // set typahead value for state
+  // console.log('sl', this.stateList)
+  // // this.name = {
+  // //   name: 'New York',
+  // //   value: 'NY'
+  // // }
+  // this.oname = {
+  //   oname: 'Alabama', id: 'al'
+  // }
+  // this.dow.value = this.oname
 
 
-    // /////////////////////////////////////////
-    // this.OrgName = {
-    //   OrgName: this.states[1].OrgName,
-    //   // value: orgobj._id
-    //   // id: this.states[1].id
-    //   value: this.states[1].id
-    // }
-    // this.dows.value = this.OrgName
-attached() {
+  // /////////////////////////////////////////
+  // this.OrgName = {
+  //   OrgName: this.states[1].OrgName,
+  //   // value: orgobj._id
+  //   // id: this.states[1].id
+  //   value: this.states[1].id
+  // }
+  // this.dows.value = this.OrgName
+  attached() {
     this.altAKeyPressSubscription = this.eventAggregator.subscribe('keydown:alt-a', this.addinventory.bind(this));
-     this.altSKeyPressSubscription = this.eventAggregator.subscribe('keydown:alt-s', this.performSearch.bind(this));
- 
+    this.altSKeyPressSubscription = this.eventAggregator.subscribe('keydown:alt-s', this.performSearch.bind(this));
+
   }
   detached() {
     this.altAKeyPressSubscription.dispose();
-     this.altSKeyPressSubscription.dispose();
+    this.altSKeyPressSubscription.dispose();
   }
 
   activate() {
@@ -299,15 +299,15 @@ attached() {
 
     console.log(this.selected);
   }
-	  changeCallbackMru(selectedvalue) {
+  changeCallbackMru(selectedvalue) {
     // The selected value will be printed out to the browser console
 
 
-    console.log('selectedvalue ',selectedvalue,"myDatalist",this.myDatalist.value);
-		if (selectedvalue===undefined){
-			this.mru.push(this.myDatalist.value)
-			this.populateInv(this.myDatalist.value)
-		} else this.populateInv(selectedvalue)
+    console.log('selectedvalue ', selectedvalue, "myDatalist", this.myDatalist.value);
+    if (selectedvalue === undefined) {
+      this.mru.push(this.myDatalist.value)
+      this.populateInv(this.myDatalist.value)
+    } else this.populateInv(selectedvalue)
   }
   checkms() {
     console.log(this.selectedOptions)

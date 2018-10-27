@@ -6,8 +6,8 @@ import { MyDataService } from "../../services/my-data-service";
 
 export class Home {
   heading = "MRG Home Page";
-  version = 241.25
-  versionDate = 'Mon 10/21/2018'
+  version = 241.26
+  versionDate = 'Sat 10/27/2018'
   // versiondate=Date();
   //  "select2": {
   //       "map": "npm:select2@4.0.6-rc.1/dist",
@@ -360,6 +360,9 @@ export class Home {
         // bad   this.currentItem = this.items.find(f => f.id == params.id);
         for (i = 0; i < this.appService.artistList.length; i++) {
           this.appService.artistList[i].ArtistName = this.appService.artistList[i].lastName + ', ' + this.appService.artistList[i].firstName
+   
+          // this.appService.artistList[i].ArtistName = this.appService.artistList[i].LastName + ', ' + this.appService.artistList[i].FirstName
+   
         }
         // let pct
         // for (let bk of this.appService.artistList) {

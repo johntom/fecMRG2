@@ -179,7 +179,7 @@ export class DataForm {
     this.currentItem.fieldname = fieldname
     this.currentItem.recordId = this.recordId
     this.dialogService.open({ viewModel: Prompt, model: this.currentItem, lock: false }).whenClosed(response => {
-
+  //  if(this.recordId==='create')  this.currentItem.recordId=
       // if (fieldname === 'Artist') {
       //   let artistsel =   this.currentItem.artist;
       //    if (artistsel===undefined){
@@ -337,6 +337,7 @@ export class DataForm {
         //   this.currentItem.insco = {}
         //   this.currentItem.insaddress = {}
         //   this.currentItem.inscontact = {}
+        this.currentItem.artist=undefined//{} 
         this.currentItem.provenance = []
         this.currentItem.notes = []
         this.currentItem.exhibitions = []
@@ -433,6 +434,9 @@ export class DataForm {
     // }
 
     // move to attach
+// bypass save if in create mode
+     if (this.recordId !== 'create') {
+
     if (!this.currentItem.savedonce || this.currentItem.savedonce === undefined) {
       // if (!this.currentItem.savedonce || this.currentItem.savedonce === true) {
       // force it all the time
@@ -441,6 +445,7 @@ export class DataForm {
     }
     this.appService.clientHeight = this.mainimage.clientHeight
     this.appService.clientWidth = this.mainimage.clientWidth
+     }
     let tabinfo, tabindex
     // tabinfo = localStorage.getItem('tabinfo');
 

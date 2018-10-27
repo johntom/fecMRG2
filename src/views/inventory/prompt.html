@@ -73,8 +73,10 @@
 			</div>
 			<div show.bind="fieldname==='Artist'">
 				<div class="form-group flex-column-1">
-					<aubs-typeahead ref='dartist' data.bind="appService.artistList" value.bind="ArtistName" debounce.bind="350" placeholder="${placeholder}"
-					 open-on-focus.bind="true" key="ArtistName" results-limit.bind="22" select-single-result.bind="true">
+					<aubs-typeahead ref='dartist' data.bind="appService.artistList" value.bind="ArtistName" 
+          debounce.bind="350" placeholder="${placeholder}"
+					 open-on-focus.bind="true" key="ArtistName" results-limit.bind="22"
+            select-single-result.bind="true">
 					</aubs-typeahead>
 					<!-- <div> Artist: ${ArtistName | stringify}</div> -->
 					<div> born: ${ArtistName.yearofBirth } died: ${ArtistName.died} </div>

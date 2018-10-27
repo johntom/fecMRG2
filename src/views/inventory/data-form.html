@@ -157,28 +157,35 @@
 
 									<div class=" Rtable-cell-30 Rtable-cell--highlight">
 
-										<div if.bind="recordId === 'create'"><strong> Artist >></strong></div>
-										<div else><strong> Artist </strong></div>
-									</div>
+										<!-- <div if.bind="recordId === 'create'"><strong> Artist >></strong></div>
+										<div else><strong> Artist </strong></div> -->
+                    	<strong> Artist </strong>
 
-									<div class="Rtable-cell-70  Rtable-cell--highlight">
-										<div if.bind="recordId === 'create'">
-											<span dblclick.delegate="showModal('Artist')"> <strong> ${currentItem.artist.lastName},
-												${currentItem.artist.firstName}
-												<span show.bind="currentItem.artist.died===''"> (b.${currentItem.artist.yearofBirth}) </span>
-											<span show.bind="currentItem.artist.died!==''"> (${currentItem.artist.yearofBirth} -
-													${currentItem.artist.died})</span>
-											</strong>
-											</span>
+									</div>
+ 
+									<div class="Rtable-cell-70  Rtable-cell--light">
+										<!-- <div if.bind="recordId === 'create'"> -->
+                    	<div style="height:15px;margin-left:10px;margin-top:5px;margin-bottom:10px"   if.bind="currentItem.artist===undefined || currentItem.artist===''">
+										<a click.delegate="showModal( 'Artist')">select_link </a>
+									
 										</div>
-										<div else> <span dblclick.delegate="showModal('Artist')"> <strong> ${currentItem.artist.lastName},
-										
-										<!-- <div else> <span> <strong> ${currentItem.artist.lastName}, -->
-												${currentItem.artist.firstName}
+											<div style="height:15px;margin-left:10px;margin-top:5px;margin-bottom:10px"    else>
+                       <!-- <span dblclick.delegate="showModal('Artist')"> <strong>
+                      ${currentItem.artist.lastName}, ${currentItem.artist.firstName}
 												<span show.bind="currentItem.artist.died===''"> (b.${currentItem.artist.yearofBirth}) </span>
 											<span show.bind="currentItem.artist.died!==''"> (${currentItem.artist.yearofBirth} -
 													${currentItem.artist.died})</span> </strong>
-											</span>
+											</span> -->
+
+              	<a click.delegate="showModal( 'Artist')">${currentItem.artist.lastName} , ${currentItem.artist.firstName}
+		<span show.bind="currentItem.artist.died===''"> (b.${currentItem.artist.yearofBirth}) </span>
+											<span show.bind="currentItem.artist.died!==''"> (${currentItem.artist.yearofBirth} -
+													${currentItem.artist.died})</span> </strong>
+											</span> 
+
+                </a>
+
+
 										</div>
 									</div>
 
@@ -202,7 +209,8 @@
 									<div class="Rtable-cell-70  Rtable-cell--light">
 
 
-									<div style="height:15px;margin-left:10px;margin-top:5px;margin-bottom:10px"  if.bind="currentItem.MediumSupportobj===undefined || currentItem.MediumSupportobj===''">
+									<div style="height:15px;margin-left:10px;margin-top:5px;margin-bottom:10px"  
+                  if.bind="currentItem.MediumSupportobj===undefined || currentItem.MediumSupportobj===''">
 											<a click.delegate="showModal( 'MediumSupportobj')">select_link </a>
 										</div>
 									<div style="height:15px;margin-left:10px;margin-top:5px;margin-bottom:10px"  else>

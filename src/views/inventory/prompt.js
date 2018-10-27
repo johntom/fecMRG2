@@ -20,9 +20,9 @@ export class Prompt {
     'Conserved By', 'Sold To', 'Sold To', 'Museum Loan To']
 
 
-textfields=['Description', 'Comment', 'Inscribed', 'Treatment']
+  textfields = ['Description', 'Comment', 'Inscribed', 'Treatment']
 
-textfielddesc = ['Enter Alt ID', 'Enter Comment', 'Enter Inscribed with left of ":" as reg text right as ialtics till "; repeat' , 'Enter Treatment']
+  textfielddesc = ['Enter Alt ID', 'Enter Comment', 'Enter Inscribed with left of ":" as reg text right as ialtics till "; repeat', 'Enter Treatment']
   constructor(controller, appService, dataService, dialogService, api) {
     this.controller = controller;
     this.answer = null;
@@ -106,94 +106,111 @@ textfielddesc = ['Enter Alt ID', 'Enter Comment', 'Enter Inscribed with left of 
     let topos = this.textfields.findIndex(x => x === this.fieldname);
     if (topos !== -1) {
       this.textfielddescription = this.textfielddesc[topos]
-    this.doc = ` ${this.textfielddescription} .`
-    this.heading = ` ${this.textfielddescription} .`
-    this.placeholder = `${this.textfielddescription}`
+      this.doc = ` ${this.textfielddescription} .`
+      this.heading = ` ${this.textfielddescription} .`
+      this.placeholder = `${this.textfielddescription}`
     } else {
- this.doc = `type any characters of the ${this.orgfielddescription} to select.`
-    this.heading = `Search ${this.orgfielddescription} to select.`
-    this.placeholder = `Enter any characters on ${this.orgfielddescription} to select.`
+      this.doc = `type any characters of the ${this.orgfielddescription} to select.`
+      this.heading = `Search ${this.orgfielddescription} to select.`
+      this.placeholder = `Enter any characters on ${this.orgfielddescription} to select.`
 
     }
 
+    // if (this.fieldname === 'ArtistX') {
+    //   let artists = this.appService.artistList
+    //   if ((this.currentItem.artist === undefined) || (this.currentItem.artist === null)) {
+    //     // this.currentItem={}// for create only
+    //   } else {
+    //     let artid = artists.findIndex(x => x.id === this.currentItem.artist.id)
+    //     let artobj = this.appService.artistList[artid]//10]
+    //     this.ArtistName = artobj
+    //     this.dartist.value = this.ArtistName
+    //   }
+    // }
 
-   
-    if (this.currentItem.recordId !== 'create') {
-      // if (this.fieldname === 'ArtistX') {
-      //   let artists = this.appService.artistList
-      //   if ((this.currentItem.artist === undefined) || (this.currentItem.artist === null)) {
-      //     // this.currentItem={}// for create only
-      //   } else {
-      //     let artid = artists.findIndex(x => x.id === this.currentItem.artist.id)
-      //     let artobj = this.appService.artistList[artid]//10]
-      //     this.ArtistName = artobj
-      //     this.dartist.value = this.ArtistName
-      //   }
-      // }
 
-      if (this.fieldname === 'Artist') {
-        //let artists = this.appService.artistList
-        // if ((this.currentItem.artist === undefined) || (this.currentItem.artist === null)) {
-        //  // this.currentItem={}// for create only
-        // } else {
-        // let artid = artists.findIndex(x => x.id === this.currentItem.artist.id)
-        // let artobj = this.appService.artistList[artid]//10]
-        //
-        //
-        // sep since artist is an object no need to find it
+    // if (this.currentItem.recordId !== 'create') {
+
+
+    // if (this.fieldname === 'Artist' && this.currentItem.recordId !== 'create') {
+
+    if (this.fieldname === 'Artist') {
+
+
+      //let artists = this.appService.artistList
+      // if ((this.currentItem.artist === undefined) || (this.currentItem.artist === null)) {
+      //  // this.currentItem={}// for create only
+      // } else {
+      // let artid = artists.findIndex(x => x.id === this.currentItem.artist.id)
+      // let artobj = this.appService.artistList[artid]//10]
+      //
+      //
+      // sep since artist is an object no need to find it
+
+
+      if (this.currentItem.artist === undefined) {
+
+        // this.ArtistName = this.appService.artistList[1]
+      } else {
+
         this.ArtistName = this.currentItem.artist
         if (this.ArtistName.ArtistName === undefined) this.ArtistName.ArtistName = this.currentItem.artist.lastName + ', ' + this.currentItem.artist.firstName
         this.dartist.value = this.ArtistName
       }
 
-      if (this.fieldname === 'MediumSupportobj') {
-        
-      
-    this.doc = `type any characters of the   "Medium/Support: select or add new."`
-    this.heading = `Search Medium/Support: select or add new.`
-    this.placeholder = `Enter any characters on Medium/Support: select or add new.`
-        
-          if (this.currentItem.MediumSupportobj === undefined) {
-
-          this.MedSup = this.appService.codesListMediumSupport[1]
-        } else this.MedSup = this.currentItem.MediumSupportobj
-        // if (this.MedSup.Description === undefined) this.MedSup.Description = this.currentItem.MediumSupportobj.Description
-        // this.dmediumsupport.value = this.MedSup
-
-        //  if (this.MedSup.Description === undefined) {
-
-        //  }
-        this.dmediumsupport.value = this.MedSup
-
-
-        //  <select ref="MediumSupport11" id="MediumSupport11" class="form-control input-sm" value.bind="appService.currentItem.MediumSupportobj"> 
-        //                     <!-- & validate -->
-        //                     <!-- <option model.bind=" null ">Choose...</option>
-        // 										<option ref="MediumSupport21 " repeat.for="opt of appService.codesListMediumSupport " model.bind="opt ">
-        // 											${opt.Description}
-        // 										</option>
-        // 									</select>  
-
-      }
-
-
-      // let opos = this.orgfields.findIndex(x => x === this.fieldname);
-      if (opos !== -1) {
-        this.fieldbase = 'ORG'
-
-        let orgs = this.appService.orgsList
-        let origid
-
-        if (this.fieldname === this.orgfields[opos]) {
-          if ((this.currentItem[this.orgfields[opos]] === undefined) || (this.currentItem[this.orgfields[opos]] === null)) { } else {
-            origid = orgs.findIndex(x => x._id === this.currentItem[this.orgfields[opos]])
-            this.orgobj = orgs[origid]
-          }
-        }
-        this.OrgName = this.orgobj
-        this.dorg.value = this.OrgName
-      }
+      // this.dartist.value = this.ArtistName
     }
+
+    // if (this.fieldname === 'MediumSupportobj') {
+    // if (this.fieldname === 'MediumSupportobj' && this.currentItem.recordId !== 'create') {
+
+    if (this.fieldname === 'MediumSupportobj') {
+
+      this.doc = `type any characters of the   "Medium/Support: select or add new."`
+      this.heading = `Search Medium/Support: select or add new.`
+      this.placeholder = `Enter any characters on Medium/Support: select or add new.`
+
+      if (this.currentItem.MediumSupportobj === undefined) {
+
+        this.MedSup = this.appService.codesListMediumSupport[1]
+      } else this.MedSup = this.currentItem.MediumSupportobj
+      // if (this.MedSup.Description === undefined) this.MedSup.Description = this.currentItem.MediumSupportobj.Description
+      // this.dmediumsupport.value = this.MedSup
+
+      //  if (this.MedSup.Description === undefined) {
+
+      //  }
+      this.dmediumsupport.value = this.MedSup
+
+
+      //  <select ref="MediumSupport11" id="MediumSupport11" class="form-control input-sm" value.bind="appService.currentItem.MediumSupportobj"> 
+      //                     <!-- & validate -->
+      //                     <!-- <option model.bind=" null ">Choose...</option>
+      // 										<option ref="MediumSupport21 " repeat.for="opt of appService.codesListMediumSupport " model.bind="opt ">
+      // 											${opt.Description}
+      // 										</option>
+      // 									</select>  
+
+    }
+
+
+    // let opos = this.orgfields.findIndex(x => x === this.fieldname);
+    if (opos !== -1) {
+      this.fieldbase = 'ORG'
+
+      let orgs = this.appService.orgsList
+      let origid
+
+      if (this.fieldname === this.orgfields[opos]) {
+        if ((this.currentItem[this.orgfields[opos]] === undefined) || (this.currentItem[this.orgfields[opos]] === null)) { } else {
+          origid = orgs.findIndex(x => x._id === this.currentItem[this.orgfields[opos]])
+          this.orgobj = orgs[origid]
+        }
+      }
+      this.OrgName = this.orgobj
+      this.dorg.value = this.OrgName
+    }
+    // }
     //add DonatedBy
     if (this.fieldname === 'SavedList') {
       // we dont send a name of the list
@@ -328,7 +345,7 @@ textfielddesc = ['Enter Alt ID', 'Enter Comment', 'Enter Inscribed with left of 
     if (this.fieldname === 'Artist') {
 
       this.currentItem.artist = this.ArtistName
-      this.appService.currentItem.artist = this.ArtistName
+      // this.appService.currentItem.artist = this.ArtistName
     }
     if (this.fieldname === 'MediumSupportobj') {
       // this.currentItem.MediumSupportobj.id = this.MedSup.id
