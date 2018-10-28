@@ -211,11 +211,12 @@ export class Rtf {
 
   buildProv() {
     let provenance = this.currentItem.provenance
-    if (provenance !== undefined) {
+    // if (provenance !== undefined) {
+       if (provenance.length !== 0) {
       let iarray = []
-      // this.segment2 += ` <br><p>PROVONANCE HISTORY: </p>`
-      // this.segment2 += `<p><span style="text-decoration-line:underline;"><strong>PROVONANCE</strong></span></p>`
-      this.segment2 += `<p><span style='text-decoration-line:underline'><strong><u>PROVENANCE</u></strong></span><u></u></p>`
+      // this.segment2 += `<p><span style='text-decoration-line:underline'><strong><u>PROVENANCE</u></strong></span><u></u></p>`
+      let provheader = `<p><span style='text-decoration-line:underline'><strong><u>PROVENANCE</u></strong></span><u></u></p>`
+  
       let provarray = []
 
       for (const item of provenance) {
@@ -259,7 +260,7 @@ export class Rtf {
         //	this.segment2 += `${item.ProvOwner}, ${ProvLoc}<br> ${item.ProvMemo}`
       }
       let myObjects = lodash.sortBy(provarray, 'sord');
-
+this.segment2 += provheader
       for (const obj of myObjects) {
         // this.segment2 += obj.date + ' ' + obj.exception
         this.segment2 += obj.exception

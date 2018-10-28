@@ -172,7 +172,7 @@ export class Prompt {
 
       if (this.currentItem.MediumSupportobj === undefined) {
 
-        this.MedSup = this.appService.codesListMediumSupport[1]
+        this.MedSup = undefined //this.appService.codesListMediumSupport[1]
       } else this.MedSup = this.currentItem.MediumSupportobj
       // if (this.MedSup.Description === undefined) this.MedSup.Description = this.currentItem.MediumSupportobj.Description
       // this.dmediumsupport.value = this.MedSup

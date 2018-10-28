@@ -472,7 +472,7 @@
 
 										<!-- <a click.delegate="showModal( 'Inscribed')">${currentItem.Inscribed} </a> -->
 										<div style="height:15px;margin-left:10px;margin-top:5px;margin-bottom:10px" if.bind="currentItem.Inscribed===undefined || currentItem.Inscribed==='' ">
-											<a click.delegate="showModal( 'Inscribed')">select_link </a>
+											<a click.delegate="showModal( 'Inscribed')">enter_inscribed </a>
 										</div>
 										<div style="height:15px;margin-left:10px;margin-top:5px;margin-bottom:10px" else>
 											<a click.delegate="showModal( 'Inscribed')">${currentItem.Inscribed} </a>
@@ -628,7 +628,7 @@
 
 										<span> ratio h: ${currentItem.clientHeightRatio} -- w: ${currentItem.clientWidthRatio} dim:
              h: ${appService.clientHeight} / w: ${appService.clientWidth} </span>
-										<span>https://artbased.com/api/v1/getonepdf/inv/${currentItem.InventoryCode}.jpg
+										<span>https://artbased.com/api/v1/getimage/inv/${currentItem.InventoryCode}.jpg
 									</div>
 
 
