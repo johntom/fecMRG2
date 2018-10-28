@@ -134,13 +134,13 @@ selectOptions = {
     if (this.search) {
     let qs = this.utilService.generateQueryString(this.search);
     console.log('this.search ', this.search)
-   
-   //  let path = `Search${counter}${qs}`;
-   //  let path = `actionSearch${counter}${qs}`;
+   let counter = this.utilService.counter++
+    // let path = `Search${counter}${qs}`;
+    let path = `actionSearch${counter}${qs}`;
 
    // keep counter if you want to open mutiple
-   // let counter = this.utilService.counter++
-     let path = `actionSearch${qs}`;
+   // 
+   //  let path = `actionSearch${qs}`;
    
           this.appService.currentActionlist = this.search.savedlists
     this.router.navigate(`#/action/${path}`);

@@ -178,19 +178,19 @@ export class SearchResults {
 
     //  if ( this.appService.actionlist ===undefined){
     this.queryParams = this.utilService.parseQueryStringUrl();
-    // const qs = this.queryParams.substring(this.queryParams.indexOf('?') + 1)
-    //   const pairs = qs.split('&')
-    //   const queryParams = {}
-    //   let slname
-    //   pairs.forEach(p => {
-    //     const kv = p.split('=')
-    //     slname = kv[1]
-    //   });
-    //   this.item.savedlist = slname 
+    const qs = this.queryParams.substring(this.queryParams.indexOf('?') + 1)
+      const pairs = qs.split('&')
+      const queryParams = {}
+      let slname
+      pairs.forEach(p => {
+        const kv = p.split('=')
+        slname = kv[1]
+      });
+      this.item.savedlist = slname 
     // or
-    this.item.savedlist = this.appService.currentActionlist
+    // this.item.savedlist = this.appService.currentActionlist
 
-    this.savedlist = this.appService.currentActionlist
+    this.savedlist =  this.item.savedlist //this.appService.currentActionlist
 
     this.datasource.read()
     // make a dupe of folllowing to accoumodate 2 typeaheads

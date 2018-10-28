@@ -187,6 +187,7 @@ export class SearchResults {
 		// queryParams2 = queryParams2.replace(re, '&');
 		// this.queryParams = queryParams2
 		// console.log('squeryParams2', this.queryParams);
+    
 		this.queryParams = this.utilService.parseQueryStringUrl();
 		console.log('queryParams', this.queryParams);
 		this.datasource.read()
