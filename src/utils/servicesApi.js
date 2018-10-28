@@ -765,7 +765,7 @@ saveMerge(slname, editorval) {
 
   upload(formData, id) {
     //http://arabsight.github.io/uploading-files-with-aurelia
-    var url = this.baseweb + `v1/uploadinmate/${id}`
+    var url = this.baseweb + `v1/uploadinventory/${id}`
     ///  var url = this.basewebjif + `v1/upload/01-03166`
 
     console.log('url ', url, formData);

@@ -803,7 +803,7 @@ if (this.currentItem.Dated) {
     if (ww === 0) ww = 450
     if (hh === 0) hh = 450
 
-    this.segment2 = `<p><img src="https://artbased.com/api/v1/getonepdf/inv/${this.currentItem.InventoryCode}.jpg" alt="" width="${ww}" height="${hh}" /></p>`
+    this.segment2 = `<p><img src="https://artbased.com/api/v1/getimage/inv/${this.currentItem.InventoryCode}.jpg" alt="" width="${ww}" height="${hh}" /></p>`
 
     // this.segment2 = `<p><img src="https://artbased.com/api/v1/getonepdf/inv/POLLOCJ005.jpg" alt="" width="${ww}" height="${hh}" /></p>`
     // this.segment2 = `<p><img src="https://artbased.com/api/v1/getonepdf/inv/${this.currentItem.InventoryCode}.jpg" alt="" width="${this.appService.cli}" height="${hh}" /></p>`

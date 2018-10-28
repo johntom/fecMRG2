@@ -53,7 +53,48 @@
 					</table>
 				</div>
 			</div>
+	<div show.bind="fieldname==='docs'">
+				<div class="form-group flex-column-1">
+					<!-- <h3> docs: ${doc} -->
+					<a slot="buttons-slot"> <input id="icon_prefix" type="text" value.bind="searchdoc & debounce" class="validate">
 
+						<!-- <i class="material-icons prefix">search</i> -->
+					</a>
+					</h3>
+					<form>
+						<table class="table-condensed table">
+							<thead class="table-header-blue" data-sort="items.bind: showdocs; cols: ['FILE_NAME','FILE_EXT']">
+								<tr>
+									<th class="header">FILE_NAME </th>
+									<th class="header">FILE_EXT </th>
+
+								</tr>
+							</thead>
+							<tfoot>
+								<tr>
+									<td></td>
+									<td></td>
+
+								</tr>
+							</tfoot>
+							<tbody>
+								<tr repeat.for="doc of showdocs" with.bind="doc">
+									<td>
+										<!-- <a  size='100' class="form-control  input-sm" target="_blank" href="http://adjusters.markadjustment.com/docs/${doc.CLAIM_NO}/${doc.FILE_NAME}"> -->
+										<a size='100' class="form-control  input-sm" target="_blank" href="http://adjusters.markadjustment.com/docs/${currentItem.CLAIM_NO}/${doc.FILE_NAME}">
+											${FILE_NAME}
+										</a>
+									</td>
+									<td><input type="text" id="FILE_EXT" class="form-control  input-sm" value.bind="FILE_EXT"></td>
+
+								</tr>
+							</tbody>
+						</table>
+					</form>
+
+
+				</div>
+			</div>
 
 
 

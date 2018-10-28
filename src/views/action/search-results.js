@@ -546,7 +546,7 @@ let rt2 = `https://artbased.com/api/v1/downloadonepdf/output/${dataItem.Inventor
       segment += `<tr style="height:17%;"><td style="width:8%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>`
       segment += `<td style="width:42%;">${invitem.rtf2}</td>`
 			segment += `<td style="width:8%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>`
-      segment += `<td style="width:42%;"><img src="https://artbased.com/api/v1/getonepdf/inv/${invitem.InventoryCode}.jpg" alt="" width="${ww}" height=${hh} /></td>`
+      segment += `<td style="width:42%;"><img src="https://artbased.com/api/v1/getimage/inv/${invitem.InventoryCode}.jpg" alt="" width="${ww}" height=${hh} /></td>`
       segment += `</tr>`
 
 

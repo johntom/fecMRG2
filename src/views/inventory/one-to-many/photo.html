@@ -1,17 +1,39 @@
 	<template>
 		<require from="./docs.css"></require>
 		<section class="docs full-height flex-column-1 overflow-y-auto ignore">
-			<h4>
+			<!-- <h4>
 				<i class="fa fa-folder-open"></i> Photo
 				<a slot="buttons-slot" class="btn btn-primary"  click.delegate="addDetail()">
 					<i class="fa fa-plus"></i> Add Photo
 				</a>
-			</h4>
+			</h4> -->
+	<h4>
+			<i class="fa fa-folder-open"></i> Photos for ${currentItem.currentItem.InventoryCode} click button below or drag n drop files's over button
+			<a slot="buttons-slot" class="btn btn-success" click.delegate="addDocs(file)">
+				<i class="fa fa-plus"></i> Add Uploaded File
+			</a>
+     
+      
+      	<a slot="buttons-slot" class="btn btn-success" click.delegate="modalDocs()">
+				<i class="fa fa-plus"></i> Popup Docs
+			</a>
 
+      	<a slot="buttons-slot">
+          <input id="icon_prefix" type="text" value.bind="searchdoc & debounce" class="validate">
+                            
+			 <i class="material-icons prefix">search</i>
+			</a>
+
+      
+      	<input style='height:88' id='file' type="file" name="file" files.bind="file" multiple>
+		   
+		</h4>
 
 			<table class="table-condensed table">
 				<thead class="table-header-blue" data-sort="items.bind: currentItem.photo; cols: ['WorkDate','Notes']">
 					<tr>
+            	<th class="header">FILE_NAME </th>
+					
 						<th class="header">Photogpraher </th>
 						<th class="header">Format </th>
 						<th class="header">Date </th>
@@ -35,6 +57,15 @@
 				<tbody>
  
 					<tr repeat.for="photo of currentItem.photo" with.bind="photo">
+            	<td>
+							<span>https://artbased.com/api/v1/getonepdf/inv/${currentItem.InventoryCode}.jpg</span>
+				
+           
+          
+          		<a size='100' class="form-control  input-sm" target="_blank" href="https://adjusters.markadjustment.com/docs/${currentItem.CLAIM_NO}/${doc.FILE_NAME}">
+								${FILE_NAME}
+							</a>
+						</td>
 						<td width="250px">
 					<select id="PhotographerID" class="form-control  input-sm" value.bind="PhotographerID"> 
                 <option model.bind="null">Choose...</option> 
