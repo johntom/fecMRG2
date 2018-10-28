@@ -159,31 +159,31 @@
 
 										<!-- <div if.bind="recordId === 'create'"><strong> Artist >></strong></div>
 										<div else><strong> Artist </strong></div> -->
-                    	<strong> Artist </strong>
+										<strong> Artist </strong>
 
 									</div>
- 
+
 									<div class="Rtable-cell-70  Rtable-cell--light">
 										<!-- <div if.bind="recordId === 'create'"> -->
-                    	<div style="height:15px;margin-left:10px;margin-top:5px;margin-bottom:10px"   if.bind="currentItem.artist===undefined || currentItem.artist===''">
-										<a click.delegate="showModal( 'Artist')">select_link </a>
-									
+										<div style="height:15px;margin-left:10px;margin-top:5px;margin-bottom:10px" if.bind="currentItem.artist===undefined || currentItem.artist===''">
+											<a click.delegate="showModal( 'Artist')">select_link </a>
+
 										</div>
-											<div style="height:15px;margin-left:10px;margin-top:5px;margin-bottom:10px"    else>
-                       <!-- <span dblclick.delegate="showModal('Artist')"> <strong>
+										<div style="height:15px;margin-left:10px;margin-top:5px;margin-bottom:10px" else>
+											<!-- <span dblclick.delegate="showModal('Artist')"> <strong>
                       ${currentItem.artist.lastName}, ${currentItem.artist.firstName}
 												<span show.bind="currentItem.artist.died===''"> (b.${currentItem.artist.yearofBirth}) </span>
 											<span show.bind="currentItem.artist.died!==''"> (${currentItem.artist.yearofBirth} -
 													${currentItem.artist.died})</span> </strong>
 											</span> -->
 
-              	<a click.delegate="showModal( 'Artist')">${currentItem.artist.lastName} , ${currentItem.artist.firstName}
-		<span show.bind="currentItem.artist.died===''"> (b.${currentItem.artist.yearofBirth}) </span>
-											<span show.bind="currentItem.artist.died!==''"> (${currentItem.artist.yearofBirth} -
+											<a click.delegate="showModal( 'Artist')">${currentItem.artist.lastName} , ${currentItem.artist.firstName}
+												<span show.bind="currentItem.artist.died===''"> (b.${currentItem.artist.yearofBirth}) </span>
+												<span show.bind="currentItem.artist.died!==''"> (${currentItem.artist.yearofBirth} -
 													${currentItem.artist.died})</span> </strong>
-											</span> 
+												</span>
 
-                </a>
+											</a>
 
 
 										</div>
@@ -209,11 +209,10 @@
 									<div class="Rtable-cell-70  Rtable-cell--light">
 
 
-									<div style="height:15px;margin-left:10px;margin-top:5px;margin-bottom:10px"  
-                  if.bind="currentItem.MediumSupportobj===undefined || currentItem.MediumSupportobj===''">
+										<div style="height:15px;margin-left:10px;margin-top:5px;margin-bottom:10px" if.bind="currentItem.MediumSupportobj===undefined || currentItem.MediumSupportobj===''">
 											<a click.delegate="showModal( 'MediumSupportobj')">select_link </a>
 										</div>
-									<div style="height:15px;margin-left:10px;margin-top:5px;margin-bottom:10px"  else>
+										<div style="height:15px;margin-left:10px;margin-top:5px;margin-bottom:10px" else>
 											<a click.delegate="showModal( 'MediumSupportobj')">${currentItem.MediumSupportobj.Description} </a>
 
 										</div>
@@ -472,10 +471,10 @@
 									<div class="Rtable-cell-70  Rtable-cell--light">
 
 										<!-- <a click.delegate="showModal( 'Inscribed')">${currentItem.Inscribed} </a> -->
-										<div style="height:15px;margin-left:10px;margin-top:5px;margin-bottom:10px"  if.bind="currentItem.Inscribed===undefined || currentItem.Inscribed==='' ">
+										<div style="height:15px;margin-left:10px;margin-top:5px;margin-bottom:10px" if.bind="currentItem.Inscribed===undefined || currentItem.Inscribed==='' ">
 											<a click.delegate="showModal( 'Inscribed')">select_link </a>
 										</div>
-										<div style="height:15px;margin-left:10px;margin-top:5px;margin-bottom:10px"  else>
+										<div style="height:15px;margin-left:10px;margin-top:5px;margin-bottom:10px" else>
 											<a click.delegate="showModal( 'Inscribed')">${currentItem.Inscribed} </a>
 										</div>
 
@@ -505,7 +504,7 @@
 												<input type="radio" name="group1" model.bind="sold.id" checked.bind="currentItem.Sold" >
 											${sold.id} / ${sold.name} &nbsp;
 											</label> -->
-                      	<!-- </div> -->
+										<!-- </div> -->
 										<!-- only radio string works with flex -->
 										<select id="Sold" class="form-control " value.bind="currentItem.Sold">
 											<option model.bind="null">Choose...</option>
@@ -515,7 +514,7 @@
 										</select>
 
 
-									
+
 
 
 									</div>
@@ -533,7 +532,7 @@
 
 
 										<!-- <a click.delegate="showModal( 'SoldToID')">${currentItem.soldtoname} </a> -->
-										<div style="height:15px;margin-left:10px;margin-top:5px;margin-bottom:10px"  if.bind="currentItem.soldtoname===undefined || currentItem.soldtoname==='' ">
+										<div style="height:15px;margin-left:10px;margin-top:5px;margin-bottom:10px" if.bind="currentItem.soldtoname===undefined || currentItem.soldtoname==='' ">
 											<a click.delegate="showModal( 'SoldToID')">select_link </a>
 										</div>
 										<div style="height:15px;margin-left:10px;margin-top:5px;margin-bottom:10px" else>
@@ -565,7 +564,7 @@
 
 									<div class="Rtable-cell-70  Rtable-cell--light">
 
-	<div style="height:15px;margin-left:10px;margin-top:5px;margin-bottom:10px"  if.bind="currentItem.ownername===undefined || currentItem.ownername==='' ">
+										<div style="height:15px;margin-left:10px;margin-top:5px;margin-bottom:10px" if.bind="currentItem.ownername===undefined || currentItem.ownername==='' ">
 											<a click.delegate="showModal( 'OwnerID')">select_link </a>
 										</div>
 										<div style="height:15px;margin-left:10px;margin-top:5px;margin-bottom:10px" else>
@@ -629,7 +628,7 @@
 
 										<span> ratio h: ${currentItem.clientHeightRatio} -- w: ${currentItem.clientWidthRatio} dim:
              h: ${appService.clientHeight} / w: ${appService.clientWidth} </span>
-	<span>https://artbased.com/api/v1/getonepdf/inv/${currentItem.InventoryCode}.jpg
+										<span>https://artbased.com/api/v1/getonepdf/inv/${currentItem.InventoryCode}.jpg
 									</div>
 
 

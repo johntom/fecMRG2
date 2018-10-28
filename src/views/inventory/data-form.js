@@ -730,12 +730,18 @@ export class DataForm {
   //   // this.status, this.api.upload(formData, this.currentItem.CLAIM_NO)
 let formData = new FormData()
   formData.append('file',images[0])
-
+var newImage = new Image();
+newImage.src = `https://artbased.com/api/v1/getimage/inv/${this.currentItem.InventoryCode}.jpg`;
 
     this.api.upload(formData, this.currentItem.InventoryCode)
       .then((jsonRes) => {
-        this.upmess = jsonRes.message
+        this.upmess = jsonRes.data
 
+        mainimage.src = newImage.src;
+        newImage = new Image();
+        newImage.src =  `https://artbased.com/api/v1/getimage/inv/${this.currentItem.InventoryCode}.jpg`;
+        // "http://localhost/image/id/image" + count++ + ".jpg";
+   
         $("#file").val("");
       })
    //})
