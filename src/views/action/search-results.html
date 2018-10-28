@@ -113,11 +113,19 @@
                          <option repeat.for="opt of appService.codesPublicationType " model.bind="opt.id">
                     ${opt.Description} 
                       </option> 
-                    </select> ReproductionTitle <input type="text" id="ReproductionTitle" class="form-control input-sm"
+                    </select>
+                     ReproductionTitle <input type="text" id="ReproductionTitle" class="form-control input-sm"
 						 value.bind="item.ReproductionTitle"> ReproductionPage <input type="text" id="ReproductionPage" class="form-control input-sm"
 						 value.bind="item.ReproductionPage"> ColorBW
 						<!-- <input type="text" id="ColorBW" class="form-control input-sm" 
             value.bind="item.ColorBW">  -->
+			ReproductionLocation
+						<aubs-typeahead ref='reproductionlocation' data.bind="appService.codesProvenanceLocation" value.bind="item.DescriptionLoc"
+						 debounce.bind="350" placeholder="reproduction location" open-on-focus.bind="true" key="Description" results-limit.bind="12"
+						 select-single-result.bind="true">
+						</aubs-typeahead>
+
+
 						ColorBW <select id="ColorBW" class="form-control  input-sm" value.bind="item.ColorBW"> 
                       <option model.bind="null">Choose...</option> 
                          <option repeat.for="opt of appService.codesReproductionType " model.bind="opt.id">
@@ -140,12 +148,7 @@
 
             <!-- <input type="text" id="ReproductionLocation" class="form-control input-sm" value.bind="item.ReproductionLocation">						AuthorFirst <input type="text" id="AuthorFirst" class="form-control input-sm" value.bind="item.AuthorFirst"> AuthorLast -->
 						<!-- codesListLocation -->
-						ReproductionLocation
-						<aubs-typeahead ref='reproductionlocation' data.bind="appService.codesProvenanceLocation" value.bind="item.DescriptionLoc"
-						 debounce.bind="350" placeholder="reproduction location" open-on-focus.bind="true" key="Description" results-limit.bind="12"
-						 select-single-result.bind="true">
-						</aubs-typeahead>
-
+			
 
 						<!-- ExhibitMemo <input type="text" id="ExhibitMemo" class="form-control input-sm" value.bind="item.AuthorLast"> -->
 						<button id="save3" class="btn btn-primary" type="button" click.delegate="save3()">save Reproduction</button>

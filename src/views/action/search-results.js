@@ -170,6 +170,7 @@ export class SearchResults {
   }
 
 
+
   activate(params, routeConfig) {
     //http://74.114.164.24/api/v1/inventorycontent?artistl=s%26artistf=c 
     // 3/19
