@@ -51,6 +51,31 @@
 		.orange-cap {
 			background-position: 0 -450px;
 		}
+// input type
+     .custom-file-input::-webkit-file-upload-button {
+  visibility: hidden;
+}
+.custom-file-input::before {
+  content: 'Select image file and upload';
+  display: inline-block;
+  background: -webkit-linear-gradient(top, #f9f9f9, #e3e3e3);
+  border: 1px solid #999;
+  border-radius: 3px;
+  padding: 5px 8px;
+  outline: none;
+  white-space: nowrap;
+  -webkit-user-select: none;
+  cursor: pointer;
+  text-shadow: 1px 1px #fff;
+  font-weight: 700;
+  font-size: 10pt;
+}
+.custom-file-input:hover::before {
+  border-color: black;
+}
+.custom-file-input:active::before {
+  background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
+}
 	</style>
 	<div class="modal fade" id="myModal" ref="myModal">
 		<div class="modal-dialog">
@@ -199,7 +224,7 @@
 										<!--  & validate -->
 									</div>
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
-										<span dblclick.delegate="showModal( 'MediumSupportobj') ">	<strong> Medium. >></strong></span>
+										<span dblclick.delegate="showModal( 'MediumSupportobj') ">	<strong> Medium</strong></span>
 
 									</div>
 									<!-- <div class="Rtable-cell-70  Rtable-cell--highlight">
@@ -618,7 +643,7 @@
 										<strong> Bin</strong>
 									</div>
 									<div class="Rtable-cell-70 Rtable-cell--highlight">
-										<input type="text " id="Bin " class="form-control input-sm " value.bind="currentItem.Bin">
+										<input type="text " id="Bin" class="form-control input-sm" value.bind="currentItem.Bin">
 									</div>
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
 										<strong> Image Info & Dims</strong>
@@ -641,24 +666,57 @@
 					</div>
 					<!--top left  -->
 
-					<div id="top-right " class="flex-column-none data-form-image">
-          ${currentItem.InventoryCode}
-						<img ref="mainimage" class="responsive-img" src="https://artbased.com/api/v1/getimage/inv/${currentItem.InventoryCode}.jpg"
+       <!-- <a slot="buttons-slot" class="btn btn-success" click.delegate="addInventory(file)">
+				<i class="fa fa-plus"></i>Upload File
+			</a> -->
+       <!-- <input class="form-control" type="text"/>
+            <div class="input-group-btn">
+                <label for="file" class="btn btn-default">browse</label>
+                <input id="file" type="file" class="btn btn-success"  
+                change.delegate="addInventory(file)" style="visibility:hidden;"/>
+            </div>  
+            
+            <label for=file>
+    <u>Select image and upload </u> -->
+<div id="top-right " class="flex-column-none data-form-image"
+ if.bind="recordId !== 'create'">                  
+          	<img ref="mainimage" class="responsive-img" src="https://artbased.com/api/v1/getimage/inv/${currentItem.InventoryCode}.jpg"
 						 click.delegate="showModalImg()">
-					
-						<br>
-	<input style='height:88' id='file' type="file" name="file" files.bind="file">
-		 
-<a slot="buttons-slot" class="btn btn-success" click.delegate="addInventory(file)">
-				<i class="fa fa-plus"></i> Add Uploaded File
-			</a>
-             
-					</div>
-  
+             <!-- <input class="custom-file-input"  id='file' type="file" name="file" files.bind="file" 
+             change.delegate="addInventory(file)" >
+		  -->
+
+<input class="btn btn-primary"  id="file" type="file" name="file" files.bind="file" 
+             change.delegate="addInventory(file)"
+ accept='image/jpg'>
+</label>
+
+
+										</div>
+										<div  else>
+    <input class="btn btn-primary"  id="file" type="file" name="file" files.bind="file" 
+             change.delegate="addInventory(file)"
+ accept='image/jpg'>
+
+										</div>
+
+          <!-- <div id="top-right " class="flex-column-none data-form-image">
+            <img ref="mainimage" class="responsive-img" src="https://artbased.com/api/v1/getimage/inv/${currentItem.InventoryCode}.jpg"
+            click.delegate="showModalImg()">
+
+            <br>
+            <input style='height:88' id='file' type="file" name="file" files.bind="file">
+
+            <a slot="buttons-slot" class="btn btn-success" click.delegate="addInventory(file)">
+            <i class="fa fa-plus"></i> Add Uploaded File
+            </a>
+
+					</div> -->
+ 
 					<!-- end middle and top right -->
+ </div>
 
-
-				</div>
+			
 				<!--  class="tab tab-top ${tab.isSelected ? 'tab-selected' : ''}"> -->
 
 				<div if.bind="recordId==='create'">Create Mode. Please save record before entering tabs </div>

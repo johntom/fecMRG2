@@ -63,22 +63,22 @@ export class DataForm {
   ];
 
   searchsold = [
-    
+
     { id: 0, name: 'Y' },
     { id: 1, name: 'N' },
     { id: 2, name: 'NFS' },
     { id: 3, name: 'DON' },
-  ]; 
-  
-  products = [
-        { id: '0', name: 'Motherboard' },
-        { id: '1', name: 'CPU' },
-        { id: '2', name: 'Memory' },
-      ];
+  ];
 
-      selectedProductId = 'CPU';//1';
-// products = ['Motherboard', 'CPU', 'Memory'];
-//       selectedProduct = 'CPU';//null;
+  products = [
+    { id: '0', name: 'Motherboard' },
+    { id: '1', name: 'CPU' },
+    { id: '2', name: 'Memory' },
+  ];
+
+  selectedProductId = 'CPU';//1';
+  // products = ['Motherboard', 'CPU', 'Memory'];
+  //       selectedProduct = 'CPU';//null;
 
   //   searchsold = [
   //   {id:-1,name:'Y'},
@@ -179,7 +179,7 @@ export class DataForm {
     this.currentItem.fieldname = fieldname
     this.currentItem.recordId = this.recordId
     this.dialogService.open({ viewModel: Prompt, model: this.currentItem, lock: false }).whenClosed(response => {
-  //  if(this.recordId==='create')  this.currentItem.recordId=
+      //  if(this.recordId==='create')  this.currentItem.recordId=
       // if (fieldname === 'Artist') {
       //   let artistsel =   this.currentItem.artist;
       //    if (artistsel===undefined){
@@ -310,7 +310,7 @@ export class DataForm {
   selectChangedMS(MediumSupport) {
     alert('in selectChangedMS  ', MediumSupport, this.MediumSupport1)
     // this.MediumText=''
-    // let genres = this.appService.codesGenre
+    // let genres = this.appService.codfaddesGenre
     // let gid = genres.findIndex(x => x.id === genreid)
     // let item = genres[aid];// { ADJUSTER_ID: 4, ADJUSTER_NAME: "Donna Luciani", edit: true }
     // this.currentItem.GenreID = item.id
@@ -337,7 +337,7 @@ export class DataForm {
         //   this.currentItem.insco = {}
         //   this.currentItem.insaddress = {}
         //   this.currentItem.inscontact = {}
-        this.currentItem.artist=undefined//{} 
+        this.currentItem.artist = undefined//{} 
         this.currentItem.provenance = []
         this.currentItem.notes = []
         this.currentItem.exhibitions = []
@@ -434,18 +434,18 @@ export class DataForm {
     // }
 
     // move to attach
-// bypass save if in create mode
-     if (this.recordId !== 'create') {
+    // bypass save if in create mode
+    if (this.recordId !== 'create') {
 
-    if (!this.currentItem.savedonce || this.currentItem.savedonce === undefined) {
-      // if (!this.currentItem.savedonce || this.currentItem.savedonce === true) {
-      // force it all the time
-      this.currentItem.savedonce = true
-      this.saveinventory(0)
+      if (!this.currentItem.savedonce || this.currentItem.savedonce === undefined) {
+        // if (!this.currentItem.savedonce || this.currentItem.savedonce === true) {
+        // force it all the time
+        this.currentItem.savedonce = true
+        this.saveinventory(0)
+      }
+      this.appService.clientHeight = this.mainimage.clientHeight
+      this.appService.clientWidth = this.mainimage.clientWidth
     }
-    this.appService.clientHeight = this.mainimage.clientHeight
-    this.appService.clientWidth = this.mainimage.clientWidth
-     }
     let tabinfo, tabindex
     // tabinfo = localStorage.getItem('tabinfo');
 
@@ -618,10 +618,10 @@ export class DataForm {
             imageWidth = 1
           } else if (imgh > imgw) {
             imageHeight = 1
-            imageWidth =  (imgw / imgh).toPrecision(2)  //Math.round(imgw / imgh)
+            imageWidth = (imgw / imgh).toPrecision(2)  //Math.round(imgw / imgh)
           } if (imgw > imgh) {
             imageWidth = 1
-            imageHeight =  (imgh / imgw).toPrecision(2) //Math.round(imgh / imgw)
+            imageHeight = (imgh / imgw).toPrecision(2) //Math.round(imgh / imgw)
           }
         }
         this.currentItem.clientHeightRatio = imageHeight
@@ -678,124 +678,125 @@ export class DataForm {
   }
 
   checkData(images, formData) {
-  let promises = []
-  return new Promise((resolve, reject) => {
-    let i = 0;
-    let docs = this.currentItem.docs
-    if (docs === undefined) docs = []
-    let imagelen = images.length
-    for (i = 0; i < images.length; i++) {
-      let ext = images[i].name.split('.').pop();
-      let fname = images[i].name
-      let mid = -100// not needed
-      let ival = i
-      mid = docs.findIndex(x => x.FILE_NAME === fname)
-      if (mid > -1) {
-        // if we find file in array pass all values so we can evaluate later
-        let obj = { name: fname, val: ival, ext: ext }
-        var promise = this.promiseDialog(obj)
-        promises.push(promise);
-      } else {
-        var item = { FILE_NAME: fname, FILE_EXT: '.' + ext, OVERWRITE: 'N' }
-        docs.unshift(item)
-        formData.append('file', images[ival]);
-      }
-    }
-    return Promise.all(promises).then(values => {
-      for (i = 0; i < values.length; i++) {
-        //console.log(' this.response values[i] ',i,values[i].name,values[i].val,values[i].resp)
-        if (!values[i].resp) {
-          //true=wasCancelled
-          var item = { FILE_NAME: values[i].name, FILE_EXT: values[i].ext, OVERWRITE: 'Y' }
-          // dont add to data docs.unshift(item)
-          formData.append('file', images[values[i].val]);
+    let promises = []
+    return new Promise((resolve, reject) => {
+      let i = 0;
+      let docs = this.currentItem.docs
+      if (docs === undefined) docs = []
+      let imagelen = images.length
+      for (i = 0; i < images.length; i++) {
+        let ext = images[i].name.split('.').pop();
+        let fname = images[i].name
+        let mid = -100// not needed
+        let ival = i
+        mid = docs.findIndex(x => x.FILE_NAME === fname)
+        if (mid > -1) {
+          // if we find file in array pass all values so we can evaluate later
+          let obj = { name: fname, val: ival, ext: ext }
+          var promise = this.promiseDialog(obj)
+          promises.push(promise);
+        } else {
+          var item = { FILE_NAME: fname, FILE_EXT: '.' + ext, OVERWRITE: 'N' }
+          docs.unshift(item)
+          formData.append('file', images[ival]);
         }
       }
-      resolve(formData)
+      return Promise.all(promises).then(values => {
+        for (i = 0; i < values.length; i++) {
+          //console.log(' this.response values[i] ',i,values[i].name,values[i].val,values[i].resp)
+          if (!values[i].resp) {
+            //true=wasCancelled
+            var item = { FILE_NAME: values[i].name, FILE_EXT: values[i].ext, OVERWRITE: 'Y' }
+            // dont add to data docs.unshift(item)
+            formData.append('file', images[values[i].val]);
+          }
+        }
+        resolve(formData)
+      })
     })
-  })
-}
+  }
 
   addInventory(images) {
-  //images is file
-  //check for dups 2/21/2018
-  //https://stackoverflow.com/questions/32736599/html-file-upload-and-action-on-single-button
-  // let docs = this.currentItem.docs
-  // let foraddDocsmData = new FormData()
-  //let newDate = moment().format('YYYY-MM-DD')
-  //let flag = false
-  //let prom = Promise.resolve(this.checkData(images, formData)).then(values => {
-  //   let newform = values;
-  //   console.log('after checkdata1 ',  newform);
-  //   // this.status, this.api.upload(formData, this.currentItem.CLAIM_NO)
-let formData = new FormData()
-  formData.append('file',images[0])
-// var newImage = new Image();
-// newImage.src = `https://artbased.com/api/v1/getimage/inv/${this.currentItem.InventoryCode}.jpg`;
-
+    // alert(images);
+    //images is file
+    //check for dups 2/21/2018
+    //https://stackoverflow.com/questions/32736599/html-file-upload-and-action-on-single-button
+    // let docs = this.currentItem.docs
+    // let foraddDocsmData = new FormData()
+    //let newDate = moment().format('YYYY-MM-DD')
+    //let flag = false
+    //let prom = Promise.resolve(this.checkData(images, formData)).then(values => {
+    //   let newform = values;
+    //   console.log('after checkdata1 ',  newform);
+    //   // this.status, this.api.upload(formData, this.currentItem.CLAIM_NO)
+    let formData = new FormData()
+    formData.append('file', images[0])
+    // var newImage = new Image();
+    // newImage.src = `https://artbased.com/api/v1/getimage/inv/${this.currentItem.InventoryCode}.jpg`;
+ this.mainimage.src = null;
+        
     this.api.upload(formData, this.currentItem.InventoryCode)
       .then((jsonRes) => {
         this.upmess = jsonRes.data
 
-        // mainimage.src = newImage.src;
-        // newImage = new Image();
-        // newImage.src =  `https://artbased.com/api/v1/getimage/inv/${this.currentItem.InventoryCode}.jpg`;
+        // mainimage = new Image();
+        this.mainimage.src =  `https://artbased.com/api/v1/getimage/inv/${this.currentItem.InventoryCode}.jpg`;
         // "http://localhost/image/id/image" + count++ + ".jpg";
-   
+
         $("#file").val("");
       })
-   //})
+    //})
 
-  // this is not a good way to get value this.items = Promise.resolve(this.checkData(images));
-  //  console.log('after checkdata1 just a promise cant pick off value ',  this.status,this.items);
-  //  return Promise.all([  this.checkData(images)]).then(values => {
-  //     this.items = values[0];
-  //      console.log('after checkdata1 ',  this.status,this.items);
-  //   }).catch(error => {
-  //     console.error("Error encountered while trying to get data.", error);
-  //   });
+    // this is not a good way to get value this.items = Promise.resolve(this.checkData(images));
+    //  console.log('after checkdata1 just a promise cant pick off value ',  this.status,this.items);
+    //  return Promise.all([  this.checkData(images)]).then(values => {
+    //     this.items = values[0];
+    //      console.log('after checkdata1 ',  this.status,this.items);
+    //   }).catch(error => {
+    //     console.error("Error encountered while trying to get data.", error);
+    //   });
 
-}
+  }
 
 
 
-// addexistingSelection(){
-//   let sels
-// 		if (this.selectedids === undefined) {
-// 			sels = []
-		
-// 		} else sels = this.selectedids
+  // addexistingSelection(){
+  //   let sels
+  // 		if (this.selectedids === undefined) {
+  // 			sels = []
 
-// 		var grid = this.grid;
-// 		var selectedRows = grid.select();
-// 		if (selectedRows.length === 0) {
-// 			alert('please select a row to add'
-// 			)
-// 		} else {
-// 			var maxRows = selectedRows.length / 2;
-// 			selectedRows.each(function (idx, el) {
-// 				let dataItem = grid.dataItem(el);
-// 			});
-// 			var i;
-// 			var a1;
-// 			for (i = 0; i < maxRows; i++) {
-// 				a1 = selectedRows[i];
-// 				let dataItem = grid.dataItem(a1);
-// 				let mid = sels.findIndex(x => x === dataItem.InventoryCode)
-// 				if (mid === -1) {
-// 					sels.push(dataItem.InventoryCode);
-// 				}
-// 				if (i === maxRows - 1) {
-// 					this.selectedids = sels;
-// 					alert('addexistingSelection')
-// 					this.api.updateSavedlists(this.appService.currentsavedlist, this.selectedids).then((jsonRes) => {
-// 						console.log('jsonRes ', jsonRes);
-// 					});
-// 				}
-// 			}
-			
-// 		}
-// }
+  // 		} else sels = this.selectedids
+
+  // 		var grid = this.grid;
+  // 		var selectedRows = grid.select();
+  // 		if (selectedRows.length === 0) {
+  // 			alert('please select a row to add'
+  // 			)
+  // 		} else {
+  // 			var maxRows = selectedRows.length / 2;
+  // 			selectedRows.each(function (idx, el) {
+  // 				let dataItem = grid.dataItem(el);
+  // 			});
+  // 			var i;
+  // 			var a1;
+  // 			for (i = 0; i < maxRows; i++) {
+  // 				a1 = selectedRows[i];
+  // 				let dataItem = grid.dataItem(a1);
+  // 				let mid = sels.findIndex(x => x === dataItem.InventoryCode)
+  // 				if (mid === -1) {
+  // 					sels.push(dataItem.InventoryCode);
+  // 				}
+  // 				if (i === maxRows - 1) {
+  // 					this.selectedids = sels;
+  // 					alert('addexistingSelection')
+  // 					this.api.updateSavedlists(this.appService.currentsavedlist, this.selectedids).then((jsonRes) => {
+  // 						console.log('jsonRes ', jsonRes);
+  // 					});
+  // 				}
+  // 			}
+
+  // 		}
+  // }
 
   canDeactivate() {
     return new Promise((resolve, reject) => {

@@ -778,9 +778,9 @@ saveMerge(slname, editorval) {
       body: formData
 
       // body: JSON.stringify(formData)
-    }).then((res) => res.json())
-      .then(data => console.log('data.message', data.message))
-      .catch(error => console.log(error));
+    }).then((res) => res.json());
+      // .then(data => console.log('data.message', data.message))
+      // .catch(error => console.log(error));
   }
   uploadInvoice(formData, invoice) {
     //http://arabsight.github.io/uploading-files-with-aurelia

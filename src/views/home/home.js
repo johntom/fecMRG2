@@ -6,8 +6,8 @@ import { MyDataService } from "../../services/my-data-service";
 
 export class Home {
   heading = "MRG Home Page";
-  version = 241.33
-  versionDate = 'Sun 10/27/2018'
+  version = 241.34
+  versionDate = 'Mon 10/28/2018'
   // versiondate=Date();
   //  "select2": {
   //       "map": "npm:select2@4.0.6-rc.1/dist",
@@ -34,7 +34,8 @@ export class Home {
     'HOFMAN0015 POLLOCJ005 PORTERC007 PORTERC009 PORTERC008 PORTERC013',
     'radio has issue with flex only primitive string works',
     'reloading an inventory image, must goto home page press f5',
-    'have only 1 action list'
+    'have only 1 action list',
+    'https://bl.ocks.org/lstarky/11cd1e90dd912f07a60afaedb9c2613b',
   ]
     ninalist = [
     'when selecting saved list inv/actions/batch go directly ...',
@@ -56,7 +57,8 @@ export class Home {
     'At the left side of the dialog box click Advanced.',
     'Scroll through the options until you see the General section.',
     'Make sure the Confirm File Format Conversion On Open check box is selected.',
-    'Click on OK.'
+    'Click on OK.',
+    'https://bl.ocks.org/lstarky/11cd1e90dd912f07a60afaedb9c2613b',
   ]
   todo = [
     'Link option',
