@@ -310,8 +310,8 @@ this.segment2 += provheader
         if (reproduction !== undefined) {
           // let eid = reproduction.findIndex(x => x.ReproductionExhibit === item.ExhibitTitle)
          // let eid = reproduction.findIndex(x => x.id === item.ReproductionExhibit)
-          let eid = exhibition.findIndex(x => x.id === item.ReproductionExhibit)
-          let reporec
+         let eid = reproduction.findIndex(x => x.ReproductionExhibit === item.id)
+         let reporec
           linkPageNo = ''
           console.log('eid ', eid, linkPageNo) //ColorBWDesc1)
 
@@ -319,7 +319,7 @@ this.segment2 += provheader
             reporec = reproduction[eid]
             console.log('reporec', reporec.ReproductionPage, reporec)
 
-            linkPageNo = `, ${reporec.ReproductionPage} `
+            linkPageNo = `, ${reporec.ReproductionPage}`
             item.ExhibitSortDate = reporec.ReproductionSortDate
           }
         } else linkPageNo = ''
