@@ -482,9 +482,8 @@ this.mainimage.src = `https://artbased.com/api/v1/getimage/inv/${this.currentIte
       clientHeightRatio = (this.currentItem.clientHeight / this.currentItem.clientWidth).toPrecision(2)
 
     } if (this.currentItem.clientWidth > this.currentItem.clientHeight) {
-      // imageHeight = (imgh / imgw).toPrecision(2) //Math.round(imgh / imgw)
       clientHeightRatio = 1
-      clientWidthRatio = (this.currentItem.clientWidth / this.currentItem.clientHeight).toPrecision(2) //Math.round(imgh / imgw)
+      clientWidthRatio = (this.currentItem.clientWidth / this.currentItem.clientHeight).toPrecision(2) 
     }
     this.currentItem.clientHeightRatio = imageHeight
     this.currentItem.clientWidthRatio = imageWidth
