@@ -2,7 +2,7 @@
 import { DialogController } from 'aurelia-dialog';
 import { ApplicationService } from '../../services/application-service';
 import { MyDataService } from "../../services/my-data-service";
-//
+
 import { DialogService } from 'aurelia-dialog';
 import { PromptServ } from '../../services/promptserv';
 import { ApiService } from '../../utils/servicesApi';
@@ -23,6 +23,14 @@ export class Prompt {
   textfields = ['Description', 'Comment', 'Inscribed', 'Treatment']
 
   textfielddesc = ['Enter Alt ID', 'Enter Comment', 'Enter Inscribed with left of ":" as reg text right as ialtics till "; repeat', 'Enter Treatment']
+ 
+ 
+ // for the datalist with medium support
+   selectedValue = null;
+  findOption = value => this.appService.codesListMediumSupport.find(x => x.Description === value);
+    // findOption = this.appService.codesListMediumSupport.find(x => x.Description === findvalue)
+   
+ 
   constructor(controller, appService, dataService, dialogService, api) {
     this.controller = controller;
     this.answer = null;
@@ -84,19 +92,32 @@ export class Prompt {
 
   //     }
   // }
+  changeCallbackMedSup(selectedvalue) {
+  
+    console.log('selectedvalue has undefined ', selectedvalue, "myDatalist this.myDatalist.value has the value", this.myDatalist.value);
+  let findvalue=this.myDatalist.value
+  //  let  findObject = findvalue => this.appService.codesListMediumSupport.find(x => x.Description === findvalue);
+    
+    // let  findIndex = this.appService.codesListMediumSupport.findIndex(x => x.Description === findvalue)
+    // let  findObject  = this.appService.codesListMediumSupport[findIndex] 
+ 
 
+    let  findObject = this.appService.codesListMediumSupport.find(x => x.Description === findvalue)
+        
+    if (findObject===undefined) {
+      alert(`you are about to add ${findvalue} to medium support`)
+      this.addnewms(findvalue)
+    }
+    
+    //  if (selectedvalue === undefined) {
+        
+    //     } else this.performSearchSL()
+
+
+
+  }
   attached() {
-    // set typahead value for state MUST BE IN ATTACHED
-    // this.name = {
-    //   name: 'New York',
-    //   value: 'NY'
-    // }
-    // this.dow.value = this.name
-    // this.appService.currentsavedlist
-
-    //   this.currentItem = this.appService.currentItem
-
-    let opos = this.orgfields.findIndex(x => x === this.fieldname);
+     let opos = this.orgfields.findIndex(x => x === this.fieldname);
     if (opos !== -1) {
       this.orgfielddescription = this.orgfielddesc[opos]
 
@@ -116,36 +137,9 @@ export class Prompt {
 
     }
 
-    // if (this.fieldname === 'ArtistX') {
-    //   let artists = this.appService.artistList
-    //   if ((this.currentItem.artist === undefined) || (this.currentItem.artist === null)) {
-    //     // this.currentItem={}// for create only
-    //   } else {
-    //     let artid = artists.findIndex(x => x.id === this.currentItem.artist.id)
-    //     let artobj = this.appService.artistList[artid]//10]
-    //     this.ArtistName = artobj
-    //     this.dartist.value = this.ArtistName
-    //   }
-    // }
-
-
-    // if (this.currentItem.recordId !== 'create') {
-
-
-    // if (this.fieldname === 'Artist' && this.currentItem.recordId !== 'create') {
-
+    
     if (this.fieldname === 'Artist') {
 
-
-      //let artists = this.appService.artistList
-      // if ((this.currentItem.artist === undefined) || (this.currentItem.artist === null)) {
-      //  // this.currentItem={}// for create only
-      // } else {
-      // let artid = artists.findIndex(x => x.id === this.currentItem.artist.id)
-      // let artobj = this.appService.artistList[artid]//10]
-      //
-      //
-      // sep since artist is an object no need to find it
 
 
       if (this.currentItem.artist === undefined) {
@@ -158,12 +152,8 @@ export class Prompt {
         this.dartist.value = this.ArtistName
       }
 
-      // this.dartist.value = this.ArtistName
+      
     }
-
-    // if (this.fieldname === 'MediumSupportobj') {
-    // if (this.fieldname === 'MediumSupportobj' && this.currentItem.recordId !== 'create') {
-
     if (this.fieldname === 'MediumSupportobj') {
 
       this.doc = `type any characters of the   "Medium/Support: select or add new."`
@@ -172,24 +162,23 @@ export class Prompt {
 
       if (this.currentItem.MediumSupportobj === undefined) {
 
-        this.MedSup = undefined //this.appService.codesListMediumSupport[1]
-      } else this.MedSup = this.currentItem.MediumSupportobj
+        // this.MedSup = this.appService.codesListMediumSupport[1]
+      } else {
+         this.MedSup = this.currentItem.MediumSupportobj
       // if (this.MedSup.Description === undefined) this.MedSup.Description = this.currentItem.MediumSupportobj.Description
       // this.dmediumsupport.value = this.MedSup
 
       //  if (this.MedSup.Description === undefined) {
 
       //  }
-      this.dmediumsupport.value = this.MedSup
+      // this.dmediumsupport.value = this.MedSup
 
+// datlist
+this.myDatalist.value=this.MedSup.Description
 
-      //  <select ref="MediumSupport11" id="MediumSupport11" class="form-control input-sm" value.bind="appService.currentItem.MediumSupportobj"> 
-      //                     <!-- & validate -->
-      //                     <!-- <option model.bind=" null ">Choose...</option>
-      // 										<option ref="MediumSupport21 " repeat.for="opt of appService.codesListMediumSupport " model.bind="opt ">
-      // 											${opt.Description}
-      // 										</option>
-      // 									</select>  
+      }
+
+     
 
     }
 
@@ -252,22 +241,25 @@ export class Prompt {
 
   }
 
-  addnewms() {
 
-    let ibod = { 'MediumSupportobj': this.currentItem.newms }
+  addnewms(newvalue) {
+
+    // let ibod = { 'MediumSupportobj': newvalue}//this.currentItem.newms }
     let bod = {
       "CodeType": 12,
-      "Description": this.currentItem.newms,
+      "Description": newvalue ,//this.currentItem.newms,
       "CodeTypeDesc": "Medium/Support"
     }
     this.api.addmediumsupport(bod).then((jsonRes) => {
       let ms = jsonRes.data;
       this.appService.codesListMediumSupport = ms
-      // this.appService.currentItem.MediumSupportobj.id = ins.id
-      // this.appService.currentItem.MediumSupportobj.Description = ins.Description
-
-      let oid = this.appService.codesListMediumSupport.findIndex(x => x.Description === this.currentItem.newms)
-      let codeobj = this.appService.codesListMediumSupport[oid]
+      
+      // let oid = this.appService.codesListMediumSupport.findIndex(x => x.Description === this.currentItem.newms)
+      // let codeobj = this.appService.codesListMediumSupport[oid]
+      let codeobj = this.appService.codesListMediumSupport.find(x => x.Description === newvalue)
+      
+      console.log('codeobj ', codeobj);
+      
       this.currentItem.MediumSupportobj.id = codeobj.id
       this.currentItem.MediumSupportobj.Description = codeobj.Description
 
@@ -275,10 +267,6 @@ export class Prompt {
       this.controller.cancel()
 
       // Promise.resolve(this.dataService.MediumSupportobj()) //.then(values => {})
-
-
-
-
       //       let rec = {
       //         "CodeType": 3,
       //         "Description": value,
@@ -350,9 +338,9 @@ export class Prompt {
     if (this.fieldname === 'MediumSupportobj') {
       // this.currentItem.MediumSupportobj.id = this.MedSup.id
 
-      if (this.MedSup !== this.currentItem.MediumSupportobj)
-        this.currentItem.MediumSupportobj = this.MedSup
-
+      // if (this.MedSup !== this.currentItem.MediumSupportobj)
+      //   this.currentItem.MediumSupportobj = this.MedSup
+this.currentItem.MediumSupportobj = this.selectedValue
     }
     if (this.fieldname === 'OwnerID') {
       if (this.OrgName.OrgName !== this.currentItem.ownername) {
@@ -445,3 +433,33 @@ export class Prompt {
     this.controller.cancel()
   }
 }
+
+
+
+// if (this.fieldname === 'MediumSupportobj') {
+
+//       this.doc = `type any characters of the   "Medium/Support: select or add new."`
+//       this.heading = `Search Medium/Support: select or add new.`
+//       this.placeholder = `Enter any characters on Medium/Support: select or add new.`
+
+//       if (this.currentItem.MediumSupportobj === undefined) {
+
+//         // this.MedSup = this.appService.codesListMediumSupport[1]
+//       } else {
+//          this.MedSup = this.currentItem.MediumSupportobj
+//       // if (this.MedSup.Description === undefined) this.MedSup.Description = this.currentItem.MediumSupportobj.Description
+//       // this.dmediumsupport.value = this.MedSup
+
+//       //  if (this.MedSup.Description === undefined) {
+
+//       //  }
+//       // this.dmediumsupport.value = this.MedSup
+
+// // datlist
+// this.myDatalist.value=this.MedSup.Description
+
+//       }
+
+     
+
+//     }

@@ -133,7 +133,7 @@
 							</datalist> -->
 							<!-- change.delegate="changeCallbackMru(selectedValue)"  -->
 							<div class="form-group flex-column-1 margin-left-10">
-								<!-- <label for="adjuster">mru2</label> -->
+								<!-- <label for="adjuster">SL</label> -->
 								<input ref="myDatalist" type="text" list="myDatalist" placeholder="search on savedlist" 
                 change.delegate="performSearchSL()"
 								 input.delegate="selectedValue = findOption($event.target.value)" />
@@ -144,7 +144,17 @@
 							</div>
 						</div>
 
-
+	<!-- <div class="form-group flex-column-1 margin-left-10">
+							<label for="adjuster">SavedList</label>
+								<input ref="myDatalist" type="text" list="myDatalist" 
+                change.delegate="changeCallbackMru(selectedValue)" 
+                input.delegate="selectedValue = findOption($event.target.value)"
+							/>
+							<datalist id="myDatalist">
+									<option repeat.for="option of mru">${option}</option>
+							</datalist>
+							<pre style="margin-top: 100px"><code>${selectedValue}</code></pre>
+						</div> -->
 
 						<div class="form-group flex-column-1 margin-left-10">
 							<label for="adjuster">mru</label>
@@ -157,19 +167,9 @@
 								</li>
 							</ul>
 						</div>
+					
+				
 					</div>
-					<!-- <div class="form-group flex-column-1 margin-left-10">
-							<label for="adjuster">mru2</label>
-								<input ref="myDatalist" type="text" list="myDatalist" 
-                change.delegate="changeCallbackMru(selectedValue)" 
-                input.delegate="selectedValue = findOption($event.target.value)"
-							/>
-							<datalist id="myDatalist">
-									<option repeat.for="option of mru">${option}</option>
-							</datalist>
-							<pre style="margin-top: 100px"><code>${selectedValue}</code></pre>
-						</div>
-					</div> -->
 
 
 					<div class="form-group">

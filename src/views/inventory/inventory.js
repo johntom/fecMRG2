@@ -301,13 +301,21 @@ export class Inventory {
   }
   changeCallbackMru(selectedvalue) {
     // The selected value will be printed out to the browser console
-
-
+// if mru
     console.log('selectedvalue ', selectedvalue, "myDatalist", this.myDatalist.value);
-    if (selectedvalue === undefined) {
-      this.mru.push(this.myDatalist.value)
-      this.populateInv(this.myDatalist.value)
-    } else this.populateInv(selectedvalue)
+    // if (selectedvalue === undefined) {
+    //   this.mru.push(this.myDatalist.value)
+    //   this.populateInv(this.myDatalist.value)
+    // } else this.populateInv(selectedvalue)
+
+
+// else
+ if (selectedvalue === undefined) {
+    
+    } else this.performSearchSL()
+
+
+
   }
   checkms() {
     console.log(this.selectedOptions)
