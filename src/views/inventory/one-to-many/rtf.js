@@ -789,17 +789,11 @@ if (this.currentItem.Dated) {
 
 
 
-    // this.appService.clientHeight = this.mainimage.clientHeight
-    // this.appService.clientWidth = this.mainimage.clientWidth
     let fac = this.searchsold[this.selectedimagesize] // - ${this.sold.factor}
-    //  alert(`${this.selectedimagesize}- ${fac.factor} `  )
-    //   - ${fac}
-
-    let ww = this.appService.clientWidth * fac.factor
-    let hh = this.appService.clientHeight * fac.factor
-    //  let ww = this.currentItem.clientWidth * fac.factor
-    //  let hh = this.currentItem.clientHeight * fac.factor
-
+   
+    let ww = this.currentItem.clientWidth * fac.factor
+    let hh = this.currentItem.clientHeight * fac.factor
+   
 
     console.log(hh, ww)
     if (ww === 0) ww = 450

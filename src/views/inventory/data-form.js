@@ -359,6 +359,7 @@ export class DataForm {
       } else {
         console.log('this.recordId ', this.recordId);
         this.mrubuild()
+        // this.getimageinfo()
         // let mruget = localStorage.getItem('mru-mrg');
         // if (mruget === null) {
         //   // tabindex = 0
@@ -428,33 +429,69 @@ export class DataForm {
     }
     console.log('finihed active4')
   }
-  mrubuild(){
-        let mruget = localStorage.getItem('mru-mrg');
-        if (mruget === null) {
-          // tabindex = 0
-          mruget = 0
-        } else {
-          mruget = JSON.parse(mruget)
-        }
+  mrubuild() {
+    let mruget = localStorage.getItem('mru-mrg');
+    if (mruget === null) {
+      // tabindex = 0
+      mruget = 0
+    } else {
+      mruget = JSON.parse(mruget)
+    }
 
-        // let get the mru list and bump it
-        function mruinfo(temp) {
-          this.mru1 = temp[0];
-          this.mru2 = temp[1];
-          this.mru3 = temp[2];
-          this.mru4 = temp[3];
-          this.mru5 = temp[4];
-          //  this.tabindex = temp[1];
-        }
-        var temp = [this.recordId, mruget.mru1, mruget.mru2, mruget.mru3, mruget.mru4];
+    // let get the mru list and bump it
+    function mruinfo(temp) {
+      this.mru1 = temp[0];
+      this.mru2 = temp[1];
+      this.mru3 = temp[2];
+      this.mru4 = temp[3];
+      this.mru5 = temp[4];
+      //  this.tabindex = temp[1];
+    }
+    var temp = [this.recordId, mruget.mru1, mruget.mru2, mruget.mru3, mruget.mru4];
 
-        if (this.recordId === mruget.mru1 || this.recordId === mruget.mru2 || this.recordId === mruget.mru3 ||
-          this.recordId === mruget.mru4 || this.recordId === mruget.mru5) { } else {
-          mruinfo = new mruinfo(temp);
-          // localStorage.setItem('tabinfo', JSON.stringify(tabinfo));
-          localStorage.setItem('mru-mrg', JSON.stringify(mruinfo));
-        }
+    if (this.recordId === mruget.mru1 || this.recordId === mruget.mru2 || this.recordId === mruget.mru3 ||
+      this.recordId === mruget.mru4 || this.recordId === mruget.mru5) { } else {
+      mruinfo = new mruinfo(temp);
+      // localStorage.setItem('tabinfo', JSON.stringify(tabinfo));
+      localStorage.setItem('mru-mrg', JSON.stringify(mruinfo));
+    }
   }
+
+  getimageinfo() {
+    if (this.currentItem.clientHeight===undefined){
+let imageWidth, imageHeight, clientHeightRatio, clientWidthRatio
+    // this.currentItem.clientHeight =0
+    // this.currentItem.clientWidth=0
+    // this.currentItem.clientHeightRatio=1
+    //  this.currentItem.clientWidthRatio=1
+// var img = new Image();
+ this.mainimage.onload = function() { //alertalert("Height: " + this.height+' '+ this.width); 
+ }
+this.mainimage.src = `https://artbased.com/api/v1/getimage/inv/${this.currentItem.InventoryCode}.jpg`;
+//this.mainimage.onload = function() {
+     // this.appService.clientHeight = this.mainimage.clientHeight
+    // this.appService.clientWidth = this.mainimage.clientWidth
+    this.currentItem.clientHeight =  this.mainimage.clientHeight
+    this.currentItem.clientWidth =   this.mainimage.clientWidth
+// alert("Height: " + this.mainimage.clientHeight+' '+ this.mainimage.clientWidth);
+    if (this.currentItem.clientHeight === this.currentItem.clientWidth) {
+      clientHeightRatio = 1
+      clientWidthRatio = 1
+    } else if (this.currentItem.clientHeight > this.currentItem.clientWidth) {
+      clientWidthRatio = 1
+      clientHeightRatio = (this.currentItem.clientHeight / this.currentItem.clientWidth).toPrecision(2)
+
+    } if (this.currentItem.clientWidth > this.currentItem.clientHeight) {
+      // imageHeight = (imgh / imgw).toPrecision(2) //Math.round(imgh / imgw)
+      clientHeightRatio = 1
+      clientWidthRatio = (this.currentItem.clientWidth / this.currentItem.clientHeight).toPrecision(2) //Math.round(imgh / imgw)
+    }
+    this.currentItem.clientHeightRatio = imageHeight
+    this.currentItem.clientWidthRatio = imageWidth
+    }
+
+  }
+
   attached() {
     // if (this.appService.dataFormOneToOneTabs.length > 0) {
     //   let tab = this.appService.dataFormOneToOneTabs[0];
@@ -471,41 +508,23 @@ export class DataForm {
         this.currentItem.savedonce = true
         this.saveinventory(0)
       }
-      let imageWidth
-      let imageHeight
-      this.appService.clientHeight = this.mainimage.clientHeight
-      this.appService.clientWidth = this.mainimage.clientWidth
-if (  this.appService.clientHeight  ===  this.appService.clientWidth) {
-            imageHeight = 1
-            imageWidth = 1
-          } else if (this.appService.clientHeight >  this.appService.clientWidth) {
-            imageWidth = 1
-            imageHeight = (this.appService.clientHeight /  this.appService.clientWidth).toPrecision(2)
 
-          } if (this.appService.clientWidth > this.appService.clientHeight) {
-             // imageHeight = (imgh / imgw).toPrecision(2) //Math.round(imgh / imgw)
-            imageHeight = 1
-            imageWidth = ( this.appService.clientWidth / this.appService.clientHeight).toPrecision(2) //Math.round(imgh / imgw)
-          }
-        this.currentItem.clientHeightRatio = imageHeight
-        this.currentItem.clientWidthRatio = imageWidth
-      
+      let tabinfo, tabindex
+      // tabinfo = localStorage.getItem('tabinfo');
 
-    }
-    let tabinfo, tabindex
-    // tabinfo = localStorage.getItem('tabinfo');
+      tabinfo = localStorage.getItem('tabinfo' + this.currentItem.InventoryCode);
+      if (tabinfo === null) {
+        tabindex = 0
+      } else {
+        tabinfo = JSON.parse(tabinfo)
+        tabindex = tabinfo.tabindex
+      }
 
-    tabinfo = localStorage.getItem('tabinfo' + this.currentItem.InventoryCode);
-    if (tabinfo === null) {
-      tabindex = 0
-    } else {
-      tabinfo = JSON.parse(tabinfo)
-      tabindex = tabinfo.tabindex
-    }
-
-    if (this.appService.dataFormOneToManyTabs.length > 0) {
-      let tab = this.appService.dataFormOneToManyTabs[tabindex];
-      this.selectOneToManyTab(tab);
+      if (this.appService.dataFormOneToManyTabs.length > 0) {
+        let tab = this.appService.dataFormOneToManyTabs[tabindex];
+        this.selectOneToManyTab(tab);
+      }
+      this.getimageinfo()
     }
   }
 
@@ -596,16 +615,7 @@ if (  this.appService.clientHeight  ===  this.appService.clientWidth) {
   //   }
 
   // }
-  getmainimage() {
-    //alert ('im')
-    console.log(this.mainimage)
-    // clientHeight: 300
-    //      this.appService.onlyonce=1
-    // clientWidth: 404
-
-    // naturalHeight: 1112
-    // naturalWidth: 1499
-  }
+ 
   saveinventory(option) {
     //this.controller.validate();
     let savetime = moment().format('MM/DD/YY h:mm:ss a')
@@ -613,8 +623,8 @@ if (  this.appService.clientHeight  ===  this.appService.clientWidth) {
     if (this.recordId === 'create') {
       // console.log(  this.currentItem, this.currentItem)
       if (this.currentItem.Title === undefined || this.currentItem.InventoryCode === undefined
-      ||   this.currentItem.MediumSupportobj === undefined
-      ||  this.currentItem.artist === undefined) {
+        || this.currentItem.MediumSupportobj === undefined
+        || this.currentItem.artist === undefined) {
         alert('Please fix  Title, InventoryCode, MediumSupport and or artist ')
       } else {
 
@@ -639,8 +649,8 @@ if (  this.appService.clientHeight  ===  this.appService.clientWidth) {
           // //  this.appService.currentView =   this.currentItem; // must set on every view
           // //  this.appService.originalrec = JSON.parse(JSON.stringify(  this.currentItem))// inv[0]));
           // ///
+
          
-          this.mrubuild()
           // if (option === 1) {
           //   let tab = this.appService.tabs.find(f => f.isSelected);
           //   this.closeTab(tab);
@@ -649,8 +659,9 @@ if (  this.appService.clientHeight  ===  this.appService.clientWidth) {
           //   this.appService.originalrec = this.currentItem
           // }
           // this.closeTab(tab);
- this.requestclose()
-           this.router.navigate(`#/inventory/data/${this.currentItem.InventoryCode}`);
+           this.mrubuild()
+          this.requestclose()
+          this.router.navigate(`#/inventory/data/${this.currentItem.InventoryCode}`);
         });
       }
     } else {
@@ -661,38 +672,39 @@ if (  this.appService.clientHeight  ===  this.appService.clientWidth) {
 
 
         // calc ratio of image
-        let imgh, imgw
-        let imageHeight, imageWidth
+        // dont think i need it here
+        // this.getimageinfo()
+        // let imgh, imgw
+        // let imageHeight, imageWidth
 
-        if (this.mainimage.clientHeight === undefined) {
-          // no image
-          imageWidth = 1
-          imageHeight = 1
-        } else {
-          imgw = this.mainimage.clientWidth
-          imgh = this.mainimage.clientHeight
-          if (imgh === imgw) {
-            imageHeight = 1
-            imageWidth = 1
-          } else if (imgh > imgw) {
-            // imageHeight = 1
-            // imageWidth = (imgw / imgh).toPrecision(2) 
-            imageWidth = 1
-            imageHeight = (imgh / imgw).toPrecision(2)
+        // if (this.mainimage.clientHeight === undefined) {
+        //   // no image
+        //   imageWidth = 1
+        //   imageHeight = 1
+        // } else {
+        //   imgw = this.mainimage.clientWidth
+        //   imgh = this.mainimage.clientHeight
+        //   if (imgh === imgw) {
+        //     imageHeight = 1
+        //     imageWidth = 1
+        //   } else if (imgh > imgw) {
+        //     // imageHeight = 1
+        //     // imageWidth = (imgw / imgh).toPrecision(2) 
+        //     imageWidth = 1
+        //     imageHeight = (imgh / imgw).toPrecision(2)
 
-          } if (imgw > imgh) {
-            // imageWidth = 1
-            // imageHeight = (imgh / imgw).toPrecision(2) //Math.round(imgh / imgw)
-            imageHeight = 1
-            imageWidth = (imgw / imgh).toPrecision(2) //Math.round(imgh / imgw)
-          }
-        }
-        this.currentItem.clientHeightRatio = imageHeight
-        this.currentItem.clientWidthRatio = imageWidth
-        //  this.currentItem.clientHeightRatio  = his.mainimage.clientHeight
-        //     this.currentItem.clientWidthRatio  =  this.mainimage.clientWidth
-
-        // end of calc ratio
+        //   } if (imgw > imgh) {
+        //     // imageWidth = 1
+        //     // imageHeight = (imgh / imgw).toPrecision(2) //Math.round(imgh / imgw)
+        //     imageHeight = 1
+        //     imageWidth = (imgw / imgh).toPrecision(2) //Math.round(imgh / imgw)
+        //   }
+        // }
+        //this.currentItem.clientHeightRatio = imageHeight
+        //this.currentItem.clientWidthRatio = imageWidth
+        ////  this.currentItem.clientHeightRatio  = his.mainimage.clientHeight
+        ////     this.currentItem.clientWidthRatio  =  this.mainimage.clientWidth
+        //// end of calc ratio
 
         this.api.saveinventory(this.currentItem).then((jsonRes) => {
           console.log('jsonRes ', jsonRes);
@@ -802,10 +814,10 @@ if (  this.appService.clientHeight  ===  this.appService.clientWidth) {
       .then((jsonRes) => {
         this.upmess = jsonRes.data
         //this.showImage=true;
-       // this.mainimage = new Image();
+        // this.mainimage = new Image();
         this.mainimage.src = `https://artbased.com/api/v1/getimage/inv/${this.currentItem.InventoryCode}.jpg`;
         // "http://localhost/image/id/image" + count++ + ".jpg";
-
+        this.getimageinfo() 
         $("#file").val("");
       })
     //})
