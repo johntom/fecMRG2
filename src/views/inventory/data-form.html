@@ -10,6 +10,7 @@
 	<require from="../../../styles/flex.css"></require>
 	<require from="../../resources/value-converters/date-format"></require>
 
+	<require from="../../resources/value-converters/upper-case"></require>
 
 	<style>
 		img.responsive-img {
@@ -134,14 +135,15 @@
 									</div>
 									<div class="Rtable-cell Rtable-cell--highlight">
 										<div if.bind="recordId === 'create'">
-											<input type="text" id="InventoryCode" class="form-control input-sm" value.bind="currentItem.InventoryCode">
-
+											<input type="text" id="InventoryCode" class="form-control input-sm"
+                       value.bind="currentItem.InventoryCode | upperCase">
 										</div>
 										<div if.bind="recordId !== 'create'" style="width:280px">
 											${currentItem.InventoryCode}
 
 										</div>
-										<!-- <input type="text" id="InventoryCode" class="form-control input-sm" value.bind="currentItem.InventoryCode"> -->
+										<!--currentItem.InventoryCode | upperCase  & throttle 
+                    <input type="text" id="InventoryCode" class="form-control input-sm" value.bind="currentItem.InventoryCode"> -->
 										<!-- & validate -->
 										<!-- <div if.bind="recordId === 'create'">
 												<input type="text" id="InventoryCode" class="form-control input-sm" value.bind="currentItem.InventoryCode">

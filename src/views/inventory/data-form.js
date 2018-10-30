@@ -30,7 +30,7 @@ export class DataForm {
 
   // currentItem = new currentItem(); // for validate
 
-
+  // showImage=false;
   heading = 'DataForm HEADER...'
   footer = 'DataForm FOOTER...'
   recordId = '';
@@ -329,6 +329,7 @@ export class DataForm {
 
         this.currentItem = {}
         this.currentItem.id = 'create'
+        // this.showImage=true;
         this.appService.testrec = {}
         this.appService.originalrec = {}
         //   this.currentItem.STATUS = 1
@@ -357,31 +358,32 @@ export class DataForm {
 
       } else {
         console.log('this.recordId ', this.recordId);
-        let mruget = localStorage.getItem('mru-mrg');
-        if (mruget === null) {
-          // tabindex = 0
-          mruget = 0
-        } else {
-          mruget = JSON.parse(mruget)
-        }
+        this.mrubuild()
+        // let mruget = localStorage.getItem('mru-mrg');
+        // if (mruget === null) {
+        //   // tabindex = 0
+        //   mruget = 0
+        // } else {
+        //   mruget = JSON.parse(mruget)
+        // }
 
-        // let get the mru list and bump it
-        function mruinfo(temp) {
-          this.mru1 = temp[0];
-          this.mru2 = temp[1];
-          this.mru3 = temp[2];
-          this.mru4 = temp[3];
-          this.mru5 = temp[4];
-          //  this.tabindex = temp[1];
-        }
-        var temp = [this.recordId, mruget.mru1, mruget.mru2, mruget.mru3, mruget.mru4];
+        // // let get the mru list and bump it
+        // function mruinfo(temp) {
+        //   this.mru1 = temp[0];
+        //   this.mru2 = temp[1];
+        //   this.mru3 = temp[2];
+        //   this.mru4 = temp[3];
+        //   this.mru5 = temp[4];
+        //   //  this.tabindex = temp[1];
+        // }
+        // var temp = [this.recordId, mruget.mru1, mruget.mru2, mruget.mru3, mruget.mru4];
 
-        if (this.recordId === mruget.mru1 || this.recordId === mruget.mru2 || this.recordId === mruget.mru3 ||
-          this.recordId === mruget.mru4 || this.recordId === mruget.mru5) { } else {
-          mruinfo = new mruinfo(temp);
-          // localStorage.setItem('tabinfo', JSON.stringify(tabinfo));
-          localStorage.setItem('mru-mrg', JSON.stringify(mruinfo));
-        }
+        // if (this.recordId === mruget.mru1 || this.recordId === mruget.mru2 || this.recordId === mruget.mru3 ||
+        //   this.recordId === mruget.mru4 || this.recordId === mruget.mru5) { } else {
+        //   mruinfo = new mruinfo(temp);
+        //   // localStorage.setItem('tabinfo', JSON.stringify(tabinfo));
+        //   localStorage.setItem('mru-mrg', JSON.stringify(mruinfo));
+        // }
         //////////////////// end mru
 
 
@@ -426,7 +428,33 @@ export class DataForm {
     }
     console.log('finihed active4')
   }
+  mrubuild(){
+        let mruget = localStorage.getItem('mru-mrg');
+        if (mruget === null) {
+          // tabindex = 0
+          mruget = 0
+        } else {
+          mruget = JSON.parse(mruget)
+        }
 
+        // let get the mru list and bump it
+        function mruinfo(temp) {
+          this.mru1 = temp[0];
+          this.mru2 = temp[1];
+          this.mru3 = temp[2];
+          this.mru4 = temp[3];
+          this.mru5 = temp[4];
+          //  this.tabindex = temp[1];
+        }
+        var temp = [this.recordId, mruget.mru1, mruget.mru2, mruget.mru3, mruget.mru4];
+
+        if (this.recordId === mruget.mru1 || this.recordId === mruget.mru2 || this.recordId === mruget.mru3 ||
+          this.recordId === mruget.mru4 || this.recordId === mruget.mru5) { } else {
+          mruinfo = new mruinfo(temp);
+          // localStorage.setItem('tabinfo', JSON.stringify(tabinfo));
+          localStorage.setItem('mru-mrg', JSON.stringify(mruinfo));
+        }
+  }
   attached() {
     // if (this.appService.dataFormOneToOneTabs.length > 0) {
     //   let tab = this.appService.dataFormOneToOneTabs[0];
@@ -566,35 +594,47 @@ export class DataForm {
 
     if (this.recordId === 'create') {
       // console.log(  this.currentItem, this.currentItem)
-      this.api.createinventory(this.currentItem).then((jsonRes) => {
-        console.log('jsonRes ', jsonRes);
-        this.recordId = jsonRes.id
-        //let tab = this.appService.tabs.find(f => f.isSelected);
-        if (this.currentItem.id === 'create') {
-          this.currentItem.id = ''
+      if (this.currentItem.Title === undefined || this.currentItem.InventoryCode === undefined
+      ||   this.currentItem.MediumSupportobj === undefined
+      ||  this.currentItem.artist === undefined) {
+        alert('Please fix  Title, InventoryCode, MediumSupport and or artist ')
+      } else {
 
-          this.message = "Save successful. Inventory added @ " + savetime
-        }
-        //  this.skippromt = true
 
-        // let inv = jsonRes
-        // this.currentItem = inv
-        //   this.currentItem = inv
-        // this.appService.testrec = inv
-        // this.appService.currentView = this.currentItem; // must set on every view
-        // this.appService.originalrec = JSON.parse(JSON.stringify(this.currentItem))
-        // //  this.appService.currentView =   this.currentItem; // must set on every view
-        // //  this.appService.originalrec = JSON.parse(JSON.stringify(  this.currentItem))// inv[0]));
-        // ///
+        this.api.createinventory(this.currentItem).then((jsonRes) => {
+          console.log('jsonRes ', jsonRes);
+          this.recordId = jsonRes.id
+          //let tab = this.appService.tabs.find(f => f.isSelected);
+          if (this.currentItem.id === 'create') {
+            this.currentItem.id = ''
 
-        if (option === 1) {
-          let tab = this.appService.tabs.find(f => f.isSelected);
-          this.closeTab(tab);
-          this.close()
-        } else {
-          this.appService.originalrec = this.currentItem
-        }
-      });
+            this.message = "Save successful. Inventory added @ " + savetime
+          }
+          //  this.skippromt = true
+
+          // let inv = jsonRes
+          // this.currentItem = inv
+          //   this.currentItem = inv
+          // this.appService.testrec = inv
+          // this.appService.currentView = this.currentItem; // must set on every view
+          // this.appService.originalrec = JSON.parse(JSON.stringify(this.currentItem))
+          // //  this.appService.currentView =   this.currentItem; // must set on every view
+          // //  this.appService.originalrec = JSON.parse(JSON.stringify(  this.currentItem))// inv[0]));
+          // ///
+         
+          this.mrubuild()
+          // if (option === 1) {
+          //   let tab = this.appService.tabs.find(f => f.isSelected);
+          //   this.closeTab(tab);
+          //   this.close()
+          // } else {
+          //   this.appService.originalrec = this.currentItem
+          // }
+          // this.closeTab(tab);
+ this.requestclose()
+           this.router.navigate(`#/inventory/data/${this.currentItem.InventoryCode}`);
+        });
+      }
     } else {
       // console.log(' call save ', JSON.stringify(  this.currentItem) === JSON.stringify(this.appService.testrec)) //this.appService.currentClaim)
       //return 
@@ -733,14 +773,14 @@ export class DataForm {
     formData.append('file', images[0])
     // var newImage = new Image();
     // newImage.src = `https://artbased.com/api/v1/getimage/inv/${this.currentItem.InventoryCode}.jpg`;
- this.mainimage.src = null;
-        
+    this.mainimage.src = null;
+
     this.api.upload(formData, this.currentItem.InventoryCode)
       .then((jsonRes) => {
         this.upmess = jsonRes.data
-
-        // mainimage = new Image();
-        this.mainimage.src =  `https://artbased.com/api/v1/getimage/inv/${this.currentItem.InventoryCode}.jpg`;
+        //this.showImage=true;
+       // this.mainimage = new Image();
+        this.mainimage.src = `https://artbased.com/api/v1/getimage/inv/${this.currentItem.InventoryCode}.jpg`;
         // "http://localhost/image/id/image" + count++ + ".jpg";
 
         $("#file").val("");
