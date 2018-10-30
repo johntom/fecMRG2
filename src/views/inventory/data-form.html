@@ -13,11 +13,16 @@
 	<require from="../../resources/value-converters/upper-case"></require>
 
 	<style>
-		img.responsive-img {
+		img.responsive-imgV {
 			max-height: 300px;
 			width: auto;
+      /* vertical */
 		}
-
+	img.responsive-img {
+			max-height:  auto;
+			width:300px;
+      /* hor */
+		}
 		video.responsive-video {
 			max-width: 100%;
 			height: auto;
@@ -688,7 +693,8 @@
 
 <div id="top-right" class="flex-column-none data-form-image"
  if.bind="recordId !== 'create'">                  
-          	<img ref="mainimage" class="responsive-img" src="https://artbased.com/api/v1/getimage/inv/${currentItem.InventoryCode}.jpg"
+          	<img ref="mainimage" class="responsive-img"
+             src="https://artbased.com/api/v1/getimage/inv/${currentItem.InventoryCode}.jpg"
 						 click.delegate="showModalImg()">
              <!-- <input class="custom-file-input"  id='file' type="file" name="file" files.bind="file" 
              change.delegate="addInventory(file)" >

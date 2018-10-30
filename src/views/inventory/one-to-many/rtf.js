@@ -211,8 +211,8 @@ export class Rtf {
 
   buildProv() {
     let provenance = this.currentItem.provenance
-    // if (provenance !== undefined) {
-       if (provenance.length !== 0) {
+     if (provenance !== undefined) {
+    //   if (provenance.length !== 0) {
       let iarray = []
       // this.segment2 += `<p><span style='text-decoration-line:underline'><strong><u>PROVENANCE</u></strong></span><u></u></p>`
       let provheader = `<p><span style='text-decoration-line:underline'><strong><u>PROVENANCE</u></strong></span><u></u></p>`

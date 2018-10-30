@@ -471,8 +471,26 @@ export class DataForm {
         this.currentItem.savedonce = true
         this.saveinventory(0)
       }
+      let imageWidth
+      let imageHeight
       this.appService.clientHeight = this.mainimage.clientHeight
       this.appService.clientWidth = this.mainimage.clientWidth
+if (  this.appService.clientHeight  ===  this.appService.clientWidth) {
+            imageHeight = 1
+            imageWidth = 1
+          } else if (this.appService.clientHeight >  this.appService.clientWidth) {
+            imageWidth = 1
+            imageHeight = (this.appService.clientHeight /  this.appService.clientWidth).toPrecision(2)
+
+          } if (this.appService.clientWidth > this.appService.clientHeight) {
+             // imageHeight = (imgh / imgw).toPrecision(2) //Math.round(imgh / imgw)
+            imageHeight = 1
+            imageWidth = ( this.appService.clientWidth / this.appService.clientHeight).toPrecision(2) //Math.round(imgh / imgw)
+          }
+        this.currentItem.clientHeightRatio = imageHeight
+        this.currentItem.clientWidthRatio = imageWidth
+      
+
     }
     let tabinfo, tabindex
     // tabinfo = localStorage.getItem('tabinfo');
@@ -657,11 +675,16 @@ export class DataForm {
             imageHeight = 1
             imageWidth = 1
           } else if (imgh > imgw) {
-            imageHeight = 1
-            imageWidth = (imgw / imgh).toPrecision(2)  //Math.round(imgw / imgh)
-          } if (imgw > imgh) {
+            // imageHeight = 1
+            // imageWidth = (imgw / imgh).toPrecision(2) 
             imageWidth = 1
-            imageHeight = (imgh / imgw).toPrecision(2) //Math.round(imgh / imgw)
+            imageHeight = (imgh / imgw).toPrecision(2)
+
+          } if (imgw > imgh) {
+            // imageWidth = 1
+            // imageHeight = (imgh / imgw).toPrecision(2) //Math.round(imgh / imgw)
+            imageHeight = 1
+            imageWidth = (imgw / imgh).toPrecision(2) //Math.round(imgh / imgw)
           }
         }
         this.currentItem.clientHeightRatio = imageHeight
