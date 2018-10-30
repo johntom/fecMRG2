@@ -309,7 +309,8 @@ this.segment2 += provheader
         // check to see if link in repo
         if (reproduction !== undefined) {
           // let eid = reproduction.findIndex(x => x.ReproductionExhibit === item.ExhibitTitle)
-          let eid = reproduction.findIndex(x => x.id === item.ReproductionExhibit)
+         // let eid = reproduction.findIndex(x => x.id === item.ReproductionExhibit)
+          let eid = exhibition.findIndex(x => x.id === item.ReproductionExhibit)
           let reporec
           linkPageNo = ''
           console.log('eid ', eid, linkPageNo) //ColorBWDesc1)

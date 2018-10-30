@@ -125,7 +125,8 @@
            
 						<select    id="ReproductionExhibit" class="form-control  input-sm" value.bind="ReproductionExhibit"> 
                       <option model.bind="null">Choose...</option> 
-                         <option change.delegate="changeSelect(opt)" repeat.for="opt of currentItem.exhibition " model.bind="opt.id">
+                         <option change.delegate="changeSelect(opt)" repeat.for="opt of currentItem.exhibition" 
+                         model.bind="opt.id">
                ${opt.id}  /  ${opt.ExhibitTitle} /  ${opt.ExhibitSponser}
                       </option> 
                     </select>
