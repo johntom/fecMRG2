@@ -23,14 +23,14 @@ export class Prompt {
   textfields = ['Description', 'Comment', 'Inscribed', 'Treatment']
 
   textfielddesc = ['Enter Alt ID', 'Enter Comment', 'Enter Inscribed with left of ":" as reg text right as ialtics till "; repeat', 'Enter Treatment']
- 
- 
- // for the datalist with medium support
-   selectedValue = null;
+
+
+  // for the datalist with medium support
+  selectedValue = null;
   findOption = value => this.appService.codesListMediumSupport.find(x => x.Description === value);
-    // findOption = this.appService.codesListMediumSupport.find(x => x.Description === findvalue)
-   
- 
+  // findOption = this.appService.codesListMediumSupport.find(x => x.Description === findvalue)
+
+
   constructor(controller, appService, dataService, dialogService, api) {
     this.controller = controller;
     this.answer = null;
@@ -68,56 +68,52 @@ export class Prompt {
     this.fieldname = currentitem.fieldname;
   }
 
+  addnewms(newvalue) {
 
-  // created(SearchResults,prompt){
-  // if (this.fieldname === 'selectedids') {
-  //       // we dont send a name of the list
-  //       // let meds = this.appService.savedlists 
-  //       // if ((this.currentItem.SoldTo === undefined) || (this.currentItem.orgsList === null)) {
-  //       // } else {
-  //       //   let mid = meds.findIndex(x => x._id === this.currentItem.OwnerID)
-  //       //   let orgobj = this.appService.orgsList[mid]//10]
-  //       //   // console.log('orgobj', orgobj)
-  //       //   this.OrgName = orgobj
-  //       //   this.dsaved.value = this.OrgName
-  //       // }
+    let bod = {
+      "CodeType": 12,
+      "Description": newvalue,//this.currentItem.newms,
+      "CodeTypeDesc": "Medium/Support"
+    }
+    this.api.addmediumsupport(bod).then((jsonRes) => {
+      let ms = jsonRes.data;
+      this.appService.codesListMediumSupport = ms
 
+      let codeobj = this.appService.codesListMediumSupport.find(x => x.Description === newvalue)
 
-  //       // let meds = this.appService.savedlists
-  //       // let orgobj = this.appService.savedlists[0]
-  //       // this.appService.selectedids = orgobj.InventoryCodes
-  //       //this.myMultiSelect.kWidget.dataSource.add(this.appService.selectedids);
-  //       let ss = this.appService.selectedids
-  //        this.myMultiSelect.kWidget.setDataSource(ss);
+      console.log('codeobj ', codeobj);
 
-  //     }
-  // }
+      this.currentItem.MediumSupportobj.id = codeobj.id
+      this.currentItem.MediumSupportobj.Description = codeobj.Description
+      this.appService.insuredList.push(this.selectedValue)
+      this.controller.cancel()
+
+      // Promise.resolve(this.dataService.MediumSupportobj()) //.then(values => {})
+      //       let rec = {
+      //         "CodeType": 3,
+      //         "Description": value,
+      //         "CodeTypeDesc": "Genre",
+      //         id: codeobj.id
+      //       }
+      return
+    })
+  }
   changeCallbackMedSup(selectedvalue) {
-  
     console.log('selectedvalue has undefined ', selectedvalue, "myDatalist this.myDatalist.value has the value", this.myDatalist.value);
-  let findvalue=this.myDatalist.value
-  //  let  findObject = findvalue => this.appService.codesListMediumSupport.find(x => x.Description === findvalue);
-    
+    let findvalue = this.myDatalist.value
     // let  findIndex = this.appService.codesListMediumSupport.findIndex(x => x.Description === findvalue)
     // let  findObject  = this.appService.codesListMediumSupport[findIndex] 
- 
+    //let findObject = this.appService.codesListMediumSupport.find(x => x.Description === findvalue)
 
-    let  findObject = this.appService.codesListMediumSupport.find(x => x.Description === findvalue)
-        
-    if (findObject===undefined) {
+    if (this.selectedValue  === undefined) {
       alert(`you are about to add ${findvalue} to medium support`)
       this.addnewms(findvalue)
     }
-    
-    //  if (selectedvalue === undefined) {
-        
-    //     } else this.performSearchSL()
-
 
 
   }
   attached() {
-     let opos = this.orgfields.findIndex(x => x === this.fieldname);
+    let opos = this.orgfields.findIndex(x => x === this.fieldname);
     if (opos !== -1) {
       this.orgfielddescription = this.orgfielddesc[opos]
 
@@ -137,25 +133,17 @@ export class Prompt {
 
     }
 
-    
+
     if (this.fieldname === 'Artist') {
-
-
-
-      if (this.currentItem.artist === undefined) {
-
+    if (this.currentItem.artist === undefined) {
         // this.ArtistName = this.appService.artistList[1]
       } else {
-
         this.ArtistName = this.currentItem.artist
         if (this.ArtistName.ArtistName === undefined) this.ArtistName.ArtistName = this.currentItem.artist.lastName + ', ' + this.currentItem.artist.firstName
         this.dartist.value = this.ArtistName
       }
-
-      
     }
     if (this.fieldname === 'MediumSupportobj') {
-
       this.doc = `type any characters of the   "Medium/Support: select or add new."`
       this.heading = `Search Medium/Support: select or add new.`
       this.placeholder = `Enter any characters on Medium/Support: select or add new.`
@@ -164,21 +152,21 @@ export class Prompt {
 
         // this.MedSup = this.appService.codesListMediumSupport[1]
       } else {
-         this.MedSup = this.currentItem.MediumSupportobj
-      // if (this.MedSup.Description === undefined) this.MedSup.Description = this.currentItem.MediumSupportobj.Description
-      // this.dmediumsupport.value = this.MedSup
+        this.MedSup = this.currentItem.MediumSupportobj
+        // if (this.MedSup.Description === undefined) this.MedSup.Description = this.currentItem.MediumSupportobj.Description
+        // this.dmediumsupport.value = this.MedSup
 
-      //  if (this.MedSup.Description === undefined) {
+        //  if (this.MedSup.Description === undefined) {
 
-      //  }
-      // this.dmediumsupport.value = this.MedSup
+        //  }
+        // this.dmediumsupport.value = this.MedSup
 
-// datlist
-this.myDatalist.value=this.MedSup.Description
+        // datlist
+        this.myDatalist.value = this.MedSup.Description
 
       }
 
-     
+
 
     }
 
@@ -242,40 +230,7 @@ this.myDatalist.value=this.MedSup.Description
   }
 
 
-  addnewms(newvalue) {
-
-    // let ibod = { 'MediumSupportobj': newvalue}//this.currentItem.newms }
-    let bod = {
-      "CodeType": 12,
-      "Description": newvalue ,//this.currentItem.newms,
-      "CodeTypeDesc": "Medium/Support"
-    }
-    this.api.addmediumsupport(bod).then((jsonRes) => {
-      let ms = jsonRes.data;
-      this.appService.codesListMediumSupport = ms
-      
-      // let oid = this.appService.codesListMediumSupport.findIndex(x => x.Description === this.currentItem.newms)
-      // let codeobj = this.appService.codesListMediumSupport[oid]
-      let codeobj = this.appService.codesListMediumSupport.find(x => x.Description === newvalue)
-      
-      console.log('codeobj ', codeobj);
-      
-      this.currentItem.MediumSupportobj.id = codeobj.id
-      this.currentItem.MediumSupportobj.Description = codeobj.Description
-
-      //this.appService.currentItem
-      this.controller.cancel()
-
-      // Promise.resolve(this.dataService.MediumSupportobj()) //.then(values => {})
-      //       let rec = {
-      //         "CodeType": 3,
-      //         "Description": value,
-      //         "CodeTypeDesc": "Genre",
-      //         id: codeobj.id
-      //       }
-      return
-    })
-  }
+  
   //  alert(`${this.addlist} Exists in list already!`)
   addit() {
     let meds = this.appService.savedlists
@@ -340,7 +295,7 @@ this.myDatalist.value=this.MedSup.Description
 
       // if (this.MedSup !== this.currentItem.MediumSupportobj)
       //   this.currentItem.MediumSupportobj = this.MedSup
-this.currentItem.MediumSupportobj = this.selectedValue
+      this.currentItem.MediumSupportobj = this.selectedValue
     }
     if (this.fieldname === 'OwnerID') {
       if (this.OrgName.OrgName !== this.currentItem.ownername) {
@@ -416,10 +371,7 @@ this.currentItem.MediumSupportobj = this.selectedValue
         this.currentItem.ConsignmentShippingID = this.OrgName._id
         this.currentItem.consignmentshippingname = this.OrgName.OrgName
       }
-
     }
-
-
 
     if (this.fieldname === 'Treatment') {
       this.currentItem.Treatment
@@ -460,6 +412,30 @@ this.currentItem.MediumSupportobj = this.selectedValue
 
 //       }
 
-     
+
 
 //     }
+
+  // created(SearchResults,prompt){
+  // if (this.fieldname === 'selectedids') {
+  //       // we dont send a name of the list
+  //       // let meds = this.appService.savedlists 
+  //       // if ((this.currentItem.SoldTo === undefined) || (this.currentItem.orgsList === null)) {
+  //       // } else {
+  //       //   let mid = meds.findIndex(x => x._id === this.currentItem.OwnerID)
+  //       //   let orgobj = this.appService.orgsList[mid]//10]
+  //       //   // console.log('orgobj', orgobj)
+  //       //   this.OrgName = orgobj
+  //       //   this.dsaved.value = this.OrgName
+  //       // }
+
+
+  //       // let meds = this.appService.savedlists
+  //       // let orgobj = this.appService.savedlists[0]
+  //       // this.appService.selectedids = orgobj.InventoryCodes
+  //       //this.myMultiSelect.kWidget.dataSource.add(this.appService.selectedids);
+  //       let ss = this.appService.selectedids
+  //        this.myMultiSelect.kWidget.setDataSource(ss);
+
+  //     }
+  // }
