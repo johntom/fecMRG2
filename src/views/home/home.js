@@ -36,6 +36,8 @@ export class Home {
     'reloading an inventory image, must goto home page press f5',
     'have only 1 action list',
     'https://bl.ocks.org/lstarky/11cd1e90dd912f07a60afaedb9c2613b',
+    'git commit -am "200.70" / git push',
+
   ]
     ninalist = [
     'when selecting saved list inv/actions/batch go directly ...',
