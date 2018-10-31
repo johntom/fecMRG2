@@ -527,94 +527,7 @@ this.mainimage.src = `https://artbased.com/api/v1/getimage/inv/${this.currentIte
     }
   }
 
-  selectOneToOneTab(tab) {
-    this.appService.dataFormOneToOneTabs.forEach(t => t.isSelected = false);
-    tab.isSelected = true;
-    this.currentOneToOneTab = tab;
-    return true;
-  }
-  selectOneToManyTab(tab) {
-    this.appService.dataFormOneToManyTabs.forEach(t => t.isSelected = false);
-    tab.isSelected = true;
-    this.currentOneToManyTab = tab;
-    let tabindex = this.appService.dataFormOneToManyTabs.findIndex(f => f.isSelected)
-    function tabinfo(temp) {
-      this.recid = temp[0];
-      this.tabindex = temp[1];
-
-    }
-    var temp = [this.currentItem.InventoryCode, tabindex];
-    tabinfo = new tabinfo(temp);
-    // localStorage.setItem('tabinfo', JSON.stringify(tabinfo));
-    localStorage.setItem('tabinfo' + this.currentItem.InventoryCode, JSON.stringify(tabinfo));
-    return true;
-  }
-
-  // addKeyword() {
-  //   if (this.currentItem.addkeyword === undefined || this.currentItem.addkeyword === undefined) {
-  //     alert('Must enter keyword')
-  //   } else {
-  //     //   "Description" : "photography", 
-  //     // "Integer Value" : "", 
-  //     // "String Value" : "", 
-  //     // "Sort Order" : NumberInt(0), 
-  //     // "Security Level" : "", 
-  //     // "Protected" : "N", 
-  //     // "Currency Value" : "", 
-  //     // "CodeType" : NumberInt(3), 
-  //     // "CodeTypeDesc" : "Genre"
-  //     let newword = this.currentItem.addkeyword
-  //     let ibod = {
-  //       'Description': newword,
-  //       'CodeType': 3,
-  //       'CodeTypeDesc': "Genre"
-  //     }
-  //     this.currentItem.addkeyword = ''
-  //     // "keywords" : [
-  //     //     "Painting", 
-  //     //     "American Surrealism", 
-  //     //     "Abstract Art"
-  //     // ], 
-  //     // let codesGenre = []//3, change to keyword
-  //     //       codesGenre.push(newi)
-  //     if (this.currentItem.keywords === undefined) this.currentItem.keywords = []
-
-  //     // this.appService.codesGenre = codesGenre//3,
-  //     //   this.currentItem.inscontact = {
-  //     //   'NAME_LAST':   this.currentItem.INS_NAME_LAST,
-  //     //   'NAME_FIRST':   this.currentItem.INS_NAME_FIRST,
-  //     //   'NAME_PREFIX':   this.currentItem.INS_NAME_PREFIX
-  //     // }
-  //     // <ak-multiselect k-value.two-way="appService.currentItem.keywords ">
-  //     // 							<select multiple="multiple " data-placeholder="Select keywords... ">
-  //     // 								<option repeat.for="opt of appService.codesGenre" model.bind="opt.Description ">
-  //     // 									${opt.Description}
-  //     // 								</option>
-  //     // 							</select>
-  //     //       <ak-multiselect ak-multiselect.ref="myMultiSelect" k-data-source.bind="allFunctions"> 
-  //     // </ak-multiselect>
-  //     // view-model.js
-
-  //     this.api.addcodegenre(ibod).then((jsonRes) => {
-  //       //return Promise.resolve(this.dataService.loadInsurancecompany()).then(value => {
-  //       this.appService.codesGenre = jsonRes.data// return new codes
-  //       // var multiselect = $("#multiselect").data("kendoMultiSelect");
-  //       // let multiselect = this.multiselect.data("kendoMultiSelect");
-  //       // multiselect.refresh();
-  //       this.multiselect.refresh()
-
-  //       // this.multiselect.kWidget.dataSource.add( newword );
-
-  //       // you can also set the datasource again if you want to refresh all options
-  //       //this.multiselect.kWidget.setDataSource(this.appService.codesGenre);
-
-  //       this.currentItem.keywords.push(newword)
-
-  //     })
-  //   }
-
-  // }
- 
+  
   saveinventory(option) {
     //this.controller.validate();
     let savetime = moment().format('MM/DD/YY h:mm:ss a')
@@ -637,75 +550,16 @@ this.mainimage.src = `https://artbased.com/api/v1/getimage/inv/${this.currentIte
 
             this.message = "Save successful. Inventory added @ " + savetime
           }
-          //  this.skippromt = true
-
-          // let inv = jsonRes
-          // this.currentItem = inv
-          //   this.currentItem = inv
-          // this.appService.testrec = inv
-          // this.appService.currentView = this.currentItem; // must set on every view
-          // this.appService.originalrec = JSON.parse(JSON.stringify(this.currentItem))
-          // //  this.appService.currentView =   this.currentItem; // must set on every view
-          // //  this.appService.originalrec = JSON.parse(JSON.stringify(  this.currentItem))// inv[0]));
-          // ///
-
-         
-          // if (option === 1) {
-          //   let tab = this.appService.tabs.find(f => f.isSelected);
-          //   this.closeTab(tab);
-          //   this.close()
-          // } else {
-          //   this.appService.originalrec = this.currentItem
-          // }
-          // this.closeTab(tab);
+        
            this.mrubuild()
           this.requestclose()
           this.router.navigate(`#/inventory/data/${this.currentItem.InventoryCode}`);
         });
       }
     } else {
-      // console.log(' call save ', JSON.stringify(  this.currentItem) === JSON.stringify(this.appService.testrec)) //this.appService.currentClaim)
-      //return 
-      // if (JSON.stringify(  this.currentItem) !== JSON.stringify(this.appService.originalrec)) {
-      if (JSON.stringify(this.currentItem) !== JSON.stringify(this.appService.originalrec)) {
-
-
-        // calc ratio of image
-        // dont think i need it here
-        // this.getimageinfo()
-        // let imgh, imgw
-        // let imageHeight, imageWidth
-
-        // if (this.mainimage.clientHeight === undefined) {
-        //   // no image
-        //   imageWidth = 1
-        //   imageHeight = 1
-        // } else {
-        //   imgw = this.mainimage.clientWidth
-        //   imgh = this.mainimage.clientHeight
-        //   if (imgh === imgw) {
-        //     imageHeight = 1
-        //     imageWidth = 1
-        //   } else if (imgh > imgw) {
-        //     // imageHeight = 1
-        //     // imageWidth = (imgw / imgh).toPrecision(2) 
-        //     imageWidth = 1
-        //     imageHeight = (imgh / imgw).toPrecision(2)
-
-        //   } if (imgw > imgh) {
-        //     // imageWidth = 1
-        //     // imageHeight = (imgh / imgw).toPrecision(2) //Math.round(imgh / imgw)
-        //     imageHeight = 1
-        //     imageWidth = (imgw / imgh).toPrecision(2) //Math.round(imgh / imgw)
-        //   }
-        // }
-        //this.currentItem.clientHeightRatio = imageHeight
-        //this.currentItem.clientWidthRatio = imageWidth
-        ////  this.currentItem.clientHeightRatio  = his.mainimage.clientHeight
-        ////     this.currentItem.clientWidthRatio  =  this.mainimage.clientWidth
-        //// end of calc ratio
-
-        this.api.saveinventory(this.currentItem).then((jsonRes) => {
+     
+        if (JSON.stringify(this.currentItem) !== JSON.stringify(this.appService.originalrec)) {
+          this.api.saveinventory(this.currentItem).then((jsonRes) => {
           console.log('jsonRes ', jsonRes);
           let tab = this.appService.tabs.find(f => f.isSelected);
           // window.alert("Save successful!");
@@ -715,35 +569,11 @@ this.mainimage.src = `https://artbased.com/api/v1/getimage/inv/${this.currentIte
           this.appService.currentView = this.currentItem
           this.appService.originalrec = JSON.parse(JSON.stringify(this.currentItem))
           this.skippromt = true
-          //  if (!fail) {
-          //           if (option === 1) {
-          //             let tab = this.appService.tabs.find(f => f.isSelected);
-          //             this.closeTab(tab);
-          //             this.close()
-          //             this.requestclose()
-          if (option === 1) {
-            // let tab = this.appService.tabs.find(f => f.isSelected);
-            // this.closeTab(tab);
-            // this.close()
-            this.requestclose()
+             if (option === 1) {
+                   this.requestclose()
           } else {
 
-            // this.api.findInventoryOne(this.currentItem.InventoryCode)
-            //   .then((jsonRes) => {
-            //     console.log('jsonRes ', jsonRes);
-            //     let inv = jsonRes.data;
-            //     this.currentItem = inv[0]
-            //       this.currentItem = inv[0]
-            //     this.appService.testrec = inv[0]
-            //       this.currentItem.isDirty = () => {
-            //       return JSON.stringify(  this.currentItem) !== JSON.stringify(this.appService.originalrec)
-            //     };
-            //       this.currentItem.reset = () => {
-            //       this.appService.originalrec =   this.currentItem;
-            //     }
-            //     this.appService.currentView = this.currentItem
-            //     this.appService.originalrec = JSON.parse(JSON.stringify(  this.currentItem))
-            //   })
+           
 
           }
         });
@@ -834,43 +664,6 @@ this.mainimage.src = `https://artbased.com/api/v1/getimage/inv/${this.currentIte
 
 
 
-  // addexistingSelection(){
-  //   let sels
-  // 		if (this.selectedids === undefined) {
-  // 			sels = []
-
-  // 		} else sels = this.selectedids
-
-  // 		var grid = this.grid;
-  // 		var selectedRows = grid.select();
-  // 		if (selectedRows.length === 0) {
-  // 			alert('please select a row to add'
-  // 			)
-  // 		} else {
-  // 			var maxRows = selectedRows.length / 2;
-  // 			selectedRows.each(function (idx, el) {
-  // 				let dataItem = grid.dataItem(el);
-  // 			});
-  // 			var i;
-  // 			var a1;
-  // 			for (i = 0; i < maxRows; i++) {
-  // 				a1 = selectedRows[i];
-  // 				let dataItem = grid.dataItem(a1);
-  // 				let mid = sels.findIndex(x => x === dataItem.InventoryCode)
-  // 				if (mid === -1) {
-  // 					sels.push(dataItem.InventoryCode);
-  // 				}
-  // 				if (i === maxRows - 1) {
-  // 					this.selectedids = sels;
-  // 					alert('addexistingSelection')
-  // 					this.api.updateSavedlists(this.appService.currentsavedlist, this.selectedids).then((jsonRes) => {
-  // 						console.log('jsonRes ', jsonRes);
-  // 					});
-  // 				}
-  // 			}
-
-  // 		}
-  // }
 
   canDeactivate() {
     return new Promise((resolve, reject) => {
@@ -900,16 +693,8 @@ this.mainimage.src = `https://artbased.com/api/v1/getimage/inv/${this.currentIte
   }
   requestclose() {
 
-    // let tab = this.appService.tabs.find(f => f.isSelected);
-    // let index = this.appService.tabs.findIndex(f => f.isSelected)
-    // let rt2 = '#/claim/' + this.tabname
-
-    // let newIndex = (index > 0) ? index - 1 : 0;
-    // let newTab = this.appService.tabs[newIndex];
-    // const resetFunc = () => { this.appService.originalrec =   this.currentItem; };
-    const resetFunc = () => { this.appService.originalrec = this.currentItem; };
-    // let cand = this.canDeactivate()
-    let tab = this.appService.tabs.find(f => f.isSelected);
+     const resetFunc = () => { this.appService.originalrec = this.currentItem; };
+     let tab = this.appService.tabs.find(f => f.isSelected);
     let index = this.appService.tabs.findIndex(f => f.isSelected)
     let rt2 = '#/inventory/' + this.tabname
 
@@ -928,6 +713,28 @@ this.mainimage.src = `https://artbased.com/api/v1/getimage/inv/${this.currentIte
     tab.isSelected = false;
     this.appService.tabs.splice(index, 1);
 
+  }
+  selectOneToOneTab(tab) {
+    this.appService.dataFormOneToOneTabs.forEach(t => t.isSelected = false);
+    tab.isSelected = true;
+    this.currentOneToOneTab = tab;
+    return true;
+  }
+  selectOneToManyTab(tab) {
+    this.appService.dataFormOneToManyTabs.forEach(t => t.isSelected = false);
+    tab.isSelected = true;
+    this.currentOneToManyTab = tab;
+    let tabindex = this.appService.dataFormOneToManyTabs.findIndex(f => f.isSelected)
+    function tabinfo(temp) {
+      this.recid = temp[0];
+      this.tabindex = temp[1];
+
+    }
+    var temp = [this.currentItem.InventoryCode, tabindex];
+    tabinfo = new tabinfo(temp);
+    // localStorage.setItem('tabinfo', JSON.stringify(tabinfo));
+    localStorage.setItem('tabinfo' + this.currentItem.InventoryCode, JSON.stringify(tabinfo));
+    return true;
   }
 
 
