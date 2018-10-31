@@ -98,14 +98,14 @@ export class Prompt {
     // let  findIndex = this.appService.codesListMediumSupport.findIndex(x => x.Description === findvalue)
     // let  findObject  = this.appService.codesListMediumSupport[findIndex] 
     //let findObject = this.appService.codesListMediumSupport.find(x => x.Description === findvalue)
-
-
-      // alert(`you are about to add ${findvalue} to medium support`)
+    // alert(`you are about to add ${findvalue} to medium support`)
       if (this.selectedValue === undefined) {   
         //     alert(`you are about to add ${findvalue} to Insured`)
-             this.dialogService.open({ viewModel: Promptyn, model: 'Add or Cancel?', lock: false }).whenClosed(response => {
-         
-               if (!response.wasCancelled) {
+            //  this.dialogService.open({ viewModel: Promptyn, model: 'Add or Cancel?', lock: false }).whenClosed(response => {
+              this.dialogService.open({ viewModel: Promptyn, model: `Add ${findvalue} to Medium Support List or Cancel?`, lock: false }).whenClosed(response => {
+  
+
+              if (!response.wasCancelled) {
                  this.addnewms(findvalue)
                } else {
                  console.log('cancel');
