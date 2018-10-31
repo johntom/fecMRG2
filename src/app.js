@@ -43,6 +43,10 @@ export class App {
       { "route": 'action/data/:id', name: 'action-data-form', moduleId: PLATFORM.moduleName('./views/action/data-form'), title: 'Data Form'  }, // ,activationStrategy:'replace'
       { "route": 'batchupdate', name: 'batchupdate', moduleId: PLATFORM.moduleName('./views/batchupdate/search-results'), nav: true, title: 'Batch' },
 
+
+  { "route": 'artist', name: 'artist', moduleId: PLATFORM.moduleName('./views/artist/artist'), nav: true, title: 'Artists' },
+    
+
       // { route: '', name: 'no-selection',      moduleId: './no-selection',      nav: true, title: 'Select' },
       //  { "route": "grid", "name": "grid", "moduleId": PLATFORM.moduleName("./views/grid/grid"), "nav": true, "title": "Imates-Srv-Inv Grid" },
       // { "route": "gridservice", "name": "gridservice", "moduleId": PLATFORM.moduleName("./views/gridservice/grid"), "nav": true, "title": "Service Grid" },
