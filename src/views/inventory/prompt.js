@@ -6,6 +6,7 @@ import { MyDataService } from "../../services/my-data-service";
 import { DialogService } from 'aurelia-dialog';
 import { PromptServ } from '../../services/promptserv';
 import { ApiService } from '../../utils/servicesApi';
+import { Promptyn }      from '../../services/promptyn';
 
 
 
@@ -85,16 +86,9 @@ export class Prompt {
 
       this.currentItem.MediumSupportobj.id = codeobj.id
       this.currentItem.MediumSupportobj.Description = codeobj.Description
-      this.appService.insuredList.push(this.selectedValue)
+      this.appService.codesListMediumSupport.push(this.selectedValue)
       this.controller.cancel()
 
-      // Promise.resolve(this.dataService.MediumSupportobj()) //.then(values => {})
-      //       let rec = {
-      //         "CodeType": 3,
-      //         "Description": value,
-      //         "CodeTypeDesc": "Genre",
-      //         id: codeobj.id
-      //       }
       return
     })
   }
@@ -105,9 +99,21 @@ export class Prompt {
     // let  findObject  = this.appService.codesListMediumSupport[findIndex] 
     //let findObject = this.appService.codesListMediumSupport.find(x => x.Description === findvalue)
 
-    if (this.selectedValue  === undefined) {
-      alert(`you are about to add ${findvalue} to medium support`)
-      this.addnewms(findvalue)
+
+      // alert(`you are about to add ${findvalue} to medium support`)
+      if (this.selectedValue === undefined) {   
+        //     alert(`you are about to add ${findvalue} to Insured`)
+             this.dialogService.open({ viewModel: Promptyn, model: 'Add or Cancel?', lock: false }).whenClosed(response => {
+         
+               if (!response.wasCancelled) {
+                 this.addnewms(findvalue)
+               } else {
+                 console.log('cancel');
+               }
+               console.log(response.output);
+             });
+    
+   
     }
 
 
@@ -387,6 +393,13 @@ export class Prompt {
 }
 
 
+      // Promise.resolve(this.dataService.MediumSupportobj()) //.then(values => {})
+      //       let rec = {
+      //         "CodeType": 3,
+      //         "Description": value,
+      //         "CodeTypeDesc": "Genre",
+      //         id: codeobj.id
+      //       }
 
 // if (this.fieldname === 'MediumSupportobj') {
 
