@@ -77,12 +77,15 @@ export class App {
       e.stopPropagation();
       this.eventAggregator.publish('keydown:alt-s');
     }
-  }
     if (e.key === "a" && e.ctrlKey) {
       e.preventDefault();
       e.stopPropagation();
       this.eventAggregator.publish('keydown:ctrl-a');
     }
+
+
+  }
+    
   
   selectTab(e, tab) {
     e.preventDefault();
