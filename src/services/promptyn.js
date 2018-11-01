@@ -17,7 +17,7 @@ export class Promptyn {
      this.questiontype = 1
     } else {
       if ( question.type === 2) {
-      this.question =  obj.name 
+      this.question =  question.name 
       this.questiontype = question.type 
       }
     }
