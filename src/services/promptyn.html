@@ -19,11 +19,11 @@
 
 
 
-      <div if.bind="question.type === 1">
+      <div if.bind="questiontype === 1">
         <button class="btn btn btn-success" click.trigger="controller.cancel()">No Cancel</button>
         <button class="btn btn btn-danger" click.trigger="controller.ok(answer)">Yes Delete</button>
       </div>
-      <div if.bind="question.type === 2">
+      <div if.bind="questiontype === 2">
         <button class="btn btn btn-success" click.trigger="controller.cancel()">No Cancel</button>
         <button class="btn btn btn-danger" click.trigger="controller.ok(answer)">Yes Add to list</button>
 
