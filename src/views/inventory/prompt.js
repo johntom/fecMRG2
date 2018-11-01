@@ -97,7 +97,7 @@ export class Prompt {
     let findvalue = this.myDatalist.value
     // let  findIndex = this.appService.codesListMediumSupport.findIndex(x => x.Description === findvalue)
     // let  findObject  = this.appService.codesListMediumSupport[findIndex] 
-    //let findObject = this.appService.codesListMediumSupport.find(x => x.Description === findvalue)
+    // let findObject = this.appService.codesListMediumSupport.find(x => x.Description === findvalue)
     // alert(`you are about to add ${findvalue} to medium support`)
       if (this.selectedValue === undefined) {   
         //     alert(`you are about to add ${findvalue} to Insured`)
