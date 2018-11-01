@@ -11,7 +11,16 @@ export class Promptyn {
   }
 
   activate(question) {
-    this.question = question;
+    if ( question.type === unassigned)  {
+
+     this.question = question;
+     this.questiontype = 1
+    } else {
+      if ( question.type === 2) {
+      this.question =  obj.name 
+      this.questiontype = question.type 
+      }
+    }
     console.log('question ',question)
   }
 }

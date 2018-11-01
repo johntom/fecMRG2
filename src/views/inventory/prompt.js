@@ -102,7 +102,10 @@ export class Prompt {
       if (this.selectedValue === undefined || this.selectedValue === null ) {   
         //     alert(`you are about to add ${findvalue} to Insured`)
             //  this.dialogService.open({ viewModel: Promptyn, model: 'Add or Cancel?', lock: false }).whenClosed(response => {
-              this.dialogService.open({ viewModel: Promptyn, model: `Add ${findvalue} to Medium Support List or Cancel?`, lock: false }).whenClosed(response => {
+            let obj={}
+            obj.type = 2
+            obj.name =   `Add ${findvalue} to Medium Support List or Cancel?`
+            this.dialogService.open({ viewModel: Promptyn, model:obj, lock: false }).whenClosed(response => {
   
 
               if (!response.wasCancelled) {
