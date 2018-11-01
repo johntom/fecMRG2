@@ -11,7 +11,7 @@ export class Promptyn {
   }
 
   activate(question) {
-    if ( question.type === unassigned)  {
+    if ( question.type === undefined)  {
 
      this.question = question;
      this.questiontype = 1
