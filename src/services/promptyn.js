@@ -12,5 +12,6 @@ export class Promptyn {
 
   activate(question) {
     this.question = question;
+    console.log('question ',question)
   }
 }
