@@ -21,7 +21,7 @@ export class Home {
   //         ]
   //       }
   //     },
-  //           "select2": "4.0.6-rc.1"
+  //  "select2": "4.0.6-rc.1"
   issues = [
     'Make tabs like mas w/scrollbar with sticky header',
     'shortcut keys',
