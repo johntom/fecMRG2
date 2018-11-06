@@ -40,11 +40,12 @@ selectOptions = {
   
   states = [
     { OrgName: 'Alabama', id: 'al' },
-    { OrgName: 'Alaska', id: 'ak' },
-   
+    { OrgName: 'Alaska', id: 'ak' }
+  ]
   stateList = [
     { oname: 'Alabama', id: 'al' },
-    { oname: 'Alaska', id: 'ak' },
+    { oname: 'Alaska', id: 'ak' }
+  ]
    
   monthsOfTheYear = [
     { name: 'January', short: 'Jan', number: 1 },
@@ -59,7 +60,7 @@ selectOptions = {
     { name: 'October', short: 'Oct', number: 10 },
     { name: 'November', short: 'Nov', number: 11 },
     { name: 'December', short: 'Dec', number: 12 }
-  ];
+  ]
   searchdates = [
     { id: 0, name: 'DateAdded' },
     { id: 1, name: 'DateModified' },

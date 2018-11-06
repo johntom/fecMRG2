@@ -172,8 +172,8 @@ export class Rtf {
   // }
 
   buildEdition() {
-    //this.segment2 += `<p><span style='text-decoration-line:underline'><strong><u>EDITION</u></strong></span><u></u></p>`
-    let segmentEditionHead = `<p><span style='text-decoration-line:underline'><strong><u>EDITION</u></strong></span><u></u></p>`
+    // let segmentEditionHead = `<p><span style='text-decoration-line:underline'><strong><u>EDITION</u></strong></span><u></u></p>`
+    let segmentEditionHead = `<p><span style='text-decoration-line:underline'><u>EDITION</u></span><u></u></p>`
     let segmentEdition = ''
     let PublisherLoc
     let PrinterLoc
@@ -215,8 +215,9 @@ export class Rtf {
     //   if (provenance.length !== 0) {
      if (provenance !== undefined && provenance.length !== 0) {
       let iarray = []
-      // this.segment2 += `<p><span style='text-decoration-line:underline'><strong><u>PROVENANCE</u></strong></span><u></u></p>`
-      let provheader = `<p><span style='text-decoration-line:underline'><strong><u>PROVENANCE</u></strong></span><u></u></p>`
+      // let provheader = `<p><span style='text-decoration-line:underline'><strong><u>PROVENANCE</u></strong></span><u></u></p>`
+      let provheader = `<p><span style='text-decoration-line:underline'><u>PROVENANCE</u></span><u></u></p>`
+      
   
       let provarray = []
 
@@ -279,8 +280,8 @@ this.segment2 += provheader
     let preitalic = '<em>'
     let postitalic = '</em>'
     let lineBreak = '<br>'
-    // this.segment2 += `<br><p><span style="text-decoration-line:underline;"><strong>EXHIBITION & PUBLICATION </strong></span></p>`
-    let exandpubhead = `<br><br><br><p><span style='text-decoration-line:underline'><strong><u>EXHIBITION & PUBLICATION HISTORY</u></strong></span><u></u></p><br>`
+   //let exandpubhead = `<br><br><br><p><span style='text-decoration-line:underline'><strong><u>EXHIBITION & PUBLICATION HISTORY</u></strong></span><u></u></p><br>`
+let exandpubhead = `<br><br><br><p><span style='text-decoration-line:underline'><u>EXHIBITION & PUBLICATION HISTORY</u></span><u></u></p><br>`
 
     let exhibitandpubs = []
 
@@ -417,7 +418,9 @@ this.segment2 += provheader
 
 
           data += `${ReproductionLocationDesc}: ${item.ReproductionName}, ${item.ReproductionDate}  ${lineBreak}`
-          data += `${ColorBWDesc} on page ${item.ReproductionPage} ${lineBreak} ${post}`
+          // data += `${ColorBWDesc} on page ${item.ReproductionPage} ${lineBreak} ${post}`
+          data += `${ColorBWDesc}  ${item.ReproductionPage} ${lineBreak} ${post}`
+  
           rec = {
             date: item.ReproductionSortDate,
 
@@ -776,13 +779,18 @@ there are extra ' when there are fractions
     segment1 += `  ${dims} in. unframed<br> `
     segment1 += `  ${dimscm} cm unframed<br> `
     
+   if( this.currentItem.Signed==='Y') this.currentItem.Signed===true
+   if( this.currentItem.Signed==='N') this.currentItem.Signed===false
+   if( this.currentItem.Dated==='Y') this.currentItem.Dated===true
+   if( this.currentItem.Dated==='N') this.currentItem.Dated===false
    
-if (this.currentItem.Signed)  segment1 += 'signed'
+if (this.currentItem.Signed===true)  segment1 += 'signed'
 
 
-if (this.currentItem.Dated) {
-  
-   if (this.currentItem.Signed){ 
+// if (this.currentItem.Dated !=='N' && this.currentItem.Dated !== undefined) {
+  if (this.currentItem.Dated === true) {
+
+   if (this.currentItem.Signed===true){ 
     segment1 += ' and dated '
    }  else   segment1 += 'dated '
 }

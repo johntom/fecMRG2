@@ -52,27 +52,7 @@
 							<input id="searchInvYear" type="text" class="form-control" placeholder="Search for InvYear ..." value.bind="search.invyear">
 						</div>
 					</div>
-					<div class="flex-row-none">
-						<div class="form-group flex-column-1">
-							<!-- <input id="searchMediumSupport" type="text" class="form-control" placeholder="Search for MediumSupport ..." value.bind="search.mediumsupport"> -->
-
-							<aubs-typeahead ref='MediumSupport' data.bind="appService.codesListMediumSupport" value.bind="DescriptionMS" debounce.bind="350"
-							 placeholder="not avail -MediumSupport" open-on-focus.bind="true" key="Description" results-limit.bind="12" select-single-result.bind="true">
-							</aubs-typeahead>
-
-
-						</div>
-						<div class="form-group flex-column-1 margin-left-10">
-
-							<!-- <input id="location" type="text" class="form-control" placeholder="not avail - Search for Current Location ..." value.bind="search.location"> -->
-							<aubs-typeahead ref='InventoryLocation' data.bind="appService.codesInventoryLocation" value.bind="DescriptionLoc" debounce.bind="350"
-							 placeholder="not avail -codesInventoryLocation" open-on-focus.bind="true" key="Description" results-limit.bind="12"
-							 select-single-result.bind="true">
-							</aubs-typeahead>
-
-
-						</div>
-					</div>
+				
 
 					<div class="flex-row-none">
 						<div class="form-group flex-column-1">
@@ -81,6 +61,11 @@
 
 
 						</div>
+
+	<div class="form-group flex-column-1 margin-left-10">
+							<input id="AltID" type="text" class="form-control" placeholder="Search for AltID ..." value.bind="search.altid">
+						</div>
+
 						<div class="form-group flex-column-1 margin-left-10">
 
 							<!-- <input id="location" type="text" class="form-control" placeholder="not avail - Search for Current Location ..." value.bind="search.location"> -->
@@ -95,18 +80,16 @@
 
 
 
-
-					<div class="flex-row-none">
-						<div class="form-group flex-column-1">
-							<input id="ownershipstatus" type="text" class="form-control" placeholder="Search for Ownership Status ..." value.bind="search.ownershipstatus">
-						</div>
-						<div class="form-group flex-column-1 margin-left-10">
-							<input id="AltID" type="text" class="form-control" placeholder="Search for AltID ..." value.bind="search.altid">
-						</div>
 						<!-- <div class="form-group flex-column-1 margin-left-10">
 							<input id="comment" type="text" class="form-control" placeholder="Search for comment ..." value.bind="search.comment">
 						</div> -->
-					</div>
+
+					<!-- <div class="flex-row-none">
+						<div class="form-group flex-column-1">
+							<input id="ownershipstatus" type="text" class="form-control" placeholder="Search for Ownership Status ..." value.bind="search.ownershipstatus">
+						</div>
+					
+					</div> -->
 
 					<div class="flex-row-none">
 						<div class="form-group flex-column-1">
@@ -191,7 +174,7 @@
                  ${sold.name} &nbsp;
             </label>
 					</div> -->
-					<div class="form-group">Sold - Selected : ${search.sold}
+					<div class="form-group">Sold - Selected 
 						<label repeat.for="sold of searchsold">
               <input type="radio" name="group1"
                     model.bind="sold.id" checked.bind="search.sold">

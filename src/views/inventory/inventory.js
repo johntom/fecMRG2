@@ -176,8 +176,9 @@ export class Inventory {
     let currentlocation = `${this.DescriptionLoc}`
     let multikeys = `${this.multikeywords}`
     // console.log('selectedSoldId', this.search.selectedSoldId)
-    let sold = `${this.search.sold}`
-
+    let sold = this.search.sold// `${this.search.sold}`
+   console.log('sold', this.search.sold)
+   
     console.log('selectedDateId', this.search.selectedDateId) //sold', sold,sold)
     //  this.search.sold=`${this.search.sold}`
     //  // this.search.inventorycode='soldit'
@@ -191,6 +192,7 @@ export class Inventory {
       if (medsupport !== 'undefined') this.search.mediumsupport = `${this.DescriptionMS.Description}`
       if (currentlocation !== 'undefined') this.search.currentlocation = `${this.DescriptionLoc.Description}`
       if (multikeys !== 'undefined') this.search.multikeywords = `${this.multikeywords}`
+  if (sold !== 'undefined') this.search.sold = sold
 
       let qs = this.utilService.generateQueryString(this.search);
       console.log('this.search ', this.search)
