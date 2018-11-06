@@ -505,7 +505,7 @@
 										<input type="text " xid="Condition " class="form-control input-sm " value.bind="currentItem.Condition">
 									</div>
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
-										<strong> Inscribed></strong>
+										<strong> Inscribed</strong>
 									</div>
 
 									<div class="Rtable-cell-70  Rtable-cell--light">
@@ -535,7 +535,7 @@
 							<div class="form-group flex-column-1 margin-left-10">
 								<div class="Rtable Rtable--2cols">
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
-										<strong> Sold ${currentItem.Sold}</strong>
+										<strong> Sold Status</strong>
 									</div>
 									<!-- ${search.httpsselectedSoldId} checked.bind="search.selectedSoldId selectedSoldId"-->
 									<div class="Rtable-cell-70 Rtable-cell--highlight">
@@ -561,7 +561,7 @@
 
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
 
-										<span dblclick.delegate="showModal( 'SoldToID') ">	<strong> SoldTo. >></strong></span>
+										<span dblclick.delegate="showModal( 'SoldToID') ">	<strong> SoldTo</strong></span>
 
 									</div>
 									<!-- <div class="Rtable-cell-70 Rtable-cell--highlight">
@@ -592,8 +592,6 @@
 												${opt.Description}
 											</option>
 										</select>
-
-
 									</div>
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
 										<span dblclick.delegate="showModal( 'OwnerID') ">	<strong> Owner >></strong></span>
@@ -667,7 +665,7 @@
 
 
 										<span> ratio h: ${currentItem.clientHeightRatio} -- w: ${currentItem.clientWidthRatio} dim:
-             h: ${appService.clientHeight} / w: ${appService.clientWidth} </span>
+             h: ${currentItem.clientHeight} / w: ${currentItem.clientWidth} </span>
 										<span>https://artbased.com/api/v1/getimage/inv/${currentItem.InventoryCode}.jpg
 									</div>
 

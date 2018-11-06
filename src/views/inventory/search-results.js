@@ -198,7 +198,10 @@ export class SearchResults {
 
 	}
 
-
+  addinventory() {
+   
+    this.router.navigate(`#/inventory/data/create`);
+  }
 	loadGrid() {
 		let options = localStorage["kendo-grid-mail"];
 		if (options) {

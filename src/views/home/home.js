@@ -6,8 +6,8 @@ import { MyDataService } from "../../services/my-data-service";
 
 export class Home {
   heading = "MRG Home Page";
-  version = 241.51
-  versionDate = 'Mon 11/05/2018'
+  version = 241.53
+  versionDate = 'TUE 11/06/2018'
   // versiondate=Date();
   //  "select2": {
   //       "map": "npm:select2@4.0.6-rc.1/dist",
@@ -37,6 +37,8 @@ export class Home {
     'have only 1 action list',
     'https://bl.ocks.org/lstarky/11cd1e90dd912f07a60afaedb9c2613b',
     'git commit -am "200.70 " / git push',
+    "clean dup InventoryCode and make uniq",
+    "clean ARTISTS null reocrds",
 
   ]
     ninalist = [

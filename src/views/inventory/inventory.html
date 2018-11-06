@@ -121,9 +121,6 @@
                select-single-result.bind="true"
 							 change.delegate="performSearch()">
               </aubs-typeahead> -->
-
-
-
 							<!-- <label for="SL">SL</label>
 						<input ref="myDatalistSL" type="text" list="appService.savedlists" 
                     change.delegate="performSearchX()" 
@@ -134,8 +131,7 @@
 							<!-- change.delegate="changeCallbackMru(selectedValue)"  -->
 							<div class="form-group flex-column-1 margin-left-10">
 								<!-- <label for="adjuster">SL</label> -->
-								<input ref="myDatalist" type="text" list="myDatalist" placeholder="search on savedlist" 
-                change.delegate="performSearchSL()"
+								<input ref="myDatalist" type="text" list="myDatalist" placeholder="search on savedlist" change.delegate="performSearchSL()"
 								 input.delegate="selectedValue = findOption($event.target.value)" />
 								<datalist id="myDatalist">
 									<option repeat.for="option of appService.savedlists">${option.name}</option>
@@ -144,7 +140,7 @@
 							</div>
 						</div>
 
-	<!-- <div class="form-group flex-column-1 margin-left-10">
+						<!-- <div class="form-group flex-column-1 margin-left-10">
 							<label for="adjuster">SavedList</label>
 								<input ref="myDatalist" type="text" list="myDatalist" 
                 change.delegate="changeCallbackMru(selectedValue)" 
@@ -167,8 +163,8 @@
 								</li>
 							</ul>
 						</div>
-					
-				
+
+
 					</div>
 
 
@@ -236,7 +232,7 @@
 
 						</div>
 						<div class="form-group flex-column-1 margin-left-10">
-							<button id="searchInputBtn" class="btn btn-primary" type="button" click.delegate="addinventory()"><strong>A</strong>dd Inventory</button>
+							<button id="searchInputBtn" class="btn btn-success" type="button" click.delegate="addinventory()"><strong>A</strong>dd Inventory</button>
 						</div>
 						<div class="form-group flex-column-1 margin-left-10">
 							<button id="searchInputBtn" class="btn btn-primary" type="button" click.delegate="performClear()">Clear</button>

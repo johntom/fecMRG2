@@ -457,40 +457,126 @@ export class DataForm {
     }
   }
 
-  getimageinfo() {
-    if (this.currentItem.clientHeight===undefined){
-let imageWidth, imageHeight, clientHeightRatio, clientWidthRatio
-    // this.currentItem.clientHeight =0
-    // this.currentItem.clientWidth=0
-    // this.currentItem.clientHeightRatio=1
-    //  this.currentItem.clientWidthRatio=1
-// var img = new Image();
- this.mainimage.onload = function() { //alertalert("Height: " + this.height+' '+ this.width); 
- }
-this.mainimage.src = `https://artbased.com/api/v1/getimage/inv/${this.currentItem.InventoryCode}.jpg`;
-//this.mainimage.onload = function() {
-     // this.appService.clientHeight = this.mainimage.clientHeight
-    // this.appService.clientWidth = this.mainimage.clientWidth
-    this.currentItem.clientHeight =  this.mainimage.clientHeight
-    this.currentItem.clientWidth =   this.mainimage.clientWidth
-// alert("Height: " + this.mainimage.clientHeight+' '+ this.mainimage.clientWidth);
-    if (this.currentItem.clientHeight === this.currentItem.clientWidth) {
-      clientHeightRatio = 1
-      clientWidthRatio = 1
-    } else if (this.currentItem.clientHeight > this.currentItem.clientWidth) {
-      clientWidthRatio = 1
-      clientHeightRatio = (this.currentItem.clientHeight / this.currentItem.clientWidth).toPrecision(2)
 
-    } if (this.currentItem.clientWidth > this.currentItem.clientHeight) {
-      clientHeightRatio = 1
-      clientWidthRatio = (this.currentItem.clientWidth / this.currentItem.clientHeight).toPrecision(2) 
-    }
-    this.currentItem.clientHeightRatio = imageHeight
-    this.currentItem.clientWidthRatio = imageWidth
-    }
+  // // using fat arrow
+  //ES5
+  // array.map(function(item) {
+  //   return item * 2;
+  // }
+  // //ES6
+  // array.map(item => item * 2);
+  // this.mainimage.onload = function () {
+  // async  loadimage() {
+  //   let imageWidth, imageHeight
 
+  //   //  this.mainimage.onload(() => {
+  //   return new Promise((resolve, reject) => {
+  //     this.mainimage.onload = function () { // alert alert("Height: " + this.height+' '+ this.width); 
+  //       imageHeight = this.height
+  //       imageWidth = this.width
+  //       resolve()
+  //       // resolve(imageWidth);
+  //     }
+  //     //    this.mainimage.src = `https://artbased.com/api/v1/getimage/inv/${this.currentItem.InventoryCode}.jpg`;
+  //   })
+  //   this.mainimage.src = `https://artbased.com/api/v1/getimage/inv/${this.currentItem.InventoryCode}.jpg`;
+  //   return await (imageHeight)
+  // }
+
+  // async getimageinfo() {
+  //   if (this.currentItem.clientHeight === undefined || this.currentItem.clientHeight === 0) {
+  //     let imageWidth, imageHeight, clientHeightRatio, clientWidthRatio
+  //     let geti = await this.loadimage()
+  //     this.currentItem.clientHeight = this.mainimage.clientHeight
+  //     this.currentItem.clientWidth = this.mainimage.clientWidth
+  //     if (this.currentItem.clientHeight === this.currentItem.clientWidth) {
+  //       clientHeightRatio = 1
+  //       clientWidthRatio = 1
+  //     } else if (this.currentItem.clientHeight > this.currentItem.clientWidth) {
+  //       clientWidthRatio = 1
+  //       clientHeightRatio = (this.currentItem.clientHeight / this.currentItem.clientWidth).toPrecision(2)
+
+  //     } if (this.currentItem.clientWidth > this.currentItem.clientHeight) {
+  //       clientHeightRatio = 1
+  //       clientWidthRatio = (this.currentItem.clientWidth / this.currentItem.clientHeight).toPrecision(2)
+  //     }
+  //     this.currentItem.clientHeightRatio = clientHeightRatio//imageHeight
+  //     this.currentItem.clientWidthRatio = clientWidthRatio //
+
+
+  //   }
+  // }
+
+  loadimage() {
+    let imageWidth, imageHeight, clientHeightRatio, clientWidthRatio
+
+    return new Promise((resolve, reject) => {
+      this.mainimage.onload = function () { // alert alert("Height: " + this.height+' '+ this.width); 
+        imageHeight = this.height
+        imageWidth = this.width
+        resolve(imageWidth);
+      }
+      this.mainimage.src = `https://artbased.com/api/v1/getimage/inv/${this.currentItem.InventoryCode}.jpg`;
+    })
   }
 
+  getimageinfo() {
+    if (this.currentItem.clientHeight === undefined || this.currentItem.clientHeight === 0) {
+      let imageWidth, imageHeight, clientHeightRatio, clientWidthRatio
+
+      let Promise = this.loadimage()
+        .then(response => {
+
+          this.currentItem.clientHeight = this.mainimage.clientHeight
+          this.currentItem.clientWidth = this.mainimage.clientWidth
+          // }
+          // alert("Height: " + this.mainimage.clientHeight+' '+ this.mainimage.clientWidth);
+          if (this.currentItem.clientHeight === this.currentItem.clientWidth) {
+            clientHeightRatio = 1
+            clientWidthRatio = 1
+          } else if (this.currentItem.clientHeight > this.currentItem.clientWidth) {
+            clientWidthRatio = 1
+            clientHeightRatio = (this.currentItem.clientHeight / this.currentItem.clientWidth).toPrecision(2)
+
+          } if (this.currentItem.clientWidth > this.currentItem.clientHeight) {
+            clientHeightRatio = 1
+            clientWidthRatio = (this.currentItem.clientWidth / this.currentItem.clientHeight).toPrecision(2)
+          }
+          this.currentItem.clientHeightRatio = clientHeightRatio//imageHeight
+          this.currentItem.clientWidthRatio = clientWidthRatio //
+
+        })
+    }
+  }
+  /*
+   getimageinfo() {
+      if (this.currentItem.clientHeight===undefined){
+  let imageWidth, imageHeight, clientHeightRatio, clientWidthRatio
+      
+   this.mainimage.onload = function() { 
+   }
+  this.mainimage.src = `https://artbased.com/api/v1/getimage/inv/${this.currentItem.InventoryCode}.jpg`;
+      this.currentItem.clientHeight =  this.mainimage.clientHeight
+      this.currentItem.clientWidth =   this.mainimage.clientWidth
+      if (this.currentItem.clientHeight === this.currentItem.clientWidth) {
+        clientHeightRatio = 1
+        clientWidthRatio = 1
+      } else if (this.currentItem.clientHeight > this.currentItem.clientWidth) {
+        clientWidthRatio = 1
+        clientHeightRatio = (this.currentItem.clientHeight / this.currentItem.clientWidth).toPrecision(2)
+  
+      } if (this.currentItem.clientWidth > this.currentItem.clientHeight) {
+        clientHeightRatio = 1
+        clientWidthRatio = (this.currentItem.clientWidth / this.currentItem.clientHeight).toPrecision(2) 
+      }
+      this.currentItem.clientHeightRatio = imageHeight
+      this.currentItem.clientWidthRatio = imageWidth
+      }
+  
+    }
+  
+  
+  */
   attached() {
     // if (this.appService.dataFormOneToOneTabs.length > 0) {
     //   let tab = this.appService.dataFormOneToOneTabs[0];
@@ -527,7 +613,7 @@ this.mainimage.src = `https://artbased.com/api/v1/getimage/inv/${this.currentIte
     }
   }
 
-  
+
   saveinventory(option) {
     //this.controller.validate();
     let savetime = moment().format('MM/DD/YY h:mm:ss a')
@@ -539,41 +625,36 @@ this.mainimage.src = `https://artbased.com/api/v1/getimage/inv/${this.currentIte
         || this.currentItem.artist === undefined) {
         alert('Please fix  Title, InventoryCode, MediumSupport and or artist ')
       } else {
-
-
         this.api.createinventory(this.currentItem).then((jsonRes) => {
           console.log('jsonRes ', jsonRes);
           this.recordId = jsonRes.id
           //let tab = this.appService.tabs.find(f => f.isSelected);
           if (this.currentItem.id === 'create') {
             this.currentItem.id = ''
-
             this.message = "Save successful. Inventory added @ " + savetime
           }
-        
-           this.mrubuild()
+          //this.mrubuild() it will add if when opening
           this.requestclose()
-          this.router.navigate(`#/inventory/data/${this.currentItem.InventoryCode}`);
+          this.router.navigate(`#/inventory/data/${this.currentItem.InventoryCode}`)
         });
       }
     } else {
-     
-        if (JSON.stringify(this.currentItem) !== JSON.stringify(this.appService.originalrec)) {
-          this.api.saveinventory(this.currentItem).then((jsonRes) => {
-          console.log('jsonRes ', jsonRes);
+
+      if (JSON.stringify(this.currentItem) !== JSON.stringify(this.appService.originalrec)) {
+        // SAVE WITH IMAGE INFO IN CASE ITS MISSING
+        // nsure if needed this.getimageinfo()
+        this.api.saveinventory(this.currentItem).then((jsonRes) => {
+          console.log('jsonRes ', jsonRes)
           let tab = this.appService.tabs.find(f => f.isSelected);
           // window.alert("Save successful!");
           this.message = "Save successful. Inventory updated @ " + savetime
-
           this.appService.testrec = this.currentItem
           this.appService.currentView = this.currentItem
           this.appService.originalrec = JSON.parse(JSON.stringify(this.currentItem))
           this.skippromt = true
-             if (option === 1) {
-                   this.requestclose()
+          if (option === 1) {
+            this.requestclose()
           } else {
-
-           
 
           }
         });
@@ -646,7 +727,7 @@ this.mainimage.src = `https://artbased.com/api/v1/getimage/inv/${this.currentIte
         // this.mainimage = new Image();
         this.mainimage.src = `https://artbased.com/api/v1/getimage/inv/${this.currentItem.InventoryCode}.jpg`;
         // "http://localhost/image/id/image" + count++ + ".jpg";
-        this.getimageinfo() 
+        this.getimageinfo()
         $("#file").val("");
       })
     //})
@@ -693,8 +774,8 @@ this.mainimage.src = `https://artbased.com/api/v1/getimage/inv/${this.currentIte
   }
   requestclose() {
 
-     const resetFunc = () => { this.appService.originalrec = this.currentItem; };
-     let tab = this.appService.tabs.find(f => f.isSelected);
+    const resetFunc = () => { this.appService.originalrec = this.currentItem; };
+    let tab = this.appService.tabs.find(f => f.isSelected);
     let index = this.appService.tabs.findIndex(f => f.isSelected)
     let rt2 = '#/inventory/' + this.tabname
 

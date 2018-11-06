@@ -114,11 +114,22 @@
 			</div>
 			<div show.bind="fieldname==='Artist'">
 				<div class="form-group flex-column-1">
-					<aubs-typeahead ref='dartist' data.bind="appService.artistList" value.bind="ArtistName" debounce.bind="350" placeholder="${placeholder}"
+					<!-- <aubs-typeahead ref='dartist' data.bind="appService.artistList" value.bind="ArtistName" debounce.bind="350" placeholder="${placeholder}"
 					 open-on-focus.bind="true" key="ArtistName" results-limit.bind="22" select-single-result.bind="true">
 					</aubs-typeahead>
-					<!-- <div> Artist: ${ArtistName | stringify}</div> -->
-					<div> born: ${ArtistName.yearofBirth } died: ${ArtistName.died} </div>
+					<div> born: ${ArtistName.yearofBirth } died: ${ArtistName.died} </div> -->
+
+<label for="Artist">Artist</label>
+					<input ref="myDatalistA" type="text" list="myDatalistA" change.delegate="changeCallbackArtist(selectedValue)" 
+					input.delegate="selectedValueA = findOptionI($event.target.value)"
+					/>
+					<datalist id="myDatalistA">
+						<option repeat.for="option of appService.artistList">${option.ArtistName}</option>
+					</datalist>
+					<pre style="margin-top: 100px"><code>${selectedValueA.ArtistName}</code></pre>
+
+
+
 				</div>
 			</div>
 

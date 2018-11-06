@@ -93,6 +93,9 @@
 		<button id="searchInputBtn" class="btn btn-primary" type="button" click.delegate="addexistingSelection()">Add To Saved List: ${appService.currentsavedlist}</button>
 		<!-- <button id="searchInputBtn2" class="btn btn-primary" type="button" click.delegate="addexistingCB()">Add To SelectList ${appService.currentsavedlist}</button> -->
 		<button show.bind="appService.currentsavedlist" id="searchInputBtn" class="btn btn-primary" type="button" click.delegate="clearSelection()">Clear Selection</button>
+
+		<button id="addInputBtn" class="btn btn-success" type="button" click.delegate="addinventory()"><strong>A</strong>dd Inventory</button>
+	
 		</span>
  <b>  ${message} </b>
 	</div>

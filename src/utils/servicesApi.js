@@ -762,7 +762,7 @@ saveMerge(slname, editorval) {
     }).then((res) => res.json());
   }
 
- upload(formData,id) {
+ uploadPARKTOWER(formData,id) {
     //http://arabsight.github.io/uploading-files-with-aurelia
      let baseweb ='http://parktowergroupmanagement.com:9002/api/v1' 
 
@@ -787,7 +787,7 @@ saveMerge(slname, editorval) {
   }
 
 
-  uploadTemp(formData, id) {
+  upload(formData, id) {
     //http://arabsight.github.io/uploading-files-with-aurelia
     var url = this.baseweb + `v1/uploadinventory/${id}`
     ///  var url = this.basewebjif + `v1/upload/01-03166`

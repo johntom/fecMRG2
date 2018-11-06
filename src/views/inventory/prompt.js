@@ -22,9 +22,7 @@ export class Prompt {
 
 
   textfields = ['Description', 'Comment', 'Inscribed', 'Treatment']
-
   textfielddesc = ['Enter Alt ID', 'Enter Comment', 'Enter Inscribed with left of ":" as reg text right as ialtics till "; repeat', 'Enter Treatment']
-
 
   // for the datalist with medium support
   selectedValue = null;
@@ -32,6 +30,25 @@ export class Prompt {
   // findOption = this.appService.codesListMediumSupport.find(x => x.Description === findvalue)
 
 
+
+  selectedValueA = null;
+  findOptionA = value => this.appService.artistList.find(x => x.ArtistName === value);
+
+  //  this.ArtistName = this.currentItem.artist
+  //       if (this.ArtistName.ArtistName === undefined) this.ArtistName.ArtistName = this.currentItem.artist.lastName + ', ' + this.currentItem.artist.firstName
+  //       this.dartist.value = this.ArtistName
+// <div show.bind="fieldname==='Artist'">
+// 				<div class="form-group flex-column-1">
+// 					<aubs-typeahead ref='dartist' data.bind="appService.artistList" value.bind="ArtistName" debounce.bind="350" placeholder="${placeholder}"
+// 					 open-on-focus.bind="true" key="ArtistName" results-limit.bind="22" select-single-result.bind="true">
+// 					</aubs-typeahead>
+// 					<!-- <div> Artist: ${ArtistName | stringify}</div> -->
+// 					<div> born: ${ArtistName.yearofBirth } died: ${ArtistName.died} </div>
+// 				</div>
+// 			</div>
+//   this.ArtistName = this.currentItem.artist
+//   if (this.ArtistName.ArtistName === undefined) this.ArtistName.ArtistName = this.currentItem.artist.lastName + ', ' + this.currentItem.artist.firstName
+       
   constructor(controller, appService, dataService, dialogService, api) {
     this.controller = controller;
     this.answer = null;
@@ -45,7 +62,6 @@ export class Prompt {
     this.api = api
   }
 
-
   getStates(filter, limit) {
     let filterlc = filter.toLowerCase()
     let states
@@ -57,7 +73,6 @@ export class Prompt {
       })
       .then(states => filter.length > 0 ? states.filter(item => item.name.toLowerCase().indexOf(filter.toLowerCase()) > -1) : states)
       .then(states => filter.length > 0 ? states.filter(item => item.name.toLowerCase().indexOf(filterlc) > -1) : states)
-
     return Promise
   }
 
@@ -141,41 +156,35 @@ export class Prompt {
 
 
     if (this.fieldname === 'Artist') {
-    if (this.currentItem.artist === undefined) {
-        // this.ArtistName = this.appService.artistList[1]
+    // if (this.currentItem.artist === undefined) {
+    //   } else {
+    //     this.ArtistName = this.currentItem.artist
+    //     if (this.ArtistName.ArtistName === undefined) this.ArtistName.ArtistName = this.currentItem.artist.lastName + ', ' + this.currentItem.artist.firstName
+    //     this.dartist.value = this.ArtistName
+    //   }
+      this.doc = `Select Artist or add new if not in list.`
+      this.heading = `Select Insured or add new if not in list.`
+      this.placeholder = `Select Insured or add new if not in list.`
+      if (this.currentItem.artist === undefined || this.currentItem.artist === '') {
       } else {
-        this.ArtistName = this.currentItem.artist
-        if (this.ArtistName.ArtistName === undefined) this.ArtistName.ArtistName = this.currentItem.artist.lastName + ', ' + this.currentItem.artist.firstName
-        this.dartist.value = this.ArtistName
+        //  this.insuredobj = this.currentItem.insured
+        this.myDatalistA.value = this.currentItem.artist.ArtistName
       }
+    
     }
+
+
     if (this.fieldname === 'MediumSupportobj') {
       this.doc = `type any characters of the   "Medium/Support: select or add new."`
       this.heading = `Search Medium/Support: select or add new.`
       this.placeholder = `Enter any characters on Medium/Support: select or add new.`
-
       if (this.currentItem.MediumSupportobj === undefined) {
-
-        // this.MedSup = this.appService.codesListMediumSupport[1]
       } else {
         this.MedSup = this.currentItem.MediumSupportobj
-        // if (this.MedSup.Description === undefined) this.MedSup.Description = this.currentItem.MediumSupportobj.Description
-        // this.dmediumsupport.value = this.MedSup
-
-        //  if (this.MedSup.Description === undefined) {
-
-        //  }
-        // this.dmediumsupport.value = this.MedSup
-
-        // datlist
         this.myDatalist.value = this.MedSup.Description
-
       }
-
-
-
+      
     }
-
 
     // let opos = this.orgfields.findIndex(x => x === this.fieldname);
     if (opos !== -1) {
@@ -235,6 +244,25 @@ export class Prompt {
 
   }
 
+changeCallbackArtist(selectedValueA) {
+      let findvalue = this.myDatalistA.value
+
+
+    // if (this.selectedValueA === undefined) {
+    //   //     alert(`you are about to add ${findvalue} to Insured`)
+    //   this.dialogService.open({ viewModel: Promptyn, model: `Add ${findvalue} to insured list or Cancel?`, lock: false }).whenClosed(response => {
+
+    //     if (!response.wasCancelled) {
+    //       this.addInsured(findvalue)
+    //     } else {
+    //       console.log('cancel');
+    //     }
+    //     console.log(response.output);
+    //   });
+
+
+    // }
+  }
 
   
   //  alert(`${this.addlist} Exists in list already!`)
