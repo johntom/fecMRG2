@@ -291,8 +291,10 @@ export class Rtf {
 
     // let exhibition = this.currentItem.exhibition
     // let reproduction = this.currentItem.reproduction
-let exhibition = JSON.parse(JSON.stringify( this.currentItem.exhibition));
-   let reproduction = JSON.parse(JSON.stringify( this.currentItem.reproduction));
+    let exhibition = undefined
+    let reproduction= undefined
+    if (this.currentItem.exhibition!==undefined)  exhibition = JSON.parse(JSON.stringify( this.currentItem.exhibition));
+   if (this.currentItem.reproduction!==undefined)  reproduction = JSON.parse(JSON.stringify( this.currentItem.reproduction));
      
     let myObjects
     let rec = {}
