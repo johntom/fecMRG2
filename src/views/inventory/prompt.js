@@ -26,13 +26,16 @@ export class Prompt {
 
   // for the datalist with medium support
   selectedValue = null;
-  findOption = value => this.appService.codesListMediumSupport.find(x => x.Description === value);
-  // findOption = this.appService.codesListMediumSupport.find(x => x.Description === findvalue)
+  findOption = value => this.appService.codesListMediumSupport.find(x => x.Description === value)
 
-
-
+// arists
   selectedValueA = null;
-  findOptionA = value => this.appService.artistList.find(x => x.ArtistName === value);
+  findOptionA = value => this.appService.artistList.find(x => x.ArtistName === value)
+
+// orgs
+  selectedValueO = null;
+  findOptionO = value => this.appService.artistList.find(x => x.ArtistName === value)
+
 
   //  this.ArtistName = this.currentItem.artist
   //       if (this.ArtistName.ArtistName === undefined) this.ArtistName.ArtistName = this.currentItem.artist.lastName + ', ' + this.currentItem.artist.firstName

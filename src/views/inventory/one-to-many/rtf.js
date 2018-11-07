@@ -213,12 +213,12 @@ export class Rtf {
     let provenance = this.currentItem.provenance
     //  if (provenance !== undefined) {
     //   if (provenance.length !== 0) {
-     if (provenance !== undefined && provenance.length !== 0) {
+    if (provenance !== undefined && provenance.length !== 0) {
       let iarray = []
       // let provheader = `<p><span style='text-decoration-line:underline'><strong><u>PROVENANCE</u></strong></span><u></u></p>`
       let provheader = `<p><span style='text-decoration-line:underline'><u>PROVENANCE</u></span><u></u></p>`
-      
-  
+
+
       let provarray = []
 
       for (const item of provenance) {
@@ -262,7 +262,7 @@ export class Rtf {
         //	this.segment2 += `${item.ProvOwner}, ${ProvLoc}<br> ${item.ProvMemo}`
       }
       let myObjects = lodash.sortBy(provarray, 'sord');
-this.segment2 += provheader
+      this.segment2 += provheader
       for (const obj of myObjects) {
         // this.segment2 += obj.date + ' ' + obj.exception
         this.segment2 += obj.exception
@@ -280,8 +280,8 @@ this.segment2 += provheader
     let preitalic = '<em>'
     let postitalic = '</em>'
     let lineBreak = '<br>'
-   //let exandpubhead = `<br><br><br><p><span style='text-decoration-line:underline'><strong><u>EXHIBITION & PUBLICATION HISTORY</u></strong></span><u></u></p><br>`
-let exandpubhead = `<br><br><br><p><span style='text-decoration-line:underline'><u>EXHIBITION & PUBLICATION HISTORY</u></span><u></u></p><br>`
+    //let exandpubhead = `<br><br><br><p><span style='text-decoration-line:underline'><strong><u>EXHIBITION & PUBLICATION HISTORY</u></strong></span><u></u></p><br>`
+    let exandpubhead = `<br><br><br><p><span style='text-decoration-line:underline'><u>EXHIBITION & PUBLICATION HISTORY</u></span><u></u></p><br>`
 
     let exhibitandpubs = []
 
@@ -289,8 +289,11 @@ let exandpubhead = `<br><br><br><p><span style='text-decoration-line:underline'>
     // conbine both tables
     let pl = this.appService.codesProvenanceLocation
 
-    let exhibition = this.currentItem.exhibition
-    let reproduction = this.currentItem.reproduction
+    // let exhibition = this.currentItem.exhibition
+    // let reproduction = this.currentItem.reproduction
+let exhibition = JSON.parse(JSON.stringify( this.currentItem.exhibition));
+   let reproduction = JSON.parse(JSON.stringify( this.currentItem.reproduction));
+     
     let myObjects
     let rec = {}
     let linkPageNo
@@ -311,9 +314,9 @@ let exandpubhead = `<br><br><br><p><span style='text-decoration-line:underline'>
         // check to see if link in repo
         if (reproduction !== undefined) {
           // let eid = reproduction.findIndex(x => x.ReproductionExhibit === item.ExhibitTitle)
-         // let eid = reproduction.findIndex(x => x.id === item.ReproductionExhibit)
-         let eid = reproduction.findIndex(x => x.ReproductionExhibit === item.id)
-         let reporec
+          // let eid = reproduction.findIndex(x => x.id === item.ReproductionExhibit)
+          let eid = reproduction.findIndex(x => x.ReproductionExhibit === item.id)
+          let reporec
           linkPageNo = ''
           console.log('eid ', eid, linkPageNo) //ColorBWDesc1)
 
@@ -420,7 +423,7 @@ let exandpubhead = `<br><br><br><p><span style='text-decoration-line:underline'>
           data += `${ReproductionLocationDesc}: ${item.ReproductionName}, ${item.ReproductionDate}  ${lineBreak}`
           // data += `${ColorBWDesc} on page ${item.ReproductionPage} ${lineBreak} ${post}`
           data += `${ColorBWDesc}  ${item.ReproductionPage} ${lineBreak} ${post}`
-  
+
           rec = {
             date: item.ReproductionSortDate,
 
@@ -685,7 +688,8 @@ there are extra ' when there are fractions
 17 1/2 ' x '22 1/4 in. / __ x 57 cm   */
     if (this.currentItem.UnframedHeight16 === null) {
       dims = this.currentItem.UnframedHeight + ' x '
-      dimscm = this.currentItem.UnframedHeight * 2.54 + ' cm ' + ' x '
+      // dimscm = this.currentItem.UnframedHeight * 2.54 + ' cm ' + ' x '
+       dimscm = this.currentItem.UnframedHeight * 2.54 +  ' x '
     } else {
       // dims = this.currentItem.UnframedHeight + ' ' + this.currentItem.UnframedHeight16 + ' x '
       dims = `${this.currentItem.UnframedHeight} <span style="font-size:x-small;"> ${this.currentItem.UnframedHeight16}</span> x `
@@ -748,7 +752,7 @@ there are extra ' when there are fractions
     if (artist.died) {
       artistWdates += ` (${artist.yearofBirth} - ${artist.died})`
     } else {
-     artistWdates += ` (b.${artist.yearofBirth})`
+      artistWdates += ` (b.${artist.yearofBirth})`
     }
     artistWdates += '</strong>'
 
@@ -778,31 +782,31 @@ there are extra ' when there are fractions
 
     segment1 += `  ${dims} in. unframed<br> `
     segment1 += `  ${dimscm} cm unframed<br> `
-    
-   if( this.currentItem.Signed==='Y') this.currentItem.Signed===true
-   if( this.currentItem.Signed==='N') this.currentItem.Signed===false
-   if( this.currentItem.Dated==='Y') this.currentItem.Dated===true
-   if( this.currentItem.Dated==='N') this.currentItem.Dated===false
-   
-if (this.currentItem.Signed===true)  segment1 += 'signed'
+
+    if (this.currentItem.Signed === 'Y') this.currentItem.Signed === true
+    if (this.currentItem.Signed === 'N') this.currentItem.Signed === false
+    if (this.currentItem.Dated === 'Y') this.currentItem.Dated === true
+    if (this.currentItem.Dated === 'N') this.currentItem.Dated === false
+
+    if (this.currentItem.Signed === true) segment1 += 'signed'
 
 
-// if (this.currentItem.Dated !=='N' && this.currentItem.Dated !== undefined) {
-  if (this.currentItem.Dated === true) {
+    // if (this.currentItem.Dated !=='N' && this.currentItem.Dated !== undefined) {
+    if (this.currentItem.Dated === true) {
 
-   if (this.currentItem.Signed===true){ 
-    segment1 += ' and dated '
-   }  else   segment1 += 'dated '
-}
+      if (this.currentItem.Signed === true) {
+        segment1 += ' and dated '
+      } else segment1 += 'dated '
+    }
     // segment1 += ` ${this.inscribedText}<br> ` 
 
 
 
     let fac = this.searchsold[this.selectedimagesize] // - ${this.sold.factor}
-   
+
     let ww = this.currentItem.clientWidth * fac.factor
     let hh = this.currentItem.clientHeight * fac.factor
-   
+
 
     console.log(hh, ww)
     if (ww === 0) ww = 450
@@ -832,8 +836,12 @@ if (this.currentItem.Signed===true)  segment1 += 'signed'
 
 
     this.buildEdition()
-    this.buildProv()
-    this.buildRepro()
+    
+    
+     this.buildProv()
+     this.buildRepro()
+
+
     // this.editor.value('<p>' + segment1 + '</p>' + '<hr><p>' +  this.segment2 + '</p>');
 
     this.editor.value('<p>' + this.segment2 + '</p>');

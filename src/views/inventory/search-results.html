@@ -13,6 +13,7 @@
 	<require from="aurelia-kendoui-bridge/grid/grid"></require>
 	<require from="aurelia-kendoui-bridge/grid/col"></require>
 	<require from="aurelia-kendoui-bridge/common/template"></require>
+  
 	<!-- 3-2-2018 -->
 	<require from="aurelia-kendoui-bridge/grid/grid-command"></require>
 	<!-- <require from="aurelia-kendoui-bridge/multiselect/multiselect"></require> -->
@@ -24,18 +25,8 @@
 	<!-- <require from="./flex.css"></require> -->
 	<require from="aurelia-kendoui-bridge/multiselect/multiselect"></require>
 	<require from="aurelia-kendoui-bridge/button/button"></require>
-	<!--<section class="customers au-animate">
-		 <a slot="buttons-slot" class="btn btn-primary" click.delegate="addInventory()">
-			<i class="fa fa-plus"></i> Add Inventory
-      	<button style='width:200px' id="searchInputBtn" class="btn btn-primary" type="button" click.delegate="showSavedlists()">Show Inv Codes (from list) </button>
-		</a> 
-    fa-home
-   
-		<a slot="buttons-slot" class="btn btn-primary" click.delegate="showSavedlists()">
-			<i class="fa fa-spinner"></i> Show Saved Lists (Ctrl+Click to select or de-select)
-		</a>
-	</section>
- -->
+  <require from="../../resources/value-converters/get-artist"></require>
+
  <h3>
    
    			<div if.bind="appService.currentsavedlist===undefined || appService.currentsavedlist===''">no active saved list </div>
@@ -66,8 +57,12 @@
        
 		</ak-col>
  
-    	<ak-col k-title="ArtistName" k-width="180px" k-field="artist.ArtistName"></ak-col>
-	
+    	<ak-col k-title="ArtistName" k-width="180px" k-field="artist">
+	  <ak-template>
+        ${artist | getArtist}
+      </ak-template>
+</ak-col>
+
 		<!-- <ak-col k-title="Artist last" k-width="180px" k-field="artist.lastName"></ak-col>
 		<ak-col k-title="Artist First" k-width="180px" k-field="artist.firstName"></ak-col> -->
 		<ak-col k-title="Title" k-width="180px" k-field="Title"></ak-col>
@@ -77,7 +72,7 @@
 		<!-- <ak-col k-title="MediumSupport" k-width="180px" k-field="MediumSupport"></ak-col> -->
 		<!-- <ak-col k-title="MediumText" k-width="180px" k-field="MediumText"></ak-col> -->
 	
-  	<ak-col k-title="MediumSupport" k-width="180px" k-field="MediumSupportobj.Description"></ak-col>
+  	<!-- <ak-col k-title="MediumSupport" k-width="180px" k-field="MediumSupportobj.Description"></ak-col> -->
 
 		<!-- <ak-col k-title="CurrentLocation" k-width="180px" k-field="CurrentLocation"></ak-col> -->
 		<ak-col k-title="Bin" k-width="180px" k-field="Bin"></ak-col>

@@ -61,7 +61,10 @@ export class DataForm {
     { id: 6, name: '3/4' },
     { id: 7, name: '7/8' }
   ];
-
+//  if (sold === '0') sold = -1// change this afer conversion
+//         if (sold === '1') sold = 0
+//         if (sold === '2') sold = 2
+//         if (sold === '3') sold = 3
   searchsold = [
 
     { id: 0, name: 'Y' },
