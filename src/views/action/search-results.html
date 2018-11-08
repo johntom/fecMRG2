@@ -107,51 +107,44 @@
 					<div show.bind="!hide3">
 						<!-- ExhibitID <input type="text" id="ExhibitID" class="form-control input-sm" value.bind="item.ExhibitID"> ReproductionType -->
 						<!-- <input type="text" id="ReproductionType" class="form-control input-sm" value.bind="item.ReproductionType"> ReproductionTitle -->
+<br>
+						ReproductionAuthor
+						<input type="text" id="ReproductionAuthor" class="form-control input-sm" value.bind="item.ReproductionAuthor">
+             Author	First
+						<input type="text" id="AuthorLast" class="form-control input-sm" value.bind="item.AuthorLast"> Author Last
+						<input type="text" id="AuthorFirst" class="form-control input-sm" value.bind="item.AuthorFirst">
+					
+          		ReproductionTitle <input type="text" id="ReproductionTitle" class="form-control input-sm" value.bind="item.ReproductionTitle">				
+       	Publisher			<input type="text" id="ReproductionName" class="form-control input-sm" value.bind="item.ReproductionName">
+		ReproductionLocation
+							<aubs-typeahead ref='reproductionlocation' data.bind="appService.codesProvenanceLocation" value.bind="item.DescriptionLoc"
+							 debounce.bind="350" placeholder="reproduction location" open-on-focus.bind="true" key="Description" results-limit.bind="12"
+							 select-single-result.bind="true">
+							</aubs-typeahead>
+          
+										
+					
 
-						<select id="ReproductionType" class="form-control  input-sm" value.bind="item.ReproductionType"> 
-                      <option model.bind="null">Choose...</option> 
-                         <option repeat.for="opt of appService.codesPublicationType " model.bind="opt.id">
-                    ${opt.Description} 
-                      </option> 
-                    </select>
-                     ReproductionTitle <input type="text" id="ReproductionTitle" class="form-control input-sm"
-						 value.bind="item.ReproductionTitle"> ReproductionPage <input type="text" id="ReproductionPage" class="form-control input-sm"
-						 value.bind="item.ReproductionPage"> ColorBW
-						<!-- <input type="text" id="ColorBW" class="form-control input-sm" 
-            value.bind="item.ColorBW">  -->
-			ReproductionLocation
-						<aubs-typeahead ref='reproductionlocation' data.bind="appService.codesProvenanceLocation" value.bind="item.DescriptionLoc"
-						 debounce.bind="350" placeholder="reproduction location" open-on-focus.bind="true" key="Description" results-limit.bind="12"
-						 select-single-result.bind="true">
-						</aubs-typeahead>
 
+               ReproductionDate <input type="text" id="ReproductionDate" class="form-control input-sm" value.bind="item.ReproductionDate">							
+							 ReproductionSortDate <input type="date" id="ReproductionSortDate" class="form-control input-sm" value.bind="item.ReproductionSortDate">				
+			   ReproductionPage <input type="text" id="ReproductionPage" class="form-control input-sm" value.bind="item.ReproductionPage">			
+				
+ ReproductionType	<select
+						 id="ReproductionType" class="form-control  input-sm" value.bind="item.ReproductionType">
+							<option model.bind="null">Choose...</option>
+							<option repeat.for="opt of appService.codesPublicationType " model.bind="opt.id">
+								${opt.Description}
+							</option>
+							</select>
 
-						ColorBW <select id="ColorBW" class="form-control  input-sm" value.bind="item.ColorBW"> 
+							ColorBW <select id="ColorBW" class="form-control  input-sm" value.bind="item.ColorBW"> 
                       <option model.bind="null">Choose...</option> 
                          <option repeat.for="opt of appService.codesReproductionType " model.bind="opt.id">
                     ${opt.Description} 
                       </option> 
-                    </select> ReproductionDate <input type="text" id="ReproductionDate" class="form-control input-sm" value.bind="item.ReproductionDate">						ReproductionSortDate
-						<input type="date" id="ReproductionSortDate" class="form-control input-sm" value.bind="item.ReproductionSortDate">	
-            				Publisher
-                      <input type="text" id="ReproductionName" class="form-control input-sm" value.bind="item.ReproductionName">
-            
-	ReproductionAuthor 
-       <input type="text" id="ReproductionAuthor" class="form-control input-sm" value.bind="item.ReproductionAuthor">
-            
-            	 Author First
-						<input type="text" id="AuthorLast" class="form-control input-sm" value.bind="item.AuthorLast">
-					
-            Author Last
-						<input type="text" id="AuthorFirst" class="form-control input-sm" value.bind="item.AuthorFirst">
-					
-
-            <!-- <input type="text" id="ReproductionLocation" class="form-control input-sm" value.bind="item.ReproductionLocation">						AuthorFirst <input type="text" id="AuthorFirst" class="form-control input-sm" value.bind="item.AuthorFirst"> AuthorLast -->
-						<!-- codesListLocation -->
-			
-
-						<!-- ExhibitMemo <input type="text" id="ExhibitMemo" class="form-control input-sm" value.bind="item.AuthorLast"> -->
-						<button id="save3" class="btn btn-primary" type="button" click.delegate="save3()">save Reproduction</button>
+                    </select> 
+      		<button id="save3" class="btn btn-primary" type="button" click.delegate="save3()">save Reproduction</button>
 
 					</div>
 

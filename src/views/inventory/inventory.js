@@ -183,6 +183,8 @@ export class Inventory {
     let multikeys = `${this.multikeywords}`
     // console.log('selectedSoldId', this.search.selectedSoldId)
     let sold = this.search.sold// `${this.search.sold}`
+
+    let owndedby = this.search.OwnedBy
    console.log('sold', this.search.sold)
    let selecteddate = this.search.selectedDateId//+''
     console.log('selectedDateId',selecteddate) //sold', sold,sold)
@@ -200,6 +202,7 @@ export class Inventory {
       if (multikeys !== 'undefined') this.search.multikeywords = `${this.multikeywords}`
   if (sold !== 'undefined') this.search.sold = sold
    if (selecteddate !== 'undefined') this.search.selectedDateId = selecteddate
+   if (owndedby !== 'undefined') this.search.owndedby = owndedby //search.owndedby
 
       let qs = this.utilService.generateQueryString(this.search);
       console.log('this.search ', this.search)
