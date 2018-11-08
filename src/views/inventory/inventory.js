@@ -82,11 +82,17 @@ export class Inventory {
     { id: 1, name: 'DateModified' },
     { id: 2, name: 'SoldDate' },
   ];
-  searchsold = [
-    { id: 0, name: 'Y' },
-    { id: 1, name: 'N' },
-    { id: 2, name: 'NFS' },
-    { id: 3, name: 'DON' },
+  // searchsold = [
+  //   { id: 0, name: 'Y' },
+  //   { id: 1, name: 'N' },
+  //   { id: 2, name: 'NFS' },
+  //   { id: 3, name: 'DON' },
+  // ];
+   searchsold = [
+    { id: 1, name: 'Y' },
+    { id: 2, name: 'N' },
+    { id: 3, name: 'NFS' },
+    { id: 4, name: 'DON' },
   ];
   altAKeyPressSubscription;
 
