@@ -396,7 +396,7 @@ export class Rtf {
   */
     if (reproduction !== undefined) {
       for (const item of reproduction) {
-        if (item.ReproductionExhibit === null && item.ReproductionExhibit === undefined) {//selected choose)
+        if (item.ReproductionExhibit === null || item.ReproductionExhibit === undefined) {//selected choose)
           // let oid
           // if ((item.ReproductionLocation + '').length < 6) {
 

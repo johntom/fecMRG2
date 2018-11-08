@@ -6,7 +6,7 @@ import { MyDataService } from "../../services/my-data-service";
 
 export class Home {
   heading = "MRG Home Page";
-  version = 241.62
+  version = 241.63
   versionDate = 'Thur 11/08/2018'
   // versiondate=Date();
   //  "select2": {
@@ -37,7 +37,7 @@ export class Home {
     'git commit -am "200.70 " / git push',
     "clean dup InventoryCode and make uniq",
     "clean ARTISTS null reocrds",
-    "fix 3 dates   { id: 0, name: 'DateAdded' },            { id: 1, name: 'DateModified' },     { id: 2, name: 'SoldDate' }",
+    "fix 3 dates   { id: 0, name: 'DateAdded' }, { id: 1, name: 'DateModified' },  { id: 2, name: 'SoldDate' }",
   ]
     ninalist = [
     'when selecting saved list inv/actions/batch go directly ...',

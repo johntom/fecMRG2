@@ -299,30 +299,20 @@ export class DataForm {
 
 
   selectChange(GenreID) {
-    alert('in c ' + opt + GenreID)
-    // let genres = this.appService.codesGenre
-    // let gid = genres.findIndex(x => x.id === genreid)
-    // let item = genres[aid];// { ADJUSTER_ID: 4, ADJUSTER_NAME: "Donna Luciani", edit: true }
-    // this.currentItem.GenreID = item.id
-    // this.currentItem.GenreID = this.GenreID
+    // alert('in c ' + opt + GenreID)
+   
   }
 
   showAttendees() {
-    alert(`GenreTypes: ${this.currentItem.genretypes}`);
-    //  alert(`Attendees: ${this.required}, \nOptional: ${this.optional}`);
+    // alert(`GenreTypes: ${this.currentItem.genretypes}`);
   }
   // (MediumSupport,currentItem.MediumSupport)
   selectChangedMS(MediumSupport) {
-    alert('in selectChangedMS  ', MediumSupport, this.MediumSupport1)
-    // this.MediumText=''
-    // let genres = this.appService.codfaddesGenre
-    // let gid = genres.findIndex(x => x.id === genreid)
-    // let item = genres[aid];// { ADJUSTER_ID: 4, ADJUSTER_NAME: "Donna Luciani", edit: true }
-    // this.currentItem.GenreID = item.id
-
+  //  alert('in selectChangedMS  ', MediumSupport, this.MediumSupport1)
+  
   }
   DropdownChanged(changedVal) {
-    alert(changedVal);
+  //  alert(changedVal);
   }
   activate(params, routeConfig) {
     //12  this.tabname = this.appService.currentSearch
@@ -408,12 +398,6 @@ export class DataForm {
             //   this.saveinventory(0)
             // }
 
-
-            //      this.appService.onlyonce=1
-            // clientWidth: 404
-
-            // naturalHeight: 1112
-            // naturalWidth: 1499
             this.appService.currentItem = this.currentItem//inv[0]
             this.currentItem.isDirty = () => {
               return JSON.stringify(this.currentItem) !== JSON.stringify(this.appService.originalrec)
@@ -507,8 +491,6 @@ export class DataForm {
   //     }
   //     this.currentItem.clientHeightRatio = clientHeightRatio//imageHeight
   //     this.currentItem.clientWidthRatio = clientWidthRatio //
-
-
   //   }
   // }
 
@@ -528,14 +510,10 @@ export class DataForm {
   getimageinfo() {
     if (this.currentItem.clientHeight === undefined || this.currentItem.clientHeight === 0) {
       let imageWidth, imageHeight, clientHeightRatio, clientWidthRatio
-
       let Promise = this.loadimage()
         .then(response => {
-
           this.currentItem.clientHeight = this.mainimage.clientHeight
           this.currentItem.clientWidth = this.mainimage.clientWidth
-          // }
-          // alert("Height: " + this.mainimage.clientHeight+' '+ this.mainimage.clientWidth);
           if (this.currentItem.clientHeight === this.currentItem.clientWidth) {
             clientHeightRatio = 1
             clientWidthRatio = 1
@@ -547,12 +525,12 @@ export class DataForm {
             clientHeightRatio = 1
             clientWidthRatio = (this.currentItem.clientWidth / this.currentItem.clientHeight).toPrecision(2)
           }
-          this.currentItem.clientHeightRatio = clientHeightRatio//imageHeight
-          this.currentItem.clientWidthRatio = clientWidthRatio //
-
+          this.currentItem.clientHeightRatio = clientHeightRatio
+          this.currentItem.clientWidthRatio = clientWidthRatio
         })
     }
   }
+  
   /*
    getimageinfo() {
       if (this.currentItem.clientHeight===undefined){
