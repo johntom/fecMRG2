@@ -202,7 +202,7 @@ export class Rtf {
     }
     if (segmentEdition !== '') {
       this.segment2 += segmentEditionHead
-      this.segment2 += segmentEdition + `<br> ${this.currentItem.EditionComment}<br><br><br>`
+      this.segment2 += segmentEdition + `<br> ${this.currentItem.EditionComment}<br><br><br><br>`
 
 
 

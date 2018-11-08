@@ -6,7 +6,7 @@ import { MyDataService } from "../../services/my-data-service";
 
 export class Home {
   heading = "MRG Home Page";
-  version = 241.61
+  version = 241.62
   versionDate = 'Thur 11/08/2018'
   // versiondate=Date();
   //  "select2": {
@@ -29,7 +29,6 @@ export class Home {
     'fix dirty',
     'when going to home not refreshed',
     'lower tab shows on dialog- see styles .tab.tab-selected {  /* z-index:40; */',
-   
     'HOFMAN0015 POLLOCJ005 PORTERC007 PORTERC009 PORTERC008 PORTERC013',
     'radio has issue with flex only primitive string works',
     'reloading an inventory image, must goto home page press f5',
