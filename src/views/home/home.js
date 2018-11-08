@@ -6,8 +6,8 @@ import { MyDataService } from "../../services/my-data-service";
 
 export class Home {
   heading = "MRG Home Page";
-  version = 241.60
-  versionDate = 'wed 11/07/2018'
+  version = 241.61
+  versionDate = 'Thur 11/08/2018'
   // versiondate=Date();
   //  "select2": {
   //       "map": "npm:select2@4.0.6-rc.1/dist",
@@ -29,8 +29,7 @@ export class Home {
     'fix dirty',
     'when going to home not refreshed',
     'lower tab shows on dialog- see styles .tab.tab-selected {  /* z-index:40; */',
-    'version = 240.20 uses   this.currentItem not this.appService.currentItem (which is a singleton)',
-    '* working on local storage with invcode',
+   
     'HOFMAN0015 POLLOCJ005 PORTERC007 PORTERC009 PORTERC008 PORTERC013',
     'radio has issue with flex only primitive string works',
     'reloading an inventory image, must goto home page press f5',
@@ -39,8 +38,7 @@ export class Home {
     'git commit -am "200.70 " / git push',
     "clean dup InventoryCode and make uniq",
     "clean ARTISTS null reocrds",
-    "fix 3 dates make sure artist and medium...",
-
+    "fix 3 dates   { id: 0, name: 'DateAdded' },            { id: 1, name: 'DateModified' },     { id: 2, name: 'SoldDate' }",
   ]
     ninalist = [
     'when selecting saved list inv/actions/batch go directly ...',
@@ -86,8 +84,11 @@ export class Home {
     'x sort order on search title',
     'x ynPrompt on exhibition',
     'x Icon for offering',
-    'x fix tags '
-
+    'x fix tags ',
+    
+    'x make sure artist and medium... ',
+ 'version = 240.20 uses   this.currentItem not this.appService.currentItem (which is a singleton)',
+    '* working on local storage with invcode',
   ]
   //  askmatt = [
 

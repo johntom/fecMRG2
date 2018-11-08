@@ -202,7 +202,7 @@ export class Rtf {
     }
     if (segmentEdition !== '') {
       this.segment2 += segmentEditionHead
-      this.segment2 += segmentEdition + `<br> ${this.currentItem.EditionComment}<br>`
+      this.segment2 += segmentEdition + `<br> ${this.currentItem.EditionComment}<br><br>`
 
 
 
@@ -396,7 +396,7 @@ export class Rtf {
   */
     if (reproduction !== undefined) {
       for (const item of reproduction) {
-        if (item.ReproductionExhibit === null) {//undefined)
+        if (item.ReproductionExhibit === null && item.ReproductionExhibit === undefined) {//selected choose)
           // let oid
           // if ((item.ReproductionLocation + '').length < 6) {
 
@@ -413,7 +413,7 @@ export class Rtf {
 
 
           let ColorBWDesc = ''
-          if (item.ColorBW !== null) {
+          if (item.ColorBW !== null && item.ColorBW !== undefined) {
             let cid = this.appService.codesReproductionType.findIndex(x => x.id === item.ColorBW)
             // ColorBWDesc = `${this.appService.codesReproductionType}[${cid}].Description, `
             ColorBWDesc = this.appService.codesReproductionType[cid].Description + ', '
