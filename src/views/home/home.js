@@ -6,8 +6,8 @@ import { MyDataService } from "../../services/my-data-service";
 
 export class Home {
   heading = "MRG Home Page";
-  version = 241.63
-  versionDate = 'Thur 11/08/2018'
+  version = 241.64
+  versionDate = 'Sun 11/08/2018'
   // versiondate=Date();
   //  "select2": {
   //       "map": "npm:select2@4.0.6-rc.1/dist",
@@ -419,3 +419,81 @@ export class Home {
   //   }
   // }
 }
+
+
+/*
+Nancy Grossman (b.1940)
+(bdateNOSPCE-Died)
+Dimens DIMD
+Add SIZE back in
+SIZE
+IMAGE
+SEIGHT
+FRAMED
+Inv Code  > Code
+Inv year > Year
+put space btween words on labels
+ gueNo gue No
+ Alt ID
+ 
+ Put same login from Incribed to
+ cm round up to 1 decimal
+ FIX DEPTH
+ 
+FACK SHEET see GROSSSM0029
+
+Nancy Grossman (b.1940)
+
+
+Gunhead, 1991
+bronze with patina and copper wire 
+16 x 8 in. / 40.64 x 20.32 cm 
+signed, dated and numbered at bottom rear 
+Nancy Grossman 1991 1/8
+
+EDITION
+
+﻿
+
+Edition: 1/8 
+The intended edition of Gunhead 
+was 8 casts but only 6 casts were executed. This cast is number 1/8. The edition was cast at Tallis Fine Art Foundry in Rock Tavern, NY. A number of artist’s proofs, at least 4, were also made.  A cast of Gunhead, number 3/8, is in the collection of the National Academy Museum, National Academy of Design, New York, NY.
+
+
+
+PROVENANCE
+
+Nancy Grossman, Brooklyn, NY
+
+Michael Rosenfeld Gallery LLC, New York, NY
+EXHIBITION & PUBLICATION HISTORY
+
+Nancy Grossman: Collages and Heads 1970-1991, Sculpture Center, New York, NY, October 8 - November 9, 1991 
+Eighteenth Year Retrospective, Beacon Street Gallery, Chicago, IL, February 24 - April 20, 2001 
+Upstarts and Matriarchs: Jewish Women Artists and the Transformation of American Art, Mizel Center for Arts and Culture, Denver, CO, January 13 - March 27, 2005 
+Codinha, Alessandra, author and Bjarne Jonasson, photographer,[CHANGE TO PERIOD] Working Deep Beneath the Think London, England: Intermission Magazine vol. VIII, Winter 2013-14 
+Illustrated with the artist interview on page 64 ]
+
+ADD CHECKBO AFTER LAST NAME ON REPRO Editor (Ed) Move Autoer after Ed,
+Add String Field called Number (No.) after date b4 page
+ADD BOTH FIELDS TO POPUP
+ADD POP TO Exhibition and Change SPONOPR TO INSITUTION
+
+﻿Change Catalog No: to No. CAT#
+
+Add all field to EDITION with Pub, LOC all other NL
+from 
+Nancy Grossman: Collages and Heads 1970-1991, Sculpture Center, New York, NY, October 8 - November 9, 1991, p. 15, testing note field
+to
+Nancy Grossman: Collages and Heads 1970-1991, Sculpture Center, New York, NY, October 8 - November 9, 1991, testing note field for spacing
+p. 15 
+
+COLOR
+B&W
+N/A
+not known
+
+Special foreigh charaters
+
+
+*/
