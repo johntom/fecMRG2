@@ -24,7 +24,7 @@ export class PromptForm {
     this.answer = null;
 
     this.appService = appService;
-     this.thefield = 1
+    this.thefield = 1
     this.dataService = dataService;
     controller.settings.lock = false;
     this.addlist//='aaa'
@@ -33,14 +33,11 @@ export class PromptForm {
   }
 
 
- 
+
 
   activate(currentModel) {
-    // this.item = currentitem;
-    this.item = currentModel.item// currentModel.currentItem = this.currentItem
- this.currentItem =currentModel.currentItem
-
-
+    this.item = currentModel.item
+    this.currentItem = currentModel.currentItem
   }
 
 
@@ -69,7 +66,7 @@ export class PromptForm {
   // }
 
   attached() {
-   
+
     // let opos = this.orgfields.findIndex(x => x === this.fieldname);
     // if (opos !== -1) {
     //   this.orgfielddescription = this.orgfielddesc[opos]
@@ -81,27 +78,27 @@ export class PromptForm {
     this.heading = `Enter Reproduction`
     // this.placeholder = `Enter any characters on ${this.orgfielddescription} to select.`
     // if (this.currentItem.recordId !== 'create') {
-     
+
 
     //   if (this.fieldname === 'Artist') {
-      
+
     //     this.ArtistName = this.currentItem.artist
     //     if (this.ArtistName.ArtistName === undefined) this.ArtistName.ArtistName = this.currentItem.artist.lastName + ', ' + this.currentItem.artist.firstName
     //     this.dartist.value = this.ArtistName
     //   }
 
     //   if (this.fieldname === 'MediumSupportobj') {
-        
-      
+
+
     // this.doc = `type any characters of the   "Medium/Support: select or add new."`
     // this.heading = `Search Medium/Support: select or add new.`
     // this.placeholder = `Enter any characters on Medium/Support: select or add new.`
-        
+
     //       if (this.currentItem.MediumSupportobj === undefined) {
 
     //       this.MedSup = this.appService.codesListMediumSupport[1]
     //     } else this.MedSup = this.currentItem.MediumSupportobj
-  
+
     //     this.dmediumsupport.value = this.MedSup
 
 
@@ -125,7 +122,7 @@ export class PromptForm {
     //   }
     // }
     // if (this.fieldname === 'SavedList') {
-    
+
     // }
 
 
@@ -133,115 +130,14 @@ export class PromptForm {
     // if (this.fieldname === 'selectedids') {
     //   this.doc = this.appService.currentsavedlist + ` has the following Inventory codes.`
 
-     
+
 
     // }
 
   }
 
- 
+
   save() {
-   
-    // if (this.fieldname === 'Artist') {
-
-    //   this.currentItem.artist = this.ArtistName
-    //   this.appService.currentItem.artist = this.ArtistName
-    // }
-    // if (this.fieldname === 'MediumSupportobj') {
-    //   // this.currentItem.MediumSupportobj.id = this.MedSup.id
-
-    //   if (this.MedSup !== this.currentItem.MediumSupportobj)
-    //     this.currentItem.MediumSupportobj = this.MedSup
-
-    // }
-    // if (this.fieldname === 'OwnerID') {
-    //   if (this.OrgName.OrgName !== this.currentItem.ownername) {
-    //     this.currentItem.OwnerID = this.OrgName._id
-    //     this.currentItem.ownername = this.OrgName.OrgName
-    //   }
-
-    // }
-    // if (this.fieldname === 'SoldToID') {
-    //   if (this.OrgName.OrgName !== this.currentItem.soldtoname) {
-
-    //     this.currentItem.SoldToID = this.OrgName._id
-    //     this.currentItem.soldtoname = this.OrgName.OrgName
-    //   }
-    // }
-    // if (this.fieldname === 'ConsignedFromID') {
-    //   if (this.OrgName.OrgName !== this.currentItem.consignedfromname) {
-
-    //     this.currentItem.ConsignedFromID = this.OrgName._id
-    //     this.currentItem.consignedfromname = this.OrgName.OrgName
-    //   }
-    // }
-    // if (this.fieldname === 'ConsignmentShippingID') {
-    //   if (this.OrgName.OrgName !== this.currentItem.consignmentshippingname) {
-
-    //     this.currentItem.ConsignmentShippingID = this.OrgName._id
-    //     this.currentItem.consignmentshippingname = this.OrgName.OrgName
-    //   }
-
-    // }
-    // if (this.fieldname === 'ConservedBy') {
-    //   // let orgid = `${this.OrgName._id}`
-    //   // let orgname = `${this.OrgName.OrgName}`
-    //   if (this.OrgName.OrgName !== this.currentItem.conservedbyname) {
-
-    //     this.currentItem.ConservedBy = this.OrgName._id
-    //     this.currentItem.conservedbyname = this.OrgName.OrgName
-    //   }
-
-    // }
-    // if (this.fieldname === 'ConsignedTo') {
-    //   if (this.OrgName.OrgName !== this.currentItem.consignedtoname) {
-
-    //     this.currentItem.ConsignedTo = this.OrgName._id
-    //     this.currentItem.consignedtoname = this.OrgName.OrgName
-    //   }
-    // }
-
-    // if (this.fieldname === 'PurchasedFrom') {
-    //   if (this.OrgName.OrgName !== this.currentItem.purchasedfromname) {
-
-    //     this.currentItem.PurchasedFrom = this.OrgName._id
-    //     this.currentItem.purchasedfromname = this.OrgName.OrgName
-    //   }
-    // }
-    // if (this.fieldname === 'LoanTo') {
-    //   if (this.OrgName.OrgName !== this.currentItem.loantoname) {
-
-    //     this.currentItem.LoanTo = this.OrgName._id
-    //     this.currentItem.loantoname = this.OrgName.OrgName
-    //   }
-    // }
-    // if (this.fieldname === 'PhotographerID') {
-    //   if (this.OrgName.OrgName !== this.currentItem.photographername) {
-
-    //     this.currentItem.PhotographerID = this.OrgName._id
-    //     this.currentItem.photographername = this.OrgName.OrgName
-    //   }
-    // }
-    // if (this.fieldname === 'ConsignmentShippingID') {
-    //   if (this.OrgName.OrgName !== this.currentItem.consignmentshippingname) {
-
-    //     this.currentItem.ConsignmentShippingID = this.OrgName._id
-    //     this.currentItem.consignmentshippingname = this.OrgName.OrgName
-    //   }
-
-    // }
-
-
-
-    // if (this.fieldname === 'Treatment') {
-    //   this.currentItem.Treatment
-    // }
-    // if (this.fieldname === 'SavedList') {
-    //   let name = `${this.name.name}`
-    //   console.log(' dsaved.value', name)//, this.dsaved.value)
-    //   // this.dsaved.value = this.name//this.addlist
-    //   this.appService.currentsavedlist = name// dsaved.value
-    // }
-    this.controller.cancel()
+    this.controller.ok('saved')//cancel()
   }
 }

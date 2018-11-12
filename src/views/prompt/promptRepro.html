@@ -1,0 +1,172 @@
+<template>
+	<require from="aurelia-kendoui-bridge/multiselect/multiselect"></require>
+	<require from="../../resources/value-converters/stringify"></require>
+
+	<require from="../../../styles/flex.css"></require>
+	<ux-dialog>
+		<ux-dialog-header class="modal-header modal-header-success">
+			<div class="alert alert-danger">
+				<!-- <h1 style="width:300px"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${heading}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h1> -->
+					<h1 style="width:600px">${heading}</h1>
+	
+    	</div>
+
+
+		</ux-dialog-header>
+		<ux-dialog-body>
+
+
+			<div class="form-group flex-column-1">
+				<h2> ${doc} </h2>
+				<table class="table-condensed table">
+					<thead class="table-header-blue" >
+					
+					</thead>
+					<tfoot>
+						<tr>
+							<td></td>
+						</tr>
+					</tfoot>
+					<tbody>
+						<div class="Rtable Rtable--2cols">
+							<div class=" Rtable-cell-30 Rtable-cell--highlight">
+								<strong> ReproductionAuthor </strong>
+							</div>
+							<div class="Rtable-cell-70  Rtable-cell--light">
+								<input type="text" id="ReproductionAuthor" class="form-control input-sm au-target" value.bind="item.ReproductionAuthor" au-target-id="142">
+							</div>
+						</div>
+						<div class="Rtable Rtable--2cols">
+							<div class=" Rtable-cell-30 Rtable-cell--highlight">
+								<strong> Author	First </strong>
+							</div>
+							<div class="Rtable-cell-70  Rtable-cell--light">
+								<input type="text" id="AuthorFirst" class="form-control input-sm au-target" value.bind="item.AuthorFirst" au-target-id="143">
+							</div>
+						</div>
+						<div class="Rtable Rtable--2cols">
+							<div class=" Rtable-cell-30 Rtable-cell--highlight">
+								<strong> Author	Last </strong>
+							</div>
+							<div class="Rtable-cell-70  Rtable-cell--light">
+								<input type="text" id="AuthorFirst" class="form-control input-sm au-target" value.bind="item.AuthorLast" au-target-id="144">
+							</div>
+						</div>
+						<div class="Rtable Rtable--2cols">
+							<div class=" Rtable-cell-30 Rtable-cell--highlight">
+								<strong>Reproduction Title </strong>
+							</div>
+							<div class="Rtable-cell-70  Rtable-cell--light">
+								<input type="text" id="ReproductionTitle" class="form-control input-sm au-target" value.bind="item.ReproductionTitle" au-target-id="145">
+							</div>
+						</div>
+
+						<div class="Rtable Rtable--2cols">
+							<div class=" Rtable-cell-30 Rtable-cell--highlight">
+								<strong>Publisher </strong>
+							</div>
+							<div class="Rtable-cell-70  Rtable-cell--light">
+								<input type="text" id="ReproductionName" class="form-control input-sm au-target" value.bind="item.ReproductionName" au-target-id="146">
+							</div>
+						</div>
+						<div class="Rtable Rtable--2cols">
+							<div class=" Rtable-cell-30 Rtable-cell--highlight">
+								<strong> Location </strong>
+							</div>
+							<div class="Rtable-cell-70 Rtable-cell--light">
+								<select id="ReproductionLocation" class="form-control  input-sm" value.bind="item.ReproductionLocation"> 
+                      <option model.bind="null">Choose...filterOnCode</option> 
+                         <option repeat.for="opt of appService.codesProvenanceLocation" model.bind="opt.id">
+                    ${opt.Description} 
+                      </option> 
+                    </select>
+							</div>
+						</div>
+
+						<div class="Rtable Rtable--2cols">
+							<div class=" Rtable-cell-30 Rtable-cell--highlight">
+								<strong>Date </strong>
+							</div>
+							<div class="Rtable-cell-70  Rtable-cell--light">
+								<input type="text" id="ReproductionDate" class="form-control input-sm au-target" value.bind="item.ReproductionDate" au-target-id="148">
+							</div>
+						</div>
+						<div class="Rtable Rtable--2cols">
+							<div class=" Rtable-cell-30 Rtable-cell--highlight">
+								<strong>Sort Date </strong>
+							</div>
+							<div class="Rtable-cell-70  Rtable-cell--light">
+								<input type="date" id="ReproductionSortDate" class="form-control input-sm au-target" value.bind="item.ReproductionSortDate"
+								 au-target-id="149">
+							</div>
+						</div>
+
+						<div class="Rtable Rtable--2cols">
+							<div class=" Rtable-cell-30 Rtable-cell--highlight">
+								<strong>Page </strong>
+							</div>
+							<div class="Rtable-cell-70  Rtable-cell--light">
+								<input type="text" id="ReproductionPage" class="form-control input-sm au-target" value.bind="item.ReproductionPage" au-target-id="150">
+							</div>
+						</div>
+						<div class="Rtable Rtable--2cols">
+							<div class=" Rtable-cell-30 Rtable-cell--highlight">
+								<strong>Type </strong>
+							</div>
+							<div class="Rtable-cell-70  Rtable-cell--light">
+								<select id="ReproductionType" class="form-control  input-sm" value.bind="item.ReproductionType"> 
+                      <option model.bind="null">Choose...</option> 
+                         <option repeat.for="opt of appService.codesPublicationType " model.bind="opt.id">
+                    ${opt.Description} 
+                      </option> 
+                    </select>
+							</div>
+						</div>
+						<div class="Rtable Rtable--2cols">
+							<div class=" Rtable-cell-30 Rtable-cell--highlight">
+								<strong>ColorBW </strong>
+							</div>
+							<div class="Rtable-cell-70  Rtable-cell--light">
+								<select id="ColorBW" class="form-control  input-sm" value.bind="item.ColorBW"> 
+                      <option model.bind="null">Choose...</option> 
+                         <option repeat.for="opt of appService.codesReproductionType" model.bind="opt.id">
+                    ${opt.Description} 
+                      </option> 
+                    </select>
+							</div>
+						</div>
+						<div show.bind="!item.hide1">
+							<div class="Rtable Rtable--2cols">
+								<div class=" Rtable-cell-30 Rtable-cell--highlight">
+									<strong> Select Exhibition </strong>
+								</div>
+								<div class="Rtable-cell-70  Rtable-cell--light">
+									<select id="ReproductionExhibit" class="form-control  input-sm" value.bind="item.ReproductionExhibit"> 
+                      <option model.bind="null">Choose...</option> 
+                         <option change.delegate="changeSelect(opt)" repeat.for="opt of currentItem.exhibition " model.bind="opt.id">
+               ${opt.id}  /  ${opt.ExhibitTitle} /  ${opt.ExhibitSponser}
+                      </option> 
+                    </select>
+								</div>
+							</div>
+						</div>
+						${batchno}
+					</tbody>
+				</table>
+			</div>
+
+
+
+
+			<hr>
+		</ux-dialog-body>
+
+		<ux-dialog-footer>
+
+			<!-- <button show.bind="addlist" click.trigger="addit()">Add New Saved List</button> -->
+			<button click.trigger="controller.cancel()">Cancel and Close </button>
+			<button click.trigger="save()">Save Reproduction and Close </button>
+
+		</ux-dialog-footer>
+	</ux-dialog>
+</template>

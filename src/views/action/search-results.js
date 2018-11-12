@@ -6,8 +6,11 @@ import { UtilService } from '../../services/util-service';
 import moment from 'moment';
 import { ApplicationService } from '../../services/application-service';
 import { MyDataService } from "../../services/my-data-service";
-import { DialogImage } from '../inventory/dialogImage'
+// import { DialogImage } from '../inventory/dialogImage'
 import { DialogService } from 'aurelia-dialog'
+import { Promptrepro } from '../prompt/promptRepro';
+
+
 // jrt
 @inject(Router, ApiService, UtilService, ApplicationService, MyDataService, DialogService)
 export class SearchResults {
@@ -179,18 +182,18 @@ export class SearchResults {
     //  if ( this.appService.actionlist ===undefined){
     this.queryParams = this.utilService.parseQueryStringUrl();
     const qs = this.queryParams.substring(this.queryParams.indexOf('?') + 1)
-      const pairs = qs.split('&')
-      const queryParams = {}
-      let slname
-      pairs.forEach(p => {
-        const kv = p.split('=')
-        slname = kv[1]
-      });
-      this.item.savedlist = slname 
+    const pairs = qs.split('&')
+    const queryParams = {}
+    let slname
+    pairs.forEach(p => {
+      const kv = p.split('=')
+      slname = kv[1]
+    });
+    this.item.savedlist = slname
     // or
     // this.item.savedlist = this.appService.currentActionlist
 
-    this.savedlist =  this.item.savedlist //this.appService.currentActionlist
+    this.savedlist = this.item.savedlist //this.appService.currentActionlist
 
     this.datasource.read()
     // make a dupe of folllowing to accoumodate 2 typeaheads
@@ -352,11 +355,11 @@ export class SearchResults {
 
     //     } alert(' factsheet  failed ')
     //   });
-		//https://artbased.com/api/v1/downloadonepdf/output/SELIGE0327.doc
-let rt2 = `https://artbased.com/api/v1/downloadonepdf/output/${dataItem.InventoryCode}.doc`
-        
-        //  alert('rt2 '+rt2)
-        window.open(rt2);
+    //https://artbased.com/api/v1/downloadonepdf/output/SELIGE0327.doc
+    let rt2 = `https://artbased.com/api/v1/downloadonepdf/output/${dataItem.InventoryCode}.doc`
+
+    //  alert('rt2 '+rt2)
+    window.open(rt2);
   }
 
   detailsEdit(e) {
@@ -429,21 +432,56 @@ let rt2 = `https://artbased.com/api/v1/downloadonepdf/output/${dataItem.Inventor
   }
 
   action3() {
-    this.item = {}
-    this.hide1 = true
-    this.hide2 = true
-    this.hide4 = true
-    this.hide5 = true
-    this.hide6 = true
-    this.hide7 = true
-    this.hide8 = true
-    this.hide9 = true
-    this.hide3 ? this.hide3 = false : this.hide3 = true
+    // this.item = {}
+    // this.hide1 = true
+    // this.hide2 = true
+    // this.hide4 = true
+    // this.hide5 = true
+    // this.hide6 = true
+    // this.hide7 = true
+    // this.hide8 = true
+    // this.hide9 = true
+    // this.hide3 ? this.hide3 = false : this.hide3 = true
 
-  }
+
+    //  this.currentItem.fieldname = fieldname
+    // this.currentItem.recordId = this.recordId
+
+    // this.item.hide1 = true// dont show exhibit selection
+
+    // let currentModel = {}
+    // currentModel.currentItem = this.item
+
+// see reporduction.js to do it the same way
+  let currentModel={}
+  currentModel.currentItem = this.item
+  currentModel.item = this.item
+
+  currentModel.currentItem.hide1=true
+
+    this.dialogService.open({ viewModel: Promptrepro, model: currentModel, lock: false }).whenClosed(response => {
+      // this.dialogService.open({ viewModel: Promptrepro, model: this.item, lock: false }).whenClosed(response => {
+        console.log('this.item', response, this.item)
+        if (!response.wasCancelled) {
+          this.item.ReproductionExhibit = null
+          // this.item.DescriptionLoc= this.item.ReproductionLocation // for all occurances that hit this
+
+          this.save3()
+
+        } else {
+          // if (this.currentItem.artist === null) {
+
+          // }
+          console.log('cancel');
+        }
+        console.log(response)//.output);
+      });
+
+
+    }
 
   action4() {
-    this.hide1 = true
+        this.hide1 = true
     this.hide2 = true
     this.hide3 = true
     this.hide5 = true
@@ -453,10 +491,10 @@ let rt2 = `https://artbased.com/api/v1/downloadonepdf/output/${dataItem.Inventor
     this.hide9 = true
     this.hide4 ? this.hide4 = false : this.hide4 = true
 
-  }
+      }
 
   action5() {
-    this.hide1 = true
+        this.hide1 = true
     this.hide2 = true
     this.hide3 = true
     this.hide4 = true
@@ -466,10 +504,10 @@ let rt2 = `https://artbased.com/api/v1/downloadonepdf/output/${dataItem.Inventor
     this.hide9 = true
     this.hide5 ? this.hide5 = false : this.hide5 = true
 
-  }
+      }
 
   action6() {
-    this.hide1 = true
+        this.hide1 = true
     this.hide2 = true
     this.hide3 = true
     this.hide4 = true
@@ -479,9 +517,9 @@ let rt2 = `https://artbased.com/api/v1/downloadonepdf/output/${dataItem.Inventor
     this.hide9 = true
     this.hide6 ? this.hide6 = false : this.hide6 = true
 
-  }
+      }
   action7() {
-    this.hide1 = true
+        this.hide1 = true
     this.hide2 = true
     this.hide3 = true
     this.hide4 = true
@@ -490,10 +528,10 @@ let rt2 = `https://artbased.com/api/v1/downloadonepdf/output/${dataItem.Inventor
     this.hide7 ? this.hide7 = false : this.hide7 = true
     this.hide8 = true
     this.hide9 = true
-  }
+      }
 
   action8() {
-    this.hide1 = true
+        this.hide1 = true
     this.hide2 = true
     this.hide3 = true
     this.hide4 = true
@@ -502,10 +540,10 @@ let rt2 = `https://artbased.com/api/v1/downloadonepdf/output/${dataItem.Inventor
     this.hide7 = true
     this.hide8 ? this.hide8 = false : this.hide8 = true
     this.hide9 = true
-  }
+      }
 
   action9() {
-    this.hide1 = true
+        this.hide1 = true
     this.hide2 = true
     this.hide3 = true
     this.hide4 = true
@@ -520,72 +558,72 @@ let rt2 = `https://artbased.com/api/v1/downloadonepdf/output/${dataItem.Inventor
 
     segment = `<h1 style="text-align:center;">${this.savedlist}</h1> <table><tbody>`
 
-    for (const invitem of this.datasource._data) {
-      //this.currentImage=`${invitem.InventoryCode}.jpg`
-      // let ww = this.mainimage.clientWidth //* fac.factor
-      // lmaet hh = this.mainimage.clientHeight //* fac.factor
-      // "imageWidth":.5,
-      // "imageHeight":1
+    for(const invitem of this.datasource._data) {
+          //this.currentImage=`${invitem.InventoryCode}.jpg`
+          // let ww = this.mainimage.clientWidth //* fac.factor
+          // lmaet hh = this.mainimage.clientHeight //* fac.factor
+          // "imageWidth":.5,
+          // "imageHeight":1
 
-      let ww = invitem.clientWidthRatio
-      let hh = invitem.clientHeightRatio
+          let ww = invitem.clientWidthRatio
+          let hh = invitem.clientHeightRatio
 
-      // this.currentItem.clientHeightRatio  = imageHeight
-      // this.currentItem.clientWidthRatio  = imageWidth
-      //  this.currentItem.clientHeightRatio  = his.mainimage.clientHeight
-      //     this.currentItem.clientWidthRatio  =  this.mainimage.clientWidth
+          // this.currentItem.clientHeightRatio  = imageHeight
+          // this.currentItem.clientWidthRatio  = imageWidth
+          //  this.currentItem.clientHeightRatio  = his.mainimage.clientHeight
+          //     this.currentItem.clientWidthRatio  =  this.mainimage.clientWidth
 
-      if (ww === undefined) ww = 1
-      if (hh === undefined) hh = 1
-      ww = 225 * ww
-      hh = 225 * hh
+          if (ww === undefined) ww = 1
+          if (hh === undefined) hh = 1
+          ww = 225 * ww
+          hh = 225 * hh
 
-      // we have  the ratio of each image
-      // ie h=1 w=1
-      // w h-1 w=.5
-      // save to    https://artbased.com/api/v1/downloadonepdf/lists/sl2.doc
-      segment += `<tr style="height:17%;"><td style="width:8%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>`
-      segment += `<td style="width:42%;">${invitem.rtf2}</td>`
-			segment += `<td style="width:8%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>`
-      segment += `<td style="width:42%;"><img src="https://artbased.com/api/v1/getimage/inv/${invitem.InventoryCode}.jpg" alt="" width="${ww}" height=${hh} /></td>`
-      segment += `</tr>`
+          // we have  the ratio of each image
+          // ie h=1 w=1
+          // w h-1 w=.5
+          // save to    https://artbased.com/api/v1/downloadonepdf/lists/sl2.doc
+          segment += `<tr style="height:17%;"><td style="width:8%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>`
+          segment += `<td style="width:42%;">${invitem.rtf2}</td>`
+          segment += `<td style="width:8%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>`
+          segment += `<td style="width:42%;"><img src="https://artbased.com/api/v1/getimage/inv/${invitem.InventoryCode}.jpg" alt="" width="${ww}" height=${hh} /></td>`
+          segment += `</tr>`
 
 
 
-    }
+        }
     segment += `</tbody></table>`
     // edt.value(segment)
     this.editor.value(segment)
     this.saveMerge()
 
 
-  }
+      }
   saveMerge() {
 
-    let savetime = moment().format('MM/DD/YY h:mm:ss a')
+        let savetime = moment().format('MM/DD/YY h:mm:ss a')
     console.log('this.editor.value()', this.editor.value())
     this.api.saveMerge(this.savedlist, this.editor.value())
-      .then((jsonRes) => {
-        if (jsonRes.data === 'success') {
-          this.message = "Save successful. merge added @ " + savetime
-        } else this.message = "Save Failed  @ " + savetime
-      })
+          .then((jsonRes) => {
+            if (jsonRes.data === 'success') {
+              this.message = "Save successful. merge added @ " + savetime
+            } else this.message = "Save Failed  @ " + savetime
+          })
 
-  }
+      }
 
   setInitialValue(edt) {
-    // if (this.currentItem.rtf1 !== undefined)
-    //  edt.value(this.currentItem.rtf1);
-    //  let segment
-    //     for (const invitem of this.datasource._data) {
+        // if (this.currentItem.rtf1 !== undefined)
+        //  edt.value(this.currentItem.rtf1);
+        //  let segment
+        //     for (const invitem of this.datasource._data) {
 
-    //  segment+= `<table><tbody><tr style="height:33"><td style="width:50%;">${invitem.InventoryCode}</td> `
-    //  segment+=`<td style="width:50%;"><img src="https://artbased.com/api/v1/getonepdf/inv/${invitem.InventoryCode}.jpg" alt="" width="225" height="225" /><img src="https://artbased.com/api/v1/getonepdf/inv/VYTLAC0074.jpg" alt="" width="225" height="225" /></td></tr>`
-    //     }
-    // segment+= `</tbody></table>`
-    // edt.value(segment)
+        //  segment+= `<table><tbody><tr style="height:33"><td style="width:50%;">${invitem.InventoryCode}</td> `
+        //  segment+=`<td style="width:50%;"><img src="https://artbased.com/api/v1/getonepdf/inv/${invitem.InventoryCode}.jpg" alt="" width="225" height="225" /><img src="https://artbased.com/api/v1/getonepdf/inv/VYTLAC0074.jpg" alt="" width="225" height="225" /></td></tr>`
+        //     }
+        // segment+= `</tbody></table>`
+        // edt.value(segment)
 
-  }
+      }
   // actionhide(activeaction){
 
   // }
@@ -600,111 +638,111 @@ let rt2 = `https://artbased.com/api/v1/downloadonepdf/output/${dataItem.Inventor
 
   save1() {
 
-    //     let dtransportto = `${this.Description.Description}`
-    //     let dtransportfrom = `${this.Description2.Description}`
-    this.api.getbatchno().then((jsonResna) => {
-      let batchno = jsonResna[0].nextavail
-      this.item.batchno = batchno
-      this.item.savedlist = this.savedlist
-      this.api.batchTransport(this.item)
-        .then((jsonRes) => {
-          if (jsonRes.data === 'success') {
-            alert(' batch updated  batchno= ' + batchno)
-            this.item = {}//.TransportDate = ''
-            //  this.Description =''
-            //  this.Description2 =''
-            // this.item.Description = ''
-            // this.item.Description2 = ''
+        //     let dtransportto = `${this.Description.Description}`
+        //     let dtransportfrom = `${this.Description2.Description}`
+        this.api.getbatchno().then((jsonResna) => {
+          let batchno = jsonResna[0].nextavail
+          this.item.batchno = batchno
+          this.item.savedlist = this.savedlist
+          this.api.batchTransport(this.item)
+            .then((jsonRes) => {
+              if (jsonRes.data === 'success') {
+                alert(' batch updated  batchno= ' + batchno)
+                this.item = {}//.TransportDate = ''
+                //  this.Description =''
+                //  this.Description2 =''
+                // this.item.Description = ''
+                // this.item.Description2 = ''
 
 
-            // this.item.TransportNotes = ''
+                // this.item.TransportNotes = ''
 
-          } else alert(' batch failed ')
+              } else alert(' batch failed ')
+            })
         })
-    })
-  }
+      }
 
   save2() {
-    this.item.savedlist = this.savedlist
+        this.item.savedlist = this.savedlist
     this.api.getbatchno().then((jsonResna) => {
-      let batchno = jsonResna[0].nextavail
-      this.item.batchno = batchno
-      this.api.batchExhibit(this.item)
-        .then((jsonRes) => {
-          if (jsonRes.data === 'success') {
-            alert(' batch updated batchno= ' + batchno)
-            this.item = {}
-            // this.item.ExhibitTitle = ''
-            // this.item.ExhibitSponser = ''
-            // this.item.Description2 = ''
-            // this.item.exhibitlocation = ''
-            // this.item.ExhibitDates = ''
-            // this.item.ExhibitSortDate = ''
-            // this.item.Traveled = ''
-            // this.item.ExhibitMemo = ''
+          let batchno = jsonResna[0].nextavail
+          this.item.batchno = batchno
+          this.api.batchExhibit(this.item)
+            .then((jsonRes) => {
+              if (jsonRes.data === 'success') {
+                alert(' batch updated batchno= ' + batchno)
+                this.item = {}
+                // this.item.ExhibitTitle = ''
+                // this.item.ExhibitSponser = ''
+                // this.item.Description2 = ''
+                // this.item.exhibitlocation = ''
+                // this.item.ExhibitDates = ''
+                // this.item.ExhibitSortDate = ''
+                // this.item.Traveled = ''
+                // this.item.ExhibitMemo = ''
 
-          } else alert(' batch failed ')
+              } else alert(' batch failed ')
+            })
         })
-    })
-  }
+      }
 
   save3() {
-    // Reproduction Provenance batchMrglocation batchTemplocation batchOfferings
-    this.item.savedlist = this.savedlist
+        // Reproduction Provenance batchMrglocation batchTemplocation batchOfferings
+        this.item.savedlist = this.savedlist
     this.api.getbatchno().then((jsonResna) => {
-      let batchno = jsonResna[0].nextavail
-      this.item.batchno = batchno
-      this.api.batchReproduction(this.item)
-        .then((jsonRes) => {
-          if (jsonRes.data === 'success') {
-            alert(' batch updated  batchno= ' + batchno)
-            this.item = {}
-          } else alert(' batch failed ')
+          let batchno = jsonResna[0].nextavail
+          this.item.batchno = batchno
+          this.api.batchReproduction(this.item)
+            .then((jsonRes) => {
+              if (jsonRes.data === 'success') {
+                alert(' batch updated  batchno= ' + batchno)
+                this.item = {}
+              } else alert(' batch failed ')
+            })
         })
-    })
-  }
+      }
 
   save4() {
-    // let loc = `${this.Description.Description}`
+        // let loc = `${this.Description.Description}`
 
-    // alert(loc)
-    this.item.savedlist = this.savedlist
+        // alert(loc)
+        this.item.savedlist = this.savedlist
     this.api.batchProvenance(this.item)
-      .then((jsonRes) => {
-        if (jsonRes.data === 'success') {
-          alert(' batch updated ')
-          this.item = {}
-        } else alert(' batch failed ')
-      })
-  }
+          .then((jsonRes) => {
+            if (jsonRes.data === 'success') {
+              alert(' batch updated ')
+              this.item = {}
+            } else alert(' batch failed ')
+          })
+      }
 
   save5() {
-    //  let loc = `${this.Description5.Description}`
+        //  let loc = `${this.Description5.Description}`
 
-    //alert(loc)
-    this.item.savedlist = this.savedlist
+        //alert(loc)
+        this.item.savedlist = this.savedlist
     this.api.batchMrglocation(this.item)
-      .then((jsonRes) => {
-        if (jsonRes.data === 'success') {
-          alert(' batch updated ')
-          this.item = {}
-        } else alert(' batch failed ')
-      })
-  }
+          .then((jsonRes) => {
+            if (jsonRes.data === 'success') {
+              alert(' batch updated ')
+              this.item = {}
+            } else alert(' batch failed ')
+          })
+      }
 
   save6() {
-    // let loc = `${this.Description6.Description}`
+        // let loc = `${this.Description6.Description}`
 
-    //  alert(loc)
-    this.item.savedlist = this.savedlist
+        //  alert(loc)
+        this.item.savedlist = this.savedlist
     this.api.batchTemplocation(this.item)
-      .then((jsonRes) => {
-        if (jsonRes.data === 'success') {
-          alert(' batch updated ')
-          this.item = {}
-        } else alert(' batch failed ')
-      })
-  }
+          .then((jsonRes) => {
+            if (jsonRes.data === 'success') {
+              alert(' batch updated ')
+              this.item = {}
+            } else alert(' batch failed ')
+          })
+      }
 
   //   save7() {
   // images???
@@ -712,7 +750,7 @@ let rt2 = `https://artbased.com/api/v1/downloadonepdf/output/${dataItem.Inventor
 
   //   }
   save8() {
-    this.item.savedlist = this.savedlist
+        this.item.savedlist = this.savedlist
     let orgid = this.item.OrgName._id //`${this.OrgName._id}`
     let orgname = this.item.OrgName.OrgName // `${this.OrgName.OrgName}`
     let offerdate = this.item.offerdate //`${this.date}`
@@ -720,25 +758,25 @@ let rt2 = `https://artbased.com/api/v1/downloadonepdf/output/${dataItem.Inventor
     // loop 
     //  console.log('after orgid orgname', orgid, orgname)
     let offerings = []
-    for (const invitem of this.datasource._data) {
-      rec = {}
-      rec.client = orgid
-      rec.clientname = orgname
-      rec.offerdate = offerdate
-      rec.InventoryCode = invitem.InventoryCode
-      rec.offeramount = invitem.offeramount
-      offerings.push(rec)
-      console.log('after item', rec)// item.InventoryCode,+item.offeramount)
+    for(const invitem of this.datasource._data) {
+          rec = {}
+          rec.client = orgid
+          rec.clientname = orgname
+          rec.offerdate = offerdate
+          rec.InventoryCode = invitem.InventoryCode
+          rec.offeramount = invitem.offeramount
+          offerings.push(rec)
+          console.log('after item', rec)// item.InventoryCode,+item.offeramount)
 
-    }
+        }
     console.log('after offerings', offerings)
 
     this.api.addOfferings(offerings).then((jsonRes) => {
-      // let tab = this.appService.tabs.find(f => f.isSelected);
-      // this.closeTab(tab);
-      window.alert("Save successful!");
-    });
-  }
+          // let tab = this.appService.tabs.find(f => f.isSelected);
+          // this.closeTab(tab);
+          window.alert("Save successful!");
+        });
+      }
 
 
 }

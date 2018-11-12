@@ -203,9 +203,6 @@ export class Rtf {
     if (segmentEdition !== '') {
       this.segment2 += segmentEditionHead
       this.segment2 += segmentEdition + `<br> ${this.currentItem.EditionComment}<br><br><br><br>`
-
-
-
     }
   }
 
@@ -292,10 +289,10 @@ export class Rtf {
     // let exhibition = this.currentItem.exhibition
     // let reproduction = this.currentItem.reproduction
     let exhibition = undefined
-    let reproduction= undefined
-    if (this.currentItem.exhibition!==undefined)  exhibition = JSON.parse(JSON.stringify( this.currentItem.exhibition));
-   if (this.currentItem.reproduction!==undefined)  reproduction = JSON.parse(JSON.stringify( this.currentItem.reproduction));
-     
+    let reproduction = undefined
+    if (this.currentItem.exhibition !== undefined) exhibition = JSON.parse(JSON.stringify(this.currentItem.exhibition));
+    if (this.currentItem.reproduction !== undefined) reproduction = JSON.parse(JSON.stringify(this.currentItem.reproduction));
+
     let myObjects
     let rec = {}
     let linkPageNo
@@ -691,7 +688,7 @@ there are extra ' when there are fractions
     if (this.currentItem.UnframedHeight16 === null) {
       dims = this.currentItem.UnframedHeight + ' x '
       // dimscm = this.currentItem.UnframedHeight * 2.54 + ' cm ' + ' x '
-       dimscm = this.currentItem.UnframedHeight * 2.54 +  ' x '
+      dimscm = this.currentItem.UnframedHeight * 2.54 + ' x '
     } else {
       // dims = this.currentItem.UnframedHeight + ' ' + this.currentItem.UnframedHeight16 + ' x '
       dims = `${this.currentItem.UnframedHeight} <span style="font-size:x-small;"> ${this.currentItem.UnframedHeight16}</span> x `
@@ -699,7 +696,9 @@ there are extra ' when there are fractions
       // dimscm = this.currentItem.UnframedHeight * 2.54 + ' ' + this.currentItem.UnframedHeight16 * 2.54 + ' x '
       // dimscm = Math.round((this.currentItem.UnframedHeight * 2.54) + cmuh) + ' x '
 
-      dimscm = ((this.currentItem.UnframedHeight * 2.54) + cmuh).toPrecision(2) + ' x '
+      // dimscm = ((this.currentItem.UnframedHeight * 2.54) + cmuh).toPrecision(2) + ' x '
+
+      dimscm = this.roundNumber((this.currentItem.UnframedHeight * 2.54) + cmuh, 1) + ' x '
 
       // Math.round(num * 100) / 100
     }
@@ -709,10 +708,14 @@ there are extra ' when there are fractions
       dims += this.currentItem.UnframedWidth
 
       dimscm += this.currentItem.UnframedWidth * 2.54
+      dimscm = this.roundNumber((this.currentItem.UnframedWidth * 2.54), 1) + ' x '
+
+
     } else {
       dims += `${this.currentItem.UnframedWidth}       <span style="font-size:x-small;"> ${this.currentItem.UnframedWidth16} </span>`
       // dimscm += Math.round(((this.currentItem.UnframedWidth * 2.54) + cmuw))
-      dimscm += ((this.currentItem.UnframedWidth * 2.54) + cmuw).toPrecision(2)
+      // dimscm += ((this.currentItem.UnframedWidth * 2.54) + cmuw).toPrecision(2)
+      dimscm += this.roundNumber((this.currentItem.UnframedWidth * 2.54) + cmuw, 1)
 
     }
     /////////////////////////////
@@ -725,11 +728,15 @@ there are extra ' when there are fractions
         //   dimsf = this.currentItem.FramedHeight + ' x '
         dimsf = `${this.currentItem.FramedHeight} <span style="font-size:x-small;"> ${this.currentItem.FramedHeight} </span> x `
 
-        dimscmf = this.currentItem.FramedHeight * 2.54 + ' cm ' + ' x '
+        // dimscmf = this.currentItem.FramedHeight * 2.54 + ' cm ' + ' x '
+        dimscmf = this.roundNumber((this.currentItem.FramedHeight * 2.54), 1) + ' cm ' + ' x '
+
+
       } else {
         dimsf = `${this.currentItem.FramedHeight}  + ' ' + <span style="font-size:x-small;"> ${this.currentItem.FramedHeight16} </span> x `
         // dimscmf = ((this.currentItem.FramedHeight * 2.54) + cmfh) + ' x '
-        dimscmf = ((this.currentItem.FramedHeight * 2.54) + cmfh).toPrecision(2)
+        // dimscmf = ((this.currentItem.FramedHeight * 2.54) + cmfh).toPrecision(2)
+        dimscmf = this.roundNumber((this.currentItem.FramedHeight * 2.54) + cmuw, 1) + ' cm ' + ' x '
 
       }
 
@@ -742,7 +749,8 @@ there are extra ' when there are fractions
         dimsf += `${this.currentItem.FramedWidth}  <span style="font-size:x-small;"> ${this.currentItem.FramedWidth16} </span>  `
 
         // dimscmf += ((this.currentItem.FramedWidth * 2.54) + cmfw)
-        dimscmf += ((this.currentItem.FramedWidth * 2.54) + cmfw).toPrecision(2)
+        // dimscmf += ((this.currentItem.FramedWidth * 2.54) + cmfw).toPrecision(2)
+        dimscmf += this.roundNumber((this.currentItem.FramedWidth * 2.54) + cmfw, 1) + ' cm ' + ' x '
 
       }
     }
@@ -838,10 +846,10 @@ there are extra ' when there are fractions
 
 
     this.buildEdition()
-    
-    
-     this.buildProv()
-     this.buildRepro()
+
+
+    this.buildProv()
+    this.buildRepro()
 
 
     // this.editor.value('<p>' + segment1 + '</p>' + '<hr><p>' +  this.segment2 + '</p>');
@@ -855,6 +863,31 @@ there are extra ' when there are fractions
 
 
   }
+
+  roundNumber(num, scale) {
+    if (Math.round(num) != num) {
+      if (Math.pow(0.1, scale) > num) {
+        return 0;
+      }
+      var sign = Math.sign(num);
+      var arr = ("" + Math.abs(num)).split(".");
+      if (arr.length > 1) {
+        if (arr[1].length > scale) {
+          var integ = +arr[0] * Math.pow(10, scale);
+          var dec = integ + (+arr[1].slice(0, scale) + Math.pow(10, scale));
+          var proc = +arr[1].slice(scale, scale + 1)
+          if (proc >= 5) {
+            dec = dec + 1;
+          }
+          dec = sign * (dec - Math.pow(10, scale)) / Math.pow(10, scale);
+          return dec;
+        }
+      }
+    }
+    return num;
+  }
+
+
   saveChanges() {
     this.currentItem.rtf1 = this.editor.value()
 

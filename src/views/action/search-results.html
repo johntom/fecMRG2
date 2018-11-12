@@ -5,6 +5,7 @@
 	<require from="../../../styles/kendo.css"></require>
 	<require from="../../../styles/flex.css"></require>
 	<require from="aurelia-kendoui-bridge/editor/editor"></require>
+  
 	<!-- <require from="./flex.css"></require> -->
 	<!-- jrt -->
 	<style>
@@ -33,7 +34,7 @@
 
 			<div class="Rtable Rtable--2cols">
 				<div class="Rtable-cell-1">
-					<h1> ${item.savedlist}/ Count: ${datasource._data.length}</h1>
+					<h1> ${item.savedlist}/ No. of records: ${datasource._data.length}</h1>
 					<!-- ${item.savedlist.length}  -->
 					<button id="factsheet1" class="btn btn-primary" type="button" click.delegate="action1()">Transport</button>
 					<button id="factsheet2" class="btn btn-primary" type="button" click.delegate="action2()">Exhibit</button>

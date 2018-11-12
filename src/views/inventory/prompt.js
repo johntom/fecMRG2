@@ -419,7 +419,7 @@ changeCallbackArtist(selectedValueA) {
       // this.dsaved.value = this.name//this.addlist
       this.appService.currentsavedlist = name// dsaved.value
     }
-    this.controller.cancel()
+    this.controller.ok('saved')//cancel()
   }
 }
 

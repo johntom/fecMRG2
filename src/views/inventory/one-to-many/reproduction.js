@@ -4,18 +4,20 @@ import { ApplicationService } from '../../../services/application-service';
 import { DialogService } from 'aurelia-dialog';
 import { Prompt } from '../../../services/prompt';
 import { PromptForm } from '../promptForm';
+import { Promptrepro } from '../../prompt/promptRepro';
+
 @inject(ApiService, ApplicationService, DialogService)
 export class Reproduction {
   heading = 'DataForm HEADER...';
   footer = 'DataForm FOOTER...';
   recordId = '';
 
-  constructor(api, appService,dialogService) {
+  constructor(api, appService, dialogService) {
     this.api = api;
     this.appService = appService;
     this.inv = '';
     this.currentItem = this.appService.currentItem
-     this.dialogService = dialogService
+    this.dialogService = dialogService
   }
 
   activate(params, routeConfig) {
@@ -36,27 +38,29 @@ export class Reproduction {
     //     });
     // }
   }
-modal(item, index){
+  modal(item, index) {
 
-  // this.currentItem.recordId = this.recordId model:this.currentItem
-  let currentModel={}
-  currentModel.currentItem = this.currentItem
-  currentModel.item = item
+    // this.currentItem.recordId = this.recordId model:this.currentItem
+    let currentModel = {}
+    currentModel.currentItem = this.currentItem
+    currentModel.item = item
 
-  
-    // this.dialogService.open({ viewModel: PromptForm, model: item, lock: false }).whenClosed(response => {
-  this.dialogService.open({ viewModel: PromptForm, model: currentModel, lock: false }).whenClosed(response => {
+    currentModel.currentItem.hide1 = false
+
+
+    // this.dialogService.open({ viewModel: PromptForm, model: currentModel, lock: false }).whenClosed(response => {
+    this.dialogService.open({ viewModel: Promptrepro, model: currentModel, lock: false }).whenClosed(response => {
 
       if (!response.wasCancelled) {
-         console.log('item',item);
-
+        console.log('item', item);
+      item.edit = false//this.saveitem(item, index)
       } else {
-       
+
         console.log('cancel');
       }
       console.log(response)//.output);
     });
-}
+  }
   // selectChanged(ReproductionExhibit, index, opt) {
   //   let rid = ReproductionExhibit// this.currentItem.reproduction[index]._id// ReproductionTitle
   //   let mid = this.currentItem.exhibition.findIndex(x => x._id === rid)
@@ -104,14 +108,16 @@ modal(item, index){
     reproduction.unshift(item)
     if (flag) this.currentItem.reproduction = reproduction
 
+    this.modal(item, 0) // unshirt reproduction.length + 1)
+ 
     // this.newNoteWorkDate = '';
     // this.newNoteNote = '';
 
   }
-changeSelect(opt){
+  changeSelect(opt) {
 
-  console.log('opt',opt)  
-}
+    console.log('opt', opt)
+  }
 
   remove(item, index) {
 
