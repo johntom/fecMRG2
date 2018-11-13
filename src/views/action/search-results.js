@@ -9,6 +9,7 @@ import { MyDataService } from "../../services/my-data-service";
 // import { DialogImage } from '../inventory/dialogImage'
 import { DialogService } from 'aurelia-dialog'
 import { Promptexhibit } from '../prompt/promptExhibit';
+import { Promptrepro } from '../prompt/promptRepro';
 
 
 // jrt

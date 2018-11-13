@@ -75,7 +75,8 @@
 					<td width="225px">
 						<!-- <button class="btn btn-primary" click.delegate="exhibition.edit=!exhibition.edit">${ !exhibition.edit ? 'Update' : 'Done' }</button> -->
 						<button class="btn btn-primary" click.delegate="saveitem(exhibition,$index)">${ !exhibition.edit ? 'Edit' : 'Save' }</button>
-						<button class="btn btn-sm btn-danger" click.delegate="remove(exhibition,$index)">           Delete            </button>
+						<button class="btn btn-success" click.delegate="modal(exhibition,$index)">Pop</button>
+          	<button class="btn btn-sm btn-danger" click.delegate="remove(exhibition,$index)">           Delete            </button>
 					</td>
 
 				</tr>

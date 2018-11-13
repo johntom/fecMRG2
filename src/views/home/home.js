@@ -6,7 +6,7 @@ import { MyDataService } from "../../services/my-data-service";
 
 export class Home {
   heading = "MRG Home Page";
-  version = 241.68
+  version = 241.69
   versionDate = 'Mon 11/08/2018'
   // versiondate=Date();
   //  "select2": {
@@ -101,8 +101,7 @@ export class Home {
     'EDITION',
     'Edition: 1/8 ',
     'The intended edition of Gunhead ',
-    'was 8 casts but only 6 casts were executed. This cast is number 1/8. The edition was cast at Tallis Fine Art Foundry in Rock Tavern, NY. A number of artist’s proofs, at least 4, were also made.  A cast of Gunhead, number 3 / 8, is in the collection of the National Academy Museum, National Academy of Design, New York, NY.',
-    '',
+   
     'PROVENANCE',
     '',
     'Nancy Grossman, Brooklyn, NY',

@@ -6,7 +6,8 @@
 	<ux-dialog>
 		<ux-dialog-header class="modal-header modal-header-success">
 			<div class="alert alert-danger">
-				<h1> ${heading}</h1>
+				<h1 style="width:600px">${heading}</h1>
+	
 			</div>
 
 
@@ -26,12 +27,20 @@
 						</tr>
 					</tfoot>
 					<tbody>
+            <div class="Rtable Rtable--2cols">
+							<div class=" Rtable-cell-30 Rtable-cell--highlight">
+								<strong> id </strong>
+							</div>
+							<div class="Rtable-cell-70  Rtable-cell--light">
+								<input type="text" id="ExhibitTitle" class="form-control input-sm au-target" value.bind="item.id">
+							</div>
+						</div>
 						<div class="Rtable Rtable--2cols">
 							<div class=" Rtable-cell-30 Rtable-cell--highlight">
 								<strong> ExhibitTitle </strong>
 							</div>
 							<div class="Rtable-cell-70  Rtable-cell--light">
-								<input type="text" id="ExhibitTitle" class="form-control input-sm au-target" value.bind="item.ExhibitTitle" au-target-id="133">
+								<input type="text" id="ExhibitTitle" class="form-control input-sm au-target" value.bind="item.ExhibitTitle" >
 							</div>
 						</div>
 
@@ -40,14 +49,22 @@
 								<strong> ExhibitSponser </strong>
 							</div>
 							<div class="Rtable-cell-70  Rtable-cell--light">
-								<input type="text" id="ExhibitSponser" class="form-control input-sm au-target" value.bind="item.ExhibitSponser" au-target-id="134">
+								<input type="text" id="ExhibitSponser" class="form-control input-sm au-target" value.bind="item.ExhibitSponser" >
 							</div>
 						</div>
 						<div class="Rtable Rtable--2cols">
 							<div class="Rtable-cell-30 Rtable-cell--highlight">
 								<strong>ExhibitLocation </strong>
 							</div>
-							<div class="Rtable-cell--light">
+									<div class="Rtable-cell-70  Rtable-cell--light">
+		<select id="ExhibitLocation" class="form-control input-sm" value.bind="item.ExhibitLocation"> 
+                      <option model.bind="null">Choose...</option> 
+                     <option repeat.for="opt of appService.codesProvenanceLocation" model.bind="opt.id">
+                       <!-- codesProvenanceLocation -->
+                           ${opt.Description} 
+                      </option> 
+                    </select>
+
 							</div>
 						</div>
 
@@ -57,7 +74,7 @@
 								<strong>	Exhibit Date   </strong>
 							</div>
 							<div class="Rtable-cell-70  Rtable-cell--light">
-								<input type="text" id="ExhibitDates" class="form-control input-sm au-target" value.bind="item.ExhibitDatesDate" au-target-id="136">
+								<input type="text" id="ExhibitDates" class="form-control input-sm au-target" value.bind="item.ExhibitDatesDate" >
 							</div>
 						</div>
 
@@ -68,7 +85,7 @@
 								<strong>Exhibit SortDate </strong>
 							</div>
 							<div class="Rtable-cell-70  Rtable-cell--light">
-								<input type="date" id="ExhibitSortDate" class="form-control input-sm au-target" value.bind="item.ExhibitSortDate" au-target-id="137">
+								<input type="date" id="ExhibitSortDate" class="form-control input-sm au-target" value.bind="item.ExhibitSortDate" >
 							</div>
 						</div>
 
@@ -80,7 +97,7 @@
 								<strong>Traveled </strong>
 							</div>
 							<div class="Rtable-cell-70  Rtable-cell--light">
-								<input type="checkbox" id="Traveled" class="form-control input-sm au-target" value.bind="item.Traveled" au-target-id="138"
+								<input type="checkbox" id="Traveled" class="form-control input-sm au-target" value.bind="item.Traveled"
 								 value="">
 							</div>
 						</div>
@@ -90,7 +107,7 @@
 								<strong>ExhibitMemo </strong>
 							</div>
 							<div class="Rtable-cell-70  Rtable-cell--light">
-								<input type="text" id="ExhibitMemo" class="form-control input-sm au-target" value.bind="item.ExhibitMemo" au-target-id="139">
+								<input type="text" id="ExhibitMemo" class="form-control input-sm au-target" value.bind="item.ExhibitMemo" >
 							</div>
 						</div>
 
