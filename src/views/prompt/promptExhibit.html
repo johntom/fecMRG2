@@ -1,43 +1,106 @@
 <template>
 	<require from="aurelia-kendoui-bridge/multiselect/multiselect"></require>
 	<require from="../../resources/value-converters/stringify"></require>
-  
-	<require from="../../../styles/flex.css"></require>  
+
+	<require from="../../../styles/flex.css"></require>
 	<ux-dialog>
 		<ux-dialog-header class="modal-header modal-header-success">
-				<div class="alert alert-danger">
+			<div class="alert alert-danger">
 				<h1> ${heading}</h1>
 			</div>
-	
+
 
 		</ux-dialog-header>
 		<ux-dialog-body>
 
-		
-				<div class="form-group flex-column-1">
-					<h2> ${doc} </h2>
-					<table class="table-condensed table">
-						<thead class="table-header-blue" data-sort="items.bind: currentItem.docs; cols: ['FILE_NAME','FILE_EXT']">
-							<tr>
-								<th class="header">Inventory Exhibit </th>
-							</tr>
-						</thead>
-						<tfoot>
-							<tr>
-								<td></td>
-							</tr>
-						</tfoot>
-						<tbody>
-							<tr repeat.for="doc of appService.selectedids">
-								<td>
-								</td>
-								<td><input type="text" id="InventoryCodes" class="form-control  input-sm" value.bind="doc"></td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-	
-	
+
+			<div class="form-group flex-column-1">
+				<h2> ${doc} </h2>
+				<table class="table-condensed table">
+					<thead class="table-header-blue">
+
+					</thead>
+					<tfoot>
+						<tr>
+							<td></td>
+						</tr>
+					</tfoot>
+					<tbody>
+						<div class="Rtable Rtable--2cols">
+							<div class=" Rtable-cell-30 Rtable-cell--highlight">
+								<strong> ExhibitTitle </strong>
+							</div>
+							<div class="Rtable-cell-70  Rtable-cell--light">
+								<input type="text" id="ExhibitTitle" class="form-control input-sm au-target" value.bind="item.ExhibitTitle" au-target-id="133">
+							</div>
+						</div>
+
+						<div class="Rtable Rtable--2cols">
+							<div class=" Rtable-cell-30 Rtable-cell--highlight">
+								<strong> ExhibitSponser </strong>
+							</div>
+							<div class="Rtable-cell-70  Rtable-cell--light">
+								<input type="text" id="ExhibitSponser" class="form-control input-sm au-target" value.bind="item.ExhibitSponser" au-target-id="134">
+							</div>
+						</div>
+						<div class="Rtable Rtable--2cols">
+							<div class="Rtable-cell-30 Rtable-cell--highlight">
+								<strong>ExhibitLocation </strong>
+							</div>
+							<div class="Rtable-cell--light">
+							</div>
+						</div>
+
+
+						<div class="Rtable Rtable--2cols">
+							<div class=" Rtable-cell-30 Rtable-cell--highlight">
+								<strong>	Exhibit Date   </strong>
+							</div>
+							<div class="Rtable-cell-70  Rtable-cell--light">
+								<input type="text" id="ExhibitDates" class="form-control input-sm au-target" value.bind="item.ExhibitDatesDate" au-target-id="136">
+							</div>
+						</div>
+
+
+
+						<div class="Rtable Rtable--2cols">
+							<div class=" Rtable-cell-30 Rtable-cell--highlight">
+								<strong>Exhibit SortDate </strong>
+							</div>
+							<div class="Rtable-cell-70  Rtable-cell--light">
+								<input type="date" id="ExhibitSortDate" class="form-control input-sm au-target" value.bind="item.ExhibitSortDate" au-target-id="137">
+							</div>
+						</div>
+
+
+
+
+						<div class="Rtable Rtable--2cols">
+							<div class=" Rtable-cell-30 Rtable-cell--highlight">
+								<strong>Traveled </strong>
+							</div>
+							<div class="Rtable-cell-70  Rtable-cell--light">
+								<input type="checkbox" id="Traveled" class="form-control input-sm au-target" value.bind="item.Traveled" au-target-id="138"
+								 value="">
+							</div>
+						</div>
+
+						<div class="Rtable Rtable--2cols">
+							<div class=" Rtable-cell-30 Rtable-cell--highlight">
+								<strong>ExhibitMemo </strong>
+							</div>
+							<div class="Rtable-cell-70  Rtable-cell--light">
+								<input type="text" id="ExhibitMemo" class="form-control input-sm au-target" value.bind="item.ExhibitMemo" au-target-id="139">
+							</div>
+						</div>
+
+
+
+					</tbody>
+				</table>
+			</div>
+
+
 
 
 			<hr>
@@ -47,9 +110,8 @@
 
 			<button show.bind="addlist" click.trigger="addit()">Add New Saved List</button>
 			<button click.trigger="controller.cancel()">Cancel and Close </button>
-			<button click.trigger="save()">Save and Close </button>
+			<button click.trigger="save()">Save Exhibit and Close </button>
 
 		</ux-dialog-footer>
 	</ux-dialog>
 </template>
-
