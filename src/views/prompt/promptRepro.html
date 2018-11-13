@@ -7,9 +7,9 @@
 		<ux-dialog-header class="modal-header modal-header-success">
 			<div class="alert alert-danger">
 				<!-- <h1 style="width:300px"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${heading}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h1> -->
-					<h1 style="width:600px">${heading}</h1>
-	
-    	</div>
+				<h1 style="width:600px">${heading}</h1>
+
+			</div>
 
 
 		</ux-dialog-header>
@@ -19,8 +19,8 @@
 			<div class="form-group flex-column-1">
 				<h2> ${doc} </h2>
 				<table class="table-condensed table">
-					<thead class="table-header-blue" >
-					
+					<thead class="table-header-blue">
+
 					</thead>
 					<tfoot>
 						<tr>
@@ -41,7 +41,7 @@
 								<strong> Author	First </strong>
 							</div>
 							<div class="Rtable-cell-70  Rtable-cell--light">
-								<input type="text" id="AuthorFirst" class="form-control input-sm au-target" value.bind="item.AuthorFirst" au-target-id="143">
+								<input type="text" id="AuthorFirst" class="form-control input-sm " value.bind="item.AuthorFirst">
 							</div>
 						</div>
 						<div class="Rtable Rtable--2cols">
@@ -49,15 +49,30 @@
 								<strong> Author	Last </strong>
 							</div>
 							<div class="Rtable-cell-70  Rtable-cell--light">
-								<input type="text" id="AuthorFirst" class="form-control input-sm au-target" value.bind="item.AuthorLast" au-target-id="144">
+								<!-- au-target -->
+								<input type="text" id="AuthorFirst" class="form-control input-sm " value.bind="item.AuthorLast">
 							</div>
 						</div>
+
+						<div class="Rtable Rtable--2cols">
+							<div class=" Rtable-cell-30 Rtable-cell--highlight">
+								<strong>Editor </strong>
+							</div>
+							<div class="Rtable-cell-70  Rtable-cell--light">
+								<!-- <input type="checkbox" id="Editor" checked.bind="item.Editor"> -->
+               
+								<input type="checkbox" id="Editor" class="form-control input-sm" checked.bind="item.Editor">
+
+							</div>
+						</div>
+
+
 						<div class="Rtable Rtable--2cols">
 							<div class=" Rtable-cell-30 Rtable-cell--highlight">
 								<strong>Reproduction Title </strong>
 							</div>
 							<div class="Rtable-cell-70  Rtable-cell--light">
-								<input type="text" id="ReproductionTitle" class="form-control input-sm au-target" value.bind="item.ReproductionTitle" au-target-id="145">
+								<input type="text" id="ReproductionTitle" class="form-control input-sm " value.bind="item.ReproductionTitle">
 							</div>
 						</div>
 
@@ -66,7 +81,7 @@
 								<strong>Publisher </strong>
 							</div>
 							<div class="Rtable-cell-70  Rtable-cell--light">
-								<input type="text" id="ReproductionName" class="form-control input-sm au-target" value.bind="item.ReproductionName" au-target-id="146">
+								<input type="text" id="ReproductionName" class="form-control input-sm " value.bind="item.ReproductionName">
 							</div>
 						</div>
 						<div class="Rtable Rtable--2cols">
@@ -88,7 +103,7 @@
 								<strong>Date </strong>
 							</div>
 							<div class="Rtable-cell-70  Rtable-cell--light">
-								<input type="text" id="ReproductionDate" class="form-control input-sm au-target" value.bind="item.ReproductionDate" au-target-id="148">
+								<input type="text" id="ReproductionDate" class="form-control input-sm " value.bind="item.ReproductionDate">
 							</div>
 						</div>
 						<div class="Rtable Rtable--2cols">
@@ -96,8 +111,17 @@
 								<strong>Sort Date </strong>
 							</div>
 							<div class="Rtable-cell-70  Rtable-cell--light">
-								<input type="date" id="ReproductionSortDate" class="form-control input-sm au-target" value.bind="item.ReproductionSortDate"
-								 au-target-id="149">
+								<input type="date" id="ReproductionSortDate" class="form-control input-sm " value.bind="item.ReproductionSortDate">
+							</div>
+						</div>
+
+
+						<div class="Rtable Rtable--2cols">
+							<div class=" Rtable-cell-30 Rtable-cell--highlight">
+								<strong>Number </strong>
+							</div>
+							<div class="Rtable-cell-70  Rtable-cell--light">
+								<input type="text" id="Number" class="form-control input-sm " value.bind="item.no">
 							</div>
 						</div>
 
@@ -106,7 +130,7 @@
 								<strong>Page </strong>
 							</div>
 							<div class="Rtable-cell-70  Rtable-cell--light">
-								<input type="text" id="ReproductionPage" class="form-control input-sm au-target" value.bind="item.ReproductionPage" au-target-id="150">
+								<input type="text" id="ReproductionPage" class="form-control input-sm " value.bind="item.ReproductionPage">
 							</div>
 						</div>
 						<div class="Rtable Rtable--2cols">

@@ -213,8 +213,9 @@ export class Rtf {
     if (provenance !== undefined && provenance.length !== 0) {
       let iarray = []
       // let provheader = `<p><span style='text-decoration-line:underline'><strong><u>PROVENANCE</u></strong></span><u></u></p>`
-      let provheader = `<p><span style='text-decoration-line:underline'><u>PROVENANCE</u></span><u></u></p>`
+      // let provheader = `<p><span style='text-decoration-line:underline'><u>PROVENANCE</u></span><u></u></p>`
 
+      let provheader = `<span style='text-decoration-line:underline'><u>PROVENANCE</u></span><br>`
 
       let provarray = []
 
@@ -278,7 +279,8 @@ export class Rtf {
     let postitalic = '</em>'
     let lineBreak = '<br>'
     //let exandpubhead = `<br><br><br><p><span style='text-decoration-line:underline'><strong><u>EXHIBITION & PUBLICATION HISTORY</u></strong></span><u></u></p><br>`
-    let exandpubhead = `<br><br><br><p><span style='text-decoration-line:underline'><u>EXHIBITION & PUBLICATION HISTORY</u></span><u></u></p><br>`
+    // let exandpubhead = `<br><br><br><p><span style='text-decoration-line:underline'><u>EXHIBITION & PUBLICATION HISTORY</u></span><u></u></p><br>`
+    let exandpubhead = `<br><span style='text-decoration-line:underline'><u>EXHIBITION & PUBLICATION HISTORY</u></span><br>`
 
     let exhibitandpubs = []
 
@@ -323,7 +325,8 @@ export class Rtf {
             reporec = reproduction[eid]
             console.log('reporec', reporec.ReproductionPage, reporec)
 
-            linkPageNo = `, ${reporec.ReproductionPage}`
+            // linkPageNo = `, ${reporec.ReproductionPage}`
+              linkPageNo = ` ${reporec.ReproductionPage}`
             item.ExhibitSortDate = reporec.ReproductionSortDate
           }
         } else linkPageNo = ''
@@ -348,11 +351,15 @@ export class Rtf {
         let exceptline
         if (item.ExhibitMemo === null || item.ExhibitMemo === undefined || item.ExhibitMemo === '') {
           // exceptline = pre + `<em>${item.ExhibitTitle}</em>, ${item.ExhibitSponser}, ${ExhibitLocationDesc}, ${item.ExhibitDates}${linkPageNo} ` + post
-          exceptline = pre + `<em>${item.ExhibitTitle}</em>, ${item.ExhibitSponser}, ${ExhibitLocationDesc}, ${item.ExhibitDates}${linkPageNo} <br><br> `
+          
+          // exceptline = pre + `<em>${item.ExhibitTitle}</em>, ${item.ExhibitSponser}, ${ExhibitLocationDesc}, ${item.ExhibitDates}<br>${linkPageNo} <br>`
+          exceptline = pre + `<em>${item.ExhibitTitle}</em>, ${item.ExhibitSponser}, ${ExhibitLocationDesc}, ${item.ExhibitDates}<br>${linkPageNo}`
         }
         else {
           //    exceptline = pre + `<em>${item.ExhibitTitle}</em>, ${item.ExhibitSponser}, ${ExhibitLocationDesc}, ${item.ExhibitDates}${linkPageNo}, ${item.ExhibitMemo}` + post
-          exceptline = `<em>${item.ExhibitTitle}</em>, ${item.ExhibitSponser}, ${ExhibitLocationDesc}, ${item.ExhibitDates}${linkPageNo}, ${item.ExhibitMemo} <br><br>`
+          
+          // exceptline = `<em>${item.ExhibitTitle}</em>, ${item.ExhibitSponser}, ${ExhibitLocationDesc}, ${item.ExhibitDates}<br>${linkPageNo}  ${item.ExhibitMemo} <br>`
+ exceptline = `<em>${item.ExhibitTitle}</em>, ${item.ExhibitSponser}, ${ExhibitLocationDesc}, ${item.ExhibitDates}<br>${linkPageNo}  ${item.ExhibitMemo}`
 
         }
 
@@ -370,38 +377,10 @@ export class Rtf {
       }
     } else exhibition = []
 
-
-
-    //       console.log('inv.reproduction.length', inv.reproduction.length)
-
-
-
-
-    // 2014-01-01
-    // Villiger, Suzi. 0Hans Hofmann Catalogue Raisonné of Paintings Vol. II (5bae1dff459dbacdea25a716: Lund Humphries, 2014-01-01) 
-    // null, on page Illustrated in color on page 368, no. P606
-    /**  let ExhibitID = req.param('ExhibitID')
-        let ReproductionType = req.param('ReproductionType')//TransportTo')
-        let ReproductionPage = req.param('ReproductionPage')//TransportFrom')
-        let ColorBW = req.param('ColorBW');
-        let ReproductionDate = req.param('ReproductionDate')
-        let ReproductionSortDate = req.param('ReproductionSortDate')//TransportTo')
-        let ReproductionLocation = req.param('DescriptionLoc')//TransportFrom')
-        let ReproductionAuthor = req.param('ReproductionAuthor');
-        let ReproductionName = req.param('ReproductionName'); //publishr
-        let ReproductionTitle = req.param('ReproductionTitle');
-  */
     if (reproduction !== undefined) {
       for (const item of reproduction) {
         if (item.ReproductionExhibit === null || item.ReproductionExhibit === undefined) {//selected choose)
-          // let oid
-          // if ((item.ReproductionLocation + '').length < 6) {
 
-          //   oid = pl.findIndex(x => x.ID === item.ReproductionLocation)
-          // } else {
-          //   oid = pl.findIndex(x => x.id === item.ReproductionLocation)
-
-          // }
 
           let oid = pl.findIndex(x => x.id === item.ReproductionLocation)
 
@@ -411,13 +390,12 @@ export class Rtf {
 
           let ColorBWDesc = ''
           if (item.ColorBW !== null && item.ColorBW !== undefined) {
-            let cid = this.appService.codesReproductionType.findIndex(x => x.id === item.ColorBW)
+            //let cid = this.appService.codesReproductionType.findIndex(x => x.id === item.ColorBW)
             // ColorBWDesc = `${this.appService.codesReproductionType}[${cid}].Description, `
-            ColorBWDesc = this.appService.codesReproductionType[cid].Description + ', '
+            let rec = this.appService.codesReproductionType.find(x => x.id === item.ColorBW)
+            ColorBWDesc = rec.Description + ', '
           }
-          let data = pre + `${item.AuthorLast}, ${item.AuthorFirst}, <em>${item.ReproductionTitle}</em> ${preafter}`
-          //   let data= pre + ` ${item.AuthorLast}, ${item.AuthorFirst}, ${preitalic} ${item.ReproductionTitle} ${postitalic} ${preafter} ( `
-
+          let data = pre + `${item.AuthorLast}, ${item.AuthorFirst}. <em>${item.ReproductionTitle}</em> ${preafter}`
 
           data += `${ReproductionLocationDesc}: ${item.ReproductionName}, ${item.ReproductionDate}  ${lineBreak}`
           // data += `${ColorBWDesc} on page ${item.ReproductionPage} ${lineBreak} ${post}`
@@ -462,45 +440,27 @@ export class Rtf {
       let a3 = ''
 
       this.inscribedText = ''
-      // let semis = inscribed.count(';')
-      // const semisCount = (inscribed, ";") => lodash.countBy(inscribed)[';'] || 0;
-      // let semisCount =   lodash.count(inscribed, ";")
-      // console.log(("str1,str2,str3,str4".match(/,/g) || []).length); //logs 3
-      // console.log(("str1,str2,str3,str4".match(new RegExp("str", "g")) || []).length); //logs 4
-
-      //inscribed verso with orientation information and Museum of Modern Art numbers: [up arrow] top / 57.424 / 56.1276; 
-      //signed and dated by Lee Krasner, the artist's widow, verso on backing board: Jackson Pollock 1952 ca. / Lee Krasner Pollock 1960
-
-      // inscribed verso with orientation information and Museum of Modern Art numbers em [up arrow] top / 57.424 / 56.1276
-      //signed and dated by Lee Krasner, the artist's widow, verso on backing board em Jackson Pollock 1952 ca. / Lee Krasner Pollock 1960
 
       let semisCount = (inscribed).match('/;/g')
       let strCount = (inscribed).match(new RegExp(";", "g"))
       let colonPos
-      let leftofcolonText
+      let leftofcolonText, leftofcolonText2
       let rightofcolonbaseText
       let semisPos
-      let rightofcolonTextem
+      let rightofcolonTextem, rightofcolonTextem2
       let restoftext
       console.log(semisCount, strCount);
-      //  let semisPos = inscribed.indexOf(";"); 
       colonPos = inscribed.indexOf(":");
       leftofcolonText = inscribed.substr(0, colonPos);
       rightofcolonbaseText = inscribed.substr(colonPos + 1, inscribed.length - colonPos);
       semisPos = rightofcolonbaseText.indexOf(";");
       rightofcolonTextem = '<em>' + rightofcolonbaseText.substr(1, semisPos - 1) + '</em>';
-      iLines.push(leftofcolonText + ' ' + rightofcolonTextem)
       restoftext = rightofcolonbaseText.substr(semisPos + 1, rightofcolonbaseText.length);
 
       colonPos = restoftext.indexOf(":");
-      leftofcolonText = restoftext.substr(0, colonPos);
-      rightofcolonTextem = '<em>' + restoftext.substr(colonPos + 1, restoftext.length - colonPos) + '</em>';
-      iLines.push(leftofcolonText + ' ' + rightofcolonTextem)
-
-
-      // semisPos = inscribed.indexOf(";");
-      // //  let leftofcolonText=inscribed.substr(colonpos, colonpos);
-      // rightofcolonText = inscribed.substr(colonPos + 1, semisPos - 1);
+      leftofcolonText2 = restoftext.substr(0, colonPos);
+      rightofcolonTextem2 = '<em>' + restoftext.substr(colonPos + 1, restoftext.length - colonPos) + '</em>';
+      iLines.push(leftofcolonText + ' ' + rightofcolonTextem + ' ' + leftofcolonText2 + ' ' + rightofcolonTextem2)
 
       for (const item of iLines) {
         this.inscribedText += item + '<br>'
@@ -842,8 +802,9 @@ there are extra ' when there are fractions
     this.segment2 += ` ${this.inscribedText}<br> `
 
     if (this.currentItem.CatalogueNo !== undefined && this.currentItem.CatalogueNo !== '')
-      this.segment2 += ` Catalogue No: ${this.currentItem.CatalogueNo} <br>  <br> <br> `
+      // this.segment2 += ` Catalogue No: ${this.currentItem.CatalogueNo} <br>  <br> <br> `
 
+      this.segment2 += ` No. ${this.currentItem.CatalogueNo} <br>  <br> <br> `
 
     this.buildEdition()
 

@@ -6,7 +6,7 @@ import { MyDataService } from "../../services/my-data-service";
 
 export class Home {
   heading = "MRG Home Page";
-  version = 241.69
+  version = 241.70
   versionDate = 'Mon 11/08/2018'
   // versiondate=Date();
   //  "select2": {
@@ -89,7 +89,7 @@ export class Home {
     'x gueNo gue No',
     'x Alt ID',
     ' Put same code  from Incribed to ???',
-    ' cm round up to 1 decimal',
+    'x cm round up to 1 decimal',
     'x FIX DEPTH cm?',
     'FACK SHEET see GROSSSM0029',
     'Nancy Grossman (b.1940)',
