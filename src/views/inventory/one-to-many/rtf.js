@@ -201,6 +201,8 @@ export class Rtf {
     //   segmentEdition += `${this.currentItem.Printer}${PrinterLoc}<br>`
     // }
     if (this.currentItem.EditionText !== '') {
+      let EditionText = this.currentItem.EditionText
+       EditionText=    EditionText.replace(new RegExp('\n', 'gi'), `<br>`);
       this.segment2 += segmentEditionHead
        this.segment2 += EditionText + `<br> <br><br>`
       // this.segment2 += segmentEdition + `<br> ${this.currentItem.EditionComment}<br><br><br><br>`
