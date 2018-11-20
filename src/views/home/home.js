@@ -6,8 +6,8 @@ import { MyDataService } from "../../services/my-data-service";
 
 export class Home {
   heading = "MRG Home Page";
-  version = 241.70
-  versionDate = 'Mon 11/08/2018'
+  version = 241.72
+  versionDate = 'Tue 11/13/2018'
   // versiondate=Date();
   //  "select2": {
   //       "map": "npm:select2@4.0.6-rc.1/dist",
@@ -23,6 +23,7 @@ export class Home {
   //     },
   //  "select2": "4.0.6-rc.1"
   issues = [
+    'TEXTBOX in popups',
     'Make tabs like mas w/scrollbar with sticky header',
     'shortcut keys',
     'tab hilite in detail',

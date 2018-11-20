@@ -696,14 +696,19 @@ export class DataForm {
     //let prom = Promise.resolve(this.checkData(images, formData)).then(values => {
     //   let newform = values;
     //   console.log('after checkdata1 ',  newform);
-    //   // this.status, this.api.upload(formData, this.currentItem.CLAIM_NO)
+    //   // this.status, this.api.fupload(formData, this.currentItem.CLAIM_NO)
     let formData = new FormData()
     formData.append('file', images[0])
+     console.log('file', images[0]);
     // var newImage = new Image();
     // newImage.src = `https://artbased.com/api/v1/getimage/inv/${this.currentItem.InventoryCode}.jpg`;
     this.mainimage.src = null;
 
     this.api.upload(formData, this.currentItem.InventoryCode)
+    // this.api.uploadPARKTOWER(formData, this.currentItem.InventoryCode)
+   
+   
+   
       .then((jsonRes) => {
         this.upmess = jsonRes.data
         //this.showImage=true;

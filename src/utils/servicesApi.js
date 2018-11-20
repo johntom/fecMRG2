@@ -762,31 +762,32 @@ saveMerge(slname, editorval) {
     }).then((res) => res.json());
   }
 
- uploadPARKTOWER(formData,id) {
-    //http://arabsight.github.io/uploading-files-with-aurelia
-     let baseweb ='http://parktowergroupmanagement.com:9002/api/v1' 
+//  uploadPARKTOWER(formData,id) {
+//     //http://arabsight.github.io/uploading-files-with-aurelia
+//      let baseweb ='http://parktowergroupmanagement.com:9002/api/v1' 
 
-    // var url = baseweb + `v1/uploadinventory/${id}`
-    //  var url = baseweb + `gym/upload`
-       var url = baseweb + `/uploadgym`
-    ///  var url = this.basewebjif + `v1/upload/01-03166`
+//     // var url = baseweb + `v1/uploadinventory/${id}`
+//     //  var url = baseweb + `gym/upload`
+//        var url = baseweb + `/uploadgym`
+//     ///  var url = this.basewebjif + `v1/upload/01-03166`
 
-    console.log('url ', url, formData);
-    return this.http.fetch(url, {
-      mode: 'cors',
-      method: 'POST',
-      headers: {
-        'enctype': "multipart/form-data"
-      },
-      body: formData
+//     console.log('url ', url, formData);
+//     return this.http.fetch(url, {
+//       mode: 'cors',
+//       method: 'POST',
+//       headers: {
+//         'enctype': "multipart/form-data"
+//       },
+//       body: formData
 
-      // body: JSON.stringify(formData)
-    }).then((res) => res.json());
-      // .then(data => console.log('data.message', data.message))
-      // .catch(error => console.log(error));
-  }
+//       // body: JSON.stringify(formData)
+//     }).then((res) => res.json());
+//       // .then(data => console.log('data.message', data.message))
+//       // .catch(error => console.log(error));
+//   }
 
-
+ // this.baseweb = 'https://artbased.com/api/'
+  
   upload(formData, id) {
     //http://arabsight.github.io/uploading-files-with-aurelia
     var url = this.baseweb + `v1/uploadinventory/${id}`

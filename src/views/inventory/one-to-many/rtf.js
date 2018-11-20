@@ -180,29 +180,30 @@ export class Rtf {
     //  this.currentItem.EditionComment this.currentItem.Chop
     //  this.currentItem.Publisher this.currentItem.PublisherLocation-codesProvenanceLocation 
     //  this.currentItem.Printer-codesProvenanceLocation
-    let pl = this.appService.codesProvenanceLocation
-    if (this.currentItem.PublisherLocation !== undefined) {
-      let oid = pl.findIndex(x => x.id === this.currentItem.PublisherLocation)
-      oid == -1 ? PublisherLoc = '' : PublisherLoc = ', ' + pl[oid].Description
-    } else PublisherLoc = ''
+    // let pl = this.appService.codesProvenanceLocation
+    // if (this.currentItem.PublisherLocation !== undefined) {
+    //   let oid = pl.findIndex(x => x.id === this.currentItem.PublisherLocation)
+    //   oid == -1 ? PublisherLoc = '' : PublisherLoc = ', ' + pl[oid].Description
+    // } else PublisherLoc = ''
 
 
-    if (this.currentItem.PrinterLocation !== undefined) {
-      let oidp = pl.findIndex(x => x.id === this.currentItem.PrinterLocation)
-      oidp == -1 ? PrinterLoc = '' : PrinterLoc = ', ' + pl[oidp].Description
+    // if (this.currentItem.PrinterLocation !== undefined) {
+    //   let oidp = pl.findIndex(x => x.id === this.currentItem.PrinterLocation)
+    //   oidp == -1 ? PrinterLoc = '' : PrinterLoc = ', ' + pl[oidp].Description
 
-    } else PrinterLoc = ''
-    if (this.currentItem.Edition !== undefined && this.currentItem.Edition !== '')
-      segmentEdition += `Edition: ${this.currentItem.Edition} <br>`
-    if (this.currentItem.Publisher !== undefined && this.currentItem.Publisher !== '') {
-      segmentEdition += `${this.currentItem.Publisher}${PublisherLoc}<br>`
-    }
-    if (this.currentItem.Printer !== undefined && this.currentItem.Printer !== '') {
-      segmentEdition += `${this.currentItem.Printer}${PrinterLoc}<br>`
-    }
-    if (segmentEdition !== '') {
+    // } else PrinterLoc = ''
+    // if (this.currentItem.Edition !== undefined && this.currentItem.Edition !== '')
+    //   segmentEdition += `Edition: ${this.currentItem.Edition} <br>`
+    // if (this.currentItem.Publisher !== undefined && this.currentItem.Publisher !== '') {
+    //   segmentEdition += `${this.currentItem.Publisher}${PublisherLoc}<br>`
+    // }
+    // if (this.currentItem.Printer !== undefined && this.currentItem.Printer !== '') {
+    //   segmentEdition += `${this.currentItem.Printer}${PrinterLoc}<br>`
+    // }
+    if (this.currentItem.EditionText !== '') {
       this.segment2 += segmentEditionHead
-      this.segment2 += segmentEdition + `<br> ${this.currentItem.EditionComment}<br><br><br><br>`
+       this.segment2 += EditionText + `<br> <br><br>`
+      // this.segment2 += segmentEdition + `<br> ${this.currentItem.EditionComment}<br><br><br><br>`
     }
   }
 
@@ -326,7 +327,7 @@ export class Rtf {
             console.log('reporec', reporec.ReproductionPage, reporec)
 
             // linkPageNo = `, ${reporec.ReproductionPage}`
-              linkPageNo = ` ${reporec.ReproductionPage}`
+            linkPageNo = ` ${reporec.ReproductionPage}`
             item.ExhibitSortDate = reporec.ReproductionSortDate
           }
         } else linkPageNo = ''
@@ -351,15 +352,15 @@ export class Rtf {
         let exceptline
         if (item.ExhibitMemo === null || item.ExhibitMemo === undefined || item.ExhibitMemo === '') {
           // exceptline = pre + `<em>${item.ExhibitTitle}</em>, ${item.ExhibitSponser}, ${ExhibitLocationDesc}, ${item.ExhibitDates}${linkPageNo} ` + post
-          
+
           // exceptline = pre + `<em>${item.ExhibitTitle}</em>, ${item.ExhibitSponser}, ${ExhibitLocationDesc}, ${item.ExhibitDates}<br>${linkPageNo} <br>`
           exceptline = pre + `<em>${item.ExhibitTitle}</em>, ${item.ExhibitSponser}, ${ExhibitLocationDesc}, ${item.ExhibitDates}<br>${linkPageNo}`
         }
         else {
           //    exceptline = pre + `<em>${item.ExhibitTitle}</em>, ${item.ExhibitSponser}, ${ExhibitLocationDesc}, ${item.ExhibitDates}${linkPageNo}, ${item.ExhibitMemo}` + post
-          
+
           // exceptline = `<em>${item.ExhibitTitle}</em>, ${item.ExhibitSponser}, ${ExhibitLocationDesc}, ${item.ExhibitDates}<br>${linkPageNo}  ${item.ExhibitMemo} <br>`
- exceptline = `<em>${item.ExhibitTitle}</em>, ${item.ExhibitSponser}, ${ExhibitLocationDesc}, ${item.ExhibitDates}<br>${linkPageNo}  ${item.ExhibitMemo}`
+          exceptline = `<em>${item.ExhibitTitle}</em>, ${item.ExhibitSponser}, ${ExhibitLocationDesc}, ${item.ExhibitDates}<br>${linkPageNo}  ${item.ExhibitMemo}`
 
         }
 
@@ -388,18 +389,19 @@ export class Rtf {
           let ReproductionLocationDesc = pl[oid].Description
 
 
-          let ColorBWDesc = ''
-          if (item.ColorBW !== null && item.ColorBW !== undefined) {
-            //let cid = this.appService.codesReproductionType.findIndex(x => x.id === item.ColorBW)
-            // ColorBWDesc = `${this.appService.codesReproductionType}[${cid}].Description, `
-            let rec = this.appService.codesReproductionType.find(x => x.id === item.ColorBW)
-            ColorBWDesc = rec.Description + ', '
-          }
+          // let ColorBWDesc = ''
+          // if (item.ColorBW !== null && item.ColorBW !== undefined) {
+          //   //let cid = this.appService.codesReproductionType.findIndex(x => x.id === item.ColorBW)
+          //   // ColorBWDesc = `${this.appService.codesReproductionType}[${cid}].Description, `
+          //   let rec = this.appService.codesReproductionType.find(x => x.id === item.ColorBW)
+          //   ColorBWDesc = rec.Description + ', '
+          // }
           let data = pre + `${item.AuthorLast}, ${item.AuthorFirst}. <em>${item.ReproductionTitle}</em> ${preafter}`
 
-          data += `${ReproductionLocationDesc}: ${item.ReproductionName}, ${item.ReproductionDate}  ${lineBreak}`
+          data += `(${ReproductionLocationDesc}: ${item.ReproductionName}, ${item.ReproductionDate}) ${lineBreak}`
           // data += `${ColorBWDesc} on page ${item.ReproductionPage} ${lineBreak} ${post}`
-          data += `${ColorBWDesc}  ${item.ReproductionPage} ${lineBreak} ${post}`
+          // data += `${ColorBWDesc}  ${item.ReproductionPage} ${lineBreak} ${post}`
+          data += `${item.ReproductionPage} ${lineBreak} ${post}`
 
           rec = {
             date: item.ReproductionSortDate,
@@ -454,7 +456,7 @@ export class Rtf {
       leftofcolonText = inscribed.substr(0, colonPos);
       rightofcolonbaseText = inscribed.substr(colonPos + 1, inscribed.length - colonPos);
       semisPos = rightofcolonbaseText.indexOf(";");
-      rightofcolonTextem = '<em>' + rightofcolonbaseText.substr(1, semisPos - 1) + '</em>';
+      rightofcolonTextem = '<em>' + rightofcolonbaseText.substr(1, semisPos - 1) + '</em><br>';
       restoftext = rightofcolonbaseText.substr(semisPos + 1, rightofcolonbaseText.length);
 
       colonPos = restoftext.indexOf(":");
@@ -495,25 +497,30 @@ export class Rtf {
 
   }
 
-  createRTF() {
-    // https://www.npmjs.com/package/docxtemplater
-    // let pre = '<p>'
-    // let post = '</p>'
-    // let prebefore = '</p>'
-    // let preafter = ' '
-    // let preitalic = '<em>'
-    // let postitalic = '</em>'
-    // let lineBreak = '<br>'
-    // 1811 3/4 in unframed
-    // 45.72 cm x 27.94 NaN cm unframed
-    let dims
-    let dimscm
+
+  // https://www.npmjs.com/package/docxtemplater
+  // let pre = '<p>'
+  // let post = '</p>'
+  // let prebefore = '</p>'
+  // let preafter = ' '
+  // let preitalic = '<em>'
+  // let postitalic = '</em>'
+  // let lineBreak = '<br>'
+  // 1811 3/4 in unframed
+  // 45.72 cm x 27.94 NaN cm unframed
+
+  createDim() {
 
     let cmuh = this.currentItem.UnframedHeight16
     let cmfh = this.currentItem.FramedHeight16
-
     let cmuw = this.currentItem.UnframedWidth16
     let cmfw = this.currentItem.FramedWidth16
+
+    let cmud = this.currentItem.UnframedDepth16
+    let cmfd = this.currentItem.FramedDepth16
+
+
+
     let factor = 0.3175 //.125 * 2.54 
     switch (cmuh) {
       case null:
@@ -609,7 +616,6 @@ export class Rtf {
       case null:
         cmfw = 0
         break;
-
       case '0/0':
         cmfw = 0
         break;
@@ -633,8 +639,65 @@ export class Rtf {
       case '7/8':
         cmfw = factor * 7
         break;
+    }
 
 
+
+    switch (cmud) {
+      case null:
+        cmud = 0
+        break;
+      case '0/0':
+        cmud = 0
+        break;
+      case '1/8':
+        cmud = factor
+        break;
+      case '1/4':
+        cmud = factor * 2
+      case '3/8':
+        cmud = factor * 3
+        break;
+      case '1/2':
+        cmud = factor * 4
+        break;
+      case '5/8':
+        cmud = factor * 5
+        break;
+      case '3/4':
+        cmud = factor * 6
+        break;
+      case '7/8':
+        cmud = factor * 7
+        break;
+    }
+    switch (cmfd) {
+      case null:
+        cmfd = 0
+        break;
+      case '0/0':
+        cmfd = 0
+        break;
+      case '1/8':
+        cmfd = factor
+        break;
+      case '1/4':
+        cmfd = factor * 2
+      case '3/8':
+        cmfd = factor * 3
+        break;
+      case '1/2':
+        cmfd = factor * 4
+        break;
+      case '5/8':
+        cmfd = factor * 5
+        break;
+      case '3/4':
+        cmfd = factor * 6
+        break;
+      case '7/8':
+        cmfd = factor * 7
+        break;
     }
 
     // num.toPrecision(2)
@@ -645,82 +708,78 @@ there are extra ' when there are fractions
 
 14 5/8 ' x '12 1/4 in. / __ x 31 cm
 17 1/2 ' x '22 1/4 in. / __ x 57 cm   */
+    // let dims
+    // let dimscm
+    // let dimsf
+    // let dimscmf
+
+  this.dims=undefined
+  this.dimscm=undefined
+  this.dimsf=undefined
+  this.dimscmf=undefined
+
+
     if (this.currentItem.UnframedHeight16 === null) {
-      dims = this.currentItem.UnframedHeight + ' x '
-      // dimscm = this.currentItem.UnframedHeight * 2.54 + ' cm ' + ' x '
-      dimscm = this.currentItem.UnframedHeight * 2.54 + ' x '
+      this.dims = this.currentItem.UnframedHeight + ' x '
+      this.dimscm = this.currentItem.UnframedHeight * 2.54 + ' x '
     } else {
-      // dims = this.currentItem.UnframedHeight + ' ' + this.currentItem.UnframedHeight16 + ' x '
-      dims = `${this.currentItem.UnframedHeight} <span style="font-size:x-small;"> ${this.currentItem.UnframedHeight16}</span> x `
-
-      // dimscm = this.currentItem.UnframedHeight * 2.54 + ' ' + this.currentItem.UnframedHeight16 * 2.54 + ' x '
-      // dimscm = Math.round((this.currentItem.UnframedHeight * 2.54) + cmuh) + ' x '
-
-      // dimscm = ((this.currentItem.UnframedHeight * 2.54) + cmuh).toPrecision(2) + ' x '
-
-      dimscm = this.roundNumber((this.currentItem.UnframedHeight * 2.54) + cmuh, 1) + ' x '
-
-      // Math.round(num * 100) / 100
+      this.dims = `${this.currentItem.UnframedHeight} <span style="font-size:x-small;"> ${this.currentItem.UnframedHeight16}</span> x `
+      this.dimscm = this.roundNumber((this.currentItem.UnframedHeight * 2.54) + cmuh, 1) + ' x '
     }
 
     if (this.currentItem.UnframedWidth16 === null) {
-      // dims += `<span style="font-size:x-small;"> ${this.currentItem.UnframedWidth} </span>`
-      dims += this.currentItem.UnframedWidth
-
-      dimscm += this.currentItem.UnframedWidth * 2.54
-      dimscm = this.roundNumber((this.currentItem.UnframedWidth * 2.54), 1) + ' x '
-
-
+      this.dims += this.currentItem.UnframedWidth
+       this.dimscm = this.roundNumber((this.currentItem.UnframedWidth * 2.54), 1) + ' x '
     } else {
-      dims += `${this.currentItem.UnframedWidth}       <span style="font-size:x-small;"> ${this.currentItem.UnframedWidth16} </span>`
-      // dimscm += Math.round(((this.currentItem.UnframedWidth * 2.54) + cmuw))
-      // dimscm += ((this.currentItem.UnframedWidth * 2.54) + cmuw).toPrecision(2)
-      dimscm += this.roundNumber((this.currentItem.UnframedWidth * 2.54) + cmuw, 1)
+      this.dims += `${this.currentItem.UnframedWidth}       <span style="font-size:x-small;"> ${this.currentItem.UnframedWidth16} </span>`
+      this.dimscm += this.roundNumber((this.currentItem.UnframedWidth * 2.54) + cmuw, 1)
 
     }
     /////////////////////////////
 
-
-    let dimsf
-    let dimscmf
     if (this.currentItem.FramedHeight !== 0) {
       if (this.currentItem.FramedHeight16 === null) {
-        //   dimsf = this.currentItem.FramedHeight + ' x '
-        dimsf = `${this.currentItem.FramedHeight} <span style="font-size:x-small;"> ${this.currentItem.FramedHeight} </span> x `
-
-        // dimscmf = this.currentItem.FramedHeight * 2.54 + ' cm ' + ' x '
-        dimscmf = this.roundNumber((this.currentItem.FramedHeight * 2.54), 1) + ' cm ' + ' x '
-
-
+        this.dimsf = `${this.currentItem.FramedHeight} <span style="font-size:x-small;"> ${this.currentItem.FramedHeight} </span> x `
+        this.dimscmf = this.roundNumber((this.currentItem.FramedHeight * 2.54), 1) + ' cm ' //+ ' x '
       } else {
-        dimsf = `${this.currentItem.FramedHeight}  + ' ' + <span style="font-size:x-small;"> ${this.currentItem.FramedHeight16} </span> x `
-        // dimscmf = ((this.currentItem.FramedHeight * 2.54) + cmfh) + ' x '
-        // dimscmf = ((this.currentItem.FramedHeight * 2.54) + cmfh).toPrecision(2)
-        dimscmf = this.roundNumber((this.currentItem.FramedHeight * 2.54) + cmuw, 1) + ' cm ' + ' x '
-
+        this.dimsf = `${this.currentItem.FramedHeight}  + ' ' + <span style="font-size:x-small;"> ${this.currentItem.FramedHeight16} </span> x `
+        this.dimscmf = this.roundNumber((this.currentItem.FramedHeight * 2.54) + cmuw, 1) + ' cm ' //+ ' x '
       }
 
       if (this.currentItem.FramedWidth16 === null) {
-        dimsf += this.currentItem.FramedWidth
-        dimscmf += (this.currentItem.FramedWidth * 2.54).toPrecision(2)
-
+        this.dimsf += this.currentItem.FramedWidth
+        this.dimscmf += (this.currentItem.FramedWidth * 2.54).toPrecision(2)
       } else {
-        // dimsf += this.currentItem.FramedWidth + ' ' + this.currentItem.FramedWidth16
-        dimsf += `${this.currentItem.FramedWidth}  <span style="font-size:x-small;"> ${this.currentItem.FramedWidth16} </span>  `
-
-        // dimscmf += ((this.currentItem.FramedWidth * 2.54) + cmfw)
-        // dimscmf += ((this.currentItem.FramedWidth * 2.54) + cmfw).toPrecision(2)
-        dimscmf += this.roundNumber((this.currentItem.FramedWidth * 2.54) + cmfw, 1) + ' cm ' + ' x '
-
+        this.dimsf += `${this.currentItem.FramedWidth}  <span style="font-size:x-small;"> ${this.currentItem.FramedWidth16} </span>  `
+        this.dimscmf += this.roundNumber((this.currentItem.FramedWidth * 2.54) + cmfw, 1) + ' cm ' //+ ' x '
       }
     }
+
+
+    if (this.currentItem.UnframedDepth16 === null) {
+      if (this.currentItem.UnframedDepth === null || this.currentItem.UnframedDepth === 0) {} else {
+      this.dims += this.currentItem.UnframedDepth
+       this.dimscm =+ ' x ' + this.roundNumber((this.currentItem.UnframedDepth * 2.54), 1) 
+      }
+    } else {
+      this.dims += `${this.currentItem.UnframedDepth}       <span style="font-size:x-small;"> ${this.currentItem.UnframedDepth16} </span>`
+      this.dimscm += + ' x ' + this.roundNumber((this.currentItem.UnframedDepth * 2.54) + cmuw, 1) + ' cm '
+
+    }
+
+
+
+  }
+
+  createRTF() {
+this.createDim()
 
     let artist = this.currentItem.artist
 
     let artistWdates = `<strong>${artist.firstName} ${artist.lastName}`
 
     if (artist.died) {
-      artistWdates += ` (${artist.yearofBirth} - ${artist.died})`
+      artistWdates += ` (${artist.yearofBirth}-${artist.died})`
     } else {
       artistWdates += ` (b.${artist.yearofBirth})`
     }
@@ -729,7 +788,7 @@ there are extra ' when there are fractions
     let artistWdates1 = `${artist.firstName} ${artist.lastName}`
 
     if (artist.died) {
-      artistWdates1 += ` (${artist.yearofBirth} - ${artist.died})`
+      artistWdates1 += ` (${artist.yearofBirth}-${artist.died})`
     } else {
       // (b.1950)
 
@@ -745,13 +804,13 @@ there are extra ' when there are fractions
     let segment1 = ` ${artistWdates1}<br>`
     segment1 += ` <em> ${this.currentItem.Title}</em>, ${this.currentItem.InvYear} <br> `
     segment1 += `  ${this.currentItem.MediumSupportobj.Description}<br> `
-    if (dimsf !== undefined) {
-      segment1 += `  ${dimsf} in. framed<br> `
-      segment1 += `  ${dimscmf} cm framed<br> `
+    if (this.dimsf !== undefined) {
+      segment1 += `  ${this.dimsf} in. framed<br> `
+      segment1 += `  ${this.dimscmf} cm framed<br> `
     }
 
-    segment1 += `  ${dims} in. unframed<br> `
-    segment1 += `  ${dimscm} cm unframed<br> `
+    segment1 += `  ${this.dims} in. unframed<br> `
+    segment1 += `  ${this.dimscm} cm unframed<br> `
 
     if (this.currentItem.Signed === 'Y') this.currentItem.Signed === true
     if (this.currentItem.Signed === 'N') this.currentItem.Signed === false
@@ -793,8 +852,8 @@ there are extra ' when there are fractions
     // this.segment2 += ` <p> ${this.currentItem.InvYear} </p> `
     // if (dimsf !== undefined) this.segment2 += `  ${dimsf} in framed<br> `
     // if (dimscmf !== undefined) this.segment2 += `  ${dimscmf} cm framed<br>  `
-    if (dims !== undefined) this.segment2 += `  ${dims} in.`
-    if (dimscm !== undefined) this.segment2 += ` / ${dimscm} cm <br>  `
+    if (this.dims !== undefined) this.segment2 += `  ${this.dims} in.`
+    if (this.dimscm !== undefined) this.segment2 += ` / ${this.dimscm} cm <br>  `
 
     // this.segment2 += `<br> ${this.currentItem.SignedLocation} <br>`
     // this.segment2 += ` ${this.currentItem.SignedLocation} <br>`
@@ -804,7 +863,7 @@ there are extra ' when there are fractions
     if (this.currentItem.CatalogueNo !== undefined && this.currentItem.CatalogueNo !== '')
       // this.segment2 += ` Catalogue No: ${this.currentItem.CatalogueNo} <br>  <br> <br> `
 
-      this.segment2 += ` No. ${this.currentItem.CatalogueNo} <br>  <br> <br> `
+      this.segment2 += ` no. ${this.currentItem.CatalogueNo} <br>  <br> <br> `
 
     this.buildEdition()
 

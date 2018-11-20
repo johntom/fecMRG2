@@ -45,7 +45,7 @@
 		<div class="Rtable-cell-70  Rtable-cell--highlight">
 			<select id="ExhibitLocation" class="form-control input-sm" value.bind="currentItem.PublisherLocation"> 
                       <option model.bind="null">Choose...</option> 
-                     <option repeat.for="opt of appService.codesProvenanceLocation" model.bind="opt.id">
+                     <option repeat.for="opt of appService.codesProvenanceLocation" model.bind="opt.Description">
                            ${opt.Description} 
                       </option> 
                     </select>
@@ -69,15 +69,30 @@
 		<div class="Rtable-cell-70  Rtable-cell--highlight">
 			<select id="ExhibitLocation" class="form-control input-sm" value.bind="currentItem.PrinterLocation"> 
                       <option model.bind="null">Choose...</option> 
-                     <option repeat.for="opt of appService.codesProvenanceLocation" model.bind="opt.id">
+                     <option repeat.for="opt of appService.codesProvenanceLocation" model.bind="opt.Description">
                            ${opt.Description} 
                       </option> 
                     </select>
 
 			</td>
 
+	<div class="Rtable-cell-30 Rtable-cell--highlight">
+			<strong> Edition Text</strong>
 		</div>
 
+		<div class="Rtable-cell-70  Rtable-cell--highlight">
+			<textarea rows="8" cols="100" id="Rtable" class="form-control " value.bind="currentItem.EditionText"></textarea>
+		
+  
+  	</div>
+
+
+		</div>
+
+<button class="btn btn-sm btn-danger" click.delegate="buildEdition()">
+						Create Label and Fact Sheet v103
+					</button>
+ 
 
 		<!-- <div class="Rtable-cell-30 Rtable-cell--highlight">
 			<strong> ConditionID</strong>
