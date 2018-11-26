@@ -172,40 +172,19 @@ export class Rtf {
   // }
 
   buildEdition() {
-    // let segmentEditionHead = `<p><span style='text-decoration-line:underline'><strong><u>EDITION</u></strong></span><u></u></p>`
-    let segmentEditionHead = `<p><span style='text-decoration-line:underline'><u>EDITION</u></span><u></u></p>`
+    // let segmentEditionHead = `<p><span style='text-decoration-line:underline'><u>EDITION</u></span><u></u></p>`
+    let segmentEditionHead = `<span style='text-decoration-line:underline'><u>EDITION</u></span><u></u><br>`
+    
     let segmentEdition = ''
     let PublisherLoc
     let PrinterLoc
-    //  this.currentItem.EditionComment this.currentItem.Chop
-    //  this.currentItem.Publisher this.currentItem.PublisherLocation-codesProvenanceLocation 
-    //  this.currentItem.Printer-codesProvenanceLocation
-    // let pl = this.appService.codesProvenanceLocation
-    // if (this.currentItem.PublisherLocation !== undefined) {
-    //   let oid = pl.findIndex(x => x.id === this.currentItem.PublisherLocation)
-    //   oid == -1 ? PublisherLoc = '' : PublisherLoc = ', ' + pl[oid].Description
-    // } else PublisherLoc = ''
-
-
-    // if (this.currentItem.PrinterLocation !== undefined) {
-    //   let oidp = pl.findIndex(x => x.id === this.currentItem.PrinterLocation)
-    //   oidp == -1 ? PrinterLoc = '' : PrinterLoc = ', ' + pl[oidp].Description
-
-    // } else PrinterLoc = ''
-    // if (this.currentItem.Edition !== undefined && this.currentItem.Edition !== '')
-    //   segmentEdition += `Edition: ${this.currentItem.Edition} <br>`
-    // if (this.currentItem.Publisher !== undefined && this.currentItem.Publisher !== '') {
-    //   segmentEdition += `${this.currentItem.Publisher}${PublisherLoc}<br>`
-    // }
-    // if (this.currentItem.Printer !== undefined && this.currentItem.Printer !== '') {
-    //   segmentEdition += `${this.currentItem.Printer}${PrinterLoc}<br>`
-    // }
+    
     if (this.currentItem.EditionText !== '') {
       let EditionText = this.currentItem.EditionText
        EditionText=    EditionText.replace(new RegExp('\n', 'gi'), `<br>`);
       this.segment2 += segmentEditionHead
-       this.segment2 += EditionText + `<br> <br><br>`
-      // this.segment2 += segmentEdition + `<br> ${this.currentItem.EditionComment}<br><br><br><br>`
+       this.segment2 += EditionText + `<br>`
+     
     }
   }
 
@@ -276,6 +255,9 @@ export class Rtf {
 
     let pre = '<p>'
     let post = '</p>'
+     let ppre = ''
+    let ppost = ''
+    
     let prebefore = '</p>'
     let preafter = ' '
     let preitalic = '<em>'
@@ -350,19 +332,21 @@ export class Rtf {
         // , ${item.ExhibitMemo}`
         // console.log('moment', moment(item.ExhibitSortDate,'YYYYmmdd'))
         let ExhibitMemo
+        let lpn 
+        console.log('===================item.id linkPageNo',item.id,linkPageNo+'...')
+        if (linkPageNo===undefined || linkPageNo==="") {
+          lpn='<br><br>'}  else 
+          {
+          lpn=`<br>${linkPageNo}<br><br>`
+          }
+            console.log('===================item.id linkPageNo',item.id,lpn)
         //	item.ExhibitMemo === undefined ? ExhibitMemo = '' : ExhibitMemo = ', ' + item.ExhibitMemo <strong>DD:</strong>
         let exceptline
         if (item.ExhibitMemo === null || item.ExhibitMemo === undefined || item.ExhibitMemo === '') {
-          // exceptline = pre + `<em>${item.ExhibitTitle}</em>, ${item.ExhibitSponser}, ${ExhibitLocationDesc}, ${item.ExhibitDates}${linkPageNo} ` + post
-
-          // exceptline = pre + `<em>${item.ExhibitTitle}</em>, ${item.ExhibitSponser}, ${ExhibitLocationDesc}, ${item.ExhibitDates}<br>${linkPageNo} <br>`
-          exceptline = pre + `<em>${item.ExhibitTitle}</em>, ${item.ExhibitSponser}, ${ExhibitLocationDesc}, ${item.ExhibitDates}<br>${linkPageNo}`
+          exceptline = ppre + `<em>${item.ExhibitTitle}</em>, ${item.ExhibitSponser}, ${ExhibitLocationDesc}, ${item.ExhibitDates} ${lpn}`
         }
         else {
-          //    exceptline = pre + `<em>${item.ExhibitTitle}</em>, ${item.ExhibitSponser}, ${ExhibitLocationDesc}, ${item.ExhibitDates}${linkPageNo}, ${item.ExhibitMemo}` + post
-
-          // exceptline = `<em>${item.ExhibitTitle}</em>, ${item.ExhibitSponser}, ${ExhibitLocationDesc}, ${item.ExhibitDates}<br>${linkPageNo}  ${item.ExhibitMemo} <br>`
-          exceptline = `<em>${item.ExhibitTitle}</em>, ${item.ExhibitSponser}, ${ExhibitLocationDesc}, ${item.ExhibitDates}<br>${linkPageNo}  ${item.ExhibitMemo}`
+          exceptline = `<em>${item.ExhibitTitle}</em>, ${item.ExhibitSponser}, ${ExhibitLocationDesc}, ${item.ExhibitDates}; ${item.ExhibitMemo} ${lpn} `
 
         }
 
@@ -398,13 +382,10 @@ export class Rtf {
           //   let rec = this.appService.codesReproductionType.find(x => x.id === item.ColorBW)
           //   ColorBWDesc = rec.Description + ', '
           // }
-          let data = pre + `${item.AuthorLast}, ${item.AuthorFirst}. <em>${item.ReproductionTitle}</em> ${preafter}`
+          let data = ppre + `${item.AuthorLast}, ${item.AuthorFirst}. <em>${item.ReproductionTitle}</em> ${preafter}`
 
-          data += `(${ReproductionLocationDesc}: ${item.ReproductionName}, ${item.ReproductionDate}) ${lineBreak}`
-          // data += `${ColorBWDesc} on page ${item.ReproductionPage} ${lineBreak} ${post}`
-          // data += `${ColorBWDesc}  ${item.ReproductionPage} ${lineBreak} ${post}`
-          data += `${item.ReproductionPage} ${lineBreak} ${post}`
-
+           data += `(${ReproductionLocationDesc}: ${item.ReproductionName}, ${item.ReproductionDate}) <br>`
+             data += `${item.ReproductionPage} <br> ${ppost}<br>`
           rec = {
             date: item.ReproductionSortDate,
 
@@ -701,7 +682,7 @@ export class Rtf {
         cmfd = factor * 7
         break;
     }
-
+   
     // num.toPrecision(2)
     /*
     we lost the Height dimension in the cm part
@@ -744,21 +725,21 @@ there are extra ' when there are fractions
        this.dimscm =+ ' x ' + this.roundNumber((this.currentItem.UnframedDepth * 2.54), 1) 
       }
     } else {
-      this.dims += ' x ' +`${this.currentItem.UnframedDepth}       <span style="font-size:x-small;"> ${this.currentItem.UnframedDepth16} </span>`
-      this.dimscm += ' x ' + this.roundNumber((this.currentItem.UnframedDepth * 2.54) + cmuw, 1) //+ ' cm '
+      this.dims += ' x ' +`${this.currentItem.UnframedDepth}   <span style="font-size:x-small;"> ${this.currentItem.UnframedDepth16} </span>`
+      this.dimscm += ' x ' + this.roundNumber((this.currentItem.UnframedDepth * 2.54) + cmud, 1) //+ ' cm '
 
     }
-
+ //   cmfd cmud
     
     /////////////////////////////
 
     if (this.currentItem.FramedHeight !== 0) {
       if (this.currentItem.FramedHeight16 === null) {
         this.dimsf = `${this.currentItem.FramedHeight} <span style="font-size:x-small;"> ${this.currentItem.FramedHeight} </span> x `
-        this.dimscmf = this.roundNumber((this.currentItem.FramedHeight * 2.54), 1) //+ ' cm ' //+ ' x '
+        this.dimscmf = this.roundNumber((this.currentItem.FramedHeight * 2.54), 1) + ' x ' //+ ' cm ' //
       } else {
-        this.dimsf = `${this.currentItem.FramedHeight}  + ' ' + <span style="font-size:x-small;"> ${this.currentItem.FramedHeight16} </span> x `
-        this.dimscmf = this.roundNumber((this.currentItem.FramedHeight * 2.54) + cmuw, 1)// + ' cm ' //+ ' x '
+        this.dimsf = `${this.currentItem.FramedHeight} <span style="font-size:x-small;"> ${this.currentItem.FramedHeight16} </span> x `
+        this.dimscmf = this.roundNumber((this.currentItem.FramedHeight * 2.54) + cmuw, 1) + ' x '// + ' cm ' //
       }
 
       if (this.currentItem.FramedWidth16 === null) {
@@ -773,12 +754,12 @@ there are extra ' when there are fractions
 
     if (this.currentItem.FramedDepth16 === null) {
       if (this.currentItem.FamedDepth === null || this.currentItem.FramedDepth === 0) {} else {
-      this.dims += ' x ' +this.currentItem.FramedDepth
-       this.dimscm =+ ' x ' + this.roundNumber((this.currentItem.FramedDepth * 2.54), 1) 
+      this.dimsf += ' x ' +this.currentItem.FramedDepth
+       this.dimscmf =+ ' x ' + this.roundNumber((this.currentItem.FramedDepth * 2.54), 1) 
       }
     } else {
-      this.dims += ' x ' +`${this.currentItem.FramedDepth}       <span style="font-size:x-small;"> ${this.currentItem.FramedDepth16} </span>`
-      this.dimscm += ' x ' + this.roundNumber((this.currentItem.FramedDepth * 2.54) + cmuw, 1) //+ ' cm '
+      this.dimsf += ' x ' +`${this.currentItem.FramedDepth}       <span style="font-size:x-small;"> ${this.currentItem.FramedDepth16} </span>`
+      this.dimscmf += ' x ' + this.roundNumber((this.currentItem.FramedDepth * 2.54) + cmfd, 1) //+ ' cm '
 
     }
 
