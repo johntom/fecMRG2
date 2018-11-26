@@ -737,15 +737,28 @@ there are extra ' when there are fractions
       this.dimscm += this.roundNumber((this.currentItem.UnframedWidth * 2.54) + cmuw, 1)
 
     }
+
+ if (this.currentItem.UnframedDepth16 === null) {
+      if (this.currentItem.UnframedDepth === null || this.currentItem.UnframedDepth === 0) {} else {
+      this.dims += ' x ' +this.currentItem.UnframedDepth
+       this.dimscm =+ ' x ' + this.roundNumber((this.currentItem.UnframedDepth * 2.54), 1) 
+      }
+    } else {
+      this.dims += ' x ' +`${this.currentItem.UnframedDepth}       <span style="font-size:x-small;"> ${this.currentItem.UnframedDepth16} </span>`
+      this.dimscm += ' x ' + this.roundNumber((this.currentItem.UnframedDepth * 2.54) + cmuw, 1) //+ ' cm '
+
+    }
+
+    
     /////////////////////////////
 
     if (this.currentItem.FramedHeight !== 0) {
       if (this.currentItem.FramedHeight16 === null) {
         this.dimsf = `${this.currentItem.FramedHeight} <span style="font-size:x-small;"> ${this.currentItem.FramedHeight} </span> x `
-        this.dimscmf = this.roundNumber((this.currentItem.FramedHeight * 2.54), 1) + ' cm ' //+ ' x '
+        this.dimscmf = this.roundNumber((this.currentItem.FramedHeight * 2.54), 1) //+ ' cm ' //+ ' x '
       } else {
         this.dimsf = `${this.currentItem.FramedHeight}  + ' ' + <span style="font-size:x-small;"> ${this.currentItem.FramedHeight16} </span> x `
-        this.dimscmf = this.roundNumber((this.currentItem.FramedHeight * 2.54) + cmuw, 1) + ' cm ' //+ ' x '
+        this.dimscmf = this.roundNumber((this.currentItem.FramedHeight * 2.54) + cmuw, 1)// + ' cm ' //+ ' x '
       }
 
       if (this.currentItem.FramedWidth16 === null) {
@@ -753,19 +766,19 @@ there are extra ' when there are fractions
         this.dimscmf += (this.currentItem.FramedWidth * 2.54).toPrecision(2)
       } else {
         this.dimsf += `${this.currentItem.FramedWidth}  <span style="font-size:x-small;"> ${this.currentItem.FramedWidth16} </span>  `
-        this.dimscmf += this.roundNumber((this.currentItem.FramedWidth * 2.54) + cmfw, 1) + ' cm ' //+ ' x '
+        this.dimscmf += this.roundNumber((this.currentItem.FramedWidth * 2.54) + cmfw, 1) //+ ' cm ' //+ ' x '
       }
     }
 
 
-    if (this.currentItem.UnframedDepth16 === null) {
-      if (this.currentItem.UnframedDepth === null || this.currentItem.UnframedDepth === 0) {} else {
-      this.dims += this.currentItem.UnframedDepth
-       this.dimscm =+ ' x ' + this.roundNumber((this.currentItem.UnframedDepth * 2.54), 1) 
+    if (this.currentItem.FramedDepth16 === null) {
+      if (this.currentItem.FamedDepth === null || this.currentItem.FramedDepth === 0) {} else {
+      this.dims += ' x ' +this.currentItem.FramedDepth
+       this.dimscm =+ ' x ' + this.roundNumber((this.currentItem.FramedDepth * 2.54), 1) 
       }
     } else {
-      this.dims += `${this.currentItem.UnframedDepth}       <span style="font-size:x-small;"> ${this.currentItem.UnframedDepth16} </span>`
-      this.dimscm += + ' x ' + this.roundNumber((this.currentItem.UnframedDepth * 2.54) + cmuw, 1) + ' cm '
+      this.dims += ' x ' +`${this.currentItem.FramedDepth}       <span style="font-size:x-small;"> ${this.currentItem.FramedDepth16} </span>`
+      this.dimscm += ' x ' + this.roundNumber((this.currentItem.FramedDepth * 2.54) + cmuw, 1) //+ ' cm '
 
     }
 
