@@ -6,8 +6,8 @@ import { MyDataService } from "../../services/my-data-service";
 
 export class Home {
   heading = "MRG Home Page";
-  version = 241.76
-  versionDate = 'Sun 11/25/2018'
+  version = 241.77
+  versionDate = 'Fri 11/30/2018'
   // versiondate=Date();
   //  "select2": {
   //       "map": "npm:select2@4.0.6-rc.1/dist",
@@ -77,7 +77,52 @@ export class Home {
     'Set Ex not work display sponser with exhi ',
     'restore GROSSM0029 and jpollack untitled ',
     'convert images id: 21248 with 20289 images ',
-    'x (bdateNOSPCE-Died)',
+  
+    'Special foreigh charaters',
+    "Next avail repro tab",
+
+  ]
+  todocomplete = [
+
+    'x save and close',
+    'x sort order on search title',
+    'x ynPrompt on exhibition',
+    'x Icon for offering',
+    'x fix tags ',
+
+    'x make sure artist and medium... ',
+    'version = 240.20 uses   this.currentItem not this.appService.currentItem (which is a singleton)',
+    '* working on local storage with invcode',
+    '* Link option',
+   
+    'EXHIBITION & PUBLICATION HISTORY',
+    '',
+    'Nancy Grossman: Collages and Heads 1970-1991, Sculpture Center, New York, NY, October 8 - November 9, 1991 ',
+    'Eighteenth Year Retrospective, Beacon Street Gallery, Chicago, IL, February 24 - April 20, 2001 ',
+    'Upstarts and Matriarchs: Jewish Women Artists and the Transformation of American Art, Mizel Center for Arts and Culture, Denver, CO, January 13 - March 27, 2005 ',
+    'Codinha, Alessandra, author and Bjarne Jonasson, photographer,[CHANGE TO PERIOD] Working Deep Beneath the Think London, England: Intermission Magazine vol. VIII, Winter 2013-14 ',
+    'Illustrated with the artist interview on page 64 ]',
+    '',
+    'ADD CHECKBO AFTER LAST NAME ON REPRO Editor (Ed) Move Autoer after Ed,',
+    'Add String Field called Number (No.) after date b4 page',
+    'ADD BOTH FIELDS TO POPUP',
+    'ADD POP TO Exhibition and Change SPONOPR TO INSITUTION',
+    '',
+    '﻿Change Catalog No: to No. CAT#',
+    '',
+    'Add all field to EDITION with Pub, LOC all other NL',
+    'from ',
+    'Nancy Grossman: Collages and Heads 1970-1991, Sculpture Center, New York, NY, October 8 - November 9, 1991, p. 15, testing note field',
+    'to',
+    'Nancy Grossman: Collages and Heads 1970-1991, Sculpture Center, New York, NY, October 8 - November 9, 1991, testing note field for spacing',
+    'p. 15 ',
+    '',
+    'COLOR',
+    'B&W',
+    'N/A',
+    'not known',
+    '',
+      'x (bdateNOSPCE-Died)',
     'x Dimens DIMS',
     'x Add SIZE back in',
     'x SIZE',
@@ -107,49 +152,7 @@ export class Home {
     '',
     'Nancy Grossman, Brooklyn, NY',
     '',
-    'Michael Rosenfeld Gallery LLC, New York, NY',
-    'EXHIBITION & PUBLICATION HISTORY',
-    '',
-    'Nancy Grossman: Collages and Heads 1970-1991, Sculpture Center, New York, NY, October 8 - November 9, 1991 ',
-    'Eighteenth Year Retrospective, Beacon Street Gallery, Chicago, IL, February 24 - April 20, 2001 ',
-    'Upstarts and Matriarchs: Jewish Women Artists and the Transformation of American Art, Mizel Center for Arts and Culture, Denver, CO, January 13 - March 27, 2005 ',
-    'Codinha, Alessandra, author and Bjarne Jonasson, photographer,[CHANGE TO PERIOD] Working Deep Beneath the Think London, England: Intermission Magazine vol. VIII, Winter 2013-14 ',
-    'Illustrated with the artist interview on page 64 ]',
-    '',
-    'ADD CHECKBO AFTER LAST NAME ON REPRO Editor (Ed) Move Autoer after Ed,',
-    'Add String Field called Number (No.) after date b4 page',
-    'ADD BOTH FIELDS TO POPUP',
-    'ADD POP TO Exhibition and Change SPONOPR TO INSITUTION',
-    '',
-    '﻿Change Catalog No: to No. CAT#',
-    '',
-    'Add all field to EDITION with Pub, LOC all other NL',
-    'from ',
-    'Nancy Grossman: Collages and Heads 1970-1991, Sculpture Center, New York, NY, October 8 - November 9, 1991, p. 15, testing note field',
-    'to',
-    'Nancy Grossman: Collages and Heads 1970-1991, Sculpture Center, New York, NY, October 8 - November 9, 1991, testing note field for spacing',
-    'p. 15 ',
-    '',
-    'COLOR',
-    'B&W',
-    'N/A',
-    'not known',
-    '',
-    'Special foreigh charaters',
-
-  ]
-  todocomplete = [
-
-    'x save and close',
-    'x sort order on search title',
-    'x ynPrompt on exhibition',
-    'x Icon for offering',
-    'x fix tags ',
-
-    'x make sure artist and medium... ',
-    'version = 240.20 uses   this.currentItem not this.appService.currentItem (which is a singleton)',
-    '* working on local storage with invcode',
-    '* Link option',
+ 
   ]
   //  askmatt = [
 
