@@ -178,8 +178,12 @@ export class Rtf {
     let segmentEdition = ''
     let PublisherLoc
     let PrinterLoc
-    
-    if (this.currentItem.EditionText !== '') {
+     
+    // if (this.currentItem.EditionText !== '') {
+   //  if (this.currentItem.EditionText !== null || this.currentItem.EditionText !== undefined || this.currentItem.EditionText !== '') {
+   
+     if (this.currentItem.EditionText !== null && this.currentItem.EditionText !== undefined && this.currentItem.EditionText !== '') {
+           
       let EditionText = this.currentItem.EditionText
        EditionText=    EditionText.replace(new RegExp('\n', 'gi'), `<br>`);
       this.segment2 += segmentEditionHead

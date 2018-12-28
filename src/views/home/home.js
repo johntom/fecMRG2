@@ -7,7 +7,7 @@ import { MyDataService } from "../../services/my-data-service";
 export class Home {
   heading = "MRG Home Page";
   version = 241.77
-  versionDate = 'Fri 11/30/2018'
+  versionDate = 'Fri 12/28/2018'
   // versiondate=Date();
   //  "select2": {
   //       "map": "npm:select2@4.0.6-rc.1/dist",
@@ -38,9 +38,51 @@ export class Home {
     'git commit -am "200.70 " / git push',
     "clean dup InventoryCode and make uniq",
     "clean ARTISTS null reocrds",
+     "",
+     "",
+     "",
     "fix 3 dates   { id: 0, name: 'DateAdded' }, { id: 1, name: 'DateModified' },  { id: 2, name: 'SoldDate' }",
-  ]
-  ninalist = [
+    "contact specs",
+    "Dec 12 2018 ",
+"Inventory",
+"We combined ArtType and genre (many side) into keywords",
+"Convert Comments to mang notes",
+"identify all newfields added to db without converting any data",
+"AltID = Description",
+ "",
+ "Contacts",
+"Mailtypes",
+"            VALUES (1193, 16, 'No mailings'); ",
+"             VALUES (4492, 16, 'Press');",
+"             VALUES (2185, 16, 'Deceased');",
+"             VALUES (4424, 16, 'Email');",
+"             VALUES (4431, 16, 'Mailing List');",
+"             VALUES (4495, 16, 'Unassigned');",
+"             VALUES (4564, 16, 'No longer here but catalogs sent');",
+"             VALUES (4671, 16, 'CMOM');",
+"             VALUES (4957, 16, 'International Mailing List');",
+"             VALUES (4958, 16, 'International Press');",
+"No longer useing Mailing Type, call data moved to ContactType Array if MT=Press or International Press add to arraay[Press,CMOM] plus another CB:International ",
+"checkboxs:",
+"decesed: X if coded `Deceased`",
+"email: X if coded `Email`",
+"Mailing : X if coded Mailing List or if coded Mailing ListInternational Mailing List plus another CB: International",
+"No Info : X if coded Unassigned",
+"Prev Emped at Org: X if coded No longer here but catalogs sent",
+"add to emp-history",
+"and dont add the org info",
+"No mailings: X They wpnt get annoucements ",
+"if one value is Press then  ",
+"mailings, checkbox:international ",
+"Deceased: informative & checkbox:no mailings Type Code=16",
+"international: during conversion need to check this for anyone not in US",
+"unsubscribed email checkbox (this is really for information purposes since they will most likely have unsubscribed in MailChimp)",
+"no info: when converting a contact who is “no longer at org” (No longer here), there might not have personal contact info but we don’t want to lose them, so this designation will flag them for research (they retain the catalogs sent to them & a list of former orgs)",
+"no mailings: this code should still show on Michael’s printout but they don’t get announcements",
+"Master Catalog (for Michaels’s list)",
+"vendor",
+ ]
+ ninalist = [
     'when selecting saved list inv/actions/batch go directly ...',
     'shortcut keys',
     'tab hilite in detail',
