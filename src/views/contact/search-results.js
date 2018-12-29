@@ -163,7 +163,22 @@ export class SearchResults {
     console.log('queryParams', this.queryParams);
     this.datasource.read()
   }
+	detailsEdit(e) {
+		let grid = this.grid;
+		let targetRow = $(e.target).closest("tr");
+		grid.select(targetRow);
+		let selectedRow = grid.select();
+		let dataItem = grid.dataItem(selectedRow);
+	
+		if (this.datasource._data.length === 1) {
+			let tab = this.appService.tabs.find(f => f.isSelected);
+			this.closeTab(tab);
+		}
 
+		let rt2 = '#/contact/data/' + dataItem.id;
+		this.router.navigate(rt2);// `#/inventory/${path}`);
+
+	}
   loadGrid() {
     let options = localStorage["kendo-grid-mail"];
     if (options) {

@@ -123,6 +123,19 @@ findContact(search) {
     return this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())
   }
 
+
+
+findContactOne(contactid) {
+    // search has fullu formed query string
+    var url = this.baseweb + `v1/contact/${contactid}`
+    console.log('url ', url)
+    return this.http.fetch(url, {
+      method: 'get',
+      mode: 'cors'
+    }).then((res) => res.json());
+    
+  }
+
   findusers() {
     var url = this.baseweb + 'v1/findusers';
     return this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())

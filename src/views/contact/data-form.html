@@ -1,0 +1,327 @@
+<template>
+	<!-- <require from="../../value-converters/filter-by-code"></require> 
+  https://codepen.io/johntom/pen/ypZVaM  this.currentItem.ownername this.currentItem.soldtoname
+  -->
+	<require from="aurelia-kendoui-bridge/multiselect/multiselect"></require>
+	<require from="aurelia-kendoui-bridge/button/button"></require>
+	<require from="aurelia-kendoui-bridge/common/template"></require>
+	<!-- <require from="./modal-form"></require> -->
+	<!-- <require from="./flex.css"></require> -->
+	<require from="../../../styles/flex.css"></require>
+	<require from="../../resources/value-converters/date-format"></require>
+
+	<require from="../../resources/value-converters/upper-case"></require>
+
+	<style>
+		img.responsive-imgV {
+			max-height: 300px;
+			width: auto;
+			/* vertical */
+		}
+
+		img.responsive-img {
+			/* max-height:  auto;
+			width:300px; */
+			max-width: 325px;
+			max-height: 325px;
+			width: auto;
+			height: auto;
+
+			/* hor */
+		}
+
+		video.responsive-video {
+			max-width: 100%;
+			height: auto;
+		}
+
+		/* #data-form-ext .tab.tab-selected {
+   background-color: orange
+ } */
+
+		#data-form-ext .tab.tab-selected .form-tab-box {
+			background-color: lightblue;
+			border-color: #7bbbce
+		}
+
+		#cap {
+			// width: 242px;
+			//height: 225px;
+			//margin: 20px auto;
+			//  background-image: url('http://demos.telerik.com/kendo-ui/content/web/dropdownlist/cap.png');
+			//  background-repeat: no-repeat;
+			background-color: orange //transparent;
+		}
+
+		.black-cap {
+			background-position: 0 0;
+		}
+
+		.grey-cap {
+			background-position: 0 -225px;
+		}
+
+		.orange-cap {
+			background-position: 0 -450px;
+		} // input type
+		.custom-file-input::-webkit-file-upload-button {
+			visibility: hidden;
+		}
+
+		.custom-file-input::before {
+			content: 'Select image file and upload';
+			display: inline-block;
+			background: -webkit-linear-gradient(top, #f9f9f9, #e3e3e3);
+			border: 1px solid #999;
+			border-radius: 3px;
+			padding: 5px 8px;
+			outline: none;
+			white-space: nowrap;
+			-webkit-user-select: none;
+			cursor: pointer;
+			text-shadow: 1px 1px #fff;
+			font-weight: 700;
+			font-size: 10pt;
+		}
+
+		.custom-file-input:hover::before {
+			border-color: black;
+		}
+
+		.custom-file-input:active::before {
+			background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
+		}
+	</style>
+	<!-- <div class="modal fade" id="myModal" ref="myModal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+					<h4 class="modal-title">Modal title</h4>
+				</div>
+				<div class="modal-body">
+					<p>One fine body…</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary">Save changes</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<modal-form ref="edit_division" record_id.bind="division.div_id" title="${division.div_id ? 'Edit_Division' : 'New_Division'}"
+	 error.bind="error">
+		<form>
+			<div class="form-group">
+				<label class="control-label" for="div_code">Division code2</label>
+				<input type="text" class="form-control" ref="div_code" value.bind="division.div_code" />
+			</div>
+			<div class="form-group">
+				<label class="control-label" for="div_name">Division name2</label>
+				<input type="text" class="form-control" value.bind="division.div_name">
+			</div>
+			<div class="form-group">
+				<label class="control-label" for="div_principal_p_id">Principal name2</label>
+				<input type="text" class="form-control" value.bind="division.div_principal_name">
+			</div>
+		</form>
+	</modal-form> -->
+	<!-- /.modal form-->
+	<section class="full-height flex-column-1 au-animate ignore">
+		<div class="flex-column-1 overflow-y-auto">
+
+			<form class="flex-column-1">
+				<!-- <div id="top" class="flex-row-3"> -->
+				<div id="top" class="flex-row-none">
+					<div id="top-left" class="data-form overflow-y-auto flex-column-2">
+						<!-- row1 -->
+						<div class="flex-row-none">
+							<!-- <div class="form-group flex-column-1"> -->
+							<div class="form-group flex-column-1 Rtable-cell--highlight">
+
+								<div class="Rtable Rtable--2cols">
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong>FirstName</strong>
+									</div>
+									<div class="Rtable-cell-70  Rtable-cell--highlight">
+										<div if.bind="recordId === 'create'">
+											<input type="text" id="FirstName" class="form-control input-sm" value.bind="currentItem.FirstName ">
+										</div>
+										<div if.bind="recordId !== 'create'" style="width:280px">
+											${currentItem.FirstName}
+
+										</div>
+
+
+									</div>
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong>LastName</strong>
+									</div>
+									<div class="Rtable-cell-70  Rtable-cell--highlight">
+										<input type=" text " id="LastName" class=" form-control input-sm " value.bind="currentItem.LastName">
+									</div>
+
+
+
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong> TitleDesc</strong>
+									</div>
+
+									<div class="Rtable-cell-70  Rtable-cell--highlight">
+										<input type="text " xid="TitleDesc " class="form-control input-sm " value.bind="currentItem.TitleDesc">
+									</div>
+
+
+
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong> TitleDesc</strong>
+									</div>
+									<div class="Rtable-cell-70  Rtable-cell--highlight">
+
+										<input type="text" xid="TitleDesc" class="form-control input-sm" value.bind="currentItem.TitleDesc">
+										<!--  & validate -->
+									</div>
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<span dblclick.delegate="showModal( 'MediumSupportobj') ">	<strong> Medium</strong></span>
+
+									</div>
+
+								</div>
+							</div>
+							<!-- end <div class="Rtable Rtable--7cols"> -->
+
+							<!-- demo middle col -->
+							<div class="form-group flex-column-1 margin-left-10">
+								<div class="Rtable Rtable--2cols">
+
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong> Keywords </strong>
+
+									</div>
+									<div class="Rtable-cell-70 Rtable-cell--highlight">
+
+
+										<ak-multiselect k-value.two-way="currentItem.keywords" k-placeholder="Select keywords..." k-data-text-field="Description"
+										 k-data-value-field="Description" k-height.bind="400" k-data-source.bind="dataSource" k-widget.two-way="multiselect"
+										 id="multiselect-customizing-templates-codes">
+											<ak-template for="noDataTemplate">
+												<div>
+													<button ak-button click.delegate="addNew()">addNew</button>
+												</div>
+											</ak-template>
+										</ak-multiselect>
+									</div>
+
+
+
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong> Signed?</strong>
+										<input type="checkbox" id="Signed" checked.bind="currentItem.Signed">
+									</div>
+
+									<div class="Rtable-cell-70 Rtable-cell--highlight">
+										<strong> Dated?</strong>
+										<input type="checkbox" id="Dated" checked.bind="currentItem.Dated">
+									</div>
+
+
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong> Edition</strong>
+									</div>
+									<div class="Rtable-cell-70 Rtable-cell--highlight">
+										<input type="text " xid="Edition " class="form-control input-sm " value.bind="currentItem.Edition">
+									</div>
+
+
+									<!-- xid no form store id hs prev vals -->
+
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong> Sold Status </strong>
+									</div>
+									<!-- ${search.httpsselectedSoldId} checked.bind="search.selectedSoldId selectedSoldId"-->
+									<div class="Rtable-cell-70 Rtable-cell--highlight">
+										<!-- <div class="form-group"> -->
+										<!-- <label repeat.for="sold of searchsold">
+												<input type="radio" name="group1" model.bind="sold.id" checked.bind="currentItem.Sold" >
+											${sold.id} / ${sold.name} &nbsp;
+											</label> -->
+										<!-- </div> -->
+										<!-- only radio string works with flex -->
+										<select id="Sold" class="form-control " value.bind="currentItem.Sold">
+											<option model.bind="null">Choose...</option>
+											<option repeat.for="opt of searchsold " model.bind="opt.id">
+												${opt.name}
+											</option>
+										</select>
+									</div>
+								</div>
+
+							</div>
+							<!-- 2nd -->
+						</div>
+					</div>
+
+					<!-- flex row none -->
+				</div>
+
+				<!-- flex row none -->
+
+				<!--top left  -->
+
+
+
+				<!--  class="tab tab-top ${tab.isSelected ? 'tab-selected' : ''}"> -->
+
+				<div if.bind="recordId==='create'">Create Mode. Please save record before entering tabs </div>
+				<div else>
+
+					<div id="bottom-left" class="flex-row-3">
+						<div id="data-form-ext" class="flex-column-1">
+							<div id="data-form-one-to-many-tabs" class="flex-row-none flex-wrap">
+								<div repeat.for="tab of appService.dataFormOneToManyTabs" class="tab ${tab.isSelected ? 'tab-selected' : ''}">
+									<div class="form-tab-box" click.delegate="selectOneToManyTab(tab)">
+										<span>${tab.name}</span>
+									</div>
+								</div>
+							</div>
+							<div id="data-form-one-to-many-tab-content overflow-y-hidden" class="data-form flex-row-1" style="background:
+										 darkgray;">
+								<compose view-model.bind="currentOneToManyTab.viewModel"></compose>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+			</form>
+		</div>
+		<footerform class="flex-row-none">
+			inventory-
+			<span>&nbsp;&nbsp;
+					<button class="btn btn-sm btn-primary " click.delegate="saveinventory(0)">
+						Save & Stay
+					</button>
+					<button class="btn btn-sm btn-info " click.delegate="saveinventory(1)">
+						Save & Close
+					</button>
+&nbsp;&nbsp;
+
+
+
+				</span>
+
+			<a href="https://artbased.com/api/v1/downloadonepdf/output/${currentItem.InventoryCode}.doc" class="btn btn-sm btn-primary">
+				<span class="glyphicon glyphicon-th-list"></span> Download Doc FactSheet
+			</a>
+			<span>&nbsp;&nbsp;
+					<button class="btn btn-sm btn-danger " click.delegate="requestclose()">
+						Close
+					</button>
+          <b>  ${message} </b>
+				</span>
+
+
+		</footerform>
+	</section>
+</template>
