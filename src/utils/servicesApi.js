@@ -83,6 +83,19 @@ export class ApiService {
     }).then((res) => res.json());
     //return this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())
   }
+
+findContact(search) {
+    // search has fullu formed query string
+    var url = this.baseweb + 'v1/contactcontent' + search
+    console.log('url ', url)
+    return this.http.fetch(url, {
+      method: 'get',
+      mode: 'cors'
+    }).then((res) => res.json());
+    //return this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())
+  }
+
+
   findInventoryKeywords(search) {
     // search has fullu formed query string 
     // can only search for mutikeywords as a sep searcg

@@ -20,34 +20,46 @@
       k-column-menu.bind="true" 
       k-pageable.bind="true">
 
-			<ak-col k-field="InventoryCode" 
-        k-filterable.bind="true" 
-        k-title="Edit" 
-        k-width.bind="180" 
-        k-template="<button click.delegate='details($event)' class='k-button'>#=InventoryCode#</button>">
-			</ak-col>
+			<ak-col k-title="CB" ref="CB" k-locked.bind="true" k-lockable.bind="false" k-width.bind="85" k-template="<input type='checkbox' class='checkbox' ref='T#=id#' id='T#=id#' >T#=id#</> ">
+			<ak-template for="headerTemplate">
+				<input type='checkbox' class='checkboxY' checked.bind="isChecked" id='header-chb' />
+			</ak-template>
+		</ak-col>
 
-			<ak-col k-title="Artist last" k-width="180px" k-field="artist.lastName"></ak-col>
-			<ak-col k-title="Artist First" k-width="180px" k-field="artist.firstName"></ak-col>
-			<ak-col k-title="Title" k-width="180px" k-field="Title"></ak-col>
-			<ak-col k-title="InvYear" k-width="180px" k-field="InvYear"></ak-col>
-			<ak-col k-title="MediumSupport" k-width="180px" k-field="MediumSupport"></ak-col>
-			<ak-col k-title="MediumText" k-width="180px" k-field="MediumText"></ak-col>
+		<ak-col k-field="ID" k-filterable.bind="true" k-title="Edit-" k-width.bind="180" k-template="<button click.delegate='detailsEdit($event)' class='k-button'>#=id#</button>">
+		</ak-col>
 
-			<ak-col k-title="CurrentLocation" k-width="180px" k-field="CurrentLocation"></ak-col>
-			<ak-col k-title="Bin" k-width="180px" k-field="Bin"></ak-col>
-			<ak-col k-title="Owner" k-width="180px" k-field="Owner"></ak-col>
+    	<ak-col k-title="OrgName" k-width="180px" k-field="org.OrgName"></ak-col>
+	 <ak-col k-title="Address" k-width="180px" k-field="org.Address"></ak-col>
+	 
 
-			<ak-col k-title="MRGLocation" k-width="180px" k-field="MRGLocation"></ak-col>
-			<ak-col k-title="UnframedHeight" k-width="180px" k-field="UnframedHeight" attributes="{ class: &quot;text-right&quot; }"
-			 type="number" format="{0:c2}"></ak-col>
-			<ak-col k-title="UnframedWidth" k-width="180px" k-field="UnframedWidth" attributes="{ class: &quot;text-right&quot; }" type="number"
-			 format="{0:c2}"></ak-col>
+		<ak-col k-title="FirstName" k-width="180px" k-field="FirstName"></ak-col>
+		
+		<ak-col k-title="LastName" k-width="180px" k-field="LastName"></ak-col>
+	
+  	<ak-col k-title="TitleDesc" k-width="180px" k-field="TitleDesc"></ak-col>
 
-		</ak-grid>
-		<div class="flex-row-none section-footer">
-			${footer}
-		</div>
+		<ak-col k-title="deceased" k-width="180px" k-field="deceased"></ak-col>
+
+	</ak-grid>
+	<div class="flex-row-none section-footer">
+		${footer} <span>  ${queryParams}</span> <span>&nbsp;&nbsp;	
+        <!-- <button id="searchInputBtn" class="btn btn-primary" type="button" click.delegate="showModal('SavedList')">Select a SavedList or Create New </button> -->
+      <button id="searchInputBtn" class="btn btn-primary" type="button" click.delegate="showSavedlists()">Select a Saved List or Create New </button>
+     
+       
+       
+       <!-- <span    value.bind="appService.currentsavedlist" >${appService.currentsavedlist}</span> -->
+		<button id="searchInputBtn" class="btn btn-primary" type="button" click.delegate="addexistingSelection()">Add To Saved List: ${appService.currentsavedlist}</button>
+		<!-- <button id="searchInputBtn2" class="btn btn-primary" type="button" click.delegate="addexistingCB()">Add To SelectList ${appService.currentsavedlist}</button> -->
+		<button show.bind="appService.currentsavedlist" id="searchInputBtn" class="btn btn-primary" type="button" click.delegate="clearSelection()">Clear Selection</button>
+
+		<button id="addInputBtn" class="btn btn-success" type="button" click.delegate="addinventory()"><strong>A</strong>dd Inventory</button>
+	
+		</span>
+ <b>  ${message} </b>
+	</div>
+
 	</section>
 
 </template>
