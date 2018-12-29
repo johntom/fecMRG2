@@ -6,8 +6,8 @@ import { MyDataService } from "../../services/my-data-service";
 
 export class Home {
   heading = "MRG Home Page";
-  version = 241.79
-  versionDate = 'Fri 12/28/2018'
+  version = 241.80
+  versionDate = 'Sat 12/29/2018'
   // versiondate=Date();
   //  "select2": {
   //       "map": "npm:select2@4.0.6-rc.1/dist",
@@ -104,6 +104,7 @@ export class Home {
     'Make sure the Confirm File Format Conversion On Open check box is selected.',
     'Click on OK.',
     'https://bl.ocks.org/lstarky/11cd1e90dd912f07a60afaedb9c2613b',
+    'if then in kendo grid 		<ak-col k-field="org.OrgName    k-template="#= (org.OrgName) ? org.OrgName : `` #"></ak-col>'
   ]
   todo = [
 

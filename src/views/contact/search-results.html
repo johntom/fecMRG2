@@ -29,7 +29,13 @@
 		<ak-col k-field="ID" k-filterable.bind="true" k-title="Edit-" k-width.bind="180" k-template="<button click.delegate='detailsEdit($event)' class='k-button'>#=id#</button>">
 		</ak-col>
 
-    	<ak-col k-title="OrgName" k-width="180px" k-field="org.OrgName"></ak-col>
+    	<!-- <ak-col k-title="OrgName" k-width="180px" k-field="org.OrgName"></ak-col> -->
+
+		<ak-col k-field="org.OrgName" k-filterable.bind="true" 
+    k-title="OrgName" k-width.bind="180" 
+    k-template="#= (org.OrgName) ? org.OrgName : '' #">
+			</ak-col>
+
 	 <ak-col k-title="Address" k-width="180px" k-field="org.Address"></ak-col>
 	 
 
