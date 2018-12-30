@@ -3,8 +3,6 @@ import { ApiService } from '../../utils/servicesApi';
 import { ApplicationService } from '../../services/application-service';
 import { MyDataService } from "../../services/my-data-service";
 import { Router } from 'aurelia-router';
-// import { Router, Redirect } from 'aurelia-router';
-// import moment from 'moment';
 import { DialogService } from 'aurelia-dialog';
 //import { Prompt } from '../../../services/prompt';
 import { Prompt } from './prompt';
@@ -17,11 +15,7 @@ export class DataForm {
   Title = '';
   InvYear = '';
   InventoryCode = '';
-  // user = new User();
-
-  // currentItem = new currentItem(); // for validate
-
-  // showImage=false;
+  
   heading = 'DataForm HEADER...'
   footer = 'DataForm FOOTER...'
   recordId = '';
@@ -81,18 +75,7 @@ export class DataForm {
     this.currentItem.fieldname = fieldname
     this.currentItem.recordId = this.recordId
     this.dialogService.open({ viewModel: Prompt, model: this.currentItem, lock: false }).whenClosed(response => {
-      //  if(this.recordId==='create')  this.currentItem.recordId=
-      // if (fieldname === 'Artist') {
-      //   let artistsel =   this.currentItem.artist;
-      //    if (artistsel===undefined){
-      //      artistsel=null
-      //  //    this.currentItem.ArtistName=null
-      //    }
-      //   this.currentItem.artist = artistsel 
-      //  //  this.currentItem.ArtistName=  this.currentItem.artistname
-      //  //(this.currentItem.artist); 
-
-      // }
+    
       if (!response.wasCancelled) {
         // console.log('Delete')
         // let notes = this.currentItem.notes
@@ -109,24 +92,6 @@ export class DataForm {
     });
   }
 
-  // showModalBS() {
-  //   $('#myModal').modal()    // this works
-  //   // this.myModal.modal()    
-  //   // `${this.myModal}`.modal()   
-
-  // }
-
-  // showModalBS2(id) {
-  //   this.division.div_id = id;
-  //   if (id) {
-  //     this.error = "";
-  //   } else {
-  //     this.error = "Incomplete form...";
-  //   }
-  //   $("#my-input").val("JQuery is working" + Date.now());
-  //   // this.myauinput = "JQuery is working" + Date.now()
-  //   $(this.edit_division).find(".modal").modal();
-  // }
 
 
  
@@ -138,26 +103,12 @@ export class DataForm {
     window.alert("Delete successful!");
   }
 
-  // closeModal() {
-  //   $(this.edit_division).modal('hide');
-  // }
-  
-
   showKeywords() {
     alert(`GenreTypes: ${this.currentItem.keywords}`);
     //  alert(`Attendees: ${this.required}, \nOptional: ${this.optional}`);
   }
 
  
-
-  // selectChange(GenreID) {
-  //   // alert('in c ' + opt + GenreID)
-   
-  // }
-
-  // showAttendees() {
-  //   // alert(`GenreTypes: ${this.currentItem.genretypes}`);
-  // }
   selectChangedMS(MediumSupport) {
   //  alert('in selectChangedMS  ', MediumSupport, this.MediumSupport1)
   
@@ -166,18 +117,25 @@ export class DataForm {
   //  alert(changedVal);
   }
   activate(params, routeConfig) {
-    //12  this.tabname = this.appService.currentSearch
     if (params.id) {
       this.recordId = params.id;
       this.heading = `DataForm for record ${this.recordId}`;
-      //console.log('finihed heading', this.heading)
+     
       if (this.recordId === 'create') {
 
         this.currentItem = {}
         this.currentItem.id = 'create'
         this.appService.testrec = {}
         this.appService.originalrec = {}
-      
+// address
+// artists
+// catsold
+// compcatsent
+// genre
+// offering
+// phone
+// type
+
         this.currentItem.artist = undefined//{} 
         this.currentItem.provenance = []
         this.currentItem.notes = []
@@ -208,13 +166,7 @@ export class DataForm {
             this.currentItem = inv[0]
             // never been saved from view
 
-            // // move to attach
-            // if (!this.currentItem.savedonce || this.currentItem.savedonce === undefined) {
-            //   // if (!this.currentItem.savedonce || this.currentItem.savedonce === true) {
-            //   // force it all the time
-            //   this.currentItem.savedonce = true
-            //   this.saveinventory(0)
-            // }
+           
 
             this.appService.currentItem = this.currentItem//inv[0]
             this.currentItem.isDirty = () => {
@@ -312,7 +264,7 @@ export class DataForm {
       let tabinfo, tabindex
       // tabinfo = localStorage.getItem('tabinfo');
 
-      tabinfo = localStorage.getItem('tabinfo' + this.currentItem.InventoryCode);
+      tabinfo = localStorage.getItem('tabinfo' + this.currentItem.id);
       if (tabinfo === null) {
         tabindex = 0
       } else {
@@ -320,8 +272,8 @@ export class DataForm {
         tabindex = tabinfo.tabindex
       }
 
-      if (this.appService.dataFormOneToManyTabs.length > 0) {
-        let tab = this.appService.dataFormOneToManyTabs[tabindex];
+      if (this.appService.dataFormOneToManyTabs3.length > 0) {
+        let tab = this.appService.dataFormOneToManyTabs3[tabindex];
         this.selectOneToManyTab(tab);
       }
       this.getimageinfo()
@@ -417,12 +369,8 @@ export class DataForm {
   }
 
   
-
-
-
   canDeactivate() {
     return new Promise((resolve, reject) => {
-
       console.log('canDeactivate ')
       if (this.appService.currentView !== undefined && this.appService.originalrec !== {} &&
         this.currentItem.id !== 'create' &&

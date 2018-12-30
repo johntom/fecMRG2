@@ -1,0 +1,101 @@
+<template>
+	<!-- "ID" : NumberInt(6), 
+    "ContactID" : NumberInt(6), 
+    "OrgID" : NumberInt(7), 
+    "LocID" : " ", 
+    "ContactAddress" : " ", 
+    "ContactCity" : " ", 
+    "ContactState" : " ", 
+    "City" : " ", 
+    "State" : " ", 
+    "ContactZip" : " ", 
+    "ContactCountry" : " ", 
+    "AddressLetter" : "Mr Robert Adams", 
+    "AddressNotes" : " ", 
+    "Print" : "N",  -->
+
+	<require from="./docs.css"></require>
+	<section class="docs full-height flex-column-1 overflow-y-auto ignore">
+		<h4>
+			<i class="fa fa-folder-open"></i> Exhibition
+			<a slot="buttons-slot" class="btn btn-primary" click.delegate="addExhibit()">
+				<i class="fa fa-plus"></i> Add Exhibition
+			</a>
+		</h4>
+
+		<table class="table-condensed table">
+			<thead class="table-header-blue" data-sort="items.bind: currentItem.exhibition; cols: ['WorkDate','Notes']">
+				<tr>
+	<th width="70px" class="header">Id </th>
+					<th width="220px" class="header">Title </th>
+					<th width="220px" class="header">Sponser </th>
+					<th width="220px" class="header">Location </th>
+					<th width="220px" class="header">Dates </th>
+					<th width="220px" class="header">Sort Date </th>
+					<th width="120px" class="header">Traveled </th>
+
+					<th width="120px" class="header">batchno </th>
+
+
+					<th width="220px" class="header">Note </th>
+					<th width="225px" class="header">Cmd</th>
+
+				</tr>
+			</thead>
+			<tfoot>
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+			</tfoot>
+			<tbody>
+				<tr repeat.for="exhibition of currentItem.exhibition" with.bind="exhibition">
+					<!-- <td> ${ExhibitTitle} </td> -->
+		<td width="70px"><input type="text" id="id" class="form-control  input-sm" value.bind="exhibition.id"></td>
+			
+					<td width="220px"><input type="text" id="ExhibitTitle" class="form-control  input-sm" value.bind="exhibition.ExhibitTitle"></td>
+					<td width="220px"><input type="text" id="ExhibitSponser" class="form-control  input-sm" value.bind="exhibition.ExhibitSponser"></td>
+
+					<!--why id & _id below <td> ${ExhibitSponser} / ${ExhibitLocation}</td> -->
+					<td width="220px">
+						<select id="ExhibitLocation" class="form-control input-sm" value.bind="ExhibitLocation"> 
+                      <option model.bind="null">Choose...</option> 
+                     <option repeat.for="opt of appService.codesProvenanceLocation" model.bind="opt.id">
+                       <!-- codesProvenanceLocation -->
+                           ${opt.Description} 
+                      </option> 
+                    </select>
+					</td>
+					<!-- <td width="220px"><input type="text" id="Reproduction" class="form-control  input-sm" value.bind="exhibition.Reproduction"></td> -->
+
+					<td width="300px"><input type="text" id="ExhibitDates" class="form-control  input-sm" value.bind="exhibition.ExhibitDates"></td>
+					<td width="220px"><input type="date" id="ExhibitSortDate" class="form-control  input-sm" value.bind="exhibition.ExhibitSortDate"></td>
+					<td width="120px">
+						<!-- <input type="text" id="Traveled" class="form-control  input-sm" value.bind="exhibition.Traveled"> -->
+						<input type="checkbox" id="Traveled" checked.bind="exhibition.Traveled">
+
+					</td>
+					<td width="120px"><span> ${batchno}</span></td>
+				
+					<td width="220px"><input type="text" id="ExhibitMemo" class="form-control  input-sm" value.bind="exhibition.ExhibitMemo"></td>
+					<td width="225px">
+						<!-- <button class="btn btn-primary" click.delegate="exhibition.edit=!exhibition.edit">${ !exhibition.edit ? 'Update' : 'Done' }</button> -->
+						<button class="btn btn-primary" click.delegate="saveitem(exhibition,$index)">${ !exhibition.edit ? 'Edit' : 'Save' }</button>
+						<button class="btn btn-success" click.delegate="modal(exhibition,$index)">Pop</button>
+          	<button class="btn btn-sm btn-danger" click.delegate="remove(exhibition,$index)">           Delete            </button>
+					</td>
+
+				</tr>
+			</tbody>
+		</table>
+
+
+	</section>
+</template>

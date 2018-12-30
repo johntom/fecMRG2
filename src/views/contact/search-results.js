@@ -176,7 +176,7 @@ export class SearchResults {
 		}
 
 		let rt2 = '#/contact/data/' + dataItem.id;
-		this.router.navigate(rt2);// `#/inventory/${path}`);
+		this.router.navigate(rt2);
 
 	}
   loadGrid() {
@@ -220,9 +220,9 @@ export class SearchResults {
     //  let rt2 = 'http://jif.bergenrisk.com:8080/api/v1/onepdf/' + dataItem.template + '/' + dataItem.filename + '.pdf'
     // #/inventory/data/#=InventoryCode#
     //let rt2 = '#/inventory/data/#=' + dataItem.InventoryCode + '#'
-    let rt2 = '#/contact/data/' + dataItem._id//InventoryCode;
+    let rt2 = '#/contact/data/' + dataItem._id// 
 
-    this.router.navigate(rt2);// `#/inventory/${path}`);
+    this.router.navigate(rt2);
 
   }
   //////////////

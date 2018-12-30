@@ -1,0 +1,97 @@
+<template>
+	<!-- /* "_id" : ObjectId("5c1572aaf731943055910eeb"), 
+    "ID" : NumberInt(10), 
+    "ContactID" : NumberInt(2330), 
+    "ContactType" : NumberInt(159), 
+    "createdAt" : ISODate("2018-12-15T21:31:22.023+0000"), 
+    "updatedAt" : ISODate("2018-12-15T21:31:22.023+0000") -->
+	<require from="./docs.css"></require>
+	<!-- <section class="customer-orders au-animate"> -->
+	<section class="docs full-height flex-column-1 overflow-y-auto ignore">
+		<h4>
+			<i class="fa fa-folder-open"></i> Conservation
+
+			<a slot="buttons-slot" class="btn btn-primary" click.delegate="addDetail()">
+				<i class="fa fa-plus"></i> Add conservation
+			</a>
+		</h4>
+
+		<table class="table-condensed table">
+			<thead class="table-header-blue" data-sort="items.bind: currentItem.conservation; cols: ['WorkDate','Notes']">
+				<tr>
+					<tr>
+						<th class="header">ConservedBy>>
+						</th>
+						<th class="header">Dates
+						</th>
+						<th class="header">InvoiceNo
+						</th>
+						<th class="header">Treatment
+						</th>
+						<th class="header">Cmd
+
+						</th>
+					</tr>
+			</thead>
+			<tfoot>
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+			</tfoot>
+			<tbody>
+				<tr repeat.for="conservation of currentItem.conservation" with.bind="conservation">
+
+
+					<td width="225px">
+				
+
+						<div if.bind="conservedbyname===undefined || conservedbyname===''">
+							<a click.delegate="showModal( 'ConservedBy',$index)">select_link </a>
+						</div>
+						<div else>
+							<a click.delegate="showModal('ConservedBy',$index)">${conservation.conservedbyname}</a>
+
+						</div>
+
+
+
+
+					</td>
+
+					<td width="325px">
+						<span show.bind="!conservation.edit">${Dates}</span>
+						<input show.bind="conservation.edit" class="form-control input-sm" disabled.bind="!conservation.edit" type="text" value.bind="Dates">						</td>
+					</td>
+
+
+					<td width="325px">
+						<span show.bind="!conservation.edit">${InvoiceNo}</span>
+
+						<input show.bind="conservation.edit" class="form-control input-sm" disabled.bind="!conservation.edit" type="text" value.bind="InvoiceNo">						</td>
+					</td>
+
+					<td width="325px">
+						<span show.bind="!conservation.edit">${Treatment}</span>
+						<!-- <input show.bind="conservation.edit" class="form-control input-sm" disabled.bind="!conservation.edit" type="text" value.bind="Treatment">						</td> -->
+						<textarea disabled.bind="!conservation.edit" show.bind="conservation.edit" rows="3" cols="325" id="Treatment" class="form-control input-sm"
+						 value.bind="Treatment"></textarea>
+
+						<!-- <input click.delegate="showModal('Treatment',Treatment)" type="text" id="Treatment" class="form-control input-sm" value.bind="Treatment"> -->
+
+
+					</td>
+
+					<td width="225px">
+						<!-- <button class="btn btn-primary" click.delegate="conservation.edit=!conservation.edit">${ !conservation.edit ? 'Update' : 'Done' }</button> -->
+						<button class="btn btn-primary" click.delegate="saveitem(conservation,$index)">${ !conservation.edit ? 'Edit' : 'Save' }</button>
+
+						<button class="btn btn-danger" click.delegate="remove(conservation,$index)">Delete</button>
+					</td>
+			</tbody>
+		</table>
+		<!-- </form> -->
+
+	</section>
+</template>

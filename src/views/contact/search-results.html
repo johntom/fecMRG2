@@ -20,13 +20,15 @@
       k-column-menu.bind="true" 
       k-pageable.bind="true">
 
-			<ak-col k-title="CB" ref="CB" k-locked.bind="true" k-lockable.bind="false" k-width.bind="85" k-template="<input type='checkbox' class='checkbox' ref='T#=id#' id='T#=id#' ></> ">
+			<ak-col k-title="CB" ref="CB" k-locked.bind="true" k-lockable.bind="false" k-width.bind="85" 
+      k-template="<input type='checkbox' class='checkbox' ref='T#=id#' id='T#=id#' ></> ">
 			<ak-template for="headerTemplate">
 				<input type='checkbox' class='checkboxY' checked.bind="isChecked" id='header-chb' />
 			</ak-template>
 		</ak-col>
 
-		<ak-col k-field="ID" k-filterable.bind="true" k-title="Edit-" k-width.bind="180" k-template="<button click.delegate='detailsEdit($event)' class='k-button'>#=id#</button>">
+		<ak-col k-field="ID" k-filterable.bind="true" k-title="Edit-" k-width.bind="180" 
+    k-template="<button click.delegate='detailsEdit($event)' class='k-button'>#=id#</button>">
 		</ak-col>
 
     	<!-- <ak-col k-title="OrgName" k-width="180px" k-field="org.OrgName"></ak-col> -->

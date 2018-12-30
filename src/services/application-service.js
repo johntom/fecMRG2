@@ -252,6 +252,57 @@ export class ApplicationService {
       isSelected: false
     }
   ];
+
+
+
+
+
+
+
+
+ dataFormOneToManyTabs3 = [
+    {
+      name: "Address",
+      viewModel: "./one-to-many/address",
+      isSelected: false
+    },
+    {
+      name: "Artists",
+      viewModel: "./one-to-many/artists",
+      isSelected: false
+    },
+    {
+      name: "Catsold",
+      viewModel: "./one-to-many/catsold",
+      isSelected: false
+    },
+   
+    {
+      name: "Compcatsent",
+      viewModel: "./one-to-many/compcatsent",
+      isSelected: false
+    },
+    {
+      name: "Offering",
+      viewModel: "./one-to-many/offering",
+      isSelected: false
+    },
+    {
+      name: "Phone",
+      viewModel: "./one-to-many/phone",
+      isSelected: false
+    },
+    {
+      name: "Type",
+      viewModel: "./one-to-many/type",
+      isSelected: false
+    }
+  ];
+
+
+
+
+
   // apr 2018
   ConsignedTo = ''
   ConservedBy = ''
