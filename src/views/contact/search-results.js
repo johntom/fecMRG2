@@ -3,6 +3,8 @@ import { inject } from 'aurelia-dependency-injection';
 // import { Router } from 'aurelia-router';
 import { Router, Redirect } from 'aurelia-router';
 import { UtilService } from '../../services/util-service';
+import { ApplicationService } from '../../services/application-service'
+import { MyDataService } from "../../services/my-data-service"
 // import moment from 'moment';
 /*
  "_id" : ObjectId("5c146fafd2c10b602e351e05"), 
@@ -77,7 +79,10 @@ import { UtilService } from '../../services/util-service';
             "updatedAt" : ISODate("2018-12-28T23:02:20.967+0000")
         }, 
  */
-@inject(Router, ApiService, UtilService)
+
+// @inject(Router, ApiService, UtilService, ApplicationService, MyDataService, DialogService,EventAggregator)
+
+@inject(Router, ApiService, UtilService, ApplicationService)
 export class SearchResults {
   heading = 'Search Results HEADER...';
   footer = 'Search Results FOOTER...';
@@ -137,10 +142,11 @@ export class SearchResults {
 
 
 
-  constructor(router, api, utilService) {
+  constructor(router, api, utilService,appService) {
     this.router = router;
     this.api = api;
     this.utilService = utilService;
+    this.appService = appService;
   }
 
   activate(params, routeConfig) {
@@ -225,6 +231,13 @@ export class SearchResults {
     this.router.navigate(rt2);
 
   }
+
+  closeTab(tab) {
+
+		let index = this.appService.tabs.indexOf(tab);
+		tab.isSelected = false;
+		this.appService.tabs.splice(index, 1);
+	}
   //////////////
 
   // performSearch() {

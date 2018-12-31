@@ -13,10 +13,10 @@ import { Promptyn }      from '../../services/promptyn';
 export class Prompt {
   static inject = [DialogController, ApplicationService, MyDataService, DialogService, ApiService];
   // ConsignmentShippingID=ConservedFrom
-  orgfields = ['ConsignedTo', 'ConsignedFromID', 'ConsignmentShippingID', 'OwnerID',
+  orgfields = ['OrgID', 'ConsignedFromID', 'ConsignmentShippingID', 'OwnerID',
     'PhotographerID', 'PurchasedFrom', 'ConservedBy',
     'ConservedBy', 'SoldToID', 'SoldTo', 'LoanTo']
-  orgfielddesc = ['Consigned To', 'Consigned From', 'Consignment From (Shipping)', 'Owner',
+  orgfielddesc = ['Org', 'Consigned From', 'Consignment From (Shipping)', 'Owner',
     'Photographer', 'Purchased From', 'Conserved By',
     'Conserved By', 'Sold To', 'Sold To', 'Museum Loan To']
 
@@ -24,34 +24,18 @@ export class Prompt {
   textfields = ['Description', 'Comment', 'Inscribed', 'Treatment']
   textfielddesc = ['Enter Alt ID', 'Enter Comment', 'Enter Inscribed with left of ":" as reg text right as ialtics till "; repeat', 'Enter Treatment']
 
-  // for the datalist with medium support
-  selectedValue = null;
-  findOption = value => this.appService.codesListMediumSupport.find(x => x.Description === value)
+//   // for the datalist with medium support
+//   selectedValue = null;
+//   findOption = value => this.appService.codesListMediumSupport.find(x => x.Description === value)
 
-// arists
-  selectedValueA = null;
-  findOptionA = value => this.appService.artistList.find(x => x.ArtistName === value)
+// // arists
+//   selectedValueA = null;
+//   findOptionA = value => this.appService.artistList.find(x => x.ArtistName === value)
 
 // orgs
   selectedValueO = null;
-  findOptionO = value => this.appService.artistList.find(x => x.ArtistName === value)
-
-
-  //  this.ArtistName = this.currentItem.artist
-  //       if (this.ArtistName.ArtistName === undefined) this.ArtistName.ArtistName = this.currentItem.artist.lastName + ', ' + this.currentItem.artist.firstName
-  //       this.dartist.value = this.ArtistName
-// <div show.bind="fieldname==='Artist'">
-// 				<div class="form-group flex-column-1">
-// 					<aubs-typeahead ref='dartist' data.bind="appService.artistList" value.bind="ArtistName" debounce.bind="350" placeholder="${placeholder}"
-// 					 open-on-focus.bind="true" key="ArtistName" results-limit.bind="22" select-single-result.bind="true">
-// 					</aubs-typeahead>
-// 					<!-- <div> Artist: ${ArtistName | stringify}</div> -->
-// 					<div> born: ${ArtistName.yearofBirth } died: ${ArtistName.died} </div>
-// 				</div>
-// 			</div>
-//   this.ArtistName = this.currentItem.artist
-//   if (this.ArtistName.ArtistName === undefined) this.ArtistName.ArtistName = this.currentItem.artist.lastName + ', ' + this.currentItem.artist.firstName
-       
+  findOptionO = value => this.appService.orgsList.find(x => x.OrgName === value)
+      
   constructor(controller, appService, dataService, dialogService, api) {
     this.controller = controller;
     this.answer = null;
@@ -79,9 +63,7 @@ export class Prompt {
     return Promise
   }
 
-  // activate(question) {
-  //    this.question = question;
-  //} person
+ 
   activate(currentitem) {
     this.currentItem = currentitem;
     this.fieldname = currentitem.fieldname;
@@ -137,134 +119,67 @@ export class Prompt {
 
   }
   attached() {
-    let opos = this.orgfields.findIndex(x => x === this.fieldname);
-    if (opos !== -1) {
-      this.orgfielddescription = this.orgfielddesc[opos]
+    // let opos = this.orgfields.findIndex(x => x === this.fieldname);
+    // if (opos !== -1) {
+    //   this.orgfielddescription = this.orgfielddesc[opos]
 
-    } else {
-      this.orgfielddescription = this.fieldname
-    }
-    let topos = this.textfields.findIndex(x => x === this.fieldname);
-    if (topos !== -1) {
-      this.textfielddescription = this.textfielddesc[topos]
-      this.doc = ` ${this.textfielddescription} .`
-      this.heading = ` ${this.textfielddescription} .`
-      this.placeholder = `${this.textfielddescription}`
-    } else {
-      this.doc = `type any characters of the ${this.orgfielddescription} to select.`
-      this.heading = `Search ${this.orgfielddescription} to select.`
-      this.placeholder = `Enter any characters on ${this.orgfielddescription} to select.`
+    // } else {
+    //   this.orgfielddescription = this.fieldname
+    // }
+    // let topos = this.textfields.findIndex(x => x === this.fieldname);
+    // if (topos !== -1) {
+    //   this.textfielddescription = this.textfielddesc[topos]
+    //   this.doc = ` ${this.textfielddescription} .`
+    //   this.heading = ` ${this.textfielddescription} .`
+    //   this.placeholder = `${this.textfielddescription}`
+    // } else {
+    //   this.doc = `type any characters of the ${this.orgfielddescription} to select.`
+    //   this.heading = `Search ${this.orgfielddescription} to select.`
+    //   this.placeholder = `Enter any characters on ${this.orgfielddescription} to select.`
 
-    }
+    // }
 
 
-    if (this.fieldname === 'Artist') {
-    // if (this.currentItem.artist === undefined) {
-    //   } else {
-    //     this.ArtistName = this.currentItem.artist
-    //     if (this.ArtistName.ArtistName === undefined) this.ArtistName.ArtistName = this.currentItem.artist.lastName + ', ' + this.currentItem.artist.firstName
-    //     this.dartist.value = this.ArtistName
+   
+
+    // // let opos = this.orgfields.findIndex(x => x === this.fieldname);
+    // if (opos !== -1) {
+    //   this.fieldbase = 'ORG'
+
+    //   let orgs = this.appService.orgsList
+    //   let origid
+
+    //   if (this.fieldname === this.orgfields[opos]) {
+    //     if ((this.currentItem[this.orgfields[opos]] === undefined) || (this.currentItem[this.orgfields[opos]] === null)) { } else {
+    //       origid = orgs.findIndex(x => x._id === this.currentItem[this.orgfields[opos]])
+    //       this.orgobj = orgs[origid]
+    //     }
     //   }
-      this.doc = `Select Artist or add new if not in list.`
-      this.heading = `Select Insured or add new if not in list.`
-      this.placeholder = `Select Insured or add new if not in list.`
-      if (this.currentItem.artist === undefined || this.currentItem.artist === '') {
+    //   this.OrgName = this.orgobj
+    //   this.dorg.value = this.OrgName
+    // }
+    
+
+    if (this.fieldname === 'OrgID') {
+    
+      this.doc = `Select Org or add new if not in list.`
+      this.heading = `Select Org or add new if not in list.`
+      this.placeholder = `Select Org or add new if not in list.`
+      if (this.currentItem.OrgID === undefined || this.currentItem.OrgID === '') {
       } else {
-        //  this.insuredobj = this.currentItem.insured
-        this.myDatalistA.value = this.currentItem.artist.ArtistName
+         this.myDatalistO.value = this.currentItem.org.OrgName
       }
     
     }
 
 
-    if (this.fieldname === 'MediumSupportobj') {
-      this.doc = `type any characters of the   "Medium/Support: select or add new."`
-      this.heading = `Search Medium/Support: select or add new.`
-      this.placeholder = `Enter any characters on Medium/Support: select or add new.`
-      if (this.currentItem.MediumSupportobj === undefined) {
-      } else {
-        this.MedSup = this.currentItem.MediumSupportobj
-        this.myDatalist.value = this.MedSup.Description
-      }
-      
-    }
 
-    // let opos = this.orgfields.findIndex(x => x === this.fieldname);
-    if (opos !== -1) {
-      this.fieldbase = 'ORG'
-
-      let orgs = this.appService.orgsList
-      let origid
-
-      if (this.fieldname === this.orgfields[opos]) {
-        if ((this.currentItem[this.orgfields[opos]] === undefined) || (this.currentItem[this.orgfields[opos]] === null)) { } else {
-          origid = orgs.findIndex(x => x._id === this.currentItem[this.orgfields[opos]])
-          this.orgobj = orgs[origid]
-        }
-      }
-      this.OrgName = this.orgobj
-      this.dorg.value = this.OrgName
-    }
-    // }
-    //add DonatedBy
-    if (this.fieldname === 'SavedList') {
-      // we dont send a name of the list
-      // let meds = this.appService.savedlists 
-      // if ((this.currentItem.SoldTo === undefined) || (this.currentItem.orgsList === null)) {
-      // } else {
-      //   let mid = meds.findIndex(x => x._id === this.currentItem.OwnerID)
-      //   let orgobj = this.appService.orgsList[mid]//10]
-      //   // console.log('orgobj', orgobj)
-      //   this.OrgName = orgobj
-      //   this.dsaved.value = this.OrgName
-      // }
-    }
-
-
-
-    if (this.fieldname === 'selectedids') {
-      // this.appService.currentsavedlist
-      this.doc = this.appService.currentsavedlist + ` has the following Inventory codes.`
-
-      // we dont send a name of the list
-      // let meds = this.appService.savedlists 
-      // if ((this.currentItem.SoldTo === undefined) || (this.currentItem.orgsList === null)) {
-      // } else {
-      //   let mid = meds.findIndex(x => x._id === this.currentItem.OwnerID)
-      //   let orgobj = this.appService.orgsList[mid]//10]
-      //   // console.log('orgobj', orgobj)
-      //   this.OrgName = orgobj
-      //   this.dsaved.value = this.OrgName
-      // }
-      // let meds = this.appService.savedlists
-      // let orgobj = this.appService.savedlists[0]
-      // this.appService.selectedids = orgobj.InventoryCodes
-      //this.myMultiSelect.kWidget.dataSource.add(this.appService.selectedids);
-      //  let ss = this.appService.selectedids
-      //   this.myMultiSelect.kWidget.setDataSource(ss);
-
-    }
 
   }
 
-changeCallbackArtist(selectedValueA) {
-      let findvalue = this.myDatalistA.value
+changeCallbackOrg(selectedValueO) {
+      let findvalue = this.myDatalistO.value
 
-
-    // if (this.selectedValueA === undefined) {
-    //   //     alert(`you are about to add ${findvalue} to Insured`)
-    //   this.dialogService.open({ viewModel: Promptyn, model: `Add ${findvalue} to insured list or Cancel?`, lock: false }).whenClosed(response => {
-
-    //     if (!response.wasCancelled) {
-    //       this.addInsured(findvalue)
-    //     } else {
-    //       console.log('cancel');
-    //     }
-    //     console.log(response.output);
-    //   });
-
-
-    // }
   }
 
   
@@ -305,120 +220,101 @@ changeCallbackArtist(selectedValueA) {
 
   }
   save() {
-    //var current = this.dorg.typeahead("getActive");
 
-    // if (this.fieldname === 'SoldTo') {
-    //   let orgid = `${this.OrgName._id}`
-    //   let orgname = `${this.OrgName.OrgName}`
-    //   this.currentItem.SoldTo = orgid
-    //   this.currentItem.soldtoname = orgname
-    // let orgid = `${this.OrgName._id}`
-    // let orgname = `${this.OrgName.OrgName}`
-    // this.appService.currentItem.OwnerID = orgid
-    // this.appService.currentItem.ownername = orgname
-    // }
-    // let orgid = `${this.ArtistName.id}`
-    // let orgname = `${this.ArtistName.ArtistName}`
-    //   let artist = `${this.ArtistName}`
-    // this.currentItem.artistname = orgname
-    //  this.currentItem.artist = this.ArtistName
-    if (this.fieldname === 'Artist') {
+    if (this.fieldname === 'OrgID') {
 
-      this.currentItem.artist = this.ArtistName
+      this.currentItem.org = this.selectedValueO//this.OrgName
       // this.appService.currentItem.artist = this.ArtistName
     }
-    if (this.fieldname === 'MediumSupportobj') {
-      // this.currentItem.MediumSupportobj.id = this.MedSup.id
+    // if (this.fieldname === 'MediumSupportobj') {
+      
+    //   this.currentItem.MediumSupportobj = this.selectedValue
+    // }
+    // if (this.fieldname === 'OwnerID') {
+    //   if (this.OrgName.OrgName !== this.currentItem.ownername) {
+    //     this.currentItem.OwnerID = this.OrgName._id
+    //     this.currentItem.ownername = this.OrgName.OrgName
+    //   }
 
-      // if (this.MedSup !== this.currentItem.MediumSupportobj)
-      //   this.currentItem.MediumSupportobj = this.MedSup
-      this.currentItem.MediumSupportobj = this.selectedValue
-    }
-    if (this.fieldname === 'OwnerID') {
-      if (this.OrgName.OrgName !== this.currentItem.ownername) {
-        this.currentItem.OwnerID = this.OrgName._id
-        this.currentItem.ownername = this.OrgName.OrgName
-      }
+    // }
+    // if (this.fieldname === 'OrgID') {
+    //   if (this.OrgName.OrgName !== this.currentItem.soldtoname) {
 
-    }
-    if (this.fieldname === 'SoldToID') {
-      if (this.OrgName.OrgName !== this.currentItem.soldtoname) {
+    //     this.currentItem.OrgID = this.OrgName._id
+    //     this.currentItem.OrgName = this.OrgName.OrgName
+    //   }
+    // }
+    // if (this.fieldname === 'ConsignedFromID') {
+    //   if (this.OrgName.OrgName !== this.currentItem.consignedfromname) {
 
-        this.currentItem.SoldToID = this.OrgName._id
-        this.currentItem.soldtoname = this.OrgName.OrgName
-      }
-    }
-    if (this.fieldname === 'ConsignedFromID') {
-      if (this.OrgName.OrgName !== this.currentItem.consignedfromname) {
+    //     this.currentItem.ConsignedFromID = this.OrgName._id
+    //     this.currentItem.consignedfromname = this.OrgName.OrgName
+    //   }
+    // }
+    // if (this.fieldname === 'ConsignmentShippingID') {
+    //   if (this.OrgName.OrgName !== this.currentItem.consignmentshippingname) {
 
-        this.currentItem.ConsignedFromID = this.OrgName._id
-        this.currentItem.consignedfromname = this.OrgName.OrgName
-      }
-    }
-    if (this.fieldname === 'ConsignmentShippingID') {
-      if (this.OrgName.OrgName !== this.currentItem.consignmentshippingname) {
+    //     this.currentItem.ConsignmentShippingID = this.OrgName._id
+    //     this.currentItem.consignmentshippingname = this.OrgName.OrgName
+    //   }
 
-        this.currentItem.ConsignmentShippingID = this.OrgName._id
-        this.currentItem.consignmentshippingname = this.OrgName.OrgName
-      }
+    // }
+    // if (this.fieldname === 'ConservedBy') {
+    //   // let orgid = `${this.OrgName._id}`
+    //   // let orgname = `${this.OrgName.OrgName}`
+    //   if (this.OrgName.OrgName !== this.currentItem.conservedbyname) {
 
-    }
-    if (this.fieldname === 'ConservedBy') {
-      // let orgid = `${this.OrgName._id}`
-      // let orgname = `${this.OrgName.OrgName}`
-      if (this.OrgName.OrgName !== this.currentItem.conservedbyname) {
+    //     this.currentItem.ConservedBy = this.OrgName._id
+    //     this.currentItem.conservedbyname = this.OrgName.OrgName
+    //   }
 
-        this.currentItem.ConservedBy = this.OrgName._id
-        this.currentItem.conservedbyname = this.OrgName.OrgName
-      }
+    // }
+    // if (this.fieldname === 'ConsignedTo') {
+    //   if (this.OrgName.OrgName !== this.currentItem.consignedtoname) {
 
-    }
-    if (this.fieldname === 'ConsignedTo') {
-      if (this.OrgName.OrgName !== this.currentItem.consignedtoname) {
+    //     this.currentItem.ConsignedTo = this.OrgName._id
+    //     this.currentItem.consignedtoname = this.OrgName.OrgName
+    //   }
+    // }
 
-        this.currentItem.ConsignedTo = this.OrgName._id
-        this.currentItem.consignedtoname = this.OrgName.OrgName
-      }
-    }
+    // if (this.fieldname === 'PurchasedFrom') {
+    //   if (this.OrgName.OrgName !== this.currentItem.purchasedfromname) {
 
-    if (this.fieldname === 'PurchasedFrom') {
-      if (this.OrgName.OrgName !== this.currentItem.purchasedfromname) {
+    //     this.currentItem.PurchasedFrom = this.OrgName._id
+    //     this.currentItem.purchasedfromname = this.OrgName.OrgName
+    //   }
+    // }
+    // if (this.fieldname === 'LoanTo') {
+    //   if (this.OrgName.OrgName !== this.currentItem.loantoname) {
 
-        this.currentItem.PurchasedFrom = this.OrgName._id
-        this.currentItem.purchasedfromname = this.OrgName.OrgName
-      }
-    }
-    if (this.fieldname === 'LoanTo') {
-      if (this.OrgName.OrgName !== this.currentItem.loantoname) {
+    //     this.currentItem.LoanTo = this.OrgName._id
+    //     this.currentItem.loantoname = this.OrgName.OrgName
+    //   }
+    // }
+    // if (this.fieldname === 'PhotographerID') {
+    //   if (this.OrgName.OrgName !== this.currentItem.photographername) {
 
-        this.currentItem.LoanTo = this.OrgName._id
-        this.currentItem.loantoname = this.OrgName.OrgName
-      }
-    }
-    if (this.fieldname === 'PhotographerID') {
-      if (this.OrgName.OrgName !== this.currentItem.photographername) {
+    //     this.currentItem.PhotographerID = this.OrgName._id
+    //     this.currentItem.photographername = this.OrgName.OrgName
+    //   }
+    // }
+    // if (this.fieldname === 'ConsignmentShippingID') {
+    //   if (this.OrgName.OrgName !== this.currentItem.consignmentshippingname) {
 
-        this.currentItem.PhotographerID = this.OrgName._id
-        this.currentItem.photographername = this.OrgName.OrgName
-      }
-    }
-    if (this.fieldname === 'ConsignmentShippingID') {
-      if (this.OrgName.OrgName !== this.currentItem.consignmentshippingname) {
+    //     this.currentItem.ConsignmentShippingID = this.OrgName._id
+    //     this.currentItem.consignmentshippingname = this.OrgName.OrgName
+    //   }
+    // }
 
-        this.currentItem.ConsignmentShippingID = this.OrgName._id
-        this.currentItem.consignmentshippingname = this.OrgName.OrgName
-      }
-    }
-
-    if (this.fieldname === 'Treatment') {
-      this.currentItem.Treatment
-    }
-    if (this.fieldname === 'SavedList') {
-      let name = `${this.name.name}`
-      console.log(' dsaved.value', name)//, this.dsaved.value)
-      // this.dsaved.value = this.name//this.addlist
-      this.appService.currentsavedlist = name// dsaved.value
-    }
+    // if (this.fieldname === 'Treatment') {
+    //   this.currentItem.Treatment
+    // }
+    // if (this.fieldname === 'SavedList') {
+    //   let name = `${this.name.name}`
+    //   console.log(' dsaved.value', name)//, this.dsaved.value)
+    //   // this.dsaved.value = this.name//this.addlist
+    //   this.appService.currentsavedlist = name// dsaved.value
+    // }
     this.controller.ok('saved')//cancel()
   }
 }

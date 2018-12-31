@@ -112,26 +112,7 @@
 
 				</div>
 			</div>
-			<div show.bind="fieldname==='Artist'">
-				<div class="form-group flex-column-1">
-					<!-- <aubs-typeahead ref='dartist' data.bind="appService.artistList" value.bind="ArtistName" debounce.bind="350" placeholder="${placeholder}"
-					 open-on-focus.bind="true" key="ArtistName" results-limit.bind="22" select-single-result.bind="true">
-					</aubs-typeahead>
-					<div> born: ${ArtistName.yearofBirth } died: ${ArtistName.died} </div> -->
-
-<label for="Artist">Artist</label>
-					<input ref="myDatalistA" type="text" list="myDatalistA" change.delegate="changeCallbackArtist(selectedValue)" 
-					input.delegate="selectedValueA = findOptionI($event.target.value)"
-					/>
-					<datalist id="myDatalistA">
-						<option repeat.for="option of appService.artistList">${option.ArtistName}</option>
-					</datalist>
-					<pre style="margin-top: 100px"><code>${selectedValueA.ArtistName}</code></pre>
-
-
-
-				</div>
-			</div>
+			
 
 
 
@@ -149,20 +130,55 @@
 				</div>
 			</div>
 
-			<div show.bind="fieldbase==='ORG'">
+			<!-- <div show.bind="fieldbase==='ORG'">
 				<div class="form-group flex-column-1">
 					<div>
 						<div show.bind="fieldbase==='ORG'">
 							<aubs-typeahead ref='dorg' data.bind="appService.orgsList" value.bind="OrgName" debounce.bind="350" placeholder="${placeholder}"
 							 open-on-focus.bind="true" key="OrgName" results-limit.bind="22" select-single-result.bind="true">
 							</aubs-typeahead>
-							<!-- <div> Org: ${OrgName | stringify}</div> -->
 							Address: ${OrgName.Addess} ${OrgName.City} ${OrgName.State}
 						</div>
 
 					</div>
 				</div>
+			</div> -->
+<div show.bind="fieldname==='Artist'">
+				<div class="form-group flex-column-1">
+				
+
+<label for="Artist">Artist</label>
+					<input ref="myDatalistA" type="text" list="myDatalistA" change.delegate="changeCallbackArtist(selectedValue)" 
+					input.delegate="selectedValueA = findOptionI($event.target.value)"
+					/>
+					<datalist id="myDatalistA">
+						<option repeat.for="option of appService.artistList">${option.ArtistName}</option>
+					</datalist>
+					<pre style="margin-top: 100px"><code>${selectedValueA.ArtistName}</code></pre>
+
+
+
+				</div>
 			</div>
+
+
+	<div show.bind="fieldname==='OrgID'">
+				<div class="form-group flex-column-1">
+				
+<label for="Org">Org</label>
+					<input ref="myDatalistO" type="text" list="myDatalistO" change.delegate="changeCallbackOrg(selectedValue)" 
+					input.delegate="selectedValueO = findOptionO($event.target.value)"
+					/>
+					<datalist id="myDatalistO">
+						<option repeat.for="option of appService.orgsList">${option.OrgName}</option>
+					</datalist>
+					<pre style="margin-top: 100px"><code>${selectedValueO.OrgName}</code></pre>
+
+
+
+				</div>
+			</div>
+
 
 
 			<hr>
@@ -178,35 +194,3 @@
 	</ux-dialog>
 </template>
 
-
-<!-- !-- <div show.bind="fieldname ==='MediumSupportobj'">
-			
-        <div class="form-group flex-column-1">
-					<aubs-typeahead ref='dmediumsupport' data.bind="appService.codesListMediumSupport" 
-          value.bind="MedSup" debounce.bind="350"
-					 placeholder="${placeholder}" open-on-focus.bind="true"
-            key="Description" results-limit.bind="22" select-single-result.bind="true">
-					</aubs-typeahead>
-         
-	<label for="newms">New Medium Support</label>
-					<input id="newms" type="text" class="form-control" placeholder="enter new insured.." value.bind="currentItem.newms">
-					<button class="btn btn-success" click.trigger="addnewms()">Add new medium support</button>
-
-
-
-				</div>
-	</div> -->
-
-<!-- <div show.bind="fieldname ==='MediumSupportobj'">
-			 <div class="form-group flex-column-1">
-					<aubs-typeahead ref='dmediumsupport' data.bind="appService.codesListMediumSupport" value.bind="MedSup"
-           debounce.bind="350" placeholder="${placeholder}"
-           open-on-focus.bind="true"  key="Description" results-limit.bind="22"
-           select-single-result.bind="true">
-					</aubs-typeahead>
-            <label for="newms">New Medium Support</label>
-					<input id="newms" type="text" class="form-control" placeholder="enter new insured.." value.bind="currentItem.newms">
-					<button class="btn btn-success" click.trigger="addnewms()">Add new medium support</button>
-
-				</div>
-			</div> -->

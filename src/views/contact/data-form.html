@@ -145,13 +145,9 @@
 										<strong>FirstName</strong>
 									</div>
 									<div class="Rtable-cell-70  Rtable-cell--highlight">
-										<div if.bind="recordId === 'create'">
 											<input type="text" id="FirstName" class="form-control input-sm" value.bind="currentItem.FirstName ">
-										</div>
-										<div if.bind="recordId !== 'create'" style="width:280px">
-											${currentItem.FirstName}
-
-										</div>
+										
+									
 
 
 									</div>
@@ -173,19 +169,27 @@
 									</div>
 
 
-
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
-										<strong> TitleDesc</strong>
-									</div>
-									<div class="Rtable-cell-70  Rtable-cell--highlight">
 
-										<input type="text" xid="TitleDesc" class="form-control input-sm" value.bind="currentItem.TitleDesc">
-										<!--  & validate -->
-									</div>
-									<div class="Rtable-cell-30 Rtable-cell--highlight">
-										<span dblclick.delegate="showModal( 'MediumSupportobj') ">	<strong> Medium</strong></span>
+										<span dblclick.delegate="showModal( 'OrgID') ">	<strong> Org</strong></span>
 
 									</div>
+								
+
+									<div class="Rtable-cell-70  Rtable-cell--light">
+
+
+										<div style="height:15px;margin-left:10px;margin-top:5px;margin-bottom:10px" if.bind="currentItem.org.OrgName===undefined || currentItem.org.OrgName==='' ">
+											<a click.delegate="showModal( 'OrgID')">select_link </a>
+										</div>
+										<div style="height:15px;margin-left:10px;margin-top:5px;margin-bottom:10px" else>
+											<a click.delegate="showModal( 'OrgID')">${currentItem.org.OrgName} </a>
+
+										</div>
+
+									</div>
+
+								
 
 								</div>
 							</div>

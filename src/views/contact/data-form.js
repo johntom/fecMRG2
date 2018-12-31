@@ -82,7 +82,8 @@ export class DataForm {
         // notes.splice(index, 1)// start, deleteCount)
 
       } else {
-        if (this.currentItem.artist === null) {
+        if (this.currentItem.org === null) {
+          alert(currentItem.org.OrgName)
           //// this.currentItem.artist.ArtistName=undefined
           //  this.controller.validate()
         }
@@ -276,7 +277,7 @@ export class DataForm {
         let tab = this.appService.dataFormOneToManyTabs3[tabindex];
         this.selectOneToManyTab(tab);
       }
-      this.getimageinfo()
+      // this.getimageinfo()
     }
   }
 
@@ -290,19 +291,19 @@ export class DataForm {
       if (this.currentItem.Title === undefined || this.currentItem.InventoryCode === undefined
         || this.currentItem.MediumSupportobj === undefined
         || this.currentItem.artist === undefined) {
-        alert('Please fix  Title, InventoryCode, MediumSupport and or artist ')
+        alert('Please fix  contact ')
       } else {
-        this.api.createinventory(this.currentItem).then((jsonRes) => {
+        this.api.createcontact(this.currentItem).then((jsonRes) => {
           console.log('jsonRes ', jsonRes);
           this.recordId = jsonRes.id
           //let tab = this.appService.tabs.find(f => f.isSelected);
           if (this.currentItem.id === 'create') {
             this.currentItem.id = ''
-            this.message = "Save successful. Inventory added @ " + savetime
+            this.message = "Save successful. contact added @ " + savetime
           }
           //this.mrubuild() it will add if when opening
           this.requestclose()
-          this.router.navigate(`#/inventory/data/${this.currentItem.InventoryCode}`)
+          this.router.navigate(`#/contact/data/${this.currentItem.InventoryCode}`)
         });
       }
     } else {
@@ -310,7 +311,7 @@ export class DataForm {
       if (JSON.stringify(this.currentItem) !== JSON.stringify(this.appService.originalrec)) {
         // SAVE WITH IMAGE INFO IN CASE ITS MISSING
         // nsure if needed this.getimageinfo()
-        this.api.saveinventory(this.currentItem).then((jsonRes) => {
+        this.api.savecontact(this.currentItem).then((jsonRes) => {
           console.log('jsonRes ', jsonRes)
           let tab = this.appService.tabs.find(f => f.isSelected);
           // window.alert("Save successful!");

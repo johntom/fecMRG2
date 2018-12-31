@@ -751,10 +751,10 @@ saveMerge(slname, editorval) {
     }).then((res) => res.json());
   }
 
-  // get images
-  saveinmate(rec) {
+
+ savecontact(rec) {
     //alert('in saveclaim')
-    let url = this.baseweb + `v1/inmate/update`
+    let url = this.baseweb + `v1/contact/update`
     console.log('url ', url)
     //return {'data': true}
     return this.http.fetch(url, {
@@ -766,14 +766,12 @@ saveMerge(slname, editorval) {
         // , 'Authorization': 'JWT ' + token
       },
       body: JSON.stringify(rec)
-      //   body: rec
     }).then((res) => res.json());
   }
 
-  addinmate(rec) {
-    //alert('in saveclaim')
-    console.log('addinmate rec', rec)
-    let url = this.baseweb + `v1/inmate/create`
+  addcontact(rec) {
+    console.log('addcontact rec', rec)
+    let url = this.baseweb + `v1/contact/create`
     console.log('url ', url)
     //return {'data': true}
     return this.http.fetch(url, {
@@ -782,7 +780,7 @@ saveMerge(slname, editorval) {
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
-        // , 'Authorization': 'JWT ' + token
+      
       },
       body: JSON.stringify(rec)
     }).then((res) => res.json());

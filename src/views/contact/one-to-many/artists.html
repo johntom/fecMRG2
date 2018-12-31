@@ -1,117 +1,75 @@
-	<template>
-		<require from="./docs.css"></require>
-		<section class="docs full-height flex-column-1 overflow-y-auto ignore">
-			<!--
-				 "_id" : ObjectId("5c158130d1ce1404366cd479"), 
-    "ID" : NumberInt(3), 
-    "ContactID" : NumberInt(810), 
-    "OrgID" : NumberInt(811), 
-    "ArtistID" : NumberInt(429), 
-    "createdAt" : ISODate("2018-12-15T22:33:20.701+0000"), 
-    "updatedAt" : ISODate("2018-12-15T22:33:20.701+0000")
-			-->
-	<h4>
-			<i class="fa fa-folder-open"></i> Photos for ${currentItem.currentItem.InventoryCode} click button below or drag n drop files's over button
-			<a slot="buttons-slot" class="btn btn-success" click.delegate="addDocs(file)">
-				<i class="fa fa-plus"></i> Add Uploaded File
-			</a>
-     
-      
-      	<a slot="buttons-slot" class="btn btn-success" click.delegate="modalDocs()">
-				<i class="fa fa-plus"></i> Popup Docs
-			</a>
 
-      	<a slot="buttons-slot">
-          <input id="icon_prefix" type="text" value.bind="searchdoc & debounce" class="validate">
-                            
-			 <i class="material-icons prefix">search</i>
-			</a>
 
-      
-      	<input style='height:88' id='file' type="file" name="file" files.bind="file" multiple>
-		   
+<template>
+  
+<style>
+table thead tr{
+    display:block;
+}
+
+table th,table td{ 
+    width:80%//1200px;//fixed width
+}
+
+
+table  tbody{
+  display:block;
+  height:200px;
+  overflow:auto;//set tbody to auto
+}
+
+</style>
+	<require from="./docs.css"></require>
+	<section class="docs full-height flex-column-1 overflow-y-auto ignore">
+		<h4>
+			<i class="fa fa-folder-open"></i> Artist 
+			<a slot="buttons-slot" class="btn btn-primary" click.delegate="addNote()">
+				<i class="fa fa-plus"></i> Add Artist
+			</a>
 		</h4>
-
 			<table class="table-condensed table">
-				<thead class="table-header-blue" data-sort="items.bind: currentItem.photo; cols: ['WorkDate','Notes']">
-					<tr>
-            	<th class="header">FILE_NAME </th>
-					
-						<th class="header">Photogpraher </th>
-						<th class="header">Format </th>
-						<th class="header">Date </th>
-         		<th class="header">Note </th>
-						<!-- <th class="header">PhotoTaken </th> -->
-
-						<th class="header"> </th>
-					</tr>
-				</thead>
-				<tfoot>
-					<tr>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-				</tfoot>
-				<tbody>
- 
-					<tr repeat.for="photo of currentItem.photo" with.bind="photo">
-            	<td>
-							<span>https://artbased.com/api/v1/getonepdf/inv/${currentItem.InventoryCode}.jpg</span>
+			<thead class="table-header-blue" > 
+				<tr>
 				
-           
-          
-          		<a size='100' class="form-control  input-sm" target="_blank" href="https://adjusters.markadjustment.com/docs/${currentItem.CLAIM_NO}/${doc.FILE_NAME}">
-								${FILE_NAME}
-							</a>
-						</td>
-						<td width="250px">
-					<select id="PhotographerID" class="form-control  input-sm" value.bind="PhotographerID"> 
-                <option model.bind="null">Choose...</option> 
-                <option repeat.for="opt of appService.codesPhotographers " model.bind="opt.ID">
-                ${opt.Description} 
-                </option> 
-                </select>
-
-
-              
-               			<!-- <input click.delegate="showModal('PhotographerID',$index)" type="text" id="PhotographerID" class="form-control input-sm" value.bind="photographername"> -->
-			
-						</td>
-
-						<td width="200px">
-							<select id="PhotoFormatID" class="form-control  input-sm" value.bind="PhotoFormatID"> 
-                <option model.bind="null">...</option> 
-                <option repeat.for="opt of appService.codesPhotoFormat " model.bind="opt.ID">
-                ${opt.Description} 
-                </option> 
-                </select>
-
-						</td>
-
-						<td width="120px"><input type="date" id="Date" class="form-control  input-sm" value.bind="photo.PhotoDate"></td>
-
-						<td width="120px"><input type="text" id="Note" class="form-control  input-sm" value.bind="photo.PhotoMemo"></td>
-						<!-- <td width="120px"><input type="text" id="PhotoTaken" class="form-control  input-sm" value.bind="photo.PhotoTaken"></td> -->
-
-
-						<td width="225px">
-							<!-- <button class="btn btn-primary" click.delegate="museumloan.edit=!museumloan.edit">${ !museumloan.edit ? 'Update' : 'Done' }</button> -->
+          	<tr>
+						<th width="300px"class="header">Artist
+						</th>
 						
-            			<button class="btn btn-primary" click.delegate="saveitem(photo,$index)">${ !photo.edit ? 'Edit' : 'Save' }</button>
-
-            
-            	<button class="btn btn-sm btn-danger" click.delegate="remove(photo)">           Delete            </button>
-						</td>
-
-
+						<th width="225px" class="header">Cmd
+						
+						</th>
 					</tr>
-				</tbody>
-			</table>
+			</thead>
+			<tfoot>
+				<tr>
+					<td></td>
+					<td></td>
+				</tr>
+			</tfoot>
+			<tbody>
+			<tr repeat.for="artist of currentItem.artists" with.bind="artist">
+				
+					<td width="400px">
+            <!-- <td width="50%"> -->
+						<span show.bind="!artist.edit">${artist.ArtistName} , ${artist.yearofBirth}  b.$(artist.YearofBirth)
+         	 d.${artist.died }</span>
 
-		</section>
-	</template>
+						<input show.bind="artist.edit" class="form-control input-sm" disabled.bind="!artist.edit" type="text" value.bind="ArtistID">
+         	</td>
+
+					<td width="225px">
+					<!-- <button class="btn btn-primary" click.delegate="note.edit=!note.edit">${ !note.edit ? 'Update' : 'Done' }</button> -->
+			 
+         	<button class="btn btn-primary" click.delegate="saveitem(note,$index)">${ !note.edit ? 'Update' : 'Done' }</button>
+
+      		<button class="btn btn-danger" click.delegate="remove(note,$index)">Delete</button> 
+       
+					</td>
+	
+
+			</tbody>
+		</table>
+	
+	</section>
+</template>
+

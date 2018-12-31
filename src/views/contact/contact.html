@@ -25,8 +25,24 @@
 					<div class="form-group">
 						<input id="searchorgstate" type="text" class="form-control" placeholder="Search for org state ..." value.bind="search.orgstate">
 					</div>
-					<button id="searchInputBtn" class="btn btn-primary" type="button" click.delegate="performSearch()">Search!</button>
-				</form>
+			<div class="form-group flex-column-1 margin-left-10">
+							<label for="adjuster">mru</label>
+
+							<ul>
+								<li repeat.for='e of mru'>
+
+									<a click.delegate="populateInv(e)"> ${e}</a>
+
+								</li>
+							</ul>
+						</div>
+      
+
+      		<button id="searchInputBtn" class="btn btn-primary" type="button" click.delegate="performSearch()">Search!</button>
+			
+      
+      
+      	</form>
 
 		
 			</div>

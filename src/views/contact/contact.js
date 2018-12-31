@@ -1,35 +1,59 @@
 import {Router, Redirect} from 'aurelia-router';
 import {UtilService} from '../../services/util-service';
-
-// for bb test
 import { ApiService } from '../../utils/servicesApi';
 
+
+import { EventAggregator } from 'aurelia-event-aggregator';
+
 export class Contact{
-  static inject = [Router, UtilService,ApiService];
+  static inject = [Router, UtilService,ApiService,EventAggregator];
 
   heading = 'Welcome to the Contact page';
   counter = 1;
   search = {}
+  selectedValue = null;
+   findOption = value => this.mru.find(x => x === value);
+  options = [];//multiselect select2
+  selected = [];//multiselect select2
+  altAKeyPressSubscription;
 
- 
-  constructor(router, utilService,api) {
+  constructor(router, utilService,api, eventAggregator) {
     this.router = router;
     this.utilService = utilService;
       this.api = api;
+       this.eventAggregator = eventAggregator
+  }
+attached() {
+    this.altAKeyPressSubscription = this.eventAggregator.subscribe('keydown:alt-a', this.addinventory.bind(this));
+    this.altSKeyPressSubscription = this.eventAggregator.subscribe('keydown:alt-s', this.performSearch.bind(this));
+
+  }
+  detached() {
+    this.altAKeyPressSubscription.dispose();
+    this.altSKeyPressSubscription.dispose();
+  }
+  addinventory() {
+     alert ('add')
+    // this.router.navigate(`#/inventory/data/create`);
   }
 activate(){
  
+ console.log('name-tag activate before attached ');
+    this.mru = []
+    let mruinfo, tabindex
+    mruinfo = localStorage.getItem('mru-mrgc');
+    if (mruinfo === null) {
+      // tabindex = 0
+      this.mruinfo = 0
+    } else {
+      this.mruinfo = JSON.parse(mruinfo)
 
-//  return this.api.getBB('1022709')
-//         .then((jsonRes) => {
-//           console.log('jsonRes ', jsonRes);          
-//           let inv = jsonRes.data;
-//           this.currentItem = inv[0];
-//           console.log('data-form:activate - currentItem', jsonRes,inv,this.currentItem);
-//           // this.inv = inv[0]
-//           // // console.log('this.inv loadData 0 ', inv[0].InventoryCode);
-//           // return inv
-//         });
+      this.mru.push(this.mruinfo.mru1)
+      this.mru.push(this.mruinfo.mru2)
+      this.mru.push(this.mruinfo.mru3)
+      this.mru.push(this.mruinfo.mru4)
+      this.mru.push(this.mruinfo.mru5)
+    }
 
 }
   performSearch() {
@@ -41,4 +65,10 @@ activate(){
       // this.router.navigate(`#/inventory/InvSearch`);
     }
   }
+
+  populateInv(e) {
+    // this.appService.onlyonce = 0
+     this.router.navigate(`#/contact/data/${e}`);
+  }
+
 }
