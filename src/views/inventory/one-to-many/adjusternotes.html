@@ -19,6 +19,7 @@ table  tbody{
 }
 </style>
 	<require from="./docs.css"></require>
+    <require from="../../../resources/value-converters/date-format"></require>
 	<section class="docs full-height flex-column-1 overflow-y-auto ignore">
 		<h4>
 			<i class="fa fa-folder-open"></i> Notes 
@@ -55,7 +56,7 @@ table  tbody{
 					<td width="300px">
           
           <!-- <td width="30%"> -->
-          	<span show.bind="!note.edit">${WorkDate}</span>
+          	<span show.bind="!note.edit">${WorkDate | dateFormat }}</span>
 						<input show.bind="note.edit" class="form-control input-sm" disabled.bind="!note.edit" type="date" value.bind="WorkDate">
 					</td>
 					<td width="400px">

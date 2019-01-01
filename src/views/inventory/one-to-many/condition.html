@@ -1,5 +1,6 @@
 <template>
 	<require from="./docs.css"></require>
+    <require from="../../../resources/value-converters/date-format"></require>
 	<section class="docs full-height flex-column-1 overflow-y-auto ignore">
 		<h4>
 			<i class="fa fa-folder-open"></i> Condition
@@ -31,7 +32,7 @@
 			<tbody>
 			<tr repeat.for="condition of currentItem.condition" with.bind="condition">
 					<td width="125px">
-						<span show.bind="!condition.edit">${ConditionDate}</span>
+						<span show.bind="!condition.edit">${ConditionDate | dateFormat }}</span>
 						<input show.bind="condition.edit" class="form-control input-sm" disabled.bind="!condition.edit" type="date" value.bind="ConditionDate">
 					</td>
 					<td width="325px">

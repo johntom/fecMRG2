@@ -1,5 +1,7 @@
 <template>
 	<require from="./docs.css"></require>
+  <require from="../../../resources/value-converters/date-format"></require>
+  
 	<!-- section class="customer-orders au-animate" -->
 	<section class="docs full-height flex-column-1 overflow-y-auto ignore">
 		<h4>
@@ -25,6 +27,7 @@
 					<th class="header">PDF </th>
 					<th class="header">Notes </th>
 					<th class="header">Sold </th>
+          					<th class="header">Cmd </th>
 					<!-- <th class="header">Created</br>Date </th>
 					<th class="header">Modified</br>Date </th> -->
 
@@ -57,11 +60,11 @@
 					</td>
 
 					<td width="95px">
-						<span show.bind="!consignedto.edit">${ConsignedStartDate}</span>
+						<span show.bind="!consignedto.edit">${ConsignedStartDate | dateFormat}</span>
 						<input show.bind="consignedto.edit" class="form-control input-sm" disabled.bind="!consignedto.edit" type="date" value.bind="ConsignedStartDate">
 					</td>
 					<td width="95px">
-						<span show.bind="!consignedto.edit">${ConsignedEndDate}</span>
+						<span show.bind="!consignedto.edit">${ConsignedEndDate  | dateFormat }</span>
 						<input show.bind="consignedto.edit" class="form-control input-sm" disabled.bind="!consignedto.edit" type="date" value.bind="ConsignedEndDate">
 					</td>
 					<td width="125px">
@@ -83,7 +86,7 @@
 					</td>
 			
 					<td width="105px">
-						<span show.bind="!consignedto.edit">${ArtworkReleased}</span>
+						<span show.bind="!consignedto.edit">${ArtworkReleased | dateFormat}</span>
 						<input show.bind="consignedto.edit" class="form-control input-sm" disabled.bind="!consignedto.edit" type="date" value.bind="ArtworkReleased">
 					</td>
 					<td width="85px">
@@ -106,9 +109,9 @@
 						<span show.bind="!consignedto.edit">${Sold}</span>
 						<input show.bind="consignedto.edit" disabled.bind="!consignedto.edit" type="checkbox" checked.bind="Sold"> </td>
 					</td>
-	<td width="75px">
+	<!-- <td width="75px">
 					${CreatedDate}
-					</td>
+					</td> -->
           	<!--td width="75px">
 					${ModifiedDate}
 					</td> -->

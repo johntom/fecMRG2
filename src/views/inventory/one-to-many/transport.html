@@ -2,6 +2,7 @@
 
 <template>
 	<require from="./docs.css"></require>
+  <require from="../../../resources/value-converters/date-format"></require>
 	<section class="docs full-height flex-column-1 overflow-y-auto ignore">
 		<h4>
 			<i class="fa fa-folder-open"></i> Transport 
@@ -39,8 +40,8 @@
 				<tr repeat.for="transport of currentItem.transport" with.bind="transport">
 
 					<td width="90px">
-						<span show.bind="!transport.edit">${TransportDate}</span>
-						<input show.bind="transport.edit" class="form-control input-sm" disabled.bind="!transport.edit" type="date" value.bind="TransportDate">
+						<span show.bind="!transport.edit">${TransportDate | dateFormat }</span>
+						<input show.bind="transport.edit" class="form-control input-sm" disabled.bind="!transport.edit" type="date" value.bind="TransportDate ">
 					</td>
 
 

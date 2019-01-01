@@ -1,5 +1,7 @@
 <template>
 	<require from="./docs.css"></require>
+  <require from="../../../resources/value-converters/date-format"></require>
+ 
 	<section class="docs full-height flex-column-1 overflow-y-auto ignore">
 		<h4>
 			<i class="fa fa-folder-open"></i> Museum Loan
@@ -71,7 +73,7 @@
 					<td width="120px"><input type="checkbox" id="AgreementFormSignedMRG" checked.bind="museumloan.AgreementFormSignedMRG"></td>
 					<td width="120px"><input type="checkbox" id="AgreementFormCountersigned" checked.bind="museumloan.AgreementFormCountersigned"></td>
 					<td width="120px"><input type="checkbox" id="CofI" checked.bind="museumloan.CofI"></td>
-					<td width="120px"><input type="date" id="ArtworkReleased" checked.bind="museumloan.ArtworkReleased"></td>
+					<td width="120px"><input type="date" id="ArtworkReleased" checked.bind="museumloan.ArtworkReleased  | dateFormat "></td>
 					<td width="220px"><input type="text" id="TransportNotes" class="form-control  input-sm" value.bind="museumloan.TransportNotes"></td>
 
 					<td width="120px"><input type="checkbox" id="Catalog" checked.bind="museumloan.Catalog"></td>

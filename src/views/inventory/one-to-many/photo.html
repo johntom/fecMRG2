@@ -1,5 +1,5 @@
 	<template>
-		<require from="./docs.css"></require>
+		<require from="./docs.css"></require>  <require from="../../../resources/value-converters/date-format"></require>
 		<section class="docs full-height flex-column-1 overflow-y-auto ignore">
 			<!-- <h4>
 				<i class="fa fa-folder-open"></i> Photo
@@ -57,14 +57,16 @@
 				<tbody>
  
 					<tr repeat.for="photo of currentItem.photo" with.bind="photo">
-            	<td>
-							<span>https://artbased.com/api/v1/getonepdf/inv/${currentItem.InventoryCode}.jpg</span>
-				
-           
+            	<td width="350px">
+
+					
+          		<a size='100' class="form-control  input-sm" target="_blank" href="https://artbased.com/api/v1/getonepdf/inv/${currentItem.InventoryCode}.jpg">
+						<span>https://artbased.com/api/v1/getonepdf/inv/${currentItem.InventoryCode}.jpg</span>
+						</a>
+						</td>
+
           
-          		<a size='100' class="form-control  input-sm" target="_blank" href="https://adjusters.markadjustment.com/docs/${currentItem.CLAIM_NO}/${doc.FILE_NAME}">
-								${FILE_NAME}
-							</a>
+          	
 						</td>
 						<td width="250px">
 					<select id="PhotographerID" class="form-control  input-sm" value.bind="PhotographerID"> 
@@ -90,9 +92,9 @@
 
 						</td>
 
-						<td width="120px"><input type="date" id="Date" class="form-control  input-sm" value.bind="photo.PhotoDate"></td>
+						<td width="120px"><input type="date" id="Date" class="form-control  input-sm" value.bind="PhotoDate"  ></td>
 
-						<td width="120px"><input type="text" id="Note" class="form-control  input-sm" value.bind="photo.PhotoMemo"></td>
+						<td width="120px"><input type="text" id="Note" class="form-control  input-sm" value.bind="PhotoMemo"></td>
 						<!-- <td width="120px"><input type="text" id="PhotoTaken" class="form-control  input-sm" value.bind="photo.PhotoTaken"></td> -->
 
 

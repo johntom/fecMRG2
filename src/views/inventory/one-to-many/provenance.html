@@ -1,6 +1,8 @@
 <template>
 	<require from="./docs.css"></require>
-
+ <require from="../../../resources/value-converters/date-format"></require>
+  
+ 
 <section class="docs full-height flex-column-1 overflow-y-auto ignore">
 		<h4>
 			<i class="fa fa-folder-open"></i> Provenance
@@ -48,7 +50,7 @@
                     </select>
 
 					</td>
-					<td width="120px"><input type="text" id="ProvDate" class="form-control  input-sm" value.bind="ProvDate"></td>
+					<td width="120px"><input type="date" id="ProvDate" class="form-control  input-sm" value.bind="ProvDate  | dateFormat "></td>
 					<td width="120px"><input type="text" id="ProvMemo" class="form-control  input-sm" value.bind="ProvMemo"></td>
 					<td width="120px"><input type="text" id="ProvSortDate" class="form-control  input-sm" value.bind="ProvSortDate"></td>
 					<td width="120px"><input type="text" id="Sequence" class="form-control  input-sm" value.bind="Sequence"></td>

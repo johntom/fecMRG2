@@ -1,6 +1,8 @@
 <template>
 	<require from="./docs.css"></require>
-
+  <require from="../../../resources/value-converters/date-format"></require>
+  
+ 
 	<section class="docs full-height flex-column-1 overflow-y-auto ignore">
 		<h4>
 			<!-- href="#/provenance/new"> -->
@@ -96,7 +98,7 @@
 
 					</td>
 
-					<td width="120px"><input type="text" id="ReproductionDate" class="form-control  input-sm" value.bind="ReproductionDate"></td>
+					<td width="120px"><input type="date" id="ReproductionDate" class="form-control  input-sm" value.bind="ReproductionDate  | dateFormat "></td>
 					<td width="90px"><input type="text" id="Number" class="form-control  input-sm" value.bind="no"></td>
 
 
@@ -125,7 +127,7 @@
 
 					</td>
 
-					<td width="60px"><input type="date" id="ReproductionSortDate" class="form-control  input-sm" value.bind="ReproductionSortDate"></td>
+					<td width="60px"><input type="date" id="ReproductionSortDate" class="form-control  input-sm" value.bind="ReproductionSortDate  | dateFormat "></td>
 
 					<!-- <select ref='ReproductionExhibit' id="ReproductionExhibit" class="form-control input-sm"
              value.bind="ReproductionExhibit"

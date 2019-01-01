@@ -1,5 +1,6 @@
 <template>
 	<require from="./docs.css"></require>
+    <require from="../../../resources/value-converters/date-format"></require>
 	<!-- <section class="customer-orders au-animate"> -->
 	<section class="docs full-height flex-column-1 overflow-y-auto ignore">
 		<h4>
@@ -74,7 +75,7 @@
 					</td>
 
 					<td width="325px">
-						<span show.bind="!conservation.edit">${Dates}</span>
+						<span show.bind="!conservation.edit">${Dates  | dateFormat }</span>
 						<input show.bind="conservation.edit" class="form-control input-sm" disabled.bind="!conservation.edit" type="text" value.bind="Dates">						</td>
 					</td>
 
