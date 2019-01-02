@@ -6,10 +6,10 @@ import { MyDataService } from "../../services/my-data-service";
 
 export class Home {
   heading = "MRG Home Page";
-  version = 241.84
-  versionDate = 'Mon 12/31/2018'
+  version = 241.85
+  versionDate = 'Wed 1/2/2019'
   // versiondate=Date();
-  //  "select2": {
+  //  "select2": { 
   //       "map": "npm:select2@4.0.6-rc.1/dist",
   //       "package": {
   //         "defaultExtension": "js",

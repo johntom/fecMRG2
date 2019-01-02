@@ -1,16 +1,9 @@
 <template>
 
-		<!-- "_id" : ObjectId("5c26b1fb6f8a875c4e0eedf7"), 
-		"ID" : NumberInt(13), 
-		"CatalogTitle" : "Betye Saar: Colored - Consider the Rainbow", 
-		"Qty" : NumberInt(1), 
-		"OrgID" : NumberInt(6371), 
-		"ContactID" : NumberInt(7315), 
-		"InvoiceDate" : ISODate("2002-12-04T05:00:00.000+0000"), 
-		"createdAt" : ISODate("2018-12-28T23:30:03.575+0000"), 
-		"updatedAt" : ISODate("2018-12-28T23:30:03.575+0000") -->
+
 
 	<require from="./docs.css"></require>
+    <require from="../../../resources/value-converters/date-format"></require>
 	<!-- section class="customer-orders au-animate" -->
 	<section class="docs full-height flex-column-1 overflow-y-auto ignore">
 		<h4>
@@ -23,19 +16,15 @@
 		<table class="table-condensed table">
 			<thead class="table-header-blue" data-sort="items.bind: currentItem.consignedto; cols: ['ConsignedStartDate','ConsignedEndDate']">
 				<tr>
-					<th class="header">Considgned To >></th>
-					<th class="header">Start</br>Date </th>
-					<th class="header">End</br>Date </th>
-					<th class="header">Retail</br>Price </th>
-					<th class="header">Netto</br>MRG </th>
-					<th class="header">Netto</br>MRGAmt </th>
-					<th class="header">Retail</br>PriceAmt </th>
-				
-					<th class="header">Artwork</br>Released </th>
-					<th class="header">Signed </th>
-					<th class="header">PDF </th>
-					<th class="header">Notes </th>
-					<th class="header">Sold </th>
+					<th class="header">CatalogID >></th>
+          
+          	<th class="header">CatalogTitle</th>
+
+					<th class="header">SendType</th>
+					<th class="header">DateSent</th>
+					<th class="header">InvoiceID</th>
+					<th class="header">Qty</th>
+					
 					
 				</tr>
 			</thead>
@@ -47,84 +36,48 @@
 				</tr>
 			</tfoot>
 			<tbody>
-				<tr repeat.for="consignedto of currentItem.consignedto" with.bind="consignedto">
-
+				<tr repeat.for="consignedto of currentItem.catalogsold" with.bind="catalogsold">
+     
 
 					<td width="225px">
 					   
-            			<!-- <input dblclick.delegate="showModal('ConsignedTo',$index)"
-                   type="text" id="ConsignedTo" class="form-control input-sm" 
-                   value.bind="consignedto.consignedtoname"> -->
-      	<div class="form-control  input-sm" if.bind="consignedtoname===undefined || consignedtoname===''">
-							<a click.delegate="showModal( 'ConsignedTo',$index)">select_link </a>
+            		
+      	<div class="form-control  input-sm" if.bind="CatalogID===undefined || CatalogID===''">
+							<a click.delegate="showModal( 'CatalogID',$index)">select_link </a>
 						</div>
 						<div class="form-control  input-sm" else>
-							<a click.delegate="showModal('ConsignedTo',$index)">${consignedto.consignedtoname}</a>
+							<a click.delegate="showModal('CatalogID',$index)">${CatalogID.CatalogID}</a>
 
 						</div>
 				
 					</td>
-
-					<td width="95px">
-						<span show.bind="!consignedto.edit">${ConsignedStartDate}</span>
-						<input show.bind="consignedto.edit" class="form-control input-sm" disabled.bind="!consignedto.edit" type="date" value.bind="ConsignedStartDate">
+		<td width="125px">
+						<span show.bind="!catalogsold.edit">${CatalogTitle}</span>
+						<input show.bind="catalogsold.edit" class="form-control input-sm" disabled.bind="!catalogsold.edit" type="text" value.bind="CatalogTitle">
 					</td>
 					<td width="95px">
-						<span show.bind="!consignedto.edit">${ConsignedEndDate}</span>
-						<input show.bind="consignedto.edit" class="form-control input-sm" disabled.bind="!consignedto.edit" type="date" value.bind="ConsignedEndDate">
+						<span show.bind="!catalogsold.edit">${DateSent | dateFormat }</span>
+						<input show.bind="catalogsold.edit" class="form-control input-sm" disabled.bind="!catalogsold.edit" type="date" value.bind="DateSent">
+					</td>
+					
+					<td width="125px">
+						<span show.bind="!catalogsold.edit">${SendType}</span>
+						<input show.bind="catalogsold.edit" class="form-control input-sm" disabled.bind="!catalogsold.edit" type="text" value.bind="SendType">
 					</td>
 					<td width="125px">
-						<span show.bind="!consignedto.edit">${ConsignmentRetailPrice}</span>
-						<input show.bind="consignedto.edit" class="form-control input-sm" disabled.bind="!consignedto.edit" type="text" value.bind="ConsignmentRetailPrice">
+						<span show.bind="!catalogsold.edit">${InvoiceID}</span>
+						<input show.bind="catalogsold.edit" class="form-control input-sm" disabled.bind="!catalogsold.edit" type="text" value.bind="InvoiceID">						</td>
 					</td>
 					<td width="125px">
-						<span show.bind="!consignedto.edit">${NettoMRG}</span>
-						<input show.bind="consignedto.edit" class="form-control input-sm" disabled.bind="!consignedto.edit" type="text" value.bind="NettoMRG">						</td>
-					</td>
-					<td width="125px">
-						<span show.bind="!consignedto.edit">${NettoMRGAmt}</span>
-						<input show.bind="consignedto.edit" class="form-control input-sm" disabled.bind="!consignedto.edit" type="text" value.bind="NettoMRGAmt">						</td>
+						<span show.bind="!catalogsold.edit">${Qty}</span>
+						<input show.bind="catalogsold.edit" class="form-control input-sm" disabled.bind="!catalogsold.edit" type="text" value.bind="Qty">						</td>
 					</td>
 
-					<td width="125px">
-						<span show.bind="!consignedto.edit">${ConsignmentRetailPriceAmt}</span>
-						<input show.bind="consignedto.edit" class="form-control input-sm" disabled.bind="!consignedto.edit" type="text" value.bind="ConsignmentRetailPriceAmt">
-					</td>
-			
-					<td width="105px">
-						<span show.bind="!consignedto.edit">${ArtworkReleased}</span>
-						<input show.bind="consignedto.edit" class="form-control input-sm" disabled.bind="!consignedto.edit" type="date" value.bind="ArtworkReleased">
-					</td>
-					<td width="85px">
-						<span show.bind="!consignedto.edit">${Signed}</span>
-						<input show.bind="consignedto.edit" disabled.bind="!consignedto.edit" type="checkbox" checked.bind="Signed"> </td>
-					</td>
-
-
-					<td width="85px">
-						<span show.bind="!consignedto.edit">${PDF}</span>
-						<input show.bind="consignedto.edit" disabled.bind="!consignedto.edit" type="checkbox" checked.bind="PDF"> </td>
-					</td>
-
-					<td width="145px">
-						<span show.bind="!consignedto.edit">${ConsignmentNotes}</span>
-						<input show.bind="consignedto.edit" disabled.bind="!consignedto.edit" type="text" value.bind="ConsignmentNotes">
-					</td>
-
-					<td width="85px">
-						<span show.bind="!consignedto.edit">${Sold}</span>
-						<input show.bind="consignedto.edit" disabled.bind="!consignedto.edit" type="checkbox" checked.bind="Sold"> </td>
-					</td>
-	<td width="75px">
-					${CreatedDate}
-					</td>
-          	<!--td width="75px">
-					${ModifiedDate}
-					</td> -->
+				
 		
 					<td width="225px">
 						<!-- <button class="btn btn-primary" click.delegate="consignedto.edit=!consignedto.edit">${ !consignedto.edit ? 'Update' : 'Done' }</button> -->
-							<button class="btn btn-primary" click.delegate="saveitem(consignedto,$index)">${ !consignedto.edit ? 'Edit' : 'Save' }</button>
+							<button class="btn btn-primary" click.delegate="saveitem(consignedto,$index)">${ !catalogsold.edit ? 'Edit' : 'Save' }</button>
 
             
             <button class="btn btn-danger" click.delegate="remove(consignedto,$index)">Delete</button>
