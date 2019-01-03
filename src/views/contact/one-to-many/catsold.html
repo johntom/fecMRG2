@@ -2,7 +2,7 @@
 
 
 
-	<require from="./docs.css"></require>
+	<!-- <require from="./docs.css"></require> -->
     <require from="../../../resources/value-converters/date-format"></require>
 	<!-- section class="customer-orders au-animate" -->
 	<section class="docs full-height flex-column-1 overflow-y-auto ignore">
@@ -36,34 +36,36 @@
 				</tr>
 			</tfoot>
 			<tbody>
-				<tr repeat.for="consignedto of currentItem.catalogsold" with.bind="catalogsold">
+				<tr repeat.for="catalogsold of currentItem.catalogsold" with.bind="catalogsold">
      
 
 					<td width="225px">
 					   
             		
-      	<div class="form-control  input-sm" if.bind="CatalogID===undefined || CatalogID===''">
-							<a click.delegate="showModal( 'CatalogID',$index)">select_link </a>
+      	<div class="form-control  input-sm" if.bind="_id===undefined || _id===''">
+							<a click.delegate="showModal( '_id',$index)">select_link </a>
 						</div>
 						<div class="form-control  input-sm" else>
-							<a click.delegate="showModal('CatalogID',$index)">${CatalogID.CatalogID}</a>
+							<a click.delegate="showModal('_id',$index)">${_id}</a>
 
 						</div>
 				
 					</td>
-		<td width="125px">
-						<span show.bind="!catalogsold.edit">${CatalogTitle}</span>
+
+		<td width="325px">
+						<span show.bind="!catalogsold.edit">${CatalogTitle} </span>
 						<input show.bind="catalogsold.edit" class="form-control input-sm" disabled.bind="!catalogsold.edit" type="text" value.bind="CatalogTitle">
 					</td>
-					<td width="95px">
+										<td width="125px">
+						<span show.bind="!catalogsold.edit">${SendType}</span>
+						<input show.bind="catalogsold.edit" class="form-control input-sm" disabled.bind="!catalogsold.edit" type="text" value.bind="SendType">
+					</td>
+          <td width="95px">
 						<span show.bind="!catalogsold.edit">${DateSent | dateFormat }</span>
 						<input show.bind="catalogsold.edit" class="form-control input-sm" disabled.bind="!catalogsold.edit" type="date" value.bind="DateSent">
 					</td>
 					
-					<td width="125px">
-						<span show.bind="!catalogsold.edit">${SendType}</span>
-						<input show.bind="catalogsold.edit" class="form-control input-sm" disabled.bind="!catalogsold.edit" type="text" value.bind="SendType">
-					</td>
+
 					<td width="125px">
 						<span show.bind="!catalogsold.edit">${InvoiceID}</span>
 						<input show.bind="catalogsold.edit" class="form-control input-sm" disabled.bind="!catalogsold.edit" type="text" value.bind="InvoiceID">						</td>
