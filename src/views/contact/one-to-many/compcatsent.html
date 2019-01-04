@@ -1,7 +1,7 @@
 <template>
 	<!-- <require from="./docs.css"></require> -->
 
-
+ <require from="../../../resources/value-converters/date-format"></require>
 
 <section class="docs full-height flex-column-1 overflow-y-auto ignore">
 		<h4>
@@ -19,11 +19,11 @@
 			<thead class="table-header-blue" data-sort="items.bind: currentItem.catalogsent; cols: ['ProvDate','ProvMemo']">
 				<tr>
 					<th class="header">CatalogID </th>
-					<th class="header">SendType</th>
+					<!-- <th class="header">SendType</th> -->
+<th class="header">Title</th>
 
 					<th class="header">DateSent </th>
-					<th class="header">InvoiceID </th>
-					
+
           <th class="header">Qty </th>
 				</tr>
 			</thead>
@@ -33,6 +33,7 @@
 					<td></td>
 					<td></td>
 					<td></td>
+          <td></td>
 					<td></td>
 				</tr>
 			</tfoot>
@@ -53,9 +54,16 @@
                     </select>
 
 					</td> -->
-					<td width="120px"><input type="text" id="DateSent" class="form-control  input-sm" value.bind="DateSent"></td>
-					<td width="120px"><input type="text" id="InvoiceID" class="form-control  input-sm" value.bind="InvoiceID"></td>
-					<td width="120px"><input type="text" id="Qty" class="form-control  input-sm" value.bind="Qty"></td>
+          	<td width="120px"><input type="text" id="CatalogTitle" class="form-control  input-sm" value.bind="CatalogTitle"></td>
+
+		 <td width="95px">
+						<span show.bind="!catalogsent.edit">${DateSent | dateFormat }</span>
+						<input show.bind="catalogsent.edit" class="form-control input-sm" disabled.bind="!catalogsold.edit" type="date" value.bind="DateSent">
+					</td>
+					
+					<!-- <td width="120px"><input type="date" id="DateSent" class="form-control  input-sm" value.bind="DateSent  | dateFormat "></td> -->
+				<!-- <td width="120px"><input type="text" id="DateSent" class="form-control  input-sm" value.bind="DateSent "></td> -->
+						<td width="120px"><input type="text" id="Qty" class="form-control  input-sm" value.bind="Qty"></td>
 				
 					<td width="225px">
 						

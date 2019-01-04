@@ -1,11 +1,11 @@
+
+////////////////////////////////////////////////
 import { inject } from 'aurelia-dependency-injection';
 import { ApiService } from '../../../utils/servicesApi';
 import { ApplicationService } from '../../../services/application-service';
 
 import { Prompt } from '../../../services/prompt';
 import { DialogService } from 'aurelia-dialog';
-
-import { Promptexhibit } from '../../prompt/promptExhibit';
 
 @inject(ApiService, ApplicationService, DialogService)
 
@@ -53,53 +53,58 @@ export class Address {
 
 
   selectChanged(reproid) {
-    //  let insco = this.appService.InsurancecompanyList
-    let aid = this.repro.findIndex(x => x._id === reproid)
-    // let item = this.repro[aid];// { ADJUSTER_ID: 4, ADJUSTER_NAME: "Donna Luciani", edit: true }
-    this.currentItem.exhibition[aid].ExhibitRepro = reproid
+    // //  let insco = this.appService.InsurancecompanyList
+    // let aid = this.repro.findIndex(x => x._id === reproid)
+    // // let item = this.repro[aid];// { ADJUSTER_ID: 4, ADJUSTER_NAME: "Donna Luciani", edit: true }
+    // this.currentItem.exhibition[aid].ExhibitRepro = reproid
   }
-
-  addExhibit() {
+			
+  addAddress() {
     // addExhibit ExhibitSponser  ExhibitLocation ExhibitRepro ExhibitDates ExhibitSortDate Traveled ExhibitMemo
-    let exhibition = this.currentItem.exhibition
+    let addresses = this.currentItem.addresses
     let flag = false
     let item
-    if (exhibition === undefined) {
+    if (addresses === undefined) {
       flag = true
-      exhibition = []
+      addresses = []
     }
     item = {
-      addExhibit: '', ExhibitSponser: '', ExhibitLocation: '', ExhibitRepro: '',
-      ExhibitDates: '', ExhibitSortDate: '',
-      Traveled: '', ExhibitMemo: '', edit: true
+   address: '', city: '', state: '',
+      zip: '', country: '',
+      letter: '', notes: '', edit: true
     }
-    exhibition.unshift(item)
-    if (flag) this.currentItem.exhibition = exhibition
+    addresses.unshift(item)
+    if (flag) this.currentItem.addresses = address
+    this.newAddress = '';
   }
 
- modal(item, index) {
-
-    // this.currentItem.recordId = this.recordId model:this.currentItem
-    let currentModel = {}
-    currentModel.currentItem = this.currentItem
-    currentModel.item = item
-
-    // currentModel.currentItem.hide1 = false
 
 
-    // this.dialogService.open({ viewModel: PromptForm, model: currentModel, lock: false }).whenClosed(response => {
-    this.dialogService.open({ viewModel: Promptexhibit, model: currentModel, lock: false }).whenClosed(response => {
 
-      if (!response.wasCancelled) {
-        console.log('item', item);
-      item.edit = false//this.saveitem(item, index)
-      } else {
 
-        console.log('cancel');
-      }
-      console.log(response)//.output);
-    });
-  }
+//  modal(item, index) {
+
+//     // this.currentItem.recordId = this.recordId model:this.currentItem
+//     let currentModel = {}
+//     currentModel.currentItem = this.currentItem
+//     currentModel.item = item
+
+//     // currentModel.currentItem.hide1 = false
+
+
+//     // this.dialogService.open({ viewModel: PromptForm, model: currentModel, lock: false }).whenClosed(response => {
+//     this.dialogService.open({ viewModel: Promptexhibit, model: currentModel, lock: false }).whenClosed(response => {
+
+//       if (!response.wasCancelled) {
+//         console.log('item', item);
+//       item.edit = false//this.saveitem(item, index)
+//       } else {
+
+//         console.log('cancel');
+//       }
+//       console.log(response)//.output);
+//     });
+//   }
 
 
 
