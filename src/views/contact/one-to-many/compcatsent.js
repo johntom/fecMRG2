@@ -13,14 +13,15 @@ export class Compcatsent {
   heading = 'DataForm HEADER...';
   footer = 'DataForm FOOTER...';
   recordId = '';
- // provenance: Provenance[] = []
+  // provenance: Provenance[] = []
   done = false;
   edit = false;
   constructor(api, appService, dialogService) {
     this.api = api;
     this.appService = appService;
     this.provenance = '';
-    this.currentItem = this.appService.currentItem//testrec;
+    this.currentItem = this.appService.currentContactItem//testrec;
+
     this.mode = 0;
     this.editrec = '';
     this.isDisableEdit = true
@@ -49,9 +50,9 @@ export class Compcatsent {
   // remove(item) {
   //   alert('you are about to delete ' + item.ProvMemo)
   // }
-   saveitem(item,index) {
+  saveitem(item, index) {
     item.edit = !item.edit
-   
+
   }
   remove(item, index) {
     //alert('you are about to delete ' + item.Notes + ' ' + index)
@@ -72,19 +73,22 @@ export class Compcatsent {
   addit() {
     //alert('in addit prov')
   }
-  addDetail() {
-    //alert('in prov')
-    let provenance = this.currentItem.provenance
+  // tr repeat.for="catalogsent of currentItem.catalogsent " with.bind="catalogsent"
+
+  addItem() {
+    let catalogsent = this.currentItem.catalogsent
     let flag = false
     let item
     // let newNoteWorkDate = moment().format('YYYY-MM-DD')
-    if (provenance === undefined) {
+    if (catalogsent === undefined) {
       flag = true
-      provenance = []
+      catalogsent = []
     }
-    item = { ProvMemo: '', edit: true }
-    provenance.unshift(item)
-    if (flag) this.currentItem.provenance = provenance
+    let cDate = moment().format('YYYY-MM-DD')
+
+    item = {}// ConsignmentNotes: '', CreatedDate: cDate, edit: true }
+    catalogsent.unshift(item)
+    if (flag) this.currentItem.catalogsent = catalogsent
   }
 
 }

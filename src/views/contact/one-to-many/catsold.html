@@ -1,4 +1,20 @@
 <template>
+	<style>
+		table thead tr {
+			display: block;
+		}
+
+		table th,
+		table td {
+			width: 80% //1200px;//fixed width
+		}
+
+		table tbody {
+			display: block;
+			height: 500px;
+			overflow: auto; //set tbody to auto
+		}
+	</style>
 
 
 
@@ -8,7 +24,7 @@
 	<section class="docs full-height flex-column-1 overflow-y-auto ignore">
 		<h4>
 			<i class="fa fa-folder-open"></i>Consigned To 
-			<a slot="buttons-slot" class="btn btn-primary" click.delegate="addDetail()">
+			<a slot="buttons-slot" class="btn btn-primary" click.delegate="addItem()">
 				<i class="fa fa-plus"></i> Add Consigned To	</a>
 		</h4>
 

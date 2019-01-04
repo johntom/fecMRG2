@@ -143,13 +143,13 @@
 					</div>
 				</div>
 			</div> -->
-<div show.bind="fieldname==='Artist'">
+
+	<div show.bind="fieldname==='Artist'">
 				<div class="form-group flex-column-1">
 				
-
 <label for="Artist">Artist</label>
 					<input ref="myDatalistA" type="text" list="myDatalistA" change.delegate="changeCallbackArtist(selectedValue)" 
-					input.delegate="selectedValueA = findOptionI($event.target.value)"
+					input.delegate="selectedValueA = findOptionA($event.target.value)"
 					/>
 					<datalist id="myDatalistA">
 						<option repeat.for="option of appService.artistList">${option.ArtistName}</option>
@@ -160,7 +160,6 @@
 
 				</div>
 			</div>
-
 
 	<div show.bind="fieldname==='OrgID'">
 				<div class="form-group flex-column-1">

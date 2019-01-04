@@ -19,7 +19,7 @@ export class Purchased {
     this.api = api;
     this.appService = appService;
     this.inv = '';
-    this.currentItem = this.appService.currentItem// testrec;
+    this.currentItem = this.appService.currentContactItem;
     this.dialogService = dialogService
   }
 

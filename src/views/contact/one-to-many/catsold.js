@@ -20,13 +20,14 @@ export class Catsold {
     this.api = api;
     this.appService = appService;
     this.inv = '';
-    this.currentItem = this.appService.currentItem;//testrec;
-    console.log('consignedto ',this.currentItem.consignedto)
+    this.currentItem = this.appService.currentContactItem//testrec;
+
+    console.log('consignedto ', this.currentItem.consignedto)
     this.dialogService = dialogService
   }
 
-	// <input click.delegate="showModal('ConsignedTo')" type="text" id="ConsignedTo" class="form-control input-sm" value.bind="currentItem.consignedtoname">
-      
+  // <input click.delegate="showModal('ConsignedTo')" type="text" id="ConsignedTo" class="form-control input-sm" value.bind="currentItem.consignedtoname">
+
   activate(params, routeConfig) {
     let oid
     let orgobj
@@ -38,25 +39,27 @@ export class Catsold {
       orgobj = this.appService.orgsList[oid]//10]
       if (orgobj !== undefined) this.currentItem.consignedtoname = orgobj.OrgName
     }
-  } 		
-  addDetail() {
-    let consignedto = this.currentItem.consignedto
+  }
+  // 	<tr repeat.for="catalogsold of currentItem.catalogsold" with.bind="catalogsold">
+     
+  addItem() {
+    let catalogsold = this.currentItem.catalogsold
     let flag = false
     let item
     // let newNoteWorkDate = moment().format('YYYY-MM-DD')
-    if (consignedto === undefined) {
+    if (catalogsold === undefined) {
       flag = true
-      consignedto = [] 
+      catalogsold = []
     }
-     let cDate = moment().format('YYYY-MM-DD')
-  
-    item = { ConsignmentNotes: '', CreatedDate:cDate, edit: true }
-    consignedto.unshift(item)
-    if (flag) this.currentItem.consignedto = consignedto
+    let cDate = moment().format('YYYY-MM-DD')
+
+    item = {}// ConsignmentNotes: '', CreatedDate: cDate, edit: true }
+    catalogsold.unshift(item)
+    if (flag) this.currentItem.catalogsold = catalogsold
   }
-     saveitem(item,index) {
+  saveitem(item, index) {
     item.edit = !item.edit
-   
+
   }
   remove(item, index) {
     this.mode = 0
@@ -81,17 +84,17 @@ export class Catsold {
   save(note, index) {
 
   }
- showModal(fieldname,index) {
+  showModal(fieldname, index) {
     this.currentItem.fieldname = fieldname
-   this.currentItem.ConsignedTo=   this.currentItem.consignedto[index].ConsignedTo  
-   this.currentItem.consignedtoname=  this.currentItem.consignedto[index].consignedtoname
-  
-  //   this.dialogService.open({ viewModel: Prompt, model: fieldname, lock: false }).whenClosed(response => {
- 
+    this.currentItem.ConsignedTo = this.currentItem.consignedto[index].ConsignedTo
+    this.currentItem.consignedtoname = this.currentItem.consignedto[index].consignedtoname
+
+    //   this.dialogService.open({ viewModel: Prompt, model: fieldname, lock: false }).whenClosed(response => {
+
     this.dialogService.open({ viewModel: Prompt, model: this.currentItem, lock: false }).whenClosed(response => {
 
-    this.currentItem.consignedto[index].ConsignedTo = this.currentItem.ConsignedTo
-    this.currentItem.consignedto[index].consignedtoname = this.currentItem.consignedtoname
+      this.currentItem.consignedto[index].ConsignedTo = this.currentItem.ConsignedTo
+      this.currentItem.consignedto[index].consignedtoname = this.currentItem.consignedtoname
       if (!response.wasCancelled) {
         // console.log('Delete') InsuredBy
         // let notes = this.currentItem.notes

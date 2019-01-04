@@ -29,8 +29,8 @@ export class Prompt {
 //   findOption = value => this.appService.codesListMediumSupport.find(x => x.Description === value)
 
 // // arists
-//   selectedValueA = null;
-//   findOptionA = value => this.appService.artistList.find(x => x.ArtistName === value)
+  selectedValueA = null;
+  findOptionA = value => this.appService.artistList.find(x => x.ArtistName === value)
 
 // orgs
   selectedValueO = null;
@@ -173,6 +173,18 @@ export class Prompt {
     }
 
 
+    if (this.fieldname === 'Artist') {
+    
+      this.doc = `Select Artist or add new if not in list.`
+      this.heading = `Select Insured or add new if not in list.`
+      this.placeholder = `Select Insured or add new if not in list.`
+      if (this.currentItem.artist === undefined || this.currentItem.artist === '') {
+      } else {
+        //  this.insuredobj = this.currentItem.insured
+        this.myDatalistA.value =  this.currentItem.artist.ArtistName
+      }
+    
+    }
 
 
   }
@@ -181,7 +193,10 @@ changeCallbackOrg(selectedValueO) {
       let findvalue = this.myDatalistO.value
 
   }
+changeCallbackArtist(selectedValueA) {
+  //    let findvalue = this.selectedValueA //.value
 
+  }
   
   //  alert(`${this.addlist} Exists in list already!`)
   addit() {
@@ -226,18 +241,14 @@ changeCallbackOrg(selectedValueO) {
       this.currentItem.org = this.selectedValueO//this.OrgName
       // this.appService.currentItem.artist = this.ArtistName
     }
-    // if (this.fieldname === 'MediumSupportobj') {
-      
-    //   this.currentItem.MediumSupportobj = this.selectedValue
-    // }
-    // if (this.fieldname === 'OwnerID') {
-    //   if (this.OrgName.OrgName !== this.currentItem.ownername) {
-    //     this.currentItem.OwnerID = this.OrgName._id
-    //     this.currentItem.ownername = this.OrgName.OrgName
-    //   }
+    
+if (this.fieldname === 'Artist') {
 
-    // }
-    // if (this.fieldname === 'OrgID') {
+      this.currentItem.artist = this.selectedValueA//ArtistName
+      
+    }
+    
+        // if (this.fieldname === 'OrgID') {
     //   if (this.OrgName.OrgName !== this.currentItem.soldtoname) {
 
     //     this.currentItem.OrgID = this.OrgName._id

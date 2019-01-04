@@ -124,7 +124,7 @@ export class DataForm {
      
       if (this.recordId === 'create') {
 
-        this.currentItem = {}
+        this.currentContactItem = {}
         this.currentItem.id = 'create'
         this.appService.testrec = {}
         this.appService.originalrec = {}
@@ -137,22 +137,22 @@ export class DataForm {
 // phone
 // type
 
-        this.currentItem.artist = undefined//{} 
-        this.currentItem.provenance = []
-        this.currentItem.notes = []
-        this.currentItem.exhibitions = []
-        this.currentItem.reproductions = []
-        this.currentItem.transport = []
-        this.currentItem.conservation = []
-        this.currentItem.condition = []
-        this.currentItem.purchased = []
-        this.currentItem.soldto = []
-        this.currentItem.museumloan = []
-        this.currentItem.consignedto = []
-        this.currentItem.offering = []
-        this.currentItem.consigned = []
-        this.currentItem.photo = []
-        this.currentItem.docs = []
+        // this.currentContactItem.artist = undefined//{} 
+        // this.currentContactItem.provenance = []
+        // this.currentItem.notes = []
+        // this.currentItem.exhibitions = []
+        // this.currentItem.reproductions = []
+        // this.currentItem.transport = []
+        // this.currentItem.conservation = []
+        // this.currentItem.condition = []
+        // this.currentItem.purchased = []
+        // this.currentItem.soldto = []
+        // this.currentItem.museumloan = []
+        // this.currentItem.consignedto = []
+        // this.currentItem.offering = []
+        // this.currentItem.consigned = []
+        // this.currentItem.photo = []
+        // this.currentItem.docs = []
 
 
       } else {
@@ -166,19 +166,19 @@ export class DataForm {
             let inv = jsonRes.data;
             this.currentItem = inv[0]
             // never been saved from view
-
+//  this.currentContactItem = inv[0]
            
 
-            this.appService.currentItem = this.currentItem//inv[0]
+            this.appService.currentContactItem = this.currentItem//inv[0]
             this.currentItem.isDirty = () => {
-              return JSON.stringify(this.currentItem) !== JSON.stringify(this.appService.originalrec)
+              return JSON.stringify(this.currentItem) !== JSON.stringify(this.appService.originalContactrec)
             };
             this.currentItem.reset = () => {
               // this.appService.originalrec =   this.currentItem;
-              this.appService.originalrec = JSON.parse(JSON.stringify(this.currentItem))
+              this.appService.originalContactrec = JSON.parse(JSON.stringify(this.currentItem))
             }
-            this.appService.currentView = this.currentItem; // must set on every view
-            this.appService.originalrec = JSON.parse(JSON.stringify(this.currentItem))// inv[0]));
+            this.appService.currentContactView = this.currentItem; // must set on every view
+            this.appService.originalContactrec = JSON.parse(JSON.stringify(this.currentItem))// inv[0]));
 
             console.log('finihed active1')
             // return inv
@@ -303,12 +303,12 @@ export class DataForm {
           }
           //this.mrubuild() it will add if when opening
           this.requestclose()
-          this.router.navigate(`#/contact/data/${this.currentItem.InventoryCode}`)
+          this.router.navigate(`#/contact/data/${this.currentItem.id}`)
         });
       }
     } else {
 
-      if (JSON.stringify(this.currentItem) !== JSON.stringify(this.appService.originalrec)) {
+      if (JSON.stringify(this.currentItem) !== JSON.stringify(this.appService.originalContactrec)) {
         // SAVE WITH IMAGE INFO IN CASE ITS MISSING
         // nsure if needed this.getimageinfo()
         this.api.savecontact(this.currentItem).then((jsonRes) => {
@@ -316,9 +316,9 @@ export class DataForm {
           let tab = this.appService.tabs.find(f => f.isSelected);
           // window.alert("Save successful!");
           this.message = "Save successful. Inventory updated @ " + savetime
-          this.appService.testrec = this.currentItem
-          this.appService.currentView = this.currentItem
-          this.appService.originalrec = JSON.parse(JSON.stringify(this.currentItem))
+         // this.appService.testrec = this.currentItem
+          this.appService.currentContactView = this.currentItem
+          this.appService.originalContactrec = JSON.parse(JSON.stringify(this.currentItem))
           this.skippromt = true
           if (option === 1) {
             this.requestclose()
@@ -330,53 +330,53 @@ export class DataForm {
     }
   }
 
-  checkData(images, formData) {
-    let promises = []
-    return new Promise((resolve, reject) => {
-      let i = 0;
-      let docs = this.currentItem.docs
-      if (docs === undefined) docs = []
-      let imagelen = images.length
-      for (i = 0; i < images.length; i++) {
-        let ext = images[i].name.split('.').pop();
-        let fname = images[i].name
-        let mid = -100// not needed
-        let ival = i
-        mid = docs.findIndex(x => x.FILE_NAME === fname)
-        if (mid > -1) {
-          // if we find file in array pass all values so we can evaluate later
-          let obj = { name: fname, val: ival, ext: ext }
-          var promise = this.promiseDialog(obj)
-          promises.push(promise);
-        } else {
-          var item = { FILE_NAME: fname, FILE_EXT: '.' + ext, OVERWRITE: 'N' }
-          docs.unshift(item)
-          formData.append('file', images[ival]);
-        }
-      }
-      return Promise.all(promises).then(values => {
-        for (i = 0; i < values.length; i++) {
-          //console.log(' this.response values[i] ',i,values[i].name,values[i].val,values[i].resp)
-          if (!values[i].resp) {
-            //true=wasCancelled
-            var item = { FILE_NAME: values[i].name, FILE_EXT: values[i].ext, OVERWRITE: 'Y' }
-            // dont add to data docs.unshift(item)
-            formData.append('file', images[values[i].val]);
-          }
-        }
-        resolve(formData)
-      })
-    })
-  }
+  // checkData(images, formData) {
+  //   let promises = []
+  //   return new Promise((resolve, reject) => {
+  //     let i = 0;
+  //     let docs = this.currentItem.docs
+  //     if (docs === undefined) docs = []
+  //     let imagelen = images.length
+  //     for (i = 0; i < images.length; i++) {
+  //       let ext = images[i].name.split('.').pop();
+  //       let fname = images[i].name
+  //       let mid = -100// not needed
+  //       let ival = i
+  //       mid = docs.findIndex(x => x.FILE_NAME === fname)
+  //       if (mid > -1) {
+  //         // if we find file in array pass all values so we can evaluate later
+  //         let obj = { name: fname, val: ival, ext: ext }
+  //         var promise = this.promiseDialog(obj)
+  //         promises.push(promise);
+  //       } else {
+  //         var item = { FILE_NAME: fname, FILE_EXT: '.' + ext, OVERWRITE: 'N' }
+  //         docs.unshift(item)
+  //         formData.append('file', images[ival]);
+  //       }
+  //     }
+  //     return Promise.all(promises).then(values => {
+  //       for (i = 0; i < values.length; i++) {
+  //         //console.log(' this.response values[i] ',i,values[i].name,values[i].val,values[i].resp)
+  //         if (!values[i].resp) {
+  //           //true=wasCancelled
+  //           var item = { FILE_NAME: values[i].name, FILE_EXT: values[i].ext, OVERWRITE: 'Y' }
+  //           // dont add to data docs.unshift(item)
+  //           formData.append('file', images[values[i].val]);
+  //         }
+  //       }
+  //       resolve(formData)
+  //     })
+  //   })
+  // }
 
   
   canDeactivate() {
     return new Promise((resolve, reject) => {
       console.log('canDeactivate ')
-      if (this.appService.currentView !== undefined && this.appService.originalrec !== {} &&
+      if (this.appService.currentContactView !== undefined && this.appService.originalContactrec !== {} &&
         this.currentItem.id !== 'create' &&
-        this.appService.currentView && this.appService.currentView.isDirty &&
-        this.appService.currentView.isDirty()) {
+        this.appService.currentContactView && this.appService.currentContactView.isDirty &&
+        this.appService.currentContactView.isDirty()) {
 
         // Now, we need to query the user... result => makes it a closure
         this.appService.asyncHandleDirty().then(result => {
@@ -397,15 +397,15 @@ export class DataForm {
   }
   requestclose() {
 
-    const resetFunc = () => { this.appService.originalrec = this.currentItem; };
+    const resetFunc = () => { this.appService.originalContactrec = this.currentItem; };
     let tab = this.appService.tabs.find(f => f.isSelected);
     let index = this.appService.tabs.findIndex(f => f.isSelected)
-    let rt2 = '#/inventory/' + this.tabname
+    let rt2 = '#/contact/' + this.tabname
 
 
     let newIndex = (index > 0) ? index - 1 : 0;
     let newTab = this.appService.tabs[newIndex];
-    this.appService.tryCloseTab(this.appService.currentView, tab, newTab.href);
+    this.appService.tryCloseTab(this.appService.currentContactView, tab, newTab.href);
 
 
   }

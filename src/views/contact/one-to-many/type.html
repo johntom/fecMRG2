@@ -1,12 +1,6 @@
 <template>
-	<!-- /* "_id" : ObjectId("5c1572aaf731943055910eeb"), 
-    "ID" : NumberInt(10), 
-    "ContactID" : NumberInt(2330), 
-    "ContactType" : NumberInt(159), 
-    "createdAt" : ISODate("2018-12-15T21:31:22.023+0000"), 
-    "updatedAt" : ISODate("2018-12-15T21:31:22.023+0000") -->
-	<require from="./docs.css"></require>
-	<!-- <section class="customer-orders au-animate"> -->
+ <require from="../../../resources/value-converters/date-format"></require>
+
 	<section class="docs full-height flex-column-1 overflow-y-auto ignore">
 		<h4>
 			<i class="fa fa-folder-open"></i> Conservation
@@ -59,9 +53,9 @@
 
 
 					</td>
-
+ 
 					<td width="325px">
-						<span show.bind="!conservation.edit">${Dates}</span>
+						<span show.bind="!conservation.edit">${Dates  | dateFormat }</span>
 						<input show.bind="conservation.edit" class="form-control input-sm" disabled.bind="!conservation.edit" type="text" value.bind="Dates">						</td>
 					</td>
 

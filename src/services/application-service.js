@@ -375,5 +375,7 @@ export class ApplicationService {
   originalrec = 0;
   testrec = 0;
   currentItem = 0;
+  currentContactItem = 0;
+  
 }
 

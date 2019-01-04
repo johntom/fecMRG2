@@ -34,8 +34,7 @@ export class Offering {
     this.api = api;
     this.appService = appService;
     this.inv = '';
-    this.currentItem = this.appService.currentItem//testrec;
-    // alert('this.currentItem ' + this.currentItem.offerings)
+        this.currentItem = this.appService.currentContactItem;
     this.mode = 0;
     this.editrec = '';
 

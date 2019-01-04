@@ -200,13 +200,13 @@
 								<div class="Rtable Rtable--2cols">
 
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
-										<strong> Keywords </strong>
+										<strong> ContactType </strong>
 
 									</div>
 									<div class="Rtable-cell-70 Rtable-cell--highlight">
 
 
-										<ak-multiselect k-value.two-way="currentItem.keywords" k-placeholder="Select keywords..." k-data-text-field="Description"
+										<ak-multiselect k-value.two-way="currentItem.contacttypes" k-placeholder="Select contacttypes..." k-data-text-field="Description"
 										 k-data-value-field="Description" k-height.bind="400" k-data-source.bind="dataSource" k-widget.two-way="multiselect"
 										 id="multiselect-customizing-templates-codes">
 											<ak-template for="noDataTemplate">
@@ -220,14 +220,37 @@
 
 
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
-										<strong> Signed?</strong>
-										<input type="checkbox" id="Signed" checked.bind="currentItem.Signed">
+										<strong> mailings?</strong>
+										<input type="checkbox" id="mailings" checked.bind="currentItem.mailings">
 									</div>
 
 									<div class="Rtable-cell-70 Rtable-cell--highlight">
-										<strong> Dated?</strong>
-										<input type="checkbox" id="Dated" checked.bind="currentItem.Dated">
+										<strong> international?</strong>
+										<input type="checkbox" id="international" checked.bind="currentItem.international">
 									</div>
+
+<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong> nomailings?</strong>
+										<input type="checkbox" id="nomailings" checked.bind="currentItem.nomailings">
+									</div>
+
+									<div class="Rtable-cell-70 Rtable-cell--highlight">
+										<strong> noinfo?</strong>
+										<input type="checkbox" id="noinfo" checked.bind="currentItem.noinfo">
+									</div>
+                
+                
+                  <div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong> email?</strong>
+										<input type="checkbox" id="email" checked.bind="currentItem.email">
+									</div>
+
+									<div class="Rtable-cell-70 Rtable-cell--highlight">
+										<strong> nolongerherecatalogssent?</strong>
+										<input type="checkbox" id="nolongerherecatalogssent" checked.bind="currentItem.nolongerherecatalogssent">
+									</div>
+
+
 
 
 									<div class="Rtable-cell-30 Rtable-cell--highlight">

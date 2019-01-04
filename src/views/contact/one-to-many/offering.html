@@ -1,6 +1,6 @@
 <template>
-	<require from="./docs.css"></require>
-	<!-- <section class="customer-orders au-animate"> -->
+ <require from="../../../resources/value-converters/date-format"></require>
+
 	<section class="docs full-height flex-column-1 overflow-y-auto ignore">
 		<h3>
 			<!-- <i class="fa fa-folder-open"></i> Conservation (${currentItem.Title} ct:${currentItem.conservation.length}) -->
@@ -34,7 +34,7 @@
 						<input show.bind="offering.edit" class="form-control input-sm" disabled.bind="!offering.edit" type="text" value.bind="clientname">
 					</td>
 					<td width="125px">
-						<span show.bind="!offering.edit">${offerdate}</span>
+						<span show.bind="!offering.edit">${offerdate | dateFormat }</span>
 						<input show.bind="offering.edit" class="form-control input-sm" disabled.bind="!offering.edit" type="date" value.bind="offerdate">
 					</td>
 					<td width="125px">
