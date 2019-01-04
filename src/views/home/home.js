@@ -6,7 +6,7 @@ import { MyDataService } from "../../services/my-data-service";
 
 export class Home {
   heading = "MRG Home Page";
-  version = 241.87
+  version = 241.88
   versionDate = 'thu 1/3/2019'
   // versiondate=Date();
   //  "select2": { 
@@ -23,6 +23,7 @@ export class Home {
   //     },
   //  "select2": "4.0.6-rc.1"
   issues = [
+    "If org is an I no org append notes to contact section ",
     'TEXTBOX in popups',
     'Make tabs like mas w/scrollbar with sticky header',
     'shortcut keys',

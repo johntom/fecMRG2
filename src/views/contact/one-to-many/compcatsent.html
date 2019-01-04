@@ -41,7 +41,7 @@
         
 
 				<tr repeat.for="catalogsent of currentItem.catalogsent " with.bind="catalogsent">
-						<td width="125px">
+						<td width="85px">
 					
 						<input id="CatalogID" class="form-control input-sm" type="text"	 value.bind="CatalogID">
 					</td>
@@ -54,7 +54,7 @@
                     </select>
 
 					</td> -->
-          	<td width="120px"><input type="text" id="CatalogTitle" class="form-control  input-sm" value.bind="CatalogTitle"></td>
+          	<td width="220px"><input type="text" id="CatalogTitle" class="form-control  input-sm" value.bind="CatalogTitle"></td>
 
 		 <td width="95px">
 						<span show.bind="!catalogsent.edit">${DateSent | dateFormat }</span>
