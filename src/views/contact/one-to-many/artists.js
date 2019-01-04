@@ -49,14 +49,31 @@ export class Artists {
     return
   }
 
-
+// artists[{"id" : ObjectId("5c15812fd1ce1404366cd075"),             "ArtistName" : "Alston, Charles",             "yearofBirth" : NumberInt(1907),             "died" : NumberInt(1977)
 showModal(fieldname,index) {
-   this.currentItem.PhotographerID=   this.currentItem.photo[index].PhotographerID  
-  this.currentItem.photographername=  this.currentItem.photo[index].photographername
+  //appService.artistList
+  //  this.currentItem.ArtistID=   this.currentItem.artists[index].id  
+  // this.currentItem.photographername=  this.currentItem.photo[index].photographername
 
-    this.dialogService.open({ viewModel: Prompt, model: fieldname, lock: false }).whenClosed(response => {
-      this.currentItem.photo[index].PhotographerID = this.currentItem.PhotographerID
-      this.currentItem.photo[index].photographername = this.currentItem.photographername
+  //   this.dialogService.open({ viewModel: Prompt, model: fieldname, lock: false }).whenClosed(response => {
+  //     this.currentItem.photo[index].PhotographerID = this.currentItem.PhotographerID
+  //     this.currentItem.photo[index].photographername = this.currentItem.photographername
+  
+  
+  // make this work just on inventory and change prompt to maybe point to it
+ this.currentItem.fieldname = 'Artist'//fieldname
+    this.currentItem.id = this.currentItem.artists[index].id
+      this.currentItem.recordId = this.recordId
+    this.currentItem.artist = this.currentItem.artists[index]//.artists
+   
+    this.dialogService.open({ viewModel: Prompt, model: this.currentItem, lock: false }).whenClosed(response => {
+
+    // this.dialogService.open({ viewModel: Prompt, model: fieldname, lock: false }).whenClosed(response => {
+      this.currentItem.artists[index].id = this.currentItem.artist.id
+      this.currentItem.artists[index].ArtistName = this.currentItem.artist.ArtistName
+
+
+
       if (!response.wasCancelled) {
         
       } else {
@@ -121,13 +138,13 @@ addDocs(images) {
 
   remove(item, index) {
      this.mode = 0
-
+//artist of currentItem.artists
 
     this.dialogService.open({ viewModel: ynPrompt, model: 'Delete or Cancel?', lock: false }).whenClosed(response => {
       if (!response.wasCancelled) {
         console.log('Delete')
-        let provenance = this.currentItem.provenance
-        provenance.splice(index, 1)
+        let artists = this.currentItem.artists
+        artists.splice(index, 1)
       } else {
         console.log('cancel');
       }

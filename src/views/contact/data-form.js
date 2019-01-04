@@ -265,7 +265,7 @@ export class DataForm {
       let tabinfo, tabindex
       // tabinfo = localStorage.getItem('tabinfo');
 
-      tabinfo = localStorage.getItem('tabinfo' + this.currentItem.id);
+      tabinfo = localStorage.getItem('tabinfoC' + this.currentItem.id);
       if (tabinfo === null) {
         tabindex = 0
       } else {
@@ -425,19 +425,19 @@ export class DataForm {
     return true;
   }
   selectOneToManyTab(tab) {
-    this.appService.dataFormOneToManyTabs.forEach(t => t.isSelected = false);
+    this.appService.dataFormOneToManyTabs3.forEach(t => t.isSelected = false);
     tab.isSelected = true;
     this.currentOneToManyTab = tab;
-    let tabindex = this.appService.dataFormOneToManyTabs.findIndex(f => f.isSelected)
+    let tabindex = this.appService.dataFormOneToManyTabs3.findIndex(f => f.isSelected)
     function tabinfo(temp) {
       this.recid = temp[0];
       this.tabindex = temp[1];
 
     }
-    var temp = [this.currentItem.InventoryCode, tabindex];
+    var temp = [this.currentItem.id, tabindex];
     tabinfo = new tabinfo(temp);
     // localStorage.setItem('tabinfo', JSON.stringify(tabinfo));
-    localStorage.setItem('tabinfo' + this.currentItem.InventoryCode, JSON.stringify(tabinfo));
+    localStorage.setItem('tabinfoC' + this.currentItem.id, JSON.stringify(tabinfo));
     return true;
   }
 

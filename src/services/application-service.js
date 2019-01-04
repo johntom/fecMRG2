@@ -264,7 +264,7 @@ export class ApplicationService {
     {
       name: "Address",
       viewModel: "./one-to-many/address",
-      isSelected: false
+      isSelected: true
     },
     {
       name: "Artists",

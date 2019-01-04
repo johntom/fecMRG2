@@ -42,18 +42,26 @@
 			<tbody>  
 				<tr repeat.for="address of currentItem.addresses" with.bind="address">
       		<td width="70px"><input type="text" id="id" class="form-control  input-sm" value.bind="address.id"></td>
-					<td width="220px"><input type="text" id="ContactAddress" class="form-control  input-sm" value.bind="address"></td>
-					<td width="220px"><input type="text" id="ContactCity" class="form-control  input-sm" value.bind="city"></td>
+					<td width="220px"><input type="text" id="xContactAddress" class="form-control  input-sm" value.bind="address"></td>
+					<td width="220px"><input type="text" id="xContactCity" class="form-control  input-sm" value.bind="city"></td>
 			
-					<td width="300px"><input type="text" id="ContactState" class="form-control  input-sm" value.bind="state"></td>
-					<td width="220px"><input type="text" id="ContactZip" class="form-control  input-sm" value.bind="zip"></td>
-  				<td width="300px"><input type="text" id="ContactCountry" class="form-control  input-sm" value.bind="country"></td>
-					<td width="220px"><input type="text" id="AddressLetter" class="form-control  input-sm" value.bind="letter"></td>
+					<td width="300px"><input type="text" id="xContactState" class="form-control  input-sm" value.bind="state"></td>
+					<td width="220px"><input type="text" id="xContactZip" class="form-control  input-sm" value.bind="zip"></td>
+  				<td width="300px"><input type="text" id="xContactCountry" class="form-control  input-sm" value.bind="country"></td>
+					<td width="220px"><input type="text" id="xAddressLetter" class="form-control  input-sm" value.bind="letter"></td>
 				
-					<td width="220px"><input type="text" id="AddressNotes" class="form-control  input-sm" value.bind="notes"></td>
+					<td width="300px"><input type="text" id="AddressNotes" class="form-control  input-sm" value.bind="notes"></td>
+
+	<!--if using edit <td width="300px">
+          	<span show.bind="!note.edit">${Notes}</span>
+
+						<input show.bind="note.edit" class="form-control input-sm" disabled.bind="!note.edit" type="text" value.bind="Notes">
+         	</td> -->
+
+
 					<td width="225px">
 
-						<button class="btn btn-primary" click.delegate="saveitem(address,$index)">${ !address.edit ? 'Edit' : 'Save' }</button>
+						<!-- <button class="btn btn-primary" click.delegate="saveitem(address,$index)">${ !address.edit ? 'Edit' : 'Save' }</button> -->
 						<!-- <button class="btn btn-success" click.delegate="modal(address,$index)">Pop</button> -->
           	<button class="btn btn-sm btn-danger" click.delegate="remove(address,$index)">           Delete            </button>
 					</td>

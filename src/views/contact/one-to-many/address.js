@@ -28,28 +28,24 @@ export class Address {
   activate(params, routeConfig) {
     this.exhibition = this.appService.currentItem.exhibition   // this.currentItem.exhibition
   }
-  // remove(item) {
-  //   alert('you are about to delete ' + item.ProvMemo)
-  // }
+ remove(item, index) {
+    // alert('you are about to delete ' + item.address) address of currentItem.addresses
+    this.dialogService.open({ viewModel: Prompt, model: 'Delete or Cancel?', lock: false }).whenClosed(response => {
+      if (!response.wasCancelled) {
+        console.log('Delete')
+        let addresses = this.currentItem.addresses
+        addresses.splice(index, 1)// start, deleteCount)
+      } else {
+        console.log('cancel');
+      }
+      console.log(response.output);
+    });
+  }
   saveitem(item, index) {
     item.edit = !item.edit
 
   }
 
-  remove(item, index) {
-    //import { Prompt } from '../../../services/prompt';
-
-    this.dialogService.open({ viewModel: Prompt, model: 'Delete or Cancel?', lock: false }).whenClosed(response => {
-      if (!response.wasCancelled) {
-        console.log('Delete')
-        let exhibition = this.currentItem.exhibition
-        exhibition.splice(index, 1)// start, deleteCount)
-      } else {
-        console.log('cancel');
-      }
-      console.log(response)//.output);
-    });
-  }
 
 
   selectChanged(reproid) {

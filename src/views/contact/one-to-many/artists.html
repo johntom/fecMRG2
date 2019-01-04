@@ -32,7 +32,7 @@ table  tbody{
 				<tr>
 				
           	<tr>
-						<th width="300px"class="header">Artist
+						<th width="300px"class="header">Artist>>
 						</th>
 						
 						<th width="225px" class="header">Cmd
@@ -51,18 +51,31 @@ table  tbody{
 				
 					<td width="400px">
             <!-- <td width="50%"> -->
-						<span show.bind="!artist.edit">${artist.ArtistName} , ${artist.yearofBirth}  b.$(artist.YearofBirth)
+						<!-- <span show.bind="!artist.edit">${artist.ArtistName} , ${artist.yearofBirth}  b.$(artist.YearofBirth)
          	 d.${artist.died }</span>
+						<input show.bind="artist.edit" class="form-control input-sm" disabled.bind="!artist.edit" type="text" value.bind="ArtistID"> -->
+ 
+<div class="form-control  input-sm" if.bind="artist.ArtistName===undefined || artist.ArtistName===''">
+							<a click.delegate="showModal( 'id',$index)">select_link </a>
+						</div>
+						<div class="form-control  input-sm" else>
+							<a click.delegate="showModal('id',$index)">${artist.ArtistName} , ${artist.yearofBirth}  b.$(artist.YearofBirth)
+         	 d.${artist.died }</a>
 
-						<input show.bind="artist.edit" class="form-control input-sm" disabled.bind="!artist.edit" type="text" value.bind="ArtistID">
+						</div>
+
+
+
          	</td>
+
+
 
 					<td width="225px">
 					<!-- <button class="btn btn-primary" click.delegate="note.edit=!note.edit">${ !note.edit ? 'Update' : 'Done' }</button> -->
 			 
-         	<button class="btn btn-primary" click.delegate="saveitem(note,$index)">${ !note.edit ? 'Update' : 'Done' }</button>
+         	<!-- <button class="btn btn-primary" click.delegate="saveitem(note,$index)">${ !note.edit ? 'Update' : 'Done' }</button> -->
 
-      		<button class="btn btn-danger" click.delegate="remove(note,$index)">Delete</button> 
+      		<button class="btn btn-danger" click.delegate="remove(artist,$index)">Delete</button> 
        
 					</td>
 	
