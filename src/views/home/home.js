@@ -6,8 +6,8 @@ import { MyDataService } from "../../services/my-data-service";
 
 export class Home {
   heading = "MRG Home Page";
-  version = 241.90
-  versionDate = 'fri 1/4/2019'
+  version = 241.91
+  versionDate = 'sat 1/5/2019'
   // versiondate=Date();
   //  "select2": { 
   //       "map": "npm:select2@4.0.6-rc.1/dist",
@@ -24,6 +24,11 @@ export class Home {
   //  "select2": "4.0.6-rc.1"
   issues = [
     "If org is an I no org append notes to contact section ",
+    " update button to replace changes for currently emps ",
+    " make org a popup modal with textbox for addess  Address : Mr. Jerry Saltz\r\n40 East 9 Street, 3D,  and get rid of tab",
+    ' "Ext" : "rosmith@nytimes.com\r\nrosmith@nytimes.com\r\nrosmith@", ',
+    ' add phone type id to convert',
+    ' fix cat contact send see {ContactID:18235}',
     'TEXTBOX in popups',
     'Make tabs like mas w/scrollbar with sticky header',
     'shortcut keys',

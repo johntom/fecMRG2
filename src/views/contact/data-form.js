@@ -7,6 +7,7 @@ import { DialogService } from 'aurelia-dialog';
 //import { Prompt } from '../../../services/prompt';
 import { Prompt } from './prompt';
 import moment from 'moment';
+import { Promptorg } from '../prompt/promptOrg';
 
 @inject(Router, ApiService, ApplicationService, MyDataService, DialogService)
 export class DataForm {
@@ -71,6 +72,29 @@ export class DataForm {
     // this.controller.addObject(this.currentItem);
     // this.currentItem={}
   }
+
+modal(item) {
+
+    // this.currentItem.recordId = this.recordId model:this.currentItem
+    let currentModel = {}
+    currentModel.currentItem = this.currentItem
+    currentModel.item = item
+    currentModel.currentItem.hide1 = false
+
+    // this.dialogService.open({ viewModel: PromptForm, model: currentModel, lock: false }).whenClosed(response => {
+    this.dialogService.open({ viewModel: Promptorg, model: currentModel, lock: false }).whenClosed(response => {
+
+      if (!response.wasCancelled) {
+        console.log('item', item);
+      item.edit = false//this.saveitem(item, index)
+      } else {
+
+        console.log('cancel');
+      }
+      console.log(response)//.output);
+    });
+  }
+
   showModal(fieldname) {
     this.currentItem.fieldname = fieldname
     this.currentItem.recordId = this.recordId

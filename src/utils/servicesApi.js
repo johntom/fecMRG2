@@ -1236,9 +1236,9 @@ saveMerge(slname, editorval) {
 
 
   // insco
-  findinscoOne(inscoid) {
+  findorgOne(orgid) {
     // search has fullu formed query string  v1/claim/
-    var url = this.baseweb + `v1/insurancecompany/${inscoid}`
+    var url = this.baseweb + `v1/orgs/${orgid}`
     console.log('url ', url)
     return this.http.fetch(url, {
       method: 'get',

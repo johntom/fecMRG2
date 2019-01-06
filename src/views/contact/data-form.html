@@ -145,9 +145,9 @@
 										<strong>FirstName</strong>
 									</div>
 									<div class="Rtable-cell-70  Rtable-cell--highlight">
-											<input type="text" id="FirstName" class="form-control input-sm" value.bind="currentItem.FirstName ">
-										
-									
+										<input type="text" id="FirstName" class="form-control input-sm" value.bind="currentItem.FirstName ">
+
+
 
 
 									</div>
@@ -169,27 +169,54 @@
 									</div>
 
 
+
+
+
+
+
+									<!-- 
+											<div style="height:15px;margin-left:10px;margin-top:5px;margin-bottom:10px"
+                       if.bind="currentItem.org.OrgName===undefined || currentItem.org.OrgName==='' ">
+												<a click.delegate="showModal( 'OrgID')">select_link </a>
+											</div>
+											<div style="height:15px;margin-left:10px;margin-top:5px;margin-bottom:10px" else>
+												<a click.delegate="showModal( 'OrgID')">${currentItem.org.OrgName} </a>
+
+											</div>
+                       -->
+
+
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong> OrgID</strong>
+									</div>
+
+									<div class="Rtable-cell-70  Rtable-cell--highlight">
+										<input type="text " xid="OrgID " class="form-control input-sm " value.bind="currentItem.OrgID">
+									</div>
+
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong> ContactID</strong>
+									</div>
+
+									<div class="Rtable-cell-70  Rtable-cell--highlight">
+										<!-- {ContactID:   ${currentItem.ID} }
+									{_id:  ${currentItem.id} } ${currentItem.id}  -->
+										<input type="text " xid="ContactID " class="form-control input-sm " value.bind="currentItem.ID">
+									</div>
+									<!-- <button class="btn btn-success" click.delegate="modal(org)">Org</button> ${currentItem.org.OrgName} -->
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
 
-										<span dblclick.delegate="showModal( 'OrgID') ">	<strong> Org</strong></span>
 
-									</div>
-								
-
-									<div class="Rtable-cell-70  Rtable-cell--light">
-
-
-										<div style="height:15px;margin-left:10px;margin-top:5px;margin-bottom:10px" if.bind="currentItem.org.OrgName===undefined || currentItem.org.OrgName==='' ">
-											<a click.delegate="showModal( 'OrgID')">select_link </a>
+										<div if.bind="currentItem.org.OrgName===undefined || currentItem.org.OrgName==='' ">
+											&nbsp;
 										</div>
-										<div style="height:15px;margin-left:10px;margin-top:5px;margin-bottom:10px" else>
-											<a click.delegate="showModal( 'OrgID')">${currentItem.org.OrgName} </a>
-
+										<div else>
+											<!-- <a click.delegate="modal( 'OrgID')">Open ${currentItem.org.OrgName} </a> -->
+											<button class="btn btn-success" click.delegate="modal(org)">Open ${currentItem.org.OrgName}</button>
 										</div>
-
 									</div>
-
-								
+									<div class="Rtable-cell-70  Rtable-cell--highlight">
+									</div>
 
 								</div>
 							</div>
@@ -204,7 +231,7 @@
 
 									</div>
 									<div class="Rtable-cell-70 Rtable-cell--highlight">
-
+										${currentItem.contacttypes}
 
 										<ak-multiselect k-value.two-way="currentItem.contacttypes" k-placeholder="Select contacttypes..." k-data-text-field="Description"
 										 k-data-value-field="Description" k-height.bind="400" k-data-source.bind="dataSource" k-widget.two-way="multiselect"
@@ -229,7 +256,7 @@
 										<input type="checkbox" id="international" checked.bind="currentItem.international">
 									</div>
 
-<div class="Rtable-cell-30 Rtable-cell--highlight">
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
 										<strong> nomailings?</strong>
 										<input type="checkbox" id="nomailings" checked.bind="currentItem.nomailings">
 									</div>
@@ -238,9 +265,9 @@
 										<strong> noinfo?</strong>
 										<input type="checkbox" id="noinfo" checked.bind="currentItem.noinfo">
 									</div>
-                
-                
-                  <div class="Rtable-cell-30 Rtable-cell--highlight">
+
+
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
 										<strong> email?</strong>
 										<input type="checkbox" id="email" checked.bind="currentItem.email">
 									</div>
