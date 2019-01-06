@@ -23,7 +23,7 @@ export class Home {
   //     },
   //  "select2": "4.0.6-rc.1"
   issues = [
-    "If org is an I no org append notes to contact section ",
+    " If org is an I no org append notes to contact section ",
     " update button to replace changes for currently emps ",
     " make org a popup modal with textbox for addess  Address : Mr. Jerry Saltz\r\n40 East 9 Street, 3D,  and get rid of tab",
     ' "Ext" : "rosmith@nytimes.com\r\nrosmith@nytimes.com\r\nrosmith@", ',
