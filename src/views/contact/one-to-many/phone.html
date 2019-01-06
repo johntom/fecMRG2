@@ -64,9 +64,21 @@ table  tbody{
 			<tr repeat.for="phone of currentItem.phones" with.bind="phone">
 				
 					<td width="100px">
-         		<span show.bind="!phone.edit">${type}</span>
+         		<!-- <span show.bind="!phone.edit">${type}</span>
 
-						<input show.bind="phone.edit" class="form-control input-sm" disabled.bind="!phone.edit" type="text" value.bind="type">
+						<input show.bind="phone.edit" class="form-control input-sm" disabled.bind="!phone.edit" type="text" value.bind="type"> -->
+
+	<select id="phonetype" class="form-control  input-sm" value.bind="phone.type"> 
+                      <option model.bind="null">Choose...filterOnCode</option> 
+                         <option repeat.for="opt of appService.codesPhoneType " model.bind="opt.id">
+                    ${opt.Description} 
+                      </option> 
+                    </select>
+
+
+
+
+
          	</td>
             <td width="200px">
         		<span show.bind="!phone.edit">${phoneno}</span>

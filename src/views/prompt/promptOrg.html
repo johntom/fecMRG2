@@ -67,119 +67,128 @@
 				<div class="Rtable-cell-70  Rtable-cell--highlight">
 					<input type="text" id="OrgName" class="form-control input-sm" value.bind="currentItem.org.OrgName">
 				</div>
-        <div class="Rtable-cell-30 Rtable-cell--highlight">
-								<strong> Address</strong>
-							</div>
-							<div class="Rtable-cell-70  Rtable-cell--highlight">
-								<input type="text" id="Address" class="form-control input-sm" value.bind="currentItem.org.Address">
-							</div>
-							<div class="Rtable-cell-30 Rtable-cell--highlight">
-								<strong> City</strong>
-							</div>
-							<div class="Rtable-cell-70  Rtable-cell--highlight">
-								<input type="text" id="City" class="form-control input-sm" value.bind="currentItem.org.City">
-							</div>
-							<div class="Rtable-cell-30 Rtable-cell--highlight">
-								<strong> State</strong>
-							</div>
-							<div class="Rtable-cell-70  Rtable-cell--highlight">
-								<input type="text" id="State" class="form-control input-sm" value.bind="currentItem.org.State">
-							</div>
-							<div class="Rtable-cell-30 Rtable-cell--highlight">
-								<strong> Zip</strong>
-							</div>
-							<div class="Rtable-cell-70  Rtable-cell--highlight">
-								<input type="text" id="Zip" class="form-control input-sm" value.bind="currentItem.org.Zip">
-							</div>
+				<div class="Rtable-cell-30 Rtable-cell--highlight">
+					<strong> Address</strong>
+				</div>
+				<div class="Rtable-cell-70  Rtable-cell--highlight">
+					<input type="text" id="Address" class="form-control input-sm" value.bind="currentItem.org.Address">
+				</div>
+				<div class="Rtable-cell-30 Rtable-cell--highlight">
+					<strong> City</strong>
+				</div>
+				<div class="Rtable-cell-70  Rtable-cell--highlight">
+					<input type="text" id="City" class="form-control input-sm" value.bind="currentItem.org.City">
+				</div>
+				<div class="Rtable-cell-30 Rtable-cell--highlight">
+					<strong> State</strong>
+				</div>
+				<div class="Rtable-cell-70  Rtable-cell--highlight">
+					<input type="text" id="State" class="form-control input-sm" value.bind="currentItem.org.State">
+				</div>
+				<div class="Rtable-cell-30 Rtable-cell--highlight">
+					<strong> Zip</strong>
+				</div>
+				<div class="Rtable-cell-70  Rtable-cell--highlight">
+					<input type="text" id="Zip" class="form-control input-sm" value.bind="currentItem.org.Zip">
+				</div>
 
 
-							<div class="Rtable-cell-30 Rtable-cell--highlight">
-								<strong> Status</strong>
-							</div>
-							<div class="Rtable-cell-70  Rtable-cell--highlight">
-								<input type="text" id="PurchasedDate" class="form-control input-sm" value.bind="currentItem.org.Status">
-							</div>
-							<div class="Rtable-cell-30 Rtable-cell--highlight">
-								<strong> Notes</strong>
-							</div>
-							<div class="Rtable-cell-70  Rtable-cell--highlight">
-								<input type="text" id="BusIndivid" class="form-control input-sm" value.bind="currentItem.org.Notes">
-							</div>
+				<div class="Rtable-cell-30 Rtable-cell--highlight">
+					<strong> Status</strong>
+				</div>
+				<div class="Rtable-cell-70  Rtable-cell--highlight">
+					<input type="text" id="PurchasedDate" class="form-control input-sm" value.bind="currentItem.org.Status">
+				</div>
+				<div class="Rtable-cell-30 Rtable-cell--highlight">
+					<strong> Notes</strong>
+				</div>
+				<div class="Rtable-cell-70  Rtable-cell--highlight">
+					<input type="text" id="BusIndivid" class="form-control input-sm" value.bind="currentItem.org.Notes">
+				</div>
 			</div>
 
-	<h4>
-			<i class="fa fa-folder-open"></i> Phone 
-			<a slot="buttons-slot" class="btn btn-primary" click.delegate="addNote()">
-				<i class="fa fa-plus"></i> Add Phone
-			</a>
-		</h4>
+			<h4>
+				<i class="fa fa-folder-open"></i> Phone
+				<a slot="buttons-slot" class="btn btn-primary" click.delegate="addNote()">
+					<i class="fa fa-plus"></i> Add Phone
+				</a>
+			</h4>
 			<table class="table-condensed table">
-			<thead class="table-header-blue" > 
-				<tr>
-				
-          	<tr>
-						<th width="100px"class="header">type
-						</th>
-						<th width="200px" class="header">phoneno
-            </th>
-<th width="100px"class="header">area code
-						</th>
-						<th width="300px" class="header">ext
-            </th>
-            	<th width="300px" class="header">country
-            </th>
-						<th width="225px" class="header">Cmd
-						
-						</th>
+				<thead class="table-header-blue">
+					<tr>
+
+						<tr>
+							<th width="100px" class="header">type
+							</th>
+							<th width="200px" class="header">phoneno
+							</th>
+							<th width="100px" class="header">area code
+							</th>
+							<th width="300px" class="header">ext
+							</th>
+							<th width="300px" class="header">country
+							</th>
+							<th width="225px" class="header">Cmd
+
+							</th>
+						</tr>
+				</thead>
+				<tfoot>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
 					</tr>
-			</thead>
-			<tfoot>
-				<tr>
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
-			</tfoot>
-			<tbody>
-			<tr repeat.for="phone of item.orgphones" with.bind="phone">
-				
-					<td width="100px">
-         		<span show.bind="!phone.edit">${type}</span>
+				</tfoot>
+				<tbody>
+					<tr repeat.for="phone of item.orgphones" with.bind="phone">
 
-						<input show.bind="phone.edit" class="form-control input-sm" disabled.bind="!phone.edit" type="text" value.bind="type">
-         	</td>
-            <td width="200px">
-        		<span show.bind="!phone.edit">${phoneno}</span>
+						<td width="225px">
+							<!-- <span show.bind="!phone.edit">${type}</span>
 
-						<input show.bind="phone.edit" class="form-control input-sm" disabled.bind="!phone.edit" type="text" value.bind="phoneno">
-         	</td>
-                  <td width="100px">
-          	<span show.bind="!phone.edit">${areacode}</span>
+						<input show.bind="phone.edit" class="form-control input-sm" disabled.bind="!phone.edit" type="text" value.bind="type"> -->
 
-						<input show.bind="phone.edit" class="form-control input-sm" disabled.bind="!phone.edit" type="text" value.bind="areacode">
-         	</td>
-             <td width="300px">
+							<select id="phonetype" class="form-control  input-sm" value.bind="type"> 
+                      <option model.bind="null">Choose...filterOnCode</option> 
+                         <option repeat.for="opt of appService.codesPhoneType " model.bind="opt.id">
+                    ${opt.Description} 
+                      </option> 
+                    </select>
 
-						<span show.bind="!phone.edit">${ext}</span>
 
-						<input show.bind="phone.edit" class="form-control input-sm" disabled.bind="!phone.edit" type="text" value.bind="ext">
-         	</td>
-       <td width="100px">
-          	<span show.bind="!phone.edit">${countrycode}</span>
+						</td>
+						<td width="200px">
+							<span show.bind="!phone.edit">${phoneno}</span>
 
-						<input show.bind="phone.edit" class="form-control input-sm" disabled.bind="!phone.edit" type="text" value.bind="countrycode">
-         	</td>
-					<td width="225px">
-			 
-         	<!-- <button class="btn btn-primary" click.delegate="saveitem(note,$index)">${ !note.edit ? 'Update' : 'Done' }</button> -->
+							<input show.bind="phone.edit" class="form-control input-sm" disabled.bind="!phone.edit" type="text" value.bind="phoneno">
+						</td>
+						<td width="100px">
+							<span show.bind="!phone.edit">${areacode}</span>
 
-      		<button class="btn btn-danger" click.delegate="remove(note,$index)">Delete</button> 
-       
-					</td>
-	
+							<input show.bind="phone.edit" class="form-control input-sm" disabled.bind="!phone.edit" type="text" value.bind="areacode">
+						</td>
+						<td width="300px">
 
-			</tbody>
-		</table>
+							<span show.bind="!phone.edit">${ext}</span>
+
+							<input show.bind="phone.edit" class="form-control input-sm" disabled.bind="!phone.edit" type="text" value.bind="ext">
+						</td>
+						<td width="100px">
+							<span show.bind="!phone.edit">${countrycode}</span>
+
+							<input show.bind="phone.edit" class="form-control input-sm" disabled.bind="!phone.edit" type="text" value.bind="countrycode">
+						</td>
+						<td width="225px">
+
+							<!-- <button class="btn btn-primary" click.delegate="saveitem(note,$index)">${ !note.edit ? 'Update' : 'Done' }</button> -->
+
+							<button class="btn btn-danger" click.delegate="remove(note,$index)">Delete</button>
+
+						</td>
+
+
+				</tbody>
+			</table>
 
 
 
