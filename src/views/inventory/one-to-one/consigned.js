@@ -58,7 +58,7 @@ export class Consigned {
     this.currentItem.fieldname=fieldname
     // this.currentItem.ConsignedTo = this.currentItem.ConsignedTo
     // this.currentItem.loantoname = this.currentItem.museumloan[index].loantoname
-    this.dialogService.open({ viewModel: Prompt, model: this.currentItem, lock: false }).whenClosed(response => {
+    this.dialogService.open({ viewModel: Prompt, model: this.currentItem, lock: true }).whenClosed(response => {
 
 
 

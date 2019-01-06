@@ -3,9 +3,7 @@ import { inject } from 'aurelia-dependency-injection';
 import { ApiService } from '../../../utils/servicesApi';
 import { ApplicationService } from '../../../services/application-service';
 import { DialogService } from 'aurelia-dialog';
-
 import { Prompt } from '../prompt';
-
 
 @inject(ApiService, ApplicationService, DialogService)
 export class Purchased {
@@ -32,15 +30,13 @@ export class Purchased {
       oid = orgs.findIndex(x => x._id === this.currentItem.PurchasedFrom)
       orgobj = this.appService.orgsList[oid]//10]
       if (orgobj !== undefined) this.currentItem.purchasedfromname = orgobj.OrgName
-
     }
-
-
   }
+
   showModal(fieldname) {
     // this.dialogService.open({ viewModel: Prompt, model: fieldname, lock: false }).whenClosed(response => {
     this.currentItem.fieldname=fieldname
-    this.dialogService.open({ viewModel: Prompt, model: this.currentItem, lock: false }).whenClosed(response => {
+    this.dialogService.open({ viewModel: Prompt, model: this.currentItem, lock: true }).whenClosed(response => {
 
       if (!response.wasCancelled) {
         // console.log('Delete')

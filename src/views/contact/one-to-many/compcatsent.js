@@ -59,7 +59,7 @@ export class Compcatsent {
     this.mode = 0
 
 
-    this.dialogService.open({ viewModel: Prompt, model: 'Delete or Cancel?', lock: false }).whenClosed(response => {
+    this.dialogService.open({ viewModel: Prompt, model: 'Delete or Cancel?', lock: true }).whenClosed(response => {
       if (!response.wasCancelled) {
         console.log('Delete')
         let provenance = this.currentItem.provenance

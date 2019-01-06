@@ -45,8 +45,17 @@
 
 <template>
 	<require from="../../../styles/flex.css"></require>
-
-	<ux-dialog style="width:650px; height: 550px;">
+<style>
+ai-dialog-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+ai-dialog-container > div {
+  margin: auto !important;
+}
+</style>
+	<ux-dialog style="width:700px; height: 550px;">
 		<!-- <ux-dialog-header>
       <h1>${heading}</h1>
     </ux-dialog-header> -->
@@ -118,7 +127,7 @@
 					<tr>
 
 						<tr>
-							<th width="100px" class="header">type
+							<th width="300px" class="header">type
 							</th>
 							<th width="200px" class="header">phoneno
 							</th>
@@ -143,7 +152,7 @@
 				<tbody>
 					<tr repeat.for="phone of item.orgphones" with.bind="phone">
 
-						<td width="225px">
+						<td width="300px">
 							<!-- <span show.bind="!phone.edit">${type}</span>
 
 						<input show.bind="phone.edit" class="form-control input-sm" disabled.bind="!phone.edit" type="text" value.bind="type"> -->

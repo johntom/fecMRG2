@@ -49,7 +49,7 @@ export class Reproduction {
 
 
     // this.dialogService.open({ viewModel: PromptForm, model: currentModel, lock: false }).whenClosed(response => {
-    this.dialogService.open({ viewModel: Promptrepro, model: currentModel, lock: false }).whenClosed(response => {
+    this.dialogService.open({ viewModel: Promptrepro, model: currentModel, lock: true }).whenClosed(response => {
 
       if (!response.wasCancelled) {
         console.log('item', item);

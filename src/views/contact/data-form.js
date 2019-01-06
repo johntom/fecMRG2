@@ -82,7 +82,7 @@ modal(item) {
     currentModel.currentItem.hide1 = false
 
     // this.dialogService.open({ viewModel: PromptForm, model: currentModel, lock: false }).whenClosed(response => {
-    this.dialogService.open({ viewModel: Promptorg, model: currentModel, lock: false }).whenClosed(response => {
+    this.dialogService.open({ viewModel: Promptorg, model: currentModel, lock: true }).whenClosed(response => {
 
       if (!response.wasCancelled) {
         console.log('item', item);

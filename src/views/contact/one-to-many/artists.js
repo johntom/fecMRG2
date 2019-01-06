@@ -58,7 +58,7 @@ export class Artists {
 
     this.currentItem.artist = this.currentItem.artists[index]//.artists
 
-    this.dialogService.open({ viewModel: Prompt, model: this.currentItem, lock: false }).whenClosed(response => {
+    this.dialogService.open({ viewModel: Prompt, model: this.currentItem, lock: true }).whenClosed(response => {
 
       this.currentItem.artists[index].id = this.currentItem.artist.id
       this.currentItem.artists[index].ArtistName = this.currentItem.artist.ArtistName

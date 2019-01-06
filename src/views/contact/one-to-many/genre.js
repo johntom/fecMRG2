@@ -53,7 +53,7 @@ export class Genre {
   remove(item, index) {
     //import { Prompt } from '../../../services/prompt';
  
-    this.dialogService.open({ viewModel: Prompt, model: 'Delete or Cancel?', lock: false }).whenClosed(response => {
+    this.dialogService.open({ viewModel: Prompt, model: 'Delete or Cancel?', lock: true }).whenClosed(response => {
       if (!response.wasCancelled) {
         console.log('Delete')
         let notes = this.currentItem.notes

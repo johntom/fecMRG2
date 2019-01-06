@@ -66,7 +66,7 @@ export class Catsold {
 
     // let notes = this.currentItem.notes
     // notes.splice(index, 1)// start, deleteCount)
-    this.dialogService.open({ viewModel: ynPrompt, model: 'Delete or Cancel?', lock: false }).whenClosed(response => {
+    this.dialogService.open({ viewModel: ynPrompt, model: 'Delete or Cancel?', lock: true }).whenClosed(response => {
       if (!response.wasCancelled) {
         console.log('Delete')
         let consignedto = this.currentItem.consignedto
