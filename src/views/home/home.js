@@ -1,13 +1,13 @@
 import { inject } from 'aurelia-dependency-injection';
 import { ApplicationService } from '../../services/application-service';
 import { MyDataService } from "../../services/my-data-service";
-
+import lodash from 'lodash';
 @inject(ApplicationService, MyDataService)
 
 export class Home {
   heading = "MRG Home Page";
-  version = 241.93
-  versionDate = 'sat 1/5/2019'
+  version = 241.94
+  versionDate = 'wed 1/16/2019'
   // versiondate=Date();
   //  "select2": { 
   //       "map": "npm:select2@4.0.6-rc.1/dist",
@@ -23,12 +23,12 @@ export class Home {
   //     },
   //  "select2": "4.0.6-rc.1"
   issues = [
-    " If org is an I no org append notes to contact section ",
-    " update button to replace changes for currently emps ",
-    " make org a popup modal with textbox for addess  Address : Mr. Jerry Saltz\r\n40 East 9 Street, 3D,  and get rid of tab",
-    ' "Ext" : "rosmith@nytimes.com\r\nrosmith@nytimes.com\r\nrosmith@", ',
-    ' add phone type id to convert',
-    ' fix cat contact send see {ContactID:18235}',
+    "If org is an I no org append notes to contact section ",
+    "update button to replace changes for currently emps ",
+    "make org a popup modal with textbox for addess  Address : Mr. Jerry Saltz\r\n40 East 9 Street, 3D,  and get rid of tab",
+    '"Ext" : "rosmith@nytimes.com\r\nrosmith@nytimes.com\r\nrosmith@", ',
+    'add phone type id to convert',
+    'fix cat contact send see {ContactID:18235}',
     'TEXTBOX in popups',
     'Make tabs like mas w/scrollbar with sticky header',
     'shortcut keys',
@@ -44,51 +44,51 @@ export class Home {
     'git commit -am "200.70 " / git push',
     "clean dup InventoryCode and make uniq",
     "clean ARTISTS null reocrds",
-     "",
-     "",
-     "",
+    "",
+    "",
+    "",
     "fix 3 dates   { id: 0, name: 'DateAdded' }, { id: 1, name: 'DateModified' },  { id: 2, name: 'SoldDate' }",
     "contact specs",
     "Dec 12 2018 ",
-"Inventory",
-"We combined ArtType and genre (many side) into keywords",
-"Convert Comments to mang notes",
-"identify all newfields added to db without converting any data",
-"AltID = Description",
- "",
- "Contacts",
-"Mailtypes",
-"            VALUES (1193, 16, 'No mailings'); ",
-"             VALUES (4492, 16, 'Press');",
-"             VALUES (2185, 16, 'Deceased');",
-"             VALUES (4424, 16, 'Email');",
-"             VALUES (4431, 16, 'Mailing List');",
-"             VALUES (4495, 16, 'Unassigned');",
-"             VALUES (4564, 16, 'No longer here but catalogs sent');",
-"             VALUES (4671, 16, 'CMOM');",
-"             VALUES (4957, 16, 'International Mailing List');",
-"             VALUES (4958, 16, 'International Press');",
-"No longer useing Mailing Type, call data moved to ContactType Array if MT=Press or International Press add to arraay[Press,CMOM] plus another CB:International ",
-"checkboxs:",
-"decesed: X if coded `Deceased`",
-"email: X if coded `Email`",
-"Mailing : X if coded Mailing List or if coded Mailing ListInternational Mailing List plus another CB: International",
-"No Info : X if coded Unassigned",
-"Prev Emped at Org: X if coded No longer here but catalogs sent",
-"add to emp-history",
-"and dont add the org info",
-"No mailings: X They wpnt get annoucements ",
-"if one value is Press then  ",
-"mailings, checkbox:international ",
-"Deceased: informative & checkbox:no mailings Type Code=16",
-"international: during conversion need to check this for anyone not in US",
-"unsubscribed email checkbox (this is really for information purposes since they will most likely have unsubscribed in MailChimp)",
-"no info: when converting a contact who is “no longer at org” (No longer here), there might not have personal contact info but we don’t want to lose them, so this designation will flag them for research (they retain the catalogs sent to them & a list of former orgs)",
-"no mailings: this code should still show on Michael’s printout but they don’t get announcements",
-"Master Catalog (for Michaels’s list)",
-"vendor",
- ]
- ninalist = [
+    "Inventory",
+    "We combined ArtType and genre (many side) into keywords",
+    "Convert Comments to mang notes",
+    "identify all newfields added to db without converting any data",
+    "AltID = Description",
+    "",
+    "Contacts",
+    "Mailtypes",
+    "             VALUES (1193, 16, 'No mailings'); ",
+    "             VALUES (4492, 16, 'Press');",
+    "             VALUES (2185, 16, 'Deceased');",
+    "             VALUES (4424, 16, 'Email');",
+    "             VALUES (4431, 16, 'Mailing List');",
+    "             VALUES (4495, 16, 'Unassigned');",
+    "             VALUES (4564, 16, 'No longer here but catalogs sent');",
+    "             VALUES (4671, 16, 'CMOM');",
+    "             VALUES (4957, 16, 'International Mailing List');",
+    "             VALUES (4958, 16, 'International Press');",
+    "No longer useing Mailing Type, call data moved to ContactType Array if MT=Press or International Press add to arraay[Press,CMOM] plus another CB:International ",
+    "checkboxs:",
+    "decesed: X if coded `Deceased`",
+    "email: X if coded `Email`",
+    "Mailing : X if coded Mailing List or if coded Mailing ListInternational Mailing List plus another CB: International",
+    "No Info : X if coded Unassigned",
+    "Prev Emped at Org: X if coded No longer here but catalogs sent",
+    "add to emp-history",
+    "and dont add the org info",
+    "No mailings: X They wpnt get annoucements ",
+    "if one value is Press then  ",
+    "mailings, checkbox:international ",
+    "Deceased: informative & checkbox:no mailings Type Code=16",
+    "international: during conversion need to check this for anyone not in US",
+    "unsubscribed email checkbox (this is really for information purposes since they will most likely have unsubscribed in MailChimp)",
+    "no info: when converting a contact who is “no longer at org” (No longer here), there might not have personal contact info but we don’t want to lose them, so this designation will flag them for research (they retain the catalogs sent to them & a list of former orgs)",
+    "no mailings: this code should still show on Michael’s printout but they don’t get announcements",
+    "Master Catalog (for Michaels’s list)",
+    "vendor",
+  ]
+  ninalist = [
     'when selecting saved list inv/actions/batch go directly ...',
     'shortcut keys',
     'tab hilite in detail',
@@ -126,7 +126,7 @@ export class Home {
     'Set Ex not work display sponser with exhi ',
     'restore GROSSM0029 and jpollack untitled ',
     'convert images id: 21248 with 20289 images ',
-  
+
     'Special foreigh charaters',
     "Next avail repro tab",
 
@@ -143,7 +143,7 @@ export class Home {
     'version = 240.20 uses   this.currentItem not this.appService.currentItem (which is a singleton)',
     '* working on local storage with invcode',
     '* Link option',
-   
+
     'EXHIBITION & PUBLICATION HISTORY',
     '',
     'Nancy Grossman: Collages and Heads 1970-1991, Sculpture Center, New York, NY, October 8 - November 9, 1991 ',
@@ -171,7 +171,7 @@ export class Home {
     'N/A',
     'not known',
     '',
-      'x (bdateNOSPCE-Died)',
+    'x (bdateNOSPCE-Died)',
     'x Dimens DIMS',
     'x Add SIZE back in',
     'x SIZE',
@@ -196,12 +196,12 @@ export class Home {
     'EDITION',
     'Edition: 1/8 ',
     'The intended edition of Gunhead ',
-   
+
     'PROVENANCE',
     '',
     'Nancy Grossman, Brooklyn, NY',
     '',
- 
+
   ]
   //  askmatt = [
 
@@ -237,12 +237,16 @@ export class Home {
         this.dataService.loadCodes(),
         this.dataService.loadOrgs(),
         this.dataService.loadSavedlists(),
+        this.dataService.loadStates(),
+        // this.dataService.loadCatalog(),  
 
       ]).then(values => {
         this.appService.artistList = values[0];
         this.appService.codesList = values[1];
         this.appService.orgsList = values[2];
         this.appService.savedlists = values[3];
+        this.appService.stateList = values[4];
+        //            this.appService.catalogList = values[5];
         let i, item, ct
         this.appService.LookupDataLoaded = true;
         let codesInventoryLocation = []//1,
@@ -481,17 +485,23 @@ export class Home {
         console.log(' this.appService.codesGenre', this.appService.codesGenre)
         console.log(' this.artistList', this.appService.artistList.length)
         // bad   this.currentItem = this.items.find(f => f.id == params.id);
-        for (i = 0; i < this.appService.artistList.length; i++) {
-          this.appService.artistList[i].ArtistName = this.appService.artistList[i].lastName + ', ' + this.appService.artistList[i].firstName
+        // for (i = 0; i < this.appService.artistList.length; i++) {
+        //   this.appService.artistList[i].ArtistName = this.appService.artistList[i].lastName + ', ' + this.appService.artistList[i].firstName
+        // }
 
-          // this.appService.artistList[i].ArtistName = this.appService.artistList[i].LastName + ', ' + this.appService.artistList[i].FirstName
-
+        let nlist = []
+        for (const item of this.appService.artistList) {
+          item.ArtistName = item.LastName + ', ' + item.FirstName
+          nlist.push(item)
         }
+        this.appService.artistList = lodash.sortBy(nlist, 'ArtistName');
+
+
         // let pct
         // for (let bk of this.appService.artistList) {
         //       //  console.log('bk2 ', bk2)
         //       bk.ArtistName = bk.lastName+', '+bk.firstName
-        //     }
+        //}
 
 
       }).catch(error => {

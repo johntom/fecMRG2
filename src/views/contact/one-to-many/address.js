@@ -18,8 +18,8 @@ export class Address {
     this.api = api;
     this.appService = appService;
     this.inv = '';
-    this.currentItem = this.appService.currentItem;
-    console.log('this.currentItem  Exhibition', this.appService.currentItem);
+    this.currentItem = this.appService.currentContactItem;
+    console.log('this.currentItem  Exhibition', this.appService.currentContactItem);
     this.dialogService = dialogService
   }
 
@@ -56,8 +56,8 @@ export class Address {
   }
 			
   addAddress() {
-    // addExhibit ExhibitSponser  ExhibitLocation ExhibitRepro ExhibitDates ExhibitSortDate Traveled ExhibitMemo
-    let addresses = this.currentItem.addresses
+  
+let addresses = this.currentItem.addresses
     let flag = false
     let item
     if (addresses === undefined) {
@@ -70,8 +70,10 @@ export class Address {
       letter: '', notes: '', edit: true
     }
     addresses.unshift(item)
-    if (flag) this.currentItem.addresses = address
+    if (flag) this.currentItem.addresses = addresses
     this.newAddress = '';
+
+    
   }
 
 

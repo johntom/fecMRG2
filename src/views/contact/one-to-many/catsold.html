@@ -25,23 +25,23 @@
 	<!-- section class="customer-orders au-animate" -->
 	<section class="docs full-height flex-column-1 overflow-y-auto ignore">
 		<h4>
-			<i class="fa fa-folder-open"></i>Consigned To 
+			<i class="fa fa-folder-open"></i>Catalog Sold To 
 			<a slot="buttons-slot" class="btn btn-primary" click.delegate="addItem()">
-				<i class="fa fa-plus"></i> Add Consigned To	</a>
+				<i class="fa fa-plus"></i> Add Catalog Sold To	</a>
 		</h4>
 
 
 		<table class="table-condensed table">
-			<thead class="table-header-blue" data-sort="items.bind: currentItem.consignedto; cols: ['ConsignedStartDate','ConsignedEndDate']">
+			<thead class="table-header-blue" data-sort="items.bind: currentItem.catalogsold; cols: ['ConsignedStartDate','ConsignedEndDate']">
 				<tr>
-					<th  width="225px" class="header">CatalogID >></th>
+					<th  width="125px" class="header">CatalogID >></th>
           
-          	<th  width="325px" class="header">CatalogTitle</th>
+          	<th  width="225px" class="header">CatalogTitle</th>
 
 					<!-- <th  width="95px" class="header">SendType</th> -->
-					<th  width="125px" class="header">DateSent</th>
-					<th  width="125px" class="header">InvoiceID</th>
-					<th  width="95px" class="header">Qty</th>
+					<th  width="100px" class="header">DateSent</th>
+					<th  width="100px" class="header">InvoiceID</th>
+					<th  width="55px" class="header">Qty</th>
 					<th  width="225px" class="header">Cmd</th>
 					
 		
@@ -58,7 +58,7 @@
 				<tr repeat.for="catalogsold of currentItem.catalogsold" with.bind="catalogsold">
      
 
-					<td width="225px">
+					<td width="125px">
 					   
             		
       	<div class="form-control  input-sm" if.bind="_id===undefined || _id===''">
@@ -71,21 +71,16 @@
 				
 					</td>
 
-		<td width="325px">
+		<td width="225px">
 						<!-- <span show.bind="!catalogsold.edit">${CatalogTitle} </span>
 						<input show.bind="catalogsold.edit" class="form-control input-sm" disabled.bind="!catalogsold.edit" type="text" value.bind="CatalogTitle"> -->
 						<input type="text" id="xCatalogTitle" class="form-control  input-sm" value.bind="CatalogTitle"></td>
 			
           
           </td>
-										<td width="125px">
 						<!-- <span show.bind="!catalogsold.edit">${SendType}</span>
 						<input show.bind="catalogsold.edit" class="form-control input-sm" disabled.bind="!catalogsold.edit" type="text" value.bind="SendType"> -->
-					<input type="date" id="xCatalogTitle" class="form-control  input-sm" value.bind="CatalogTitle"></td>
-			
-        
-        	</td>
-          <td width="95px">
+					<td width="100px">
 						<!-- <span show.bind="!catalogsold.edit">${DateSent | dateFormat }</span>
 						<input show.bind="catalogsold.edit" class="form-control input-sm" disabled.bind="!catalogsold.edit" type="date" value.bind="DateSent"> -->
 					<input type="date" id="xDateSent" class="form-control  input-sm" value.bind="DateSent | dateFormatiso"></td>
@@ -93,13 +88,13 @@
         	</td>
 					
 
-					<td width="125px">
+					<td width="100px">
 						<!-- <span show.bind="!catalogsold.edit">${InvoiceID}</span>
 						<input show.bind="catalogsold.edit" class="form-control input-sm" disabled.bind="!catalogsold.edit" type="text" value.bind="InvoiceID">						</td> -->
 					<input type="text" id="zInvoiceID" class="form-control  input-sm" value.bind="InvoiceID"></td>
 			
           </td>
-					<td width="95px">
+					<td width="55px">
 						<!-- <span show.bind="!catalogsold.edit">${Qty}</span>
 						<input show.bind="catalogsold.edit" class="form-control input-sm" disabled.bind="!catalogsold.edit" type="text" value.bind="Qty">						</td> -->
 					<input type="text" id="xQty" class="form-control  input-sm" value.bind="Qty"></td>

@@ -84,26 +84,65 @@ export class Catsold {
   save(note, index) {
 
   }
-  showModal(fieldname, index) {
-    this.currentItem.fieldname = fieldname
-    this.currentItem.ConsignedTo = this.currentItem.consignedto[index].ConsignedTo
-    this.currentItem.consignedtoname = this.currentItem.consignedto[index].consignedtoname
+  // showModal(fieldname, index) {
+  //   this.currentItem.fieldname = fieldname
+  //   this.currentItem.ConsignedTo = this.currentItem.consignedto[index].ConsignedTo
+  //   this.currentItem.consignedtoname = this.currentItem.consignedto[index].consignedtoname
 
-    //   this.dialogService.open({ viewModel: Prompt, model: fieldname, lock: false }).whenClosed(response => {
+  //   //   this.dialogService.open({ viewModel: Prompt, model: fieldname, lock: false }).whenClosed(response => {
 
-    this.dialogService.open({ viewModel: Prompt, model: this.currentItem, lock: false }).whenClosed(response => {
+  //   this.dialogService.open({ viewModel: Prompt, model: this.currentItem, lock: false }).whenClosed(response => {
 
-      this.currentItem.consignedto[index].ConsignedTo = this.currentItem.ConsignedTo
-      this.currentItem.consignedto[index].consignedtoname = this.currentItem.consignedtoname
+  //     this.currentItem.consignedto[index].ConsignedTo = this.currentItem.ConsignedTo
+  //     this.currentItem.consignedto[index].consignedtoname = this.currentItem.consignedtoname
+  //     if (!response.wasCancelled) {
+  //       // console.log('Delete') InsuredBy
+  //       // let notes = this.currentItem.notes
+  //       // notes.splice(index, 1)// start, deleteCount)
+  //     } else {
+  //       console.log('cancel');
+  //     }
+  //     console.log(response.output);
+  //   });
+  // }
+showModal(fieldname, index) {
+
+    // make this work just on inventory and change prompt to maybe point to it
+    this.currentItem.fieldname = 'Catalog'//fieldname
+
+    this.currentItem.artist = this.currentItem.artists[index]//.artists
+    if (this.currentItem.artist.ArtistName === undefined) this.currentItem.artist.ArtistName = '';
+
+    this.dialogService.open({ viewModel: Prompt, model: this.currentItem, lock: true }).whenClosed(response => {
+
+      this.currentItem.artists[index].id = this.currentItem.artist.id
+      this.currentItem.artists[index].ArtistName = this.currentItem.artist.ArtistName
+      // this.currentItem.artists[index] = this.currentItem.artist;
+      // this.currentItem.artists = this.currentItem.artists
+
+      let artistrec = {}
+      artistrec.id = this.currentItem.artist.id;
+      artistrec.ArtistName = this.currentItem.artist.ArtistName;
+      artistrec.yearofBirth = this.currentItem.artist.yearofBirth;
+      artistrec.died = this.currentItem.artist.died;
+
+
+      this.currentItem.artists[index] = artistrec;
+      this.currentItem.artists = this.currentItem.artists
+      this.artname = artistrec
+
+      // delete this.currentItem.artist;
+
+
+
+
+
       if (!response.wasCancelled) {
-        // console.log('Delete') InsuredBy
-        // let notes = this.currentItem.notes
-        // notes.splice(index, 1)// start, deleteCount)
+
       } else {
         console.log('cancel');
       }
       console.log(response.output);
     });
   }
-
 }

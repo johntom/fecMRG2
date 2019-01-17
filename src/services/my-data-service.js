@@ -46,65 +46,65 @@ export class MyDataService {
 
   ];
   stateList = [
-    { name: 'Alabama', value: 'alabama' },
-    { name: 'Alaska', value: 'alaska' },
+    { name: 'Alabama', value: 'AL' },
+    { name: 'Alaska', value: 'AK' },
     { name: 'America Samoa', value: 'america samoa' },
-    { name: 'Arizona', value: 'arizona' },
-    { name: 'Arkansas', value: 'arkansas' },
-    { name: 'California', value: 'california' },
-    { name: 'Colorado', value: 'colorado' },
-    { name: 'Connecticut', value: 'connecticut' },
-    { name: 'Delaware', value: 'delaware' },
-    { name: 'District of Columbia', value: 'district of columbia' },
+    { name: 'Arizona', value: 'AZ' },
+    { name: 'Arkansas', value: 'AR' },
+    { name: 'California', value: 'CA' },
+    { name: 'Colorado', value: 'CO' },
+    { name: 'Connecticut', value: 'CN' },
+    { name: 'Delaware', value: 'DE' },
+    { name: 'District of Columbia', value: 'DC' },
     { name: 'Federated States of Micronesia', value: 'federated states of micronesia' },
-    { name: 'Florida', value: 'florida' },
-    { name: 'Georgia', value: 'georgia' },
+    { name: 'Florida', value: 'FL' },
+    { name: 'Georgia', value: 'GE' },
     { name: 'Guam', value: 'guam' },
-    { name: 'Hawaii', value: 'Hawaii' },
-    { name: 'Idaho', value: 'idaho' },
-    { name: 'Illinois', value: 'illinois' },
-    { name: 'Indiana', value: 'indiana' },
-    { name: 'Iowa', value: 'iowa' },
-    { name: 'Kansas', value: 'kansas' },
-    { name: 'Kentucky', value: 'kentucky' },
-    { name: 'Louisiana', value: 'louisiana' },
-    { name: 'Maine', value: 'maine' },
+    { name: 'Hawaii', value: 'HA' },
+    { name: 'Idaho', value: 'ID' },
+    { name: 'Illinois', value: 'IL' },
+    { name: 'Indiana', value: 'IN' },
+    { name: 'Iowa', value: 'IO' },
+    { name: 'Kansas', value: 'KA' },
+    { name: 'Kentucky', value: 'KY' },
+    { name: 'Louisiana', value: 'LA' },
+    { name: 'Maine', value: 'ME' },
     { name: 'Marshall Islands', value: 'marshall islands' },
-    { name: 'Maryland', value: 'maryland' },
-    { name: 'Massachusetts', value: 'massachusetts' },
-    { name: 'Michigan', value: 'michigan' },
-    { name: 'Minnesota', value: 'minnesota' },
-    { name: 'Mississippi', value: 'mississippi' },
-    { name: 'Missouri', value: 'missouri' },
-    { name: 'Montana', value: 'montana' },
-    { name: 'Nebraska', value: 'nebraska' },
-    { name: 'Nevada', value: 'nevada' },
-    { name: 'New Hampshire', value: 'new hampshire' },
-    { name: 'New Jersey', value: 'new jersey' },
-    { name: 'New Mexico', value: 'new mexico' },
-    { name: 'New York', value: 'new york' },
-    { name: 'North Carolina', value: 'north carolina' },
-    { name: 'North Dakota', value: 'north dakota' },
+    { name: 'Maryland', value: 'MD' },
+    { name: 'Massachusetts', value: 'MA' },
+    { name: 'Michigan', value: 'MI' },
+    { name: 'Minnesota', value: 'MN' },
+    { name: 'Mississippi', value: 'MS' },
+    { name: 'Missouri', value: 'MO' },
+    { name: 'Montana', value: 'MT' },
+    { name: 'Nebraska', value: 'NE' },
+    { name: 'Nevada', value: 'NV' },
+    { name: 'New Hampshire', value: 'NH' },
+    { name: 'New Jersey', value: 'NJ' },
+    { name: 'New Mexico', value: 'NM' },
+    { name: 'New York', value: 'NY' },
+    { name: 'North Carolina', value: 'NC' },
+    { name: 'North Dakota', value: 'MD' },
     { name: 'Northern Mariana Islands', value: 'northern mariana islands' },
-    { name: 'Ohio', value: 'ohio' },
-    { name: 'Oklahoma', value: 'oklahoma' },
-    { name: 'Oregon', value: 'oregon' },
+    { name: 'Ohio', value: 'OH' },
+    { name: 'Oklahoma', value: 'OK' },
+    { name: 'Oregon', value: 'OR' },
     { name: 'Palau', value: 'palau' },
-    { name: 'Pennsylvania', value: 'Pennsylvania' },
-    { name: 'Puerto Rico', value: 'puerto rico' },
-    { name: 'Rhode Island', value: 'rhode island' },
-    { name: 'South Carolina', value: 'south carolina' },
-    { name: 'South Dakota', value: 'south dakota' },
-    { name: 'Tennesee', value: 'tennesee' },
-    { name: 'Texas', value: 'texas' },
-    { name: 'Utah', value: 'utah' },
-    { name: 'Vermont', value: 'vermont' },
-    { name: 'Virgin Islands', value: 'virgin islands' },
-    { name: 'Virginia', value: 'virginia' },
-    { name: 'Washington', value: 'washington' },
-    { name: 'West Virginia', value: 'west virginia' },
-    { name: 'Wisconsin', value: 'wisconsin' },
-    { name: 'Wyoming', value: 'wyoming' },
+    { name: 'Pennsylvania', value: 'PA' },
+    { name: 'Puerto Rico', value: 'PR' },
+    { name: 'Rhode Island', value: 'RI' },
+    { name: 'South Carolina', value: 'SC' },
+    { name: 'South Dakota', value: 'SD' },
+    { name: 'Tennesee', value: 'TN' },
+    { name: 'Texas', value: 'TX' },
+    { name: 'Utah', value: 'UT' },
+    { name: 'Vermont', value: 'VT' },
+    { name: 'Virgin Islands', value: 'VI' },
+    { name: 'Virginia', value: 'VA' },
+    { name: 'Washington', value: 'WA' },
+    { name: 'West Virginia', value: 'WV' },
+    { name: 'Wisconsin', value: 'WI' },
+    { name: 'Wyoming', value: 'WY' },
     { name: 'Sweden', value: 'sweden' },
     { name: 'Poland', value: 'poland' },
     { name: 'Bangladesh', value: 'bangladesh' },
@@ -126,9 +126,49 @@ export class MyDataService {
     });
   }
 // loadCodesGenre()
-  loadArtists() {
+  loadArtistsOrig() {
     return new Promise((resolve, reject) => {
       this.api.findArtists()
+        .then((jsonRes) => {
+          var artistList = jsonRes
+          console.log('artistList loadArtistsOrig', artistList)
+          resolve(artistList);
+        });
+    });
+  }
+
+//  loadArtists()
+// async const artistList = () => {
+//   // console.log('await artistList ',await this.api.findArtists())
+//   await this.api.findArtists()
+//   console.log('await artistList ',artistList)
+//   return artistList//"done"
+// }
+
+
+async loadArtists1() { 
+  console.log('awa loadArtists') 
+const artistList = await this.api.findArtists()
+ 
+}
+
+async loadArtists2() { 
+const artistList = await this.api.findArtists(() => {
+  // console.log('await artistList ',artistList)//await this.api.findArtists())
+  // return artistList
+})
+}
+
+// async loadArtists3() { 
+// const artistList = await this.api.findArtists()
+//   console.log('await artistList ',artistList)//await this.api.findArtists())
+//   return artistList
+// }
+// return this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())
+
+ loadCatalog() {
+    return new Promise((resolve, reject) => {
+      this.api.findArtists2()
         .then((jsonRes) => {
           var artistList = jsonRes
           console.log('artistList', artistList)
@@ -136,6 +176,12 @@ export class MyDataService {
         });
     });
   }
+
+// loadCatalog()
+// const artistList = async () => {
+//   console.log(await this.api.findArtists())
+//   return "done"
+// }
 
   async  loadPayeeAsync() {
     let payeeList

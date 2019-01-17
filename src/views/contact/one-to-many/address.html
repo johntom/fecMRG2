@@ -41,16 +41,31 @@
 			</tfoot>
 			<tbody>  
 				<tr repeat.for="address of currentItem.addresses" with.bind="address">
-      		<td width="70px"><input type="text" id="id" class="form-control  input-sm" value.bind="address.id"></td>
+      		<td width="70px"><input type="text" id="id" class="form-control  input-sm" value.bind="id"></td>
 					<td width="220px"><input type="text" id="xContactAddress" class="form-control  input-sm" value.bind="address"></td>
 					<td width="220px"><input type="text" id="xContactCity" class="form-control  input-sm" value.bind="city"></td>
 			
-					<td width="300px"><input type="text" id="xContactState" class="form-control  input-sm" value.bind="state"></td>
+					<td width="300px">
+            <!-- <input type="text" id="xContactState" class="form-control  input-sm" value.bind="state"> -->
+
+
+	<select id="state" class="form-control " value.bind="state">
+											<option model.bind="null">Choose...</option>
+											<option repeat.for="opt of appService.stateList " model.bind="opt.value">
+												${opt.name}
+											</option>
+										</select>
+</td>
+
+
 					<td width="220px"><input type="text" id="xContactZip" class="form-control  input-sm" value.bind="zip"></td>
+
   				<td width="300px"><input type="text" id="xContactCountry" class="form-control  input-sm" value.bind="country"></td>
 					<td width="220px"><input type="text" id="xAddressLetter" class="form-control  input-sm" value.bind="letter"></td>
 				
 					<td width="300px"><input type="text" id="AddressNotes" class="form-control  input-sm" value.bind="notes"></td>
+
+
 
 	<!--if using edit <td width="300px">
           	<span show.bind="!note.edit">${Notes}</span>

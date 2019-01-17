@@ -57,6 +57,7 @@ export class Artists {
     this.currentItem.fieldname = 'Artist'//fieldname
 
     this.currentItem.artist = this.currentItem.artists[index]//.artists
+    if (this.currentItem.artist.ArtistName === undefined) this.currentItem.artist.ArtistName = '';
 
     this.dialogService.open({ viewModel: Prompt, model: this.currentItem, lock: true }).whenClosed(response => {
 
@@ -74,7 +75,7 @@ export class Artists {
 
       this.currentItem.artists[index] = artistrec;
       this.currentItem.artists = this.currentItem.artists
-
+      this.artname = artistrec
 
       // delete this.currentItem.artist;
 
