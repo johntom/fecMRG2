@@ -138,15 +138,26 @@ findContactOne(contactid) {
 
   findusers() {
     var url = this.baseweb + 'v1/findusers';
-    return this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())
+    return this.http.fetch(url, { mode: 'cors' }).then((res) => res.json()) 
 
   }
   // http://74.114.164.24/api/v1/artist
-  findArtists() {
+findArtists() {
     var url = this.baseweb + 'v1/artist';
-    return this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())
+    return this.http.fetch(url, { mode: 'cors' }).then((res) => res.json()) 
 
   }
+  
+
+ async findArtistsAA() { 
+    var url = this.baseweb + 'v1/artist';
+  return await this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())
+//      let res = await this.http.fetch(url, { mode: 'cors' }) //.then((res) => res.json())
+// return res
+  }
+  // let response = await this.http.get(reposUrl);
+  // this.repos = response.content
+  //   .sort((a, b) => b.stargazers_count - a.stargazers_count);
 
   //  findArtists() {
   //     var url = this.baseweb + 'v1/artist/'

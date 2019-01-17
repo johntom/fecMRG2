@@ -125,13 +125,34 @@ export class MyDataService {
         });
     });
   }
+  
+  // async  loadArtistsAsync() {
+  //   let artistList
+  //   await this.api.findArtists()
+  //     .then((jsonRes) => {
+  //       artistList = jsonRes.data
+  //     });
+  //   return await (artistList)
+  // }
+  // loadArtists() {
+  //   return new Promise((resolve, reject) => {
+  //     this.api.findArtists()
+  //       .then((jsonRes) => {
+  //         var artistList = jsonRes.data;
+  //         console.log('artistist', artistList)
+
+  //         resolve(artistList);
+  //       });
+
+  //   });
+  // }
 // loadCodesGenre()
-  loadArtistsOrig() {
+  loadArtists() {
     return new Promise((resolve, reject) => {
       this.api.findArtists()
         .then((jsonRes) => {
           var artistList = jsonRes
-          console.log('artistList loadArtistsOrig', artistList)
+          // console.log('artistList loadArtistsOrig', artistList)
           resolve(artistList);
         });
     });
@@ -146,24 +167,30 @@ export class MyDataService {
 // }
 
 
-async loadArtists1() { 
-  console.log('awa loadArtists') 
-const artistList = await this.api.findArtists()
+async loadArtistsAA() { 
+  console.log('await loadArtists') 
+const artistList = await this.api.findArtistsAA()
+return  artistList
+}
+
+// let response = await this.http.get(reposUrl);
+  // this.repos = response.content
+  //   .sort((a, b) => b.stargazers_count - a.stargazers_count);
+
  
-}
-
-async loadArtists2() { 
-const artistList = await this.api.findArtists(() => {
-  // console.log('await artistList ',artistList)//await this.api.findArtists())
-  // return artistList
-})
-}
-
-// async loadArtists3() { 
-// const artistList = await this.api.findArtists()
+// async loadArtists() { 
+// console.log('await loadArtists') 
+// const artistList = await this.api.findArtists(() => {
 //   console.log('await artistList ',artistList)//await this.api.findArtists())
 //   return artistList
+// })
 // }
+
+async loadArtists3() { 
+const artistList = await this.api.findArtists()
+  console.log('await artistList ',artistList)//await this.api.findArtists())
+  return artistList
+}
 // return this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())
 
  loadCatalog() {
@@ -193,15 +220,6 @@ const artistList = await this.api.findArtists(() => {
     return await (payeeList)
   }
 
-  async  loadArtistsAsync() {
-    let artistList
-    await this.api.findArtists()
-      .then((jsonRes) => {
-        artistList = jsonRes.data
-      });
-    return await (artistList)
-  }
-
   loadGenders() {
     return new Promise((resolve, reject) => {
       resolve(this.genderList);
@@ -218,18 +236,7 @@ const artistList = await this.api.findArtists(() => {
     });
   }
 
-  loadArtists() {
-    return new Promise((resolve, reject) => {
-      this.api.findArtists()
-        .then((jsonRes) => {
-          var artistList = jsonRes.data;
-          console.log('artistist', artistList)
 
-          resolve(artistList);
-        });
-
-    });
-  }
   loadCodes() {
     return new Promise((resolve, reject) => {
       this.api.findCodes()

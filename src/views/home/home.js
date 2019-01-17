@@ -6,7 +6,7 @@ import lodash from 'lodash';
 
 export class Home {
   heading = "MRG Home Page";
-  version = 241.94
+  version = 241.95
   versionDate = 'wed 1/16/2019'
   // versiondate=Date();
   //  "select2": { 

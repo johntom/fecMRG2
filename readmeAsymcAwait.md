@@ -1,4 +1,27 @@
-     
+activate() {
+    // return a Promise that will resolve when the repos have
+    // been loaded and sorted by star count.
+    return this.http.get(reposUrl)
+      .then(response => {
+        this.repos = response.content
+          .sort((a, b) => b.stargazers_count - a.stargazers_count);
+      });
+  }
+}
+
+
+
+async activate() {
+  let response = await this.http.get(reposUrl);
+  this.repos = response.content
+    .sort((a, b) => b.stargazers_count - a.stargazers_count);
+}
+
+https://www.danyow.net/es7-async-await-with-aurelia/
+
+
+
+
 async/await
       https://hackernoon.com/6-reasons-why-javascripts-async-await-blows-promises-away-tutorial-c7ec10518dd9
 
