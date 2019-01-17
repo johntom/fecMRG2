@@ -151,12 +151,12 @@ export class MyDataService {
     return new Promise((resolve, reject) => {
       this.api.findArtists()
         .then((jsonRes) => {
-          var artistList = jsonRes
+          var artistList = jsonRes.data
           // console.log('artistList loadArtistsOrig', artistList)
           resolve(artistList);
         });
     });
-  }
+  } 
 
 //  loadArtists()
 // async const artistList = () => {
@@ -168,29 +168,34 @@ export class MyDataService {
 
 
 async loadArtistsAA() { 
-  console.log('await loadArtists') 
-const artistList = await this.api.findArtistsAA()
-return  artistList
+ const artistList = await this.api.findArtistsAA()
+  // console.log('await loadArtistsAA',artistList) 
+  return  artistList
+// bad return artistList = await this.api.findArtistsAA()
 }
+
+//bad  async loadArtistsAA() { 
+// console.log('await loadArtists')  
+
+// const artistList = await this.api.findArtistsAA(() => {
+//   console.log('await artistList ',artistList)//await this.api.findArtists())
+//   return artistList
+// })
+// }
+
 
 // let response = await this.http.get(reposUrl);
   // this.repos = response.content
   //   .sort((a, b) => b.stargazers_count - a.stargazers_count);
 
  
-// async loadArtists() { 
-// console.log('await loadArtists') 
-// const artistList = await this.api.findArtists(() => {
+
+
+// async loadArtists3() { 
+// const artistList = await this.api.findArtists()
 //   console.log('await artistList ',artistList)//await this.api.findArtists())
 //   return artistList
-// })
 // }
-
-async loadArtists3() { 
-const artistList = await this.api.findArtists()
-  console.log('await artistList ',artistList)//await this.api.findArtists())
-  return artistList
-}
 // return this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())
 
  loadCatalog() {

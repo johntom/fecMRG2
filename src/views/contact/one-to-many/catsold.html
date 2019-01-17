@@ -19,32 +19,32 @@
 
 
 	<!-- <require from="./docs.css"></require> -->
-    <require from="../../../resources/value-converters/date-format"></require>
-    <require from="../../../resources/value-converters/date-formatiso"></require>
+	<require from="../../../resources/value-converters/date-format"></require>
+	<require from="../../../resources/value-converters/date-formatiso"></require>
 
 	<!-- section class="customer-orders au-animate" -->
 	<section class="docs full-height flex-column-1 overflow-y-auto ignore">
 		<h4>
-			<i class="fa fa-folder-open"></i>Catalog Sold To 
+			<i class="fa fa-folder-open"></i>Catalog Sold To
 			<a slot="buttons-slot" class="btn btn-primary" click.delegate="addItem()">
-				<i class="fa fa-plus"></i> Add Catalog Sold To	</a>
+				<i class="fa fa-plus"></i> Add Catalog Sold To </a>
 		</h4>
 
 
 		<table class="table-condensed table">
 			<thead class="table-header-blue" data-sort="items.bind: currentItem.catalogsold; cols: ['ConsignedStartDate','ConsignedEndDate']">
 				<tr>
-					<th  width="125px" class="header">CatalogID >></th>
-          
-          	<th  width="225px" class="header">CatalogTitle</th>
+					<th width="125px" class="header">CatalogID >></th>
+
+					<th width="225px" class="header">CatalogTitle</th>
 
 					<!-- <th  width="95px" class="header">SendType</th> -->
-					<th  width="100px" class="header">DateSent</th>
-					<th  width="100px" class="header">InvoiceID</th>
-					<th  width="55px" class="header">Qty</th>
-					<th  width="225px" class="header">Cmd</th>
-					
-		
+					<th width="100px" class="header">DateSent</th>
+					<th width="100px" class="header">InvoiceID</th>
+					<th width="55px" class="header">Qty</th>
+					<th width="225px" class="header">Cmd</th>
+
+
 				</tr>
 			</thead>
 			<tfoot>
@@ -56,62 +56,64 @@
 			</tfoot>
 			<tbody>
 				<tr repeat.for="catalogsold of currentItem.catalogsold" with.bind="catalogsold">
-     
-
-					<td width="125px">
-					   
-            		
-      	<div class="form-control  input-sm" if.bind="_id===undefined || _id===''">
+<!-- 				
+        	<td width="125px">
+						<div class="form-control  input-sm" if.bind="_id===undefined || _id===''">
 							<a click.delegate="showModal( '_id',$index)">select_link </a>
 						</div>
 						<div class="form-control  input-sm" else>
 							<a click.delegate="showModal('_id',$index)">${_id}</a>
-
 						</div>
+
+					</td> -->
+
+	<td width="300px">
 				
+						<div class="form-control input-sm" ref='catname' if.bind="catalog.CatalogTitle===undefined || catalog.CatalogTitle===''">
+							<a click.delegate="showModal( 'id',$index)">select_link </a>
+						</div>
+						<div class="form-control  input-sm" else>
+							<a click.delegate="showModal('id',$index)"> ${artist.CatalogTitle}</a>
+						</div>
+
 					</td>
 
-		<td width="225px">
-						<!-- <span show.bind="!catalogsold.edit">${CatalogTitle} </span>
-						<input show.bind="catalogsold.edit" class="form-control input-sm" disabled.bind="!catalogsold.edit" type="text" value.bind="CatalogTitle"> -->
-						<input type="text" id="xCatalogTitle" class="form-control  input-sm" value.bind="CatalogTitle"></td>
-			
-          
-          </td>
-						<!-- <span show.bind="!catalogsold.edit">${SendType}</span>
-						<input show.bind="catalogsold.edit" class="form-control input-sm" disabled.bind="!catalogsold.edit" type="text" value.bind="SendType"> -->
+
+					<!-- <td width="225px">
+							<input type="text" id="xCatalogTitle" class="form-control  input-sm" value.bind="CatalogTitle"></td>
+					</td> -->
+
+
+
 					<td width="100px">
-						<!-- <span show.bind="!catalogsold.edit">${DateSent | dateFormat }</span>
-						<input show.bind="catalogsold.edit" class="form-control input-sm" disabled.bind="!catalogsold.edit" type="date" value.bind="DateSent"> -->
-					<input type="date" id="xDateSent" class="form-control  input-sm" value.bind="DateSent | dateFormatiso"></td>
-			
-        	</td>
-					
+						<input type="date" id="xDateSent" class="form-control  input-sm" value.bind="DateSent | dateFormatiso"></td>
+					</td>
+
 
 					<td width="100px">
 						<!-- <span show.bind="!catalogsold.edit">${InvoiceID}</span>
 						<input show.bind="catalogsold.edit" class="form-control input-sm" disabled.bind="!catalogsold.edit" type="text" value.bind="InvoiceID">						</td> -->
-					<input type="text" id="zInvoiceID" class="form-control  input-sm" value.bind="InvoiceID"></td>
-			
-          </td>
+						<input type="text" id="zInvoiceID" class="form-control  input-sm" value.bind="InvoiceID"></td>
+
+					</td>
 					<td width="55px">
 						<!-- <span show.bind="!catalogsold.edit">${Qty}</span>
 						<input show.bind="catalogsold.edit" class="form-control input-sm" disabled.bind="!catalogsold.edit" type="text" value.bind="Qty">						</td> -->
-					<input type="text" id="xQty" class="form-control  input-sm" value.bind="Qty"></td>
-			
-        	</td>
-
-				
-		
-					<td width="225px">
-						<!-- <button class="btn btn-primary" click.delegate="consignedto.edit=!consignedto.edit">${ !catalogsold.edit ? 'Update' : 'Done' }</button> -->
-							<!-- <button class="btn btn-primary" click.delegate="saveitem(consignedto,$index)">${ !catalogsold.edit ? 'Edit' : 'Save' }</button> -->
-
-            
-            <button class="btn btn-danger" click.delegate="remove(catalogsold,$index)">Delete</button>
+						<input type="text" id="xQty" class="form-control  input-sm" value.bind="Qty"></td>
 
 					</td>
-  			</tr>
+
+
+
+					<td width="225px">
+						<!-- <button class="btn btn-primary" click.delegate="consignedto.edit=!consignedto.edit">${ !catalogsold.edit ? 'Update' : 'Done' }</button> -->
+						<!-- <button class="btn btn-primary" click.delegate="saveitem(consignedto,$index)">${ !catalogsold.edit ? 'Edit' : 'Save' }</button> -->
+
+
+						<button class="btn btn-danger" click.delegate="remove(catalogsold,$index)">Delete</button>
+
+					</td>
+				</tr>
 			</tbody>
 		</table>
 

@@ -109,29 +109,25 @@ showModal(fieldname, index) {
 
     // make this work just on inventory and change prompt to maybe point to it
     this.currentItem.fieldname = 'Catalog'//fieldname
-
-    this.currentItem.artist = this.currentItem.artists[index]//.artists
-    if (this.currentItem.artist.ArtistName === undefined) this.currentItem.artist.ArtistName = '';
-
+if ( this.currentItem.catalog===undefined) {
+this.currentItem.catalog = {};
+this.currentItem.catalog.id = '';
+this.currentItem.catalog.CatalogTitle = '';
+} else {
+    this.currentItem.catalog = this.currentItem.catalog[index]
+    if (this.currentItem.catalog.CatalogTitle === undefined) this.currentItem.catalog.CatalogTitle = '';
+}
     this.dialogService.open({ viewModel: Prompt, model: this.currentItem, lock: true }).whenClosed(response => {
 
-      this.currentItem.artists[index].id = this.currentItem.artist.id
-      this.currentItem.artists[index].ArtistName = this.currentItem.artist.ArtistName
-      // this.currentItem.artists[index] = this.currentItem.artist;
-      // this.currentItem.artists = this.currentItem.artists
+      // this.currentItem.catalog[index].id = this.currentItem.catalog.id
+      // this.currentItem.catalog[index].CatalogTitle = this.currentItem.catalog.CatalogTitle
+          
+      // this.currentItem.artists[index] = artistrec;
+      // this.currentItem.artists = this.currentItem.catalog
+     
+      this.catname = this.currentItem.catalog//artistrec
 
-      let artistrec = {}
-      artistrec.id = this.currentItem.artist.id;
-      artistrec.ArtistName = this.currentItem.artist.ArtistName;
-      artistrec.yearofBirth = this.currentItem.artist.yearofBirth;
-      artistrec.died = this.currentItem.artist.died;
-
-
-      this.currentItem.artists[index] = artistrec;
-      this.currentItem.artists = this.currentItem.artists
-      this.artname = artistrec
-
-      // delete this.currentItem.artist;
+      // // delete this.currentItem.artist;
 
 
 

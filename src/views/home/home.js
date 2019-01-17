@@ -2,12 +2,15 @@ import { inject } from 'aurelia-dependency-injection';
 import { ApplicationService } from '../../services/application-service';
 import { MyDataService } from "../../services/my-data-service";
 import lodash from 'lodash';
-@inject(ApplicationService, MyDataService)
+import { ApiService } from '../../utils/servicesApi';
+
+
+@inject(ApplicationService, MyDataService,ApiService)
 
 export class Home {
   heading = "MRG Home Page";
-  version = 241.95
-  versionDate = 'wed 1/16/2019'
+  version = 241.96
+  versionDate = 'Thu 1/16/2019'
   // versiondate=Date();
   //  "select2": { 
   //       "map": "npm:select2@4.0.6-rc.1/dist",
@@ -215,18 +218,32 @@ export class Home {
   // 'make all prompt dblclick',
   // 'check all ogs prompts'
   //  ' use brm2 app as base'
-  constructor(appService, dataService) {
+  constructor(appService, dataService,api) {
     this.appService = appService;
     this.dataService = dataService;
+    this.api= api;
   }
   //   this.dataService.loadCodes(values[1]), resolve all lists
-  activate() {
+ async activate() {
 
     // this.appService.payeelist = await this.dataService.loadPayeeAsync()
     //  this.appService.artistlist = await this.dataService.loadArtistsAsync()
     // alert('in aa' +this.appService.artistlist.length)
     // console.log(' await payeelist 1', this.appService.payeelist)
     // console.log(' await artistlist  1 ', this.appService.artistlist)
+
+// 2019 new Async/Await
+//  let response = await  this.dataService.loadArtistsAA();
+//  this.repos = response.data
+//  console.log('this.repos ',this.repos)
+ //   .sort((a, b) => b.stargazers_count - a.stargazers_count);
+ 
+ let response = await  this.api.getCatalogsAA();
+ this.appService.catalogList = response.data
+ console.log('this.repos ',this.api.catalogList)
+
+
+
 
     if (this.appService.LookupDataLoaded) {
       console.log('using data cache from home....')

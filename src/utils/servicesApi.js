@@ -149,12 +149,31 @@ findArtists() {
   }
   
 
- async findArtistsAA() { 
+// all new 2019 AA methods
+ async findArtistsAA1() { 
     var url = this.baseweb + 'v1/artist';
   return await this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())
 //      let res = await this.http.fetch(url, { mode: 'cors' }) //.then((res) => res.json())
 // return res
   }
+ async findArtistsAA() { 
+    var url = this.baseweb + 'v1/artist';
+    let res = await this.http.fetch(url, { mode: 'cors' }) 
+   return res.json()
+  }
+ async getCatalogsAA() { 
+    var url = this.baseweb + 'v1/catalog';
+    let res = await this.http.fetch(url, { mode: 'cors' }) 
+   return res.json()
+  }
+
+// let response = await this.http.get(reposUrl);
+  // this.repos = response.content
+  //   .sort((a, b) => b.stargazers_count - a.stargazers_count);
+
+ 
+
+
   // let response = await this.http.get(reposUrl);
   // this.repos = response.content
   //   .sort((a, b) => b.stargazers_count - a.stargazers_count);

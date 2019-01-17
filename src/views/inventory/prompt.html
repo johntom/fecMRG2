@@ -118,22 +118,40 @@
 					 open-on-focus.bind="true" key="ArtistName" results-limit.bind="22" select-single-result.bind="true">
 					</aubs-typeahead>
 					<div> born: ${ArtistName.yearofBirth } died: ${ArtistName.died} </div> -->
-
+	
+  
+  <!-- input.delegate="selectedValueA = findOptionI($event.target.value)" -->
+       
 <label for="Artist">Artist</label>
 					<input ref="myDatalistA" type="text" list="myDatalistA" change.delegate="changeCallbackArtist(selectedValue)" 
-					input.delegate="selectedValueA = findOptionI($event.target.value)"
+				   		input.delegate="selectedValueA = findOptionA($event.target.value)"
 					/>
 					<datalist id="myDatalistA">
 						<option repeat.for="option of appService.artistList">${option.ArtistName}</option>
 					</datalist>
 					<pre style="margin-top: 100px"><code>${selectedValueA.ArtistName}</code></pre>
-
-
-
 				</div>
 			</div>
 
 
+<!-- myDatalistC= null;
+  findOptionC= value => this.appService.catalogList.find(x => x.CatalogTitle === value) -->
+
+			<div show.bind="fieldname==='Catalog'">
+				<div class="form-group flex-column-1">
+					
+					<div> born: ${ArtistName.yearofBirth } died: ${ArtistName.died} </div> -->
+
+<label for="Catalog">Catalog</label>
+					<input ref="myDatalistC" type="text" list="myDatalistC" change.delegate="changeCallbackCatalog(selectedValue)" 
+					input.delegate="findOptionC = findOptionC($event.target.value)"
+					/>
+					<datalist id="myDatalistC">
+						<option repeat.for="option of appService.catalogList">${option.CatalogTitle}</option>
+					</datalist>
+					<pre style="margin-top: 100px"><code>${selectedValueC.CatalogTitle}</code></pre>
+				</div>
+			</div>
 
 
 			<div show.bind="fieldname ==='MediumSupportobj'">

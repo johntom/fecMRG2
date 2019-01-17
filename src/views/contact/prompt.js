@@ -6,7 +6,7 @@ import { MyDataService } from "../../services/my-data-service";
 import { DialogService } from 'aurelia-dialog';
 import { PromptServ } from '../../services/promptserv';
 import { ApiService } from '../../utils/servicesApi';
-import { Promptyn }      from '../../services/promptyn';
+import { Promptyn } from '../../services/promptyn';
 
 
 
@@ -24,18 +24,21 @@ export class Prompt {
   textfields = ['Description', 'Comment', 'Inscribed', 'Treatment']
   textfielddesc = ['Enter Alt ID', 'Enter Comment', 'Enter Inscribed with left of ":" as reg text right as ialtics till "; repeat', 'Enter Treatment']
 
-//   // for the datalist with medium support
-//   selectedValue = null;
-//   findOption = value => this.appService.codesListMediumSupport.find(x => x.Description === value)
+  //   // for the datalist with medium support
+  //   selectedValue = null;
+  //   findOption = value => this.appService.codesListMediumSupport.find(x => x.Description === value)
 
-// // arists
+  // // arists
   selectedValueA = null;
   findOptionA = value => this.appService.artistList.find(x => x.ArtistName === value)
 
-// orgs
+  // orgs
   selectedValueO = null;
   findOptionO = value => this.appService.orgsList.find(x => x.OrgName === value)
-      
+  // catalogs
+  selectedValueC = null;
+  findOptionC = value => this.appService.catalogList.find(x => x.CatalogTitle === value)
+
   constructor(controller, appService, dataService, dialogService, api) {
     this.controller = controller;
     this.answer = null;
@@ -63,7 +66,7 @@ export class Prompt {
     return Promise
   }
 
- 
+
   activate(currentitem) {
     this.currentItem = currentitem;
     this.fieldname = currentitem.fieldname;
@@ -99,105 +102,79 @@ export class Prompt {
     // let  findObject  = this.appService.codesListMediumSupport[findIndex] 
     // let findObject = this.appService.codesListMediumSupport.find(x => x.Description === findvalue)
     // alert(`you are about to add ${findvalue} to medium support`)
-      if (this.selectedValue === undefined || this.selectedValue === null ) {   
-        //     alert(`you are about to add ${findvalue} to Insured`)
-            //  this.dialogService.open({ viewModel: Promptyn, model: 'Add or Cancel?', lock: false }).whenClosed(response => {
-            let obj={}
-            obj.type = 2
-            obj.name =   `Add ${findvalue} to Medium Support List or Cancel?`
-            this.dialogService.open({ viewModel: Promptyn, model:obj, lock: false }).whenClosed(response => {
-  
+    if (this.selectedValue === undefined || this.selectedValue === null) {
+      //     alert(`you are about to add ${findvalue} to Insured`)
+      //  this.dialogService.open({ viewModel: Promptyn, model: 'Add or Cancel?', lock: false }).whenClosed(response => {
+      let obj = {}
+      obj.type = 2
+      obj.name = `Add ${findvalue} to Medium Support List or Cancel?`
+      this.dialogService.open({ viewModel: Promptyn, model: obj, lock: false }).whenClosed(response => {
 
-              if (!response.wasCancelled) {
-                 this.addnewms(findvalue)
-               } else {
-                 console.log('cancel');
-               }
-               console.log(response.output);
-             });
-       }
+
+        if (!response.wasCancelled) {
+          this.addnewms(findvalue)
+        } else {
+          console.log('cancel');
+        }
+        console.log(response.output);
+      });
+    }
 
   }
   attached() {
-    // let opos = this.orgfields.findIndex(x => x === this.fieldname);
-    // if (opos !== -1) {
-    //   this.orgfielddescription = this.orgfielddesc[opos]
 
-    // } else {
-    //   this.orgfielddescription = this.fieldname
-    // }
-    // let topos = this.textfields.findIndex(x => x === this.fieldname);
-    // if (topos !== -1) {
-    //   this.textfielddescription = this.textfielddesc[topos]
-    //   this.doc = ` ${this.textfielddescription} .`
-    //   this.heading = ` ${this.textfielddescription} .`
-    //   this.placeholder = `${this.textfielddescription}`
-    // } else {
-    //   this.doc = `type any characters of the ${this.orgfielddescription} to select.`
-    //   this.heading = `Search ${this.orgfielddescription} to select.`
-    //   this.placeholder = `Enter any characters on ${this.orgfielddescription} to select.`
-
-    // }
-
-
-   
-
-    // // let opos = this.orgfields.findIndex(x => x === this.fieldname);
-    // if (opos !== -1) {
-    //   this.fieldbase = 'ORG'
-
-    //   let orgs = this.appService.orgsList
-    //   let origid
-
-    //   if (this.fieldname === this.orgfields[opos]) {
-    //     if ((this.currentItem[this.orgfields[opos]] === undefined) || (this.currentItem[this.orgfields[opos]] === null)) { } else {
-    //       origid = orgs.findIndex(x => x._id === this.currentItem[this.orgfields[opos]])
-    //       this.orgobj = orgs[origid]
-    //     }
-    //   }
-    //   this.OrgName = this.orgobj
-    //   this.dorg.value = this.OrgName
-    // }
-    
 
     if (this.fieldname === 'OrgID') {
-    
+
       this.doc = `Select Org or add new if not in list.`
       this.heading = `Select Org or add new if not in list.`
       this.placeholder = `Select Org or add new if not in list.`
       if (this.currentItem.OrgID === undefined || this.currentItem.OrgID === '') {
       } else {
-         this.myDatalistO.value = this.currentItem.org.OrgName
+        this.myDatalistO.value = this.currentItem.org.OrgName
       }
-    
+
     }
 
 
     if (this.fieldname === 'Artist') {
-    
+
       this.doc = `Select Artist or add new if not in list.`
       this.heading = `Select Insured or add new if not in list.`
       this.placeholder = `Select Insured or add new if not in list.`
       if (this.currentItem.artist === undefined || this.currentItem.artist === '') {
       } else {
         //  this.insuredobj = this.currentItem.insured
-        this.myDatalistA.value =  this.currentItem.artist.ArtistName
+        this.myDatalistA.value = this.currentItem.artist.ArtistName
       }
-    
+
+    }
+    if (this.fieldname === 'Catalog') {
+
+      this.doc = `Select Catalog or add new if not in list.`
+      this.heading = `Select Insured or add new if not in list.`
+      this.placeholder = `Select Insured or add new if not in list.`
+      if (this.currentItem.catalog === undefined || this.currentItem.catalog === '') {
+      } else {
+        //  this.insuredobj = this.currentItem.insured
+        this.myDatalistC.value = this.currentItem.catalog.CatalogTitle
+      }
+
     }
 
-
   }
 
-changeCallbackOrg(selectedValueO) {
-      let findvalue = this.myDatalistO.value
+  changeCallbackOrg(selectedValueO) {
+    let findvalue = this.myDatalistO.value
 
   }
-changeCallbackArtist(selectedValueA) {
-  //    let findvalue = this.selectedValueA //.value
+  changeCallbackArtist(selectedValueA) {
+    //    let findvalue = this.selectedValueA //.value
 
   }
-  
+  changeCallbackCatalog(selectedValueC) {
+  //  let findvalue = this.myDatalistC.value
+  }
   //  alert(`${this.addlist} Exists in list already!`)
   addit() {
     let meds = this.appService.savedlists
@@ -238,94 +215,20 @@ changeCallbackArtist(selectedValueA) {
 
     if (this.fieldname === 'OrgID') {
 
-      this.currentItem.org = this.selectedValueO//this.OrgName
-      // this.appService.currentItem.artist = this.ArtistName
+      this.currentItem.org = this.selectedValueO
     }
-    
-if (this.fieldname === 'Artist') {
 
-      this.currentItem.artist = this.selectedValueA//ArtistName
-      
+    if (this.fieldname === 'Artist') {
+
+      this.currentItem.artist = this.selectedValueA
+
     }
-    
-        // if (this.fieldname === 'OrgID') {
-    //   if (this.OrgName.OrgName !== this.currentItem.soldtoname) {
+    if (this.fieldname === 'Catalog') {
 
-    //     this.currentItem.OrgID = this.OrgName._id
-    //     this.currentItem.OrgName = this.OrgName.OrgName
-    //   }
-    // }
-    // if (this.fieldname === 'ConsignedFromID') {
-    //   if (this.OrgName.OrgName !== this.currentItem.consignedfromname) {
+      this.currentItem.catalog = this.selectedValueC
 
-    //     this.currentItem.ConsignedFromID = this.OrgName._id
-    //     this.currentItem.consignedfromname = this.OrgName.OrgName
-    //   }
-    // }
-    // if (this.fieldname === 'ConsignmentShippingID') {
-    //   if (this.OrgName.OrgName !== this.currentItem.consignmentshippingname) {
+    }
 
-    //     this.currentItem.ConsignmentShippingID = this.OrgName._id
-    //     this.currentItem.consignmentshippingname = this.OrgName.OrgName
-    //   }
-
-    // }
-    // if (this.fieldname === 'ConservedBy') {
-    //   // let orgid = `${this.OrgName._id}`
-    //   // let orgname = `${this.OrgName.OrgName}`
-    //   if (this.OrgName.OrgName !== this.currentItem.conservedbyname) {
-
-    //     this.currentItem.ConservedBy = this.OrgName._id
-    //     this.currentItem.conservedbyname = this.OrgName.OrgName
-    //   }
-
-    // }
-    // if (this.fieldname === 'ConsignedTo') {
-    //   if (this.OrgName.OrgName !== this.currentItem.consignedtoname) {
-
-    //     this.currentItem.ConsignedTo = this.OrgName._id
-    //     this.currentItem.consignedtoname = this.OrgName.OrgName
-    //   }
-    // }
-
-    // if (this.fieldname === 'PurchasedFrom') {
-    //   if (this.OrgName.OrgName !== this.currentItem.purchasedfromname) {
-
-    //     this.currentItem.PurchasedFrom = this.OrgName._id
-    //     this.currentItem.purchasedfromname = this.OrgName.OrgName
-    //   }
-    // }
-    // if (this.fieldname === 'LoanTo') {
-    //   if (this.OrgName.OrgName !== this.currentItem.loantoname) {
-
-    //     this.currentItem.LoanTo = this.OrgName._id
-    //     this.currentItem.loantoname = this.OrgName.OrgName
-    //   }
-    // }
-    // if (this.fieldname === 'PhotographerID') {
-    //   if (this.OrgName.OrgName !== this.currentItem.photographername) {
-
-    //     this.currentItem.PhotographerID = this.OrgName._id
-    //     this.currentItem.photographername = this.OrgName.OrgName
-    //   }
-    // }
-    // if (this.fieldname === 'ConsignmentShippingID') {
-    //   if (this.OrgName.OrgName !== this.currentItem.consignmentshippingname) {
-
-    //     this.currentItem.ConsignmentShippingID = this.OrgName._id
-    //     this.currentItem.consignmentshippingname = this.OrgName.OrgName
-    //   }
-    // }
-
-    // if (this.fieldname === 'Treatment') {
-    //   this.currentItem.Treatment
-    // }
-    // if (this.fieldname === 'SavedList') {
-    //   let name = `${this.name.name}`
-    //   console.log(' dsaved.value', name)//, this.dsaved.value)
-    //   // this.dsaved.value = this.name//this.addlist
-    //   this.appService.currentsavedlist = name// dsaved.value
-    // }
     this.controller.ok('saved')//cancel()
   }
 }

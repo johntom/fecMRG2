@@ -46,20 +46,13 @@
 				<tr repeat.for="artist of currentItem.artists" with.bind="artist">
 
 					<td width="400px">
-						<!-- <td width="50%"> -->
-						<!-- <span show.bind="!artist.edit">${artist.ArtistName} , ${artist.yearofBirth}  b.$(artist.YearofBirth)
-         	 d.${artist.died }</span>
-						<input show.bind="artist.edit" class="form-control input-sm" disabled.bind="!artist.edit" type="text" value.bind="ArtistID"> -->
-
+				
 						<div class="form-control input-sm" ref='artname' if.bind="artist.ArtistName===undefined || artist.ArtistName===''">
 							<a click.delegate="showModal( 'id',$index)">select_link </a>
 						</div>
 						<div class="form-control  input-sm" else>
 							<a click.delegate="showModal('id',$index)">${artist.ArtistName} , ${artist.yearofBirth} b.$(artist.YearofBirth) d.${artist.died }</a>
-
 						</div>
-
-
 
 					</td>
 

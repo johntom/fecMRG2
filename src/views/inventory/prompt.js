@@ -35,7 +35,9 @@ export class Prompt {
 // orgs
   selectedValueO = null;
   findOptionO = value => this.appService.artistList.find(x => x.ArtistName === value)
-
+// catalogs
+  myDatalistC= null;
+  findOptionC= value => this.appService.catalogList.find(x => x.CatalogTitle === value)
 
   //  this.ArtistName = this.currentItem.artist
   //       if (this.ArtistName.ArtistName === undefined) this.ArtistName.ArtistName = this.currentItem.artist.lastName + ', ' + this.currentItem.artist.firstName
@@ -177,6 +179,19 @@ export class Prompt {
     }
 
 
+    if (this.fieldname === 'Catalog') {
+
+      this.doc = `Select Catalog or add new if not in list.`
+      this.heading = `Select Insured or add new if not in list.`
+      this.placeholder = `Select Insured or add new if not in list.`
+      if (this.currentItem.catalog === undefined || this.currentItem.catalog === '') {
+      } else {
+        //  this.insuredobj = this.currentItem.insured
+        this.myDatalistC.value = this.currentItem.catalog.CatalogTitle
+      }
+    
+    }
+
     if (this.fieldname === 'MediumSupportobj') {
       this.doc = `type any characters of the   "Medium/Support: select or add new."`
       this.heading = `Search Medium/Support: select or add new.`
@@ -266,7 +281,9 @@ changeCallbackArtist(selectedValueA) {
 
     // }
   }
-
+changeCallbackCatalog(selectedValueC) {
+      let findvalue = this.myDatalistC.value
+}
   
   //  alert(`${this.addlist} Exists in list already!`)
   addit() {
