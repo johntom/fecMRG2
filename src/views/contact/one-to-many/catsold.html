@@ -34,9 +34,9 @@
 		<table class="table-condensed table">
 			<thead class="table-header-blue" data-sort="items.bind: currentItem.catalogsold; cols: ['ConsignedStartDate','ConsignedEndDate']">
 				<tr>
-					<th width="125px" class="header">CatalogID >></th>
+					<th width="350px" class="header">Catalog >></th>
 
-					<th width="225px" class="header">CatalogTitle</th>
+					<!-- <th width="225px" class="header"> </th> -->
 
 					<!-- <th  width="95px" class="header">SendType</th> -->
 					<th width="100px" class="header">DateSent</th>
@@ -56,24 +56,15 @@
 			</tfoot>
 			<tbody>
 				<tr repeat.for="catalogsold of currentItem.catalogsold" with.bind="catalogsold">
-<!-- 				
-        	<td width="125px">
-						<div class="form-control  input-sm" if.bind="_id===undefined || _id===''">
-							<a click.delegate="showModal( '_id',$index)">select_link </a>
-						</div>
-						<div class="form-control  input-sm" else>
-							<a click.delegate="showModal('_id',$index)">${_id}</a>
-						</div>
 
-					</td> -->
 
-	<td width="300px">
-				
-						<div class="form-control input-sm" ref='catname' if.bind="catalog.CatalogTitle===undefined || catalog.CatalogTitle===''">
+	<td width="350px">
+				 
+						<div class="form-control input-sm" ref='catname' if.bind="catalogsold.CatalogTitle===undefined || catalogsold.CatalogTitle===''">
 							<a click.delegate="showModal( 'id',$index)">select_link </a>
 						</div>
 						<div class="form-control  input-sm" else>
-							<a click.delegate="showModal('id',$index)"> ${artist.CatalogTitle}</a>
+							<a click.delegate="showModal('id',$index)">  ${catalogsold.CatalogTitle} </a>
 						</div>
 
 					</td>

@@ -7,10 +7,10 @@ import { ApplicationService } from '../../../services/application-service';
 import moment from 'moment';
 import { DialogService } from 'aurelia-dialog';
 
-import { ynPrompt } from '../../../services/prompt';
-import { Prompt } from '../prompt';
+// import { Prompt } from '../../../services/prompt';
+// import { Promptcontact } from '../prompt';
 // @inject(TaskQueue, BindingSignaler, ApiService, ApplicationService, DialogService)
-@inject(ApiService, ApplicationService, DialogService)
+@inject(ApiService, ApplicationService)//, DialogService)
 
 export class Offering {
   heading = 'DataForm HEADER...';
@@ -28,25 +28,26 @@ export class Offering {
   ];
 
   // constructor(taskQueue, signaler, api, appService, dialogService) {
-  constructor(api, appService, dialogService) {
+  constructor(api, appService) {
     // this.taskQueue = taskQueue;
     // this.signaler = signaler;
+  //  alert('Offering')
     this.api = api;
     this.appService = appService;
     this.inv = '';
-        this.currentItem = this.appService.currentContactItem;
+     this.currentItem = this.appService.currentContactItem;
     this.mode = 0;
     this.editrec = '';
 
     this.isDisableEdit = true
     this.currentnote = '';
-    this.dialogService = dialogService
+    // this.dialogService = dialogService
   }
 
 
 
 
-  activate(params, routeConfig) {
+  async activate(params, routeConfig) {
     // let oid
     // let orgobj
     // let orgs = this.appService.orgsList
@@ -57,6 +58,19 @@ export class Offering {
     //   orgobj = this.appService.orgsList[oid]//10]
     //   if (orgobj !== undefined) this.currentItem.conservedbyname = orgobj.OrgName
     // }
+    //  alert('Offering 2')
+ let response = await  this.api.findofferings(this.currentItem.id);
+ this.appService.offerings = response.data
+ console.log('this.repos ',this.appService.offerings)
+
+
+// find offersings
+
+// { method: ['get'], path: '/api/v1/findofferings/:id', handler: 'InventoryController.findofferings' },
+
+
+
+
   }
 
   camelCaseToProperCase(input) {

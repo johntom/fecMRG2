@@ -291,12 +291,13 @@ export class ApplicationService {
       name: "Phone",
       viewModel: "./one-to-many/phone",
       isSelected: false
-    },
-    {
-      name: "Type",
-      viewModel: "./one-to-many/type",
-      isSelected: false
     }
+    // ,
+    // {
+    //   name: "Type",
+    //   viewModel: "./one-to-many/type",
+    //   isSelected: false
+    // }
     // ,
     // {
     //   name: "org",

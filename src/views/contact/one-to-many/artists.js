@@ -4,10 +4,18 @@ import { ApiService } from '../../../utils/servicesApi';
 import { ApplicationService } from '../../../services/application-service';
 import { Aurelia } from 'aurelia-framework';
 import { DialogService } from 'aurelia-dialog';
-import { ynPrompt } from '../../../services/prompt';
-import { Prompt } from '../prompt';
-import { InvPrompt } from '../../../views/inventory/prompt';
+// import { ynPrompt } from '../../../services/prompt';
+import { Prompt } from   '../../../services/prompt';
+// import { Prompt } from '../prompt';
+// import { InvPrompt } from '../../../views/inventory/prompt';
 import { bindable } from 'aurelia-framework';
+// import { DialogService } from 'aurelia-dialog';
+
+
+// @inject()
+// @inject(Router, UtilService, ApplicationService, MyDataService,DialogService)
+
+
 @inject(ApiService, ApplicationService, DialogService)
 export class Artists {
   @bindable searchdoc
@@ -60,33 +68,31 @@ export class Artists {
     if (this.currentItem.artist.ArtistName === undefined) this.currentItem.artist.ArtistName = '';
 
     this.dialogService.open({ viewModel: Prompt, model: this.currentItem, lock: true }).whenClosed(response => {
-
-      this.currentItem.artists[index].id = this.currentItem.artist.id
-      this.currentItem.artists[index].ArtistName = this.currentItem.artist.ArtistName
-      // this.currentItem.artists[index] = this.currentItem.artist;
-      // this.currentItem.artists = this.currentItem.artists
-
-      let artistrec = {}
-      artistrec.id = this.currentItem.artist.id;
-      artistrec.ArtistName = this.currentItem.artist.ArtistName;
-      artistrec.yearofBirth = this.currentItem.artist.yearofBirth;
-      artistrec.died = this.currentItem.artist.died;
-
-
-      this.currentItem.artists[index] = artistrec;
-      this.currentItem.artists = this.currentItem.artists
-      this.artname = artistrec
-
-      // delete this.currentItem.artist;
-
-
-
-
-
-      if (!response.wasCancelled) {
-
-      } else {
+      if (response.wasCancelled) {
         console.log('cancel');
+      } else {
+        this.currentItem.artists[index].id = this.currentItem.artist.id
+        this.currentItem.artists[index].ArtistName = this.currentItem.artist.ArtistName
+        // this.currentItem.artists[index] = this.currentItem.artist;
+        // this.currentItem.artists = this.currentItem.artists
+
+        let artistrec = {}
+        artistrec.id = this.currentItem.artist.id;
+        artistrec.ArtistName = this.currentItem.artist.ArtistName;
+        artistrec.yearofBirth = this.currentItem.artist.yearofBirth;
+        artistrec.died = this.currentItem.artist.died;
+
+
+        this.currentItem.artists[index] = artistrec;
+        this.currentItem.artists = this.currentItem.artists
+        this.artname = artistrec
+
+
+        // delete this.currentItem.artist
+
+
+
+
       }
       console.log(response.output);
     });
@@ -147,7 +153,7 @@ export class Artists {
     this.mode = 0
     //artist of currentItem.artists
 
-    this.dialogService.open({ viewModel: ynPrompt, model: 'Delete or Cancel?', lock: false }).whenClosed(response => {
+    this.dialogService.open({ viewModel: Prompt, model: 'Delete or Cancel?', lock: false }).whenClosed(response => {
       if (!response.wasCancelled) {
         console.log('Delete')
         let artists = this.currentItem.artists

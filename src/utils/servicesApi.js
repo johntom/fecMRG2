@@ -170,7 +170,16 @@ findArtists() {
 // let response = await this.http.get(reposUrl);
   // this.repos = response.content
   //   .sort((a, b) => b.stargazers_count - a.stargazers_count);
+// { method: ['get'], path: '/api/v1/findofferings/:id', handler: 'InventoryController.findofferings' },
+//https://artbased.com/api/v1/findofferings/5c14696ba3e3847c0f5a62c3
+async findofferings(id) {
+    var url = this.baseweb + `v1/findofferings/${id}`;
+     let res = await this.http.fetch(url, { mode: 'cors' });//.then((res) => res.json())
 
+   return res.json()
+
+
+  }
  
 
 
@@ -186,6 +195,9 @@ findArtists() {
   //       mode: 'cors'
   //     }).then((res) => res.json());
   //   }
+
+
+
 
 
   //http://localhost:8080/api/v1/artist

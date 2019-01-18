@@ -3,8 +3,9 @@ import { ApiService } from '../../../utils/servicesApi';
 import { ApplicationService } from '../../../services/application-service';
 import moment from 'moment';
 import { DialogService } from 'aurelia-dialog';
-import { ynPrompt } from '../../../services/prompt';
-import { Prompt } from '../prompt';
+import { Prompt } from   '../../../services/prompt';
+
+import { Promptcontact } from '../prompt';
 
 @inject(ApiService, ApplicationService, DialogService)
 export class Catsold {
@@ -41,7 +42,7 @@ export class Catsold {
     }
   }
   // 	<tr repeat.for="catalogsold of currentItem.catalogsold" with.bind="catalogsold">
-     
+
   addItem() {
     let catalogsold = this.currentItem.catalogsold
     let flag = false
@@ -66,11 +67,11 @@ export class Catsold {
 
     // let notes = this.currentItem.notes
     // notes.splice(index, 1)// start, deleteCount)
-    this.dialogService.open({ viewModel: ynPrompt, model: 'Delete or Cancel?', lock: true }).whenClosed(response => {
+    this.dialogService.open({ viewModel: Prompt, model: 'Delete or Cancel?', lock: true }).whenClosed(response => {
       if (!response.wasCancelled) {
         console.log('Delete')
-        let consignedto = this.currentItem.consignedto
-        consignedto.splice(index, 1)// start, deleteCount)
+        let catalogsold = this.currentItem.catalogsold
+        catalogsold.splice(index, 1)// start, deleteCount)
       } else {
         console.log('cancel');
       }
@@ -105,38 +106,45 @@ export class Catsold {
   //     console.log(response.output);
   //   });
   // }
-showModal(fieldname, index) {
+  showModal(fieldname, index) {
 
-    // make this work just on inventory and change prompt to maybe point to it
+
+    //  this.currentItem.fieldname = 'Artist'//fieldname
+
+    //     this.currentItem.artist = this.currentItem.artists[index]//.artists
+    //     if (this.currentItem.artist.ArtistName === undefined) this.currentItem.artist.ArtistName = '';
+
+
     this.currentItem.fieldname = 'Catalog'//fieldname
-if ( this.currentItem.catalog===undefined) {
-this.currentItem.catalog = {};
-this.currentItem.catalog.id = '';
-this.currentItem.catalog.CatalogTitle = '';
-} else {
-    this.currentItem.catalog = this.currentItem.catalog[index]
+    // if ( this.currentItem.catalogsold!==undefined) {
+    //     this.currentItem.catalog = this.currentItem.catalogsold[index]
+    //     if (this.currentItem.catalog.CatalogTitle === undefined) this.currentItem.catalog.CatalogTitle = '';
+    // }
+
+    this.currentItem.catalog = this.currentItem.catalogsold[index]//.artists
     if (this.currentItem.catalog.CatalogTitle === undefined) this.currentItem.catalog.CatalogTitle = '';
-}
-    this.dialogService.open({ viewModel: Prompt, model: this.currentItem, lock: true }).whenClosed(response => {
-
-      // this.currentItem.catalog[index].id = this.currentItem.catalog.id
-      // this.currentItem.catalog[index].CatalogTitle = this.currentItem.catalog.CatalogTitle
-          
-      // this.currentItem.artists[index] = artistrec;
-      // this.currentItem.artists = this.currentItem.catalog
-     
-      this.catname = this.currentItem.catalog//artistrec
-
-      // // delete this.currentItem.artist;
 
 
-
-
-
-      if (!response.wasCancelled) {
-
-      } else {
+    this.dialogService.open({ viewModel: Promptcontact, model: this.currentItem, lock: true }).whenClosed(response => {
+      if (response.wasCancelled) {
         console.log('cancel');
+      } else {
+        this.currentItem.catalogsold[index].id = this.currentItem.catalog.id
+        this.currentItem.catalogsold[index].CatalogTitle = this.currentItem.catalog.CatalogTitle
+
+        // console.log('1 ',this.currentItem.catalog.id)
+        // console.log('2 ',this.currentItem.catalog[index].id)
+        // this.currentItem.catalog[index].id = this.currentItem.catalog.id
+        // this.currentItem.catalog[index].CatalogTitle = this.currentItem.catalog.CatalogTitle
+        // console.log('3 ',this.currentItem.catalog[index].id)
+
+        let catalogrec = {}
+        catalogrec.id = this.currentItem.catalog.id;
+        catalogrec.CatalogTitle = this.currentItem.catalog.CatalogTitle;
+        this.currentItem.catalogsold[index] = catalogrec;
+        this.currentItem.catalog = catalogrec
+        this.catname = catalogrec
+   //     delete this.currentItem.catalog
       }
       console.log(response.output);
     });

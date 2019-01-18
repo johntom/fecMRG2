@@ -8,15 +8,30 @@
 
 		
 		</h3>
-
+  offrec.id = inv._id
+            offrec.ArtistName = inv.ArtistName
+            offrec.ownername = inv.ownername
+            offrec.Title = inv.Title
+            for (const item of inv.offerings) {
+                if (item.client = inv.id) {
+                    offrec.offeramount = item.offeramount
+                    offrec.offerdate = item.offerdate
+                }
 		<table class="table-condensed table">
-			<thead class="table-header-blue" data-sort="items.bind: currentItem.offerings; cols: ['ENTERED','REMIND','CANCELED','NOTES']">
+			<thead class="table-header-blue" data-sort="items.bind: currentItem.appService.offerings; cols: ['ENTERED','REMIND','CANCELED','NOTES']">
 				<tr>
-					<th class="header">Client
+          	<th class="header" width="150px">Title
 					</th>
-					<th class="header">Offer Date
+          	<th class="header" width="150px">Artist Name
 					</th>
-					<th class="header">Offer Amt
+          	<th class="header" width="150px">Inv Code
+					</th>
+          	<th class="header" width="150px">Ownername
+					</th>
+					
+					<th class="header" width="125px">Offer Date
+					</th>
+					<th class="header" width="125px">Offer Amt
 				</tr>
 			</thead>
 			<tfoot>
@@ -28,14 +43,22 @@
 			</tfoot>
 			<tbody>
      
-				<tr repeat.for="offering of currentItem.offerings" with.bind="offering">
-					<td width="325px">
-						<span show.bind="!offering.edit">${clientname}</span>
-						<input show.bind="offering.edit" class="form-control input-sm" disabled.bind="!offering.edit" type="text" value.bind="clientname">
+				<tr repeat.for="offering of appService.offerings" with.bind="offering">
+					<td width="150px">
+						<span show.bind="!offering.edit">${Title}</span>
+					</td>
+          	<td width="150px"> 
+						<span show.bind="!offering.edit">${ArtistName}</span>
+					</td>
+          
+          	<td width="150px">
+						<span show.bind="!offering.edit">${InvCode}</span>
+					</td>
+	<td width="150px">
+						<span show.bind="!offering.edit">${ownername}</span>
 					</td>
 					<td width="125px">
 						<span show.bind="!offering.edit">${offerdate | dateFormat }</span>
-						<input show.bind="offering.edit" class="form-control input-sm" disabled.bind="!offering.edit" type="date" value.bind="offerdate">
 					</td>
 					<td width="125px">
 						<span show.bind="!offering.edit">${offeramount}</span>

@@ -9,8 +9,8 @@ import { ApiService } from '../../utils/servicesApi';
 
 export class Home {
   heading = "MRG Home Page";
-  version = 241.96
-  versionDate = 'Thu 1/16/2019'
+  version = 241.97
+  versionDate = 'Thu 1/16/2019' 
   // versiondate=Date();
   //  "select2": { 
   //       "map": "npm:select2@4.0.6-rc.1/dist",
@@ -25,6 +25,15 @@ export class Home {
   //       }
   //     },
   //  "select2": "4.0.6-rc.1"
+//   Lindsay Pollock
+// Adam Sheffer
+// Mark Cole
+// Adam Weinberg
+// Toby Kamps
+// DONT CONVERT
+//    "FirstName" : "Walk in", 
+    // "MI" : " ", 
+    // "LastName" : "Order", 
   issues = [
     "If org is an I no org append notes to contact section ",
     "update button to replace changes for currently emps ",

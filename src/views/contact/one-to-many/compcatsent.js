@@ -4,7 +4,7 @@ import { ApplicationService } from '../../../services/application-service';
 import { Aurelia } from 'aurelia-framework';
 import { DialogService } from 'aurelia-dialog';
 import { Prompt } from '../../../services/prompt';
-
+import { Promptcontact } from '../prompt';
 
 
 
@@ -62,8 +62,8 @@ export class Compcatsent {
     this.dialogService.open({ viewModel: Prompt, model: 'Delete or Cancel?', lock: true }).whenClosed(response => {
       if (!response.wasCancelled) {
         console.log('Delete')
-        let provenance = this.currentItem.provenance
-        provenance.splice(index, 1)
+        let catalogsent = this.currentItem.catalogsent
+        catalogsent.splice(index, 1)
       } else {
         console.log('cancel');
       }
@@ -90,7 +90,28 @@ export class Compcatsent {
     catalogsent.unshift(item)
     if (flag) this.currentItem.catalogsent = catalogsent
   }
+ showModal(fieldname, CatalogID,index) {
+    this.currentItem.fieldname = 'Catalog'//fieldname
+ 
+    this.currentItem.catalog = this.currentItem.catalogsent[index]//.artists
+    if (this.currentItem.catalog.CatalogTitle === undefined || this.currentItem.catalog.CatalogTitle === '') this.currentItem.catalog.CatalogTitle = '';
 
+    this.dialogService.open({ viewModel: Promptcontact, model: this.currentItem, lock: true }).whenClosed(response => {
+      if (response.wasCancelled) {
+        console.log('cancel');
+      } else {
+        this.currentItem.catalogsent[index].id = this.currentItem.catalog.id
+        this.currentItem.catalogsent[index].CatalogTitle = this.currentItem.catalog.CatalogTitle
+        let catalogrec = {}
+        catalogrec.id = this.currentItem.catalog.id;
+        catalogrec.CatalogTitle = this.currentItem.catalog.CatalogTitle;
+        this.currentItem.catalogsent[index] = catalogrec;
+        this.currentItem.catalog = catalogrec
+        this.catname = catalogrec
+      }
+      console.log(response.output);
+    });
+  }
 }
 
 // export class filterOnCodeValueConverter {

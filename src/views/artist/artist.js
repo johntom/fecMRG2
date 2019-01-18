@@ -4,8 +4,12 @@ import { ApplicationService } from '../../services/application-service';
 import { MyDataService } from "../../services/my-data-service";
 import 'bootstrap-select/css/bootstrap-select.min.css';
 import { bindable, inject } from 'aurelia-framework';
+import { DialogService } from 'aurelia-dialog';
+import { Prompt } from '../../../services/prompt';
+
+
 // @inject()
-@inject(Router, UtilService, ApplicationService, MyDataService)
+@inject(Router, UtilService, ApplicationService, MyDataService,DialogService)
 
 
 export class Artist {
@@ -66,13 +70,14 @@ selectOptions = {
     { name: 'December', short: 'Dec', number: 12 }
   ];
  
-  constructor(router, utilService, appService, dataService) {
+  constructor(router, utilService, appService, dataService,dialogService) {
     this.router = router;
     this.utilService = utilService;
     this.appService = appService;
     // this.page = '#/action'
     // this.search.inventorycode = 'PORTERC008'
     this.dataService = dataService;
+       this.dialogService = dialogService 
   }
 
   getStatesExample(filter, limit) {
@@ -151,6 +156,24 @@ selectOptions = {
   activate() {
     this.savedlists = this.appService.savedlists
   }
+
+
+  remove(item, index) {
+    //import { Prompt } from '../../../services/prompt';
+ 
+    this.dialogService.open({ viewModel: Prompt, model: 'Delete or Cancel?', lock: false }).whenClosed(response => {
+      if (!response.wasCancelled) {
+        console.log('Delete')
+        let notes = this.currentItem.notes
+        notes.splice(index, 1)// start, deleteCount)
+      } else {
+        console.log('cancel');
+      }
+      console.log(response.output);
+    });
+  }
+
+
 
 }
 

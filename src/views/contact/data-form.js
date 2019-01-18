@@ -204,6 +204,9 @@ modal(item) {
             this.appService.currentContactView = this.currentItem; // must set on every view
             this.appService.originalContactrec = JSON.parse(JSON.stringify(this.currentItem))// inv[0]));
 
+
+
+
             console.log('finihed active1')
             // return inv
           });
@@ -317,6 +320,8 @@ modal(item) {
         || this.currentItem.artist === undefined) {
         alert('Please fix  contact ')
       } else {
+        // delete this.currentItem.artist;
+        // delete this.currentItem.catalog;
         this.api.createcontact(this.currentItem).then((jsonRes) => {
           console.log('jsonRes ', jsonRes);
           this.recordId = jsonRes.id
@@ -335,6 +340,8 @@ modal(item) {
       if (JSON.stringify(this.currentItem) !== JSON.stringify(this.appService.originalContactrec)) {
         // SAVE WITH IMAGE INFO IN CASE ITS MISSING
         // nsure if needed this.getimageinfo()
+        delete this.currentItem.artist;
+        delete this.currentItem.catalog;
         this.api.savecontact(this.currentItem).then((jsonRes) => {
           console.log('jsonRes ', jsonRes)
           let tab = this.appService.tabs.find(f => f.isSelected);

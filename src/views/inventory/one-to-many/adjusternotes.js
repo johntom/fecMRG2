@@ -27,7 +27,7 @@ export class Adjusternotes {
     // this.inputable='disabled'
     this.isDisableEdit = true
     this.currentnote = '';
-    this.dialogService = dialogService
+    this.dialogService = dialogService 
   }
   test(index) {
     console.log('test ' + index, (index === this.editrec && this.mode > 0))

@@ -56,8 +56,8 @@ export class Phone {
     this.dialogService.open({ viewModel: Prompt, model: 'Delete or Cancel?', lock: true }).whenClosed(response => {
       if (!response.wasCancelled) {
         console.log('Delete')
-        let notes = this.currentItem.notes
-        notes.splice(index, 1)// start, deleteCount)
+        let phones = this.currentItem.phones
+        phones.splice(index, 1)// start, deleteCount)
       } else {
         console.log('cancel');
       }

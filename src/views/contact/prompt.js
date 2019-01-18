@@ -10,7 +10,7 @@ import { Promptyn } from '../../services/promptyn';
 
 
 
-export class Prompt {
+export class Promptcontact {
   static inject = [DialogController, ApplicationService, MyDataService, DialogService, ApiService];
   // ConsignmentShippingID=ConservedFrom
   orgfields = ['OrgID', 'ConsignedFromID', 'ConsignmentShippingID', 'OwnerID',
