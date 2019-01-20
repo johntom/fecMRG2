@@ -37,8 +37,10 @@ export class Home {
   // "LastName" : "Order", 
   issues = [
     "1-20 all B with nolongerherecatalogssent shd got previos worked at without a link   ",
-    "OrgID is a lookup  get salutaion ",
-    "jan -18 add org tab",
+    "OrgID is a lookup  get salutaion  multilien add1,2,3 and not addess",
+    "jan -18 add org tab" ,
+    "manual convert fo suffix 12 recs",
+    " when changing org add to history of work with a prompt?",
     "1402 from org is an I and address shd move to contact address and phone move to phont type on contact",
     "1119 is B type",
     "If org is an I no org append notes to contact section ",

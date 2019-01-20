@@ -158,6 +158,13 @@
 										<input type=" text " id="LastName" class=" form-control input-sm " value.bind="currentItem.LastName">
 									</div>
 
+		<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong> ContactID</strong>
+									</div>
+
+									<div class="Rtable-cell-70  Rtable-cell--highlight">
+										<input type="text " xid="ContactID " class="form-control input-sm " value.bind="currentItem.ID">
+									</div>
 
 
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
@@ -168,8 +175,96 @@
 										<input type="text " xid="TitleDesc " class="form-control input-sm " value.bind="currentItem.TitleDesc">
 									</div>
 
+	<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong> Salutation Select</strong>
+									</div>
+
+									<div class="Rtable-cell-70  Rtable-cell--highlight">
+										<input type="text " xid="Salutation " class="form-control input-sm " value.bind="currentItem.Salutation">
+									</div>
+                  	<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong> Assistant</strong>
+									</div>
+
+									<div class="Rtable-cell-70  Rtable-cell--highlight">
+										<input type="text " xid="Assistant " class="form-control input-sm " value.bind="currentItem.Assistant">
+									</div>
+                  	<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong> Dept</strong>
+									</div>
+
+									<div class="Rtable-cell-70  Rtable-cell--highlight">
+										<input type="text " xid="Dept " class="form-control input-sm " value.bind="currentItem.Dept">
+									</div>
+                  	<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong> Spouse</strong>
+									</div>
+
+									<div class="Rtable-cell-70  Rtable-cell--highlight">
+										<input type="text " xid="Spouse " class="form-control input-sm " value.bind="currentItem.Spouse">
+									</div>
+                  	<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong> Suffix</strong>
+									</div>
+
+									<div class="Rtable-cell-70  Rtable-cell--highlight">
+										<input type="text " xid="Suffix " class="form-control input-sm " value.bind="currentItem.Suffix">
+									</div>
 
 
+   
+
+    <!-- "_id" : ObjectId("5c146facd2c10b602e35066b"), 
+    "ID" : NumberInt(1498), 
+    "OrgID" : NumberInt(1402), 
+    "ysnPrimaryContact" : "Y", 
+    "ysnLetter" : "N", 
+    "LocationID" : " ", 
+    "Salutation" : NumberInt(641), 
+    "FirstName" : "Roberta", 
+    "MI" : " ", 
+    "LastName" : "Smith", 
+    "Assistant" : " ", 
+    "Dept" : " ", 
+    "Spouse" : " ", 
+    "MailCode" : "NYT01", 
+    "Title" : " ", 
+    "Suffix" : " ", 
+    "Inactive" : "N", 
+    "ContactNotes" : "  undefined", 
+    "createdAt" : ISODate("2018-12-15T03:06:20.362+0000"), 
+    "updatedAt" : ISODate("2018-12-15T03:06:20.362+0000"), 
+    "addresses" : [
+        {
+            "_id" : "5c434cb900a8a1588c63f857", 
+            "ID" : NumberInt(1402), 
+            "OrgName" : "Smith, Roberta", 
+            "address" : "Mr. Jerry Saltz\r\n40 East 9 Street, 3D", 
+            "city" : "New York", 
+            "state" : "NY", 
+            "zip" : "10003"
+        }, 
+        {
+            "address" : "", 
+            "city" : "", 
+            "st" : "", 
+            "zip" : "", 
+            "country" : "", 
+            "letter" : "Ms Roberta Smith", 
+            "notes" : undefined
+        }
+    ], 
+    "BusIndivid" : "I", 
+    "Notes" : "", 
+    "contacttypes" : [
+        {
+            "Description" : "Press"
+        }
+    ], 
+    "unsubscribed" : false, 
+    "mailings" : true,  -->
+ 
+  
 
 
 
@@ -194,16 +289,7 @@
 										<input type="text " xid="OrgID " class="form-control input-sm " value.bind="currentItem.OrgID">
 									</div>
 
-									<div class="Rtable-cell-30 Rtable-cell--highlight">
-										<strong> ContactID</strong>
-									</div>
-
-									<div class="Rtable-cell-70  Rtable-cell--highlight">
-										<!-- {ContactID:   ${currentItem.ID} }
-									{_id:  ${currentItem.id} } ${currentItem.id}  -->
-										<input type="text " xid="ContactID " class="form-control input-sm " value.bind="currentItem.ID">
-									</div>
-
+							
 
 	<div class="Rtable-cell-30 Rtable-cell--highlight">
 										<strong> BusIndivid</strong>
