@@ -55,7 +55,7 @@ ai-dialog-container > div {
   margin: auto !important;
 }
 </style>
-	<ux-dialog style="width:700px; height: 550px;">
+	<ux-dialog style="width:800px; height: 550px;">
 		<!-- <ux-dialog-header>
       <h1>${heading}</h1>
     </ux-dialog-header> -->
@@ -80,25 +80,25 @@ ai-dialog-container > div {
 					<strong> Address</strong>
 				</div>
 				<div class="Rtable-cell-70  Rtable-cell--highlight">
-					<input type="text" id="Address" class="form-control input-sm" value.bind="currentItem.org.Address">
+					<input type="text" id="Address" class="form-control input-sm" value.bind="currentItem.org.address">
 				</div>
 				<div class="Rtable-cell-30 Rtable-cell--highlight">
 					<strong> City</strong>
 				</div>
 				<div class="Rtable-cell-70  Rtable-cell--highlight">
-					<input type="text" id="City" class="form-control input-sm" value.bind="currentItem.org.City">
+					<input type="text" id="City" class="form-control input-sm" value.bind="currentItem.org.city">
 				</div>
 				<div class="Rtable-cell-30 Rtable-cell--highlight">
 					<strong> State</strong>
 				</div>
 				<div class="Rtable-cell-70  Rtable-cell--highlight">
-					<input type="text" id="State" class="form-control input-sm" value.bind="currentItem.org.State">
+					<input type="text" id="State" class="form-control input-sm" value.bind="currentItem.org.state">
 				</div>
 				<div class="Rtable-cell-30 Rtable-cell--highlight">
 					<strong> Zip</strong>
 				</div>
 				<div class="Rtable-cell-70  Rtable-cell--highlight">
-					<input type="text" id="Zip" class="form-control input-sm" value.bind="currentItem.org.Zip">
+					<input type="text" id="Zip" class="form-control input-sm" value.bind="currentItem.org.zip">
 				</div>
 
 
@@ -106,13 +106,13 @@ ai-dialog-container > div {
 					<strong> Status</strong>
 				</div>
 				<div class="Rtable-cell-70  Rtable-cell--highlight">
-					<input type="text" id="PurchasedDate" class="form-control input-sm" value.bind="currentItem.org.Status">
+					<input type="text" id="PurchasedDate" class="form-control input-sm" value.bind="currentItem.org.status">
 				</div>
 				<div class="Rtable-cell-30 Rtable-cell--highlight">
 					<strong> Notes</strong>
 				</div>
 				<div class="Rtable-cell-70  Rtable-cell--highlight">
-					<input type="text" id="BusIndivid" class="form-control input-sm" value.bind="currentItem.org.Notes">
+					<input type="text" id="BusIndivid" class="form-control input-sm" value.bind="currentItem.org.notes">
 				</div>
 			</div>
 
@@ -121,6 +121,9 @@ ai-dialog-container > div {
 				<a slot="buttons-slot" class="btn btn-primary" click.delegate="addNote()">
 					<i class="fa fa-plus"></i> Add Phone
 				</a>
+
+
+
 			</h4>
 			<table class="table-condensed table">
 				<thead class="table-header-blue">
@@ -160,11 +163,9 @@ ai-dialog-container > div {
 							<select id="phonetype" class="form-control  input-sm" value.bind="type"> 
                       <option model.bind="null">Choose...filterOnCode</option> 
                          <option repeat.for="opt of appService.codesPhoneType " model.bind="opt.id">
-                    ${opt.Description} 
+                    ${opt.Description}  
                       </option> 
                     </select>
-
-
 						</td>
 						<td width="200px">
 							<span show.bind="!phone.edit">${phoneno}</span>
@@ -198,6 +199,84 @@ ai-dialog-container > div {
 
 				</tbody>
 			</table>
+
+
+ <div class="input-field col s6">
+                                <i class="material-icons prefix">search</i>
+                                <input id="icon_prefix" type="text" value.bind="searchcontact & debounce" class="validate">
+                            </div>
+	<table class="table-condensed table">
+				<thead class="table-header-blue">
+					<tr>
+
+						<tr>
+							<th width="350px" class="header">name
+							</th>
+							<th width="200px" class="header">phone 1 
+							</th>
+							<th width="200px" class="header">phone 2
+							</th>
+							
+							<th width="200px" class="header">phone 3
+
+							</th>
+						</tr>
+				</thead>
+				<tfoot>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+				</tfoot>
+				<tbody>
+					<tr repeat.for="contact of item.contacts" with.bind="contact">
+
+					
+						<td width="350px">
+							<span >${LastName},  ${FirstName}</span>
+
+							</td>
+              <td width="200px">
+							<span >${phones[0].phoneno}, ${phones[0].ext}</span>
+
+							</td>
+                <td width="200px">
+							<span >${phones[1].phoneno}, ${phones[1].ext}</span>
+
+							</td>
+                <td width="200px">
+							<span >${phones[2].phoneno}, ${phones[2].ext}</span>
+
+							</td>
+						<!-- <td width="100px">
+							<span show.bind="!phone.edit">${areacode}</span>
+		<input show.bind="phone.edit" class="form-control input-sm" disabled.bind="!phone.edit" type="text" value.bind="phoneno">
+				
+							<input show.bind="phone.edit" class="form-control input-sm" disabled.bind="!phone.edit" type="text" value.bind="areacode">
+						</td>
+						<td width="300px">
+
+							<span show.bind="!phone.edit">${ext}</span>
+
+							<input show.bind="phone.edit" class="form-control input-sm" disabled.bind="!phone.edit" type="text" value.bind="ext">
+						</td>
+						<td width="100px">
+							<span show.bind="!phone.edit">${countrycode}</span>
+
+							<input show.bind="phone.edit" class="form-control input-sm" disabled.bind="!phone.edit" type="text" value.bind="countrycode">
+						</td> -->
+						<!-- <td width="225px">
+
+							<button class="btn btn-danger" click.delegate="remove(note,$index)">Delete</button>
+
+						</td> -->
+
+
+				</tbody>
+			</table>
+
+
 
 
 

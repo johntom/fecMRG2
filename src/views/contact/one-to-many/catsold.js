@@ -23,23 +23,28 @@ export class Catsold {
     this.inv = '';
     this.currentItem = this.appService.currentContactItem//testrec;
 
-    console.log('consignedto ', this.currentItem.consignedto)
+    // console.log('consignedto ', this.currentItem.consignedto)
     this.dialogService = dialogService
   }
 
   // <input click.delegate="showModal('ConsignedTo')" type="text" id="ConsignedTo" class="form-control input-sm" value.bind="currentItem.consignedtoname">
 
   activate(params, routeConfig) {
-    let oid
-    let orgobj
-    let orgs = this.appService.orgsList
-    //InsuredBy
-    if ((this.currentItem.ConsignedTo === undefined) || (this.currentItem.ConsignedTo === null)) {
-    } else {
-      oid = orgs.findIndex(x => x._id === this.currentItem.ConsignedTo)
-      orgobj = this.appService.orgsList[oid]//10]
-      if (orgobj !== undefined) this.currentItem.consignedtoname = orgobj.OrgName
-    }
+    // causes a save option
+    
+    // let oid
+    // let orgobj
+    // let orgs = this.appService.orgsList
+   
+    // if ((this.currentItem.ConsignedTo === undefined) || (this.currentItem.ConsignedTo === null)) {
+    // } else {
+    //   oid = orgs.findIndex(x => x._id === this.currentItem.ConsignedTo)
+    //   orgobj = this.appService.orgsList[oid]//10]
+    //   if (orgobj !== undefined) this.currentItem.consignedtoname = orgobj.OrgName
+    // }
+
+
+
   }
   // 	<tr repeat.for="catalogsold of currentItem.catalogsold" with.bind="catalogsold">
 

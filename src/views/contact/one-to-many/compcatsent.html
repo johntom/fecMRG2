@@ -32,10 +32,12 @@
 
 
 		<table class="table-condensed table">
-			<thead class="table-header-blue" data-sort="items.bind: currentItem.catalogsent; cols: ['ProvDate','ProvMemo']">
+			<!-- <thead class="table-header-blue" data-sort="items.bind: currentItem.catalogsent;"> -->
+        	<thead class="table-header-blue" >
+		
 				<tr>
 
-					<th width="350px" class="header">Catalog >></th>
+					<th width="450px" class="header">Catalog >></th>
 	        <th width="125px" class="header">DateSent</th>
 
 					<th width="95px" class="header">Qty</th>
@@ -57,29 +59,29 @@
 
 
 				<tr repeat.for="catalogsent of currentItem.catalogsent " with.bind="catalogsent">
-					<td width="350px">
+					<td width="450px">
 				 
-						<div class="form-control input-sm" ref='catname' if.bind="catalogsent.CatalogTitle===undefined || catalogsent.CatalogTitle===''">
-							<a click.delegate="showModal( 'id','CatalogID',$index)">select_link </a>
+						<!-- <div class="form-control input-sm" ref='catname' if.bind="catalogsent.CatalogTitle===undefined || catalogsent.CatalogTitle===''"> -->
+							<div class="form-control input-sm" ref='catname' if.bind="CatalogTitle===undefined || CatalogTitle===''">
+					
+            	<a click.delegate="showModal( 'id','CatalogID',$index)">select_link </a>
 						</div>
 						<div class="form-control  input-sm" else>
 							<a click.delegate="showModal('id','CatalogID',$index)">  ${catalogsent.CatalogTitle} </a>
 						</div>
 
 					</td>
-
+	<td></td>
 					<td width="125px">
-						<!-- <span show.bind="!catalogsent.edit">${DateSent | dateFormat }</span> -->
-						<input class="form-control input-sm" type="date" value.bind="DateSent | dateFormatiso">
+						<!-- <input class="form-control input-sm" type="date" value.bind="DateSent | dateFormatiso"> -->
+<input class="form-control input-sm" type="date" value.bind="DateSent ">
 
-						<!-- <input show.bind="catalogsent.edit" class="form-control input-sm" disabled.bind="!catalogsold.edit" type="date" value.bind="DateSent"> -->
 					</td>
 			<td width="95px"><input type="text" id="Qty" class="form-control  input-sm" value.bind="Qty"></td>
 
 					<td width="225px">
 
-						<!-- <button class="btn btn-primary" click.delegate="saveitem(provenance,$index)">${ !provenance.edit ? 'Edit' : 'Save' }</button> -->
-
+		
 						<button class="btn btn-danger" click.delegate="remove(catalogsent,$index)">Delete</button>
 					</td>
 

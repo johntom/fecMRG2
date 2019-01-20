@@ -168,19 +168,56 @@ findArtists() {
   }
 
 // let response = await this.http.get(reposUrl);
-  // this.repos = response.content
-  //   .sort((a, b) => b.stargazers_count - a.stargazers_count);
+// this.repos = response.content
+// .sort((a, b) => b.stargazers_count - a.stargazers_count);
 // { method: ['get'], path: '/api/v1/findofferings/:id', handler: 'InventoryController.findofferings' },
-//https://artbased.com/api/v1/findofferings/5c14696ba3e3847c0f5a62c3
+// https://artbased.com/api/v1/findofferings/5c14696ba3e3847c0f5a62c3
 async findofferings(id) {
     var url = this.baseweb + `v1/findofferings/${id}`;
      let res = await this.http.fetch(url, { mode: 'cors' });//.then((res) => res.json())
+     return res.json()
+  }
 
-   return res.json()
 
+async saveorg(rec) {
+    //alert('in saveclaim')
+    let url = this.baseweb + `v1/contact/update`
+    console.log('url ', url)
+    //return {'data': true}
+    return this.http.fetch(url, {
+      method: 'put',
+      mode: 'cors',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+        // , 'Authorization': 'JWT ' + token
+      },
+      body: JSON.stringify(rec)
+    }).then((res) => res.json());
+  }
+
+  async findorgOne(orgid) {
+    // search has fullu formed query string  v1/claim/
+    var url = this.baseweb + `v1/orgs/${orgid}`
+     let res = await this.http.fetch(url, { mode: 'cors' });
+     return res.json()
+    // console.log('url ', url)
+    // return this.http.fetch(url, {
+    //   method: 'get',
+    //   mode: 'cors'
+    // }).then((res) => res.json());
 
   }
- 
+
+  async findorgContacts(orgid) {
+    // search has fullu formed query string  v1/claim/
+    var url = this.baseweb + `v1/orgs/findcontacts/${orgid}`
+     let res = await this.http.fetch(url, { mode: 'cors' });
+     return res.json()
+  }
+
+// https://artbased.com/api/v1/orgs/findcontacts/1119
+
 
 
   // let response = await this.http.get(reposUrl);
@@ -1277,17 +1314,7 @@ saveMerge(slname, editorval) {
 
 
 
-  // insco
-  findorgOne(orgid) {
-    // search has fullu formed query string  v1/claim/
-    var url = this.baseweb + `v1/orgs/${orgid}`
-    console.log('url ', url)
-    return this.http.fetch(url, {
-      method: 'get',
-      mode: 'cors'
-    }).then((res) => res.json());
 
-  }
   saveinsco(rec) {
     let url = this.baseweb + `v1/insurancecompany/update`
     console.log('url ', url)

@@ -298,12 +298,12 @@ export class ApplicationService {
     //   viewModel: "./one-to-many/type",
     //   isSelected: false
     // }
-    // ,
-    // {
-    //   name: "org",
-    //   viewModel: "./one-to-many/org",
-    //   isSelected: false
-    // }
+    ,
+    {
+      name: "org",
+      viewModel: "./one-to-many/org",
+      isSelected: false
+    }
   ];
 
 

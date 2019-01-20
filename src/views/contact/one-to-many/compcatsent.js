@@ -19,13 +19,12 @@ export class Compcatsent {
   constructor(api, appService, dialogService) {
     this.api = api;
     this.appService = appService;
-    this.provenance = '';
-    this.currentItem = this.appService.currentContactItem//testrec;
+    
+    this.currentItem = this.appService.currentContactItem;
 
     this.mode = 0;
     this.editrec = '';
     this.isDisableEdit = true
-    this.currentprovenance = '';
     this.dialogService = dialogService
   }
 

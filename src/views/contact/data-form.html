@@ -203,6 +203,17 @@
 									{_id:  ${currentItem.id} } ${currentItem.id}  -->
 										<input type="text " xid="ContactID " class="form-control input-sm " value.bind="currentItem.ID">
 									</div>
+
+
+	<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong> BusIndivid</strong>
+									</div>
+
+									<div class="Rtable-cell-70  Rtable-cell--highlight">
+										<input type="text " xid="BusIndivid " class="form-control input-sm " value.bind="currentItem.BusIndivid">
+									</div>
+
+
 									<!-- <button class="btn btn-success" click.delegate="modal(org)">Org</button> ${currentItem.org.OrgName} -->
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
 
@@ -231,8 +242,7 @@
 
 									</div>
 									<div class="Rtable-cell-70 Rtable-cell--highlight">
-										${currentItem.contacttypes}
-
+										<!-- ${currentItem.contacttypes} -->
 										<ak-multiselect k-value.two-way="currentItem.contacttypes" k-placeholder="Select contacttypes..." k-data-text-field="Description"
 										 k-data-value-field="Description" k-height.bind="400" k-data-source.bind="dataSource" k-widget.two-way="multiselect"
 										 id="multiselect-customizing-templates-codes">
@@ -243,7 +253,6 @@
 											</ak-template>
 										</ak-multiselect>
 									</div>
-
 
 
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
@@ -277,38 +286,41 @@
 										<input type="checkbox" id="nolongerherecatalogssent" checked.bind="currentItem.nolongerherecatalogssent">
 									</div>
 
+			<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong> notes</strong>
+									</div>
+									<div class="Rtable-cell-70 Rtable-cell--highlight">
+										<!-- <input type="text " xid="Edition " class="form-control input-sm " value.bind="currentItem.Notes"> -->
+<textarea rows="6" cols="100" id="Notes" class="form-control input-sm" value.bind="currentItem.Notes"></textarea>
 
 
+									</div>
 
-									<div class="Rtable-cell-30 Rtable-cell--highlight">
+
+									<!-- <div class="Rtable-cell-30 Rtable-cell--highlight">
 										<strong> Edition</strong>
 									</div>
 									<div class="Rtable-cell-70 Rtable-cell--highlight">
 										<input type="text " xid="Edition " class="form-control input-sm " value.bind="currentItem.Edition">
-									</div>
+									</div> -->
 
 
-									<!-- xid no form store id hs prev vals -->
-
-									<div class="Rtable-cell-30 Rtable-cell--highlight">
+								
+									<!-- <div class="Rtable-cell-30 Rtable-cell--highlight">
 										<strong> Sold Status </strong>
 									</div>
-									<!-- ${search.httpsselectedSoldId} checked.bind="search.selectedSoldId selectedSoldId"-->
-									<div class="Rtable-cell-70 Rtable-cell--highlight">
-										<!-- <div class="form-group"> -->
-										<!-- <label repeat.for="sold of searchsold">
-												<input type="radio" name="group1" model.bind="sold.id" checked.bind="currentItem.Sold" >
-											${sold.id} / ${sold.name} &nbsp;
-											</label> -->
-										<!-- </div> -->
-										<!-- only radio string works with flex -->
+										<div class="Rtable-cell-70 Rtable-cell--highlight">
+								
 										<select id="Sold" class="form-control " value.bind="currentItem.Sold">
 											<option model.bind="null">Choose...</option>
 											<option repeat.for="opt of searchsold " model.bind="opt.id">
 												${opt.name}
 											</option>
 										</select>
-									</div>
+									</div> -->
+
+
+
 								</div>
 
 							</div>

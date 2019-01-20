@@ -5,12 +5,12 @@ import lodash from 'lodash';
 import { ApiService } from '../../utils/servicesApi';
 
 
-@inject(ApplicationService, MyDataService,ApiService)
+@inject(ApplicationService, MyDataService, ApiService)
 
 export class Home {
   heading = "MRG Home Page";
-  version = 241.97
-  versionDate = 'Thu 1/16/2019' 
+  version = 241.98
+  versionDate = 'Sun 1/20/2019'
   // versiondate=Date();
   //  "select2": { 
   //       "map": "npm:select2@4.0.6-rc.1/dist",
@@ -25,19 +25,31 @@ export class Home {
   //       }
   //     },
   //  "select2": "4.0.6-rc.1"
-//   Lindsay Pollock
-// Adam Sheffer
-// Mark Cole
-// Adam Weinberg
-// Toby Kamps
-// DONT CONVERT
-//    "FirstName" : "Walk in", 
-    // "MI" : " ", 
-    // "LastName" : "Order", 
+  //   Lindsay Pollock
+  // Adam Sheffer
+  // Mark Cole
+  // Adam Weinberg
+  // Toby Kamps
+  // smith roberta is both a  B And I
+  // DONT CONVERT
+  //    "FirstName" : "Walk in", 
+  // "MI" : " ", 
+  // "LastName" : "Order", 
   issues = [
+    "1-20 all B with nolongerherecatalogssent shd got previos worked at without a link   ",
+    "OrgID is a lookup  get salutaion ",
+    "jan -18 add org tab",
+    "1402 from org is an I and address shd move to contact address and phone move to phont type on contact",
+    "1119 is B type",
     "If org is an I no org append notes to contact section ",
     "update button to replace changes for currently emps ",
     "make org a popup modal with textbox for addess  Address : Mr. Jerry Saltz\r\n40 East 9 Street, 3D,  and get rid of tab",
+    "have tab on contact prev work...no longer here Mr. Jerry Saltz",
+    " on org 1126 , select jerry and see no longer under mailing ",
+
+    "or",
+    "create an org view and open it",
+
     '"Ext" : "rosmith@nytimes.com\r\nrosmith@nytimes.com\r\nrosmith@", ',
     'add phone type id to convert',
     'fix cat contact send see {ContactID:18235}',
@@ -227,13 +239,13 @@ export class Home {
   // 'make all prompt dblclick',
   // 'check all ogs prompts'
   //  ' use brm2 app as base'
-  constructor(appService, dataService,api) {
+  constructor(appService, dataService, api) {
     this.appService = appService;
     this.dataService = dataService;
-    this.api= api;
+    this.api = api;
   }
   //   this.dataService.loadCodes(values[1]), resolve all lists
- async activate() {
+  async activate() {
 
     // this.appService.payeelist = await this.dataService.loadPayeeAsync()
     //  this.appService.artistlist = await this.dataService.loadArtistsAsync()
@@ -241,15 +253,15 @@ export class Home {
     // console.log(' await payeelist 1', this.appService.payeelist)
     // console.log(' await artistlist  1 ', this.appService.artistlist)
 
-// 2019 new Async/Await
-//  let response = await  this.dataService.loadArtistsAA();
-//  this.repos = response.data
-//  console.log('this.repos ',this.repos)
- //   .sort((a, b) => b.stargazers_count - a.stargazers_count);
- 
- let response = await  this.api.getCatalogsAA();
- this.appService.catalogList = response.data
- console.log('this.repos ',this.api.catalogList)
+    // 2019 new Async/Await
+    //  let response = await  this.dataService.loadArtistsAA();
+    //  this.repos = response.data
+    //  console.log('this.repos ',this.repos)
+    //   .sort((a, b) => b.stargazers_count - a.stargazers_count);
+
+    let response = await this.api.getCatalogsAA();
+    this.appService.catalogList = response.data
+    console.log('this.repos ', this.api.catalogList)
 
 
 

@@ -19,7 +19,8 @@
 
 
 	<!-- <require from="./docs.css"></require> -->
-	<require from="../../../resources/value-converters/date-format"></require>
+
+	<!-- <require from="../../../resources/value-converters/date-format"></require> -->
 	<require from="../../../resources/value-converters/date-formatiso"></require>
 
 	<!-- section class="customer-orders au-animate" -->
@@ -32,13 +33,11 @@
 
 
 		<table class="table-condensed table">
-			<thead class="table-header-blue" data-sort="items.bind: currentItem.catalogsold; cols: ['ConsignedStartDate','ConsignedEndDate']">
-				<tr>
-					<th width="350px" class="header">Catalog >></th>
+			<!-- <thead class="table-header-blue" data-sort="items.bind: currentItem.catalogsold"> -->
+				<thead class="table-header-blue">
+			<tr>
+					<th width="450px" class="header">Catalog >></th>
 
-					<!-- <th width="225px" class="header"> </th> -->
-
-					<!-- <th  width="95px" class="header">SendType</th> -->
 					<th width="100px" class="header">DateSent</th>
 					<th width="100px" class="header">InvoiceID</th>
 					<th width="55px" class="header">Qty</th>
@@ -58,7 +57,7 @@
 				<tr repeat.for="catalogsold of currentItem.catalogsold" with.bind="catalogsold">
 
 
-	<td width="350px">
+	<td width="450px">
 				 
 						<div class="form-control input-sm" ref='catname' if.bind="catalogsold.CatalogTitle===undefined || catalogsold.CatalogTitle===''">
 							<a click.delegate="showModal( 'id',$index)">select_link </a>
@@ -68,28 +67,16 @@
 						</div>
 
 					</td>
-
-
-					<!-- <td width="225px">
-							<input type="text" id="xCatalogTitle" class="form-control  input-sm" value.bind="CatalogTitle"></td>
-					</td> -->
-
-
-
 					<td width="100px">
 						<input type="date" id="xDateSent" class="form-control  input-sm" value.bind="DateSent | dateFormatiso"></td>
 					</td>
 
 
 					<td width="100px">
-						<!-- <span show.bind="!catalogsold.edit">${InvoiceID}</span>
-						<input show.bind="catalogsold.edit" class="form-control input-sm" disabled.bind="!catalogsold.edit" type="text" value.bind="InvoiceID">						</td> -->
 						<input type="text" id="zInvoiceID" class="form-control  input-sm" value.bind="InvoiceID"></td>
 
 					</td>
 					<td width="55px">
-						<!-- <span show.bind="!catalogsold.edit">${Qty}</span>
-						<input show.bind="catalogsold.edit" class="form-control input-sm" disabled.bind="!catalogsold.edit" type="text" value.bind="Qty">						</td> -->
 						<input type="text" id="xQty" class="form-control  input-sm" value.bind="Qty"></td>
 
 					</td>
@@ -97,9 +84,7 @@
 
 
 					<td width="225px">
-						<!-- <button class="btn btn-primary" click.delegate="consignedto.edit=!consignedto.edit">${ !catalogsold.edit ? 'Update' : 'Done' }</button> -->
-						<!-- <button class="btn btn-primary" click.delegate="saveitem(consignedto,$index)">${ !catalogsold.edit ? 'Edit' : 'Save' }</button> -->
-
+				
 
 						<button class="btn btn-danger" click.delegate="remove(catalogsold,$index)">Delete</button>
 
@@ -110,3 +95,13 @@
 
 	</section>
 </template>
+
+	<!-- <span show.bind="!catalogsold.edit">${InvoiceID}</span>
+						<input show.bind="catalogsold.edit" class="form-control input-sm" disabled.bind="!catalogsold.edit" type="text" value.bind="InvoiceID">						</td> -->
+					
+			<!-- <span show.bind="!catalogsold.edit">${Qty}</span>
+						<input show.bind="catalogsold.edit" class="form-control input-sm" disabled.bind="!catalogsold.edit" type="text" value.bind="Qty">						</td> -->
+			
+
+		<!-- <button class="btn btn-primary" click.delegate="consignedto.edit=!consignedto.edit">${ !catalogsold.edit ? 'Update' : 'Done' }</button> -->
+						<!-- <button class="btn btn-primary" click.delegate="saveitem(consignedto,$index)">${ !catalogsold.edit ? 'Edit' : 'Save' }</button> -->
