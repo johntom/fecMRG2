@@ -280,13 +280,27 @@
 											</div>
                        -->
 
-
+<!-- 
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
 										<strong> OrgID</strong>
-									</div>
+									</div> -->
 
-									<div class="Rtable-cell-70  Rtable-cell--highlight">
+									<!-- <div class="Rtable-cell-70  Rtable-cell--highlight">
 										<input type="text " xid="OrgID " class="form-control input-sm " value.bind="currentItem.OrgID">
+									</div> -->
+	</div> 
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<span dblclick.delegate="showModal( 'OrgID') ">	<strong> Org </strong></span>
+									</div>
+								
+
+									<div class="Rtable-cell-70  Rtable-cell--light">
+										<div style="height:15px;margin-left:10px;margin-top:5px;margin-bottom:10px" if.bind="org.OrgName===undefined || org.OrgName==='' ">
+											<a click.delegate="showModal( 'OrgID')">select_link </a>
+										</div>
+										<div style="height:15px;margin-left:10px;margin-top:5px;margin-bottom:10px" else>
+											<a click.delegate="showModal( 'OrgID')">${currentItem.org.OrgName} </a>
+										</div>
 									</div>
 
 							

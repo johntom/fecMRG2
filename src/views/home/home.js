@@ -36,6 +36,7 @@ export class Home {
   // "MI" : " ", 
   // "LastName" : "Order", 
   issues = [
+    "add Artist and Org views",
     "1-20 all B with nolongerherecatalogssent shd got previos worked at without a link   ",
     "OrgID is a lookup  get salutaion  multilien add1,2,3 and not addess",
     "jan -18 add org tab" ,
@@ -48,10 +49,8 @@ export class Home {
     "make org a popup modal with textbox for addess  Address : Mr. Jerry Saltz\r\n40 East 9 Street, 3D,  and get rid of tab",
     "have tab on contact prev work...no longer here Mr. Jerry Saltz",
     " on org 1126 , select jerry and see no longer under mailing ",
-
     "or",
     "create an org view and open it",
-
     '"Ext" : "rosmith@nytimes.com\r\nrosmith@nytimes.com\r\nrosmith@", ',
     'add phone type id to convert',
     'fix cat contact send see {ContactID:18235}',

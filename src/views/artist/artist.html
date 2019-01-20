@@ -13,11 +13,8 @@
 			<div class="flex-column-1 search-panel">
 				<!-- <form> -->
 				<div class="flex-row-none">
-				
-
 					<div class="form-group flex-column-1 margin-left-10">
-				
-   "FirstName" : "Andres", 
+   <!-- "FirstName" : "Andres", 
     "LastName" : "Serrano", 
     "YearofBirth" : 1950.0, 
     "Died" : "", 
@@ -27,14 +24,10 @@
     "Middle" : "", 
     "ARTIST_LAST_UP" : "", 
     "ARTIST_FIRST_UP" : "", 
-    "Genre" : ""
+    "Genre" : "" -->
 						<require from="../../resources/value-converters/stringify"></require>
-
 						<h3>Artist Management </h3>
-
 						<div class="col-md-4">
-						
-						
 								<div class="form-group flex-column-1">
 									<input ref="myDatalist" type="text" list="myDatalist" placeholder="search on savedlist" 
                 change.delegate="performSearchSL()"
@@ -43,22 +36,16 @@
 									<option repeat.for="option of appService.savedlists">${option.name}</option>
 								</datalist>
 							</div>
-
 							</div>
 						</div>
-
-
 					</div>
 				</div>
-
-
 			</div>
 		</div>
 
 
 		<div class="flex-row-none">
 			<div class="form-group flex-column-1">
-
 				<button id="searchInputBtn" class="btn btn-primary" type="button" click.delegate="performSearchSL()">Search!</button>
 			</div>
 			<div class="form-group flex-column-1 margin-left-10">

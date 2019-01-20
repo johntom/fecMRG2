@@ -635,25 +635,22 @@
 											</option>
 										</select>
 									</div>
+
+                  	<!-- <div class="Rtable-cell-70 Rtable-cell--highlight">
+										<a click.delegate="showModal( 'OwnerID')" dblclick.delegate="showModal( 'OwnerID')">${currentItem.ownername}&nbsp; </a>
+									</div> -->
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
 										<span dblclick.delegate="showModal( 'OwnerID') ">	<strong> Owner </strong></span>
 									</div>
-									<!-- <div class="Rtable-cell-70 Rtable-cell--highlight">
-										<a click.delegate="showModal( 'OwnerID')" dblclick.delegate="showModal( 'OwnerID')">${currentItem.ownername}&nbsp; </a>
-									</div> -->
+								
 
 									<div class="Rtable-cell-70  Rtable-cell--light">
-
 										<div style="height:15px;margin-left:10px;margin-top:5px;margin-bottom:10px" if.bind="currentItem.ownername===undefined || currentItem.ownername==='' ">
 											<a click.delegate="showModal( 'OwnerID')">select_link </a>
 										</div>
 										<div style="height:15px;margin-left:10px;margin-top:5px;margin-bottom:10px" else>
 											<a click.delegate="showModal( 'OwnerID')">${currentItem.ownername} </a>
-
 										</div>
-
-
-
 									</div>
 									<!---- <input dblclick.delegate="showModal( 'OwnerID') " type="text " xid="OwnerID " 
                     class="form-control input-sm " value.bind="currentItem.ownername"> -->

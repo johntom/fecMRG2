@@ -31,44 +31,7 @@ export class Artist {
     title: 'title',
     tokens: 'tokens'
   }
-selectOptions = {
-    liveSearch: true,
-    showSubtext: true,
-    showTick: true,
-    selectedTextFormat: 'count > 3',
-    actionsBox: true
-  };
-  isEditing = false;
-  isOptgroupBreadDisabled = false;
-  selectMappingStructure = {
-    subtext: 'company'
-  };
 
-  
-  states = [
-    { OrgName: 'Alabama', id: 'al' },
-    { OrgName: 'Alaska', id: 'ak' },
-    { OrgName: 'Arizona', id: 'az' },
-    { OrgName: 'Arkansas', id: 'ak' },
-    { OrgName: 'California', id: 'ca' },
-    { OrgName: 'Colorado', id: 'co' },
-    { OrgName: 'Connecticut', id: 'cn' }]
-
-
-  monthsOfTheYear = [
-    { name: 'January', short: 'Jan', number: 1 },
-    { name: 'February', short: 'Feb', number: 2 },
-    { name: 'March', short: 'Mar', number: 3 },
-    { name: 'April', short: 'Apr', number: 4 },
-    { name: 'May', short: 'May', number: 5 },
-    { name: 'June', short: 'Jun', number: 6 },
-    { name: 'July', short: 'Jul', number: 7 },
-    { name: 'August', short: 'Aug', number: 8 },
-    { name: 'September', short: 'Sep', number: 9 },
-    { name: 'October', short: 'Oct', number: 10 },
-    { name: 'November', short: 'Nov', number: 11 },
-    { name: 'December', short: 'Dec', number: 12 }
-  ];
  
   constructor(router, utilService, appService, dataService,dialogService) {
     this.router = router;
