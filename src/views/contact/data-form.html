@@ -158,7 +158,7 @@
 										<input type=" text " id="LastName" class=" form-control input-sm " value.bind="currentItem.LastName">
 									</div>
 
-								
+
 
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
 										<strong> TitleDesc</strong>
@@ -174,15 +174,15 @@
 
 									<div class="Rtable-cell-70  Rtable-cell--highlight">
 										<!-- <input type="text " xid="Salutation " class="form-control input-sm " value.bind="currentItem.Salutation"> -->
-									
-                  
+
+
 										<select id="phonetype" class="form-control  input-sm" value.bind="currentItem.Salutation"> 
                       <option model.bind="null">Choose...</option> 
                          <option repeat.for="opt of appService.codesSalutation " model.bind="opt.id">
                     ${opt.Description} 
                       </option> 
                     </select>
-                  </div>
+									</div>
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
 										<strong> Assistant</strong>
 									</div>
@@ -356,6 +356,43 @@
 										</ak-multiselect>
 									</div>
 
+									<div class="Rtable-cell-100 Rtable-cell--highlight">
+										<strong> mailings?</strong>
+										<input type="checkbox" id="mailings" checked.bind="currentItem.mailings">
+										<strong> &nbsp;&nbsp;international?</strong>
+										<input type="checkbox" id="international" checked.bind="currentItem.international">
+										<strong> &nbsp;&nbsp;nomailings?</strong>
+										<input type="checkbox" id="nomailings" checked.bind="currentItem.nomailings">
+										<strong> &nbsp;&nbsp;noinfo?</strong>
+										<input type="checkbox" id="noinfo" checked.bind="currentItem.noinfo">
+										<strong> &nbsp;&nbsp;email?</strong>
+										<input type="checkbox" id="email" checked.bind="currentItem.email">
+										<strong> &nbsp;&nbsp;nolongerherecatalogssent?</strong>
+										<input type="checkbox" id="nolongerherecatalogssent" checked.bind="currentItem.nolongerherecatalogssent">
+									</div>
+
+
+	<div class="Rtable-cell-50 Rtable-cell--highlight">
+								<trong> mailings?</strong>
+										<input type="checkbox" id="mailings" checked.bind="currentItem.mailings">
+										<strong> &nbsp;&nbsp;international?</strong>
+										<input type="checkbox" id="international" checked.bind="currentItem.international">
+										<strong> &nbsp;&nbsp;nomailings?</strong>
+										<input type="checkbox" id="nomailings" checked.bind="currentItem.nomailings">
+										<stron>
+
+
+									</div>
+                  	<div class="Rtable-cell-50 Rtable-cell--highlight">
+										<strong> &nbsp;&nbsp;noinfo?</strong>
+										<input type="checkbox" id="noinfo" checked.bind="currentItem.noinfo">
+										<strong> &nbsp;&nbsp;email?</strong>
+										<input type="checkbox" id="email" checked.bind="currentItem.email">
+										<strong> &nbsp;&nbsp;nolongerherecatalogssent?</strong>
+										<input type="checkbox" id="nolongerherecatalogssent" checked.bind="currentItem.nolongerherecatalogssent">
+				
+									</div>
+
 
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
 										<strong> mailings?</strong>
@@ -397,16 +434,14 @@
 
 
 									</div>
-	<div class="Rtable-cell-30 Rtable-cell--highlight">
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
 										<strong> Legacy ContactID</strong>
 									</div>
 
 									<div class="Rtable-cell-70  Rtable-cell--highlight">
 										<input type="text " xid="ContactID " class="form-control input-sm " value.bind="currentItem.ID">
 									</div>
-	<div class="Rtable-cell-100 Rtable-cell--highlight">
-										<strong> test</strong>
-									</div>
+
 
 									<!-- <div class="Rtable-cell-30 Rtable-cell--highlight">
 										<strong> Edition</strong>
