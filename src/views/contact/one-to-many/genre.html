@@ -1,0 +1,90 @@
+
+
+<template>
+  
+<style>
+table thead tr{
+    display:block;
+}
+
+table th,table td{ 
+    width:80%//1200px;//fixed width
+}
+
+
+table  tbody{
+  display:block;
+  height:200px;
+  overflow:auto;//set tbody to auto
+}
+
+/* "_id" : ObjectId("5c26ab7818b45eec4d90f59e"), 
+    "ID" : NumberInt(5), 
+    "ContactID" : NumberInt(1326), 
+    "OrgID" : NumberInt(1247), 
+    "GenreID" : NumberInt(168), 
+    "GenreNotes" : "", 
+    "createdAt" : ISODate("2018-12-28T23:02:16.560+0000"), 
+    "updatedAt" : ISODate("2018-12-28T23:02:16.560+0000") */
+</style>
+	<require from="./docs.css"></require>
+	<section class="docs full-height flex-column-1 overflow-y-auto ignore">
+		<h4>
+			<i class="fa fa-folder-open"></i> Notes 
+			<a slot="buttons-slot" class="btn btn-primary" click.delegate="addNote()">
+				<i class="fa fa-plus"></i> Add Note
+			</a>
+		</h4>
+			<table class="table-condensed table">
+			<thead class="table-header-blue" > 
+				<tr>
+				
+          	<tr>
+						<th width="300px"class="header">WorkDate
+						</th>
+						<th width="400px" class="header">Notes
+             
+						</th>
+						<th width="225px" class="header">Cmd
+						
+						</th>
+					</tr>
+			</thead>
+			<tfoot>
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+			</tfoot>
+			<tbody>
+			<tr repeat.for="note of currentItem.notes" with.bind="note">
+					<td width="300px">
+          
+          <!-- <td width="30%"> -->
+          	<span show.bind="!note.edit">${WorkDate}</span>
+						<input show.bind="note.edit" class="form-control input-sm" disabled.bind="!note.edit" type="date" value.bind="WorkDate">
+					</td>
+					<td width="400px">
+            <!-- <td width="50%"> -->
+						<span show.bind="!note.edit">${Notes}</span>
+
+						<input show.bind="note.edit" class="form-control input-sm" disabled.bind="!note.edit" type="text" value.bind="Notes">
+         	</td>
+<!-- <td width="20%"> -->
+					<td width="225px">
+					<!-- <button class="btn btn-primary" click.delegate="note.edit=!note.edit">${ !note.edit ? 'Update' : 'Done' }</button> -->
+			 
+         	<button class="btn btn-primary" click.delegate="saveitem(note,$index)">${ !note.edit ? 'Update' : 'Done' }</button>
+
+      		<button class="btn btn-danger" click.delegate="remove(note,$index)">Delete</button> 
+       
+					</td>
+	
+
+			</tbody>
+		</table>
+	
+	</section>
+</template>
+

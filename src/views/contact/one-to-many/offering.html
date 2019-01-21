@@ -1,0 +1,74 @@
+<template>
+ <require from="../../../resources/value-converters/date-format"></require>
+
+	<section class="docs full-height flex-column-1 overflow-y-auto ignore">
+		<h3>
+			<!-- <i class="fa fa-folder-open"></i> Conservation (${currentItem.Title} ct:${currentItem.conservation.length}) -->
+	<i class="fa fa-folder-open"></i> Offfering
+
+		
+		</h3>
+  offrec.id = inv._id
+            offrec.ArtistName = inv.ArtistName
+            offrec.ownername = inv.ownername
+            offrec.Title = inv.Title
+            for (const item of inv.offerings) {
+                if (item.client = inv.id) {
+                    offrec.offeramount = item.offeramount
+                    offrec.offerdate = item.offerdate
+                }
+		<table class="table-condensed table">
+			<thead class="table-header-blue" data-sort="items.bind: currentItem.appService.offerings; cols: ['ENTERED','REMIND','CANCELED','NOTES']">
+				<tr>
+          	<th class="header" width="150px">Title
+					</th>
+          	<th class="header" width="150px">Artist Name
+					</th>
+          	<th class="header" width="150px">Inv Code
+					</th>
+          	<th class="header" width="150px">Ownername
+					</th>
+					
+					<th class="header" width="125px">Offer Date
+					</th>
+					<th class="header" width="125px">Offer Amt
+				</tr>
+			</thead>
+			<tfoot>
+				<tr>
+					<td></td>
+					<td></td>
+
+				</tr>
+			</tfoot>
+			<tbody>
+     
+				<tr repeat.for="offering of appService.offerings" with.bind="offering">
+					<td width="150px">
+						<span show.bind="!offering.edit">${Title}</span>
+					</td>
+          	<td width="150px"> 
+						<span show.bind="!offering.edit">${ArtistName}</span>
+					</td>
+          
+          	<td width="150px">
+						<span show.bind="!offering.edit">${InvCode}</span>
+					</td>
+	<td width="150px">
+						<span show.bind="!offering.edit">${ownername}</span>
+					</td>
+					<td width="125px">
+						<span show.bind="!offering.edit">${offerdate | dateFormat }</span>
+					</td>
+					<td width="125px">
+						<span show.bind="!offering.edit">${offeramount}</span>
+						<input show.bind="offering.edit" class="form-control input-sm" disabled.bind="!offering.edit" type="text" value.bind="offeramount">
+					</td>
+
+				</tr>
+			</tbody>
+		</table>
+
+
+	</section>
+</template>
