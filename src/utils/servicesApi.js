@@ -1,4 +1,5 @@
-import {
+
+ import {
   inject,
   singleton
 } from 'aurelia-dependency-injection';
@@ -159,12 +160,14 @@ export class ApiService {
   //     //return this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())
   //   }
 
+
   async findArtistsContent(search) {
     var url = this.baseweb + 'v1/artistcontent' + search
     return await this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())
-    //      let res = await this.http.fetch(url, { mode: 'cors' }) //.then((res) => res.json())
-    // return res
+   
   }
+
+
   async findArtistsAA1() {
     var url = this.baseweb + 'v1/artist';
     return await this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())

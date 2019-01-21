@@ -27,7 +27,7 @@ export class SearchResults {
       read: (options) => {
         this.loadData()
           .then((inv) => {
-            console.log(' Adjusters datasource ', inv[0], inv.length)
+            console.log(' Artists datasource ', inv[0], inv.length)
             options.success(inv);
           });
       },
@@ -71,7 +71,7 @@ export class SearchResults {
 		// if (this.invcode) searchrec.invcode=this.invcode;
 		console.log(this.queryParams)
    
-    let response = await this.api.findInventory(this.queryParams);
+    let response = await this.api.findArtistsContent(this.queryParams);
     inv = response.data
   	return inv
   }
@@ -96,7 +96,7 @@ export class SearchResults {
     grid.select(targetRow);
     let selectedRow = grid.select();
     let dataItem = grid.dataItem(selectedRow);
-    let rt2 = '#/adjuster/data/' + dataItem.ADJUSTER_ID
+    let rt2 = '#/artist/data/' + dataItem.id
     console.log('search-results:details', rt2);
     this.router.navigate(rt2);// `#/inventory/${path}`);
   }

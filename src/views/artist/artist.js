@@ -59,20 +59,22 @@ export class Artist {
   }
 
   detached() {
-    console.log('name-tag detached');
+    console.log('name-tag detached'); 
   }
 
   unbind() {
     console.log('name-tag unbind');
   }
-
+changeCallbackArtist(selectedValueA) {
+      let findvalue = this.myDatalistA.value
+}
   performSearch() {
     if (this.search) {
       console.log('this.search', this.search)
       let qs = this.utilService.generateQueryString(this.search);
   
 //  let adj =`${this.ADJUSTER_NAME.ADJUSTER_ID}`
-      let  artist = this.ArtistName
+      let  artist =  this.myDatalistA.value
       let path = `Searchartist${qs}`;
   
       if (artist !== null) {

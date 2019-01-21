@@ -220,25 +220,25 @@ export class SearchResults {
 		// if (this.invcode) searchrec.invcode=this.invcode;
 		console.log(this.queryParams)
    
-    let response = await this.api.findInventory(this.queryParams);
-    let inv = response.data
-  	return inv
+    // let response = await this.api.findInventory(this.queryParams);
+    // let inv = response.data
+  	// return inv
   
   
-// return this.api.findInventory(this.queryParams)
-// 			//return this.api.findInventoryKeywords(this.queryParams)
+return this.api.findInventory(this.queryParams)
+			//return this.api.findInventoryKeywords(this.queryParams)
 
-// 			.then((jsonRes) => {
-// 				inv = jsonRes.data;
-// 				if (inv === 0 || inv.length === 0) {
-// 					// alert(' no records found ')
-//           this.message=' no records found '
-// 					let tab = this.appService.tabs.find(f => f.isSelected);
-// 					this.closeTab(tab);
-// 					let rt2 = '#/home'// inventory'
-// 					this.router.navigate(rt2);// `#/inventory/${path}`);
-// 				} else return inv
-// 			});
+			.then((jsonRes) => {
+				inv = jsonRes.data;
+				if (inv === 0 || inv.length === 0) {
+					// alert(' no records found ')
+          this.message=' no records found '
+					let tab = this.appService.tabs.find(f => f.isSelected);
+					this.closeTab(tab);
+					let rt2 = '#/home'// inventory'
+					this.router.navigate(rt2);// `#/inventory/${path}`);
+				} else return inv
+			});
 
     }
 

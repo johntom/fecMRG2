@@ -25,35 +25,35 @@ export class DataForm {
 
   activate(params, routeConfig) {
 
-    if (params.id) {
-      this.recordId = params.id;
+    // if (params.id) {
+    //   this.recordId = params.id;
 
 
-      if (this.recordId === 'create') {
+    //   if (this.recordId === 'create') {
 
-      } else {
-        console.log('this.recordId ', this.recordId);
-        let IID = this.recordId * 1
-        let mid = 0
-        if (this.recordId !== undefined) {
-          // mid = this.appService.adjusterList.findIndex(x => x._id === this.recordId)
-          mid = this.appService.adjusterList.findIndex(x => x.ADJUSTER_ID === IID)
-        }
-        if (mid === -1) mid = 0
-        this.adjuster = this.appService.adjusterList[mid];
-        console.log('adjuster ', this.adjuster);
-this.appService.currentpaymentAdjuster=this.adjuster
+    //   } else {
+    //     console.log('this.recordId ', this.recordId);
+    //     let IID = this.recordId * 1
+    //     let mid = 0
+    //     if (this.recordId !== undefined) {
+    //       // mid = this.appService.adjusterList.findIndex(x => x._id === this.recordId)
+    //       mid = this.appService.adjusterList.findIndex(x => x.ADJUSTER_ID === IID)
+    //     }
+    //     if (mid === -1) mid = 0
+    //     this.adjuster = this.appService.adjusterList[mid];
+    //     console.log('adjuster ', this.adjuster);
+    //     this.appService.currentpaymentAdjuster = this.adjuster
 
-      }
-    }
+    //   }
+    // }
 
 
   }
 
   attached() {
-  
-    
-     if (this.appService.dataFormOneToManyTabs3.length > 0) {
+
+
+    if (this.appService.dataFormOneToManyTabs3.length > 0) {
       let tab = this.appService.dataFormOneToManyTabs3[0];
       this.selectOneToManyTab(tab);
     }
@@ -89,7 +89,7 @@ this.appService.currentpaymentAdjuster=this.adjuster
 
   saveclaim() {
     // alert('save claim') //this.currentItem this.appService.originalrec 
-  
+
     // console.log(' call save ', JSON.stringify(this.appService.currentClaim) === JSON.stringify(this.appService.testrec)) //this.appService.currentClaim)
     // //return 
     // if (JSON.stringify(this.appService.currentClaim) !== JSON.stringify(this.appService.originalrec)) {
@@ -101,15 +101,15 @@ this.appService.currentpaymentAdjuster=this.adjuster
 
     // }
   }
-//  if (this.appService.dataFormOneToManyTabs3.length > 0) {
-//       let tab = this.appService.dataFormOneToManyTabs3[0];
-//       this.selectOneToManyTab(tab);
-//     }
+  //  if (this.appService.dataFormOneToManyTabs3.length > 0) {
+  //       let tab = this.appService.dataFormOneToManyTabs3[0];
+  //       this.selectOneToManyTab(tab);
+  //     }
   selectOneToManyTab(tab) {
-   this.appService.dataFormOneToManyTabs3.forEach(t => t.isSelected = false);
+    this.appService.dataFormOneToManyTabs3.forEach(t => t.isSelected = false);
     tab.isSelected = true;
     this.currentOneToManyTab = tab;
- //   this.appService.currentItem = this.currentItem
+    //   this.appService.currentItem = this.currentItem
     return true;
   }
 }

@@ -2,7 +2,7 @@
 	<require from="./flex.css"></require>
 	<section class="full-height flex-column-1 au-animate ignore">
 		<div class="flex-row-none section-header">
-			${heading} Adjuster
+			${heading} Artist
 		</div>
 		<div class="flex-column-1 overflow-y-auto">
 			<form class="flex-column-1">
@@ -13,117 +13,90 @@
 							<div class="form-group flex-column-1">
 								<div class="Rtable Rtable--2cols">
 									<div class="Rtable-cell-30 Rtable-cell--green">
-										<strong> AdjusterID</strong>
+										<strong> id</strong>
 									</div>
 
 									<div class="Rtable-cell-70  Rtable-cell--green">
-										<input type="text" id="ADJUSTER_ID" class="form-control input-sm" value.bind="adjuster.ADJUSTER_ID">
+										<input type="text" id="id" class="form-control input-sm" value.bind="adjuster.id">
 									</div>
 									<div class="Rtable-cell-30 Rtable-cell--green">
-										<strong> ADJUSTER_NAME</strong>
+										<strong> LastName</strong>
 									</div>
 									<div class="Rtable-cell-70  Rtable-cell--green">
-										<input type="text" id="ADJUSTER_NAME" class="form-control input-sm" value.bind="adjuster.ADJUSTER_NAME">
+										<input type="text" id="LastName" class="form-control input-sm" value.bind="artist.LastName">
 									</div>
-
 									<div class="Rtable-cell-30 Rtable-cell--green">
-										<strong> ACTIVE</strong>
+										<strong> FirstName</strong>
 									</div>
 									<div class="Rtable-cell-70  Rtable-cell--green">
-										<input type="text" id="ACTIVE" class="form-control input-sm" value.bind="adjuster.ACTIVE">
+										<input type="text" id="FirstName" class="form-control input-sm" value.bind="artist.FirstName">
 									</div>
-
-									<!-- <div class="Rtable-cell-30 Rtable-cell--green">
-										<strong> ADJUSTER_PHONE</strong>
-									</div>
-									<div class="Rtable-cell-70  Rtable-cell--green">
-										<input type="text" id="ADJUSTER_PHONE" class="form-control input-sm" value.bind="adjuster.ADJUSTER_PHONE">
-									</div> -->
-
-
-									<div class="Rtable-cell-30 Rtable-cell--green">
-										<strong> ADJUSTER_EMAIL</strong>
-									</div>
-									<div class="Rtable-cell-70  Rtable-cell--green">
-										<input type="text" id="ADJUSTER_EMAIL" class="form-control input-sm" value.bind="adjuster.ADJUSTER_EMAIL">
-									</div>
-
-
 
 
 
 									<div class="Rtable-cell-30 Rtable-cell--green">
-										<strong> EMP_TYPE</strong>
+										<strong> YeadofBirth</strong>
 									</div>
 									<div class="Rtable-cell-70  Rtable-cell--green">
-										<input type="text" id="EMP_TYPE" class="form-control input-sm" value.bind="adjuster.EMP_TYPE">
+										<input type="text" id="YeadofBirth" class="form-control input-sm" value.bind="artist.YeadofBirth">
 									</div>
+
+									<div class="Rtable-cell-30 Rtable-cell--green">
+										<strong> Died</strong>
+									</div>
+									<div class="Rtable-cell-70  Rtable-cell--green">
+										<input type="text" id="Died" class="form-control input-sm" value.bind="artist.Died">
+									</div>
+								
+
+
+
+								<div class="Rtable-cell-30 Rtable-cell--green">
+									<strong> Notes</strong>
+								</div>
+								<div class="Rtable-cell-70  Rtable-cell--green">
+									<input type="text" id="Notes" class="form-control input-sm" value.bind="artist.Notes">
 								</div>
 							</div>
-							<div class="form-group flex-column-1 margin-left-10">
-								<div class="Rtable Rtable--2cols">
 
-									<div class="Rtable-cell-30 Rtable-cell--green">
-										<strong> LIABILITY_RATE</strong>
-									</div>
-									<div class="Rtable-cell-70  Rtable-cell--green">
-										<input type="text" id="LIABILITY_RATE" class="form-control input-sm" value.bind="adjuster.LIABILITY_RATE">
-									</div>
-
-									<div class="Rtable-cell-30 Rtable-cell--green">
-										<strong> PROPERTY_RATE</strong>
-									</div>
-									<div class="Rtable-cell-70  Rtable-cell--green">
-										<input type="text" id="PROPERTY_RATE" class="form-control input-sm" value.bind="adjuster.PROPERTY_RATE">
-									</div>
-
-									<div class="Rtable-cell-30 Rtable-cell--green">
-										<strong> MILEAGE_RATE</strong>
-									</div>
-									<div class="Rtable-cell-70  Rtable-cell--green">
-										<input type="text" id="MILEAGE_RATE" class="form-control input-sm" value.bind="adjuster.MILEAGE_RATE">
-									</div>
-
-
-
-								</div>
-							</div>
 
 						</div>
 
+
 					</div>
 
-					<div id="bottom-left" class="flex-row-3">
-						<div id="data-form-ext" class="flex-column-1">
-							<div id="data-form-one-to-many-tabs" class="flex-row-none flex-wrap">
-								<div repeat.for="tab of appService.dataFormOneToManyTabs3" class="tab tab-top ${tab.isSelected ? 'tab-selected' : ''}">
-									<div class="form-tab-box" click.delegate="selectOneToManyTab(tab)">
-										<span>${tab.name}</span>
-									</div>
+				</div>
+
+				<div id="bottom-left" class="flex-row-3">
+					<div id="data-form-ext" class="flex-column-1">
+						<div id="data-form-one-to-many-tabs" class="flex-row-none flex-wrap">
+							<div repeat.for="tab of appService.dataFormOneToManyTabs3" class="tab tab-top ${tab.isSelected ? 'tab-selected' : ''}">
+								<div class="form-tab-box" click.delegate="selectOneToManyTab(tab)">
+									<span>${tab.name}</span>
 								</div>
 							</div>
-							<div id="data-form-one-to-many-tab-content overflow-y-hidden" class="data-form flex-row-1" style="background: darkgray;">
-								<compose view-model.bind="currentOneToManyTab.viewModel"></compose>
-							</div>
+						</div>
+						<div id="data-form-one-to-many-tab-content overflow-y-hidden" class="data-form flex-row-1" style="background: darkgray;">
+							<compose view-model.bind="currentOneToManyTab.viewModel"></compose>
 						</div>
 					</div>
+				</div>
 
 
 			</form>
-			</div>
-			<div class="flex-column-none section-footer">
-				<!-- ${footer} -->
+		</div>
+		<div class="flex-column-none section-footer">
 
-				<span>&nbsp;&nbsp;	
+			<span>&nbsp;&nbsp;	
           <button class="btn btn-sm btn-danger" click.delegate="saveclaim()">
                   Save & Close Claim
           </button>
         </span>
-				<span>&nbsp;&nbsp;	
+			<span>&nbsp;&nbsp;	
           <button class="btn btn-sm btn-danger" click.delegate="close()">
                  Close
           </button>
         </span>
-			</div>
+		</div>
 	</section>
 </template>
