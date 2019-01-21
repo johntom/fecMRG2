@@ -9,7 +9,7 @@ import { ApiService } from '../../utils/servicesApi';
 
 export class Home {
   heading = "MRG Home Page";
-  version = 242.03
+  version = 242.04
   versionDate = 'Mon 1/21/2019'
   // versiondate=Date();
   //  "select2": { 
@@ -39,7 +39,6 @@ export class Home {
     "add Artist and Org views",
     "1-20 all B with nolongerherecatalogssent shd got previos worked at without a link   ",
     "OrgID is a lookup  get salutaion  multilien add1,2,3 and not addess",
-   
     "manual convert fo suffix 12 recs",
     " when changing org add to history of work with a prompt?",
     "1402 from org is an I and address shd move to contact address and phone move to phont type on contact",

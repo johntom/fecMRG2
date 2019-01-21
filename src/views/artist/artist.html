@@ -1,0 +1,35 @@
+<template>
+	<section class="full-height flex-column-1 au-animate ignore">
+		<div class="flex-row-none section-header">
+			${heading}
+		</div>
+		<div class="flex-row-1 ignore">
+			<div class="flex-column-1 search-panel">
+				<form>
+					<div class="form-group flex-column-1 margin-left-10">
+						<label for="adjuster"> click to select an artist</label>
+						<label for="Artist">Artist</label>
+						<input ref="myDatalistA" type="text" list="myDatalistA" change.delegate="changeCallbackArtist(selectedValue)" input.delegate="selectedValueA = findOptionA($event.target.value)"
+						/>
+						<datalist id="myDatalistA">
+							<option repeat.for="option of appService.artistList">${option.ArtistName}</option>
+						</datalist>
+						<!-- <pre style="margin-top: 100px"><code>${selectedValueA.ArtistName}</code></pre> -->
+					</div>
+
+	<div class="flex-row-none">
+						<div class="form-group flex-column-1">
+							<input id="searchartistl" type="text" class="form-control" placeholder="Search for inv artist last..." value.bind="search.artistl">
+						</div>
+						<div class="form-group flex-column-1 margin-left-10">
+							<input id="searchartistf" type="text" class="form-control" placeholder="Search for inv artist first..." value.bind="search.artistf">
+						</div>
+					</div>
+
+
+					<button id="searchInputBtn" class="btn btn-primary" type="button" click.delegate="performSearch()">Search!</button>
+				</form>
+			</div>
+		</div>
+	</section>
+</template>

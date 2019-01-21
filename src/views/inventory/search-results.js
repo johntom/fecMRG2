@@ -209,7 +209,7 @@ export class SearchResults {
 		}
 	}
 
-	loadData() {
+	async loadData() {
 		console.log('this.loadData ')
 		let s2 = '1-1-2016';
 		let s3 = '10-21-2016';
@@ -219,24 +219,28 @@ export class SearchResults {
 		// if (this.title)  searchrec.title=this.title;
 		// if (this.invcode) searchrec.invcode=this.invcode;
 		console.log(this.queryParams)
-    /**  if (multikeys !== 'undefined') this.search.multikeywords = `${this.currentItem.multikeywords}`
-  */
+   
+    let response = await this.api.findInventory(this.queryParams);
+    let inv = response.data
+  	return inv
+  
+  
+// return this.api.findInventory(this.queryParams)
+// 			//return this.api.findInventoryKeywords(this.queryParams)
 
-		return this.api.findInventory(this.queryParams)
-			//return this.api.findInventoryKeywords(this.queryParams)
+// 			.then((jsonRes) => {
+// 				inv = jsonRes.data;
+// 				if (inv === 0 || inv.length === 0) {
+// 					// alert(' no records found ')
+//           this.message=' no records found '
+// 					let tab = this.appService.tabs.find(f => f.isSelected);
+// 					this.closeTab(tab);
+// 					let rt2 = '#/home'// inventory'
+// 					this.router.navigate(rt2);// `#/inventory/${path}`);
+// 				} else return inv
+// 			});
 
-			.then((jsonRes) => {
-				inv = jsonRes.data;
-				if (inv === 0 || inv.length === 0) {
-					// alert(' no records found ')
-          this.message=' no records found '
-					let tab = this.appService.tabs.find(f => f.isSelected);
-					this.closeTab(tab);
-					let rt2 = '#/home'// inventory'
-					this.router.navigate(rt2);// `#/inventory/${path}`);
-				} else return inv
-			});
-	}
+    }
 
 
 	closeTab(tab) {

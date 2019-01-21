@@ -42,7 +42,7 @@ export class ApiService {
 
 
 
-  
+
   getUserJwt(username, pass) {
     var token = {};
     token.username = username;
@@ -62,7 +62,7 @@ export class ApiService {
   }
 
   // mrg
-// https://artbased.com/api/v1/batchupdates
+  // https://artbased.com/api/v1/batchupdates
 
   findbatchupdates() {
     // search has fullu formed query string
@@ -84,7 +84,7 @@ export class ApiService {
     //return this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())
   }
 
-findContact(search) {
+  findContact(search) {
     // search has fullu formed query string
     var url = this.baseweb + 'v1/contactcontent' + search
     console.log('url ', url)
@@ -125,7 +125,7 @@ findContact(search) {
 
 
 
-findContactOne(contactid) {
+  findContactOne(contactid) {
     // search has fullu formed query string
     var url = this.baseweb + `v1/contact/${contactid}`
     console.log('url ', url)
@@ -133,53 +133,67 @@ findContactOne(contactid) {
       method: 'get',
       mode: 'cors'
     }).then((res) => res.json());
-    
+
   }
 
   findusers() {
     var url = this.baseweb + 'v1/findusers';
-    return this.http.fetch(url, { mode: 'cors' }).then((res) => res.json()) 
+    return this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())
 
   }
   // http://74.114.164.24/api/v1/artist
-findArtists() {
+  findArtists() {
     var url = this.baseweb + 'v1/artist';
-    return this.http.fetch(url, { mode: 'cors' }).then((res) => res.json()) 
+    return this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())
+  }
 
-  }
-  
+  // all new 2019 AA methods
+  // findContact(search) {
+  //     // search has fullu formed query string
+  //     var url = this.baseweb + 'v1/contactcontent' + search
+  //     console.log('url ', url)
+  //     return this.http.fetch(url, {
+  //       method: 'get',
+  //       mode: 'cors'
+  //     }).then((res) => res.json());
+  //     //return this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())
+  //   }
 
-// all new 2019 AA methods
- async findArtistsAA1() { 
-    var url = this.baseweb + 'v1/artist';
-  return await this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())
-//      let res = await this.http.fetch(url, { mode: 'cors' }) //.then((res) => res.json())
-// return res
+  async findArtistsContent(search) {
+    var url = this.baseweb + 'v1/artistcontent' + search
+    return await this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())
+    //      let res = await this.http.fetch(url, { mode: 'cors' }) //.then((res) => res.json())
+    // return res
   }
- async findArtistsAA() { 
+  async findArtistsAA1() {
     var url = this.baseweb + 'v1/artist';
-    let res = await this.http.fetch(url, { mode: 'cors' }) 
-   return res.json()
+    return await this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())
   }
- async getCatalogsAA() { 
+
+  async findArtistsAA() {
+    var url = this.baseweb + 'v1/artist';
+    let res = await this.http.fetch(url, { mode: 'cors' })
+    return res.json()
+  }
+  async getCatalogsAA() {
     var url = this.baseweb + 'v1/catalog';
-    let res = await this.http.fetch(url, { mode: 'cors' }) 
-   return res.json()
+    let res = await this.http.fetch(url, { mode: 'cors' })
+    return res.json()
   }
 
-// let response = await this.http.get(reposUrl);
-// this.repos = response.content
-// .sort((a, b) => b.stargazers_count - a.stargazers_count);
-// { method: ['get'], path: '/api/v1/findofferings/:id', handler: 'InventoryController.findofferings' },
-// https://artbased.com/api/v1/findofferings/5c14696ba3e3847c0f5a62c3
-async findofferings(id) {
+  // let response = await this.http.get(reposUrl);
+  // this.repos = response.content
+  // .sort((a, b) => b.stargazers_count - a.stargazers_count);
+  // { method: ['get'], path: '/api/v1/findofferings/:id', handler: 'InventoryController.findofferings' },
+  // https://artbased.com/api/v1/findofferings/5c14696ba3e3847c0f5a62c3
+  async findofferings(id) {
     var url = this.baseweb + `v1/findofferings/${id}`;
-     let res = await this.http.fetch(url, { mode: 'cors' });//.then((res) => res.json())
-     return res.json()
+    let res = await this.http.fetch(url, { mode: 'cors' });//.then((res) => res.json())
+    return res.json()
   }
 
 
-async saveorg(rec) {
+  async saveorg(rec) {
     //alert('in saveclaim')
     let url = this.baseweb + `v1/contact/update`
     console.log('url ', url)
@@ -199,8 +213,8 @@ async saveorg(rec) {
   async findorgOne(orgid) {
     // search has fullu formed query string  v1/claim/
     var url = this.baseweb + `v1/orgs/${orgid}`
-     let res = await this.http.fetch(url, { mode: 'cors' });
-     return res.json()
+    let res = await this.http.fetch(url, { mode: 'cors' });
+    return res.json()
     // console.log('url ', url)
     // return this.http.fetch(url, {
     //   method: 'get',
@@ -212,11 +226,11 @@ async saveorg(rec) {
   async findorgContacts(orgid) {
     // search has fullu formed query string  v1/claim/
     var url = this.baseweb + `v1/orgs/findcontacts/${orgid}`
-     let res = await this.http.fetch(url, { mode: 'cors' });
-     return res.json()
+    let res = await this.http.fetch(url, { mode: 'cors' });
+    return res.json()
   }
 
-// https://artbased.com/api/v1/orgs/findcontacts/1119
+  // https://artbased.com/api/v1/orgs/findcontacts/1119
 
 
 
@@ -314,7 +328,7 @@ async saveorg(rec) {
     }).then((res) => res.json());
   }
 
- batchExhibitUpdate(rec) {
+  batchExhibitUpdate(rec) {
     let url = this.baseweb + `v1/inventory/batchExhibitUpdate`
     console.log('url ', url)
     // return {'data': true}
@@ -655,12 +669,12 @@ async saveorg(rec) {
   //   }).then((res) => res.json());
   // }
 
-//  this.api.saveMerge(this.savedlist, this.editor.value())
-  
-saveMerge(slname, editorval) { 
+  //  this.api.saveMerge(this.savedlist, this.editor.value())
+
+  saveMerge(slname, editorval) {
     //all http://74.114.164.24/api/v1/savedlists/create/ 
-   // let sl = {}
-   let rec={merge:editorval}
+    // let sl = {}
+    let rec = { merge: editorval }
     var url = this.baseweb + `v1/savedlists/savemerge/${slname}`;
     return this.http.fetch(url, {
       method: 'post',
@@ -831,7 +845,7 @@ saveMerge(slname, editorval) {
   }
 
 
- savecontact(rec) {
+  savecontact(rec) {
     //alert('in saveclaim')
     let url = this.baseweb + `v1/contact/update`
     console.log('url ', url)
@@ -859,38 +873,38 @@ saveMerge(slname, editorval) {
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
-      
+
       },
       body: JSON.stringify(rec)
     }).then((res) => res.json());
   }
 
-//  uploadPARKTOWER(formData,id) {
-//     //http://arabsight.github.io/uploading-files-with-aurelia
-//      let baseweb ='http://parktowergroupmanagement.com:9002/api/v1' 
+  //  uploadPARKTOWER(formData,id) {
+  //     //http://arabsight.github.io/uploading-files-with-aurelia
+  //      let baseweb ='http://parktowergroupmanagement.com:9002/api/v1' 
 
-//     // var url = baseweb + `v1/uploadinventory/${id}`
-//     //  var url = baseweb + `gym/upload`
-//        var url = baseweb + `/uploadgym`
-//     ///  var url = this.basewebjif + `v1/upload/01-03166`
+  //     // var url = baseweb + `v1/uploadinventory/${id}`
+  //     //  var url = baseweb + `gym/upload`
+  //        var url = baseweb + `/uploadgym`
+  //     ///  var url = this.basewebjif + `v1/upload/01-03166`
 
-//     console.log('url ', url, formData);
-//     return this.http.fetch(url, {
-//       mode: 'cors',
-//       method: 'POST',
-//       headers: {
-//         'enctype': "multipart/form-data"
-//       },
-//       body: formData
+  //     console.log('url ', url, formData);
+  //     return this.http.fetch(url, {
+  //       mode: 'cors',
+  //       method: 'POST',
+  //       headers: {
+  //         'enctype': "multipart/form-data"
+  //       },
+  //       body: formData
 
-//       // body: JSON.stringify(formData)
-//     }).then((res) => res.json());
-//       // .then(data => console.log('data.message', data.message))
-//       // .catch(error => console.log(error));
-//   }
+  //       // body: JSON.stringify(formData)
+  //     }).then((res) => res.json());
+  //       // .then(data => console.log('data.message', data.message))
+  //       // .catch(error => console.log(error));
+  //   }
 
- // this.baseweb = 'https://artbased.com/api/'
-  
+  // this.baseweb = 'https://artbased.com/api/'
+
   upload(formData, id) {
     //http://arabsight.github.io/uploading-files-with-aurelia
     var url = this.baseweb + `v1/uploadinventory/${id}`
@@ -907,8 +921,8 @@ saveMerge(slname, editorval) {
 
       // body: JSON.stringify(formData)
     }).then((res) => res.json());
-      // .then(data => console.log('data.message', data.message))
-      // .catch(error => console.log(error));
+    // .then(data => console.log('data.message', data.message))
+    // .catch(error => console.log(error));
   }
   uploadInvoice(formData, invoice) {
     //http://arabsight.github.io/uploading-files-with-aurelia
