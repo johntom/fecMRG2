@@ -9,8 +9,8 @@ import { ApiService } from '../../utils/servicesApi';
 
 export class Home {
   heading = "MRG Home Page";
-  version = 241.98
-  versionDate = 'Sun 1/20/2019'
+  version = 241.99
+  versionDate = 'Mon 1/21/2019'
   // versiondate=Date();
   //  "select2": { 
   //       "map": "npm:select2@4.0.6-rc.1/dist",
@@ -39,7 +39,7 @@ export class Home {
     "add Artist and Org views",
     "1-20 all B with nolongerherecatalogssent shd got previos worked at without a link   ",
     "OrgID is a lookup  get salutaion  multilien add1,2,3 and not addess",
-    "jan -18 add org tab" ,
+   
     "manual convert fo suffix 12 recs",
     " when changing org add to history of work with a prompt?",
     "1402 from org is an I and address shd move to contact address and phone move to phont type on contact",

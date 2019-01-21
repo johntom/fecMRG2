@@ -2,16 +2,16 @@
 import { inject } from 'aurelia-dependency-injection';
 import { ApiService } from '../../../utils/servicesApi';
 import { ApplicationService } from '../../../services/application-service';
+
+import { Prompt } from '../../../services/prompt';
 import { DialogService } from 'aurelia-dialog';
-import { Prompt } from '../prompt';
 
 @inject(ApiService, ApplicationService, DialogService)
-export class Purchased {
+
+export class Org {
   heading = 'DataForm HEADER...';
   footer = 'DataForm FOOTER...';
   recordId = '';
-  done = false;
-  edit = false;
 
   constructor(api, appService, dialogService) {
     this.api = api;
@@ -21,33 +21,35 @@ export class Purchased {
     this.dialogService = dialogService
   }
 
+
+
   activate(params, routeConfig) {
-    let oid
-    let orgobj
-    let orgs = this.appService.orgsList
-    if ((this.currentItem.PurchasedFrom === undefined) || (this.currentItem.orgsList === null)) {
-    } else {
-      oid = orgs.findIndex(x => x._id === this.currentItem.PurchasedFrom)
-      orgobj = this.appService.orgsList[oid]//10]
-      if (orgobj !== undefined) this.currentItem.purchasedfromname = orgobj.OrgName
-    }
+    // this.currentItem.prevorgs = this.currentItem.prevorgs   
   }
-
-  showModal(fieldname) {
-    // this.dialogService.open({ viewModel: Prompt, model: fieldname, lock: false }).whenClosed(response => {
-    this.currentItem.fieldname=fieldname
-    this.dialogService.open({ viewModel: Prompt, model: this.currentItem, lock: true }).whenClosed(response => {
-
+ remove(item, index) {
+    // alert('you are about to delete ' + item.address) address of currentItem.addresses
+    this.dialogService.open({ viewModel: Prompt, model: 'Delete or Cancel?', lock: false }).whenClosed(response => {
       if (!response.wasCancelled) {
-        // console.log('Delete')
-        // let notes = this.currentItem.notes
-        // notes.splice(index, 1)// start, deleteCount)
+        console.log('Delete')
+        let addresses = this.currentItem.addresses
+        addresses.splice(index, 1)// start, deleteCount)
       } else {
         console.log('cancel');
       }
       console.log(response.output);
     });
   }
+  saveitem(item, index) {
+    item.edit = !item.edit
+
+  }
+
+
+
+  selectChanged(reproid) {
+    
+  }
+			
 
 
   

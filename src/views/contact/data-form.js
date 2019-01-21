@@ -5,7 +5,7 @@ import { MyDataService } from "../../services/my-data-service";
 import { Router } from 'aurelia-router';
 import { DialogService } from 'aurelia-dialog';
 //import { Prompt } from '../../../services/prompt';
-import { Prompt } from './prompt';
+import { Promptcontact } from './prompt';
 import moment from 'moment';
 import { Promptorg } from '../prompt/promptOrg';
 
@@ -16,12 +16,11 @@ export class DataForm {
   Title = '';
   InvYear = '';
   InventoryCode = '';
-  
+
   heading = 'DataForm HEADER...'
   footer = 'DataForm FOOTER...'
   recordId = '';
- 
- 
+
   fieldname = ''
   error = "";
   division = {
@@ -57,7 +56,7 @@ export class DataForm {
       }
     }
   });
- 
+
   constructor(router, api, appService, dataService, dialogService, controllerFactory) {
     this.api = api
     this.appService = appService
@@ -73,9 +72,9 @@ export class DataForm {
     // this.currentItem={}
   }
 
-modal(item) {
+  modal(item) {
 
-    // this.currentItem.recordId = this.recordId model:this.currentItem
+    // IF B then use this
     let currentModel = {}
     currentModel.currentItem = this.currentItem
     currentModel.item = item
@@ -86,9 +85,8 @@ modal(item) {
 
       if (!response.wasCancelled) {
         console.log('item', item);
-      item.edit = false//this.saveitem(item, index)
+        item.edit = false//this.saveitem(item, index)
       } else {
-
         console.log('cancel');
       }
       console.log(response)//.output);
@@ -98,28 +96,26 @@ modal(item) {
   showModal(fieldname) {
     this.currentItem.fieldname = fieldname
     this.currentItem.recordId = this.recordId
-    this.dialogService.open({ viewModel: Prompt, model: this.currentItem, lock: false }).whenClosed(response => {
-    
-      if (!response.wasCancelled) {
-        // console.log('Delete')
-        // let notes = this.currentItem.notes
-        // notes.splice(index, 1)// start, deleteCount)
+    let prevorgid = this.currentItem.org._id
+    let prevorg = this.currentItem.org
+    this.dialogService.open({ viewModel: Promptcontact, model: this.currentItem, lock: true }).whenClosed(response => {
 
-      } else {
-        if (this.currentItem.org === null) {
-          alert(currentItem.org.OrgName)
-          //// this.currentItem.artist.ArtistName=undefined
-          //  this.controller.validate()
+      if (!response.wasCancelled) {
+       
+        if (this.currentItem.prevorgs !== undefined) {
+          // see if it exists in the array (only one for now)
+          if (this.currentItem.prevorgs[0]._id !== prevorgid) {
+            this.currentItem.prevorgs.push(prevorg);
+          }
+        } else {
+          this.currentItem.prevorgs = []
+          this.currentItem.prevorgs.push(prevorg);
         }
-        console.log('cancel');
       }
-      console.log(response)//.output);
+      console.log(response)
     });
   }
 
-
-
- 
   saveRecord() {
     window.alert("Save successful!");
   }
@@ -133,33 +129,33 @@ modal(item) {
     //  alert(`Attendees: ${this.required}, \nOptional: ${this.optional}`);
   }
 
- 
+
   selectChangedMS(MediumSupport) {
-  //  alert('in selectChangedMS  ', MediumSupport, this.MediumSupport1)
-  
+    //  alert('in selectChangedMS  ', MediumSupport, this.MediumSupport1)
+
   }
   DropdownChanged(changedVal) {
-  //  alert(changedVal);
+    //  alert(changedVal);
   }
   activate(params, routeConfig) {
     if (params.id) {
       this.recordId = params.id;
       this.heading = `DataForm for record ${this.recordId}`;
-     
+
       if (this.recordId === 'create') {
 
         this.currentContactItem = {}
         this.currentItem.id = 'create'
         this.appService.testrec = {}
         this.appService.originalrec = {}
-// address
-// artists
-// catsold
-// compcatsent
-// genre
-// offering
-// phone
-// type
+        // address
+        // artists
+        // catsold
+        // compcatsent
+        // genre
+        // offering
+        // phone
+        // type
 
         // this.currentContactItem.artist = undefined//{} 
         // this.currentContactItem.provenance = []
@@ -182,7 +178,7 @@ modal(item) {
       } else {
         console.log('this.recordId ', this.recordId);
         this.mrubuild()
-       
+
 
         return this.api.findContactOne(this.recordId)
           .then((jsonRes) => {
@@ -190,8 +186,8 @@ modal(item) {
             let inv = jsonRes.data;
             this.currentItem = inv[0]
             // never been saved from view
-//  this.currentContactItem = inv[0]
-           
+            //  this.currentContactItem = inv[0]
+
 
             this.appService.currentContactItem = this.currentItem//inv[0]
             this.currentItem.isDirty = () => {
@@ -270,8 +266,8 @@ modal(item) {
   // }
 
 
-  
-  
+
+
   attached() {
     // if (this.appService.dataFormOneToOneTabs.length > 0) {
     //   let tab = this.appService.dataFormOneToOneTabs[0];
@@ -347,7 +343,7 @@ modal(item) {
           let tab = this.appService.tabs.find(f => f.isSelected);
           // window.alert("Save successful!");
           this.message = "Save successful. Inventory updated @ " + savetime
-         // this.appService.testrec = this.currentItem
+          // this.appService.testrec = this.currentItem
           this.appService.currentContactView = this.currentItem
           this.appService.originalContactrec = JSON.parse(JSON.stringify(this.currentItem))
           this.skippromt = true
@@ -400,7 +396,7 @@ modal(item) {
   //   })
   // }
 
-  
+
   canDeactivate() {
     return new Promise((resolve, reject) => {
       console.log('canDeactivate ')
