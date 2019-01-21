@@ -177,6 +177,7 @@
 			border: solid 3px white;
 			background: rgba(112, 128, 144, 0.2);
       	align-items: center;
+        	justify-content: center;
 		}
 
 .Rtable-cell-20 {
