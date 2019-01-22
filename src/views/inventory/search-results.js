@@ -230,6 +230,7 @@ return this.api.findInventory(this.queryParams)
 
 			.then((jsonRes) => {
 				inv = jsonRes.data;
+        let recCount=inv.length;
 				if (inv === 0 || inv.length === 0) {
 					// alert(' no records found ')
           this.message=' no records found '

@@ -166,6 +166,57 @@ export class ApiService {
     return await this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())
    
   }
+  async findArtistid(search) {
+    var url = this.baseweb + 'v1/artist/' + search
+    return await this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())
+   
+  }
+
+//  { method: ['post'], path: '/api/v1/artist/create', handler: 'ArtistController.create' },
+//  { method: ['put'], path: '/api/v1/artist/update', handler: 'ArtistController.update' },
+  // async  updateartist(rec) {  
+  //   let url = this.baseweb + `v1/artist/update`
+  //   // console.log('url ', url)
+  //      return await this.http.fetch(url, { method: 'put', mode: 'cors',headers: {
+  //       'Accept': 'application/json',
+  //       'Content-Type': 'application/json'
+  //         },
+  //     body: JSON.stringify(rec) }).then((res) => res.json())
+  updateartist(rec) {  
+     let url = this.baseweb + `v1/artist/update`
+    return this.http.fetch(url, {
+      method: 'put',
+      mode: 'cors',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+        // , 'Authorization': 'JWT ' + token
+      },
+      body: JSON.stringify(rec)
+    }).then((res) => res.json());
+  }
+ async updateartistAA(rec) {  
+     let url = this.baseweb + `v1/artist/update`
+     return await this.http.fetch(url, { method: 'put', mode: 'cors',headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+          },
+      body: JSON.stringify(rec) }).then((res) => res.json())
+  }
+
+async createartist(rec) {
+    let url = this.baseweb + `v1/artist/create`
+    console.log('url ', url)
+     return await this.http.fetch(url, {
+      method: 'post',
+      mode: 'cors',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(rec)
+    }).then((res) => res.json());
+  }
 
 
   async findArtistsAA1() {

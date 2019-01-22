@@ -26,13 +26,13 @@ export class Org {
   activate(params, routeConfig) {
     // this.currentItem.prevorgs = this.currentItem.prevorgs   
   }
- remove(item, index) {
+  remove(item, index) {
     // alert('you are about to delete ' + item.address) address of currentItem.addresses
     this.dialogService.open({ viewModel: Prompt, model: 'Delete or Cancel?', lock: false }).whenClosed(response => {
       if (!response.wasCancelled) {
         console.log('Delete')
-        let addresses = this.currentItem.addresses
-        addresses.splice(index, 1)// start, deleteCount)
+        let prevorgs = this.currentItem.prevorgs
+        prevorgs.splice(index, 1)// start, deleteCount)
       } else {
         console.log('cancel');
       }
@@ -47,10 +47,10 @@ export class Org {
 
 
   selectChanged(reproid) {
-    
+
   }
-			
 
 
-  
+
+
 }

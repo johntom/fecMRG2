@@ -23,29 +23,18 @@ export class DataForm {
 
   }
 
-  activate(params, routeConfig) {
+  async activate(params, routeConfig) {
 
-    // if (params.id) {
-    //   this.recordId = params.id;
+    if (params.id) {
+      this.recordId = params.id;
+      if (this.recordId === 'create') {
+      } else {
+        console.log('this.recordId ', this.recordId);
+        let response = await this.api.findArtistid(this.recordId);
+        this.artist = response.data[0];
 
-
-    //   if (this.recordId === 'create') {
-
-    //   } else {
-    //     console.log('this.recordId ', this.recordId);
-    //     let IID = this.recordId * 1
-    //     let mid = 0
-    //     if (this.recordId !== undefined) {
-    //       // mid = this.appService.adjusterList.findIndex(x => x._id === this.recordId)
-    //       mid = this.appService.adjusterList.findIndex(x => x.ADJUSTER_ID === IID)
-    //     }
-    //     if (mid === -1) mid = 0
-    //     this.adjuster = this.appService.adjusterList[mid];
-    //     console.log('adjuster ', this.adjuster);
-    //     this.appService.currentpaymentAdjuster = this.adjuster
-
-    //   }
-    // }
+      }
+    }
 
 
   }
@@ -87,7 +76,7 @@ export class DataForm {
   }
 
 
-  saveclaim() {
+  async saveartist() {
     // alert('save claim') //this.currentItem this.appService.originalrec 
 
     // console.log(' call save ', JSON.stringify(this.appService.currentClaim) === JSON.stringify(this.appService.testrec)) //this.appService.currentClaim)
@@ -100,6 +89,29 @@ export class DataForm {
     //   });
 
     // }
+
+    // async  updateartist(rec) {  createartist
+
+//     if (this.recordId === 'create') {
+//       let response = await this.api.createartist(this.artist);
+//       this.artist = response.data[0];
+
+//     } else {
+//       console.log('this.recordId ', this.recordId);
+
+//       let response = await this.api.updateartist(this.artist);
+//       this.artist = response.data[0];
+// }
+ let response = await this.api.updateartistAA(this.artist);
+  // this.artist = response.data[0];
+  // this.api.updateartist(this.artist).then((jsonRes) => {
+  //       console.log('jsonRes ', jsonRes);
+
+  //     });
+
+
+    
+
   }
   //  if (this.appService.dataFormOneToManyTabs3.length > 0) {
   //       let tab = this.appService.dataFormOneToManyTabs3[0];

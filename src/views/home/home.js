@@ -9,7 +9,7 @@ import { ApiService } from '../../utils/servicesApi';
 
 export class Home {
   heading = "MRG Home Page";
-  version = 242.06
+  version = 242.08
   versionDate = 'Mon 1/21/2019'
   // versiondate=Date();
   //  "select2": { 
@@ -37,6 +37,8 @@ export class Home {
   // "LastName" : "Order", 
   issues = [
     "add Artist and Org views",
+    '"{"contacttypes.Description":{$ne:"Vendor"}}',
+    "MUST CHAGE LEGACY OwnerID TO _ID in inventory",
     "1-20 all B with nolongerherecatalogssent shd got previos worked at without a link   ",
     "OrgID is a lookup  get salutaion  multilien add1,2,3 and not addess",
     "manual convert fo suffix 12 recs",

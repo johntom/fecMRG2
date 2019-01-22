@@ -12,14 +12,39 @@
 					<!-- change.delegate="changeCallbackArtist(selectedValue)"  -->
           	<input ref="myDatalistA" type="text" list="myDatalistA" 
           change.delegate="changeCallbackArtist(selectedValue)" 
-					input.delegate="selectedValueA = findOptionI($event.target.value)"
+					input.delegate="selectedValueA = findOptionA($event.target.value)"
 						/>
 						<datalist id="myDatalistA">
-							<option repeat.for="option of appService.artistList">${option.ArtistName}</option>
-						</datalist>
-						<!-- <pre style="margin-top: 100px"><code>${selectedValueA.ArtistName}</code></pre> -->
+							<!-- <option repeat.for="option of appService.artistList">${option.ArtistName} ${option.id} b.${option.YearofBirth} </option> -->
+						<option repeat.for="option of appService.artistList">${option.ArtistName} </option>
+						</
+            </datalist>
+						<pre style="margin-top: 100px"><code>${selectedValueA.ArtistName} b.${option.YearofBirth} legacyid:${option.ID}    legacyid:${option.id}</code></pre>
+
+	<aubs-typeahead ref='keyword' data.bind="appService.artistList" value.bind="artist" debounce.bind="350" placeholder="artist"
+						 open-on-focus.bind="true" key="id" results-limit.bind="20" select-single-result.bind="true">
+						</aubs-typeahead>
+
 					</div>
 
+
+
+
+
+          
+<!-- "ID" : NumberInt(38), 
+    "Nationality" : NumberInt(0), 
+    "PhoneTypeID" : " ", 
+    "Type" : NumberInt(1), 
+    "FirstName" : "John", 
+    "LastName" : "Chamberlain", 
+    "YearofBirth" : "1927", 
+    "Died" : "2011", 
+    "Notes" : " ", 
+    "Middle" : " ", 
+    "Genre" : " ", 
+    "createdAt" : ISODate("2018-12-15T22:33:19.233+0000"), 
+    "updatedAt" : ISODate("2018-12-15T22:33:19.233+0000")
 	<div class="flex-row-none">
 						<div class="form-group flex-column-1">
 							<input id="searchartistl" type="text" class="form-control" placeholder="Search for inv artist last..." value.bind="search.artistl">
@@ -27,7 +52,7 @@
 						<div class="form-group flex-column-1 margin-left-10">
 							<input id="searchartistf" type="text" class="form-control" placeholder="Search for inv artist first..." value.bind="search.artistf">
 						</div>
-					</div>
+					</div> -->
 
 
 					<button id="searchInputBtn" class="btn btn-primary" type="button" click.delegate="performSearch()">Search!</button>

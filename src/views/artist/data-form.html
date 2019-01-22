@@ -4,6 +4,8 @@
 		<div class="flex-row-none section-header">
 			${heading} Artist
 		</div>
+    	<button id="addArtistBtn" class="btn btn-success" type="button" click.delegate="addartist()"><strong>A</strong>dd Artist</button>
+	
 		<div class="flex-column-1 overflow-y-auto">
 			<form class="flex-column-1">
 				<div id="top" class="flex-row-3">
@@ -17,7 +19,7 @@
 									</div>
 
 									<div class="Rtable-cell-70  Rtable-cell--green">
-										<input type="text" id="id" class="form-control input-sm" value.bind="adjuster.id">
+										<input type="text" id="id" class="form-control input-sm" value.bind="artist.id">
 									</div>
 									<div class="Rtable-cell-30 Rtable-cell--green">
 										<strong> LastName</strong>
@@ -35,10 +37,10 @@
 
 
 									<div class="Rtable-cell-30 Rtable-cell--green">
-										<strong> YeadofBirth</strong>
+										<strong> YearofBirth</strong>
 									</div>
 									<div class="Rtable-cell-70  Rtable-cell--green">
-										<input type="text" id="YeadofBirth" class="form-control input-sm" value.bind="artist.YeadofBirth">
+										<input type="text" id="YearofBirth" class="form-control input-sm" value.bind="artist.YearofBirth">
 									</div>
 
 									<div class="Rtable-cell-30 Rtable-cell--green">
@@ -88,8 +90,8 @@
 		<div class="flex-column-none section-footer">
 
 			<span>&nbsp;&nbsp;	
-          <button class="btn btn-sm btn-danger" click.delegate="saveclaim()">
-                  Save & Close Claim
+          <button class="btn btn-sm btn-danger" click.delegate="saveartist()">
+                  Save & Close Artist
           </button>
         </span>
 			<span>&nbsp;&nbsp;	
