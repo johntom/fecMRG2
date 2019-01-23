@@ -103,7 +103,7 @@ export class Artist {
       let path = `Searchartist${qs}`;
 // data
       if (item !== null) {
-        let rt2 = '#/artist/data/' + item.id
+        let rt2 = '#/artist/data/' + item.id+'?'+item.LastName+','+item.FirstName//ArtistName
         this.router.navigate(rt2)
 
       } else this.router.navigate(`#/artist/${path}`);

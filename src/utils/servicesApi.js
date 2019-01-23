@@ -1,5 +1,5 @@
 
- import {
+import {
   inject,
   singleton
 } from 'aurelia-dependency-injection';
@@ -164,16 +164,16 @@ export class ApiService {
   async findArtistsContent(search) {
     var url = this.baseweb + 'v1/artistcontent' + search
     return await this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())
-   
+
   }
   async findArtistid(search) {
     var url = this.baseweb + 'v1/artist/' + search
     return await this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())
-   
+
   }
 
-//  { method: ['post'], path: '/api/v1/artist/create', handler: 'ArtistController.create' },
-//  { method: ['put'], path: '/api/v1/artist/update', handler: 'ArtistController.update' },
+  //  { method: ['post'], path: '/api/v1/artist/create', handler: 'ArtistController.create' },
+  //  { method: ['put'], path: '/api/v1/artist/update', handler: 'ArtistController.update' },
   // async  updateartist(rec) {  
   //   let url = this.baseweb + `v1/artist/update`
   //   // console.log('url ', url)
@@ -182,8 +182,9 @@ export class ApiService {
   //       'Content-Type': 'application/json'
   //         },
   //     body: JSON.stringify(rec) }).then((res) => res.json())
-  updateartist(rec) {  
-     let url = this.baseweb + `v1/artist/update`
+  updateartist(rec) {
+    // if(rec.id==='create')// on server logic
+    let url = this.baseweb + `v1/artist/update`
     return this.http.fetch(url, {
       method: 'put',
       mode: 'cors',
@@ -195,19 +196,34 @@ export class ApiService {
       body: JSON.stringify(rec)
     }).then((res) => res.json());
   }
- async updateartistAA(rec) {  
-     let url = this.baseweb + `v1/artist/update`
-     return await this.http.fetch(url, { method: 'put', mode: 'cors',headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-          },
-      body: JSON.stringify(rec) }).then((res) => res.json())
+  async updateartistAA(rec) {
+
+    if (rec.id === 'create') {
+      let url = this.baseweb + `v1/artist/create`
+      return await this.http.fetch(url, {
+        method: 'post', mode: 'cors', headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(rec)
+      }).then((res) => res.json())
+    } else {
+      let url = this.baseweb + `v1/artist/update`
+      return await this.http.fetch(url, {
+        method: 'put', mode: 'cors', headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(rec)
+      }).then((res) => res.json())
+    }
+
   }
 
-async createartist(rec) {
+  async createartist(rec) {
     let url = this.baseweb + `v1/artist/create`
     console.log('url ', url)
-     return await this.http.fetch(url, {
+    return await this.http.fetch(url, {
       method: 'post',
       mode: 'cors',
       headers: {

@@ -222,73 +222,6 @@
 
 
 
-									<!-- "_id" : ObjectId("5c146facd2c10b602e35066b"), 
-    "ID" : NumberInt(1498), 
-    "OrgID" : NumberInt(1402), 
-    "ysnPrimaryContact" : "Y", 
-    "ysnLetter" : "N", 
-    "LocationID" : " ", 
-    "Salutation" : NumberInt(641), 
-    "FirstName" : "Roberta", 
-    "MI" : " ", 
-    "LastName" : "Smith", 
-    "Assistant" : " ", 
-    "Dept" : " ", 
-    "Spouse" : " ", 
-    "MailCode" : "NYT01", 
-    "Title" : " ", 
-    "Suffix" : " ", 
-    "Inactive" : "N", 
-    "ContactNotes" : "  undefined", 
-    "createdAt" : ISODate("2018-12-15T03:06:20.362+0000"), 
-    "updatedAt" : ISODate("2018-12-15T03:06:20.362+0000"), 
-    "addresses" : [
-        {
-            "_id" : "5c434cb900a8a1588c63f857", 
-            "ID" : NumberInt(1402), 
-            "OrgName" : "Smith, Roberta", 
-            "address" : "Mr. Jerry Saltz\r\n40 East 9 Street, 3D", 
-            "city" : "New York", 
-            "state" : "NY", 
-            "zip" : "10003"
-        }, 
-        {
-            "address" : "", 
-            "city" : "", 
-            "st" : "", 
-            "zip" : "", 
-            "country" : "", 
-            "letter" : "Ms Roberta Smith", 
-            "notes" : undefined
-        }
-    ], 
-    "BusIndivid" : "I", 
-    "Notes" : "", 
-    "contacttypes" : [
-        {
-            "Description" : "Press"
-        }
-    ], 
-    "unsubscribed" : false, 
-    "mailings" : true,  -->
-
-
-
-
-
-
-									<!-- 
-											<div style="height:15px;margin-left:10px;margin-top:5px;margin-bottom:10px"
-                       if.bind="currentItem.org.OrgName===undefined || currentItem.org.OrgName==='' ">
-												<a click.delegate="showModal( 'OrgID')">select_link </a>
-											</div>
-											<div style="height:15px;margin-left:10px;margin-top:5px;margin-bottom:10px" else>
-												<a click.delegate="showModal( 'OrgID')">${currentItem.org.OrgName} </a>
-
-											</div>
-                       -->
-
-
 
 
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
@@ -403,27 +336,6 @@
 										<strong> international?</strong>
 										<input type="checkbox" id="international" checked.bind="currentItem.international">
 									</div>
-<!-- 
-									<div class="Rtable-cell-30 Rtable-cell--highlight">
-										<strong> nomailings?</strong>
-										<input type="checkbox" id="nomailings" checked.bind="currentItem.nomailings">
-									</div>
-
-									<div class="Rtable-cell-70 Rtable-cell--highlight">
-										<strong> noinfo?</strong>
-										<input type="checkbox" id="noinfo" checked.bind="currentItem.noinfo">
-									</div>
-
-
-									<div class="Rtable-cell-30 Rtable-cell--highlight">
-										<strong> email?</strong>
-										<input type="checkbox" id="email" checked.bind="currentItem.email">
-									</div>
-
-									<div class="Rtable-cell-70 Rtable-cell--highlight">
-										<strong> nolongerherecatalogssent?</strong>
-										<input type="checkbox" id="nolongerherecatalogssent" checked.bind="currentItem.nolongerherecatalogssent">
-									</div> -->
 
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
 										<strong> notes</strong>
@@ -442,28 +354,6 @@
 										<input type="text " xid="ContactID " class="form-control input-sm " value.bind="currentItem.ID">
 									</div>
 
-
-									<!-- <div class="Rtable-cell-30 Rtable-cell--highlight">
-										<strong> Edition</strong>
-									</div>
-									<div class="Rtable-cell-70 Rtable-cell--highlight">
-										<input type="text " xid="Edition " class="form-control input-sm " value.bind="currentItem.Edition">
-									</div> -->
-
-
-
-									<!-- <div class="Rtable-cell-30 Rtable-cell--highlight">
-										<strong> Sold Status </strong>
-									</div>
-										<div class="Rtable-cell-70 Rtable-cell--highlight">
-								
-										<select id="Sold" class="form-control " value.bind="currentItem.Sold">
-											<option model.bind="null">Choose...</option>
-											<option repeat.for="opt of searchsold " model.bind="opt.id">
-												${opt.name}
-											</option>
-										</select>
-									</div> -->
 
 
 
@@ -537,3 +427,117 @@
 		</footerform>
 	</section>
 </template>
+
+
+
+<!-- 
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong> nomailings?</strong>
+										<input type="checkbox" id="nomailings" checked.bind="currentItem.nomailings">
+									</div>
+
+									<div class="Rtable-cell-70 Rtable-cell--highlight">
+										<strong> noinfo?</strong>
+										<input type="checkbox" id="noinfo" checked.bind="currentItem.noinfo">
+									</div>
+
+
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong> email?</strong>
+										<input type="checkbox" id="email" checked.bind="currentItem.email">
+									</div>
+
+									<div class="Rtable-cell-70 Rtable-cell--highlight">
+										<strong> nolongerherecatalogssent?</strong>
+										<input type="checkbox" id="nolongerherecatalogssent" checked.bind="currentItem.nolongerherecatalogssent">
+									</div> -->
+
+
+
+									<!-- <div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong> Edition</strong>
+									</div>
+									<div class="Rtable-cell-70 Rtable-cell--highlight">
+										<input type="text " xid="Edition " class="form-control input-sm " value.bind="currentItem.Edition">
+									</div> -->
+
+
+
+									<!-- <div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong> Sold Status </strong>
+									</div>
+										<div class="Rtable-cell-70 Rtable-cell--highlight">
+								
+										<select id="Sold" class="form-control " value.bind="currentItem.Sold">
+											<option model.bind="null">Choose...</option>
+											<option repeat.for="opt of searchsold " model.bind="opt.id">
+												${opt.name}
+											</option>
+										</select>
+									</div> -->
+
+									<!-- "_id" : ObjectId("5c146facd2c10b602e35066b"), 
+    "ID" : NumberInt(1498), 
+    "OrgID" : NumberInt(1402), 
+    "ysnPrimaryContact" : "Y", 
+    "ysnLetter" : "N", 
+    "LocationID" : " ", 
+    "Salutation" : NumberInt(641), 
+    "FirstName" : "Roberta", 
+    "MI" : " ", 
+    "LastName" : "Smith", 
+    "Assistant" : " ", 
+    "Dept" : " ", 
+    "Spouse" : " ", 
+    "MailCode" : "NYT01", 
+    "Title" : " ", 
+    "Suffix" : " ", 
+    "Inactive" : "N", 
+    "ContactNotes" : "  undefined", 
+    "createdAt" : ISODate("2018-12-15T03:06:20.362+0000"), 
+    "updatedAt" : ISODate("2018-12-15T03:06:20.362+0000"), 
+    "addresses" : [
+        {
+            "_id" : "5c434cb900a8a1588c63f857", 
+            "ID" : NumberInt(1402), 
+            "OrgName" : "Smith, Roberta", 
+            "address" : "Mr. Jerry Saltz\r\n40 East 9 Street, 3D", 
+            "city" : "New York", 
+            "state" : "NY", 
+            "zip" : "10003"
+        }, 
+        {
+            "address" : "", 
+            "city" : "", 
+            "st" : "", 
+            "zip" : "", 
+            "country" : "", 
+            "letter" : "Ms Roberta Smith", 
+            "notes" : undefined
+        }
+    ], 
+    "BusIndivid" : "I", 
+    "Notes" : "", 
+    "contacttypes" : [
+        {
+            "Description" : "Press"
+        }
+    ], 
+    "unsubscribed" : false, 
+    "mailings" : true,  -->
+
+
+
+
+
+
+									<!-- 
+											<div style="height:15px;margin-left:10px;margin-top:5px;margin-bottom:10px"
+                       if.bind="currentItem.org.OrgName===undefined || currentItem.org.OrgName==='' ">
+												<a click.delegate="showModal( 'OrgID')">select_link </a>
+											</div>
+											<div style="height:15px;margin-left:10px;margin-top:5px;margin-bottom:10px" else>
+												<a click.delegate="showModal( 'OrgID')">${currentItem.org.OrgName} </a>
+
+											</div>
+                       -->

@@ -142,7 +142,7 @@ export class SearchResults {
 
 
 
-  constructor(router, api, utilService,appService) {
+  constructor(router, api, utilService, appService) {
     this.router = router;
     this.api = api;
     this.utilService = utilService;
@@ -151,7 +151,7 @@ export class SearchResults {
 
   activate(params, routeConfig) {
     //http://74.114.164.24/api/v1/inventorycontent?artistl=s%26artistf=c 
-   
+
     //let queryParams = this.utilService.parseQueryString();
     //let queryParams2 = this.utilService.generateQueryString(queryParams);
     // queryParams2.replace('%3D','=');
@@ -169,22 +169,26 @@ export class SearchResults {
     console.log('queryParams', this.queryParams);
     this.datasource.read()
   }
-	detailsEdit(e) {
-		let grid = this.grid;
-		let targetRow = $(e.target).closest("tr");
-		grid.select(targetRow);
-		let selectedRow = grid.select();
-		let dataItem = grid.dataItem(selectedRow);
-	
-		if (this.datasource._data.length === 1) {
-			let tab = this.appService.tabs.find(f => f.isSelected);
-			this.closeTab(tab);
-		}
+  detailsEdit(e) {
+    let grid = this.grid;
+    let targetRow = $(e.target).closest("tr");
+    grid.select(targetRow);
+    let selectedRow = grid.select();
+    let dataItem = grid.dataItem(selectedRow);
 
-		let rt2 = '#/contact/data/' + dataItem.id;
-		this.router.navigate(rt2);
+    if (this.datasource._data.length === 1) {
+      let tab = this.appService.tabs.find(f => f.isSelected);
+      this.closeTab(tab);
+    }
+    // find index
+    //  let garray = this.datasource._data;
+    let gid = this.invdata.findIndex(x => x.id === dataItem.id)
+    let rt2 = '#/contact/data/' + dataItem.id + '?' + dataItem.LastName + ',' + dataItem.FirstName + '-' + gid///+' '+dataItem.ID
 
-	}
+    // let rt2 = '#/contact/data/' + dataItem.id;
+    this.router.navigate(rt2);
+
+  }
   loadGrid() {
     let options = localStorage["kendo-grid-mail"];
     if (options) {
@@ -204,6 +208,7 @@ export class SearchResults {
     return this.api.findContact(this.queryParams)//searchrec)
       .then((jsonRes) => {
         inv = jsonRes.data;
+        this.invdata = inv;
         // console.log('jsonRes ', jsonRes);
         console.log('this.inv loadData 0 ', inv[0]);
         return inv
@@ -234,10 +239,10 @@ export class SearchResults {
 
   closeTab(tab) {
 
-		let index = this.appService.tabs.indexOf(tab);
-		tab.isSelected = false;
-		this.appService.tabs.splice(index, 1);
-	}
+    let index = this.appService.tabs.indexOf(tab);
+    tab.isSelected = false;
+    this.appService.tabs.splice(index, 1);
+  }
   //////////////
 
   // performSearch() {

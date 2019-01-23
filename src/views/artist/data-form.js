@@ -22,12 +22,18 @@ export class DataForm {
     this.createEventListeners();
 
   }
-
+  async addartist() {
+    this.artist = {}
+    this.artist.id = 'create'
+    //       this.currentItem.artist = undefined//{} 
+    //       this.currentItem.provenance = []
+  }
   async activate(params, routeConfig) {
 
     if (params.id) {
       this.recordId = params.id;
       if (this.recordId === 'create') {
+        this.addartist();
       } else {
         console.log('this.recordId ', this.recordId);
         let response = await this.api.findArtistid(this.recordId);
@@ -70,13 +76,47 @@ export class DataForm {
 
 
 
+
   detached() {
     // this.ratingElement.removeEventListener('change', this.ratingChangedListener);
     // this.selectAdjusterElement.removeEventListener('change', this.adjusterSelectedListener);
   }
+  async saveartist(option) {
+    let response = await this.api.updateartistAA(this.artist);
+    if (this.artist.id === 'create') {
+      let val = await this.dataService.findArtistsAA();
+      this.appService.artistList = val;
+      
+      //    let response = await this.api.getCatalogsAA();
+      // this.appService.catalogList = response.data
+      // console.log('this.repos ', this.api.catalogList)
+
+      //   this.appService.artistList = values[0];
 
 
-  async saveartist() {
+    }
+    if (option === 1) this.requestclose()
+  }
+
+  requestclose() {
+
+    const resetFunc = () => { this.appService.originalrec = this.currentItem; };
+    let tab = this.appService.tabs.find(f => f.isSelected);
+    let index = this.appService.tabs.findIndex(f => f.isSelected)
+    let rt2 = '#/artist/' + this.tabname
+
+
+    let newIndex = (index > 0) ? index - 1 : 0;
+    let newTab = this.appService.tabs[newIndex];
+    this.appService.tryCloseTab(this.appService.currentView, tab, newTab.href);
+
+
+  }
+
+
+  async saveartist2() {
+
+    let response = await this.api.updateartistAA(this.artist);
     // alert('save claim') //this.currentItem this.appService.originalrec 
 
     // console.log(' call save ', JSON.stringify(this.appService.currentClaim) === JSON.stringify(this.appService.testrec)) //this.appService.currentClaim)
@@ -92,25 +132,24 @@ export class DataForm {
 
     // async  updateartist(rec) {  createartist
 
-//     if (this.recordId === 'create') {
-//       let response = await this.api.createartist(this.artist);
-//       this.artist = response.data[0];
+    //     if (this.recordId === 'create') {
+    //       let response = await this.api.createartist(this.artist);
+    //       this.artist = response.data[0];
 
-//     } else {
-//       console.log('this.recordId ', this.recordId);
+    //     } else {
+    //       console.log('this.recordId ', this.recordId);
 
-//       let response = await this.api.updateartist(this.artist);
-//       this.artist = response.data[0];
-// }
- let response = await this.api.updateartistAA(this.artist);
-  // this.artist = response.data[0];
-  // this.api.updateartist(this.artist).then((jsonRes) => {
-  //       console.log('jsonRes ', jsonRes);
+    //       let response = await this.api.updateartist(this.artist);
+    //       this.artist = response.data[0];
+    // }
+    // this.artist = response.data[0];
+    // this.api.updateartist(this.artist).then((jsonRes) => {
+    //       console.log('jsonRes ', jsonRes);
 
-  //     });
+    //     });
 
 
-    
+
 
   }
   //  if (this.appService.dataFormOneToManyTabs3.length > 0) {

@@ -183,7 +183,8 @@ export class DataForm {
   showModal(fieldname) {
     this.currentItem.fieldname = fieldname
     this.currentItem.recordId = this.recordId
-    this.dialogService.open({ viewModel: Prompt, model: this.currentItem, lock: false }).whenClosed(response => {
+  if( this.currentItem.OwnerID===6275 ) this.currentItem.OwnerID='5c44c4407ff42ae496229822'
+    this.dialogService.open({ viewModel: Prompt, model: this.currentItem, lock: true }).whenClosed(response => {
       //  if(this.recordId==='create')  this.currentItem.recordId=
       // if (fieldname === 'Artist') {
       //   let artistsel =   this.currentItem.artist;

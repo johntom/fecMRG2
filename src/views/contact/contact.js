@@ -68,6 +68,8 @@ activate(){
 
   populateInv(e) {
     // this.appService.onlyonce = 0
+     //  let rt2 = '#/artist/data/' + item.id+'?'+item.LastName+','+item.FirstName//ArtistName
+     
      this.router.navigate(`#/contact/data/${e}`);
   }
 

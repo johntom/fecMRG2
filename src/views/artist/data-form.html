@@ -1,75 +1,86 @@
 <template>
-	<require from="./flex.css"></require>
-	<section class="full-height flex-column-1 au-animate ignore">
+	<!-- <require from="./flex.css"></require> -->
+	<require from="../../../styles/flex.css"></require>
+	<section style="width:50%;" class="full-height flex-column-1 au-animate ignore">
 		<div class="flex-row-none section-header">
 			${heading} Artist
 		</div>
-    	<button id="addArtistBtn" class="btn btn-success" type="button" click.delegate="addartist()"><strong>A</strong>dd Artist</button>
-	
+		<button id="addArtistBtn" class="btn btn-success" type="button" click.delegate="addartist()"><strong>A</strong>dd Artist</button>
+
 		<div class="flex-column-1 overflow-y-auto">
 			<form class="flex-column-1">
 				<div id="top" class="flex-row-3">
 					<div id="top-left" class="data-form overflow-y-auto flex-column-2">
 
 						<div class="flex-row-none">
-							<div class="form-group flex-column-1">
+							<div class="form-group flex-column-2">
 								<div class="Rtable Rtable--2cols">
-									<div class="Rtable-cell-30 Rtable-cell--green">
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
 										<strong> id</strong>
 									</div>
 
-									<div class="Rtable-cell-70  Rtable-cell--green">
+									<div class="Rtable-cell-70  Rtable-cell--highlight">
 										<input type="text" id="id" class="form-control input-sm" value.bind="artist.id">
 									</div>
-									<div class="Rtable-cell-30 Rtable-cell--green">
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
 										<strong> LastName</strong>
 									</div>
-									<div class="Rtable-cell-70  Rtable-cell--green">
+									<div class="Rtable-cell-70  Rtable-cell--highlight">
 										<input type="text" id="LastName" class="form-control input-sm" value.bind="artist.LastName">
 									</div>
-									<div class="Rtable-cell-30 Rtable-cell--green">
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
 										<strong> FirstName</strong>
 									</div>
-									<div class="Rtable-cell-70  Rtable-cell--green">
+									<div class="Rtable-cell-70  Rtable-cell--highlight">
 										<input type="text" id="FirstName" class="form-control input-sm" value.bind="artist.FirstName">
 									</div>
-
-
-
-									<div class="Rtable-cell-30 Rtable-cell--green">
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong> Nationality</strong>
+									</div>
+									<div class="Rtable-cell-70  Rtable-cell--highlight">
+										<select id="nationality" class="form-control  input-sm" value.bind="artist.Nationality"> 
+                      <option model.bind="null">Choose...</option> 
+                         <option repeat.for="opt of appService.codesCountry " model.bind="opt.id">
+                    ${opt.Description} 
+                      </option> 
+                    </select>
+									</div>
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
 										<strong> YearofBirth</strong>
 									</div>
-									<div class="Rtable-cell-70  Rtable-cell--green">
+									<div class="Rtable-cell-70  Rtable-cell--highlight">
 										<input type="text" id="YearofBirth" class="form-control input-sm" value.bind="artist.YearofBirth">
 									</div>
 
-									<div class="Rtable-cell-30 Rtable-cell--green">
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
 										<strong> Died</strong>
 									</div>
-									<div class="Rtable-cell-70  Rtable-cell--green">
+									<div class="Rtable-cell-70  Rtable-cell--highlight">
 										<input type="text" id="Died" class="form-control input-sm" value.bind="artist.Died">
 									</div>
-								
 
 
 
-								<div class="Rtable-cell-30 Rtable-cell--green">
-									<strong> Notes</strong>
+
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong> Notes</strong>
+									</div>
+									<div class="Rtable-cell-70  Rtable-cell--highlight">
+										<!-- <input type="text" id="Notes" class="form-control input-sm" value.bind="artist.Notes"> -->
+										<textarea rows="6" cols="100" id="Notes" class="form-control input-sm" value.bind="artist.Notes"></textarea>
+
+									</div>
 								</div>
-								<div class="Rtable-cell-70  Rtable-cell--green">
-									<input type="text" id="Notes" class="form-control input-sm" value.bind="artist.Notes">
-								</div>
+
+
 							</div>
 
 
 						</div>
 
-
 					</div>
 
-				</div>
-
-				<div id="bottom-left" class="flex-row-3">
+					<!-- <div id="bottom-left" class="flex-row-3">
 					<div id="data-form-ext" class="flex-column-1">
 						<div id="data-form-one-to-many-tabs" class="flex-row-none flex-wrap">
 							<div repeat.for="tab of appService.dataFormOneToManyTabs3" class="tab tab-top ${tab.isSelected ? 'tab-selected' : ''}">
@@ -82,23 +93,27 @@
 							<compose view-model.bind="currentOneToManyTab.viewModel"></compose>
 						</div>
 					</div>
-				</div>
+				</div> -->
 
 
 			</form>
-		</div>
-		<div class="flex-column-none section-footer">
-
-			<span>&nbsp;&nbsp;	
-          <button class="btn btn-sm btn-danger" click.delegate="saveartist()">
-                  Save & Close Artist
+			</div>
+			<div class="flex-column-none section-footer">
+				<span>&nbsp;&nbsp;	
+          <button class="btn btn-sm btn-danger" click.delegate="saveartist(0)">
+                  Save & Stay
           </button>
         </span>
-			<span>&nbsp;&nbsp;	
-          <button class="btn btn-sm btn-danger" click.delegate="close()">
+				<span>&nbsp;&nbsp;	
+          <button class="btn btn-sm btn-danger" click.delegate="saveartist(1)">
+                  Save & Close 
+          </button>
+        </span>
+				<span>&nbsp;&nbsp;	
+          <button class="btn btn-sm btn-danger" click.delegate="requestclose()">
                  Close
           </button>
         </span>
-		</div>
+			</div>
 	</section>
 </template>

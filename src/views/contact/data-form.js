@@ -101,7 +101,7 @@ export class DataForm {
     this.dialogService.open({ viewModel: Promptcontact, model: this.currentItem, lock: true }).whenClosed(response => {
 
       if (!response.wasCancelled) {
-       
+
         if (this.currentItem.prevorgs !== undefined) {
           // see if it exists in the array (only one for now)
           if (this.currentItem.prevorgs[0]._id !== prevorgid) {
@@ -138,9 +138,29 @@ export class DataForm {
     //  alert(changedVal);
   }
   activate(params, routeConfig) {
+    let pp = JSON.stringify(params) ;
+    this.cname = pp.substring(2, pp.indexOf(':')-3);// params.indexOf(':')
+//    let xp = params ;
+//     // for (var key in pp) {
+//     //   if (pp[key] === ':')
+//     //     console.log(key);
+//     // }
+// let i; 
+// let xname
+
+// for (i = 0; i < pp.length; i++) { 
+ 
+//    if (pp[i] === ':') {
+//          console.log(pp[i]);
+//   this.cname=xname
+ 
+//    }
+//     xname += pp[i] ;
+
     if (params.id) {
+      //this.cname = pp.substring(0, pp.indexOf(':'));// params.indexOf(':')
       this.recordId = params.id;
-      this.heading = `DataForm for record ${this.recordId}`;
+      this.heading = `DataForm for record  ${this.cname} `;
 
       if (this.recordId === 'create') {
 
@@ -230,7 +250,8 @@ export class DataForm {
       this.mru5 = temp[4];
       //  this.tabindex = temp[1];
     }
-    var temp = [this.recordId, mruget.mru1, mruget.mru2, mruget.mru3, mruget.mru4];
+    // var temp = [this.recordId, mruget.mru1, mruget.mru2, mruget.mru3, mruget.mru4];
+    var temp = [this.recordId + '?' + this.cname, mruget.mru1, mruget.mru2, mruget.mru3, mruget.mru4];
 
     if (this.recordId === mruget.mru1 || this.recordId === mruget.mru2 || this.recordId === mruget.mru3 ||
       this.recordId === mruget.mru4 || this.recordId === mruget.mru5) { } else {
