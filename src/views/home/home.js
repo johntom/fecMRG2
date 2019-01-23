@@ -9,8 +9,8 @@ import { ApiService } from '../../utils/servicesApi';
 
 export class Home {
   heading = "MRG Home Page";
-  version = 242.08
-  versionDate = 'Mon 1/21/2019'
+  version = 242.08 
+  versionDate = 'Wed 1/23/2019'
   // versiondate=Date();
   //  "select2": { 
   //       "map": "npm:select2@4.0.6-rc.1/dist",
