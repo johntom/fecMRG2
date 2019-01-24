@@ -9,7 +9,7 @@ import { ApiService } from '../../utils/servicesApi';
 
 export class Home {
   heading = "MRG Home Page";
-  version = 242.09
+  version = 242.10
   versionDate = 'Wed 1/23/2019'
   // versiondate=Date();
   //  "select2": { 

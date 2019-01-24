@@ -16,8 +16,8 @@ export class Docs {
     this.api = api;
     this.appService = appService;
     this.inv = '';
-    this.currentItem = this.appService.testrec;
-        this.dialogService = dialogService
+    this.currentItem = this.appService.currentItem;
+        this.dialogService = dialogService;
   }
 
   activate(params, routeConfig) {
@@ -50,7 +50,7 @@ export class Docs {
     let flag = false
     if (docs === undefined) {
       flag = true
-      docs = []
+     docs = []
     }
 
     for (let i = 0; i < images.length; i++) {
@@ -61,13 +61,16 @@ export class Docs {
       docs.unshift(item)
       formData.append('file', images[i]);
     }
-    if (flag) this.currentItem.docs = docs
+    if (flag)  this.currentItem.docs = docs
     // send file
 
     console.log('formData', formData)
     //this.api.upload(formData)
     console.log(this.currentItem)
-    this.api.upload(formData, this.currentItem.CLAIM_NO)
+    // this.api.upload(formData, this.currentItem.CLAIM_NO)
+    //  this.api.uploadinvphoto(newform, this.currentItem.InventoryCode)
+ this.api.uploadinvphoto(formData, this.currentItem.InventoryCode)
+ 
       .then((jsonRes) => {
         this.upmess = jsonRes.message
 

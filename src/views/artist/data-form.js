@@ -84,9 +84,9 @@ export class DataForm {
   async saveartist(option) {
     let response = await this.api.updateartistAA(this.artist);
     if (this.artist.id === 'create') {
-      let val = await this.dataService.findArtistsAA();
-      this.appService.artistList = val;
-      
+      let val = await this.api.findArtistsAA();
+      this.appService.artistList = val.data;
+      this.artist.id ='';
       //    let response = await this.api.getCatalogsAA();
       // this.appService.catalogList = response.data
       // console.log('this.repos ', this.api.catalogList)

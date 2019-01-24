@@ -22,8 +22,8 @@
 			<table class="table-condensed table">
 				<thead class="table-header-blue" data-sort="items.bind: currentItem.docs; cols: ['FILE_NAME','FILE_EXT']">
 					<tr>
-						<th class="header">FILE_NAME		</th>
-						<th class="header">FILE_EXT			</th>
+						<th class="header"  width="225px" >FILE_NAME		</th>
+						<th class="header"  width="55px">FILE_EXT			</th>
 
 					</tr>
 				</thead>
@@ -36,12 +36,18 @@
 				</tfoot>
 				<tbody>
 					<tr repeat.for="doc of currentItem.docs" with.bind="doc">
-						<td  >	${FILE_NAME}
-     			     <!-- <a  size='100' class="form-control  input-sm" target="_blank" href="http://adjusters.markadjustment.com/docs/${currentItem.CLAIM_NO}/${doc.FILE_NAME}">
+						<td  width="225px">  
+     			         <a  size='200' class="form-control  input-sm" target="_blank"
+                 href="https://artbased.com/api/v1/getinvcodeimage/${currentItem.InventoryCode}/${doc.FILE_NAME}">
 							${FILE_NAME}
-							</a> -->
+							</a>
+                 
+                 <!-- ${currentItem.InventoryCode}.jpg
+                  </span>http://adjusters.markadjustment.com/docs/${currentItem.CLAIM_NO}/${doc.FILE_NAME}">
+							${FILE_NAME} -->
+							
 						</td>
-          	<td  ><input type="text" id="FILE_EXT" class="form-control  input-sm"
+          	<td  width="55px" ><input type="text" id="FILE_EXT" class="form-control  input-sm"
                 value.bind="FILE_EXT"></td>
 
 					</tr>

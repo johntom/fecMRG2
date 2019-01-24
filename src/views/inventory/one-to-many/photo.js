@@ -98,7 +98,7 @@ addDocs(images) {
     let newform = values;
     console.log('after checkdata1 ', this.status, newform);
     // this.api.upload(formData, this.currentItem.CLAIM_NO)
-    this.api.upload(newform, this.currentItem.CLAIM_NO)
+    this.api.uploadinvphoto(newform, this.currentItem.InventoryCode)
       .then((jsonRes) => {
         this.upmess = jsonRes.message
 

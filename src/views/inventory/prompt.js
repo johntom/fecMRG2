@@ -139,6 +139,11 @@ export class Prompt {
 
   }
   attached() {
+    //  this.currentItem
+    let findOptiono = this.appService.orgsList.find(x => x._id ===  this.currentItem.OwnerID)
+    console.log('appService.orgsList',findOptiono,this.appService.orgsList)
+    let findOptions = this.appService.orgsList.find(x => x._id ===  this.currentItem.SoldToID)
+    console.log('appService.orgsList',findOptions,this.appService.orgsList)
     let opos = this.orgfields.findIndex(x => x === this.fieldname);
     if (opos !== -1) {
       this.orgfielddescription = this.orgfielddesc[opos]
@@ -352,11 +357,12 @@ changeCallbackCatalog(selectedValueC) {
       this.currentItem.MediumSupportobj = this.selectedValue
     }
     if (this.fieldname === 'OwnerID') {
-      if (this.OrgName.OrgName !== this.currentItem.ownername) {
+      if(this.currentItem.ownername===undefined) this.currentItem.ownername=''
+     // if (this.OrgName.OrgName !== this.currentItem.ownername) {
        
         this.currentItem.OwnerID = this.OrgName._id
         this.currentItem.ownername = this.OrgName.OrgName
-      }
+     // }
 
     }
     if (this.fieldname === 'SoldToID') {

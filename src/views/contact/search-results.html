@@ -49,6 +49,14 @@
 
 		<ak-col k-title="deceased" k-width="180px" k-field="deceased"></ak-col>
 
+	<ak-col k-title="BusIndivid" k-width="180px" k-field="BusIndivid"></ak-col>
+	<!-- <ak-col k-title="org" k-width="180px" k-field="org.OrgName"></ak-col> -->
+	<!-- <ak-col  k-field="BusIndivid" k-title="org"  k-template="#= (org.OrgName===undefined) ? 'na' :org.OrgName : `` #"></ak-col> -->
+ <!-- <ak-col  k-field="BusIndivid" k-title="org"  k-template="#= (org.OrgName===undefined||org===undefined) ? 'na' :org.OrgName #"></ak-col> -->
+ 
+
+ <!-- org.OrgName -->
+
 	</ak-grid>
 	<div class="flex-row-none section-footer">
 		${footer} <span>  ${queryParams}</span> <span>&nbsp;&nbsp;	

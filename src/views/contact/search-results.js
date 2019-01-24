@@ -6,81 +6,6 @@ import { UtilService } from '../../services/util-service';
 import { ApplicationService } from '../../services/application-service'
 import { MyDataService } from "../../services/my-data-service"
 // import moment from 'moment';
-/*
- "_id" : ObjectId("5c146fafd2c10b602e351e05"), 
-    "ID" : NumberInt(9319), 
-    "OrgID" : NumberInt(1030), 
-    "ysnPrimaryContact" : "N", 
-    "ysnLetter" : "N", 
-    "LocationID" : " ", 
-    "Salutation" : NumberInt(1433), 
-    "FirstName" : "Mark", 
-    "MI" : " ", 
-    "LastName" : "Cole", 
-    "Assistant" : "JUne DePhilips", 
-    "Dept" : " ", 
-    "Spouse" : " ", 
-    "MailCode" : " ", 
-    "Title" : NumberInt(1313), 
-    "Suffix" : " ", 
-    "Inactive" : "N", 
-    "ContactNotes" : " ", 
-    "createdAt" : ISODate("2018-12-15T03:06:23.779+0000"), 
-    "updatedAt" : ISODate("2018-12-15T03:06:23.779+0000"), 
-    "unsubscribed" : false, 
-    "email" : true, 
-    "contacttypes" : [
-        "curator", 
-        "Museum Professional"
-    ], 
-    "mailings" : true, 
-     "org" : {
-        "_id" : ObjectId("5c14695ba3e3847c0f5a4c99"), 
-        "ID" : 1030.0, 
-        "OrgName" : "Cleveland Museum of Art", 
-        "Address" : "11150 East Boulevard", 
-        "City" : "Cleveland", 
-        "State" : "44106-1797"
-    }
-    "catalogsent" : [
-        {
-            "_id" : ObjectId("5c15781de20ab6202185fb9b"), 
-            "ID" : NumberInt(9437), 
-            "CatalogID" : NumberInt(150), 
-            "ContactID" : NumberInt(9319), 
-            "SendType" : NumberInt(3929), 
-            "DateSent" : ISODate("2005-03-16T04:00:00.000+0000"), 
-            "InvoiceID" : " ", 
-            "DateModified" : " ", 
-            "Qty" : " ", 
-            "Update" : "N", 
-            "createdAt" : ISODate("2018-12-15T21:54:37.017+0000"), 
-            "updatedAt" : ISODate("2018-12-15T21:54:37.017+0000")
-        }, ]
-        artists" : [
-        {
-            "_id" : ObjectId("5c158134d1ce1404366cf044"), 
-            "ID" : NumberInt(8589), 
-            "ContactID" : NumberInt(9319), 
-            "OrgID" : " ", 
-            "ArtistID" : NumberInt(246), 
-            "createdAt" : ISODate("2018-12-15T22:33:24.033+0000"), 
-            "updatedAt" : ISODate("2018-12-15T22:33:24.033+0000")
-        }, 
-"genres" : [
-        {
-            "_id" : ObjectId("5c26ab7c18b45eec4d910fe6"), 
-            "ID" : NumberInt(8003), 
-            "ContactID" : NumberInt(9319), 
-            "OrgID" : NumberInt(1030), 
-            "GenreID" : NumberInt(213), 
-            "GenreNotes" : "", 
-            "createdAt" : ISODate("2018-12-28T23:02:20.967+0000"), 
-            "updatedAt" : ISODate("2018-12-28T23:02:20.967+0000")
-        }, 
- */
-
-// @inject(Router, ApiService, UtilService, ApplicationService, MyDataService, DialogService,EventAggregator)
 
 @inject(Router, ApiService, UtilService, ApplicationService)
 export class SearchResults {
@@ -304,3 +229,78 @@ export class SearchResults {
           // // assignto:{ type: "string" },
           // assignto: { defaultValue: { staffid: 1, username: 'jrt' } }
           // // contents: { type: "memo" } billedamt payamt
+          /*
+ "_id" : ObjectId("5c146fafd2c10b602e351e05"), 
+    "ID" : NumberInt(9319), 
+    "OrgID" : NumberInt(1030), 
+    "ysnPrimaryContact" : "N", 
+    "ysnLetter" : "N", 
+    "LocationID" : " ", 
+    "Salutation" : NumberInt(1433), 
+    "FirstName" : "Mark", 
+    "MI" : " ", 
+    "LastName" : "Cole", 
+    "Assistant" : "JUne DePhilips", 
+    "Dept" : " ", 
+    "Spouse" : " ", 
+    "MailCode" : " ", 
+    "Title" : NumberInt(1313), 
+    "Suffix" : " ", 
+    "Inactive" : "N", 
+    "ContactNotes" : " ", 
+    "createdAt" : ISODate("2018-12-15T03:06:23.779+0000"), 
+    "updatedAt" : ISODate("2018-12-15T03:06:23.779+0000"), 
+    "unsubscribed" : false, 
+    "email" : true, 
+    "contacttypes" : [
+        "curator", 
+        "Museum Professional"
+    ], 
+    "mailings" : true, 
+     "org" : {
+        "_id" : ObjectId("5c14695ba3e3847c0f5a4c99"), 
+        "ID" : 1030.0, 
+        "OrgName" : "Cleveland Museum of Art", 
+        "Address" : "11150 East Boulevard", 
+        "City" : "Cleveland", 
+        "State" : "44106-1797"
+    }
+    "catalogsent" : [
+        {
+            "_id" : ObjectId("5c15781de20ab6202185fb9b"), 
+            "ID" : NumberInt(9437), 
+            "CatalogID" : NumberInt(150), 
+            "ContactID" : NumberInt(9319), 
+            "SendType" : NumberInt(3929), 
+            "DateSent" : ISODate("2005-03-16T04:00:00.000+0000"), 
+            "InvoiceID" : " ", 
+            "DateModified" : " ", 
+            "Qty" : " ", 
+            "Update" : "N", 
+            "createdAt" : ISODate("2018-12-15T21:54:37.017+0000"), 
+            "updatedAt" : ISODate("2018-12-15T21:54:37.017+0000")
+        }, ]
+        artists" : [
+        {
+            "_id" : ObjectId("5c158134d1ce1404366cf044"), 
+            "ID" : NumberInt(8589), 
+            "ContactID" : NumberInt(9319), 
+            "OrgID" : " ", 
+            "ArtistID" : NumberInt(246), 
+            "createdAt" : ISODate("2018-12-15T22:33:24.033+0000"), 
+            "updatedAt" : ISODate("2018-12-15T22:33:24.033+0000")
+        }, 
+"genres" : [
+        {
+            "_id" : ObjectId("5c26ab7c18b45eec4d910fe6"), 
+            "ID" : NumberInt(8003), 
+            "ContactID" : NumberInt(9319), 
+            "OrgID" : NumberInt(1030), 
+            "GenreID" : NumberInt(213), 
+            "GenreNotes" : "", 
+            "createdAt" : ISODate("2018-12-28T23:02:20.967+0000"), 
+            "updatedAt" : ISODate("2018-12-28T23:02:20.967+0000")
+        }, 
+ */
+
+// @inject(Router, ApiService, UtilService, ApplicationService, MyDataService, DialogService,EventAggregator)
