@@ -29,8 +29,14 @@
           <li repeat.for="row of router.navigation" 
             class="menu-item ${row.isActive ? 'active' : ''}">
             <a href.bind="row.href">${row.title}</a>
+            <ul if.bind="row.children">
+              <li repeat.for="sub of row.children"
+                class="menu-item ${sub.isActive ? 'active' : ''}">
+                <a href.bind="sub.href">${sub.title}</a>
+              </li>
+            </ul>
           </li>
-        </ul>        
+        </ul>
       </aside>
       <main class="flex-column-4 ignore">
         <div class="flex-column-1 ignore">
