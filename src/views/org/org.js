@@ -22,7 +22,7 @@ export class Org {
     // this.search.claimno = '01-03188'
     this.api = api;
     this.dialogService = dialogService
-    alert(this.appService.adjusterList.length)
+    // alert(this.appService.adjusterList.length)
   }
   //  findOption = value => this.appService.adjusterList.find(x => x.ADJUSTER_NAME === value);
   created() {
@@ -37,23 +37,9 @@ export class Org {
     console.log('name-tag attached');
   }
 
-  showModal(fieldname) {
-    // this.appService.currentSearchadj = {}
-    // this.appService.currentSearchadj.ADJUSTER_ID = undefined
-    // this.appService.currentSearchadj.ADJUSTER_NAME = undefined
 
-    // // this.currentItem.ADJUSTER_NAME=undefined
-    // this.dialogService.open({ viewModel: Prompt, model: fieldname, lock: false }).whenClosed(response => {
-    //   console.log(response.output)
-    //   console.log(this.appService.currentSearchadj)
-    //   // this.ADJUSTER_ID = this.appService.currentSearchadj.ADJUSTER_ID + ' ' + this.appService.currentSearchadj.ADJUSTER_NAME
-    //   this.search.adjuster = this.appService.currentSearchadj.ADJUSTER_ID
-    // });
-
-  }
   activate() {
     console.log('name-tag activate before attached ');
-   // let aid = this.appService.adjusterList.findIndex(x => x.ADJUSTER_ID === 4)
 
 
   }
@@ -70,20 +56,15 @@ export class Org {
     if (this.search) {
       console.log('this.search', this.search)
       let qs = this.utilService.generateQueryString(this.search);
-     // let adj = this.search.adjuster.ADJUSTER_ID
-//  this.appService.currentSearchadj.ADJUSTER_ID = ADJUSTER_ID
-//       this.appService.currentSearchadj.ADJUSTER_NAME = ADJUSTER_NAME
- let adj =`${this.ADJUSTER_NAME.ADJUSTER_ID}`
-      //let path = `Searchadjuster${this.utilService.counter++}${qs}`;
-      let path = `Searchadjuster${qs}`;
-      //     let path = `Searcharprep${qs}`;
-      // this.router.navigate(`#/adjuster/${path}`);
+
+      let adj = `${this.ADJUSTER_NAME.ADJUSTER_ID}`
+      let path = `Searchorg${qs}`;
 
       if (adj !== null) {
-        let rt2 = '#/adjuster/data/' + adj
+        let rt2 = '#/org/data/' + adj
         this.router.navigate(rt2)
 
-      } else this.router.navigate(`#/adjuster/${path}`);
+      } else this.router.navigate(`#/org/${path}`);
     }
   }
 

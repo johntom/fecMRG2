@@ -26,9 +26,9 @@ export class SearchResults {
     transport: {
       read: (options) => {
         this.loadData()
-          .then((adjusteritems) => {
-            console.log(' Adjusters datasource ', adjusteritems[0], adjusteritems.length)
-            options.success(adjusteritems);
+          .then((orgs) => {
+            console.log(' Adjusters datasource ', orgs[0], orgs.length)
+            options.success(orgs);
           });
       },
     },
@@ -62,34 +62,46 @@ export class SearchResults {
     }
   }
 
-  loadData() {
-    //console.log('this.loadData ')
-    // let s2 = '1-1-2016';
-    // let s3 = '10-21-2016';
+	async loadData() {
+		
+	//	let orgs;
+	
+		console.log(this.queryParams)
+   
+    let response = await this.api.findallorgs(this.queryParams);
+    let orgs = response.data
   
-    if (this.appService.searchDataLoaded) {
-      console.log('using searchDataLoaded cache....')
-      return Promise.resolve(true);
-    } else {
-      let adjusteritems = this.appService.adjusterList
-      this.origItems = adjusteritems
-      console.log("adjuster", adjusteritems)
-      return Promise.resolve(adjusteritems);
-      //  this.dataService.loadAdjusters(this.queryParams)
-      //     return  Promise.all([
-      //       this.dataService.loadAdjusters()
-      //     ]).then(values => {
-      //       this.origItems = values[0];
-      //       let adjusteritems = this.origItems;
-      //       console.log('adjusteritems ', adjusteritems.length)
-      //       return adjusteritems
-      //       //bad   this.currentItem = this.items.find(f => f.id == params.id);
-      //     }).catch(error => {
-      //       console.error("Error encountered while trying to get data.", error);
-      //     });
-
+  
+  
+				if (orgs === 0 || orgs.length === 0) {
+					// alert(' no records found ')
+          this.message=' no records found '
+					let tab = this.appService.tabs.find(f => f.isSelected);
+					this.closeTab(tab);
+					let rt2 = '#/home'
+					this.router.navigate(rt2);
+				} else return orgs
+		
 
     }
+
+  loadData() {
+    
+    // if (this.appService.searchDataLoaded) {
+    //   console.log('using searchDataLoaded cache....')
+    //   return Promise.resolve(true);
+    // } else {
+    //   let orgs = this.appService.adjusterList
+    //   this.origItems = adjusteritems
+    //   console.log("adjuster", adjusteritems)
+    //   return Promise.resolve(adjusteritems);
+     
+
+    // }
+
+     let response = await this.api.findorgs(this.currentItem.org.ID);
+    this.item = response.data[0];
+    console.log('this.repos ', this.item)
   }
   rowSelected(e) {
     console.log('e ' + e.sender)
@@ -117,12 +129,7 @@ export class SearchResults {
     this.router.navigate(rt2);// `#/inventory/${path}`);
   }
 
-  // addClaim() {
-  //   // let rt2 = '#/claim/data/create';
-  //   let rt2 = '#/claim/dataadd';
-
-  //   this.router.navigate(rt2);// `#/inventory/${path}`);
-  // }
+ 
 
 }
 

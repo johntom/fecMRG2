@@ -85,6 +85,8 @@ export class ApiService {
     //return this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())
   }
 
+
+
   findContact(search) {
     // search has fullu formed query string
     var url = this.baseweb + 'v1/contactcontent' + search
@@ -292,6 +294,19 @@ export class ApiService {
     // }).then((res) => res.json());
 
   }
+  findOrgs() {
+    var url = this.baseweb + 'v1/orgs';
+    return this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())
+  }
+
+ async findContact(search) {
+    // search has fullu formed query string
+    var url = this.baseweb + 'v1/contactcontent' + search
+    let res = await this.http.fetch(url, { mode: 'cors' });
+    return res.json()
+   
+  }
+
 
   async findorgContacts(orgid) {
     // search has fullu formed query string  v1/claim/
@@ -299,7 +314,12 @@ export class ApiService {
     let res = await this.http.fetch(url, { mode: 'cors' });
     return res.json()
   }
+  async findallorgs(search) {
+    var url = this.baseweb + 'v1/orgs/findall' + search
+    return await this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())
 
+  }
+  
   // https://artbased.com/api/v1/orgs/findcontacts/1119
 
 
@@ -342,10 +362,6 @@ export class ApiService {
   }
 
 
-  findOrgs() {
-    var url = this.baseweb + 'v1/orgs';
-    return this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())
-  }
 
   //1
   batchTransport(rec) {
