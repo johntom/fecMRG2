@@ -24,23 +24,27 @@ export class DataForm {
   }
 
   async activate(params, routeConfig) {
- let pp = JSON.stringify(params) ;
-    this.cname = pp.substring(2, pp.indexOf(':')-3);// params.indexOf(':')
- this.heading = `DataForm for record  ${this.cname} `;
+    let pp = JSON.stringify(params);
+    this.cname = pp.substring(2, pp.indexOf(':') - 3);// params.indexOf(':')
+    this.heading = `DataForm for record  ${this.cname} `;
 
 
-    
+
     if (params.id) {
       this.recordId = params.id;
 
 
       if (this.recordId === 'create') {
- 
+
       } else {
         let response = await this.api.findorgOnemongo(this.recordId);
         this.org = response.data[0];
         console.log('this.org ', this.org)
 
+    let response2 = await this.api.findorgContacts(this.org.ID);
+    this.contacts = response2.data;
+    // console.log('this.repos contacts ', this.contacts)
+    // this.allcontacts = this.contacts
 
       }
     }
