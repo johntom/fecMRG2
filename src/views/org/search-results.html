@@ -15,19 +15,19 @@ OrgName address city state zip status notes
 		 k-filterable.bind="{  mode: 'row' }" k-editable="inline" k-reorderable.bind="true" k-groupable.bind="true" k-resizable.bind="true"
 		 k-selectable="[row,multiple]" k-on-change.delegate="rowSelected($event.detail)" k-column-menu.bind="true" k-pageable.bind="true">
 
-			<ak-col k-field="OrgName" k-filterable.bind="true" k-title="Edit OrgName" k-width.bind="180" k-template="<button click.delegate='details($event)' class='k-button'>#=OrgName#</button>">
+			<ak-col k-field="OrgName" k-filterable.bind="true" k-title="Edit OrgName" k-width.bind="280" k-template="<button click.delegate='details($event)' class='k-button'>#=OrgName#</button>">
 			</ak-col>
-		<ak-col k-field="address" k-filterable.bind="true" k-title="address" k-width.bind="280"  >
+		<ak-col k-field="Address" k-filterable.bind="true" k-title="Address" k-width.bind="180"  >
 			</ak-col>
-      	<ak-col k-field="city" k-filterable.bind="true" k-title="city" k-width.bind="280"  >
+      	<ak-col k-field="City" k-filterable.bind="true" k-title="City" k-width.bind="180"  >
 			</ak-col>
-       	<ak-col k-field="state" k-filterable.bind="true" k-title="state" k-width.bind="280"  >
+       	<ak-col k-field="State" k-filterable.bind="true" k-title="State" k-width.bind="180"  >
 			</ak-col>
-       	<ak-col k-field="zip" k-filterable.bind="true" k-title="zip" k-width.bind="280"  >
+       	<ak-col k-field="Zip" k-filterable.bind="true" k-title="Zip" k-width.bind="180"  >
 			</ak-col>
-       	<ak-col k-field="status" k-filterable.bind="true" k-title="status" k-width.bind="280"  >
+       	<ak-col k-field="Status" k-filterable.bind="true" k-title="Status" k-width.bind="180"  >
 			</ak-col>
-       	<ak-col k-field="notes" k-filterable.bind="true" k-title="notes" k-width.bind="280"  >
+       	<ak-col k-field="notes" k-filterable.bind="true" k-title="notes" k-width.bind="180"  >
 			</ak-col>
       
 

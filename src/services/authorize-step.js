@@ -38,7 +38,9 @@ export class AuthorizeStep {
           name = keyHash.substring(1, keyHash.length);
           // This replace function removes both "r"
 
-          name = name.replace(/%3D/g, ' ')
+            name = name.replace(/%3D/g, "")
+            name = name.replace( /\s/g, "")
+   
         }
         // name = keyHash
       }

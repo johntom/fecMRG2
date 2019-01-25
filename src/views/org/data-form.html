@@ -2,111 +2,92 @@
 	<require from="./flex.css"></require>
 	<section class="full-height flex-column-1 au-animate ignore">
 		<div class="flex-row-none section-header">
-			${heading} Adjuster
+			${heading} Org
 		</div>
 		<div class="flex-column-1 overflow-y-auto">
 			<form class="flex-column-1">
 				<div id="top" class="flex-row-3">
 					<div id="top-left" class="data-form overflow-y-auto flex-column-2">
-
 						<div class="flex-row-none">
 							<div class="form-group flex-column-1">
 								<div class="Rtable Rtable--2cols">
-									<div class="Rtable-cell-30 Rtable-cell--green">
-										<strong> AdjusterID</strong>
-									</div>
-
-									<div class="Rtable-cell-70  Rtable-cell--green">
-										<input type="text" id="ADJUSTER_ID" class="form-control input-sm" value.bind="adjuster.ADJUSTER_ID">
-									</div>
-									<div class="Rtable-cell-30 Rtable-cell--green">
-										<strong> ADJUSTER_NAME</strong>
-									</div>
-									<div class="Rtable-cell-70  Rtable-cell--green">
-										<input type="text" id="ADJUSTER_NAME" class="form-control input-sm" value.bind="adjuster.ADJUSTER_NAME">
-									</div>
-
-									<div class="Rtable-cell-30 Rtable-cell--green">
-										<strong> ACTIVE</strong>
-									</div>
-									<div class="Rtable-cell-70  Rtable-cell--green">
-										<input type="text" id="ACTIVE" class="form-control input-sm" value.bind="adjuster.ACTIVE">
-									</div>
-
-									<!-- <div class="Rtable-cell-30 Rtable-cell--green">
-										<strong> ADJUSTER_PHONE</strong>
-									</div>
-									<div class="Rtable-cell-70  Rtable-cell--green">
-										<input type="text" id="ADJUSTER_PHONE" class="form-control input-sm" value.bind="adjuster.ADJUSTER_PHONE">
-									</div> -->
-
-
-									<div class="Rtable-cell-30 Rtable-cell--green">
-										<strong> ADJUSTER_EMAIL</strong>
-									</div>
-									<div class="Rtable-cell-70  Rtable-cell--green">
-										<input type="text" id="ADJUSTER_EMAIL" class="form-control input-sm" value.bind="adjuster.ADJUSTER_EMAIL">
-									</div>
+									<div class="Rtable Rtable--2cols">
+										<div class="Rtable-cell-30 Rtable-cell--highlight">
+											<strong> OrgName</strong>
+										</div>
+										<div class="Rtable-cell-70  Rtable-cell--highlight">
+											<input type="text" id="OrgName" class="form-control input-sm" value.bind="org.OrgName">
+										</div>
+										<div class="Rtable-cell-30 Rtable-cell--highlight">
+											<strong> Address</strong>
+										</div>
+										<div class="Rtable-cell-70  Rtable-cell--highlight">
+											<input type="text" id="Address" class="form-control input-sm" value.bind="org.Address">
+										</div>
+										<div class="Rtable-cell-30 Rtable-cell--highlight">
+											<strong> City</strong>
+										</div>
+										<div class="Rtable-cell-70  Rtable-cell--highlight">
+											<input type="text" id="City" class="form-control input-sm" value.bind="org.City">
+										</div>
+										<div class="Rtable-cell-30 Rtable-cell--highlight">
+											<strong> State</strong>
+										</div>
+										<div class="Rtable-cell-70  Rtable-cell--highlight">
+											<input type="text" id="State" class="form-control input-sm" value.bind="org.State">
+										</div>
+										<div class="Rtable-cell-30 Rtable-cell--highlight">
+											<strong> Zip</strong>
+										</div>
+										<div class="Rtable-cell-70  Rtable-cell--highlight">
+											<input type="text" id="Zip" class="form-control input-sm" value.bind="org.Zip">
+										</div>
 
 
+										<div class="Rtable-cell-30 Rtable-cell--highlight">
+											<strong> Status</strong>
+										</div>
+										<div class="Rtable-cell-70  Rtable-cell--highlight">
+											<input type="text" id="PurchasedDate" class="form-control input-sm" value.bind="org.Status">
+										</div>
+										<div class="Rtable-cell-30 Rtable-cell--highlight">
+											<strong> Notes</strong>
+										</div>
+										<div class="Rtable-cell-70  Rtable-cell--highlight">
+											<input type="text" id="BusIndivid" class="form-control input-sm" value.bind="org.Notes">
+										</div>
+									</div>
+									<div class="form-group flex-column-1 margin-left-10">
+										<div class="Rtable Rtable--2cols">
+
+											<div class="Rtable-cell-30 Rtable-cell--green">
+												<strong> LIABILITY_RATE</strong>
+											</div>
+											<div class="Rtable-cell-70  Rtable-cell--green">
+											</div>
 
 
-
-									<div class="Rtable-cell-30 Rtable-cell--green">
-										<strong> EMP_TYPE</strong>
+										</div>
 									</div>
-									<div class="Rtable-cell-70  Rtable-cell--green">
-										<input type="text" id="EMP_TYPE" class="form-control input-sm" value.bind="adjuster.EMP_TYPE">
-									</div>
-								</div>
-							</div>
-							<div class="form-group flex-column-1 margin-left-10">
-								<div class="Rtable Rtable--2cols">
-
-									<div class="Rtable-cell-30 Rtable-cell--green">
-										<strong> LIABILITY_RATE</strong>
-									</div>
-									<div class="Rtable-cell-70  Rtable-cell--green">
-										<input type="text" id="LIABILITY_RATE" class="form-control input-sm" value.bind="adjuster.LIABILITY_RATE">
-									</div>
-
-									<div class="Rtable-cell-30 Rtable-cell--green">
-										<strong> PROPERTY_RATE</strong>
-									</div>
-									<div class="Rtable-cell-70  Rtable-cell--green">
-										<input type="text" id="PROPERTY_RATE" class="form-control input-sm" value.bind="adjuster.PROPERTY_RATE">
-									</div>
-
-									<div class="Rtable-cell-30 Rtable-cell--green">
-										<strong> MILEAGE_RATE</strong>
-									</div>
-									<div class="Rtable-cell-70  Rtable-cell--green">
-										<input type="text" id="MILEAGE_RATE" class="form-control input-sm" value.bind="adjuster.MILEAGE_RATE">
-									</div>
-
-
 
 								</div>
+
 							</div>
 
-						</div>
-
-					</div>
-
-					<div id="bottom-left" class="flex-row-3">
-						<div id="data-form-ext" class="flex-column-1">
-							<div id="data-form-one-to-many-tabs" class="flex-row-none flex-wrap">
-								<div repeat.for="tab of appService.dataFormOneToManyTabs3" class="tab tab-top ${tab.isSelected ? 'tab-selected' : ''}">
-									<div class="form-tab-box" click.delegate="selectOneToManyTab(tab)">
-										<span>${tab.name}</span>
+							<!-- <div id="bottom-left" class="flex-row-3">
+								<div id="data-form-ext" class="flex-column-1">
+									<div id="data-form-one-to-many-tabs" class="flex-row-none flex-wrap">
+										<div repeat.for="tab of appService.dataFormOneToManyTabs3" class="tab tab-top ${tab.isSelected ? 'tab-selected' : ''}">
+											<div class="form-tab-box" click.delegate="selectOneToManyTab(tab)">
+												<span>${tab.name}</span>
+											</div>
+										</div>
+									</div>
+									<div id="data-form-one-to-many-tab-content overflow-y-hidden" class="data-form flex-row-1" style="background: darkgray;">
+										<compose view-model.bind="currentOneToManyTab.viewModel"></compose>
 									</div>
 								</div>
-							</div>
-							<div id="data-form-one-to-many-tab-content overflow-y-hidden" class="data-form flex-row-1" style="background: darkgray;">
-								<compose view-model.bind="currentOneToManyTab.viewModel"></compose>
-							</div>
-						</div>
-					</div>
+							</div> -->
 
 
 			</form>

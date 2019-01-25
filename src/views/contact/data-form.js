@@ -140,22 +140,7 @@ export class DataForm {
   activate(params, routeConfig) {
     let pp = JSON.stringify(params) ;
     this.cname = pp.substring(2, pp.indexOf(':')-3);// params.indexOf(':')
-//    let xp = params ;
-//     // for (var key in pp) {
-//     //   if (pp[key] === ':')
-//     //     console.log(key);
-//     // }
-// let i; 
-// let xname
 
-// for (i = 0; i < pp.length; i++) { 
- 
-//    if (pp[i] === ':') {
-//          console.log(pp[i]);
-//   this.cname=xname
- 
-//    }
-//     xname += pp[i] ;
 
     if (params.id) {
       //this.cname = pp.substring(0, pp.indexOf(':'));// params.indexOf(':')

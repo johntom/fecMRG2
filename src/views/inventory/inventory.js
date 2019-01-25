@@ -88,7 +88,7 @@ export class Inventory {
   //   { id: 2, name: 'NFS' },
   //   { id: 3, name: 'DON' },
   // ];
-   searchsold = [
+  searchsold = [
     { id: 1, name: 'Y' },
     { id: 2, name: 'N' },
     { id: 3, name: 'NFS' },
@@ -185,9 +185,9 @@ export class Inventory {
     let sold = this.search.sold// `${this.search.sold}`
 
     let owndedby = this.search.OwnedBy
-   console.log('sold', this.search.sold)
-   let selecteddate = this.search.selectedDateId//+''
-    console.log('selectedDateId',selecteddate) //sold', sold,sold)
+    console.log('sold', this.search.sold)
+    let selecteddate = this.search.selectedDateId//+''
+    console.log('selectedDateId', selecteddate) //sold', sold,sold)
     //  this.search.sold=`${this.search.sold}`
     //  // this.search.inventorycode='soldit'
     // alert(keywd)
@@ -200,9 +200,9 @@ export class Inventory {
       if (medsupport !== 'undefined') this.search.mediumsupport = `${this.DescriptionMS.Description}`
       if (currentlocation !== 'undefined') this.search.currentlocation = `${this.DescriptionLoc.Description}`
       if (multikeys !== 'undefined') this.search.multikeywords = `${this.multikeywords}`
-  if (sold !== 'undefined') this.search.sold = sold
-   if (selecteddate !== 'undefined') this.search.selectedDateId = selecteddate
-   if (owndedby !== 'undefined') this.search.owndedby = owndedby //search.owndedby
+      if (sold !== 'undefined') this.search.sold = sold
+      if (selecteddate !== 'undefined') this.search.selectedDateId = selecteddate
+      if (owndedby !== 'undefined') this.search.owndedby = owndedby //search.owndedby
 
       let qs = this.utilService.generateQueryString(this.search);
       console.log('this.search ', this.search)
@@ -313,7 +313,7 @@ export class Inventory {
   }
   changeCallbackMru(selectedvalue) {
     // The selected value will be printed out to the browser console
-// if mru
+    // if mru
     console.log('selectedvalue ', selectedvalue, "myDatalist", this.myDatalist.value);
     // if (selectedvalue === undefined) {
     //   this.mru.push(this.myDatalist.value)
@@ -321,9 +321,9 @@ export class Inventory {
     // } else this.populateInv(selectedvalue)
 
 
-// else
- if (selectedvalue === undefined) {
-    
+    // else
+    if (selectedvalue === undefined) {
+
     } else this.performSearchSL()
 
 

@@ -294,6 +294,18 @@ export class ApiService {
     // }).then((res) => res.json());
 
   }
+
+  async findorgOnemongo(orgid) {
+    // search has fullu formed query string  v1/claim/
+    var url = this.baseweb + `v1/orgs/findonemongo/${orgid}`
+    let res = await this.http.fetch(url, { mode: 'cors' });
+    return res.json()
+   
+
+  }
+
+
+
   findOrgs() {
     var url = this.baseweb + 'v1/orgs';
     return this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())

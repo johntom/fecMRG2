@@ -41,7 +41,7 @@ export class Org {
   activate() {
     console.log('name-tag activate before attached ');
 
-
+ 
   }
 
   detached() {
@@ -57,16 +57,16 @@ export class Org {
       console.log('this.search', this.search)
       let qs = this.utilService.generateQueryString(this.search);
 
-      let adj = `${this.ADJUSTER_NAME.ADJUSTER_ID}`
+      // let adj = `${this.ADJUSTER_NAME.ADJUSTER_ID}`
       let path = `Searchorg${qs}`;
 
-      if (adj !== null) {
-        let rt2 = '#/org/data/' + adj
-        this.router.navigate(rt2)
+  //  path = path.replace( /\s/g, "")
+      let rt2 = `#/org/${path}`
+      this.router.navigate(rt2)
 
-      } else this.router.navigate(`#/org/${path}`);
     }
   }
+
 
 
 }
