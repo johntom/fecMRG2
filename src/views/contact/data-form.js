@@ -182,7 +182,7 @@ export class DataForm {
 
       } else {
         console.log('this.recordId ', this.recordId);
-        this.mrubuild()
+       // this.mrubuild()
 
 
         return this.api.findContactOne(this.recordId)
@@ -195,6 +195,7 @@ export class DataForm {
 
 
             this.appService.currentContactItem = this.currentItem//inv[0]
+            this.mrubuild()
             this.currentItem.isDirty = () => {
               return JSON.stringify(this.currentItem) !== JSON.stringify(this.appService.originalContactrec)
             };
@@ -236,7 +237,8 @@ export class DataForm {
       //  this.tabindex = temp[1];
     }
     // var temp = [this.recordId, mruget.mru1, mruget.mru2, mruget.mru3, mruget.mru4];
-    var temp = [this.recordId + '?' + this.cname, mruget.mru1, mruget.mru2, mruget.mru3, mruget.mru4];
+    // var temp = [this.recordId + '?' + this.cname, mruget.mru1, mruget.mru2, mruget.mru3, mruget.mru4];
+ var temp = [{id:this.recordId,name:this.cname ,bori:this.currentItem.BusIndivid}, mruget.mru1, mruget.mru2, mruget.mru3, mruget.mru4];
 
     if (this.recordId === mruget.mru1 || this.recordId === mruget.mru2 || this.recordId === mruget.mru3 ||
       this.recordId === mruget.mru4 || this.recordId === mruget.mru5) { } else {

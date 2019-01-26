@@ -47,8 +47,12 @@ activate(){
       this.mruinfo = 0
     } else {
       this.mruinfo = JSON.parse(mruinfo)
-
-      this.mru.push(this.mruinfo.mru1)
+      // this.mru.push(this.mruinfo.mru1.name)
+      // this.mru.push(this.mruinfo.mru2.name)
+      // this.mru.push(this.mruinfo.mru3.name)
+      // this.mru.push(this.mruinfo.mru4.name)
+      // this.mru.push(this.mruinfo.mru5.name)
+        this.mru.push(this.mruinfo.mru1)
       this.mru.push(this.mruinfo.mru2)
       this.mru.push(this.mruinfo.mru3)
       this.mru.push(this.mruinfo.mru4)
@@ -70,7 +74,7 @@ activate(){
     // this.appService.onlyonce = 0
      //  let rt2 = '#/artist/data/' + item.id+'?'+item.LastName+','+item.FirstName//ArtistName
      
-     this.router.navigate(`#/contact/data/${e}`);
+     this.router.navigate(`#/contact/data/${e.id}?${e.name}`);
   }
 
 }

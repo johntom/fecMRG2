@@ -131,36 +131,36 @@ selectOptions = {
   }
  performSearchSL() {
     let savedlist = this.myDatalist.value //datalist
-    if (savedlist !== 'undefined' && savedlist !== 'null') this.search.savedlists = savedlist// `${this.name.name}`
+    if (savedlist !== 'undefined' && savedlist !== 'null') this.search.savedlists = savedlist // `${this.name.name}`
     if (this.search) {
+      // this.search={savedlists:this.search.savedlists);
     let qs = this.utilService.generateQueryString(this.search);
     console.log('this.search ', this.search)
     let counter = this.utilService.counter++
-    let path = `Search${counter}${qs}`;
-    //  let path = `Search${counter}${qs}`;
-    this.router.navigate(`#/action/${path}`);
+    // name as - at end its a singleton
+    let path = `Actionlist-${qs}`;
+   // see authorize-step.js on how I make this a singleton with saving the result set
+    this.appService.actionsearchresults='';// reset 
+    this.router.navigate(`#/action/${path}&singletonname=savedlists`);
     this.appService.currentSearch = path
     } else alert('Please make a selection')
   }
-  performSearch() {
-    let savedlist = `${this.name}`
-    if (savedlist === 'undefined' || savedlist === undefined) {
-      alert('Please make a selection')
-    } else
-      if (this.search) {
-        if (savedlist !== 'undefined' && savedlist !== 'null') this.search.savedlists = `${this.name.name}`
-        let qs = this.utilService.generateQueryString(this.search);
-        let counter = this.utilService.counter++
-        // let path = `ActSearch${counter}${qs}`;
-        let path = `list${counter}${qs}`;
-        // let path = `list:${qs}`;// name on tab
-        // console.log('this.search  path ', this.search, path)
-        this.appService.currentActionlist = this.search.savedlists
-        // let path = `SL:${this.search.savedlists}`;
-        this.router.navigate(`#/action/${path}`);
-        this.appService.currentSearch = path //`Search${counter}`
-      } else alert('Please make a selection')
-  }
+  // performSearch() {
+  //   let savedlist = `${this.name}`
+  //   if (savedlist === 'undefined' || savedlist === undefined) {
+  //     alert('Please make a selection')
+  //   } else
+  //     if (this.search) {
+  //       if (savedlist !== 'undefined' && savedlist !== 'null') this.search.savedlists = `${this.name.name}`
+  //       let qs = this.utilService.generateQueryString(this.search);
+  //       let counter = this.utilService.counter++
+  //       //let path = `list${counter}${qs}`;
+  //       let path = `list${counter}${qs}`;
+  //       this.appService.currentActionlist = this.search.savedlists
+  //       this.router.navigate(`#/action/actionview`);
+  //       this.appService.currentSearch = path //`Search${counter}`
+  //     } else alert('Please make a selection')
+  // }
 
   performClear() {
     this.search = {}

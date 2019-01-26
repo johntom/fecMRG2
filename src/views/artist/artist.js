@@ -84,9 +84,16 @@ export class Artist {
 
   performSearch() {
     if (this.search) {
-      console.log('this.search', this.search)
+      // console.log('this.search', this.search)
       // let item = insco.find(x => x._id === serviceinsco)  let  artist =  this.myDatalistA.value
-      let item = this.appService.artistList.find(x => x.ArtistName === this.myDatalistA.value)
+      // let item = this.appService.artistList.find(x => x.ArtistName === this.myDatalistA.value)
+   const qqs = this.selectedArtist.substring(this.selectedArtist.indexOf('-') + 1)
+      // console.log('this.search', qqs,this.selectedArtist)
+      if(qqs==="")  this.selectedArtist =this.selectedArtist.substring(0,this.selectedArtist.indexOf('-') -1)
+      
+   let item
+   (qqs==="") ? item = this.appService.artistList.find(x => x.ArtistName === this.selectedArtist) : item = this.appService.artistList.find(x => x.ArtistName +' - '+x.YearofBirth  === this.selectedArtist)
+       
 
       // let qs = this.utilService.generateQueryString(this.search);
       let qs = this.utilService.generateQueryString(item.id);

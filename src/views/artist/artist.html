@@ -9,14 +9,15 @@
 					<div class="form-group flex-column-1 margin-left-10">
 						<label for="adjuster"> click to select an artist</label>
 						<label for="Artist">Artist</label>
-					<!-- change.delegate="changeCallbackArtist(selectedValue)"  -->
+					<!--  	input.delegate="selectedValueA = findOptionA($event.target.value)" 
+          change.delegate="changeCallbackArtist(selectedValue)"  -->
           	<input ref="myDatalistA" type="text" list="myDatalistA" 
-         
-					input.delegate="selectedValueA = findOptionA($event.target.value)"
+              value.bind="selectedArtist"
 						/>
 						<datalist id="myDatalistA">
-							<!-- <option repeat.for="option of appService.artistList">${option.ArtistName} ${option.id} b.${option.YearofBirth} </option> -->
-						<option repeat.for="option of appService.artistList">${option.ArtistName} </option>
+							<!-- model.bind="option" <option repeat.for="option of appService.artistList">${option.ArtistName} ${option.id} b.${option.YearofBirth} </option> -->
+						<option repeat.for="option of appService.artistList"
+              model.bind="option">${option.ArtistName} - ${option.YearofBirth} </option>
 					
             </datalist>
 						<pre style="margin-top: 100px"><code>${selectedValueA.ArtistName} b.${option.YearofBirth} legacyid:${option.ID}    legacyid:${option.id}</code></pre>

@@ -21,8 +21,16 @@ export class AuthorizeStep {
     localStorage.setItem('href', window.location.href);
     let hash = window.location.hash;
     let keyHash = window.location.hash;
+    let keyHashroot = ''
     if (keyHash.indexOf('?') > 0) {
+      keyHashroot = keyHash.substring(0, keyHash.indexOf('?'));
       keyHash = keyHash.substring(keyHash.indexOf('?'));
+
+    }
+    // to create a singleton find if last char of keyHashroot='-'
+    // hadcoded if (keyHashroot==='#/action/Actionlist') keyHash = keyHashroot
+    if (keyHashroot.indexOf('-') > 0) {
+      keyHash = keyHashroot.substring(0, keyHashroot.indexOf('-'));
     }
     let found = this.appService.tabs.find(f => f.key === keyHash);
     if (!found) {
@@ -31,16 +39,26 @@ export class AuthorizeStep {
         .pop();
 
       if (name.indexOf('?') > 0) {
-        if (name.indexOf('contact') > 0) {
-          name = name.substring(0, name.indexOf('contact'));
-        } else {
-          // put val after ? on tab
-          name = keyHash.substring(1, keyHash.length);
-          // This replace function removes both "r"
+        // if (name.indexOf('contact') > 0) {
+        //   name = name.substring(0, name.indexOf('contact'));
+        // } else
+        // if (name.indexOf('savedlists') > 0) {
+        //   name = name.substring(0, name.indexOf('savedlists')-2);
+        // } else {
+        if (hash.indexOf('&singletonname') > 0) {
+          // &singletonname=savedlists
+          // name = hash.substring(0, hash.indexOf('&singletonname' + 1));
+          if (hash.indexOf("=") > 0) {
+            name = hash.substring(hash.indexOf('=') + 1);
+          } else {
+
+            //// put val after ? on tab
+            name = keyHash.substring(1, keyHash.length);
+            //// This replace function removes both "r"
 
             name = name.replace(/%3D/g, "")
-            name = name.replace( /\s/g, "")
-   
+            name = name.replace(/\s/g, "") //replace space
+          }
         }
         // name = keyHash
       }

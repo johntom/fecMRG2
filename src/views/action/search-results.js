@@ -164,13 +164,9 @@ export class SearchResults {
     let datasource = this.datasource
     e.container.find(".k-grid-cancel").bind("click", function () {
       flag = true
-
       datasource.read()
 
     })
-
-
-
   }
 
 
@@ -193,17 +189,10 @@ export class SearchResults {
     this.item.savedlist = slname
     // or
     // this.item.savedlist = this.appService.currentActionlist
-
     this.savedlist = this.item.savedlist //this.appService.currentActionlist
-
     this.datasource.read()
     // make a dupe of folllowing to accoumodate 2 typeaheads
     this.codesListLocation = this.appService.codesListLocation
-
-    // this.appService.actionlist ='opened'
-    // } 
-    // else     this.datasource.read()
-
   }
 
   loadGrid() {
@@ -213,32 +202,36 @@ export class SearchResults {
     }
   }
 
-  loadData() {
+  async loadData() {
     console.log('this.loadData ')
-    let s2 = '1-1-2016';
-    let s3 = '10-21-2016';
     let inv;
     ///api/v1/inventory/getall
-    // let searchrec={}
-    // if (this.title)  searchrec.title=this.title;
-    // if (this.invcode) searchrec.invcode=this.invcode;
-    // console.log(this.queryParams)
-
+   if (this.appService.actionsearchresults){
+      return this.appService.actionsearchresults;
+    } else {
     return this.api.findInventory(this.queryParams)
       //return this.api.findInventoryKeywords(this.queryParams)
 
       .then((jsonRes) => {
         inv = jsonRes.data;
+         
         if (inv === 0 || inv.length === 0) {
           alert(' no records found ')
           let tab = this.appService.tabs.find(f => f.isSelected);
           this.closeTab(tab);
           let rt2 = '#/home'// inventory'
           this.router.navigate(rt2);// `#/inventory/${path}`);
-        } else return inv
+        } else {
+           this.appService.actionsearchresults=inv;
+           return inv
+          // return this.appService.actionsearchresults
+        }
       });
+    }
   }
-
+detached(){
+  //  this.appService.actionsearchresults='';
+}
 
   closeTab(tab) {
 
@@ -774,7 +767,6 @@ export class SearchResults {
   //   save7() {
   // images???
   // batchOfferings
-
   //   }
   save8() {
     this.item.savedlist = this.savedlist
@@ -808,38 +800,3 @@ export class SearchResults {
 
 }
 
-
-          // OwnershipStatus: { type: "string" },
-          // RetailPriceAlpha: { type: "string" },
-          // RetailPrice: { type: "string" },
-          // RetailPriceDate: { type: "date" },
-          // DateAdded: { type: "date" },
-          // PurchasedDate: { type: "string" },
-          // PurchasedFrom: { type: "string" },
-          // PurchasedPrice: { type: "string" },
-          // PurchasedForPrice: { type: "string" },
-          // Sold: { type: "string" },
-          // // Not Sold": { type: "string" },,
-          // SoldToID: { type: "string" },
-          // // Sold Date : { type: "date" },
-          // SoldFor:  { type: "string" },
-          // SoldPrice:  { type: "string" },
-          // //Min SellingPrice : "",
-          // NetToOwner: { type: "string" },
-          // ConsignedStartDate:  { type: "string" },
-          // ConsignedEndDate:  { type: "date" },
-          // MRGLocation: { type: "string" },
-          // SoldDesc:  { type: "string" },
-
-          // link: { type: "string" },workername  workeraddr workercity
-          //  "First Name": { type: "string" },
-          // workeraddr: { type: "string" },
-          // workercity: { type: "string" },
-          // filename: { type: "string" },
-          // contents: { type: "string" },
-          // createdAt: { type: "date" },
-          //  billedamt: { type: "number" },
-          //    payamt: { type: "number" },      
-          // // assignto:{ type: "string" },
-          // assignto: { defaultValue: { staffid: 1, username: 'jrt' } }
-          // // contents: { type: "memo" } billedamt payamt
