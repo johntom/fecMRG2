@@ -51,8 +51,8 @@ export class Phone {
     this.dialogService.open({ viewModel: Prompt, model: 'Delete or Cancel?', lock: true }).whenClosed(response => {
       if (!response.wasCancelled) {
         console.log('Delete')
-        let phones = this.currentItem.phones
-        phones.splice(index, 1)// start, deleteCount)
+        let orgphones = this.currentItem.orgphones
+        orgphones.splice(index, 1)// start, deleteCount)
       } else {
         console.log('cancel');
       }
@@ -61,22 +61,22 @@ export class Phone {
   }
 
 
-  addNote() {
+  addphone() {
 
-    let notes = this.currentItem.notes
+    let orgphones = this.currentItem.orgphones
     let flag = false
     let item
-    let newNoteWorkDate = moment().format('YYYY-MM-DD')
-    if (notes === undefined) {
+    // let newNoteWorkDate = moment().format('YYYY-MM-DD')
+    if (orgphones === undefined) {
       flag = true
-      notes = []
+      orgphones = []
     }
-    item = { WorkDate: newNoteWorkDate, Notes: '', edit: true }
-    notes.unshift(item)
-    if (flag) this.currentItem.notes = notes
+    item = {  }
+    orgphones.unshift(item)
+    if (flag) this.currentItem.orgphones = orgphones
 
-    this.newNoteWorkDate = '';
-    this.newNoteNote = '';
+    // this.newNoteWorkDate = '';
+    // this.newNoteNote = '';
 
   }
 

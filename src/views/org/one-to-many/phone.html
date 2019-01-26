@@ -1,21 +1,23 @@
 <template>
-  
-<style>
-table thead tr{
-    display:block;
-}
 
-table th,table td{ 
-    width:80%//1200px;//fixed width
-}
+	<style>
+		table thead tr {
+			display: block;
+		}
+
+		table th,
+		table td {
+			width: 80% //1200px;//fixed width
+		}
 
 
-table  tbody{
-  display:block;
-  height:200px;
-  overflow:auto;//set tbody to auto
-}
-/* "_id" : ObjectId("5c1580731ea741701d3fd3f5"), 
+		table tbody {
+			display: block;
+			height: 400px;
+			overflow: auto; //set tbody to auto
+		}
+
+		/* "_id" : ObjectId("5c1580731ea741701d3fd3f5"), 
     "ID" : NumberInt(4), 
     "OrgID" : " ", 
     "ContactID" : NumberInt(3044), 
@@ -24,30 +26,30 @@ table  tbody{
     "Ext" : " ", 
     "createdAt" : ISODate("2018-12-15T22:30:11.915+0000"), 
     "updatedAt" : ISODate("2018-12-15T22:30:11.915+0000")*/
-</style>
+	</style>
 	<!-- <require from="./docs.css"></require> -->
 	<section class="docs full-height flex-column-1 overflow-y-auto ignore">
 		<h4>
-			<i class="fa fa-folder-open"></i> Phone 
-			<a slot="buttons-slot" class="btn btn-primary" click.delegate="addNote()">
+			<i class="fa fa-folder-open"></i> Phone
+			<a slot="buttons-slot" class="btn btn-primary" click.delegate="addphone()">
 				<i class="fa fa-plus"></i> Add Phone
 			</a>
 		</h4>
-			<table class="table-condensed table">
-			<thead class="table-header-blue" > 
+		<table class="table-condensed table">
+			<thead class="table-header-blue">
 				<tr>
-				
-          	<tr>
-						<th width="100px"class="header">type
+
+					<tr>
+						<th width="100px" class="header">type
 						</th>
 						<th width="200px" class="header">phoneno
-            </th>
-<th width="100px"class="header">area
+						</th>
+						<th width="100px" class="header">area
 						</th>
 						<th width="300px" class="header">ext
-            </th>
+						</th>
 						<th width="225px" class="header">Cmd
-						
+
 						</th>
 					</tr>
 			</thead>
@@ -59,14 +61,14 @@ table  tbody{
 				</tr>
 			</tfoot>
 			<tbody>
-			<tr repeat.for="phone of currentItem.phones" with.bind="phone">
-				
+				<tr repeat.for="phone of currentItem.orgphones" with.bind="phone">
+
 					<td width="100px">
-         		<!-- <span show.bind="!phone.edit">${type}</span>
+						<!-- <span show.bind="!phone.edit">${type}</span>
 
 						<input show.bind="phone.edit" class="form-control input-sm" disabled.bind="!phone.edit" type="text" value.bind="type"> -->
 
-	<select id="phonetype" class="form-control  input-sm" value.bind="phone.type"> 
+						<select id="phonetype" class="form-control  input-sm" value.bind="phone.type"> 
                       <option model.bind="null">Choose...filterOnCode</option> 
                          <option repeat.for="opt of appService.codesPhoneType " model.bind="opt.id">
                     ${opt.Description} 
@@ -77,35 +79,36 @@ table  tbody{
 
 
 
-         	</td>
-            <td width="200px">
-        		<span show.bind="!phone.edit">${phoneno}</span>
-
-						<input show.bind="phone.edit" class="form-control input-sm" disabled.bind="!phone.edit" type="text" value.bind="phoneno">
-         	</td>
-                  <td width="100px">
-          	<span show.bind="!phone.edit">${area}</span>
-
-						<input show.bind="phone.edit" class="form-control input-sm" disabled.bind="!phone.edit" type="text" value.bind="area">
-         	</td>
-                  <td width="300px">
-
-						<span show.bind="!phone.edit">${ext}</span>
-
-						<input show.bind="phone.edit" class="form-control input-sm" disabled.bind="!phone.edit" type="text" value.bind="ext">
-         	</td>
-					<td width="225px">
-			 
-         	<button class="btn btn-primary" click.delegate="saveitem(note,$index)">${ !note.edit ? 'Update' : 'Done' }</button>
-
-      		<button class="btn btn-danger" click.delegate="remove(note,$index)">Delete</button> 
-       
 					</td>
-	
+					<td width="200px">
+						<!-- <span show.bind="!phone.edit">${phoneno}</span>
+						<input show.bind="phone.edit" class="form-control input-sm" disabled.bind="!phone.edit" type="text" value.bind="phoneno"> -->
+						<input class="form-control input-sm" type="text" value.bind="phoneno">
+
+					</td>
+					<td width="100px">
+						<!-- <span show.bind="!phone.edit">${area}</span>
+						<input show.bind="phone.edit" class="form-control input-sm" disabled.bind="!phone.edit" type="text" value.bind="area"> -->
+						<input class="form-control input-sm" type="text" value.bind="area">
+
+					</td>
+					<td width="300px">
+
+						<!-- <span show.bind="!phone.edit">${ext}</span>
+						<input show.bind="phone.edit" class="form-control input-sm" disabled.bind="!phone.edit" type="text" value.bind="ext"> -->
+						<input class="form-control input-sm" type="text" value.bind="ext">
+					</td>
+					<td width="225px">
+
+						<!-- <button class="btn btn-primary" click.delegate="saveitem(note,$index)">${ !note.edit ? 'Update' : 'Done' }</button> -->
+
+						<button class="btn btn-danger" click.delegate="remove(phone,$index)">Delete</button>
+
+					</td>
+
 
 			</tbody>
 		</table>
-	
+
 	</section>
 </template>
-

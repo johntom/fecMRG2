@@ -5,50 +5,44 @@ import { ApplicationService } from '../../../services/application-service';
 
 import { Prompt } from '../../../services/prompt';
 import { DialogService } from 'aurelia-dialog';
-
-@inject(ApiService, ApplicationService, DialogService)
+import { Router, Redirect } from 'aurelia-router';
+@inject(Router,ApiService, ApplicationService, DialogService)
 
 export class Org {
   heading = 'DataForm HEADER...';
   footer = 'DataForm FOOTER...';
   recordId = '';
 
-  constructor(api, appService, dialogService) {
-    this.api = api;
+  constructor(router,api, appService, dialogService) {
+     this.router = router;
+      this.api = api;
     this.appService = appService;
     this.inv = '';
-    this.currentItem = this.appService.currentContactItem;
+    this.currentItem = this.appService.currentOrgItem;
     this.dialogService = dialogService
   }
 
 
 
-  activate(params, routeConfig) {
-    // this.currentItem.prevorgs = this.currentItem.prevorgs   
+  async activate(params, routeConfig) {
+    // this.currentItem.prevorgs = this.currentItem.prevorgs
+    let response = await this.api.findorgContacts(this.currentItem.ID);
+    this.contacts = response.data;
+    console.log('this.repos contacts ', this.contacts)
+    this.allcontacts = this.contacts  
   }
-  remove(item, index) {
-    // alert('you are about to delete ' + item.address) address of currentItem.addresses
-    this.dialogService.open({ viewModel: Prompt, model: 'Delete or Cancel?', lock: false }).whenClosed(response => {
-      if (!response.wasCancelled) {
-        console.log('Delete')
-        let prevorgs = this.currentItem.prevorgs
-        prevorgs.splice(index, 1)// start, deleteCount)
-      } else {
-        console.log('cancel');
-      }
-      console.log(response.output);
-    });
-  }
-  saveitem(item, index) {
-    item.edit = !item.edit
-
+ 
+opencontact(index) {
+    // this.currentItem.fieldname = fieldname
+    // this.currentItem.ConservedBy = this.currentItem.conservation[index].ConservedBy // mongoid
+  
+    // let dataItem = grid.dataItem(selectedRow);
+    let rt2 = '#/contact/data/' +  this.allcontacts[index].id+'?'+this.allcontacts[index].LastName+','+this.allcontacts[index].FirstName
+    this.router.navigate(rt2);// `#/inventory/${path}`);
   }
 
 
 
-  selectChanged(reproid) {
-
-  }
 
 
 

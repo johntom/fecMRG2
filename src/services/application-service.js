@@ -294,12 +294,12 @@ export class ApplicationService {
 
  dataFormOneToManyTabs4 = [
     {
-      name: "Phone-",
+      name: "Phone",
       viewModel: "./one-to-many/phone",
       isSelected: true
     },
     {
-      name: "Contact-",
+      name: "Contact",
       viewModel: "./one-to-many/contact",
       isSelected: false
     }

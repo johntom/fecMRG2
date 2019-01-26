@@ -35,17 +35,17 @@ export class DataForm {
 
 
       if (this.recordId === 'create') {
-this.appService.currentOrgItem={}
+        this.appService.currentOrgItem = {}
       } else {
         let response = await this.api.findorgOnemongo(this.recordId);
         this.org = response.data[0];
         console.log('this.org ', this.org)
 
-    let response2 = await this.api.findorgContacts(this.org.ID);
-    this.contacts = response2.data;
-    this.appService.currentOrgItem= this.org 
-    // console.log('this.repos contacts ', this.contacts)
-    // this.allcontacts = this.contacts
+        let response2 = await this.api.findorgContacts(this.org.ID);
+        this.contacts = response2.data;
+        this.appService.currentOrgItem = this.org
+        // console.log('this.repos contacts ', this.contacts)
+        // this.allcontacts = this.contacts
 
       }
     }
@@ -56,8 +56,8 @@ this.appService.currentOrgItem={}
   attached() {
 
 
-    if (this.appService.dataFormOneToManyTabs3.length > 0) {
-      let tab = this.appService.dataFormOneToManyTabs3[0];
+    if (this.appService.dataFormOneToManyTabs4.length > 0) {
+      let tab = this.appService.dataFormOneToManyTabs4[0];
       this.selectOneToManyTab(tab);
     }
   }

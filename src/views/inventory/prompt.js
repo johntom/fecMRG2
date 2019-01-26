@@ -159,7 +159,7 @@ export class Prompt {
       this.placeholder = `${this.textfielddescription}`
     } else {
       this.doc = `type any characters of the ${this.orgfielddescription} to select.`
-      this.heading = `Search ${this.orgfielddescription} to select.`
+      this.heading = `Select ${this.orgfielddescription}`
       this.placeholder = `Enter any characters on ${this.orgfielddescription} to select.`
 
     }
@@ -199,8 +199,8 @@ export class Prompt {
 
     if (this.fieldname === 'MediumSupportobj') {
       this.doc = `type any characters of the   "Medium/Support: select or add new."`
-      this.heading = `Search Medium/Support: select or add new.`
-      this.placeholder = `Enter any characters on Medium/Support: select or add new.`
+      this.heading = `Select Medium/Suppor or add new.`
+      this.placeholder = `Enter any characters on Medium/Support or add new.`
       if (this.currentItem.MediumSupportobj === undefined) {
       } else {
         this.MedSup = this.currentItem.MediumSupportobj
