@@ -6,231 +6,111 @@
 		</div>
 		<div class="flex-column-1 overflow-y-auto">
 			<form class="flex-column-1">
-				<div id="top" class="flex-row-3">
+				<div id="top" class="flex-row-none">
 					<div id="top-left" class="data-form overflow-y-auto flex-column-2">
 						<div class="flex-row-none">
-							<div class="form-group flex-column-1">
+							<div class="form-group flex-column-1 Rtable-cell--highlight">
+
 								<div class="Rtable Rtable--2cols">
-									<div class="Rtable Rtable--2cols">
-										<div class="Rtable-cell-30 Rtable-cell--highlight">
-											<strong> OrgName</strong>
-										</div>
-										<div class="Rtable-cell-70  Rtable-cell--highlight">
-											<input type="text" id="OrgName" class="form-control input-sm" value.bind="org.OrgName">
-										</div>
-										<div class="Rtable-cell-30 Rtable-cell--highlight">
-											<strong> Address</strong>
-										</div>
-										<div class="Rtable-cell-70  Rtable-cell--highlight">
-											<input type="text" id="Address" class="form-control input-sm" value.bind="org.Address">
-										</div>
-										<div class="Rtable-cell-30 Rtable-cell--highlight">
-											<strong> City</strong>
-										</div>
-										<div class="Rtable-cell-70  Rtable-cell--highlight">
-											<input type="text" id="City" class="form-control input-sm" value.bind="org.City">
-										</div>
-										<div class="Rtable-cell-30 Rtable-cell--highlight">
-											<strong> State</strong>
-										</div>
-										<div class="Rtable-cell-70  Rtable-cell--highlight">
-											<input type="text" id="State" class="form-control input-sm" value.bind="org.State">
-										</div>
-										<div class="Rtable-cell-30 Rtable-cell--highlight">
-											<strong> Zip</strong>
-										</div>
-										<div class="Rtable-cell-70  Rtable-cell--highlight">
-											<input type="text" id="Zip" class="form-control input-sm" value.bind="org.Zip">
-										</div>
-
-
-										<div class="Rtable-cell-30 Rtable-cell--highlight">
-											<strong> Status</strong>
-										</div>
-										<div class="Rtable-cell-70  Rtable-cell--highlight">
-											<input type="text" id="PurchasedDate" class="form-control input-sm" value.bind="org.Status">
-										</div>
-										<div class="Rtable-cell-30 Rtable-cell--highlight">
-											<strong> Notes</strong>
-										</div>
-										<div class="Rtable-cell-70  Rtable-cell--highlight">
-											<input type="text" id="BusIndivid" class="form-control input-sm" value.bind="org.Notes">
-										</div>
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong> OrgName</strong>
 									</div>
-									<div class="form-group flex-column-1 margin-left-10">
-										<div class="Rtable Rtable--2cols">
-
-											<div class="Rtable-cell-30 Rtable-cell--green">
-												<strong> LIABILITY_RATE</strong>
-											</div>
-											<div class="Rtable-cell-70  Rtable-cell--green">
-											</div>
-
-
-										</div>
+									<div class="Rtable-cell-70  Rtable-cell--highlight">
+										<input type="text" id="OrgName" class="form-control input-sm" value.bind="org.OrgName">
+									</div>
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong> Address</strong>
+									</div>
+									<div class="Rtable-cell-70  Rtable-cell--highlight">
+										<input type="text" id="Address" class="form-control input-sm" value.bind="org.Address">
+									</div>
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong> City</strong>
+									</div>
+									<div class="Rtable-cell-70  Rtable-cell--highlight">
+										<input type="text" id="City" class="form-control input-sm" value.bind="org.City">
+									</div>
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong> State</strong>
+									</div>
+									<div class="Rtable-cell-70  Rtable-cell--highlight">
+										<input type="text" id="State" class="form-control input-sm" value.bind="org.State">
+									</div>
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong> Zip</strong>
+									</div>
+									<div class="Rtable-cell-70  Rtable-cell--highlight">
+										<input type="text" id="Zip" class="form-control input-sm" value.bind="org.Zip">
 									</div>
 
+
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong> Status</strong>
+									</div>
+									<div class="Rtable-cell-70  Rtable-cell--highlight">
+										<input type="text" id="PurchasedDate" class="form-control input-sm" value.bind="org.Status">
+									</div>
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong> Notes</strong>
+									</div>
+									<div class="Rtable-cell-70  Rtable-cell--highlight">
+										<input type="text" id="BusIndivid" class="form-control input-sm" value.bind="org.Notes">
+									</div>
 								</div>
 
-							<!-- </div> -->
-<!--  -->
-	<h4>
-				<i class="fa fa-folder-open"></i> Phone
-				<a slot="buttons-slot" class="btn btn-primary" click.delegate="addNote()">
-					<i class="fa fa-plus"></i> Add Phone
-				</a>
+							</div>
+							<div class="form-group flex-column-1 margin-left-10">
+								<div class="Rtable Rtable--2cols">
+
+									<div class="Rtable-cell-30 Rtable-cell--green">
+										<strong> side</strong>
+									</div>
 
 
 
-			</h4>
-			<table class="table-condensed table">
-				<thead class="table-header-blue">
-					<tr>
+								</div>
+							</div>
 
-						<tr>
-							<th width="300px" class="header">type
-							</th>
-							<th width="200px" class="header">phoneno
-							</th>
-							<th width="100px" class="header">area code
-							</th>
-							<th width="300px" class="header">ext
-							</th>
-							<th width="300px" class="header">country
-							</th>
-							<th width="225px" class="header">Cmd
+						</div>
+					</div>
 
-							</th>
-						</tr>
-				</thead>
-				<tfoot>
-					<tr>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-				</tfoot>
-				<tbody>
-					<tr repeat.for="phone of contacts.orgphones" with.bind="phone">
+				</div>
 
-						<td width="300px">
-				
-							<select id="phonetype" class="form-control  input-sm" value.bind="type"> 
-                      <option model.bind="null">Choose...filterOnCode</option> 
-                         <option repeat.for="opt of appService.codesPhoneType " model.bind="opt.id">
-                    ${opt.Description}  
-                      </option> 
-                    </select>
-						</td>
-						<td width="200px">
-							<span show.bind="!phone.edit">${phoneno}</span>
+					<div if.bind="recordId==='create'">Create Mode. Please save record before entering tabs </div>
+				<div else>
 
-							<input show.bind="phone.edit" class="form-control input-sm" disabled.bind="!phone.edit" type="text" value.bind="phoneno">
-						</td>
-						<td width="100px">
-							<span show.bind="!phone.edit">${areacode}</span>
-
-							<input show.bind="phone.edit" class="form-control input-sm" disabled.bind="!phone.edit" type="text" value.bind="areacode">
-						</td>
-						<td width="300px">
-
-							<span show.bind="!phone.edit">${ext}</span>
-
-							<input show.bind="phone.edit" class="form-control input-sm" disabled.bind="!phone.edit" type="text" value.bind="ext">
-						</td>
-						<td width="100px">
-							<span show.bind="!phone.edit">${countrycode}</span>
-
-							<input show.bind="phone.edit" class="form-control input-sm" disabled.bind="!phone.edit" type="text" value.bind="countrycode">
-						</td>
-						<td width="225px">
-
-							<button class="btn btn-danger" click.delegate="remove(note,$index)">Delete</button>
-
-						</td>
-
-
-				</tbody>
-			</table>
-
-
- <div class="input-field col s6">
-                                <i class="material-icons prefix">search</i>
-                                <input id="icon_prefix" type="text" value.bind="searchcontact & debounce" class="validate">
-                            </div>
-	<table class="table-condensed table">
-				<thead class="table-header-blue">
-					<tr>
-
-						<tr>
-							<th width="350px" class="header">name
-							</th>
-							<th width="200px" class="header">phone 1 
-							</th>
-							<th width="200px" class="header">phone 2
-							</th>
-							
-							<th width="200px" class="header">phone 3
-
-							</th>
-						</tr>
-				</thead>
-				<tfoot>
-					<tr>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-				</tfoot>
-				<tbody>
-					<tr repeat.for="contact of contacts" with.bind="contact">
-
-					
-						<td width="350px">
-							<span >${LastName},  ${FirstName}</span>
-
-							</td>
-              <td width="200px">
-							<span >${phones[0].phoneno}, ${phones[0].ext}</span>
-
-							</td>
-                <td width="200px">
-							<span >${phones[1].phoneno}, ${phones[1].ext}</span>
-
-							</td>
-                <td width="200px">
-							<span >${phones[2].phoneno}, ${phones[2].ext}</span>
-
-							</td>
-					
-
-
-				</tbody>
-			</table>
-
-
-
-<!-- /////////////////////////// -->
-
+					<div id="bottom-left" class="flex-row-3">
+						<div id="data-form-ext" class="flex-column-1">
+							<div id="data-form-one-to-many-tabs4" class="flex-row-none flex-wrap">
+								<div repeat.for="tab of appService.dataFormOneToManyTabs4" class="tab ${tab.isSelected ? 'tab-selected' : ''}">
+									<div class="form-tab-box" click.delegate="selectOneToManyTab(tab)">
+										<span>${tab.name}</span>
+									</div>
+								</div>
+							</div>
+							<div id="data-form-one-to-many-tab-content overflow-y-hidden" class="data-form flex-row-1" style="background:
+										 darkgray;">
+								<compose view-model.bind="currentOneToManyTab.viewModel"></compose>
+							</div>
+						</div>
+					</div>
+				</div>
 
 			</form>
-			</div>
-			<div class="flex-column-none section-footer">
-				<!-- ${footer} -->
+		</div>
+		<div class="flex-column-none section-footer">
+			<!-- ${footer} -->
 
-				<span>&nbsp;&nbsp;	
+			<span>&nbsp;&nbsp;	
           <button class="btn btn-sm btn-danger" click.delegate="saveclaim()">
                   Save & Close Claim
           </button>
         </span>
-				<span>&nbsp;&nbsp;	
+			<span>&nbsp;&nbsp;	
           <button class="btn btn-sm btn-danger" click.delegate="close()">
                  Close
           </button>
         </span>
-			</div>
-
-
 		</div>
 
 

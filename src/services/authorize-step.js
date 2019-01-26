@@ -39,28 +39,33 @@ export class AuthorizeStep {
         .pop();
 
       if (name.indexOf('?') > 0) {
-        // if (name.indexOf('contact') > 0) {
+        // if (name.indexOf('contact or savedlists') > 0) {
         //   name = name.substring(0, name.indexOf('contact'));
         // } else
-        // if (name.indexOf('savedlists') > 0) {
-        //   name = name.substring(0, name.indexOf('savedlists')-2);
-        // } else {
+
         if (hash.indexOf('&singletonname') > 0) {
           // &singletonname=savedlists
           // name = hash.substring(0, hash.indexOf('&singletonname' + 1));
           if (hash.indexOf("=") > 0) {
             name = hash.substring(hash.indexOf('=') + 1);
-          } else {
+          } 
+          // else {
+          // should never make it here    
+          //   //// put val after ? on tab
+          //   name = keyHash.substring(1, keyHash.length);
+          //   //// This replace function removes both "r"
 
-            //// put val after ? on tab
-            name = keyHash.substring(1, keyHash.length);
-            //// This replace function removes both "r"
-
-            name = name.replace(/%3D/g, "")
-            name = name.replace(/\s/g, "") //replace space
-          }
+          //   name = name.replace(/%3D/g, "")
+          //   name = name.replace(/\s/g, "") //replace space
+          // }
+        } else {
+          // name = keyHash
+          //// put val after ? on tab
+          name = keyHash.substring(1, keyHash.length);
+          //// This replace function removes both "r"
+          name = name.replace(/%3D/g, ":")
+          name = name.replace(/\s/g, "") //replace space
         }
-        // name = keyHash
       }
 
       let tab = {

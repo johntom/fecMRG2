@@ -35,7 +35,7 @@ export class DataForm {
 
 
       if (this.recordId === 'create') {
-
+this.appService.currentOrgItem={}
       } else {
         let response = await this.api.findorgOnemongo(this.recordId);
         this.org = response.data[0];
@@ -43,6 +43,7 @@ export class DataForm {
 
     let response2 = await this.api.findorgContacts(this.org.ID);
     this.contacts = response2.data;
+    this.appService.currentOrgItem= this.org 
     // console.log('this.repos contacts ', this.contacts)
     // this.allcontacts = this.contacts
 
@@ -96,12 +97,30 @@ export class DataForm {
   //       let tab = this.appService.dataFormOneToManyTabs3[0];
   //       this.selectOneToManyTab(tab);
   //     }
+  // selectOneToManyTab(tab) {
+  //   this.appService.dataFormOneToManyTabs4.forEach(t => t.isSelected = false);
+  //   tab.isSelected = true;
+  //   this.currentOneToManyTab = tab;
+  //   //   this.appService.currentItem = this.currentItem
+  //   return true;
+  // }
+
   selectOneToManyTab(tab) {
-    this.appService.dataFormOneToManyTabs3.forEach(t => t.isSelected = false);
+    this.appService.dataFormOneToManyTabs4.forEach(t => t.isSelected = false);
     tab.isSelected = true;
     this.currentOneToManyTab = tab;
-    //   this.appService.currentItem = this.currentItem
+    // let tabindex = this.appService.dataFormOneToManyTabs4.findIndex(f => f.isSelected)
+    // function tabinfo(temp) {
+    //   this.recid = temp[0];
+    //   this.tabindex = temp[1];
+
+    // }
+    // var temp = [this.currentItem.id, tabindex];
+    // tabinfo = new tabinfo(temp);
+    // // localStorage.setItem('tabinfo', JSON.stringify(tabinfo));
+    // localStorage.setItem('tabinfoC' + this.currentItem.id, JSON.stringify(tabinfo));
     return true;
   }
+
 }
 
