@@ -17,10 +17,11 @@ export class Catalog {
   performSearch() {
     if (this.search) {
       let qs = this.utilService.generateQueryString(this.search);
-      let path = `CatSearch${this.utilService.counter++}${qs}`;
-      this.router.navigate(`#/catalog/${path}`);
-      // this.router.navigate(`#/inventory/${this.search}`);
-      // this.router.navigate(`#/inventory/InvSearch`);
+      // let path = `searchCatalog${this.utilService.counter++}${qs}`;
+      // this.router.navigate(`#/catalog/${path}`);
+      let path = `searchCatalog${qs}&tabname=searchCatalog${this.utilService.counter++}`;
+      let rt2 = `#/catalog/${path}`
+      this.router.navigate(rt2);
     }
   }
 }

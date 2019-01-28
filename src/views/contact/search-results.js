@@ -134,9 +134,21 @@ export class SearchResults {
       .then((jsonRes) => {
         inv = jsonRes.data;
         this.invdata = inv;
-        // console.log('jsonRes ', jsonRes);
-        console.log('this.inv loadData 0 ', inv[0]);
-        return inv
+       this.recct = inv.length;
+    if (this.recct === 1) {
+      let rt2 = '#/contact/data/' + inv[0].id + '?' + inv[0].LastName + ',' + inv[0].FirstName
+      this.router.navigate(rt2);
+      let tab = this.appService.tabs.find(f => f.isSelected);
+      this.closeTab(tab);
+    } else
+        if (inv === 0 || this.recct === 0) {
+        // alert(' no records found ')
+        this.message = ' no records found '
+        let tab = this.appService.tabs.find(f => f.isSelected);
+        this.closeTab(tab);
+        let rt2 = '#/home'
+        this.router.navigate(rt2);
+      } else return inv
       });
   }
   rowSelected(e) {

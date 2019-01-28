@@ -49,7 +49,7 @@ export class SearchResults {
   }
 
   activate(params, routeConfig) {
- 
+
     this.queryParams = this.utilService.parseQueryStringUrl();
     console.log('queryParams', this.queryParams);
     this.datasource.read()
@@ -70,21 +70,28 @@ export class SearchResults {
 
     let response = await this.api.findallorgs(this.queryParams);
     let orgs = response.data
-    if (orgs === 0 || orgs.length === 0) {
-      // alert(' no records found ')
-      this.message = ' no records found '
+    this.recct = orgs.length;
+    if (this.recct === 1) {
+      let rt2 = '#/org/data/' + orgs[0].id + '?' + orgs[0].OrgName
+      this.router.navigate(rt2);
       let tab = this.appService.tabs.find(f => f.isSelected);
       this.closeTab(tab);
-      let rt2 = '#/home'
-      this.router.navigate(rt2);
-    } else return orgs
+    } else
+      if (orgs === 0 || this.recct === 0) {
+        // alert(' no records found ')
+        this.message = ' no records found '
+        let tab = this.appService.tabs.find(f => f.isSelected);
+        this.closeTab(tab);
+        let rt2 = '#/home'
+        this.router.navigate(rt2);
+      } else return orgs
 
 
   }
   // async loadData() {
 
-   
- 
+
+
   //   let response = await this.api.findallorgs(this.queryParams);
   //   this.item = response.data[0];
   //   console.log('this.repos ', this.item)
@@ -114,15 +121,20 @@ export class SearchResults {
     let dataItem = grid.dataItem(selectedRow);
     // let  name = dataItem.OrgName.replace(/%20/g, '')
     /\s/g, "X"
-    let  name = dataItem.OrgName.replace( /\s/g, "")// (/ /g, '-')
-    let rt2 = '#/org/data/' + dataItem.id+ '?' + name
+    let name = dataItem.OrgName.replace(/\s/g, "")// (/ /g, '-')
+    let rt2 = '#/org/data/' + dataItem.id + '?' + name
     // let rt2 = '#/contact/data/' + dataItem.id + '?' + dataItem.LastName + ',' + dataItem.FirstName + '-' + gid///+' '+dataItem.ID
 
     console.log('search-results:details', rt2);
     this.router.navigate(rt2);// `#/inventory/${path}`);
   }
 
+  closeTab(tab) {
 
+    let index = this.appService.tabs.indexOf(tab);
+    tab.isSelected = false;
+    this.appService.tabs.splice(index, 1);
+  }
 
 }
 

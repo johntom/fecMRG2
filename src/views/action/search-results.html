@@ -34,7 +34,7 @@
 
 			<div class="Rtable Rtable--2cols">
 				<div class="Rtable-cell-1">
-					<h1> ${item.savedlist}/ No. of records: ${datasource._data.length}</h1>
+					<h1> ${savedlist} / Record Count: ${datasource._data.length}</h1>
 					<!-- ${item.savedlist.length}  -->
 					<button id="factsheet1" class="btn btn-primary" type="button" click.delegate="action1()">Transport</button>
 					<button id="factsheet2" class="btn btn-primary" type="button" click.delegate="action2()">Exhibit</button>
@@ -45,7 +45,7 @@
 					<button id="factsheet7" class="btn btn-primary" type="button" click.delegate="action8()">Offerings</button>
 
 
-					<button id="image1" class="btn btn-primary" type="button" click.delegate="action9()">merge images</button>
+					<button id="image1" class="btn btn-primary" type="button" click.delegate="action9()">Merge Images</button>
 
 					<div show.bind="!hide1">
 						TransportDate <input type="date" id="TransportDate" class="form-control input-sm" value.bind="item.TransportDate">
@@ -239,13 +239,13 @@
 					 k-filterable.bind="{  mode: 'row' }" k-editable="inline" k-reorderable.bind="true" k-groupable.bind="true" k-resizable.bind="true"
 					 k-on-edit.delegate="onEdit($event.detail)" k-selectable="[row,multiple]" k-on-change.delegate="rowSelected($event.detail)"
 					 k-column-menu.bind="true" k-pageable.bind="true">
-						<ak-col k-filterable.bind="false" k-width="120px" k-title="command" k-command.bind="['edit']" k-title="&nbsp;" k-locked.bind="true"
+						<ak-col k-filterable.bind="false" k-width="120px" k-title="Cmd" k-command.bind="['edit']" k-title="&nbsp;" k-locked.bind="true"
 						 k-lockable.bind="false"></ak-col>
 						<ak-col k-title="Offer Amount" k-width="140px" k-field="offeramount"></ak-col>
 
-						<ak-col k-field="InventoryCode" k-filterable.bind="true" k-title="Edit-" k-width.bind="140" k-template="<button click.delegate='detailsEdit($event)' class='k-button'>#=InventoryCode#</button>">
+						<ak-col k-field="InventoryCode" k-filterable.bind="true" k-title="Edit" k-width.bind="140" k-template="<button click.delegate='detailsEdit($event)' class='k-button'>#=InventoryCode#</button>">
 						</ak-col>
-						<ak-col k-filterable.bind="false" k-field="InventoryCode" k-filterable.bind="true" k-title="factsheet<br>download" k-width.bind="125"
+						<ak-col k-filterable.bind="false" k-field="InventoryCode" k-filterable.bind="true" k-title="Factsheet<br>Download" k-width.bind="125"
 						 k-template="<button click.delegate='detailsFactSheet($event)' class='k-button'>#=InventoryCode#</button>">
 						</ak-col>
 

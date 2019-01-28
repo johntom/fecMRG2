@@ -37,25 +37,14 @@
     k-title="OrgName" k-width.bind="180" 
     k-template="#= (org) ? org.OrgName : '' #">
 			</ak-col> -->
+	 <!-- <ak-col k-title="Address" k-width="180px" k-field="org.Address"></ak-col> -->
 
-	 <!-- <ak-col k-title="Address" k-width="180px" k-field="org.Address"></ak-col>
-	  -->
-
-		<ak-col k-title="FirstName" k-width="180px" k-field="FirstName"></ak-col>
-		
-		<ak-col k-title="LastName" k-width="180px" k-field="LastName"></ak-col>
-	
-  	<ak-col k-title="TitleDesc" k-width="180px" k-field="TitleDesc"></ak-col>
-
-		<ak-col k-title="deceased" k-width="180px" k-field="deceased"></ak-col>
-
-	<ak-col k-title="BusIndivid" k-width="180px" k-field="BusIndivid"></ak-col>
-	<!-- <ak-col k-title="org" k-width="180px" k-field="org.OrgName"></ak-col> -->
-	<!-- <ak-col  k-field="BusIndivid" k-title="org"  k-template="#= (org.OrgName===undefined) ? 'na' :org.OrgName : `` #"></ak-col> -->
- <!-- <ak-col  k-field="BusIndivid" k-title="org"  k-template="#= (org.OrgName===undefined||org===undefined) ? 'na' :org.OrgName #"></ak-col> -->
- 
-
- <!-- org.OrgName -->
+		<ak-col k-title="FirstvName" k-width="180px" k-field="FirstName"></ak-col>
+		<ak-col k-title="Last Name" k-width="180px" k-field="LastName"></ak-col>
+  	<ak-col k-title="Title Desc" k-width="180px" k-field="TitleDesc"></ak-col>
+		<ak-col k-title="Deceased" k-width="180px" k-field="deceased"></ak-col>
+  	<ak-col k-title="Bus/Individ" k-width="180px" k-field="BusIndivid"></ak-col>
+    <ak-col k-title="Org"  k-width="220px" k-template="#= (typeof org == 'undefined' || org == null) ? '' : org.OrgName #"></ak-col>
 
 	</ak-grid>
 	<div class="flex-row-none section-footer">

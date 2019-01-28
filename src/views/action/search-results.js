@@ -169,31 +169,32 @@ export class SearchResults {
     })
   }
 
-
-
   activate(params, routeConfig) {
     //http://74.114.164.24/api/v1/inventorycontent?artistl=s%26artistf=c 
     // 3/19
     // if (  this.appService.actionlist ==='closed'){
-
     //  if ( this.appService.actionlist ===undefined){
     this.queryParams = this.utilService.parseQueryStringUrl();
     const qs = this.queryParams.substring(this.queryParams.indexOf('?') + 1)
     const pairs = qs.split('&')
     const queryParams = {}
     let slname
+    let ct =0
     pairs.forEach(p => {
       const kv = p.split('=')
-      slname = kv[1]
+      if (ct===0) slname = kv[1]
+      ct++
     });
-    this.item.savedlist = slname
+    //1-27 this.item.savedlist = slname
     // or
     // this.item.savedlist = this.appService.currentActionlist
-    this.savedlist = this.item.savedlist //this.appService.currentActionlist
+    this.savedlist = slname// this.item.savedlist 
+    // this.appService.currentActionlist
     this.datasource.read()
     // make a dupe of folllowing to accoumodate 2 typeaheads
     this.codesListLocation = this.appService.codesListLocation
   }
+
 
   loadGrid() {
     let options = localStorage["kendo-grid-mail"]
@@ -203,35 +204,35 @@ export class SearchResults {
   }
 
   async loadData() {
-    console.log('this.loadData ')
+    // console.log('this.loadData ')
     let inv;
     ///api/v1/inventory/getall
-   if (this.appService.actionsearchresults){
+    if (this.appService.actionsearchresults) {
       return this.appService.actionsearchresults;
     } else {
-    return this.api.findInventory(this.queryParams)
-      //return this.api.findInventoryKeywords(this.queryParams)
+      return this.api.findInventory(this.queryParams)
+        //return this.api.findInventoryKeywords(this.queryParams)
 
-      .then((jsonRes) => {
-        inv = jsonRes.data;
-         
-        if (inv === 0 || inv.length === 0) {
-          alert(' no records found ')
-          let tab = this.appService.tabs.find(f => f.isSelected);
-          this.closeTab(tab);
-          let rt2 = '#/home'// inventory'
-          this.router.navigate(rt2);// `#/inventory/${path}`);
-        } else {
-           this.appService.actionsearchresults=inv;
-           return inv
-          // return this.appService.actionsearchresults
-        }
-      });
+        .then((jsonRes) => {
+          inv = jsonRes.data;
+
+          if (inv === 0 || inv.length === 0) {
+            alert(' no records found ')
+            let tab = this.appService.tabs.find(f => f.isSelected);
+            this.closeTab(tab);
+            let rt2 = '#/home'// inventory'
+            this.router.navigate(rt2);// `#/inventory/${path}`);
+          } else {
+            this.appService.actionsearchresults = inv;
+            return inv
+            // return this.appService.actionsearchresults
+          }
+        });
     }
   }
-detached(){
-  //  this.appService.actionsearchresults='';
-}
+  detached() {
+    //  this.appService.actionsearchresults='';
+  }
 
   closeTab(tab) {
 

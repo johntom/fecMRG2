@@ -43,12 +43,12 @@ export class AuthorizeStep {
         //   name = name.substring(0, name.indexOf('contact'));
         // } else
 
-        if (hash.indexOf('&singletonname') > 0) {
+        if (hash.indexOf('&tabname') > 0) {
           // &singletonname=savedlists
           // name = hash.substring(0, hash.indexOf('&singletonname' + 1));
           if (hash.indexOf("=") > 0) {
             name = hash.substring(hash.indexOf('=') + 1);
-          } 
+          }
           // else {
           // should never make it here    
           //   //// put val after ? on tab
@@ -61,12 +61,17 @@ export class AuthorizeStep {
         } else {
           // name = keyHash
           //// put val after ? on tab
-          name = keyHash.substring(1, keyHash.length);
-          //// This replace function removes both "r"
-            name = name.replace(/%22/g, "")
-  name = name.replace(/%20/g, "")
+          if (hash.indexOf('&search') > 0) {
+            name = keyHashroot;
+          } else {
 
-   
+            name = keyHash.substring(1, keyHash.length);
+          }
+          //// This replace function removes both "r"
+          name = name.replace(/%22/g, "")
+          name = name.replace(/%20/g, "")
+
+
           name = name.replace(/%3D/g, ":")
           name = name.replace(/\s/g, "") //replace space
         }

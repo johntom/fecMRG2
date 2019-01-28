@@ -141,7 +141,7 @@ selectOptions = {
     let path = `Actionlist-${qs}`;
    // see authorize-step.js on how I make this a singleton with saving the result set
     this.appService.actionsearchresults='';// reset 
-    this.router.navigate(`#/action/${path}&singletonname=savedlists`);
+    this.router.navigate(`#/action/${path}&tabname=actionlist`);
     this.appService.currentSearch = path
     } else alert('Please make a selection')
   }

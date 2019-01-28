@@ -58,10 +58,12 @@ export class Org {
       let qs = this.utilService.generateQueryString(this.search);
 
       // let adj = `${this.ADJUSTER_NAME.ADJUSTER_ID}`
-      let path = `Searchorg${qs}`;
+       //this.router.navigate(`#/contact/${path}&tabname=ContactSRH${this.utilService.counter++}`);
+      let path = `searchOrg${qs}&tabname=searchOrg${this.utilService.counter++}`;
 
   //  path = path.replace( /\s/g, "")
       let rt2 = `#/org/${path}`
+      
       this.router.navigate(rt2)
 
     }
