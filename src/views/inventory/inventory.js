@@ -207,8 +207,14 @@ export class Inventory {
       let qs = this.utilService.generateQueryString(this.search);
       console.log('this.search ', this.search)
       let counter = this.utilService.counter++
-      let path = `Search${counter}${qs}`;
-      this.router.navigate(`#/inventory/${path}`);
+      // let path = `Search${counter}${qs}`;
+      // this.router.navigate(`#/inventory/${path}`);
+
+
+      let path = `searchInv${qs}&tabname=searchInv${this.utilService.counter++}`;
+      let rt2 = `#/contact/${path}`
+      this.router.navigate(rt2);
+
       this.appService.currentSearch = path //`Search${counter}`
     }
   }
