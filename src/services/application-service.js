@@ -304,7 +304,13 @@ export class ApplicationService {
       isSelected: false
     }
   ];
-
+dataFormOneToManyTabs5 = [
+    {
+      name: "Catalogs Sent To",
+      viewModel: "./one-to-many/catalogssentto",
+      isSelected: true
+    }
+  ];
  // ,
     // {
     //   name: "Type",

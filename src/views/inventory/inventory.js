@@ -212,7 +212,7 @@ export class Inventory {
 
 
       let path = `searchInv${qs}&tabname=searchInv${this.utilService.counter++}`;
-      let rt2 = `#/contact/${path}`
+      let rt2 = `#/inventory/${path}`
       this.router.navigate(rt2);
 
       this.appService.currentSearch = path //`Search${counter}`

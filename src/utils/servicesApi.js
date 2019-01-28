@@ -252,7 +252,20 @@ export class ApiService {
     let res = await this.http.fetch(url, { mode: 'cors' })
     return res.json()
   }
+  async findCatalog(search) {
+      // var url = this.baseweb + 'v1/inventorycontent' + search
+    var url = this.baseweb + `v1/catalog/find${search}`;
+    let res = await this.http.fetch(url, { mode: 'cors' })
+    return res.json()
+  }
 
+async findCatalogone(id) {
+      // var url = this.baseweb + 'v1/inventorycontent' + search
+    var url = this.baseweb + `v1/catalog/find/${id}`;
+    let res = await this.http.fetch(url, { mode: 'cors' })
+    return res.json()
+  }
+  
   // let response = await this.http.get(reposUrl);
   // this.repos = response.content
   // .sort((a, b) => b.stargazers_count - a.stargazers_count);

@@ -99,22 +99,26 @@ export class SearchResults {
     }
   }
 
-  loadData() {
+  async loadData() {
     console.log('this.loadData ')
     let s2 = '1-1-2016';
     let s3 = '10-21-2016';
     let inv;
     ///api/v1/inventory/getall
-    // let searchrec={}
-    // if (this.title)  searchrec.title=this.title;
-    // if (this.invcode) searchrec.invcode=this.invcode;
-    return this.api.findInventory(this.queryParams)//searchrec)
-      .then((jsonRes) => {
-        inv = jsonRes.data;
-        // console.log('jsonRes ', jsonRes);
-        console.log('this.inv loadData 0 ', inv[0]);
-        return inv
-      });
+  
+    let response = await this.api.findCatalog(this.queryParams);
+    return response.data
+    console.log('this.repos ', this.api.catalogList)
+
+
+
+    // return this.api.findCatalog(this.queryParams)//searchrec)
+    //   .then((jsonRes) => {
+    //     inv = jsonRes.data;
+    //     // console.log('jsonRes ', jsonRes);
+    //     console.log('this.inv loadData 0 ', inv[0]);
+    //     return inv
+    //   });
   }
   rowSelected(e) {
     console.log('e ' + e.sender)
@@ -130,10 +134,8 @@ export class SearchResults {
     grid.select(targetRow);
     let selectedRow = grid.select();
     let dataItem = grid.dataItem(selectedRow);
-    //  let rt2 = 'http://jif.bergenrisk.com:8080/api/v1/onepdf/' + dataItem.template + '/' + dataItem.filename + '.pdf'
-    // #/inventory/data/#=InventoryCode#
-    //let rt2 = '#/inventory/data/#=' + dataItem.InventoryCode + '#'
-    let rt2 = '#/inventory/data/' + dataItem.InventoryCode;
+   
+    let rt2 = '#/catalog/data/' + dataItem.id;
 
     this.router.navigate(rt2);// `#/inventory/${path}`);
 

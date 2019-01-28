@@ -20,29 +20,17 @@
       k-column-menu.bind="true" 
       k-pageable.bind="true">
 
-			<ak-col k-field="InventoryCode" 
+			<ak-col k-field="CatalogTitle"  k-title="CatalogTitle"
         k-filterable.bind="true" 
         k-title="Edit" 
         k-width.bind="180" 
-        k-template="<button click.delegate='details($event)' class='k-button'>#=InventoryCode#</button>">
+        k-template="<button click.delegate='details($event)' class='k-button'>#=CatalogTitle#</button>">
 			</ak-col>
 
-			<ak-col k-title="Artist Last" k-width="180px" k-field="artist.lastName"></ak-col>
-			<ak-col k-title="Artist First" k-width="180px" k-field="artist.firstName"></ak-col>
-			<ak-col k-title="Title" k-width="180px" k-field="Title"></ak-col>
-			<ak-col k-title="Inv Year" k-width="180px" k-field="InvYear"></ak-col>
-			<ak-col k-title="Medium Support" k-width="180px" k-field="MediumSupport"></ak-col>
-			<ak-col k-title="MediumT ext" k-width="180px" k-field="MediumText"></ak-col>
-
-			<ak-col k-title="Current Location" k-width="180px" k-field="CurrentLocation"></ak-col>
-			<ak-col k-title="Bin" k-width="180px" k-field="Bin"></ak-col>
-			<ak-col k-title="Owner" k-width="180px" k-field="Owner"></ak-col>
-
-			<ak-col k-title="MRG Location" k-width="180px" k-field="MRGLocation"></ak-col>
-			<ak-col k-title="Unframed Height" k-width="180px" k-field="UnframedHeight" attributes="{ class: &quot;text-right&quot; }"
-			 type="number" format="{0:c2}"></ak-col>
-			<ak-col k-title="Unframed Width" k-width="180px" k-field="UnframedWidth" attributes="{ class: &quot;text-right&quot; }" type="number"
-			 format="{0:c2}"></ak-col>
+			<!-- <ak-col k-title="CatalogTitle" k-width="180px" k-field="CatalogTitle"></ak-col> -->
+			<ak-col k-title="Isbn" k-width="180px" k-field="Isbn"></ak-col>
+			<ak-col k-title="PubDate" k-width="180px" k-field="PubDate"></ak-col>
+		
 
 		</ak-grid>
 		<div class="flex-row-none section-footer">
