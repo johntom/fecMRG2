@@ -1,0 +1,77 @@
+<template>
+	<require from="aurelia-kendoui-bridge/multiselect/multiselect"></require>
+	<require from="aurelia-kendoui-bridge/button/button"></require>
+
+
+	<section class="full-height flex-column-1 au-animate ignore">
+		<div class="flex-row-none section-header">
+			${heading} 100
+		</div>
+		<div class="flex-row-1 ignore">
+			<div class="flex-column-1 search-panel">
+				<!-- screws up responsive <form> -->
+				<!-- <div class="form-group">
+						<input id="searchInput" type="text" class="form-control" placeholder="Search for CompanyName..." value.bind="search.companyname">
+					</div> -->
+
+				<div class="flex-row-none">
+					<div class="form-group flex-column-1">
+						<input id="searchInput" type="text" class="form-control" placeholder="Search for CompanyName..." value.bind="search.companyname">
+					</div>
+					<div class="form-group flex-column-1 margin-left-10">
+						<label><input type="checkbox" checked.bind="search.companyexact"> Check for exact match on company name</label>
+					</div>
+				</div>
+
+
+				<div class="flex-row-none">
+					<div class="form-group flex-column-1">
+						<input id="lastname" type="text" class="form-control" placeholder="Search for  Last Name" value.bind="search.detailLast">
+					</div>
+					<div class="form-group flex-column-1 margin-left-10">
+
+						<input id="searchdetailFirstName" type="text" class="form-control" placeholder="Search for  First Name" value.bind="search.detailFirst">
+					</div>
+				</div>
+				<div class="form-group">
+					<input id="Notes" type="text" class="form-control" placeholder="Search for Notes" value.bind="search.notes">
+				</div>
+				<div class="flex-row-none">
+					<div class="form-group flex-column-1">
+						<input id="Address" type="text" class="form-control" placeholder="Search for Address" value.bind="search.address">
+					</div>
+					<div class="form-group flex-column-1 margin-left-10">
+						<input id="City" type="text" class="form-control" placeholder="Search for City" value.bind="search.city">
+					</div>
+					<div class="form-group flex-column-1 margin-left-10">
+						<input id="State" type="text" class="form-control" placeholder="Search for State" value.bind="search.state">
+					</div>
+					<div class="form-group flex-column-1 margin-left-10">
+						<input id="Zip" type="text" class="form-control" placeholder="Search for Zip" value.bind="search.zip">
+					</div>
+				</div>
+				<div class="flex-row-none">
+					<div class="form-group flex-column-1">
+
+						<input id="Phone" type="text" class="form-control" placeholder="Search for Phone" value.bind="search.phone">
+					</div>
+					<div class="form-group flex-column-1 margin-left-10">
+
+						<input id="email" type="text" class="form-control" placeholder="Search for email" value.bind="search.email">
+					</div>
+				</div>
+
+				<div class="flex-row-none">
+					<div class="form-group flex-column-1">
+
+						<button id="searchInputBtn" class="btn btn-primary" type="button" click.delegate="performSearch()">Search!</button>
+					</div>
+					<div class="form-group flex-column-1 margin-left-10">
+						<button id="searchInputBtn" class="btn btn-primary" type="button" click.delegate="performClear()">Clear</button>
+					</div>
+				</div>
+				<!-- </form> -->
+			</div>
+		</div>
+	</section>
+</template>

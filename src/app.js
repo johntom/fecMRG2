@@ -55,15 +55,18 @@ export class App {
       { "route": 'org', name: 'org', moduleId: PLATFORM.moduleName('./views/org/org'), nav: true, title: 'Org' },
       { "route": 'org/:id', name: 'org-search-results', moduleId: PLATFORM.moduleName('./views/org/search-results'), title: 'Search Results', activationStrategy: 'replace' },
       { "route": 'org/data/:id', name: 'org-data-form', moduleId: PLATFORM.moduleName('./views/org/data-form'), title: 'Data Form' }, // ,activationStrategy:'replace'
+
+     
+      { "route": 'client', name: 'client', moduleId: PLATFORM.moduleName('./views/client/client'), nav: true, title: 'Client' },
+      { "route": 'client/:id', name: 'client-search-results', moduleId: PLATFORM.moduleName('./views/client/search-results'), title: 'Search Results', activationStrategy: 'replace' },
+      { "route": 'client/data/:id', name: 'client-data-form', moduleId: PLATFORM.moduleName('./views/client/data-form'), title: 'Data Form' }, 
+
+      {"route": 'client/dataadd', name: 'client-data-add-form', moduleId: PLATFORM.moduleName('./views/client/data-add-form'), title: 'Data Add Form' }, 
+
     
-      // { route: '', name: 'no-selection',      moduleId: './no-selection',      nav: true, title: 'Select' },
-      //  { "route": "grid", "name": "grid", "moduleId": PLATFORM.moduleName("./views/grid/grid"), "nav": true, "title": "Imates-Srv-Inv Grid" },
-      // { "route": "gridservice", "name": "gridservice", "moduleId": PLATFORM.moduleName("./views/gridservice/grid"), "nav": true, "title": "Service Grid" },
-      // { "route": "inmates", "name": "inmates", "moduleId": PLATFORM.moduleName("./views/inmates/inmates"), "nav": true, "title": "Inmates" },
-      // { "route": "inmatesdata", "name": "inmatesdata", "moduleId": PLATFORM.moduleName("./views/inmates/data-form"), "nav": false, "title": "InmatesData" },
-      // { "route": "inmates/:id", "name": "inmates-data-form", "moduleId": PLATFORM.moduleName("./views/inmates/data-form"), "nav": false, "title": "InmatesData" },
-      // { "route": "payee", "name": "payee", "moduleId": PLATFORM.moduleName("./views/payee/payee"), "nav": true, "title": "Payee" },
-      { "route": "ab-select", "name": "ab-select", "moduleId": PLATFORM.moduleName("./views/ab-select/ab-select"), "nav": true, "title": "AB Select" }
+    
+
+  // { "route": "ab-select", "name": "ab-select", "moduleId": PLATFORM.moduleName("./views/ab-select/ab-select"), "nav": true, "title": "AB Select" }
 
     ]);
 

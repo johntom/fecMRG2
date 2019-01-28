@@ -1895,7 +1895,82 @@ async findCatalogone(id) {
   }
 
 
+// gail
+loadClients(search) {
+    // gail p clientsall
+    if (search === undefined) {
+
+      var url = this.baseweb + 'v1/clientsall'
+    } else var url = this.baseweb + 'v1/clientsall' + search
+    console.log('url ', url)
+    return this.http.fetch(url, {
+      method: 'get',
+      mode: 'cors'
+    }).then((res) => res.json());
+    //return this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())
+  }
+
+  findClient(search) {
+    // search has fullu formed query string
+    var url = this.baseweb + 'v1/clientcontent' + search
+    console.log('url ', url)
+    return this.http.fetch(url, {
+      method: 'get',
+      mode: 'cors'
+    }).then((res) => res.json());
+    //return this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())
+  }
+
+  findClientOne(id) {
+    // search has fullu formed query string
+    var url = this.baseweb + `v1/client/${id}`
+    console.log('url ', url)
+    return this.http.fetch(url, {
+      method: 'get',
+      mode: 'cors'
+    }).then((res) => res.json());
+    //return this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())
+  }
+
+  saveclient(rec) {
+    //alert('in saveclaim')
+
+    let url = this.baseweb + `v1/client/update`
+    console.log('url ', url)
+    //return {'data': true}
+    return this.http.fetch(url, {
+      method: 'put',
+      mode: 'cors',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+        // , 'Authorization': 'JWT ' + token
+      },
+      body: JSON.stringify(rec)
+    }).then((res) => res.json());
+
+  }
+  addclient(rec) {
+    let url = this.baseweb + `v1/client/create`
+    console.log('url ', url)
+    //return {'data': true}
+    return this.http.fetch(url, {
+      method: 'post',
+      mode: 'cors',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+        // , 'Authorization': 'JWT ' + token
+      },
+      body: JSON.stringify(rec)
+    }).then((res) => res.json());
+  }
+
+
 }
+
+
+
 
 
 // uploadxxx(formData, id) {
