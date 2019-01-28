@@ -7,7 +7,8 @@
         babelOptions: {
           // stage0: true,
           // The following loads the plugin: transform-decorators-legacy
-          plugins: ['https://fec.blob.core.windows.net/bundles/babel-plugin-transform-decorators-legacy/decorators-plugin-build.js']
+          // plugins: ['https://fec.blob.core.windows.net/bundles/babel-plugin-transform-decorators-legacy/decorators-plugin-build.js']
+       plugins: ['https://storage.googleapis.com/fec-dependencies/decorators-plugin-build.js' ]
         }
       },
       '*.css': {
