@@ -4,8 +4,9 @@ import { inject } from 'aurelia-dependency-injection';
 import { Router, Redirect } from 'aurelia-router';
 import { UtilService } from '../../services/util-service';
 // import moment from 'moment';
+import { ApplicationService } from '../../services/application-service';
 
-@inject(Router, ApiService, UtilService)
+@inject(Router, ApiService, UtilService,ApplicationService)
 export class SearchResults {
   heading = 'Search Results HEADER...';
   footer = 'Search Results FOOTER...';
@@ -65,10 +66,11 @@ export class SearchResults {
 
 
 
-  constructor(router, api, utilService) {
+  constructor(router, api, utilService,appService) {
     this.router = router;
     this.api = api;
     this.utilService = utilService;
+     this.appService = appService;
   }
 
   activate(params, routeConfig) {
@@ -135,7 +137,7 @@ export class SearchResults {
     let selectedRow = grid.select();
     let dataItem = grid.dataItem(selectedRow);
    
-    let rt2 = '#/catalog/data/' + dataItem.id;
+    let rt2 = '#/catalog/data/' + dataItem.id+'/'+ dataItem.ID;
 
     this.router.navigate(rt2);// `#/inventory/${path}`);
 

@@ -45,6 +45,9 @@ export class Compcatsent {
     //       return inv
     //     });
     // }
+
+
+    
   }
   // remove(item) {
   //   alert('you are about to delete ' + item.ProvMemo)
@@ -91,7 +94,7 @@ export class Compcatsent {
   }
  showModal(fieldname, CatalogID,index) {
     this.currentItem.fieldname = 'Catalog'//fieldname
- 
+ // perhaps this should come from catalogcontactsent and not as an embedded array
     this.currentItem.catalog = this.currentItem.catalogsent[index]//.artists
     if (this.currentItem.catalog.CatalogTitle === undefined || this.currentItem.catalog.CatalogTitle === '') this.currentItem.catalog.CatalogTitle = '';
 

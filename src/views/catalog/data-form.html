@@ -280,8 +280,8 @@
 
 					<div id="bottom-left" class="flex-row-3">
 						<div id="data-form-ext" class="flex-column-1">
-							<div id="dataFormOneToManyTabs3" class="flex-row-none flex-wrap">
-								<div repeat.for="tab of appService.dataFormOneToManyTabs3" class="tab ${tab.isSelected ? 'tab-selected' : ''}">
+							<div id="dataFormOneToManyTabs5" class="flex-row-none flex-wrap">
+								<div repeat.for="tab of appService.dataFormOneToManyTabs5" class="tab ${tab.isSelected ? 'tab-selected' : ''}">
 									<div class="form-tab-box" click.delegate="selectOneToManyTab(tab)">
 										<span>${tab.name}</span>
 									</div>
@@ -325,24 +325,3 @@
 		</footerform>
 	</section>
 </template>
-<!-- <div class="Rtable-cell-30 Rtable-cell--highlight">
-										<strong> Legacy Contact ID</strong>
-									</div>
-
-									<div class="Rtable-cell-70  Rtable-cell--highlight">
-										<input type="text " xid="ContactID " class="form-control input-sm " value.bind="currentItem.ID">
-									</div> -->
-<!-- <div class="Rtable-cell-100 Rtable-cell--highlight">
-										<strong>  &nbsp;mailings</strong>
-										<input type="checkbox" id="mailings" checked.bind="currentItem.mailings">
-										<strong> &nbsp;&nbsp;international</strong>
-										<input type="checkbox" id="international" checked.bind="currentItem.international">
-										<strong> &nbsp;&nbsp;nomailings</strong>
-										<input type="checkbox" id="nomailings" checked.bind="currentItem.nomailings">
-										<strong> &nbsp;&nbsp;noinfo</strong>
-										<input type="checkbox" id="noinfo" checked.bind="currentItem.noinfo">
-										<strong> &nbsp;&nbsp;email</strong> 
-										<input type="checkbox" id="email" checked.bind="currentItem.email">
-										<strong> &nbsp;&nbsp;nolongerherecatalogssent</strong>
-										<input type="checkbox" id="nolongerherecatalogssent" checked.bind="currentItem.nolongerherecatalogssent">
-									</div> -->

@@ -53,7 +53,7 @@ export class ApplicationService {
     if (item && item.reset) {
       item.reset();
     }
-   
+
     let index = this.tabs.indexOf(tab);
     tab.isSelected = false;
     this.tabs.splice(index, 1);
@@ -61,7 +61,7 @@ export class ApplicationService {
 
   // Feb 2018 WE are not using onetoone tab but the forms are stored there
   dataFormOneToOneTabs = [
-  
+
   ];
 
   dataFormOneToManyTabs = [
@@ -253,7 +253,7 @@ export class ApplicationService {
     }
   ];
 
- dataFormOneToManyTabs3 = [
+  dataFormOneToManyTabs3 = [
     {
       name: "Address",
       viewModel: "./one-to-many/address",
@@ -269,7 +269,7 @@ export class ApplicationService {
       viewModel: "./one-to-many/catsold",
       isSelected: false
     },
-   
+
     {
       name: "Compcatsent",
       viewModel: "./one-to-many/compcatsent",
@@ -292,7 +292,7 @@ export class ApplicationService {
     }
   ];
 
- dataFormOneToManyTabs4 = [
+  dataFormOneToManyTabs4 = [
     {
       name: "Phone",
       viewModel: "./one-to-many/phone",
@@ -304,19 +304,24 @@ export class ApplicationService {
       isSelected: false
     }
   ];
-dataFormOneToManyTabs5 = [
+  dataFormOneToManyTabs5 = [
     {
       name: "Catalogs Sent To",
       viewModel: "./one-to-many/catalogssentto",
       isSelected: true
+    },
+     {
+      name: "Build",
+      viewModel: "./one-to-many/build",
+      isSelected: false
     }
   ];
- // ,
-    // {
-    //   name: "Type",
-    //   viewModel: "./one-to-many/type",
-    //   isSelected: false
-    // }
+  // ,
+  // {
+  //   name: "Type",
+  //   viewModel: "./one-to-many/type",
+  //   isSelected: false
+  // }
 
 
   // apr 2018
@@ -348,8 +353,8 @@ dataFormOneToManyTabs5 = [
   codesView = []//  1 0
   codesCountry = []//11
   // codesContactType = []//13
-    codesOrgContactTypes = []
-       
+  codesOrgContactTypes = []
+
   codesProvenanceLocation = []//14
   codesConditon = []//15
   codesMailingType = []//16
@@ -387,6 +392,6 @@ dataFormOneToManyTabs5 = [
   testrec = 0;
   currentItem = 0;
   currentContactItem = 0;
-  
+
 }
 

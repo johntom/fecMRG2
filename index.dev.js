@@ -45,7 +45,7 @@ function buildDependencyMap() {
         // Load manifest /?json e.g. https://unpkg.com/lodash@4.17.4/?json
         const pkgUri = `https://unpkg.com/${key}@${value}/package.json`;
         uris.push(axios.get(pkgUri));
-        const jsonUri = `https://unpkg.com/${key}@${value}/?json`;
+         const jsonUri = `https://unpkg.com/${key}@${value}/?meta`;
         uris.push(axios.get(jsonUri));
         console.log('pkg' ,pkgUri ,jsonUri )
       }

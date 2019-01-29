@@ -173,6 +173,13 @@ export class ApiService {
     return await this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())
 
   }
+async getCatalogsent(cat) {
+    var url = this.baseweb + 'v1/catalog/getcatalogsent/' + cat
+    return await this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())
+
+  }
+
+
 
   //  { method: ['post'], path: '/api/v1/artist/create', handler: 'ArtistController.create' },
   //  { method: ['put'], path: '/api/v1/artist/update', handler: 'ArtistController.update' },

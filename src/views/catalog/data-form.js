@@ -3,29 +3,30 @@ import { inject } from 'aurelia-dependency-injection';
 // import { Router } from 'aurelia-router';
 // import { Router, Redirect } from 'aurelia-router';
 // import moment from 'moment';
+import { ApplicationService } from '../../services/application-service';
 
-@inject(ApiService)
+
+@inject(ApiService, ApplicationService)
 export class DataForm {
-  heading = 'DataForm HEADER...';  
+  heading = 'DataForm HEADER...';
   footer = 'DataForm FOOTER...';
   recordId = '';
-  
-  constructor(api) {
+
+  constructor(api, appService) {
     this.api = api;
     this.inv = '';
+    this.appService = appService;
   }
 
   async activate(params, routeConfig) {
     if (params.id) {
-      this.recordId = params.id; 
+      this.recordId = params.id;
       this.heading = `DataForm for record ${this.recordId}`;
-     
-   
-
       console.log('this.recordId ', this.recordId);
-         let response = await this.api.findCatalogone(this.recordId);
-         this.currentItem=response.data[0]
-    return this.currentItem
+      let response = await this.api.findCatalogone(this.recordId);
+      this.currentItem = response.data[0]
+      this.appService.currentCatalogItem = this.currentItem;
+      return this.currentItem
       // return this.api.findInventoryOne(this.recordId)
       //   .then((jsonRes) => {
       //     console.log('jsonRes ', jsonRes);          
@@ -38,5 +39,20 @@ export class DataForm {
       //   });
     }
   }
+  
+  attached() {
 
+
+    if (this.appService.dataFormOneToManyTabs5.length > 0) {
+      let tab = this.appService.dataFormOneToManyTabs5[0];
+      this.selectOneToManyTab(tab);
+    }
+  }
+  selectOneToManyTab(tab) {
+    this.appService.dataFormOneToManyTabs5.forEach(t => t.isSelected = false);
+    tab.isSelected = true;
+    this.currentOneToManyTab = tab;
+    //   this.appService.currentItem = this.currentItem
+    return true;
+  }
 }
