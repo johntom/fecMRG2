@@ -803,6 +803,8 @@ this.createDim()
     //1
     let segment1 = ` ${artistWdates1}<br>`
     segment1 += ` <em> ${this.currentItem.Title}</em>, ${this.currentItem.InvYear} <br> `
+    
+    if (this.currentItem.MediumSupportobj!==undefined)
     segment1 += `  ${this.currentItem.MediumSupportobj.Description}<br> `
     if (this.dimsf !== undefined) {
       segment1 += `  ${this.dimsf} in. framed<br> `
@@ -848,6 +850,7 @@ this.createDim()
 
     this.segment2 += ` ${artistWdates}<br><br><br>`
     this.segment2 += ` <em>${this.currentItem.Title}</em>, ${this.currentItem.InvYear}<br>`
+      if (this.currentItem.MediumSupportobj!==undefined)
     this.segment2 += ` ${this.currentItem.MediumSupportobj.Description}  <br> `
     // this.segment2 += ` <p> ${this.currentItem.InvYear} </p> `
     // if (dimsf !== undefined) this.segment2 += `  ${dimsf} in framed<br> `

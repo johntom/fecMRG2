@@ -9,7 +9,7 @@ import { ApiService } from '../../utils/servicesApi';
 
 export class Home {
   heading = "MRG Home Page";
-  version = 242.27
+  version = 242.28
   versionDate = 'Wed 1/27/2019'
   // versiondate=Date(); catalogssentto
   //  "select2": { 
@@ -137,6 +137,8 @@ export class Home {
     'Click on OK.',
     'https://bl.ocks.org/lstarky/11cd1e90dd912f07a60afaedb9c2613b',
     'if then in kendo grid 		<ak-col k-field="org.OrgName    k-template="#= (org.OrgName) ? org.OrgName : `` #"></ak-col>'
+  ,  `force rediplay not to use browser cache var url = 'http://.../?' + escape(new Date())`
+     
   ]
   todo = [
 

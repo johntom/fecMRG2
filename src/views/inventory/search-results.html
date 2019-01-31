@@ -70,12 +70,12 @@
 		<!-- <ak-col k-title="GenreID" k-width="180px" k-field="GenreID"></ak-col> -->
 
 		<ak-col k-title="InvYear" k-width="180px" k-field="InvYear"></ak-col>
- 	<!-- <ak-col k-field="MediumSupportobj"  k-width="180px"
-     k-template="#= (MediumSupportobj===undefined) ? MediumSupportobj.Description : `` #"></ak-col> -->
-   	<!-- <ak-col k-field="MediumSupportobj-u"  k-width="180px"
-     k-template="#= (MediumSupportobj===undefined)  ? `` : MediumSupportobj.Description   #"></ak-col> -->
- 
-  	<!-- <ak-col k-title="MediumSupport" k-width="180px" k-field="MediumSupportobj.Description"></ak-col> -->
+ 	<ak-col k-field="MediumSupportobj"  k-width="180px"
+     k-template="#= (typeof MediumSupportobj == 'undefined' || MediumSupportobj == null) ? '' : MediumSupportobj.Description #"></ak-col>
+  
+ <!-- <ak-col k-title="Org"  k-width="220px" k-template="#= (typeof org == 'undefined' || org == null) ? '' : org.OrgName #"></ak-col> -->
+
+
 
 		<ak-col k-title="Bin" k-width="180px" k-field="Bin"></ak-col>
 

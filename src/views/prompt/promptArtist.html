@@ -1,0 +1,105 @@
+button click.trigger="save()">Save Reproduction and Close </button>
+
+</ux-dialog-footer>
+</ux-dialog>
+</template> -->
+
+
+<template>
+	<require from="../../../styles/flex.css"></require>
+	<style>
+		ai-dialog-container {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		ai-dialog-container>div {
+			margin: auto !important;
+		}
+	</style>
+	<ux-dialog style="width:800px; height: 550px;">
+		<!-- <ux-dialog-header>
+      <h1>${heading}</h1>
+    </ux-dialog-header> -->
+
+		<ux-dialog-header class="modal-header modal-header-success">
+			<div class="alert alert-danger">
+				<h1>${heading}</h1>
+
+			</div>
+		</ux-dialog-header>
+
+		<ux-dialog-body>
+			<div class="Rtable Rtable--2cols">
+
+				<div class="Rtable-cell-30 Rtable-cell--highlight">
+					<strong> LastName</strong>
+				</div>
+				<div class="Rtable-cell-70  Rtable-cell--highlight">
+					<input type="text" id="LastName" class="form-control input-sm" value.bind="artist.LastName">
+				</div>
+				<div class="Rtable-cell-30 Rtable-cell--highlight">
+					<strong> FirstName</strong>
+				</div>
+				<div class="Rtable-cell-70  Rtable-cell--highlight">
+					<input type="text" id="FirstName" class="form-control input-sm" value.bind="artist.FirstName">
+				</div>
+				<div class="Rtable-cell-30 Rtable-cell--highlight">
+					<strong> Nationality</strong>
+				</div>
+				<div class="Rtable-cell-70  Rtable-cell--highlight">
+					<select id="nationality" class="form-control  input-sm" value.bind="artist.Nationality"> 
+                      <option model.bind="null">Choose...</option> 
+                         <option repeat.for="opt of appService.codesCountry " model.bind="opt.id">
+                    ${opt.Description} 
+                      </option> 
+                    </select>
+				</div>
+				<div class="Rtable-cell-30 Rtable-cell--highlight">
+					<strong> YearofBirth</strong>
+				</div>
+				<div class="Rtable-cell-70  Rtable-cell--highlight">
+					<input type="text" id="YearofBirth" class="form-control input-sm" value.bind="artist.YearofBirth">
+				</div>
+
+				<div class="Rtable-cell-30 Rtable-cell--highlight">
+					<strong> Died</strong>
+				</div>
+				<div class="Rtable-cell-70  Rtable-cell--highlight">
+					<input type="text" id="Died" class="form-control input-sm" value.bind="artist.Died">
+				</div>
+
+				<div class="Rtable-cell-30 Rtable-cell--highlight">
+					<strong> Represented by Mrg</strong>
+				</div>
+				<div class="Rtable-cell-70  Rtable-cell--highlight">
+					<strong> </strong>
+					<input type="checkbox" id="mrgrep" checked.bind="artist.mrgrep">
+				</div>
+
+
+				<div class="Rtable-cell-30 Rtable-cell--highlight">
+					<strong> Notes</strong>
+				</div>
+				<div class="Rtable-cell-70  Rtable-cell--highlight">
+					<!-- <input type="text" id="Notes" class="form-control input-sm" value.bind="artist.Notes"> -->
+					<textarea rows="6" cols="100" id="Notes" class="form-control input-sm" value.bind="artist.Notes"></textarea>
+
+				</div>
+			</div>
+
+
+		</ux-dialog-body>
+		<ux-dialog-footer>
+			<button click.trigger="controller.cancel()">Cancel and Close </button>
+			<button click.trigger="save()">Save Artist and Close </button>
+
+		</ux-dialog-footer>
+	</ux-dialog>
+	<ux-dialog-footer>
+		<!-- <button click.trigger="controller.cancel()">Cancel and Close </button>
+		<button click.trigger="save()">Save Reproduction and Close </button> -->
+
+	</ux-dialog-footer>
+</template>

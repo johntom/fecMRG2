@@ -647,6 +647,9 @@ export class DataForm {
           }
         });
       }
+      if (option === 1) {
+            this.requestclose()
+      }
     }
   }
 
@@ -704,7 +707,7 @@ export class DataForm {
     //   // this.status, this.api.fupload(formData, this.currentItem.CLAIM_NO)
     let formData = new FormData()
     formData.append('file', images[0])
-     console.log('file', images[0]);
+     console.log('file', images[0]); 
     // var newImage = new Image();
     // newImage.src = `https://artbased.com/api/v1/getimage/inv/${this.currentItem.InventoryCode}.jpg`;
     this.mainimage.src = null;
@@ -716,9 +719,9 @@ export class DataForm {
    
       .then((jsonRes) => {
         this.upmess = jsonRes.data
-        //this.showImage=true;
-        // this.mainimage = new Image();
-        this.mainimage.src = `https://artbased.com/api/v1/getimage/inv/${this.currentItem.InventoryCode}.jpg`;
+        //force rediplay not to use browser cache var url = 'http://.../?' + escape(new Date())
+        let fd= new Date();
+        this.mainimage.src = `https://artbased.com/api/v1/getimage/inv/${this.currentItem.InventoryCode}.jpg?${fd}`;
         // "http://localhost/image/id/image" + count++ + ".jpg";
         this.getimageinfo()
         $("#file").val("");

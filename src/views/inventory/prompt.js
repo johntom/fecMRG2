@@ -6,7 +6,9 @@ import { MyDataService } from "../../services/my-data-service";
 import { DialogService } from 'aurelia-dialog';
 import { PromptServ } from '../../services/promptserv';
 import { ApiService } from '../../utils/servicesApi';
-import { Promptyn }      from '../../services/promptyn';
+import { Promptyn } from '../../services/promptyn';
+
+import { Promptartist } from '../prompt/promptArtist';
 
 
 
@@ -22,38 +24,39 @@ export class Prompt {
 
 
   textfields = ['Description', 'Comment', 'Inscribed', 'Treatment']
-  textfielddesc = ['Enter Alt ID', 'Enter Comment', 'Enter Inscribed with left of ":" as reg text right as ialtics till "; repeat', 'Enter Treatment']
-
+  // textfielddesc = ['Enter Alt ID', 'Enter Comment', 'Enter Inscribed with left of ":" as reg text right as ialtics till "; repeat', 'Enter Treatment']
+  textfielddesc = ['Enter Alt ID', 'Enter Comment', 'All test to right of ":" will be in ialtics, use ";" to desginate a line break', 'Enter Treatment']
+  // 
   // for the datalist with medium support
   selectedValue = null;
   findOption = value => this.appService.codesListMediumSupport.find(x => x.Description === value)
 
-// arists
+  // arists
   selectedValueA = null;
   findOptionA = value => this.appService.artistList.find(x => x.ArtistName === value)
 
-// orgs
+  // orgs
   selectedValueO = null;
   findOptionO = value => this.appService.artistList.find(x => x.ArtistName === value)
-// catalogs
-  myDatalistC= null;
-  findOptionC= value => this.appService.catalogList.find(x => x.CatalogTitle === value)
+  // catalogs
+  myDatalistC = null;
+  findOptionC = value => this.appService.catalogList.find(x => x.CatalogTitle === value)
 
   //  this.ArtistName = this.currentItem.artist
   //       if (this.ArtistName.ArtistName === undefined) this.ArtistName.ArtistName = this.currentItem.artist.lastName + ', ' + this.currentItem.artist.firstName
   //       this.dartist.value = this.ArtistName
-// <div show.bind="fieldname==='Artist'">
-// 				<div class="form-group flex-column-1">
-// 					<aubs-typeahead ref='dartist' data.bind="appService.artistList" value.bind="ArtistName" debounce.bind="350" placeholder="${placeholder}"
-// 					 open-on-focus.bind="true" key="ArtistName" results-limit.bind="22" select-single-result.bind="true">
-// 					</aubs-typeahead>
-// 					<!-- <div> Artist: ${ArtistName | stringify}</div> -->
-// 					<div> born: ${ArtistName.yearofBirth } died: ${ArtistName.died} </div>
-// 				</div>
-// 			</div>
-//   this.ArtistName = this.currentItem.artist
-//   if (this.ArtistName.ArtistName === undefined) this.ArtistName.ArtistName = this.currentItem.artist.lastName + ', ' + this.currentItem.artist.firstName
-       
+  // <div show.bind="fieldname==='Artist'">
+  // 				<div class="form-group flex-column-1">
+  // 					<aubs-typeahead ref='dartist' data.bind="appService.artistList" value.bind="ArtistName" debounce.bind="350" placeholder="${placeholder}"
+  // 					 open-on-focus.bind="true" key="ArtistName" results-limit.bind="22" select-single-result.bind="true">
+  // 					</aubs-typeahead>
+  // 					<!-- <div> Artist: ${ArtistName | stringify}</div> -->
+  // 					<div> born: ${ArtistName.yearofBirth } died: ${ArtistName.died} </div>
+  // 				</div>
+  // 			</div>
+  //   this.ArtistName = this.currentItem.artist
+  //   if (this.ArtistName.ArtistName === undefined) this.ArtistName.ArtistName = this.currentItem.artist.lastName + ', ' + this.currentItem.artist.firstName
+
   constructor(controller, appService, dataService, dialogService, api) {
     this.controller = controller;
     this.answer = null;
@@ -119,31 +122,31 @@ export class Prompt {
     // let  findObject  = this.appService.codesListMediumSupport[findIndex] 
     // let findObject = this.appService.codesListMediumSupport.find(x => x.Description === findvalue)
     // alert(`you are about to add ${findvalue} to medium support`)
-      if (this.selectedValue === undefined || this.selectedValue === null ) {   
-        //     alert(`you are about to add ${findvalue} to Insured`)
-            //  this.dialogService.open({ viewModel: Promptyn, model: 'Add or Cancel?', lock: false }).whenClosed(response => {
-            let obj={}
-            obj.type = 2
-            obj.name =   `Add ${findvalue} to Medium Support List or Cancel?`
-            this.dialogService.open({ viewModel: Promptyn, model:obj, lock: false }).whenClosed(response => {
-  
+    if (this.selectedValue === undefined || this.selectedValue === null) {
+      //     alert(`you are about to add ${findvalue} to Insured`)
+      //  this.dialogService.open({ viewModel: Promptyn, model: 'Add or Cancel?', lock: false }).whenClosed(response => {
+      let obj = {}
+      obj.type = 2
+      obj.name = `Add ${findvalue} to Medium Support List or Cancel?`
+      this.dialogService.open({ viewModel: Promptyn, model: obj, lock: false }).whenClosed(response => {
 
-              if (!response.wasCancelled) {
-                 this.addnewms(findvalue)
-               } else {
-                 console.log('cancel');
-               }
-               console.log(response.output);
-             });
-       }
+
+        if (!response.wasCancelled) {
+          this.addnewms(findvalue)
+        } else {
+          console.log('cancel');
+        }
+        console.log(response.output);
+      });
+    }
 
   }
   attached() {
     //  this.currentItem
-    let findOptiono = this.appService.orgsList.find(x => x._id ===  this.currentItem.OwnerID)
-    console.log('appService.orgsList',findOptiono,this.appService.orgsList)
-    let findOptions = this.appService.orgsList.find(x => x._id ===  this.currentItem.SoldToID)
-    console.log('appService.orgsList',findOptions,this.appService.orgsList)
+    let findOptiono = this.appService.orgsList.find(x => x._id === this.currentItem.OwnerID)
+    console.log('appService.orgsList', findOptiono, this.appService.orgsList)
+    let findOptions = this.appService.orgsList.find(x => x._id === this.currentItem.SoldToID)
+    console.log('appService.orgsList', findOptions, this.appService.orgsList)
     let opos = this.orgfields.findIndex(x => x === this.fieldname);
     if (opos !== -1) {
       this.orgfielddescription = this.orgfielddesc[opos]
@@ -166,35 +169,37 @@ export class Prompt {
 
 
     if (this.fieldname === 'Artist') {
-    // if (this.currentItem.artist === undefined) {
-    //   } else {
-    //     this.ArtistName = this.currentItem.artist
-    //     if (this.ArtistName.ArtistName === undefined) this.ArtistName.ArtistName = this.currentItem.artist.lastName + ', ' + this.currentItem.artist.firstName
-    //     this.dartist.value = this.ArtistName
-    //   }
+      // if (this.currentItem.artist === undefined) {
+      //   } else {
+      //     this.ArtistName = this.currentItem.artist
+      //     if (this.ArtistName.ArtistName === undefined) this.ArtistName.ArtistName = this.currentItem.artist.lastName + ', ' + this.currentItem.artist.firstName
+      //     this.dartist.value = this.ArtistName
+      //   }
       this.doc = `Select Artist or add new if not in list.`
-      this.heading = `Select Insured or add new if not in list.`
-      this.placeholder = `Select Insured or add new if not in list.`
+      this.heading = `Select Artist or add new if not in list.`
+      this.placeholder = `Select Artist or add new if not in list.`
       if (this.currentItem.artist === undefined || this.currentItem.artist === '') {
       } else {
         //  this.insuredobj = this.currentItem.insured
         this.myDatalistA.value = this.currentItem.artist.ArtistName
+        this.selectedValueA = this.currentItem.artist;
+     
       }
-    
+
     }
 
 
     if (this.fieldname === 'Catalog') {
 
       this.doc = `Select Catalog or add new if not in list.`
-      this.heading = `Select Insured or add new if not in list.`
-      this.placeholder = `Select Insured or add new if not in list.`
+      this.heading = `Select Catalog or add new if not in list.`
+      this.placeholder = `Select Catalog or add new if not in list.`
       if (this.currentItem.catalog === undefined || this.currentItem.catalog === '') {
       } else {
         //  this.insuredobj = this.currentItem.insured
         this.myDatalistC.value = this.currentItem.catalog.CatalogTitle
       }
-    
+
     }
 
     if (this.fieldname === 'MediumSupportobj') {
@@ -206,7 +211,7 @@ export class Prompt {
         this.MedSup = this.currentItem.MediumSupportobj
         this.myDatalist.value = this.MedSup.Description
       }
-      
+
     }
 
     // let opos = this.orgfields.findIndex(x => x === this.fieldname);
@@ -264,32 +269,58 @@ export class Prompt {
       //   this.myMultiSelect.kWidget.setDataSource(ss);
 
     }
-this.hasFocus = true;
+    this.hasFocus = true;
   }
 
-changeCallbackArtist(selectedValueA) {
-      let findvalue = this.myDatalistA.value
+  async changeCallbackArtist(selectedValueA) {
+    let findvalue = this.myDatalistA.value
+    let findArtist = this.appService.artistList.find(x => x.ArtistName === findvalue)
 
+    if (findArtist === undefined) {
+      //     alert(`you are about to add ${findvalue} to Insured`)
+      // this.dialogService.open({ viewModel: Promptorg, model: currentModel, lock: true }).whenClosed(response => {
 
-    // if (this.selectedValueA === undefined) {
-    //   //     alert(`you are about to add ${findvalue} to Insured`)
-    //   this.dialogService.open({ viewModel: Promptyn, model: `Add ${findvalue} to insured list or Cancel?`, lock: false }).whenClosed(response => {
+      this.dialogService.open({ viewModel: Promptartist, model: { findvalue }, lock: true }).whenClosed(response => {
 
-    //     if (!response.wasCancelled) {
-    //       this.addInsured(findvalue)
-    //     } else {
-    //       console.log('cancel');
-    //     }
-    //     console.log(response.output);
-    //   });
+        if (!response.wasCancelled) {
+          // this.addArtist(findvalue)
+       
+        // this.myDatalistA = this.appService.addedartist;
+        this.myDatalistA.value = this.appService.addedartist.ArtistName;
+        this.selectedValueA = this.appService.addedartist;
+          this.appService.addedartist = '';
+          //this.controller.cancel()
+        } else {
+          console.log('cancel');
+        }
+        console.log(response.output);
+      });
 
-
-    // }
+    }
   }
-changeCallbackCatalog(selectedValueC) {
-      let findvalue = this.myDatalistC.value
-}
-  
+
+  // addArtist(findvalue) {
+  //   let ibod = { 'LastName': findvalue }
+  //   this.api.insertartist(ibod).then((jsonRes) => {
+  //     let art = jsonRes.data;
+  //     let newartist = {}
+  //     newartist.id = art.id
+  //     newartist.lastName = art.lastName
+  //     newartist.firstName = art.firstName
+  //     newartist.yearofBirth = art.yearofBirth
+  //     newartist.died = art.died
+  //     newartist.ArtistName = art.lastName + ', ' + art.firstName
+
+
+  //     this.appService.artistList.push(newartist)
+  //     this.controller.cancel()
+  //     // return Promise.resolve(this.dataService.loadInsured()) //.then(values => {})
+  //   })
+  // }
+  changeCallbackCatalog(selectedValueC) {
+    let findvalue = this.myDatalistC.value
+  }
+
   //  alert(`${this.addlist} Exists in list already!`)
   addit() {
     let meds = this.appService.savedlists
@@ -345,8 +376,19 @@ changeCallbackCatalog(selectedValueC) {
     // this.currentItem.artistname = orgname
     //  this.currentItem.artist = this.ArtistName
     if (this.fieldname === 'Artist') {
+      if (this.selectedValueA !== null) {
+        if (this.currentItem.artist === undefined) this.currentItem.artist = {}
 
-      this.currentItem.artist = this.ArtistName
+        this.currentItem.artist.ArtistName = this.selectedValueA.ArtistName
+        this.currentItem.artist.died = this.selectedValueA.Died
+        this.currentItem.artist.firstName = this.selectedValueA.FirstName
+        this.currentItem.artist.id = this.selectedValueA.id
+        this.currentItem.artist.lastName = this.selectedValueA.LastName
+        this.currentItem.artist.yearofBirth = this.selectedValueA.YearofBirth
+
+
+        // this.currentItem.artist = this.selectedValueA// ArtistName
+      }
       // this.appService.currentItem.artist = this.ArtistName
     }
     if (this.fieldname === 'MediumSupportobj') {
@@ -357,12 +399,12 @@ changeCallbackCatalog(selectedValueC) {
       this.currentItem.MediumSupportobj = this.selectedValue
     }
     if (this.fieldname === 'OwnerID') {
-      if(this.currentItem.ownername===undefined) this.currentItem.ownername=''
-     // if (this.OrgName.OrgName !== this.currentItem.ownername) {
-       
-        this.currentItem.OwnerID = this.OrgName._id
-        this.currentItem.ownername = this.OrgName.OrgName
-     // }
+      if (this.currentItem.ownername === undefined) this.currentItem.ownername = ''
+      // if (this.OrgName.OrgName !== this.currentItem.ownername) {
+
+      this.currentItem.OwnerID = this.OrgName._id
+      this.currentItem.ownername = this.OrgName.OrgName
+      // }
 
     }
     if (this.fieldname === 'SoldToID') {

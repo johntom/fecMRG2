@@ -205,6 +205,19 @@ async getCatalogsent(cat) {
       body: JSON.stringify(rec)
     }).then((res) => res.json());
   }
+
+  
+    async insertartist(findvalue) {
+
+      let url = this.baseweb + `v1/artist/create`
+      return await this.http.fetch(url, {
+        method: 'post', mode: 'cors', headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(findvalue)
+      }).then((res) => res.json())
+    }
   async updateartistAA(rec) {
 
     if (rec.id === 'create') {
