@@ -11,6 +11,7 @@ import { Prompt } from   '../../../services/prompt';
 import { bindable } from 'aurelia-framework';
 // import { DialogService } from 'aurelia-dialog';
 
+import { Promptcontact } from '../prompt';
 
 // @inject()
 // @inject(Router, UtilService, ApplicationService, MyDataService,DialogService)
@@ -67,7 +68,7 @@ export class Artists {
     this.currentItem.artist = this.currentItem.artists[index]//.artists
     if (this.currentItem.artist.ArtistName === undefined) this.currentItem.artist.ArtistName = '';
 
-    this.dialogService.open({ viewModel: Prompt, model: this.currentItem, lock: true }).whenClosed(response => {
+    this.dialogService.open({ viewModel: Promptcontact, model: this.currentItem, lock: true }).whenClosed(response => {
       if (response.wasCancelled) {
         console.log('cancel');
       } else {

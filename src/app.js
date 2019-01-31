@@ -63,7 +63,10 @@ export class App {
 
       {"route": 'client/dataadd', name: 'client-data-add-form', moduleId: PLATFORM.moduleName('./views/client/data-add-form'), title: 'Data Add Form' }, 
 
-    
+       { route: 'code/:id', name: 'code-search-results', moduleId: PLATFORM.moduleName('./views/code/search-results'), title: 'Search Results', activationStrategy: 'replace' },
+      { route: 'code/data/:id', name: 'code-data-form', moduleId: PLATFORM.moduleName('./views/code/data-form'), title: 'Data Form', activationStrategy: 'replace' },
+      { route: 'code', name: 'code', moduleId: PLATFORM.moduleName('./views/code/code'), nav: true, title: 'Code' },
+
     
 
   // { "route": "ab-select", "name": "ab-select", "moduleId": PLATFORM.moduleName("./views/ab-select/ab-select"), "nav": true, "title": "AB Select" }

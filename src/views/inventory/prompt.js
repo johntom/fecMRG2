@@ -264,7 +264,7 @@ export class Prompt {
       //   this.myMultiSelect.kWidget.setDataSource(ss);
 
     }
-
+this.hasFocus = true;
   }
 
 changeCallbackArtist(selectedValueA) {

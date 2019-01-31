@@ -12,7 +12,7 @@
 			<thead class="table-header-blue" data-sort="items.bind: currentItem.addresses; cols: ['WorkDate','Notes']">
 				<tr>
     
-	<th width="70px" class="header">Id </th>
+	<!-- <th width="70px" class="header">Id </th> -->
 					<th width="220px" class="header">Address </th>
 					<th width="220px" class="header">City </th>
 					<th width="220px" class="header">State </th>
@@ -41,7 +41,7 @@
 			</tfoot>
 			<tbody>  
 				<tr repeat.for="address of currentItem.addresses" with.bind="address">
-      		<td width="70px"><input type="text" id="id" class="form-control  input-sm" value.bind="id"></td>
+      		<!-- <td width="70px"><input type="text" id="id" class="form-control  input-sm" value.bind="id"></td> -->
 					<td width="220px"><input type="text" id="xContactAddress" class="form-control  input-sm" value.bind="address"></td>
 					<td width="220px"><input type="text" id="xContactCity" class="form-control  input-sm" value.bind="city"></td>
 			
