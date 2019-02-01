@@ -75,6 +75,8 @@ export class Exhibition {
     }
     exhibition.unshift(item)
     if (flag) this.currentItem.exhibition = exhibition
+        this.modal(item, 0) // unshirt reproduction.length + 1)
+
   }
 
  modal(item, index) {

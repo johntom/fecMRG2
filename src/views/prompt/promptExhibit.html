@@ -9,9 +9,7 @@
 				<h1 style="width:800px">${heading}</h1>
 
 			</div>
-				<button click.trigger="controller.cancel()">Cancel and Close </button>
-			<button click.trigger="save()">Save Exhibit and Close </button>
-
+		
 
 		</ux-dialog-header>
 		<ux-dialog-body>
@@ -47,7 +45,7 @@
 							<div class="Rtable-cell-70  Rtable-cell--light">
 								<!-- <input type="text" id="ExhibitTitle" class="form-control input-sm" value.bind="item.ExhibitTitle"> -->
 
-		             <textarea rows="3" cols="66" id="Notes" wrap class="form-control input-sm" value.bind="item.ExhibitTitle"></textarea>
+		             <textarea rows="3" cols="66" id="xNotes" wrap class="form-control input-sm" value.bind="item.ExhibitTitle"></textarea>
 
 								<!-- <textarea id="ExhibitTitle" cols="66" wrap value.bind="item.ExhibitTitle" rows="2 "> -->
 							</div>
@@ -59,7 +57,7 @@
 							</div>
 							<div class="Rtable-cell-70  Rtable-cell--light">
 								<!-- <input type="text" id="ExhibitSponser" class="form-control input-sm " value.bind="item.ExhibitSponser"> -->
-                  <textarea rows="3" cols="66" id="ExhibitSponser" wrap class="form-control input-sm" value.bind="item.ExhibitSponser"></textarea>
+                  <textarea rows="3" cols="66" id="xExhibitSponser" wrap class="form-control input-sm" value.bind="item.ExhibitSponser"></textarea>
 
 							</div>
 						</div>
@@ -123,19 +121,15 @@
 
 							</div>
 						</div>
-            	<div class="Rtable Rtable--2cols">
+            	<!-- <div class="Rtable Rtable--2cols">
 							<div class=" Rtable-cell-30 Rtable-cell--highlight">
 						<strong>Command </strong>
 							</div>
 							<div class="Rtable-cell-70  Rtable-cell--light">
-						          <button click.trigger="controller.cancel()">Cancel and Close </button>
-			<button click.trigger="save()">Save Exhibit and Close </button>
-
+						    
 							</div>
-						</div>
-               <button click.trigger="controller.cancel()">Cancel and Close </button>
-			<button click.trigger="save()">Save Exhibit and Close </button>
-
+						</div> -->
+ 
 					</tbody>
 				</table>
      
@@ -145,9 +139,9 @@
 
 		<ux-dialog-footer>
 
-			<!-- <button show.bind="addlist" click.trigger="addit()">Add New Saved List</button> -->
 			<button click.trigger="controller.cancel()">Cancel and Close </button>
 			<button click.trigger="save()">Save Exhibit and Close </button>
+
 
 		</ux-dialog-footer>
 	</ux-dialog>

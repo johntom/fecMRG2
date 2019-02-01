@@ -27,7 +27,7 @@ export class Promptexhibit {
   activate(currentmodel) {
     this.item = currentmodel.item;
     this.currentItem = currentmodel.currentItem
-    this.heading = "Inventory Exhibit"
+    this.heading = "Exhibit"
   }
 
 

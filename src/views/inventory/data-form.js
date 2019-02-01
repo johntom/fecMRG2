@@ -638,17 +638,24 @@ export class DataForm {
           this.message = "Save successful. Inventory updated @ " + savetime
           this.appService.testrec = this.currentItem
           this.appService.currentView = this.currentItem
-          this.appService.originalrec = JSON.parse(JSON.stringify(this.currentItem))
+      
+      /////////////////////
+          // this.appService.originalrec = JSON.parse(JSON.stringify(this.currentItem))
+          this.appService.originalrec = this.currentItem
+      
+      
+      
           this.skippromt = true
           if (option === 1) {
-            this.requestclose()
+            // alert('jr')
+            this.requestcloseNoCheck()
           } else {
 
           }
         });
       }
       if (option === 1) {
-            this.requestclose()
+      //     this.requestclose()
       }
     }
   }
@@ -782,6 +789,22 @@ export class DataForm {
 
 
   }
+
+   requestcloseNoCheck() {
+
+    let tab = this.appService.tabs.find(f => f.isSelected);
+    let index = this.appService.tabs.findIndex(f => f.isSelected)
+    let rt2 = '#/inventory/' + this.tabname
+
+
+    let newIndex = (index > 0) ? index - 1 : 0;
+    let newTab = this.appService.tabs[newIndex];
+    this.appService.tryCloseTab(this.appService.currentView, tab, newTab.href);
+
+
+  }
+
+  
 
 
   closeTab(tab) {

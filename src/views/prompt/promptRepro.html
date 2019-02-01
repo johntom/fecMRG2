@@ -15,7 +15,7 @@
 		</ux-dialog-header>
 		<ux-dialog-body>
 
-
+<form autocomplete="off">
 			<div class="form-group flex-column-1">
 				<h2> ${doc} </h2>
 				<table class="table-condensed table">
@@ -34,7 +34,7 @@
 								<strong> ReproductionAuthor </strong>
 							</div>
 							<div class="Rtable-cell-70  Rtable-cell--light">
-								<input type="text" id="ReproductionAuthor" class="form-control input-sm au-target" value.bind="item.ReproductionAuthor" au-target-id="142">
+								<input type="text" autocomplete="off" id="xReproductionAuthor" class="form-control input-sm au-target" value.bind="item.ReproductionAuthor" au-target-id="142">
 							</div>
 						</div>
 						<div class="Rtable Rtable--2cols">
@@ -42,7 +42,7 @@
 								<strong> Author	First </strong>
 							</div>
 							<div class="Rtable-cell-70  Rtable-cell--light">
-								<input type="text" id="AuthorFirst" class="form-control input-sm " value.bind="item.AuthorFirst">
+								<input type="text" autocomplete="off" id="xAuthorFrst" class="form-control input-sm " value.bind="item.AuthorFirst">
 							</div>
 						</div>
 						<div class="Rtable Rtable--2cols">
@@ -51,7 +51,7 @@
 							</div>
 							<div class="Rtable-cell-70  Rtable-cell--light">
 								<!-- au-target -->
-								<input type="text" id="AuthorFirst" class="form-control input-sm " value.bind="item.AuthorLast">
+								<input type="text" autocomplete="off" id="xAuthorLst" class="form-control input-sm " value.bind="item.AuthorLast">
 							</div>
 						</div>
 
@@ -62,7 +62,7 @@
 							<div class="Rtable-cell-70  Rtable-cell--light">
 								<!-- <input type="checkbox" id="Editor" checked.bind="item.Editor"> -->
                
-								<input type="checkbox" id="Editor" class="form-control input-sm" checked.bind="item.Editor">
+								<input type="checkbox" id="xEditor" class="form-control input-sm" checked.bind="item.Editor">
 
 							</div>
 						</div>
@@ -73,7 +73,7 @@
 								<strong>Reproduction Title </strong>
 							</div>
 							<div class="Rtable-cell-70  Rtable-cell--light">
-								<input type="text" id="ReproductionTitle" class="form-control input-sm " value.bind="item.ReproductionTitle">
+								<input type="text" id="xReproductionTitle" class="form-control input-sm " value.bind="item.ReproductionTitle">
 							</div>
 						</div>
 
@@ -82,7 +82,7 @@
 								<strong>Publisher </strong>
 							</div>
 							<div class="Rtable-cell-70  Rtable-cell--light">
-								<input type="text" id="ReproductionName" class="form-control input-sm " value.bind="item.ReproductionName">
+								<input type="text" id="xReproductionName" class="form-control input-sm " value.bind="item.ReproductionName">
 							</div>
 						</div>
 						<div class="Rtable Rtable--2cols">
@@ -104,7 +104,7 @@
 								<strong>Date </strong>
 							</div>
 							<div class="Rtable-cell-70  Rtable-cell--light">
-								<input type="text" id="ReproductionDate" class="form-control input-sm " value.bind="item.ReproductionDate">
+								<input type="text" id="xReproductionDate" class="form-control input-sm " value.bind="item.ReproductionDate">
 							</div>
 						</div>
 						<div class="Rtable Rtable--2cols">
@@ -112,7 +112,7 @@
 								<strong>Sort Date </strong>
 							</div>
 							<div class="Rtable-cell-70  Rtable-cell--light">
-								<input type="date" id="ReproductionSortDate" class="form-control input-sm " value.bind="item.ReproductionSortDate">
+								<input type="date" id="xReproductionSortDate" class="form-control input-sm " value.bind="item.ReproductionSortDate">
 							</div>
 						</div>
 
@@ -122,7 +122,7 @@
 								<strong>Number </strong>
 							</div>
 							<div class="Rtable-cell-70  Rtable-cell--light">
-								<input type="text" id="Number" class="form-control input-sm " value.bind="item.no">
+								<input type="text" id="xNumber" class="form-control input-sm " value.bind="item.no">
 							</div>
 						</div>
 
@@ -131,7 +131,7 @@
 								<strong>Page </strong>
 							</div>
 							<div class="Rtable-cell-70  Rtable-cell--light">
-								<input type="text" id="ReproductionPage" class="form-control input-sm " value.bind="item.ReproductionPage">
+								<input type="text" id="xReproductionPage" class="form-control input-sm " value.bind="item.ReproductionPage">
 							</div>
 						</div>
 						<div class="Rtable Rtable--2cols">
@@ -189,6 +189,7 @@
 
 
 			<hr>
+</form>
 		</ux-dialog-body>
 
 		<ux-dialog-footer>
