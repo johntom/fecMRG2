@@ -27,7 +27,7 @@ export class Promptrepro {
   activate(currentmodel) {
     this.item = currentmodel.item;
     this.currentItem = currentmodel.currentItem
-    this.heading = "Inventory Reproduction"
+    this.heading = "Reproduction"
   }
 
 

@@ -67,7 +67,8 @@ export class Exhibition {
     if (exhibition === undefined) {
       flag = true
       exhibition = []
-    }
+      item.id=1
+    } else item.id =exhibition.length+1 
     item = {
       addExhibit: '', ExhibitSponser: '', ExhibitLocation: '', ExhibitRepro: '',
       ExhibitDates: '', ExhibitSortDate: '',

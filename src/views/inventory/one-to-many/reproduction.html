@@ -60,12 +60,12 @@
 					</td>
 					<td width="125px">
 						<span show.bind="!reproduction.edit">${AuthorFirst}</span>
-						<input show.bind="reproduction.edit" id="zAuthorFirst" class="form-control input-sm" disabled.bind="!reproduction.edit" type="text"
+						<input show.bind="reproduction.edit" id="zReproductionTitle2" class="form-control input-sm" disabled.bind="!reproduction.edit" type="text"
 						 value.bind="AuthorFirst">
 					</td>
 					<td width="125px">
 						<span show.bind="!reproduction.edit">${AuthorLast}</span>
-						<input show.bind="reproduction.edit" id="zAuthorLast" class="form-control input-sm" disabled.bind="!reproduction.edit" type="text"
+						<input show.bind="reproduction.edit" id="zReproductionTitle3" class="form-control input-sm" disabled.bind="!reproduction.edit" type="text"
 						 value.bind="AuthorLast">
 					</td>
 
@@ -98,7 +98,7 @@
 
 					</td>
 
-					<td width="120px"><input type="date" id="ReproductionDate" class="form-control  input-sm" value.bind="ReproductionDate  | dateFormat "></td>
+					<td width="120px"><input type="text" id="ReproductionDate" class="form-control  input-sm" value.bind="ReproductionDate "></td>
 					<td width="90px"><input type="text" id="Number" class="form-control  input-sm" value.bind="no"></td>
 
 
@@ -126,8 +126,8 @@
                     </select>
 
 					</td>
-
-					<td width="60px"><input type="date" id="ReproductionSortDate" class="form-control  input-sm" value.bind="ReproductionSortDate  | dateFormat "></td>
+<!--   | dateFormat -->
+					<td width="60px"><input type="date" id="ReproductionSortDate" class="form-control  input-sm" value.bind="ReproductionSortDate "></td>
 
 					<!-- <select ref='ReproductionExhibit' id="ReproductionExhibit" class="form-control input-sm"
              value.bind="ReproductionExhibit"
