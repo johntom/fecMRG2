@@ -70,6 +70,7 @@ export class Exhibition {
       item.id=1
     } else item.id =exhibition.length+1 
     item = {
+      id:item.id,
       addExhibit: '', ExhibitSponser: '', ExhibitLocation: '', ExhibitRepro: '',
       ExhibitDates: '', ExhibitSortDate: '',
       Traveled: '', ExhibitMemo: '', edit: true

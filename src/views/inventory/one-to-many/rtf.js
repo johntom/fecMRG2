@@ -415,13 +415,15 @@ export class Rtf {
 
     }
   }
+  
   //1
-  buildInscribed() {
+  buildInscribed(inscribed) {
     // rules:
     // 1 everying to left of : is plain text and to right is em
     // 2 until it finds a ; (convert ; to </em> <br>)  
     // 3 repeat 1 from new position
-    let inscribed = this.currentItem.Inscribed
+    
+    // let inscribed = this.currentItem.Inscribed
     let iLines = []
     console.log('inscribed==================== ', inscribed)
     if (inscribed !== undefined) {
@@ -443,14 +445,20 @@ export class Rtf {
       leftofcolonText = inscribed.substr(0, colonPos);
       rightofcolonbaseText = inscribed.substr(colonPos + 1, inscribed.length - colonPos);
       semisPos = rightofcolonbaseText.indexOf(";");
-      rightofcolonTextem = '<em>' + rightofcolonbaseText.substr(1, semisPos - 1) + '</em><br>';
+      if (semisPos===-1) {
+      semisPos=rightofcolonbaseText.length
+      rightofcolonTextem = '<em>' + rightofcolonbaseText.substr(0, semisPos - 1) + '</em>'; //+ '</em><br>';
+       iLines.push(leftofcolonText + ' ' + rightofcolonTextem )
+      } else {
+        // there is a semi so add br
+         rightofcolonTextem = '<em>' + rightofcolonbaseText.substr(1, semisPos - 1) + '</em><br>';
       restoftext = rightofcolonbaseText.substr(semisPos + 1, rightofcolonbaseText.length);
 
       colonPos = restoftext.indexOf(":");
       leftofcolonText2 = restoftext.substr(0, colonPos);
       rightofcolonTextem2 = '<em>' + restoftext.substr(colonPos + 1, restoftext.length - colonPos) + '</em>';
       iLines.push(leftofcolonText + ' ' + rightofcolonTextem + ' ' + leftofcolonText2 + ' ' + rightofcolonTextem2)
-
+      }
       for (const item of iLines) {
         this.inscribedText += item + '<br>'
       }
@@ -797,7 +805,7 @@ this.createDim()
 
 
 
-    this.buildInscribed()
+    this.buildInscribed(this.currentItem.Inscribed)
 
 
     //1
@@ -868,9 +876,9 @@ this.createDim()
 
       this.segment2 += ` no. ${this.currentItem.CatalogueNo} <br>  <br> <br> `
 
-    this.buildEdition()
-
-
+     this.buildEdition()
+    
+     
     this.buildProv()
     this.buildRepro()
 

@@ -23,9 +23,9 @@ export class Prompt {
     'Conserved By', 'Sold To', 'Sold To', 'Museum Loan To']
 
 
-  textfields = ['Description', 'Comment', 'Inscribed', 'Treatment']
+  textfields = ['Description', 'Comment', 'Inscribed', 'Treatment','EditionComment']
   // textfielddesc = ['Enter Alt ID', 'Enter Comment', 'Enter Inscribed with left of ":" as reg text right as ialtics till "; repeat', 'Enter Treatment']
-  textfielddesc = ['Enter Alt ID', 'Enter Comment', 'All test to right of ":" will be in ialtics, use ";" to desginate a line break', 'Enter Treatment']
+  textfielddesc = ['Enter Alt ID', 'Enter Comment', 'All text to right of ":" will be in italics, use ";" to desginate a line break', 'Enter Treatment','All text to right of ":" will be in italics, use ";" to desginate a line break']
   // 
   // for the datalist with medium support
   selectedValue = null;

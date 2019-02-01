@@ -69,7 +69,7 @@ export class DataForm {
   //   { id: 2, name: 'NFS' },
   //   { id: 3, name: 'DON' },
   // ];
- searchsold = [
+  searchsold = [
     { id: 1, name: 'Y' },
     { id: 2, name: 'N' },
     { id: 3, name: 'NFS' },
@@ -183,11 +183,11 @@ export class DataForm {
   showModal(fieldname) {
     this.currentItem.fieldname = fieldname
     this.currentItem.recordId = this.recordId
-  if( this.currentItem.OwnerID===6275 ) this.currentItem.OwnerID='5c434cc100a8a1588c6407b7'
-      let findOptiono = this.appService.orgsList.find(x => x._id ===  this.currentItem.OwnerID)
-    console.log('appService.orgsList',findOptiono)
-    let findOptions = this.appService.orgsList.find(x => x._id ===  this.currentItem.SoldToID)
-    console.log('appService.orgsList',findOptions)
+    if (this.currentItem.OwnerID === 6275) this.currentItem.OwnerID = '5c434cc100a8a1588c6407b7'
+    let findOptiono = this.appService.orgsList.find(x => x._id === this.currentItem.OwnerID)
+    console.log('appService.orgsList', findOptiono)
+    let findOptions = this.appService.orgsList.find(x => x._id === this.currentItem.SoldToID)
+    console.log('appService.orgsList', findOptions)
     this.dialogService.open({ viewModel: Prompt, model: this.currentItem, lock: true }).whenClosed(response => {
       //  if(this.recordId==='create')  this.currentItem.recordId=
       // if (fieldname === 'Artist') {
@@ -199,8 +199,8 @@ export class DataForm {
       //   this.currentItem.artist = artistsel 
       //  //  this.currentItem.ArtistName=  this.currentItem.artistname
       //  //(this.currentItem.artist); 
-
       // }
+
       if (!response.wasCancelled) {
         // console.log('Delete')
         // let notes = this.currentItem.notes
@@ -305,7 +305,7 @@ export class DataForm {
 
   selectChange(GenreID) {
     // alert('in c ' + opt + GenreID)
-   
+
   }
 
   showAttendees() {
@@ -313,11 +313,11 @@ export class DataForm {
   }
   // (MediumSupport,currentItem.MediumSupport)
   selectChangedMS(MediumSupport) {
-  //  alert('in selectChangedMS  ', MediumSupport, this.MediumSupport1)
-  
+    //  alert('in selectChangedMS  ', MediumSupport, this.MediumSupport1)
+
   }
   DropdownChanged(changedVal) {
-  //  alert(changedVal);
+    //  alert(changedVal);
   }
   activate(params, routeConfig) {
     //12  this.tabname = this.appService.currentSearch
@@ -535,7 +535,7 @@ export class DataForm {
         })
     }
   }
-  
+
   /*
    getimageinfo() {
       if (this.currentItem.clientHeight===undefined){
@@ -638,13 +638,13 @@ export class DataForm {
           this.message = "Save successful. Inventory updated @ " + savetime
           this.appService.testrec = this.currentItem
           this.appService.currentView = this.currentItem
-      
-      /////////////////////
+
+          /////////////////////
           // this.appService.originalrec = JSON.parse(JSON.stringify(this.currentItem))
           this.appService.originalrec = this.currentItem
-      
-      
-      
+
+
+
           this.skippromt = true
           if (option === 1) {
             // alert('jr')
@@ -655,7 +655,7 @@ export class DataForm {
         });
       }
       if (option === 1) {
-      //     this.requestclose()
+        //     this.requestclose()
       }
     }
   }
@@ -714,20 +714,20 @@ export class DataForm {
     //   // this.status, this.api.fupload(formData, this.currentItem.CLAIM_NO)
     let formData = new FormData()
     formData.append('file', images[0])
-     console.log('file', images[0]); 
+    console.log('file', images[0]);
     // var newImage = new Image();
     // newImage.src = `https://artbased.com/api/v1/getimage/inv/${this.currentItem.InventoryCode}.jpg`;
     this.mainimage.src = null;
 
     this.api.upload(formData, this.currentItem.InventoryCode)
-    // this.api.uploadPARKTOWER(formData, this.currentItem.InventoryCode)
-   
-   
-   
+      // this.api.uploadPARKTOWER(formData, this.currentItem.InventoryCode)
+
+
+
       .then((jsonRes) => {
         this.upmess = jsonRes.data
         //force rediplay not to use browser cache var url = 'http://.../?' + escape(new Date())
-        let fd= new Date();
+        let fd = new Date();
         this.mainimage.src = `https://artbased.com/api/v1/getimage/inv/${this.currentItem.InventoryCode}.jpg?${fd}`;
         // "http://localhost/image/id/image" + count++ + ".jpg";
         this.getimageinfo()
@@ -790,7 +790,7 @@ export class DataForm {
 
   }
 
-   requestcloseNoCheck() {
+  requestcloseNoCheck() {
 
     let tab = this.appService.tabs.find(f => f.isSelected);
     let index = this.appService.tabs.findIndex(f => f.isSelected)
@@ -804,7 +804,7 @@ export class DataForm {
 
   }
 
-  
+
 
 
   closeTab(tab) {

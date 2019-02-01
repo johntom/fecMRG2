@@ -23,7 +23,9 @@
 			<div show.bind="fieldname==='Inscribed'">
 				<textarea rows="8" cols="100" id="Inscribed" class="form-control input " value.bind="currentItem.Inscribed"></textarea>
 			</div>
-
+<div show.bind="fieldname==='EditionComment'">
+				<textarea rows="8" cols="100" id="EditionComment" class="form-control input " value.bind="currentItem.EditionComment"></textarea>
+			</div>
 
 			<div show.bind="fieldname==='Treatment'">
 				<textarea rows="8" cols="100" ref="dTreatment" id="dTreatment" class="form-control input-sm" value.bind="currentItem.Treatment"></textarea>
