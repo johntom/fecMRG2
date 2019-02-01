@@ -2,12 +2,10 @@
 	<require from="aurelia-kendoui-bridge/editor/editor"></require>
 	<section>
 		<span>&nbsp;&nbsp;	
-					<button class="btn btn-sm btn-danger" click.delegate="createRTF()">
+					<button class="btn btn-sm btn-success" click.delegate="createRTF()">
 						Create Label and Fact Sheet v103
 					</button>
-<!-- <button class="btn btn-sm btn-danger" click.delegate="saveChanges()">
-						saveChanges
-					</button> -->
+
 						 		<label repeat.for="sold of searchsold">
          <input type="radio" name="group1"
                     model.bind="sold.id" checked.bind="selectedimagesize">
@@ -22,16 +20,24 @@
 
 			    
 	<textarea ak-rich-editor="k-tools.bind: tools; k-resizable.bind: resizable; k-widget.two-way: editor" k-on-ready.delegate="setInitialValue($event.detail)"
-		 style="height:440px">
+		   k-on-change.delegate="onChange($event.detail)"  style="height:440px">
 
     </textarea>
+    <!-- <button class="btn btn-sm btn-danger" click.delegate="saveChanges()">
+						Save edits
+					</button> -->
 				</div>
 	<div class="form-group flex-column-1 margin-left-10">
 
-					<textarea ak-rich-editor="k-tools.bind: tools; k-resizable.bind: resizable; k-widget.two-way: editorlabel" k-on-ready.delegate="setInitialValueLabel($event.detail)"
+					<textarea ak-rich-editor="k-tools.bind: tools; k-resizable.bind: resizable; k-widget.two-way: editorlabel"
+           k-on-change.delegate="onChangelabel($event.detail)"
+           k-on-ready.delegate="setInitialValueLabel($event.detail)"
 		 style="height:440px">
 
     </textarea>
+     <!-- <button class="btn btn-sm btn-danger" click.delegate="saveChanges()">
+						Save label edits
+					</button> -->
 			</div>
 		</div>
 

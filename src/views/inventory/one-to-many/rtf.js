@@ -918,20 +918,28 @@ this.createDim()
     return num;
   }
 
+onChange(e) {
+    // this.logger.log('value change');
+     this.currentItem.rtf1 = this.editor.value()
+  }
+onChangelabel(e) {
+     this.currentItem.rtf2 = this.editor.value()
+  }
 
   saveChanges() {
     this.currentItem.rtf1 = this.editor.value()
+  }
+ saveChangesDetail() {
+    this.currentItem.rtf2 = this.editorlabel.value()
+  }
 
-    // let img1 = `https://artbased.com/api/v1/getonePdf/inv/${this.currentItem.InventoryCode}.jpg" `
+   // let img1 = `https://artbased.com/api/v1/getonePdf/inv/${this.currentItem.InventoryCode}.jpg" `
     // EXIF.getData(img1, function () {
     //   var make = EXIF.getTag(this, "Make");
     //   var model = EXIF.getTag(this, "Model");
     //   var makeAndModel = document.getElementById("makeAndModel");
     //   this.makeAndModel = `${make} ${model}`;
     // });
-
-
-  }
   remove(item, index) {
     //alert('you are about to delete ' + item.Notes + ' ' + index)
     this.mode = 0
