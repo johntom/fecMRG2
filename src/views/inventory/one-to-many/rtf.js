@@ -923,7 +923,7 @@ onChange(e) {
      this.currentItem.rtf1 = this.editor.value()
   }
 onChangelabel(e) {
-     this.currentItem.rtf2 = this.editor.value()
+     this.currentItem.rtf2 = this.editorlabel.value()
   }
 
   saveChanges() {
