@@ -63,7 +63,7 @@ export class Exhibition {
     // addExhibit ExhibitSponser  ExhibitLocation ExhibitRepro ExhibitDates ExhibitSortDate Traveled ExhibitMemo
     let exhibition = this.currentItem.exhibition
     let flag = false
-    let item
+    let item={}
     if (exhibition === undefined) {
       flag = true
       exhibition = []
