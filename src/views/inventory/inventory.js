@@ -281,27 +281,32 @@ export class Inventory {
     } else {
       this.mruinfo = JSON.parse(mruinfo)
 
-     if (this.mruinfo.mru1.InvCode!==undefined) {
-this.mru.push(this.mruinfo.mru1.InvCode)
-     }  else    this.mru.push(this.mruinfo.mru1)
+      if (this.mruinfo.mru1 !== undefined) {
+        this.mru.push(this.mruinfo.mru1.InvCode)
+      } 
+      // else this.mru.push(this.mruinfo.mru1)
 
 
 
-     if (this.mruinfo.mru2.InvCode!==undefined) {
-this.mru.push(this.mruinfo.mru2.InvCode)
-     }  else    this.mru.push(this.mruinfo.mru2)
-     
-     if (this.mruinfo.mru3.InvCode!==undefined) {
-this.mru.push(this.mruinfo.mru3.InvCode)
-     }  else    this.mru.push(this.mruinfo.mru3)
-     
-     if (this.mruinfo.mru4.InvCode!==undefined) {
-this.mru.push(this.mruinfo.mru4.InvCode)
-     }  else    this.mru.push(this.mruinfo.mru4)
-     
-     if (this.mruinfo.mru5.InvCode!==undefined) {
-this.mru.push(this.mruinfo.mru5.InvCode)
-     }  else    this.mru.push(this.mruinfo.mru5)
+      if (this.mruinfo.mru2 !== undefined) {
+        this.mru.push(this.mruinfo.mru2.InvCode)
+      } 
+      // else this.mru.push(this.mruinfo.mru2)
+
+      if (this.mruinfo.mru3 !== undefined) {
+        this.mru.push(this.mruinfo.mru3.InvCode)
+      } 
+      // else this.mru.push(this.mruinfo.mru3)
+
+      if (this.mruinfo.mru4 !== undefined) {
+        this.mru.push(this.mruinfo.mru4.InvCode)
+      } 
+      // else this.mru.push(this.mruinfo.mru4)
+
+      if (this.mruinfo.mru5 !== undefined) {
+        this.mru.push(this.mruinfo.mru5.InvCode)
+      } 
+      // else this.mru.push(this.mruinfo.mru5)
 
 
       // this.mru.push(this.mruinfo.)

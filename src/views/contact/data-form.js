@@ -220,12 +220,18 @@ export class DataForm {
   }
   mrucheck(newrec, prevtemp) {
     this.skip = false
-    if (newrec.id === prevtemp[0].id) this.skip = true;
-    if (newrec.id === prevtemp[1].id) this.skip = true;
-    if (newrec.id === prevtemp[2].id) this.skip = true;
-    if (newrec.id === prevtemp[3].id) this.skip = true;
-    if (newrec.id === prevtemp[4].id) this.skip = true;
-    // if (newrec.id === temp[5].id) this.skip = true;
+    // if (newrec.id === prevtemp[0].id) this.skip = true;
+    // if (newrec.id === prevtemp[1].id) this.skip = true;
+    // if (newrec.id === prevtemp[2].id) this.skip = true;
+    // if (newrec.id === prevtemp[3].id) this.skip = true;
+    // if (newrec.id === prevtemp[4].id) this.skip = true;
+    // // if (newrec.id === temp[5].id) this.skip = true;
+
+    if (prevtemp[0] != undefined && newrec.id === prevtemp[0].id) this.skip = true;
+    if (prevtemp[1] != undefined && newrec.id === prevtemp[1].id) this.skip = true;
+    if (prevtemp[2] != undefined && newrec.id === prevtemp[2].id) this.skip = true;
+    if (prevtemp[3] != undefined && newrec.id === prevtemp[3].id) this.skip = true;
+    if (prevtemp[4] != undefined && newrec.id === prevtemp[4].id) this.skip = true;
 
     console.log('   this.skip ', this.skip)
   }
@@ -248,16 +254,15 @@ export class DataForm {
     //   if (temp[0].id === temp[4].id) this.skip = true;
     // }
 
-
-    function mruinfo(temp) {
-
-      this.mru1 = temp[0];
-      this.mru2 = temp[1];
-      this.mru3 = temp[2];
-      this.mru4 = temp[3];
-      this.mru5 = temp[4];
+   function mruinfo(temp) {
+      if (temp[0] != undefined) this.mru1 = temp[0];
+      if (temp[1] != undefined) this.mru2 = temp[1];
+      if (temp[2] != undefined) this.mru3 = temp[2];
+      if (temp[3] != undefined) this.mru4 = temp[3];
+      if (temp[4] != undefined) this.mru5 = temp[4];
       //  this.tabindex = temp[1];
     }
+
     // var temp = [this.recordId, mruget.mru1, mruget.mru2, mruget.mru3, mruget.mru4];
     // var temp = [this.recordId + '?' + this.cname, mruget.mru1, mruget.mru2, mruget.mru3, mruget.mru4];
 

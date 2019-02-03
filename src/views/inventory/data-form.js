@@ -402,7 +402,7 @@ export class DataForm {
             //   this.currentItem.savedonce = true
             //   this.saveinventory(0)
             // }
-  this.mrubuild()
+            this.mrubuild()
             this.appService.currentItem = this.currentItem//inv[0]
             this.currentItem.isDirty = () => {
               return JSON.stringify(this.currentItem) !== JSON.stringify(this.appService.originalrec)
@@ -425,11 +425,19 @@ export class DataForm {
   }
   mrucheck(newrec, prevtemp) {
     this.skip = false
-    if (newrec.id === prevtemp[0].id || prevtemp[0].InvCode) this.skip = true;
-    if (newrec.id === prevtemp[1].id || prevtemp[1].InvCode) this.skip = true;
-    if (newrec.id === prevtemp[2].id || prevtemp[2].InvCode) this.skip = true;
-    if (newrec.id === prevtemp[3].id || prevtemp[3].InvCode) this.skip = true;
-    if (newrec.id === prevtemp[4].id || prevtemp[4].InvCode) this.skip = true;
+    // if (newrec.id === prevtemp[0].id || prevtemp[0].InvCode) this.skip = true;
+    // if (newrec.id === prevtemp[1].id || prevtemp[1].InvCode) this.skip = true;
+    // if (newrec.id === prevtemp[2].id || prevtemp[2].InvCode) this.skip = true;
+    // if (newrec.id === prevtemp[3].id || prevtemp[3].InvCode) this.skip = true;
+    // if (newrec.id === prevtemp[4].id || prevtemp[4].InvCode) this.skip = true;
+
+    if (prevtemp[0] != undefined && newrec.id === prevtemp[0].id) this.skip = true;
+    if (prevtemp[1] != undefined && newrec.id === prevtemp[1].id) this.skip = true;
+    if (prevtemp[2] != undefined && newrec.id === prevtemp[2].id) this.skip = true;
+    if (prevtemp[3] != undefined && newrec.id === prevtemp[3].id) this.skip = true;
+    if (prevtemp[4] != undefined && newrec.id === prevtemp[4].id) this.skip = true;
+
+
     // if (newrec.id === temp[5].id) this.skip = true;
 
     console.log('   this.skip ', this.skip)
@@ -448,11 +456,11 @@ export class DataForm {
 
     // let get the mru list and bump it
     function mruinfo(temp) {
-      this.mru1 = temp[0];
-      this.mru2 = temp[1];
-      this.mru3 = temp[2];
-      this.mru4 = temp[3];
-      this.mru5 = temp[4];
+      if (temp[0] != undefined) this.mru1 = temp[0];
+      if (temp[1] != undefined) this.mru2 = temp[1];
+      if (temp[2] != undefined) this.mru3 = temp[2];
+      if (temp[3] != undefined) this.mru4 = temp[3];
+      if (temp[4] != undefined) this.mru5 = temp[4];
       //  this.tabindex = temp[1];
     }
 
@@ -460,8 +468,8 @@ export class DataForm {
     const temp = [{ id: this.recordId, InvCode: this.currentItem.InventoryCode }, mruget.mru1, mruget.mru2, mruget.mru3, mruget.mru4];
     const newrec = { id: this.recordId, InvCode: this.currentItem.InventoryCode }
 
-    // this.mrucheck(newrec, prevtemp);
-    this.skip = false
+    this.mrucheck(newrec, prevtemp);
+    // this.skip = false
     if (!this.skip) {
       // var temp = [this.recordId, mruget.mru1, mruget.mru2, mruget.mru3, mruget.mru4];
 

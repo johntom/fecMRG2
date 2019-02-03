@@ -52,11 +52,41 @@ export class Contact {
       // this.mru.push(this.mruinfo.mru3.name)
       // this.mru.push(this.mruinfo.mru4.name)
       // this.mru.push(this.mruinfo.mru5.name)
-      this.mru.push(this.mruinfo.mru1)
-      this.mru.push(this.mruinfo.mru2)
-      this.mru.push(this.mruinfo.mru3)
-      this.mru.push(this.mruinfo.mru4)
-      this.mru.push(this.mruinfo.mru5)
+      // this.mru.push(this.mruinfo.mru1)
+      // this.mru.push(this.mruinfo.mru2)
+      // this.mru.push(this.mruinfo.mru3)
+      // this.mru.push(this.mruinfo.mru4)
+      // this.mru.push(this.mruinfo.mru5)
+
+
+if (this.mruinfo.mru1 !== undefined) {
+        // this.mru.push(this.mruinfo.mru1.name)
+          this.mru.push(this.mruinfo.mru1)
+      } 
+     
+
+
+      if (this.mruinfo.mru2 !== undefined) {
+        this.mru.push(this.mruinfo.mru2)
+      } 
+      // else this.mru.push(this.mruinfo.mru2)
+
+      if (this.mruinfo.mru3 !== undefined) {
+        this.mru.push(this.mruinfo.mru3)
+      } 
+      // else this.mru.push(this.mruinfo.mru3)
+
+      if (this.mruinfo.mru4 !== undefined) {
+        this.mru.push(this.mruinfo.mru4)
+      } 
+      // else this.mru.push(this.mruinfo.mru4)
+
+      if (this.mruinfo.mru5 !== undefined) {
+        this.mru.push(this.mruinfo.mru5)
+      } 
+
+
+
     }
 
   }
