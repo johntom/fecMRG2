@@ -358,7 +358,7 @@ export class DataForm {
 
       } else {
         console.log('this.recordId ', this.recordId);
-        this.mrubuild()
+        // this.mrubuild()
         // this.getimageinfo()
         // let mruget = localStorage.getItem('mru-mrg');
         // if (mruget === null) {
@@ -402,7 +402,7 @@ export class DataForm {
             //   this.currentItem.savedonce = true
             //   this.saveinventory(0)
             // }
-
+  this.mrubuild()
             this.appService.currentItem = this.currentItem//inv[0]
             this.currentItem.isDirty = () => {
               return JSON.stringify(this.currentItem) !== JSON.stringify(this.appService.originalrec)
@@ -423,7 +423,21 @@ export class DataForm {
     }
     console.log('finihed active4')
   }
+  mrucheck(newrec, prevtemp) {
+    this.skip = false
+    if (newrec.id === prevtemp[0].id || prevtemp[0].InvCode) this.skip = true;
+    if (newrec.id === prevtemp[1].id || prevtemp[1].InvCode) this.skip = true;
+    if (newrec.id === prevtemp[2].id || prevtemp[2].InvCode) this.skip = true;
+    if (newrec.id === prevtemp[3].id || prevtemp[3].InvCode) this.skip = true;
+    if (newrec.id === prevtemp[4].id || prevtemp[4].InvCode) this.skip = true;
+    // if (newrec.id === temp[5].id) this.skip = true;
+
+    console.log('   this.skip ', this.skip)
+  }
   mrubuild() {
+
+
+
     let mruget = localStorage.getItem('mru-mrg');
     if (mruget === null) {
       // tabindex = 0
@@ -441,13 +455,22 @@ export class DataForm {
       this.mru5 = temp[4];
       //  this.tabindex = temp[1];
     }
-    var temp = [this.recordId, mruget.mru1, mruget.mru2, mruget.mru3, mruget.mru4];
 
-    if (this.recordId === mruget.mru1 || this.recordId === mruget.mru2 || this.recordId === mruget.mru3 ||
-      this.recordId === mruget.mru4 || this.recordId === mruget.mru5) { } else {
+    const prevtemp = [mruget.mru1, mruget.mru2, mruget.mru3, mruget.mru4, mruget.mru5];
+    const temp = [{ id: this.recordId, InvCode: this.currentItem.InventoryCode }, mruget.mru1, mruget.mru2, mruget.mru3, mruget.mru4];
+    const newrec = { id: this.recordId, InvCode: this.currentItem.InventoryCode }
+
+    // this.mrucheck(newrec, prevtemp);
+    this.skip = false
+    if (!this.skip) {
+      // var temp = [this.recordId, mruget.mru1, mruget.mru2, mruget.mru3, mruget.mru4];
+
+      // if (this.recordId === mruget.mru1 || this.recordId === mruget.mru2 || this.recordId === mruget.mru3 ||
+      //   this.recordId === mruget.mru4 || this.recordId === mruget.mru5) { } else {
       mruinfo = new mruinfo(temp);
       // localStorage.setItem('tabinfo', JSON.stringify(tabinfo));
       localStorage.setItem('mru-mrg', JSON.stringify(mruinfo));
+      // }
     }
   }
 

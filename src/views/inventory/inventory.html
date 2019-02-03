@@ -1,3 +1,23 @@
+Skip to content
+ 
+Pull requests
+Issues
+Marketplace
+Explore
+ @johntom Sign out
+$0
+1
+0 0 johntom/fecMRG2
+ Code  Issues 0  Pull requests 0  Projects 0  Wiki  Insights  Settings
+fecMRG2/src/views/inventory/inventory.html
+cfba028  3 days ago
+@johntom johntom 242.28
+We found potential security vulnerabilities in your dependencies.
+Only the owner of this repository can see this message. 
+Manage your notification settings or learn more about vulnerability alerts.
+
+     
+311 lines (243 sloc)  12.6 KB
 <template>
 	<require from="aurelia-kendoui-bridge/multiselect/multiselect"></require>
 	<require from="aurelia-kendoui-bridge/button/button"></require>
@@ -207,105 +227,3 @@
 	</section>
 </template>
 
-
-<!-- <pre style="margin-top: 100px"><code>${selectedValue}</code></pre> -->
-
-
-<!-- <button id="searchInputBtn" class="btn btn-primary" type="button" click.delegate="performSearch()">Search!</button> -->
-
-<!-- <div class="form-group flex-column-1 margin-left-10">
-							<label for="adjuster">mru2</label>
-								<input ref="myDatalist" type="text" list="myDatalist" change.delegate="changeCallbackMru(selectedValue)" input.delegate="selectedValue = findOption($event.target.value)"
-							/>
-							<datalist id="myDatalist">
-									<option repeat.for="option of mru">${option}</option>
-							</sold>
-							<pre style="margin-top: 100px"><code>${selectedValue}</code></pre>
-						</div> -->
-
-<!-- <div class="form-group flex-column-1 margin-left-10">
-							<input id="comment" type="text" class="form-control" placeholder="Search for comment ..." value.bind="search.comment">
-						</div> -->
-
-<!-- <div class="flex-row-none">
-						<div class="form-group flex-column-1">
-							<input id="ownershipstatus" type="text" class="form-control" placeholder="Search for Ownership Status ..." value.bind="search.ownershipstatus">
-						</div>
-					
-					</div> -->
-
-<!-- <div class="form-group">Sold - Selected : ${search.selectedSoldId}
-						<label repeat.for="sold of searchsold">
-              <input type="radio" name="group1"
-                    model.bind="sold.id" checked.bind="search.sold">
-                 ${sold.name} &nbsp;
-            </label>
-					</div> -->
-<!-- <aubs-typeahead ref='savedlist' data.bind="appService.savedlists" 
-              value.bind="name" debounce.bind="350" placeholder="search on one savedlist "
-							 open-on-focus.bind="true" key="name" results-limit.bind="12" 
-               select-single-result.bind="true"
-							 change.delegate="performSearch()">
-              </aubs-typeahead> -->
-<!-- <label for="SL">SL</label>
-						<input ref="myDatalistSL" type="text" list="appService.savedlists" 
-                    change.delegate="performSearchX()" 
-                    input.delegate="selectedValue = findOption($event.target.value)"/>		
-							<datalist id="myDatalistSL">
-									<option repeat.for="option of appService.savedlists">${option}</option>
-							</datalist> -->
-<!-- change.delegate="changeCallbackMru(selectedValue)"  -->
-<!-- <div class="form-group flex-column-1 margin-left-10">
-							<label for="adjuster">SavedList</label>
-								<input ref="myDatalist" type="text" list="myDatalist" 
-                change.delegate="changeCallbackMru(selectedValue)" 
-                input.delegate="selectedValue = findOption($event.target.value)"
-							/>
-							<datalist id="myDatalist">
-									<option repeat.for="option of mru">${option}</option>
-							</datalist>
-							<pre style="margin-top: 100px"><code>${selectedValue}</code></pre>
-						</div> -->
-<!-- <div class="flex-row-none">
-						<div class="form-group flex-column-1">
-							<select2m name="options" selected.bind="selected" options.bind="options" placeholder="Enter a selection" allow_clear="true"
-							 tags="true" change.delegate="changeCallbackM($event)"></select2m>
-						</div>
-						<div class="form-group flex-column-1 margin-left-10">
-							<select2 name="myCustomSelect" selected.bind="defaultSelected" options.bind="selectOptions" change.delegate="changeCallback($event)"></select2>
-						</div>
-					</div> -->
-
-
-
-<!-- <div class="flex-row-none">
-						<div class="form-group flex-column-1">
-							<selectize name="options" selected.bind="selected" options.bind="options" placeholder="Enter a selection"></selectize>
-
-						</div>
-
-					</div> -->
-<!-- <multi-selector-item repeat.for="item of selectedOptions" 
-        item.bind="item" 
-        parent.bind="$parent">  
-      </multi-selector-item>
-      <input ref="dynamicOption"
-        spellcheck="false" 
-        placeholder.bind="placeholder" 
-        keydown.delegate="processKeydown($event)" 
-        autocomplete="on"
-        class="multi-selector-input"
-        list="multi-datalist"> -->
-<!-- @bindable instanceOptions = [];
-  @bindable selectedOptions = []; -->
-<!-- <multi-selector name="msoptions" selectedOptions.bind="options" item.bind="selected" placeholder="Enter a selection"></multi-selector> -->
-<!-- <multi-selector name="msoptions"   selectedOptions.bind="optionsMat" item.bind="selected" placeholder="Enter a selection"></multi-selector> -->
-<!-- ${options.length}:			<multi-selector name="msoptions"   selectedOptions.bind="options"  item.bind="value" placeholder="Enter a selection.."></multi-selector> -->
-
-<!-- <div class="flex-row-none">
-
-						<div class="form-group flex-column-1">
-							<multi-selector name="msoptions" instance-options.bind="optionsMatt" selected-options.bind="selectOptions" placeholder="Enter a selection.."></multi-selector>
-						</div>
-						<button id="checkms" class="btn btn-primary" type="button" click.delegate="checkms()">checkms</button>
-					</div> -->

@@ -138,8 +138,8 @@ export class DataForm {
     //  alert(changedVal);
   }
   activate(params, routeConfig) {
-    let pp = JSON.stringify(params) ;
-    this.cname = pp.substring(2, pp.indexOf(':')-3);// params.indexOf(':')
+    let pp = JSON.stringify(params);
+    this.cname = pp.substring(2, pp.indexOf(':') - 3);// params.indexOf(':')
 
 
     if (params.id) {
@@ -170,7 +170,7 @@ export class DataForm {
         // this.currentItem.transport = []
         // this.currentItem.conservation = []
         // this.currentItem.condition = []
-        // this.currentItem.purchased = []
+        // this.currbentItem.purchased = []
         // this.currentItem.soldto = []
         // this.currentItem.museumloan = []
         // this.currentItem.consignedto = []
@@ -182,7 +182,7 @@ export class DataForm {
 
       } else {
         console.log('this.recordId ', this.recordId);
-       // this.mrubuild()
+        // this.mrubuild()
 
 
         return this.api.findContactOne(this.recordId)
@@ -218,6 +218,17 @@ export class DataForm {
     }
     console.log('finihed active4')
   }
+  mrucheck(newrec, prevtemp) {
+    this.skip = false
+    if (newrec.id === prevtemp[0].id) this.skip = true;
+    if (newrec.id === prevtemp[1].id) this.skip = true;
+    if (newrec.id === prevtemp[2].id) this.skip = true;
+    if (newrec.id === prevtemp[3].id) this.skip = true;
+    if (newrec.id === prevtemp[4].id) this.skip = true;
+    // if (newrec.id === temp[5].id) this.skip = true;
+
+    console.log('   this.skip ', this.skip)
+  }
   mrubuild() {
     let mruget = localStorage.getItem('mru-mrgc');
     if (mruget === null) {
@@ -228,7 +239,18 @@ export class DataForm {
     }
 
     // let get the mru list and bump it
+    // function mrucheck(temp) {
+    //   this.skip = false
+    //   if (temp[0].id === temp[0].id) this.skip = true;
+    //   if (temp[0].id === temp[1].id) this.skip = true;
+    //   if (temp[0].id === temp[2].id) this.skip = true;
+    //   if (temp[0].id === temp[3].id) this.skip = true;
+    //   if (temp[0].id === temp[4].id) this.skip = true;
+    // }
+
+
     function mruinfo(temp) {
+
       this.mru1 = temp[0];
       this.mru2 = temp[1];
       this.mru3 = temp[2];
@@ -238,12 +260,21 @@ export class DataForm {
     }
     // var temp = [this.recordId, mruget.mru1, mruget.mru2, mruget.mru3, mruget.mru4];
     // var temp = [this.recordId + '?' + this.cname, mruget.mru1, mruget.mru2, mruget.mru3, mruget.mru4];
- var temp = [{id:this.recordId,name:this.cname ,bori:this.currentItem.BusIndivid}, mruget.mru1, mruget.mru2, mruget.mru3, mruget.mru4];
 
-    if (this.recordId === mruget.mru1 || this.recordId === mruget.mru2 || this.recordId === mruget.mru3 ||
-      this.recordId === mruget.mru4 || this.recordId === mruget.mru5) { } else {
-      mruinfo = new mruinfo(temp);
-      localStorage.setItem('mru-mrgc', JSON.stringify(mruinfo));
+    const prevtemp = [mruget.mru1, mruget.mru2, mruget.mru3, mruget.mru4, mruget.mru5];
+
+    const temp = [{ id: this.recordId, name: this.cname, bori: this.currentItem.BusIndivid }, mruget.mru1, mruget.mru2, mruget.mru3, mruget.mru4];
+    const newrec = { id: this.recordId, name: this.cname, bori: this.currentItem.BusIndivid }
+
+    this.mrucheck(newrec, prevtemp);
+    if (!this.skip) {
+      if (this.recordId === mruget.mru1 || this.recordId === mruget.mru2 || this.recordId === mruget.mru3 ||
+        this.recordId === mruget.mru4 || this.recordId === mruget.mru5) { } else {
+        if (!this.skip) {
+          mruinfo = new mruinfo(temp);
+          localStorage.setItem('mru-mrgc', JSON.stringify(mruinfo));
+        }
+      }
     }
   }
 
