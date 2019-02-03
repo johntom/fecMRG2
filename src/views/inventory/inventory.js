@@ -144,7 +144,7 @@ export class Inventory {
     let Promise = this.dataService.loadKeywords()
       .then(response => {
         keywords = response
-        console.log('keywords', keywords)
+        console.log('keywords', keywordfmrus)
         return keywords
       })
       .then(keywords => filter.length > 0 ? keywords.filter(item => item.Description.toLowerCase().indexOf(filter.toLowerCase()) > -1) : keywords)
@@ -281,11 +281,33 @@ export class Inventory {
     } else {
       this.mruinfo = JSON.parse(mruinfo)
 
-      this.mru.push(this.mruinfo.mru1)
-      this.mru.push(this.mruinfo.mru2)
-      this.mru.push(this.mruinfo.mru3)
-      this.mru.push(this.mruinfo.mru4)
-      this.mru.push(this.mruinfo.mru5)
+     if (this.mruinfo.mru1.InvCode!==undefined) {
+this.mru.push(this.mruinfo.mru1.InvCode)
+     }  else    this.mru.push(this.mruinfo.mru1)
+
+
+
+     if (this.mruinfo.mru2.InvCode!==undefined) {
+this.mru.push(this.mruinfo.mru2.InvCode)
+     }  else    this.mru.push(this.mruinfo.mru2)
+     
+     if (this.mruinfo.mru3.InvCode!==undefined) {
+this.mru.push(this.mruinfo.mru3.InvCode)
+     }  else    this.mru.push(this.mruinfo.mru3)
+     
+     if (this.mruinfo.mru4.InvCode!==undefined) {
+this.mru.push(this.mruinfo.mru4.InvCode)
+     }  else    this.mru.push(this.mruinfo.mru4)
+     
+     if (this.mruinfo.mru5.InvCode!==undefined) {
+this.mru.push(this.mruinfo.mru5.InvCode)
+     }  else    this.mru.push(this.mruinfo.mru5)
+
+
+      // this.mru.push(this.mruinfo.)
+      // this.mru.push(this.mruinfo.)
+      // this.mru.push(this.mruinfo.mru4)
+      // this.mru.push(this.mruinfo.mru5)
     }
     // for select2
     this.selectOptions = [
