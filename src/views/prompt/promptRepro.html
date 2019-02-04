@@ -15,181 +15,182 @@
 		</ux-dialog-header>
 		<ux-dialog-body>
 
-<form autocomplete="off">
-			<div class="form-group flex-column-1">
-				<h2> ${doc} </h2>
-				<table class="table-condensed table">
-					<thead class="table-header-blue">
+			<form autocomplete="off">
+				<div class="form-group flex-column-1">
+					<h2> ${doc} </h2>
+					<table class="table-condensed table">
+						<thead class="table-header-blue">
 
-					</thead>
-					<tfoot>
-						<tr>
-							<td></td>
-						</tr>
-					</tfoot>
-					<tbody>
-          
-						<div class="Rtable Rtable--2cols">
-							<div class=" Rtable-cell-30 Rtable-cell--highlight">
-								<strong> ReproductionAuthor </strong>
-							</div>
-							<div class="Rtable-cell-70  Rtable-cell--light">
-								<input type="text" autocomplete="off" id="xReproductionAuthor" class="form-control input-sm au-target" value.bind="item.ReproductionAuthor" au-target-id="142">
-							</div>
-						</div>
-						<div class="Rtable Rtable--2cols">
-							<div class=" Rtable-cell-30 Rtable-cell--highlight">
-								<strong> Author	First </strong>
-							</div>
-							<div class="Rtable-cell-70  Rtable-cell--light">
-								<input type="text" autocomplete="off" id="zReproductionTitle2" class="form-control input-sm " value.bind="item.AuthorFirst">
-							</div>
-						</div>
-						<div class="Rtable Rtable--2cols">
-							<div class=" Rtable-cell-30 Rtable-cell--highlight">
-								<strong> Author	Last </strong>
-							</div>
-							<div class="Rtable-cell-70  Rtable-cell--light">
-								<!-- au-target -->
-								<input type="text" autocomplete="off" id="zReproductionTitle3" class="form-control input-sm " value.bind="item.AuthorLast">
-							</div>
-						</div>
+						</thead>
+						<tfoot>
+							<tr>
+								<td></td>
+							</tr>
+						</tfoot>
+						<tbody>
 
-						<div class="Rtable Rtable--2cols">
-							<div class=" Rtable-cell-30 Rtable-cell--highlight">
-								<strong>Editor </strong>
+							<div class="Rtable Rtable--2cols">
+								<div class=" Rtable-cell-30 Rtable-cell--highlight">
+									<strong> Author </strong>
+								</div>
+								<div class="Rtable-cell-70  Rtable-cell--light">
+									<input type="text" autocomplete="off" id="xReproductionAuthor" class="form-control input-sm au-target" value.bind="item.ReproductionAuthor"
+									 au-target-id="142">
+								</div>
 							</div>
-							<div class="Rtable-cell-70  Rtable-cell--light">
-								<!-- <input type="checkbox" id="Editor" checked.bind="item.Editor"> -->
-               
-								<input type="checkbox" id="xEditor" class="form-control input-sm" checked.bind="item.Editor">
+							<div class="Rtable Rtable--2cols">
+								<div class=" Rtable-cell-30 Rtable-cell--highlight">
+									<strong> Author	First </strong>
+								</div>
+								<div class="Rtable-cell-70  Rtable-cell--light">
+									<input type="text" autocomplete="off" id="zReproductionTitle2" class="form-control input-sm " value.bind="item.AuthorFirst">
+								</div>
+							</div>
+							<div class="Rtable Rtable--2cols">
+								<div class=" Rtable-cell-30 Rtable-cell--highlight">
+									<strong> Author	Last </strong>
+								</div>
+								<div class="Rtable-cell-70  Rtable-cell--light">
+									<!-- au-target -->
+									<input type="text" autocomplete="off" id="zReproductionTitle3" class="form-control input-sm " value.bind="item.AuthorLast">
+								</div>
+							</div>
 
+							<div class="Rtable Rtable--2cols">
+								<div class=" Rtable-cell-30 Rtable-cell--highlight">
+									<strong>Editor </strong>
+								</div>
+								<div class="Rtable-cell-70  Rtable-cell--light">
+									<!-- <input type="checkbox" id="Editor" checked.bind="item.Editor"> -->
+
+									<input type="checkbox" id="xEditor" class="form-control input-sm" checked.bind="item.Editor">
+
+								</div>
 							</div>
-						</div>
 
 
-						<div class="Rtable Rtable--2cols">
-							<div class=" Rtable-cell-30 Rtable-cell--highlight">
-								<strong>Reproduction Title </strong>
+							<div class="Rtable Rtable--2cols">
+								<div class=" Rtable-cell-30 Rtable-cell--highlight">
+									<strong>Title </strong>
+								</div>
+								<div class="Rtable-cell-70  Rtable-cell--light">
+									<input type="text" id="xReproductionTitle" class="form-control input-sm " value.bind="item.ReproductionTitle">
+								</div>
 							</div>
-							<div class="Rtable-cell-70  Rtable-cell--light">
-								<input type="text" id="xReproductionTitle" class="form-control input-sm " value.bind="item.ReproductionTitle">
-							</div>
-						</div>
 
-						<div class="Rtable Rtable--2cols">
-							<div class=" Rtable-cell-30 Rtable-cell--highlight">
-								<strong>Publisher </strong>
+							<div class="Rtable Rtable--2cols">
+								<div class=" Rtable-cell-30 Rtable-cell--highlight">
+									<strong>Publisher </strong>
+								</div>
+								<div class="Rtable-cell-70  Rtable-cell--light">
+									<input type="text" id="xReproductionName" class="form-control input-sm " value.bind="item.ReproductionName">
+								</div>
 							</div>
-							<div class="Rtable-cell-70  Rtable-cell--light">
-								<input type="text" id="xReproductionName" class="form-control input-sm " value.bind="item.ReproductionName">
-							</div>
-						</div>
-						<div class="Rtable Rtable--2cols">
-							<div class=" Rtable-cell-30 Rtable-cell--highlight">
-								<strong> Location </strong>
-							</div>
-							<div class="Rtable-cell-70 Rtable-cell--light">
-								<select id="ReproductionLocation" class="form-control  input-sm" value.bind="item.ReproductionLocation"> 
+							<div class="Rtable Rtable--2cols">
+								<div class=" Rtable-cell-30 Rtable-cell--highlight">
+									<strong> Location </strong>
+								</div>
+								<div class="Rtable-cell-70 Rtable-cell--light">
+									<select id="ReproductionLocation" class="form-control  input-sm" value.bind="item.ReproductionLocation"> 
                       <option model.bind="null">Choose...filterOnCode</option> 
                          <option repeat.for="opt of appService.codesProvenanceLocation" model.bind="opt.id">
                     ${opt.Description} 
                       </option> 
                     </select>
+								</div>
 							</div>
-						</div>
 
-						<div class="Rtable Rtable--2cols">
-							<div class=" Rtable-cell-30 Rtable-cell--highlight">
-								<strong>Date </strong>
+							<div class="Rtable Rtable--2cols">
+								<div class=" Rtable-cell-30 Rtable-cell--highlight">
+									<strong>Date </strong>
+								</div>
+								<div class="Rtable-cell-70  Rtable-cell--light">
+									<input type="text" id="xReproductionDate" class="form-control input-sm " value.bind="item.ReproductionDate">
+								</div>
 							</div>
-							<div class="Rtable-cell-70  Rtable-cell--light">
-								<input type="text" id="xReproductionDate" class="form-control input-sm " value.bind="item.ReproductionDate">
+							<div class="Rtable Rtable--2cols">
+								<div class=" Rtable-cell-30 Rtable-cell--highlight">
+									<strong>Sort Date </strong>
+								</div>
+								<div class="Rtable-cell-70  Rtable-cell--light">
+									<input type="date" id="xReproductionSortDate" class="form-control input-sm " value.bind="item.ReproductionSortDate">
+								</div>
 							</div>
-						</div>
-						<div class="Rtable Rtable--2cols">
-							<div class=" Rtable-cell-30 Rtable-cell--highlight">
-								<strong>Sort Date </strong>
-							</div>
-							<div class="Rtable-cell-70  Rtable-cell--light">
-								<input type="date" id="xReproductionSortDate" class="form-control input-sm " value.bind="item.ReproductionSortDate">
-							</div>
-						</div>
 
 
-						<div class="Rtable Rtable--2cols">
-							<div class=" Rtable-cell-30 Rtable-cell--highlight">
-								<strong>Number </strong>
+							<div class="Rtable Rtable--2cols">
+								<div class=" Rtable-cell-30 Rtable-cell--highlight">
+									<strong>Number </strong>
+								</div>
+								<div class="Rtable-cell-70  Rtable-cell--light">
+									<input type="text" id="xNumber" class="form-control input-sm " value.bind="item.no">
+								</div>
 							</div>
-							<div class="Rtable-cell-70  Rtable-cell--light">
-								<input type="text" id="xNumber" class="form-control input-sm " value.bind="item.no">
-							</div>
-						</div>
 
-						<div class="Rtable Rtable--2cols">
-							<div class=" Rtable-cell-30 Rtable-cell--highlight">
-								<strong>Page </strong>
+							<div class="Rtable Rtable--2cols">
+								<div class=" Rtable-cell-30 Rtable-cell--highlight">
+									<strong>Page </strong>
+								</div>
+								<div class="Rtable-cell-70  Rtable-cell--light">
+									<input type="text" id="xReproductionPage" class="form-control input-sm " value.bind="item.ReproductionPage">
+								</div>
 							</div>
-							<div class="Rtable-cell-70  Rtable-cell--light">
-								<input type="text" id="xReproductionPage" class="form-control input-sm " value.bind="item.ReproductionPage">
-							</div>
-						</div>
-						<div class="Rtable Rtable--2cols">
-							<div class=" Rtable-cell-30 Rtable-cell--highlight">
-								<strong>Type </strong>
-							</div>
-							<div class="Rtable-cell-70  Rtable-cell--light">
-								<select id="ReproductionType" class="form-control  input-sm" value.bind="item.ReproductionType"> 
+							<div class="Rtable Rtable--2cols">
+								<div class=" Rtable-cell-30 Rtable-cell--highlight">
+									<strong>Type </strong>
+								</div>
+								<div class="Rtable-cell-70  Rtable-cell--light">
+									<select id="ReproductionType" class="form-control  input-sm" value.bind="item.ReproductionType"> 
                       <option model.bind="null">Choose...</option> 
                          <option repeat.for="opt of appService.codesPublicationType " model.bind="opt.id">
                     ${opt.Description} 
                       </option> 
                     </select>
+								</div>
 							</div>
-						</div>
-						<div class="Rtable Rtable--2cols">
-							<div class=" Rtable-cell-30 Rtable-cell--highlight">
-								<strong>ColorBW </strong>
-							</div>
-							<div class="Rtable-cell-70  Rtable-cell--light">
-								<select id="ColorBW" class="form-control  input-sm" value.bind="item.ColorBW"> 
+							<div class="Rtable Rtable--2cols">
+								<div class=" Rtable-cell-30 Rtable-cell--highlight">
+									<strong>ColorBW </strong>
+								</div>
+								<div class="Rtable-cell-70  Rtable-cell--light">
+									<select id="ColorBW" class="form-control  input-sm" value.bind="item.ColorBW"> 
                       <option model.bind="null">Choose...</option> 
                          <option repeat.for="opt of appService.codesReproductionType" model.bind="opt.id">
                     ${opt.Description} 
                       </option> 
                     </select>
-							</div>
-						</div>
-
-
-					
-
-
-						<div show.bind="!item.hide1">
-							<div class="Rtable Rtable--2cols">
-								<div class=" Rtable-cell-30 Rtable-cell--highlight">
-									<strong> Select Exhibition </strong>
 								</div>
-								<div class="Rtable-cell-70  Rtable-cell--light">
-									<select id="ReproductionExhibit" class="form-control  input-sm" value.bind="item.ReproductionExhibit"> 
+							</div>
+
+
+
+
+
+							<div show.bind="!item.hide1">
+								<div class="Rtable Rtable--2cols">
+									<div class=" Rtable-cell-30 Rtable-cell--highlight">
+										<strong> Select Exhibition </strong>
+									</div>
+									<div class="Rtable-cell-70  Rtable-cell--light">
+										<select id="ReproductionExhibit" class="form-control  input-sm" value.bind="item.ReproductionExhibit"> 
                       <option model.bind="null">Choose...</option> 
                          <option change.delegate="changeSelect(opt)" repeat.for="opt of currentItem.exhibition " model.bind="opt.id">
                ${opt.id}  /  ${opt.ExhibitTitle} /  ${opt.ExhibitSponser}
                       </option> 
                     </select>
+									</div>
 								</div>
 							</div>
-						</div>
-						${batchno}
-					</tbody>
-				</table>
-			</div>
+							${batchno}
+						</tbody>
+					</table>
+				</div>
 
 
 
 
-			<hr>
-</form>
+				<hr>
+			</form>
 		</ux-dialog-body>
 
 		<ux-dialog-footer>

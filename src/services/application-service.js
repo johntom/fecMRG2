@@ -71,7 +71,7 @@ export class ApplicationService {
       isSelected: true
     },
     {
-      name: "Notes",
+      name: "Note",
       viewModel: "./one-to-many/adjusternotes",
       isSelected: false
     },

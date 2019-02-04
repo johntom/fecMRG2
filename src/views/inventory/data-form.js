@@ -404,8 +404,10 @@ export class DataForm {
             // }
             this.mrubuild()
             this.appService.currentItem = this.currentItem//inv[0]
+            // this.getimageinfo()//
 
-            this.currentDim = {} // dont set on  this.currentItem for isDirty  "clientHeight": 231,
+            // console.log(this.currentItem.clientHeight, this.currentItem.clientWidth, this.currentItem.clientHeightRatio, this.currentItem.clientWidthRatio)
+            //this.currentDim = {} // dont set on  this.currentItem for isDirty  "clientHeight": 231,
             // "clientHeightRatio": 1,
             // "clientWidth": 300,
             // "clientWidthRatio": "1.3",
@@ -421,20 +423,25 @@ export class DataForm {
             this.currentItem.isDirty = () => {
               const currentJSON = JSON.stringify(this.currentItem);
               const originalJSON = JSON.stringify(this.appService.originalrec);
-               console.log('currentJSON');
+              console.log('currentJSON');
 
-              console.log( currentJSON);
+              console.log(currentJSON);
 
-                console.log('==================================');
+              console.log('==================================');
               console.log('originalJSON');
-                 console.log(originalJSON);
-           
+              console.log(originalJSON);
+
               return currentJSON !== originalJSON;
             };
             // http://www.jsondiff.com/
 
             this.appService.currentView = this.currentItem; // must set on every view
-            this.appService.originalrec = JSON.parse(JSON.stringify(this.currentItem))// inv[0]));
+            
+            
+            // move to getimageinfo this.appService.originalrec = JSON.parse(JSON.stringify(this.currentItem))// inv[0]));
+            
+            
+            //  console.log(this.originalrec.clientHeight, this.originalrec.clientWidth,this.originalrec.clientHeightRatio,this.originalrec.clientWidthRatio)
 
             console.log('finihed active1')
             // return inv
@@ -551,10 +558,19 @@ export class DataForm {
   //     this.currentItem.clientWidthRatio = clientWidthRatio //
   //   }
   // }
+  //  return new Promise((resolve, reject) => {
+  //     console.log('codesList len ', codesList.length)
+  //     let codesListLocation = []
 
+  //     codesList.filter((item) => {
+  //       if (item.CodeType === 17) {
+  //         codesListLocation.push(item)
+  //       }
+  //       resolve(codesListLocation)
+  //     })
+  //   })
   loadimage() {
     let imageWidth, imageHeight, clientHeightRatio, clientWidthRatio
-
     return new Promise((resolve, reject) => {
       this.mainimage.onload = function () { // alert alert("Height: " + this.height+' '+ this.width); 
         imageHeight = this.height
@@ -571,53 +587,63 @@ export class DataForm {
   //     "clientHeightRatio": 1,
   //     "clientWidth": 300,
   // "clientWidthRatio": "1.3
-  // getimageinfo() {
-  //   if (this.currentItem.clientHeight === undefined || this.currentItem.clientHeight === 0) {
-  //     let imageWidth, imageHeight, clientHeightRatio, clientWidthRatio
-  //     let Promise = this.loadimage()
-  //       .then(response => {
-  //         this.currentItem.clientHeight = this.mainimage.clientHeight
-  //         this.currentItem.clientWidth = this.mainimage.clientWidth
-  //         if (this.currentItem.clientHeight === this.currentItem.clientWidth) {
-  //           clientHeightRatio = 1
-  //           clientWidthRatio = 1
-  //         } else if (this.currentItem.clientHeight > this.currentItem.clientWidth) {
-  //           clientWidthRatio = 1
-  //           clientHeightRatio = (this.currentItem.clientHeight / this.currentItem.clientWidth).toPrecision(2)
-
-  //         } if (this.currentItem.clientWidth > this.currentItem.clientHeight) {
-  //           clientHeightRatio = 1
-  //           clientWidthRatio = (this.currentItem.clientWidth / this.currentItem.clientHeight).toPrecision(2)
-  //         }
-  //         this.currentItem.clientHeightRatio = clientHeightRatio
-  //         this.currentItem.clientWidthRatio = clientWidthRatio
-  //       })
-  //   }
-  // }
-
   getimageinfo() {
-    if (this.currentItem.clientHeight === undefined || this.currentDim.clientHeight === 0) {
+    // set this.appService.originalrec alsoe
+    if (this.currentItem.clientHeight === undefined || this.currentItem.clientHeight === 0) {
       let imageWidth, imageHeight, clientHeightRatio, clientWidthRatio
+
       let Promise = this.loadimage()
         .then(response => {
-          this.currentDim.clientHeight = this.mainimage.clientHeight
-          this.currentDim.clientWidth = this.mainimage.clientWidth
-          if (this.currentDim.clientHeight === this.currentDim.clientWidth) {
-            clientHeightRatio = 1
-            clientWidthRatio = 1
-          } else if (this.currentDim.clientHeight > this.currentDim.clientWidth) {
-            clientWidthRatio = 1
-            clientHeightRatio = (this.currentDim.clientHeight / this.currentDim.clientWidth).toPrecision(2)
+          this.currentItem.clientHeight = this.mainimage.clientHeight
+          this.currentItem.clientWidth = this.mainimage.clientWidth
+          // this.appService.originalrec.clientHeight = this.mainimage.clientHeight
+          // this.appService.originalrec.clientWidth = this.mainimage.clientWidth
 
-          } if (this.currentDim.clientWidth > this.currentDim.clientHeight) {
+          if (this.currentItem.clientHeight === this.currentItem.clientWidth) {
             clientHeightRatio = 1
-            clientWidthRatio = (this.currentDim.clientWidth / this.currentDim.clientHeight).toPrecision(2)
+            clientWidthRatio = 1
+          } else if (this.currentItem.clientHeight > this.currentItem.clientWidth) {
+            clientWidthRatio = 1
+            clientHeightRatio = (this.currentItem.clientHeight / this.currentItem.clientWidth).toPrecision(2)
+
+          } if (this.currentItem.clientWidth > this.currentItem.clientHeight) {
+            clientHeightRatio = 1
+            clientWidthRatio = (this.currentItem.clientWidth / this.currentItem.clientHeight).toPrecision(2)
           }
-          this.currentDim.clientHeightRatio = clientHeightRatio
-          this.currentDim.clientWidthRatio = clientWidthRatio
+          this.currentItem.clientHeightRatio = clientHeightRatio
+          this.currentItem.clientWidthRatio = clientWidthRatio
+
+          // this.appService.originalrec.clientHeightRatio = clientHeightRatio
+          // this.appService.originalrec.clientWidthRatio = clientWidthRatio
+  this.appService.originalrec = JSON.parse(JSON.stringify(this.currentItem))// inv[0]));
+          
         })
     }
   }
+
+  // getimageinfo() {
+  //   if (this.currentItem.clientHeight === undefined || this.currentDim.clientHeight === 0) {
+  //     let imageWidth, imageHeight, clientHeightRatio, clientWidthRatio
+  //     let Promise = this.loadimage()
+  //       .then(response => {
+  //         this.currentDim.clientHeight = this.mainimage.clientHeight
+  //         this.currentDim.clientWidth = this.mainimage.clientWidth
+  //         if (this.currentDim.clientHeight === this.currentDim.clientWidth) {
+  //           clientHeightRatio = 1
+  //           clientWidthRatio = 1
+  //         } else if (this.currentDim.clientHeight > this.currentDim.clientWidth) {
+  //           clientWidthRatio = 1
+  //           clientHeightRatio = (this.currentDim.clientHeight / this.currentDim.clientWidth).toPrecision(2)
+
+  //         } if (this.currentDim.clientWidth > this.currentDim.clientHeight) {
+  //           clientHeightRatio = 1
+  //           clientWidthRatio = (this.currentDim.clientWidth / this.currentDim.clientHeight).toPrecision(2)
+  //         }
+  //         this.currentDim.clientHeightRatio = clientHeightRatio
+  //         this.currentDim.clientWidthRatio = clientWidthRatio
+  //       })
+  //   }
+  // }
 
   attached() {
     // if (this.appService.dataFormOneToOneTabs.length > 0) {
@@ -681,19 +707,17 @@ export class DataForm {
         });
       }
     } else {
-
+      this.getimageinfo() // fix issue with isdirty
       if (JSON.stringify(this.currentItem) !== JSON.stringify(this.appService.originalrec)) {
         // SAVE WITH IMAGE INFO IN CASE ITS MISSING
         // nsure if needed this.getimageinfo()
 
-        this.currentItem.clientWidth = this.currentDim.clientWidth;
-
-        this.currentItem.clientHeight = this.currentDim.clientHeight;
-        this.currentItem.imageWidth = this.currentDim.imageWidth;
-        this.currentItem.imageHeight = this.currentDim.imageHeight;
-        this.currentItem.clientHeightRatio = this.currentDim.clientHeightRatio;
-        this.currentItem.clientWidthRatio = this.currentDim.clientWidthRatio;
-
+        // this.currentItem.clientWidth = this.currentDim.clientWidth;
+        // this.currentItem.clientHeight = this.currentDim.clientHeight;
+        // this.currentItem.imageWidth = this.currentDim.imageWidth;
+        // this.currentItem.imageHeight = this.currentDim.imageHeight;
+        // this.currentItem.clientHeightRatio = this.currentDim.clientHeightRatio;
+        // this.currentItem.clientWidthRatio = this.currentDim.clientWidthRatio;
 
         this.api.saveinventory(this.currentItem).then((jsonRes) => {
           console.log('jsonRes ', jsonRes)

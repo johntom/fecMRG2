@@ -1,23 +1,3 @@
-Skip to content
- 
-Pull requests
-Issues
-Marketplace
-Explore
- @johntom Sign out
-$0
-1
-0 0 johntom/fecMRG2
- Code  Issues 0  Pull requests 0  Projects 0  Wiki  Insights  Settings
-fecMRG2/src/views/inventory/inventory.html
-cfba028  3 days ago
-@johntom johntom 242.28
-We found potential security vulnerabilities in your dependencies.
-Only the owner of this repository can see this message. 
-Manage your notification settings or learn more about vulnerability alerts.
-
-     
-311 lines (243 sloc)  12.6 KB
 <template>
 	<require from="aurelia-kendoui-bridge/multiselect/multiselect"></require>
 	<require from="aurelia-kendoui-bridge/button/button"></require>
@@ -28,185 +8,186 @@ Manage your notification settings or learn more about vulnerability alerts.
 
 	<!-- <require from="../../resources/value-converters/stringify"></require> -->
 	<!-- <require from="selectize-multiselect"></require> -->
-<!-- searchInputNo will delete google typeahead -->
+	<!-- searchInputNo will delete google typeahead -->
 	<section class="full-height flex-column-1 au-animate ignore">
 		<div class="flex-row-none section-header">
 			${heading}
 		</div>
 		<!-- searchInvCode -->
-		<div class="flex-row-1 ignore">
+		<!-- <div class="flex-row-1 ignore"> -->
 			<div class="flex-column-1 search-panel">
-				<form submit.delegate="performSearch()">
+        	<div class="form-group flex-column-1 ">
+
+				<form class="flex-column-1" submit.delegate="performSearch()">
 					<div class="flex-row-none">
+						<div class="form-group flex-column-1 ">
 
-						<div class="form-group flex-column-1">
-							<input id="searchInvCode" type="text" class="form-control" placeholder="Search for inv code...PORTERC008" value.bind="search.inventorycode">
-						</div>
+							<div class="flex-row-none">
 
-						<div class="form-group flex-column-1 margin-left-10">
-							<input id="AltID" type="text" class="form-control" placeholder="Search for AltID ..." value.bind="search.altid">
-						</div>
+								<div class="form-group flex-column-1">
+									<input id="searchInvCode" type="text" class="form-control" placeholder="Search for inv code...PORTERC008" value.bind="search.inventorycode">
+								</div>
 
-					</div>
-					<div class="flex-row-none">
-						<div class="form-group flex-column-1">
-							<input id="searchartistl" type="text" class="form-control" placeholder="Search for inv artist last..." value.bind="search.artistl">
-						</div>
-						<div class="form-group flex-column-1 margin-left-10">
-							<input id="searchartistf" type="text" class="form-control" placeholder="Search for inv artist first..." value.bind="search.artistf">
-						</div>
-					</div>
-					<div class="flex-row-none">
+								<div class="form-group flex-column-1 margin-left-10">
+									<input id="AltID" type="text" class="form-control" placeholder="Search for AltID ..." value.bind="search.altid">
+								</div>
 
-						<div class="form-group flex-column-1">
-							<input id="searchInputNo" type="text" class="form-control" placeholder="Search for title..." value.bind="search.title">
-						</div>
+							</div>
+							<div class="flex-row-none">
+								<div class="form-group flex-column-1">
+									<input id="searchartistl" type="text" class="form-control" placeholder="Search for inv artist last..." value.bind="search.artistl">
+								</div>
+								<div class="form-group flex-column-1 margin-left-10">
+									<input id="searchartistf" type="text" class="form-control" placeholder="Search for inv artist first..." value.bind="search.artistf">
+								</div>
+							</div>
+							<div class="flex-row-none">
 
-
-						<div class="form-group flex-column-1 margin-left-10">
-							<input id="searchInvYear" type="text" class="form-control" placeholder="Search for InvYear ..." value.bind="search.invyear">
-						</div>
-					</div>
-					<div class="flex-row-none">
-						<div class="form-group flex-column-1">
-							<input id="searchMediumSupport" type="text" class="form-control" placeholder="Search for MediumSupport ..." value.bind="search.mediumsupport">
-
-						</div>
-						<div class="form-group flex-column-1">
+								<div class="form-group flex-column-1">
+									<input id="searchInputNo" type="text" class="form-control" placeholder="Search for title..." value.bind="search.title">
+								</div>
 
 
-							<select id="OwnedBy " class="form-control " value.bind="search.OwnedBy" placeholder="search OwnedBy">
+								<div class="form-group flex-column-1 margin-left-10">
+									<input id="searchInvYear" type="text" class="form-control" placeholder="Search for InvYear ..." value.bind="search.invyear">
+								</div>
+							</div>
+							<div class="flex-row-none">
+								<div class="form-group flex-column-1">
+									<input id="searchMediumSupport" type="text" class="form-control" placeholder="Search for MediumSupport ..." value.bind="search.mediumsupport">
+
+								</div>
+								<div class="form-group flex-column-1">
+
+
+									<select id="OwnedBy " class="form-control " value.bind="search.OwnedBy" placeholder="search OwnedBy">
 											<option model.bind="null">Choose.OwnedBy</option>
 											<option repeat.for="opt of appService.codesOwnership " model.bind="opt.id">
 												${opt.Description}
 											</option>
 										</select>
 
-						</div>
-					</div>
-
-
-
-					<div class="flex-row-none">
-						<div class="form-group flex-column-1">
-
-							<aubs-typeahead ref='keyword' data.bind="appService.codesGenre" value.bind="keywordDescription" debounce.bind="350" placeholder="search on 1 keyword"
-							 open-on-focus.bind="true" key="Description" results-limit.bind="12" select-single-result.bind="true">
-							</aubs-typeahead>
-						</div>
-					</div>
-
-
-					<div class="flex-row-none">
-						<div class="form-group flex-column-1">
-							<input id="searchbin" type="text" class="form-control" placeholder="Search for bin ..." value.bind="search.bin">
-						</div>
-						<div class="form-group flex-column-1 margin-left-10">
-							<aubs-typeahead ref='InventoryLocation' data.bind="appService.codesInventoryLocation" value.bind="DescriptionLoc" debounce.bind="350"
-							 placeholder="not avail -codesInventoryLocation" open-on-focus.bind="true" key="Description" results-limit.bind="12"
-							 select-single-result.bind="true">
-							</aubs-typeahead>
-						</div>
-					</div>
-
-
-					<div class="flex-row-none">
-						<div class="form-group flex-column-1">
-							<div class="form-group">
-								<label><input type="checkbox" checked.bind="search.andor">  Checked: search on every keyword, unchecked: search on any keyword"</label>
+								</div>
 							</div>
-						</div>
-					</div>
-					<div class="flex-row-none">
-						<div class="form-group flex-column-1">
-					
-							<ak-multiselect k-value.two-way="multikeywords">
-								<select multiple="multiple" k-height.bind="400" data-placeholder="Select mulitple keywords...">
+
+
+
+							<div class="flex-row-none">
+								<div class="form-group flex-column-1">
+
+									<aubs-typeahead ref='keyword' data.bind="appService.codesGenre" value.bind="keywordDescription" debounce.bind="350" placeholder="search on 1 keyword"
+									 open-on-focus.bind="true" key="Description" results-limit.bind="12" select-single-result.bind="true">
+									</aubs-typeahead>
+								</div>
+							</div>
+
+
+							<div class="flex-row-none">
+								<div class="form-group flex-column-1">
+									<input id="searchbin" type="text" class="form-control" placeholder="Search for bin ..." value.bind="search.bin">
+								</div>
+								<div class="form-group flex-column-1 margin-left-10">
+									<aubs-typeahead ref='InventoryLocation' data.bind="appService.codesInventoryLocation" value.bind="DescriptionLoc" debounce.bind="350"
+									 placeholder="not avail -codesInventoryLocation" open-on-focus.bind="true" key="Description" results-limit.bind="12"
+									 select-single-result.bind="true">
+									</aubs-typeahead>
+								</div>
+							</div>
+
+
+							<div class="flex-row-none">
+								<div class="form-group flex-column-1">
+									<div class="form-group">
+										<label><input type="checkbox" checked.bind="search.andor">  Checked: search on every keyword, unchecked: search on any keyword"</label>
+									</div>
+								</div>
+							</div>
+							<div class="flex-row-none">
+								<div class="form-group flex-column-1">
+
+									<ak-multiselect k-value.two-way="multikeywords">
+										<select multiple="multiple" k-height.bind="400" data-placeholder="Select mulitple keywords...">
 					                       <option repeat.for="opt of appService.codesGenre" model.bind="opt.Description">
 					                        ${opt.Description} 
 					                      </option> 
 					                    </select>
-							</ak-multiselect>
-					
-						</div>
-					</div>
-					
-					
-					
-					<div class="flex-row-none">
-					
-						<div class="form-group flex-column-1">
-					
-					
-								<input ref="myDatalist" type="text" list="myDatalist" placeholder="search on savedlist" change.delegate="performSearchSL()"
-								 input.delegate="selectedValue = findOption($event.target.value)" />
-								<datalist id="myDatalist">
-									<option repeat.for="option of appService.savedlists">${option.name}</option>
-								</datalist>
+									</ak-multiselect>
+
+								</div>
 							</div>
-						</div>
-					
-						<div class="flex-row-none">
-							<div class="form-group flex-column-1">
-								<div class="form-group">Sold - Selected
-									<label repeat.for="sold of searchsold">
+
+
+
+							<div class="flex-row-none">
+
+								<div class="form-group flex-column-1">
+
+
+									<input ref="myDatalist" type="text" list="myDatalist" placeholder="search on savedlist" change.delegate="performSearchSL()"
+									 input.delegate="selectedValue = findOption($event.target.value)" />
+									<datalist id="myDatalist">
+										<option repeat.for="option of appService.savedlists">${option.name}</option>
+									</datalist>
+								</div>
+							</div>
+
+							<div class="flex-row-none">
+								<div class="form-group flex-column-1">
+									<div class="form-group">Sold - Selected
+										<label repeat.for="sold of searchsold">
 					              <input type="radio" name="group1"
 					                    model.bind="sold.id" checked.bind="search.sold">
 					                 ${sold.name} &nbsp;
 					            </label>
+									</div>
 								</div>
 							</div>
-						</div>
-					
-					
-					<div class="flex-row-none">
-							<div class="form-group flex-column-1">
-						<div class="form-group">Search on Dates - Selected : ${search.selectedDateId}
-							<label repeat.for="dat of searchdates">
+
+
+							<div class="flex-row-none">
+								<div class="form-group flex-column-1">
+									<div class="form-group">Search on Dates - Selected : ${search.selectedDateId}
+										<label repeat.for="dat of searchdates">
 					            <input type="radio" name="group2"
 					            model.bind="dat.name" checked.bind="search.selectedDateId">
 					            ${dat.name} &nbsp;
 					            </label>
-						</div>
-						</div>
-						</div>
-					
-						<div class="flex-row-none">
-					
-							<div class="form-group flex-column-1">
-								<label for="searchdrcvdatel">(Start Date>=</label>
-								<input id="searchdrcvdatel" type="date" class="form-control" placeholder="Start Date (> or =)  ..." value.bind="search.startdate">
+									</div>
+								</div>
 							</div>
-							<div class="form-group flex-column-1 margin-left-10">
-								<label for="lastName">Stop Date<=)</label>
-								<input id="searchdrcvdate2" type="date" class="form-control" placeholder="Stop Date (< or =)  .." value.bind="search.stopdate">
-							</div>
-					
-						</div>
-					
-					
-						<div class="flex-row-none">
-							<div class="form-group flex-column-1">
-								<label for="adjuster">mru</label>
-					
-								<ul>
-									<li repeat.for='e of mru'>
-					
-										<a click.delegate="populateInv(e)"> ${e}</a>
-					
-									</li>
-								</ul>
+
+							<div class="flex-row-none">
+
+								<div class="form-group flex-column-1">
+									<label for="searchdrcvdatel">(Start Date>=</label>
+									<input id="searchdrcvdatel" type="date" class="form-control" placeholder="Start Date (> or =)  ..." value.bind="search.startdate">
+								</div>
+								<div class="form-group flex-column-1 margin-left-10">
+									<label for="lastName">Stop Date<=)</label>
+									<input id="searchdrcvdate2" type="date" class="form-control" placeholder="Stop Date (< or =)  .." value.bind="search.stopdate">
+								</div>
+
 							</div>
 						</div>
+						<div class="form-group flex-column-1 margin-left-10">
 
 
 
+							<div class="flex-row-none">
+								<div class="form-group flex-column-1">
+									<label for="adjuster">mru</label>
 
+									<ul>
+										<li repeat.for='e of mru'>
 
+											<a click.delegate="populateInv(e)"> ${e}</a>
 
-
-
-
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
 					<div class="flex-row-none">
 						<div class="form-group flex-column-1">
 
@@ -219,10 +200,11 @@ Manage your notification settings or learn more about vulnerability alerts.
 						<div class="form-group flex-column-1 margin-left-10">
 							<button id="searchInputBtn" class="btn btn-primary" type="button" click.delegate="performClear()">Clear</button>
 						</div>
+					</div>
 
 				</form>
-				</div>
 			</div>
+
+		</div>
 	</section>
 </template>
-

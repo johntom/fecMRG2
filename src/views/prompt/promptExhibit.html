@@ -6,10 +6,11 @@
 	<ux-dialog>
 		<ux-dialog-header class="modal-header modal-header-success">
 			<div class="alert alert-danger">
-				<h1 style="width:800px">${heading}</h1>
+				<!-- <h1 style="width:300px"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${heading}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h1> -->
+				<h1 style="width:600px">${heading}</h1>
 
 			</div>
-		
+
 
 		</ux-dialog-header>
 		<ux-dialog-body>
@@ -27,6 +28,7 @@
 						</tr>
 					</tfoot>
 					<tbody>
+						body
 						<div class="Rtable Rtable--2cols">
 							<div class=" Rtable-cell-30 Rtable-cell--highlight">
 								<strong> id </strong>
@@ -40,30 +42,28 @@
 						</div>
 						<div class="Rtable Rtable--2cols">
 							<div class=" Rtable-cell-30 Rtable-cell--highlight">
-								<strong> ExhibitTitle </strong>
+								<strong> Title </strong>
 							</div>
 							<div class="Rtable-cell-70  Rtable-cell--light">
 								<!-- <input type="text" id="ExhibitTitle" class="form-control input-sm" value.bind="item.ExhibitTitle"> -->
 
-		             <textarea rows="3" cols="66" id="xNotes" wrap class="form-control input-sm" value.bind="item.ExhibitTitle"></textarea>
-
-								<!-- <textarea id="ExhibitTitle" cols="66" wrap value.bind="item.ExhibitTitle" rows="2 "> -->
+								<textarea rows="3" cols="66" id="xNotes" wrap class="form-control input-sm" value.bind="item.ExhibitTitle"></textarea>
 							</div>
 						</div>
 
 						<div class="Rtable Rtable--2cols">
 							<div class=" Rtable-cell-30 Rtable-cell--highlight">
-								<strong> ExhibitSponser </strong>
+								<strong> Sponsor </strong>
 							</div>
 							<div class="Rtable-cell-70  Rtable-cell--light">
 								<!-- <input type="text" id="ExhibitSponser" class="form-control input-sm " value.bind="item.ExhibitSponser"> -->
-                  <textarea rows="3" cols="66" id="xExhibitSponser" wrap class="form-control input-sm" value.bind="item.ExhibitSponser"></textarea>
+								<textarea rows="3" cols="66" id="xExhibitSponser" wrap class="form-control input-sm" value.bind="item.ExhibitSponser"></textarea>
 
 							</div>
 						</div>
 						<div class="Rtable Rtable--2cols">
 							<div class="Rtable-cell-30 Rtable-cell--highlight">
-								<strong>ExhibitLocation </strong>
+								<strong>Location </strong>
 							</div>
 							<div class="Rtable-cell-70  Rtable-cell--light">
 								<select id="ExhibitLocation" class="form-control input-sm" value.bind="item.ExhibitLocation"> 
@@ -80,18 +80,17 @@
 
 						<div class="Rtable Rtable--2cols">
 							<div class=" Rtable-cell-30 Rtable-cell--highlight">
-								<strong>	Exhibit Date   </strong>
+								<strong>	Dates   </strong>
 							</div>
 							<div class="Rtable-cell-70  Rtable-cell--light">
 								<input type="text" id="ExhibitDates" class="form-control input-sm au-target" value.bind="item.ExhibitDatesDate">
 							</div>
 						</div>
 
-
-
+						<!-- 1 -->
 						<div class="Rtable Rtable--2cols">
 							<div class=" Rtable-cell-30 Rtable-cell--highlight">
-								<strong>Exhibit SortDate </strong>
+								<strong> SortDate </strong>
 							</div>
 							<div class="Rtable-cell-70  Rtable-cell--light">
 								<input type="date" id="ExhibitSortDate" class="form-control input-sm au-target" value.bind="item.ExhibitSortDate">
@@ -112,36 +111,28 @@
 
 						<div class="Rtable Rtable--2cols">
 							<div class=" Rtable-cell-30 Rtable-cell--highlight">
-								<strong>ExhibitMemo </strong>
+								<strong>Note </strong>
 							</div>
 							<div class="Rtable-cell-70  Rtable-cell--light">
-								<!-- <input type="memo"  id="ExhibitMemo" class="form-control input-sm" value.bind="item.ExhibitMemo"> -->
 
-                <textarea id="ExhibitMemo" cols="66" rows="5 " class="form-control input-sm" wrap value.bind="item.ExhibitMemo"    >
-
+								<textarea id="ExhibitMemo" cols="66" rows="5" class="form-control input-sm" wrap value.bind="item.ExhibitMemo">	</textarea>
 							</div>
 						</div>
-            	<!-- <div class="Rtable Rtable--2cols">
-							<div class=" Rtable-cell-30 Rtable-cell--highlight">
-						<strong>Command </strong>
-							</div>
-							<div class="Rtable-cell-70  Rtable-cell--light">
-						    
-							</div>
-						</div> -->
- 
+						<!-- 1 -->
 					</tbody>
 				</table>
-     
 			</div>
 
+
+
+
+			<hr>
 		</ux-dialog-body>
 
 		<ux-dialog-footer>
 
 			<button click.trigger="controller.cancel()">Cancel and Close </button>
-			<button click.trigger="save()">Save Exhibit and Close </button>
-
+			<button click.trigger="save()">Save Exhibition and Close </button>
 
 		</ux-dialog-footer>
 	</ux-dialog>

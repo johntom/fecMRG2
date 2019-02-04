@@ -3,9 +3,11 @@ import { ApiService } from '../../../utils/servicesApi';
 import { ApplicationService } from '../../../services/application-service';
 import moment from 'moment';
 import { DialogService } from 'aurelia-dialog';
-import { ynPrompt } from '../../../services/prompt';
-import { Prompt } from '../prompt';
+// import { ynPrompt } from '../../../services/prompt';
+import { Promptyn } from '../../../services/promptyn';
 
+ import { Prompt } from '../prompt';
+// import { Prompt } from '../../../services/prompt';
 @inject(ApiService, ApplicationService, DialogService)
 export class Conssignedto {
   heading = 'DataForm HEADER...';
@@ -63,7 +65,8 @@ export class Conssignedto {
 
     // let notes = this.currentItem.notes
     // notes.splice(index, 1)// start, deleteCount)
-    this.dialogService.open({ viewModel: ynPrompt, model: 'Delete or Cancel?', lock: false }).whenClosed(response => {
+    // this.dialogService.open({ viewModel: ynPrompt, model: 'Delete or Cancel?', lock: false }).whenClosed(response => {
+    this.dialogService.open({ viewModel: Promptyn, model: 'Delete or Cancel?', lock: true }).whenClosed(response => {
       if (!response.wasCancelled) {
         console.log('Delete')
         let consignedto = this.currentItem.consignedto

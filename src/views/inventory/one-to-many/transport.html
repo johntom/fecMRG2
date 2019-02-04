@@ -90,7 +90,7 @@
 						<!-- <button class="btn btn-primary" click.delegate="transport.edit=!transport.edit">${ !transport.edit ? 'Update' : 'Done' }</button> -->
 						<button class="btn btn-primary" click.delegate="saveitem(transport,$index)">${ !transport.edit ? 'Edit' : 'Save' }</button>
 
-          	<button class="btn btn-sm btn-danger" click.delegate="remove(transport)">           Delete            </button>
+          	<button class="btn btn-sm btn-danger" click.delegate="remove(transport,$index)">           Delete            </button>
 					</td>
 
 				</tr>

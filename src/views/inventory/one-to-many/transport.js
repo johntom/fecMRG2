@@ -6,7 +6,7 @@ import { Aurelia } from 'aurelia-framework';
 import { DialogService } from 'aurelia-dialog';
 import { Prompt } from '../../../services/prompt';
 import { Router } from 'aurelia-router';
-
+import { Promptyn } from '../../../services/promptyn';
 @inject(Router, ApiService, ApplicationService, DialogService)
 export class Transport {
   heading = 'DataForm HEADER...';
@@ -73,7 +73,7 @@ export class Transport {
     this.mode = 0
 
 
-    this.dialogService.open({ viewModel: Prompt, model: 'Delete or Cancel?', lock: false }).whenClosed(response => {
+    this.dialogService.open({ viewModel: Promptyn, model: 'Delete or Cancel?', lock: true }).whenClosed(response => {
       if (!response.wasCancelled) {
         console.log('Delete')
         let transport = this.currentItem.transport

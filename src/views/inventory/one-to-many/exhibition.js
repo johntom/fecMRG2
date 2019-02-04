@@ -39,7 +39,7 @@ export class Exhibition {
   remove(item, index) {
     //import { Prompt } from '../../../services/prompt';
 
-    this.dialogService.open({ viewModel: Prompt, model: 'Delete or Cancel?', lock: false }).whenClosed(response => {
+    this.dialogService.open({ viewModel: Prompt, model: 'Delete or Cancel?', lock: true }).whenClosed(response => {
       if (!response.wasCancelled) {
         console.log('Delete')
         let exhibition = this.currentItem.exhibition
@@ -92,7 +92,7 @@ export class Exhibition {
 
 
     // this.dialogService.open({ viewModel: PromptForm, model: currentModel, lock: false }).whenClosed(response => {
-    this.dialogService.open({ viewModel: Promptexhibit, model: currentModel, lock: false }).whenClosed(response => {
+    this.dialogService.open({ viewModel: Promptexhibit, model: currentModel, lock: true }).whenClosed(response => {
 
       if (!response.wasCancelled) {
         console.log('item', item);

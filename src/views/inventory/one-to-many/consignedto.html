@@ -71,6 +71,10 @@
 						<span show.bind="!consignedto.edit">${ConsignmentRetailPrice}</span>
 						<input show.bind="consignedto.edit" class="form-control input-sm" disabled.bind="!consignedto.edit" type="text" value.bind="ConsignmentRetailPrice">
 					</td>
+          		<td width="125px">
+						<span show.bind="!consignedto.edit">${ConsignmentRetailPriceAmt}</span>
+						<input show.bind="consignedto.edit" class="form-control input-sm" disabled.bind="!consignedto.edit" type="text" value.bind="ConsignmentRetailPriceAmt">
+					</td>
 					<td width="125px">
 						<span show.bind="!consignedto.edit">${NettoMRG}</span>
 						<input show.bind="consignedto.edit" class="form-control input-sm" disabled.bind="!consignedto.edit" type="text" value.bind="NettoMRG">						</td>
@@ -80,10 +84,7 @@
 						<input show.bind="consignedto.edit" class="form-control input-sm" disabled.bind="!consignedto.edit" type="text" value.bind="NettoMRGAmt">						</td>
 					</td>
 
-					<td width="125px">
-						<span show.bind="!consignedto.edit">${ConsignmentRetailPriceAmt}</span>
-						<input show.bind="consignedto.edit" class="form-control input-sm" disabled.bind="!consignedto.edit" type="text" value.bind="ConsignmentRetailPriceAmt">
-					</td>
+			
 			
 					<td width="105px">
 						<span show.bind="!consignedto.edit">${ArtworkReleased | dateFormat}</span>

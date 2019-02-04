@@ -233,6 +233,10 @@ export class Prompt {
     // }
     //add DonatedBy
     if (this.fieldname === 'SavedList') {
+      this.heading ="Select an Existing Saved List or Create New"
+       this.doc = "Select an Existing Saved List "
+ this.doc2 = "Enter name of new Saved List"
+
       // we dont send a name of the list
       // let meds = this.appService.savedlists 
       // if ((this.currentItem.SoldTo === undefined) || (this.currentItem.orgsList === null)) {

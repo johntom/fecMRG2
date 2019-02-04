@@ -145,7 +145,7 @@
 
 								<div class="Rtable Rtable--4cols">
 									<div class="Rtable-cell Rtable-cell--highlight">
-										<strong>Code</strong>
+										<strong>Inv Code</strong>
 									</div>
 									<div class="Rtable-cell Rtable-cell--highlight">
 										<div if.bind="recordId === 'create'">
@@ -209,9 +209,9 @@
 										<div style="height:15px;margin-left:10px;margin-top:5px;margin-bottom:10px" else>
 
 
-											<a click.delegate="showModal( 'Artist')">${currentItem.artist.lastName}, ${currentItem.artist.firstName}
-												<span show.bind="currentItem.artist.died===''"> (b.${currentItem.artist.yearofBirth})</span>
-												<span show.bind="currentItem.artist.died!==''"> (${currentItem.artist.yearofBirth}-${currentItem.artist.died})</span>												</strong>
+											<a click.delegate="showModal( 'Artist')">${currentItem.artist.lastName}, ${currentItem.artist.firstName} 
+												<span show.bind="currentItem.artist.died==='' || currentItem.artist.died===0"> (b.${currentItem.artist.yearofBirth})</span>
+												<span show.bind="currentItem.artist.died!==''  && currentItem.artist.died!==0"> (${currentItem.artist.yearofBirth}-${currentItem.artist.died})</span>												</strong>
 												</span>
 
 											</a>
@@ -570,11 +570,7 @@
 							</div>
 							<!-- xid no form store id hs prev vals  input-sm  vss none-->
 							<div class="form-group flex-column-1 margin-left-10">
-
 								<div class="Rtable Rtable--2cols">
-
-								
-
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
 										<strong> Sold Status </strong>
 									</div>
@@ -590,11 +586,8 @@
 										</select>
 									</div>
 
-
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
-
 										<span dblclick.delegate="showModal( 'SoldToID') ">	<strong> Sold To</strong></span>
-
 									</div>
 
 
@@ -672,11 +665,11 @@
 									</div>
 									<div class="Rtable-cell-70 Rtable-cell--highlight">
 
-						<!-- <span> ratio h: ${currentItem.clientHeightRatio} -- w: ${currentItem.clientWidthRatio} dim:
-             h: ${currentItem.clientHeight} / w: ${currentItem.clientWidth} </span> -->
-										<span> ratio h: ${currentDim.clientHeightRatio} -- w: ${currentDim.clientWidthRatio} dim:
+						<span> ratio h: ${currentItem.clientHeightRatio} -- w: ${currentItem.clientWidthRatio} dim:
+             h: ${currentItem.clientHeight} / w: ${currentItem.clientWidth} </span>
+										<!-- <span> ratio h: ${currentDim.clientHeightRatio} -- w: ${currentDim.clientWidthRatio} dim:
              h: ${currentDim.clientHeight} / w: ${currentDim.clientWidth} </span>
-										<span>https://artbased.com/api/v1/getimage/inv/${currentItem.InventoryCode}.jpg </span>
+										<span>https://artbased.com/api/v1/getimage/inv/${currentItem.InventoryCode}.jpg </span> -->
 									</div>
 
 

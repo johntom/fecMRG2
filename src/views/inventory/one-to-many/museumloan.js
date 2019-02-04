@@ -8,7 +8,12 @@ import moment from 'moment';
 import { DialogService } from 'aurelia-dialog';
 
 import { ynPrompt } from '../../../services/prompt';
-import { Prompt } from '../prompt';
+// import { Prompt } from '../prompt';
+import { Prompt } from '../../../services/prompt';
+// import { PromptForm } from '../promptForm';
+// import { Promptrepro } from '../../prompt/promptRepro';
+
+
 // @inject(TaskQueue, BindingSignaler, ApiService, ApplicationService, DialogService)
 @inject(ApiService, ApplicationService, DialogService)
 
@@ -85,16 +90,19 @@ export class Museamloan {
     this.mode = 0
     // let adjusters = this.currentItem.adjusters
     // adjusters.splice(index, 1)
-    this.dialogService.open({ viewModel: ynPrompt, model: 'Delete or Cancel?', lock: false }).whenClosed(response => {
+
+  this.dialogService.open({ viewModel: Prompt, model: 'Delete or Cancel?', lock: true }).whenClosed(response => {
       if (!response.wasCancelled) {
         console.log('Delete')
-        let adjusters = this.currentItem.adjusters
-        adjusters.splice(index, 1)
+        let museumloan = this.currentItem.museumloan
+        museumloan.splice(index, 1)// start, deleteCount)
       } else {
         console.log('cancel');
       }
-      console.log(response.output);
+      console.log(response)//.output);
     });
+
+
   }
   // <input click.delegate="showModal('LoanTo',$index)" type="text" id="LoanTo" class="form-control input-sm"
   // value.bind="loantoname">
