@@ -9,7 +9,7 @@ import { ApiService } from '../../utils/servicesApi';
 
 export class Home {
   heading = "MRG Home Page";
-  version = 242.37
+  version = 242.38
   versionDate = 'sun 2/3/2019'
   // versiondate=Date(); catalogssentto
   //  "select2": { 
@@ -69,6 +69,7 @@ export class Home {
     'https://bl.ocks.org/lstarky/11cd1e90dd912f07a60afaedb9c2613b',
     'git commit -am "200.70 " / git push',
     "clean dup InventoryCode and make uniq",
+    "deleting ref= fixes dirty checking <div class='form-control input-sm' ref='catname' "
     // "clean ARTISTS null reocrds",
     // "",
     // "",

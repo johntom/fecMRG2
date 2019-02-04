@@ -99,9 +99,7 @@ export class DataForm {
     let prevorgid = this.currentItem.org._id
     let prevorg = this.currentItem.org
     this.dialogService.open({ viewModel: Promptcontact, model: this.currentItem, lock: true }).whenClosed(response => {
-
       if (!response.wasCancelled) {
-
         if (this.currentItem.prevorgs !== undefined) {
           // see if it exists in the array (only one for now)
           if (this.currentItem.prevorgs[0]._id !== prevorgid) {
@@ -196,13 +194,24 @@ export class DataForm {
 
             this.appService.currentContactItem = this.currentItem//inv[0]
             this.mrubuild()
+            // this.currentItem.isDirty = () => {
+            //   return JSON.stringify(this.currentItem) !== JSON.stringify(this.appService.originalContactrec)
+            // };
+            // this.currentItem.reset = () => {
+            //   this.appService.originalContactrec = JSON.parse(JSON.stringify(this.currentItem))
+            // }
             this.currentItem.isDirty = () => {
-              return JSON.stringify(this.currentItem) !== JSON.stringify(this.appService.originalContactrec)
+              const currentJSON = JSON.stringify(this.currentItem);
+              const originalJSON = JSON.stringify(this.appService.originalContactrec);
+              console.log('currentJSON', currentJSON);
+              console.log('originalJSON', originalJSON);
+              return currentJSON !== originalJSON;
             };
-            this.currentItem.reset = () => {
-              // this.appService.originalrec =   this.currentItem;
-              this.appService.originalContactrec = JSON.parse(JSON.stringify(this.currentItem))
-            }
+            // http://www.jsondiff.com/
+
+
+
+
             this.appService.currentContactView = this.currentItem; // must set on every view
             this.appService.originalContactrec = JSON.parse(JSON.stringify(this.currentItem))// inv[0]));
 
@@ -254,7 +263,7 @@ export class DataForm {
     //   if (temp[0].id === temp[4].id) this.skip = true;
     // }
 
-   function mruinfo(temp) {
+    function mruinfo(temp) {
       if (temp[0] != undefined) this.mru1 = temp[0];
       if (temp[1] != undefined) this.mru2 = temp[1];
       if (temp[2] != undefined) this.mru3 = temp[2];

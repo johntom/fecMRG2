@@ -59,8 +59,9 @@
 
 	<td width="450px">
 				 
-						<div class="form-control input-sm" ref='catname' if.bind="catalogsold.CatalogTitle===undefined || catalogsold.CatalogTitle===''">
-							<a click.delegate="showModal( 'id',$index)">select_link </a>
+						<!-- <div class="form-control input-sm" ref='catname' if.bind="catalogsold.CatalogTitle===undefined || catalogsold.CatalogTitle===''"> -->
+							<div class="form-control input-sm"  if.bind="catalogsold.CatalogTitle===undefined || catalogsold.CatalogTitle===''">
+						<a click.delegate="showModal( 'id',$index)">select_link </a>
 						</div>
 						<div class="form-control  input-sm" else>
 							<a click.delegate="showModal('id',$index)">  ${catalogsold.CatalogTitle} </a>

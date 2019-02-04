@@ -60,7 +60,8 @@
 				<tr repeat.for="catalogsent of currentItem.catalogsent " with.bind="catalogsent">
 					<td width="450px">
 
-						<div class="form-control input-sm" ref='catname' if.bind="CatalogTitle===undefined || CatalogTitle===''">
+						<!-- <div class="form-control input-sm" ref='catname' if.bind="CatalogTitle===undefined || CatalogTitle===''"> -->
+						<div class="form-control input-sm" if.bind="CatalogTitle===undefined || CatalogTitle===''">
 
 							<a click.delegate="showModal( 'id','CatalogID',$index)">select_link </a>
 						</div>

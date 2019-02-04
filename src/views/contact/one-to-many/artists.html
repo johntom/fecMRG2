@@ -47,8 +47,10 @@
 
 					<td width="400px">
 				
-						<div class="form-control input-sm" ref='artname' if.bind="artist.ArtistName===undefined || artist.ArtistName===''">
-							<a click.delegate="showModal( 'id',$index)">select_link </a>
+						<!-- <div class="form-control input-sm" ref='artname' if.bind="artist.ArtistName===undefined || artist.ArtistName===''"> -->
+								<div class="form-control input-sm" if.bind="artist.ArtistName===undefined || artist.ArtistName===''">
+				
+            	<a click.delegate="showModal( 'id',$index)">select_link </a>
 						</div>
 						<div class="form-control  input-sm" else>
 							<a click.delegate="showModal('id',$index)">${artist.ArtistName} , ${artist.yearofBirth} b.$(artist.YearofBirth) d.${artist.died }</a>
