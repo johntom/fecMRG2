@@ -43,8 +43,9 @@
 					</td>
 					<td width="200px">
 						<select id="ProvLoc" class="form-control  input-sm" value.bind="ProvLoc"> 
-                      <option model.bind="null">Choose...filterOnCode</option> 
-                         <option repeat.for="opt of appService.codesProvenanceLocation " model.bind="opt.id">
+                      <!-- <option model.bind="null">Choose...filterOnCode</option>  -->
+                         <option model.bind=0>Choose...filterOnCode</option> 
+                      <option repeat.for="opt of appService.codesProvenanceLocation " model.bind="opt.id">
                     ${opt.Description} 
                       </option> 
                     </select>

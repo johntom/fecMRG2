@@ -89,7 +89,9 @@
 					</td>
 					<td width="200px">
 						<select id="ReproductionLocation" class="form-control  input-sm" value.bind="ReproductionLocation"> 
-                      <option model.bind="null">Choose...filterOnCode</option> 
+                      <!-- <option model.bind="null">Choose...filterOnCode</option>  -->
+                       <option model.bind="''">Choose...filterOnCode</option> 
+                    
                          <option repeat.for="opt of appService.codesProvenanceLocation" model.bind="opt.id">
                     ${opt.Description} 
                     <!-- codesProvenanceLocation -->
@@ -108,7 +110,7 @@
 					 -->
 					<td width="200px">
 						<select id="ReproductionType" class="form-control  input-sm" value.bind="ReproductionType"> 
-                      <option model.bind="null">Choose...</option> 
+                      <option model.bind="''" >Choose...</option> 
                          <option repeat.for="opt of appService.codesPublicationType " model.bind="opt.id">
                     ${opt.Description} 
                       </option> 
@@ -119,7 +121,7 @@
 					<!-- <td width="120px"><input type="text" id="ColorBW" class="form-control  input-sm" value.bind="ColorBW"></td> -->
 					<td width="120px">
 						<select id="ColorBW" class="form-control  input-sm" value.bind="ColorBW"> 
-                      <option model.bind="null">Choose...</option> 
+                      <option model.bind="''">Choose...</option> 
                          <option repeat.for="opt of appService.codesReproductionType" model.bind="opt.id">
                     ${opt.Description} 
                       </option> 
@@ -142,7 +144,7 @@
 					<td width="300px">
 
 						<select id="ReproductionExhibit" class="form-control  input-sm" value.bind="ReproductionExhibit"> 
-                      <option model.bind="null">Choose...</option> 
+                      <option model.bind="''" >Choose...</option> 
                          <option change.delegate="changeSelect(opt)" repeat.for="opt of currentItem.exhibition" 
                          model.bind="opt.id">
                ${opt.id}  /  ${opt.ExhibitTitle} /  ${opt.ExhibitSponser}

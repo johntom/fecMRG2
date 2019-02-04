@@ -69,7 +69,9 @@ export class Home {
     'https://bl.ocks.org/lstarky/11cd1e90dd912f07a60afaedb9c2613b',
     'git commit -am "200.70 " / git push',
     "clean dup InventoryCode and make uniq",
-    "deleting ref= fixes dirty checking <div class='form-control input-sm' ref='catname' "
+    "deleting ref= fixes dirty checking <div class='form-control input-sm' ref='catname' ",
+    "also <option model.bind='null'>",
+    'ReproductionLocation missing as ""'
     // "clean ARTISTS null reocrds",
     // "",
     // "",
