@@ -175,8 +175,9 @@ export class Prompt {
       //     if (this.ArtistName.ArtistName === undefined) this.ArtistName.ArtistName = this.currentItem.artist.lastName + ', ' + this.currentItem.artist.firstName
       //     this.dartist.value = this.ArtistName
       //   }
-      this.doc = `Select Artist or add new if not in list.`
-      this.heading = `Select Artist or add new if not in list.`
+      this.doc = `Select Artist `
+      //  this.doc2 = `Select Artist or add new if not in list.`
+     this.heading = `ARTIST SEARCH `
       this.placeholder = `Select Artist or add new if not in list.`
       if (this.currentItem.artist === undefined || this.currentItem.artist === '') {
       } else {

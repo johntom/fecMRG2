@@ -26,7 +26,7 @@ export class SearchResults {
   item = {}
 
   //  console.log(' inv SearchResults ');
-  message = 'Hello Batch Updates';
+  message = ''//Hello Batch Updates';
   datasource = new kendo.data.DataSource({
     transport: {
       read: (options) => {

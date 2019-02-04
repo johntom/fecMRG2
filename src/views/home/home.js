@@ -9,7 +9,7 @@ import { ApiService } from '../../utils/servicesApi';
 
 export class Home {
   heading = "MRG Home Page";
-  version = 242.39
+  version = 242.40
   versionDate = 'Mon 2/4/2019'
   // versiondate=Date(); catalogssentto
   //  "select2": { 
@@ -71,7 +71,9 @@ export class Home {
     "clean dup InventoryCode and make uniq",
     "deleting ref= fixes dirty checking <div class='form-control input-sm' ref='catname' ",
     "also <option model.bind='null'>",
-    'ReproductionLocation missing as ""'
+    'ReproductionLocation missing as ""',
+    " Remove auto-complete field entries in Google Chrome"
+
     // "clean ARTISTS null reocrds",
     // "",
     // "",

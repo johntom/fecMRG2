@@ -8,7 +8,7 @@ import { EventAggregator } from 'aurelia-event-aggregator';
 export class Contact {
   static inject = [Router, UtilService, ApiService, EventAggregator];
 
-  heading = 'Welcome to the Contact page';
+  heading = 'SEARCH CONTACTS';
   counter = 1;
   search = {}
   selectedValue = null;

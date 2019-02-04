@@ -258,6 +258,8 @@ async getCatalogsent(cat) {
 
 
   async findArtistsAA1() {
+    
+  
     var url = this.baseweb + 'v1/artist';
     return await this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())
   }

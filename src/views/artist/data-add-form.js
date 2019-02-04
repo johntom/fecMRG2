@@ -27,9 +27,8 @@ export class DataAddForm {
     this.dataService = dataService;
     this.eventAggregator = eventAggregator;
     // // this.createEventListeners();
-    this.appService.currentClaim = 0 // {}; DO NOT DO THIS
-    this.inscoAdjusters = []
-     this.inscoAddresses= []
+//    this.appService.currentClaim = 0 // {}; DO NOT DO THIS
+
     //breaks form
     //    this.currentnewItem={}
     //         let newNoteWorkDate = moment().format('YYYY-MM-DD')
@@ -44,33 +43,9 @@ export class DataAddForm {
 
   }
 
-  selectChanged(insid) {
+  
 
-    let insco = this.appService.InsurancecompanyList
-    let aid = insco.findIndex(x => x.INSURANCE_COMPANY_ID === insid)
-    let item = insco[aid];// { ADJUSTER_ID: 4, ADJUSTER_NAME: "Donna Luciani", edit: true }
-    this.inscoAdjusters = item.contacts
-    this.inscoAddresses= item.addresses
-    // adjusters[index] = item
 
-  }
-
-  selectChangedIA(adjusterid) {
-
-    let insadjusters = this.inscoAdjusters
-    let aid = insadjusters.findIndex(x => x.INSURANCE_CONTACT_ID === adjusterid)
-    let item = insadjusters[aid];// { ADJUSTER_ID: 4, ADJUSTER_NAME: "Donna Luciani", edit: true }
-    this.currentnewItem.inscontact = item
-
-  }
- selectChangedIAddr(insurancecompanyid) {
-
-    let insaddresses = this.inscoAddresses
-    let aid = insaddresses.findIndex(x => x.INSURANCE_COMPANY_ID === insurancecompanyid)
-    let item = insaddresses[aid];// { ADJUSTER_ID: 4, ADJUSTER_NAME: "Donna Luciani", edit: true }
-    this.currentnewItem.insaddress = item
-
-  }
 
   attached() {
 
@@ -94,26 +69,26 @@ export class DataAddForm {
   //    return confirm('Are you sure you want to leave this page?');
   // }
   saveclaim() {
-    console.log('this.adjuster.ADJUSTER_ID ', this.currentnewItem.ADJUSTER_ID);
-    this.currentnewItem.STATUS = 1;
-    let newNoteWorkDate = moment().format('YYYY-MM-DD');
-    this.currentnewItem.EDITED = newNoteWorkDate;
-    this.currentnewItem.RECEIVED = newNoteWorkDate;
+    // console.log('this.adjuster.ADJUSTER_ID ', this.currentnewItem.ADJUSTER_ID);
+    // this.currentnewItem.STATUS = 1;
+    // let newNoteWorkDate = moment().format('YYYY-MM-DD');
+    // this.currentnewItem.EDITED = newNoteWorkDate;
+    // this.currentnewItem.RECEIVED = newNoteWorkDate;
 
-    this.api.addclaim(this.currentnewItem).then((jsonRes) => {
-      // First, grab the current tab
-      let tab = this.appService.tabs.find(f => f.isSelected);
-      // Next, we navigate to the newly created claim
-      this.navigateToNewClaim();
-      // Finally, we close out this tab
-      this.closeTab(tab);
-    });
+    // this.api.addclaim(this.currentnewItem).then((jsonRes) => {
+    //   // First, grab the current tab
+    //   let tab = this.appService.tabs.find(f => f.isSelected);
+    //   // Next, we navigate to the newly created claim
+    //   this.navigateToNewClaim();
+    //   // Finally, we close out this tab
+    //   this.closeTab(tab);
+    // });
   }
 
-  navigateToNewClaim() {
-    let rt2 = 'claim/data/' + this.currentnewItem.CLAIM_NO;
-    this.router.navigate(rt2);    
-  }
+  // navigateToNewClaim() {
+  //   let rt2 = 'claim/data/' + this.currentnewItem.CLAIM_NO;
+  //   this.router.navigate(rt2);    
+  // }
   closeTab(tab) {
     let index = this.appService.tabs.indexOf(tab);
     tab.isSelected = false;

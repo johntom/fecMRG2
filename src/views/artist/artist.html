@@ -1,18 +1,20 @@
 <template>
 	<section class="full-height flex-column-1 au-animate ignore">
 		<div class="flex-row-none section-header">
-			${heading}
+		<h4>	${heading} </h4>
 		</div>
 		<div class="flex-row-1 ignore">
 			<div class="flex-column-1 search-panel">
 				<form>
 					<div class="form-group flex-column-1 margin-left-10">
-						<label for="adjuster"> click to select an artist</label>
+						<label for="adjuster"> seach artist</label>
 						<label for="Artist">Artist</label>
 					<!--  	input.delegate="selectedValueA = findOptionA($event.target.value)" 
           change.delegate="changeCallbackArtist(selectedValue)"  -->
-          	<input ref="myDatalistA" type="text" list="myDatalistA" 
-              value.bind="selectedArtist"
+          	<input ref="myDatalistA" type="text" list="myDatalistA"   change.delegate="performSearch()"
+            
+					
+             value.bind="selectedArtist"
 						/>
 						<datalist id="myDatalistA">
 							<!-- model.bind="option" <option repeat.for="option of appService.artistList">${option.ArtistName} ${option.id} b.${option.YearofBirth} </option> -->
@@ -20,14 +22,25 @@
               model.bind="option">${option.ArtistName} - ${option.YearofBirth} </option>
 					
             </datalist>
-						<pre style="margin-top: 100px"><code>${selectedValueA.ArtistName} b.${option.YearofBirth} legacyid:${option.ID}    legacyid:${option.id}</code></pre>
+						<!-- <pre style="margin-top: 100px"><code>${selectedValueA.ArtistName} b.${option.YearofBirth} legacyid:${option.ID}    legacyid:${option.id}</code></pre> -->
 
-	<!-- <aubs-typeahead ref='keyword' data.bind="appService.artistList" value.bind="artist" debounce.bind="350" placeholder="artist"
-						 open-on-focus.bind="true" key="id" results-limit.bind="20" select-single-result.bind="true">
-						</aubs-typeahead> -->
 
 					</div>
 
+
+
+
+<!-- 
+
+					<button id="searchInputBtn" class="btn btn-primary" type="button" click.delegate="performSearch()">Search!</button>
+			-->
+		<button id="addInputBtn" class="btn btn-success" type="button" click.delegate="addartist()"><strong>A</strong>dd Artist</button>
+	 
+      	</form>
+			</div>
+		</div>
+	</section>
+</template>
 
 
 
@@ -54,14 +67,3 @@
 							<input id="searchartistf" type="text" class="form-control" placeholder="Search for inv artist first..." value.bind="search.artistf">
 						</div>
 					</div> -->
-
-
-					<button id="searchInputBtn" class="btn btn-primary" type="button" click.delegate="performSearch()">Search!</button>
-			
-		<button id="addInputBtn" class="btn btn-success" type="button" click.delegate="addartist()"><strong>A</strong>dd Artist</button>
-	
-      	</form>
-			</div>
-		</div>
-	</section>
-</template>

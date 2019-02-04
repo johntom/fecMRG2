@@ -124,13 +124,13 @@
 
 					<!-- input.delegate="selectedValueA = findOptionI($event.target.value)" -->
 
-					<label for="Artist">Artist</label>
+					<label for="Artist">${doc}</label>
 					<input focus.bind="hasFocus" ref="myDatalistA" type="text" list="myDatalistA" change.delegate="changeCallbackArtist(selectedValue)"
 					 input.delegate="selectedValueA = findOptionA($event.target.value)" />
 					<datalist id="myDatalistA">
 						<option repeat.for="option of appService.artistList">${option.ArtistName}</option>
 					</datalist>
-					<pre style="margin-top: 100px"><code>${selectedValueA.ArtistName}</code></pre>
+					<!-- <pre style="margin-top: 100px"><code>${selectedValueA.ArtistName}</code></pre> -->
 				</div>
 			</div>
 

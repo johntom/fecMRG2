@@ -4,7 +4,7 @@ import { ApplicationService } from '../../services/application-service';
 import { MyDataService } from "../../services/my-data-service";
 import { EventAggregator } from 'aurelia-event-aggregator';
 
-
+import lodash from 'lodash';
 @inject(ApiService, ApplicationService, MyDataService, EventAggregator)
 export class DataForm {
   heading = 'DataAddForm HEADER...';
@@ -85,13 +85,16 @@ export class DataForm {
     let response = await this.api.updateartistAA(this.artist);
     if (this.artist.id === 'create') {
       let val = await this.api.findArtistsAA();
-      this.appService.artistList = val.data;
+      
+      // this.appService.artistList = val.data;
       this.artist.id ='';
-      //    let response = await this.api.getCatalogsAA();
-      // this.appService.catalogList = response.data
-      // console.log('this.repos ', this.api.catalogList)
+        let nlist = []
+        for (const item of val.data) {
+          item.ArtistName = item.LastName + ', ' + item.FirstName
+          nlist.push(item)
+        }
+        this.appService.artistList = lodash.sortBy(nlist, 'ArtistName');
 
-      //   this.appService.artistList = values[0];
 
 
     }

@@ -9,7 +9,7 @@ import { DialogService } from 'aurelia-dialog';
 export class Artist {
   static inject = [Router, UtilService, ApplicationService, ApiService, DialogService];
 
-  heading = 'Welcome to the Artist page';
+  heading = 'ARTIST';
   counter = 1;
   search = {}
   selectedValue = null; //ADJUSTER_NAME
