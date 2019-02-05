@@ -795,11 +795,8 @@ there are extra ' when there are fractions
 
   createRTF() {
     this.createDim()
-
     let artist = this.currentItem.artist
-
     let artistWdates = `<strong>${artist.firstName} ${artist.lastName}`
-
     if (artist.died) {
       artistWdates += ` (${artist.yearofBirth}-${artist.died})`
     } else {
@@ -828,8 +825,9 @@ there are extra ' when there are fractions
 
     if (this.currentItem.MediumSupportobj !== undefined)
       segment1 += `  ${this.currentItem.MediumSupportobj.Description}<br> `
-   
-   let uidx = (this.dimsf.indexOf('undefined'));
+  //  let uidx = (this.dimsf.indexOf('undefined'));
+   let uidx
+  this.dimsf===undefined ? uidx=-1 :  uidx = (this.dimsf.indexOf('undefined'))
    
     if (uidx > -1) {
     } else {
