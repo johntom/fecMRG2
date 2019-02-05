@@ -296,7 +296,7 @@ export class DataForm {
         let success = jsonRes.data;
         // alert('success',success)
         if (success === 'success') {
-          alert(' factsheet  created ')
+          // alert(' factsheet  created ')
 
         } else alert(' factsheet  failed ')
       });
@@ -327,6 +327,7 @@ export class DataForm {
         this.currentItem = {}
         this.currentItem.id = 'create'
         // this.showImage=true;
+        this.addmode = true
         this.appService.testrec = {}
         this.appService.originalrec = {}
         //   this.currentItem.STATUS = 1
@@ -351,45 +352,19 @@ export class DataForm {
         this.currentItem.consigned = []
         this.currentItem.photo = []
         this.currentItem.docs = []
- this.currentItem.keywords= []
+        this.currentItem.keywords = []
 
       } else {
         console.log('this.recordId ', this.recordId);
-        // this.mrubuild()
-        // this.getimageinfo()
-        // let mruget = localStorage.getItem('mru-mrg');
-        // if (mruget === null) {
-        //   // tabindex = 0
-        //   mruget = 0
-        // } else {
-        //   mruget = JSON.parse(mruget)
-        // }
 
-        // // let get the mru list and bump it
-        // function mruinfo(temp) {
-        //   this.mru1 = temp[0];
-        //   this.mru2 = temp[1];
-        //   this.mru3 = temp[2];
-        //   this.mru4 = temp[3];
-        //   this.mru5 = temp[4];
-        //   //  this.tabindex = temp[1];
-        // }
-        // var temp = [this.recordId, mruget.mru1, mruget.mru2, mruget.mru3, mruget.mru4];
-
-        // if (this.recordId === mruget.mru1 || this.recordId === mruget.mru2 || this.recordId === mruget.mru3 ||
-        //   this.recordId === mruget.mru4 || this.recordId === mruget.mru5) { } else {
-        //   mruinfo = new mruinfo(temp);
-        //   // localStorage.setItem('tabinfo', JSON.stringify(tabinfo));
-        //   localStorage.setItem('mru-mrg', JSON.stringify(mruinfo));
-        // }
-        //////////////////// end mru
-
+        this.addmode = false
 
         return this.api.findInventoryOne(this.recordId)
           .then((jsonRes) => {
             console.log('jsonRes ', jsonRes);
             let inv = jsonRes.data;
             this.currentItem = inv[0]
+            delete this.currentItem.updatedAt;
             // never been saved from view
 
             // // move to attach
@@ -401,21 +376,14 @@ export class DataForm {
             // }
             this.mrubuild()
             this.appService.currentItem = this.currentItem//inv[0]
-            // this.getimageinfo()//
+            this.appService.originalrec = JSON.parse(JSON.stringify(this.currentItem))
+            // this.getimageinfo()// dom not ready
 
-            // console.log(this.currentItem.clientHeight, this.currentItem.clientWidth, this.currentItem.clientHeightRatio, this.currentItem.clientWidthRatio)
-            //this.currentDim = {} // dont set on  this.currentItem for isDirty  "clientHeight": 231,
-            // "clientHeightRatio": 1,
-            // "clientWidth": 300,
-            // "clientWidthRatio": "1.3",
 
 
             // this.currentItem.isDirty = () => {
             //   return JSON.stringify(this.currentItem) !== JSON.stringify(this.appService.originalrec)
             // };
-            // this.currentItem.reset = () => {
-            //    this.appService.originalrec = JSON.parse(JSON.stringify(this.currentItem))
-            // }
 
             this.currentItem.isDirty = () => {
               const currentJSON = JSON.stringify(this.currentItem);
@@ -431,13 +399,15 @@ export class DataForm {
               return currentJSON !== originalJSON;
             };
             // http://www.jsondiff.com/
-
+            this.currentItem.reset = () => {
+              this.appService.originalrec = JSON.parse(JSON.stringify(this.currentItem))
+            }
             this.appService.currentView = this.currentItem; // must set on every view
-            
-            
+
+
             // move to getimageinfo this.appService.originalrec = JSON.parse(JSON.stringify(this.currentItem))// inv[0]));
-            
-            
+
+
             //  console.log(this.originalrec.clientHeight, this.originalrec.clientWidth,this.originalrec.clientHeightRatio,this.originalrec.clientWidthRatio)
 
             console.log('finihed active1')
@@ -509,63 +479,6 @@ export class DataForm {
   }
 
 
-  // // using fat arrow
-  //ES5
-  // array.map(function(item) {
-  //   return item * 2;
-  // }
-  // //ES6
-  // array.map(item => item * 2);
-  // this.mainimage.onload = function () {
-  // async  loadimage() {
-  //   let imageWidth, imageHeight
-
-  //   //  this.mainimage.onload(() => {
-  //   return new Promise((resolve, reject) => {
-  //     this.mainimage.onload = function () { // alert alert("Height: " + this.height+' '+ this.width); 
-  //       imageHeight = this.height
-  //       imageWidth = this.width
-  //       resolve()
-  //       // resolve(imageWidth);
-  //     }
-  //     //    this.mainimage.src = `https://artbased.com/api/v1/getimage/inv/${this.currentItem.InventoryCode}.jpg`;
-  //   })
-  //   this.mainimage.src = `https://artbased.com/api/v1/getimage/inv/${this.currentItem.InventoryCode}.jpg`;
-  //   return await (imageHeight)
-  // }
-
-  // async getimageinfo() {
-  //   if (this.currentItem.clientHeight === undefined || this.currentItem.clientHeight === 0) {
-  //     let imageWidth, imageHeight, clientHeightRatio, clientWidthRatio
-  //     let geti = await this.loadimage()
-  //     this.currentItem.clientHeight = this.mainimage.clientHeight
-  //     this.currentItem.clientWidth = this.mainimage.clientWidth
-  //     if (this.currentItem.clientHeight === this.currentItem.clientWidth) {
-  //       clientHeightRatio = 1
-  //       clientWidthRatio = 1
-  //     } else if (this.currentItem.clientHeight > this.currentItem.clientWidth) {
-  //       clientWidthRatio = 1
-  //       clientHeightRatio = (this.currentItem.clientHeight / this.currentItem.clientWidth).toPrecision(2)
-
-  //     } if (this.currentItem.clientWidth > this.currentItem.clientHeight) {
-  //       clientHeightRatio = 1
-  //       clientWidthRatio = (this.currentItem.clientWidth / this.currentItem.clientHeight).toPrecision(2)
-  //     }
-  //     this.currentItem.clientHeightRatio = clientHeightRatio//imageHeight
-  //     this.currentItem.clientWidthRatio = clientWidthRatio //
-  //   }
-  // }
-  //  return new Promise((resolve, reject) => {
-  //     console.log('codesList len ', codesList.length)
-  //     let codesListLocation = []
-
-  //     codesList.filter((item) => {
-  //       if (item.CodeType === 17) {
-  //         codesListLocation.push(item)
-  //       }
-  //       resolve(codesListLocation)
-  //     })
-  //   })
   loadimage() {
     let imageWidth, imageHeight, clientHeightRatio, clientWidthRatio
     return new Promise((resolve, reject) => {
@@ -603,6 +516,7 @@ export class DataForm {
             clientWidthRatio = 1
             clientHeightRatio = (this.currentItem.clientHeight / this.currentItem.clientWidth).toPrecision(2)
 
+            ave
           } if (this.currentItem.clientWidth > this.currentItem.clientHeight) {
             clientHeightRatio = 1
             clientWidthRatio = (this.currentItem.clientWidth / this.currentItem.clientHeight).toPrecision(2)
@@ -612,35 +526,14 @@ export class DataForm {
 
           // this.appService.originalrec.clientHeightRatio = clientHeightRatio
           // this.appService.originalrec.clientWidthRatio = clientWidthRatio
-  this.appService.originalrec = JSON.parse(JSON.stringify(this.currentItem))// inv[0]));
-          
+          //2-4  reset here again 
+          this.appService.originalrec = JSON.parse(JSON.stringify(this.currentItem))// inv[0]));
+
         })
     }
   }
 
-  // getimageinfo() {
-  //   if (this.currentItem.clientHeight === undefined || this.currentDim.clientHeight === 0) {
-  //     let imageWidth, imageHeight, clientHeightRatio, clientWidthRatio
-  //     let Promise = this.loadimage()
-  //       .then(response => {
-  //         this.currentDim.clientHeight = this.mainimage.clientHeight
-  //         this.currentDim.clientWidth = this.mainimage.clientWidth
-  //         if (this.currentDim.clientHeight === this.currentDim.clientWidth) {
-  //           clientHeightRatio = 1
-  //           clientWidthRatio = 1
-  //         } else if (this.currentDim.clientHeight > this.currentDim.clientWidth) {
-  //           clientWidthRatio = 1
-  //           clientHeightRatio = (this.currentDim.clientHeight / this.currentDim.clientWidth).toPrecision(2)
 
-  //         } if (this.currentDim.clientWidth > this.currentDim.clientHeight) {
-  //           clientHeightRatio = 1
-  //           clientWidthRatio = (this.currentDim.clientWidth / this.currentDim.clientHeight).toPrecision(2)
-  //         }
-  //         this.currentDim.clientHeightRatio = clientHeightRatio
-  //         this.currentDim.clientWidthRatio = clientWidthRatio
-  //       })
-  //   }
-  // }
 
   attached() {
     // if (this.appService.dataFormOneToOneTabs.length > 0) {
@@ -652,12 +545,11 @@ export class DataForm {
     // bypass save if in create mode
     if (this.recordId !== 'create') {
 
-      if (!this.currentItem.savedonce || this.currentItem.savedonce === undefined) {
-        // if (!this.currentItem.savedonce || this.currentItem.savedonce === true) {
-        // force it all the time
-        this.currentItem.savedonce = true
-        this.saveinventory(0)
-      }
+      // if (!this.currentItem.savedonce || this.currentItem.savedonce === undefined) {
+
+      //   this.currentItem.savedonce = true
+      //   this.saveinventory(0)
+      // }
 
       let tabinfo, tabindex
       // tabinfo = localStorage.getItem('tabinfo');
@@ -699,7 +591,14 @@ export class DataForm {
             this.message = "Save successful. Inventory added @ " + savetime
           }
           //this.mrubuild() it will add if when opening
-          this.requestclose()
+          // this.appService.originalrec = 0
+          // this.currentItem = 0
+          this.appService.currentItem = this.currentItem//inv[0]
+          this.appService.originalrec = JSON.parse(JSON.stringify(this.currentItem))
+        
+
+           this.requestclose()
+          // this.requestcloseNoCheck
           this.router.navigate(`#/inventory/data/${this.currentItem.InventoryCode}`)
         });
       }
@@ -921,10 +820,89 @@ export class DataForm {
     localStorage.setItem('tabinfo' + this.currentItem.InventoryCode, JSON.stringify(tabinfo));
     return true;
   }
-
-
 }
+// end
 
+ // // using fat arrow
+  //ES5
+  // array.map(function(item) {
+  //   return item * 2;
+  // }
+  // //ES6
+  // array.map(item => item * 2);
+  // this.mainimage.onload = function () {
+  // async  loadimage() {
+  //   let imageWidth, imageHeight
+
+  //   //  this.mainimage.onload(() => {
+  //   return new Promise((resolve, reject) => {
+  //     this.mainimage.onload = function () { // alert alert("Height: " + this.height+' '+ this.width); 
+  //       imageHeight = this.height
+  //       imageWidth = this.width
+  //       resolve()
+  //       // resolve(imageWidth);
+  //     }
+  //     //    this.mainimage.src = `https://artbased.com/api/v1/getimage/inv/${this.currentItem.InventoryCode}.jpg`;
+  //   })
+  //   this.mainimage.src = `https://artbased.com/api/v1/getimage/inv/${this.currentItem.InventoryCode}.jpg`;
+  //   return await (imageHeight)
+  // }
+
+  // async getimageinfo() {
+  //   if (this.currentItem.clientHeight === undefined || this.currentItem.clientHeight === 0) {
+  //     let imageWidth, imageHeight, clientHeightRatio, clientWidthRatio
+  //     let geti = await this.loadimage()
+  //     this.currentItem.clientHeight = this.mainimage.clientHeight
+  //     this.currentItem.clientWidth = this.mainimage.clientWidth
+  //     if (this.currentItem.clientHeight === this.currentItem.clientWidth) {
+  //       clientHeightRatio = 1
+  //       clientWidthRatio = 1
+  //     } else if (this.currentItem.clientHeight > this.currentItem.clientWidth) {
+  //       clientWidthRatio = 1
+  //       clientHeightRatio = (this.currentItem.clientHeight / this.currentItem.clientWidth).toPrecision(2)
+
+  //     } if (this.currentItem.clientWidth > this.currentItem.clientHeight) {
+  //       clientHeightRatio = 1
+  //       clientWidthRatio = (this.currentItem.clientWidth / this.currentItem.clientHeight).toPrecision(2)
+  //     }
+  //     this.currentItem.clientHeightRatio = clientHeightRatio//imageHeight
+  //     this.currentItem.clientWidthRatio = clientWidthRatio //
+  //   }
+  // }
+  //  return new Promise((resolve, reject) => {
+  //     console.log('codesList len ', codesList.length)
+  //     let codesListLocation = []
+
+  //     codesList.filter((item) => {
+  //       if (item.CodeType === 17) {
+  //         codesListLocation.push(item)
+  //       }
+  //       resolve(codesListLocation)
+  //     })
+  //   })
+  // getimageinfo() {
+  //   if (this.currentItem.clientHeight === undefined || this.currentDim.clientHeight === 0) {
+  //     let imageWidth, imageHeight, clientHeightRatio, clientWidthRatio
+  //     let Promise = this.loadimage()
+  //       .then(response => {
+  //         this.currentDim.clientHeight = this.mainimage.clientHeight
+  //         this.currentDim.clientWidth = this.mainimage.clientWidth
+  //         if (this.currentDim.clientHeight === this.currentDim.clientWidth) {
+  //           clientHeightRatio = 1
+  //           clientWidthRatio = 1
+  //         } else if (this.currentDim.clientHeight > this.currentDim.clientWidth) {
+  //           clientWidthRatio = 1
+  //           clientHeightRatio = (this.currentDim.clientHeight / this.currentDim.clientWidth).toPrecision(2)
+
+  //         } if (this.currentDim.clientWidth > this.currentDim.clientHeight) {
+  //           clientHeightRatio = 1
+  //           clientWidthRatio = (this.currentDim.clientWidth / this.currentDim.clientHeight).toPrecision(2)
+  //         }
+  //         this.currentDim.clientHeightRatio = clientHeightRatio
+  //         this.currentDim.clientWidthRatio = clientWidthRatio
+  //       })
+  //   }
+  // }
 // export class currentItem {
 //   MediumSupportobj;
 //   Title;
