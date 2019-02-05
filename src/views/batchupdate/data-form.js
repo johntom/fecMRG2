@@ -317,7 +317,7 @@ export class DataForm {
 
       });
 
-    }
+    } 
   }
   close() {
     let tab = this.appService.tabs.find(f => f.isSelected);

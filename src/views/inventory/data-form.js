@@ -637,7 +637,7 @@ export class DataForm {
 
           }
         });
-      }
+      } else this.message = "No changes detected to save. "
       if (option === 1) {
         //     this.requestclose()
       }
