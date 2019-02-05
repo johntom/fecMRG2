@@ -184,7 +184,7 @@ export class Prompt {
         //  this.insuredobj = this.currentItem.insured
         this.myDatalistA.value = this.currentItem.artist.ArtistName
         this.selectedValueA = this.currentItem.artist;
-     
+      this.origartist = this.currentItem.artist;
       }
 
     }
@@ -381,7 +381,7 @@ export class Prompt {
     // this.currentItem.artistname = orgname
     //  this.currentItem.artist = this.ArtistName
     if (this.fieldname === 'Artist') {
-      if (this.selectedValueA !== null) {
+      if (this.selectedValueA !== null &&  this.origartist!==this.selectedValueA) {
         if (this.currentItem.artist === undefined) this.currentItem.artist = {}
 
         this.currentItem.artist.ArtistName = this.selectedValueA.ArtistName
