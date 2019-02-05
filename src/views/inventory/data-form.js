@@ -301,8 +301,6 @@ export class DataForm {
         } else alert(' factsheet  failed ')
       });
   }
-
-
   selectChange(GenreID) {
     // alert('in c ' + opt + GenreID)
 
@@ -326,7 +324,6 @@ export class DataForm {
       this.heading = `DataForm for record ${this.recordId}`;
       //console.log('finihed heading', this.heading)
       if (this.recordId === 'create') {
-
         this.currentItem = {}
         this.currentItem.id = 'create'
         // this.showImage=true;
@@ -354,7 +351,7 @@ export class DataForm {
         this.currentItem.consigned = []
         this.currentItem.photo = []
         this.currentItem.docs = []
-
+ this.currentItem.keywords= []
 
       } else {
         console.log('this.recordId ', this.recordId);

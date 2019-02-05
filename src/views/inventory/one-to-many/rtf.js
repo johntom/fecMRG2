@@ -174,21 +174,21 @@ export class Rtf {
   buildEdition() {
     // let segmentEditionHead = `<p><span style='text-decoration-line:underline'><u>EDITION</u></span><u></u></p>`
     let segmentEditionHead = `<span style='text-decoration-line:underline'><u>EDITION</u></span><u></u><br>`
-    
+
     let segmentEdition = ''
     let PublisherLoc
     let PrinterLoc
-     
+
     // if (this.currentItem.EditionText !== '') {
-   //  if (this.currentItem.EditionText !== null || this.currentItem.EditionText !== undefined || this.currentItem.EditionText !== '') {
-   
-     if (this.currentItem.EditionText !== null && this.currentItem.EditionText !== undefined && this.currentItem.EditionText !== '') {
-           
+    //  if (this.currentItem.EditionText !== null || this.currentItem.EditionText !== undefined || this.currentItem.EditionText !== '') {
+
+    if (this.currentItem.EditionText !== null && this.currentItem.EditionText !== undefined && this.currentItem.EditionText !== '') {
+
       let EditionText = this.currentItem.EditionText
-       EditionText=    EditionText.replace(new RegExp('\n', 'gi'), `<br>`);
+      EditionText = EditionText.replace(new RegExp('\n', 'gi'), `<br>`);
       this.segment2 += segmentEditionHead
-       this.segment2 += EditionText + `<br>`
-     
+      this.segment2 += EditionText + `<br>`
+
     }
   }
 
@@ -259,9 +259,9 @@ export class Rtf {
 
     let pre = '<p>'
     let post = '</p>'
-     let ppre = ''
+    let ppre = ''
     let ppost = ''
-    
+
     let prebefore = '</p>'
     let preafter = ' '
     let preitalic = '<em>'
@@ -336,14 +336,14 @@ export class Rtf {
         // , ${item.ExhibitMemo}`
         // console.log('moment', moment(item.ExhibitSortDate,'YYYYmmdd'))
         let ExhibitMemo
-        let lpn 
-        console.log('===================item.id linkPageNo',item.id,linkPageNo+'...')
-        if (linkPageNo===undefined || linkPageNo==="") {
-          lpn='<br><br>'}  else 
-          {
-          lpn=`<br>${linkPageNo}<br><br>`
-          }
-            console.log('===================item.id linkPageNo',item.id,lpn)
+        let lpn
+        console.log('===================item.id linkPageNo', item.id, linkPageNo + '...')
+        if (linkPageNo === undefined || linkPageNo === "") {
+          lpn = '<br><br>'
+        } else {
+          lpn = `<br>${linkPageNo}<br><br>`
+        }
+        console.log('===================item.id linkPageNo', item.id, lpn)
         //	item.ExhibitMemo === undefined ? ExhibitMemo = '' : ExhibitMemo = ', ' + item.ExhibitMemo <strong>DD:</strong>
         let exceptline
         if (item.ExhibitMemo === null || item.ExhibitMemo === undefined || item.ExhibitMemo === '') {
@@ -388,8 +388,8 @@ export class Rtf {
           // }
           let data = ppre + `${item.AuthorLast}, ${item.AuthorFirst}. <em>${item.ReproductionTitle}</em> ${preafter}`
 
-           data += `(${ReproductionLocationDesc}: ${item.ReproductionName}, ${item.ReproductionDate}) <br>`
-             data += `${item.ReproductionPage} <br> ${ppost}<br>`
+          data += `(${ReproductionLocationDesc}: ${item.ReproductionName}, ${item.ReproductionDate}) <br>`
+          data += `${item.ReproductionPage} <br> ${ppost}<br>`
           rec = {
             date: item.ReproductionSortDate,
 
@@ -415,14 +415,14 @@ export class Rtf {
 
     }
   }
-  
+
   //1
   buildInscribed(inscribed) {
     // rules:
     // 1 everying to left of : is plain text and to right is em
     // 2 until it finds a ; (convert ; to </em> <br>)  
     // 3 repeat 1 from new position
-    
+
     // let inscribed = this.currentItem.Inscribed
     let iLines = []
     console.log('inscribed==================== ', inscribed)
@@ -442,22 +442,26 @@ export class Rtf {
       let restoftext
       console.log(semisCount, strCount);
       colonPos = inscribed.indexOf(":");
-      leftofcolonText = inscribed.substr(0, colonPos);
-      rightofcolonbaseText = inscribed.substr(colonPos + 1, inscribed.length - colonPos);
-      semisPos = rightofcolonbaseText.indexOf(";");
-      if (semisPos===-1) {
-      semisPos=rightofcolonbaseText.length
-      rightofcolonTextem = '<em>' + rightofcolonbaseText.substr(0, semisPos - 1) + '</em>'; //+ '</em><br>';
-       iLines.push(leftofcolonText + ' ' + rightofcolonTextem )
+      if (colonPos === -1) {
+        iLines.push(inscribed)
       } else {
-        // there is a semi so add br
-         rightofcolonTextem = '<em>' + rightofcolonbaseText.substr(1, semisPos - 1) + '</em><br>';
-      restoftext = rightofcolonbaseText.substr(semisPos + 1, rightofcolonbaseText.length);
+        leftofcolonText = inscribed.substr(0, colonPos);
+        rightofcolonbaseText = inscribed.substr(colonPos + 1, inscribed.length - colonPos);
+        semisPos = rightofcolonbaseText.indexOf(";");
+        if (semisPos === -1) {
+          semisPos = rightofcolonbaseText.length
+          rightofcolonTextem = '<em>' + rightofcolonbaseText.substr(0, semisPos - 1) + '</em>'; //+ '</em><br>';
+          iLines.push(leftofcolonText + ' ' + rightofcolonTextem)
+        } else {
+          // there is a semi so add br
+          rightofcolonTextem = '<em>' + rightofcolonbaseText.substr(1, semisPos - 1) + '</em><br>';
+          restoftext = rightofcolonbaseText.substr(semisPos + 1, rightofcolonbaseText.length);
 
-      colonPos = restoftext.indexOf(":");
-      leftofcolonText2 = restoftext.substr(0, colonPos);
-      rightofcolonTextem2 = '<em>' + restoftext.substr(colonPos + 1, restoftext.length - colonPos) + '</em>';
-      iLines.push(leftofcolonText + ' ' + rightofcolonTextem + ' ' + leftofcolonText2 + ' ' + rightofcolonTextem2)
+          colonPos = restoftext.indexOf(":");
+          leftofcolonText2 = restoftext.substr(0, colonPos);
+          rightofcolonTextem2 = '<em>' + restoftext.substr(colonPos + 1, restoftext.length - colonPos) + '</em>';
+          iLines.push(leftofcolonText + ' ' + rightofcolonTextem + ' ' + leftofcolonText2 + ' ' + rightofcolonTextem2)
+        }
       }
       for (const item of iLines) {
         this.inscribedText += item + '<br>'
@@ -503,7 +507,7 @@ export class Rtf {
   // let lineBreak = '<br>'
   // 1811 3/4 in unframed
   // 45.72 cm x 27.94 NaN cm unframed
-
+  // toma 14 x 22 x 1 in. / NaN cm 
   createDim() {
 
     let cmuh = this.currentItem.UnframedHeight16
@@ -694,7 +698,7 @@ export class Rtf {
         cmfd = factor * 7
         break;
     }
-   
+
     // num.toPrecision(2)
     /*
     we lost the Height dimension in the cm part
@@ -708,15 +712,15 @@ there are extra ' when there are fractions
     // let dimsf
     // let dimscmf
 
-  this.dims=undefined
-  this.dimscm=undefined
-  this.dimsf=undefined
-  this.dimscmf=undefined
+    this.dims = undefined
+    this.dimscm = undefined
+    this.dimsf = undefined
+    this.dimscmf = undefined
 
-
+    let ufwcm
     if (this.currentItem.UnframedHeight16 === null) {
       this.dims = this.currentItem.UnframedHeight + ' x '
-      this.dimscm = this.currentItem.UnframedHeight * 2.54 + ' x '
+      this.dimscm = (this.currentItem.UnframedHeight * 2.54) + ' x '
     } else {
       this.dims = `${this.currentItem.UnframedHeight} <span style="font-size:x-small;"> ${this.currentItem.UnframedHeight16}</span> x `
       this.dimscm = this.roundNumber((this.currentItem.UnframedHeight * 2.54) + cmuh, 1) + ' x '
@@ -724,25 +728,35 @@ there are extra ' when there are fractions
 
     if (this.currentItem.UnframedWidth16 === null) {
       this.dims += this.currentItem.UnframedWidth
-       this.dimscm = this.roundNumber((this.currentItem.UnframedWidth * 2.54), 1) + ' x '
+      ufwcm = this.currentItem.UnframedWidth * 2.54
+      this.dimscm += this.roundNumber((ufwcm), 1) + ' x '
     } else {
       this.dims += `${this.currentItem.UnframedWidth}       <span style="font-size:x-small;"> ${this.currentItem.UnframedWidth16} </span>`
-      this.dimscm += this.roundNumber((this.currentItem.UnframedWidth * 2.54) + cmuw, 1)
+      ufwcm = this.currentItem.UnframedWidth * 2.54
+      // this.dimscm += this.roundNumber( ((this.currentItem.UnframedWidth * 2.54) + cmuw), 1)
+
+      this.dimscm += (ufwcm + cmuw)
 
     }
 
- if (this.currentItem.UnframedDepth16 === null) {
-      if (this.currentItem.UnframedDepth === null || this.currentItem.UnframedDepth === 0) {} else {
-      this.dims += ' x ' +this.currentItem.UnframedDepth
-       this.dimscm =+ ' x ' + this.roundNumber((this.currentItem.UnframedDepth * 2.54), 1) 
+    if (this.currentItem.UnframedDepth16 === null) {
+      if (this.currentItem.UnframedDepth === null || this.currentItem.UnframedDepth === 0) { } else {
+        this.dims += ' x ' + this.currentItem.UnframedDepth
+        ufwcm = this.currentItem.UnframedDepth * 2.54
+         console.log('ufwcm',ufwcm)
+         this.dimscm  += ' x ' + this.roundNumber(ufwcm, 1)
+        //  this.dimscm +=  ' x ' +ufwcm
+        console.log('  this.dimscm',  this.dimscm)
       }
     } else {
-      this.dims += ' x ' +`${this.currentItem.UnframedDepth}   <span style="font-size:x-small;"> ${this.currentItem.UnframedDepth16} </span>`
-      this.dimscm += ' x ' + this.roundNumber((this.currentItem.UnframedDepth * 2.54) + cmud, 1) //+ ' cm '
+      this.dims += ' x ' + `${this.currentItem.UnframedDepth}   <span style="font-size:x-small;"> ${this.currentItem.UnframedDepth16} </span>`
+      ufwcm = this.currentItem.UnframedDepth * 2.54   // this.dimscm += ' x ' + this.roundNumber((( this.currentItem.UnframedDepth * 2.54) + cmud), 1) //+ ' cm '
+
+      this.dimscm += ' x ' + ((ufwcm) + cmud) //+ ' cm '
 
     }
- //   cmfd cmud
-    
+    //   cmfd cmud
+
     /////////////////////////////
 
     if (this.currentItem.FramedHeight !== 0) {
@@ -765,12 +779,12 @@ there are extra ' when there are fractions
 
 
     if (this.currentItem.FramedDepth16 === null) {
-      if (this.currentItem.FamedDepth === null || this.currentItem.FramedDepth === 0) {} else {
-      this.dimsf += ' x ' +this.currentItem.FramedDepth
-       this.dimscmf =+ ' x ' + this.roundNumber((this.currentItem.FramedDepth * 2.54), 1) 
+      if (this.currentItem.FamedDepth === null || this.currentItem.FramedDepth === 0) { } else {
+        this.dimsf += ' x ' + this.currentItem.FramedDepth
+        this.dimscmf = + ' x ' + this.roundNumber((this.currentItem.FramedDepth * 2.54), 1)
       }
     } else {
-      this.dimsf += ' x ' +`${this.currentItem.FramedDepth}       <span style="font-size:x-small;"> ${this.currentItem.FramedDepth16} </span>`
+      this.dimsf += ' x ' + `${this.currentItem.FramedDepth}       <span style="font-size:x-small;"> ${this.currentItem.FramedDepth16} </span>`
       this.dimscmf += ' x ' + this.roundNumber((this.currentItem.FramedDepth * 2.54) + cmfd, 1) //+ ' cm '
 
     }
@@ -780,7 +794,7 @@ there are extra ' when there are fractions
   }
 
   createRTF() {
-this.createDim()
+    this.createDim()
 
     let artist = this.currentItem.artist
 
@@ -811,10 +825,14 @@ this.createDim()
     //1
     let segment1 = ` ${artistWdates1}<br>`
     segment1 += ` <em> ${this.currentItem.Title}</em>, ${this.currentItem.InvYear} <br> `
-    
-    if (this.currentItem.MediumSupportobj!==undefined)
-    segment1 += `  ${this.currentItem.MediumSupportobj.Description}<br> `
-    if (this.dimsf !== undefined) {
+
+    if (this.currentItem.MediumSupportobj !== undefined)
+      segment1 += `  ${this.currentItem.MediumSupportobj.Description}<br> `
+   
+   let uidx = (this.dimsf.indexOf('undefined'));
+   
+    if (uidx > -1) {
+    } else {
       segment1 += `  ${this.dimsf} in. framed<br> `
       segment1 += `  ${this.dimscmf} cm framed<br> `
     }
@@ -858,8 +876,8 @@ this.createDim()
 
     this.segment2 += ` ${artistWdates}<br><br><br>`
     this.segment2 += ` <em>${this.currentItem.Title}</em>, ${this.currentItem.InvYear}<br>`
-      if (this.currentItem.MediumSupportobj!==undefined)
-    this.segment2 += ` ${this.currentItem.MediumSupportobj.Description}  <br> `
+    if (this.currentItem.MediumSupportobj !== undefined)
+      this.segment2 += ` ${this.currentItem.MediumSupportobj.Description}  <br> `
     // this.segment2 += ` <p> ${this.currentItem.InvYear} </p> `
     // if (dimsf !== undefined) this.segment2 += `  ${dimsf} in framed<br> `
     // if (dimscmf !== undefined) this.segment2 += `  ${dimscmf} cm framed<br>  `
@@ -876,9 +894,9 @@ this.createDim()
 
       this.segment2 += ` no. ${this.currentItem.CatalogueNo} <br>  <br> <br> `
 
-     this.buildEdition()
-    
-     
+    this.buildEdition()
+
+
     this.buildProv()
     this.buildRepro()
 
@@ -918,28 +936,28 @@ this.createDim()
     return num;
   }
 
-onChange(e) {
+  onChange(e) {
     // this.logger.log('value change');
-     this.currentItem.rtf1 = this.editor.value()
+    this.currentItem.rtf1 = this.editor.value()
   }
-onChangelabel(e) {
-     this.currentItem.rtf2 = this.editorlabel.value()
+  onChangelabel(e) {
+    this.currentItem.rtf2 = this.editorlabel.value()
   }
 
   saveChanges() {
     this.currentItem.rtf1 = this.editor.value()
   }
- saveChangesDetail() {
+  saveChangesDetail() {
     this.currentItem.rtf2 = this.editorlabel.value()
   }
 
-   // let img1 = `https://artbased.com/api/v1/getonePdf/inv/${this.currentItem.InventoryCode}.jpg" `
-    // EXIF.getData(img1, function () {
-    //   var make = EXIF.getTag(this, "Make");
-    //   var model = EXIF.getTag(this, "Model");
-    //   var makeAndModel = document.getElementById("makeAndModel");
-    //   this.makeAndModel = `${make} ${model}`;
-    // });
+  // let img1 = `https://artbased.com/api/v1/getonePdf/inv/${this.currentItem.InventoryCode}.jpg" `
+  // EXIF.getData(img1, function () {
+  //   var make = EXIF.getTag(this, "Make");
+  //   var model = EXIF.getTag(this, "Model");
+  //   var makeAndModel = document.getElementById("makeAndModel");
+  //   this.makeAndModel = `${make} ${model}`;
+  // });
   remove(item, index) {
     //alert('you are about to delete ' + item.Notes + ' ' + index)
     this.mode = 0
