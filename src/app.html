@@ -16,7 +16,16 @@
   <!-- <require from="../../../styles/styles.css"></require> -->
   <require from="../styles/styles.css"></require>
   <section class="fec-web full-height flex-column-1">
-    
+    <style>
+input.menu-input[type="checkbox"]{
+  position: absolute;
+  left: -9999px;
+}
+.flex-flow-column {
+  flex-flow: column;
+}
+    </style>
+
     <div class="main-menu flex-row-1">
       <aside class="flex-column-none">
         <div class="logo-wrapper flex-column-none">
@@ -29,6 +38,27 @@
         </div>
         <ul class="menu flex-column-1">
           <li repeat.for="row of router.navigation" 
+            class="menu-item ${row.isActive ? 'active' : ''} ${row.settings.children ? 'flex-flow-column' : ''}">
+              <input class="menu-input" if.bind="isCollapsibleMenu(row)"
+                type="checkbox" id="list-item-${$index}"
+                checked.bind="row.settings.isOpen">
+              <label if.bind="isCollapsibleMenu(row)"
+                for="list-item-${$index}">
+                ${row.title}
+              </label>
+              <a if.bind="isSingleActionMenu(row)" href.bind="row.href">${row.title}</a>
+                <!-- if.bind="isCollapsibleMenu(row)"> -->
+              <ul class="menu flex-column-1"
+                if.bind="row.settings.isOpen">
+                <li repeat.for="sub of row.settings.children"
+                  class="menu-item ${sub.isActive ? 'active' : ''}">
+                  <a href.bind="sub.href">${sub.title}</a>
+                </li>
+              </ul>
+          </li>
+        </ul>
+        <!-- <ul class="menu flex-column-1">
+          <li repeat.for="row of router.navigation" 
             class="menu-item ${row.isActive ? 'active' : ''}">
             <a href.bind="row.href">${row.title}</a>
             <ul if.bind="row.settings && row.settings.children">
@@ -38,7 +68,7 @@
               </li>
             </ul>
           </li>
-        </ul>
+        </ul> -->
       </aside>
       <main class="flex-column-4 ignore">
         <div class="flex-column-1 ignore">
@@ -69,4 +99,4 @@
       </main>
     </div>
   </section>
-</template>  
+</template>

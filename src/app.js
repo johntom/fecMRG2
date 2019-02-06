@@ -40,6 +40,7 @@ export class App {
       // { "route": 'savedlists/:id', name: 'contact-detail', moduleId: PLATFORM.moduleName('./views/savedlists/contact-detail'), href: 'contact/123', nav: true, title: 'Contact Detail' ,activationStrategy:'replace'  },
       { "route":  'action', name: 'action', moduleId: PLATFORM.moduleName('./views/action/action'), nav: true, title: 'Actions', settings: { 
         children: [
+          { href: '/fecMRG2/#/action', title: 'Action' },
           { href: '/fecMRG2/#/batchupdate', title: 'Batch' }
         ]} 
       },
@@ -114,6 +115,12 @@ export class App {
     let newIndex = (index > 0) ? index - 1 : 0;
     let newTab = this.appService.tabs[newIndex];
     this.appService.tryCloseTab(this.appService.currentView, tab, newTab.href);
+  }
+  isSingleActionMenu(row) {
+    return !row.settings.children;
+  }
+  isCollapsibleMenu(row) {
+    return row.settings && row.settings.children;
   }
 }
 
