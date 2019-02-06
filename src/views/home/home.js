@@ -9,7 +9,7 @@ import { ApiService } from '../../utils/servicesApi';
 
 export class Home {
   heading = "MRG Home Page";
-  version = 242.47
+  version = 242.48
   versionDate = 'Tue 2/5/2019'
   // versiondate=Date(); catalogssentto
   //  "select2": { 
@@ -73,11 +73,11 @@ export class Home {
     // "also <option model.bind='null'>",
     // 'ReproductionLocation missing as ""',
     " Remove auto-complete field entries in Google Chrome",
-//     Select the "Username" field and make sure it is blank
-// Press ↓ on your keyboard, a list of all of the "remembered" entries should appear.
-// Using ↑ & ↓ highlight an entry you would like to delete.
-// Press delete. (Note that you may need to use shift+delete, fn+delete, ctrl+delete (Ubuntu) in some instances, like if the remembered entry is in the address / URL bar).
-// Repeat steps 2-4 until satisfied.
+    //     Select the "Username" field and make sure it is blank
+    // Press ↓ on your keyboard, a list of all of the "remembered" entries should appear.
+    // Using ↑ & ↓ highlight an entry you would like to delete.
+    // Press delete. (Note that you may need to use shift+delete, fn+delete, ctrl+delete (Ubuntu) in some instances, like if the remembered entry is in the address / URL bar).
+    // Repeat steps 2-4 until satisfied.
     // "clean ARTISTS null reocrds",
     // "",
     // "",
@@ -137,19 +137,19 @@ export class Home {
   features = [
     'CTRL+SHIFT+F',
     "To insert an ASCII character, press and hold down ALT while typing the character code. For example, to insert the degree (º) symbol, press and hold down ALT while typing 0176 on the numeric keypad. You must use the numeric keypad to type the numbers, and not the keyboard.",
-    ,"https://support.office.com/en-us/article/insert-ascii-or-unicode-latin-based-symbols-and-characters-d13f58d3-7bcb-44a7-a4d5-972ee12e50e0"
-  //   'GUARD CLOSURE FOR MATACHER',
-  //   'for (const item of items) {  console.log("loopitem ====")  sav = await saveMongoPermits(ctx, item) console.log("",sav))          }',
-  //   'open html in word https://smallbusiness.chron.com/edit-html-word-54837.html',
-  //   'Open the Word Options. (Word 2007: click the Office button and then click Word Options ',
-  //   'At the left side of the dialog box click Advanced.',
-  //   'Scroll through the options until you see the General section.',
-  //   'Make sure the Confirm File Format Conversion On Open check box is selected.',
-  //   'Click on OK.',
-  //   'https://bl.ocks.org/lstarky/11cd1e90dd912f07a60afaedb9c2613b',
-  //   'if then in kendo grid 		<ak-col k-field="org.OrgName    k-template="#= (org.OrgName) ? org.OrgName : `` #"></ak-col>'
-  // ,  `force rediplay not to use browser cache var url = 'http://.../?' + escape(new Date())`
-     
+    , "https://support.office.com/en-us/article/insert-ascii-or-unicode-latin-based-symbols-and-characters-d13f58d3-7bcb-44a7-a4d5-972ee12e50e0"
+    //   'GUARD CLOSURE FOR MATACHER',
+    //   'for (const item of items) {  console.log("loopitem ====")  sav = await saveMongoPermits(ctx, item) console.log("",sav))          }',
+    //   'open html in word https://smallbusiness.chron.com/edit-html-word-54837.html',
+    //   'Open the Word Options. (Word 2007: click the Office button and then click Word Options ',
+    //   'At the left side of the dialog box click Advanced.',
+    //   'Scroll through the options until you see the General section.',
+    //   'Make sure the Confirm File Format Conversion On Open check box is selected.',
+    //   'Click on OK.',
+    //   'https://bl.ocks.org/lstarky/11cd1e90dd912f07a60afaedb9c2613b',
+    //   'if then in kendo grid 		<ak-col k-field="org.OrgName    k-template="#= (org.OrgName) ? org.OrgName : `` #"></ak-col>'
+    // ,  `force rediplay not to use browser cache var url = 'http://.../?' + escape(new Date())`
+
   ]
   todo = [
 
@@ -203,9 +203,9 @@ export class Home {
     // 'Nancy Grossman: Collages and Heads 1970-1991, Sculpture Center, New York, NY, October 8 - November 9, 1991, p. 15, testing note field',
     // 'to',
     // 'Nancy Grossman: Collages and Heads 1970-1991, Sculpture Center, New York, NY, October 8 - November 9, 1991, testing note field for spacing',
-  
-  
-  
+
+
+
     // 'p. 15 ',
     // '',
     // 'COLOR',
@@ -280,8 +280,6 @@ export class Home {
     let response = await this.api.getCatalogsAA();
     this.appService.catalogList = response.data
     console.log('this.repos ', this.api.catalogList)
-
-
 
 
     if (this.appService.LookupDataLoaded) {

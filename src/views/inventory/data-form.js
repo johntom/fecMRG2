@@ -374,20 +374,20 @@ export class DataForm {
             //   this.currentItem.savedonce = true
             //   this.saveinventory(0)
             // }
-            this.mrubuild()
             // ffixes to stop dirty
-           if(this.currentItem.PrinterLocation===undefined)  this.currentItem.PrinterLocation= null
-if(this.currentItem.PublisherLocation===undefined)  this.currentItem.PublisherLocation= null
+            // http://www.jsondiff.com/
+            this.mrubuild()
+          
+            if (this.currentItem.PrinterLocation === undefined) this.currentItem.PrinterLocation = null
+            if (this.currentItem.PublisherLocation === undefined) this.currentItem.PublisherLocation = null
 
             this.appService.currentItem = this.currentItem
             this.appService.originalrec = JSON.parse(JSON.stringify(this.currentItem))
-           
-            console.log( this.appService.originalrec ,this.currentItem.PrinterLocation )
+
+            console.log(this.appService.originalrec, this.currentItem.PrinterLocation)
             // this.getimageinfo()// dom not ready
 
-            // this.currentItem.isDirty = () => {
-            //   return JSON.stringify(this.currentItem) !== JSON.stringify(this.appService.originalrec)
-            // };
+           
 
             this.currentItem.isDirty = () => {
               const currentJSON = JSON.stringify(this.currentItem);
@@ -402,7 +402,7 @@ if(this.currentItem.PublisherLocation===undefined)  this.currentItem.PublisherLo
 
               return currentJSON !== originalJSON;
             };
-            // http://www.jsondiff.com/
+          
             this.currentItem.reset = () => {
               this.appService.originalrec = JSON.parse(JSON.stringify(this.currentItem))
             }
@@ -503,7 +503,7 @@ if(this.currentItem.PublisherLocation===undefined)  this.currentItem.PublisherLo
   // "clientWidthRatio": "1.3
   getimageinfo(opt) {
     // set this.appService.originalrec alsoe
-    if (this.currentItem.clientHeight === undefined || this.currentItem.clientHeight === 0 ||opt===1) {
+    if (this.currentItem.clientHeight === undefined || this.currentItem.clientHeight === 0 || opt === 1) {
       let imageWidth, imageHeight, clientHeightRatio, clientWidthRatio
 
       let Promise = this.loadimage()
@@ -517,13 +517,13 @@ if(this.currentItem.PublisherLocation===undefined)  this.currentItem.PublisherLo
             clientHeightRatio = 1
             clientWidthRatio = 1
           } else if (this.currentItem.clientHeight > this.currentItem.clientWidth) {
-             clientHeightRatio = 1
+            clientHeightRatio = 1
             clientWidthRatio = (this.currentItem.clientWidth / this.currentItem.clientHeight).toPrecision(2)
- 
-        
+
+
           } if (this.currentItem.clientWidth > this.currentItem.clientHeight) {
             clientWidthRatio = 1
-            clientHeightRatio =  (this.currentItem.clientHeight / this.currentItem.clientWidth).toPrecision(2)
+            clientHeightRatio = (this.currentItem.clientHeight / this.currentItem.clientWidth).toPrecision(2)
           }
           this.currentItem.clientHeightRatio = clientHeightRatio
           this.currentItem.clientWidthRatio = clientWidthRatio
@@ -537,38 +537,38 @@ if(this.currentItem.PublisherLocation===undefined)  this.currentItem.PublisherLo
     }
   }
 
-// getimageinfoReverse() {
-//       let imageWidth, imageHeight, clientHeightRatio, clientWidthRatio
+  // getimageinfoReverse() {
+  //       let imageWidth, imageHeight, clientHeightRatio, clientWidthRatio
 
-//       let Promise = this.loadimage()
-//         .then(response => {
-//           this.currentItem.clientHeight = this.mainimage.clientHeight
-//           this.currentItem.clientWidth = this.mainimage.clientWidth
-//           // this.appService.originalrec.clientHeight = this.mainimage.clientHeight
-//           // this.appService.originalrec.clientWidth = this.mainimage.clientWidth
+  //       let Promise = this.loadimage()
+  //         .then(response => {
+  //           this.currentItem.clientHeight = this.mainimage.clientHeight
+  //           this.currentItem.clientWidth = this.mainimage.clientWidth
+  //           // this.appService.originalrec.clientHeight = this.mainimage.clientHeight
+  //           // this.appService.originalrec.clientWidth = this.mainimage.clientWidth
 
-//           if (this.currentItem.clientHeight === this.currentItem.clientWidth) {
-//             clientHeightRatio = 1
-//             clientWidthRatio = 1
-//           } else if (this.currentItem.clientHeight > this.currentItem.clientWidth) {
-//            clientHeightRatio = 1
-//             clientWidthRatio = (this.currentItem.clientWidth / this.currentItem.clientHeight).toPrecision(2)
- 
-//           } if (this.currentItem.clientWidth > this.currentItem.clientHeight) {
-//             clientWidthRatio = 1
-//             clientHeightRatio =  (this.currentItem.clientHeight / this.currentItem.clientWidth).toPrecision(2)
-//           }
-//           this.currentItem.clientHeightRatio = clientHeightRatio
-//           this.currentItem.clientWidthRatio = clientWidthRatio
+  //           if (this.currentItem.clientHeight === this.currentItem.clientWidth) {
+  //             clientHeightRatio = 1
+  //             clientWidthRatio = 1
+  //           } else if (this.currentItem.clientHeight > this.currentItem.clientWidth) {
+  //            clientHeightRatio = 1
+  //             clientWidthRatio = (this.currentItem.clientWidth / this.currentItem.clientHeight).toPrecision(2)
 
-//           // this.appService.originalrec.clientHeightRatio = clientHeightRatio
-//           // this.appService.originalrec.clientWidthRatio = clientWidthRatio
-//           //2-4  reset here again 
-//           this.appService.originalrec = JSON.parse(JSON.stringify(this.currentItem))// inv[0]));
+  //           } if (this.currentItem.clientWidth > this.currentItem.clientHeight) {
+  //             clientWidthRatio = 1
+  //             clientHeightRatio =  (this.currentItem.clientHeight / this.currentItem.clientWidth).toPrecision(2)
+  //           }
+  //           this.currentItem.clientHeightRatio = clientHeightRatio
+  //           this.currentItem.clientWidthRatio = clientWidthRatio
 
-//         })
-    
-//   }
+  //           // this.appService.originalrec.clientHeightRatio = clientHeightRatio
+  //           // this.appService.originalrec.clientWidthRatio = clientWidthRatio
+  //           //2-4  reset here again 
+  //           this.appService.originalrec = JSON.parse(JSON.stringify(this.currentItem))// inv[0]));
+
+  //         })
+
+  //   }
 
   attached() {
     // if (this.appService.dataFormOneToOneTabs.length > 0) {
@@ -630,9 +630,9 @@ if(this.currentItem.PublisherLocation===undefined)  this.currentItem.PublisherLo
           // this.currentItem = 0
           this.appService.currentItem = this.currentItem//inv[0]
           this.appService.originalrec = JSON.parse(JSON.stringify(this.currentItem))
-        
 
-           this.requestclose()
+
+          this.requestclose()
           // this.requestcloseNoCheck
           this.router.navigate(`#/inventory/data/${this.currentItem.InventoryCode}`)
         });

@@ -159,38 +159,12 @@ export class DataForm {
         this.currentItem.id = 'create'
         this.appService.testrec = {}
         this.appService.originalrec = {}
-        // address
-        // artists
-        // catsold
-        // compcatsent
-        // genre
-        // offering
-        // phone
-        // type
-
-        // this.currentContactItem.artist = undefined//{} 
-        // this.currentContactItem.provenance = []
-        // this.currentItem.notes = []
-        // this.currentItem.exhibitions = []
-        // this.currentItem.reproductions = []
-        // this.currentItem.transport = []
-        // this.currentItem.conservation = []
-        // this.currentItem.condition = []
-        // this.currbentItem.purchased = []
-        // this.currentItem.soldto = []
-        // this.currentItem.museumloan = []
-        // this.currentItem.consignedto = []
-        // this.currentItem.offering = []
-        // this.currentItem.consigned = []
-        // this.currentItem.photo = []
-        // this.currentItem.docs = []
+       
 
 
       } else {
         console.log('this.recordId ', this.recordId);
         // this.mrubuild()
-
-
         return this.api.findContactOne(this.recordId)
           .then((jsonRes) => {
             console.log('jsonRes ', jsonRes);
@@ -198,8 +172,6 @@ export class DataForm {
             this.currentItem = inv[0]
             // never been saved from view
             //  this.currentContactItem = inv[0]
-
-
             this.appService.currentContactItem = this.currentItem//inv[0]
             this.mrubuild()
             // this.currentItem.isDirty = () => {
