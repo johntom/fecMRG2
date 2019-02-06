@@ -136,6 +136,8 @@ export class Home {
   ]
   features = [
     'CTRL+SHIFT+F',
+    "To insert an ASCII character, press and hold down ALT while typing the character code. For example, to insert the degree (º) symbol, press and hold down ALT while typing 0176 on the numeric keypad. You must use the numeric keypad to type the numbers, and not the keyboard.",
+    ,"https://support.office.com/en-us/article/insert-ascii-or-unicode-latin-based-symbols-and-characters-d13f58d3-7bcb-44a7-a4d5-972ee12e50e0"
   //   'GUARD CLOSURE FOR MATACHER',
   //   'for (const item of items) {  console.log("loopitem ====")  sav = await saveMongoPermits(ctx, item) console.log("",sav))          }',
   //   'open html in word https://smallbusiness.chron.com/edit-html-word-54837.html',

@@ -7,12 +7,9 @@ import { ApplicationService } from '../../../services/application-service';
 import moment from 'moment';
 import { DialogService } from 'aurelia-dialog';
 
-import { ynPrompt } from '../../../services/prompt';
-// import { Prompt } from '../prompt';
-import { Prompt } from '../../../services/prompt';
-// import { PromptForm } from '../promptForm';
-// import { Promptrepro } from '../../prompt/promptRepro';
 
+import { Promptyn } from '../../../services/promptyn';
+import { Prompt } from '../prompt';
 
 // @inject(TaskQueue, BindingSignaler, ApiService, ApplicationService, DialogService)
 @inject(ApiService, ApplicationService, DialogService)
@@ -91,7 +88,7 @@ export class Museamloan {
     // let adjusters = this.currentItem.adjusters
     // adjusters.splice(index, 1)
 
-  this.dialogService.open({ viewModel: Prompt, model: 'Delete or Cancel?', lock: true }).whenClosed(response => {
+  this.dialogService.open({ viewModel: Promptyn, model: 'Delete or Cancel?', lock: true }).whenClosed(response => {
       if (!response.wasCancelled) {
         console.log('Delete')
         let museumloan = this.currentItem.museumloan

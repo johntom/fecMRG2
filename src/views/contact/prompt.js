@@ -15,10 +15,10 @@ export class Promptcontact {
   // ConsignmentShippingID=ConservedFrom
   orgfields = ['OrgID', 'ConsignedFromID', 'ConsignmentShippingID', 'OwnerID',
     'PhotographerID', 'PurchasedFrom', 'ConservedBy',
-    'ConservedBy', 'SoldToID', 'SoldTo', 'LoanTo']
+    'ConservedBy', 'SoldToID', 'SoldTo', 'LoanTo', 'OrgID']
   orgfielddesc = ['Org', 'Consigned From', 'Consignment From (Shipping)', 'Owner',
     'Photographer', 'Purchased From', 'Conserved By',
-    'Conserved By', 'Sold To', 'Sold To', 'Museum Loan To']
+    'Conserved By', 'Sold To', 'Sold To', 'Museum Loan To', 'Org ']
 
 
   textfields = ['Description', 'Comment', 'Inscribed', 'Treatment']
@@ -122,23 +122,21 @@ export class Promptcontact {
 
   }
   attached() {
-
-
     if (this.fieldname === 'OrgID') {
-
       this.doc = `Select Org or add new if not in list.`
       this.heading = `Select Org or add new if not in list.`
       this.placeholder = `Select Org or add new if not in list.`
-      if (this.currentItem.OrgID === undefined || this.currentItem.OrgID === '') {
+      // if (this.currentItem.OrgID === undefined || this.currentItem.OrgID === '') {
+      // } else {
+      //   this.myDatalistO.value = this.currentItem.org.OrgName
+      // }
+      if (this.currentItem.org === undefined || this.currentItem.org === '') {
       } else {
         this.myDatalistO.value = this.currentItem.org.OrgName
       }
-
     }
 
-
     if (this.fieldname === 'Artist') {
-
       this.doc = `Select Artist or add new if not in list.`
       this.heading = `Select Artist or add new if not in list.`
       this.placeholder = `Select Artist or add new if not in list.`
@@ -161,7 +159,7 @@ export class Promptcontact {
       }
 
     }
-this.hasFocus = true;
+    this.hasFocus = true;
   }
 
   changeCallbackOrg(selectedValueO) {
@@ -173,7 +171,7 @@ this.hasFocus = true;
 
   }
   changeCallbackCatalog(selectedValueC) {
-  //  let findvalue = this.myDatalistC.value
+    //  let findvalue = this.myDatalistC.value
   }
   //  alert(`${this.addlist} Exists in list already!`)
   addit() {

@@ -5,7 +5,7 @@
 	<require from="../../../styles/kendo.css"></require>
 	<require from="../../../styles/flex.css"></require>
 	<require from="aurelia-kendoui-bridge/editor/editor"></require>
-  
+
 	<!-- <require from="./flex.css"></require> -->
 	<!-- jrt -->
 	<style>
@@ -37,15 +37,15 @@
 					<h3> ${savedlist} / Record Count: ${datasource._data.length}</h3>
 					<!-- ${item.savedlist.length}  -->
 					<button id="factsheet1" style="width: 125px" class="btn btn-primary" type="button" click.delegate="action1()">Transport</button>
-					<button id="factsheet2" style="width:125px"class="btn btn-primary" type="button" click.delegate="action2()">Exhibit</button>
-					<button id="factsheet3" style="width:125px"class="btn btn-primary" type="button" click.delegate="action3()">Reproduction</button>
-					<button id="factsheet4" style="width:125px"class="btn btn-primary" type="button" click.delegate="action4()">Provenance</button>
-          <br>
-           <br>
-					<button id="factsheet5" style="width:125px"class="btn btn-primary" type="button" click.delegate="action5()">MRG Location</button>
-					<button id="factsheet6" style="width:125px"class="btn btn-primary" type="button" click.delegate="action6()">Temp Location</button>
-					<button id="factsheet7" style="width:125px"class="btn btn-primary" type="button" click.delegate="action8()">Offerings</button>
-					<button id="image1"style="width:125px" class="btn btn-primary" type="button" click.delegate="action9()">Merge Images</button>
+					<button id="factsheet2" style="width:125px" class="btn btn-primary" type="button" click.delegate="action2()">Exhibit</button>
+					<button id="factsheet3" style="width:125px" class="btn btn-primary" type="button" click.delegate="action3()">Reproduction</button>
+					<button id="factsheet4" style="width:125px" class="btn btn-primary" type="button" click.delegate="action4()">Provenance</button>
+					<br>
+					<br>
+					<button id="factsheet5" style="width:125px" class="btn btn-primary" type="button" click.delegate="action5()">MRG Location</button>
+					<button id="factsheet6" style="width:125px" class="btn btn-primary" type="button" click.delegate="action6()">Temp Location</button>
+					<button id="factsheet7" style="width:125px" class="btn btn-primary" type="button" click.delegate="action8()">Offerings</button>
+					<button id="image1" style="width:125px" class="btn btn-primary" type="button" click.delegate="action9()">Merge Images</button>
 
 					<div show.bind="!hide1">
 						Transport Date <input type="date" id="TransportDate" class="form-control input-sm" value.bind="item.TransportDate">
@@ -72,7 +72,7 @@
 					</div>
 					<div show.bind="!hide2">
 
-<div class="Rtable Rtable--2cols">
+						<div class="Rtable Rtable--2cols">
 							<div class=" Rtable-cell-30 Rtable-cell--highlight">
 								<strong> Exhibition Title </strong>
 							</div>
@@ -81,7 +81,7 @@
 							</div>
 						</div>
 
-<div class="Rtable Rtable--2cols">
+						<div class="Rtable Rtable--2cols">
 							<div class=" Rtable-cell-30 Rtable-cell--highlight">
 								<strong> Exhibition Sponser </strong>
 							</div>
@@ -90,7 +90,7 @@
 							</div>
 						</div>
 
-<div class="Rtable Rtable--2cols">
+						<div class="Rtable Rtable--2cols">
 							<div class=" Rtable-cell-30 Rtable-cell--highlight">
 								<strong>	Exhibition Date   </strong>
 							</div>
@@ -99,7 +99,7 @@
 							</div>
 						</div>
 
-<div class="Rtable Rtable--2cols">
+						<div class="Rtable Rtable--2cols">
 							<div class=" Rtable-cell-30 Rtable-cell--highlight">
 								<strong>Exhibition SortDate </strong>
 							</div>
@@ -108,12 +108,13 @@
 							</div>
 						</div>
 
-<div class="Rtable Rtable--2cols">
+						<div class="Rtable Rtable--2cols">
 							<div class=" Rtable-cell-30 Rtable-cell--highlight">
 								<strong>Traveled </strong>
 							</div>
 							<div class="Rtable-cell-70  Rtable-cell--light">
-								<input type="checkbox" id="Traveled" class="form-control input-sm au-target" value.bind="item.Traveled" au-target-id="138" value="">
+								<input type="checkbox" id="Traveled" class="form-control input-sm au-target" value.bind="item.Traveled" au-target-id="138"
+								 value="">
 							</div>
 						</div>
 
@@ -125,49 +126,40 @@
 					<div show.bind="!hide3">
 						<!-- ExhibitID <input type="text" id="ExhibitID" class="form-control input-sm" value.bind="item.ExhibitID"> ReproductionType -->
 						<!-- <input type="text" id="ReproductionType" class="form-control input-sm" value.bind="item.ReproductionType"> ReproductionTitle -->
-<br>
-						Reproduction Author
-						<input type="text" id="ReproductionAuthor" class="form-control input-sm" value.bind="item.ReproductionAuthor">
-             Author	First
+						<br> Reproduction Author
+						<input type="text" id="ReproductionAuthor" class="form-control input-sm" value.bind="item.ReproductionAuthor"> Author
+						First
 						<input type="text" id="AuthorLast" class="form-control input-sm" value.bind="item.AuthorLast"> Author Last
-						<input type="text" id="AuthorFirst" class="form-control input-sm" value.bind="item.AuthorFirst">
-					
-          		Reproduction Title <input type="text" id="ReproductionTitle" class="form-control input-sm" value.bind="item.ReproductionTitle">				
-       	Publisher			<input type="text" id="ReproductionName" class="form-control input-sm" value.bind="item.ReproductionName">
-		Reproduction Location
-							<aubs-typeahead ref='reproductionlocation' data.bind="appService.codesProvenanceLocation" value.bind="item.DescriptionLoc"
-							 debounce.bind="350" placeholder="reproduction location" open-on-focus.bind="true" key="Description" results-limit.bind="12"
-							 select-single-result.bind="true">
-							</aubs-typeahead>
-          
-										
-					
+						<input type="text" id="AuthorFirst" class="form-control input-sm" value.bind="item.AuthorFirst"> Reproduction Title
+						<input type="text" id="ReproductionTitle" class="form-control input-sm" value.bind="item.ReproductionTitle"> Publisher
+						<input type="text" id="ReproductionName" class="form-control input-sm" value.bind="item.ReproductionName"> Reproduction
+						Location
+						<aubs-typeahead ref='reproductionlocation' data.bind="appService.codesProvenanceLocation" value.bind="item.DescriptionLoc"
+						 debounce.bind="350" placeholder="reproduction location" open-on-focus.bind="true" key="Description" results-limit.bind="12"
+						 select-single-result.bind="true">
+						</aubs-typeahead>
 
 
-               Reproduction Date <input type="text" id="ReproductionDate" class="form-control input-sm" value.bind="item.ReproductionDate">							
-							 Reproduction Sort Date <input type="date" id="ReproductionSortDate" class="form-control input-sm" value.bind="item.ReproductionSortDate">				
-			   Reproduction Page <input type="text" id="ReproductionPage" class="form-control input-sm" value.bind="item.ReproductionPage">			
-				
- Reproduction Type	<select
-						 id="ReproductionType" class="form-control  input-sm" value.bind="item.ReproductionType">
+
+
+
+						Reproduction Date <input type="text" id="ReproductionDate" class="form-control input-sm" value.bind="item.ReproductionDate">						Reproduction Sort Date <input type="date" id="ReproductionSortDate" class="form-control input-sm" value.bind="item.ReproductionSortDate">						Reproduction Page <input type="text" id="ReproductionPage" class="form-control input-sm" value.bind="item.ReproductionPage">						Reproduction Type <select id="ReproductionType" class="form-control  input-sm" value.bind="item.ReproductionType">
 							<option model.bind="null">Choose...</option>
 							<option repeat.for="opt of appService.codesPublicationType " model.bind="opt.id">
 								${opt.Description}
 							</option>
-							</select>
-
-							Color/BW <select id="ColorBW" class="form-control  input-sm" value.bind="item.ColorBW"> 
+							</select> Color/BW <select id="ColorBW" class="form-control  input-sm" value.bind="item.ColorBW"> 
                       <option model.bind="null">Choose...</option> 
                          <option repeat.for="opt of appService.codesReproductionType " model.bind="opt.id">
                     ${opt.Description} 
                       </option> 
-                    </select> 
-      		<button id="save3" class="btn btn-primary" type="button" click.delegate="save3()">Save Reproduction</button>
+                    </select>
+						<button id="save3" class="btn btn-primary" type="button" click.delegate="save3()">Save Reproduction</button>
 
 					</div>
 
 					<div show.bind="!hide4">
-						 Owner <input type="text" id="ProvOwner" class="form-control input-sm" value.bind="item.ProvOwner"> ProvLoc
+						Owner <input type="text" id="ProvOwner" class="form-control input-sm" value.bind="item.ProvOwner"> ProvLoc
 						<aubs-typeahead ref='provlocation' data.bind="appService.codesListLocation" value.bind="item.Description" debounce.bind="350"
 						 placeholder="mrg location" open-on-focus.bind="true" key="Description" results-limit.bind="12" select-single-result.bind="true">
 						</aubs-typeahead>
@@ -236,18 +228,14 @@
 
 					<h3>Press Ctrl+Left Mouse to toggle row selection</h3>
 					<!-- k-groupable.bind="true"  -->
-            
-          <ak-grid class="flex-row-1 overflow-y-auto" id="grid" 
-          k-data-source.bind="datasource" k-widget.bind="grid" 
-          k-sortable.bind="{ mode: 'multiple',   allowUnsort: 'true'}"
-					 k-filterable.bind="{  mode: 'row' }" k-editable="inline" k-reorderable.bind="true"
-            k-resizable.bind="true"
-					 k-on-edit.delegate="onEdit($event.detail)" k-selectable="[row,multiple]" k-on-change.delegate="rowSelected($event.detail)"
-					 k-column-menu.bind="true" k-pageable.bind="true">
+
+					<ak-grid class="flex-row-1 overflow-y-auto" id="grid" k-data-source.bind="datasource" k-widget.bind="grid" k-sortable.bind="{ mode: 'multiple',   allowUnsort: 'true'}"
+					 k-filterable.bind="{  mode: 'row' }" k-editable="inline" k-reorderable.bind="true" k-resizable.bind="true" k-on-edit.delegate="onEdit($event.detail)"
+					 k-selectable="[row,multiple]" k-on-change.delegate="rowSelected($event.detail)" k-column-menu.bind="true" k-pageable.bind="true">
 						<ak-col k-filterable.bind="false" k-width="120px" k-title="Cmd" k-command.bind="['edit']" k-title="&nbsp;" k-locked.bind="true"
 						 k-lockable.bind="false"></ak-col>
 						<ak-col k-title="Offer Amount" k-width="140px" k-field="offeramount"></ak-col>
-	<ak-col k-title=" Retail Price " k-width="140px" k-field="ArtValue"></ak-col>
+						<ak-col k-title=" Retail Price " k-width="140px" k-field="ArtValue"></ak-col>
 
 						<ak-col k-field="InventoryCode" k-filterable.bind="true" k-title="Edit" k-width.bind="140" k-template="<button click.delegate='detailsEdit($event)' class='k-button'>#=InventoryCode#</button>">
 						</ak-col>

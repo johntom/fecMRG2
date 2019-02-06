@@ -375,11 +375,15 @@ export class DataForm {
             //   this.saveinventory(0)
             // }
             this.mrubuild()
-            this.appService.currentItem = this.currentItem//inv[0]
+            // ffixes to stop dirty
+           if(this.currentItem.PrinterLocation===undefined)  this.currentItem.PrinterLocation= null
+if(this.currentItem.PublisherLocation===undefined)  this.currentItem.PublisherLocation= null
+
+            this.appService.currentItem = this.currentItem
             this.appService.originalrec = JSON.parse(JSON.stringify(this.currentItem))
+           
+            console.log( this.appService.originalrec ,this.currentItem.PrinterLocation )
             // this.getimageinfo()// dom not ready
-
-
 
             // this.currentItem.isDirty = () => {
             //   return JSON.stringify(this.currentItem) !== JSON.stringify(this.appService.originalrec)
@@ -497,9 +501,9 @@ export class DataForm {
   //     "clientHeightRatio": 1,
   //     "clientWidth": 300,
   // "clientWidthRatio": "1.3
-  getimageinfo() {
+  getimageinfo(opt) {
     // set this.appService.originalrec alsoe
-    if (this.currentItem.clientHeight === undefined || this.currentItem.clientHeight === 0) {
+    if (this.currentItem.clientHeight === undefined || this.currentItem.clientHeight === 0 ||opt===1) {
       let imageWidth, imageHeight, clientHeightRatio, clientWidthRatio
 
       let Promise = this.loadimage()
@@ -513,13 +517,13 @@ export class DataForm {
             clientHeightRatio = 1
             clientWidthRatio = 1
           } else if (this.currentItem.clientHeight > this.currentItem.clientWidth) {
-            clientWidthRatio = 1
-            clientHeightRatio = (this.currentItem.clientHeight / this.currentItem.clientWidth).toPrecision(2)
-
-            ave
-          } if (this.currentItem.clientWidth > this.currentItem.clientHeight) {
-            clientHeightRatio = 1
+             clientHeightRatio = 1
             clientWidthRatio = (this.currentItem.clientWidth / this.currentItem.clientHeight).toPrecision(2)
+ 
+        
+          } if (this.currentItem.clientWidth > this.currentItem.clientHeight) {
+            clientWidthRatio = 1
+            clientHeightRatio =  (this.currentItem.clientHeight / this.currentItem.clientWidth).toPrecision(2)
           }
           this.currentItem.clientHeightRatio = clientHeightRatio
           this.currentItem.clientWidthRatio = clientWidthRatio
@@ -533,7 +537,38 @@ export class DataForm {
     }
   }
 
+// getimageinfoReverse() {
+//       let imageWidth, imageHeight, clientHeightRatio, clientWidthRatio
 
+//       let Promise = this.loadimage()
+//         .then(response => {
+//           this.currentItem.clientHeight = this.mainimage.clientHeight
+//           this.currentItem.clientWidth = this.mainimage.clientWidth
+//           // this.appService.originalrec.clientHeight = this.mainimage.clientHeight
+//           // this.appService.originalrec.clientWidth = this.mainimage.clientWidth
+
+//           if (this.currentItem.clientHeight === this.currentItem.clientWidth) {
+//             clientHeightRatio = 1
+//             clientWidthRatio = 1
+//           } else if (this.currentItem.clientHeight > this.currentItem.clientWidth) {
+//            clientHeightRatio = 1
+//             clientWidthRatio = (this.currentItem.clientWidth / this.currentItem.clientHeight).toPrecision(2)
+ 
+//           } if (this.currentItem.clientWidth > this.currentItem.clientHeight) {
+//             clientWidthRatio = 1
+//             clientHeightRatio =  (this.currentItem.clientHeight / this.currentItem.clientWidth).toPrecision(2)
+//           }
+//           this.currentItem.clientHeightRatio = clientHeightRatio
+//           this.currentItem.clientWidthRatio = clientWidthRatio
+
+//           // this.appService.originalrec.clientHeightRatio = clientHeightRatio
+//           // this.appService.originalrec.clientWidthRatio = clientWidthRatio
+//           //2-4  reset here again 
+//           this.appService.originalrec = JSON.parse(JSON.stringify(this.currentItem))// inv[0]));
+
+//         })
+    
+//   }
 
   attached() {
     // if (this.appService.dataFormOneToOneTabs.length > 0) {
@@ -566,7 +601,7 @@ export class DataForm {
         let tab = this.appService.dataFormOneToManyTabs[tabindex];
         this.selectOneToManyTab(tab);
       }
-      this.getimageinfo()
+      this.getimageinfo(0)
     }
   }
 
@@ -603,7 +638,7 @@ export class DataForm {
         });
       }
     } else {
-      this.getimageinfo() // fix issue with isdirty
+      this.getimageinfo(0) // fix issue with isdirty
       if (JSON.stringify(this.currentItem) !== JSON.stringify(this.appService.originalrec)) {
         // SAVE WITH IMAGE INFO IN CASE ITS MISSING
         // nsure if needed this.getimageinfo()
@@ -714,7 +749,7 @@ export class DataForm {
         let fd = new Date();
         this.mainimage.src = `https://artbased.com/api/v1/getimage/inv/${this.currentItem.InventoryCode}.jpg?${fd}`;
         // "http://localhost/image/id/image" + count++ + ".jpg";
-        this.getimageinfo()
+        this.getimageinfo(0)
         $("#file").val("");
       })
     //})

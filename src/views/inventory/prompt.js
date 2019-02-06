@@ -17,10 +17,10 @@ export class Prompt {
   // ConsignmentShippingID=ConservedFrom
   orgfields = ['ConsignedTo', 'ConsignedFromID', 'ConsignmentShippingID', 'OwnerID',
     'PhotographerID', 'PurchasedFrom', 'ConservedBy',
-    'ConservedBy', 'SoldToID', 'SoldTo', 'LoanTo']
+    'ConservedBy', 'SoldToID', 'SoldTo', 'LoanTo','ProvOwner']
   orgfielddesc = ['Consigned To', 'Consigned From', 'Consignment From (Shipping)', 'Owner',
     'Photographer', 'Purchased From', 'Conserved By',
-    'Conserved By', 'Sold To', 'Sold To', 'Museum Loan To']
+    'Conserved By', 'Sold To', 'Sold To', 'Museum Loan To','Provenance Owner']
 
 
   textfields = ['Description', 'Comment', 'Inscribed', 'Treatment','EditionComment']
@@ -396,7 +396,7 @@ export class Prompt {
       }
       // this.appService.currentItem.artist = this.ArtistName
     }
-    if (this.fieldname === 'MediumSupportobj') {
+    if (this.fieldname === 'MediumSupportobj') { 
       // this.currentItem.MediumSupportobj.id = this.MedSup.id
 
       // if (this.MedSup !== this.currentItem.MediumSupportobj)
@@ -408,9 +408,18 @@ export class Prompt {
       // if (this.OrgName.OrgName !== this.currentItem.ownername) {
 
       this.currentItem.OwnerID = this.OrgName._id
-      this.currentItem.ownername = this.OrgName.OrgName
+      this.currentItem.ownername = this.OrgName.OrgName 
       // }
 
+    }
+
+     if (this.fieldname === 'ProvOwner') {
+      if (this.OrgName.OrgName !== this.currentItem.provownername) {
+
+        this.currentItem.ProvOwnerID = this.OrgName._id
+         this.currentItem.ProvOwner =this.OrgName
+        this.currentItem.provownername = this.OrgName.OrgName
+      }
     }
     if (this.fieldname === 'SoldToID') {
       if (this.OrgName.OrgName !== this.currentItem.soldtoname) {

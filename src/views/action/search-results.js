@@ -674,8 +674,7 @@ export class SearchResults {
             //  this.Description2 =''
             // this.item.Description = ''
             // this.item.Description2 = ''
-
-
+            // this.item.Description2 = ''
             // this.item.TransportNotes = ''
 
           } else alert(' batch failed ')

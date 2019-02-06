@@ -96,8 +96,16 @@ export class DataForm {
   showModal(fieldname) {
     this.currentItem.fieldname = fieldname
     this.currentItem.recordId = this.recordId
-    let prevorgid = this.currentItem.org._id
-    let prevorg = this.currentItem.org
+    let prevorgid; let prevorg
+    if (this.currentItem.org !== undefined) {
+      prevorgid = this.currentItem.org._id;
+      prevorg = this.currentItem.org
+    }
+    else {
+      prevorgid = ""
+      prevorg = ""
+    }
+
     this.dialogService.open({ viewModel: Promptcontact, model: this.currentItem, lock: true }).whenClosed(response => {
       if (!response.wasCancelled) {
         if (this.currentItem.prevorgs !== undefined) {

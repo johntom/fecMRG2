@@ -3,9 +3,11 @@ import { ApiService } from '../../../utils/servicesApi';
 import { ApplicationService } from '../../../services/application-service';
 import { Aurelia } from 'aurelia-framework';
 import { DialogService } from 'aurelia-dialog';
-import { Prompt } from '../../../services/prompt';
+// import { Prompt } from '../../../services/prompt';
 
 
+import { Promptyn } from '../../../services/promptyn';
+import { Prompt } from '../prompt';
 
 
 @inject(ApiService, ApplicationService, DialogService)
@@ -13,7 +15,7 @@ export class Provenance {
   heading = 'DataForm HEADER...';
   footer = 'DataForm FOOTER...';
   recordId = '';
- // provenance: Provenance[] = []
+  // provenance: Provenance[] = []
   done = false;
   edit = false;
   constructor(api, appService, dialogService) {
@@ -29,36 +31,38 @@ export class Provenance {
   }
 
   activate(params, routeConfig) {
-    // if (params.id) {
-    //   this.recordId = params.id; 
-    //   this.heading = `DataForm for record ${this.recordId}`;
 
-    //   console.log('this.recordId ', this.recordId);
-    //   return this.api.findInventoryOne(this.recordId)
-    //     .then((jsonRes) => {
-    //       console.log('jsonRes ', jsonRes);          
-    //       let inv = jsonRes.data;
-    //       this.currentItem = inv[0];
-    //       console.log('data-form:activate - currentItem', this.currentItem);
-    //       this.inv = inv[0]
-    //       // console.log('this.inv loadData 0 ', inv[0].InventoryCode);
-    //       return inv
-    //     });
-    // }
   }
-  // remove(item) {
-  //   alert('you are about to delete ' + item.ProvMemo)
-  // }
-   saveitem(item,index) {
+  showModal(fieldname, index) {
+    this.currentItem.fieldname = fieldname
+    this.currentItem.ProvOwner = this.currentItem.provenance[index].ProvOwner
+    this.currentItem.provownername = this.currentItem.provenance[index].provownername
+
+
+    this.dialogService.open({ viewModel: Prompt, model: this.currentItem, lock: false }).whenClosed(response => {
+      // ProvOwnerID
+      this.currentItem.provenance[index].ProvOwner = this.currentItem.ProvOwner
+      this.currentItem.provenance[index].provownername = this.currentItem.provownername
+      if (!response.wasCancelled) {
+        // console.log('Delete') InsuredBy
+        // let notes = this.currentItem.notes
+        // notes.splice(index, 1)// start, deleteCount)
+      } else {
+        console.log('cancel');
+      }
+      console.log(response.output);
+    });
+  }
+  saveitem(item, index) {
     item.edit = !item.edit
-   
+
   }
   remove(item, index) {
     //alert('you are about to delete ' + item.Notes + ' ' + index)
     this.mode = 0
 
 
-    this.dialogService.open({ viewModel: Prompt, model: 'Delete or Cancel?', lock: false }).whenClosed(response => {
+    this.dialogService.open({ viewModel: Promptyn, model: 'Delete or Cancel?', lock: false }).whenClosed(response => {
       if (!response.wasCancelled) {
         console.log('Delete')
         let provenance = this.currentItem.provenance

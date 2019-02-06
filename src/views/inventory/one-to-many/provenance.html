@@ -1,15 +1,15 @@
 <template>
 	<require from="./docs.css"></require>
- <require from="../../../resources/value-converters/date-format"></require>
-  
- 
-<section class="docs full-height flex-column-1 overflow-y-auto ignore">
+	<require from="../../../resources/value-converters/date-format"></require>
+
+
+	<section class="docs full-height flex-column-1 overflow-y-auto ignore">
 		<h4>
 			<i class="fa fa-folder-open"></i> Provenance
 			<a slot="buttons-slot" class="btn btn-primary" click.delegate="addDetail()">
 				<i class="fa fa-plus"></i> Add Provenance
 			</a>
-		
+
 		</h4>
 
 
@@ -23,7 +23,7 @@
 					<th class="header">Date </th>
 					<th class="header">Note </th>
 					<th class="header">Sort Date </th>
-          <th class="header">Sequence </th>
+					<th class="header">Sequence </th>
 				</tr>
 			</thead>
 			<tfoot>
@@ -37,9 +37,19 @@
 			</tfoot>
 			<tbody>
 				<tr repeat.for="provenance of currentItem.provenance " with.bind="provenance">
-						<td width="125px">
-					
-						<input id="ProvOwner" class="form-control input-sm" type="text"	 value.bind="ProvOwner">
+					<td width="225px">
+
+						<div class="form-control  input-sm" if.bind="provownername===undefined || provownername===''">
+							<a click.delegate="showModal( 'ProvOwner',$index)">select_link </a>
+						</div>
+						<div class="form-control  input-sm" else>
+							<a click.delegate="showModal('ProvOwner',$index)">${provenance.provownername}</a>
+
+						</div>
+
+
+
+
 					</td>
 					<td width="200px">
 						<select id="ProvLoc" class="form-control  input-sm" value.bind="ProvLoc"> 
@@ -58,12 +68,12 @@
 					<td width="120px"><input type="text" id="Sequence" class="form-control  input-sm" value.bind="Sequence"></td>
 
 					<td width="225px">
-						
-          	<!-- <button class="btn btn-primary" click.delegate="saveitem(provenance,$index)">${ !provenance.edit ? 'Edit' : 'Save' }</button> -->
 
-          	<button class="btn btn-danger" click.delegate="remove(provenance,$index)">Delete</button>
+						<!-- <button class="btn btn-primary" click.delegate="saveitem(provenance,$index)">${ !provenance.edit ? 'Edit' : 'Save' }</button> -->
+
+						<button class="btn btn-danger" click.delegate="remove(provenance,$index)">Delete</button>
 					</td>
-				
+
 				</tr>
 			</tbody>
 		</table>

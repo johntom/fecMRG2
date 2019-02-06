@@ -263,7 +263,7 @@
 
 
 								<div class="Rtable Rtable--7cols">
-									<div class="Rtable-cell Rtable-cell--alert">Dims</div>
+									<!-- <div class="Rtable-cell Rtable-cell--alert">Dims</div> -->
 									<div class="Rtable-cell Rtable-cell--highlight"></div>
 									<div class="Rtable-cell Rtable-cell--highlight">Height</div>
 									<div class="Rtable-cell Rtable-cell--highlight">x/8</div>
@@ -662,7 +662,10 @@
 										<input type="text " id="Bin" class="form-control  input-sm" value.bind="currentItem.Bin">
 									</div>
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
-										<strong> Image Info & Dims</strong>
+										<strong> Image Info & Dims 	<button class="btn btn-sm btn-success"
+                     click.delegate="getimageinfo(1)">
+						fix ratio
+					</button></strong>
 									</div>
 									<div class="Rtable-cell-70 Rtable-cell--highlight">
 

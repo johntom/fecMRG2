@@ -1,13 +1,13 @@
 <template>
 	<require from="./docs.css"></require>
-  <require from="../../../resources/value-converters/date-format"></require>
-  
+	<require from="../../../resources/value-converters/date-format"></require>
+
 	<!-- section class="customer-orders au-animate" -->
 	<section class="docs full-height flex-column-1 overflow-y-auto ignore">
 		<h4>
-			<i class="fa fa-folder-open"></i>Consigned To 
+			<i class="fa fa-folder-open"></i>Consigned To
 			<a slot="buttons-slot" class="btn btn-primary" click.delegate="addDetail()">
-				<i class="fa fa-plus"></i> Add Consigned To	</a>
+				<i class="fa fa-plus"></i> Add Consigned To </a>
 		</h4>
 
 
@@ -21,13 +21,13 @@
 					<th class="header">Net to</br>MRG </th>
 					<th class="header">Net to</br>MRG Amt </th>
 					<th class="header">Retail</br>Price Amt </th>
-				
+
 					<th class="header">Artwork</br>Released </th>
 					<th class="header">Signed </th>
 					<th class="header">PDF </th>
 					<th class="header">Notes </th>
 					<th class="header">Sold </th>
-          					<th class="header">Cmd </th>
+					<th class="header">Cmd </th>
 					<!-- <th class="header">Created</br>Date </th>
 					<th class="header">Modified</br>Date </th> -->
 
@@ -45,18 +45,18 @@
 
 
 					<td width="225px">
-					   
-            			<!-- <input dblclick.delegate="showModal('ConsignedTo',$index)"
+
+						<!-- <input dblclick.delegate="showModal('ConsignedTo',$index)"
                    type="text" id="ConsignedTo" class="form-control input-sm" 
                    value.bind="consignedto.consignedtoname"> -->
-      	<div class="form-control  input-sm" if.bind="consignedtoname===undefined || consignedtoname===''">
+						<div class="form-control  input-sm" if.bind="consignedtoname===undefined || consignedtoname===''">
 							<a click.delegate="showModal( 'ConsignedTo',$index)">select_link </a>
 						</div>
 						<div class="form-control  input-sm" else>
 							<a click.delegate="showModal('ConsignedTo',$index)">${consignedto.consignedtoname}</a>
 
 						</div>
-				
+
 					</td>
 
 					<td width="95px">
@@ -71,7 +71,7 @@
 						<span show.bind="!consignedto.edit">${ConsignmentRetailPrice}</span>
 						<input show.bind="consignedto.edit" class="form-control input-sm" disabled.bind="!consignedto.edit" type="text" value.bind="ConsignmentRetailPrice">
 					</td>
-          		<td width="125px">
+					<td width="125px">
 						<span show.bind="!consignedto.edit">${ConsignmentRetailPriceAmt}</span>
 						<input show.bind="consignedto.edit" class="form-control input-sm" disabled.bind="!consignedto.edit" type="text" value.bind="ConsignmentRetailPriceAmt">
 					</td>
@@ -84,8 +84,8 @@
 						<input show.bind="consignedto.edit" class="form-control input-sm" disabled.bind="!consignedto.edit" type="text" value.bind="NettoMRGAmt">						</td>
 					</td>
 
-			
-			
+
+
 					<td width="105px">
 						<span show.bind="!consignedto.edit">${ArtworkReleased | dateFormat}</span>
 						<input show.bind="consignedto.edit" class="form-control input-sm" disabled.bind="!consignedto.edit" type="date" value.bind="ArtworkReleased">
@@ -110,22 +110,22 @@
 						<span show.bind="!consignedto.edit">${Sold}</span>
 						<input show.bind="consignedto.edit" disabled.bind="!consignedto.edit" type="checkbox" checked.bind="Sold"> </td>
 					</td>
-	<!-- <td width="75px">
+					<!-- <td width="75px">
 					${CreatedDate}
 					</td> -->
-          	<!--td width="75px">
+					<!--td width="75px">
 					${ModifiedDate}
 					</td> -->
-		
+
 					<td width="225px">
 						<!-- <button class="btn btn-primary" click.delegate="consignedto.edit=!consignedto.edit">${ !consignedto.edit ? 'Update' : 'Done' }</button> -->
-							<button class="btn btn-primary" click.delegate="saveitem(consignedto,$index)">${ !consignedto.edit ? 'Edit' : 'Save' }</button>
+						<button class="btn btn-primary" click.delegate="saveitem(consignedto,$index)">${ !consignedto.edit ? 'Edit' : 'Save' }</button>
 
-            
-            <button class="btn btn-danger" click.delegate="remove(consignedto,$index)">Delete</button>
+
+						<button class="btn btn-danger" click.delegate="remove(consignedto,$index)">Delete</button>
 
 					</td>
-  			</tr>
+				</tr>
 			</tbody>
 		</table>
 
