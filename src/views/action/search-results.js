@@ -620,9 +620,8 @@ export class SearchResults {
 
   }
   saveMerge() {
-
     let savetime = moment().format('MM/DD/YY h:mm:ss a')
-    console.log('this.editor.value()', this.editor.value())
+    console.log('this.editor.value()',this.savedlist, this.editor.value())
     this.api.saveMerge(this.savedlist, this.editor.value())
       .then((jsonRes) => {
         if (jsonRes.data === 'success') {
