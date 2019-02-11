@@ -659,8 +659,8 @@ export class DataForm {
           this.appService.currentView = this.currentItem
 
           /////////////////////
-          // this.appService.originalrec = JSON.parse(JSON.stringify(this.currentItem))
-          this.appService.originalrec = this.currentItem
+          this.appService.originalrec = JSON.parse(JSON.stringify(this.currentItem))
+          //this.appService.originalrec = this.currentItem
 
 
 

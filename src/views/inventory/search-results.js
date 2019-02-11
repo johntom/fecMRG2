@@ -22,7 +22,7 @@ export class SearchResults {
   checkedIds = {};
   //  console.log(' inv SearchResults ');
   message = ''//Hello Inventory !';
-   scrollable = {virtual: true};
+  scrollable = { virtual: true };
   datasource = new kendo.data.DataSource({
     transport: {
       read: (options) => {
@@ -73,8 +73,8 @@ export class SearchResults {
           Owner: { type: "string" },
           InvYear: { type: "string" },
           UnframedHeight: { type: "string" },
-  // Image : { type: "string", editable: false },
-        
+          // Image : { type: "string", editable: false },
+
 
         }
       }
@@ -87,6 +87,7 @@ export class SearchResults {
     //   { field: "template", aggregate: "count" }
     // ]
   })
+  //Reference the Kendo Grid  
 
 
   constructor(router, api, utilService, appService, dataService, dialogService, eventAggregator) {
@@ -118,7 +119,15 @@ export class SearchResults {
     // $('#T'+movid).trigger("click");
     // }  
   }
+    onDataBound(e) {
+        //  alert('hi onDataBound')
+        let grid = e.sender;
+        //  this.grid.find("[data-field=Bin]>.k-header-column-menu").remove();
+        kendo.jQuery('[data-field=Bin].k-header-column-menu', grid.tbody).remove(); ///removeAttr('href');
+      //  kendo.jQuery('a[href*=\'#\']', grid.tbody).removeAttr('href');
 
+        
+    }
   showSavedlists() {
     //// alert(`selectedids: ${this.selectedids}`);
     this.currentItem = {}
@@ -145,10 +154,10 @@ export class SearchResults {
       console.log(response.output);
     });
   }
-//https://johntom.github.io/fecMRG2/#/action/Actionlist-?savedlists%3DTest%20List&tabname=actionlist
+  //https://johntom.github.io/fecMRG2/#/action/Actionlist-?savedlists%3DTest%20List&tabname=actionlist
 
   openSelection() {
-    let rt2 = `#/action/Actionlist-?savedlists=${this.appService.currentsavedlist}&tabname=actionlist`
+    let rt2 = `#/action/ActionlistI-?savedlists=${this.appService.currentsavedlist}&tabname=actionlistInv`
 
     this.router.navigate(rt2);// `#/inventory/${path}`);
     // https://johntom.github.io/fecMRG2/#/action/Actionlist-?savedlists%3DTest%20List&tabname=actionlist   openSelection()
@@ -185,6 +194,19 @@ export class SearchResults {
     //       }
     //       console.log(response.output);
     //     });
+  }
+  attached() {
+    // this.grid = $("#grid").data("kendoGrid");
+    // Removing The Ship Country Column Menu:      
+    // By field  
+    // this.grid.find("[data-field=Bin]>.k-header-column-menu").remove();
+    // $('#GridName .k-header-column-menu').eq(2).hide()
+    // this.grid('k-header-column-menu').eq(2).hide()
+    // By Index  
+    // grid.thead.find("[data-index=1]>.k-header-column-menu").remove();
+    
+    // this.grid.column["Bin"].IncludeInMenu(false);// hideColumn(2) NOT AVAIL
+
   }
   activate(params, routeConfig) {
     //http://74.114.164.24/api/v1/inventorycontent?artistl=s%26artistf=c 
@@ -243,7 +265,7 @@ export class SearchResults {
 
       .then((jsonRes) => {
         inv = jsonRes.data;
-        this.recCount = inv.length; 
+        this.recCount = inv.length;
         if (inv === 0 || inv.length === 0) {
           // alert(' no records found ')
           this.message = ' no records found '

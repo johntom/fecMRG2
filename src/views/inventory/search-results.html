@@ -9,7 +9,7 @@
 			float: right;
 			margin: 25px auto 0;
 		}
-.customer-photo-sq2  {
+.customer-photo-sq {
     display: inline-block;
     width: 50px;
     height: 50px;
@@ -20,7 +20,7 @@
     box-shadow: inset 0 0 1px #999, inset 0 0 10px rgba(0,0,0,.2);
     margin-left: 5px;
 }
-		.customer-photo-sq {
+		.customer-photo-sqxx {
 			display: inline-block;
 			width: 44px;
 			height: 44px;
@@ -66,7 +66,8 @@
 		</div>
 	</h4>
   <!--  k-scrollable.bind="scrollable" -->
-	<ak-grid class="flex-row-1 overflow-y-auto" id="grid" k-data-source.bind="datasource" k-widget.bind="grid"
+	<ak-grid class="flex-row-1 overflow-y-auto" ref ="grid" id="grid" k-data-source.bind="datasource" k-widget.bind="grid"
+   k-on-data-bound.delegate="onDataBound($event.detail)" 
    k-sortable.bind="{ mode: 'multiple',   allowUnsort: 'true'}"
 	 k-filterable.bind="{  mode: 'row' }" k-editable="inline" k-pageable.bind="true"   k-reorderable.bind="true" k-groupable.bind="true" k-resizable.bind="true"
 	 k-selectable="[row,multiple]" k-on-edit.delegate="onEdit($event.detail)" k-on-data-bound.delegate="onDataBound($event.detail)"
@@ -82,12 +83,12 @@
 
 	<ak-col k-title="Image" k-filterable.bind="false" k-field="InventoryCode"  k-width="150px">
 			<ak-template>
-				<div  class='customer-photo-sq2' style="background-image: url(https://artbased.com/api/v1/getimage/inv/${InventoryCode}.jpg);"
+				<div  class='customer-photo-sq' style="background-image: url(https://artbased.com/api/v1/getimage/inv/${InventoryCode}.jpg);"
 				 click.delegate="showModalImg($event)"></div>
 			</ak-template>
 
 		</ak-col>
-		<ak-col k-field="InventoryCode" k-filterable.bind="true"   k-column-menu.bind="false"
+		<ak-col k-field="InventoryCode" k-filterable.bind="true"   
           k-lockable.bind="false" k-title="Inventory Code" k-width.bind="180" 
           k-template="<button click.delegate='detailsEdit($event)' class='k-button'>#=InventoryCode#</button>">
 		</ak-col>
@@ -105,7 +106,7 @@
 
 	
 
-		<ak-col k-title="Bin" k-width="180px" k-field="Bin"   k-column-menu.bind="false"></ak-col>
+		<ak-col k-title="Bin" k-width="180px" k-field="Bin"  k-column-menu.bind="false"></ak-col>
 
 
   	

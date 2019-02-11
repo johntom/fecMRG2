@@ -273,6 +273,7 @@ export class Rtf {
 
     let exhibitandpubs = []
 
+    console.log('===========buildRepro')
 
     // conbine both tables
     let pl = this.appService.codesProvenanceLocation
@@ -288,9 +289,10 @@ export class Rtf {
     let rec = {}
     let linkPageNo
     if (exhibition !== undefined) {
+      let ct = 0
       for (const item of exhibition) {
         console.log('==================-item==========', item.ExhibitTitle)
-
+        ct++
         // let ExhibitTitle = req.param('ExhibitTitle')
         // let ExhibitSponser = req.param('ExhibitSponser')
         // let ExhibitLocation = req.param('Description') //typeahead
@@ -301,23 +303,24 @@ export class Rtf {
         // let ExhibitMemo = req.param('ExhibitMemo')
 
 
-        // check to see if link in repo
+        // check to see if link in repo (loop thru exhibit and find repo match)
         if (reproduction !== undefined) {
           // let eid = reproduction.findIndex(x => x.ReproductionExhibit === item.ExhibitTitle)
           // let eid = reproduction.findIndex(x => x.id === item.ReproductionExhibit)
           let eid = reproduction.findIndex(x => x.ReproductionExhibit === item.id)
           let reporec
           linkPageNo = ''
-          console.log('eid ', eid, linkPageNo) //ColorBWDesc1)
+          // console.log('eid ', eid, linkPageNo) //ColorBWDesc1)
 
           if (eid !== -1) {
             reporec = reproduction[eid]
-            console.log('reporec', reporec.ReproductionPage, reporec)
+            console.log('link in exhibit from repo ct', ct, reporec.ReproductionPage, reporec)
 
             // linkPageNo = `, ${reporec.ReproductionPage}`
             linkPageNo = ` ${reporec.ReproductionPage}`
             item.ExhibitSortDate = reporec.ReproductionSortDate
-          }
+          } else console.log('no link in exhibit from repo ct', ct)
+
         } else linkPageNo = ''
 
         //console.log('item.ReproductionExhibit ',  item.ReproductionExhibit, 'linkPageNo', linkPageNo)
@@ -348,10 +351,12 @@ export class Rtf {
         let exceptline
         if (item.ExhibitMemo === null || item.ExhibitMemo === undefined || item.ExhibitMemo === '') {
           exceptline = ppre + `<em>${item.ExhibitTitle}</em>, ${item.ExhibitSponser}, ${ExhibitLocationDesc}, ${item.ExhibitDates} ${lpn}`
+          console.log('===================item.id linkPageNo', exceptline)
+
         }
         else {
           exceptline = `<em>${item.ExhibitTitle}</em>, ${item.ExhibitSponser}, ${ExhibitLocationDesc}, ${item.ExhibitDates}; ${item.ExhibitMemo} ${lpn} `
-
+          console.log('==================no link exceptline', exceptline)
         }
 
         rec = {
@@ -362,22 +367,28 @@ export class Rtf {
           exception: exceptline
 
         }
-        console.log('rec ', rec)
+        console.log('rec.date/ exception', rec.date, rec.exception)
 
         exhibitandpubs.push(rec)
       }
     } else exhibition = []
-
+    let rct = 0
     if (reproduction !== undefined) {
-      for (const item of reproduction) {
-        if (item.ReproductionExhibit === null || item.ReproductionExhibit === undefined) {//selected choose)
+      // for (const item of reproduction) {
+        var i;
+        let item
+        for (i = 0; i < reproduction.length; i++) { 
+        item = reproduction[i];
+        rct++
+        //alert(rct + ' ' + item.ReproductionExhibit + ' ' + item.ReproductionLocation + ' ')
+        console.log('rct ', rct) //, item.ReproductionPage, itm.ReproductionDate,item.ReproductionExhibit+'...')
 
-
+        if (item.ReproductionExhibit === null || item.ReproductionExhibit === undefined || item.ReproductionExhibit === "") {//selected choose)
+          console.log('reproduction item ', rct, item.ReproductionPage, item.ReproductionDate)
           let oid = pl.findIndex(x => x.id === item.ReproductionLocation)
-
           if (oid == -1) oid = 1
           let ReproductionLocationDesc = pl[oid].Description
-
+          //alert(rct + ' ReproductionLocationDesc ' + ReproductionLocationDesc + ' ')
 
           // let ColorBWDesc = ''
           // if (item.ColorBW !== null && item.ColorBW !== undefined) {
@@ -386,16 +397,24 @@ export class Rtf {
           //   let rec = this.appService.codesReproductionType.find(x => x.id === item.ColorBW)
           //   ColorBWDesc = rec.Description + ', '
           // }
-          let data = ppre + `${item.AuthorLast}, ${item.AuthorFirst}. <em>${item.ReproductionTitle}</em> ${preafter}`
+           let data
+          if (item.ReproductionAuthor !== "") {
+data = ppre + `${item.ReproductionAuthor}. <em>${item.ReproductionTitle}</em> ${preafter}`
+          } else 
+          data = ppre + `${item.AuthorLast}, ${item.AuthorFirst}. <em>${item.ReproductionTitle}</em> ${preafter}`
+          //alert(rct + ' ReproductionLocationDesc ' + ReproductionLocationDesc + ' data ' + data)
 
           data += `(${ReproductionLocationDesc}: ${item.ReproductionName}, ${item.ReproductionDate}) <br>`
           data += `${item.ReproductionPage} <br> ${ppost}<br>`
+          //alert(rct + ' data 2  ' + data)
+          //alert(rct + ' ' + item.ReproductionSortDate)
+
           rec = {
             date: item.ReproductionSortDate,
-
             exception: data
           }
 
+          console.log('push item ', rct, rec)
           exhibitandpubs.push(rec)
         }
       }
@@ -414,6 +433,7 @@ export class Rtf {
       }
 
     }
+    console.log('===========buildRepro End')
   }
 
   //1
@@ -743,10 +763,10 @@ there are extra ' when there are fractions
       if (this.currentItem.UnframedDepth === null || this.currentItem.UnframedDepth === 0) { } else {
         this.dims += ' x ' + this.currentItem.UnframedDepth
         ufwcm = this.currentItem.UnframedDepth * 2.54
-         console.log('ufwcm',ufwcm)
-         this.dimscm  += ' x ' + this.roundNumber(ufwcm, 1)
+        console.log('ufwcm', ufwcm)
+        this.dimscm += ' x ' + this.roundNumber(ufwcm, 1)
         //  this.dimscm +=  ' x ' +ufwcm
-        console.log('  this.dimscm',  this.dimscm)
+        console.log('  this.dimscm', this.dimscm)
       }
     } else {
       this.dims += ' x ' + `${this.currentItem.UnframedDepth}   <span style="font-size:x-small;"> ${this.currentItem.UnframedDepth16} </span>`
@@ -825,10 +845,10 @@ there are extra ' when there are fractions
 
     if (this.currentItem.MediumSupportobj !== undefined)
       segment1 += `  ${this.currentItem.MediumSupportobj.Description}<br> `
-  //  let uidx = (this.dimsf.indexOf('undefined'));
-   let uidx
-  this.dimsf===undefined ? uidx=-1 :  uidx = (this.dimsf.indexOf('undefined'))
-   
+    //  let uidx = (this.dimsf.indexOf('undefined'));
+    let uidx
+    this.dimsf === undefined ? uidx = -1 : uidx = (this.dimsf.indexOf('undefined'))
+
     if (uidx > -1) {
     } else {
       segment1 += `  ${this.dimsf} in. framed<br> `
@@ -866,7 +886,7 @@ there are extra ' when there are fractions
     console.log(hh, ww)
     if (ww === 0) ww = 450
     if (hh === 0) hh = 450
-// 	<img ref="mainimage" class="responsive-img"
+    // 	<img ref="mainimage" class="responsive-img"
     this.segment2 = `<p><img class="responsive-img" src="https://artbased.com/api/v1/getimage/inv/${this.currentItem.InventoryCode}.jpg" alt="" width="${ww}" height="${hh}" /></p>`
 
     // this.segment2 = `<p><img src="https://artbased.com/api/v1/getonepdf/inv/POLLOCJ005.jpg" alt="" width="${ww}" height="${hh}" /></p>`

@@ -17,12 +17,13 @@
 		<table class="table-condensed table">
 			<thead class="table-header-blue" data-sort="items.bind: currentItem.provenance; cols: ['ProvDate','ProvMemo']">
 				<tr>
-					<th class="header">Owner </th>
 					<th class="header">Location</th>
 
 					<th class="header">Date </th>
+          		<th class="header">Owner </th>
+			
 					<th class="header">Note </th>
-					<th class="header">Sort Date </th>
+					<!-- <th class="header">Sort Date </th> -->
 					<th class="header">Sequence </th>
 				</tr>
 			</thead>
@@ -37,20 +38,7 @@
 			</tfoot>
 			<tbody>
 				<tr repeat.for="provenance of currentItem.provenance " with.bind="provenance">
-					<td width="225px">
-
-						<div class="form-control  input-sm" if.bind="provownername===undefined || provownername===''">
-							<a click.delegate="showModal( 'ProvOwner',$index)">select_link </a>
-						</div>
-						<div class="form-control  input-sm" else>
-							<a click.delegate="showModal('ProvOwner',$index)">${provenance.provownername}</a>
-
-						</div>
-
-
-
-
-					</td>
+			
 					<td width="200px">
 						<select id="ProvLoc" class="form-control  input-sm" value.bind="ProvLoc"> 
                       <!-- <option model.bind="null">Choose...filterOnCode</option>  -->
@@ -64,7 +52,21 @@
 					<!-- <td width="120px"><input type="date" id="ProvDate" class="form-control  input-sm" value.bind="ProvDate  | dateFormat "></td> -->
 					<td width="120px"><input type="date" id="ProvDate" class="form-control  input-sm" value.bind="ProvDate"></td>
 					<td width="120px"><input type="text" id="ProvMemo" class="form-control  input-sm" value.bind="ProvMemo"></td>
-					<td width="120px"><input type="text" id="ProvSortDate" class="form-control  input-sm" value.bind="ProvSortDate"></td>
+          		<td width="225px">
+
+						<div class="form-control  input-sm" if.bind="provownername===undefined || provownername===''">
+							<a click.delegate="showModal( 'ProvOwner',$index)">select_link </a>
+						</div>
+						<div class="form-control  input-sm" else>
+							<a click.delegate="showModal('ProvOwner',$index)">${provenance.provownername}</a>
+
+						</div>
+
+
+
+
+					</td>
+					<!-- <td width="120px"><input type="text" id="ProvSortDate" class="form-control  input-sm" value.bind="ProvSortDate"></td> -->
 					<td width="120px"><input type="text" id="Sequence" class="form-control  input-sm" value.bind="Sequence"></td>
 
 					<td width="225px">
