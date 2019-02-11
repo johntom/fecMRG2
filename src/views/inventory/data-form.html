@@ -142,16 +142,16 @@
 						<div class="flex-row-none">
 							<!-- <div class="form-group flex-column-1"> -->
 							<div class="form-group flex-column-1 Rtable-cell--highlight">
-
+<!--  class="form-control input-sm"  -->
 								<div class="Rtable Rtable--4cols">
 									<div class="Rtable-cell Rtable-cell--highlight">
 										<strong>Inv Code</strong>
 									</div>
 									<div class="Rtable-cell Rtable-cell--highlight">
 										<div if.bind="recordId === 'create'">
-											<input type="text" id="InventoryCode" class="form-control input-sm" value.bind="currentItem.InventoryCode | upperCase">
+											<input type="text" id="InventoryCode" class="form-control" value.bind="currentItem.InventoryCode | upperCase">
 										</div>
-										<div if.bind="recordId !== 'create'" style="width:280px">
+										<div if.bind="recordId !== 'create'" class="form-control"style="width:280px">
 											${currentItem.InventoryCode}
 
 										</div>
@@ -170,7 +170,7 @@
 									</div>
 									<div class=" Rtable-cell Rtable-cell--highlight">
 										<!-- <input type=" text " id="InvYear" class=" form-control input-sm " value.bind=" currentItem.InvYear & validate"> -->
-										<input type=" text " id="InvYear" class=" form-control input-sm " value.bind="currentItem.InvYear">
+										<input type=" text " id="InvYear" class="form-control " value.bind="currentItem.InvYear">
 									</div>
 								</div>
 								<div class="Rtable Rtable--4cols">
@@ -179,14 +179,14 @@
 									</div>
 
 									<div class="Rtable-cell Rtable-cell--highlight">
-										<input type="text " xid="CatalogueNo " class="form-control input-sm " value.bind="currentItem.CatalogueNo">
+										<input type="text " xid="CatalogueNo " class="form-control  " value.bind="currentItem.CatalogueNo">
 									</div>
 
 									<div class="Rtable-cell Rtable-cell--highlight">
 										<strong> Alt ID </strong>
 									</div>
 									<div class="Rtable-cell Rtable-cell--highlight">
-										<input type="text " xid="AltID " class="form-control input-sm " value.bind="currentItem.AltID">
+										<input type="text " xid="AltID " class="form-control " value.bind="currentItem.AltID">
 									</div>
 								</div>
 								<div class="Rtable Rtable--2cols">
@@ -226,7 +226,7 @@
 									</div>
 									<div class="Rtable-cell-70  Rtable-cell--highlight">
 
-										<input type="text" xid="Title" class="form-control input-sm" value.bind="currentItem.Title">
+										<input type="text" xid="Title" class="form-control" value.bind="currentItem.Title">
 										<!--  & validate -->
 									</div>
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
@@ -275,7 +275,7 @@
 										<strong>Size</strong>
 									</div>
 									<div class="Rtable-cell">
-										<input type="text " xid="UnframedHeight" class="form-control input-sm " value.bind="currentItem.UnframedHeight">
+										<input type="text " xid="UnframedHeight" class="form-control " value.bind="currentItem.UnframedHeight">
 									</div>
 									<div class="Rtable-cell">
 										<select style="width: 45px " value.bind="currentItem.UnframedHeight16">
@@ -286,7 +286,7 @@
 											</select>
 									</div>
 									<div class="Rtable-cell">
-										<input type="text " xid="UnframedWidth" class="form-control input-sm " value.bind="currentItem.UnframedWidth">
+										<input type="text " xid="UnframedWidth" class="form-control  " value.bind="currentItem.UnframedWidth">
 									</div>
 									<div class="Rtable-cell">
 										<select style="width: 45px " value.bind="currentItem.UnframedWidth16">
@@ -297,7 +297,7 @@
 											</select>
 									</div>
 									<div class="Rtable-cell">
-										<input type="text " xid="UnframedDepth " class="form-control input-sm " value.bind="currentItem.UnframedDepth">
+										<input type="text " xid="UnframedDepth " class="form-control " value.bind="currentItem.UnframedDepth">
 									</div>
 									<div class="Rtable-cell">
 										<select style="width: 45px " value.bind="currentItem.UnframedDepth16">
@@ -317,7 +317,7 @@
 										<strong>Image</strong>
 									</div>
 									<div class="Rtable-cell">
-										<input type="number " xid="imageHeight " class="form-control input-sm " value.bind="currentItem.imageHeight">
+										<input type="number " xid="imageHeight " class="form-control  " value.bind="currentItem.imageHeight">
 
 									</div>
 									<div class="Rtable-cell">
@@ -330,7 +330,7 @@
 											</select>
 									</div>
 									<div class="Rtable-cell">
-										<input type="number " xid="imageWidth " class="form-control input-sm " value.bind="currentItem.imageWidth">
+										<input type="number " xid="imageWidth " class="form-control  " value.bind="currentItem.imageWidth">
 
 									</div>
 									<div class="Rtable-cell">
@@ -343,7 +343,7 @@
 											</select>
 									</div>
 									<div class="Rtable-cell">
-										<input type="number " xid="imageDepth " class="form-control input-sm " value.bind="currentItem.imageDepth">
+										<input type="number " xid="imageDepth " class="form-control " value.bind="currentItem.imageDepth">
 
 									</div>
 									<div class="Rtable-cell">
@@ -363,7 +363,7 @@
 										<strong>Sight</strong>
 									</div>
 									<div class="Rtable-cell">
-										<input type="number " xid="SeightHeight " class="form-control input-sm " value.bind="currentItem.SeightHeight">
+										<input type="number " xid="SeightHeight " class="form-control " value.bind="currentItem.SeightHeight">
 
 									</div>
 									<div class="Rtable-cell">
@@ -376,7 +376,7 @@
 											</select>
 									</div>
 									<div class="Rtable-cell">
-										<input type="number " xid="SeightWidth " class="form-control input-sm " value.bind="currentItem.SeightWidth">
+										<input type="number " xid="SeightWidth " class="form-control  " value.bind="currentItem.SeightWidth">
 
 									</div>
 									<div class="Rtable-cell">
@@ -389,7 +389,7 @@
 											</select>
 									</div>
 									<div class="Rtable-cell">
-										<input type="number " xid="SeightDepth " class="form-control input-sm " value.bind="currentItem.SeightDepth">
+										<input type="number " xid="SeightDepth " class="form-control " value.bind="currentItem.SeightDepth">
 
 									</div>
 									<div class="Rtable-cell">
@@ -409,7 +409,7 @@
 										<strong>Framed</strong>
 									</div>
 									<div class="Rtable-cell">
-										<input type="number " xid="FramedHeight " class="form-control input-sm " value.bind="currentItem.FramedHeight">
+										<input type="number " xid="FramedHeight " class="form-control  " value.bind="currentItem.FramedHeight">
 
 									</div>
 									<div class="Rtable-cell">
@@ -422,7 +422,7 @@
 											</select>
 									</div>
 									<div class="Rtable-cell">
-										<input type="number " xid="FramedWidth " class="form-control input-sm " value.bind="currentItem.FramedWidth">
+										<input type="number " xid="FramedWidth " class="form-control  " value.bind="currentItem.FramedWidth">
 
 									</div>
 									<div class="Rtable-cell">
@@ -435,7 +435,7 @@
 											</select>
 									</div>
 									<div class="Rtable-cell">
-										<input type="number " xid="FramedDepth " class="form-control input-sm " value.bind="currentItem.FramedDepth">
+										<input type="number " xid="FramedDepth " class="form-control  " value.bind="currentItem.FramedDepth">
 
 									</div>
 									<div class="Rtable-cell">
@@ -529,7 +529,7 @@
 										<strong> Edition</strong>
 									</div>
 									<div class="Rtable-cell-70 Rtable-cell--highlight">
-										<input type="text " xid="Edition " class="form-control input-sm " value.bind="currentItem.Edition">
+										<input type="text " xid="Edition " class="form-control " value.bind="currentItem.Edition">
 									</div>
 
 									
@@ -540,7 +540,7 @@
 										<strong> Condition</strong>
 									</div>
 									<div class="Rtable-cell-70 Rtable-cell--highlight">
-										<input type="text " xid="Condition " class="form-control input-sm " value.bind="currentItem.Condition">
+										<input type="text " xid="Condition " class="form-control " value.bind="currentItem.Condition">
 									</div>
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
 										<strong> Inscribed</strong>
@@ -579,7 +579,7 @@
 									<div class="Rtable-cell-70 Rtable-cell--highlight">
 
 										<!-- only radio string works with flex -->
-										<select id="Sold" class="form-control  input-sm" value.bind="currentItem.Sold">
+										<select id="Sold" class="form-control " value.bind="currentItem.Sold">
 											<option model.bind="null">Choose...</option>
 											<option repeat.for="opt of searchsold " model.bind="opt.id">
 												${opt.name}
@@ -610,7 +610,7 @@
 										<strong> Owned Status</strong>
 									</div>
 									<div class="Rtable-cell-70 Rtable-cell--highlight">
-										<select id="OwnedBy " class="form-control  input-sm" value.bind="currentItem.OwnedBy">
+										<select id="OwnedBy " class="form-control  " value.bind="currentItem.OwnedBy">
 											<option model.bind="null">Choose...</option>
 											<option repeat.for="opt of appService.codesOwnership " model.bind="opt.id">
 												${opt.Description}
@@ -627,14 +627,14 @@
 									</div>
 									<div class="Rtable-cell-70 Rtable-cell--highlight">
                     <!--  input-sm -->
-										<input type="text " xid="ArtValue " class="form-control  input-sm" value.bind="currentItem.ArtValue">
+										<input type="text " xid="ArtValue " class="form-control " value.bind="currentItem.ArtValue">
 									</div>
 
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
 										<strong> Current Location</strong>
 									</div>
 									<div class="Rtable-cell-70 Rtable-cell--highlight">
-										<select id="CurrentLocation " class="form-control  input-sm " value.bind="currentItem.CurrentLocation">
+										<select id="CurrentLocation " class="form-control " value.bind="currentItem.CurrentLocation">
 											<option model.bind="null">Choose...</option>
 											<option repeat.for="opt of appService.codesInventoryLocation " model.bind="opt.id">
 												${opt.Description}
@@ -646,7 +646,7 @@
 										<strong> MRG Location</strong>
 									</div>
 									<div class="Rtable-cell-70 Rtable-cell--highlight">
-										<select id="MRGLocation " class="form-control   input-sm" value.bind="currentItem.MRGLocation">
+										<select id="MRGLocation " class="form-control  " value.bind="currentItem.MRGLocation">
 											<option model.bind="null">Choose...</option>
 											<option repeat.for="opt of appService.codesInventoryLocation " model.bind="opt.id">
 												${opt.Description}
@@ -659,7 +659,7 @@
 										<strong> Bin</strong>
 									</div>
 									<div class="Rtable-cell-70 Rtable-cell--highlight">
-										<input type="text " id="Bin" class="form-control  input-sm" value.bind="currentItem.Bin">
+										<input type="text " id="Bin" class="form-control " value.bind="currentItem.Bin">
 									</div>
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
 										<strong> Image Info & Dims 	<button class="btn btn-sm btn-success"

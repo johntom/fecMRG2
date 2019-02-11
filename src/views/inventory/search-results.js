@@ -22,6 +22,7 @@ export class SearchResults {
   checkedIds = {};
   //  console.log(' inv SearchResults ');
   message = ''//Hello Inventory !';
+   scrollable = {virtual: true};
   datasource = new kendo.data.DataSource({
     transport: {
       read: (options) => {
@@ -72,12 +73,15 @@ export class SearchResults {
           Owner: { type: "string" },
           InvYear: { type: "string" },
           UnframedHeight: { type: "string" },
-
+  // Image : { type: "string", editable: false },
+        
 
         }
       }
     },
-    pageSize: 12,
+    pageSize: 10,
+    //  serverPaging: true,
+    //   serverSorting: true,
     sort: { field: 'Title', dir: 'asc' },
     // aggregate: [{ field: "type", aggregate: "count" },
     //   { field: "template", aggregate: "count" }
@@ -141,6 +145,15 @@ export class SearchResults {
       console.log(response.output);
     });
   }
+//https://johntom.github.io/fecMRG2/#/action/Actionlist-?savedlists%3DTest%20List&tabname=actionlist
+
+  openSelection() {
+    let rt2 = `#/action/Actionlist-?savedlists=${this.appService.currentsavedlist}&tabname=actionlist`
+
+    this.router.navigate(rt2);// `#/inventory/${path}`);
+    // https://johntom.github.io/fecMRG2/#/action/Actionlist-?savedlists%3DTest%20List&tabname=actionlist   openSelection()
+  }
+
 
   // showModal(fieldname) {
 
@@ -402,7 +415,7 @@ export class SearchResults {
       // this.myMultiSelect.kWidget.setDataSource(this.selectedids);
       //   this.allselectedids =   this.allselectedids+sels;
     }
-    this.message = `  all items added to list ${this.appService.currentsavedlist} `
+    this.message = `  all items added to list ${this.appService.currentsavedlist} count:${this.appService.currentsavedlist.length}`
   }
   //saveSelection()">Save Selection</button>			Selected IDs: ${selectedids}
   // addnewSelection() {

@@ -114,6 +114,8 @@ export class SearchResults {
           //  ArtistRegistra: { type: "string" },
           InventoryCode: { type: "string", editable: false },
           Title: { type: "string", editable: false },
+          Image : { type: "string", editable: false },
+          
           //  "artist.lastName": { type: "string", editable: false },
           // MediumSupport: { type: "string" },
           // CurrentLocation: { type: "string" },

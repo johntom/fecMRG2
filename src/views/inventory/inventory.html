@@ -72,14 +72,7 @@
 
 
 
-							<div class="flex-row-none">
-								<div class="form-group flex-column-1">
-
-									<aubs-typeahead ref='keyword' data.bind="appService.codesGenre" value.bind="keywordDescription" debounce.bind="350" placeholder="search on 1 keyword"
-									 open-on-focus.bind="true" key="Description" results-limit.bind="12" select-single-result.bind="true">
-									</aubs-typeahead>
-								</div>
-							</div>
+					
 
 
 							<div class="flex-row-none">
@@ -100,6 +93,14 @@
 									<div class="form-group">
 										<label><input type="checkbox" checked.bind="search.andor">  Checked: search on every keyword, unchecked: search on any keyword"</label>
 									</div>
+								</div>
+							</div>
+              		<div class="flex-row-none">
+								<div class="form-group flex-column-1">
+
+									<aubs-typeahead ref='keyword' data.bind="appService.codesGenre" value.bind="keywordDescription" debounce.bind="350" placeholder="search on 1 keyword"
+									 open-on-focus.bind="true" key="Description" results-limit.bind="12" select-single-result.bind="true">
+									</aubs-typeahead>
 								</div>
 							</div>
 							<div class="flex-row-none">
