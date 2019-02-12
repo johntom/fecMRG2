@@ -1,0 +1,310 @@
+<template>
+	<!-- <require from="../../value-converters/filter-by-code"></require> 
+  https://codepen.io/johntom/pen/ypZVaM  this.currentItem.ownername this.currentItem.soldtoname
+  -->
+	<require from="aurelia-kendoui-bridge/multiselect/multiselect"></require>
+	<require from="aurelia-kendoui-bridge/button/button"></require>
+	<require from="aurelia-kendoui-bridge/common/template"></require>
+	<!-- <require from="./modal-form"></require> -->
+	<!-- <require from="./flex.css"></require> -->
+	<require from="../../../styles/flex.css"></require>
+	<require from="../../resources/value-converters/date-format"></require>
+
+	<require from="../../resources/value-converters/upper-case"></require>
+
+	<style>
+		img.responsive-imgV {
+			max-height: 300px;
+			width: auto;
+			/* vertical */
+		}
+
+		img.responsive-img {
+			/* max-height:  auto;
+			width:300px; */
+			max-width: 325px;
+			max-height: 325px;
+			width: auto;
+			height: auto;
+
+			/* hor */
+		}
+
+		video.responsive-video {
+			max-width: 100%;
+			height: auto;
+		}
+
+		/* #data-form-ext .tab.tab-selected {
+   background-color: orange
+ } */
+
+		#data-form-ext .tab.tab-selected .form-tab-box {
+			background-color: lightblue;
+			border-color: #7bbbce
+		}
+
+		#cap {
+			// width: 242px;
+			//height: 225px;
+			//margin: 20px auto;
+			//  background-image: url('http://demos.telerik.com/kendo-ui/content/web/dropdownlist/cap.png');
+			//  background-repeat: no-repeat;
+			background-color: orange //transparent;
+		}
+
+		.black-cap {
+			background-position: 0 0;
+		}
+
+		.grey-cap {
+			background-position: 0 -225px;
+		}
+
+		.orange-cap {
+			background-position: 0 -450px;
+		} // input type
+		.custom-file-input::-webkit-file-upload-button {
+			visibility: hidden;
+		}
+
+		.custom-file-input::before {
+			content: 'Select image file and upload';
+			display: inline-block;
+			background: -webkit-linear-gradient(top, #f9f9f9, #e3e3e3);
+			border: 1px solid #999;
+			border-radius: 3px;
+			padding: 5px 8px;
+			outline: none;
+			white-space: nowrap;
+			-webkit-user-select: none;
+			cursor: pointer;
+			text-shadow: 1px 1px #fff;
+			font-weight: 700;
+			font-size: 10pt;
+		}
+
+		.custom-file-input:hover::before {
+			border-color: black;
+		}
+
+		.custom-file-input:active::before {
+			background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
+		}
+	</style>
+
+	<section class="full-height flex-column-1 au-animate ignore">
+		<div class="flex-column-1 overflow-y-auto">
+
+			<form class="flex-column-1">
+				<div id="top" class="flex-row-none">
+					<div id="top-left" class="data-form overflow-y-auto flex-column-2">
+						<!-- row1 -->
+						<div class="flex-row-none">
+							<div class="form-group flex-column-1 Rtable-cell--highlight">
+
+								<div class="Rtable Rtable--2cols">
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong>CatalogTitle</strong>
+									</div>
+									<div class="Rtable-cell-70  Rtable-cell--highlight">
+										<input type="text" id="CatalogTitle" class="form-control input-sm" value.bind="currentItem.CatalogTitle ">
+
+
+
+
+									</div>
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong>Type</strong>
+									</div>
+									<div class="Rtable-cell-70  Rtable-cell--highlight">
+										<select id="OwnedBy" class="form-control" value.bind="currentItem.type"> 
+                      <option model.bind="null">Choose...</option> 
+                      <option repeat.for="opt of types" model.bind="opt.name">
+                          ${opt.name} 
+                      </option> 
+                      </select>
+									</div>
+
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong> Pub Date</strong>
+									</div>
+
+									<div class="Rtable-cell-70  Rtable-cell--highlight">
+										<input type="text " xid="PubDate " class="form-control input-sm " value.bind="currentItem.PubDate">
+									</div>
+
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong> No. Pages</strong>
+									</div>
+									<div class="Rtable-cell-70  Rtable-cell--highlight">
+										<input type="text " xid="NoPages " class="form-control input-sm " value.bind="currentItem.NoPages">
+									</div>
+
+
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong> BW</strong>
+									</div>
+
+									<div class="Rtable-cell-70  Rtable-cell--highlight">
+										<input type="text " xid="BW " class="form-control input-sm " value.bind="currentItem.BW">
+									</div>
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong> Color</strong>
+									</div>
+
+									<div class="Rtable-cell-70  Rtable-cell--highlight">
+										<input type="text " xid="Color " class="form-control input-sm " value.bind="currentItem.Color">
+									</div>
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong> TotalWarehouse</strong>
+									</div>
+
+									<div class="Rtable-cell-70  Rtable-cell--highlight">
+										<input type="text " xid="TotalWarehouse " class="form-control input-sm " value.bind="currentItem.TotalWarehouse">
+									</div>
+
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong> PulisherID</strong>
+									</div>
+
+									<div class="Rtable-cell-70  Rtable-cell--highlight">
+
+										<select id="PulisherID" class="form-control  input-sm" value.bind="currentItem.PulisherID"> 
+                      <option model.bind="null">Choose...</option> 
+                         <option repeat.for="opt of appService.codesSuffix " model.bind="opt.id">
+                    ${opt.Description} 
+                      </option> 
+                    </select>
+
+									</div>
+
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong> ?LocGallery</strong>
+									</div>
+
+									<div class="Rtable-cell-70  Rtable-cell--highlight">
+
+
+										<select id="phonetype" class="form-control  input-sm" value.bind="currentItem.LocGallery"> 
+                      <option model.bind="null">Choose...</option> 
+                         <option repeat.for="opt of appService.codesSalutation " model.bind="opt.id">
+                    ${opt.Description} 
+                      </option> 
+                    </select>
+									</div>
+
+
+
+								</div>
+							</div>
+							<!-- 2nd col -->
+							<!-- end <div class="Rtable Rtable--7cols"> -->
+
+							<!-- demo middle col -->
+							<div class="form-group flex-column-1 margin-left-10">
+								<div class="Rtable Rtable--2cols">
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong> TotalWarehouse</strong>
+									</div>
+
+									<div class="Rtable-cell-70  Rtable-cell--highlight">
+										<input type="text " xid="TotalWarehouse " class="form-control input-sm " value.bind="currentItem.TotalWarehouse">
+									</div>
+
+
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong> LocGallery</strong>
+									</div>
+
+									<div class="Rtable-cell-70  Rtable-cell--highlight">
+										<input type="text " xid="LocGallery " class="form-control input-sm " value.bind="currentItem.LocGallery">
+									</div>
+
+
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong> PulisherID</strong>
+									</div>
+
+									<div class="Rtable-cell-70  Rtable-cell--highlight">
+										<input type="text " xid="PulisherID " class="form-control input-sm " value.bind="currentItem.PulisherID">
+									</div>
+
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong> AuthorForward</strong>
+									</div>
+
+									<div class="Rtable-cell-70  Rtable-cell--highlight">
+										<input type="text " xid="AuthorForward " class="form-control input-sm " value.bind="currentItem.AuthorForward">
+									</div>
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong> ExhibitionID</strong>
+									</div>
+
+									<div class="Rtable-cell-70  Rtable-cell--highlight">
+										<input type="text " xid="ExhibitionID " class="form-control input-sm " value.bind="currentItem.ExhibitionID">
+									</div>
+
+
+
+
+
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong> Catalog Description</strong>
+									</div>
+									<div class="Rtable-cell-70 Rtable-cell--highlight">
+										<!-- <input type="text " xid="Edition " class="form-control input-sm " value.bind="currentItem.Notes"> -->
+										<textarea rows="6" cols="100" id="Notes" class="form-control input-sm" value.bind="currentItem.CatalogDescription"></textarea>
+
+
+									</div>
+
+
+
+								</div>
+
+							</div>
+							<!-- 2nd -->
+						</div>
+					</div>
+
+					<!-- flex row none -->
+				</div>
+
+				<!-- flex row none -->
+
+				<!--top left  -->
+
+
+
+
+
+			</form>
+		</div>
+		<footerform class="flex-row-none">
+			inventory-
+			<span>&nbsp;&nbsp;
+					<button class="btn btn-sm btn-primary " click.delegate="saveinventory(0)">
+						Save & Stay
+					</button>
+					<button class="btn btn-sm btn-info " click.delegate="saveinventory(1)">
+						Save & Close
+					</button>
+&nbsp;&nbsp;
+
+
+
+				</span>
+
+
+			<span>&nbsp;&nbsp;
+					<button class="btn btn-sm btn-danger " click.delegate="requestclose()">
+						Close
+					</button>
+          <b>  ${message} </b>
+				</span>
+
+
+		</footerform>
+	</section>
+</template>

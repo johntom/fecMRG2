@@ -36,9 +36,9 @@ export class Provenance {
   showModal(fieldname, index) {
     this.currentItem.fieldname = fieldname
     this.currentItem.ProvOwner = this.currentItem.provenance[index].ProvOwner
-    this.currentItem.provownername = this.currentItem.provenance[index].provownername
+    this.currentItem.provownername = this.currentItem.provenance[index].ProvOwner//provownername
 
-
+    this.currentItem.Provlegacyid = this.currentItem.provenance[index].legacyid
     this.dialogService.open({ viewModel: Prompt, model: this.currentItem, lock: false }).whenClosed(response => {
       // ProvOwnerID
       this.currentItem.provenance[index].ProvOwner = this.currentItem.ProvOwner

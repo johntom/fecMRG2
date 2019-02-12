@@ -1,8 +1,8 @@
 <template>
 	<require from="./docs.css"></require>
-  <require from="../../../resources/value-converters/date-format"></require>
-  
- 
+	<require from="../../../resources/value-converters/date-format"></require>
+
+
 	<section class="docs full-height flex-column-1 overflow-y-auto ignore">
 		<h4>
 			<!-- href="#/provenance/new"> -->
@@ -34,6 +34,8 @@
 
 					<th class="header">Color/BW </th>
 					<th class="header">Sort Date </th>
+          	<th class="header">Legacy Sort Date  </th>
+				
 					<th class="header">Select<br>Exhibition</th>
 					<th class="header">Batch No </th>
 
@@ -60,13 +62,13 @@
 					</td>
 					<td width="125px">
 						<span show.bind="!reproduction.edit">${AuthorFirst}</span>
-						<input show.bind="reproduction.edit" id="zReproductionTitle2" class="form-control input-sm" disabled.bind="!reproduction.edit" type="text"
-						 value.bind="AuthorFirst">
+						<input show.bind="reproduction.edit" id="zReproductionTitle2" class="form-control input-sm" disabled.bind="!reproduction.edit"
+						 type="text" value.bind="AuthorFirst">
 					</td>
 					<td width="125px">
 						<span show.bind="!reproduction.edit">${AuthorLast}</span>
-						<input show.bind="reproduction.edit" id="zReproductionTitle3" class="form-control input-sm" disabled.bind="!reproduction.edit" type="text"
-						 value.bind="AuthorLast">
+						<input show.bind="reproduction.edit" id="zReproductionTitle3" class="form-control input-sm" disabled.bind="!reproduction.edit"
+						 type="text" value.bind="AuthorLast">
 					</td>
 
 					<td width="65px">
@@ -128,8 +130,9 @@
                     </select>
 
 					</td>
-<!--   | dateFormat -->
+					<!--   | dateFormat -->
 					<td width="60px"><input type="date" id="ReproductionSortDate" class="form-control  input-sm" value.bind="ReproductionSortDate "></td>
+	<td width="60px"><input type="text" id="ReproductionSortDate" class="form-control  input-sm" value.bind="ReproductionSortDate "></td>
 
 					<!-- <select ref='ReproductionExhibit' id="ReproductionExhibit" class="form-control input-sm"
              value.bind="ReproductionExhibit"
@@ -160,8 +163,8 @@
 						<button class="btn btn-primary" click.delegate="saveitem(reproduction,$index)">${!reproduction.edit ? 'Edit' : 'Save' }</button>
 
 						<button class="btn btn-danger" click.delegate="remove(reproduction,$index)">Del</button>
-	<button class="btn btn-success" click.delegate="modal(reproduction,$index)">Pop</button>
-					
+						<button class="btn btn-success" click.delegate="modal(reproduction,$index)">Pop</button>
+
 					</td>
 
 				</tr>

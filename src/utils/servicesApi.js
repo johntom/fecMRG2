@@ -179,7 +179,11 @@ async getCatalogsent(cat) {
 
   }
 
+async findTodo(){
+    var url = this.baseweb + 'v1/todo/getcatalogsent/' + cat
+    return await this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())
 
+}
 
   //  { method: ['post'], path: '/api/v1/artist/create', handler: 'ArtistController.create' },
   //  { method: ['put'], path: '/api/v1/artist/update', handler: 'ArtistController.update' },

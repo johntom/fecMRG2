@@ -17,15 +17,15 @@ export class Prompt {
   // ConsignmentShippingID=ConservedFrom
   orgfields = ['ConsignedTo', 'ConsignedFromID', 'ConsignmentShippingID', 'OwnerID',
     'PhotographerID', 'PurchasedFrom', 'ConservedBy',
-    'ConservedBy', 'SoldToID', 'SoldTo', 'LoanTo','ProvOwner']
+    'ConservedBy', 'SoldToID', 'SoldTo', 'LoanTo', 'ProvOwner']
   orgfielddesc = ['Consigned To', 'Consigned From', 'Consignment From (Shipping)', 'Owner',
     'Photographer', 'Purchased From', 'Conserved By',
-    'Conserved By', 'Sold To', 'Sold To', 'Museum Loan To','Provenance Owner']
+    'Conserved By', 'Sold To', 'Sold To', 'Museum Loan To', 'Provenance Owner']
 
 
-  textfields = ['Description', 'Comment', 'Inscribed', 'Treatment','EditionComment']
+  textfields = ['Description', 'Comment', 'Inscribed', 'Treatment', 'EditionComment']
   // textfielddesc = ['Enter Alt ID', 'Enter Comment', 'Enter Inscribed with left of ":" as reg text right as ialtics till "; repeat', 'Enter Treatment']
-  textfielddesc = ['Enter Alt ID', 'Enter Comment', 'All text to right of ":" will be in italics, use ";" to desginate a line break', 'Enter Treatment','All text to right of ":" will be in italics, use ";" to desginate a line break']
+  textfielddesc = ['Enter Alt ID', 'Enter Comment', 'All text to right of ":" will be in italics, use ";" to desginate a line break', 'Enter Treatment', 'All text to right of ":" will be in italics, use ";" to desginate a line break']
   // 
   // for the datalist with medium support
   selectedValue = null;
@@ -161,13 +161,13 @@ export class Prompt {
       this.heading = ` ${this.textfielddescription} .`
       this.placeholder = `${this.textfielddescription}`
     } else {
-      this.doc = `type any characters of the ${this.orgfielddescription} to select.`
+      this.doc = `Select ${this.orgfielddescription} .`
       this.heading = `Select ${this.orgfielddescription}`
-      this.placeholder = `Enter any characters on ${this.orgfielddescription} to select.`
+      this.placeholder = `select ${this.orgfielddescription} .`
 
     }
 
-
+    this.hasFocus = true;
     if (this.fieldname === 'Artist') {
       // if (this.currentItem.artist === undefined) {
       //   } else {
@@ -177,14 +177,14 @@ export class Prompt {
       //   }
       this.doc = `Select Artist `
       //  this.doc2 = `Select Artist or add new if not in list.`
-     this.heading = `ARTIST SEARCH `
+      this.heading = `ARTIST SEARCH `
       this.placeholder = `Select Artist or add new if not in list.`
       if (this.currentItem.artist === undefined || this.currentItem.artist === '') {
       } else {
         //  this.insuredobj = this.currentItem.insured
         this.myDatalistA.value = this.currentItem.artist.ArtistName
         this.selectedValueA = this.currentItem.artist;
-      this.origartist = this.currentItem.artist;
+        this.origartist = this.currentItem.artist;
       }
 
     }
@@ -204,9 +204,9 @@ export class Prompt {
     }
 
     if (this.fieldname === 'MediumSupportobj') {
-      this.doc = `type any characters of the   "Medium/Support: select or add new."`
-      this.heading = `Select Medium/Suppor or add new.`
-      this.placeholder = `Enter any characters on Medium/Support or add new.`
+      this.doc = `Search "Medium/Support: to select or add new."`
+      this.heading = `Select Medium/Support or add new.`
+      this.placeholder = `Select  Medium/Support or add new.`
       if (this.currentItem.MediumSupportobj === undefined) {
       } else {
         this.MedSup = this.currentItem.MediumSupportobj
@@ -222,6 +222,19 @@ export class Prompt {
       let orgs = this.appService.orgsList
       let origid
 
+//       if (this.fieldname === 'ProvOwner') {
+//         // this.OrgName = { OrgName: this.currentItem.ProvOwner, _id: this.currentItem.Provlegacyid }
+//         // this.dorg.value = this.OrgName
+//         //  origid = orgs.findIndex(x => x.OrgName === this.currentItem.ProvOwner)
+//          origid = orgs.find(x => x.OrgName === this.currentItem.ProvOwner)
+//           this.orgobj = origid//sorgs[origid]
+//  this.OrgName = this.orgobj
+//       this.dorg.value = this.OrgName
+//         //this.currentItem.ProvOwner
+//     //     this.currentItem.ProvOwner = this.currentItem.provenance[index].ProvOwner
+//     // this.currentItem.provownername = this.currentItem.provenance[index].provownername
+    
+//       } else {
       if (this.fieldname === this.orgfields[opos]) {
         if ((this.currentItem[this.orgfields[opos]] === undefined) || (this.currentItem[this.orgfields[opos]] === null)) { } else {
           origid = orgs.findIndex(x => x._id === this.currentItem[this.orgfields[opos]])
@@ -230,13 +243,14 @@ export class Prompt {
       }
       this.OrgName = this.orgobj
       this.dorg.value = this.OrgName
+      // }
     }
     // }
     //add DonatedBy
     if (this.fieldname === 'SavedList') {
-      this.heading ="Select an Existing Saved List or Create New"
-       this.doc = "Select an Existing Saved List "
- this.doc2 = "Enter name of new Saved List"
+      this.heading = "Select an Existing Saved List or Create New"
+      this.doc = "Select an Existing Saved List "
+      this.doc2 = "Enter name of new Saved List"
 
       // we dont send a name of the list
       // let meds = this.appService.savedlists 
@@ -289,10 +303,10 @@ export class Prompt {
 
         if (!response.wasCancelled) {
           // this.addArtist(findvalue)
-       
-        // this.myDatalistA = this.appService.addedartist;
-        this.myDatalistA.value = this.appService.addedartist.ArtistName;
-        this.selectedValueA = this.appService.addedartist;
+
+          // this.myDatalistA = this.appService.addedartist;
+          this.myDatalistA.value = this.appService.addedartist.ArtistName;
+          this.selectedValueA = this.appService.addedartist;
           this.appService.addedartist = '';
           //this.controller.cancel()
         } else {
@@ -381,7 +395,7 @@ export class Prompt {
     // this.currentItem.artistname = orgname
     //  this.currentItem.artist = this.ArtistName
     if (this.fieldname === 'Artist') {
-      if (this.selectedValueA !== null &&  this.origartist!==this.selectedValueA) {
+      if (this.selectedValueA !== null && this.origartist !== this.selectedValueA) {
         if (this.currentItem.artist === undefined) this.currentItem.artist = {}
 
         this.currentItem.artist.ArtistName = this.selectedValueA.ArtistName
@@ -396,7 +410,7 @@ export class Prompt {
       }
       // this.appService.currentItem.artist = this.ArtistName
     }
-    if (this.fieldname === 'MediumSupportobj') { 
+    if (this.fieldname === 'MediumSupportobj') {
       // this.currentItem.MediumSupportobj.id = this.MedSup.id
 
       // if (this.MedSup !== this.currentItem.MediumSupportobj)
@@ -408,16 +422,16 @@ export class Prompt {
       // if (this.OrgName.OrgName !== this.currentItem.ownername) {
 
       this.currentItem.OwnerID = this.OrgName._id
-      this.currentItem.ownername = this.OrgName.OrgName 
+      this.currentItem.ownername = this.OrgName.OrgName
       // }
 
     }
 
-     if (this.fieldname === 'ProvOwner') {
+    if (this.fieldname === 'ProvOwner') {
       if (this.OrgName.OrgName !== this.currentItem.provownername) {
 
         this.currentItem.ProvOwnerID = this.OrgName._id
-         this.currentItem.ProvOwner =this.OrgName
+        this.currentItem.ProvOwner = this.OrgName
         this.currentItem.provownername = this.OrgName.OrgName
       }
     }

@@ -169,13 +169,15 @@
 			<div show.bind="fieldbase==='ORG'">
 				<div class="form-group flex-column-1">
 					<div>
-						ORG
+						
 						<div show.bind="fieldbase==='ORG'">
-							<aubs-typeahead ref='dorg' data.bind="appService.orgsList" value.bind="OrgName" debounce.bind="350" placeholder="${placeholder}"
-							 open-on-focus.bind="true" key="OrgName" results-limit.bind="22" select-single-result.bind="true">
+							<aubs-typeahead ref='dorg' data.bind="appService.orgsList" value.bind="OrgName" debounce.bind="350"
+               placeholder="${placeholder}"
+						 focus.bind="hasFocus"	 open-on-focus.bind="true" key="OrgName" results-limit.bind="22" 
+             select-single-result.bind="true">
 							</aubs-typeahead>
-							<!-- <div> Org: ${OrgName | stringify}</div> -->
-							Address: ${OrgName.Addess} ${OrgName.City} ${OrgName.State} ${OrgName._id}
+							<div> Org: ${OrgName | stringify}</div>
+							<!-- Address: ${OrgName.Addess} ${OrgName.City} ${OrgName.State} ${OrgName._id} -->
 						</div>
 
 					</div>
