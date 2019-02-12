@@ -69,7 +69,7 @@ export class SearchResults {
           Title: { type: "string" },
           MediumSupport: { type: "string" },
           CurrentLocation: { type: "string" },
-          Bin: { type: "string" }, // barcode insured
+          Bin: { type: "string", sortable: false, menu: false}, // barcode insured
           Owner: { type: "string" },
           InvYear: { type: "string" },
           UnframedHeight: { type: "string" },

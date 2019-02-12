@@ -69,8 +69,10 @@
 	<ak-grid class="flex-row-1 overflow-y-auto" ref ="grid" id="grid" k-data-source.bind="datasource" k-widget.bind="grid"
    k-on-data-bound.delegate="onDataBound($event.detail)" 
    k-sortable.bind="{ mode: 'multiple',   allowUnsort: 'true'}"
-	 k-filterable.bind="{  mode: 'row' }" k-editable="inline" k-pageable.bind="true"   k-reorderable.bind="true" k-groupable.bind="true" k-resizable.bind="true"
-	 k-selectable="[row,multiple]" k-on-edit.delegate="onEdit($event.detail)" k-on-data-bound.delegate="onDataBound($event.detail)"
+	 k-filterable.bind="{  mode: 'row' }" k-editable="inline" k-pageable.bind="true"  
+    k-reorderable.bind="true" k-groupable.bind="true" k-resizable.bind="true"
+	 k-selectable="[row,multiple]" k-on-edit.delegate="onEdit($event.detail)" 
+   k-on-data-bound.delegate="onDataBound($event.detail)"
 	 k-on-change.delegate="rowSelected($event.detail)" k-column-menu.bind="true" >
 		 <!-- <ak-col k-title="CB" ref="CB" k-locked.bind="true" k-lockable.bind="false" k-width.bind="85" k-template="<input type='checkbox' class='checkbox' ref='T#=InventoryCode#' id='T#=InventoryCode#' >T#=InventoryCode#</> ">
 			<ak-template for="headerTemplate">
@@ -81,7 +83,8 @@
    k-command.bind="['edit']" k-title="&nbsp;" k-locked.bind="true"
                                     k-lockable.bind="false"></ak-col> -->
 
-	<ak-col k-title="Image" k-filterable.bind="false" k-field="InventoryCode"  k-width="150px">
+	<ak-col k-title="Image" k-filterable.bind="false"  k-column-menu.bind="false"
+   k-sortable.bind="false" k-field="InventoryCode"  k-width="150px">
 			<ak-template>
 				<div  class='customer-photo-sq' style="background-image: url(https://artbased.com/api/v1/getimage/inv/${InventoryCode}.jpg);"
 				 click.delegate="showModalImg($event)"></div>
@@ -94,19 +97,20 @@
 		</ak-col>
 
 	
-		<ak-col k-title="Artist Name" k-width="180px" k-field="artist.ArtistName"></ak-col>
+		<ak-col k-title="Artist Name" k-width="180px"  k-sortable.bind="true"  k-field="artist.ArtistName"></ak-col>
 	
 		<!-- <ak-col k-title="Artist last" k-width="180px" k-field="artist.lastName"></ak-col>
 		<ak-col k-title="Artist First" k-width="180px" k-field="artist.firstName"></ak-col> -->
-		<ak-col k-title="Title" k-width="180px" k-field="Title"></ak-col>
+		<ak-col k-title="Title" k-width="180px" k-field="Title" k-sortable.bind="true" ></ak-col>
 		<!-- <ak-col k-title="GenreID" k-width="180px" k-field="GenreID"></ak-col> -->
 
 		<ak-col k-title="Date" k-width="180px" k-field="InvYear"></ak-col>
-		<ak-col k-title="Medium/Support" k-field="MediumSupportobj" k-width="280px" k-template="#= (typeof MediumSupportobj == 'undefined' || MediumSupportobj == null) ? '' : MediumSupportobj.Description #"></ak-col>
+		<ak-col k-title="Medium/Support" k-field="MediumSupportobj" k-width="280px"
+    k-sortable.bind="false" k-template="#= (typeof MediumSupportobj == 'undefined' || MediumSupportobj == null) ? '' : MediumSupportobj.Description #"></ak-col>
 
 	
-
-		<ak-col k-title="Bin" k-width="180px" k-field="Bin"  k-column-menu.bind="false"></ak-col>
+<!-- k-column-menu.bind="false" k-menu="false" -->
+		<ak-col k-title="Bin" k-width="180px" k-field="Bin" k-sortable.bind="true" k-menu.bind="false" ></ak-col>
 
 
   	
