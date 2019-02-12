@@ -64,6 +64,9 @@ ai-dialog-container > div {
 			<div class="alert alert-danger">
 				<h1>${heading}</h1>
 
+	<button click.trigger="controller.cancel()">Cancel and Close </button>
+			<button click.trigger="save()">Save Org and Close </button>
+
 			</div>
 		</ux-dialog-header>
 
@@ -275,7 +278,6 @@ ai-dialog-container > div {
 
 				</tbody>
 			</table>
-
 
 
 
