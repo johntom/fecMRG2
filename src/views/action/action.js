@@ -169,8 +169,31 @@ selectOptions = {
     // this.savedlists = this.appService.savedlists
   }
  
-  activate() {
-    this.savedlists = this.appService.savedlists
+  // activate() {
+
+  // }
+ activate(params, routeConfig) {
+  //   this.savedlists = this.appService.savedlists
+  //   this.queryParams = this.utilService.parseQueryStringUrl();
+  //   const qs = this.queryParams.substring(this.queryParams.indexOf('?') + 1)
+  //  this.myDatalist.value ='Test List'
+  //   this.performSearchSL()
+    // const pairs = qs.split('&')
+    // const queryParams = {}
+    // let slname
+    // let ct =0
+    // pairs.forEach(p => {
+    //   const kv = p.split('=')
+    //   if (ct===0) slname = kv[1]
+    //   ct++
+    // });
+    //1-27 this.item.savedlist = slname
+    // or
+    // this.item.savedlist = this.appService.currentActionlist
+   
   }
+
+
+
 
 }

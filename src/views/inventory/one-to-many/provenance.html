@@ -39,8 +39,7 @@
 			</tfoot>
 			<tbody>
 				<tr repeat.for="provenance of currentItem.provenance " with.bind="provenance">
-							<td width="225px">
-
+						
 						<!-- <div class="form-control  input-sm" if.bind="ProvOwner===undefined || ProvOwner===''">
 							<a click.delegate="showModal( 'ProvOwner',$index)">select_link </a>
 						</div>
@@ -48,10 +47,10 @@
 							<a click.delegate="showModal('ProvOwner',$index)">${provenance.ProvOwner}</a>
 
 						</div> -->
-				<td width="120px"><input type="date" id="ProvOwner" class="form-control  input-sm" value.bind="ProvOwner"></td>
+				<td width="220px"><input type="text" id="ProvOwner" class="form-control" value.bind="ProvOwner"></td>
 	
 
-					</td>
+				
 					<td width="200px">
 						<select id="ProvLoc" class="form-control  input-sm" value.bind="ProvLoc"> 
                       <!-- <option model.bind="null">Choose...filterOnCode</option>  -->
@@ -64,10 +63,10 @@
 					</td>
           
 					<!-- <td width="120px"><input type="date" id="ProvDate" class="form-control  input-sm" value.bind="ProvDate  | dateFormat "></td> -->
-					<td width="120px"><input type="date" id="ProvDate" class="form-control  input-sm" value.bind="ProvDate"></td>
-			<td width="240px"><input type="text" id="ProvMemo" class="form-control  input-sm" value.bind="ProvMemo"></td>
+					<td width="120px"><input type="date" id="ProvDate" class="form-control" value.bind="ProvDate"></td>
+			<td width="240px"><input type="text" id="ProvMemo" class="form-control " value.bind="ProvMemo"></td>
           
-						<td width="120px"><input type="text" id="Sequence" class="form-control  input-sm" value.bind="Sequence"></td>
+						<td width="120px"><input type="text" id="Sequence" class="form-control " value.bind="Sequence"></td>
 
 					<td width="225px">
 

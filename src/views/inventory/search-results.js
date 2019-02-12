@@ -157,9 +157,22 @@ export class SearchResults {
   //https://johntom.github.io/fecMRG2/#/action/Actionlist-?savedlists%3DTest%20List&tabname=actionlist
 
   openSelection() {
-    let rt2 = `#/action/ActionlistI-?savedlists=${this.appService.currentsavedlist}&tabname=actionlistInv`
 
-    this.router.navigate(rt2);// `#/inventory/${path}`);
+
+
+           //  #/action/Actionlist-?savedlists%3DTest%20List&tabname=actionlist
+    // name as - at end its a singleton
+   this.search=`savedlists:"${this.appService.currentsavedlist}"`
+  let qs = this.utilService.generateQueryString(this.search);
+    console.log('this.search ', this.search)
+   // name as - at end its a singleton
+    let path = `Actionlist-${qs}`;
+
+   // see authorize-step.js on how I make this a singleton with saving the result set
+    this.router.navigate(`#/action/${path}&tabname=actionlist`);
+
+    //  let rt2 = `#/action/Actionlist-?savedlists=${this.appService.currentsavedlist}&tabname=actionlistInv`
+    // this.router.navigate(rt2);// `#/inventory/${path}`);
     // https://johntom.github.io/fecMRG2/#/action/Actionlist-?savedlists%3DTest%20List&tabname=actionlist   openSelection()
   }
 
