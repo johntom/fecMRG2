@@ -180,10 +180,41 @@ async getCatalogsent(cat) {
   }
 
 async findTodo(){
-    var url = this.baseweb + 'v1/todo/getcatalogsent/' + cat
+    var url = this.baseweb + 'v1/todo/' // + cat
     return await this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())
 
 }
+
+async updatetodo(rec){
+  let id = rec.id
+  // var url = this.baseweb + `v1/todo/:${id}` // + cat
+  var url = this.baseweb + `v1/todoupdate/`
+  //"never pass id to put or post",
+     return this.http.fetch(url, {
+      method: 'put',
+      mode: 'cors',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+        // , 'Authorization': 'JWT ' + token
+      },
+      body: JSON.stringify(rec)
+    }).then((res) => res.json());
+  }
+
+async createtodo(rec){
+  var url = this.baseweb + 'v1/todo/' // + cat
+   
+      return await this.http.fetch(url, {
+        method: 'post', mode: 'cors', headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(rec)
+      }).then((res) => res.json());
+}
+  // { method: ['put'], path: '/api/v1/todo/:id', handler: 'TodoController.customUpdate' },
+  // { method: ['post'], path: '/api/v1/todo', handler: 'TodoController.create' },
 
   //  { method: ['post'], path: '/api/v1/artist/create', handler: 'ArtistController.create' },
   //  { method: ['put'], path: '/api/v1/artist/update', handler: 'ArtistController.update' },

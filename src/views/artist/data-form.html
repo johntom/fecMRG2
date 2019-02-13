@@ -1,6 +1,8 @@
 <template>
 	<!-- <require from="./flex.css"></require> -->
 	<require from="../../../styles/flex.css"></require>
+  	<require from="../../resources/value-converters/date-format"></require>
+
 	<section style="width:50%;" class="full-height flex-column-1 au-animate ignore">
 		<div class="flex-row-none section-header">
 			${heading} Artist
@@ -58,11 +60,11 @@
 										<input type="text" id="Died" class="form-control input-sm" value.bind="artist.Died">
 									</div>
 
-		<div class="Rtable-cell-30 Rtable-cell--highlight">
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
 										<strong> Represented by MRG</strong>
 									</div>
 									<div class="Rtable-cell-70  Rtable-cell--highlight">
-							     <strong> </strong>
+										<strong> </strong>
 										<input type="checkbox" id="mrgrep" checked.bind="artist.mrgrep">
 									</div>
 
@@ -76,49 +78,29 @@
 
 									</div>
 								</div>
-
-
-							</div>
-
-
-						</div>
-
-					</div>
-
-					<!-- <div id="bottom-left" class="flex-row-3">
-					<div id="data-form-ext" class="flex-column-1">
-						<div id="data-form-one-to-many-tabs" class="flex-row-none flex-wrap">
-							<div repeat.for="tab of appService.dataFormOneToManyTabs3" class="tab tab-top ${tab.isSelected ? 'tab-selected' : ''}">
-								<div class="form-tab-box" click.delegate="selectOneToManyTab(tab)">
-									<span>${tab.name}</span>
-								</div>
 							</div>
 						</div>
-						<div id="data-form-one-to-many-tab-content overflow-y-hidden" class="data-form flex-row-1" style="background: darkgray;">
-							<compose view-model.bind="currentOneToManyTab.viewModel"></compose>
-						</div>
 					</div>
-				</div> -->
-
-
+				</div>
 			</form>
-			</div>
-			<div class="flex-column-none section-footer">
-				<span>&nbsp;&nbsp;	
+		</div>
+		<div class="flex-column-none section-footer">
+			<span>&nbsp;&nbsp;	
           <button class="btn btn-sm btn-danger" click.delegate="saveartist(0)">
                   Save & Stay
           </button>
         </span>
-				<span>&nbsp;&nbsp;	
+			<span>&nbsp;&nbsp;	
           <button class="btn btn-sm btn-danger" click.delegate="saveartist(1)">
                   Save & Close 
           </button>
         </span>
-				<span>&nbsp;&nbsp;	
+			<span>&nbsp;&nbsp;	
           <button class="btn btn-sm btn-danger" click.delegate="requestclose()">
                  Close
           </button>
         </span>
-			</div>
+		</div>
+
 	</section>
 </template>

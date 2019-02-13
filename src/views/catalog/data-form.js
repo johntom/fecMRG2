@@ -48,6 +48,41 @@ export class DataForm {
       this.selectOneToManyTab(tab);
     }
   }
+
+async savetodo(option) {
+    let response = await this.api.updatetodo(this.currentItem);
+    // if (this.artist.id === 'create') {
+    //   let val = await this.api.findArtistsAA();
+    //   // this.appService.artistList = val.data;
+    //   this.artist.id ='';
+    //     let nlist = []
+    //     for (const item of val.data) {
+    //       item.ArtistName = item.LastName + ', ' + item.FirstName
+    //       nlist.push(item)
+    //     }
+    //    this.appService.artistList = lodash.sortBy(nlist, 'ArtistName');
+
+    // }
+    if (option === 1) this.requestclose()
+  }
+
+  requestclose() {
+
+    const resetFunc = () => { this.appService.originalrec = this.currentItem; };
+    let tab = this.appService.tabs.find(f => f.isSelected);
+    let index = this.appService.tabs.findIndex(f => f.isSelected)
+    let rt2 = '#/artist/' + this.tabname
+
+
+    let newIndex = (index > 0) ? index - 1 : 0;
+    let newTab = this.appService.tabs[newIndex];
+    this.appService.tryCloseTab(this.appService.currentView, tab, newTab.href);
+
+
+  }
+
+
+
   selectOneToManyTab(tab) {
     this.appService.dataFormOneToManyTabs5.forEach(t => t.isSelected = false);
     tab.isSelected = true;

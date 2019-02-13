@@ -9,14 +9,23 @@
 		 k-filterable.bind="{  mode: 'row' }" k-editable="inline" k-reorderable.bind="true" k-groupable.bind="true" k-resizable.bind="true"
 		 k-selectable="row" k-on-change.delegate="rowSelected($event.detail)" k-column-menu.bind="true" k-pageable.bind="true">
 
-			<ak-col k-field="Issue" k-title="Issue" k-filterable.bind="true" k-title="Edit" k-width.bind="180" k-template="<button click.delegate='details($event)' class='k-button'>#=Issue#</button>">
+			<ak-col k-field="Issue" k-title="Edit Issue" k-filterable.bind="true" k-title="Edit" k-width.bind="180" k-template="<button click.delegate='details($event)' class='k-button'>#=Issue#</button>">
 			</ak-col>
 
-			<ak-col k-title="Name" k-width="180px" k-field="Name"></ak-col>
-			<ak-col k-title="Date" k-width="180px" k-field="Date"></ak-col>
+			<!-- <ak-col k-title="Name" k-width="180px" k-field="Name"></ak-col> -->
+			<ak-col k-title="Date" k-width="180px" k-field="createdAt"></ak-col>
 
-			<ak-col k-title="Type" k-width="180px" k-field="Type"></ak-col>
-
+			<ak-col k-title="Type" k-width="180px" k-field="type"></ak-col>
+      	<ak-col k-title="Status" k-width="180px" k-field="status"></ak-col>
+	<ak-col k-title="Completed" type="" k-width="180px" k-field="isComplete">
+     <ak-template="<input type='checkbox' class='checkbox'> ">	</ak-template>
+  </ak-col>
+		 <!-- <ak-col k-title="CB" ref="CB" k-locked.bind="true" k-lockable.bind="false" k-width.bind="85" 
+     k-template="<input type='checkbox' class='checkbox' ref='T#=InventoryCode#' id='T#=InventoryCode#' >T#=InventoryCode#</> ">
+			<ak-template for="headerTemplate">
+				<input type='checkbox' class='checkboxY' checked.bind="isChecked" id='header-chb' />
+			</ak-template>
+		</ak-col> -->
 		</ak-grid>
 		<div class="flex-row-none section-footer">
 			${footer}

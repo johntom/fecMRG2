@@ -9,7 +9,7 @@ import { ApiService } from '../../utils/servicesApi';
 
 export class Home {
   heading = "MRG Home Page";
-  version = 242.57
+  version = 242.58
   versionDate = 'Tue 2/12/2019'
   // versiondate=Date(); catalogssentto
   //  "select2": { 
@@ -73,6 +73,7 @@ export class Home {
     // "also <option model.bind='null'>",
     // 'ReproductionLocation missing as ""',
     " Remove auto-complete field entries in Google Chrome",
+    "never pass id to put or post",
     //     Select the "Username" field and make sure it is blank
     // Press ↓ on your keyboard, a list of all of the "remembered" entries should appear.
     // Using ↑ & ↓ highlight an entry you would like to delete.
