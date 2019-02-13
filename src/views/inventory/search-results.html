@@ -105,8 +105,9 @@
 		<!-- <ak-col k-title="GenreID" k-width="180px" k-field="GenreID"></ak-col> -->
 
 		<ak-col k-title="Date" k-width="180px" k-field="InvYear"></ak-col>
+    <!--  k-sortable.bind="false" -->
 		<ak-col k-title="Medium/Support" k-field="MediumSupportobj" k-width="280px"
-    k-sortable.bind="false" k-template="#= (typeof MediumSupportobj == 'undefined' || MediumSupportobj == null) ? '' : MediumSupportobj.Description #"></ak-col>
+    k-template="#= (typeof MediumSupportobj == 'undefined' || MediumSupportobj == null) ? '' : MediumSupportobj.Description #"></ak-col>
 
 	
 <!-- k-column-menu.bind="false" k-menu="false" -->
