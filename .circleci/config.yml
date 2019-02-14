@@ -66,7 +66,7 @@ jobs:
 
             echo "Cloning Staging"
             # git clone https://github.com/johntom/fecMRG2-Staging.git out
-            git clone https://johntom:giDoghouse@77@github.com/johntom/fecMRG2-Staging.git out
+            git clone https://johntom:giDoghouse77@github.com/johntom/fecMRG2-Staging.git out
 
             cd out
             git checkout $TARGET_BRANCH || git checkout --orphan $TARGET_BRANCH
