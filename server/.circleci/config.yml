@@ -1,0 +1,90 @@
+# Javascript Node CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-javascript/ for more details
+#
+# https://circleci.com/docs/2.0/google-auth/
+# https://circleci.com/docs/2.0/configuration-reference/https://circleci.com/docs/2.0/configuration-reference/
+# https://circleci.com/docs/2.0/workflows/#using-workspaces-to-share-artifacts-among-jobs
+# https://www.youtube.com/watch?v=3V84yEz6HwA
+# https://documentation.codeship.com/basic/continuous-deployment/deployment-to-google-app-engine/
+# https://medium.com/2park/deploying-kotlin-java-applications-to-google-app-engine-standard-with-circleci-580c04f77cb7
+
+version: 2
+jobs:
+  build:
+    docker:
+      # specify the version you desire here
+      - image: circleci/node:8.9
+      
+      # Specify service dependencies here if necessary
+      # CircleCI maintains a library of pre-built images
+      # documented at https://circleci.com/docs/2.0/circleci-images/
+      # - image: circleci/mongo:3.4.4
+
+    working_directory: ~/repo
+
+    environment:
+      - SOURCE_BRANCH: master
+      - TARGET_BRANCH: master
+
+    steps:
+      - checkout
+
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "package.json" }}
+          # fallback to using the latest cache if no exact match is found
+          - v1-dependencies-
+
+      - run: yarn install
+
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+
+      - persist_to_workspace:
+          root: ~/repo
+          paths:
+            - ./**
+
+  deploy-to-stage:
+    docker:
+      - image: google/cloud-sdk
+
+    working_directory: ~/repo
+    
+    steps:
+      - attach_workspace:
+          at: ~/repo
+      - run:
+          name: Store Service Account
+          command: echo $GCLOUD_SERVICE_KEY > ${HOME}/${GOOGLE_APPLICATION_CREDENTIALS}
+      - run:
+          name: Current Directory Listing
+          command: |
+            echo $PWD
+            ls
+      - run: |
+          gcloud auth activate-service-account --key-file=${HOME}/${GOOGLE_APPLICATION_CREDENTIALS}
+          gcloud --quiet config set project ${GOOGLE_PROJECT_ID}
+          gcloud --quiet config set compute/zone ${GOOGLE_COMPUTE_ZONE}
+          
+          gcloud --quiet app deploy
+workflows:
+  version: 2
+  build-and-deploy:
+    jobs:
+      - build
+      - deploy-to-stage:
+          requires:
+            - build
+          filters:
+            branches:
+              only:
+                - master
+      - can-deploy-to-prod:
+          type: approval
+          requires:
+            - deploy-to-stage

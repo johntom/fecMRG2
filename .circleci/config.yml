@@ -83,23 +83,11 @@ jobs:
 
             mkdir -p out/www
             mkdir -p out/www/scripts && cp -a scripts/. out/www/scripts/.
-            mkdir -p out/www/css && cp -a css/. out/www/css/.
-            mkdir -p out/www/images && cp -a images/. out/www/images/.
-            mkdir -p out/www/js && cp -a js/. out/www/js/.
-            mkdir -p out/www/vendor && cp -a vendor/. out/www/vendor/.
-            mkdir -p out/server
-            #mkdir -p out/server/lib
-            #mkdir -p out/server/build-script
             mkdir -p out/.circleci
-            #cp -a server/lib/. out/server/lib/.
-            #cp -a server/build-script/. out/server/build-script/.
             cp -a index.html out/www/.
             cp -a favicon.ico out/www/.
             cp -a .gitignore out/.
             cp -a .gcloudignore out/.
-            cp -a server/.env out/server/.env
-            cp -a server/.env-stage out/server/.env-stage
-            cp -a server/.env-stage out/.env
             cp -a server/app.js out/.
             cp -a server/app.yaml out/.
             cp -a server/package.json out/.
