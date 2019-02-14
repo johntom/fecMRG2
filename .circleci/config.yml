@@ -1,1 +1,142 @@
-IyBKYXZhc2NyaXB0IE5vZGUgQ2lyY2xlQ0kgMi4wIGNvbmZpZ3VyYXRpb24gZmlsZQ0KIw0KIyBDaGVjayBodHRwczovL2NpcmNsZWNpLmNvbS9kb2NzLzIuMC9sYW5ndWFnZS1qYXZhc2NyaXB0LyBmb3IgbW9yZSBkZXRhaWxzDQojDQp2ZXJzaW9uOiAyDQpqb2JzOg0KICBidWlsZDoNCiAgICBkb2NrZXI6DQogICAgICAjIHNwZWNpZnkgdGhlIHZlcnNpb24geW91IGRlc2lyZSBoZXJlDQogICAgICAtIGltYWdlOiBjaXJjbGVjaS9ub2RlOjcuMTANCiAgICAgIA0KICAgICAgIyBTcGVjaWZ5IHNlcnZpY2UgZGVwZW5kZW5jaWVzIGhlcmUgaWYgbmVjZXNzYXJ5DQogICAgICAjIENpcmNsZUNJIG1haW50YWlucyBhIGxpYnJhcnkgb2YgcHJlLWJ1aWx0IGltYWdlcw0KICAgICAgIyBkb2N1bWVudGVkIGF0IGh0dHBzOi8vY2lyY2xlY2kuY29tL2RvY3MvMi4wL2NpcmNsZWNpLWltYWdlcy8NCiAgICAgICMgLSBpbWFnZTogY2lyY2xlY2kvbW9uZ286My40LjQNCg0KICAgIHdvcmtpbmdfZGlyZWN0b3J5OiB+L3JlcG8NCg0KICAgIHN0ZXBzOg0KICAgICAgLSBjaGVja291dA0KDQogICAgICAjIERvd25sb2FkIGFuZCBjYWNoZSBkZXBlbmRlbmNpZXMNCiAgICAgIC0gcmVzdG9yZV9jYWNoZToNCiAgICAgICAgICBrZXlzOg0KICAgICAgICAgIC0gdjEtZGVwZW5kZW5jaWVzLXt7IGNoZWNrc3VtICJwYWNrYWdlLmpzb24iIH19DQogICAgICAgICAgIyBmYWxsYmFjayB0byB1c2luZyB0aGUgbGF0ZXN0IGNhY2hlIGlmIG5vIGV4YWN0IG1hdGNoIGlzIGZvdW5kDQogICAgICAgICAgLSB2MS1kZXBlbmRlbmNpZXMtDQoNCiAgICAgIC0gcnVuOiB5YXJuIGluc3RhbGwNCg0KICAgICAgLSBzYXZlX2NhY2hlOg0KICAgICAgICAgIHBhdGhzOg0KICAgICAgICAgICAgLSBub2RlX21vZHVsZXMNCiAgICAgICAgICBrZXk6IHYxLWRlcGVuZGVuY2llcy17eyBjaGVja3N1bSAicGFja2FnZS5qc29uIiB9fQ0KICAgICAgICANCiAgICAgICMgcnVuIHRlc3RzIQ0KICAgICAgLSBydW46IHlhcm4gdGVzdA==
+# Javascript Node CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-javascript/ for more details
+#
+version: 2
+jobs:
+  build:
+    docker:
+      # specify the version you desire here
+      - image: circleci/node:8.11.2
+      
+      # Specify service dependencies here if necessary
+      # CircleCI maintains a library of pre-built images
+      # documented at https://circleci.com/docs/2.0/circleci-images/
+      # - image: circleci/mongo:3.4.4
+
+    working_directory: ~/repo
+
+    environment:
+      - SOURCE_BRANCH: master
+      - TARGET_BRANCH: master
+
+    # branches:
+    #   ignore:
+    #     - master
+
+    steps:
+      - checkout
+
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "package.json" }}
+          # fallback to using the latest cache if no exact match is found
+          - v1-dependencies-
+
+      - run: yarn install
+
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+
+      - persist_to_workspace:
+          root: ~/repo
+          paths:
+            - ./**
+
+  deploy-to-stage:
+    docker:
+      # specify the version you desire here
+      - image: circleci/node:8.11.2
+
+    working_directory: ~/repo
+
+    steps:
+      - attach_workspace:
+          at: ~/repo
+      - setup_remote_docker:
+          docker_layer_caching: true
+      - run:
+          name: Deploy
+          command: |
+            git config --global user.email $GH_EMAIL
+            git config --global user.name $GH_NAME
+
+            echo "Cloning Staging"
+            # git clone https://github.com/johntom/fecMRG2-Staging.git out
+            git clone https://johntom:@github.com/johntom/fecMRG2-Staging.git out
+
+            cd out
+            git checkout $TARGET_BRANCH || git checkout --orphan $TARGET_BRANCH
+            git rm -rf .
+            cd ..
+
+            sudo npm install aurelia-cli -g
+
+            mkdir -p www
+            cp -a server/index.html .
+
+            echo "Building for Staging"
+            au build --env stage
+
+            mkdir -p out/www
+            mkdir -p out/www/scripts && cp -a scripts/. out/www/scripts/.
+            mkdir -p out/www/css && cp -a css/. out/www/css/.
+            mkdir -p out/www/images && cp -a images/. out/www/images/.
+            mkdir -p out/www/js && cp -a js/. out/www/js/.
+            mkdir -p out/www/vendor && cp -a vendor/. out/www/vendor/.
+            mkdir -p out/server
+            #mkdir -p out/server/lib
+            #mkdir -p out/server/build-script
+            mkdir -p out/.circleci
+            #cp -a server/lib/. out/server/lib/.
+            #cp -a server/build-script/. out/server/build-script/.
+            cp -a index.html out/www/.
+            cp -a favicon.ico out/www/.
+            cp -a .gitignore out/.
+            cp -a .gcloudignore out/.
+            cp -a server/.env out/server/.env
+            cp -a server/.env-stage out/server/.env-stage
+            cp -a server/.env-stage out/.env
+            cp -a server/app.js out/.
+            cp -a server/app.yaml out/.
+            cp -a server/package.json out/.
+            cp -a server/.circleci/staging-config.yml out/.circleci/config.yml
+
+            cd out
+
+            git add -A
+            git commit -m "Automated deployment to GitHub Pages: ${CIRCLE_SHA1}" --allow-empty
+
+            git push origin $TARGET_BRANCH
+      - run:
+          name: Finished
+          command: |
+            echo "Finished!"
+
+workflows:
+  version: 2
+  build-and-deploy:
+    jobs:
+      - build:
+          filters:
+            branches:
+              only:
+                - master
+      - can-deploy-to-stage:
+          type: approval
+          requires:
+            - build
+          filters:
+            branches:
+              only:
+                - master
+      - deploy-to-stage:
+          requires:
+            - can-deploy-to-stage
+          filters:
+            branches:
+              only:
+                - master
