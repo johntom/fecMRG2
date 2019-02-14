@@ -3,14 +3,30 @@ import { ApplicationService } from '../../services/application-service';
 import { MyDataService } from "../../services/my-data-service";
 import lodash from 'lodash';
 import { ApiService } from '../../utils/servicesApi';
+// import ably from 'Ably';
+// var ably = new Ably.Realtime('xVLyHw.DLnxAQ:9f4EUo2vKYzao1fr');
+// var channel = ably.channels.get('length');
+// channel.subscribe(function (message) {
+//   show('⬅ Received: ' + message.data);
+// });
+// channel.subscribe(function(message) {
+//   show('⬅ Received: ' + message.data);
+// });
 
-
+// function show(status) {
+//   $('#channel-status').append($('<li>').text(status).css('color', 'green'));
+// }
 @inject(ApplicationService, MyDataService, ApiService)
 
 export class Home {
   heading = "MRG Home Page";
-  version = 242.59
-  versionDate = 'Tue 2/12/2019'
+  version = 242.60
+  versionDate = 'Thu 2/12/2019'
+
+
+  // show(status) {
+  //   $('#channel-status').append($('<li>').text(status).css('color', 'green'));
+  // }
   // versiondate=Date(); catalogssentto
   //  "select2": { 
   //       "map": "npm:select2@4.0.6-rc.1/dist",
@@ -258,12 +274,23 @@ export class Home {
   // 'make all prompt dblclick',
   // 'check all ogs prompts'
   //  ' use brm2 app as base'
+
+  // Publish a message to the test channel
+
   constructor(appService, dataService, api) {
     this.appService = appService;
     this.dataService = dataService;
     this.api = api;
   }
   //   this.dataService.loadCodes(values[1]), resolve all lists
+
+  sendMessage() {
+    channel.publish('greeting', 'Hello from the browser');
+
+  }
+
+
+
   async activate() {
 
     // this.appService.payeelist = await this.dataService.loadPayeeAsync()
