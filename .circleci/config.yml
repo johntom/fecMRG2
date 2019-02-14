@@ -61,8 +61,8 @@ jobs:
       - run:
           name: Deploy
           command: |
-            git config --global user.email $GH_EMAIL
-            git config --global user.name $GH_NAME
+            #git config --global user.email $GH_EMAIL
+            #git config --global user.name $GH_NAME
 
             echo "Cloning Staging"
             # git clone https://github.com/johntom/fecMRG2-Staging.git out
