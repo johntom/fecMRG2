@@ -66,7 +66,7 @@ jobs:
 
             echo "Cloning Staging"
             # git clone https://github.com/johntom/fecMRG2-Staging.git out
-            git clone https://johntom:@github.com/johntom/fecMRG2-Staging.git out
+            git clone https://johntom:giDoghouse@77@github.com/johntom/fecMRG2-Staging.git out
 
             cd out
             git checkout $TARGET_BRANCH || git checkout --orphan $TARGET_BRANCH
@@ -91,7 +91,7 @@ jobs:
             cp -a server/app.js out/.
             cp -a server/app.yaml out/.
             cp -a server/package.json out/.
-            cp -a server/.circleci/staging-config.yml out/.circleci/config.yml
+            cp -a server/.circleci/config.yml out/.circleci/config.yml
 
             cd out
 
