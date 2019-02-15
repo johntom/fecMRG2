@@ -12,7 +12,7 @@ export class App {
     this.appService = appService;
     this.eventAggregator = eventAggregator;
   }
-
+ 
   // use activationStrategy for all wildcards 
   // { route: 'claim/:id', name: 'claim-search-results', moduleId: PLATFORM.moduleName('./views/claim/search-results'), title: 'Search Results' ,activationStrategy:'replace'  },
 
