@@ -29,29 +29,21 @@
 	<require from="aurelia-kendoui-bridge/grid/grid"></require>
 	<require from="aurelia-kendoui-bridge/grid/col"></require>
 	<require from="aurelia-kendoui-bridge/common/template"></require>
-	<!-- <require from="./inventory.css"></require> -->
-	<require from="../../../styles/kendo.css"></require>
-	<!--   k-on-change.delegate="rowSelected($event.detail)" 
-      k-column-menu.bind="true"  -->
+x	<require from="../../../styles/kendo.css"></require>
 	<section class="customers au-animate">
 		<h2>Clients ( ${origItems.length})</h2>
 		<a slot="buttons-slot" class="btn btn-primary" click.delegate="addClient()">
 			<i class="fa fa-plus"></i> Add Client
 		</a>
 	</section>
-	<!-- <div class="container-fluid">
-		<div class="row">
-			<div class="col-sm-12"> -->
-	<!-- <section class="full-height flex-column-1 au-animate ignore"> -->
-	<!-- <div class="flex-column-1 search-panel"> -->
-
+	
 	<section class="full-height flex-column-1 au-animate ignore">
 		<div class="flex-row-none section-header">
 			${heading} 100
 		</div>
 		<div class="flex-row-1 ignore">
 			<div class="flex-column-1 search-panel">
-				<ak-grid class="flex-row-1 overflow-y-auto" id="grid" k-data-source.bind="datasource" k-widget.bind="grid" k-sortable.bind="{ mode: 'multiple',   allowUnsort: 'true'}"
+				<!-- <ak-grid class="flex-row-1 overflow-y-auto" id="grid" k-data-source.bind="datasource" k-widget.bind="grid" k-sortable.bind="{ mode: 'multiple',   allowUnsort: 'true'}"
 				 k-filterable.bind="{  mode: 'row' }" k-editable="inline" k-reorderable.bind="true" k-groupable.bind="true" k-resizable.bind="true"
 				 k-selectable="[row,multiple]" k-pageable.bind="true" k-mobile.bind ="phone">
 					<ak-col k-field="id" k-filterable.bind="true" k-title="Edit-" k-width.bind="180" k-template="<button click.delegate='details2($event)' class='k-button'>#=CompanyName#</button>">
@@ -64,7 +56,7 @@
 					<ak-col k-title="State" k-width="180px" k-field="State"></ak-col>
 					<ak-col k-title="Zip" k-width="180px" k-field="Zip"></ak-col>
 					<ak-col k-title="email" k-width="180px" k-field="email"></ak-col>
-				</ak-grid>
+				</ak-grid> -->
 
 
 				<div class="flex-row-none section-footer">

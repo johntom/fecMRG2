@@ -2,10 +2,9 @@
 	<require from="aurelia-kendoui-bridge/grid/grid"></require>
 	<require from="aurelia-kendoui-bridge/grid/col"></require>
 	<require from="aurelia-kendoui-bridge/common/template"></require>
-	<!-- <require from="./inventory.css"></require> -->
-
+	
 	<section class="full-height flex-column-1 au-animate ignore">
-		<ak-grid class="flex-row-1"
+		<!-- <ak-grid class="flex-row-1"
       id="grid" 
       k-data-source.bind="datasource" 
       k-widget.bind="grid" 
@@ -27,36 +26,14 @@
         k-template="<button click.delegate='details($event)' class='k-button'>#=CatalogTitle#</button>">
 			</ak-col>
 
-			<!-- <ak-col k-title="CatalogTitle" k-width="180px" k-field="CatalogTitle"></ak-col> -->
 			<ak-col k-title="Isbn" k-width="180px" k-field="Isbn"></ak-col>
 			<ak-col k-title="PubDate" k-width="180px" k-field="PubDate"></ak-col>
 		
 
-		</ak-grid>
+		</ak-grid> -->
 		<div class="flex-row-none section-footer">
 			${footer}
 		</div>
 	</section>
 
 </template>
-
-<!-- <a id="searchResultsHref" href="#/inventory/data/${recordId}">Edit ${recordId}</a>    -->
-
-<!-- <ak-col k-field="InventoryCode" k-filterable.bind="true" k-title="Open" k-width.bind="160" 
-k-template='<a href="#/inventory/data/${InventoryCode}">#=InventoryCode#/a>'>
-</ak-col> -->
-<!-- <ak-col k-title="Open Doc" k-width="160px"
-k-field="InventoryCode" k-template="<a target='_blank' 
-href='#/inventory/data/${InventoryCode'>#=InventoryCode#</a>    
-</ak-col>  -->
-
-<!-- <ak-col k-title="Open Doc" k-width="160px"
-k-field="InventoryCode" k-template="<a target='_blank' 
-href='http://cm.brookbridgeinc.com:8880/api/v1/InventoryCode'>
-#=InventoryCode#</a>">
-</ak-col> -->
-<!-- <ak-col k-title="Open Doc2" k-width="160px"
-k-field="InventoryCode" k-template="<a id='searchResultsHref' 
-href='#/inventory/data/#=InventoryCode#'>
-#=InventoryCode#</a>">
-</ak-col> -->
