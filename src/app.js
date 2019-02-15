@@ -3,10 +3,7 @@ import { PLATFORM } from 'aurelia-pal';
 import { ApplicationService } from './services/application-service';
 import { AuthorizeStep } from './services/authorize-step';
 
-
 import { EventAggregator } from 'aurelia-event-aggregator';
-
-
 
 export class App {
   static inject = [ApplicationService, EventAggregator];
