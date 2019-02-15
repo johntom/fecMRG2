@@ -90,7 +90,8 @@ export class Home {
     // 'ReproductionLocation missing as ""',
     " Remove auto-complete field entries in Google Chrome",
     "never pass id to put or post /:id",
-"to trip cci do a commit"
+"to trip cci do a commit",
+"https://circleci.com/gh/johntom/fecMRG2/edit   https://circleci.com/gh/johntom/fecMRG2/21 build and deploy",
     //     Select the "Username" field and make sure it is blank
     // Press ↓ on your keyboard, a list of all of the "remembered" entries should appear.
     // Using ↑ & ↓ highlight an entry you would like to delete.
