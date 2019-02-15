@@ -41,7 +41,7 @@ export class DataForm {
         this.org = response.data[0];
         console.log('this.org ', this.org)
 
-        let response2 = await this.api.findorgContacts(this.org.ID);
+        let response2 = await this.api.findorgContacts(this.org.id)// ID);
         this.contacts = response2.data;
         this.appService.currentOrgItem = this.org
         // console.log('this.repos contacts ', this.contacts)

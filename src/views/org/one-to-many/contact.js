@@ -26,7 +26,7 @@ export class Org {
 
   async activate(params, routeConfig) {
     // this.currentItem.prevorgs = this.currentItem.prevorgs
-    let response = await this.api.findorgContacts(this.currentItem.ID);
+    let response = await this.api.findorgContacts(this.currentItem.id)//ID);
     this.contacts = response.data;
     console.log('this.repos contacts ', this.contacts)
     this.allcontacts = this.contacts  
