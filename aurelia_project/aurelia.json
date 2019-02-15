@@ -95,7 +95,15 @@
             "path": "../node_modules/aurelia-dialog/dist/commonjs",
             "resources": []
           },
-          "aurelia-kendoui-bridge"
+          {
+            "name": "aurelia-kendoui-bridge",
+            "path": "../node_modules/aurelia-kendoui-bridge/dist/amd",
+            "main": "index",
+            "resources": [
+              "common/*.{js,html}",
+              "button/*.{js,html}"
+            ]
+          }
         ]
       }
     ],
