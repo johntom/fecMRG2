@@ -21,7 +21,6 @@ export class App {
     config.title = 'MRG Layout';
     config.addPipelineStep('authorize', AuthorizeStep);
     config.map([
-      // { "route": ["", "welcome"], "name": "welcome", "moduleId": PLATFORM.moduleName("./welcome"), "nav": true, "title": "Welcome" },
       { "route": '', redirect: 'home' },
       { "route": 'home', name: 'home', moduleId: PLATFORM.moduleName('./views/home/home'), nav: true, title: 'Home' },
       { "route": 'inventory/:id', name: 'inventory-search-results', "moduleId": PLATFORM.moduleName('./views/inventory/search-results'), title: 'Search Results', activationStrategy: 'replace' },
