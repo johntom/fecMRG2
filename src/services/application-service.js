@@ -13,11 +13,9 @@ export class ApplicationService {
   currentView;
   tabs = [];
   asyncHandleDirty() {
-    // const model = 'You have unsaved changes.</b> Cancel to stay OK to leave';
     const model = 'You have unsaved changes. '//Cancel to stay OK to leave';
 
     const options = { viewModel: Prompt, model: model, lock: false };
-    // return this.dialogService.open(options);
     return this.dialogService.open(options).whenClosed(response => response);
   }
 
@@ -25,13 +23,9 @@ export class ApplicationService {
     this.router.navigate(route);
   }
 
-  //  this.appService.tryCloseTab(this.appService.currentView, tab, newTab.href);
-
+ 
   tryCloseTab(item, tab, route) {
-    //  alert('try')
-    //console.log('1 2 3', this.currentView )//,this.currentView.isDirty , this.currentView.isDirty())
-    //this.originalrec==={} in create
-    if (this.currentView !== undefined && this.originalrec !== {} && this.currentView && this.currentView.isDirty && this.currentView.isDirty()) {
+     if (this.currentView !== undefined && this.originalrec !== {} && this.currentView && this.currentView.isDirty && this.currentView.isDirty()) {
       this.asyncHandleDirty().then(result => {
         if (!result.wasCancelled) {
           this.closeTab(tab, item);
@@ -48,8 +42,6 @@ export class ApplicationService {
     }
   }
   closeTab(tab, item) {
-    //console.log('1 2',tab,item)
-
     if (item && item.reset) {
       item.reset();
     }
@@ -179,11 +171,7 @@ export class ApplicationService {
       viewModel: "./one-to-one/sold",
       isSelected: false
     },
-    // {
-    //   name: "Vat",
-    //   viewModel: "./one-to-one/vat",
-    //   isSelected: false
-    // },
+    
     {
       name: "Edition",
       viewModel: "./one-to-one/editions",
@@ -211,11 +199,7 @@ export class ApplicationService {
       viewModel: "./one-to-many/reproduction",
       isSelected: false
     },
-    // {
-    //   name: "Terms",
-    //   viewModel: "./one-to-many/terms",
-    //   isSelected: false
-    // },
+   
     {
       name: "Docs",
       viewModel: "./one-to-many/docs",
@@ -316,18 +300,9 @@ export class ApplicationService {
       isSelected: false
     }
   ];
-  // ,
-  // {
-  //   name: "Type",
-  //   viewModel: "./one-to-many/type",
-  //   isSelected: false
-  // }
-
-
-  // apr 2018
+ 
   ConsignedTo = ''
   ConservedBy = ''
-  // currentRecord = null;
   currentRecord = 0;//null;
   currentsavedlist = ''
   currentActionlist = ''
@@ -352,9 +327,7 @@ export class ApplicationService {
   codesReproductionType = []//9
   codesView = []//  1 0
   codesCountry = []//11
-  // codesContactType = []//13
   codesOrgContactTypes = []
-
   codesProvenanceLocation = []//14
   codesConditon = []//15
   codesMailingType = []//16
@@ -383,7 +356,6 @@ export class ApplicationService {
   codesPhotographers = []//39
   codesSuffix = []//40,
   codesAdmin = []//41,
-
   orgsList = []
   searchList = [];
   currentSearch;
