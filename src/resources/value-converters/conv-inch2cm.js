@@ -8,7 +8,7 @@ export class convInch2cmValueConverter {
       value = 'none';
     }
     (value !== 'none') ? value = value+' in '+ value * 2.54 + ' cm ' : value
-    return value
+    return value 
   }
 }
 

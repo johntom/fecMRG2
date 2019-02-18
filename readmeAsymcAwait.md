@@ -163,3 +163,18 @@ makeRequest()
     // output
     // Error: oops at makeRequest (index.js:7:9)
   })
+https://ilikekillnerds.com/2016/06/using-asyncawait-aurelia/
+https://www.danyow.net/es7-async-await-with-aurelia/
+  ////////// from aurelia
+      // const fetchSomething = () => new Promise((resolve) => {
+    //     setTimeout(() => resolve('future value'), 500);
+    //   });
+      
+    //   async function asyncFunction() {
+    //     const result = await fetchSomething(); // returns promise
+      
+    //     // waits for promise and uses promise result
+    //     return result + ' 2';
+    //   }
+      
+    //   asyncFunction().then(result => console.log(result));

@@ -22,8 +22,6 @@ export class Home {
   heading = "MRG Home Page";
   version = 242.76  
   versionDate = 'Fri 2/15/2019'
-
-
   // show(status) {
   //   $('#channel-status').append($('<li>').text(status).css('color', 'green'));
   // }
@@ -40,15 +38,15 @@ export class Home {
   //         ]
   //       }
   //     },
-  //  "select2": "4.0.6-rc.1"
-  //   Lindsay Pollock
+  // "select2": "4.0.6-rc.1"
+  // Lindsay Pollock
   // Adam Sheffer
   // Mark Cole
   // Adam Weinberg
   // Toby Kamps
   // smith roberta is both a  B And I
   // DONT CONVERT
-  //    "FirstName" : "Walk in", 
+  // "FirstName" : "Walk in", 
   // "MI" : " ", 
   // "LastName" : "Order", 
   issues = [
@@ -88,7 +86,7 @@ export class Home {
     // "deleting ref= fixes dirty checking <div class='form-control input-sm' ref='catname' ",
     // "also <option model.bind='null'>",
     // 'ReproductionLocation missing as ""',
-    " Remove auto-complete field entries in Google Chrome",
+    "Remove auto-complete field entries in Google Chrome",
     "never pass id to put or post /:id",
     "to trip cci do a commit",
     "https://circleci.com/gh/johntom/fecMRG2/edit   https://circleci.com/gh/johntom/fecMRG2/21 build and deploy",
@@ -168,7 +166,6 @@ export class Home {
     //   'https://bl.ocks.org/lstarky/11cd1e90dd912f07a60afaedb9c2613b',
     //   'if then in kendo grid 		<ak-col k-field="org.OrgName    k-template="#= (org.OrgName) ? org.OrgName : `` #"></ak-col>'
     // ,  `force rediplay not to use browser cache var url = 'http://.../?' + escape(new Date())`
-
   ]
   todo = [
 
@@ -184,7 +181,6 @@ export class Home {
     // 'Set Ex not work display sponser with exhi ',
     // 'restore GROSSM0029 and jpollack untitled ',
     // 'convert images id: 21248 with 20289 images ',
-
     // 'Special foreigh charaters',
     // "Next avail repro tab",
 
