@@ -2,7 +2,7 @@ import { Router, Redirect } from 'aurelia-router';
 import { UtilService } from '../../services/util-service';
 import { ApplicationService } from '../../services/application-service';
 import { MyDataService } from "../../services/my-data-service";
-import 'bootstrap-select/css/bootstrap-select.min.css';
+
 import { bindable, inject } from 'aurelia-framework';
 // @inject()
 @inject(Router, UtilService, ApplicationService, MyDataService)

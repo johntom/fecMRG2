@@ -75,10 +75,12 @@ export class Home {
     // "deleting ref= fixes dirty checking <div class='form-control input-sm' ref='catname' ",
     // "also <option model.bind='null'>",
     // 'ReproductionLocation missing as ""',
+    "to test what lib to use in package.json",
+    "https://unpkg.com/lodash@4.17.11/",
     "Remove auto-complete field entries in Google Chrome",
     "never pass id to put or post /:id",
     "to trip cci do a commit",
-    "https://circleci.com/gh/johntom/fecMRG2/edit   https://circleci.com/gh/johntom/fecMRG2/21 build and deploy",
+    "https://circleci.com/gh/johntom/fecMRG2/edit  https://circleci.com/gh/johntom/fecMRG2/21 build and deploy",
     //     Select the "Username" field and make sure it is blank
     // Press ↓ on your keyboard, a list of all of the "remembered" entries should appear.
     // Using ↑ & ↓ highlight an entry you would like to delete.
