@@ -4,7 +4,6 @@ import selectize from 'selectize';
 //import 'selectize/css/selectize.bootstrap3.css!';
 import './selectize.bootstrap3.css!';
 
-import _ from 'lodash'
 
 @customElement('selectize')
 @inject(Element)

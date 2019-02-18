@@ -3,8 +3,7 @@ import { ApiService } from '../../utils/servicesApi';
 import { ApplicationService } from '../../services/application-service';
 import { MyDataService } from "../../services/my-data-service";
 import { Router } from 'aurelia-router';
-// import { Router, Redirect } from 'aurelia-router';
-// import moment from 'moment';
+
 import { DialogService } from 'aurelia-dialog';
 //import { Prompt } from '../../../services/prompt';
 import { Prompt } from './prompt';

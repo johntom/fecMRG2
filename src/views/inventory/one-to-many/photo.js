@@ -70,7 +70,6 @@ showModal(fieldname,index) {
  let photo = this.currentItem.photo
     let flag = false
     let item
-   // let newNoteWorkDate = moment().format('YYYY-MM-DD')
     if (photo === undefined) {
       flag = true
       photo = []

@@ -2,7 +2,6 @@ import { bindable, inject, customElement } from 'aurelia-framework';
 import $ from 'jquery';
 import 'select2';
 import './select2.css!'
-import _ from 'lodash'
 
 @customElement('select2m')
 @inject(Element)

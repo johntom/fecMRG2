@@ -41,6 +41,8 @@
             "path": "node_modules/aurelia-cli/lib/resources/scripts/configure-bluebird.js",
             "env": "dev"
           },
+          "node_modules/moment/min/moment-with-locales.js",
+          "node_modules/lodash/lodash.min.js",
           "node_modules/babel-polyfill/dist/polyfill.min.js",
           "node_modules/systemjs/dist/system.js"
         ],
@@ -59,6 +61,7 @@
           "aurelia-logging",
           "aurelia-logging-console",
           "aurelia-metadata",
+          
           "aurelia-pal",
           "aurelia-pal-browser",
           "aurelia-path",
@@ -103,7 +106,8 @@
               "common/*.{js,html}",
               "button/*.{js,html}"
             ]
-          }
+          },
+          "numeral"
         ]
       }
     ],

@@ -3,12 +3,11 @@ import { ApiService } from '../../utils/servicesApi';
 import { inject } from 'aurelia-dependency-injection';
 import { ApplicationService } from '../../services/application-service';
 import { MyDataService } from "../../services/my-data-service";
-import moment from 'moment';
+
 
 import { EventAggregator } from 'aurelia-event-aggregator';
 // import { Router } from 'aurelia-router';
 // import { Router, Redirect } from 'aurelia-router';
-// import moment from 'moment';
 
 @inject(Router, ApiService, ApplicationService, MyDataService, EventAggregator)
 export class DataAddForm {
@@ -26,14 +25,6 @@ export class DataAddForm {
     // this.inv = '';
     this.dataService = dataService;
     this.eventAggregator = eventAggregator;
-    // // this.createEventListeners();
-//    this.appService.currentClaim = 0 // {}; DO NOT DO THIS
-
-    //breaks form
-    //    this.currentnewItem={}
-    //         let newNoteWorkDate = moment().format('YYYY-MM-DD')
-    // this.currentnewItem.EDITED =newNoteWorkDate
-    // this.currentnewItem.RECEIVED =newNoteWorkDate
 
   }
 
@@ -69,20 +60,7 @@ export class DataAddForm {
   //    return confirm('Are you sure you want to leave this page?');
   // }
   saveclaim() {
-    // console.log('this.adjuster.ADJUSTER_ID ', this.currentnewItem.ADJUSTER_ID);
-    // this.currentnewItem.STATUS = 1;
-    // let newNoteWorkDate = moment().format('YYYY-MM-DD');
-    // this.currentnewItem.EDITED = newNoteWorkDate;
-    // this.currentnewItem.RECEIVED = newNoteWorkDate;
-
-    // this.api.addclaim(this.currentnewItem).then((jsonRes) => {
-    //   // First, grab the current tab
-    //   let tab = this.appService.tabs.find(f => f.isSelected);
-    //   // Next, we navigate to the newly created claim
-    //   this.navigateToNewClaim();
-    //   // Finally, we close out this tab
-    //   this.closeTab(tab);
-    // });
+   
   }
 
   // navigateToNewClaim() {

@@ -1,7 +1,7 @@
 import { inject } from 'aurelia-dependency-injection';
 import { ApiService } from '../../../utils/servicesApi';
 import { ApplicationService } from '../../../services/application-service';
-import moment from 'moment';
+
 import { DialogService } from 'aurelia-dialog';
 import { Prompt } from   '../../../services/prompt';
 

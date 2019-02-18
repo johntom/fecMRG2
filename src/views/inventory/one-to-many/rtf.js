@@ -5,14 +5,7 @@ import { ApplicationService } from '../../../services/application-service';
 import { Aurelia } from 'aurelia-framework';
 import { DialogService } from 'aurelia-dialog';
 import { Prompt } from '../../../services/prompt';
-import lodash from 'lodash';
-import moment from 'moment';
-// import EXIF from './exif';
-// <require from="../../resources/value-converters/round-format"></require>
-// import RoundFormat from "../../../resources/value-converters/round-format";
-//  RoundFormat RoundFormatValueConverter
 
-//import _ from 'lodash'
 @inject(ApiService, ApplicationService, DialogService)
 export class Rtf {
   tools = [

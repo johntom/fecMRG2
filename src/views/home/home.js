@@ -1,20 +1,9 @@
 import { inject } from 'aurelia-dependency-injection';
 import { ApplicationService } from '../../services/application-service';
 import { MyDataService } from "../../services/my-data-service";
-import lodash from 'lodash';
-import { ApiService } from '../../utils/servicesApi';
-// import ably from 'Ably';
-// var ably = new Ably.Realtime('xVLyHw.DLnxAQ:9f4EUo2vKYzao1fr');
-// var channel = ably.channels.get('length');
-// channel.subscribe(function (message) {
-//   show('⬅ Received: ' + message.data);
-// });
-// channel.subscribe(function(message) {
-//   show('⬅ Received: ' + message.data);
-// });
 
-// function show(status) {
-//   $('#channel-status').append($('<li>').text(status).css('color', 'green'));
+import { ApiService } from '../../utils/servicesApi';
+
 // }
 @inject(ApplicationService, MyDataService, ApiService)
 

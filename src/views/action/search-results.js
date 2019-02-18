@@ -3,7 +3,7 @@ import { inject } from 'aurelia-dependency-injection';
 // import { Router } from 'aurelia-router';
 import { Router, Redirect } from 'aurelia-router';
 import { UtilService } from '../../services/util-service';
-import moment from 'moment';
+
 import { ApplicationService } from '../../services/application-service';
 import { MyDataService } from "../../services/my-data-service";
 // import { DialogImage } from '../inventory/dialogImage'

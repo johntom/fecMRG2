@@ -1,8 +1,4 @@
 import 'babel-polyfill';
-import * as Bluebird from 'bluebird';
-
-import 'jquery';
-import 'bootstrap';
 
 export async function configure(aurelia) {
   aurelia.use

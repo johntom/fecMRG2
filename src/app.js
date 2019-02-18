@@ -56,10 +56,6 @@ export class App {
       { "route": 'org/data/:id', name: 'org-data-form', moduleId: PLATFORM.moduleName('./views/org/data-form'), title: 'Data Form' }, // ,activationStrategy:'replace'
 
      
-      { "route": 'client', name: 'client', moduleId: PLATFORM.moduleName('./views/client/client'), nav: true, title: 'Client' },
-      { "route": 'client/:id', name: 'client-search-results', moduleId: PLATFORM.moduleName('./views/client/search-results'), title: 'Search Results', activationStrategy: 'replace' },
-      { "route": 'client/data/:id', name: 'client-data-form', moduleId: PLATFORM.moduleName('./views/client/data-form'), title: 'Data Form' }, 
-
       {"route": 'client/dataadd', name: 'client-data-add-form', moduleId: PLATFORM.moduleName('./views/client/data-add-form'), title: 'Data Add Form' }, 
 
        { route: 'code/:id', name: 'code-search-results', moduleId: PLATFORM.moduleName('./views/code/search-results'), title: 'Search Results', activationStrategy: 'replace' },
