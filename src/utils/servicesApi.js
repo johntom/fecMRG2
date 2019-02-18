@@ -151,16 +151,6 @@ export class ApiService {
   }
 
   // all new 2019 AA methods
-  // findContact(search) {
-  //     // search has fullu formed query string
-  //     var url = this.baseweb + 'v1/contactcontent' + search
-  //     console.log('url ', url)
-  //     return this.http.fetch(url, {
-  //       method: 'get',
-  //       mode: 'cors'
-  //     }).then((res) => res.json());
-  //     //return this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())
-  //   }
 
 
   async findArtistsContent(search) {
@@ -173,24 +163,24 @@ export class ApiService {
     return await this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())
 
   }
-async getCatalogsent(cat) {
+  async getCatalogsent(cat) {
     var url = this.baseweb + 'v1/catalog/getcatalogsent/' + cat
     return await this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())
 
   }
 
-async findTodo(){
+  async findTodo() {
     var url = this.baseweb + 'v1/todo/' // + cat
     return await this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())
 
-}
+  }
 
-async updatetodo(rec){
-  let id = rec.id
-  // var url = this.baseweb + `v1/todo/:${id}` // + cat
-  var url = this.baseweb + `v1/todoupdate/`
-  //"never pass id to put or post",
-     return this.http.fetch(url, {
+  async updatetodo(rec) {
+    let id = rec.id
+    // var url = this.baseweb + `v1/todo/:${id}` // + cat
+    var url = this.baseweb + `v1/todoupdate/`
+    //"never pass id to put or post",
+    return this.http.fetch(url, {
       method: 'put',
       mode: 'cors',
       headers: {
@@ -202,17 +192,17 @@ async updatetodo(rec){
     }).then((res) => res.json());
   }
 
-async createtodo(rec){
-  var url = this.baseweb + 'v1/todo/' // + cat
-   
-      return await this.http.fetch(url, {
-        method: 'post', mode: 'cors', headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(rec)
-      }).then((res) => res.json());
-}
+  async createtodo(rec) {
+    var url = this.baseweb + 'v1/todo/' // + cat
+
+    return await this.http.fetch(url, {
+      method: 'post', mode: 'cors', headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(rec)
+    }).then((res) => res.json());
+  }
   // { method: ['put'], path: '/api/v1/todo/:id', handler: 'TodoController.customUpdate' },
   // { method: ['post'], path: '/api/v1/todo', handler: 'TodoController.create' },
 
@@ -241,18 +231,18 @@ async createtodo(rec){
     }).then((res) => res.json());
   }
 
-  
-    async insertartist(findvalue) {
 
-      let url = this.baseweb + `v1/artist/create`
-      return await this.http.fetch(url, {
-        method: 'post', mode: 'cors', headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(findvalue)
-      }).then((res) => res.json())
-    }
+  async insertartist(findvalue) {
+
+    let url = this.baseweb + `v1/artist/create`
+    return await this.http.fetch(url, {
+      method: 'post', mode: 'cors', headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(findvalue)
+    }).then((res) => res.json())
+  }
   async updateartistAA(rec) {
 
     if (rec.id === 'create') {
@@ -293,8 +283,8 @@ async createtodo(rec){
 
 
   async findArtistsAA1() {
-    
-  
+
+
     var url = this.baseweb + 'v1/artist';
     return await this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())
   }
@@ -310,19 +300,19 @@ async createtodo(rec){
     return res.json()
   }
   async findCatalog(search) {
-      // var url = this.baseweb + 'v1/inventorycontent' + search
+    // var url = this.baseweb + 'v1/inventorycontent' + search
     var url = this.baseweb + `v1/catalog/find${search}`;
     let res = await this.http.fetch(url, { mode: 'cors' })
     return res.json()
   }
 
-async findCatalogone(id) {
-      // var url = this.baseweb + 'v1/inventorycontent' + search
+  async findCatalogone(id) {
+    // var url = this.baseweb + 'v1/inventorycontent' + search
     var url = this.baseweb + `v1/catalog/find/${id}`;
     let res = await this.http.fetch(url, { mode: 'cors' })
     return res.json()
   }
-  
+
   // let response = await this.http.get(reposUrl);
   // this.repos = response.content
   // .sort((a, b) => b.stargazers_count - a.stargazers_count);
@@ -370,7 +360,7 @@ async findCatalogone(id) {
     var url = this.baseweb + `v1/orgs/findonemongo/${orgid}`
     let res = await this.http.fetch(url, { mode: 'cors' });
     return res.json()
-   
+
 
   }
 
@@ -381,12 +371,12 @@ async findCatalogone(id) {
     return this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())
   }
 
- async findContact(search) {
+  async findContact(search) {
     // search has fullu formed query string
     var url = this.baseweb + 'v1/contactcontent' + search
     let res = await this.http.fetch(url, { mode: 'cors' });
     return res.json()
-   
+
   }
 
 
@@ -401,7 +391,7 @@ async findCatalogone(id) {
     return await this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())
 
   }
-  
+
   // https://artbased.com/api/v1/orgs/findcontacts/1119
 
 
@@ -1952,8 +1942,8 @@ async findCatalogone(id) {
   }
 
 
-// gail
-loadClients(search) {
+  // gail
+  loadClients(search) {
     // gail p clientsall
     if (search === undefined) {
 

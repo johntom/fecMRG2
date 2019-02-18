@@ -138,6 +138,7 @@
     "options": {
       "plugins": [
         "transform-class-properties",
+        "transform-async-to-generator",
         "transform-decorators-legacy",
         "transform-es2015-modules-amd"
       ]
