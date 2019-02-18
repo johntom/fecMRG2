@@ -12,8 +12,7 @@ export class Adjusternotes {
   recordId = '';
   done = false;
   edit = false;
-  // todos: Todo[] = [];
-  notes: Note[] = [];
+
   newNoteWorkDate = '';
   newNote = '';
 
@@ -24,7 +23,6 @@ export class Adjusternotes {
     this.currentItem = this.appService.testrec;
     this.mode = 0;
     this.editrec = '';
-    // this.inputable='disabled'
     this.isDisableEdit = true
     this.currentnote = '';
     this.dialogService = dialogService
@@ -42,12 +40,7 @@ export class Adjusternotes {
    
   }
   remove(item, index) {
-    // alert('you are about to delete ' + item.Notes + ' ' + index)
-    // this.mode = 0
-
-    // let notes = this.currentItem.notes
-    // notes.splice(index, 1)// start, deleteCount)
-    this.dialogService.open({ viewModel: Prompt, model: 'Delete or Cancel?', lock: false }).whenClosed(response => {
+     this.dialogService.open({ viewModel: Prompt, model: 'Delete or Cancel?', lock: false }).whenClosed(response => {
       if (!response.wasCancelled) {
         console.log('Delete')
         let notes = this.currentItem.notes
@@ -81,21 +74,10 @@ export class Adjusternotes {
 
 
 
-  //  save(note, index) {
-  //    // not used
-  //     this.mode = 0
-  //     console.log(' this.currentItem.notes', this.currentItem.notes)
-  //     this.isDisableEdit = true
-  //     document.getElementById('a' + index).disabled = true;
-  //     document.getElementById('b' + index).disabled = true;
-  //   }
-
 
   cancel(item, index) {
     this.mode = 0
-    // alert('you are about to cancel ' + item.Notes + ' ' + index)
     let notes = this.currentItem.notes//notes
-    // notes.push({WorkDate:'2017-10-30',Notes:'test'})
     if (this.mode === 1) {
 
       notes.splice(index, 1)

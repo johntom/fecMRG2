@@ -41,15 +41,17 @@ export class SearchResults {
         id: "id", // Must assign id for update to work
         fields: {
 
-          Issue: { type: "string" }, // barcode insured
-          // InventoryCode: { type: "string" },
-          // Title: { type: "string" },
-          // MediumSupport: { type: "string" },
-          // CurrentLocation: { type: "string" },
-          // Bin: { type: "string" }, // barcode insured
-          // Owner: { type: "string" },
-          // InvYear: { type: "string" },
-          // UnframedHeight: { type: "string" },
+          // LegacyID: { type: "number" }, // scan template
+          Artist: { type: "string" }, // barcode insured
+          //  ArtistRegistra: { type: "string" },
+          InventoryCode: { type: "string" },
+          Title: { type: "string" },
+          MediumSupport: { type: "string" },
+          CurrentLocation: { type: "string" },
+          Bin: { type: "string" }, // barcode insured
+          Owner: { type: "string" },
+          InvYear: { type: "string" },
+          UnframedHeight: { type: "string" },
 
 
         }
@@ -76,7 +78,16 @@ export class SearchResults {
    
     //let queryParams = this.utilService.parseQueryString();
     //let queryParams2 = this.utilService.generateQueryString(queryParams);
-   ;
+    // queryParams2.replace('%3D','=');
+    //   queryParams2.split('%3D').join('=');
+    // var find = '%3D';
+    // var re = new RegExp(find, 'g');
+    // queryParams2 = queryParams2.replace(re, '=');
+    // find = '%26';
+    // re = new RegExp(find, 'g');
+    // queryParams2 = queryParams2.replace(re, '&');
+    // this.queryParams = queryParams2
+    // console.log('squeryParams2', this.queryParams);
 
     this.queryParams = this.utilService.parseQueryStringUrl();
     console.log('queryParams', this.queryParams);
@@ -97,11 +108,19 @@ export class SearchResults {
     let inv;
     ///api/v1/inventory/getall
   
-    let response = await this.api.findTodo(this.queryParams);
-     console.log('this.repos ', response.data)
+    let response = await this.api.findCatalog(this.queryParams);
     return response.data
-   
+    console.log('this.repos ', this.api.catalogList)
 
+
+
+    // return this.api.findCatalog(this.queryParams)//searchrec)
+    //   .then((jsonRes) => {
+    //     inv = jsonRes.data;
+    //     // console.log('jsonRes ', jsonRes);
+    //     console.log('this.inv loadData 0 ', inv[0]);
+    //     return inv
+    //   });
   }
   rowSelected(e) {
     console.log('e ' + e.sender)
@@ -117,21 +136,70 @@ export class SearchResults {
     grid.select(targetRow);
     let selectedRow = grid.select();
     let dataItem = grid.dataItem(selectedRow);
-     this.appService.todo=dataItem
-    // let rt2 = '#/todo/data/' + dataItem.id//+'/'+ dataItem.ID;
+   
+    let rt2 = '#/catalog/data/' + dataItem.id+'/'+ dataItem.ID;
 
-    // this.router.navigate(rt2);// `#/inventory/${path}`);
-    
-     let qs = this.utilService.generateQueryString(dataItem.id);
-  // let path = `${qs}&tabname=Todo${this.utilService.counter++}`;
-  let path =dataItem.id// `${dataItem.id}&tabname=Todo${this.utilService.counter++}`;
-  
-      let rt2 = `#/todo/data/${path}`
-      this.router.navigate(rt2);
-
-
+    this.router.navigate(rt2);// `#/inventory/${path}`);
 
   }
- 
+  //////////////
+
+  // performSearch() {
+  //   if (this.search) {
+  //     let qs = this.utilService.generateQueryString(this.search);
+  //     let path = `Search${this.utilService.counter++}${qs}`;
+  //     this.router.navigate(`#/inventory/${path}`);
+  //     // this.router.navigate(`#/inventory/${this.search}`);
+  //     // this.router.navigate(`#/inventory/InvSearch`);
+  //   }
+  // }
+
+
+  /////////
+
+  // updateData(e) {
+
+  //   return api.updatecase(e)
+  //     .then((jsonRes) => {
+  //       console.log('this.scans ', jsonRes)
+  //       return jsonRes
+
+  //     })
+  // }
 }
 
+
+          // OwnershipStatus: { type: "string" },
+          // RetailPriceAlpha: { type: "string" },
+          // RetailPrice: { type: "string" },
+          // RetailPriceDate: { type: "date" },
+          // DateAdded: { type: "date" },
+          // PurchasedDate: { type: "string" },
+          // PurchasedFrom: { type: "string" },
+          // PurchasedPrice: { type: "string" },
+          // PurchasedForPrice: { type: "string" },
+          // Sold: { type: "string" },
+          // // Not Sold": { type: "string" },,
+          // SoldToID: { type: "string" },
+          // // Sold Date : { type: "date" },
+          // SoldFor:  { type: "string" },
+          // SoldPrice:  { type: "string" },
+          // //Min SellingPrice : "",
+          // NetToOwner: { type: "string" },
+          // ConsignedStartDate:  { type: "string" },
+          // ConsignedEndDate:  { type: "date" },
+          // MRGLocation: { type: "string" },
+          // SoldDesc:  { type: "string" },
+
+          // link: { type: "string" },workername  workeraddr workercity
+          //  "First Name": { type: "string" },
+          // workeraddr: { type: "string" },
+          // workercity: { type: "string" },
+          // filename: { type: "string" },
+          // contents: { type: "string" },
+          // createdAt: { type: "date" },
+          //  billedamt: { type: "number" },
+          //    payamt: { type: "number" },      
+          // // assignto:{ type: "string" },
+          // assignto: { defaultValue: { staffid: 1, username: 'jrt' } }
+          // // contents: { type: "memo" } billedamt payamt
