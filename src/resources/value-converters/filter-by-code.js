@@ -1,7 +1,7 @@
 import { valueConverter } from 'aurelia-framework';
 @valueConverter("filterByCode")
 export class filterByCodeValueConverter {
-  toView(array: {}[], property: string, exp: string) {
+  toView(array, property, exp) {
     if (array === undefined || array === null || property === undefined || exp === undefined) {
       return array;
     }
