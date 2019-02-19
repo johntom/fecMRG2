@@ -86,7 +86,7 @@ jobs:
             mkdir -p out/.circleci
             cp -a index.html out/www/.
             cp -a favicon.ico out/www/.
-            cp -a .gitignore out/.
+  # cp -a .gitignore out/.
             cp -a .gcloudignore out/.
             cp -a server/app.js out/.
             cp -a server/app.yaml out/.
