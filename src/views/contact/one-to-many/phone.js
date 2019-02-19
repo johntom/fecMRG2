@@ -71,7 +71,7 @@ export class Phone {
     let notes = this.currentItem.notes
     let flag = false
     let item
-    let newNoteWorkDate = moment().format('YYYY-MM-DD')
+    let newNoteWorkDate = new date();//moment().format('YYYY-MM-DD')
     if (notes === undefined) {
       flag = true
       notes = []
