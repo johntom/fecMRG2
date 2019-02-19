@@ -96,6 +96,9 @@ jobs:
             cp -a server/package.json out/.
             cp -a server/.circleci/config.yml out/.circleci/config.yml
 
+            - git config --global user.email jrt@gtz.com
+            - git config --global user.name johntom
+     
             cd out
 
             git add -A

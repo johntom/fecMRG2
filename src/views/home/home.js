@@ -86,6 +86,7 @@ export class Home {
 ,"deleted select2...selectize"
 ," git config --global user.email jrt@gtz.com"
 ,"git config --global user.name johntom"
+,"git config --list  git config user.name displays"
 
     //     Select the "Username" field and make sure it is blank
     // Press ↓ on your keyboard, a list of all of the "remembered" entries should appear.
