@@ -4,9 +4,7 @@ import { ApplicationService } from '../../services/application-service';
 import { MyDataService } from "../../services/my-data-service";
 import { Router } from 'aurelia-router';
 import { DialogService } from 'aurelia-dialog';
-//import { Prompt } from '../../../services/prompt';
 import { Promptcontact } from './prompt';
-import moment from 'moment';
 import { Promptorg } from '../prompt/promptOrg';
 
 @inject(Router, ApiService, ApplicationService, MyDataService, DialogService)
