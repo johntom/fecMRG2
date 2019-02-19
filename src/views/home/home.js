@@ -84,6 +84,8 @@ export class Home {
     
     ,"SAVE THIS AS LST REPO BEFORE ALL CHANGES"
 ,"deleted select2...selectize"
+," git config --global user.email jrt@gtz.com"
+,"git config --global user.name johntom"
 
     //     Select the "Username" field and make sure it is blank
     // Press ↓ on your keyboard, a list of all of the "remembered" entries should appear.
