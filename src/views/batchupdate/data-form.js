@@ -3,12 +3,9 @@ import { ApiService } from '../../utils/servicesApi';
 import { ApplicationService } from '../../services/application-service';
 import { MyDataService } from "../../services/my-data-service";
 import { Router } from 'aurelia-router';
-// import { Router, Redirect } from 'aurelia-router';
-// import moment from 'moment';
 import { DialogService } from 'aurelia-dialog';
-//import { Prompt } from '../../../services/prompt';
-import { Prompt } from './prompt';
-import { DialogImage } from './dialogImage';
+// import { Prompt } from './prompt';
+// import { DialogImage } from './dialogImage'; //FIX THIS! Feb 18
 
 @inject(Router, ApiService, ApplicationService, MyDataService, DialogService)
 export class DataForm {
@@ -68,28 +65,22 @@ export class DataForm {
     this.dialogService = dialogService
   }
   showModal(fieldname) {
-    // alert('in m')
-    // this.dialogService.open({ viewModel: EditPerson, model: this.person, lock: false }).whenClosed(response => {
+    //   this.dialogService.open({ viewModel: Prompt, model: fieldname, lock: false }).whenClosed(response => {
 
-    // this.dialogService.open({ viewModel: Prompt, model: 'Delete or Cancel?', lock: false }).whenClosed(response => {
-    // this.dialogService.open({ viewModel: Prompt, model: this.person, lock: false }).whenClosed(response => {
-    this.dialogService.open({ viewModel: Prompt, model: fieldname, lock: false }).whenClosed(response => {
-
-      if (!response.wasCancelled) {
-        console.log('Delete')
-        let notes = this.currentItem.notes
-        notes.splice(index, 1)// start, deleteCount)
-      } else {
-        console.log('cancel');
-      }
-      console.log(response.output);
-    });
+    //   if (!response.wasCancelled) {
+    //     console.log('Delete')
+    //     let notes = this.currentItem.notes
+    //     notes.splice(index, 1)// start, deleteCount)
+    //   } else {
+    //     console.log('cancel');
+    //   }
+    //   console.log(response.output);
+    // });
   }
 
   showModalBS() {
     $('#myModal').modal()    // this works
-    // this.myModal.modal()    
-    // `${this.myModal}`.modal()   
+  
 
   }
 
@@ -101,8 +92,7 @@ export class DataForm {
       this.error = "Incomplete form...";
     }
     $("#my-input").val("JQuery is working" + Date.now());
-    // this.myauinput = "JQuery is working" + Date.now()
-
+  
 
     $(this.edit_division).find(".modal").modal();
   }
@@ -121,17 +111,14 @@ export class DataForm {
     $(this.edit_division).find(".modal").modal();
   }
   showModalImg() {
-    // alert('in m')
-    this.dialogService.open({ viewModel: DialogImage, model: 'Delete or Cancel?', lock: false }).whenClosed(response => {
-      if (!response.wasCancelled) {
-        // console.log('Delete')
-        // let notes = this.currentItem.notes
-        // notes.splice(index, 1)// start, deleteCount)
-      } else {
-        console.log('cancel');
-      }
-      console.log(response.output);
-    });
+    //  this.dialogService.open({ viewModel: DialogImage, model: 'Delete or Cancel?', lock: false }).whenClosed(response => {
+    //   if (!response.wasCancelled) {
+      
+    //   } else {
+    //     console.log('cancel');
+    //   }
+    //   console.log(response.output);
+    // });
   }
   saveRecord() {
     window.alert("Save successful!");
@@ -144,13 +131,7 @@ export class DataForm {
   closeModal() {
     $(this.edit_division).modal('hide');
   }
-  // findOption = value => {
-  //   console.log('value', value)
-  //   this.options.find(x => x.name === value);
-  // }
-  // onChange(selectedartist) {
-  //   alert('artist: ' + selectedartist)
-  // }
+
 
   showKeywords() {
     alert(`GenreTypes: ${this.currentItem.keywords}`);
@@ -161,25 +142,17 @@ export class DataForm {
 
   selectChange(GenreID) {
     alert('in c ' + opt + GenreID)
-    // let genres = this.appService.codesGenre
-    // let gid = genres.findIndex(x => x.id === genreid)
-    // let item = genres[aid];// { ADJUSTER_ID: 4, ADJUSTER_NAME: "Donna Luciani", edit: true }
-    // this.currentItem.GenreID = item.id
-    // this.currentItem.GenreID = this.GenreID
+  
   }
 
-  showAttendees() {
-    alert(`GenreTypes: ${this.currentItem.genretypes}`);
-    //  alert(`Attendees: ${this.required}, \nOptional: ${this.optional}`);
-  }
+  // showAttendees() {
+  //   alert(`GenreTypes: ${this.currentItem.genretypes}`);
+  //   //  alert(`Attendees: ${this.required}, \nOptional: ${this.optional}`);
+  // }
   // (MediumSupport,currentItem.MediumSupport)
   selectChangedMS(MediumSupport) {
     alert('in selectChangedMS  ', MediumSupport, this.MediumSupport1)
-    // this.MediumText=''
-    // let genres = this.appService.codesGenre
-    // let gid = genres.findIndex(x => x.id === genreid)
-    // let item = genres[aid];// { ADJUSTER_ID: 4, ADJUSTER_NAME: "Donna Luciani", edit: true }
-    // this.currentItem.GenreID = item.id
+   
 
   }
   DropdownChanged(changedVal) {
@@ -193,8 +166,7 @@ export class DataForm {
       this.heading = `DataForm for record ${this.recordId}`;
       console.log('finihed heading', this.heading)
       if (this.recordId === 'create') {
-        //return 'new'
-      } else {
+       } else {
         console.log('this.recordId ', this.recordId);
         // if (!this.appService.currentClaim) { // not sure about this condition
         // need return for promise
@@ -206,15 +178,7 @@ export class DataForm {
             this.currentItem = inv[0]
             this.appService.currentItem = inv[0]
             this.appService.testrec = inv[0]
-            //  "MediumSupportobj" : {
-            //         "CodeType" : NumberInt(12), 
-            //         "Description" : "Charcoal and graphite on paper", 
-            //         "CodeTypeDesc" : "Medium/Support", 
-            //         "ID" : NumberInt(5649), 
-            //         "id" : "59d282beb777d41f42a5b2f2"
-            //     }
-
-            // still needed if obj 		  value.two-way="currentItem.MediumSupportobj"   vs value.bind > 
+           
             let meds = this.appService.codesListMediumSupport
             if ((this.currentItem.MediumSupportobj === undefined) || (this.currentItem.MediumSupportobj === null)) {
             } else {
@@ -238,9 +202,7 @@ export class DataForm {
               oid = orgs.findIndex(x => x._id === this.currentItem.OwnerID)
               orgobj = this.appService.orgsList[oid]//10]
               if (orgobj!==undefined)   this.currentItem.ownername = orgobj.OrgName
-              // this.OrgName = orgobj
-              // this.dorg.value = this.OrgName  this.currentItem.ownername this.currentItem.soldtoname
-            }
+                  }
 
             this.appService.originalrec = JSON.parse(JSON.stringify(this.appService.currentItem))// inv[0]));
             console.log('finihed active1')
@@ -252,25 +214,7 @@ export class DataForm {
     }
 
     console.log('finihed active4')
-    // if (this.appService.LookupDataLoaded) {
-    //   console.log('using data cache....')
-    //   return Promise.resolve(true);
-    // } else {
-    //   console.log('loading data...');
-    //   return Promise.all([
-    //     this.dataService.loadArtists(),
-    //     this.dataService.loadCodes(),
-
-    //   ]).then(values => {
-    //     this.appService.artistList = values[0];
-    //     this.appService.codesList = values[1];
-    //     this.appService.LookupDataLoaded = true;
-    //     console.log(' this.statusList', this.appService.statusList)
-    //     //bad   this.currentItem = this.items.find(f => f.id == params.id);
-    //   }).catch(error => {
-    //     console.error("Error encountered while trying to get data.", error);
-    //   });
-    // }
+    
   }
 
   attached() {
@@ -309,11 +253,7 @@ export class DataForm {
       this.api.saveinventory(this.appService.currentItem).then((jsonRes) => {
         console.log('jsonRes ', jsonRes);
         let tab = this.appService.tabs.find(f => f.isSelected);
-        //console.log('tab ', tab, this.tabname);
-
-        //  this.closeTab(tab);
-        //  let rt2 = '#/inventory/' + this.tabname ///claim'//Search?'cant use when search has a number 
-        //  this.router.navigate(rt2);
+        
 
       });
 
@@ -321,9 +261,7 @@ export class DataForm {
   }
   close() {
     let tab = this.appService.tabs.find(f => f.isSelected);
-    // Next, we navigate to the newly created claim
-    // Finally, we close out this tab
-    this.closeTab(tab);
+      this.closeTab(tab);
     let rt2 = '#/inventory/' + this.tabname ///claim'//Search?'cant use when search has a number 
     console.log('this.tabname ', this.tabname)
     this.router.navigate(rt2);

@@ -3,8 +3,6 @@ import { inject } from 'aurelia-dependency-injection';
 import { ApplicationService } from '../../services/application-service';
 import { MyDataService } from "../../services/my-data-service";
 import { EventAggregator } from 'aurelia-event-aggregator';
-
-import lodash from 'lodash';
 @inject(ApiService, ApplicationService, MyDataService, EventAggregator)
 export class DataForm {
   heading = 'DataAddForm HEADER...';
@@ -25,8 +23,7 @@ export class DataForm {
   async addartist() {
     this.artist = {}
     this.artist.id = 'create'
-    //       this.currentItem.artist = undefined//{} 
-    //       this.currentItem.provenance = []
+  
   }
   async activate(params, routeConfig) {
 
