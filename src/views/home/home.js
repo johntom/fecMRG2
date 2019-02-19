@@ -81,6 +81,10 @@ export class Home {
     "never pass id to put or post /:id",
     "to trip cci do a commit",
     "https://circleci.com/gh/johntom/fecMRG2/edit  https://circleci.com/gh/johntom/fecMRG2/21 build and deploy",
+    
+    ,"SAVE THIS AS LST REPO BEFORE ALL CHANGES"
+,"deleted select2...selectize"
+
     //     Select the "Username" field and make sure it is blank
     // Press ↓ on your keyboard, a list of all of the "remembered" entries should appear.
     // Using ↑ & ↓ highlight an entry you would like to delete.

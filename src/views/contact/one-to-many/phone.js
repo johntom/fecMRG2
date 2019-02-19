@@ -1,5 +1,5 @@
 import { inject } from 'aurelia-dependency-injection';
-// import $ from 'jquery';
+
 import { ApiService } from '../../../utils/servicesApi';
 import { ApplicationService } from '../../../services/application-service';
 
