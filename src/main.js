@@ -1,4 +1,4 @@
-import 'babel-polyfill';
+// import 'babel-polyfill';
 
 export async function configure(aurelia) {
   aurelia.use
