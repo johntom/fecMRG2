@@ -48,7 +48,8 @@ jobs:
 
   deploy-to-stage:
     docker:
-      # specify the version you desire here   # below favicon
+      # specify the version you desire here  
+      # below favicon
       # cp -a .gitignore out/.
       # cp -a .gcloudignore out/.
       - image: circleci/node:8.11.2
