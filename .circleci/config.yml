@@ -52,7 +52,8 @@ jobs:
       # below favicon
       # cp -a .gitignore out/.
       # cp -a .gcloudignore out/.
-      - image: circleci/node:8.11.2
+      # node:8.11.2
+      - image: circleci/node:9.11.2
 
     working_directory: ~/repo
 
