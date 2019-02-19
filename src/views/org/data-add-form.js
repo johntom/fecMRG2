@@ -3,12 +3,7 @@ import { ApiService } from '../../utils/servicesApi';
 import { inject } from 'aurelia-dependency-injection';
 import { ApplicationService } from '../../services/application-service';
 import { MyDataService } from "../../services/my-data-service";
-import moment from 'moment';
-
 import { EventAggregator } from 'aurelia-event-aggregator';
-// import { Router } from 'aurelia-router';
-// import { Router, Redirect } from 'aurelia-router';
-// import moment from 'moment';
 
 @inject(Router, ApiService, ApplicationService, MyDataService, EventAggregator)
 export class DataAddForm {
@@ -22,19 +17,13 @@ export class DataAddForm {
     this.router = router;
     this.api = api;
     this.appService = appService;
-    //  alert('in cons2')
-    // this.inv = '';
     this.dataService = dataService;
     this.eventAggregator = eventAggregator;
-    // // this.createEventListeners();
     this.appService.currentClaim = 0 // {}; DO NOT DO THIS
     this.inscoAdjusters = []
      this.inscoAddresses= []
     //breaks form
     //    this.currentnewItem={}
-    //         let newNoteWorkDate = moment().format('YYYY-MM-DD')
-    // this.currentnewItem.EDITED =newNoteWorkDate
-    // this.currentnewItem.RECEIVED =newNoteWorkDate
 
   }
 
@@ -48,11 +37,10 @@ export class DataAddForm {
 
     let insco = this.appService.InsurancecompanyList
     let aid = insco.findIndex(x => x.INSURANCE_COMPANY_ID === insid)
-    let item = insco[aid];// { ADJUSTER_ID: 4, ADJUSTER_NAME: "Donna Luciani", edit: true }
+    let item = insco[aid];
     this.inscoAdjusters = item.contacts
     this.inscoAddresses= item.addresses
-    // adjusters[index] = item
-
+    
   }
 
   selectChangedIA(adjusterid) {
@@ -90,9 +78,7 @@ export class DataAddForm {
     // this.selectAdjusterElement.removeEventListener('change', this.adjusterSelectedListener);
   }
 
-  // canDeactivate() {
-  //    return confirm('Are you sure you want to leave this page?');
-  // }
+
   saveclaim() {
     console.log('this.adjuster.ADJUSTER_ID ', this.currentnewItem.ADJUSTER_ID);
     this.currentnewItem.STATUS = 1;

@@ -2,19 +2,14 @@
 import { DialogController } from 'aurelia-dialog';
 import { ApplicationService } from '../../services/application-service';
 import { MyDataService } from "../../services/my-data-service";
-//
 import { DialogService } from 'aurelia-dialog';
 import { PromptServ } from '../../services/promptserv';
 import { ApiService } from '../../utils/servicesApi';
-
-import 'bootstrap-select/css/bootstrap-select.min.css';
 import { bindable, inject } from 'aurelia-framework';
-// @inject()
 import { TaskQueue } from 'aurelia-task-queue';
+ // static inject = [DialogController, ApplicationService, MyDataService, DialogService, ApiService];
 
-//,Element,
 @inject(DialogController, ApplicationService, MyDataService, DialogService, ApiService ,TaskQueue,Element)
-
 export class Prompt {
   @bindable picker;
 
@@ -26,8 +21,7 @@ export class Prompt {
   @bindable searchdoc
 
 
-  // static inject = [DialogController, ApplicationService, MyDataService, DialogService, ApiService];
-  mappingDataStructure = {
+   mappingDataStructure = {
     class: 'class',
     option: 'name',
     style: 'style',
@@ -37,9 +31,7 @@ export class Prompt {
   mappingorgDataStructure = {
     class: 'class',
     option: 'OrgName'
-    // style: 'style',
-    // title: 'title',
-    // tokens: 'tokens'
+   
   }
   selectOptions = {
     liveSearch: true,
@@ -61,8 +53,7 @@ showitval=false
     this.controller = controller;
     this.answer = null;
     this.appService = appService;
-    //  this.inv = '';
-    this.currentItem = this.appService.testrec;
+     this.currentItem = this.appService.testrec;
     this.thefield = 1
     this.dataService = dataService;
     controller.settings.lock = false;
@@ -89,39 +80,10 @@ orgValueChanged() {
   }
  searchdocChanged(value) {
    console.log('value  onChanged',value);
-    // if (value === "") { this.inmates = this.allinmates } else
-    //       this.inmates = this.inmates.filter((item) => {
-    //     for (let i in this.metainmates) {
-    //       let md = this.metainmates[i]
-    //       if (item.inmate[md] !== undefined) {
-    //         // if (item[md].toLowerCase().search(value.toLowerCase()) != -1) return true
-    //         if ((item.inmate[md]).toLowerCase().search(value.toLowerCase()) != -1) return true
-    //       }
-    //     }
-    //   });
+   
     return
   }
-  // getStates(filter, limit) {
-  //   let filterlc = filter.toLowerCase()
-  //   let states
-  //   let Promise = this.dataService.loadStates()
-  //     .then(response => {
-  //       states = response
-  //       console.log('states', states)
-  //       return states //response // .json();
-  //     })
-  //     .then(states => filter.length > 0 ? states.filter(item => item.name.toLowerCase().indexOf(filter.toLowerCase()) > -1) : states)
-  //     .then(states => filter.length > 0 ? states.filter(item => item.name.toLowerCase().indexOf(filterlc) > -1) : states)
-
-  //   return Promise
-  // }
-
-  // activate(question) {
-  //    this.question = question;
-  //} person
-
-	// <button click.trigger="showit()">showit</button>
-	// 						<div show.bind="showitval">
+ 
 showit() {
   this.showitval=true
   this.allorgs=this.appService.orgsList
@@ -133,17 +95,7 @@ showit() {
   activate(fieldname) {
     this.fieldname = fieldname;
     this.fieldbase = ''
-    // if (this.fieldname === 'ConsignedTo') {
-    //PhotographerID PurchasedFrom ConsignedTo ConsignedTo ConsignedFromID ConsignmentShippingID OwnerID 
-    //  LoanTo ConsignedFromID InsuredBy PurchasedFrom 
-    // OwnerID SoldTo or SoldToID
-    // if (this.fieldname === 'ConsignedTo' || this.fieldname === 'ConsignedFromID'
-    //   || this.fieldname === 'ConsignmentShippingID' || this.fieldname === 'OwnerID'
-    //   || this.fieldname === 'PhotographerID' || this.fieldname === 'PurchasedFrom'
-    //   || this.fieldname === 'ConservedBy' || this.fieldname === 'SoldToID'
-    //   || this.fieldname === 'SoldTo'
-    // )
-    // this.allorgs=this.appService.orgsList
+   
     let opos = this.orgfields.findIndex(x => x === fieldname);
     if (opos !== -1) {
       this.fieldbase = 'ORG'
@@ -151,8 +103,6 @@ showit() {
       let orgcbs = this.appService.orgsList
       let origid
       this.orgobj = {}
-      //  origid = this.appService.orgsList.findIndex(x => x._id === this.currentItem.ConservedBy)
-      //  this.orgobj = this.appService.orgsList[origid]
       if (this.fieldname === this.orgfields[opos]) {
         if ((this.currentItem[this.orgfields[opos]] === undefined) || (this.currentItem[this.orgfields[opos]] === null)) {
         } else {
@@ -214,7 +164,6 @@ showit() {
       });
 
     } else {
-      // make api call
       let sl = `${this.addlist}`
       return this.api.createSavedlists(sl)
         .then((jsonRes) => {
@@ -239,8 +188,7 @@ showit() {
   }
   save() {
     if (this.fieldbase === 'ORG') {
-      //   let orgid = `${this.OrgName._id}`
-      // let orgname = `${this.OrgName.OrgName}`
+      //   let orgid = `${this.OrgName._id}`    // let orgname = `${this.OrgName.OrgName}`
       let orgid = this.orgSelection.selectedOrgItem._id//`${this.OrgName.id}`
       let orgname = this.orgSelection.selectedOrgItem.OrgName// `${this.OrgName.OrgName}`
       if (this.fieldname === 'ConservedBy') {
@@ -302,8 +250,7 @@ showit() {
       if (this.fieldname === 'SavedList') {
         let name = `${this.name.name}`
         console.log(' dsaved.value', name)//, this.dsaved.value)
-        // this.dsaved.value = this.name//this.addlist
-        this.appService.currentsavedlist = name// dsaved.value
+         this.appService.currentsavedlist = name// dsaved.value
       }
     }
     this.controller.this.controller.ok('saved')//cancel()

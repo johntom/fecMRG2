@@ -3,22 +3,10 @@ import { ApiService } from '../../utils/servicesApi';
 import { ApplicationService } from '../../services/application-service';
 import { MyDataService } from "../../services/my-data-service";
 import { Router } from 'aurelia-router';
-// import { Router, Redirect } from 'aurelia-router';
-// import moment from 'moment';
 import { DialogService } from 'aurelia-dialog';
-//import { Prompt } from '../../../services/prompt';
 import { Prompt } from './prompt';
-import moment from 'moment';
 import { DialogImage } from './dialogImage';
-// import {
-//   ValidationControllerFactory,
-//   ValidationController,
-//   ValidationRules,
-//   validateTrigger
-// } from 'aurelia-validation';
-// import { BootstrapFormRenderer } from '../../bootstrap-form-renderer';
 
-// @inject(Router, ApiService, ApplicationService, MyDataService, DialogService, ValidationControllerFactory)
 @inject(Router, ApiService, ApplicationService, MyDataService, DialogService)
 export class DataForm {
   controller = null;
@@ -26,11 +14,7 @@ export class DataForm {
   Title = '';
   InvYear = '';
   InventoryCode = '';
-  // user = new User();
-
-  // currentItem = new currentItem(); // for validate
-
-  // showImage=false;
+ 
   heading = 'DataForm HEADER...'
   footer = 'DataForm FOOTER...'
   recordId = '';
@@ -118,11 +102,7 @@ export class DataForm {
       }
     }
   });
-  /*
-    "CodeType" : NumberInt(3), 
-     "CodeTypeDesc" : "Genre"
-      */
-  // addNew(ctx) {
+ 
   addNew() {
     var value = this.multiselect.input.val();
     var dataSource = this.multiselect.dataSource;
@@ -164,11 +144,7 @@ export class DataForm {
     this.router = router
     this.dialogService = dialogService
     this.skippromt = false
-    // this.controller = controllerFactory.createForCurrentScope();
-    // this.controller.addRenderer(new BootstrapFormRenderer());
-    // this.controller.addObject(this);
-    // this.controller.addObject(this.currentItem);
-    // this.currentItem={}
+   
   }
   showModal(fieldname) {
     this.currentItem.fieldname = fieldname
@@ -179,18 +155,7 @@ export class DataForm {
     let findOptions = this.appService.orgsList.find(x => x._id === this.currentItem.SoldToID)
     console.log('appService.orgsList', findOptions)
     this.dialogService.open({ viewModel: Prompt, model: this.currentItem, lock: true }).whenClosed(response => {
-      //  if(this.recordId==='create')  this.currentItem.recordId=
-      // if (fieldname === 'Artist') {
-      //   let artistsel =   this.currentItem.artist;
-      //    if (artistsel===undefined){
-      //      artistsel=null
-      //  //    this.currentItem.ArtistName=null
-      //    }
-      //   this.currentItem.artist = artistsel 
-      //  //  this.currentItem.ArtistName=  this.currentItem.artistname
-      //  //(this.currentItem.artist); 
-      // }
-
+     
       if (!response.wasCancelled) {
         // console.log('Delete')
         // let notes = this.currentItem.notes
@@ -238,17 +203,12 @@ export class DataForm {
     $(this.edit_division).find(".modal").modal();
   }
   showModalImg() {
-    // this.dialogService.open({ viewModel: Prompt, model: this.currentItem, lock: false }).whenClosed(response => {
-
-    // this.dialogService.open({ viewModel: DialogImage, model: 'Delete or Cancel?', lock: false }).whenClosed(response => {
-    this.dialogService.open({ viewModel: DialogImage, model: this.currentItem, lock: false }).whenClosed(response => {
+     this.dialogService.open({ viewModel: DialogImage, model: this.currentItem, lock: false }).whenClosed(response => {
 
 
 
       if (!response.wasCancelled) {
-        // console.log('Delete')
-        // let notes = this.currentItem.notes
-        // notes.splice(index, 1)// start, deleteCount)
+     
       } else {
         console.log('cancel');
       }
@@ -266,13 +226,7 @@ export class DataForm {
   closeModal() {
     $(this.edit_division).modal('hide');
   }
-  // findOption = value => {
-  //   console.log('value', value)
-  //   this.options.find(x => x.name === value);
-  // }
-  // onChange(selectedartist) {
-  //   alert('artist: ' + selectedartist)
-  // }
+
 
   showKeywords() {
     alert(`GenreTypes: ${this.currentItem.keywords}`);
@@ -292,8 +246,7 @@ export class DataForm {
       });
   }
   selectChange(GenreID) {
-    // alert('in c ' + opt + GenreID)
-
+   
   }
 
   showAttendees() {
@@ -320,12 +273,7 @@ export class DataForm {
         this.addmode = true
         this.appService.testrec = {}
         this.appService.originalrec = {}
-        //   this.currentItem.STATUS = 1
-        //   this.currentItem.insured = {}
-        //   this.currentItem.claimant = {}
-        //   this.currentItem.insco = {}
-        //   this.currentItem.insaddress = {}
-        //   this.currentItem.inscontact = {}
+       
         this.currentItem.artist = undefined//{} 
         this.currentItem.provenance = []
         this.currentItem.notes = []
@@ -375,8 +323,6 @@ export class DataForm {
             this.appService.originalrec = JSON.parse(JSON.stringify(this.currentItem))
 
             console.log(this.appService.originalrec, this.currentItem.PrinterLocation)
-            // this.getimageinfo()// dom not ready
-
            
 
             this.currentItem.isDirty = () => {
@@ -415,12 +361,7 @@ export class DataForm {
   }
   mrucheck(newrec, prevtemp) {
     this.skip = false
-    // if (newrec.id === prevtemp[0].id || prevtemp[0].InvCode) this.skip = true;
-    // if (newrec.id === prevtemp[1].id || prevtemp[1].InvCode) this.skip = true;
-    // if (newrec.id === prevtemp[2].id || prevtemp[2].InvCode) this.skip = true;
-    // if (newrec.id === prevtemp[3].id || prevtemp[3].InvCode) this.skip = true;
-    // if (newrec.id === prevtemp[4].id || prevtemp[4].InvCode) this.skip = true;
-
+   
     if (prevtemp[0] != undefined && newrec.id === prevtemp[0].id) this.skip = true;
     if (prevtemp[1] != undefined && newrec.id === prevtemp[1].id) this.skip = true;
     if (prevtemp[2] != undefined && newrec.id === prevtemp[2].id) this.skip = true;
@@ -461,15 +402,9 @@ export class DataForm {
     this.mrucheck(newrec, prevtemp);
     // this.skip = false
     if (!this.skip) {
-      // var temp = [this.recordId, mruget.mru1, mruget.mru2, mruget.mru3, mruget.mru4];
-
-      // if (this.recordId === mruget.mru1 || this.recordId === mruget.mru2 || this.recordId === mruget.mru3 ||
-      //   this.recordId === mruget.mru4 || this.recordId === mruget.mru5) { } else {
-      mruinfo = new mruinfo(temp);
-      // localStorage.setItem('tabinfo', JSON.stringify(tabinfo));
+          mruinfo = new mruinfo(temp);
       localStorage.setItem('mru-mrg', JSON.stringify(mruinfo));
-      // }
-    }
+     }
   }
 
 
@@ -485,14 +420,7 @@ export class DataForm {
     })
   }
 
-
-  // setting these fields causes form dirty
-  //     "clientHeight": 231,
-  //     "clientHeightRatio": 1,
-  //     "clientWidth": 300,
-  // "clientWidthRatio": "1.3
   getimageinfo(opt) {
-    // set this.appService.originalrec alsoe
     if (this.currentItem.clientHeight === undefined || this.currentItem.clientHeight === 0 || opt === 1) {
       let imageWidth, imageHeight, clientHeightRatio, clientWidthRatio
 
@@ -500,9 +428,7 @@ export class DataForm {
         .then(response => {
           this.currentItem.clientHeight = this.mainimage.clientHeight
           this.currentItem.clientWidth = this.mainimage.clientWidth
-          // this.appService.originalrec.clientHeight = this.mainimage.clientHeight
-          // this.appService.originalrec.clientWidth = this.mainimage.clientWidth
-
+      
           if (this.currentItem.clientHeight === this.currentItem.clientWidth) {
             clientHeightRatio = 1
             clientWidthRatio = 1
@@ -517,68 +443,23 @@ export class DataForm {
           }
           this.currentItem.clientHeightRatio = clientHeightRatio
           this.currentItem.clientWidthRatio = clientWidthRatio
-
-          // this.appService.originalrec.clientHeightRatio = clientHeightRatio
-          // this.appService.originalrec.clientWidthRatio = clientWidthRatio
-          //2-4  reset here again 
-          this.appService.originalrec = JSON.parse(JSON.stringify(this.currentItem))// inv[0]));
+    this.appService.originalrec = JSON.parse(JSON.stringify(this.currentItem))// inv[0]));
 
         })
     }
   }
 
-  // getimageinfoReverse() {
-  //       let imageWidth, imageHeight, clientHeightRatio, clientWidthRatio
-
-  //       let Promise = this.loadimage()
-  //         .then(response => {
-  //           this.currentItem.clientHeight = this.mainimage.clientHeight
-  //           this.currentItem.clientWidth = this.mainimage.clientWidth
-  //           // this.appService.originalrec.clientHeight = this.mainimage.clientHeight
-  //           // this.appService.originalrec.clientWidth = this.mainimage.clientWidth
-
-  //           if (this.currentItem.clientHeight === this.currentItem.clientWidth) {
-  //             clientHeightRatio = 1
-  //             clientWidthRatio = 1
-  //           } else if (this.currentItem.clientHeight > this.currentItem.clientWidth) {
-  //            clientHeightRatio = 1
-  //             clientWidthRatio = (this.currentItem.clientWidth / this.currentItem.clientHeight).toPrecision(2)
-
-  //           } if (this.currentItem.clientWidth > this.currentItem.clientHeight) {
-  //             clientWidthRatio = 1
-  //             clientHeightRatio =  (this.currentItem.clientHeight / this.currentItem.clientWidth).toPrecision(2)
-  //           }
-  //           this.currentItem.clientHeightRatio = clientHeightRatio
-  //           this.currentItem.clientWidthRatio = clientWidthRatio
-
-  //           // this.appService.originalrec.clientHeightRatio = clientHeightRatio
-  //           // this.appService.originalrec.clientWidthRatio = clientWidthRatio
-  //           //2-4  reset here again 
-  //           this.appService.originalrec = JSON.parse(JSON.stringify(this.currentItem))// inv[0]));
-
-  //         })
-
-  //   }
 
   attached() {
-    // if (this.appService.dataFormOneToOneTabs.length > 0) {
-    //   let tab = this.appService.dataFormOneToOneTabs[0];
-    //   this.selectOneToOneTab(tab);
-    // }
-
+   
     // move to attach
     // bypass save if in create mode
     if (this.recordId !== 'create') {
 
-      // if (!this.currentItem.savedonce || this.currentItem.savedonce === undefined) {
-
-      //   this.currentItem.savedonce = true
-      //   this.saveinventory(0)
-      // }
+      
 
       let tabinfo, tabindex
-      // tabinfo = localStorage.getItem('tabinfo');
-
+     
       tabinfo = localStorage.getItem('tabinfo' + this.currentItem.InventoryCode);
       if (tabinfo === null) {
         tabindex = 0
@@ -633,12 +514,7 @@ export class DataForm {
         // SAVE WITH IMAGE INFO IN CASE ITS MISSING
         // nsure if needed this.getimageinfo()
 
-        // this.currentItem.clientWidth = this.currentDim.clientWidth;
-        // this.currentItem.clientHeight = this.currentDim.clientHeight;
-        // this.currentItem.imageWidth = this.currentDim.imageWidth;
-        // this.currentItem.imageHeight = this.currentDim.imageHeight;
-        // this.currentItem.clientHeightRatio = this.currentDim.clientHeightRatio;
-        // this.currentItem.clientWidthRatio = this.currentDim.clientWidthRatio;
+       
 
         this.api.saveinventory(this.currentItem).then((jsonRes) => {
           console.log('jsonRes ', jsonRes)
@@ -648,12 +524,8 @@ export class DataForm {
           this.appService.testrec = this.currentItem
           this.appService.currentView = this.currentItem
 
-          /////////////////////
-          this.appService.originalrec = JSON.parse(JSON.stringify(this.currentItem))
-          //this.appService.originalrec = this.currentItem
-
-
-
+           this.appService.originalrec = JSON.parse(JSON.stringify(this.currentItem))
+        
           this.skippromt = true
           if (option === 1) {
             // alert('jr')
@@ -709,18 +581,7 @@ export class DataForm {
   }
 
   addInventory(images) {
-    // alert(images);
-    //images is file
-    //check for dups 2/21/2018
-    //https://stackoverflow.com/questions/32736599/html-file-upload-and-action-on-single-button
-    // let docs = this.currentItem.docs
-    // let foraddDocsmData = new FormData()
-    //let newDate = moment().format('YYYY-MM-DD')
-    //let flag = false
-    //let prom = Promise.resolve(this.checkData(images, formData)).then(values => {
-    //   let newform = values;
-    //   console.log('after checkdata1 ',  newform);
-    //   // this.status, this.api.fupload(formData, this.currentItem.CLAIM_NO)
+
     let formData = new FormData()
     formData.append('file', images[0])
     console.log('file', images[0]);
@@ -729,9 +590,7 @@ export class DataForm {
     this.mainimage.src = null;
 
     this.api.upload(formData, this.currentItem.InventoryCode)
-      // this.api.uploadPARKTOWER(formData, this.currentItem.InventoryCode)
-
-
+   
 
       .then((jsonRes) => {
         this.upmess = jsonRes.data
@@ -800,13 +659,10 @@ export class DataForm {
   }
 
   requestcloseNoCheck() {
-
     let tab = this.appService.tabs.find(f => f.isSelected);
     let index = this.appService.tabs.findIndex(f => f.isSelected)
     let rt2 = '#/inventory/' + this.tabname
-
-
-    let newIndex = (index > 0) ? index - 1 : 0;
+   let newIndex = (index > 0) ? index - 1 : 0;
     let newTab = this.appService.tabs[newIndex];
     this.appService.tryCloseTab(this.appService.currentView, tab, newTab.href);
 

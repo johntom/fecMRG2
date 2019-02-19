@@ -1,8 +1,8 @@
 // Aurelia Framework specific functionality
 import {bindable, inject, customElement} from 'aurelia-framework';
 
-// Import JSPM modules we installed earlier
-import $ from 'jquery';
+
+// import $ from 'jquery';
 import 'select2';
 import './select2.css!' 
 //import 'select2/css/select2.css!'

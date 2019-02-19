@@ -3,7 +3,7 @@ import { ApiService } from '../../utils/servicesApi';
 import { inject } from 'aurelia-dependency-injection';
 import { ApplicationService } from '../../services/application-service';
 import { MyDataService } from "../../services/my-data-service";
-import moment from 'moment';
+
 
 import { EventAggregator } from 'aurelia-event-aggregator';
 // import { Router } from 'aurelia-router';
