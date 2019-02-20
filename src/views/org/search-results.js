@@ -27,8 +27,9 @@ export class SearchResults {
       read: (options) => {
         this.loadData()
           .then((orgs) => {
-            console.log(' Adjusters datasource ', orgs[0], orgs.length)
             options.success(orgs);
+                  //  console.log(' Adjusters datasource ', orgs[0], orgs.length)
+     
           });
       },
     },
