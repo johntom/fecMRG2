@@ -101,10 +101,10 @@
 			<div show.bind="fieldname==='SavedList'">
 				<div class="form-group flex-column-1">
 					<h2> ${doc} </h2>
-
-					<aubs-typeahead ref='dsaved' data.bind="appService.savedlists" value.bind="name" debounce.bind="350" placeholder="savedlists"
+<!-- fix-aubs  -->
+					<!-- <aubs-typeahead ref='dsaved' data.bind="appService.savedlists" value.bind="name" debounce.bind="350" placeholder="savedlists"
 					 open-on-focus.bind="true" key="name" results-limit.bind="22" select-single-result.bind="true">
-					</aubs-typeahead>
+					</aubs-typeahead> -->
 
 					<div>
 						<input ref="addtextref" id="addlist" type="text" class="form-control" placeholder="Enter a New SaveList name" value.bind="addlist">
@@ -125,8 +125,7 @@
 					<datalist id="myDatalist">
 						<option repeat.for="option of appService.codesListMediumSupport">${option.Description}</option>
 					</datalist>
-					<!-- <pre style="margin-top: 100px"><code>${selectedValue}/${selectedValue.Description}</code></pre> -->
-				</div>
+					</div>
 			</div>
 
 
@@ -159,24 +158,6 @@
 					<!-- <pre style="margin-top: 100px"><code>${selectedValueC.CatalogTitle}</code></pre> -->
 				</div>
 			</div>
-<!-- 
-			<div show.bind="fieldname==='Catalog'">
-				<div class="form-group flex-column-1">
-					
-				
-<label for="Catalog">Catalog</label>
-					<input ref="myDatalistC" type="text" list="myDatalistC"
-           change.delegate="changeCallbackCatalog(selectedValue)" 
-					input.delegate="findOptionC = findOptionC($event.target.value)"
-					/>
-					<datalist id="myDatalistC">
-						<option repeat.for="option of appService.catalogList">${option.CatalogTitle}</option>
-					</datalist>
-					<pre style="margin-top: 100px"><code>${selectedValueC.CatalogTitle}</code></pre>
-				</div>
-			</div> -->
-
-
 
 			<div show.bind="fieldname==='OrgID'">
 				<div class="form-group flex-column-1">

@@ -10,20 +10,20 @@ import { bindable, inject } from 'aurelia-framework';
 
 export class Batchupdate {
   @bindable picker;
- 
+
   heading = 'Batch Update';
   counter = 1;
   search = {}
   mappingDataStructure = {
     class: 'class',
-    
+
     option: 'name',
-  
+
     style: 'style',
     title: 'title',
     tokens: 'tokens'
   }
-selectOptions = {
+  selectOptions = {
     liveSearch: true,
     showSubtext: true,
     showTick: true,
@@ -36,16 +36,15 @@ selectOptions = {
     subtext: 'company'
   };
 
-  
+
   constructor(router, utilService, appService, dataService) {
     this.router = router;
     this.utilService = utilService;
     this.appService = appService;
-  
     this.dataService = dataService;
   }
 
- 
+
   performSearch() {
     let savedlist = `${this.name}`
     if (savedlist === 'undefined' || savedlist === undefined) {
@@ -60,7 +59,7 @@ selectOptions = {
         // let path = `list:${qs}`;// name on tab
         // console.log('this.search  path ', this.search, path)
         this.appService.currentActionlist = this.search.savedlists
-      
+
         this.router.navigate(`#/batchupdte/${path}`);
         this.appService.currentSearch = path //`Search${counter}`
       } else alert('Please make a selection')
@@ -72,7 +71,7 @@ selectOptions = {
   attached() {
     // this.savedlists = this.appService.savedlists
   }
- 
+
   activate() {
     this.savedlists = this.appService.savedlists
   }

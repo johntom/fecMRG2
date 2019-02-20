@@ -27,13 +27,15 @@
           Exhibition batch edit and update those items</pre>
 							<div show.bind="!hide1">
 						TransportDate <input type="date" id="TransportDate" class="form-control input-sm" value.bind="item.TransportDate">						TransportTo ?
-						<aubs-typeahead ref='dtransporto' data.bind="appService.codesListLocation" value.bind="item.Description" debounce.bind="350"
+					
+           <!-- fix-aubs  -->
+          	<!-- <aubs-typeahead ref='dtransporto' data.bind="appService.codesListLocation" value.bind="item.Description" debounce.bind="350"
 						 placeholder="TransportTo" open-on-focus.bind="true" key="Description" results-limit.bind="12" select-single-result.bind="true">
 						</aubs-typeahead>
 						<hr> TransportFrom ?
 						<aubs-typeahead ref='dtransportfrom' data.bind="appService.codesListLocation" value.bind="item.Description2" debounce.bind="350"
 						 placeholder="TransportFrom" open-on-focus.bind="true" key="Description" results-limit.bind="12" select-single-result.bind="true">
-						</aubs-typeahead>
+						</aubs-typeahead> -->
 						<hr> TransportNotes
 						<input type="text" id="TransportNotes" class="form-control input-sm" value.bind="item.TransportNotes">
 						<button id="save1" class="btn btn-primary" type="button" click.delegate="save1()">save Transport </button>
@@ -106,9 +108,11 @@
 
 					<div show.bind="!hide4">
 						ProvOwner <input type="text" id="ProvOwner" class="form-control input-sm" value.bind="item.ProvOwner"> ProvLoc
-						<aubs-typeahead ref='provlocation' data.bind="appService.codesListLocation" value.bind="item.Description" debounce.bind="350"
+				
+         <!-- fix-aubs  -->
+        		<!-- <aubs-typeahead ref='provlocation' data.bind="appService.codesListLocation" value.bind="item.Description" debounce.bind="350"
 						 placeholder="mrg location" open-on-focus.bind="true" key="Description" results-limit.bind="12" select-single-result.bind="true">
-						</aubs-typeahead>
+						</aubs-typeahead> -->
 
 
 						ProvDate <input type="text" id="ProvDate" class="form-control input-sm" value.bind="item.ProvDate"> ProvMemo
@@ -121,9 +125,10 @@
 
 					<div show.bind="!hide5">
 						MRG Location
-						<aubs-typeahead ref='mrglocation' data.bind="appService.codesInventoryLocation" value.bind="item.Description" debounce.bind="350"
+             <!-- fix-aubs  -->
+						<!-- <aubs-typeahead ref='mrglocation' data.bind="appService.codesInventoryLocation" value.bind="item.Description" debounce.bind="350"
 						 placeholder="mrg location" open-on-focus.bind="true" key="Description" results-limit.bind="12" select-single-result.bind="true">
-						</aubs-typeahead>
+						</aubs-typeahead> -->
 
 						<button id="save5" class="btn btn-primary" type="button" click.delegate="save5()">save mrglocation</button>
 
@@ -131,19 +136,20 @@
 
 					<div show.bind="!hide6">
 						Temp Location
-
-						<aubs-typeahead ref='templocation' data.bind="appService.codesInventoryLocation" value.bind="item.Description" debounce.bind="350"
+ <!-- fix-aubs  -->
+						<!-- <aubs-typeahead ref='templocation' data.bind="appService.codesInventoryLocation" value.bind="item.Description" debounce.bind="350"
 						 placeholder="temp location" open-on-focus.bind="true" key="Description" results-limit.bind="12" select-single-result.bind="true">
-						</aubs-typeahead>
+						</aubs-typeahead> -->
 						<button id="save6" class="btn btn-primary" type="button" click.delegate="save6()">save 1</button>
 					</div>
 
 					<div show.bind="!hide8">
 						Client Date
 						<input type="date" ref="date" class="form-control input-sm" value.bind="item.offerdate"> Org
-						<aubs-typeahead ref='doffering' data.bind="appService.orgsList" value.bind="item.OrgName" debounce.bind="350" placeholder="offering to arg"
+					 <!-- fix-aubs  -->
+          	<!-- <aubs-typeahead ref='doffering' data.bind="appService.orgsList" value.bind="item.OrgName" debounce.bind="350" placeholder="offering to arg"
 						 open-on-focus.bind="true" key="OrgName" results-limit.bind="12" select-single-result.bind="true">
-						</aubs-typeahead>
+						</aubs-typeahead> -->
 
 						<button id="save8" class="btn btn-primary" type="button" click.delegate="save8()">save Offering</button>
 

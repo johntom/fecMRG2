@@ -3,12 +3,9 @@
 	<require from="../../resources/value-converters/stringify"></require>
 	<ux-dialog>
 		<ux-dialog-header class="modal-header modal-header-success">
-			<!-- <h2> ${fieldname} </h2> -->
 			<div class="alert alert-danger">
 				<h1> ${heading}</h1>
 			</div>
-			<!-- <div class="alert alert-danger">${fieldname}</div> -->
-			<!-- <div class="alert alert-danger" if.bind="error">${error}</div> k-multiselect.ref="myMultiSelect"  -->
 
 
 		</ux-dialog-header>
@@ -57,10 +54,8 @@
 			</div>
 			<div show.bind="fieldname==='docs'">
 				<div class="form-group flex-column-1">
-					<!-- <h3> docs: ${doc} -->
 					<a slot="buttons-slot"> <input id="icon_prefix" type="text" value.bind="searchdoc & debounce" class="validate">
 
-						<!-- <i class="material-icons prefix">search</i> -->
 					</a>
 					</h3>
 					<form>
@@ -82,7 +77,6 @@
 							<tbody>
 								<tr repeat.for="doc of showdocs" with.bind="doc">
 									<td>
-										<!-- <a  size='100' class="form-control  input-sm" target="_blank" href="http://adjusters.markadjustment.com/docs/${doc.CLAIM_NO}/${doc.FILE_NAME}"> -->
 										<a size='100' class="form-control  input-sm" target="_blank" href="http://adjusters.markadjustment.com/docs/${currentItem.CLAIM_NO}/${doc.FILE_NAME}">
 											${FILE_NAME}
 										</a>
@@ -103,11 +97,11 @@
 			<div show.bind="fieldname==='SavedList'">
 				<div class="form-group flex-column-1">
 					<h3> ${doc} </h3>
-
-					<aubs-typeahead ref='dsaved' data.bind="appService.savedlists" value.bind="name" debounce.bind="350" placeholder="savedlists"
+					<!-- fix-aubs  -->
+					<!-- <aubs-typeahead ref='dsaved' data.bind="appService.savedlists" value.bind="name" debounce.bind="350" placeholder="savedlists"
 					 open-on-focus.bind="true" key="name" results-limit.bind="22" select-single-result.bind="true">
-					</aubs-typeahead>
-	<h3> ${doc2} </h3>
+					</aubs-typeahead> -->
+					<h3> ${doc2} </h3>
 					<div>
 						<input ref="addtextref" id="addlist" type="text" class="form-control" placeholder="Enter a New SaveList name" value.bind="addlist">
 					</div>
@@ -116,27 +110,16 @@
 			</div>
 			<div show.bind="fieldname==='Artist'">
 				<div class="form-group flex-column-1">
-					<!-- <aubs-typeahead ref='dartist' data.bind="appService.artistList" value.bind="ArtistName" debounce.bind="350" placeholder="${placeholder}"
-					 open-on-focus.bind="true" key="ArtistName" results-limit.bind="22" select-single-result.bind="true">
-					</aubs-typeahead>
-					<div> born: ${ArtistName.yearofBirth } died: ${ArtistName.died} </div> -->
-
-
-					<!-- input.delegate="selectedValueA = findOptionI($event.target.value)" -->
-
 					<label for="Artist">${doc}</label>
 					<input focus.bind="hasFocus" ref="myDatalistA" type="text" list="myDatalistA" change.delegate="changeCallbackArtist(selectedValue)"
 					 input.delegate="selectedValueA = findOptionA($event.target.value)" />
 					<datalist id="myDatalistA">
 						<option repeat.for="option of appService.artistList">${option.ArtistName}</option>
 					</datalist>
-					<!-- <pre style="margin-top: 100px"><code>${selectedValueA.ArtistName}</code></pre> -->
 				</div>
 			</div>
 
 
-			<!-- myDatalistC= null;
-  findOptionC= value => this.appService.catalogList.find(x => x.CatalogTitle === value) -->
 
 			<div show.bind="fieldname==='Catalog'">
 				<div class="form-group flex-column-1">
@@ -162,22 +145,21 @@
 					<datalist id="myDatalist">
 						<option repeat.for="option of appService.codesListMediumSupport">${option.Description} </option>
 					</datalist>
-					<!-- <pre style="margin-top: 100px"><code>${selectedValue}/${selectedValue.Description}</code></pre> -->
 				</div>
 			</div>
 
 			<div show.bind="fieldbase==='ORG'">
 				<div class="form-group flex-column-1">
 					<div>
-						
+
 						<div show.bind="fieldbase==='ORG'">
-							<aubs-typeahead ref='dorg' data.bind="appService.orgsList" value.bind="OrgName" debounce.bind="350"
+							<!-- fix-aubs  -->
+							<!-- <aubs-typeahead ref='dorg' data.bind="appService.orgsList" value.bind="OrgName" debounce.bind="350"
                placeholder="${placeholder}"
 						 focus.bind="hasFocus"	 open-on-focus.bind="true" key="OrgName" results-limit.bind="22" 
              select-single-result.bind="true">
-							</aubs-typeahead>
+							</aubs-typeahead> -->
 							<div> Org: ${OrgName | stringify}</div>
-							<!-- Address: ${OrgName.Addess} ${OrgName.City} ${OrgName.State} ${OrgName._id} -->
 						</div>
 
 					</div>
@@ -197,36 +179,3 @@
 		</ux-dialog-footer>
 	</ux-dialog>
 </template>
-
-
-<!-- !-- <div show.bind="fieldname ==='MediumSupportobj'">
-			
-        <div class="form-group flex-column-1">
-					<aubs-typeahead ref='dmediumsupport' data.bind="appService.codesListMediumSupport" 
-          value.bind="MedSup" debounce.bind="350"
-					 placeholder="${placeholder}" open-on-focus.bind="true"
-            key="Description" results-limit.bind="22" select-single-result.bind="true">
-					</aubs-typeahead>
-         
-	<label for="newms">New Medium Support</label>
-					<input id="newms" type="text" class="form-control" placeholder="enter new insured.." value.bind="currentItem.newms">
-					<button class="btn btn-success" click.trigger="addnewms()">Add new medium support</button>
-
-
-
-				</div>
-	</div> -->
-
-<!-- <div show.bind="fieldname ==='MediumSupportobj'">
-			 <div class="form-group flex-column-1">
-					<aubs-typeahead ref='dmediumsupport' data.bind="appService.codesListMediumSupport" value.bind="MedSup"
-           debounce.bind="350" placeholder="${placeholder}"
-           open-on-focus.bind="true"  key="Description" results-limit.bind="22"
-           select-single-result.bind="true">
-					</aubs-typeahead>
-            <label for="newms">New Medium Support</label>
-					<input id="newms" type="text" class="form-control" placeholder="enter new insured.." value.bind="currentItem.newms">
-					<button class="btn btn-success" click.trigger="addnewms()">Add new medium support</button>
-
-				</div>
-			</div> -->

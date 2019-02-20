@@ -1,3 +1,57 @@
+#feb 2019
+cant load moment or lodash
+Aurelia-CLI
+For CLI you will need to add (bootstrap-select and aurelia-bootstrap-select) to your aurelia.json file. The exported class is abp-select.
+abp-select
+<abp-select collection.bind="allCampingStuff" selected-value.bind="camping" selected-item.bind="campingValue"></abp-select>
+{
+  "name": "bootstrap-select",
+  "main": "dist/js/bootstrap-select.js",
+  "path": "../node_modules/bootstrap-select",
+  "resources": [
+    "dist/css/bootstrap-select.min.css"
+  ]
+},
+{
+  "name": "aurelia-bootstrap-select",
+  "main": "index",
+  "path": "../node_modules/aurelia-bootstrap-select/dist/amd",
+  "resources": [
+    "**/*.{css,html}"
+  ]
+},
+
+====== tochoromero/aurelia-bootstrap aubs ====================
+\action\promtp.html <!-- fix-aubs  -->
+\action\search-results.html <!-- fix-aubs  -->
+\batchupdate\search-results.html (many controls)  <!-- fix-aubs  -->
+\contact\prompt.html <!-- fix-aubs  -->
+\inventory\inventory.html (many) <!-- fix-aubs  -->
+\inventory\prompt.html (many)
+
+delete fix-aubs  <!-- fix-aubs  -->
+===================================================================================================
+tochoromero/aurelia-bootstrap
+"velocity-animate",
+"tether",
+{
+  "name": "aurelia-bootstrap",
+  "path": "../node_modules/aurelia-bootstrap/dist/amd",
+  "main": "index",
+  "resources": [
+    "**/*.html"
+  ]
+}
+<aubs-typeahead ref='InventoryLocation' data.bind="appService.codesInventoryLocation" value.bind="DescriptionLoc" debounce.bind="350"
+									 placeholder="not avail -codesInventoryLocation" open-on-focus.bind="true" key="Description" results-limit.bind="12"
+									 select-single-result.bind="true">
+									</aubs-typeahead>
+======
+delete
+===================================================================================================
+
+
+
 # au-kendo
 https://unpkg.com/bootstrap-select@1.13.1/dist/js/bootstrap-select.js
 deprecated and not supported https://unpkg.com/bootstrap-tagsinput@0.7.1/dist/js/bootstrap-tagsinput.js

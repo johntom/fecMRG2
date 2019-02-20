@@ -1,20 +1,14 @@
 <template>
 	<require from="aurelia-kendoui-bridge/multiselect/multiselect"></require>
 	<require from="aurelia-kendoui-bridge/button/button"></require>
-
-	<require from="../../resources/elements/select2/custom-select"></require>
-	<require from="../../resources/elements/select2/select2-multiselect"></require>
 	<require from="../../resources/elements/multi-selector/multi-selector"></require>
 
-	<!-- <require from="../../resources/value-converters/stringify"></require> -->
-	<!-- <require from="selectize-multiselect"></require> -->
-	<!-- searchInputNo will delete google typeahead -->
+
 	<section class="full-height flex-column-1 au-animate ignore">
 		<div class="flex-row-none section-header">
 			${heading}
 		</div>
-		<!-- searchInvCode -->
-		<!-- <div class="flex-row-1 ignore"> -->
+
 			<div class="flex-column-1 search-panel">
         	<div class="form-group flex-column-1 ">
 
@@ -80,10 +74,11 @@
 									<input id="searchbin" type="text" class="form-control" placeholder="Search for bin ..." value.bind="search.bin">
 								</div>
 								<div class="form-group flex-column-1 margin-left-10">
-									<aubs-typeahead ref='InventoryLocation' data.bind="appService.codesInventoryLocation" value.bind="DescriptionLoc" debounce.bind="350"
+                  <!-- fix-aubs  -->
+									<!-- <aubs-typeahead ref='InventoryLocation' data.bind="appService.codesInventoryLocation" value.bind="DescriptionLoc" debounce.bind="350"
 									 placeholder="not avail -codesInventoryLocation" open-on-focus.bind="true" key="Description" results-limit.bind="12"
 									 select-single-result.bind="true">
-									</aubs-typeahead>
+									</aubs-typeahead> -->
 								</div>
 							</div>
 
@@ -97,10 +92,10 @@
 							</div>
               		<div class="flex-row-none">
 								<div class="form-group flex-column-1">
-
-									<aubs-typeahead ref='keyword' data.bind="appService.codesGenre" value.bind="keywordDescription" debounce.bind="350" placeholder="search on 1 keyword"
+<!-- fix-aubs  -->
+									<!-- <aubs-typeahead ref='keyword' data.bind="appService.codesGenre" value.bind="keywordDescription" debounce.bind="350" placeholder="search on 1 keyword"
 									 open-on-focus.bind="true" key="Description" results-limit.bind="12" select-single-result.bind="true">
-									</aubs-typeahead>
+									</aubs-typeahead> -->
 								</div>
 							</div>
 							<div class="flex-row-none">
