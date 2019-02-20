@@ -2,6 +2,8 @@
 cant load moment or lodash
 Aurelia-CLI
 For CLI you will need to add (bootstrap-select and aurelia-bootstrap-select) to your aurelia.json file. The exported class is abp-select.
+
+===================== Try to keep
 abp-select
 <abp-select collection.bind="allCampingStuff" selected-value.bind="camping" selected-item.bind="campingValue"></abp-select>
 {
@@ -20,6 +22,7 @@ abp-select
     "**/*.{css,html}"
   ]
 },
+===============================================================
 
 ====== tochoromero/aurelia-bootstrap aubs ====================
 \action\promtp.html <!-- fix-aubs  -->
@@ -27,7 +30,7 @@ abp-select
 \batchupdate\search-results.html (many controls)  <!-- fix-aubs  -->
 \contact\prompt.html <!-- fix-aubs  -->
 \inventory\inventory.html (many) <!-- fix-aubs  -->
-\inventory\prompt.html (many)
+\inventory\prompt.html (many) <!-- fix-aubs  -->
 
 delete fix-aubs  <!-- fix-aubs  -->
 ===================================================================================================

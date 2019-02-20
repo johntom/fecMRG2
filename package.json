@@ -40,16 +40,7 @@
         "deps": ["bootstrap", "bootstrap-select", "jquery"]
       }
     },
-     "aurelia-bootstrap": {
-      "map": "npm:aurelia-bootstrap@0.1.20/./dist/amd",
-      "package": {
-        "defaultExtension": "js",
-        "main": "index.js"
-      },
-      "meta": {
-        "deps": ["bootstrap", "jquery", "tether", "velocity-animate"]
-      }
-    },
+    
     "moment": {
       "map": "npm:moment@2.22.2",
       "package": {
@@ -100,12 +91,9 @@
     "systemjs-plugin-text": "0.0.11",
     "jquery": "3.1.1",
     "bootstrap": "3.3.7",
-    "tether": "1.3.7",
-    "velocity-animate": "1.3.1",
     "bootstrap-select": "1.13.1",
     "bootstrap-tagsinput": "0.7.1",
     "aurelia-bootstrap-select": "1.3.1",
-    "aurelia-bootstrap":"0.1.20",
     "moment": "2.22.2",
     "numeral": "2.0.6"
     
