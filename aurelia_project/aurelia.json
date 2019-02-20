@@ -71,7 +71,18 @@
           "aurelia-templating",
           "aurelia-templating-binding",
           "jquery",
-          "bootstrap",
+          {
+            "name": "bootstrap",
+            "path": "../node_modules/bootstrap/dist",
+            "main": "js/bootstrap.bundle.min",
+            "deps": [
+              "jquery"
+            ],
+          "exports": "$",
+          "resources": [
+            "css/bootstrap.css"
+            ]
+          },
           {
             "name": "aurelia-templating-resources",
             "path": "../node_modules/aurelia-templating-resources/dist/amd",
