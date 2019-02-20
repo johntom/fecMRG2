@@ -67,6 +67,8 @@ jobs:
           command: |
             #git config --global user.email $GH_EMAIL
             #git config --global user.name $GH_NAME
+            git config --global user.email jrt@gtz.com
+            git config --global user.name johntom
 
             echo "Cloning Staging"
             # git clone https://github.com/johntom/fecMRG2-Staging.git out
@@ -83,7 +85,8 @@ jobs:
             cp -a server/index.html .
 
             echo "Building for Staging"
-            au build --env stage
+            # au build --env stage
+            au build
 
             mkdir -p out/www
             mkdir -p out/www/scripts && cp -a scripts/. out/www/scripts/.
@@ -97,9 +100,6 @@ jobs:
             cp -a server/package.json out/.
             cp -a server/.circleci/config.yml out/.circleci/config.yml
 
-            git config --global user.email jrt@gtz.com
-            git config --global user.name johntom
-     
             cd out
 
             git add -A
