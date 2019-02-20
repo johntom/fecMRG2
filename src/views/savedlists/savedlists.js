@@ -4,10 +4,8 @@
 
 import { ApiService } from '../../utils/servicesApi';
 import { inject } from 'aurelia-dependency-injection';
-
 import { Router, Redirect } from 'aurelia-router';
 import { UtilService } from '../../services/util-service';
-
 import { ApplicationService } from '../../services/application-service';
 import { MyDataService } from "../../services/my-data-service";
 // import { DialogService } from 'aurelia-dialog';
