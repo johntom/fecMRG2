@@ -3,7 +3,7 @@ import { UtilService } from '../../services/util-service';
 import { ApplicationService } from '../../services/application-service';
 import { ApiService } from '../../utils/servicesApi';
 import { DialogService } from 'aurelia-dialog';
-// import { lodash } from 'lodash'
+
 // import { Prompt } from '../claim/prompt';
 
 export class Org {

@@ -2,8 +2,11 @@
 must use _ for lodash ref
 
 bug with     "aurelia-binding": "2.1.5", and kendoui revert bacl to "aurelia-binding": "1.7.1",
-
+need the following in main.js for   .plugin('aurelia-bootstrap-select')
+import 'jquery';
+import 'bootstrap';
 Aurelia-CLI
+
 For CLI you will need to add (bootstrap-select and aurelia-bootstrap-select) to your aurelia.json file. The exported class is abp-select.
 
 ===================== Try to keep
