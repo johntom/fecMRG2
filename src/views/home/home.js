@@ -8,7 +8,7 @@ import { ApiService } from '../../utils/servicesApi';
 
 export class Home {
   heading = "MRG Home Page";
-  version = 300.04
+  version = 300.05
   versionDate = 'Tue 2/19/2019'
 
   issues = [
@@ -336,13 +336,12 @@ export class Home {
           item.ArtistName = item.LastName + ', ' + item.FirstName
           nlist.push(item)
         }
-        // this.appService.artistList = lodash.sortBy(nlist, 'ArtistName');
-        //  this.appService.artistList = nlist.sort() //By('ArtistName');
-        this.appService.artistList = nlist.sort(function (a, b) {
-          var textA = a.ArtistName.toUpperCase();
-          var textB = b.ArtistName.toUpperCase();
-          return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
-        });
+        this.appService.artistList = _.sortBy(nlist, 'ArtistName');
+        // this.appService.artistList = nlist.sort(function (a, b) {
+        //   var textA = a.ArtistName.toUpperCase();
+        //   var textB = b.ArtistName.toUpperCase();
+        //   return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+        // });
 console.log('artistList ',this.appService.artistList)
 
         // let pct

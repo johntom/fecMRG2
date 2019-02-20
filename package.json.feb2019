@@ -20,17 +20,14 @@
         ]
       }
     },
-    "bootstrap-select": {
+     "bootstrap-select": {
       "map": "npm:bootstrap-select@1.13.1/./dist",
       "package": {
         "defaultExtension": "js",
         "main": "js/bootstrap-select.js"
       },
       "meta": {
-        "deps": [
-          "bootstrap",
-          "jquery"
-        ]
+        "deps": ["bootstrap", "jquery"]
       }
     },
     "aurelia-bootstrap-select": {
@@ -40,13 +37,10 @@
         "main": "index.js"
       },
       "meta": {
-        "deps": [
-          "bootstrap",
-          "bootstrap-select",
-          "jquery"
-        ]
+        "deps": ["bootstrap", "bootstrap-select", "jquery"]
       }
     },
+    
     "moment": {
       "map": "npm:moment@2.22.2",
       "package": {
@@ -57,10 +51,12 @@
         "deps": []
       }
     }
+    
+    
   },
   "dependencies": {
     "aurelia-animator-css": "1.0.4",
-    "aurelia-binding": "1.7.1",
+    "aurelia-binding": "2.1.5",
     "aurelia-bootstrapper": "2.3.0",
     "aurelia-dependency-injection": "1.4.1",
     "aurelia-dialog": "2.0.0-rc.3",
@@ -86,7 +82,6 @@
     "aurelia-templating-binding": "1.5.1",
     "aurelia-templating-resources": "1.7.1",
     "aurelia-templating-router": "1.3.3",
- 
     "aurelia-validation": "1.2.2",
     "aurelia-kendoui-bridge": "1.7.0",
     "bluebird": "3.5.2",
@@ -101,6 +96,7 @@
     "aurelia-bootstrap-select": "1.3.1",
     "moment": "2.22.2",
     "numeral": "2.0.6"
+    
   },
   "peerDependencies": {},
   "devDependencies": {

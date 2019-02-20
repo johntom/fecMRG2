@@ -263,7 +263,11 @@ export class Inventory {
   attached() {
     this.altAKeyPressSubscription = this.eventAggregator.subscribe('keydown:alt-a', this.addinventory.bind(this));
     this.altSKeyPressSubscription = this.eventAggregator.subscribe('keydown:alt-s', this.performSearch.bind(this));
-
+// this.ndate = moment.date()
+ this.ndate= moment().format('YYYY-MM-DD')
+let provarray=[{id:1,sord:3,id:2,sord:1,id:3,sord:2}]
+ this.testlodash = _.sortBy(provarray, 'sord');
+    
   }
   detached() {
     this.altAKeyPressSubscription.dispose();

@@ -1,5 +1,8 @@
-#feb 2019
-cant load moment or lodash
+#feb 20 2019
+must use _ for lodash ref
+
+bug with     "aurelia-binding": "2.1.5", and kendoui revert bacl to "aurelia-binding": "1.7.1",
+
 Aurelia-CLI
 For CLI you will need to add (bootstrap-select and aurelia-bootstrap-select) to your aurelia.json file. The exported class is abp-select.
 
