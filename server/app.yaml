@@ -8,6 +8,8 @@ handlers:
     upload: www/index.html
   - url: /scripts
     static_dir: www/scripts
+  - url: /styles
+    static_dir: www/styles
   - url: /.*
     secure: always
     redirect_http_response_code: 301

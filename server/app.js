@@ -37,6 +37,7 @@ app.use(bodyParser.json({ type: 'application/json'}));
 // app.use('/www', express.static(path.join(__dirname + 'www')));
 // app.use('/', express.static('www'));
 app.use('/scripts', express.static('www/scripts'));
+app.use('/styles', express.static('www/styles'));
 
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname + '/www/index.html'));
