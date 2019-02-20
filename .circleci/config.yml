@@ -90,6 +90,7 @@ jobs:
 
             mkdir -p out/www
             mkdir -p out/www/scripts && cp -a scripts/. out/www/scripts/.
+            mkdir -p out/www/styles && cp -a styles/. out/www/styles/.
             mkdir -p out/.circleci
             cp -a index.html out/www/.
             cp -a favicon.ico out/www/.
