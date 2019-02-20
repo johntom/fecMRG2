@@ -4,8 +4,10 @@ Aurelia-CLI
 For CLI you will need to add (bootstrap-select and aurelia-bootstrap-select) to your aurelia.json file. The exported class is abp-select.
 
 ===================== Try to keep
+https://github.com/ghiscoding/Aurelia-Bootstrap-Plugins/tree/master/aurelia-bootstrap-select
 abp-select
 <abp-select collection.bind="allCampingStuff" selected-value.bind="camping" selected-item.bind="campingValue"></abp-select>
+<!-- from his website -->
 {
   "name": "bootstrap-select",
   "main": "dist/js/bootstrap-select.js",
@@ -22,6 +24,9 @@ abp-select
     "**/*.{css,html}"
   ]
 },
+<!--  -->
+
+
 ===============================================================
 
 ====== tochoromero/aurelia-bootstrap aubs ====================

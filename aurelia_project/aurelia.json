@@ -61,7 +61,6 @@
           "aurelia-logging",
           "aurelia-logging-console",
           "aurelia-metadata",
-          
           "aurelia-pal",
           "aurelia-pal-browser",
           "aurelia-path",
@@ -72,7 +71,6 @@
           "aurelia-templating",
           "aurelia-templating-binding",
           "bootstrap",
-
           {
             "name": "aurelia-templating-resources",
             "path": "../node_modules/aurelia-templating-resources/dist/amd",
@@ -107,6 +105,22 @@
             "resources": [
               "common/*.{js,html}",
               "button/*.{js,html}"
+            ]
+          },
+          {
+            "name": "bootstrap-select",
+            "main": "dist/js/bootstrap-select.js",
+            "path": "../node_modules/bootstrap-select",
+            "resources": [
+              "dist/css/bootstrap-select.min.css"
+            ]
+          },
+          {
+            "name": "aurelia-bootstrap-select",
+            "main": "index",
+            "path": "../node_modules/aurelia-bootstrap-select/dist/amd",
+            "resources": [
+              "**/*.{css,html}"
             ]
           },
           "numeral"
