@@ -70,6 +70,7 @@
           "aurelia-task-queue",
           "aurelia-templating",
           "aurelia-templating-binding",
+          "jquery",
           "bootstrap",
           {
             "name": "aurelia-templating-resources",

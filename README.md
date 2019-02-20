@@ -5,6 +5,13 @@ bug with     "aurelia-binding": "2.1.5", and kendoui revert bacl to "aurelia-bin
 need the following in main.js for   .plugin('aurelia-bootstrap-select')
 import 'jquery';
 import 'bootstrap';
+
+issue
+------- File not found or not accessible ------
+| Location: /home/circleci/repo/src/jquery.js
+| Requested by: /home/circleci/repo/src/main.js
+| Is this a package? Make sure that it is configured in aurelia.json and that it is not a Node.js package
+
 Aurelia-CLI
 
 For CLI you will need to add (bootstrap-select and aurelia-bootstrap-select) to your aurelia.json file. The exported class is abp-select.
