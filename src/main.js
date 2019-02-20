@@ -1,7 +1,7 @@
 // import 'babel-polyfill';
 // need next 2 lines for aurelia-bootstrap-select
 // import 'jquery';
-// import 'bootstrap';
+import 'bootstrap';
 export async function configure(aurelia) {
   aurelia.use
     .standardConfiguration()

@@ -71,18 +71,40 @@
           "aurelia-templating",
           "aurelia-templating-binding",
           "jquery",
-          {
+
+  {
             "name": "bootstrap",
             "path": "../node_modules/bootstrap/dist",
             "main": "js/bootstrap.min",
             "deps": [
               "jquery"
             ],
-          "exports": "$",
-          "resources": [
-            "css/bootstrap.css"
+            "exports": "$",
+            "resources": [
+              "css/bootstrap.css"
             ]
           },
+        
+          {
+            "name": "bootstrap-select",
+            "main": "dist/js/bootstrap-select.js",
+            "path": "../node_modules/bootstrap-select",
+            "resources": [
+              "dist/css/bootstrap-select.min.css"
+            ]
+          },
+          {
+            "name": "aurelia-bootstrap-select",
+            "main": "index",
+            "path": "../node_modules/aurelia-bootstrap-select/dist/amd",
+            "resources": [
+              "**/*.{css,html}"
+            ]
+          },
+
+
+
+       
           {
             "name": "aurelia-templating-resources",
             "path": "../node_modules/aurelia-templating-resources/dist/amd",
@@ -119,22 +141,7 @@
               "button/*.{js,html}"
             ]
           },
-          {
-            "name": "bootstrap-select",
-            "main": "dist/js/bootstrap-select.js",
-            "path": "../node_modules/bootstrap-select",
-            "resources": [
-              "dist/css/bootstrap-select.min.css"
-            ]
-          },
-          {
-            "name": "aurelia-bootstrap-select",
-            "main": "index",
-            "path": "../node_modules/aurelia-bootstrap-select/dist/amd",
-            "resources": [
-              "**/*.{css,html}"
-            ]
-          },
+        
           "numeral"
         ]
       }
