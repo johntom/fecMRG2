@@ -1,9 +1,7 @@
 import { ApiService } from '../../utils/servicesApi'
 import { inject } from 'aurelia-dependency-injection'
-// import { Router } from 'aurelia-router';
 import { Router, Redirect } from 'aurelia-router'
 import { UtilService } from '../../services/util-service'
-// import moment from 'moment';
 import { ApplicationService } from '../../services/application-service'
 import { MyDataService } from "../../services/my-data-service"
 import { DialogService } from 'aurelia-dialog'
@@ -20,7 +18,6 @@ export class SearchResults {
   invcode = '';
   queryParams = '';
   checkedIds = {};
-  //  console.log(' inv SearchResults ');
   message = ''//Hello Inventory !';
   scrollable = { virtual: true };
   datasource = new kendo.data.DataSource({
@@ -35,13 +32,9 @@ export class SearchResults {
             //10-18 if (inv.length === 1 && this.appService.onlyonce === 0) {
             // if (inv.length === 1 ) {
             // 	let rt2 = '#/inventory/data/' + inv[0].InventoryCode;
-
             // 	console.log('rt2 ', rt2)
-
             // 	let tab = this.appService.tabs.find(f => f.isSelected);
             // 	this.closeTab(tab);
-
-
             // 	this.router.navigate(rt2);
             // 	//10-18 this.appService.onlyonce = 1
             // }
@@ -61,7 +54,6 @@ export class SearchResults {
       model: {
         id: "id", // Must assign id for update to work
         fields: {
-
           // LegacyID: { type: "number" }, // scan template
           Artist: { type: "string" }, // barcode insured
           //  ArtistRegistra: { type: "string" },
@@ -74,8 +66,6 @@ export class SearchResults {
           InvYear: { type: "string" },
           UnframedHeight: { type: "string" },
           // Image : { type: "string", editable: false },
-
-
         }
       }
     },
@@ -120,32 +110,21 @@ export class SearchResults {
     // }  
   }
     onDataBound(e) {
-        //  alert('hi onDataBound')
         let grid = e.sender;
-        //  this.grid.find("[data-field=Bin]>.k-header-column-menu").remove();
         kendo.jQuery('[data-field=Bin].k-header-column-menu', grid.tbody).remove(); ///removeAttr('href');
-      //  kendo.jQuery('a[href*=\'#\']', grid.tbody).removeAttr('href');
 
         
     }
   showSavedlists() {
-    //// alert(`selectedids: ${this.selectedids}`);
     this.currentItem = {}
     this.currentItem.fieldname = 'SavedList'
-    //this.currentItem.recordId = this.recordId
     this.dialogService.open({ viewModel: Prompt, model: this.currentItem, lock: false }).whenClosed(response => {
-
-      // this.appService.currentsavedlist
-      // this.appService.selectedids = this.selectedids
-      // this.dialogService.open({ viewModel: Prompt, model: 'selectedids', lock: false }).whenClosed(response => {
       if (this.appService.currentsavedlist) {
         console.log('Not Cancelled')
         let meds = this.appService.savedlists
         let mid = meds.findIndex(x => x.name === this.appService.currentsavedlist)//'savedlist1')
         if (mid !== -1) {
           let orgobj = this.appService.savedlists[mid]
-          /////// ? jrt 
-          //3-19 this.selectedids = orgobj.InventoryCodes
 
         }
       } else {
@@ -157,10 +136,7 @@ export class SearchResults {
   //https://johntom.github.io/fecMRG2/#/action/Actionlist-?savedlists%3DTest%20List&tabname=actionlist
 
   openSelection() {
-
-
-
-           //  #/action/Actionlist-?savedlists%3DTest%20List&tabname=actionlist
+     //  #/action/Actionlist-?savedlists%3DTest%20List&tabname=actionlist
     // name as - at end its a singleton
    this.search=`savedlists:"${this.appService.currentsavedlist}"`
   let qs = this.utilService.generateQueryString(this.search);
@@ -177,11 +153,6 @@ export class SearchResults {
   }
 
 
-  // showModal(fieldname) {
-
-
-
-  //   this.dialogService.open({ viewModel: Prompt, model: fieldname, lock: false }).whenClosed(response => {
 
 
   showModal(fieldname) {
@@ -189,10 +160,7 @@ export class SearchResults {
     // //     this.currentItem.fieldname = {}
     // // this.currentItem.recordId = this.recordId
     // this.dialogService.open({ viewModel: Prompt, model: this.currentItem, lock: false }).whenClosed(response => {
-
-
     //       if (this.appService.currentsavedlist) {
-
     //         console.log('Not Cancelled')
     //         let meds = this.appService.savedlists
     //         // let mid = meds.findIndex(x => x.name === 'savedlist1')
@@ -391,7 +359,7 @@ export class SearchResults {
       let dataItem = thid.grid.dataItem(a1);
 
       if (a1.isChecked === true) {
-        alert('a1 ' + a1.InventoryCode)
+       // alert('a1 ' + a1.InventoryCode)
         // this.api.updateSavedlists(this.appService.currentsavedlist, this.selectedids).then((jsonRes) => {
         //   console.log('jsonRes ', jsonRes);
         //   // let tab = this.appService.tabs.find(f => f.isSelected);
@@ -404,12 +372,10 @@ export class SearchResults {
     let sels
     if (this.selectedids === undefined) {
       sels = []
-      // if (!this.selectedids.length > 0) {
-      //   sels = []//this.selectedids//[];
+      
 
     } else sels = this.selectedids
 
-    // var sels = this.selectedids//[];
     var grid = this.grid;
     var selectedRows = grid.select();
     if (selectedRows.length === 0) {
@@ -417,7 +383,6 @@ export class SearchResults {
       )
     } else {
       var maxRows = selectedRows.length / 2;
-      //  this.allselectedids.push('JOHNTOM01')
       selectedRows.each(function (idx, el) {
         let dataItem = grid.dataItem(el);
       });
@@ -426,8 +391,7 @@ export class SearchResults {
       for (i = 0; i < maxRows; i++) {
         a1 = selectedRows[i];
         let dataItem = grid.dataItem(a1);
-        // let mid = sels.findIndex(x => x.InventoryCode === dataItem.InventoryCode)
-        let mid = sels.findIndex(x => x === dataItem.InventoryCode)
+         let mid = sels.findIndex(x => x === dataItem.InventoryCode)
         if (mid === -1) {
           sels.push(dataItem.InventoryCode);
         }
@@ -452,30 +416,7 @@ export class SearchResults {
     }
     this.message = `  all items added to list ${this.appService.currentsavedlist} count:${this.appService.currentsavedlist.length}`
   }
-  //saveSelection()">Save Selection</button>			Selected IDs: ${selectedids}
-  // addnewSelection() {
-  //   var sels = [];
-  //   var grid = this.grid;
-  //   var selectedRows = grid.select();
-  //   var maxRows = selectedRows.length / 2;
-
-  //   selectedRows.each(function (idx, el) {
-  //     let dataItem = grid.dataItem(el);
-  //   });
-
-  //   var i;
-  //   var a1;
-  //   for (i = 0; i < maxRows; i++) {
-  //     a1 = selectedRows[i];
-  //     let dataItem = grid.dataItem(a1);
-
-  //     sels.push(dataItem.InventoryCode);
-  //     this.allselectedids.push(dataItem.InventoryCode);
-  //   }
-
-  //   this.selectedids = sels;
-  //   //   this.allselectedids =   this.allselectedids+sels;
-  // }
+  
 
   showSelection() {
     var sels = [];
@@ -488,16 +429,7 @@ export class SearchResults {
       sels.push(dataItem.InventoryCode);
     });
 
-    // var i;
-    // var a1;
-    // for (i = 0; i < maxRows; i++) {
-    //   a1 = selectedRows[i];
-    //   let dataItem = grid.dataItem(a1);
-
-    //   sels.push(dataItem.InventoryCode);
-    //   this.allselectedids.push(dataItem.InventoryCode);
-    // }
-
+    
     this.selectedids = sels;
     //   this.allselectedids =   this.allselectedids+sels;
   }
@@ -507,29 +439,10 @@ export class SearchResults {
 
   selectAll() {
 
-    // var movid;
-    // // var   movies=this.movies;
-    // var   movies=this.dataSource._data;
-    // console.log('selectAll ',this.dataSource)
-    // var i=1;
-    // for(var i in movies){
-    // movid=movies[i].rank;
-    // console.log(movid)
-    // $('#T'+movid).trigger("click");
-
-    // }  
+  
 
   }
-  // showSelection() {
-  //   console.log('this.selectedids' + this.selectedids);
-  //   for (var i in this.selectedids) {
-  //     console.log(this.selectedids[i]);
-  //     console.log(this.selectedOrders[i]);
 
-  //   }
-  // }
-
-  //on click of the checkbox:
   selectRow() {
     // debugger;
     // alert('sel')
@@ -545,145 +458,5 @@ export class SearchResults {
     message = 'selection saved';
   }
 
-  // onDataBoundx(e, that) {
-  // 	// alert('in ob')
-
-  // 	console.log('e', e);
-  // 	console.log('that', that);
-  // 	// alert('on onDataBound loading 1 time '+e)
-  // 	// alert('on o that'+that)
-  // 	let checkedIds = [];
-
-  // 	let grid = e.sender;
-  // 	kendo.jQuery('a[href*=\'#\']', grid.tbody).removeAttr('href');
-  // 	//grid.element.on("click", ".checkbox" ,selectRow()));// does not work
-
-  // 	grid.element.on("click", ".checkbox", function () {
-  // 		var checked = this.checked,
-  // 			row = $(this).closest("tr"),
-  // 			dataItem = grid.dataItem(row);
-
-  // 		var idValue = grid.dataItem(row).get(this.idField);
-  // 		console.log('idValue', idValue);
-
-  // 		if (checked) {
-  // 			//-select the row 
-  // 			checkedIds.push(dataItem.InventoryCode);
-  // 			that.selectedids = checkedIds;
-  // 			that.selectedOrders.push(dataItem);
-
-
-  // 			$("[data-uid='" + dataItem.uid + "']").addClass("k-state-selected");
-  // 		} else {
-  // 			delete that.selectedOrders[idValue];
-
-  // 			that.selectedids = lodash.pull(that.selectedids, dataItem.InventoryCode);
-  // 			that.selectedOrders = lodash.pull(that.selectedOrders, dataItem);
-
-
-  // 			$("[data-uid='" + dataItem.uid + "']").removeClass("k-state-selected");
-  // 			//row.removeClass("k-state-selected");
-  // 			$("[data-uid='" + dataItem.uid + "']")
-
-  // 		}
-  // 	});
-  // }
 
 }
-//   onDataBound(e, that) {
-//     console.log('e', e);
-//     console.log('that', that);
-//     // alert('on onDataBound loading 1 time '+e)
-//     // alert('on o that'+that)
-//     let checkedIds = [];//this.checkedIds;// []; // that.selectedOrders
-
-//     let grid = e.sender;
-//     kendo.jQuery('a[href*=\'#\']', grid.tbody).removeAttr('href');
-//     //grid.element.on("click", ".checkbox" ,selectRow()));// does not work
-
-//     grid.element.on("click", ".checkbox", function () {
-//       var checked = this.checked,
-//         row = $(this).closest("tr"),
-//         dataItem = grid.dataItem(row);
-
-//       var idValue = grid.dataItem(row).get(this.idField);
-//       console.log('idValue', idValue);
-
-//       if (checked) {
-//         //-select the row 
-//         checkedIds.push(dataItem.InventoryCode);
-//         that.selectedids = checkedIds;
-//         that.selectedOrders.push(dataItem);
-//         $("[data-uid='" + dataItem.uid + "']").addClass("k-state-selected");
-//       } else {
-//         delete that.selectedOrders[idValue];
-//         that.selectedids = lodash.pull(that.selectedids, dataItem.InventoryCode);
-//         that.selectedOrders = lodash.pull(that.selectedOrders, dataItem);
-//         this.checkedIds = this.checkedIds + checkedIds;
-//         $("[data-uid='" + dataItem.uid + "']").removeClass("k-state-selected");
-//         //row.removeClass("k-state-selected");
-//         $("[data-uid='" + dataItem.uid + "']")
-//       }
-//     });
-//   }
-
-// }
-
-//////////////
-
-  // performSearch() {
-  //   if (this.search) {
-  //     let qs = this.utilService.generateQueryString(this.search);
-  //     let path = `Search${this.utilService.counter++}${qs}`;
-  //     this.router.navigate(`#/inventory/${path}`);
-  //     // this.router.navigate(`#/inventory/${this.search}`);
-  //     // this.router.navigate(`#/inventory/InvSearch`);
-  //   }
-  // }
-
-
-  /////////
-
-  // updateData(e) {
-
-  //   return api.updatecase(e)
-  //     .then((jsonRes) => {
-  //       console.log('this.scans ', jsonRes)
-  //       return jsonRes
-
-  //     })
-  // }
-          // OwnershipStatus: { type: "string" },
-          // RetailPriceAlpha: { type: "string" },
-          // RetailPrice: { type: "string" },
-          // RetailPriceDate: { type: "date" },
-          // DateAdded: { type: "date" },
-          // PurchasedDate: { type: "string" },
-          // PurchasedFrom: { type: "string" },
-          // PurchasedPrice: { type: "string" },
-          // PurchasedForPrice: { type: "string" },
-          // Sold: { type: "string" },
-          // // Not Sold": { type: "string" },,
-          // SoldToID: { type: "string" },
-          // // Sold Date : { type: "date" },
-          // SoldFor:  { type: "string" },
-          // SoldPrice:  { type: "string" },
-          // //Min SellingPrice : "",
-          // NetToOwner: { type: "string" },
-          // ConsignedStartDate:  { type: "string" },
-          // ConsignedEndDate:  { type: "date" },
-          // MRGLocation: { type: "string" },
-          // SoldDesc:  { type: "string" },
-
-          // link: { type: "string" },workername  workeraddr workercity
-          //  "First Name": { type: "string" },
-          // workeraddr: { type: "string" },
-          // workercity: { type: "string" },
-          // filename: { type: "string" },
-          // contents: { type: "string" },
-          // createdAt: { type: "date" },
-          //  billedamt: { type: "number" },
-          //    payamt: { type: "number" },      
-          // // assignto:{ type: "string" },
-          // assignto: { defaultValue: { staffid: 1, username: 'jrt' } }
-          // // contents: { type: "memo" } billedamt payamt
