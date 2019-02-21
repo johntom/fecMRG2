@@ -1,0 +1,72 @@
+<template>
+	<style>
+		html {
+			font-size: 14px;
+			font-family: Arial, Helvetica, sans-serif;
+		}
+
+		k-grid td {
+			text-overflow: ellipsis;
+			-ms-text-overflow: ellipsis;
+			-o-text-overflow: ellipsis;
+			padding: 0.1em 0.1em;
+			max-width: 250px;
+		}
+
+		.k-grid-content td {
+			height: 42px;
+		}
+
+		.k-grid .ra,
+		.k-grid tbody tr {
+			height: 36px;
+		}
+
+		.k-numerictextbox .k-input {
+			text-align: right;
+		}
+	</style>
+	<require from="aurelia-kendoui-bridge/grid/grid"></require>
+	<require from="aurelia-kendoui-bridge/grid/col"></require>
+	<require from="aurelia-kendoui-bridge/common/template"></require>
+x	<require from="../../../styles/kendo.css"></require>
+	<section class="customers au-animate">
+		<h2>Clients ( ${origItems.length})</h2>
+		<a slot="buttons-slot" class="btn btn-primary" click.delegate="addClient()">
+			<i class="fa fa-plus"></i> Add Client
+		</a>
+	</section>
+	
+	<section class="full-height flex-column-1 au-animate ignore">
+		<div class="flex-row-none section-header">
+			${heading} 100
+		</div>
+		<div class="flex-row-1 ignore">
+			<div class="flex-column-1 search-panel">
+				<!-- <ak-grid class="flex-row-1 overflow-y-auto" id="grid" k-data-source.bind="datasource" k-widget.bind="grid" k-sortable.bind="{ mode: 'multiple',   allowUnsort: 'true'}"
+				 k-filterable.bind="{  mode: 'row' }" k-editable="inline" k-reorderable.bind="true" k-groupable.bind="true" k-resizable.bind="true"
+				 k-selectable="[row,multiple]" k-pageable.bind="true" k-mobile.bind ="phone">
+					<ak-col k-field="id" k-filterable.bind="true" k-title="Edit-" k-width.bind="180" k-template="<button click.delegate='details2($event)' class='k-button'>#=CompanyName#</button>">
+					</ak-col>
+					<ak-col k-title="FirstName" k-width="180px" k-field="FirstName"></ak-col>
+					<ak-col k-title="LastName" k-width="180px" k-field="LastName"></ak-col>
+					<ak-col k-title="Phone" k-width="180px" k-field="Phone"></ak-col>
+					<ak-col k-title="Address" k-width="180px" k-field="Address"></ak-col>
+				<ak-col k-title="City" k-width="180px" k-field="City"></ak-col>
+					<ak-col k-title="State" k-width="180px" k-field="State"></ak-col>
+					<ak-col k-title="Zip" k-width="180px" k-field="Zip"></ak-col>
+					<ak-col k-title="email" k-width="180px" k-field="email"></ak-col>
+				</ak-grid> -->
+
+
+				<div class="flex-row-none section-footer">
+					${footer} <span>  ${queryParams}</span> <span>&nbsp;&nbsp;	<button id="searchInputBtn" class="btn btn-primary" type="button" click.delegate="performAction1()">Action1</button></span>
+
+				</div>
+
+
+
+			</div>
+		</div>
+	</section>
+</template>
