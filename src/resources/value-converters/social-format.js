@@ -1,6 +1,4 @@
- //import numeral from 'numeral';
 
-// export class CurrencyFormatValueConverter {
 export class SocialFormatValueConverter {
   toView(value) {
       //console.log('ss ',value)

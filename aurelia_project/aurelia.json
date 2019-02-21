@@ -122,9 +122,9 @@
               "common/*.{js,html}",
               "button/*.{js,html}"
             ]
-          },
+          }
         
-          "numeral"
+         
         ]
       }
     ],
