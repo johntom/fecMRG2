@@ -1,5 +1,4 @@
 <template>
-	<require from="./docs.css"></require>
 	<section class="docs full-height flex-column-1 overflow-y-auto ignore">
 		<h2>
 			<i class="fa fa-folder-open"></i> Notes (${currentItem.notes.length})
@@ -36,16 +35,11 @@
 					</td>
 					<td width="325px">
 						<span show.bind="!note.edit">${Notes}</span>
-
-						<input show.bind="note.edit" class="form-control input-sm" disabled.bind="!note.edit" type="text" value.bind="Notes">						</td>
-
-					<td width="225px">
+  					<input show.bind="note.edit" class="form-control input-sm" disabled.bind="!note.edit" type="text" value.bind="Notes">						</td>
+				<td width="225px">
 					<button class="btn btn-primary" click.delegate="note.edit=!note.edit">${ !note.edit ? 'edit' : 'Save' }</button>
 					<button class="btn btn-danger" click.delegate="remove(note,$index)">Delete</button> 
-       
-					</td>
-	
-
+  				</td>
 			</tbody>
 		</table>
 	
