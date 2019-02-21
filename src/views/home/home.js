@@ -3,13 +3,12 @@ import { ApplicationService } from '../../services/application-service';
 import { MyDataService } from "../../services/my-data-service";
 import { ApiService } from '../../utils/servicesApi';
 
-
 @inject(ApplicationService, MyDataService, ApiService)
 
 export class Home {
   heading = "MRG Home Page";
-  version = 300.10
-  versionDate = 'Tue 2/19/2019'
+  version = 300.11
+  versionDate = 'Wed 2/20/2019'
 
   issues = [
 

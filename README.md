@@ -15,7 +15,7 @@ issue
 Aurelia-CLI
 
 For CLI you will need to add (bootstrap-select and aurelia-bootstrap-select) to your aurelia.json file. The exported class is abp-select.
-
+fixabpSelect
 ===================== Try to keep
 https://github.com/ghiscoding/Aurelia-Bootstrap-Plugins/tree/master/aurelia-bootstrap-select
 abp-select
