@@ -269,7 +269,7 @@ export class Rtf {
     console.log('===========buildRepro')
 
     // conbine both tables
-    let pl = this.appService.codesProvenanceLocation
+    let provloc = this.appService.codesProvenanceLocation
 
     // let exhibition = this.currentItem.exhibition
     // let reproduction = this.currentItem.reproduction
@@ -325,9 +325,9 @@ export class Rtf {
           oid = pl.findIndex(x => x.id === item.ExhibitLocation)
 
         }
-        //  oid = pl.findIndex(x => x.id === item.ExhibitLocation) 
+        //  oid = provloc.findIndex(x => x.id === item.ExhibitLocation) 
         if (oid == -1) oid = 1
-        let ExhibitLocationDesc = pl[oid].Description
+        let ExhibitLocationDesc = provloc[oid].Description
 
         // , ${item.ExhibitMemo}`
         // console.log('moment', moment(item.ExhibitSortDate,'YYYYmmdd'))
@@ -378,9 +378,9 @@ export class Rtf {
 
         if (item.ReproductionExhibit === null || item.ReproductionExhibit === undefined || item.ReproductionExhibit === "") {//selected choose)
           console.log('reproduction item ', rct, item.ReproductionPage, item.ReproductionDate)
-          let oid = pl.findIndex(x => x.id === item.ReproductionLocation)
+          let oid = provloc.findIndex(x => x.id === item.ReproductionLocation)
           if (oid == -1) oid = 1
-          let ReproductionLocationDesc = pl[oid].Description
+          let ReproductionLocationDesc = provloc[oid].Description
           //alert(rct + ' ReproductionLocationDesc ' + ReproductionLocationDesc + ' ')
 
           // let ColorBWDesc = ''
