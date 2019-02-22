@@ -110,6 +110,14 @@
             "path": "../node_modules/aurelia-dialog/dist/commonjs",
             "resources": []
           },
+            "jquery",
+          {
+            "name": "kendo",
+            "path": "../node_modules/@progress/kendo-ui/",
+            "resources": [
+              "js/kendo.button.js"
+            ]
+          },
           {
             "name": "aurelia-kendoui-bridge",
             "path": "../node_modules/aurelia-kendoui-bridge/dist/amd",
