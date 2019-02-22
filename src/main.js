@@ -6,6 +6,7 @@ export async function configure(aurelia) {
   aurelia.use
     .standardConfiguration()
     .developmentLogging()
+     
     // .plugin('aurelia-bootstrap-select')
     .plugin('aurelia-dialog', config => {
       config.useDefaults();
