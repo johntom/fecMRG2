@@ -3,32 +3,17 @@ import { UtilService } from '../../services/util-service';
 import { ApplicationService } from '../../services/application-service';
 import { MyDataService } from "../../services/my-data-service";
 import { EventAggregator } from 'aurelia-event-aggregator';
+import { inject } from 'aurelia-dependency-injection';
+
+@inject(Router, Router, ApplicationService,MyDataService,EventAggregator)
 
 export class Inventory {
-  static inject = [Router, UtilService, ApplicationService, MyDataService, EventAggregator];
+  // static inject = [Router, Router, ApplicationService, MyDataService, EventAggregator];
 
   heading = 'Inventory Search'// PORTERC007 PORTERC009 PORTERC008 PORTERC013';
   counter = 1;
   search = {}
-  //  products = [
-  //       { id: 0, name: 'Motherboard' },
-  //       { id: 1, name: 'CPU' },
-  //       { id: 2, name: 'Memory' },
-  //     ];
-
-  //     selectedProductId = 1;
-
-  //   title: 0,
-  //   invcode: 0
-  // };
-  /** <label repeat.for="product of products">
-          <input type="radio" name="group1"
-                 model.bind="product.id" checked.bind="selectedProductId">
-          ${product.id} - ${product.name}
-        </label> */
-  // search.selectedSoldId search.selectedDateId search.startdate search.stopdate
-  // value
-  // 	export class App {
+  
   selectedValue = null;
   // options1 = [ { id: 1, name: 'one' }, { id: 2, name: 'two' } ];
   // findOption = value => this.options1.find(x => x.name === value);
@@ -237,33 +222,13 @@ export class Inventory {
     this.search = {}
     //this.router.navigate(`#/inventory/`);
   }
-  // attached() {
-  //   this.altAKeyPressSubscription = this.eventAggregator.subscribe('keydown:alt-a', this.addinventory.bind(this));
-  //   // this.stateList
-  // set typahead value for state
-  // console.log('sl', this.stateList)
-  // // this.name = {
-  // //   name: 'New York',
-  // //   value: 'NY'
-  // // }
-  // this.oname = {
-  //   oname: 'Alabama', id: 'al'
-  // }
-  // this.dow.value = this.oname
-
-
+  
   // /////////////////////////////////////////
-  // this.OrgName = {
-  //   OrgName: this.states[1].OrgName,
-  //   // value: orgobj._id
-  //   // id: this.states[1].id
-  //   value: this.states[1].id
-  // }
-  // this.dows.value = this.OrgName
+  
   attached() {
     this.altAKeyPressSubscription = this.eventAggregator.subscribe('keydown:alt-a', this.addinventory.bind(this));
     this.altSKeyPressSubscription = this.eventAggregator.subscribe('keydown:alt-s', this.performSearch.bind(this));
-// this.ndate = moment.date()
+
  this.ndate= moment().format('YYYY-MM-DD')
 let provarray=[{id:1,sord:3,id:2,sord:1,id:3,sord:2}]
  this.testlodash = _.sortBy(provarray, 'sord');
@@ -280,43 +245,30 @@ let provarray=[{id:1,sord:3,id:2,sord:1,id:3,sord:2}]
     let mruinfo, tabindex
     mruinfo = localStorage.getItem('mru-mrg');
     if (mruinfo === null) {
-      // tabindex = 0
-      this.mruinfo = 0
+       this.mruinfo = 0
     } else {
       this.mruinfo = JSON.parse(mruinfo)
 
       if (this.mruinfo.mru1 !== undefined) {
         this.mru.push(this.mruinfo.mru1.InvCode)
       } 
-      // else this.mru.push(this.mruinfo.mru1)
-
-
-
+     
       if (this.mruinfo.mru2 !== undefined) {
         this.mru.push(this.mruinfo.mru2.InvCode)
       } 
-      // else this.mru.push(this.mruinfo.mru2)
-
+    
       if (this.mruinfo.mru3 !== undefined) {
         this.mru.push(this.mruinfo.mru3.InvCode)
       } 
-      // else this.mru.push(this.mruinfo.mru3)
-
+    
       if (this.mruinfo.mru4 !== undefined) {
         this.mru.push(this.mruinfo.mru4.InvCode)
       } 
-      // else this.mru.push(this.mruinfo.mru4)
-
+    
       if (this.mruinfo.mru5 !== undefined) {
         this.mru.push(this.mruinfo.mru5.InvCode)
       } 
-      // else this.mru.push(this.mruinfo.mru5)
-
-
-      // this.mru.push(this.mruinfo.)
-      // this.mru.push(this.mruinfo.)
-      // this.mru.push(this.mruinfo.mru4)
-      // this.mru.push(this.mruinfo.mru5)
+     
     }
     // for select2
     this.selectOptions = [
@@ -357,8 +309,6 @@ let provarray=[{id:1,sord:3,id:2,sord:1,id:3,sord:2}]
     //   this.populateInv(this.myDatalist.value)
     // } else this.populateInv(selectedvalue)
 
-
-    // else
     if (selectedvalue === undefined) {
 
     } else this.performSearchSL()
@@ -372,3 +322,40 @@ let provarray=[{id:1,sord:3,id:2,sord:1,id:3,sord:2}]
   }
 
 }
+
+// attached() {
+  //   this.altAKeyPressSubscription = this.eventAggregator.subscribe('keydown:alt-a', this.addinventory.bind(this));
+  //   // this.stateList
+  // set typahead value for state
+  // console.log('sl', this.stateList)
+  // // this.name = {
+  // //   name: 'New York',
+  // //   value: 'NY'
+  // // }
+  // this.oname = {
+  //   oname: 'Alabama', id: 'al'
+  // }
+  // this.dow.value = this.oname
+
+
+
+
+//  products = [
+  //       { id: 0, name: 'Motherboard' },
+  //       { id: 1, name: 'CPU' },
+  //       { id: 2, name: 'Memory' },
+  //     ];
+
+  //     selectedProductId = 1;
+
+  //   title: 0,
+  //   invcode: 0
+  // };
+  /** <label repeat.for="product of products">
+          <input type="radio" name="group1"
+                 model.bind="product.id" checked.bind="selectedProductId">
+          ${product.id} - ${product.name}
+        </label> */
+  // search.selectedSoldId search.selectedDateId search.startdate search.stopdate
+  // value
+  // 	export class App {
