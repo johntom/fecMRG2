@@ -86,7 +86,7 @@
     
     "dependencies": {
       "aurelia-animator-css": "1.0.4",
-      "aurelia-binding": "1.7.1",
+      "aurelia-binding": "2.2.1",
       "aurelia-bootstrapper": "2.3.0",
       "aurelia-dependency-injection": "1.4.1",
       "aurelia-dialog": "1.0.0-rc.2.0.0",
