@@ -1,6 +1,7 @@
 #feb 20 2019
 must use _ for lodash ref
-
+"aurelia-binding": "2.2.1",
+      "aurelia-binding": "1.7.1",
 bug with     "aurelia-binding": "2.1.5", and kendoui revert back to "aurelia-binding": "1.7.1",
 need the following in main.js for   .plugin('aurelia-bootstrap-select')
 import 'jquery';
