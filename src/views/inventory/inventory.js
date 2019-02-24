@@ -5,7 +5,7 @@ import { MyDataService } from "../../services/my-data-service";
 import { EventAggregator } from 'aurelia-event-aggregator';
 import { inject } from 'aurelia-dependency-injection';
 
-@inject(Router, Router, ApplicationService,MyDataService,EventAggregator)
+@inject(Router, UtilService, ApplicationService,MyDataService,EventAggregator)
 
 export class Inventory {
   // static inject = [Router, Router, ApplicationService, MyDataService, EventAggregator];
