@@ -7,11 +7,11 @@ import { ApiService } from '../../utils/servicesApi';
 
 export class Home {
   heading = "MRG Home Page";
-  version = 300.27 
+  version = 300.28 
   versionDate = 'Sun 2/24/2019'
 
   issues = [
-
+ `"@progress/kendo-ui": "^2017.2.504"`,
     "to test what lib to use in package.json",
     "https://unpkg.com/lodash@4.17.11/",
     "Remove auto-complete field entries in Google Chrome",
