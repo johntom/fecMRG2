@@ -114,9 +114,8 @@
           {
             "name": "kendo",
             "path": "../node_modules/@progress/kendo-ui/",
-            "resources": [
-              "js/kendo.button.js"
-            ]
+            "resources": []
+              
           },
           {
             "name": "aurelia-kendoui-bridge",
