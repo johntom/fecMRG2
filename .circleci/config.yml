@@ -83,7 +83,7 @@ jobs:
             mkdir -p out/src
             mkdir -p out/styles
 
-            cp -a .circleCi/. out/.circleCi/.
+            cp -a .circleci/. out/.circleci/.
             cp -a aurelia_project/. out/aurelia_project/.
             cp -a server/. out/server/.
             cp -a src/. out/src/.
