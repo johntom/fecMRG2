@@ -7,9 +7,9 @@ import { ApiService } from '../../utils/servicesApi';
 
 export class Home {
   heading = "MRG Home Page";
-  version = 300.33
-  versionDate = 'Sun 2/24/2019'
-
+  version = 300.34 
+  versionDate = 'Wed 2/27/2019'
+ 
   issues = [
  `"@progress/kendo-ui": "^2017.2.504"`,
     "to test what lib to use in package.json",
