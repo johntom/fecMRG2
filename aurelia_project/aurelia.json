@@ -108,17 +108,17 @@
           },
           {
             "name": "kendo",
-            "path": "../node_modules/@progress/kendo-ui",
+            "path": "../node_modules/@progress/kendo-ui/js",
             "deps": [
               "jquery"
             ],
             "resources": [
-              "js/kendo.button.js",
-              "js/kendo.multiselect.js",
-              "js/kendo.editor.js",
-              "js/kendo.grid.js",
-              "js/kendo.excel.js",
-              "js/kendo.pdf.js"
+              "kendo.button.js",
+              "kendo.multiselect.js",
+              "kendo.editor.js",
+              "kendo.grid.js",
+              "kendo.excel.js",
+              "kendo.pdf.js"
             ]
           },
           {
