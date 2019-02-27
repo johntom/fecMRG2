@@ -28,7 +28,7 @@ export class Home {
 
   ]
   majorfix=[
-    300.36 - rtf
+    300.36 -
   ]
   ninalist = [
     'when selecting saved list inv/actions/batch go directly ...',
