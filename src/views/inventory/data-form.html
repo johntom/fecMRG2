@@ -468,25 +468,12 @@
 
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
 										<strong> Keywords </strong>
-										<!-- <button ak-button click.delegate="showKeywords()">Show keywords </button> -->
-
+						
 									</div>
-									<!-- ak-multiselect.ref="myMultiSelect" k-data-source.bind="allFunctions" -->
 									<div class="Rtable-cell-70 Rtable-cell--highlight">
 
-										<!-- <ak-multiselect ak-multiselect.ref='multiselect' k-widget.two-way="multiselect"
-                     k-value.two-way="currentItem.keywords">
-											<select multiple="multiple " data-placeholder="Select keywords...">
-												<option repeat.for="opt of appService.codesGenre" model.bind="opt.Description">
-													${opt.Description}
-												</option>
-											</select>
-										</ak-multiselect> 
-                       k-widget.bind="multiselect" 
-                     ak-multiselect.ref="multiselect"  k-value.bind="currentItem.keywords" Description-->
-										<!-- currentItem.keywords 
-                         k-value.bind="currentItem.keywords"
-								                     -->
+						
+								                   
 										<ak-multiselect k-value.two-way="currentItem.keywords" k-placeholder="Select keywords..." k-data-text-field="Description"
 										 k-data-value-field="Description" k-height.bind="400" k-data-source.bind="dataSource" k-widget.two-way="multiselect"
 										 id="multiselect-customizing-templates-codes">
@@ -497,19 +484,6 @@
 											</ak-template>
 										</ak-multiselect>
 									</div>
-
-									<!-- <div class="Rtable-cell-30 Rtable-cell--highlight">
-										<strong> Keywords </strong>
-									
-										<button class="btn btn-success" click.trigger="addKeyword()">Add Keyword</button>
-										<input xid="keyword" type="text" class="form-control" placeholder="enter keyword" 
-                    value.bind="currentItem.addkeyword">
-									</div>
-										<div class="Rtable-cell-70 Rtable-cell--highlight">
-										<ak-multiselect k-placeholder="Select keywords..." 
-                    k-data-text-field="Description" k-data-value-field="id" k-auto-bind.bind="false"
-										 k-data-source.bind="dataSource" k-value.bind="currentItem.keywords"></ak-multiselect>
-									</div> -->
 
 									<div class="Rtable-cell-50 Rtable-cell--highlight">
 										<strong> Signed  &nbsp;</strong>
