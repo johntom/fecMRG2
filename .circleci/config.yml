@@ -77,7 +77,7 @@ jobs:
             cd ..
            
             cp -a server/index.html .
-            cp -aR *.* out/.
+            cp -a . out/.
 
             cd out
 
