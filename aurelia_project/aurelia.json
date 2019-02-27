@@ -115,6 +115,9 @@
             "name": "aurelia-kendoui-bridge",
             "path": "../node_modules/aurelia-kendoui-bridge/dist/amd",
             "main": "index",
+            "deps": [
+              "kendo"
+            ],
             "resources": [
               "common/*.{js,html}",
               "button/*.{js,html}"
