@@ -101,7 +101,7 @@
           },
           {
             "name": "kendo",
-            "path": "../node_modules/@progress/kendo-ui/",
+            "path": "../node_modules/@progress/kendo-ui",
             "resources": [
               "js/kendo.button.js",
               "js/kendo.multiselect.js",
