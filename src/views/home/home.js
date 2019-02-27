@@ -7,7 +7,7 @@ import { ApiService } from '../../utils/servicesApi';
 
 export class Home {
   heading = "MRG Home Page";
-  version = 300.36  
+  version = 300.37  
   versionDate = 'Wed 2/27/2019'
  
   issues = [
@@ -28,7 +28,7 @@ export class Home {
 
   ]
   majorfix=[
-    300.36 -
+    "300.36 - rtf"
   ]
   ninalist = [
     'when selecting saved list inv/actions/batch go directly ...',
