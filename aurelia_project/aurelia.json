@@ -41,8 +41,10 @@
             "path": "node_modules/aurelia-cli/lib/resources/scripts/configure-bluebird.js",
             "env": "dev"
           },
+          "node_modules/jquery/dist/jquery.min.js",
           "node_modules/moment/min/moment-with-locales.js",
           "node_modules/lodash/lodash.min.js",
+          "node_modules/bootstrap/dist/js/bootstrap.min.js",
           "node_modules/babel-polyfill/dist/polyfill.min.js",
           "node_modules/systemjs/dist/system.js"
         ],
@@ -70,19 +72,6 @@
           "aurelia-task-queue",
           "aurelia-templating",
           "aurelia-templating-binding",
-          "jquery",
-          {
-            "name": "bootstrap",
-            "path": "../node_modules/bootstrap/dist",
-            "main": "js/bootstrap.min",
-            "deps": [
-              "jquery"
-            ],
-            "exports": "$",
-            "resources": [
-              "css/bootstrap.css"
-            ]
-          },
           {
             "name": "aurelia-templating-resources",
             "path": "../node_modules/aurelia-templating-resources/dist/amd",
@@ -110,12 +99,17 @@
             "path": "../node_modules/aurelia-dialog/dist/commonjs",
             "resources": []
           },
-            "jquery",
           {
             "name": "kendo",
             "path": "../node_modules/@progress/kendo-ui/",
-            "resources": []
-              
+            "resources": [
+              "js/kendo.button.js",
+              "js/kendo.multiselect.js",
+              "js/kendo.editor.js",
+              "js/kendo.grid.js",
+              "js/kendo.excel.js",
+              "js/kendo.pdf.js"
+            ]
           },
           {
             "name": "aurelia-kendoui-bridge",

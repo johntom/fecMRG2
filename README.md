@@ -1,3 +1,12 @@
+#feb 27
+Install slickgrid in FEC
+https://unpkg.com/slickgrid
+which redirects to https://unpkg.com/slickgrid@2.4.3/slick.core.js
+directory view = https://unpkg.com/slickgrid@2.4.3/
+
+package
+ "aurelia-slickgrid": "^2.6.0",
+
 #feb 20 2019
 must use _ for lodash ref
 "aurelia-binding": "2.2.1",

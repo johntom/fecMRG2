@@ -8,6 +8,15 @@ export async function configure(aurelia) {
     .developmentLogging()
     .plugin('aurelia-kendoui-bridge')
     // .plugin('aurelia-bootstrap-select')
+    
+    // pkg
+    //   "aurelia-slickgrid": "^2.6.0",
+// .plugin('aurelia-slickgrid', config => {
+//     // change any of the default global options
+//     config.options.gridMenu.iconCssClass = 'fa fa-bars';
+//   })
+
+
     .plugin('aurelia-dialog', config => {
       config.useDefaults();
       config.settings.lock = true;

@@ -63,6 +63,7 @@
     "@progress/kendo-ui": "^2018.2.620",
     "aurelia-validation": "1.2.2",
     "aurelia-kendoui-bridge": "1.7.0",
+  
     "bluebird": "3.5.2",
     "isomorphic-fetch": "2.2.1",
     "lodash": "4.17.11",
