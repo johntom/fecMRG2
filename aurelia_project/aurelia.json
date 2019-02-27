@@ -17,7 +17,7 @@
       }
     ],
     "options": {
-      "minify": "stage & prod",
+      "minify": "prod",
       "sourcemaps": "dev & stage",
       "rev": "stage & prod"
     },
