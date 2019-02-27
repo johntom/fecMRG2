@@ -41,10 +41,8 @@
             "path": "node_modules/aurelia-cli/lib/resources/scripts/configure-bluebird.js",
             "env": "dev"
           },
-          "node_modules/jquery/dist/jquery.min.js",
           "node_modules/moment/min/moment-with-locales.js",
           "node_modules/lodash/lodash.min.js",
-          "node_modules/bootstrap/dist/js/bootstrap.min.js",
           "node_modules/babel-polyfill/dist/polyfill.min.js",
           "node_modules/systemjs/dist/system.js"
         ],
@@ -98,6 +96,15 @@
             "main": "aurelia-dialog",
             "path": "../node_modules/aurelia-dialog/dist/commonjs",
             "resources": []
+          },
+          "jquery",
+          {
+            "name": "bootstrap",
+            "path": "../node_modules/bootstrap/dist/js",
+            "main": "bootstrap.min",
+            "deps": [
+              "jquery"
+            ]
           },
           {
             "name": "kendo",
