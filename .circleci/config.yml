@@ -165,7 +165,7 @@ workflows:
             branches:
               only:
                 - master
-      - deploy-to-stage:
+      - deploy-to-dev:
           requires:
             - build
           filters:
