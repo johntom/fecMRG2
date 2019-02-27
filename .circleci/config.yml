@@ -46,6 +46,50 @@ jobs:
           paths:
             - ./**
 
+  deploy-to-dev:
+    docker:
+      # specify the version you desire here  
+      # below favicon
+      # cp -a .gitignore out/.
+      # cp -a .gcloudignore out/.
+      # node:8.11.2
+      - image: circleci/node:9.11.2
+
+    working_directory: ~/repo
+
+    steps:
+      - attach_workspace:
+          at: ~/repo
+      - setup_remote_docker:
+          docker_layer_caching: true
+      - run:
+          name: Deploy
+          command: |
+            git config --global user.email jrt@gtz.com
+            git config --global user.name johntom
+
+            echo "Cloning Dev"
+            git clone https://johntom:giDoghouse77@github.com/johntom/fecMRG2-Dev.git out
+
+            cd out
+            git checkout $TARGET_BRANCH || git checkout --orphan $TARGET_BRANCH
+            git rm -rf .
+            cd ..
+           
+            cp -a server/index.html .
+            cp -aR *.* out/.
+
+            cd out
+
+            git add -A
+            git commit -m "Automated deployment to GitHub Pages: ${CIRCLE_SHA1}" --allow-empty
+
+            git push origin $TARGET_BRANCH
+      - run:
+          name: Finished
+          command: |
+            echo "Finished!"
+
   deploy-to-stage:
     docker:
       # specify the version you desire here  
@@ -117,6 +161,13 @@ workflows:
   build-and-deploy:
     jobs:
       - build:
+          filters:
+            branches:
+              only:
+                - master
+      - deploy-to-stage:
+          requires:
+            - build
           filters:
             branches:
               only:
