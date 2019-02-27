@@ -7,13 +7,13 @@ import { ApiService } from '../../utils/servicesApi';
 
 export class Home {
   heading = "MRG Home Page";
-  version = 300.35  
+  version = 300.36  
   versionDate = 'Wed 2/27/2019'
  
   issues = [
  `"@progress/kendo-ui": "^2017.2.504"`,
     "to test what lib to use in package.json",
-    "https://unpkg.com/lodash@4.17.11/",
+    `"https://unpkg.com/lodash@4.17.11/" Change all ref from lodash to _`,
     "Remove auto-complete field entries in Google Chrome",
     "never pass id to put or post /:id",
     "to trip cci do a commit",
@@ -26,6 +26,9 @@ export class Home {
     , "git config --list  git config user.name displays"
 
 
+  ]
+  majorfix=[
+    300.36 - rtf
   ]
   ninalist = [
     'when selecting saved list inv/actions/batch go directly ...',

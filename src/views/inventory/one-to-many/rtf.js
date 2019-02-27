@@ -238,7 +238,8 @@ export class Rtf {
         //
         //	this.segment2 += `${item.ProvOwner}, ${ProvLoc}<br> ${item.ProvMemo}`
       }
-      let myObjects = lodash.sortBy(provarray, 'sord');
+      // let myObjects = lodash.sortBy(provarray, 'sord');
+      let myObjects = _.sortBy(provarray, 'sord');
       this.segment2 += provheader
       for (const obj of myObjects) {
         // this.segment2 += obj.date + ' ' + obj.exception
@@ -320,9 +321,9 @@ export class Rtf {
         let oid
         if ((item.ExhibitLocation + '').length < 6) {
 
-          oid = pl.findIndex(x => x.ID === item.ExhibitLocation)
+          oid = provloc.findIndex(x => x.ID === item.ExhibitLocation)
         } else {
-          oid = pl.findIndex(x => x.id === item.ExhibitLocation)
+          oid = provloc.findIndex(x => x.id === item.ExhibitLocation)
 
         }
         //  oid = provloc.findIndex(x => x.id === item.ExhibitLocation) 
@@ -414,7 +415,7 @@ data = ppre + `${item.ReproductionAuthor}. <em>${item.ReproductionTitle}</em> ${
     }
 
     if (exhibitandpubs.length > 0) {
-      myObjects = lodash.sortBy(exhibitandpubs, 'date');
+      myObjects = _.sortBy(exhibitandpubs, 'date');
       //  console.log('============myObjects===========================================')
       // lodash.forEach(myObjects, function (result) {
       //   console.log('result ', result);
