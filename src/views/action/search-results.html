@@ -67,13 +67,13 @@
 						</select> -->
 
 						Transport To ?
-						<aubs-typeahead ref='dtransporto' data.bind="appService.codesListLocation" value.bind="item.Description" debounce.bind="350"
+						<!-- <aubs-typeahead ref='dtransporto' data.bind="appService.codesListLocation" value.bind="item.Description" debounce.bind="350"
 						 placeholder="Transport To" open-on-focus.bind="true" key="Description" results-limit.bind="12" select-single-result.bind="true">
 						</aubs-typeahead>
 						<hr> Transport From ?
 						<aubs-typeahead ref='dtransportfrom' data.bind="appService.codesListLocation" value.bind="item.Description2" debounce.bind="350"
 						 placeholder="Transport From" open-on-focus.bind="true" key="Description" results-limit.bind="12" select-single-result.bind="true">
-						</aubs-typeahead>
+						</aubs-typeahead> -->
 						<hr> Transport Note
 						<input type="text" id="TransportNotes" class="form-control input-sm" value.bind="item.TransportNotes">
 						<button id="save1" class="btn btn-primary" type="button" click.delegate="save1()">Save Transport </button>
@@ -258,14 +258,14 @@
 						 k-width.bind="180" k-template="<button click.delegate='detailsEdit($event)' class='k-button'>#=InventoryCode#</button>">
 						</ak-col>
 
-						<ak-col k-filterable.bind="false" k-title="Image" k-field="InventoryCode" k-width="110px">
+						<!-- <ak-col k-filterable.bind="false" k-title="Image" k-field="InventoryCode" k-width="110px">
 							<ak-template>
 								<div class='customer-photo' style="background-image: url(https://artbased.com/api/v1/getimage/inv/${InventoryCode}.jpg)"
 								 click.delegate="showModalImg($event)"></div>
 
 
 							</ak-template>
-						</ak-col>
+						</ak-col> -->
 						<ak-col k-title="Title" k-width="110px" k-field="Title"></ak-col>
 
 						<ak-col k-title="Artist" k-width="200px" k-field="artist.ArtistName"></ak-col>
