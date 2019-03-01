@@ -2,11 +2,14 @@
 // need next 2 lines for aurelia-bootstrap-select
 // import 'jquery';
 // import 'bootstrap';
+//https://github.com/aurelia-ui-toolkits/aurelia-kendoui-bridge/tree/master/sample/src
 export async function configure(aurelia) {
   aurelia.use
     .standardConfiguration()
     .developmentLogging()
-     .plugin('aurelia-kendoui-bridge')
+    //  .plugin('aurelia-kendoui-bridge')
+     .plugin('aurelia-kendoui-bridge', (kendo) => kendo.detect().notifyBindingBehavior())
+ 
       // .plugin('aurelia-kendoui-bridge', (kendo) => kendo.pro())
    
     // .plugin('aurelia-bootstrap-select')
