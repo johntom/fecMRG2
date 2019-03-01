@@ -5,6 +5,8 @@
 	<require from="aurelia-kendoui-bridge/editor/editor"></require> -->
 
 	<!-- jrt -->
+
+  <!-- johnny -->
 	<style>
 		.k-grid tbody tr {
 			height: 50px;
@@ -95,7 +97,7 @@
 								<strong> Exhibition Sponser </strong>
 							</div>
 							<div class="Rtable-cell-70  Rtable-cell--light">
-								<input type="text" id="ExhibitSponser" class="form-control input-sm au-target" value.bind="item.ExhibitSponser" au-target-id="134">
+								<input type="text" id="ExhibitSponser" class="form-control input-sm" value.bind="item.ExhibitSponser" au-target-id="134">
 							</div>
 						</div>
 
@@ -104,7 +106,7 @@
 								<strong>	Exhibition Date   </strong>
 							</div>
 							<div class="Rtable-cell-70  Rtable-cell--light">
-								<input type="text" id="ExhibitDates" class="form-control input-sm au-target" value.bind="item.ExhibitDatesDate" au-target-id="136">
+								<input type="text" id="ExhibitDates" class="form-control input-sm" value.bind="item.ExhibitDatesDate" au-target-id="136">
 							</div>
 						</div>
 
@@ -113,7 +115,7 @@
 								<strong>Exhibition SortDate </strong>
 							</div>
 							<div class="Rtable-cell-70  Rtable-cell--light">
-								<input type="date" id="ExhibitSortDate" class="form-control input-sm au-target" value.bind="item.ExhibitSortDate" au-target-id="137">
+								<input type="date" id="ExhibitSortDate" class="form-control input-sm " value.bind="item.ExhibitSortDate" au-target-id="137">
 							</div>
 						</div>
 
@@ -122,7 +124,8 @@
 								<strong>Traveled </strong>
 							</div>
 							<div class="Rtable-cell-70  Rtable-cell--light">
-								<input type="checkbox" id="Traveled" class="form-control input-sm au-target" value.bind="item.Traveled" au-target-id="138"
+								<input type="checkbox" id="Traveled" class="form-control input-sm " 
+                value.bind="item.Traveled" 
 								 value="">
 							</div>
 						</div>
@@ -141,10 +144,10 @@
 						<input type="text" id="ReproductionTitle" class="form-control input-sm" value.bind="item.ReproductionTitle"> Publisher
 						<input type="text" id="ReproductionName" class="form-control input-sm" value.bind="item.ReproductionName"> Reproduction
 						Location
-						<aubs-typeahead ref='reproductionlocation' data.bind="appService.codesProvenanceLocation" value.bind="item.DescriptionLoc"
+						<!-- <aubs-typeahead ref='reproductionlocation' data.bind="appService.codesProvenanceLocation" value.bind="item.DescriptionLoc"
 						 debounce.bind="350" placeholder="reproduction location" open-on-focus.bind="true" key="Description" results-limit.bind="12"
 						 select-single-result.bind="true">
-						</aubs-typeahead>
+						</aubs-typeahead> -->
 
 
 
@@ -167,9 +170,9 @@
 
 					<div show.bind="!hide4">
 						Owner <input type="text" id="ProvOwner" class="form-control input-sm" value.bind="item.ProvOwner"> ProvLoc
-						<aubs-typeahead ref='provlocation' data.bind="appService.codesListLocation" value.bind="item.Description" debounce.bind="350"
+						<!-- <aubs-typeahead ref='provlocation' data.bind="appService.codesListLocation" value.bind="item.Description" debounce.bind="350"
 						 placeholder="mrg location" open-on-focus.bind="true" key="Description" results-limit.bind="12" select-single-result.bind="true">
-						</aubs-typeahead>
+						</aubs-typeahead> -->
 
 
 						Date <input type="text" id="ProvDate" class="form-control input-sm" value.bind="item.ProvDate"> ProvMemo
@@ -182,9 +185,9 @@
 
 					<div show.bind="!hide5">
 						MRG Location
-						<aubs-typeahead ref='mrglocation' data.bind="appService.codesInventoryLocation" value.bind="item.Description" debounce.bind="350"
+						<!-- <aubs-typeahead ref='mrglocation' data.bind="appService.codesInventoryLocation" value.bind="item.Description" debounce.bind="350"
 						 placeholder="mrg location" open-on-focus.bind="true" key="Description" results-limit.bind="12" select-single-result.bind="true">
-						</aubs-typeahead>
+						</aubs-typeahead> -->
 
 						<button id="save5" class="btn btn-primary" type="button" click.delegate="save5()">Save MRG Location</button>
 
@@ -193,18 +196,18 @@
 					<div show.bind="!hide6">
 						Temp Location
 
-						<aubs-typeahead ref='templocation' data.bind="appService.codesInventoryLocation" value.bind="item.Description" debounce.bind="350"
+						<!-- <aubs-typeahead ref='templocation' data.bind="appService.codesInventoryLocation" value.bind="item.Description" debounce.bind="350"
 						 placeholder="temp location" open-on-focus.bind="true" key="Description" results-limit.bind="12" select-single-result.bind="true">
-						</aubs-typeahead>
+						</aubs-typeahead> -->
 						<button id="save6" class="btn btn-primary" type="button" click.delegate="save6()">save 1</button>
 					</div>
 
 					<div show.bind="!hide8">
 						Offer Date
 						<input type="date" ref="date" class="form-control input-sm" value.bind="item.offerdate"> offered To
-						<aubs-typeahead ref='doffering' data.bind="appService.orgsList" value.bind="item.OrgName" debounce.bind="350" placeholder="offering to arg"
+						<!-- <aubs-typeahead ref='doffering' data.bind="appService.orgsList" value.bind="item.OrgName" debounce.bind="350" placeholder="offering to arg"
 						 open-on-focus.bind="true" key="OrgName" results-limit.bind="12" select-single-result.bind="true">
-						</aubs-typeahead>
+						</aubs-typeahead> -->
 
 						<button id="save8" class="btn btn-primary" type="button" click.delegate="save8()">Save Offering</button>
 
@@ -258,14 +261,6 @@
 						 k-width.bind="180" k-template="<button click.delegate='detailsEdit($event)' class='k-button'>#=InventoryCode#</button>">
 						</ak-col>
 
-						<!-- <ak-col k-filterable.bind="false" k-title="Image" k-field="InventoryCode" k-width="110px">
-							<ak-template>
-								<div class='customer-photo' style="background-image: url(https://artbased.com/api/v1/getimage/inv/${InventoryCode}.jpg)"
-								 click.delegate="showModalImg($event)"></div>
-
-
-							</ak-template>
-						</ak-col> -->
 						<ak-col k-title="Title" k-width="110px" k-field="Title"></ak-col>
 
 						<ak-col k-title="Artist" k-width="200px" k-field="artist.ArtistName"></ak-col>
