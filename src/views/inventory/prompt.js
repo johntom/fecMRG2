@@ -139,8 +139,18 @@ export class Prompt {
         console.log(response.output);
       });
     }
-
+  
   }
+  // see       if (this.fieldname === this.orgfields[opos]) {
+    //     if ((this.currentItem[this.orgfields[opos]] === undefined) || (this.currentItem[this.orgfields[opos]] === null)) { } else {
+    //       origid = orgs.findIndex(x => x._id === this.currentItem[this.orgfields[opos]])
+    //       this.orgobj = orgs[origid]
+    //     }
+    //   }
+    //   this.OrgName = this.orgobj
+    //   this.dorg.value = this.OrgName
+    //   // }
+    // }
   attached() {
     //  this.currentItem
     let findOptiono = this.appService.orgsList.find(x => x._id === this.currentItem.OwnerID)

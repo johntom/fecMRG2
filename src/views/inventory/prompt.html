@@ -159,6 +159,15 @@
 						 focus.bind="hasFocus"	 open-on-focus.bind="true" key="OrgName" results-limit.bind="22" 
              select-single-result.bind="true">
 							</aubs-typeahead> -->
+						<select id="org" class="form-control  input-sm" value.bind="artist.Nationality"> 
+                      <option model.bind="null">Choose...</option> 
+                         <option repeat.for="opt of appService.orgsList " model.bind="opt.id">
+                    ${opt.OrgName} 
+                      </option> 
+                    </select>
+
+
+
 							<div> Org: ${OrgName | stringify}</div>
 						</div>
 
