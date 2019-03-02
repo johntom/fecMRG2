@@ -7,7 +7,7 @@ import { ApiService } from '../../utils/servicesApi';
 
 export class Home {
   heading = "MRG Home Page";
-  version = 300.71 
+  version = 300.72 
   versionDate = 'Sat 3/2/2019'
  
   issues = [
@@ -18,13 +18,11 @@ export class Home {
     "never pass id to put or post /:id",
     "to trip cci do a commit",
     "https://circleci.com/gh/johntom/fecMRG2/edit  https://circleci.com/gh/johntom/fecMRG2/21 build and deploy"
-
     , "SAVE THIS AS LST REPO BEFORE ALL CHANGES"
     , "deleted select2...selectize"
-    , " git config --global user.email jrt@gtz.com"
+    , "git config --global user.email jrt@gtz.com"
     , "git config --global user.name johntom"
     , "git config --list  git config user.name displays"
-
 
   ]
   majorfix=[
