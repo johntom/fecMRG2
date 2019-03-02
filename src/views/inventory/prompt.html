@@ -87,12 +87,8 @@
 							</tbody>
 						</table>
 					</form>
-
-
 				</div>
 			</div>
-
-
 
 			<div show.bind="fieldname==='SavedList'">
 				<div class="form-group flex-column-1">
@@ -108,19 +104,6 @@
 
 				</div>
 			</div>
-			<div show.bind="fieldname==='Artist'">
-				<div class="form-group flex-column-1">
-					<label for="Artist">${doc}</label>
-					<input focus.bind="hasFocus" ref="myDatalistA" type="text" list="myDatalistA" change.delegate="changeCallbackArtist(selectedValue)"
-					 input.delegate="selectedValueA = findOptionA($event.target.value)" />
-					<datalist id="myDatalistA">
-						<option repeat.for="option of appService.artistList">${option.ArtistName}</option>
-					</datalist>
-				</div>
-			</div>
-
-
-
 			<div show.bind="fieldname==='Catalog'">
 				<div class="form-group flex-column-1">
 
@@ -135,8 +118,6 @@
 					<pre style="margin-top: 100px"><code>${selectedValueC.CatalogTitle}</code></pre>
 				</div>
 			</div>
-
-
 			<div show.bind="fieldname ==='MediumSupportobj'">
 				<div class="form-group flex-column-1">
 					<label for="medsup">Medium Support</label>
@@ -146,21 +127,38 @@
 						<option repeat.for="option of appService.codesListMediumSupport">${option.Description} </option>
 					</datalist>
 				</div>
+				${selectedValue}
 			</div>
-
+			<div show.bind="fieldname==='Artist'">
+				<div class="form-group flex-column-1">
+					<label for="Artist">${doc}</label>
+					<input focus.bind="hasFocus" ref="myDatalistA" type="text" list="myDatalistA" change.delegate="changeCallbackArtist(selectedValueA)"
+					 input.delegate="selectedValueA = findOptionA($event.target.value)" />
+					<datalist id="myDatalistA">
+						<option repeat.for="option of appService.artistList">${option.ArtistName}</option>
+					</datalist>
+				</div>
+			</div>
 			<div show.bind="fieldbase==='ORG'">
 				<div class="form-group flex-column-1">
-					<div>
 
-						<div show.bind="fieldbase==='ORG'">
-							<!-- fix-aubs  -->
-							<!-- <aubs-typeahead ref='dorg' data.bind="appService.orgsList" value.bind="OrgName" debounce.bind="350"
+					<input focus.bind="hasFocus" ref="myDatalistO" type="text" list="myDatalistO" 
+					change.delegate="changeCallbackOrg(selectedValueO)"
+					 input.delegate="selectedValueO = findOptionO($event.target.value)" />
+					<datalist id="myDatalistO">
+						<option repeat.for="option of appService.orgsList">${option.OrgName}</option>
+					</datalist>
+				</div>
+				${selectedValue} /	${selectedValueO} / ${myDatalistO}
+			</div>
+			<!-- fix-aubs  -->
+			<!-- 	c ref='dorg' data.bind="appService.orgsList" value.bind="OrgName" debounce.bind="350"
                placeholder="${placeholder}"
 						 focus.bind="hasFocus"	 open-on-focus.bind="true" key="OrgName" results-limit.bind="22" 
              select-single-result.bind="true">
 							</aubs-typeahead> -->
 
-<label>
+			<!-- <label>
       Select product:<br>
       <select value.bind="selectedProduct">
         <option value="">Choose...</option>
@@ -169,24 +167,36 @@
           ${product}
         </option>
       </select>
+    </label> -->
+			<!-- Selected product: ${selectedProduct} -->
+
+			<!-- <label>
+      Select product:<br>
+      <select value.bind="selectedProduct">
+        <option model.bind="null">Choose...</option>
+        <option repeat.for="product of products"
+                model.bind="product">
+          ${product.id} - ${product.name}
+        </option>
+      </select>
     </label>
-    Selected product: ${selectedProduct}
+     Selected product: ${selectedProduct.id} - ${selectedProduct.name} -->
 
-						<select id="org" class="form-control  input-sm" value.bind="selectedorg"> 
-                      <option model.bind="null">Choose...</option> 
-                         <option repeat.for="opt of appService.orgsList "  model.bind="opt.id">
-                    ${opt.OrgName} 
-                      </option> 
-                    </select>
+			<!-- <label>
+
+            <select value.bind="selectedOrg" class="form-control  input-sm">
+            <option model.bind="null">Choose...</option>
+            <option repeat.for="org of appService.orgsList"
+            model.bind="org">
+            ${org.OrgName}
+            </option>
+            </select>
+            </label>
+            <br> Selected org: ${selectedOrg._id} - ${selectedOrg.OrgName} -->
 
 
 
-							<div> Org: ${selectedorg} ${selectedorg | stringify}</div>
-						</div>
 
-					</div>
-				</div>
-			</div>
 
 
 			<hr>
