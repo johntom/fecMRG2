@@ -13,8 +13,12 @@ import { Promptartist } from '../prompt/promptArtist';
 
 
 export class Prompt {
+
+  
   static inject = [DialogController, ApplicationService, MyDataService, DialogService, ApiService];
   // ConsignmentShippingID=ConservedFrom
+products = ['Motherboard', 'CPU', 'Memory'];
+    selectedProduct = '';
   orgfields = ['ConsignedTo', 'ConsignedFromID', 'ConsignmentShippingID', 'OwnerID',
     'PhotographerID', 'PurchasedFrom', 'ConservedBy',
     'ConservedBy', 'SoldToID', 'SoldTo', 'LoanTo', 'ProvOwner']
@@ -251,9 +255,10 @@ export class Prompt {
           this.orgobj = orgs[origid]
         }
       }
+      if (origid!==-1){
       this.OrgName = this.orgobj
       this.dorg.value = this.OrgName
-      // }
+      }
     }
     // }
     //add DonatedBy

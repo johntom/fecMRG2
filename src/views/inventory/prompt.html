@@ -159,16 +159,29 @@
 						 focus.bind="hasFocus"	 open-on-focus.bind="true" key="OrgName" results-limit.bind="22" 
              select-single-result.bind="true">
 							</aubs-typeahead> -->
-						<select id="org" class="form-control  input-sm" value.bind="artist.Nationality"> 
+
+<label>
+      Select product:<br>
+      <select value.bind="selectedProduct">
+        <option value="">Choose...</option>
+        <option repeat.for="product of products"
+                value.bind="product">
+          ${product}
+        </option>
+      </select>
+    </label>
+    Selected product: ${selectedProduct}
+
+						<select id="org" class="form-control  input-sm" value.bind="selectedorg"> 
                       <option model.bind="null">Choose...</option> 
-                         <option repeat.for="opt of appService.orgsList " model.bind="opt.id">
+                         <option repeat.for="opt of appService.orgsList "  model.bind="opt.id">
                     ${opt.OrgName} 
                       </option> 
                     </select>
 
 
 
-							<div> Org: ${OrgName | stringify}</div>
+							<div> Org: ${selectedorg} ${selectedorg | stringify}</div>
 						</div>
 
 					</div>
