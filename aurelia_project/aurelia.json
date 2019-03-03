@@ -106,33 +106,34 @@
               "jquery"
             ]
           },
-          {
+         
+       
+
+
+
+{
             "name": "kendo",
-            "path": "../node_modules/@progress/kendo-ui/js",
-            "deps": [
-              "jquery"
-            ],
+            "path": "../node_modules/@progress/kendo-ui/",
             "resources": [
-              "kendo.button.js",
-              "kendo.multiselect.js",
-              "kendo.editor.js",
-              "kendo.grid.js",
-              "kendo.excel.js",
-              "kendo.pdf.js"
+              "js/kendo.button.js",
+							   "js/kendo.multiselect.js",
+              "js/kendo.editor.js",
+              "js/kendo.grid.js",
+              "js/kendo.excel.js",
+              "js/kendo.pdf.js"
             ]
           },
           {
             "name": "aurelia-kendoui-bridge",
             "path": "../node_modules/aurelia-kendoui-bridge/dist/amd",
             "main": "index",
-            "deps": [
-              "kendo"
-            ],
             "resources": [
               "common/*.{js,html}",
               "button/*.{js,html}"
             ]
           },
+
+
           "numeral"
         ]
       }

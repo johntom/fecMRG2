@@ -7,11 +7,12 @@ import { ApiService } from '../../utils/servicesApi';
 
 export class Home {
   heading = "MRG Home Page";
-  version = 300.74
+  version = 300.76
   versionDate = 'Sat 3/2/2019'
  
   issues = [
  `"@progress/kendo-ui": "^2017.2.504"`,
+ ' python -m SimpleHTTPServer D:\Frameworks\fecMRG2-Staging\www\pythonserver.bat',
     "to test what lib to use in package.json",
     `"https://unpkg.com/lodash@4.17.11/" Change all ref from lodash to _`,
     "Remove auto-complete field entries in Google Chrome",
