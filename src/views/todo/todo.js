@@ -19,8 +19,8 @@ export class Todo {
       let qs = this.utilService.generateQueryString(this.search);
       // let path = `searchCatalog${this.utilService.counter++}${qs}`;
       // this.router.navigate(`#/catalog/${path}`);
-      let path = `searchCatalog${qs}&tabname=searchCatalog${this.utilService.counter++}`;
-      let rt2 = `#/catalog/${path}`
+      let path = `searchTodo${qs}&tabname=searchTodo${this.utilService.counter++}`;
+      let rt2 = `#/todo/${path}`
       this.router.navigate(rt2);
     }
   }

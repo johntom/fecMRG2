@@ -1,24 +1,16 @@
 <template>
-	<require from="aurelia-kendoui-bridge/multiselect/multiselect"></require>
-	<require from="../../resources/value-converters/stringify"></require>
+		<require from="../../resources/value-converters/stringify"></require>
 	<ux-dialog>
 		<ux-dialog-header class="modal-header modal-header-success">
 			<div class="alert alert-danger">
-				<!-- <h1 style="width:300px"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${heading}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h1> -->
 				<h1 style="width:600px">${heading}</h1>
-
 			</div>
-
-
 		</ux-dialog-header>
 		<ux-dialog-body>
-
-
 			<div class="form-group flex-column-1">
 				<h2> ${doc} </h2>
 				<table class="table-condensed table">
 					<thead class="table-header-blue">
-
 					</thead>
 					<tfoot>
 						<tr>
@@ -26,16 +18,12 @@
 						</tr>
 					</tfoot>
 					<tbody>
-				
 						<div class="Rtable Rtable--2cols">
 							<div class=" Rtable-cell-30 Rtable-cell--highlight">
 								<strong> id </strong>
 							</div>
 							<div class="Rtable-cell-70  Rtable-cell--light">
 								<input type="text" id="idx" class="form-control input-sm " value.bind="item.id">
-
-
-
 							</div>
 						</div>
 						<div class="Rtable Rtable--2cols">
@@ -43,8 +31,6 @@
 								<strong> Title </strong>
 							</div>
 							<div class="Rtable-cell-70  Rtable-cell--light">
-								<!-- <input type="text" id="ExhibitTitle" class="form-control input-sm" value.bind="item.ExhibitTitle"> -->
-
 								<textarea rows="2" cols="66" id="xNotes" wrap class="form-control input-sm" value.bind="item.ExhibitTitle"></textarea>
 							</div>
 						</div>
@@ -54,10 +40,8 @@
 								<strong> Sponsor </strong>
 							</div>
 							<div class="Rtable-cell-70  Rtable-cell--light">
-								<!-- <input type="text" id="ExhibitSponser" class="form-control input-sm " value.bind="item.ExhibitSponser"> -->
 								<textarea rows="2" cols="66" id="xExhibitSponser" wrap class="form-control input-sm" value.bind="item.ExhibitSponser"></textarea>
-
-							</div>
+						</div>
 						</div>
 						<div class="Rtable Rtable--2cols">
 							<div class="Rtable-cell-30 Rtable-cell--highlight">
