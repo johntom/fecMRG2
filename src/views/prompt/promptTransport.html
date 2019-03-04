@@ -1,0 +1,63 @@
+
+<template>
+	<style>
+		ai-dialog-container {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		ai-dialog-container>div {
+			margin: auto !important;
+		}
+	</style>
+	<ux-dialog style="width:800px; height: 550px;">
+		<!-- <ux-dialog-header>
+      <h1>${heading}</h1>
+    </ux-dialog-header> -->
+
+		<ux-dialog-header class="modal-header modal-header-success">
+			<div class="alert alert-danger">
+				<h1>${heading}</h1>
+
+			</div>
+		</ux-dialog-header>
+
+		<ux-dialog-body>
+			<div class="Rtable Rtable--2cols">
+
+			Transport Date <input type="date" id="TransportDate" class="form-control input-sm" value.bind="item.TransportDate">
+
+						<!-- <select id="tt" class="form-control input-sm" value.two-way="item.TransportTo" change.delegate="selectChanged1(transport, ID)"> 
+						<option model.bind="null">Choose...</option> 
+						<option repeat.for="opt of appService.codesListLocation" model.bind="opt.ID">
+							${opt.Description} 
+						</option> 
+						</select> -->
+
+						Transport To ?
+						<aubs-typeahead ref='dtransporto' data.bind="appService.codesListLocation" value.bind="item.Description" debounce.bind="350"
+						 placeholder="Transport To" open-on-focus.bind="true" key="Description" results-limit.bind="12" select-single-result.bind="true">
+						</aubs-typeahead>
+						<hr> Transport From ?
+						<aubs-typeahead ref='dtransportfrom' data.bind="appService.codesListLocation" value.bind="item.Description2" debounce.bind="350"
+						 placeholder="Transport From" open-on-focus.bind="true" key="Description" results-limit.bind="12" select-single-result.bind="true">
+						</aubs-typeahead>
+						<hr> Transport Note
+						<input type="text" id="TransportNotes" class="form-control input-sm" value.bind="item.TransportNotes">
+				
+
+		</ux-dialog-body>
+		<ux-dialog-footer>
+			<button click.trigger="controller.cancel()">Cancel and Close </button>
+			<button click.trigger="save()">Save Transport and Close </button>
+		<!-- <button id="save1" class="btn btn-primary" type="button" click.delegate="save1()">Save Transport </button> -->
+
+		</ux-dialog-footer>
+	</ux-dialog>
+	<ux-dialog-footer>
+		<!-- <button click.trigger="controller.cancel()">Cancel and Close </button>
+		<button click.trigger="save()">Save Reproduction and Close </button> -->
+
+	</ux-dialog-footer>
+</template>

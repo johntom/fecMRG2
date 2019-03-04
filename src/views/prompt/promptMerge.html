@@ -1,0 +1,52 @@
+<!-- <template>
+	<ux-dialog>
+		<ux-dialog-header class="modal-header modal-header-success">
+			<div class="alert alert-danger">
+				<h1 style="width:600px">${heading}</h1>
+ 	</div>
+		 </ux-dialog-header>
+		<ux-dialog-body>
+				<div class="form-group flex-column-1">
+					<h2> ${doc} </h2>
+					<table class="table-condensed table">
+						<tbody>
+					<h2> ${doc} </h2>
+						<textarea style="height:540px;width:500px" 
+		  				ak-rich-editor="k-tools.bind: tools; k-resizable.bind: resizable;k-widget.two-way: editor"
+			  			k-on-ready.delegate="setInitialValue($event.detail)">
+           </textarea>
+						<button id="i9" class="btn btn-primary" type="button" click.delegate="saveMerge()">Save Doc Image Merge</button>
+						<a href="https://artbased.com/api/v1/downloadonepdf/lists/${savedlist}.doc" class="btn btn-sm btn-primary">
+							<span class="glyphicon glyphicon-th-list"></span> Download Doc Image Merge
+						</a>
+						</tbody>
+					</table>
+				</div>
+				<hr>
+		</ux-dialog-body>
+		<ux-dialog-footer>
+			<button click.trigger="controller.cancel()">Cancel and Close </button>
+			<button click.trigger="save()">Save Editor and Close </button>
+		</ux-dialog-footer>
+	</ux-dialog>
+</template> -->
+
+<template>
+	<ux-dialog  style="width:600px;height: 650px;">
+    		<ux-dialog-header class="modal-header modal-header-success">
+			<div class="alert alert-danger">
+				<h3 >${heading}</h3>
+ 	</div>
+		 </ux-dialog-header>
+		<ux-dialog-body>
+				<textarea style="height:650px;width:600px" 
+		  				ak-rich-editor="k-tools.bind: tools; k-resizable.bind: resizable;k-widget.two-way: editor"
+			  			k-on-ready.delegate="setInitialValue($event.detail)">
+           </textarea>
+    </ux-dialog-body>
+    	<ux-dialog-footer>
+			<button click.trigger="controller.cancel()">Cancel and Close </button>
+			<button click.trigger="save()">Save Editor and Close </button>
+		</ux-dialog-footer>
+  </ux-dialog>
+</template>

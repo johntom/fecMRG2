@@ -11,6 +11,9 @@ import { DialogService } from 'aurelia-dialog'
 import { Promptexhibit } from '../prompt/promptExhibit';
 import { Promptrepro } from '../prompt/promptRepro';
 
+import { Prompttransport } from '../prompt/promptTransport';
+import { Promptprov } from '../prompt/promptProv';
+import { Promptmerge } from '../prompt/promptMerge';
 
 // jrt
 @inject(Router, ApiService, UtilService, ApplicationService, MyDataService, DialogService)
@@ -286,20 +289,14 @@ export class SearchResults {
         this.api.deleteSavedlists(this.savedlist, this.selectedids).then((jsonRes) => {
           console.log('jsonRes ', jsonRes);
 
-          //  this.loadData(); 
           this.datasource.read();
-          // let tab = this.appService.tabs.find(f => f.isSelected);
-          // this.closeTab(tab);
-          // // this.requestclose()
+          
 
         });
       }
-      // this.allselectedids.push(dataItem.InventoryCode);
-      //  this.selectedids.push(dataItem.InventoryCode);
+      
     }
-    // this.myMultiSelect.kWidget.dataSource.add(this.selectedids);
-    // this.myMultiSelect.kWidget.setDataSource(this.selectedids);
-    //   this.allselectedids =   this.allselectedids+sels;
+   
   }
   // closeTab(tab) {
 
@@ -377,7 +374,7 @@ export class SearchResults {
     grid.select(targetRow);
     let selectedRow = grid.select();
     let dataItem = grid.dataItem(selectedRow);
-    this.dialogService.open({ viewModel: DialogImage, model: dataItem, lock: false }).whenClosed(response => {
+    this.dialogService.open({ viewModel: DialogImage, model: dataItem, lock: true }).whenClosed(response => {
 
 
 
@@ -402,15 +399,36 @@ export class SearchResults {
 
   action1() {
     this.item = {}
-    this.hide2 = true
-    this.hide3 = true
-    this.hide4 = true
-    this.hide5 = true
-    this.hide6 = true
-    this.hide7 = true
-    this.hide8 = true
-    this.hide9 = true
-    this.hide1 ? this.hide1 = false : this.hide1 = true
+    // this.hide2 = true
+    // this.hide3 = true
+    // this.hide4 = true
+    // this.hide5 = true
+    // this.hide6 = true
+    // this.hide7 = true
+    // this.hide8 = true
+    // this.hide9 = true
+    // this.hide1 ? this.hide1 = false : this.hide1 = true
+ let currentModel = {}
+    currentModel.currentItem = this.item
+    currentModel.item = this.item
+
+    currentModel.currentItem.hide1 = true
+
+    this.dialogService.open({ viewModel: Prompttransport, model: currentModel, lock: true }).whenClosed(response => {
+      console.log('this.item', response, this.item)
+      if (!response.wasCancelled) {
+        this.item.Transport = null
+    
+        this.save1()
+
+      } else {
+        // if (this.currentItem.artist === null) {
+
+        // }
+        console.log('cancel');
+      }
+      console.log(response)//.output);
+    });
 
   }
 
@@ -431,7 +449,7 @@ export class SearchResults {
 
     currentModel.currentItem.hide1 = true
 
-    this.dialogService.open({ viewModel: Promptexhibit, model: currentModel, lock: false }).whenClosed(response => {
+    this.dialogService.open({ viewModel: Promptexhibit, model: currentModel, lock: true }).whenClosed(response => {
       // this.dialogService.open({ viewModel: Promptrepro, model: this.item, lock: false }).whenClosed(response => {
       console.log('this.item', response, this.item)
       if (!response.wasCancelled) {
@@ -504,17 +522,52 @@ export class SearchResults {
   }
 
   action4() {
-    this.hide1 = true
-    this.hide2 = true
-    this.hide3 = true
-    this.hide5 = true
-    this.hide6 = true
-    this.hide7 = true
-    this.hide8 = true
-    this.hide9 = true
-    this.hide4 ? this.hide4 = false : this.hide4 = true
+    // this.hide1 = true
+    // this.hide2 = true
+    // this.hide3 = true
+    // this.hide5 = true
+    // this.hide6 = true
+    // this.hide7 = true
+    // this.hide8 = true
+    // this.hide9 = true
+    // this.hide4 ? this.hide4 = false : this.hide4 = true
+	// Owner <input type="text" id="ProvOwner" class="form-control input-sm" value.bind="item.ProvOwner"> ProvLoc
+	// 					<aubs-typeahead ref='provlocation' data.bind="appService.codesListLocation" value.bind="item.Description" debounce.bind="350"
+	// 					 placeholder="mrg location" open-on-focus.bind="true" key="Description" results-limit.bind="12" select-single-result.bind="true">
+	// 					</aubs-typeahead>
+
+
+	// 					Date <input type="text" id="ProvDate" class="form-control input-sm" value.bind="item.ProvDate"> ProvMemo
+	// 					<input type="text" id="ProvMemo" class="form-control input-sm" value.bind="item.ProvMemo"> ProvSortDate <input type="text"
+	// 					 id="ProvSortDate" class="form-control input-sm" value.bind="item.ProvSortDate"> Sequence
+	// 					<input type="text" id="Sequence" class="form-control input-sm" value.bind="item.Sequence">
+	// 					<button id="save4" class="btn btn-primary" type="button" click.delegate="save4()">Save Prov</button>
+
+ let currentModel = {}
+    currentModel.currentItem = this.item
+    currentModel.item = this.item
+
+    currentModel.currentItem.hide4 = true
+
+    this.dialogService.open({ viewModel: Promptprov, model: currentModel, lock: true }).whenClosed(response => {
+      console.log('this.item', response, this.item)
+      if (!response.wasCancelled) {
+        this.item.Provenance = null
+    
+        this.save4()
+
+      } else {
+        // if (this.currentItem.artist === null) {
+
+        // }
+        console.log('cancel');
+      }
+      console.log(response)//.output);
+    });
 
   }
+
+
 
   action5() {
     this.hide1 = true
@@ -566,58 +619,72 @@ export class SearchResults {
   }
 
   action9() {
-    this.hide1 = true
-    this.hide2 = true
-    this.hide3 = true
-    this.hide4 = true
-    this.hide5 = true
-    this.hide6 = true
-    this.hide7 = true
-    // this.hide9 ? this.hide9 = false : this.hide9 = true
-    this.hide9 = false
-    this.hide8 = true
+    // this.hide1 = true
+    // this.hide2 = true
+    // this.hide3 = true
+    // this.hide4 = true
+    // this.hide5 = true
+    // this.hide6 = true
+    // this.hide7 = true
+    // // this.hide9 ? this.hide9 = false : this.hide9 = true
+    // this.hide9 = false
+    // this.hide8 = true
 
-    let segment
+    // let segment
+    // segment = `<h1 style="text-align:center;">${this.savedlist}</h1> <table><tbody>`
+    // for (const invitem of this.datasource._data) {
+    //   let ww = invitem.clientWidthRatio
+    //   let hh = invitem.clientHeightRatio
+    //   if (ww === undefined) ww = 1
+    //   if (hh === undefined) hh = 1
+    //   ww = 225 * ww
+    //   hh = 225 * hh
+    //   // we have  the ratio of each image
+    //   // ie h=1 w=1
+    //   // w h-1 w=.5
+    //   // save to    https://artbased.com/api/v1/downloadonepdf/lists/sl2.doc
+    //   segment += `<tr style="height:17%;"><td style="width:8%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>`
+    //   segment += `<td style="width:42%;">${invitem.rtf2}</td>`
+    //   segment += `<td style="width:8%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>`
+    //   segment += `<td style="width:42%;"><img src="https://artbased.com/api/v1/getimage/inv/${invitem.InventoryCode}.jpg" alt="" width="${ww}" height=${hh} /></td>`
+    //   segment += `</tr>`
+    // }
+    // segment += `</tbody></table>`
+    // this.editor.value(segment)
+		// this.saveMerge()
 
-    segment = `<h1 style="text-align:center;">${this.savedlist}</h1> <table><tbody>`
+////////////////////
+ let currentModel = {}
+    currentModel.currentItem = this.item
+    currentModel.item = this.item
 
-    for (const invitem of this.datasource._data) {
-      //this.currentImage=`${invitem.InventoryCode}.jpg`
-      // let ww = this.mainimage.clientWidth //* fac.factor
-      // lmaet hh = this.mainimage.clientHeight //* fac.factor
-      // "imageWidth":.5,
-      // "imageHeight":1
+    currentModel.currentItem.hide4 = true
 
-      let ww = invitem.clientWidthRatio
-      let hh = invitem.clientHeightRatio
+    this.dialogService.open({ viewModel: Promptmerge, model:  this.datasource._data, lock: true }).whenClosed(response => {
+      console.log('this.item', response, this.item)
+      if (!response.wasCancelled) {
+        this.item.Provenance = null
+    
+        this.save4()
 
-      // this.currentItem.clientHeightRatio  = imageHeight
-      // this.currentItem.clientWidthRatio  = imageWidth
-      //  this.currentItem.clientHeightRatio  = his.mainimage.clientHeight
-      //     this.currentItem.clientWidthRatio  =  this.mainimage.clientWidth
+      } else {
+        // if (this.currentItem.artist === null) {
 
-      if (ww === undefined) ww = 1
-      if (hh === undefined) hh = 1
-      ww = 225 * ww
-      hh = 225 * hh
-
-      // we have  the ratio of each image
-      // ie h=1 w=1
-      // w h-1 w=.5
-      // save to    https://artbased.com/api/v1/downloadonepdf/lists/sl2.doc
-      segment += `<tr style="height:17%;"><td style="width:8%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>`
-      segment += `<td style="width:42%;">${invitem.rtf2}</td>`
-      segment += `<td style="width:8%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>`
-      segment += `<td style="width:42%;"><img src="https://artbased.com/api/v1/getimage/inv/${invitem.InventoryCode}.jpg" alt="" width="${ww}" height=${hh} /></td>`
-      segment += `</tr>`
+        // }
+        console.log('cancel');
+      }
+      console.log(response)//.output);
+    });
 
 
 
-    }
-    segment += `</tbody></table>`
-    // edt.value(segment)
-    this.editor.value(segment)
-    this.saveMerge()
+
+////////////
+
+
+
+
+
 
 
   }
