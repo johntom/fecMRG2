@@ -108,36 +108,46 @@
           },
          
        
-
-
-
-{
+          {
             "name": "kendo",
             "path": "../node_modules/@progress/kendo-ui/",
+            "lazyMain": true,
             "resources": [
               "js/kendo.button.js",
-							   "js/kendo.multiselect.js",
-              "js/kendo.editor.js",
+              "js/kendo.datepicker.js",
               "js/kendo.grid.js",
-              "js/kendo.excel.js",
-              "js/kendo.pdf.js"
+              "js/kendo.editor.js",
+              "js/kendo.multiselect.js",
+              "js/kendo.data.js",
+              "js/kendo.data.odata.js",
+              "css/web/kendo.common.min.css",
+              "css/web/kendo.default.min.css"
             ]
           },
-          {
+
+       {
             "name": "aurelia-kendoui-bridge",
             "path": "../node_modules/aurelia-kendoui-bridge/dist/amd",
             "main": "index",
             "resources": [
               "common/*.{js,html}",
-              "button/*.{js,html}"
+              "button/*.{js,html}",
+              "grid/*.{js,html}",
+              "editor/*.{js,html}",
+              "multiselect/*.{js,html}"
             ]
-          },
+           },
 
 
           "numeral"
         ]
       }
     ],
+      "copyFiles": {
+      "node_modules/bootstrap/dist/fonts/*": "./bootstrap/fonts",
+      "node_modules/font-awesome/fonts/*": "./font-awesome/fonts",
+      "node_modules/@progress/kendo-ui/css/web/fonts/**/*.*": "./fonts"
+    },
     "loader": {
       "type": "system",
       "configTarget": "vendor-bundle.js",

@@ -211,7 +211,7 @@ Special foreigh charaters
     // 'reloading an inventory image, must goto home page press f5',
     // 'have only 1 action list',
     // 'https://bl.ocks.org/lstarky/11cd1e90dd912f07a60afaedb9c2613b',
-    // 'git commit -am "200.70 " / git push',
+    // 'git add . ;git commit -am "200.70 ";  git push',
     // "clean dup InventoryCode and make uniq",
     // "deleting ref= fixes dirty checking <div class='form-control input-sm' ref='catname' ",
     // "also <option model.bind='null'>",

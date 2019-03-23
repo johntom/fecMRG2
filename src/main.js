@@ -2,14 +2,30 @@
 // need next 2 lines for aurelia-bootstrap-select
 // import 'jquery';
 // import 'bootstrap';
+// import 'kendo/css/web/kendo.common.min.css';
+// import 'kendo/css/web/kendo.default.min.css';
+// import "kendo/js/kendo.datepicker.js";
+// import "kendo/js/kendo.grid.js";
+// import "kendo/js/kendo.editor.js";
+// import "kendo/js/kendo.multiselect.js";
 
 export async function configure(aurelia) {
   aurelia.use
     .standardConfiguration()
     .developmentLogging()
-    //  .plugin('aurelia-kendoui-bridge')
+    .plugin('aurelia-kendoui-bridge')
+    // .globalResources( "aurelia-kendoui-bridge/datepicker/datepicker" )
+    // .globalResources( "aurelia-kendoui-bridge/grid/grid" )
+    // .globalResources( "aurelia-kendoui-bridge/grid/col" )
+    // .globalResources( "aurelia-kendoui-bridge/common/template" )
+    // .globalResources( "aurelia-kendoui-bridge/common/template" )
+    // .globalResources( "aurelia-kendoui-bridge/multiselect/multiselect" )
+
+    // .globalResources( "aurelia-kendoui-bridge/editor/editor" );
+
+
     //https://github.com/aurelia-ui-toolkits/aurelia-kendoui-bridge/tree/master/sample/src below
-     .plugin('aurelia-kendoui-bridge', (kendo) => kendo.detect().notifyBindingBehavior())
+    //  .plugin('aurelia-kendoui-bridge', (kendo) => kendo.detect().notifyBindingBehavior())
  
       // .plugin('aurelia-kendoui-bridge', (kendo) => kendo.pro())
    
@@ -104,8 +120,6 @@ export async function configure(aurelia) {
       config.options.tooltipClass = 'tooltip';
       config.options.tooltipPosition = 'top';
       config.options.tooltipTrigger = 'mouseover'; 
-      
-      
-      
+     
       */
 
