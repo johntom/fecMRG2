@@ -13,7 +13,10 @@ export async function configure(aurelia) {
   aurelia.use
     .standardConfiguration()
     .developmentLogging()
-    .plugin('aurelia-kendoui-bridge')
+    // .plugin('aurelia-kendoui-bridge')
+      .plugin('aurelia-kendoui-bridge', (kendo) => kendo.detect().notifyBindingBehavior())
+     // .plugin('aurelia-kendoui-bridge', (kendo) => kendo.pro())
+   
     // .globalResources( "aurelia-kendoui-bridge/datepicker/datepicker" )
     // .globalResources( "aurelia-kendoui-bridge/grid/grid" )
     // .globalResources( "aurelia-kendoui-bridge/grid/col" )
@@ -25,9 +28,6 @@ export async function configure(aurelia) {
 
 
     //https://github.com/aurelia-ui-toolkits/aurelia-kendoui-bridge/tree/master/sample/src below
-    //  .plugin('aurelia-kendoui-bridge', (kendo) => kendo.detect().notifyBindingBehavior())
- 
-      // .plugin('aurelia-kendoui-bridge', (kendo) => kendo.pro())
    
     // .plugin('aurelia-bootstrap-select')
     

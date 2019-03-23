@@ -7,7 +7,7 @@ import { ApiService } from '../../utils/servicesApi';
 
 export class Home {
   heading = "MRG Home Page";
-  version = 300.83
+  version = 300.84
   versionDate = 'Sat 3/23/2019'
  
   issues = [
