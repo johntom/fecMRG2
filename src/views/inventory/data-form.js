@@ -14,7 +14,7 @@ export class DataForm {
   Title = '';
   InvYear = '';
   InventoryCode = '';
- 
+
   heading = 'DataForm HEADER...'
   footer = 'DataForm FOOTER...'
   recordId = '';
@@ -53,7 +53,7 @@ export class DataForm {
   //   { id: 2, name: 'NFS' },
   //   { id: 3, name: 'DON' },
   // ];
- searchsold = [
+  searchsold = [
     { id: 1, name: 'Y' },
     { id: 2, name: 'N' },
     { id: 3, name: 'NFS' },
@@ -102,7 +102,7 @@ export class DataForm {
       }
     }
   });
- 
+
   addNew() {
     var value = this.multiselect.input.val();
     var dataSource = this.multiselect.dataSource;
@@ -144,7 +144,7 @@ export class DataForm {
     this.router = router
     this.dialogService = dialogService
     this.skippromt = false
-   
+
   }
   showModal(fieldname) {
     this.currentItem.fieldname = fieldname
@@ -154,8 +154,18 @@ export class DataForm {
     console.log('appService.orgsList', findOptiono)
     let findOptions = this.appService.orgsList.find(x => x._id === this.currentItem.SoldToID)
     console.log('appService.orgsList', findOptions)
+//     if (findOptiono === undefined) {
+//       findOptiono = '';
+// this.currentItem.OwnerID=''
+//     }
+//     if (findOptions === undefined) {
+//       findOptions = ''; 
+// this.currentItem.SoldToID=''
+//     }
+
+
     this.dialogService.open({ viewModel: Prompt, model: this.currentItem, lock: true }).whenClosed(response => {
-     
+
       if (!response.wasCancelled) {
         // console.log('Delete')
         // let notes = this.currentItem.notes
@@ -203,12 +213,10 @@ export class DataForm {
     $(this.edit_division).find(".modal").modal();
   }
   showModalImg() {
-     this.dialogService.open({ viewModel: DialogImage, model: this.currentItem, lock: false }).whenClosed(response => {
-
-
+    this.dialogService.open({ viewModel: DialogImage, model: this.currentItem, lock: false }).whenClosed(response => {
 
       if (!response.wasCancelled) {
-     
+
       } else {
         console.log('cancel');
       }
@@ -246,7 +254,7 @@ export class DataForm {
       });
   }
   selectChange(GenreID) {
-   
+
   }
 
   showAttendees() {
@@ -273,7 +281,7 @@ export class DataForm {
         this.addmode = true
         this.appService.testrec = {}
         this.appService.originalrec = {}
-       
+
         this.currentItem.artist = undefined//{} 
         this.currentItem.provenance = []
         this.currentItem.notes = []
@@ -315,7 +323,7 @@ export class DataForm {
             // ffixes to stop dirty
             // http://www.jsondiff.com/
             this.mrubuild()
-          
+
             if (this.currentItem.PrinterLocation === undefined) this.currentItem.PrinterLocation = null
             if (this.currentItem.PublisherLocation === undefined) this.currentItem.PublisherLocation = null
 
@@ -323,7 +331,7 @@ export class DataForm {
             this.appService.originalrec = JSON.parse(JSON.stringify(this.currentItem))
 
             console.log(this.appService.originalrec, this.currentItem.PrinterLocation)
-           
+
 
             this.currentItem.isDirty = () => {
               const currentJSON = JSON.stringify(this.currentItem);
@@ -338,7 +346,7 @@ export class DataForm {
 
               return currentJSON !== originalJSON;
             };
-          
+
             this.currentItem.reset = () => {
               this.appService.originalrec = JSON.parse(JSON.stringify(this.currentItem))
             }
@@ -361,7 +369,7 @@ export class DataForm {
   }
   mrucheck(newrec, prevtemp) {
     this.skip = false
-   
+
     if (prevtemp[0] != undefined && newrec.id === prevtemp[0].id) this.skip = true;
     if (prevtemp[1] != undefined && newrec.id === prevtemp[1].id) this.skip = true;
     if (prevtemp[2] != undefined && newrec.id === prevtemp[2].id) this.skip = true;
@@ -402,9 +410,9 @@ export class DataForm {
     this.mrucheck(newrec, prevtemp);
     // this.skip = false
     if (!this.skip) {
-          mruinfo = new mruinfo(temp);
+      mruinfo = new mruinfo(temp);
       localStorage.setItem('mru-mrg', JSON.stringify(mruinfo));
-     }
+    }
   }
 
 
@@ -428,7 +436,7 @@ export class DataForm {
         .then(response => {
           this.currentItem.clientHeight = this.mainimage.clientHeight
           this.currentItem.clientWidth = this.mainimage.clientWidth
-      
+
           if (this.currentItem.clientHeight === this.currentItem.clientWidth) {
             clientHeightRatio = 1
             clientWidthRatio = 1
@@ -443,7 +451,7 @@ export class DataForm {
           }
           this.currentItem.clientHeightRatio = clientHeightRatio
           this.currentItem.clientWidthRatio = clientWidthRatio
-    this.appService.originalrec = JSON.parse(JSON.stringify(this.currentItem))// inv[0]));
+          this.appService.originalrec = JSON.parse(JSON.stringify(this.currentItem))// inv[0]));
 
         })
     }
@@ -451,15 +459,15 @@ export class DataForm {
 
 
   attached() {
-   
+
     // move to attach
     // bypass save if in create mode
     if (this.recordId !== 'create') {
 
-      
+
 
       let tabinfo, tabindex
-     
+
       tabinfo = localStorage.getItem('tabinfo' + this.currentItem.InventoryCode);
       if (tabinfo === null) {
         tabindex = 0
@@ -514,7 +522,7 @@ export class DataForm {
         // SAVE WITH IMAGE INFO IN CASE ITS MISSING
         // nsure if needed this.getimageinfo()
 
-       
+
 
         this.api.saveinventory(this.currentItem).then((jsonRes) => {
           console.log('jsonRes ', jsonRes)
@@ -524,8 +532,8 @@ export class DataForm {
           this.appService.testrec = this.currentItem
           this.appService.currentView = this.currentItem
 
-           this.appService.originalrec = JSON.parse(JSON.stringify(this.currentItem))
-        
+          this.appService.originalrec = JSON.parse(JSON.stringify(this.currentItem))
+
           this.skippromt = true
           if (option === 1) {
             // alert('jr')
@@ -590,7 +598,7 @@ export class DataForm {
     this.mainimage.src = null;
 
     this.api.upload(formData, this.currentItem.InventoryCode)
-   
+
 
       .then((jsonRes) => {
         this.upmess = jsonRes.data
@@ -662,7 +670,7 @@ export class DataForm {
     let tab = this.appService.tabs.find(f => f.isSelected);
     let index = this.appService.tabs.findIndex(f => f.isSelected)
     let rt2 = '#/inventory/' + this.tabname
-   let newIndex = (index > 0) ? index - 1 : 0;
+    let newIndex = (index > 0) ? index - 1 : 0;
     let newTab = this.appService.tabs[newIndex];
     this.appService.tryCloseTab(this.appService.currentView, tab, newTab.href);
 
