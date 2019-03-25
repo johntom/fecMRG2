@@ -246,6 +246,7 @@ export class SearchResults {
 
       .then((jsonRes) => {
         inv = jsonRes.data;
+        this.inventory = jsonRes.data;
         this.recCount = inv.length;
         if (inv === 0 || inv.length === 0) {
           // alert(' no records found ')
