@@ -61,7 +61,7 @@ export class SearchResults {
           Title: { type: "string" },
           MediumSupport: { type: "string" },
           CurrentLocation: { type: "string" },
-          Bin: { type: "string", sortable: false, menu: false}, // barcode insured
+          Bin: { type: "string", sortable: false, menu: false }, // barcode insured
           Owner: { type: "string" },
           InvYear: { type: "string" },
           UnframedHeight: { type: "string" },
@@ -109,12 +109,12 @@ export class SearchResults {
     // $('#T'+movid).trigger("click");
     // }  
   }
-    onDataBound(e) {
-        let grid = e.sender;
-        kendo.jQuery('[data-field=Bin].k-header-column-menu', grid.tbody).remove(); ///removeAttr('href');
+  onDataBound(e) {
+    let grid = e.sender;
+    kendo.jQuery('[data-field=Bin].k-header-column-menu', grid.tbody).remove(); ///removeAttr('href');
 
-        
-    }
+
+  }
   showSavedlists() {
     this.currentItem = {}
     this.currentItem.fieldname = 'SavedList'
@@ -136,15 +136,15 @@ export class SearchResults {
   //https://johntom.github.io/fecMRG2/#/action/Actionlist-?savedlists%3DTest%20List&tabname=actionlist
 
   openSelection() {
-     //  #/action/Actionlist-?savedlists%3DTest%20List&tabname=actionlist
+    //  #/action/Actionlist-?savedlists%3DTest%20List&tabname=actionlist
     // name as - at end its a singleton
-   this.search=`savedlists:"${this.appService.currentsavedlist}"`
-  let qs = this.utilService.generateQueryString(this.search);
+    this.search = `savedlists:"${this.appService.currentsavedlist}"`
+    let qs = this.utilService.generateQueryString(this.search);
     console.log('this.search ', this.search)
-   // name as - at end its a singleton
+    // name as - at end its a singleton
     let path = `Actionlist-${qs}`;
 
-   // see authorize-step.js on how I make this a singleton with saving the result set
+    // see authorize-step.js on how I make this a singleton with saving the result set
     this.router.navigate(`#/action/${path}&tabname=actionlist`);
 
     //  let rt2 = `#/action/Actionlist-?savedlists=${this.appService.currentsavedlist}&tabname=actionlistInv`
@@ -185,7 +185,7 @@ export class SearchResults {
     // this.grid('k-header-column-menu').eq(2).hide()
     // By Index  
     // grid.thead.find("[data-index=1]>.k-header-column-menu").remove();
-    
+
     // this.grid.column["Bin"].IncludeInMenu(false);// hideColumn(2) NOT AVAIL
 
   }
@@ -360,7 +360,7 @@ export class SearchResults {
       let dataItem = thid.grid.dataItem(a1);
 
       if (a1.isChecked === true) {
-       // alert('a1 ' + a1.InventoryCode)
+        // alert('a1 ' + a1.InventoryCode)
         // this.api.updateSavedlists(this.appService.currentsavedlist, this.selectedids).then((jsonRes) => {
         //   console.log('jsonRes ', jsonRes);
         //   // let tab = this.appService.tabs.find(f => f.isSelected);
@@ -373,7 +373,7 @@ export class SearchResults {
     let sels
     if (this.selectedids === undefined) {
       sels = []
-      
+
 
     } else sels = this.selectedids
 
@@ -392,7 +392,7 @@ export class SearchResults {
       for (i = 0; i < maxRows; i++) {
         a1 = selectedRows[i];
         let dataItem = grid.dataItem(a1);
-         let mid = sels.findIndex(x => x === dataItem.InventoryCode)
+        let mid = sels.findIndex(x => x === dataItem.InventoryCode)
         if (mid === -1) {
           sels.push(dataItem.InventoryCode);
         }
@@ -417,7 +417,7 @@ export class SearchResults {
     }
     this.message = `  all items added to list ${this.appService.currentsavedlist} count:${this.appService.currentsavedlist.length}`
   }
-  
+
 
   showSelection() {
     var sels = [];
@@ -430,7 +430,7 @@ export class SearchResults {
       sels.push(dataItem.InventoryCode);
     });
 
-    
+
     this.selectedids = sels;
     //   this.allselectedids =   this.allselectedids+sels;
   }
@@ -440,7 +440,7 @@ export class SearchResults {
 
   selectAll() {
 
-  
+
 
   }
 
