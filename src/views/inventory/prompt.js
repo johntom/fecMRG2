@@ -489,7 +489,9 @@ export class Prompt {
 
           // this.myDatalistA = this.appService.addedartist;
           this.myDatalistA.value = this.appService.addedartist.ArtistName;
+
           this.selectedValueA = this.appService.addedartist;
+          this.findArtist =  this.selectedValueA
           this.appService.addedartist = '';
           //this.controller.cancel()
         } else {
