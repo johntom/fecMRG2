@@ -1,5 +1,7 @@
 <template>
-
+	<!-- <require from="./flex.css"></require> -->
+	<require from="../../../styles/flex.css"></require>
+	<require from="../../resources/value-converters/date-format"></require>
 	<section style="width:50%;" class="full-height flex-column-1 au-animate ignore">
 		<div class="flex-row-none section-header">
 			${heading} Todo
@@ -17,12 +19,7 @@
 										<strong>Issue</strong>
 									</div>
 									<div class="Rtable-cell-70  Rtable-cell--highlight">
-										
-<textarea rows="6" cols="100" id="Issue" class="form-control " value.bind="currentItem.Issue"></textarea>
- 
-	
-
-
+										<textarea rows="6" cols="100" id="Issue" class="form-control " value.bind="currentItem.Issue"></textarea>
 									</div>
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
 										<strong>Type</strong>
@@ -47,6 +44,20 @@
                       </option> 
                       </select>
 									</div>
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong>Result Status</strong>
+									</div>
+
+									<div class="Rtable-cell-70  Rtable-cell--highlight">
+										<select id="status" class="form-control" value.bind="currentItem.statusresults"> 
+                      <option model.bind="null">Choose...</option> 
+                      <option repeat.for="opt of statusresults" model.bind="opt">
+                          ${opt} 
+                      </option> 
+                      </select>
+									</div>
+
+
 
 
 									<div class="Rtable-cell-30 Rtable-cell--highlight">

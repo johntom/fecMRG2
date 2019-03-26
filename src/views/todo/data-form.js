@@ -87,6 +87,16 @@ export class DataForm {
     { id: 0, name: 'Other Issues/Questions' },
   ];
 
+
+  statusresults = [
+
+     'Highest Importance',
+     'Asap' ,
+     'Back burner',
+     'Next Release',
+     'Developer Notes' ,
+   ]
+
   constructor(api, appService) {
     this.api = api;
     this.inv = '';
@@ -94,19 +104,17 @@ export class DataForm {
   }
 
   async activate(params, routeConfig) {
-    // if (params.id) {
-    //   this.recordId = params.id;
-    //   this.heading = `DataForm for record ${this.recordId}`;
-    //   console.log('this.recordId ', this.recordId);
-    //   let response = await this.api.findCatalogone(this.recordId);
-    //   this.currentItem = response.data[0]
-    //   this.appService.currentCatalogItem = this.currentItem;
-    //   return this.currentItem
 
-    // }
 
     this.currentItem = this.appService.todo
     return this.currentItem
+ if (params.id) {
+     
+      if (this.recordId === 'create') {
+        this.addtodo();
+      }
+ }
+
   }
 
   attached() {

@@ -1,34 +1,29 @@
 <template>
+	<require from="aurelia-kendoui-bridge/grid/grid"></require>
+	<require from="aurelia-kendoui-bridge/grid/col"></require>
+	<require from="aurelia-kendoui-bridge/common/template"></require>
 
 	<section class="full-height flex-column-1 au-animate ignore">
+    	<button id="addtodoBtn" class="btn btn-success" type="button" click.delegate="addtodo()"><strong>A</strong>dd Todo</button>
+
 		<ak-grid class="flex-row-1" id="grid" k-data-source.bind="datasource" k-widget.bind="grid" k-sortable.bind="{ mode: 'multiple',   allowUnsort: 'true'}"
 		 k-filterable.bind="{  mode: 'row' }" k-editable="inline" k-reorderable.bind="true" k-groupable.bind="true" k-resizable.bind="true"
 		 k-selectable="row" k-on-change.delegate="rowSelected($event.detail)" k-column-menu.bind="true" k-pageable.bind="true">
-
-			<ak-col k-field="Issue" k-title="Edit Issue" k-filterable.bind="true" k-title="Edit" k-width.bind="180" k-template="<button click.delegate='details($event)' class='k-button'>#=Issue#</button>">
+		<ak-col k-title="Type" k-width="80px" k-field="type" k-template="<button click.delegate='details($event)' class='k-button'>#=type#</button>">
 			</ak-col>
+	
+			<ak-col k-field="Issue" k-title="Issue" k-filterable.bind="true" k-title="Edit" k-width.bind="180"></ak-col>
 
-			<!-- <ak-col k-title="Name" k-width="180px" k-field="Name"></ak-col> -->
-			<ak-col k-title="Date" k-width="180px" k-field="createdAt"></ak-col>
-
-			<ak-col k-title="Type" k-width="180px" k-field="type"></ak-col>
-			<ak-col k-title="Status" k-width="180px" k-field="status"></ak-col>
-			<!-- <ak-col k-title="Completed" type="" k-width="180px" k-field="isComplete">
+			<ak-col k-field="createdAt"  k-width="60px" k-format="{0:dd/MM/yyyy}"></ak-col>
+			<ak-col k-field="updatedAt"  k-width="60px" k-format="{0:dd/MM/yyyy}"></ak-col>
+			<ak-col k-title="Status" k-width="80px" k-field="status"></ak-col>
+			<ak-col k-title="ResultStatus" k-width="80px" k-field="statusresults"></ak-col>
+      	<ak-col k-title="Completed" type="" k-width="80px" k-field="isComplete"></ak-col>
+		
+			<!-- <ak-col k-title="Completed" type="" k-width="80px" k-field="isComplete">
 				<ak-template="<input type='checkbox' class='checkbox'> "> </ak-template>
-			</ak-col> -->
-	<ak-col k-title="Completed" ref="Completed" k-locked.bind="true" k-lockable.bind="false" k-width.bind="85">
-  		<ak-template for="headerTemplate">
-				<input type='checkbox' class='checkboxY' checked.bind="Completed" id='header-chb' />
-			</ak-template>
-		</ak-col>
-
-
-			<!-- <ak-col k-title="CB" ref="CB" k-locked.bind="true" k-lockable.bind="false" k-width.bind="85" 
-     k-template="<input type='checkbox' class='checkbox' ref='T#=InventoryCode#' id='T#=InventoryCode#' >T#=InventoryCode#</> ">
-			<ak-template for="headerTemplate">
-				<input type='checkbox' class='checkboxY' checked.bind="isChecked" id='header-chb' />
-			</ak-template>
-		</ak-col> -->
+			</ak-col>
+	 -->
 		</ak-grid>
 		<div class="flex-row-none section-footer">
 			${footer}
@@ -36,3 +31,29 @@
 	</section>
 
 </template>
+		<!-- <ak-col k-title="CB" ref="CB" k-locked.bind="true" k-lockable.bind="false" k-width.bind="85" 
+     k-template="<input type='checkbox' class='checkbox' ref='T#=InventoryCode#' id='T#=InventoryCode#' >T#=InventoryCode#</> ">
+			<ak-template for="headerTemplate">
+				<input type='checkbox' class='checkboxY' checked.bind="isChecked" id='header-chb' />
+			</ak-template>
+		</ak-col> -->
+<!-- <a id="searchResultsHref" href="#/inventory/data/${recordId}">Edit ${recordId}</a>    -->
+
+<!-- <ak-col k-field="InventoryCode" k-filterable.bind="true" k-title="Open" k-width.bind="160" 
+k-template='<a href="#/inventory/data/${InventoryCode}">#=InventoryCode#/a>'>
+</ak-col> -->
+<!-- <ak-col k-title="Open Doc" k-width="160px"
+k-field="InventoryCode" k-template="<a target='_blank' 
+href='#/inventory/data/${InventoryCode'>#=InventoryCode#</a>    
+</ak-col>  -->
+
+<!-- <ak-col k-title="Open Doc" k-width="160px"
+k-field="InventoryCode" k-template="<a target='_blank' 
+href='http://cm.brookbridgeinc.com:8880/api/v1/InventoryCode'>
+#=InventoryCode#</a>">
+</ak-col> -->
+<!-- <ak-col k-title="Open Doc2" k-width="160px"
+k-field="InventoryCode" k-template="<a id='searchResultsHref' 
+href='#/inventory/data/#=InventoryCode#'>
+#=InventoryCode#</a>">
+</ak-col> -->
