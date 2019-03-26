@@ -37,7 +37,7 @@ export class SearchResults {
           })
 
       },
-
+ 
       destroy: (options) => {
 
         let updatedItem = options.data;
@@ -66,7 +66,17 @@ export class SearchResults {
       }
     },
    // filter: { field: "inactive", operator: "eq", value: false },
-
+ sort: [{
+          field: 'CodeTypeDesc',
+          dir: 'asc'
+        }, {
+          field: 'Description',
+          dir: 'asc'
+        }],
+        group: {
+          field: "CodeTypeDesc"
+         
+        },
     schema: {
       model: {
         id: "id", // Must assign id for update to work
@@ -169,7 +179,7 @@ export class SearchResults {
     let selectedRow = grid.select();
     let dataItem = grid.dataItem(selectedRow);
     this.appService.currentCode = dataItem
-    let rt2 = '#/code/data/' + dataItem.CODE_ID;
+    let rt2 = '#/code/data/' + dataItem.ID;
     console.log('search-results:details', rt2);
     this.router.navigate(rt2);
   }

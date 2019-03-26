@@ -12,12 +12,23 @@ export class DataForm {
   footer = 'DataForm FOOTER...';
   recordId = '';
    status = [
-
-     'Highest Importance',
-     'Asap' ,
-     'Back burner',
-     'Next Release',
+     'high',
+     'medium' ,
+     'low',
+     'new',
+     'needs revisiting',
      'Developer Notes' ,
+   ]
+
+// Request Status list items: priority: high, priority: medium, priority: low, new request, needs revisiting,
+// Add field "Response Status” list items: in process, in queue, ready for testing, next release, out of scope
+
+  statusresults = [
+     'in process',
+     'in queue' ,
+     'ready for testing',
+     'next release',
+     'out of scope' ,
    ]
 
   //    status = [
@@ -88,14 +99,6 @@ export class DataForm {
   ];
 
 
-  statusresults = [
-
-     'Highest Importance',
-     'Asap' ,
-     'Back burner',
-     'Next Release',
-     'Developer Notes' ,
-   ]
 
   constructor(api, appService) {
     this.api = api;
