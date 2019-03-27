@@ -7,7 +7,7 @@ import { ApiService } from '../../utils/servicesApi';
 
 export class Home {
   heading = "MRG Home Page";
-  version = 300.91
+  version = 300.94
   versionDate = 'Tue 3/26/2019'
  
   issues = [
@@ -86,10 +86,14 @@ export class Home {
       ]).then(values => {
         this.appService.artistList = values[0];
         this.appService.codesList = values[1];
-        this.appService.orgsList = values[2];
+        this.appService.orgsList = values[2]; // merge of org and contact
         this.appService.savedlists = values[3];
         this.appService.stateList = values[4];
         //            this.appService.catalogList = values[5];
+
+ console.log('using data orgsList....',this.appService.orgsList)
+
+
         let i, item, ct
         this.appService.LookupDataLoaded = true;
         let codesInventoryLocation = []//1,

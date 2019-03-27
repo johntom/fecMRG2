@@ -146,6 +146,27 @@ export class DataForm {
     this.skippromt = false
 
   }
+
+  soldtoEdit() {
+    // this.currentItem.SoldToBusIndivid = this.BusIndivid  
+    // this.currentItem.SoldToID = this.orgId  
+    // this.currentItem.soldtoname = this.OrgName
+    
+    let oid = this.currentItem.SoldToID
+    let OrgName = this.currentItem.soldtoname 
+    let BusIndivid = this.currentItem.SoldToBusIndivid
+    // orgObject
+    // this.orgObject = {OrgName: this.OrgName , BusIndivid:this.BusIndivid ,_id:this.orgId  }
+    let rt2
+    // let rt2 = '#/org/data/' + dataItem.id + '?' + name
+
+    (BusIndivid === 'B') ? rt2 = '#/org/data/' + oid + '?' + OrgName : rt2 = '#/contact/data/' + oid+ '?' + OrgName
+
+
+    this.router.navigate(rt2);// `#/inventory/${path}`);
+
+  }
+
   showModal(fieldname) {
     this.currentItem.fieldname = fieldname
     this.currentItem.recordId = this.recordId
@@ -154,14 +175,14 @@ export class DataForm {
     console.log('appService.orgsList', findOptiono)
     let findOptions = this.appService.orgsList.find(x => x._id === this.currentItem.SoldToID)
     console.log('appService.orgsList', findOptions)
-//     if (findOptiono === undefined) {
-//       findOptiono = '';
-// this.currentItem.OwnerID=''
-//     }
-//     if (findOptions === undefined) {
-//       findOptions = ''; 
-// this.currentItem.SoldToID=''
-//     }
+    //     if (findOptiono === undefined) {
+    //       findOptiono = '';
+    // this.currentItem.OwnerID=''
+    //     }
+    //     if (findOptions === undefined) {
+    //       findOptions = ''; 
+    // this.currentItem.SoldToID=''
+    //     }
 
 
     this.dialogService.open({ viewModel: Prompt, model: this.currentItem, lock: true }).whenClosed(response => {
@@ -493,8 +514,8 @@ export class DataForm {
       // console.log(  this.currentItem, this.currentItem)
       if (this.currentItem.Title === undefined || this.currentItem.InventoryCode === undefined
         || this.currentItem.MediumSupportobj === undefined
-        || this.currentItem.artist === undefined) {
-        alert('Please fix  Title, InventoryCode, MediumSupport and or artist ')
+        || this.currentItem.artist === undefined || this.currentItem.SoldTSoldToID === undefined) {
+        alert('Please fix  Title, InventoryCode, MediumSupport,Owned By and or Artist ')
       } else {
         this.api.createinventory(this.currentItem).then((jsonRes) => {
           console.log('jsonRes ', jsonRes);

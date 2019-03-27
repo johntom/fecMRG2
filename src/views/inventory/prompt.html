@@ -146,8 +146,8 @@
 					change.delegate="changeCallbackOrg(selectedValueO)"
 					 input.delegate="selectedValueO = findOptionO($event.target.value)" />
 					<datalist id="myDatalistO">
-						<option repeat.for="option of appService.orgsList">${option.OrgName}</option>
-					</datalist>
+						<option repeat.for="option of appService.orgsList">${option.OrgName} ; ${option.BusIndivid} ; ${option._id}</option>
+					</datalist>  
 				</div>
 				<!-- ${selectedValue} /	${selectedValueO} / ${myDatalistO} -->
 			</div>
