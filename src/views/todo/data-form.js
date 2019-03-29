@@ -11,25 +11,25 @@ export class DataForm {
   heading = 'DataForm HEADER...';
   footer = 'DataForm FOOTER...';
   recordId = '';
-   status = [
-     'high',
-     'medium' ,
-     'low',
-     'new',
-     'needs revisiting',
-     'Developer Notes' ,
-   ]
+  status = [
+    'high',
+    'medium',
+    'low',
+    'new',
+    'needs revisiting',
+    'Developer Notes',
+  ]
 
-// Request Status list items: priority: high, priority: medium, priority: low, new request, needs revisiting,
-// Add field "Response Status” list items: in process, in queue, ready for testing, next release, out of scope
+  // Request Status list items: priority: high, priority: medium, priority: low, new request, needs revisiting,
+  // Add field "Response Status” list items: in process, in queue, ready for testing, next release, out of scope
 
   statusresults = [
-     'in process',
-     'in queue' ,
-     'ready for testing',
-     'next release',
-     'out of scope' ,
-   ]
+    'in process',
+    'in queue',
+    'ready for testing',
+    'next release',
+    'out of scope',
+  ]
 
   //    status = [
 
@@ -109,14 +109,16 @@ export class DataForm {
   async activate(params, routeConfig) {
 
 
-    this.currentItem = this.appService.todo
-    return this.currentItem
- if (params.id) {
-     
+    cnsole.log('this.recordId',this.recordId)
+    if (params.id) {
+
       if (this.recordId === 'create') {
         this.addtodo();
       }
- }
+    }
+
+    this.currentItem = this.appService.todo
+    return this.currentItem
 
   }
 
