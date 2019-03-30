@@ -109,16 +109,18 @@ export class DataForm {
   async activate(params, routeConfig) {
 
 
-    cnsole.log('this.recordId',this.recordId)
-    if (params.id) {
 
+    if (params.id) {
+      this.recordId = params.id;
+      // this.heading = `DataForm for record ${this.recordId}`;
+      console.log('this.recordId', this.recordId)
       if (this.recordId === 'create') {
         this.addtodo();
       }
     }
 
-    this.currentItem = this.appService.todo
-    return this.currentItem
+    // this.currentItem = this.appService.todo
+    // return this.currentItem
 
   }
 
