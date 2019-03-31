@@ -116,6 +116,9 @@ export class DataForm {
       console.log('this.recordId', this.recordId)
       if (this.recordId === 'create') {
         this.addtodo();
+      } else {
+         this.currentItem = this.appService.todo
+    // return this.currentItem
       }
     }
 
