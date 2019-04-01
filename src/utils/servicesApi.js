@@ -1,11 +1,6 @@
 
-import {
-  inject,
-  singleton
-} from 'aurelia-dependency-injection';
-import {
-  HttpClient
-} from 'aurelia-fetch-client'
+import {  inject,  singleton} from 'aurelia-dependency-injection';
+import {  HttpClient } from 'aurelia-fetch-client'
 // sample-layout-mrg
 @inject(HttpClient)
 export class ApiService {
