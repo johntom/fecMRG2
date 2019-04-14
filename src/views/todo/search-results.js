@@ -30,12 +30,17 @@ export class SearchResults {
       //   let updatedItem = options.data;
       //   console.log('   updatedItem ', updatedItem)
       //   this.updateData(updatedItem)
-      //     .then((scans) => {
-      //       options.success(scans)
+      //     .then((inv) => {
+      //       options.success(inv)
       //     })
       //   options.success()
       // }
     },
+    sort: [{
+      field: 'createdAt',
+      dir: 'desc'
+    }],
+    group: [{ field: "type" }, { field: "status" }],
     schema: {
       model: {
         id: "id", // Must assign id for update to work
@@ -83,9 +88,43 @@ export class SearchResults {
     ;
 
     this.queryParams = this.utilService.parseQueryStringUrl();
-    console.log('queryParams', this.queryParams);
+    console.log('queryParams', this.queryParams); 
     this.datasource.read()
   }
+  onEdit(e) {
+    let grid = e.sender;
+    var targetRow = $(e.container);
+    grid.select(targetRow)
+  }
+
+  async updateData(row) {
+    console.log('updateData ', row)
+
+    let jsonRes = await this.api.createtodo(row);
+    return jsonRes
+    // return this.api.updatecase(e, this.user)
+    //     .then((jsonRes) => {
+    //         console.log('this.scans ', jsonRes)
+    //         return jsonRes
+    //     })
+  }
+  // deleteData(e) {
+  //     console.log('deleteData ', e)
+  //     if (this.user.Admin) {
+  //         return this.api.deletecase(e, this.token)
+  //             .then((jsonRes) => {
+  //                 this.scans = jsonRes
+  //                 console.log('this.scans ', this.scans)
+  //                 return this.scans
+  //             })
+
+
+  //     } else {
+  //         alert('not authorized for delete')
+  //         return false
+  //     }
+  // }
+
 
   loadGrid() {
     let options = localStorage["kendo-grid-mail"];
@@ -96,13 +135,13 @@ export class SearchResults {
   async addtodo() {
     // this.currentItem = {}
     // this.currentItem.id = 'create'
-  let rt2 = `#/todo/data/create`
+    let rt2 = `#/todo/data/create`
     this.router.navigate(rt2);
   }
   async loadData() {
-    console.log('this.loadData ')
-    let s2 = '1-1-2016';
-    let s3 = '10-21-2016';
+    // console.log('this.loadData ')
+    // let s2 = '1-1-2016';
+    // let s3 = '10-21-2016';
     let inv;
     ///api/v1/inventory/getall
 
