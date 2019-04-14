@@ -12,14 +12,14 @@
 		<ak-col k-title="Type" k-width="80px" k-field="type" k-template="<button click.delegate='details($event)' class='k-button'>#=type#</button>">
 			</ak-col>
 	
-			<ak-col k-field="Issue" k-title="Issue" k-filterable.bind="true" k-title="Edit" k-width.bind="180px"></ak-col>
+			<ak-col k-field="Issue" k-title="Issue" k-filterable.bind="true" k-title="Edit" k-width.bind="180"></ak-col>
 
-			<ak-col k-field="createdAt"  k-width="60px" k-format="{0:dd/MM/yyyy}"></ak-col>
-			<ak-col k-field="updatedAt"  k-width="60px" k-format="{0:dd/MM/yyyy}"></ak-col>
+		<ak-col k-field="createdAt"  k-width="80px" k-format="{0:MM/dd/yyyy}"></ak-col>
+			<ak-col k-field="updatedAt"  k-width="80px" k-format="{0:MM/dd/yyyy}"></ak-col>
 			<ak-col k-title="Status" k-width="80px" k-field="status"></ak-col>
 			<ak-col k-title="ResultStatus" k-width="80px" k-field="statusresults"></ak-col>
       	<ak-col k-title="Completed" type="" k-width="80px" k-field="isComplete"></ak-col>
-		
+
 		</ak-grid>
 		<div class="flex-row-none section-footer">
 			${footer}

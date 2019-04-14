@@ -12,7 +12,7 @@ export class SearchResults {
   footer = 'Search Results FOOTER...';
   recordId = '';
   title = '';
-  invcode = ''; 
+  invcode = '';
   queryParams = '';
   //  console.log(' inv SearchResults ');
   message = 'Hello Inventory 101- a!';
@@ -36,6 +36,11 @@ export class SearchResults {
       //   options.success()
       // }
     },
+      sort: [{
+      field: 'createdAt',
+      dir: 'desc'
+    }],
+    group: [{ field: "type" }, { field: "status" }],
     schema: {
       model: {
         id: "id", // Must assign id for update to work
