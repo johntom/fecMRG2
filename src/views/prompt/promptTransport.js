@@ -12,7 +12,7 @@ export class Prompttransport {
   constructor(controller, appService,  dialogService, api) {
     this.controller = controller;
     this.answer = null;
-    this.appService = appService;
+    this.appService = appService; 
    
     
     controller.settings.lock = false;
@@ -24,10 +24,8 @@ export class Prompttransport {
 
 
   async activate(currentmodel) {
-    // this.item = currentmodel;
-    //  this.artist={}
-    // this.artist.name = currentmodel.findvalue
-    // this.artist.id = 'create'
+   this.item = currentmodel.item;
+    this.currentItem = currentmodel.currentItem
     this.heading = "transport "//+this.artist.name
     
 

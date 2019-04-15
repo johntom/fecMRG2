@@ -10,7 +10,6 @@ import { MyDataService } from "../../services/my-data-service";
 import { DialogService } from 'aurelia-dialog'
 import { Promptexhibit } from '../prompt/promptExhibit';
 import { Promptrepro } from '../prompt/promptRepro';
-
 import { Prompttransport } from '../prompt/promptTransport';
 import { Promptprov } from '../prompt/promptProv';
 import { Promptmerge } from '../prompt/promptMerge';
@@ -117,8 +116,8 @@ export class SearchResults {
           //  ArtistRegistra: { type: "string" },
           InventoryCode: { type: "string", editable: false },
           Title: { type: "string", editable: false },
-          Image : { type: "string", editable: false },
-          
+          Image: { type: "string", editable: false },
+
           //  "artist.lastName": { type: "string", editable: false },
           // MediumSupport: { type: "string" },
           // CurrentLocation: { type: "string" },
@@ -184,10 +183,10 @@ export class SearchResults {
     const pairs = qs.split('&')
     const queryParams = {}
     let slname
-    let ct =0
+    let ct = 0
     pairs.forEach(p => {
       const kv = p.split('=')
-      if (ct===0) slname = kv[1]
+      if (ct === 0) slname = kv[1]
       ct++
     });
     //1-27 this.item.savedlist = slname
@@ -290,13 +289,13 @@ export class SearchResults {
           console.log('jsonRes ', jsonRes);
 
           this.datasource.read();
-          
+
 
         });
       }
-      
+
     }
-   
+
   }
   // closeTab(tab) {
 
@@ -408,17 +407,17 @@ export class SearchResults {
     // this.hide8 = true
     // this.hide9 = true
     // this.hide1 ? this.hide1 = false : this.hide1 = true
- let currentModel = {}
+    let currentModel = {}
     currentModel.currentItem = this.item
     currentModel.item = this.item
 
     currentModel.currentItem.hide1 = true
 
-    this.dialogService.open({ viewModel: Prompttransport, model: currentModel, lock: true }).whenClosed(response => {
+    this.dialogService.open({ viewModel: Prompttransport, model: currentModel, lock: true }).whenClosed(async response => {
       console.log('this.item', response, this.item)
       if (!response.wasCancelled) {
-        this.item.Transport = null
-    
+        // this.item.Transport = null
+
         this.save1()
 
       } else {
@@ -449,7 +448,7 @@ export class SearchResults {
 
     currentModel.currentItem.hide1 = true
 
-    this.dialogService.open({ viewModel: Promptexhibit, model: currentModel, lock: true }).whenClosed(response => {
+    this.dialogService.open({ viewModel: Promptexhibit, model: currentModel, lock: true }).whenClosed(async response => {
       // this.dialogService.open({ viewModel: Promptrepro, model: this.item, lock: false }).whenClosed(response => {
       console.log('this.item', response, this.item)
       if (!response.wasCancelled) {
@@ -500,8 +499,7 @@ export class SearchResults {
 
     currentModel.currentItem.hide1 = true
 
-    this.dialogService.open({ viewModel: Promptrepro, model: currentModel, lock: false }).whenClosed(response => {
-      // this.dialogService.open({ viewModel: Promptrepro, model: this.item, lock: false }).whenClosed(response => {
+    this.dialogService.open({ viewModel: Promptrepro, model: currentModel, lock: false }).whenClosed(async response => {
       console.log('this.item', response, this.item)
       if (!response.wasCancelled) {
         this.item.ReproductionExhibit = null
@@ -531,29 +529,29 @@ export class SearchResults {
     // this.hide8 = true
     // this.hide9 = true
     // this.hide4 ? this.hide4 = false : this.hide4 = true
-	// Owner <input type="text" id="ProvOwner" class="form-control input-sm" value.bind="item.ProvOwner"> ProvLoc
-	// 					<aubs-typeahead ref='provlocation' data.bind="appService.codesListLocation" value.bind="item.Description" debounce.bind="350"
-	// 					 placeholder="mrg location" open-on-focus.bind="true" key="Description" results-limit.bind="12" select-single-result.bind="true">
-	// 					</aubs-typeahead>
+    // Owner <input type="text" id="ProvOwner" class="form-control input-sm" value.bind="item.ProvOwner"> ProvLoc
+    // 					<aubs-typeahead ref='provlocation' data.bind="appService.codesListLocation" value.bind="item.Description" debounce.bind="350"
+    // 					 placeholder="mrg location" open-on-focus.bind="true" key="Description" results-limit.bind="12" select-single-result.bind="true">
+    // 					</aubs-typeahead>
 
 
-	// 					Date <input type="text" id="ProvDate" class="form-control input-sm" value.bind="item.ProvDate"> ProvMemo
-	// 					<input type="text" id="ProvMemo" class="form-control input-sm" value.bind="item.ProvMemo"> ProvSortDate <input type="text"
-	// 					 id="ProvSortDate" class="form-control input-sm" value.bind="item.ProvSortDate"> Sequence
-	// 					<input type="text" id="Sequence" class="form-control input-sm" value.bind="item.Sequence">
-	// 					<button id="save4" class="btn btn-primary" type="button" click.delegate="save4()">Save Prov</button>
+    // 					Date <input type="text" id="ProvDate" class="form-control input-sm" value.bind="item.ProvDate"> ProvMemo
+    // 					<input type="text" id="ProvMemo" class="form-control input-sm" value.bind="item.ProvMemo"> ProvSortDate <input type="text"
+    // 					 id="ProvSortDate" class="form-control input-sm" value.bind="item.ProvSortDate"> Sequence
+    // 					<input type="text" id="Sequence" class="form-control input-sm" value.bind="item.Sequence">
+    // 					<button id="save4" class="btn btn-primary" type="button" click.delegate="save4()">Save Prov</button>
 
- let currentModel = {}
+    let currentModel = {}
     currentModel.currentItem = this.item
     currentModel.item = this.item
 
     currentModel.currentItem.hide4 = true
 
-    this.dialogService.open({ viewModel: Promptprov, model: currentModel, lock: true }).whenClosed(response => {
+    this.dialogService.open({ viewModel: Promptprov, model: currentModel, lock: true }).whenClosed(async response => {
       console.log('this.item', response, this.item)
       if (!response.wasCancelled) {
         this.item.Provenance = null
-    
+
         this.save4()
 
       } else {
@@ -618,7 +616,7 @@ export class SearchResults {
     this.hide9 = true
   }
 
-  action9() {
+  async action9() {
     // this.hide1 = true
     // this.hide2 = true
     // this.hide3 = true
@@ -651,46 +649,33 @@ export class SearchResults {
     // }
     // segment += `</tbody></table>`
     // this.editor.value(segment)
-		// this.saveMerge()
+    // this.saveMerge()
 
-////////////////////
- let currentModel = {}
+    ////////////////////
+    let currentModel = {}
     currentModel.currentItem = this.item
     currentModel.item = this.item
-
     currentModel.currentItem.hide4 = true
-
-    this.dialogService.open({ viewModel: Promptmerge, model:  this.datasource._data, lock: true }).whenClosed(response => {
+    //    this.dialogService.open({ viewModel: Promptmess, model: `AR ${arid} has been created.`, lock: true }).whenClosed(async response => {
+    this.dialogService.open({ viewModel: Promptmerge, model: this.datasource._data, lock: true }).whenClosed(async response => {
       console.log('this.item', response, this.item)
       if (!response.wasCancelled) {
-        this.item.Provenance = null
-    
-        this.save4()
-
+        // this.item.Provenance = null
+        // this.save4()
+        this.saveMerge
       } else {
-        // if (this.currentItem.artist === null) {
-
+        // if (this.currentItem.artist === null) { 
         // }
         console.log('cancel');
       }
       console.log(response)//.output);
     });
-
-
-
-
-////////////
-
-
-
-
-
-
-
+    ////////////
   }
+
   saveMerge() {
     let savetime = moment().format('MM/DD/YY h:mm:ss a')
-    console.log('this.editor.value()',this.savedlist, this.editor.value())
+    console.log('this.editor.value()', this.savedlist, this.editor.value())
     this.api.saveMerge(this.savedlist, this.editor.value())
       .then((jsonRes) => {
         if (jsonRes.data === 'success') {
@@ -725,76 +710,83 @@ export class SearchResults {
   //             "Traveled" : "N", 
   //             "ExhibitMemo" : ""
 
-  save1() {
+  async save1() {
 
     //     let dtransportto = `${this.Description.Description}`
     //     let dtransportfrom = `${this.Description2.Description}`
-    this.api.getbatchno().then((jsonResna) => {
-      let batchno = jsonResna[0].nextavail
-      this.item.batchno = batchno
-      this.item.savedlist = this.savedlist
-      this.api.batchTransport(this.item)
-        .then((jsonRes) => {
-          if (jsonRes.data === 'success') {
-            alert(' batch updated  batchno= ' + batchno)
-            this.item = {}//.TransportDate = ''
-            //  this.Description =''
-            //  this.Description2 =''
-            // this.item.Description = ''
-            // this.item.Description2 = ''
-            // this.item.Description2 = ''
-            // this.item.TransportNotes = ''
+    let jsonResna = await this.api.getbatchno();
 
-          } else alert(' batch failed ')
-        })
-    })
-  }
-
-  save2() {
+    this.item.batchno = jsonResna[0].nextavail
     this.item.savedlist = this.savedlist
-    this.api.getbatchno().then((jsonResna) => {
-      let batchno = jsonResna[0].nextavail
-      this.item.batchno = batchno
-      this.api.batchExhibit(this.item)
-        .then((jsonRes) => {
-          if (jsonRes.data === 'success') {
-            alert(' batch updated batchno= ' + batchno)
-            this.item = {}
-            // this.item.ExhibitTitle = ''
-            // this.item.ExhibitSponser = ''
-            // this.item.Description2 = ''
-            // this.item.exhibitlocation = ''
-            // this.item.ExhibitDates = ''
-            // this.item.ExhibitSortDate = ''
-            // this.item.Traveled = ''
-            // this.item.ExhibitMemo = ''
+    this.api.batchTransport(this.item)
+      .then((jsonRes) => {
+        if (jsonRes.data === 'success') {
+          alert(' batch updated  batchno= ' + batchno + ' ' + this.item)
+          this.item = {}//.TransportDate = ''
+          //  this.Description =''
+          //  this.Description2 =''
+          // this.item.Description = ''
+          // this.item.Description2 = ''
+          // this.item.Description2 = ''
+          // this.item.TransportNotes = ''
 
-          } else alert(' batch failed ')
-        })
-    })
+        } else alert(' batch failed ')
+      })
+
   }
 
-  save3() {
+  async save2() {
+    this.item.savedlist = this.savedlist
+    let jsonResna = await this.api.getbatchno();
+
+    let batchno = jsonResna[0].nextavail
+    this.item.batchno = batchno
+    this.api.batchExhibit(this.item)
+      .then((jsonRes) => {
+        if (jsonRes.data === 'success') {
+          alert(' batch updated batchno= ' + batchno)
+          this.item = {}
+          // this.item.ExhibitTitle = ''
+          // this.item.ExhibitSponser = ''
+          // this.item.Description2 = ''
+          // this.item.exhibitlocation = ''
+          // this.item.ExhibitDates = ''
+          // this.item.ExhibitSortDate = ''
+          // this.item.Traveled = ''
+          // this.item.ExhibitMemo = ''
+
+        } else alert(' batch failed ')
+      })
+
+  }
+
+  async save3() {
     // Reproduction Provenance batchMrglocation batchTemplocation batchOfferings
     this.item.savedlist = this.savedlist
-    this.api.getbatchno().then((jsonResna) => {
-      let batchno = jsonResna[0].nextavail
-      this.item.batchno = batchno
-      this.api.batchReproduction(this.item)
-        .then((jsonRes) => {
-          if (jsonRes.data === 'success') {
-            alert(' batch updated  batchno= ' + batchno)
-            this.item = {}
-          } else alert(' batch failed ')
-        })
-    })
+    let jsonResna = await this.api.getbatchno();
+
+    let batchno = jsonResna[0].nextavail
+    this.item.batchno = batchno
+    this.api.batchReproduction(this.item)
+      .then((jsonRes) => {
+        if (jsonRes.data === 'success') {
+          alert(' batch updated  batchno= ' + batchno)
+          this.item = {}
+        } else alert(' batch failed ')
+      })
+
   }
 
-  save4() {
+
+  async save4() {
     // let loc = `${this.Description.Description}`
 
     // alert(loc)
     this.item.savedlist = this.savedlist
+
+    let jsonResna = await this.api.getbatchno();
+    this.item.batchno = jsonResna[0].nextavail
+
     this.api.batchProvenance(this.item)
       .then((jsonRes) => {
         if (jsonRes.data === 'success') {

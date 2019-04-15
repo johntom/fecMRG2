@@ -431,11 +431,11 @@ export class ApiService {
 
 
   //1
-  batchTransport(rec) {
+ async  batchTransport(rec) {
     let url = this.baseweb + `v1/inventory/batchTransport`
     console.log('url ', url)
     // return {'data': true}
-    return this.http.fetch(url, {
+    return await this.http.fetch(url, {
       method: 'put',
       mode: 'cors',
       headers: {
@@ -448,11 +448,11 @@ export class ApiService {
   }
 
 
-  batchExhibit(rec) {
+ async batchExhibit(rec) {
     let url = this.baseweb + `v1/inventory/batchExhibit`
     console.log('url ', url)
     // return {'data': true}
-    return this.http.fetch(url, {
+    return await this.http.fetch(url, {
       method: 'put',
       mode: 'cors',
       headers: {
@@ -465,11 +465,11 @@ export class ApiService {
   }
 
   //3
-  batchReproduction(rec) {
+ async batchReproduction(rec) {
     let url = this.baseweb + `v1/inventory/batchReproduction`
     console.log('url ', url)
     // return {'data': true}
-    return this.http.fetch(url, {
+    return await this.http.fetch(url, {
       method: 'put',
       mode: 'cors',
       headers: {
@@ -481,11 +481,11 @@ export class ApiService {
     }).then((res) => res.json());
   }
 
-  batchExhibitUpdate(rec) {
+  async batchExhibitUpdate(rec) {
     let url = this.baseweb + `v1/inventory/batchExhibitUpdate`
     console.log('url ', url)
     // return {'data': true}
-    return this.http.fetch(url, {
+    return await this.http.fetch(url, {
       method: 'put',
       mode: 'cors',
       headers: {
@@ -759,16 +759,27 @@ export class ApiService {
     var url = this.baseweb + 'v1/savedlists';
     return this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())
   }
-  getbatchno() {
+
+  async getbatchno() {
     // search has fullu formed query string
     var url = this.baseweb + 'v1/batch/'
     console.log('url ', url)
-    return this.http.fetch(url, {
+    return await this.http.fetch(url, {
       method: 'get',
       mode: 'cors'
     }).then((res) => res.json());
 
   }
+  // getbatchno() {
+  //   // search has fullu formed query string
+  //   var url = this.baseweb + 'v1/batch/'
+  //   console.log('url ', url)
+  //   return this.http.fetch(url, {
+  //     method: 'get',
+  //     mode: 'cors'
+  //   }).then((res) => res.json());
+
+  // }
   updateSavedlists(slname, slids) {
     //all   this.api.updateSavedlists(this.appService.currentsavedlist, this.selectedids).then((jsonRes) => {
 

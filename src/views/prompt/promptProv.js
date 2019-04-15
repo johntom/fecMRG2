@@ -27,7 +27,7 @@ export class Promptprov {
   activate(currentmodel) {
     this.item = currentmodel.item;
     this.currentItem = currentmodel.currentItem
-    this.heading = "Reproduction"
+    this.heading = "Provonamce"
   }
 
 
@@ -43,7 +43,10 @@ export class Promptprov {
 
 
   save() {
-    this.controller.ok('added')
+    // this.controller.ok('added')
+  this.controller.ok('added')
+
+
   }
 }
 

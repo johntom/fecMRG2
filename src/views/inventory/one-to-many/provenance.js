@@ -37,8 +37,8 @@ export class Provenance {
     this.currentItem.fieldname = fieldname
     this.currentItem.ProvOwner = this.currentItem.provenance[index].ProvOwner
     this.currentItem.provownername = this.currentItem.provenance[index].ProvOwner//provownername
-
     this.currentItem.Provlegacyid = this.currentItem.provenance[index].legacyid
+
     this.dialogService.open({ viewModel: Prompt, model: this.currentItem, lock: false }).whenClosed(response => {
       // ProvOwnerID
       this.currentItem.provenance[index].ProvOwner = this.currentItem.ProvOwner
@@ -60,8 +60,6 @@ export class Provenance {
   remove(item, index) {
     //alert('you are about to delete ' + item.Notes + ' ' + index)
     this.mode = 0
-
-
     this.dialogService.open({ viewModel: Promptyn, model: 'Delete or Cancel?', lock: false }).whenClosed(response => {
       if (!response.wasCancelled) {
         console.log('Delete')
@@ -93,22 +91,3 @@ export class Provenance {
 
 }
 
-// export class filterOnCodeValueConverter {
-
-//   see require from= "../../../value-converters/filter-by-code" > </require>
-//   // | filterOnCode is 
-//   // //return item.ProjectStatus.indexOf(filterText) >= 0;
-//   // return item["Code Type"].indexOf(0) >= 0;
-//   toView(array: {}[], property: string, exp: string) {
-
-//     if (array === undefined || array === null || property === undefined || exp === undefined) {
-//       return array;
-//     }
-//     //   console.log('exp,property', exp, property)
-
-//     // return array.filter((item) =>   item["Code Type"] === 14)
-//     return array.filter((item) => item[property] === exp)
-
-//   }
-
-// }

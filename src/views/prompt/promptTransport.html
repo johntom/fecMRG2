@@ -14,7 +14,7 @@
 	<ux-dialog style="width:800px; height: 550px;">
 		<!-- <ux-dialog-header>
       <h1>${heading}</h1>
-    </ux-dialog-header> -->
+    </ux-dialog-header> --> 
 
 		<ux-dialog-header class="modal-header modal-header-success">
 			<div class="alert alert-danger">
@@ -24,28 +24,25 @@
 		</ux-dialog-header>
 
 		<ux-dialog-body>
-			<div class="Rtable Rtable--2cols">
 
-			Transport Date <input type="date" id="TransportDate" class="form-control input-sm" value.bind="item.TransportDate">
+	<div class="Rtable Rtable--2cols">
+							<div class=" Rtable-cell-30 Rtable-cell--highlight">
+								<strong> Transport Date </strong>
+							</div>
+							<div class="Rtable-cell-70  Rtable-cell--light">
+							<input type="date" id="ExhibitSortDate" class="form-control input-sm au-target" value.bind="item.TransportDate">  
+							</div>
+						</div>
 
-						<!-- <select id="tt" class="form-control input-sm" value.two-way="item.TransportTo" change.delegate="selectChanged1(transport, ID)"> 
-						<option model.bind="null">Choose...</option> 
-						<option repeat.for="opt of appService.codesListLocation" model.bind="opt.ID">
-							${opt.Description} 
-						</option> 
-						</select> -->
+						<div class="Rtable Rtable--2cols">
+							<div class=" Rtable-cell-30 Rtable-cell--highlight">
+								<strong> Transport Note </strong>
+							</div>
+							<div class="Rtable-cell-70  Rtable-cell--light">
+								<textarea rows="2" cols="66" id="xExhibitSponser" wrap class="form-control input-sm" value.bind="item.TransportNotes"></textarea>
+						</div>
 
-						Transport To ?
-						<aubs-typeahead ref='dtransporto' data.bind="appService.codesListLocation" value.bind="item.Description" debounce.bind="350"
-						 placeholder="Transport To" open-on-focus.bind="true" key="Description" results-limit.bind="12" select-single-result.bind="true">
-						</aubs-typeahead>
-						<hr> Transport From ?
-						<aubs-typeahead ref='dtransportfrom' data.bind="appService.codesListLocation" value.bind="item.Description2" debounce.bind="350"
-						 placeholder="Transport From" open-on-focus.bind="true" key="Description" results-limit.bind="12" select-single-result.bind="true">
-						</aubs-typeahead>
-						<hr> Transport Note
-						<input type="text" id="TransportNotes" class="form-control input-sm" value.bind="item.TransportNotes">
-				
+
 
 		</ux-dialog-body>
 		<ux-dialog-footer>
