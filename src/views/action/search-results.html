@@ -161,7 +161,7 @@
 
 					</div>
 
-					<div show.bind="!hide4">
+					<div show.bind="!hide4"> 
 						Owner <input type="text" id="ProvOwner" class="form-control input-sm" value.bind="item.ProvOwner"> ProvLoc
 						<aubs-typeahead ref='provlocation' data.bind="appService.codesListLocation" value.bind="item.Description" debounce.bind="350"
 						 placeholder="mrg location" open-on-focus.bind="true" key="Description" results-limit.bind="12" select-single-result.bind="true">
@@ -177,23 +177,32 @@
 					</div>
 
 					<div show.bind="!hide5">
-						MRG Location
-						<aubs-typeahead ref='mrglocation' data.bind="appService.codesInventoryLocation" value.bind="item.Description" debounce.bind="350"
-						 placeholder="mrg location" open-on-focus.bind="true" key="Description" results-limit.bind="12" select-single-result.bind="true">
-						</aubs-typeahead>
+						<div class="Rtable Rtable--2cols">
+							<div class="Rtable-cell-30 Rtable-cell--highlight">
+								<strong> MRG Location</strong>
+							</div>
+							<div class="Rtable-cell-70 Rtable-cell--highlight">
+								<select id="MRGLocation " class="form-control  " value.bind="item.MRGLocation">
+											<option model.bind="null">Choose...</option>
+											<option repeat.for="opt of appService.codesInventoryLocation " model.bind="opt.id">
+												${opt.Description}
+											</option>
+										</select>
+							</div>
+						</div>
 
 						<button id="save5" class="btn btn-primary" type="button" click.delegate="save5()">Save MRG Location</button>
 
 					</div>
 
-					<div show.bind="!hide6">
+					<!-- <div show.bind="!hide6">
 						Temp Location
 
 						<aubs-typeahead ref='templocation' data.bind="appService.codesInventoryLocation" value.bind="item.Description" debounce.bind="350"
 						 placeholder="temp location" open-on-focus.bind="true" key="Description" results-limit.bind="12" select-single-result.bind="true">
 						</aubs-typeahead>
 						<button id="save6" class="btn btn-primary" type="button" click.delegate="save6()">save 1</button>
-					</div>
+					</div> -->
 
 					<div show.bind="!hide8">
 
@@ -213,8 +222,7 @@
 								<strong> Offered To </strong>
 							</div>
 							<div class="Rtable-cell-70  Rtable-cell--light">
-								<input style="width:300px" focus.bind="hasFocus" ref="myDatalistO" type="text" list="myDatalistO" 
-                change.delegate="changeCallbackOrg(selectedValueO)"
+								<input style="width:300px" focus.bind="hasFocus" ref="myDatalistO" type="text" list="myDatalistO" change.delegate="changeCallbackOrg(selectedValueO)"
 								 input.delegate="selectedValueO = findOptionO($event.target.value)" />
 								<datalist id="myDatalistO">
 									<option repeat.for="option of appService.orgsList">${option.OrgName} ; ${option.BusIndivid} ; ${option._id}</option>

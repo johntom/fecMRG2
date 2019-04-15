@@ -14,6 +14,9 @@ import { Prompttransport } from '../prompt/promptTransport';
 import { Promptprov } from '../prompt/promptProv';
 import { Promptmerge } from '../prompt/promptMerge';
 
+import { Promptmess } from '../../services/promptmess';
+import { Promptyn } from '../../services/promptyn';
+
 // jrt
 @inject(Router, ApiService, UtilService, ApplicationService, MyDataService, DialogService)
 export class SearchResults {
@@ -221,7 +224,8 @@ export class SearchResults {
           inv = jsonRes.data;
 
           if (inv === 0 || inv.length === 0) {
-            alert(' no records found ')
+
+            this.dialogService.open({ viewModel: Promptmess, model: `no records found  `, lock: true }).whenClosed(async response => { });
             let tab = this.appService.tabs.find(f => f.isSelected);
             this.closeTab(tab);
             let rt2 = '#/home'// inventory'
@@ -284,7 +288,9 @@ export class SearchResults {
       }
       if (i === maxRows - 1) {
         this.selectedids = sels;
-        alert('you are about to remove the following ' + this.selectedids + ' from saved list ' + this.savedlist)
+        // alert('you are about to remove the following ' + this.selectedids + ' from saved list ' + this.savedlist)
+        this.dialogService.open({ viewModel: Promptmess, model: `you are about to remove the following ${this.selectedids} from saved list ${this.savedlist} `, lock: true }).whenClosed(async response => { });
+
         this.api.deleteSavedlists(this.savedlist, this.selectedids).then((jsonRes) => {
           console.log('jsonRes ', jsonRes);
 
@@ -721,16 +727,15 @@ export class SearchResults {
     this.api.batchTransport(this.item)
       .then((jsonRes) => {
         if (jsonRes.data === 'success') {
-          alert(' batch updated  batchno= ' + batchno + ' ' + this.item)
-          this.item = {}//.TransportDate = ''
-          //  this.Description =''
-          //  this.Description2 =''
-          // this.item.Description = ''
-          // this.item.Description2 = ''
-          // this.item.Description2 = ''
-          // this.item.TransportNotes = ''
+          // alert(' batch updated  batchno= ' + batchno + ' ' + this.item)
+          this.dialogService.open({ viewModel: Promptmess, model: `batch updated  batchno= ${this.item.batchno}  `, lock: true }).whenClosed(async response => { });
 
-        } else alert(' batch failed ')
+          this.item = {}//.TransportDate = ''
+        
+
+        }
+        this.dialogService.open({ viewModel: Promptmess, model: `batch failed `, lock: true }).whenClosed(async response => { });
+
       })
 
   }
@@ -744,18 +749,14 @@ export class SearchResults {
     this.api.batchExhibit(this.item)
       .then((jsonRes) => {
         if (jsonRes.data === 'success') {
-          alert(' batch updated batchno= ' + batchno)
-          this.item = {}
-          // this.item.ExhibitTitle = ''
-          // this.item.ExhibitSponser = ''
-          // this.item.Description2 = ''
-          // this.item.exhibitlocation = ''
-          // this.item.ExhibitDates = ''
-          // this.item.ExhibitSortDate = ''
-          // this.item.Traveled = ''
-          // this.item.ExhibitMemo = ''
 
-        } else alert(' batch failed ')
+          this.dialogService.open({ viewModel: Promptmess, model: `batch updated  batchno= ${this.item.batchno} `, lock: true }).whenClosed(async response => { });
+
+          this.item = {}
+         
+
+        } else this.dialogService.open({ viewModel: Promptmess, model: `batch failed `, lock: true }).whenClosed(async response => { });
+
       })
 
   }
@@ -770,9 +771,10 @@ export class SearchResults {
     this.api.batchReproduction(this.item)
       .then((jsonRes) => {
         if (jsonRes.data === 'success') {
-          alert(' batch updated  batchno= ' + batchno)
+          this.dialogService.open({ viewModel: Promptmess, model: `batch updated  batchno= ${this.item.batchno} / ${this.item} `, lock: true }).whenClosed(async response => { });
+
           this.item = {}
-        } else alert(' batch failed ')
+        } else this.dialogService.open({ viewModel: Promptmess, model: `batch failed `, lock: true }).whenClosed(async response => { });
       })
 
   }
@@ -790,27 +792,30 @@ export class SearchResults {
     this.api.batchProvenance(this.item)
       .then((jsonRes) => {
         if (jsonRes.data === 'success') {
-          alert(' batch updated ')
+          this.dialogService.open({ viewModel: Promptmess, model: `batch updated  batchno= ${this.item.batchno}  `, lock: true }).whenClosed(async response => { });
+
           this.item = {}
-        } else alert(' batch failed ')
+        } else this.dialogService.open({ viewModel: Promptmess, model: `batch failed `, lock: true }).whenClosed(async response => { });
       })
   }
 
-  save5() {
-    //  let loc = `${this.Description5.Description}`
-
-    //alert(loc)
+  async save5() {
+    
     this.item.savedlist = this.savedlist
+      let jsonResna = await this.api.getbatchno();
+    this.item.batchno = jsonResna[0].nextavail
     this.api.batchMrglocation(this.item)
       .then((jsonRes) => {
         if (jsonRes.data === 'success') {
-          alert(' batch updated ')
+          this.dialogService.open({ viewModel: Promptmess, model: `batch updated  batchno= ${this.item.batchno}  `, lock: true }).whenClosed(async response => { });
+
+
           this.item = {}
-        } else alert(' batch failed ')
+        } else this.dialogService.open({ viewModel: Promptmess, model: `batch failed `, lock: true }).whenClosed(async response => { });
       })
   }
 
-  save6() {
+ async save6() {
     // let loc = `${this.Description6.Description}`
 
     //  alert(loc)
@@ -818,9 +823,10 @@ export class SearchResults {
     this.api.batchTemplocation(this.item)
       .then((jsonRes) => {
         if (jsonRes.data === 'success') {
-          alert(' batch updated ')
+          this.dialogService.open({ viewModel: Promptmess, model: `batch updated  batchno= ${this.item.batchno} / ${this.item} `, lock: true }).whenClosed(async response => { });
+
           this.item = {}
-        } else alert(' batch failed ')
+        } else this.dialogService.open({ viewModel: Promptmess, model: `batch failed `, lock: true }).whenClosed(async response => { });
       })
   }
 
@@ -838,7 +844,7 @@ export class SearchResults {
     let rec
     // loop 
     //  console.log('after orgid orgname', orgid, orgname)
-    this.erroroffer  = 0
+    this.erroroffer = 0
     let offerings = []
     for (const invitem of this.datasource._data) {
       rec = {}
@@ -847,19 +853,21 @@ export class SearchResults {
       rec.offerdate = offerdate
       rec.InventoryCode = invitem.InventoryCode
       rec.offeramount = invitem.offeramount
-      if (rec.offeramount === undefined || rec.offeramount ===null) {
-      this.erroroffer++;
+      if (rec.offeramount === undefined || rec.offeramount === null) {
+        this.erroroffer++;
       } else offerings.push(rec)
       console.log('after item', rec)// item.InventoryCode,+item.offeramount)
 
     }
     console.log('after offerings', offerings)
     if (this.erroroffer > 0) {
-      window.alert(`please fix offer amount col for ${this.erroroffer} rows !`);
+      this.dialogService.open({ viewModel: Promptmess, model: `please fix offer amount col on ${this.erroroffer} row(s) !`, lock: true }).whenClosed(async response => { });
+
     } else {
-     this.api.addOfferings(offerings).then((jsonRes) => {
-    window.alert("Save successful!");
-    });
+      this.api.addOfferings(offerings).then((jsonRes) => {
+        this.dialogService.open({ viewModel: Promptmess, model: `Save successful! `, lock: true }).whenClosed(async response => { });
+      });
+    }
   }
   changeCallbackOrg(selectedValue) {
     // this.OrgName = this.myDatalistO.value
@@ -887,9 +895,6 @@ export class SearchResults {
     console.log('this.orgId this.OrgName', this.OrgName, this.orgId, this.BusIndivid)// this.orgObject)
     // let findvalue = this.myDatalistO.value //this.selectedValueO.value
   }
-
-
-
 
 
 }
