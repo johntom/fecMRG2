@@ -829,33 +829,67 @@ export class SearchResults {
   // batchOfferings
   //   }
   save8() {
+    // this.orgObject = { OrgName: this.OrgName, BusIndivid: this.BusIndivid, _id: this.orgId }
+
     this.item.savedlist = this.savedlist
-    let orgid = this.item.OrgName._id //`${this.OrgName._id}`
-    let orgname = this.item.OrgName.OrgName // `${this.OrgName.OrgName}`
+    let orgid = this.orgObject._id //this.item.OrgName._id //`${this.OrgName._id}`
+    let orgname = this.orgObject.OrgName //this.item.OrgName.OrgName // `${this.OrgName.OrgName}`
     let offerdate = this.item.offerdate //`${this.date}`
     let rec
     // loop 
     //  console.log('after orgid orgname', orgid, orgname)
+    this.erroroffer  = 0
     let offerings = []
     for (const invitem of this.datasource._data) {
       rec = {}
-      rec.client = orgid
-      rec.clientname = orgname
+      rec.client = this.orgObject._id//orgid
+      rec.clientname = this.orgObject.OrgName  //orgname
       rec.offerdate = offerdate
       rec.InventoryCode = invitem.InventoryCode
       rec.offeramount = invitem.offeramount
-      offerings.push(rec)
+      if (rec.offeramount === undefined || rec.offeramount ===null) {
+      this.erroroffer++;
+      } else offerings.push(rec)
       console.log('after item', rec)// item.InventoryCode,+item.offeramount)
 
     }
     console.log('after offerings', offerings)
-
-    this.api.addOfferings(offerings).then((jsonRes) => {
-      // let tab = this.appService.tabs.find(f => f.isSelected);
-      // this.closeTab(tab);
-      window.alert("Save successful!");
+    if (this.erroroffer > 0) {
+      window.alert(`please fix offer amount col for ${this.erroroffer} rows !`);
+    } else {
+     this.api.addOfferings(offerings).then((jsonRes) => {
+    window.alert("Save successful!");
     });
   }
+  changeCallbackOrg(selectedValue) {
+    // this.OrgName = this.myDatalistO.value
+    // let oid
+    // let org = this.appService.orgsList.find(x => {
+    //   if (x.OrgName === this.OrgName) {
+    //     oid = x._id
+    //   }
+    // })
+    // this.orgId = oid
+    // this.orgObject = org
+    // console.log('this.orgId this.OrgName', this.OrgName, this.orgId, this.orgObject)
+    // let findvalue = this.myDatalistO.value //this.selectedValueO.value
+    //>${option.OrgName} ; ${option.BusIndivid} ; ${option._id}
+    // let semiPos = values.indexOf(";");
+    // var res = values.trim();
+    let values = this.myDatalistO.value
+    var res = values.split(";");
+
+    this.OrgName = res[0].trim();
+    this.BusIndivid = res[1].trim();
+    this.orgId = res[2].trim();
+    this.orgObject = { OrgName: this.OrgName, BusIndivid: this.BusIndivid, _id: this.orgId }
+
+    console.log('this.orgId this.OrgName', this.OrgName, this.orgId, this.BusIndivid)// this.orgObject)
+    // let findvalue = this.myDatalistO.value //this.selectedValueO.value
+  }
+
+
+
 
 
 }

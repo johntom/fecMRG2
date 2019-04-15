@@ -5,19 +5,23 @@
 		.k-grid tbody tr {
 			height: 50px;
 		}
+
 		.k-grid td {
 			white-space: nowrap;
 		}
+
 		/* img.responsive-img,
 		video.responsive-video {
 			max-width: 100%;
 			height: auto;
 		}
     class="responsivemerge-img */
+
 		img.responsivemerge-img {
 			max-width: 225;
 			height: auto;
 		}
+
 		.customer-photo-sq {
 			display: inline-block;
 			width: 50px;
@@ -192,23 +196,35 @@
 					</div>
 
 					<div show.bind="!hide8">
-						Offer Date
-						<input type="date" ref="date" class="form-control input-sm" value.bind="item.offerdate"> offered To
+
 						<!-- <aubs-typeahead ref='doffering' data.bind="appService.orgsList" value.bind="item.OrgName" debounce.bind="350" placeholder="offering to arg"
 						 open-on-focus.bind="true" key="OrgName" results-limit.bind="12" select-single-result.bind="true">
 						</aubs-typeahead> -->
-
-            <br/>
-            offered To
-	<input focus.bind="hasFocus" ref="myDatalistO" type="text" list="myDatalistO" 
-					change.delegate="changeCallbackOrg(selectedValueO)"
-					 input.delegate="selectedValueO = findOptionO($event.target.value)" />
-					<datalist id="myDatalistO">
-						<option repeat.for="option of appService.orgsList">${option.OrgName} ; ${option.BusIndivid} ; ${option._id}</option>
-					</datalist>  
-				</div>
+						<div class="Rtable Rtable--2cols">
+							<div class=" Rtable-cell-30 Rtable-cell--highlight">
+								<strong> Offer Date </strong>
+							</div>
+							<div class="Rtable-cell-70  Rtable-cell--light">
+								<input type="date" id="ExhibitSortDate" class="form-control input-sm au-target" value.bind="item.					">
+							</div>
+						</div>
+						<div class="Rtable Rtable--2cols">
+							<div class=" Rtable-cell-30 Rtable-cell--highlight">
+								<strong> Offered To </strong>
+							</div>
+							<div class="Rtable-cell-70  Rtable-cell--light">
+								<input style="width:300px" focus.bind="hasFocus" ref="myDatalistO" type="text" list="myDatalistO" 
+                change.delegate="changeCallbackOrg(selectedValueO)"
+								 input.delegate="selectedValueO = findOptionO($event.target.value)" />
+								<datalist id="myDatalistO">
+									<option repeat.for="option of appService.orgsList">${option.OrgName} ; ${option.BusIndivid} ; ${option._id}</option>
+								</datalist>
+							</div>
+						</div>
+						<br/>
 						<button id="save8" class="btn btn-primary" type="button" click.delegate="save8()">Save Offering</button>
-
+						<br/>
+						<pre> update the offer amount column in grid to the right</pre>
 					</div>
 					<div show.bind="!hide9">
 
@@ -235,7 +251,7 @@
 					 k-selectable="[row,multiple]" k-on-change.delegate="rowSelected($event.detail)" k-column-menu.bind="true" k-pageable.bind="true">
 						<ak-col k-filterable.bind="false" k-width="120px" k-title="Cmd" k-command.bind="['edit']" k-title="&nbsp;" k-locked.bind="true"
 						 k-lockable.bind="false"></ak-col>
-						 <ak-col k-field="InventoryCode" k-filterable.bind="false" k-column-menu.bind="false" k-lockable.bind="false" k-title="Inventory Code"
+						<ak-col k-field="InventoryCode" k-filterable.bind="false" k-column-menu.bind="false" k-lockable.bind="false" k-title="Inventory Code"
 						 k-width.bind="180" k-template="<button click.delegate='detailsEdit($event)' class='k-button'>#=InventoryCode#</button>">
 						</ak-col>
 						<ak-col k-title="Image" k-filterable.bind="false" k-field="InventoryCode" k-width="150px">
@@ -251,10 +267,10 @@
 						<ak-col k-filterable.bind="false" k-field="InventoryCode" k-filterable.bind="true" k-title="Factsheet<br>Download" k-width.bind="125"
 						 k-template="<button click.delegate='detailsFactSheet($event)' class='k-button'>#=InventoryCode#</button>">
 						</ak-col>
-							
-						
-					
-					
+
+
+
+
 						<ak-col k-title="Title" k-width="110px" k-field="Title"></ak-col>
 						<ak-col k-title="Artist" k-width="200px" k-field="artist.ArtistName"></ak-col>
 					</ak-grid>
