@@ -231,7 +231,10 @@
 									</div>
 
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
-										<span dblclick.delegate="showModal( 'OrgID') ">	<strong> Org </strong></span>
+										<!-- <span dblclick.delegate="showModal( 'OrgID') ">	<strong> Org </strong></span> -->
+                           <button class="btn btn-success" click.delegate="modal(org)">View Org</button>
+									     <button class="btn btn-success" click.delegate="editorg(org)">Edit Org</button>
+							
 									</div>
 
 
@@ -241,31 +244,26 @@
 										</div>
 										<div style="height:15px;margin-left:10px;margin-top:5px;margin-bottom:10px" else>
 											<a click.delegate="showModal( 'OrgID')">${currentItem.org.OrgName} </a>
-                       <button class="btn btn-success" click.delegate="modal(org)">View Org</button>
-									     <button class="btn btn-success" click.delegate="editorg(org)">Edit Org</button>
-										</div>
+                			</div>
 									</div>
 
 
 
 
-									<!-- <button class="btn btn-success" click.delegate="modal(org)">Org</button> ${currentItem.org.OrgName} -->
-									<div class="Rtable-cell-30 Rtable-cell--highlight">
+									<!-- <div class="Rtable-cell-30 Rtable-cell--highlight">
 
 
 										<div if.bind="currentItem.org.OrgName===undefined || currentItem.org.OrgName==='' ">
 											&nbsp;
 										</div>
 										<div else>
-											<!-- <a click.delegate="modal( 'OrgID')">Open ${currentItem.org.OrgName} </a> -->
-											<!-- <button class="btn btn-success" click.delegate="modal(org)">Open ${currentItem.org.OrgName}</button> -->
-									<button class="btn btn-success" click.delegate="modal(org)">View Org</button>
+										<button class="btn btn-success" click.delegate="modal(org)">View Org</button>
 									<button class="btn btn-success" click.delegate="editorg(org)">Edit Org</button>
 									
                   	</div>
 									</div>
 									<div class="Rtable-cell-70  Rtable-cell--highlight">
-									</div>
+									</div> -->
 
 								</div>
 							</div>
