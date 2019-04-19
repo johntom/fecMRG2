@@ -145,6 +145,7 @@ export class SearchResults {
     this.dataService = dataService;
     this.ImageID = '20150921_153441_resized_2'
     this.dialogService = dialogService
+     this.appService.rfreshLoaded = false;
     // this.appService.actionlist ='closed'
   }
   updateData(e) {
@@ -199,7 +200,7 @@ export class SearchResults {
     // this.appService.currentActionlist
     this.datasource.read()
     // make a dupe of folllowing to accoumodate 2 typeaheads
-    this.codesListLocation = this.appService.codesListLocation
+    this.codesListLocation = this.appService.codesListLocation 
   }
 
 
@@ -214,7 +215,7 @@ export class SearchResults {
     // console.log('this.loadData ')
     let inv;
     ///api/v1/inventory/getall
-    if (this.appService.actionsearchresults) {
+    if (this.appService.actionsearchresults && !this.appService.rfreshLoaded ) {
       return this.appService.actionsearchresults;
     } else {
       return this.api.findInventory(this.queryParams)
@@ -256,6 +257,12 @@ export class SearchResults {
     let selectedRow = grid.select();
     let dataItem = grid.dataItem(selectedRow);
     //   alert(dataItem.assignto);
+  }
+  performAction1Refresh(){
+    //console.log('performRefresh ')
+    alert('You have selected performRefresh')
+   this.appService.rfreshLoaded = true;
+    this.datasource.read()  
   }
   performAction1() {
     // console.log('Action1 ')

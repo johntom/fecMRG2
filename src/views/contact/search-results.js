@@ -131,6 +131,11 @@ export class SearchResults {
       } else return inv
       });
   }
+ addcontact() {
+
+    this.router.navigate(`#/contact/data/create`);
+  }
+
   rowSelected(e) {
     console.log('e ' + e.sender)
     let grid = e.sender;

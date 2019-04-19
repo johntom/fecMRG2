@@ -152,11 +152,13 @@ export class DataForm {
       this.heading = `DataForm for record  ${this.cname} `;
 
       if (this.recordId === 'create') {
-
+ this.currentItem = {}
         this.currentContactItem = {}
-        this.currentItem.id = 'create'
-        this.appService.testrec = {}
-        this.appService.originalrec = {}
+        this.currentContactItem.id = 'create'
+        // this.appService.testrec = {}
+        // this.appService.originalrec = {}
+         this.appService.testcontactrec = {}
+        this.appService.originalontactrec = {}
        
 
 
@@ -207,13 +209,7 @@ export class DataForm {
   }
   mrucheck(newrec, prevtemp) {
     this.skip = false
-    // if (newrec.id === prevtemp[0].id) this.skip = true;
-    // if (newrec.id === prevtemp[1].id) this.skip = true;
-    // if (newrec.id === prevtemp[2].id) this.skip = true;
-    // if (newrec.id === prevtemp[3].id) this.skip = true;
-    // if (newrec.id === prevtemp[4].id) this.skip = true;
-    // // if (newrec.id === temp[5].id) this.skip = true;
-
+   
     if (prevtemp[0] != undefined && newrec.id === prevtemp[0].id) this.skip = true;
     if (prevtemp[1] != undefined && newrec.id === prevtemp[1].id) this.skip = true;
     if (prevtemp[2] != undefined && newrec.id === prevtemp[2].id) this.skip = true;
@@ -250,9 +246,7 @@ export class DataForm {
       //  this.tabindex = temp[1];
     }
 
-    // var temp = [this.recordId, mruget.mru1, mruget.mru2, mruget.mru3, mruget.mru4];
-    // var temp = [this.recordId + '?' + this.cname, mruget.mru1, mruget.mru2, mruget.mru3, mruget.mru4];
-
+   
     const prevtemp = [mruget.mru1, mruget.mru2, mruget.mru3, mruget.mru4, mruget.mru5];
 
     const temp = [{ id: this.recordId, name: this.cname, bori: this.currentItem.BusIndivid }, mruget.mru1, mruget.mru2, mruget.mru3, mruget.mru4];
@@ -313,7 +307,7 @@ export class DataForm {
         // if (!this.currentItem.savedonce || this.currentItem.savedonce === true) {
         // force it all the time
         this.currentItem.savedonce = true
-        this.saveinventory(0)
+        this.savecontact(0)
       }
 
       let tabinfo, tabindex
@@ -336,19 +330,17 @@ export class DataForm {
   }
 
 
-  saveinventory(option) {
+  savecontact(option) {
     //this.controller.validate();
     let savetime = moment().format('MM/DD/YY h:mm:ss a')
 
     if (this.recordId === 'create') {
-      // console.log(  this.currentItem, this.currentItem)
-      if (this.currentItem.Title === undefined || this.currentItem.InventoryCode === undefined
-        || this.currentItem.MediumSupportobj === undefined
-        || this.currentItem.artist === undefined) {
-        alert('Please fix  contact ')
-      } else {
-        // delete this.currentItem.artist;
-        // delete this.currentItem.catalog;
+      // if (this.currentItem.Title === undefined || this.currentItem.InventoryCode === undefined
+      //   || this.currentItem.MediumSupportobj === undefined
+      //   || this.currentItem.artist === undefined) {
+      //   alert('Please fix  contact ')
+      // } else {
+       
         this.api.createcontact(this.currentItem).then((jsonRes) => {
           console.log('jsonRes ', jsonRes);
           this.recordId = jsonRes.id
@@ -361,7 +353,7 @@ export class DataForm {
           this.requestclose()
           this.router.navigate(`#/contact/data/${this.currentItem.id}`)
         });
-      }
+      // }
     } else {
 
       if (JSON.stringify(this.currentItem) !== JSON.stringify(this.appService.originalContactrec)) {
