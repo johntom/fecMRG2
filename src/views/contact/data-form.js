@@ -70,12 +70,12 @@ export class DataForm {
     // this.currentItem={}
   }
 
-  modal(item) {
+  modal() {
 
     // IF B then use this
     let currentModel = {}
-    currentModel.currentItem = this.currentItem
-    currentModel.item = item
+    currentModel.currentItem = this.currentItem 
+    // currentModel.item = item
     currentModel.currentItem.hide1 = false
 
     // this.dialogService.open({ viewModel: PromptForm, model: currentModel, lock: false }).whenClosed(response => {
@@ -89,6 +89,16 @@ export class DataForm {
       }
       console.log(response)//.output);
     });
+  }
+
+
+  editorg() {
+    // let rt2 = '#/org/data/' + dataItem.id + '?' + name
+    // let rt2 = '#/org/data/' + dataItem.id + '?' + name
+    // alert(this.currentItem )
+    let rt2 = '#/org/data/' + this.currentItem.org._id + '?' + this.currentItem.org.OrgName
+    this.router.navigate(rt2);
+
   }
 
   showModal(fieldname) {
@@ -152,14 +162,14 @@ export class DataForm {
       this.heading = `DataForm for record  ${this.cname} `;
 
       if (this.recordId === 'create') {
- this.currentItem = {}
+        this.currentItem = {}
         this.currentContactItem = {}
         this.currentContactItem.id = 'create'
         // this.appService.testrec = {}
         // this.appService.originalrec = {}
-         this.appService.testcontactrec = {}
+        this.appService.testcontactrec = {}
         this.appService.originalontactrec = {}
-       
+
 
 
       } else {
@@ -209,7 +219,7 @@ export class DataForm {
   }
   mrucheck(newrec, prevtemp) {
     this.skip = false
-   
+
     if (prevtemp[0] != undefined && newrec.id === prevtemp[0].id) this.skip = true;
     if (prevtemp[1] != undefined && newrec.id === prevtemp[1].id) this.skip = true;
     if (prevtemp[2] != undefined && newrec.id === prevtemp[2].id) this.skip = true;
@@ -246,7 +256,7 @@ export class DataForm {
       //  this.tabindex = temp[1];
     }
 
-   
+
     const prevtemp = [mruget.mru1, mruget.mru2, mruget.mru3, mruget.mru4, mruget.mru5];
 
     const temp = [{ id: this.recordId, name: this.cname, bori: this.currentItem.BusIndivid }, mruget.mru1, mruget.mru2, mruget.mru3, mruget.mru4];
@@ -340,19 +350,19 @@ export class DataForm {
       //   || this.currentItem.artist === undefined) {
       //   alert('Please fix  contact ')
       // } else {
-       
-        this.api.createcontact(this.currentItem).then((jsonRes) => {
-          console.log('jsonRes ', jsonRes);
-          this.recordId = jsonRes.id
-          //let tab = this.appService.tabs.find(f => f.isSelected);
-          if (this.currentItem.id === 'create') {
-            this.currentItem.id = ''
-            this.message = "Save successful. contact added @ " + savetime
-          }
-          //this.mrubuild() it will add if when opening
-          this.requestclose()
-          this.router.navigate(`#/contact/data/${this.currentItem.id}`)
-        });
+
+      this.api.createcontact(this.currentItem).then((jsonRes) => {
+        console.log('jsonRes ', jsonRes);
+        this.recordId = jsonRes.id
+        //let tab = this.appService.tabs.find(f => f.isSelected);
+        if (this.currentItem.id === 'create') {
+          this.currentItem.id = ''
+          this.message = "Save successful. contact added @ " + savetime
+        }
+        //this.mrubuild() it will add if when opening
+        this.requestclose()
+        this.router.navigate(`#/contact/data/${this.currentItem.id}`)
+      });
       // }
     } else {
 

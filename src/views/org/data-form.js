@@ -30,7 +30,7 @@ export class DataForm {
 
 
 
-    if (params.id) {
+    if (params.id) { 
       this.recordId = params.id;
 
 

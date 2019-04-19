@@ -241,6 +241,8 @@
 										</div>
 										<div style="height:15px;margin-left:10px;margin-top:5px;margin-bottom:10px" else>
 											<a click.delegate="showModal( 'OrgID')">${currentItem.org.OrgName} </a>
+                       <button class="btn btn-success" click.delegate="modal(org)">View Org</button>
+									     <button class="btn btn-success" click.delegate="editorg(org)">Edit Org</button>
 										</div>
 									</div>
 
@@ -256,8 +258,11 @@
 										</div>
 										<div else>
 											<!-- <a click.delegate="modal( 'OrgID')">Open ${currentItem.org.OrgName} </a> -->
-											<button class="btn btn-success" click.delegate="modal(org)">Open ${currentItem.org.OrgName}</button>
-										</div>
+											<!-- <button class="btn btn-success" click.delegate="modal(org)">Open ${currentItem.org.OrgName}</button> -->
+									<button class="btn btn-success" click.delegate="modal(org)">View Org</button>
+									<button class="btn btn-success" click.delegate="editorg(org)">Edit Org</button>
+									
+                  	</div>
 									</div>
 									<div class="Rtable-cell-70  Rtable-cell--highlight">
 									</div>

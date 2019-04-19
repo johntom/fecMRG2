@@ -132,16 +132,8 @@ export class SearchResults {
       });
   }
  addcontact() {
+     this.router.navigate(`#/contact/data/create`);
 
-    this.router.navigate(`#/contact/data/create`);
-  }
-
-  rowSelected(e) {
-    console.log('e ' + e.sender)
-    let grid = e.sender;
-    let selectedRow = grid.select();
-    let dataItem = grid.dataItem(selectedRow);
-    //   alert(dataItem.assignto);
   }
 
   details(e) {
@@ -150,11 +142,8 @@ export class SearchResults {
     grid.select(targetRow);
     let selectedRow = grid.select();
     let dataItem = grid.dataItem(selectedRow);
-   
-    let rt2 = '#/contact/data/' + dataItem._id// 
-
+    let rt2 = '#/contact/data/' + dataItem._id
     this.router.navigate(rt2);
-
   }
 
   closeTab(tab) {

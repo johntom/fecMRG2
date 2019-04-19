@@ -56,16 +56,12 @@ ai-dialog-container > div {
 }
 </style>
 	<ux-dialog style="width:800px; height: 550px;">
-		<!-- <ux-dialog-header>
-      <h1>${heading}</h1>
-    </ux-dialog-header> -->
-
+	
 		<ux-dialog-header class="modal-header modal-header-success">
 			<div class="alert alert-danger">
 				<h1>${heading}</h1>
 
-	<button click.trigger="controller.cancel()">Cancel and Close </button>
-			<button click.trigger="save()">Save Org and Close </button>
+	<button click.trigger="controller.cancel()">Close </button>
 
 			</div>
 		</ux-dialog-header>
@@ -77,31 +73,33 @@ ai-dialog-container > div {
 					<strong> OrgName</strong>
 				</div>
 				<div class="Rtable-cell-70  Rtable-cell--highlight">
-					<input type="text" id="OrgName" class="form-control input-sm" value.bind="currentItem.org.OrgName">
+					<input type="text" id="OrgName" class="form-control input-sm" value.bind="item.OrgName" disabled>
+    		
 				</div>
 				<div class="Rtable-cell-30 Rtable-cell--highlight">
 					<strong> Address</strong>
 				</div>
 				<div class="Rtable-cell-70  Rtable-cell--highlight">
-					<input type="text" id="Address" class="form-control input-sm" value.bind="currentItem.org.address">
-				</div>
+					<input type="text" id="Address" class="form-control input-sm" value.bind="item.Address" disabled>
+				
+      	</div>
 				<div class="Rtable-cell-30 Rtable-cell--highlight">
 					<strong> City</strong>
 				</div>
 				<div class="Rtable-cell-70  Rtable-cell--highlight">
-					<input type="text" id="City" class="form-control input-sm" value.bind="currentItem.org.city">
+					<input type="text" id="City" class="form-control input-sm" value.bind="item.City" disabled>
 				</div>
 				<div class="Rtable-cell-30 Rtable-cell--highlight">
 					<strong> State</strong>
 				</div>
 				<div class="Rtable-cell-70  Rtable-cell--highlight">
-					<input type="text" id="State" class="form-control input-sm" value.bind="currentItem.org.state">
+					<input type="text" id="State" class="form-control input-sm" value.bind="item.State" disabled>
 				</div>
 				<div class="Rtable-cell-30 Rtable-cell--highlight">
 					<strong> Zip</strong>
 				</div>
 				<div class="Rtable-cell-70  Rtable-cell--highlight">
-					<input type="text" id="Zip" class="form-control input-sm" value.bind="currentItem.org.zip">
+					<input type="text" id="Zip" class="form-control input-sm" value.bind="item.Zip" disabled>
 				</div>
 
 
@@ -109,22 +107,21 @@ ai-dialog-container > div {
 					<strong> Status</strong>
 				</div>
 				<div class="Rtable-cell-70  Rtable-cell--highlight">
-					<input type="text" id="PurchasedDate" class="form-control input-sm" value.bind="currentItem.org.status">
+					<input type="text" id="PurchasedDate" class="form-control input-sm" value.bind="item.Status" disabled>
 				</div>
 				<div class="Rtable-cell-30 Rtable-cell--highlight">
 					<strong> Notes</strong>
 				</div>
 				<div class="Rtable-cell-70  Rtable-cell--highlight">
-					<input type="text" id="BusIndivid" class="form-control input-sm" value.bind="currentItem.org.notes">
+
+          	<textarea rows="6" cols="100" id="Notes" class="form-control input-sm" value.bind="item.Notes" ng-disabled=""></textarea>
+
 				</div>
 			</div>
 
 			<h4>
 				<i class="fa fa-folder-open"></i> Phone
-				<a slot="buttons-slot" class="btn btn-primary" click.delegate="addNote()">
-					<i class="fa fa-plus"></i> Add Phone
-				</a>
-
+	
 
 
 			</h4>
@@ -159,10 +156,6 @@ ai-dialog-container > div {
 					<tr repeat.for="phone of item.orgphones" with.bind="phone">
 
 						<td width="300px">
-							<!-- <span show.bind="!phone.edit">${type}</span>
-
-						<input show.bind="phone.edit" class="form-control input-sm" disabled.bind="!phone.edit" type="text" value.bind="type"> -->
-
 							<select id="phonetype" class="form-control  input-sm" value.bind="type"> 
                       <option model.bind="null">Choose...filterOnCode</option> 
                          <option repeat.for="opt of appService.codesPhoneType " model.bind="opt.id">
@@ -173,29 +166,28 @@ ai-dialog-container > div {
 						<td width="200px">
 							<span show.bind="!phone.edit">${phoneno}</span>
 
-							<input show.bind="phone.edit" class="form-control input-sm" disabled.bind="!phone.edit" type="text" value.bind="phoneno">
+							<span show.bind="phone.edit" class="form-control input-sm" disabled.bind="!phone.edit" type="text" value.bind="phoneno"></span>
 						</td>
 						<td width="100px">
 							<span show.bind="!phone.edit">${areacode}</span>
 
-							<input show.bind="phone.edit" class="form-control input-sm" disabled.bind="!phone.edit" type="text" value.bind="areacode">
+							<span show.bind="phone.edit" class="form-control input-sm" disabled.bind="!phone.edit" type="text" value.bind="areacode"></span>
 						</td>
 						<td width="300px">
 
 							<span show.bind="!phone.edit">${ext}</span>
 
-							<input show.bind="phone.edit" class="form-control input-sm" disabled.bind="!phone.edit" type="text" value.bind="ext">
+							<span show.bind="phone.edit" class="form-control input-sm" disabled.bind="!phone.edit" type="text" value.bind="ext"></span>
 						</td>
 						<td width="100px">
 							<span show.bind="!phone.edit">${countrycode}</span>
 
-							<input show.bind="phone.edit" class="form-control input-sm" disabled.bind="!phone.edit" type="text" value.bind="countrycode">
+							<span show.bind="phone.edit" class="form-control input-sm" disabled.bind="!phone.edit" type="text" value.bind="countrycode"></span>
 						</td>
 						<td width="225px">
 
-							<!-- <button class="btn btn-primary" click.delegate="saveitem(note,$index)">${ !note.edit ? 'Update' : 'Done' }</button> -->
-
-							<button class="btn btn-danger" click.delegate="remove(note,$index)">Delete</button>
+				
+							<!-- <button class="btn btn-danger" click.delegate="remove(note,$index)">Delete</button> -->
 
 						</td>
 
@@ -252,29 +244,7 @@ ai-dialog-container > div {
 							<span >${phones[2].phoneno}, ${phones[2].ext}</span>
 
 							</td>
-						<!-- <td width="100px">
-							<span show.bind="!phone.edit">${areacode}</span>
-		<input show.bind="phone.edit" class="form-control input-sm" disabled.bind="!phone.edit" type="text" value.bind="phoneno">
 				
-							<input show.bind="phone.edit" class="form-control input-sm" disabled.bind="!phone.edit" type="text" value.bind="areacode">
-						</td>
-						<td width="300px">
-
-							<span show.bind="!phone.edit">${ext}</span>
-
-							<input show.bind="phone.edit" class="form-control input-sm" disabled.bind="!phone.edit" type="text" value.bind="ext">
-						</td>
-						<td width="100px">
-							<span show.bind="!phone.edit">${countrycode}</span>
-
-							<input show.bind="phone.edit" class="form-control input-sm" disabled.bind="!phone.edit" type="text" value.bind="countrycode">
-						</td> -->
-						<!-- <td width="225px">
-
-							<button class="btn btn-danger" click.delegate="remove(note,$index)">Delete</button>
-
-						</td> -->
-
 
 				</tbody>
 			</table>
@@ -284,8 +254,8 @@ ai-dialog-container > div {
 
 		</ux-dialog-body>
 		<ux-dialog-footer>
-			<button click.trigger="controller.cancel()">Cancel and Close </button>
-			<button click.trigger="save()">Save Org and Close </button>
+			<button click.trigger="controller.cancel()"> Close </button>
+			<!-- <button click.trigger="save()">Save Org and Close </button> -->
 
 		</ux-dialog-footer>
 	</ux-dialog>

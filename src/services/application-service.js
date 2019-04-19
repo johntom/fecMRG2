@@ -273,6 +273,11 @@ export class ApplicationService {
       name: "Orgs",
       viewModel: "./one-to-many/org",
       isSelected: false
+    },
+     {
+      name: "Inventory",
+      viewModel: "./one-to-many/inventory",
+      isSelected: false
     }
   ];
 
