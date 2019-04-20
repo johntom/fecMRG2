@@ -15,9 +15,10 @@ export class DataForm {
     'high',
     'medium',
     'low',
-    'new',
-    'needs revisiting',
-    'Developer Notes',
+    'discuss'
+    // 'new' convert
+    // 'needs revisiting', convert
+    //'Developer Notes',
   ]
 
   // Request Status list items: priority: high, priority: medium, priority: low, new request, needs revisiting,
@@ -27,6 +28,8 @@ export class DataForm {
     'in process',
     'in queue',
     'ready for testing',
+    'needs revisiting',
+    'new',
     'next release',
     'out of scope',
   ]
