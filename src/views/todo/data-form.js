@@ -25,13 +25,14 @@ export class DataForm {
   // Add field "Response Status” list items: in process, in queue, ready for testing, next release, out of scope
 
   statusresults = [
-    'in process',
+    'new',
     'in queue',
+    'in process',
+    'next release',
     'ready for testing',
     'needs revisiting',
-    'new',
-    'next release',
-    'out of scope',
+    'completed',
+    'out of scope'
   ]
 
   //    status = [
@@ -131,9 +132,7 @@ export class DataForm {
   }
 
   attached() {
-
-
-    if (this.appService.dataFormOneToManyTabs5.length > 0) {
+   if (this.appService.dataFormOneToManyTabs5.length > 0) {
       let tab = this.appService.dataFormOneToManyTabs5[0];
       this.selectOneToManyTab(tab);
     }
@@ -144,6 +143,24 @@ export class DataForm {
     //       this.currentItem.artist = undefined//{} 
     //       this.currentItem.provenance = []
   }
+
+  // staffDropDownEditor(container, options) {
+  //       $('<input required data-text-field="StaffName" data-value-field="staffid" data-bind="value:' + options.field + '"/>')
+  //           .appendTo(container)
+  //           .kendoDropDownList({
+  //               autoBind: false,
+  //               type: 'json',
+  //               dataSource: {
+  //                   transport: {
+  //                       ////read: "http://10.1.115.215:8080/api/v1/staff/find/"
+  //                       // read: "http://jif.bergenrisk.com:8080/api/v1/staff/find/"
+  //                       read: "https://backend.brmflow.com/api/v1/staff/find/"
+  //                   }
+  //               }
+  //           });
+  //   }
+
+
   async savetodo(option) {
     // let response = await this.api.createtodo(this.artist);
     if (this.currentItem.id === 'create') {

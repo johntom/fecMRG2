@@ -79,13 +79,25 @@ export class SearchResults {
     this.utilService = utilService;
     this.appService = appService;
   }
-
+  // async staffDropDownEditor(container, options) {
+  //       $('<input required data-text-field="StaffName" data-value-field="staffid" data-bind="value:' + options.field + '"/>')
+  //           .appendTo(container)
+  //           .kendoDropDownList({
+  //               autoBind: false,
+  //               type: 'json',
+  //               dataSource: {
+  //                   transport: {
+  //                       read: "https://backend.brmflow.com/api/v1/staff/find/"
+  //                   }
+  //               }
+  //           });
+  //   }
   activate(params, routeConfig) {
     //http://74.114.164.24/api/v1/inventorycontent?artistl=s%26artistf=c 
 
     //let queryParams = this.utilService.parseQueryString();
     //let queryParams2 = this.utilService.generateQueryString(queryParams);
-    ;
+   
 
     this.queryParams = this.utilService.parseQueryStringUrl();
     console.log('queryParams', this.queryParams);
@@ -104,6 +116,13 @@ export class SearchResults {
   let rt2 = `#/todo/data/create`
     this.router.navigate(rt2);
   }
+
+onEdit(e) {
+        let grid = e.sender;
+        var targetRow = $(e.container);
+        grid.select(targetRow)
+    }
+
   async loadData() {
     console.log('this.loadData ')
     let s2 = '1-1-2016';
@@ -142,7 +161,6 @@ export class SearchResults {
 
     let rt2 = `#/todo/data/${path}`
     this.router.navigate(rt2);
-
 
 
   }

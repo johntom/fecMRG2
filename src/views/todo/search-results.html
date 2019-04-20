@@ -4,15 +4,35 @@
 	<require from="aurelia-kendoui-bridge/common/template"></require>
 
 	<section class="full-height flex-column-1 au-animate ignore">
-    	<button id="addtodoBtn" class="btn btn-success" type="button" click.delegate="addtodo()"><strong>A</strong>dd Todo</button>
+    <script>
+                        excelExport:
+                        function (e) {
 
+                            var sheet = e.workbook.sheets[0];
+                            var template = kendo.template(this.columns[8].template);
+
+                            for (var i = 1; i < sheet.rows.length; i++) {
+                                var row = sheet.rows[i];
+
+                                let diff = row.cells[6].value - row.cells[7].value
+                                row.cells.push({ 'value': diff })
+                            }
+                        }
+                    </script>
+    	<button id="addtodoBtn" class="btn btn-success" type="button" click.delegate="addtodo()"><strong>A</strong>dd Todo</button>
+<!-- k-resizable.bind="true"                               k-column-menu.bind="true"  -->
 		<ak-grid class="flex-row-1" id="grid" k-data-source.bind="datasource" k-widget.bind="grid" k-sortable.bind="{ mode: 'multiple',   allowUnsort: 'true'}"
 		 k-filterable.bind="{  mode: 'row' }" k-editable="inline" k-reorderable.bind="true" k-groupable.bind="true" k-resizable.bind="true"
-		 k-selectable="row" k-on-change.delegate="rowSelected($event.detail)" k-column-menu.bind="true" k-pageable.bind="true">
-		<ak-col k-title="Type" k-width="80px" k-field="type" k-template="<button click.delegate='details($event)' class='k-button'>#=type#</button>">
+		 k-selectable="row" k-on-change.delegate="rowSelected($event.detail)" k-column-menu.bind="true" k-pageable.bind="true"
+     k-on-edit.delegate="onEdit($event.detail)"
+      k-editable="inline" k-selectable="[row]"  k-toolbar.bind="['excel']" k-excel.bind="{ fileName: 'mailflow.xlsx' }">
+         <ak-col k-width="180px" k-title="command" click.delegate='onEdit($event)'
+                                    k-command.bind="['edit']" k-title="&nbsp;" k-locked.bind="true" k-lockable.bind="false"></ak-col>
+    
+		<ak-col k-title="Type" k-width="100px" k-field="type" k-template="<button click.delegate='details($event)' class='k-button'>#=type#</button>">
 			</ak-col>
 	 
-			<ak-col k-field="Issue" k-title="Issue" k-filterable.bind="true" k-title="Edit" k-width.bind="180"></ak-col>
+			<ak-col k-field="Issue" k-title="Issue" k-filterable.bind="true" k-title="Edit" k-width.bind="380"></ak-col>
 
 		<ak-col k-field="createdAt"  k-width="80px" k-format="{0:MM/dd/yyyy}"></ak-col>
 			<ak-col k-field="updatedAt"  k-width="80px" k-format="{0:MM/dd/yyyy}"></ak-col>
