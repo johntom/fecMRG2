@@ -626,7 +626,9 @@ export class SearchResults {
     this.hide6 = true
     this.hide7 = true
     this.hide8 ? this.hide8 = false : this.hide8 = true
+    this.item.offerdate = moment().format('YYYY-MM-DD')//'04/20/2019' //Date.now()
     this.hide9 = true
+    
   }
 
   async action9() {
@@ -842,12 +844,11 @@ export class SearchResults {
   // batchOfferings
   //   }
   save8() {
-    // this.orgObject = { OrgName: this.OrgName, BusIndivid: this.BusIndivid, _id: this.orgId }
-
-    this.item.savedlist = this.savedlist
-    let orgid = this.orgObject._id //this.item.OrgName._id //`${this.OrgName._id}`
-    let orgname = this.orgObject.OrgName //this.item.OrgName.OrgName // `${this.OrgName.OrgName}`
-    let offerdate = this.item.offerdate //`${this.date}`
+    
+    this.item.savedlist = this.savedlist ;
+    let orgid = this.orgObject._id ;
+    let orgname = this.orgObject.OrgName ;
+    let offerdate =   this.item.offerdate ; //Date.now() //
     let rec
     // loop 
     //  console.log('after orgid orgname', orgid, orgname)

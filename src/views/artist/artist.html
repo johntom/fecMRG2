@@ -1,45 +1,69 @@
 <template>
-	<section class="full-height flex-column-1 au-animate ignore">
+
+
+	<!--  -->
+	<section style="width:50%;" class="full-height flex-column-1 au-animate ignore">
 		<div class="flex-row-none section-header">
-		<h4>	${heading} </h4>
+			Search ${heading} Artist
 		</div>
-		<div class="flex-row-1 ignore">
-			<div class="flex-column-1 search-panel">
-				<form>
-					<div class="form-group flex-column-1 margin-left-10">
-						<label for="adjuster"> seach artist</label>
-						<label for="Artist">Artist</label>
-					<!--  	input.delegate="selectedValueA = findOptionA($event.target.value)" 
-          change.delegate="changeCallbackArtist(selectedValue)"  -->
-          	<input ref="myDatalistA" type="text" list="myDatalistA"   change.delegate="performSearch()" value.bind="selectedArtist"/>
-						<datalist id="myDatalistA">
-							<!-- model.bind="option" <option repeat.for="option of appService.artistList">${option.ArtistName} ${option.id} b.${option.YearofBirth} </option> -->
-						<option repeat.for="option of appService.artistList"
-              model.bind="option">${option.ArtistName} - ${option.YearofBirth} </option>
+
+		<div class="flex-column-1 overflow-y-auto">
+			<div id="top" class="flex-row-3">
+				<div id="top-left" class="data-form overflow-y-auto flex-column-2">
+					<div class="flex-row-none">
+						<div class="form-group flex-column-2">
+						
+
+								<div class="Rtable Rtable--2cols">
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong> Select </strong>
+									</div>
+									<div class="Rtable-cell-70 Rtable-cell--highlight">
+										<input style="width:400px" ref="myDatalistA" type="text" list="myDatalistA" change.delegate="performSearch()" value.bind="selectedArtist" />
+										<datalist id="myDatalistA">
+											<option repeat.for="option of appService.artistList" model.bind="option">${option.ArtistName} - ${option.YearofBirth} </option>
+
+										</datalist>
+
+									</div>
+
+
+
+
+								</div>
+
+							</div>
+						</div>
 					
-            </datalist>
-						<!-- <pre style="margin-top: 100px"><code>${selectedValueA.ArtistName} b.${option.YearofBirth} legacyid:${option.ID}    legacyid:${option.id}</code></pre> -->
-
-
-					</div>
+				</div>
+			</div>
 
 
 
 
+			<div class="flex-row-none section-footer">
+				${footer} <span>  ${queryParams}</span> <span>&nbsp;&nbsp;	
+    	<button id="addInputBtn" class="btn btn-sm btn-success" type="button" click.delegate="addartist()"><strong>A</strong>dd Artist</button>
+		</div>
+
+
+
+      	
+			
+		
+	</section>
+</template>
+
+	<!-- <pre style="margin-top: 100px"><code>${selectedValueA.ArtistName} b.${option.YearofBirth} legacyid:${option.ID}    legacyid:${option.id}</code></pre> -->
+			<!-- model.bind="option" <option repeat.for="option of appService.artistList">${option.ArtistName} ${option.id} b.${option.YearofBirth} </option> -->
+				
 <!-- 
 
 					<button id="searchInputBtn" class="btn btn-primary" type="button" click.delegate="performSearch()">Search!</button>
 			-->
-		<button id="addInputBtn" class="btn btn-success" type="button" click.delegate="addartist()"><strong>A</strong>dd Artist</button>
-	 
-      	</form>
-			</div>
-		</div>
-	</section>
-</template>
-
-
-
+	<!--  	input.delegate="selectedValueA = findOptionA($event.target.value)" 
+          change.delegate="changeCallbackArtist(selectedValue)"  -->
+         
 
           
 <!-- "ID" : NumberInt(38), 

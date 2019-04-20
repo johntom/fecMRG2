@@ -15,9 +15,9 @@
 			<div class="Rtable Rtable--2cols">
 				<div class="Rtable-cell-1">
 					<h3> Batch Count: ${datasource._data.length}</h3>
-          <pre>This form allows you to select all inventory items
+        This form allows you to select all inventory items
           from a previously conducted Reproduction or
-          Exhibition batch edit and update those items</pre>
+          Exhibition batch edit and update those items
 							<div show.bind="!hide1">
 						TransportDate <input type="date" id="TransportDate" class="form-control input-sm" value.bind="item.TransportDate">						TransportTo ?
 						<aubs-typeahead ref='dtransporto' data.bind="appService.codesListLocation" value.bind="item.Description" debounce.bind="350"
@@ -156,9 +156,9 @@
 						<ak-col k-title="savedlist" k-width="75px" k-field="savedlist"></ak-col>
 						<ak-col k-title="batchno" k-width="75px" k-field="batchno"></ak-col>
 
-						<ak-col k-filterable.bind="false" k-title="batchno" k-width="75px" k-field="rec.batchno"></ak-col>
+						<!-- <ak-col k-filterable.bind="false" k-title="batchno" k-width="75px" k-field="rec.batchno"></ak-col>
 
-						<ak-col k-filterable.bind="false" k-title="batchno" k-width="75px" k-field="rec"></ak-col>
+						<ak-col k-filterable.bind="false" k-title="batchno" k-width="75px" k-field="rec"></ak-col> -->
 
 					</ak-grid>
 

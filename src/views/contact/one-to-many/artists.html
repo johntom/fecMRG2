@@ -28,7 +28,7 @@
 				<tr>
 
 					<tr>
-						<th width="300px" class="header">Artist
+						<th width="350px" class="header">Artist
 						</th>
 
 						<th width="225px" class="header">Cmd
@@ -45,16 +45,26 @@
 			<tbody>
 				<tr repeat.for="artist of currentItem.artists" with.bind="artist">
 
-					<td width="400px">
+					<td width="350px">
 				
-						<!-- <div class="form-control input-sm" ref='artname' if.bind="artist.ArtistName===undefined || artist.ArtistName===''"> -->
 								<div class="form-control input-sm" if.bind="artist.ArtistName===undefined || artist.ArtistName===''">
 				
             	<a click.delegate="showModal( 'id',$index)">select_link </a>
 						</div>
-						<div class="form-control  input-sm" else>
-							<a click.delegate="showModal('id',$index)">${artist.ArtistName} , ${artist.yearofBirth} b.$(artist.YearofBirth) d.${artist.died }</a>
-						</div>
+					
+          	<!-- <div class="form-control  input-sm" else>
+							<a click.delegate="showModal('id',$index)">${artist.ArtistName} b.(${artist.YearofBirth})
+                 d.${artist.died }</a>
+						</div> -->
+
+            <a click.delegate="showModal('id',$index)">${artist.ArtistName}  
+              <span show.bind="artist.died==='' || artist.died===0 || artist.died===undefined"> (b.${artist.yearofBirth})</span>
+              <span show.bind="artist.died!==''  && artist.died!==0 && artist.died!==undefined"> (${artist.yearofBirth}-${artist.died})</span></strong>
+              
+            </a>
+
+
+
 
 					</td>
 
@@ -65,7 +75,7 @@
 
 						<!-- <button class="btn btn-primary" click.delegate="saveitem(note,$index)">${ !note.edit ? 'Update' : 'Done' }</button> -->
 
-						<button class="btn btn-danger" click.delegate="remove(artist,$index)">Delete</button>
+						<button class="btn btn-sm btn-danger" click.delegate="remove(artist,$index)">Delete</button>
 
 					</td>
 

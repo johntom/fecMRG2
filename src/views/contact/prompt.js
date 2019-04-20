@@ -149,9 +149,13 @@ export class Promptcontact {
     }
     if (this.fieldname === 'Catalog') {
 
-      this.doc = `Select Catalog or add new if not in list.`
-      this.heading = `Select Catalog or add new if not in list.`
-      this.placeholder = `Select Catalog or add new if not in list.`
+      // this.doc = `Select Catalog or add new if not in list.`
+      // this.heading = `Select Catalog or add new if not in list.`
+      // this.placeholder = `Select Catalog or add new if not in list.`
+      this.doc = `Select Catalogue.`
+      this.heading = `Select Catalogue.`
+      this.placeholder = `Select Catalogue.`
+
       if (this.currentItem.catalog === undefined || this.currentItem.catalog === '') {
       } else {
         //  this.insuredobj = this.currentItem.insured

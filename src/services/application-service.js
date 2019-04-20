@@ -249,13 +249,13 @@ export class ApplicationService {
       isSelected: false
     },
     {
-      name: "Catsold",
+      name: "Cat Sold",
       viewModel: "./one-to-many/catsold",
       isSelected: false
     },
 
     {
-      name: "Compcatsent",
+      name: "Comp Cat Sent",
       viewModel: "./one-to-many/compcatsent",
       isSelected: false
     },

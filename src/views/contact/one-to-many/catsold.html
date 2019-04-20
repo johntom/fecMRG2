@@ -36,9 +36,9 @@
 			<!-- <thead class="table-header-blue" data-sort="items.bind: currentItem.catalogsold"> -->
 				<thead class="table-header-blue">
 			<tr>
-					<th width="450px" class="header">Catalog</th>
+					<th width="350px" class="header">Catalog</th>
 
-					<th width="100px" class="header">Date Sent</th>
+					<th width="200px" class="header">Date Sold</th>
 					<th width="100px" class="header">Invoice ID</th>
 					<th width="55px" class="header">Qty</th>
 					<th width="225px" class="header">Cmd</th>
@@ -57,7 +57,7 @@
 				<tr repeat.for="catalogsold of currentItem.catalogsold" with.bind="catalogsold">
 
 
-	<td width="450px">
+	<td width="350px">
 				 
 						<!-- <div class="form-control input-sm" ref='catname' if.bind="catalogsold.CatalogTitle===undefined || catalogsold.CatalogTitle===''"> -->
 							<div class="form-control input-sm"  if.bind="catalogsold.CatalogTitle===undefined || catalogsold.CatalogTitle===''">
@@ -68,7 +68,7 @@
 						</div>
 
 					</td>
-					<td width="100px">
+					<td width="200px">
 						<input type="date" id="xDateSent" class="form-control  input-sm" value.bind="DateSent | dateFormatiso"></td>
 					</td>
 
@@ -87,7 +87,7 @@
 					<td width="225px">
 				
 
-						<button class="btn btn-danger" click.delegate="remove(catalogsold,$index)">Delete</button>
+						<button class="btn btn-sm btn-danger" click.delegate="remove(catalogsold,$index)">Delete</button>
 
 					</td>
 				</tr>

@@ -8,7 +8,7 @@
 
 		
 		</h3>
-  offrec.id = inv._id
+  <!-- offrec.id = inv._id
             offrec.ArtistName = inv.ArtistName
             offrec.ownername = inv.ownername
             offrec.Title = inv.Title
@@ -16,7 +16,7 @@
                 if (item.client = inv.id) {
                     offrec.offeramount = item.offeramount
                     offrec.offerdate = item.offerdate
-                }
+                } -->
 		<table class="table-condensed table">
 			<thead class="table-header-blue" data-sort="items.bind: currentItem.appService.offerings; cols: ['ENTERED','REMIND','CANCELED','NOTES']">
 				<tr>
@@ -26,10 +26,10 @@
 					</th>
           	<th class="header" width="150px">Inv Code
 					</th>
-          	<th class="header" width="150px">Owner Name
-					</th>
+          	<!-- <th class="header" width="150px">Owner Name
+					</th> -->
 					
-					<th class="header" width="125px">Offer Date
+					<th class="header" width="200px">Offer Date
 					</th>
 					<th class="header" width="125px">Offer Amt
 				</tr>
@@ -54,10 +54,10 @@
           	<td width="150px">
 						<span show.bind="!offering.edit">${InvCode}</span>
 					</td>
-	<td width="150px">
+	<!-- <td width="150px">
 						<span show.bind="!offering.edit">${ownername}</span>
-					</td>
-					<td width="125px">
+					</td> -->
+					<td width="200px">
 						<span show.bind="!offering.edit">${offerdate | dateFormat }</span>
 					</td>
 					<td width="125px">

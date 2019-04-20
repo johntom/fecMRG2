@@ -90,7 +90,52 @@ export class Catsold {
   save(note, index) {
 
   }
-  // showModal(fieldname, index) {
+  
+  showModal(fieldname, index) {
+
+    this.currentItem.fieldname = 'Catalog'//fieldname
+    this.currentItem.catalog = this.currentItem.catalogsold[index]//.artists
+    if (this.currentItem.catalog.CatalogTitle === undefined) this.currentItem.catalog.CatalogTitle = '';
+
+
+    this.dialogService.open({ viewModel: Promptcontact, model: this.currentItem, lock: true }).whenClosed(response => {
+      if (response.wasCancelled) {
+        console.log('cancel');
+      } else {
+        this.currentItem.catalogsold[index].id = this.currentItem.catalog.id
+        this.currentItem.catalogsold[index].CatalogTitle = this.currentItem.catalog.CatalogTitle
+
+        let catalogrec = {}
+        catalogrec.id = this.currentItem.catalog.id;
+        catalogrec.CatalogTitle = this.currentItem.catalog.CatalogTitle;
+        this.currentItem.catalogsold[index] = catalogrec;
+        this.currentItem.catalog = catalogrec
+        this.catname = catalogrec
+   //     delete this.currentItem.catalog
+      }
+      console.log(response.output);
+    });
+  }
+}
+
+
+
+    //  this.currentItem.fieldname = 'Artist'//fieldname
+
+    //     this.currentItem.artist = this.currentItem.artists[index]//.artists
+    //     if (this.currentItem.artist.ArtistName === undefined) this.currentItem.artist.ArtistName = '';
+ // if ( this.currentItem.catalogsold!==undefined) {
+    //     this.currentItem.catalog = this.currentItem.catalogsold[index]
+    //     if (this.currentItem.catalog.CatalogTitle === undefined) this.currentItem.catalog.CatalogTitle = '';
+    // }
+        // console.log('1 ',this.currentItem.catalog.id)
+        // console.log('2 ',this.currentItem.catalog[index].id)
+        // this.currentItem.catalog[index].id = this.currentItem.catalog.id
+        // this.currentItem.catalog[index].CatalogTitle = this.currentItem.catalog.CatalogTitle
+        // console.log('3 ',this.currentItem.catalog[index].id)
+
+
+// showModal(fieldname, index) {
   //   this.currentItem.fieldname = fieldname
   //   this.currentItem.ConsignedTo = this.currentItem.consignedto[index].ConsignedTo
   //   this.currentItem.consignedtoname = this.currentItem.consignedto[index].consignedtoname
@@ -111,47 +156,3 @@ export class Catsold {
   //     console.log(response.output);
   //   });
   // }
-  showModal(fieldname, index) {
-
-
-    //  this.currentItem.fieldname = 'Artist'//fieldname
-
-    //     this.currentItem.artist = this.currentItem.artists[index]//.artists
-    //     if (this.currentItem.artist.ArtistName === undefined) this.currentItem.artist.ArtistName = '';
-
-
-    this.currentItem.fieldname = 'Catalog'//fieldname
-    // if ( this.currentItem.catalogsold!==undefined) {
-    //     this.currentItem.catalog = this.currentItem.catalogsold[index]
-    //     if (this.currentItem.catalog.CatalogTitle === undefined) this.currentItem.catalog.CatalogTitle = '';
-    // }
-
-    this.currentItem.catalog = this.currentItem.catalogsold[index]//.artists
-    if (this.currentItem.catalog.CatalogTitle === undefined) this.currentItem.catalog.CatalogTitle = '';
-
-
-    this.dialogService.open({ viewModel: Promptcontact, model: this.currentItem, lock: true }).whenClosed(response => {
-      if (response.wasCancelled) {
-        console.log('cancel');
-      } else {
-        this.currentItem.catalogsold[index].id = this.currentItem.catalog.id
-        this.currentItem.catalogsold[index].CatalogTitle = this.currentItem.catalog.CatalogTitle
-
-        // console.log('1 ',this.currentItem.catalog.id)
-        // console.log('2 ',this.currentItem.catalog[index].id)
-        // this.currentItem.catalog[index].id = this.currentItem.catalog.id
-        // this.currentItem.catalog[index].CatalogTitle = this.currentItem.catalog.CatalogTitle
-        // console.log('3 ',this.currentItem.catalog[index].id)
-
-        let catalogrec = {}
-        catalogrec.id = this.currentItem.catalog.id;
-        catalogrec.CatalogTitle = this.currentItem.catalog.CatalogTitle;
-        this.currentItem.catalogsold[index] = catalogrec;
-        this.currentItem.catalog = catalogrec
-        this.catname = catalogrec
-   //     delete this.currentItem.catalog
-      }
-      console.log(response.output);
-    });
-  }
-}
