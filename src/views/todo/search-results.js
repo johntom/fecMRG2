@@ -117,11 +117,11 @@ export class SearchResults {
     this.router.navigate(rt2);
   }
 
-onEdit(e) {
-        let grid = e.sender;
-        var targetRow = $(e.container);
-        grid.select(targetRow)
-    }
+// onEdit(e) {
+//         let grid = e.sender;
+//         var targetRow = $(e.container);
+//         grid.select(targetRow)
+//     }
 
   async loadData() {
     console.log('this.loadData ')
