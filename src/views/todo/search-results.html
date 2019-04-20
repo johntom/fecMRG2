@@ -11,7 +11,7 @@
 		 k-selectable="row" k-on-change.delegate="rowSelected($event.detail)" k-column-menu.bind="true" k-pageable.bind="true">
 		<ak-col k-title="Type" k-width="80px" k-field="type" k-template="<button click.delegate='details($event)' class='k-button'>#=type#</button>">
 			</ak-col>
-	
+	 
 			<ak-col k-field="Issue" k-title="Issue" k-filterable.bind="true" k-title="Edit" k-width.bind="180"></ak-col>
 
 		<ak-col k-field="createdAt"  k-width="80px" k-format="{0:MM/dd/yyyy}"></ak-col>

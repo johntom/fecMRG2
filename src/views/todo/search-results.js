@@ -40,7 +40,7 @@ export class SearchResults {
       field: 'createdAt',
       dir: 'desc'
     }],
-    group: [{ field: "type" }, { field: "status" }],
+    group: [{ field: "type" }, { field: "status" }], 
     schema: {
       model: {
         id: "id", // Must assign id for update to work
