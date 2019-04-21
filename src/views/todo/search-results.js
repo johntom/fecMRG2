@@ -15,7 +15,32 @@ export class SearchResults {
   invcode = '';
   queryParams = '';
   //  console.log(' inv SearchResults ');
-  message = 'Hello Inventory 101- a!';
+  message = 'todo!';
+  staffTemplate = '${assignto ? assignto.StaffName : ""}';
+  
+  categoryTemplate = '${Category.CategoryName}';
+  status = [
+    'high',
+    'medium',
+    'low',
+    'discuss'
+
+  ]
+
+  statusresults = [
+    'new',
+    'in queue',
+    'in process',
+    'next release',
+    'ready for testing',
+    'needs revisiting',
+    'completed',
+    'out of scope'
+  ]
+  // srTemplate = '${Category.name}';
+//  srTemplate = '${statusresults ? statusresults.name : ""}';
+ srTemplate = '${statusresults ? statusresults : ""}';
+statusTemplate= '${status ? status : ""}';
   datasource = new kendo.data.DataSource({
     transport: {
       read: (options) => {
@@ -26,21 +51,44 @@ export class SearchResults {
             options.success(inv);
           });
       },
-      // update: (options) => {
-      //   let updatedItem = options.data;
-      //   console.log('   updatedItem ', updatedItem)
-      //   this.updateData(updatedItem)
-      //     .then((scans) => {
-      //       options.success(scans)
-      //     })
-      //   options.success()
-      // }
+      update: (options) => {
+        let updatedItem = options.data;
+        console.log('   updatedItem ', updatedItem)
+        this.updateData(updatedItem)
+          .then((scans) => {
+            options.success(scans)
+          })
+        options.success()
+      }
     },
-      sort: [{
+		  // edit: function (e) {
+      //           $(e.container).parent().css({
+      //               width: '500px',
+      //               height: '500px'
+      //           });
+      //       },
+			//  options : {editable:{
+      //       mode: "popup",
+      //       window: {
+      //           width: '800px'
+      //       },
+      //      // template: kendo.template('<div class="k-edit-label"><label for="ProductName">ProductName</label></div><div class="k-edit-field"><select value.bind="ProductName &amp; notify" class="au-target" au-target-id="39"><option value="Chai">Chaix</option><option value="Chai2">Chaixx</option></select></div>')
+      //     },
+			//  },
+			//  editable: {
+      //                     mode: "popup",
+      //                     window: {
+      //                         title: "My Custom Title",
+      //                         animation: false,
+      //                         width: "800px",
+      //                         height: "300px",
+      //                     },
+//  },
+    sort: [{
       field: 'createdAt',
       dir: 'desc'
     }],
-    group: [{ field: "type" }, { field: "status" }], 
+    group: [{ field: "type" }, { field: "status" }],
     schema: {
       model: {
         id: "id", // Must assign id for update to work
@@ -49,16 +97,13 @@ export class SearchResults {
           Issue: { type: "string" }, // barcode insured
 
           createdAt: { type: 'date' },
-          updatedAt: { type: 'date' }
-
-          // InventoryCode: { type: "string" },
-          // Title: { type: "string" },
-          // MediumSupport: { type: "string" },
-          // CurrentLocation: { type: "string" },
-          // Bin: { type: "string" }, // barcode insured
-          // Owner: { type: "string" },
-          // InvYear: { type: "string" },
-          // UnframedHeight: { type: "string" },
+          updatedAt: { type: 'date' },
+          Category: { defaultValue: { CategoryID: 1, CategoryName: 'Beverages' } },
+          assignto: { defaultValue: { staffid: 100, StaffName: 'Dittemer, Jennifer' } },
+          // statusresults: { defaultValue:  {name:'in process'}  },
+            statusresults: { defaultValue:  'in process'  },
+           status  : { defaultValue:  'high'  },
+      
 
 
         }
@@ -78,7 +123,34 @@ export class SearchResults {
     this.api = api;
     this.utilService = utilService;
     this.appService = appService;
+
   }
+  categoryDropDownEditor(container, options) {
+    $('<input required data-text-field="CategoryName" data-value-field="CategoryID" data-bind="value:' + options.field + '"/>')
+      .appendTo(container)
+      .kendoDropDownList({
+        autoBind: false,
+        dataSource: {
+          type: 'odata',
+          transport: {
+            read: '//demos.telerik.com/kendo-ui/service/Northwind.svc/Categories'
+          }
+        }
+      });
+  }
+
+
+    updateData(e) {
+        console.log('updateData ', e)
+       
+
+        return this.api.updatetodo(e)//, this.todo)
+            .then((jsonRes) => {
+                console.log('this.scans ', jsonRes)
+                return jsonRes
+            })
+    }
+
   // async staffDropDownEditor(container, options) {
   //       $('<input required data-text-field="StaffName" data-value-field="staffid" data-bind="value:' + options.field + '"/>')
   //           .appendTo(container)
@@ -97,12 +169,81 @@ export class SearchResults {
 
     //let queryParams = this.utilService.parseQueryString();
     //let queryParams2 = this.utilService.generateQueryString(queryParams);
-   
+
 
     this.queryParams = this.utilService.parseQueryStringUrl();
     console.log('queryParams', this.queryParams);
     this.datasource.read()
   }
+  //   <ak-col k-field="assignto" k-title="assignto" k-width="180px" k-editor.bind="staffDropDownEditor"
+  //  k-filterable.bind="false" k-groupable.bind="false" k-template.bind="staffTemplate"></ak-col>
+
+ staffDropDownEditor(container, options) {
+    $('<input required data-text-field="StaffName" data-value-field="staffid" data-bind="value:' + options.field + '"/>')
+      .appendTo(container)
+      .kendoDropDownList({
+        autoBind: false,
+        type: 'json',
+        dataSource: {
+          transport: {
+
+            read: "https://backend.brmflow.com/api/v1/staff/find/"
+          }
+        }
+      });
+  }
+  statusDropDownEditor(container, options) {
+    // $('<input required data-text-field="status" data-value-field="status" data-bind="value:' + options.field + '"/>')
+   
+     $('<input required  data-bind="value:' + options.field + '"/>')
+     .appendTo(container)
+      .kendoDropDownList({
+        autoBind: false,
+        type: 'json',
+        dataSource: {
+          transport: {
+            read: (options) => {
+              //  this.loadData(this.capColor, this.prevtown)
+              this.loadData2()
+                .then((inv) => {
+                  console.log(' inv statusDropDownEditor ', inv[0]);
+                  options.success(inv);
+                });
+            }
+          }
+        }
+      })
+  }
+ 
+  statusresultsDropDownEditor(container, options) {
+    console.log(options)
+    // $('<input required data-text-field="name" data-value-field="name" data-bind="value:' + options.field + '"/>')
+    $('<input required  data-bind="value:' + options.field + '"/>')
+      .appendTo(container)
+      .kendoDropDownList({
+        autoBind: false,
+        type: 'json',
+        dataSource: {
+          transport: {
+            read: (options) => {
+              //  this.loadData(this.capColor, this.prevtown)
+              this.loadData3()
+                .then((inv) => {
+                  console.log(' inv statusresultsDropDownEditor ', inv[0]);
+                  options.success(inv);
+                });
+            }
+          } 
+        } 
+      })
+ 
+  }
+
+ company_memoEditor(container, options) {
+                   $('<textarea name="' + options.field + '" cols="50"  rows="4" required/>').appendTo(container);
+       }
+
+
 
   loadGrid() {
     let options = localStorage["kendo-grid-mail"];
@@ -113,15 +254,15 @@ export class SearchResults {
   async addtodo() {
     // this.currentItem = {}
     // this.currentItem.id = 'create'
-  let rt2 = `#/todo/data/create`
+    let rt2 = `#/todo/data/create`
     this.router.navigate(rt2);
   }
 
-// onEdit(e) {
-//         let grid = e.sender;
-//         var targetRow = $(e.container);
-//         grid.select(targetRow)
-//     }
+  // onEdit(e) {
+  //         let grid = e.sender;
+  //         var targetRow = $(e.container);
+  //         grid.select(targetRow)
+  //     }
 
   async loadData() {
     console.log('this.loadData ')
@@ -129,13 +270,48 @@ export class SearchResults {
     let s3 = '10-21-2016';
     let inv;
     ///api/v1/inventory/getall
-
     let response = await this.api.findTodo(this.queryParams);
     console.log('this.repos ', response.data)
     return response.data
-
-
   }
+
+  async loadData2() {
+    status = [
+      'high',
+      'medium',
+      'low',
+      'discuss'
+    ]
+    return status
+  }
+
+  async loadData3() {
+    let statusresults = [ 'new',
+    'in queue',
+    'in process',
+    'next release',
+    'ready for testing',
+    'needs revisiting',
+    'completed',
+    'out of scope'
+    ]
+    return statusresults
+  }
+  // async loadData3x() {
+  //   let statusresults = [
+      
+  //     {'name':'new'},
+
+  //    {'name':'in queue'},
+  //    {'name': 'in process'},
+  //    {'name': 'next release'},
+  //    {'name': 'ready for testing'},
+  //    {'name': 'needs revisiting'},
+  //    {'name': 'completed'},
+  //    {'name': 'out of scope'}
+  //   ]
+  //   return statusresults
+  // }
   rowSelected(e) {
     console.log('e ' + e.sender)
     let grid = e.sender;
@@ -164,5 +340,5 @@ export class SearchResults {
 
 
   }
-
+ 
 }
