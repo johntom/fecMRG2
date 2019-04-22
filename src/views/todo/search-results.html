@@ -64,7 +64,7 @@
 			<ak-col k-width="120px" k-title="command" click.delegate='onEdit($event)' k-command.bind="['edit']" k-width="650px"></ak-col>
 			<!-- <ak-col k-title="Type" k-width="120px" k-field="type" k-template="<button click.delegate='details($event)' class='k-button'>#=type#</button>">			</ak-col> -->
 
-			<ak-col k-title="Type" k-width.bind="380" k-field="type" k-editor.bind="typeDropDownEditor" k-template.bind="typeTemplate"></ak-col>
+			<ak-col k-title="Type" k-width.bind="200" k-field="type" k-editor.bind="typeDropDownEditor" k-template.bind="typeTemplate"></ak-col>
 			<!-- <ak-col k-field="id" k-title="id" k-filterable.bind="true" k-title="Edit" k-width.bind="380"></ak-col> -->
 			<ak-col k-field="Issue" k-title="Issue" k-filterable.bind="true" k-title="Edit" k-editor.bind="company_memoEditor" k-width.bind="380"></ak-col>
 			<ak-col k-field="createdAt" k-width="140px" k-format="{0:MM/dd/yyyy}"></ak-col>
