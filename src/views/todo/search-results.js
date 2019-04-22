@@ -369,16 +369,12 @@ export class SearchResults {
     let dataItem = grid.dataItem(selectedRow);
     this.appService.todo = dataItem
     // let rt2 = '#/todo/data/' + dataItem.id//+'/'+ dataItem.ID;
-
     // this.router.navigate(rt2);// `#/inventory/${path}`);
-
     let qs = this.utilService.generateQueryString(dataItem.id);
     // let path = `${qs}&tabname=Todo${this.utilService.counter++}`;
     let path = dataItem.id// `${dataItem.id}&tabname=Todo${this.utilService.counter++}`;
-
     let rt2 = `#/todo/data/${path}`
     this.router.navigate(rt2);
-
 
   }
 
