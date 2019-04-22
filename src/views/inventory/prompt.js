@@ -47,6 +47,8 @@ export class Prompt {
     // orgs
     x.ArtistName === value
   })
+selectedValueSL = null;
+  findOptionSL = value => this.appService.savedlists.find(x => x.name === value)
 
 
   // orgs
@@ -436,6 +438,11 @@ export class Prompt {
   changeCallbackCatalog(selectedValueC) {
     let findvalue = this.myDatalistC.value
   }
+
+changeCallbackSL(selectedValueSL) {
+    let findvalue = this.myDatalistSL.value
+  }
+
   changeCallbackMedSup(selectedvalue) {
     console.log('selectedvalue has undefined ', selectedvalue, "myDatalist this.myDatalist.value has the value", this.myDatalist.value);
     let findvalue = this.myDatalist.value
@@ -724,8 +731,14 @@ export class Prompt {
     if (this.fieldname === 'Treatment') {
       this.currentItem.Treatment
     }
-    if (this.fieldname === 'SavedList') {
-      let name = `${this.name.name}`
+    if (this.fieldname === 'SavedList') { 
+//       selectedValueSL: Object
+// createdAt: "2018-10-18T23:12:19.462Z"
+// id: "5bc913536348676c152ae30c"
+// name: (...)
+// updatedAt: "2018-10-18T23:12:19.462Z"
+
+      let name = `${this.selectedValueSL.name}`
       console.log(' dsaved.value', name)//, this.dsaved.value)
       // this.dsaved.value = this.name//this.addlist
       this.appService.currentsavedlist = name// dsaved.value

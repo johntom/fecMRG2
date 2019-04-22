@@ -147,6 +147,12 @@ export class ApiService {
 
   // all new 2019 AA methods
 
+// https://artbased.com/api/v1/savedlists/getinventory/ { method: ['get'], path: '/api/v1/savedlists/getinventory/:id', handler: 'SavedlistsController.getinventory' },
+   async findInventorySavedLists(search) {
+    var url = this.baseweb + 'v1/savedlists/getinventory/' + search
+    return await this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())
+
+  }
 
   async findArtistsContent(search) {
     var url = this.baseweb + 'v1/artistcontent' + search

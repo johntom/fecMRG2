@@ -98,6 +98,26 @@
 					 open-on-focus.bind="true" key="name" results-limit.bind="22" select-single-result.bind="true">
 					</aubs-typeahead> -->
 					<h3> ${doc2} </h3>
+<!-- input.delegate="findOptionC = findOptionC($event.target.value)"
+					 -->
+	<label for="SavedList">SavedList</label>
+					<input focus.bind="hasFocus" ref="myDatalistSL" type="text" list="myDatalistSL" change.delegate="changeCallbackSL(selectedValueSL)"
+					 input.delegate="selectedValueSL = findOptionSL($event.target.value)" />
+				
+					<datalist focus.bind="hasFocus" id="myDatalistSL">
+						<option repeat.for="option of appService.savedlists">${option.name}</option>
+					</datalist>
+					<pre style="margin-top: 100px"><code>${selectedValueSL.name}</code></pre>
+
+
+
+
+
+
+
+
+				</div>
+
 					<div>
 						<input ref="addtextref" id="addlist" type="text" class="form-control" placeholder="Enter a New SaveList name" value.bind="addlist">
 					</div>

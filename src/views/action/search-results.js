@@ -87,55 +87,101 @@ export class SearchResults {
     }
   };
   message = ''//Hello Inventory 101- a!';
-  datasource = new kendo.data.DataSource({
-    transport: {
-      read: (options) => {
-        //  this.loadData(this.capColor, this.prevtown)
-        this.loadData()
-          .then((inv) => {
-            console.log(' inv datasource ', inv[0]);
-            options.success(inv);
-          });
-      },
-      update: (options) => {
-        let updatedItem = options.data;
-        updatedItem.offerdate = this.offerdate
-        console.log('   updatedItem ', updatedItem)
-        this.updateData(updatedItem)
-          .then((scans) => {
-            options.success(scans)
-            this.datasource.read()
-          })
+  // datasource = new kendo.data.DataSource({
+  //   transport: {
+  //     read: (options) => {
+  //       //  this.loadData(this.capColor, this.prevtown)
+  //       this.loadData()
+  //         .then((inv) => {
+  //           console.log(' inv datasource ', inv[0]);
+  //           options.success(inv);
+  //         });
+  //     },
+  //     update: (options) => {
+  //       let updatedItem = options.data;
+  //       updatedItem.offerdate = this.offerdate
+  //       console.log('   updatedItem ', updatedItem)
+  //       this.updateData(updatedItem)
+  //         .then((scans) => {
+  //           options.success(scans)
+  //           this.datasource.read()
+  //         })
 
-        options.success(updatedItem)
-      }
-    },
-    schema: {
-      model: {
-        id: "id", // Must assign id for update to work
-        fields: {
-          offeramount: { type: "number" }, // scan template
-          // Artist: { type: "string" }, // barcode insured
-          //  ArtistRegistra: { type: "string" },
-          InventoryCode: { type: "string", editable: false },
-          Title: { type: "string", editable: false },
-          Image: { type: "string", editable: false },
+  //       options.success(updatedItem)
+  //     }
+  //   },
+  //   schema: {
+  //     model: {
+  //       id: "id", // Must assign id for update to work
+  //       fields: {
+  //         offeramount: { type: "number" }, // scan template
+  //         // Artist: { type: "string" }, // barcode insured
+  //         //  ArtistRegistra: { type: "string" },
+  //         InventoryCode: { type: "string", editable: false },
+  //         Title: { type: "string", editable: false },
+  //         Image: { type: "string", editable: false },
 
-          //  "artist.lastName": { type: "string", editable: false },
-          // MediumSupport: { type: "string" },
-          // CurrentLocation: { type: "string" },
-          // Bin: { type: "string" }, // barcode insured
-          // Owner: { type: "string" },
-          // InvYear: { type: "string" },
-          // UnframedHeight: { type: "string" },
-        }
-      }
-    },
-    pageSize: 12,
-    // aggregate: [{ field: "type", aggregate: "count" },
-    //   { field: "template", aggregate: "count" }
-    // ]
-  })
+  //         //  "artist.lastName": { type: "string", editable: false },
+  //         // MediumSupport: { type: "string" },
+  //         // CurrentLocation: { type: "string" },
+  //         // Bin: { type: "string" }, // barcode insured
+  //         // Owner: { type: "string" },
+  //         // InvYear: { type: "string" },
+  //         // UnframedHeight: { type: "string" },
+  //       }
+  //     }
+  //   },
+  //   pageSize: 12,
+
+  //   change: function (e, args) {
+  //     var grid = e//.sender; 
+  //     var items = grid.items//();
+  //     // items.each(function (idx, row) {
+  //     // items.forEach(function (idx, row) {
+  //      items.forEach(function (row,idx) { 
+
+  //         // var idValue = grid.dataItem(row).get(idField);
+  //         var idValue = row.id//get(idField);
+  //         if (row.className.indexOf("k-state-selected") >= 0) {
+  //             selectedOrders[idValue] = true;
+  //         } else if (selectedOrders[idValue]) {
+  //             delete selectedOrders[idValue];
+  //         }
+  //     });
+
+  // //  let grid = e.sender;
+  // //   let selectedRow = grid.select();
+  // //   let dataItem = grid.dataItem(selectedRow);
+  // //     for (const item of items) {
+  // //       var idValue = item.id;
+  // //     //  c.ArtistName = item.LastName + ', ' + item.FirstName
+  // //       if (item.className.indexOf("k-state-selected") >= 0) {
+  // //         selectedOrders[idValue] = true;
+  // //       } else if (selectedOrders[idValue]) {
+  // //         delete selectedOrders[idValue];
+  // //       }
+  // //     }
+
+
+  //   },
+  //   dataBound: function (e) {
+  //     var grid = e//.sender;
+  //     var items = grid.items//();
+  //     var itemsToSelect = [];
+  //     items.each(function (idx, row) {
+  //       var dataItem = grid.dataItem(row);
+  //       if (selectedOrders[dataItem[idField]]) {
+  //         itemsToSelect.push(row);
+  //       }
+  //     });
+
+  //     e.sender.select(itemsToSelect);
+  //   }
+
+  // aggregate: [{ field: "type", aggregate: "count" },
+  //   { field: "template", aggregate: "count" }
+  // ]
+  // })
 
   constructor(router, api, utilService, appService, dataService, dialogService) {
     this.router = router;
@@ -145,9 +191,121 @@ export class SearchResults {
     this.dataService = dataService;
     this.ImageID = '20150921_153441_resized_2'
     this.dialogService = dialogService
-     this.appService.rfreshLoaded = false;
+    this.appService.rfreshLoaded = false;
     // this.appService.actionlist ='closed'
   }
+
+  afterAttached() {
+    var selectedOrders = [];
+    var idField = "id";
+    datasource = new kendo.data.DataSource({
+      transport: {
+        read: (options) => {
+          //  this.loadData(this.capColor, this.prevtown)
+          this.loadData()
+            .then((inv) => {
+              console.log(' inv datasource ', inv[0]);
+              options.success(inv);
+            });
+        },
+        update: (options) => {
+          let updatedItem = options.data;
+          updatedItem.offerdate = this.offerdate
+          console.log('   updatedItem ', updatedItem)
+          this.updateData(updatedItem)
+            .then((scans) => {
+              options.success(scans)
+              this.datasource.read()
+            })
+
+          options.success(updatedItem)
+        }
+      },
+      schema: {
+        model: {
+          id: "id", // Must assign id for update to work
+          fields: {
+            offeramount: { type: "number" }, // scan template
+            // Artist: { type: "string" }, // barcode insured
+            //  ArtistRegistra: { type: "string" },
+            InventoryCode: { type: "string", editable: false },
+            Title: { type: "string", editable: false },
+            Image: { type: "string", editable: false },
+
+            //  "artist.lastName": { type: "string", editable: false },
+            // MediumSupport: { type: "string" },
+            // CurrentLocation: { type: "string" },
+            // Bin: { type: "string" }, // barcode insured
+            // Owner: { type: "string" },
+            // InvYear: { type: "string" },
+            // UnframedHeight: { type: "string" },
+          }
+        }
+      },
+      pageSize: 12,
+      change: function (e, args) {
+        var grid = e.sender;
+        var items = grid.items();
+        items.each(function (idx, row) {
+          var idValue = grid.dataItem(row).get(idField);
+          if (row.className.indexOf("k-state-selected") >= 0) {
+            selectedOrders[idValue] = true;
+          } else if (selectedOrders[idValue]) {
+            delete selectedOrders[idValue];
+          }
+        });
+      },
+      dataBound: function (e) {
+        var grid = e.sender;
+        var items = grid.items();
+        var itemsToSelect = [];
+        items.each(function (idx, row) {
+          var dataItem = grid.dataItem(row);
+          if (selectedOrders[dataItem[idField]]) {
+            itemsToSelect.push(row);
+          }
+        });
+
+        e.sender.select(itemsToSelect);
+      }
+
+
+      //  let grid = e.sender;
+      //   let selectedRow = grid.select();
+      //   let dataItem = grid.dataItem(selectedRow);
+      //     for (const item of items) {
+      //       var idValue = item.id;
+      //     //  c.ArtistName = item.LastName + ', ' + item.FirstName
+      //       if (item.className.indexOf("k-state-selected") >= 0) {
+      //         selectedOrders[idValue] = true;
+      //       } else if (selectedOrders[idValue]) {
+      //         delete selectedOrders[idValue];
+      //       }
+      //     }
+      // change: function (e, args) {
+      //   var grid = e//.sender; 
+      //   var items = grid.items//();
+      //   // items.each(function (idx, row) {
+      //   // items.forEach(function (idx, row) {
+      //    items.forEach(function (row,idx) { 
+
+      //       // var idValue = grid.dataItem(row).get(idField);
+      //       var idValue = row.id//get(idField);
+      //       if (row.className.indexOf("k-state-selected") >= 0) {
+      //           selectedOrders[idValue] = true;
+      //       } else if (selectedOrders[idValue]) {
+      //           delete selectedOrders[idValue];
+      //       }
+      //   });
+
+      // },
+      // //////////////////
+
+    })
+  }
+
+
+
   updateData(e) {
     console.log('updateData ', e)
     // return this.api.updatecase(e, this.user)
@@ -200,7 +358,7 @@ export class SearchResults {
     // this.appService.currentActionlist
     this.datasource.read()
     // make a dupe of folllowing to accoumodate 2 typeaheads
-    this.codesListLocation = this.appService.codesListLocation 
+    this.codesListLocation = this.appService.codesListLocation
   }
 
 
@@ -215,17 +373,14 @@ export class SearchResults {
     // console.log('this.loadData ')
     let inv;
     ///api/v1/inventory/getall
-    if (this.appService.actionsearchresults && !this.appService.rfreshLoaded ) {
+    if (this.appService.actionsearchresults && !this.appService.rfreshLoaded) {
       return this.appService.actionsearchresults;
     } else {
       return this.api.findInventory(this.queryParams)
         //return this.api.findInventoryKeywords(this.queryParams)
-
         .then((jsonRes) => {
           inv = jsonRes.data;
-
           if (inv === 0 || inv.length === 0) {
-
             this.dialogService.open({ viewModel: Promptmess, model: `no records found  `, lock: true }).whenClosed(async response => { });
             let tab = this.appService.tabs.find(f => f.isSelected);
             this.closeTab(tab);
@@ -258,15 +413,16 @@ export class SearchResults {
     let dataItem = grid.dataItem(selectedRow);
     //   alert(dataItem.assignto);
   }
-  performAction1Refresh(){
+  performAction1Refresh() {
     //console.log('performRefresh ')
     alert('You have selected performRefresh')
-   this.appService.rfreshLoaded = true;
-    this.datasource.read()  
+    this.appService.rfreshLoaded = true;
+    this.datasource.read()
   }
   performAction1() {
     // console.log('Action1 ')
     // alert('You have selected Action 1')
+    //https://docs.telerik.com/kendo-ui/knowledge-base/persist-row-selection-while-paging
     let sels
     if (this.selectedids === undefined) {
       sels = []
@@ -628,7 +784,7 @@ export class SearchResults {
     this.hide8 ? this.hide8 = false : this.hide8 = true
     this.item.offerdate = moment().format('YYYY-MM-DD')//'04/20/2019' //Date.now()
     this.hide9 = true
-    
+
   }
 
   async action9() {
@@ -671,8 +827,46 @@ export class SearchResults {
     currentModel.currentItem = this.item
     currentModel.item = this.item
     currentModel.currentItem.hide4 = true
-    //    this.dialogService.open({ viewModel: Promptmess, model: `AR ${arid} has been created.`, lock: true }).whenClosed(async response => {
-    this.dialogService.open({ viewModel: Promptmerge, model: this.datasource._data, lock: true }).whenClosed(async response => {
+
+    //////////
+
+    let sels
+    if (this.selectedids === undefined) {
+      sels = []
+      // if (!this.selectedids.length > 0) {
+      //   sels = []//this.selectedids//[];
+
+    } else sels = this.selectedids
+    console.log('Action1 sels', sels)
+    // var sels = this.selectedids//[];
+    let grid = this.grid;
+    let selectedRows = grid.select();
+    var maxRows = selectedRows.length / 2;
+    let newcount = 0
+
+    var i;
+    var a1;
+    for (i = 0; i < maxRows; i++) {
+      a1 = selectedRows[i];
+      let dataItem = grid.dataItem(a1);
+      // let mid = sels.findIndex(x => x.InventoryCode === dataItem.InventoryCode)
+      let mid = sels.findIndex(x => x === dataItem.InventoryCode)
+      if (mid === -1) {
+        sels.push(dataItem.InventoryCode);
+        newcount++
+      }
+      // if (i === maxRows - 1) {
+      //   this.selectedids = sels;
+
+      // }
+
+    }
+
+    //  ??
+    if (newcount === 0) sels = this.datasource._data
+    this.dialogService.open({ viewModel: Promptmerge, model: sels, lock: true }).whenClosed(async response => {
+
+      // this.dialogService.open({ viewModel: Promptmerge, model: this.datasource._data, lock: true }).whenClosed(async response => {
       console.log('this.item', response, this.item)
       if (!response.wasCancelled) {
         // this.item.Provenance = null
@@ -740,7 +934,7 @@ export class SearchResults {
           this.dialogService.open({ viewModel: Promptmess, model: `batch updated  batchno= ${this.item.batchno}  `, lock: true }).whenClosed(async response => { });
 
           this.item = {}//.TransportDate = ''
-        
+
 
         }
         this.dialogService.open({ viewModel: Promptmess, model: `batch failed `, lock: true }).whenClosed(async response => { });
@@ -762,7 +956,7 @@ export class SearchResults {
           this.dialogService.open({ viewModel: Promptmess, model: `batch updated  batchno= ${this.item.batchno} `, lock: true }).whenClosed(async response => { });
 
           this.item = {}
-         
+
 
         } else this.dialogService.open({ viewModel: Promptmess, model: `batch failed `, lock: true }).whenClosed(async response => { });
 
@@ -809,9 +1003,9 @@ export class SearchResults {
   }
 
   async save5() {
-    
+
     this.item.savedlist = this.savedlist
-      let jsonResna = await this.api.getbatchno();
+    let jsonResna = await this.api.getbatchno();
     this.item.batchno = jsonResna[0].nextavail
     this.api.batchMrglocation(this.item)
       .then((jsonRes) => {
@@ -824,7 +1018,7 @@ export class SearchResults {
       })
   }
 
- async save6() {
+  async save6() {
     // let loc = `${this.Description6.Description}`
 
     //  alert(loc)
@@ -844,11 +1038,11 @@ export class SearchResults {
   // batchOfferings
   //   }
   save8() {
-    
-    this.item.savedlist = this.savedlist ;
-    let orgid = this.orgObject._id ;
-    let orgname = this.orgObject.OrgName ;
-    let offerdate =   this.item.offerdate ; //Date.now() //
+
+    this.item.savedlist = this.savedlist;
+    let orgid = this.orgObject._id;
+    let orgname = this.orgObject.OrgName;
+    let offerdate = this.item.offerdate; //Date.now() //
     let rec
     // loop 
     //  console.log('after orgid orgname', orgid, orgname)

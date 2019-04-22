@@ -94,7 +94,6 @@
 							</div>
 							<div class="flex-row-none">
 								<div class="form-group flex-column-1">
-
 									<ak-multiselect k-value.two-way="multikeywords">
 										<select multiple="multiple" k-height.bind="400" data-placeholder="Select mulitple keywords...">
 					                       <option repeat.for="opt of appService.codesGenre" model.bind="opt.Description">
@@ -102,17 +101,11 @@
 					                      </option> 
 					                    </select>
 									</ak-multiselect>
-
 								</div>
 							</div>
 
-
-
 							<div class="flex-row-none">
-
 								<div class="form-group flex-column-1">
-
-
 									<input ref="myDatalist" type="text" list="myDatalist" placeholder="search on savedlist" change.delegate="performSearchSL()"
 									 input.delegate="selectedValue = findOption($event.target.value)" />
 									<datalist id="myDatalist">

@@ -7,12 +7,12 @@ import { ApiService } from '../../utils/servicesApi';
 
 export class Home {
   heading = "MRG Home Page";
-  version = 301.15
+  version = 301.16
   versionDate = 'Mon 4/21/2019 11Am'
- 
+
   issues = [
- `"@progress/kendo-ui": "^2017.2.504"`,
- ' python -m SimpleHTTPServer D:\Frameworks\fecMRG2-Staging\www\pythonserver.bat',
+    `"@progress/kendo-ui": "^2017.2.504"`,
+    ' python -m SimpleHTTPServer D:\Frameworks\fecMRG2-Staging\www\pythonserver.bat',
     "to test what lib to use in package.json",
     `"https://unpkg.com/lodash@4.17.11/" Change all ref from lodash to _`,
     "Remove auto-complete field entries in Google Chrome",
@@ -26,7 +26,7 @@ export class Home {
     , "git config --list  git config user.name displays"
 
   ]
-  majorfix=[
+  majorfix = [
     "300.36 - rtf"
   ]
   ninalist = [
@@ -91,7 +91,7 @@ export class Home {
         this.appService.stateList = values[4];
         //            this.appService.catalogList = values[5];
 
- console.log('using data orgsList....',this.appService.orgsList)
+        console.log('using data orgsList....', this.appService.orgsList)
 
 
         let i, item, ct
@@ -347,7 +347,7 @@ export class Home {
         //   var textB = b.ArtistName.toUpperCase();
         //   return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
         // });
-console.log('artistList ',this.appService.artistList)
+        console.log('artistList ', this.appService.artistList)
 
         // let pct
         // for (let bk of this.appService.artistList) {
