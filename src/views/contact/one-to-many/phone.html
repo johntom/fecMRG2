@@ -20,7 +20,7 @@
 	<section class="docs full-height flex-column-1 overflow-y-auto ignore">
 		<h4>
 			<i class="fa fa-folder-open"></i> Phone
-			<a slot="buttons-slot" class="btn btn-primary" click.delegate="addNote()">
+			<a slot="buttons-slot" class="btn btn-primary" click.delegate="addPhone()">
 				<i class="fa fa-plus"></i> Add Phone
 			</a>
 		</h4>
@@ -61,15 +61,11 @@
                       </option> 
                     </select>
 
-
-
-
-
 					</td>
 					<td width="200px">
 						<span show.bind="!phone.edit">${phoneno}</span>
 
-						<input show.bind="phone.edit" class="form-control input-sm" disabled.bind="!phone.edit" type="text" value.bind="phoneno">
+						<input show.bind="phone.edit" class="form-control input-sm" disabled.bind="!phone.edit" type="phone" value.bind="phoneno">
 					</td>
 					<td width="100px">
 						<span show.bind="!phone.edit">${area}</span>
@@ -93,6 +89,79 @@
 
 			</tbody>
 		</table>
+	<h4>
+			<i class="fa fa-folder-open"></i> Email
+			<a slot="buttons-slot" class="btn btn-primary" click.delegate="addEmail()">
+				<i class="fa fa-plus"></i> Add Email
+			</a>
+		</h4>
+
+	<table class="table-condensed table">
+			<thead class="table-header-blue">
+				<tr>
+
+					<tr>
+						<th width="100px" class="header">Type
+						</th>
+						<th width="200px" class="header">Email
+						</th>
+					<th width="200px" class="header">Mail Chimp
+						</th>
+						<th width="225px" class="header">Cmd
+
+						</th>
+					</tr>
+			</thead>
+			<tfoot>
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+			</tfoot>
+			<tbody>
+				<tr repeat.for="email of currentItem.emails" with.bind="email">
+
+					<td width="100px">
+
+						<select id="phonetype" class="form-control  input-sm" value.bind="email.type"> 
+                      <option model.bind="null">Choose...filterOnCode</option> 
+                         <option repeat.for="opt of appService.codesPhoneType " model.bind="opt.id">
+                    ${opt.Description} 
+                      </option> 
+                    </select>
+
+					</td>
+					<td width="200px">
+						<!-- <span show.bind="!email.edit">${email}</span> -->
+
+						<input  class="form-control input-sm"  type="email" value.bind="email">
+					</td>
+					<td width="200px">
+						<!-- <span show.bind="!email.edit">${emailchimp}</span> -->
+
+
+            	<span if.bind="emailchimp===undefined">-</span>
+
+
+		<input type="checkbox" id="emailchimp" checked.bind="emailchimp">  ${emailchimp}
+
+					</td>
+					<td width="225px">
+
+						<button class="btn  btn-sm  btn-primary" click.delegate="saveitem(email,$index)">${ !note.edit ? 'Update' : 'Done' }</button>
+
+						<button class="btn  btn-sm  btn-danger" click.delegate="remove(email,$index)">Delete</button>
+
+					</td>
+
+
+			</tbody>
+		</table>
+
+
+
+
 
 	</section>
 </template>

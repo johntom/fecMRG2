@@ -2,8 +2,8 @@
 	<!-- <require from="../../value-converters/filter-by-code"></require> 
   https://codepen.io/johntom/pen/ypZVaM  this.currentItem.ownername this.currentItem.soldtoname
   -->
-	
-  <!-- <require from="aurelia-kendoui-bridge/multiselect/multiselect"></require>
+
+	<!-- <require from="aurelia-kendoui-bridge/multiselect/multiselect"></require>
 	<require from="aurelia-kendoui-bridge/button/button"></require>
 	<require from="aurelia-kendoui-bridge/common/template"></require>
 	<require from="../../../styles/flex.css"></require> -->
@@ -188,20 +188,40 @@
                     ${opt.Description} 
                       </option> 
                     </select> -->
-	<select id="phonetype" class="form-control  input-sm" value.bind="currentItem.Suffix"> 
+										<select id="phonetype" class="form-control  input-sm" value.bind="currentItem.Suffix"> 
                       <option model.bind="null">Choose...</option> 
                          <option repeat.for="opt of appService.codesSuffix " model.bind="opt.Description">
                     ${opt.Description} 
                       </option> 
                     </select>
 									</div>
-									<div class="Rtable-cell-30 Rtable-cell--highlight">
+									<!-- <div class="Rtable-cell-30 Rtable-cell--highlight">
 										<strong> Spouse</strong>
 									</div>
 
 									<div class="Rtable-cell-70  Rtable-cell--highlight">
 										<input type="text " xid="Spouse " class="form-control input-sm " value.bind="currentItem.Spouse">
 									</div>
+ -->
+
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong> Last Name 2</strong>
+									</div>
+
+									<div class="Rtable-cell-70  Rtable-cell--highlight">
+										<input type="text" xid="LastName2" class="form-control input-sm " value.bind="currentItem.LastName2">
+									</div>
+
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong> First Name 2</strong>
+									</div>
+
+									<div class="Rtable-cell-70  Rtable-cell--highlight">
+										<input type="text " xid="FirstName2" class="form-control input-sm " value.bind="currentItem.FirstName2">
+									</div>
+
+
+
 
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
 										<strong> Assistant</strong>
@@ -227,6 +247,34 @@
 									<div class="Rtable-cell-70  Rtable-cell--highlight">
 										<input type="text " xid="Dept " class="form-control input-sm " value.bind="currentItem.Dept">
 									</div>
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong>Website</strong>
+									</div>
+
+									<div class="Rtable-cell-70  Rtable-cell--highlight">
+										<input type="text " xid="Website " class="form-control input-sm " value.bind="currentItem.Website">
+									</div>
+
+
+
+
+
+
+									<!-- <div class="Rtable-cell-70  Rtable-cell--highlight">
+
+										<div style="height:15px;margin-left:10px;margin-top:5px;margin-bottom:10px" if.bind="currentItem.soldtoname===undefined || currentItem.soldtoname==='' ">
+											<a click.delegate="showModal( 'SoldToID')">select_link </a>
+										</div>
+										<div style="height:15px;margin-left:10px;margin-top:5px;margin-bottom:10px" else>
+											<a click.delegate="showModal( 'SoldToID')">${currentItem.soldtoname} </a>
+											&nbsp;&nbsp;
+											<a click.delegate="soldtoEdit()">...Open...</a>
+
+
+										</div>
+
+									</div> -->
+
 
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
 										<strong> Bus/Individ</strong>
@@ -238,9 +286,9 @@
 
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
 										<!-- <span dblclick.delegate="showModal( 'OrgID') ">	<strong> Org </strong></span> -->
-                           <button class="btn btn-success" click.delegate="modal(org)">View Org</button>
-									     <button class="btn btn-success" click.delegate="editorg(org)">Edit Org</button>
-							
+										<button class="btn btn-success" click.delegate="modal(org)">View Org</button>
+										<button class="btn btn-success" click.delegate="editorg(org)">Edit Org</button>
+
 									</div>
 
 
@@ -250,7 +298,7 @@
 										</div>
 										<div style="height:15px;margin-left:10px;margin-top:5px;margin-bottom:10px" else>
 											<a click.delegate="showModal( 'OrgID')">${currentItem.org.OrgName} </a>
-                			</div>
+										</div>
 									</div>
 
 
@@ -295,14 +343,19 @@
 											</ak-template>
 										</ak-multiselect>
 									</div>
-
+									<!-- //announcements mrg driven  nomailings client driven  var checkbox = document.getElementById(currentItem.mailings");
+checkbox.indeterminate = true;-->
 									<div class="Rtable-cell-100 Rtable-cell--highlight">
-										<strong>  &nbsp;mailings</strong>
-										<input type="checkbox" id="mailings" checked.bind="currentItem.mailings">
-										<strong> &nbsp;&nbsp;international</strong>
-										<input type="checkbox" id="international" checked.bind="currentItem.international">
+                    	<strong> 	<span if.bind="currentItem.mailings===undefined">-</span>&nbsp;announcements</strong>
+										<!-- <input type="checkbox" ref = "test" id="test" > -->
+									
+										<strong> &nbsp;announcements</strong>
+										<input type="checkbox" ref = "mailings" id="mailings" checked.bind="currentItem.mailings">
 										<strong> &nbsp;&nbsp;nomailings</strong>
 										<input type="checkbox" id="nomailings" checked.bind="currentItem.nomailings">
+
+										<strong> &nbsp;&nbsp;international</strong>
+										<input type="checkbox" id="international" checked.bind="currentItem.international">
 										<strong> &nbsp;&nbsp;noinfo</strong>
 										<input type="checkbox" id="noinfo" checked.bind="currentItem.noinfo">
 										<strong> &nbsp;&nbsp;email</strong>
@@ -358,15 +411,14 @@
 										<strong> Deceased</strong>
 									</div>
 									<div class="Rtable-cell-70 Rtable-cell--highlight">
-												<input type="checkbox" id="deceased" checked.bind="currentItem.deceased">
-					
+										<input type="checkbox" id="deceased" checked.bind="currentItem.deceased">
+
 
 									</div>
-	<div class="Rtable-cell-30 Rtable-cell--highlight">
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
 										<strong> Address Label</strong>
 									</div>
 									<div class="Rtable-cell-70 Rtable-cell--highlight">
-										<!-- <input type="text " xid="Edition " class="form-control input-sm " value.bind="currentItem.Notes"> -->
 										<textarea rows="6" cols="100" id="Notes" class="form-control input-sm" value.bind="fullName"></textarea>
 
 
@@ -442,7 +494,7 @@
 
 				</span>
 
-	
+
 			<span>&nbsp;&nbsp;
 					<button class="btn btn-sm btn-danger " click.delegate="requestclose()">
 						Close
@@ -454,4 +506,3 @@
 		</footerform>
 	</section>
 </template>
-

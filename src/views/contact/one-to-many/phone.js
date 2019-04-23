@@ -66,19 +66,38 @@ export class Phone {
   }
 
 
-  addNote() {
+  addPhone() {
 
-    let notes = this.currentItem.notes
+  let phones= this.currentItem.phones
     let flag = false
     let item
-    let newNoteWorkDate = moment().format('YYYY-MM-DD')// new date();//
-    if (notes === undefined) {
+    if (phones === undefined) {
       flag = true
-      notes = []
+      phones = []
     }
-    item = { WorkDate: newNoteWorkDate, Notes: '', edit: true }
-    notes.unshift(item)
-    if (flag) this.currentItem.notes = notes
+    //Type Phoneno Area  Ext
+    item = { Type: '', Phoneno: '', edit: true }
+    phones.unshift(item)
+    if (flag) this.currentItem.phones = phones
+
+    this.newNoteWorkDate = '';
+    this.newNoteNote = '';
+
+  }
+
+addEmail() {
+
+  let emails= this.currentItem.emails
+    let flag = false
+    let item
+    if (emails === undefined) {
+      flag = true
+      emails = []
+    }
+    //Type Phoneno Area  Ext
+    item = { Type: '', email: '', edit: true }
+    emails.unshift(item)
+    if (flag) this.currentItem.emails = emails
 
     this.newNoteWorkDate = '';
     this.newNoteNote = '';
@@ -86,8 +105,7 @@ export class Phone {
   }
 
 
-
-  //  save(note, index) {
+  //  save(note, index) { 
   //    // not used
   //     this.mode = 0
   //     console.log(' this.currentItem.notes', this.currentItem.notes)
@@ -100,7 +118,7 @@ export class Phone {
   cancel(item, index) {
     this.mode = 0
     // alert('you are about to cancel ' + item.Notes + ' ' + index)
-    let notes = this.currentItem.notes//notes
+    let phones = this.currentItem.phones//notes
     // notes.push({WorkDate:'2017-10-30',Notes:'test'})
     if (this.mode === 1) {
 
@@ -109,8 +127,8 @@ export class Phone {
       document.getElementById('b' + index).disabled = true;
     } else {
 
-      this.currentItem.notes[index] = this.currentnote
-      console.log(' this.currentItem.notes', notes, this.currentItem.notes[index])
+      this.currentItem.phones[index] = this.currentnote
+      console.log(' this.currentItem.notes', phones, this.currentItem.phones[index])
 
     }
     this.mode = 0

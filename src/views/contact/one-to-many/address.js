@@ -1,4 +1,3 @@
-
 ////////////////////////////////////////////////
 import { inject } from 'aurelia-dependency-injection';
 import { ApiService } from '../../../utils/servicesApi';

@@ -6,7 +6,7 @@ import { Router } from 'aurelia-router';
 import { DialogService } from 'aurelia-dialog';
 import { Promptcontact } from './prompt';
 import { Promptorg } from '../prompt/promptOrg';
-import {computedFrom} from 'aurelia-framework';
+import { computedFrom } from 'aurelia-framework';
 @inject(Router, ApiService, ApplicationService, MyDataService, DialogService)
 export class DataForm {
   controller = null;
@@ -72,16 +72,16 @@ export class DataForm {
     // this.currentItem={}
   }
   // @computedFrom('FirstName', 'LastName') currentItem.Salutation  currentItem.Suffix
-  @computedFrom('currentItem.Salutation','currentItem.FirstName', 'currentItem.LastName','currentItem.Suffix','currentItem.address')
- get fullName() {
-    return `${this.currentItem.Salutation} ${this.currentItem.FirstName} ${this.currentItem.LastName} ${this.currentItem.Suffix} ${this.currentItem.address}` ;
+  @computedFrom('currentItem.Salutation', 'currentItem.FirstName', 'currentItem.LastName', 'currentItem.Suffix', 'currentItem.address')
+  get fullName() {
+    return `${this.currentItem.Salutation} ${this.currentItem.FirstName} ${this.currentItem.LastName} ${this.currentItem.Suffix} ${this.currentItem.address}`;
   }
   modal() {
 
     // IF B then use this
     let currentModel = {}
     // currentModel.currentItem = this.currentItem
-       currentModel.currentItem= JSON.parse(JSON.stringify(this.currentItem))
+    currentModel.currentItem = JSON.parse(JSON.stringify(this.currentItem))
 
     // currentModel.item = item
     currentModel.currentItem.hide1 = false
@@ -173,12 +173,17 @@ export class DataForm {
         this.currentItem = {}
         this.currentContactItem = {}
         this.currentContactItem.id = 'create'
+        this.currentItem.contacttypes = []
         // this.appService.testrec = {}
         // this.appService.originalrec = {}
         this.appService.testcontactrec = {}
         this.appService.originalontactrec = {}
-
-
+      //  let checkbox
+        // let checkbox = document.getElementById("mailings");
+        // checkbox.indeterminate = true;//-->
+        // <div class="Rtable-cell-100 Rtable-cell--highlight">
+        // 	<strong> 	<span if.bind="currentItem.mailings===undefined">null</span>&nbsp;announcements</strong>
+        // 	<input type="checkbox" ref = "mailings" id="mailings" checked.bind="currentItem.mailings">
 
       } else {
         console.log('this.recordId ', this.recordId);
@@ -188,6 +193,15 @@ export class DataForm {
             console.log('jsonRes ', jsonRes);
             let inv = jsonRes.data;
             this.currentItem = inv[0]
+  // let  checkbox2 = document.getElementById("test");
+  //             checkbox2.indeterminate = true;//-->
+        
+
+            // if (this.currentItemmailings === undefined) {
+            // let  checkbox = document.getElementById("mailings");
+            //   checkbox.indeterminate = true;//-->
+            // }
+
             // never been saved from view
             //  this.currentContactItem = inv[0]
             this.appService.currentContactItem = this.currentItem//inv[0]

@@ -434,6 +434,19 @@ export class ApiService {
     }).then((res) => res.json());
   }
 
+async createcontact(rec) {
+    let url = this.baseweb + `v1/contact/create`
+    console.log('url ', url)
+    return this.http.fetch(url, {
+      method: 'post',
+      mode: 'cors',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(rec)
+    }).then((res) => res.json());
+  }
 
 
   //1
