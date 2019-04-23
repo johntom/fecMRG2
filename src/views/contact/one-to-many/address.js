@@ -28,7 +28,7 @@ export class Address {
   activate(params, routeConfig) {
     this.exhibition = this.appService.currentItem.exhibition   // this.currentItem.exhibition
   }
- remove(item, index) {
+  remove(item, index) {
     // alert('you are about to delete ' + item.address) address of currentItem.addresses
     this.dialogService.open({ viewModel: Prompt, model: 'Delete or Cancel?', lock: false }).whenClosed(response => {
       if (!response.wasCancelled) {
@@ -41,6 +41,16 @@ export class Address {
       console.log(response.output);
     });
   }
+
+  build(item, index) {
+    //   "Notes" : "111\n222\n333", 
+    let addr = this.currentItem.addresses[index]
+    this.currentItem.address = `\n${addr.address}\n${addr.city} ${addr.state} ${addr.zip}`
+  }
+
+
+
+
   saveitem(item, index) {
     item.edit = !item.edit
 
@@ -54,10 +64,10 @@ export class Address {
     // // let item = this.repro[aid];// { ADJUSTER_ID: 4, ADJUSTER_NAME: "Donna Luciani", edit: true }
     // this.currentItem.exhibition[aid].ExhibitRepro = reproid
   }
-			
+
   addAddress() {
-  
-let addresses = this.currentItem.addresses
+
+    let addresses = this.currentItem.addresses
     let flag = false
     let item
     if (addresses === undefined) {
@@ -65,7 +75,7 @@ let addresses = this.currentItem.addresses
       addresses = []
     }
     item = {
-   address: '', city: '', state: '',
+      address: '', city: '', state: '',
       zip: '', country: '',
       letter: '', notes: '', edit: true
     }
@@ -73,36 +83,36 @@ let addresses = this.currentItem.addresses
     if (flag) this.currentItem.addresses = addresses
     this.newAddress = '';
 
-    
+
   }
 
 
 
 
 
-//  modal(item, index) {
+  //  modal(item, index) {
 
-//     // this.currentItem.recordId = this.recordId model:this.currentItem
-//     let currentModel = {}
-//     currentModel.currentItem = this.currentItem
-//     currentModel.item = item
+  //     // this.currentItem.recordId = this.recordId model:this.currentItem
+  //     let currentModel = {}
+  //     currentModel.currentItem = this.currentItem
+  //     currentModel.item = item
 
-//     // currentModel.currentItem.hide1 = false
+  //     // currentModel.currentItem.hide1 = false
 
 
-//     // this.dialogService.open({ viewModel: PromptForm, model: currentModel, lock: false }).whenClosed(response => {
-//     this.dialogService.open({ viewModel: Promptexhibit, model: currentModel, lock: false }).whenClosed(response => {
+  //     // this.dialogService.open({ viewModel: PromptForm, model: currentModel, lock: false }).whenClosed(response => {
+  //     this.dialogService.open({ viewModel: Promptexhibit, model: currentModel, lock: false }).whenClosed(response => {
 
-//       if (!response.wasCancelled) {
-//         console.log('item', item);
-//       item.edit = false//this.saveitem(item, index)
-//       } else {
+  //       if (!response.wasCancelled) {
+  //         console.log('item', item);
+  //       item.edit = false//this.saveitem(item, index)
+  //       } else {
 
-//         console.log('cancel');
-//       }
-//       console.log(response)//.output);
-//     });
-//   }
+  //         console.log('cancel');
+  //       }
+  //       console.log(response)//.output);
+  //     });
+  //   }
 
 
 

@@ -853,6 +853,7 @@ export class SearchResults {
 
     let batchno = jsonResna[0].nextavail
     this.item.batchno = batchno
+    // this.item.Edition ? this.item.Edition=true :this.item.Edition=false;
     this.api.batchReproduction(this.item)
       .then((jsonRes) => {
         if (jsonRes.data === 'success') {

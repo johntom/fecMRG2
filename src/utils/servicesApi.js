@@ -472,6 +472,7 @@ export class ApiService {
 
   //3
  async batchReproduction(rec) {
+   
     let url = this.baseweb + `v1/inventory/batchReproduction`
     console.log('url ', url)
     // return {'data': true}

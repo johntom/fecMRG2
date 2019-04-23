@@ -170,7 +170,8 @@
 
 										<select id="phonetype" class="form-control  input-sm" value.bind="currentItem.Salutation"> 
                       <option model.bind="null">Choose...</option> 
-                         <option repeat.for="opt of appService.codesSalutation " model.bind="opt.id">
+                         <option repeat.for="opt of appService.codesSalutation " model.bind="opt.Description"> 
+                           <!-- //id"> -->
                     ${opt.Description} 
                       </option> 
                     </select>
@@ -181,13 +182,18 @@
 
 									<div class="Rtable-cell-70  Rtable-cell--highlight">
 
-										<select id="phonetype" class="form-control  input-sm" value.bind="currentItem.Suffix"> 
+										<!-- <select id="phonetype" class="form-control  input-sm" value.bind="currentItem.Suffix"> 
                       <option model.bind="null">Choose...</option> 
                          <option repeat.for="opt of appService.codesSuffix " model.bind="opt.id">
                     ${opt.Description} 
                       </option> 
+                    </select> -->
+	<select id="phonetype" class="form-control  input-sm" value.bind="currentItem.Suffix"> 
+                      <option model.bind="null">Choose...</option> 
+                         <option repeat.for="opt of appService.codesSuffix " model.bind="opt.Description">
+                    ${opt.Description} 
+                      </option> 
                     </select>
-
 									</div>
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
 										<strong> Spouse</strong>
@@ -356,6 +362,17 @@
 					
 
 									</div>
+	<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong> Address Label</strong>
+									</div>
+									<div class="Rtable-cell-70 Rtable-cell--highlight">
+										<!-- <input type="text " xid="Edition " class="form-control input-sm " value.bind="currentItem.Notes"> -->
+										<textarea rows="6" cols="100" id="Notes" class="form-control input-sm" value.bind="fullName"></textarea>
+
+
+									</div>
+
+
 
 
 									<!-- <div class="Rtable-cell-30 Rtable-cell--highlight">

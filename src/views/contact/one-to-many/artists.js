@@ -1,4 +1,3 @@
-
 import { inject } from 'aurelia-dependency-injection';
 import { ApiService } from '../../../utils/servicesApi';
 import { ApplicationService } from '../../../services/application-service';
@@ -80,8 +79,8 @@ export class Artists {
         let artistrec = {}
         artistrec.id = this.currentItem.artist.id;
         artistrec.ArtistName = this.currentItem.artist.ArtistName;
-        artistrec.yearofBirth = this.currentItem.artist.yearofBirth;
-        artistrec.died = this.currentItem.artist.died;
+         artistrec.yearofBirth = this.currentItem.artist.YearofBirth;
+        artistrec.died = this.currentItem.artist.Died;
 
 
         this.currentItem.artists[index] = artistrec;

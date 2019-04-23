@@ -128,12 +128,12 @@ export class SearchResults {
   }
 
 
-  updateData(e) {
+  async updateData(e) {
     console.log('updateData ', e)
     return this.api.updatetodo(e)//, this.todo)
       .then((jsonRes) => {
         console.log('this.scans ', jsonRes)
-        return jsonRes
+        return await jsonRes
       })
   }
 

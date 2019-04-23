@@ -6,7 +6,7 @@ import { Router } from 'aurelia-router';
 import { DialogService } from 'aurelia-dialog';
 import { Promptcontact } from './prompt';
 import { Promptorg } from '../prompt/promptOrg';
-
+import {computedFrom} from 'aurelia-framework';
 @inject(Router, ApiService, ApplicationService, MyDataService, DialogService)
 export class DataForm {
   controller = null;
@@ -21,6 +21,8 @@ export class DataForm {
 
   fieldname = ''
   error = "";
+  FirstName = '';
+  LastName = '';
   division = {
     div_id: 1,
     div_code: "S",
@@ -69,12 +71,18 @@ export class DataForm {
     // this.controller.addObject(this.currentItem);
     // this.currentItem={}
   }
-
+  // @computedFrom('FirstName', 'LastName') currentItem.Salutation  currentItem.Suffix
+  @computedFrom('currentItem.Salutation','currentItem.FirstName', 'currentItem.LastName','currentItem.Suffix','currentItem.address')
+ get fullName() {
+    return `${this.currentItem.Salutation} ${this.currentItem.FirstName} ${this.currentItem.LastName} ${this.currentItem.Suffix} ${this.currentItem.address}` ;
+  }
   modal() {
 
     // IF B then use this
     let currentModel = {}
-    currentModel.currentItem = this.currentItem 
+    // currentModel.currentItem = this.currentItem
+       currentModel.currentItem= JSON.parse(JSON.stringify(this.currentItem))
+
     // currentModel.item = item
     currentModel.currentItem.hide1 = false
 
@@ -456,7 +464,7 @@ export class DataForm {
     });
   }
   requestclose() {
-
+    console.log(this.appService.originalContactrec, this.currentItem)
     const resetFunc = () => { this.appService.originalContactrec = this.currentItem; };
     let tab = this.appService.tabs.find(f => f.isSelected);
     let index = this.appService.tabs.findIndex(f => f.isSelected)
