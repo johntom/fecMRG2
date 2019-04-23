@@ -2,20 +2,21 @@
 import { DialogController } from 'aurelia-dialog';
 import { ApplicationService } from '../../services/application-service';
 import { MyDataService } from "../../services/my-data-service";
-
 import { DialogService } from 'aurelia-dialog';
 import { PromptServ } from '../../services/promptserv';
 import { ApiService } from '../../utils/servicesApi';
 import { Promptyn } from '../../services/promptyn';
-
 import { Promptartist } from '../prompt/promptArtist';
 
-
+  import {customAttribute, inject, bindingMode, TaskQueue} from 'aurelia-framework';
+    
+    // @customAttribute('focus', bindingMode.twoWay)
+    // @inject(Element, TaskQueue)
 
 export class Prompt {
 
 
-  static inject = [DialogController, ApplicationService, MyDataService, DialogService, ApiService];
+  static inject = [DialogController, ApplicationService, MyDataService, DialogService, ApiService,Element, TaskQueue];
   // ConsignmentShippingID=ConservedFrom
   // products = ['Motherboard', 'CPU', 'Memory'];
   products = [
@@ -86,7 +87,7 @@ selectedValueSL = null;
   //   this.ArtistName = this.currentItem.artist
   //   if (this.ArtistName.ArtistName === undefined) this.ArtistName.ArtistName = this.currentItem.artist.lastName + ', ' + this.currentItem.artist.firstName
 
-  constructor(controller, appService, dataService, dialogService, api) {
+  constructor(controller, appService, dataService, dialogService, api,element, taskQueue) {
     this.controller = controller;
     this.answer = null;
     this.appService = appService;
@@ -97,8 +98,30 @@ selectedValueSL = null;
     this.addlist//='aaa'
     this.dialogService = dialogService
     this.api = api
+     this.element = element;
+        this.taskQueue = taskQueue;
+         this.focusListener = e => this.value = true;
+      this.blurListener = e => {
+        if (document.activeElement !== this.element) {
+          this.value = false;
+        }
+      };
   }
-
+ giveFocus() {
+        this.taskQueue.queueMicroTask(() => {
+          if (this.value) {
+          	this.element.focus();
+          }
+        });
+      }
+    
+      valueChanged(newValue) {
+        if (newValue) {
+          this.giveFocus();
+        } else {
+          this.element.blur();
+        }
+      }
   getStates(filter, limit) {
     let filterlc = filter.toLowerCase()
     let states
@@ -261,9 +284,6 @@ selectedValueSL = null;
 
 
 
-      // this.currentItem.SoldToID = this.selectedValueO._id
-      // this.currentItem.soldtoname = this.selectedOrg.OrgName
-
       this.doc = `Select org `
       //  this.doc2 = `Select Artist or add new if not in list.`
       this.heading = `Org SEARCH `
@@ -282,6 +302,7 @@ selectedValueSL = null;
       // 		if (this.fieldname === 'PhotographerID') {
       // 				if (this.fieldname === 'ConsignmentShippingID') {
       if (this.fieldname === 'SoldToID') {
+         this.hasFocus = true;
         if (this.currentItem.SoldToID === undefined || this.currentItem.SoldToID === '') {
         } else {
           // //  this.insuredobj = this.currentItem.insured

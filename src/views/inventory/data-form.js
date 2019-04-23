@@ -170,11 +170,20 @@ export class DataForm {
   showModal(fieldname) {
     this.currentItem.fieldname = fieldname
     this.currentItem.recordId = this.recordId
-    if (this.currentItem.OwnerID === 6275) this.currentItem.OwnerID = '5c434cc100a8a1588c6407b7'
+    if (fieldname==='SoldToID') {
+         let findOptions = this.appService.orgsList.find(x => x._id === this.currentItem.SoldToID)
+          // this.currentItem.recordId = this.currentItem.SoldToID
+    } else {
+   
+    // if (this.currentItem.OwnerID === 6275) this.currentItem.OwnerID = '5c434cc100a8a1588c6407b7'
     let findOptiono = this.appService.orgsList.find(x => x._id === this.currentItem.OwnerID)
     console.log('appService.orgsList', findOptiono)
-    let findOptions = this.appService.orgsList.find(x => x._id === this.currentItem.SoldToID)
-    console.log('appService.orgsList', findOptions)
+    }
+    // if (this.currentItem.OwnerID === 6275) this.currentItem.OwnerID = '5c434cc100a8a1588c6407b7'
+    // let findOptiono = this.appService.orgsList.find(x => x._id === this.currentItem.OwnerID)
+    // console.log('appService.orgsList', findOptiono)
+    // let findOptions = this.appService.orgsList.find(x => x._id === this.currentItem.SoldToID)
+    // console.log('appService.orgsList', findOptions)
     //     if (findOptiono === undefined) {
     //       findOptiono = '';
     // this.currentItem.OwnerID=''

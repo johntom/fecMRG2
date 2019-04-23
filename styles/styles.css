@@ -560,3 +560,44 @@ div.au-stagger {
   }
 }
 
+		.demo-section label {
+			display: block;
+			margin: 15px 0 5px 0;
+		}
+
+		#get {
+			float: right;
+			margin: 25px auto 0;
+		}
+
+		.customer-photo-sq {
+			display: inline-block;
+			width: 50px;
+			height: 50px;
+			background-size: 50px 53px;
+			background-position: center center;
+			vertical-align: middle;
+			line-height: 50px;
+			box-shadow: inset 0 0 1px #999, inset 0 0 10px rgba(0, 0, 0, .2);
+			margin-left: 5px;
+		}
+
+		.customer-photo-sqxx {
+			display: inline-block;
+			width: 44px;
+			height: 44px;
+			background-size: 49px 49px;
+			background-position: center center;
+			vertical-align: middle;
+			line-height: 44px;
+			box-shadow: inset 0 0 1px #999, inset 0 0 10px rgba(0, 0, 0, .2);
+			margin-left: 5px;
+
+		}
+
+		.customer-name {
+			display: inline-block;
+			vertical-align: middle;
+			line-height: 44px;
+			padding-left: 3px;
+		}

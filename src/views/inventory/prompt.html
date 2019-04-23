@@ -161,11 +161,11 @@
 			</div>
 			<div show.bind="fieldbase==='ORG'">
 				<div class="form-group flex-column-1">
-
+<!-- <input value.bind="input" list.bind="listIdVar & attr"> -->
 					<input focus.bind="hasFocus" ref="myDatalistO" type="text" list="myDatalistO" 
-					change.delegate="changeCallbackOrg(selectedValueO)"
+       		change.delegate="changeCallbackOrg(selectedValueO)"
 					 input.delegate="selectedValueO = findOptionO($event.target.value)" />
-					<datalist id="myDatalistO">
+					<datalist id="myDatalistO" >
 						<option repeat.for="option of appService.orgsList">${option.OrgName} ; ${option.BusIndivid} ; ${option._id}</option>
 					</datalist>  
 				</div>

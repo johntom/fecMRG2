@@ -26,7 +26,7 @@ export class Prompttransport {
   async activate(currentmodel) {
    this.item = currentmodel.item;
     this.currentItem = currentmodel.currentItem
-    this.heading = "transport "//+this.artist.name
+    this.heading = "Transport "//+this.artist.name
     
 
 

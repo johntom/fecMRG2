@@ -87,101 +87,101 @@ export class SearchResults {
     }
   };
   message = ''//Hello Inventory 101- a!';
-  // datasource = new kendo.data.DataSource({
-  //   transport: {
-  //     read: (options) => {
-  //       //  this.loadData(this.capColor, this.prevtown)
-  //       this.loadData()
-  //         .then((inv) => {
-  //           console.log(' inv datasource ', inv[0]);
-  //           options.success(inv);
-  //         });
-  //     },
-  //     update: (options) => {
-  //       let updatedItem = options.data;
-  //       updatedItem.offerdate = this.offerdate
-  //       console.log('   updatedItem ', updatedItem)
-  //       this.updateData(updatedItem)
-  //         .then((scans) => {
-  //           options.success(scans)
-  //           this.datasource.read()
-  //         })
+  datasource = new kendo.data.DataSource({
+    transport: {
+      read: (options) => {
+        //  this.loadData(this.capColor, this.prevtown)
+        this.loadData()
+          .then((inv) => {
+            console.log(' inv datasource ', inv[0]);
+            options.success(inv);
+          });
+      },
+      update: (options) => {
+        let updatedItem = options.data;
+        updatedItem.offerdate = this.offerdate
+        console.log('   updatedItem ', updatedItem)
+        this.updateData(updatedItem)
+          .then((scans) => {
+            options.success(scans)
+            this.datasource.read()
+          })
 
-  //       options.success(updatedItem)
-  //     }
-  //   },
-  //   schema: {
-  //     model: {
-  //       id: "id", // Must assign id for update to work
-  //       fields: {
-  //         offeramount: { type: "number" }, // scan template
-  //         // Artist: { type: "string" }, // barcode insured
-  //         //  ArtistRegistra: { type: "string" },
-  //         InventoryCode: { type: "string", editable: false },
-  //         Title: { type: "string", editable: false },
-  //         Image: { type: "string", editable: false },
+        options.success(updatedItem)
+      }
+    },
+    schema: {
+      model: {
+        id: "id", // Must assign id for update to work
+        fields: {
+          offeramount: { type: "number" }, // scan template
+          // Artist: { type: "string" }, // barcode insured
+          //  ArtistRegistra: { type: "string" },
+          InventoryCode: { type: "string", editable: false },
+          Title: { type: "string", editable: false },
+          Image: { type: "string", editable: false },
 
-  //         //  "artist.lastName": { type: "string", editable: false },
-  //         // MediumSupport: { type: "string" },
-  //         // CurrentLocation: { type: "string" },
-  //         // Bin: { type: "string" }, // barcode insured
-  //         // Owner: { type: "string" },
-  //         // InvYear: { type: "string" },
-  //         // UnframedHeight: { type: "string" },
-  //       }
-  //     }
-  //   },
-  //   pageSize: 12,
+          //  "artist.lastName": { type: "string", editable: false },
+          // MediumSupport: { type: "string" },
+          // CurrentLocation: { type: "string" },
+          // Bin: { type: "string" }, // barcode insured
+          // Owner: { type: "string" },
+          // InvYear: { type: "string" },
+          // UnframedHeight: { type: "string" },
+        }
+      }
+    },
+    pageSize: 12,
 
-  //   change: function (e, args) {
-  //     var grid = e//.sender; 
-  //     var items = grid.items//();
-  //     // items.each(function (idx, row) {
-  //     // items.forEach(function (idx, row) {
-  //      items.forEach(function (row,idx) { 
+    // change: function (e, args) {
+    //   var grid = e//.sender; 
+    //   var items = grid.items//();
+    //   // items.each(function (idx, row) {
+    //   // items.forEach(function (idx, row) {
+    //    items.forEach(function (row,idx) { 
 
-  //         // var idValue = grid.dataItem(row).get(idField);
-  //         var idValue = row.id//get(idField);
-  //         if (row.className.indexOf("k-state-selected") >= 0) {
-  //             selectedOrders[idValue] = true;
-  //         } else if (selectedOrders[idValue]) {
-  //             delete selectedOrders[idValue];
-  //         }
-  //     });
+    //       // var idValue = grid.dataItem(row).get(idField);
+    //       var idValue = row.id//get(idField);
+    //       if (row.className.indexOf("k-state-selected") >= 0) {
+    //           selectedOrders[idValue] = true;
+    //       } else if (selectedOrders[idValue]) {
+    //           delete selectedOrders[idValue];
+    //       }
+    //   });
 
-  // //  let grid = e.sender;
-  // //   let selectedRow = grid.select();
-  // //   let dataItem = grid.dataItem(selectedRow);
-  // //     for (const item of items) {
-  // //       var idValue = item.id;
-  // //     //  c.ArtistName = item.LastName + ', ' + item.FirstName
-  // //       if (item.className.indexOf("k-state-selected") >= 0) {
-  // //         selectedOrders[idValue] = true;
-  // //       } else if (selectedOrders[idValue]) {
-  // //         delete selectedOrders[idValue];
-  // //       }
-  // //     }
+    //  let grid = e.sender;
+    //   let selectedRow = grid.select();
+    //   let dataItem = grid.dataItem(selectedRow);
+    //     for (const item of items) {
+    //       var idValue = item.id;
+    //     //  c.ArtistName = item.LastName + ', ' + item.FirstName
+    //       if (item.className.indexOf("k-state-selected") >= 0) {
+    //         selectedOrders[idValue] = true;
+    //       } else if (selectedOrders[idValue]) {
+    //         delete selectedOrders[idValue];
+    //       }
+    //     }
 
 
-  //   },
-  //   dataBound: function (e) {
-  //     var grid = e//.sender;
-  //     var items = grid.items//();
-  //     var itemsToSelect = [];
-  //     items.each(function (idx, row) {
-  //       var dataItem = grid.dataItem(row);
-  //       if (selectedOrders[dataItem[idField]]) {
-  //         itemsToSelect.push(row);
-  //       }
-  //     });
+    // },
+    // dataBound: function (e) {
+    //   var grid = e//.sender;
+    //   var items = grid.items//();
+    //   var itemsToSelect = [];
+    //   items.each(function (idx, row) {
+    //     var dataItem = grid.dataItem(row);
+    //     if (selectedOrders[dataItem[idField]]) {
+    //       itemsToSelect.push(row);
+    //     }
+    //   });
 
-  //     e.sender.select(itemsToSelect);
-  //   }
+    //   e.sender.select(itemsToSelect);
+    // }
 
-  // aggregate: [{ field: "type", aggregate: "count" },
-  //   { field: "template", aggregate: "count" }
-  // ]
-  // })
+    // aggregate: [{ field: "type", aggregate: "count" },
+    //   { field: "template", aggregate: "count" }
+    // ]
+  })
 
   constructor(router, api, utilService, appService, dataService, dialogService) {
     this.router = router;
@@ -193,115 +193,6 @@ export class SearchResults {
     this.dialogService = dialogService
     this.appService.rfreshLoaded = false;
     // this.appService.actionlist ='closed'
-  }
-
-  afterAttached() {
-    var selectedOrders = [];
-    var idField = "id";
-    datasource = new kendo.data.DataSource({
-      transport: {
-        read: (options) => {
-          //  this.loadData(this.capColor, this.prevtown)
-          this.loadData()
-            .then((inv) => {
-              console.log(' inv datasource ', inv[0]);
-              options.success(inv);
-            });
-        },
-        update: (options) => {
-          let updatedItem = options.data;
-          updatedItem.offerdate = this.offerdate
-          console.log('   updatedItem ', updatedItem)
-          this.updateData(updatedItem)
-            .then((scans) => {
-              options.success(scans)
-              this.datasource.read()
-            })
-
-          options.success(updatedItem)
-        }
-      },
-      schema: {
-        model: {
-          id: "id", // Must assign id for update to work
-          fields: {
-            offeramount: { type: "number" }, // scan template
-            // Artist: { type: "string" }, // barcode insured
-            //  ArtistRegistra: { type: "string" },
-            InventoryCode: { type: "string", editable: false },
-            Title: { type: "string", editable: false },
-            Image: { type: "string", editable: false },
-
-            //  "artist.lastName": { type: "string", editable: false },
-            // MediumSupport: { type: "string" },
-            // CurrentLocation: { type: "string" },
-            // Bin: { type: "string" }, // barcode insured
-            // Owner: { type: "string" },
-            // InvYear: { type: "string" },
-            // UnframedHeight: { type: "string" },
-          }
-        }
-      },
-      pageSize: 12,
-      change: function (e, args) {
-        var grid = e.sender;
-        var items = grid.items();
-        items.each(function (idx, row) {
-          var idValue = grid.dataItem(row).get(idField);
-          if (row.className.indexOf("k-state-selected") >= 0) {
-            selectedOrders[idValue] = true;
-          } else if (selectedOrders[idValue]) {
-            delete selectedOrders[idValue];
-          }
-        });
-      },
-      dataBound: function (e) {
-        var grid = e.sender;
-        var items = grid.items();
-        var itemsToSelect = [];
-        items.each(function (idx, row) {
-          var dataItem = grid.dataItem(row);
-          if (selectedOrders[dataItem[idField]]) {
-            itemsToSelect.push(row);
-          }
-        });
-
-        e.sender.select(itemsToSelect);
-      }
-
-
-      //  let grid = e.sender;
-      //   let selectedRow = grid.select();
-      //   let dataItem = grid.dataItem(selectedRow);
-      //     for (const item of items) {
-      //       var idValue = item.id;
-      //     //  c.ArtistName = item.LastName + ', ' + item.FirstName
-      //       if (item.className.indexOf("k-state-selected") >= 0) {
-      //         selectedOrders[idValue] = true;
-      //       } else if (selectedOrders[idValue]) {
-      //         delete selectedOrders[idValue];
-      //       }
-      //     }
-      // change: function (e, args) {
-      //   var grid = e//.sender; 
-      //   var items = grid.items//();
-      //   // items.each(function (idx, row) {
-      //   // items.forEach(function (idx, row) {
-      //    items.forEach(function (row,idx) { 
-
-      //       // var idValue = grid.dataItem(row).get(idField);
-      //       var idValue = row.id//get(idField);
-      //       if (row.className.indexOf("k-state-selected") >= 0) {
-      //           selectedOrders[idValue] = true;
-      //       } else if (selectedOrders[idValue]) {
-      //           delete selectedOrders[idValue];
-      //       }
-      //   });
-
-      // },
-      // //////////////////
-
-    })
   }
 
 
@@ -932,13 +823,10 @@ export class SearchResults {
         if (jsonRes.data === 'success') {
           // alert(' batch updated  batchno= ' + batchno + ' ' + this.item)
           this.dialogService.open({ viewModel: Promptmess, model: `batch updated  batchno= ${this.item.batchno}  `, lock: true }).whenClosed(async response => { });
-
           this.item = {}//.TransportDate = ''
-
-
+        } else {
+          this.dialogService.open({ viewModel: Promptmess, model: `batch failed `, lock: true }).whenClosed(async response => { });
         }
-        this.dialogService.open({ viewModel: Promptmess, model: `batch failed `, lock: true }).whenClosed(async response => { });
-
       })
 
   }
@@ -952,16 +840,10 @@ export class SearchResults {
     this.api.batchExhibit(this.item)
       .then((jsonRes) => {
         if (jsonRes.data === 'success') {
-
           this.dialogService.open({ viewModel: Promptmess, model: `batch updated  batchno= ${this.item.batchno} `, lock: true }).whenClosed(async response => { });
-
           this.item = {}
-
-
         } else this.dialogService.open({ viewModel: Promptmess, model: `batch failed `, lock: true }).whenClosed(async response => { });
-
       })
-
   }
 
   async save3() {
@@ -975,28 +857,22 @@ export class SearchResults {
       .then((jsonRes) => {
         if (jsonRes.data === 'success') {
           this.dialogService.open({ viewModel: Promptmess, model: `batch updated  batchno= ${this.item.batchno} / ${this.item} `, lock: true }).whenClosed(async response => { });
-
           this.item = {}
         } else this.dialogService.open({ viewModel: Promptmess, model: `batch failed `, lock: true }).whenClosed(async response => { });
       })
-
   }
 
 
   async save4() {
     // let loc = `${this.Description.Description}`
-
     // alert(loc)
     this.item.savedlist = this.savedlist
-
     let jsonResna = await this.api.getbatchno();
     this.item.batchno = jsonResna[0].nextavail
-
     this.api.batchProvenance(this.item)
       .then((jsonRes) => {
         if (jsonRes.data === 'success') {
           this.dialogService.open({ viewModel: Promptmess, model: `batch updated  batchno= ${this.item.batchno}  `, lock: true }).whenClosed(async response => { });
-
           this.item = {}
         } else this.dialogService.open({ viewModel: Promptmess, model: `batch failed `, lock: true }).whenClosed(async response => { });
       })

@@ -762,7 +762,7 @@ export class ApiService {
 
   findSavedlists() {
     //all
-    var url = this.baseweb + 'v1/savedlists';
+    var url = this.baseweb + 'v1/savedlists'; 
     return this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())
   }
 
