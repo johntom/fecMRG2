@@ -69,6 +69,8 @@ export class Org {
     }
   }
 
-
+addorg(){
+    this.router.navigate(`#/org/data/create`);
+}
 
 }
