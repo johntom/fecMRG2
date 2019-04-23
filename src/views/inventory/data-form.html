@@ -139,7 +139,7 @@
 						<div class="flex-row-none">
 							<!-- <div class="form-group flex-column-1"> -->
 							<div class="form-group flex-column-1 Rtable-cell--highlight">
-<!--  class="form-control input-sm"  -->
+								<!--  class="form-control input-sm"  -->
 								<div class="Rtable Rtable--4cols">
 									<div class="Rtable-cell Rtable-cell--highlight">
 										<strong>Inv Code</strong>
@@ -148,7 +148,7 @@
 										<div if.bind="recordId === 'create'">
 											<input type="text" id="InventoryCode" class="form-control" value.bind="currentItem.InventoryCode | upperCase">
 										</div>
-										<div if.bind="recordId !== 'create'" class="form-control"style="width:280px">
+										<div if.bind="recordId !== 'create'" class="form-control" style="width:280px">
 											${currentItem.InventoryCode}
 
 										</div>
@@ -206,7 +206,7 @@
 										<div style="height:15px;margin-left:10px;margin-top:5px;margin-bottom:10px" else>
 
 
-											<a click.delegate="showModal( 'Artist')">${currentItem.artist.lastName}, ${currentItem.artist.firstName} 
+											<a click.delegate="showModal( 'Artist')">${currentItem.artist.lastName}, ${currentItem.artist.firstName}
 												<span show.bind="currentItem.artist.died==='' || currentItem.artist.died===0 || currentItem.artist.died===undefined"> (b.${currentItem.artist.yearofBirth})</span>
 												<span show.bind="currentItem.artist.died!==''  && currentItem.artist.died!==0 && currentItem.artist.died!==undefined"> (${currentItem.artist.yearofBirth}-${currentItem.artist.died})</span>												</strong>
 												</span>
@@ -224,7 +224,7 @@
 									<div class="Rtable-cell-70  Rtable-cell--highlight">
 
 										<input type="text" xid="Title" class="form-control" value.bind="currentItem.Title">
-										<!--  & validate --> 
+										<!--  & validate -->
 									</div>
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
 										<span dblclick.delegate="showModal( 'MediumSupportobj') ">	<strong> Medium</strong></span>
@@ -468,12 +468,12 @@
 
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
 										<strong> Keywords </strong>
-						
+
 									</div>
 									<div class="Rtable-cell-70 Rtable-cell--highlight">
 
-						
-								                   
+
+
 										<ak-multiselect k-value.two-way="currentItem.keywords" k-placeholder="Select keywords..." k-data-text-field="Description"
 										 k-data-value-field="Description" k-height.bind="400" k-data-source.bind="dataSource" k-widget.two-way="multiselect"
 										 id="multiselect-customizing-templates-codes">
@@ -503,7 +503,7 @@
 										<input type="text " xid="Edition " class="form-control " value.bind="currentItem.Edition">
 									</div>
 
-									
+
 
 
 
@@ -572,7 +572,8 @@
 										</div>
 										<div style="height:15px;margin-left:10px;margin-top:5px;margin-bottom:10px" else>
 											<a click.delegate="showModal( 'SoldToID')">${currentItem.soldtoname} </a>
-&nbsp;&nbsp; 				<a click.delegate="soldtoEdit()">...Open...</a>
+											&nbsp;&nbsp;
+											<a click.delegate="soldtoEdit()">...Open...</a>
 
 
 										</div>
@@ -599,7 +600,7 @@
 										<strong> Retail Price </strong>
 									</div>
 									<div class="Rtable-cell-70 Rtable-cell--highlight">
-                    <!--  input-sm -->
+										<!--  input-sm -->
 										<input type="text " xid="ArtValue " class="form-control " value.bind="currentItem.ArtValue">
 									</div>
 
@@ -642,7 +643,7 @@
 									</div>
 									<div class="Rtable-cell-70 Rtable-cell--highlight">
 
-						<span> ratio h: ${currentItem.clientHeightRatio} -- w: ${currentItem.clientWidthRatio} dim:
+										<span> ratio h: ${currentItem.clientHeightRatio} -- w: ${currentItem.clientWidthRatio} dim:
              h: ${currentItem.clientHeight} / w: ${currentItem.clientWidth} </span>
 										<!-- <span> ratio h: ${currentDim.clientHeightRatio} -- w: ${currentDim.clientWidthRatio} dim:
              h: ${currentDim.clientHeight} / w: ${currentDim.clientWidth} </span>
