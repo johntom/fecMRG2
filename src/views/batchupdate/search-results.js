@@ -163,6 +163,18 @@ export class SearchResults {
   }
  
 //////////////// main
+
+		// <button id="factsheet1" style="width: 125px" class="btn btn-primary" type="button" click.delegate="action1()">Transport</button>
+		// 			<button id="factsheet2" style="width:125px" class="btn btn-primary" type="button" click.delegate="action2()">Exhibition</button>
+		// 			<button id="factsheet3" style="width:125px" class="btn btn-primary" type="button" click.delegate="action3()">Reproduction</button>
+		// 			<button id="factsheet4" style="width:125px" class="btn btn-primary" type="button" click.delegate="action4()">Provenance</button>
+		// 			<br>
+		// 			<br>
+		// 			<button id="factsheet5" style="width:125px" class="btn btn-primary" type="button" click.delegate="action5()">MRG Location</button>
+		// 			<!-- <button id="factsheet6" style="width:125px" class="btn btn-primary" type="button" click.delegate="action6()">Temp Location</button> -->
+		// 			<button id="factsheet7" style="width:125px" class="btn btn-primary" type="button" click.delegate="action8()">Offerings</button>
+		// 			<button id="image1" style="width:125px" class="btn btn-primary" type="button" click.delegate="action9()">Merge Images</button>
+
   rowSelected(e) {
     console.log('e ' + e.sender)
     let grid = e.sender;
@@ -179,6 +191,18 @@ export class SearchResults {
        this.item.id = dataItem.id
         this.item.savedlist =dataItem.savedlist
       this.action2();
+    }
+     if (dataItem.type === 'Transport') {
+      this.item = dataItem.rec
+       this.item.id = dataItem.id
+        this.item.savedlist =dataItem.savedlist
+      this.action1();
+    }
+     if (dataItem.type === 'Provenance') {
+      this.item = dataItem.rec
+       this.item.id = dataItem.id
+        this.item.savedlist =dataItem.savedlist
+      this.action4();
     }
     //   
   }
