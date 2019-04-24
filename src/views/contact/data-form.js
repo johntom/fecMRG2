@@ -259,15 +259,6 @@ export class DataForm {
       mruget = JSON.parse(mruget)
     }
 
-    // let get the mru list and bump it
-    // function mrucheck(temp) {
-    //   this.skip = false
-    //   if (temp[0].id === temp[0].id) this.skip = true;
-    //   if (temp[0].id === temp[1].id) this.skip = true;
-    //   if (temp[0].id === temp[2].id) this.skip = true;
-    //   if (temp[0].id === temp[3].id) this.skip = true;
-    //   if (temp[0].id === temp[4].id) this.skip = true;
-    // }
 
     function mruinfo(temp) {
       if (temp[0] != undefined) this.mru1 = temp[0];
@@ -412,45 +403,7 @@ export class DataForm {
     }
   }
 
-  // checkData(images, formData) {
-  //   let promises = []
-  //   return new Promise((resolve, reject) => {
-  //     let i = 0;
-  //     let docs = this.currentItem.docs
-  //     if (docs === undefined) docs = []
-  //     let imagelen = images.length
-  //     for (i = 0; i < images.length; i++) {
-  //       let ext = images[i].name.split('.').pop();
-  //       let fname = images[i].name
-  //       let mid = -100// not needed
-  //       let ival = i
-  //       mid = docs.findIndex(x => x.FILE_NAME === fname)
-  //       if (mid > -1) {
-  //         // if we find file in array pass all values so we can evaluate later
-  //         let obj = { name: fname, val: ival, ext: ext }
-  //         var promise = this.promiseDialog(obj)
-  //         promises.push(promise);
-  //       } else {
-  //         var item = { FILE_NAME: fname, FILE_EXT: '.' + ext, OVERWRITE: 'N' }
-  //         docs.unshift(item)
-  //         formData.append('file', images[ival]);
-  //       }
-  //     }
-  //     return Promise.all(promises).then(values => {
-  //       for (i = 0; i < values.length; i++) {
-  //         //console.log(' this.response values[i] ',i,values[i].name,values[i].val,values[i].resp)
-  //         if (!values[i].resp) {
-  //           //true=wasCancelled
-  //           var item = { FILE_NAME: values[i].name, FILE_EXT: values[i].ext, OVERWRITE: 'Y' }
-  //           // dont add to data docs.unshift(item)
-  //           formData.append('file', images[values[i].val]);
-  //         }
-  //       }
-  //       resolve(formData)
-  //     })
-  //   })
-  // }
-
+  
 
   canDeactivate() {
     return new Promise((resolve, reject) => {

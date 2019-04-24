@@ -1,61 +1,116 @@
 <template>
 	<section class="full-height flex-column-1 au-animate ignore">
 		<div class="flex-row-none section-header">
-		<h4>	${heading}</h4>
+			<h4> ${heading}</h4>
 		</div>
 		<div class="flex-row-1 ignore">
 			<div class="flex-column-1 search-panel">
 				<form>
-					<div class="form-group">
-						<input id="searchcntorg" type="text" class="form-control" placeholder="Search for org..." value.bind="search.org">
-					</div>
+					<div class="Rtable Rtable--2cols">
+						<div class="Rtable-cell-50 Rtable-cell">
+							<div class="form-group">
+								<input id="searchcntorg" type="text" class="form-control" placeholder="Search for org..." value.bind="search.org">
+							</div>
 
-					<div class="form-group">
-						<input id="searchcntl" type="text" class="form-control" placeholder="Search for inv contact last..." value.bind="search.contactl">
-					</div>
-					<div class="form-group">
-						<input id="searchcntf" type="text" class="form-control" placeholder="Search for inv contact first..." value.bind="search.contactf">
-					</div>
+							<div class="form-group">
+								<input id="searchcntl" type="text" class="form-control" placeholder="Search for inv contact last..." value.bind="search.contactl">
+							</div>
+							<div class="form-group">
+								<input id="searchcntf" type="text" class="form-control" placeholder="Search for inv contact first..." value.bind="search.contactf">
+							</div>
 
-	<div class="form-group">
-						<input id="searchcntl" type="text" class="form-control" placeholder="Search for inv contact2 last..." value.bind="search.contactl2">
-					</div>
-					<div class="form-group">
-						<input id="searchcntf" type="text" class="form-control" placeholder="Search for inv contact2 first..." value.bind="search.contactf2">
-					</div>
+							<div class="form-group">
+								<input id="searchcntl" type="text" class="form-control" placeholder="Search for inv contact2 last..." value.bind="search.contactl2">
+							</div>
+							<div class="form-group">
+								<input id="searchcntf" type="text" class="form-control" placeholder="Search for inv contact2 first..." value.bind="search.contactf2">
+							</div>
 
-					<div class="form-group">
-						<input id="xail" type="text" class="form-control" placeholder="Search for contact email ..." value.bind="search.contactemail">
-					</div>
-					<div class="form-group">
-						<input id="xity" type="text" class="form-control" placeholder="Search for City ..." value.bind="search.orgcity">
-					</div>
-					<div class="form-group">
-						<input id="xtate" type="text" class="form-control" placeholder="Search for State ..." value.bind="search.orgstate">
-					</div>
-		<div class="flex-row-none">
+							<div class="form-group">
+								<input id="xail" type="text" class="form-control" placeholder="Search for contact email ..." value.bind="search.contactemail">
+							</div>
+							<div class="form-group">
+								<input id="xity" type="text" class="form-control" placeholder="Search for City ..." value.bind="search.orgcity">
+							</div>
+							<div class="form-group">
+								<input id="xtate" type="text" class="form-control" placeholder="Search for State ..." value.bind="search.orgstate">
+							</div>
+							<div class="flex-row-none">
 								<div class="form-group flex-column-1">
 									<input id="searchartistl" type="text" class="form-control" placeholder="Search for Artist last, first..." value.bind="search.artistl">
 								</div>
 
 							</div>
-		<!-- <div class="flex-row-none">
+
+
+							<!-- 
+							<div class="flex-row-none">
 								<div class="form-group flex-column-1">
-									<input id="searchartistl" type="text" class="form-control" placeholder="Search for sold to..." value.bind="search.soldto">
+									<ak-multiselect k-value.two-way="currentItem.contacttypes" k-placeholder="Select contacttypes..." k-data-text-field="Description"
+									 k-data-value-field="Description" k-height.bind="400" k-data-source.bind="dataSource" k-widget.two-way="multiselect"
+									 id="multiselect-customizing-templates-codes">
+										<ak-template for="noDataTemplate">
+											<div>
+												<button ak-button click.delegate="addNew()">addNew</button>
+											</div>
+										</ak-template>
+									</ak-multiselect>
 								</div>
-							
 							</div> -->
-					<div class="form-group flex-column-1 margin-left-10">
-						<label for="adjuster">mru</label>
-						<ul>
-							<li repeat.for='e of mru'>
-								<a click.delegate="populateInv(e)"> ${e.name} ${e.bori}</a>
-							</li>
-						</ul>
+
+
+
+
+
+						</div>
+						<div class="Rtable-cell-50 Rtable-cell">
+
+							<div class="form-group flex-column-1 margin-left-10">
+								<label for="adjuster">mru</label>
+								<ul>
+									<li repeat.for='e of mru'>
+										<a click.delegate="populateInv(e)"> ${e.name} ${e.bori}</a>
+									</li>
+								</ul>
+							</div>
+						</div>
 					</div>
+
+					<!-- <div class="flex-row-none">
+						<div class="Rtable-cell-100 Rtable-cell--highlight">
+							<strong> &nbsp;announcements</strong>
+							<input type="checkbox" ref="mailings" id="mailings" checked.bind="search.mailings">
+							<strong> &nbsp;&nbsp;nomailings</strong>
+							<input type="checkbox" id="nomailings" checked.bind="search.nomailings">
+
+							<strong> &nbsp;&nbsp;international</strong>
+							<input type="checkbox" id="international" checked.bind="search.international">
+							<strong> &nbsp;&nbsp;noinfo</strong>
+							<input type="checkbox" id="noinfo" checked.bind="search.noinfo">
+							<strong> &nbsp;&nbsp;email</strong>
+							<input type="checkbox" id="email" checked.bind="search.email">
+							<strong> &nbsp;&nbsp;nolongerherecatalogssent</strong>
+							<input type="checkbox" id="nolongerherecatalogssent" checked.bind="search.nolongerherecatalogssent">
+						</div>
+					</div> -->
 					<button id="searchInputBtn" class="btn btn-primary" type="button" click.delegate="performSearch()">Search!</button>
+		<!-- <div class="flex-row-none">
+				<div class="form-group flex-column-1">
+					<ak-multiselect k-value.two-way="currentItem.contacttypes" k-placeholder="Select contacttypes..." k-data-text-field="Description"
+					 k-data-value-field="Description" k-height.bind="400" k-data-source.bind="dataSource" k-widget.two-way="multiselect"
+					 id="multiselect-customizing-templates-codes">
+						<ak-template for="noDataTemplate">
+							<div>
+								<button ak-button click.delegate="addNew()">addNew</button>
+							</div>
+						</ak-template>
+					</ak-multiselect>
+				</div>
+			</div> -->
 				</form>
+
 			</div>
+	
 		</div>
 	</section>
 </template>

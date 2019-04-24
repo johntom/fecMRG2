@@ -57,6 +57,9 @@ export class App {
       { route: 'todo/:id', name: 'todo-search-results', moduleId: PLATFORM.moduleName('./views/todo/search-results'), title: 'Search Results', activationStrategy: 'replace' },
       { route: 'todo/data/:id', name: 'todo-data-form', moduleId: PLATFORM.moduleName('./views/todo/data-form'), title: 'Data Form', activationStrategy: 'replace' },
       { route: 'todo', name: 'todo', moduleId: PLATFORM.moduleName('./views/todo/todo'), nav: true, title: 'Todo' },
+      { route: 'email/:id', name: 'email-search-results', moduleId: PLATFORM.moduleName('./views/emaillist/search-results'), title: 'Search Results', activationStrategy: 'replace' },
+      { route: 'email/data/:id', name: 'email-data-form', moduleId: PLATFORM.moduleName('./views/emaillist/data-form'), title: 'Data Form', activationStrategy: 'replace' },
+      { route: 'email', name: 'email', moduleId: PLATFORM.moduleName('./views/emaillist/email'), nav: true, title: 'Email' },
 
         { "route":  'action', name: 'action', moduleId: PLATFORM.moduleName('./views/action/action'), nav: true, title: 'Actions', settings: { 
         children: [
