@@ -15,27 +15,14 @@
 	</style>
 
 	<div class="flex-row-none">
-		<!-- style="width:50%" <div id="top-left" class="data-form overflow-y-auto flex-column-2"> -->
 		<div class="RLeft">
-			<!-- <div class="Rtable-cell--highlight">
-				<h3> Purchased</h3>
-			</div> -->
+
 			<div class="form-group flex-column-1 ">
 				<div class="Rtable Rtable--2cols">
 					<div class="Rtable-cell-30 Rtable-cell--highlight">
 						<strong> Purchased From</strong>
 					</div>
 					<div class="Rtable-cell-70  Rtable-cell--light">
-						<!-- <select id="OwnerID" class="form-control" value.bind='currentItem.PurchasedFrom'> 
-                      <option model.bind="null">Choose...</option> 
-                       <option repeat.for="opt of appService.orgsList" model.bind="opt._id">
-                        ${opt.OrgName} 
-                      </option> 
-                    </select> -->
-						<!-- <input dblclick.delegate="showModal('PurchasedFrom')" type="text" 
-                    id="PurchasedFrom"
-                     class="form-control input-sm" value.bind="currentItem.purchasedfromname"> -->
-
 						<div if.bind="currentItem.purchasedfromname===undefined || currentItem.purchasedfromname===''">
 							<a click.delegate="showModal( 'PurchasedFrom')">select_link </a>
 						</div>
@@ -44,10 +31,6 @@
 
 						</div>
 					</div>
-
-
-
-
 					<div class="Rtable-cell-30 Rtable-cell--highlight">
 						<strong> Price</strong>
 					</div>
@@ -80,9 +63,8 @@
 						<strong> Note</strong>
 					</div>
 					<div class="Rtable-cell-70  Rtable-cell--highlight">
-						<!-- <input type="text" id="PurchasedNotes" class="form-control input-sm" value.bind="currentItem.PurchasedNotes"> -->
-            		<textarea id="PurchasedNotes" cols="66" rows="3" class="form-control input-sm" wrap value.bind="currentItem.PurchasedNotes">	</textarea>
-						
+						<textarea id="PurchasedNotes" cols="66" rows="3" class="form-control input-sm" wrap value.bind="currentItem.PurchasedNotes">	</textarea>
+
 					</div>
 
 				</div>
@@ -91,3 +73,21 @@
 
 	</div>
 </template>
+
+<!-- style="width:50%" <div id="top-left" class="data-form overflow-y-auto flex-column-2"> -->
+
+
+<!-- <div class="Rtable-cell--highlight">
+				<h3> Purchased</h3>
+			</div> -->
+<!-- <input type="text" id="PurchasedNotes" class="form-control input-sm" value.bind="currentItem.PurchasedNotes"> -->
+
+<!-- <select id="OwnerID" class="form-control" value.bind='currentItem.PurchasedFrom'> 
+                      <option model.bind="null">Choose...</option> 
+                       <option repeat.for="opt of appService.orgsList" model.bind="opt._id">
+                        ${opt.OrgName} 
+                      </option> 
+                    </select> -->
+<!-- <input dblclick.delegate="showModal('PurchasedFrom')" type="text" 
+                    id="PurchasedFrom"
+                     class="form-control input-sm" value.bind="currentItem.purchasedfromname"> -->

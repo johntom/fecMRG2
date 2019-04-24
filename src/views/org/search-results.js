@@ -20,7 +20,7 @@ export class SearchResults {
   origItems = [];
 
   //  console.log(' inv SearchResults ');
-  message = 'Hello Adjusters !';
+  message = ''//Hello Adjusters !';
   datasource = new kendo.data.DataSource({
 
     transport: {

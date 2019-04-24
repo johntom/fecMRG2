@@ -94,6 +94,7 @@ export class SearchResults {
           // statusresults: { defaultValue:  {name:'in process'}  },
           statusresults: { defaultValue: 'in process' },
           status: { defaultValue: 'high' },
+          DeveloperNotes: { type: "string" },
         }
       }
     },
@@ -232,12 +233,10 @@ export class SearchResults {
   }
 
   company_memoEditor(container, options) {
-    $('<textarea name="' + options.field + '" cols="50"  rows="6" required/>').appendTo(container);
+    // $('<textarea name="' + options.field + '" cols="50"  rows="6" required/>').appendTo(container);
+    $('<textarea name="' + options.field + '" cols="50"  rows="6" />').appendTo(container);
   }
-// typeEditor(container, options) {
- 
-//     $('<textarea name="' + options.field + '" cols="50"  rows="6" required/>').appendTo(container);
-//   }
+
 
   loadGrid() {
     let options = localStorage["kendo-grid-mail"];

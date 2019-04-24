@@ -346,10 +346,10 @@
 									<!-- //announcements mrg driven  nomailings client driven  var checkbox = document.getElementById(currentItem.mailings");
 checkbox.indeterminate = true;-->
 									<div class="Rtable-cell-100 Rtable-cell--highlight">
-                    	<strong> 	<span if.bind="currentItem.mailings===undefined">-</span>&nbsp;announcements</strong>
+                    	<!-- <strong> 	<span if.bind="currentItem.mailings===undefined">-</span>&nbsp;announcements</strong> -->
 										<!-- <input type="checkbox" ref = "test" id="test" > -->
 									
-										<strong> &nbsp;announcements</strong>
+										<strong><span if.bind="currentItem.mailings===undefined">-</span> &nbsp;announcements</strong>
 										<input type="checkbox" ref = "mailings" id="mailings" checked.bind="currentItem.mailings">
 										<strong> &nbsp;&nbsp;nomailings</strong>
 										<input type="checkbox" id="nomailings" checked.bind="currentItem.nomailings">

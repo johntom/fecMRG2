@@ -87,7 +87,7 @@ export class Artists {
         this.currentItem.artists = this.currentItem.artists
         this.artname = artistrec
 
-
+ this.artist= artistrec
         // delete this.currentItem.artist
 
 

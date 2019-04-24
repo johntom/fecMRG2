@@ -288,7 +288,7 @@ export class ApplicationService {
       isSelected: true
     },
     {
-      name: "Contact",
+      name: "Contact (read-only)",
       viewModel: "./one-to-many/contact",
       isSelected: false
     }

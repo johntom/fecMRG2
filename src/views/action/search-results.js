@@ -132,7 +132,32 @@ export class SearchResults {
       }
     },
     pageSize: 12,
+// change: function (e, args) {
+//         var grid = e.sender;
+//         var items = grid.items();
+//         items.each(function (idx, row) {
+//             var idValue = grid.dataItem(row).get(idField);
+//             if (row.className.indexOf("k-state-selected") >= 0) {
+//                 selectedOrders[idValue] = true;
+//             } else if (selectedOrders[idValue]) {
+//                 delete selectedOrders[idValue];
+//             }
+//         });
+//       },
+//       dataBound: function (e) {
+//         var grid = e.sender;
+//         var items = grid.items();
+//         var itemsToSelect = [];
+//         items.each(function (idx, row) {
+//           var dataItem = grid.dataItem(row);
+//           if (selectedOrders[dataItem[idField]]) {
+//             itemsToSelect.push(row);
+//           }
+//         });
 
+//         e.sender.select(itemsToSelect);
+//       }
+  
     // change: function (e, args) {
     //   var grid = e//.sender; 
     //   var items = grid.items//();
@@ -149,20 +174,7 @@ export class SearchResults {
     //       }
     //   });
 
-    //  let grid = e.sender;
-    //   let selectedRow = grid.select();
-    //   let dataItem = grid.dataItem(selectedRow);
-    //     for (const item of items) {
-    //       var idValue = item.id;
-    //     //  c.ArtistName = item.LastName + ', ' + item.FirstName
-    //       if (item.className.indexOf("k-state-selected") >= 0) {
-    //         selectedOrders[idValue] = true;
-    //       } else if (selectedOrders[idValue]) {
-    //         delete selectedOrders[idValue];
-    //       }
-    //     }
-
-
+    
     // },
     // dataBound: function (e) {
     //   var grid = e//.sender;
@@ -177,7 +189,18 @@ export class SearchResults {
 
     //   e.sender.select(itemsToSelect);
     // }
-
+//  let grid = e.sender;
+    //   let selectedRow = grid.select();
+    //   let dataItem = grid.dataItem(selectedRow);
+    //     for (const item of items) {
+    //       var idValue = item.id;
+    //     //  c.ArtistName = item.LastName + ', ' + item.FirstName
+    //       if (item.className.indexOf("k-state-selected") >= 0) {
+    //         selectedOrders[idValue] = true;
+    //       } else if (selectedOrders[idValue]) {
+    //         delete selectedOrders[idValue];
+    //       }
+    //     }
     // aggregate: [{ field: "type", aggregate: "count" },
     //   { field: "template", aggregate: "count" }
     // ]

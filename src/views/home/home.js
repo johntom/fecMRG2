@@ -7,8 +7,8 @@ import { ApiService } from '../../utils/servicesApi';
 
 export class Home {
   heading = "MRG Home Page";
-  version = 301.26
-  versionDate = 'Tue 4/21/2019 5pm'
+  version = 301.27
+  versionDate = 'Tue 4/21/2019 10pm'
 
   issues = [
     `"@progress/kendo-ui": "^2017.2.504"`,

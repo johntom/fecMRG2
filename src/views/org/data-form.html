@@ -66,21 +66,21 @@
 									</div>
 
 
-									<div class="Rtable-cell-30 Rtable-cell--highlight">
-										<strong> Notes</strong>
-									</div>
-									<div class="Rtable-cell-70  Rtable-cell--highlight">
-										<input type="text" id="BusIndivid" class="form-control input-sm" value.bind="org.Notes">
-									</div>
+									
 								</div>
 
 							</div>
 							<div class="form-group flex-column-1 margin-left-10">
 								<div class="Rtable Rtable--2cols">
-
-									<div class="Rtable-cell-30 Rtable-cell--highlight">
-										<strong> Contact tab below is read-only</strong>
+<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong> Note</strong>
 									</div>
+									<div class="Rtable-cell-70  Rtable-cell--highlight">
+									<textarea id="Notes" cols="66" rows="3" class="form-control input-sm" wrap value.bind="org.org">	</textarea>
+		          		</div>
+									<!-- <div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong> Contact tab below is read-only</strong>
+									</div> -->
 
 
 
@@ -92,7 +92,7 @@
 
 				</div>
 
-					<div if.bind="recordId==='create'">Create Mode. Please save record before entering tabs </div>
+					<div if.bind="recordId==='create'">ORG FORM IS NOT AVAIL for Create Mode. Please save record before entering tabs </div>
 				<div else>
 
 					<div id="bottom-left" class="flex-row-3">
@@ -114,18 +114,7 @@
 
 			</form>
 		</div>
-		<!-- <div class="flex-column-none section-footer">
-			<span>&nbsp;&nbsp;	
-          <button class="btn btn-sm btn-danger" click.delegate="saveclaim()">
-                  Save & Close Claim
-          </button>
-        </span>
-			<span>&nbsp;&nbsp;	
-          <button class="btn btn-sm btn-danger" click.delegate="close()">
-                 Close
-          </button>
-        </span>
-		</div> -->
+		
 
 	<div class="flex-column-none section-footer">
 		
