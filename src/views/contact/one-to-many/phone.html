@@ -13,154 +13,178 @@
 
 		table tbody {
 			display: block;
-			height: 200px;
+			height: 250px;
 			overflow: auto; //set tbody to auto
 		}
 	</style>
 	<section class="docs full-height flex-column-1 overflow-y-auto ignore">
-		<h4>
+		<!-- <h4>
+			<i class="fa fa-folder-open"></i> Phone
+			<a slot="buttons-slot" class="btn btn-primary" click.delegate="addPhone()">
+				<i class="fa fa-plus"></i> Add Phone
+			</a>
+		</h4> -->
+		<div class="Rtable Rtable--2cols">
+	<div class="Rtable-cell-50 Rtable-cell">
+<h4>
 			<i class="fa fa-folder-open"></i> Phone
 			<a slot="buttons-slot" class="btn btn-primary" click.delegate="addPhone()">
 				<i class="fa fa-plus"></i> Add Phone
 			</a>
 		</h4>
-		<table class="table-condensed table">
-			<thead class="table-header-blue">
-				<tr>
+	</div>
+  <div class="Rtable-cell-50 Rtable-cell">
+  <h4>
+					<i class="fa fa-folder-open"></i> Email
+					<a slot="buttons-slot" class="btn btn-primary" click.delegate="addEmail()">
+						<i class="fa fa-plus"></i> Add Email
+					</a>
+				</h4>
+</div>
+	<div class="Rtable Rtable--2cols">
+			<div class="Rtable-cell-50 Rtable-cell--highlight">
+				<table class="table-condensed table">
+					<thead class="table-header-blue">
+						<tr>
 
-					<tr>
-						<th width="100px" class="header">Type
-						</th>
-						<th width="200px" class="header">Phoneno
-						</th>
-						<th width="100px" class="header">Area
-						</th>
-						<th width="300px" class="header">Ext
-						</th>
-						<th width="225px" class="header">Cmd
+							<tr>
+								<th width="100px" class="header">Type
+								</th>
+								<th width="200px" class="header">Phoneno
+								</th>
+								<th width="100px" class="header">Area
+								</th>
+								<th width="300px" class="header">Ext
+								</th>
+								<!-- <th width="225px" class="header">Cmd
 
-						</th>
-					</tr>
-			</thead>
-			<tfoot>
-				<tr>
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
-			</tfoot>
-			<tbody>
-				<tr repeat.for="phone of currentItem.phones" with.bind="phone">
+								</th> -->
+							</tr>
+					</thead>
+					<tfoot>
+						<tr>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+					</tfoot>
+					<tbody>
+						<tr repeat.for="phone of currentItem.phones" with.bind="phone">
 
-					<td width="100px">
+							<td width="100px">
 
-						<select id="phonetype" class="form-control  input-sm" value.bind="phone.type"> 
+								<select id="phonetype" class="form-control  input-sm" value.bind="phone.type"> 
                       <option model.bind="null">Choose...filterOnCode</option> 
                          <option repeat.for="opt of appService.codesPhoneType " model.bind="opt.id">
                     ${opt.Description} 
                       </option> 
                     </select>
 
-					</td>
-					<td width="200px">
-						<span show.bind="!phone.edit">${phoneno}</span>
+							</td>
+							<td width="200px">
+								<!-- <span show.bind="!phone.edit">${phoneno}</span> -->
 
-						<input show.bind="phone.edit" class="form-control input-sm" disabled.bind="!phone.edit" type="phone" value.bind="phoneno">
-					</td>
-					<td width="100px">
-						<span show.bind="!phone.edit">${area}</span>
+								<!-- <input show.bind="phone.edit" class="form-control input-sm" disabled.bind="!phone.edit" type="phone" value.bind="phoneno"> -->
+								<input  class="form-control input-sm" type="phone" value.bind="phoneno">
+							
+              </td>
+							<td width="100px">
+								<!-- <span show.bind="!phone.edit">${area}</span>
+								<input show.bind="phone.edit" class="form-control input-sm" disabled.bind="!phone.edit" type="text" value.bind="area"> -->
+								<input  class="form-control input-sm"  type="text" value.bind="area">
+							</td>
+							<td width="300px">
 
-						<input show.bind="phone.edit" class="form-control input-sm" disabled.bind="!phone.edit" type="text" value.bind="area">
-					</td>
-					<td width="300px">
+								<!-- <span show.bind="!phone.edit">${ext}</span> -->
 
-						<span show.bind="!phone.edit">${ext}</span>
+								<!-- <input show.bind="phone.edit" class="form-control input-sm" disabled.bind="!phone.edit" type="text" value.bind="ext"> -->
+                <input  class="form-control input-sm"  type="text" value.bind="ext">
+							</td>
+							<td width="225px">
 
-						<input show.bind="phone.edit" class="form-control input-sm" disabled.bind="!phone.edit" type="text" value.bind="ext">
-					</td>
-					<td width="225px">
+								<!-- <button class="btn  btn-sm  btn-primary" click.delegate="saveitem(phone,$index)">${ !phone.edit ? 'Edit' : 'Done' }</button>
 
-						<button class="btn  btn-sm  btn-primary" click.delegate="saveitem(note,$index)">${ !note.edit ? 'Update' : 'Done' }</button>
+								<button class="btn  btn-sm  btn-danger" click.delegate="remove(v,$index)">Delete</button> -->
 
-						<button class="btn  btn-sm  btn-danger" click.delegate="remove(note,$index)">Delete</button>
-
-					</td>
+							</td>
 
 
-			</tbody>
-		</table>
-	<h4>
-			<i class="fa fa-folder-open"></i> Email
-			<a slot="buttons-slot" class="btn btn-primary" click.delegate="addEmail()">
-				<i class="fa fa-plus"></i> Add Email
-			</a>
-		</h4>
+					</tbody>
+				</table>
+			</div>
+			<div class="Rtable-cell-50 Rtable-cell--highlight">
+				<!-- <h4>
+					<i class="fa fa-folder-open"></i> Email
+					<a slot="buttons-slot" class="btn btn-primary" click.delegate="addEmail()">
+						<i class="fa fa-plus"></i> Add Email
+					</a>
+				</h4> -->
 
-	<table class="table-condensed table">
-			<thead class="table-header-blue">
-				<tr>
+				<table class="table-condensed table">
+					<thead class="table-header-blue">
+						<tr>
 
-					<tr>
-						<th width="100px" class="header">Type
-						</th>
-						<th width="200px" class="header">Email
-						</th>
-					<th width="200px" class="header">Mail Chimp
-						</th>
-						<th width="225px" class="header">Cmd
+							<tr>
+								<th width="100px" class="header">Type
+								</th>
+								<th width="200px" class="header">Email
+								</th>
+								<th width="200px" class="header">Mail Chimp
+								</th>
+								<!-- <th width="225px" class="header">Cmd
 
-						</th>
-					</tr>
-			</thead>
-			<tfoot>
-				<tr>
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
-			</tfoot>
-			<tbody>
-				<tr repeat.for="email of currentItem.emails" with.bind="email">
+								</th> -->
+							</tr>
+					</thead>
+					<tfoot>
+						<tr>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+					</tfoot>
+					<tbody>
+						<tr repeat.for="email of currentItem.emails" with.bind="email">
 
-					<td width="100px">
+							<td width="100px">
 
-						<select id="phonetype" class="form-control  input-sm" value.bind="email.type"> 
+								<select id="phonetype" class="form-control  input-sm" value.bind="email.type"> 
                       <option model.bind="null">Choose...filterOnCode</option> 
                          <option repeat.for="opt of appService.codesPhoneType " model.bind="opt.id">
                     ${opt.Description} 
                       </option> 
                     </select>
 
-					</td>
-					<td width="200px">
-						<!-- <span show.bind="!email.edit">${email}</span> -->
+							</td>
+							<td width="200px">
+								<!-- <span show.bind="!email.edit">${email}</span> -->
 
-						<input  class="form-control input-sm"  type="email" value.bind="email">
-					</td>
-					<td width="200px">
-						<!-- <span show.bind="!email.edit">${emailchimp}</span> -->
-
-
-            	<span if.bind="emailchimp===undefined">-</span>
+								<input class="form-control input-sm" type="email" value.bind="email">
+							</td>
+							<td width="200px">
+								<!-- <span show.bind="!email.edit">${emailchimp}</span> -->
 
 
-		<input type="checkbox" id="emailchimp" checked.bind="emailchimp">  ${emailchimp}
-
-					</td>
-					<td width="225px">
-
-						<button class="btn  btn-sm  btn-primary" click.delegate="saveitem(email,$index)">${ !note.edit ? 'Edit' : 'Done' }</button>
-
-						<button class="btn  btn-sm  btn-danger" click.delegate="remove(email,$index)">Delete</button>
-
-					</td>
+								<span if.bind="emailchimp===undefined">-</span>
 
 
-			</tbody>
-		</table>
+								<input type="checkbox" id="emailchimp" checked.bind="emailchimp"> ${emailchimp}
+
+							</td>
+							<td width="225px">
+
+								<!-- <button class="btn  btn-sm  btn-primary" click.delegate="saveitem(email,$index)">${ !email.edit ? 'Edit' : 'Done' }</button>
+
+								<button class="btn  btn-sm  btn-danger" click.delegate="remove(email,$index)">Delete</button> -->
+
+							</td>
 
 
+					</tbody>
+				</table>
 
+
+			</div>
 
 
 	</section>
