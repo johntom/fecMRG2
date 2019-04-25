@@ -156,15 +156,24 @@
 			</div>
 			<div show.bind="fieldbase==='ORG'">
 				<div class="form-group flex-column-1">
-<!-- <input value.bind="input" list.bind="listIdVar & attr"> -->
-					<input attach-focus="true" ref="myDatalistO" type="text" list="myDatalistO" 
+					<!-- <input attach-focus="true" ref="myDatalistO" type="text" list="myDatalistO" 
        		change.delegate="changeCallbackOrg(selectedValueO)"
 					 input.delegate="selectedValueO = findOptionO($event.target.value)" />
 					<datalist id="myDatalistO" >
 						<option repeat.for="option of appService.orgsList">${option.OrgName} ; ${option.BusIndivid} ; ${option._id}</option>
-					</datalist>  
+					</datalist>   -->
+ORG
+	<input ref="myDatalistO" type="text" list="myDatalistO" change.delegate="changeCallbackOrg(selectedValueO)" 
+  input.delegate="selectedValueO = findOptionO($event.target.value)"
+					 attach-focus="true" />
+					<datalist id="myDatalistO">
+						<option repeat.for="option of appService.orgsList">${option.OrgName} ; ${option.BusIndivid} ; ${option._id}</option>
+					</datalist> 
+
 				</div>
 				<!-- ${selectedValue} /	${selectedValueO} / ${myDatalistO} -->
+        <!-- <input value.bind="input" list.bind="listIdVar & attr"> -->
+
 			</div>
 			<!-- fix-aubs  -->
 			<!-- 	c ref='dorg' data.bind="appService.orgsList" value.bind="OrgName" debounce.bind="350"

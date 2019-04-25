@@ -7,16 +7,22 @@ import { PromptServ } from '../../services/promptserv';
 import { ApiService } from '../../utils/servicesApi';
 import { Promptyn } from '../../services/promptyn';
 import { Promptartist } from '../prompt/promptArtist';
+import { customAttribute, inject, bindingMode, TaskQueue } from 'aurelia-framework';
 
-  import {customAttribute, inject, bindingMode, TaskQueue} from 'aurelia-framework';
-    
-    // @customAttribute('focus', bindingMode.twoWay)
-    // @inject(Element, TaskQueue)
+import { bindable, observable } from 'aurelia-framework';
+//, bindingMode
+// @bindable attachFocus - you will be able to use it in you views as attach-focus.bind="true".
+// static inject = [DialogController, ApplicationService, MyDataService, DialogService, ApiService];
 
 export class Prompt {
+  @bindable searchdoc
+  @bindable attachFocus
+  // @customAttribute('focus', bindingMode.twoWay)
+  // @inject(Element, TaskQueue)
 
 
-  static inject = [DialogController, ApplicationService, MyDataService, DialogService, ApiService,Element, TaskQueue];
+  static inject = [DialogController, ApplicationService, MyDataService, DialogService, ApiService];
+  // , Element, TaskQueue];
   // ConsignmentShippingID=ConservedFrom
   // products = ['Motherboard', 'CPU', 'Memory'];
   products = [
@@ -48,7 +54,7 @@ export class Prompt {
     // orgs
     x.ArtistName === value
   })
-selectedValueSL = null;
+  selectedValueSL = null;
   findOptionSL = value => this.appService.savedlists.find(x => x.name === value)
 
 
@@ -87,7 +93,8 @@ selectedValueSL = null;
   //   this.ArtistName = this.currentItem.artist
   //   if (this.ArtistName.ArtistName === undefined) this.ArtistName.ArtistName = this.currentItem.artist.lastName + ', ' + this.currentItem.artist.firstName
 
-  constructor(controller, appService, dataService, dialogService, api,element, taskQueue) {
+  constructor(controller, appService, dataService, dialogService, api){
+    // , element, taskQueue) {
     this.controller = controller;
     this.answer = null;
     this.appService = appService;
@@ -98,30 +105,30 @@ selectedValueSL = null;
     this.addlist//='aaa'
     this.dialogService = dialogService
     this.api = api
-     this.element = element;
-        this.taskQueue = taskQueue;
-         this.focusListener = e => this.value = true;
-      this.blurListener = e => {
-        if (document.activeElement !== this.element) {
-          this.value = false;
-        }
-      };
+   // this.element = element;
+   // this.taskQueue = taskQueue;
+    this.focusListener = e => this.value = true;
+    this.blurListener = e => {
+      if (document.activeElement !== this.element) {
+        this.value = false;
+      }
+    };
   }
- giveFocus() {
-        this.taskQueue.queueMicroTask(() => {
-          if (this.value) {
-          	this.element.focus();
-          }
-        });
-      }
-    
-      valueChanged(newValue) {
-        if (newValue) {
-          this.giveFocus();
-        } else {
-          this.element.blur();
-        }
-      }
+  // giveFocus() {
+  //   this.taskQueue.queueMicroTask(() => {
+  //     if (this.value) {
+  //       this.element.focus();
+  //     }
+  //   });
+  // }
+
+  // valueChanged(newValue) {
+  //   if (newValue) {
+  //     this.giveFocus();
+  //   } else {
+  //     this.element.blur();
+  //   }
+  // }
   getStates(filter, limit) {
     let filterlc = filter.toLowerCase()
     let states
@@ -302,7 +309,7 @@ selectedValueSL = null;
       // 		if (this.fieldname === 'PhotographerID') {
       // 				if (this.fieldname === 'ConsignmentShippingID') {
       if (this.fieldname === 'SoldToID') {
-         this.hasFocus = true;
+        this.hasFocus = true;
         if (this.currentItem.SoldToID === undefined || this.currentItem.SoldToID === '') {
         } else {
           // //  this.insuredobj = this.currentItem.insured
@@ -460,7 +467,7 @@ selectedValueSL = null;
     let findvalue = this.myDatalistC.value
   }
 
-changeCallbackSL(selectedValueSL) {
+  changeCallbackSL(selectedValueSL) {
     let findvalue = this.myDatalistSL.value
   }
 
@@ -752,12 +759,12 @@ changeCallbackSL(selectedValueSL) {
     if (this.fieldname === 'Treatment') {
       this.currentItem.Treatment
     }
-    if (this.fieldname === 'SavedList') { 
-//       selectedValueSL: Object
-// createdAt: "2018-10-18T23:12:19.462Z"
-// id: "5bc913536348676c152ae30c"
-// name: (...)
-// updatedAt: "2018-10-18T23:12:19.462Z"
+    if (this.fieldname === 'SavedList') {
+      //       selectedValueSL: Object
+      // createdAt: "2018-10-18T23:12:19.462Z"
+      // id: "5bc913536348676c152ae30c"
+      // name: (...)
+      // updatedAt: "2018-10-18T23:12:19.462Z"
 
       let name = `${this.selectedValueSL.name}`
       console.log(' dsaved.value', name)//, this.dsaved.value)
