@@ -98,13 +98,13 @@
 					 open-on-focus.bind="true" key="name" results-limit.bind="22" select-single-result.bind="true">
 					</aubs-typeahead> -->
 					<h3> ${doc2} </h3>
-<!-- input.delegate="findOptionC = findOptionC($event.target.value)"
+					<!-- input.delegate="findOptionC = findOptionC($event.target.value)"
 					 -->
-	<label for="SavedList">SavedList</label>
-					<input  attach-focus="true" ref="myDatalistSL" type="text" list="myDatalistSL" change.delegate="changeCallbackSL(selectedValueSL)"
+					<label for="SavedList">SavedList</label>
+					<input attach-focus="true" ref="myDatalistSL" type="text" list="myDatalistSL" change.delegate="changeCallbackSL(selectedValueSL)"
 					 input.delegate="selectedValueSL = findOptionSL($event.target.value)" />
-				
-					<datalist  id="myDatalistSL">
+
+					<datalist id="myDatalistSL">
 						<option repeat.for="option of appService.savedlists">${option.name}</option>
 					</datalist>
 					<pre style="margin-top: 100px"><code>${selectedValueSL.name}</code></pre>
@@ -113,21 +113,21 @@
 
 				</div>
 
-					<div>
-						<input ref="addtextref" id="addlist" type="text" class="form-control" placeholder="Enter a New SaveList name" value.bind="addlist">
-					</div>
-
+				<div>
+					<input ref="addtextref" id="addlist" type="text" class="form-control" placeholder="Enter a New SaveList name" value.bind="addlist">
 				</div>
+
+			</div>
 			</div>
 			<div show.bind="fieldname==='Catalog'">
 				<div class="form-group flex-column-1">
-<!-- attach-focus="true" focus.bind="hasFocus" -->
+					<!-- attach-focus="true" focus.bind="hasFocus" -->
 					<div> born: ${ArtistName.yearofBirth } died: ${ArtistName.died} </div> -->
 
 					<label for="Catalog">Catalog</label>
 					<input ref="myDatalistC" type="text" list="myDatalistC" change.delegate="changeCallbackCatalog(selectedValue)" input.delegate="findOptionC = findOptionC($event.target.value)"
 					/>
-					<datalist  attach-focus="true"  id="myDatalistC">
+					<datalist attach-focus="true" id="myDatalistC">
 						<option repeat.for="option of appService.catalogList">${option.CatalogTitle}</option>
 					</datalist>
 					<pre style="margin-top: 100px"><code>${selectedValueC.CatalogTitle}</code></pre>
@@ -162,17 +162,16 @@
 					<datalist id="myDatalistO" >
 						<option repeat.for="option of appService.orgsList">${option.OrgName} ; ${option.BusIndivid} ; ${option._id}</option>
 					</datalist>   -->
-ORG
-	<input ref="myDatalistO" type="text" list="myDatalistO" change.delegate="changeCallbackOrg(selectedValueO)" 
-  input.delegate="selectedValueO = findOptionO($event.target.value)"
+					
+					<input ref="myDatalistO" type="text" list="myDatalistO" change.delegate="changeCallbackOrg(selectedValueO)" input.delegate="selectedValueO = findOptionO($event.target.value)"
 					 attach-focus="true" />
 					<datalist id="myDatalistO">
 						<option repeat.for="option of appService.orgsList">${option.OrgName} ; ${option.BusIndivid} ; ${option._id}</option>
-					</datalist> 
+					</datalist>
 
 				</div>
 				<!-- ${selectedValue} /	${selectedValueO} / ${myDatalistO} -->
-        <!-- <input value.bind="input" list.bind="listIdVar & attr"> -->
+				<!-- <input value.bind="input" list.bind="listIdVar & attr"> -->
 
 			</div>
 			<!-- fix-aubs  -->
@@ -220,7 +219,7 @@ ORG
 
 
 
- 
+
 
 
 			<hr>

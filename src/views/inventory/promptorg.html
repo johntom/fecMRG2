@@ -1,0 +1,117 @@
+
+<template>
+	<ux-dialog>
+		<ux-dialog-header class="modal-header modal-header-success">
+			<div class="alert alert-danger">
+				<h1 style="width:700px"> ${heading}
+
+
+				</h1>
+			</div>
+		</ux-dialog-header>
+		<ux-dialog-body>
+			<div show.bind="fieldname==='LossDescription'">
+				<textarea rows="8" cols="100" id="Notes" attach-focus="true" class="form-control input-sm" value.bind="currentItem.LossDescription"></textarea>
+			</div>
+
+
+
+			<div show.bind="fieldname==='ADJUSTER_ID'">
+				<div class="form-group flex-column-1">
+					<aubs-typeahead ref='dadjuster_id' data.bind="appService.adjusterList" value.bind="ADJUSTER_NAME" debounce.bind="350" placeholder="INSURED_ID"
+					 open-on-focus.bind="true" key="ADJUSTER_NAME" results-limit.bind="12" select-single-result.bind="true">
+					</aubs-typeahead>
+				</div>
+			</div>
+
+			<div show.bind="fieldname==='docs'">
+				<div class="form-group flex-column-1">
+					<a slot="buttons-slot">
+						search: <input id="icon_prefix" type="text" value.bind="searchdoc & debounce" class="validate">
+
+					</a>
+					</h3>
+					<form style="border:1px solid black;width:800px;height:500px;overflow:scroll;overflow-y:scroll;overflow-x:hidden;">
+
+						<table class="table-condensed table">
+							<thead class="table-header-blue" data-sort="items.bind: showdocs; cols: ['FILE_NAME','FILE_EXT']">
+								<tr>
+									<th class="header">FILE_NAME </th>
+									<th class="header">Download </th>
+									<th class="header">FILE_EXT </th>
+
+								</tr>
+							</thead>
+
+							<tbody>
+								<tr repeat.for="doc of showdocs" with.bind="doc">
+									<td>
+										<a size='100' wrap class="form-control  input-sm" target="_blank" href="https://adjusters.markadjustment.com/docs/${currentItem.CLAIM_NO}/${doc.FILE_NAME}">
+											${FILE_NAME}
+										</a>
+									</td>
+
+									<td>
+										<a size='100' class="form-control  input-sm" href="https://adjusters.markadjustment.com/pdf/${currentItem.CLAIM_NO}/${doc.FILE_NAME}">
+											${FILE_NAME}
+										</a>
+									</td>
+									<td>
+										<input type="text" id="FILE_EXT" class="form-control  input-sm" value.bind="FILE_EXT">
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</form>
+				</div>
+			</div>
+
+			<div show.bind="fieldname ==='insco'">
+				<div class="form-group flex-column-1">
+					<label for="medsup">Insco</label>
+					<input ref="myDatalistInsco" type="text" list="myDatalistInsco" change.delegate="changeCallbackInsco(selectedValue)" input.delegate="selectedValue = findOption($event.target.value)"
+					 attach-focus="true" />
+					<datalist id="myDatalistInsco">
+						<option repeat.for="option of appService.InsurancecompanyList">${option.FullName}</option>
+					</datalist>
+					<pre style="margin-top: 100px"><code>${selectedValue.FullName}</code></pre>
+				</div>
+			</div>
+		
+    	<div show.bind="fieldbase==='ORG'">
+				<div class="form-group flex-column-1">
+					<label for="org">ORG</label>
+					
+					<input ref="myDatalistO" type="text" list="myDatalistO" change.delegate="changeCallbackOrg(selectedValueO)" input.delegate="selectedValueO = findOptionO($event.target.value)"
+					 attach-focus="true" />
+					<datalist id="myDatalistO">
+						<option repeat.for="option of appService.orgsList">${option.OrgName} ; ${option.BusIndivid} ; ${option._id}</option>
+					</datalist>
+
+				</div>
+		
+			</div>
+		<div show.bind="fieldname==='SoldToID'">
+				<div class="form-group flex-column-1">
+					<label for="org">ORG</label>
+					
+					<input ref="myDatalistO" type="text" list="myDatalistO" change.delegate="changeCallbackOrg(selectedValueO)" input.delegate="selectedValueO = findOptionO($event.target.value)"
+					 attach-focus="true" />
+					<datalist id="myDatalistO">
+						<option repeat.for="option of appService.orgsList">${option.OrgName} ; ${option.BusIndivid} ; ${option._id}</option>
+					</datalist>
+
+				</div>
+		
+			</div>
+		
+			
+
+		</ux-dialog-body>
+		<ux-dialog-footer>
+			<button class="btn btn-danger" click.trigger="controller.cancel()">Cancel and Close </button>
+			<button class="btn btn-success" click.trigger="save(modal)">Save and Close</button>
+
+		</ux-dialog-footer>
+	</ux-dialog>
+</template>

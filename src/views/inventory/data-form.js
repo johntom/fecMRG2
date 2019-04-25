@@ -5,6 +5,8 @@ import { MyDataService } from "../../services/my-data-service";
 import { Router } from 'aurelia-router';
 import { DialogService } from 'aurelia-dialog';
 import { Prompt } from './prompt';
+
+import { Promptorg } from './promptorg';
 import { DialogImage } from './dialogImage';
 
 @inject(Router, ApiService, ApplicationService, MyDataService, DialogService)
@@ -151,16 +153,16 @@ export class DataForm {
     // this.currentItem.SoldToBusIndivid = this.BusIndivid  
     // this.currentItem.SoldToID = this.orgId  
     // this.currentItem.soldtoname = this.OrgName
-    
+
     let oid = this.currentItem.SoldToID
-    let OrgName = this.currentItem.soldtoname 
+    let OrgName = this.currentItem.soldtoname
     let BusIndivid = this.currentItem.SoldToBusIndivid
     // orgObject
     // this.orgObject = {OrgName: this.OrgName , BusIndivid:this.BusIndivid ,_id:this.orgId  }
     let rt2
     // let rt2 = '#/org/data/' + dataItem.id + '?' + name
 
-    (BusIndivid === 'B') ? rt2 = '#/org/data/' + oid + '?' + OrgName : rt2 = '#/contact/data/' + oid+ '?' + OrgName
+    (BusIndivid === 'B') ? rt2 = '#/org/data/' + oid + '?' + OrgName : rt2 = '#/contact/data/' + oid + '?' + OrgName
 
 
     this.router.navigate(rt2);// `#/inventory/${path}`);
@@ -170,14 +172,14 @@ export class DataForm {
   showModal(fieldname) {
     this.currentItem.fieldname = fieldname
     this.currentItem.recordId = this.recordId
-    if (fieldname==='SoldToID') {
-         let findOptions = this.appService.orgsList.find(x => x._id === this.currentItem.SoldToID)
-          // this.currentItem.recordId = this.currentItem.SoldToID
+    if (fieldname === 'SoldToID') {
+      let findOptions = this.appService.orgsList.find(x => x._id === this.currentItem.SoldToID)
+      // this.currentItem.recordId = this.currentItem.SoldToID
     } else {
-   
-    // if (this.currentItem.OwnerID === 6275) this.currentItem.OwnerID = '5c434cc100a8a1588c6407b7'
-    let findOptiono = this.appService.orgsList.find(x => x._id === this.currentItem.OwnerID)
-    console.log('appService.orgsList', findOptiono)
+
+      // if (this.currentItem.OwnerID === 6275) this.currentItem.OwnerID = '5c434cc100a8a1588c6407b7'
+      let findOptiono = this.appService.orgsList.find(x => x._id === this.currentItem.OwnerID)
+      console.log('appService.orgsList', findOptiono)
     }
     // if (this.currentItem.OwnerID === 6275) this.currentItem.OwnerID = '5c434cc100a8a1588c6407b7'
     // let findOptiono = this.appService.orgsList.find(x => x._id === this.currentItem.OwnerID)
@@ -192,24 +194,42 @@ export class DataForm {
     //       findOptions = ''; 
     // this.currentItem.SoldToID=''
     //     }
+    if (fieldname === 'SoldToID') {
 
+      this.dialogService.open({ viewModel: Promptorg, model: this.currentItem, lock: true }).whenClosed(response => {
 
-    this.dialogService.open({ viewModel: Prompt, model: this.currentItem, lock: true }).whenClosed(response => {
+        if (!response.wasCancelled) {
+          // console.log('Delete')
+          // let notes = this.currentItem.notes
+          // notes.splice(index, 1)// start, deleteCount)
 
-      if (!response.wasCancelled) {
-        // console.log('Delete')
-        // let notes = this.currentItem.notes
-        // notes.splice(index, 1)// start, deleteCount)
-
-      } else {
-        if (this.currentItem.artist === null) {
-          //// this.currentItem.artist.ArtistName=undefined
-          //  this.controller.validate()
+        } else {
+          if (this.currentItem.artist === null) {
+            //// this.currentItem.artist.ArtistName=undefined
+            //  this.controller.validate()
+          }
+          console.log('cancel');
         }
-        console.log('cancel');
-      }
-      console.log(response)//.output);
-    });
+        console.log(response)//.output);
+      });
+    } else {
+      this.dialogService.open({ viewModel: Prompt, model: this.currentItem, lock: true }).whenClosed(response => {
+
+        if (!response.wasCancelled) {
+          // console.log('Delete')
+          // let notes = this.currentItem.notes
+          // notes.splice(index, 1)// start, deleteCount)
+
+        } else {
+          if (this.currentItem.artist === null) {
+            //// this.currentItem.artist.ArtistName=undefined
+            //  this.controller.validate()
+          }
+          console.log('cancel');
+        }
+        console.log(response)//.output);
+      });
+    }
   }
 
   showModalBS() {
@@ -682,8 +702,8 @@ export class DataForm {
     });
   }
   requestclose() {
-  //console.log(this.appService.originalrec, this.currentItem)
-  
+    //console.log(this.appService.originalrec, this.currentItem)
+
     const resetFunc = () => { this.appService.originalrec = this.currentItem; };
     let tab = this.appService.tabs.find(f => f.isSelected);
     let index = this.appService.tabs.findIndex(f => f.isSelected)
