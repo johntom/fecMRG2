@@ -3,7 +3,7 @@ import { ApiService } from '../../../utils/servicesApi';
 import { ApplicationService } from '../../../services/application-service';
 import { DialogService } from 'aurelia-dialog';
 
-import { Prompt } from '../prompt';
+import { Promptorg } from '../promptorg';
  
 
 @inject(ApiService, ApplicationService,DialogService)
@@ -58,7 +58,8 @@ export class Consigned {
     this.currentItem.fieldname=fieldname
     // this.currentItem.ConsignedTo = this.currentItem.ConsignedTo
     // this.currentItem.loantoname = this.currentItem.museumloan[index].loantoname
-    this.dialogService.open({ viewModel: Prompt, model: this.currentItem, lock: true }).whenClosed(response => {
+    // this.dialogService.open({ viewModel: Prompt, model: this.currentItem, lock: true }).whenClosed(response => {
+ this.dialogService.open({ viewModel: Promptorg, model: this.currentItem, lock: true }).whenClosed(response => {
 
 
 

@@ -7,7 +7,7 @@ import { DialogService } from 'aurelia-dialog';
 // import { ynPrompt } from '../../../services/prompt';
 
 import { Promptyn } from '../../../services/promptyn';
-import { Prompt } from '../prompt';
+import { Promptorg } from '../promptorg';
 @inject(ApiService, ApplicationService, DialogService)
 export class Conservation {
   heading = 'DataForm HEADER...';
@@ -59,6 +59,10 @@ export class Conservation {
     // let notes = this.currentItem.notes
     // notes.splice(index, 1)// start, deleteCount)
     // this.dialogService.open({ viewModel: ynPrompt, model: 'Delete or Cancel?', lock: false }).whenClosed(response => {
+
+
+
+      
     this.dialogService.open({ viewModel: Promptyn, model: 'Delete or Cancel?', lock: false }).whenClosed(response => {
   
       if (!response.wasCancelled) {
@@ -72,14 +76,14 @@ export class Conservation {
     });
   }
 
-  showModal(fieldname, index) {
+ async showModal(fieldname, index) {
     this.currentItem.fieldname = fieldname
     this.currentItem.ConservedBy = this.currentItem.conservation[index].ConservedBy // mongoid
     this.currentItem.conservedbyname = this.currentItem.conservation[index].conservedbyname
 
     // this.dialogService.open({ viewModel: Prompt, model: fieldname, lock: false }).whenClosed(response => {
         
-    this.dialogService.open({ viewModel: Prompt, model: this.currentItem, lock: false }).whenClosed(response => {
+    this.dialogService.open({ viewModel: Promptorg, model: this.currentItem, lock: true }).whenClosed(response => {
 
     
       this.currentItem.conservation[index].ConservedBy = this.currentItem.ConservedBy

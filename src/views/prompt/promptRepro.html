@@ -1,5 +1,5 @@
 <template>
-		<require from="../../resources/value-converters/stringify"></require>
+	<require from="../../resources/value-converters/stringify"></require>
 
 	<ux-dialog>
 		<ux-dialog-header class="modal-header modal-header-success">
@@ -155,10 +155,15 @@
                     </select>
 								</div>
 							</div>
+							<div class="Rtable Rtable--2cols">
+								<div class=" Rtable-cell-30 Rtable-cell--highlight">
+									<strong>batch-no needed to get exhibit-id (previous step) </strong>
+								</div>
+								<div class="Rtable-cell-70  Rtable-cell--light">
 
-
-
-
+									<textarea id="ExhibitMemo" cols="66" rows="10" class="form-control input-sm" wrap value.bind="item.exhibitionbatchno">	</textarea>
+								</div>
+							</div>
 
 							<div show.bind="!item.hide1">
 								<div class="Rtable Rtable--2cols">

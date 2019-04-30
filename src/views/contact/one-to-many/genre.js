@@ -13,15 +13,15 @@ export class Genre {
   done = false;
   edit = false;
   // todos: Todo[] = [];
- // notes: Note[] = [];
+  // notes: Note[] = [];
   newNoteWorkDate = '';
   newNote = '';
 
-  constructor(api, appService ,dialogService) {
+  constructor(api, appService, dialogService) {
     this.api = api;
     this.appService = appService;
     this.inv = '';
-    this.currentItem = this.appService.currentItem;//testrec;
+    this.currentItem = this.appService.currentContactItem;//testrec;
     this.mode = 0;
     this.editrec = '';
     // this.inputable='disabled'
@@ -35,7 +35,7 @@ export class Genre {
 
   }
 
-  saveitem(item,index) {
+  saveitem(item, index) {
     item.edit = !item.edit
     // console.log('saveitem ', item);
     // this.currentAdjuster = item.ADJUSTER
@@ -48,11 +48,11 @@ export class Genre {
 
 
   activate(params, routeConfig) {
-   
+
   }
   remove(item, index) {
     //import { Prompt } from '../../../services/prompt';
- 
+
     this.dialogService.open({ viewModel: Prompt, model: 'Delete or Cancel?', lock: true }).whenClosed(response => {
       if (!response.wasCancelled) {
         console.log('Delete')
@@ -65,28 +65,52 @@ export class Genre {
     });
   }
 
+  // <!-- "genres" : [
+  //         {
+  //             "_id" : ObjectId("5c26ab7b18b45eec4d910806"), 
+  //             "ID" : NumberInt(5714), 
+  //             "ContactID" : NumberInt(7), 
+  //             "OrgID" : "", 
+  //             "GenreID" : NumberInt(2268), 
+  //             "GenreNotes" : "", 
+  //             "createdAt" : ISODate("2018-12-28T23:02:19.744+0000"), 
+  //             "updatedAt" : ISODate("2018-12-28T23:02:19.744+0000")
+  //         }
+  //     ],  -->
+  addGenre() {
 
-  addNote() {
-
-    let notes = this.currentItem.notes
+    let genres = this.currentItem.genres
     let flag = false
     let item
-    let newNoteWorkDate = moment().format('YYYY-MM-DD')
-    if (notes === undefined) {
+    // let newNoteWorkDate = moment().format('YYYY-MM-DD')
+    if (genres === undefined) {
       flag = true
-      notes = []
+      genres = []
     }
-    item = { WorkDate: newNoteWorkDate, Notes: '', edit: true }
-    notes.unshift(item)
-    if (flag) this.currentItem.notes = notes
+    item = { GenreID: 0, GenreNotes: '', edit: true }
+    genres.unshift(item)
+    if (flag) this.currentItem.genres = genres
 
     this.newNoteWorkDate = '';
     this.newNoteNote = '';
 
   }
 
-
-
+  // addItem() {
+  //   let artists = this.currentItem.artists
+  //   let flag = false
+  //   let item
+  //   if (artists === undefined) {
+  //     flag = true
+  //     artists = []
+  //   }
+  //   item = {
+  //     ArtistName: ''
+  //   }
+  //   artists.unshift(item)
+  //   if (flag) this.currentItem.artists = artists
+  //   this.newartists = '';
+  // }
   //  save(note, index) {
   //    // not used
   //     this.mode = 0
@@ -121,4 +145,3 @@ export class Genre {
 
 
 }
- 

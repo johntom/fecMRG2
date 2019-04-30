@@ -21,6 +21,9 @@ export class DataForm {
   footer = 'DataForm FOOTER...'
   recordId = '';
   // people = ['Nancy King', 'Nancy Davolio', 'Robert Davolio' ]
+  orgfields = ['ConsignedTo', 'ConsignedFromID', 'ConsignmentShippingID', 'OwnerID',
+    'PhotographerID', 'PurchasedFrom', 'ConservedBy',
+    'SoldToID', 'SoldTo', 'LoanTo', 'ProvOwner']
   measuresOld = [
     { id: 0, name: '1/16' },
     { id: 1, name: '2/16' },
@@ -181,6 +184,17 @@ export class DataForm {
       let findOptiono = this.appService.orgsList.find(x => x._id === this.currentItem.OwnerID)
       console.log('appService.orgsList', findOptiono)
     }
+
+
+
+//  let topos = this.orgfields.findIndex(x => x === fieldname);
+//     if (topos !== -1) {
+//       // orgfields orgfielddesc 
+//       // let odesc = this.orgfielddesc[topos]
+//       // this.heading = `Org/Contact ${odesc} Search`
+//     }
+
+
     // if (this.currentItem.OwnerID === 6275) this.currentItem.OwnerID = '5c434cc100a8a1588c6407b7'
     // let findOptiono = this.appService.orgsList.find(x => x._id === this.currentItem.OwnerID)
     // console.log('appService.orgsList', findOptiono)
@@ -194,8 +208,12 @@ export class DataForm {
     //       findOptions = ''; 
     // this.currentItem.SoldToID=''
     //     }
-    if (fieldname === 'SoldToID') {
-
+    // if (fieldname === 'SoldToID') {
+// let topos = this.orgfields.findIndex(x => x === fieldname);
+  // if (topos !== -1) {
+// only 2 on main form
+if (fieldname === 'SoldToID' || fieldname === 'OwnerID') {
+  
       this.dialogService.open({ viewModel: Promptorg, model: this.currentItem, lock: true }).whenClosed(response => {
 
         if (!response.wasCancelled) {

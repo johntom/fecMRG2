@@ -6,7 +6,7 @@ import { DialogService } from 'aurelia-dialog';
 // import { ynPrompt } from '../../../services/prompt';
 import { Promptyn } from '../../../services/promptyn';
 
- import { Prompt } from '../prompt';
+ import { Promptorg } from '../promptorg';
 // import { Prompt } from '../../../services/prompt';
 @inject(ApiService, ApplicationService, DialogService)
 export class Conssignedto {
@@ -89,9 +89,9 @@ export class Conssignedto {
    this.currentItem.ConsignedTo=   this.currentItem.consignedto[index].ConsignedTo  
    this.currentItem.consignedtoname=  this.currentItem.consignedto[index].consignedtoname
   
-  //   this.dialogService.open({ viewModel: Prompt, model: fieldname, lock: false }).whenClosed(response => {
  
-    this.dialogService.open({ viewModel: Prompt, model: this.currentItem, lock: false }).whenClosed(response => {
+    // this.dialogService.open({ viewModel: Prompt, model: this.currentItem, lock: false }).whenClosed(response => {
+this.dialogService.open({ viewModel: Promptorg, model: this.currentItem, lock: true }).whenClosed(response => {
 
     this.currentItem.consignedto[index].ConsignedTo = this.currentItem.ConsignedTo
     this.currentItem.consignedto[index].consignedtoname = this.currentItem.consignedtoname

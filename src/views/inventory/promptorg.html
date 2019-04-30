@@ -1,4 +1,3 @@
-
 <template>
 	<ux-dialog>
 		<ux-dialog-header class="modal-header modal-header-success">
@@ -77,10 +76,12 @@
 					<pre style="margin-top: 100px"><code>${selectedValue.FullName}</code></pre>
 				</div>
 			</div>
+
 		
-    	<div show.bind="fieldbase==='ORG'">
+			<!-- <div show.bind="fieldbase==='ORG'"> -->
+        	<!-- <div show.bind="fieldname==='SoldToID'"> -->
 				<div class="form-group flex-column-1">
-					<label for="org">ORG</label>
+					<label for="org">Contact/Org1</label>
 					
 					<input ref="myDatalistO" type="text" list="myDatalistO" change.delegate="changeCallbackOrg(selectedValueO)" input.delegate="selectedValueO = findOptionO($event.target.value)"
 					 attach-focus="true" />
@@ -90,22 +91,9 @@
 
 				</div>
 		
-			</div>
-		<div show.bind="fieldname==='SoldToID'">
-				<div class="form-group flex-column-1">
-					<label for="org">ORG</label>
-					
-					<input ref="myDatalistO" type="text" list="myDatalistO" change.delegate="changeCallbackOrg(selectedValueO)" input.delegate="selectedValueO = findOptionO($event.target.value)"
-					 attach-focus="true" />
-					<datalist id="myDatalistO">
-						<option repeat.for="option of appService.orgsList">${option.OrgName} ; ${option.BusIndivid} ; ${option._id}</option>
-					</datalist>
+			<!-- </div> -->
 
-				</div>
-		
-			</div>
-		
-			
+
 
 		</ux-dialog-body>
 		<ux-dialog-footer>

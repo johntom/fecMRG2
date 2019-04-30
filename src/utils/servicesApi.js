@@ -487,7 +487,7 @@ async createcontact(rec) {
  async batchReproduction(rec) {
    
     let url = this.baseweb + `v1/inventory/batchReproduction`
-    console.log('url ', url)
+    console.log('url ', url,rec)
     // return {'data': true}
     return await this.http.fetch(url, {
       method: 'put',

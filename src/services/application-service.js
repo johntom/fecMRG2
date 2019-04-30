@@ -270,13 +270,18 @@ export class ApplicationService {
       isSelected: false
     },
     {
-      name: "Orgs",
+      name: "Pervious Orgs",
       viewModel: "./one-to-many/org",
       isSelected: false
     },
      {
       name: "Inventory",
       viewModel: "./one-to-many/inventory",
+      isSelected: false
+    },
+     {
+      name: "Genre",
+      viewModel: "./one-to-many/genre",
       isSelected: false
     }
   ];

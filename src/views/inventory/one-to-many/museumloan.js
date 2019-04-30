@@ -9,7 +9,7 @@ import { DialogService } from 'aurelia-dialog';
 
 
 import { Promptyn } from '../../../services/promptyn';
-import { Prompt } from '../prompt';
+import { Promptorg } from '../promptorg';
 
 // @inject(TaskQueue, BindingSignaler, ApiService, ApplicationService, DialogService)
 @inject(ApiService, ApplicationService, DialogService)
@@ -89,6 +89,7 @@ export class Museamloan {
     // adjusters.splice(index, 1)
 
   this.dialogService.open({ viewModel: Promptyn, model: 'Delete or Cancel?', lock: true }).whenClosed(response => {
+    
       if (!response.wasCancelled) {
         console.log('Delete')
         let museumloan = this.currentItem.museumloan
@@ -110,10 +111,10 @@ export class Museamloan {
     this.currentItem.fieldname = fieldname
     this.currentItem.LoanTo = this.currentItem.museumloan[index].LoanTo
     this.currentItem.loantoname = this.currentItem.museumloan[index].loantoname
-    this.dialogService.open({ viewModel: Prompt, model: this.currentItem, lock: false }).whenClosed(response => {
 
-    // this.dialogService.open({ viewModel: Prompt, model: fieldname, lock: false }).whenClosed(response => {
-      this.currentItem.museumloan[index].LoanTo = this.currentItem.LoanTo
+  this.dialogService.open({ viewModel: Promptorg, model: this.currentItem, lock: true }).whenClosed(response => {
+
+       this.currentItem.museumloan[index].LoanTo = this.currentItem.LoanTo
       this.currentItem.museumloan[index].loantoname = this.currentItem.loantoname
       if (!response.wasCancelled) {
         // console.log('Delete') currentItem.conservation

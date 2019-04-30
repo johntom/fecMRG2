@@ -3,7 +3,7 @@ import { ApiService } from '../../../utils/servicesApi';
 import { ApplicationService } from '../../../services/application-service';
 import { DialogService } from 'aurelia-dialog';
 
-import { Prompt } from '../prompt';
+import { Promptorg } from '../promptorg';
 @inject(ApiService, ApplicationService, DialogService)
 export class Soldto {
   heading = 'DataForm HEADER...';
@@ -27,7 +27,7 @@ export class Soldto {
 
     this.currentItem.fieldname = fieldname
     this.currentItem.recordId = this.recordId
-    this.dialogService.open({ viewModel: Prompt, model: this.currentItem, lock: false }).whenClosed(response => {
+     this.dialogService.open({ viewModel: Promptorg, model: this.currentItem, lock: true }).whenClosed(response => {
 
 
      if (!response.wasCancelled) {

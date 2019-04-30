@@ -32,9 +32,10 @@ export class Promptorg {
     { name: 'November', short: 'Nov', number: 11 },
     { name: 'December', short: 'Dec', number: 12 }
   ];
+  // ConsignedTo ConsignedFromID ConsignmentShippingID OwnerID PhotographerID PurchasedFrom ConservedBy SoldToID LoanTo 
 
 
- selectedProduct = '';
+  selectedProduct = '';
   selectedOrg = '';
   orgfields = ['ConsignedTo', 'ConsignedFromID', 'ConsignmentShippingID', 'OwnerID',
     'PhotographerID', 'PurchasedFrom', 'ConservedBy',
@@ -64,7 +65,7 @@ export class Promptorg {
   findOptionLoc = value => this.appService.codesLocation.find(x => x.Description === value);
 
   // this.myDatalistLocation.value = this.currentItem.location.description
-// orgs
+  // orgs
   selectedValueO = null;
   orgName = '';
   ordId = '';
@@ -77,7 +78,7 @@ export class Promptorg {
       console.log('findOptionO value ', orgName, orgId, x.OrgName, value)
     }
     x.OrgName === value
-  } )
+  })
 
 
 
@@ -97,7 +98,7 @@ export class Promptorg {
     this.insuredList = this.appService.insuredList
   }
 
-  
+
   search() {
     console.log(this.query);
     return true;
@@ -234,113 +235,182 @@ export class Promptorg {
   }
 
   attached() {
-
-      if (findOptiono === undefined) {
-      findOptiono = '';
-      this.currentItem.OwnerID = ''
-    }
-    if (findOptions === undefined) {
-      findOptions = '';
-      this.currentItem.SoldToID = ''
-    }
-
-    let opos = this.orgfields.findIndex(x => x === this.fieldname);
-    if (opos !== -1) {
-      this.orgfielddescription = this.orgfielddesc[opos]
-
-    } else {
-      this.orgfielddescription = this.fieldname
-    }
-    let topos = this.textfields.findIndex(x => x === this.fieldname);
+    this.hasFocus = true;
+    let findOptions
+    this.fieldbase = 'ORG'
+    let topos = this.orgfields.findIndex(x => x === this.fieldname);
     if (topos !== -1) {
-      this.textfielddescription = this.textfielddesc[topos]
-      this.doc = ` ${this.textfielddescription} .`
-      this.heading = ` ${this.textfielddescription} .`
-      this.placeholder = `${this.textfielddescription}`
-    } else {
-      this.doc = `Select ${this.orgfielddescription} .`
-      this.heading = `Select ${this.orgfielddescription}`
-      this.placeholder = `select ${this.orgfielddescription} .`
+      // orgfields orgfielddesc 
+      let odesc = this.orgfielddesc[topos]
+      this.heading = `Org/Contact ${odesc} Search`
+    }
+
+
+    // let opos = this.orgfields.findIndex(x => x === this.fieldname);
+    // if (opos !== -1) {
+    //   this.orgfielddescription = this.orgfielddesc[opos]
+
+    // } else {
+    //   this.orgfielddescription = this.fieldname
+    // }
+    //  this.heading = ` Org/Contact ${this.fieldname} Search`
+    if (this.fieldname === 'SoldToID') {
+
+      findOptions = this.appService.orgsList.find(x => x._id === this.currentItem.SoldToID)
+      if (findOptions === undefined) {
+        findOptions = '';
+        this.currentItem.SoldToID = ''
+      } else {
+        this.myDatalistO.value = this.currentItem.soldtoname
+
+      }
+
 
     }
-if (this.fieldname === 'SoldToID') {
-        this.hasFocus = true;
-        if (this.currentItem.SoldToID === undefined || this.currentItem.SoldToID === '') {
-        } else {
-           this.myDatalistO.value = this.currentItem.soldtoname
-          // this.selectedValueO = this.currentItem.soldtoname;
-          // this.origorg = this.currentItem.soldtoname;
-        }
+    if (this.fieldname === 'OwnerID') {
+      findOptions = this.appService.orgsList.find(x => x._id === this.currentItem.OwnerID)
+      if (findOptions === undefined) {
+        findOptions = '';
+        this.currentItem.OwnerID = ''
       }
- 
- if (this.fieldname === 'ConservedBy') {
-        if (this.currentItem.ConservedBy === undefined || this.currentItem.ConservedBy === '') {
-        } else {
-          this.myDatalistO.value = this.currentItem.conservedbyname
-          this.selectedValueO = this.currentItem.conservedbyname
-          this.origorg = this.currentItem.conservedbyname
+      else {
+        this.myDatalistO.value = this.currentItem.soldtoname
 
-        }
       }
-      if (this.fieldname === 'ConsignedFromID') {
-        if (this.currentItem.ConsignedFromID === undefined || this.currentItem.ConsignedFromID === '') {
-        } else {
-          this.myDatalistO.value = this.currentItem.consignedfromname
-          this.selectedValueO = this.currentItem.consignedfromname;
-          this.origorg = this.currentItem.consignedfromname;
-        }
-      }
-      if (this.fieldname === 'ConsignmentShippingID') {
-        if (this.currentItem.ConsignmentShippingID === undefined || this.currentItem.ConsignmentShippingID === '') {
-        } else {
-          this.myDatalistO.value = this.currentItem.consignmentshippingname
-          this.selectedValueO = this.currentItem.consignmentshippingname;
-          this.origorg = this.currentItem.consignmentshippingname;
-        }
-      }
+    }
 
-      if (this.fieldname === 'ConsignedTo') {
-        if (this.currentItem.ConsignedTo === undefined || this.currentItem.ConsignedTo === '') {
-        } else {
-          this.myDatalistO.value = this.currentItem.consignedtoname
-          this.selectedValueO = this.currentItem.consignedtoname;
-          this.origorg = this.currentItem.consignedtoname;
-        }
-      }
-      // }
-      if (this.fieldname === 'PurchasedFrom') {
-        if (this.currentItem.PurchasedFrom === undefined || this.currentItem.PurchasedFrom === '') {
-        } else {
-          this.myDatalistO.value = this.currentItem.purchasedfromname
-          this.selectedValueO = this.currentItem.purchasedfromname;
-          this.origorg = this.currentItem.purchasedfromname;
-        }
-      }
 
-      if (this.fieldname === 'LoanTo') {
-        if (this.currentItem.LoanTo === undefined || this.currentItem.LoanTo === '') {
-        } else {
-          this.myDatalistO.value = this.currentItem.loantoname
-          this.selectedValueO = this.currentItem.loantoname;
-          this.origorg = this.currentItem.loantoname;
-        }
+
+    // let topos = this.textfields.findIndex(x => x === this.fieldname);
+    // if (topos !== -1) {
+    //   this.textfielddescription = this.textfielddesc[topos]
+    //   this.doc = ` ${this.textfielddescription} .`
+    //   this.heading = ` ${this.textfielddescription} .`
+    //   this.placeholder = `${this.textfielddescription}`
+    // } else {
+    //   this.doc = `Select ${this.orgfielddescription} .`
+    //   this.heading = `Select ${this.orgfielddescription}`
+    //   this.placeholder = `select ${this.orgfielddescription} .`
+
+    // }
+    // if (this.fieldname === 'SoldToID') {
+    //   this.hasFocus = true;
+    //   if (this.currentItem.SoldToID === undefined || this.currentItem.SoldToID === '') {
+    //   } else {
+    //     this.myDatalistO.value = this.currentItem.soldtoname
+    //     // this.selectedValueO = this.currentItem.soldtoname;
+    //     // this.origorg = this.currentItem.soldtoname;
+    //   }
+    // }
+
+    if (this.fieldname === 'ConservedBy') {
+      findOptions = this.appService.orgsList.find(x => x._id === this.currentItem.ConservedBy)
+      // if (this.currentItem.ConservedBy === undefined || this.currentItem.ConservedBy === '') {
+      if (findOptions === undefined) {
+        findOptions = '';
+        this.currentItem.ConservedBy = ''
+      } else {
+        // this.myDatalistO.value = this.currentItem.soldtoname
+        // this.selectedValueO = this.currentItem.conservedbyname
+        // this.origorg = this.currentItem.conservedbyname
+        this.myDatalistO.value = this.currentItem.conservedbyname
       }
-      if (this.fieldname === 'PhotographerID') {
-        if (this.currentItem.PhotographerID === undefined || this.currentItem.PhotographerID === '') {
-        } else {
-          this.myDatalistO.value = this.currentItem.photographername
-          this.selectedValueO = this.currentItem.photographername;
-          this.origorg = this.currentItem.photographername;
-        }
+    }
+
+
+
+
+    if (this.fieldname === 'ConsignedFromID') {
+      findOptions = this.appService.orgsList.find(x => x._id === this.currentItem.ConsignedFromID)
+      // if (this.currentItem.ConsignedFromID === undefined || this.currentItem.ConsignedFromID === '') {
+      if (findOptions === undefined) {
+        findOptions = '';
+        this.currentItem.ConsignedFromID = ''
+      } else {
+        this.myDatalistO.value = this.currentItem.consignedfromname
+        this.selectedValueO = this.currentItem.consignedfromname;
+        this.origorg = this.currentItem.consignedfromname;
       }
-      if (this.fieldname === 'ConsignmentShippingID') {
-        if (this.currentItem.ConsignmentShippingID === undefined || this.currentItem.ConsignmentShippingID === '') {
-        } else {
-          this.myDatalistO.value = this.currentItem.consignmentshippingname
-          this.selectedValueO = this.currentItem.consignmentshippingname;
-          this.origorg = this.currentItem.consignmentshippingname;
-        }
+    }
+    if (this.fieldname === 'ConsignmentShippingID') {
+      findOptions = this.appService.orgsList.find(x => x._id === this.currentItem.ConsignmentShippingID)
+
+      // if (this.currentItem.ConsignmentShippingID === undefined || this.currentItem.ConsignmentShippingID === '') {
+      if (findOptions === undefined) {
+        findOptions = '';
+        this.currentItem.ConsignedFromID = ''
+      } else {
+        this.myDatalistO.value = this.currentItem.consignmentshippingname
+        this.selectedValueO = this.currentItem.consignmentshippingname;
+        this.origorg = this.currentItem.consignmentshippingname;
       }
+    }
+
+    if (this.fieldname === 'ConsignedTo') {
+      findOptions = this.appService.orgsList.find(x => x._id === this.currentItem.ConsignedTo)
+      if (findOptions === undefined) {
+        findOptions = '';
+        this.currentItem.ConsignedTo = ''
+      } else {
+        this.myDatalistO.value = this.currentItem.consignedtoname
+        this.selectedValueO = this.currentItem.consignedtoname;
+        this.origorg = this.currentItem.consignedtoname;
+      }
+    }
+    // }
+    if (this.fieldname === 'PurchasedFrom') {
+      findOptions = this.appService.orgsList.find(x => x._id === this.currentItem.PurchasedFrom)
+
+      if (findOptions === undefined) {
+        findOptions = '';
+        this.currentItem.PurchasedFrom = ''
+      } else {
+        this.myDatalistO.value = this.currentItem.purchasedfromname
+        this.selectedValueO = this.currentItem.purchasedfromname;
+        this.origorg = this.currentItem.purchasedfromname;
+      }
+    }
+
+    if (this.fieldname === 'LoanTo') {
+      findOptions = this.appService.orgsList.find(x => x._id === this.currentItem.loantoname)
+
+      if (findOptions === undefined) {
+        findOptions = '';
+        this.currentItem.PurchasedFrom = ''
+      } else {
+        this.myDatalistO.value = this.currentItem.loantoname
+        this.selectedValueO = this.currentItem.loantoname;
+        this.origorg = this.currentItem.loantoname;
+      }
+    }
+    if (this.fieldname === 'PhotographerID') {
+      findOptions = this.appService.orgsList.find(x => x._id === this.currentItem.PhotographerID)
+
+      if (findOptions === undefined) {
+        findOptions = '';
+        this.currentItem.PurchasedFrom = ''
+      } else {
+        this.myDatalistO.value = this.currentItem.photographername
+        this.selectedValueO = this.currentItem.photographername;
+        this.origorg = this.currentItem.photographername;
+      }
+    }
+    if (this.fieldname === 'ConsignmentShippingID') {
+      //    findOptiono = this.appService.orgsList.find(x => x._id === this.currentItem.ConsignmentShippingID)
+
+      // if (this.currentItem.ConsignmentShippingID === undefined || this.currentItem.ConsignmentShippingID === '') {
+      // } else {
+      findOptions = this.appService.orgsList.find(x => x._id === this.currentItem.ConsignmentShippingID)
+
+      if (findOptions === undefined) {
+        findOptions = '';
+        this.currentItem.ConsignmentShippingID = ''
+      } else {
+        this.myDatalistO.value = this.currentItem.consignmentshippingname
+        this.selectedValueO = this.currentItem.consignmentshippingname;
+        this.origorg = this.currentItem.consignmentshippingname;
+      }
+    }
 
 
 
@@ -378,21 +448,91 @@ if (this.fieldname === 'SoldToID') {
       }
     }
 
-    if (this.fieldname === 'insco') {
+    if (this.fieldname === 'OwnerID') {
+      if (this.currentItem.ownername === undefined) this.currentItem.ownername = ''
 
-      this.currentItem.insco = {}
-
-      this.currentItem.insco.NAME = this.selectedValue.NAME
-      this.currentItem.insco.ADDRESS = this.selectedValue.ADDRESS
-      this.currentItem.insco.CITY = this.selectedValue.CITY
-      this.currentItem.insco.STATE = this.selectedValue.STATE
-      this.currentItem.insco.ZIP = this.selectedValue.ZIP
-      this.currentItem.insco.id = this.selectedValue._id
-      this.currentItem.insco.FullName = this.selectedValue.FullName
-      this.currentItem.insco.INSURANCE_COMPANY_ID = this.selectedValue.INSURANCE_COMPANY_ID
-
+      this.currentItem.OwnerID = this.orgId // this.OrgName._id
+      this.currentItem.ownername = this.OrgName// .OrgName
+      // }
 
     }
+
+    if (this.fieldname === 'ProvOwner') {
+
+
+      if (this.OrgName !== null && this.origorg !== this.OrgName) {
+
+        this.currentItem.ProvOwnerID = this.orgId
+        this.currentItem.ProvOwner = this.orgObject
+        this.currentItem.provownername = this.OrgName
+
+      }
+
+    }
+
+    if (this.fieldname === 'ConsignedFromID') {
+      if (this.OrgName.OrgName !== this.currentItem.consignedfromname) {
+
+        this.currentItem.ConsignedFromID = this.orgId//OrgName._id
+        this.currentItem.consignedfromname = this.OrgName//.OrgName
+      }
+    }
+    if (this.fieldname === 'ConsignmentShippingID') {
+      if (this.OrgName.OrgName !== this.currentItem.consignmentshippingname) {
+
+        this.currentItem.ConsignmentShippingID = this.orgId//OrgName._id
+        this.currentItem.consignmentshippingname = this.OrgName//.OrgName
+      }
+
+    }
+    if (this.fieldname === 'ConservedBy') {
+
+      if (this.OrgName !== null && this.origorg !== this.OrgName) {
+        this.currentItem.ConservedBy = this.orgId
+        this.currentItem.conservedbyname = this.OrgName
+      }
+
+    }
+    if (this.fieldname === 'ConsignedTo') {
+      if (this.OrgName !== this.currentItem.consignedtoname) {
+
+        this.currentItem.ConsignedTo = this.orgId//OrgName._id
+        this.currentItem.consignedtoname = this.OrgName//.OrgName
+      }
+    }
+
+    if (this.fieldname === 'PurchasedFrom') {
+
+      if (this.OrgName !== null && this.origorg !== this.OrgName) {
+        this.currentItem.PurchasedFrom = this.orgId
+        this.currentItem.purchasedfromname = this.OrgName
+
+      }
+    }
+    if (this.fieldname === 'LoanTo') {
+      if (this.OrgName !== null && this.origorg !== this.OrgName) {
+        this.currentItem.LoanTo = this.orgId
+        this.currentItem.loantoname = this.OrgName
+
+      }
+    }
+    if (this.fieldname === 'PhotographerID') {
+      if (this.OrgName !== null && this.origorg !== this.OrgName) {
+
+        this.currentItem.PhotographerID = this.orgId//OrgName._id
+        this.currentItem.photographername = this.OrgName///.OrgName
+      }
+    }
+    if (this.fieldname === 'ConsignmentShippingID') {
+      if (this.OrgName !== null && this.origorg !== this.OrgName) {
+
+        this.currentItem.ConsignmentShippingID = this.orgId//OrgName._id
+        this.currentItem.consignmentshippingname = this.OrgName// .OrgName
+      }
+    }
+
+
+
     this.controller.ok('saved')
   }
 

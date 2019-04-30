@@ -4,7 +4,9 @@ import { ApiService } from '../../../utils/servicesApi';
 import { ApplicationService } from '../../../services/application-service';
 
 import { DialogService } from 'aurelia-dialog';
-import { Prompt } from '../../../services/prompt';
+// import { Promptorg } from '../../../services/promptorg';
+import { Promptorg } from '../promptorg';
+
 @inject(ApiService, ApplicationService, DialogService)
 export class Insurance {
   heading = 'DataForm HEADER...';
@@ -59,7 +61,8 @@ export class Insurance {
 
 
   showModal(fieldname) {
-    this.dialogService.open({ viewModel: Prompt, model: fieldname, lock: false }).whenClosed(response => {
+    
+ this.dialogService.open({ viewModel: Promptorg, model: this.currentItem, lock: true }).whenClosed(response => {
 
       if (!response.wasCancelled) {
        

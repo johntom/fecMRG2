@@ -7,10 +7,11 @@ import { ApiService } from '../../utils/servicesApi';
 
 export class Home {
   heading = "MRG Home Page";
-  version = 301.31
-  versionDate = 'Thu 4/23/2019 9am'
+  version = 301.32
+  versionDate = 'Thu 4/29/2019 9am'
 
   issues = [
+    " finish action exhi/repro ",
     `"@progress/kendo-ui": "^2017.2.504"`,
     ' python -m SimpleHTTPServer D:\Frameworks\fecMRG2-Staging\www\pythonserver.bat',
     "to test what lib to use in package.json",

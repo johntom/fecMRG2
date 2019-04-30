@@ -1,52 +1,132 @@
+<!-- "genres" : [
+        {
+            "_id" : ObjectId("5c26ab7b18b45eec4d910806"), 
+            "ID" : NumberInt(5714), 
+            "ContactID" : NumberInt(7), 
+            "OrgID" : "", 
+            "GenreID" : NumberInt(2268), 
+            "GenreNotes" : "", 
+            "createdAt" : ISODate("2018-12-28T23:02:19.744+0000"), 
+            "updatedAt" : ISODate("2018-12-28T23:02:19.744+0000")
+        }
+    ],  -->
+<!-- 
+<template>
+	<style>
+		table thead tr {
+			display: block;
+		}
+
+		table th,
+		table td {
+			width: 80% 
+		}
+
+
+		table tbody {
+			display: block;
+			height: 250px;
+			overflow: auto; 
+		}
+	</style>
+	<section class="docs full-height flex-column-1 overflow-y-auto ignore">
+
+		<div class="Rtable Rtable--2cols">
+			<div class="Rtable-cell-50 Rtable-cell">
+				<h4>
+					<i class="fa fa-folder-open"></i> Genre
+					<a slot="buttons-slot" class="btn btn-primary" click.delegate="addGenre()">
+						<i class="fa fa-plus"></i> Add Genre
+					</a>
+				</h4>
+			</div>
+
+			<div class="Rtable-cell-50 Rtable-cell--highlight">
+				<table class="table-condensed table">
+					<thead class="table-header-blue">
+
+						<tr>
+							<th width="100px" class="header">Genre
+							</th>
+							<th width="200px" class="header">GenreNotes
+							</th>
+
+
+						</tr>
+					</thead>
+					<tfoot>
+						<tr>
+							<td></td>
+							<td></td>
+
+						</tr>
+					</tfoot>
+					<tbody>
+
+						<tr repeat.for="genre of currentItem.genres" with.bind="genre">
+
+							<td width="100px">
+
+								<select id="genre" class="form-control  input-sm" value.bind="genre.GenreID"> 
+                      <option model.bind="null">Choose...filterOnCode</option> 
+                         <option repeat.for="opt of appService.codesGenre " model.bind="opt.id">
+                    ${opt.Description} 
+                      </option> 
+                    </select>
+
+							</td>
+
+							<td width="300px">
+
+								<input class="form-control input-sm" type="text" value.bind="GenreNotes">
+							</td>
+
+
+
+					</tbody>
+				</table>
+			</div>
+
+	</section>
+</template> -->
+
 
 
 <template>
-  
-<style>
-table thead tr{
-    display:block;
-}
+	<style>
+		table thead tr {
+			display: block;
+		}
 
-table th,table td{ 
-    width:80%//1200px;//fixed width
-}
+		table th,
+		table td {
+			width: 80% //1200px;//fixed width
+		}
 
-
-table  tbody{
-  display:block;
-  height:200px;
-  overflow:auto;//set tbody to auto
-}
-
-/* "_id" : ObjectId("5c26ab7818b45eec4d90f59e"), 
-    "ID" : NumberInt(5), 
-    "ContactID" : NumberInt(1326), 
-    "OrgID" : NumberInt(1247), 
-    "GenreID" : NumberInt(168), 
-    "GenreNotes" : "", 
-    "createdAt" : ISODate("2018-12-28T23:02:16.560+0000"), 
-    "updatedAt" : ISODate("2018-12-28T23:02:16.560+0000") */
-</style>
-	<require from="./docs.css"></require>
+		table tbody {
+			display: block;
+			height: 500px;
+			overflow: auto; //set tbody to auto
+		}
+	</style>
+	<!-- <require from="./docs.css"></require> -->
 	<section class="docs full-height flex-column-1 overflow-y-auto ignore">
 		<h4>
-			<i class="fa fa-folder-open"></i> Notes 
-			<a slot="buttons-slot" class="btn btn-primary" click.delegate="addNote()">
-				<i class="fa fa-plus"></i> Add Note
+			<i class="fa fa-folder-open"></i> Genre
+			<a slot="buttons-slot" class="btn btn-primary" click.delegate="addGenre()">
+				<i class="fa fa-plus"></i> Add Genre
 			</a>
 		</h4>
-			<table class="table-condensed table">
-			<thead class="table-header-blue" > 
+		<table class="table-condensed table">
+			<thead class="table-header-blue">
 				<tr>
-				
-          	<tr>
-						<th width="300px"class="header">Work Date
+
+					<tr>
+						<th width="350px" class="header">Genre
 						</th>
-						<th width="400px" class="header">Notes
-             
-						</th>
-						<th width="225px" class="header">Cmd
-						
+
+						<th width="225px" class="header">GenreNotes
+
 						</th>
 					</tr>
 			</thead>
@@ -54,37 +134,40 @@ table  tbody{
 				<tr>
 					<td></td>
 					<td></td>
-					<td></td>
 				</tr>
 			</tfoot>
 			<tbody>
-			<tr repeat.for="note of currentItem.notes" with.bind="note">
-					<td width="300px">
-          
-          <!-- <td width="30%"> -->
-          	<span show.bind="!note.edit">${WorkDate}</span>
-						<input show.bind="note.edit" class="form-control input-sm" disabled.bind="!note.edit" type="date" value.bind="WorkDate">
-					</td>
-					<td width="400px">
-            <!-- <td width="50%"> -->
-						<span show.bind="!note.edit">${Notes}</span>
+				<tr repeat.for="genre of currentItem.genres" with.bind="genre">
 
-						<input show.bind="note.edit" class="form-control input-sm" disabled.bind="!note.edit" type="text" value.bind="Notes">
-         	</td>
-<!-- <td width="20%"> -->
+							<td width="100px">
+
+								<select id="genre" class="form-control  input-sm" value.bind="GenreID"> 
+                      <option model.bind="null">Choose...filterOnCode</option> 
+                         <option repeat.for="opt of appService.codesGenre " model.bind="opt.id">
+                    ${opt.Description} 
+                      </option> 
+                    </select>
+
+							</td>
+
+							<td width="300px">
+
+								<input class="form-control input-sm" type="text" value.bind="GenreNotes">
+							</td>
+
+
+
+			
+
 					<td width="225px">
-					<!-- <button class="btn btn-primary" click.delegate="note.edit=!note.edit">${ !note.edit ? 'Update' : 'Done' }</button> -->
-			 
-         	<button class="btn btn-sm  btn-primary" click.delegate="saveitem(note,$index)">${ !note.edit ? 'Update' : 'Done' }</button>
+				
+						<button class="btn btn-sm btn-danger" click.delegate="remove(genre,$index)">Delete</button>
 
-      		<button class="btn btn-sm  btn-danger" click.delegate="remove(note,$index)">Delete</button> 
-       
 					</td>
-	
 
+				</tr>
 			</tbody>
 		</table>
-	
+
 	</section>
 </template>
-
