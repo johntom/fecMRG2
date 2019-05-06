@@ -25,9 +25,11 @@ export class Promptrepro {
 
 
   activate(currentmodel) {
-    this.item = currentmodel.item;
+    // this.item = currentmodel.item;
     this.currentItem = currentmodel.currentItem
-    this.heading = "Reproduction"
+       this.item = this.currentItem
+   this.heading = "Reproduction exhibit batchno= "+ this.item.ReproductionExhibit
+ 
   }
 
 

@@ -141,8 +141,8 @@
 							<div class="form-group flex-column-1 Rtable-cell--highlight">
 								<!--  class="form-control input-sm"  -->
 								<div class="Rtable Rtable--4cols">
-									<div class="Rtable-cell Rtable-cell--highlight">
-										<strong>Inv Code</strong>
+									<div class="Rtable-cell Rtable-cell--highlight" style="color: #666699">
+										<strong >Inv Code</strong>
 									</div>
 									<div class="Rtable-cell Rtable-cell--highlight">
 										<div if.bind="recordId === 'create'">
@@ -187,7 +187,7 @@
 									</div>
 								</div>
 								<div class="Rtable Rtable--2cols">
-									<div class=" Rtable-cell-30 Rtable-cell--highlight">
+									<div class=" Rtable-cell-30 Rtable-cell--highlight" style="color: purple">
 
 										<!-- <div if.bind="recordId === 'create'"><strong> Artist >></strong></div>
 										<div else><strong> Artist </strong></div> -->
@@ -218,10 +218,10 @@
 									</div>
 
 
-									<div class="Rtable-cell-30 Rtable-cell--highlight">
+									<div class="Rtable-cell-30 Rtable-cell--highlight" style="color: #666699">
 										<strong> Title</strong>
 									</div>
-									<div class="Rtable-cell-70  Rtable-cell--highlight">
+									<div class="Rtable-cell-70  Rtable-cell--highlight" style="color: #666699">
 
 										<input type="text" xid="Title" class="form-control" value.bind="currentItem.Title">
 										<!--  & validate -->
@@ -233,7 +233,7 @@
 									<!-- <div class="Rtable-cell-70  Rtable-cell--highlight">
 									<a click.delegate="showModal( 'MediumSupportobj')">${currentItem.MediumSupportobj.Description} </a>
 									</div> -->
-									<div class="Rtable-cell-70  Rtable-cell--light">
+									<div class="Rtable-cell-70  Rtable-cell--light" >
 										<div style="height:15px;margin-left:10px;margin-top:5px;margin-bottom:10px" if.bind="currentItem.MediumSupportobj===undefined || currentItem.MediumSupportobj===''">
 											<a click.delegate="showModal( 'MediumSupportobj')">select_link </a>
 										</div>
@@ -507,12 +507,12 @@
 
 
 
-									<div class="Rtable-cell-30 Rtable-cell--highlight">
+									<!-- <div class="Rtable-cell-30 Rtable-cell--highlight">
 										<strong> Condition</strong>
 									</div>
 									<div class="Rtable-cell-70 Rtable-cell--highlight">
 										<input type="text " xid="Condition " class="form-control " value.bind="currentItem.Condition">
-									</div>
+									</div> -->
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
 										<strong> Inscription </strong>
 									</div>
@@ -580,7 +580,7 @@
 
 									</div>
 
-									<div class="Rtable-cell-30 Rtable-cell--highlight">
+									<div class="Rtable-cell-30 Rtable-cell--highlight" style="color: #666699">
 										<strong> Owned Status</strong>
 									</div>
 									<div class="Rtable-cell-70 Rtable-cell--highlight">

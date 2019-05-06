@@ -48,9 +48,12 @@
 
 						</div> -->
 					<!-- no links for prov -->
-					<td width="350px"><input type="text" id="ProvOwner" class="form-control" value.bind="ProvOwner"></td>
+					<td width="350px">
+            <!-- <input type="text" id="ProvOwner" class="form-control" value.bind="ProvOwner"> -->
 
-
+	<span show.bind="!provenance.edit">${ProvOwner }</span>
+						<input show.bind="provenance.edit" class="form-control input-sm" disabled.bind="!provenance.edit" type="text" value.bind="ProvOwner">
+</td>
 
 					<td width="200px">
 						<select id="ProvLoc" class="form-control  input-sm" value.bind="ProvLoc"> 
@@ -64,14 +67,28 @@
 					</td>
 
 					<!-- <td width="120px"><input type="date" id="ProvDate" class="form-control  input-sm" value.bind="ProvDate  | dateFormat "></td> -->
-					<td width="120px"><input type="date" id="ProvDate" class="form-control" value.bind="ProvDate"></td>
-					<td width="240px"><input type="text" id="ProvMemo" class="form-control " value.bind="ProvMemo"></td>
+					<td width="120px">
+            <span show.bind="!provenance.edit">${ProvDate | dateFormat }</span>
+	
+   
+            <input show.bind="provenance.edit" disabled.bind="!provenance.edit" type="date" id="ProvDate" class="form-control" value.bind="ProvDate">
+            </td>
+					<td width="240px">
+            	<span show.bind="!provenance.edit">${ProvMemo }</span>
 
-					<td width="120px"><input type="text" id="Sequence" class="form-control " value.bind="Sequence"></td>
+            <input show.bind="provenance.edit" disabled.bind="!provenance.edit"  type="text" id="ProvMemo" class="form-control " value.bind="ProvMemo">
+            
+            </td>
+
+					<td width="120px">
+            	<span show.bind="!provenance.edit">${Sequence }</span>
+
+            <input show.bind="provenance.edit" disabled.bind="!provenance.edit"  type="text" id="Sequence" class="form-control " value.bind="Sequence">
+            </td>
 
 					<td width="225px">
 
-						<!-- <button class="btn btn-primary" click.delegate="saveitem(provenance,$index)">${ !provenance.edit ? 'Edit' : 'Save' }</button> -->
+						<button class="btn btn-primary" click.delegate="saveitem(provenance,$index)">${ !provenance.edit ? 'Edit' : 'Save' }</button>
 
 						<button class="btn btn-danger" click.delegate="remove(provenance,$index)">Delete</button>
 					</td>

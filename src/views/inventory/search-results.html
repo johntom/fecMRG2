@@ -67,7 +67,7 @@
 			<ak-template for="headerTemplate">
 				<input type='checkbox' class='checkboxY' checked.bind="isChecked" id='header-chb' />
 			</ak-template>
-		</ak-col>
+		</ak-col> 
 
 		<ak-col k-field="InventoryCode" k-filterable.bind="true" k-title="Inv Code" k-width.bind="180" k-template="<button click.delegate='detailsEdit($event)' class='k-button'>#=InventoryCode#</button>">
 		</ak-col>
@@ -79,9 +79,12 @@
 			</ak-template>
 
 		</ak-col>
-		<ak-col k-title="ArtistName" k-width="180px" k-field="artist.ArtistName"></ak-col>
+		<!-- <ak-col k-title="Artist Name" k-width="180px" k-field="artist.ArtistName"></ak-col> -->
+    <ak-col  k-title="Artist Name" k-field="artist" k-template="#= (artist) ? artist.ArtistName : '' #"></ak-col>
+<ak-col  k-title="Artist Name" k-field="artist.ArtistName" k-template="#= (artist) ? artist.ArtistName : '' #"></ak-col>
+
 		<ak-col k-title="Title" k-width="180px" k-field="Title"></ak-col>
-		<ak-col k-title="InvYear" k-width="180px" k-field="InvYear"></ak-col>
+		<ak-col k-title="Inv Year" k-width="180px" k-field="InvYear"></ak-col>
 		<ak-col k-title="Medium"k-width="180px"  k-field="MediumSupportobj.Description"></ak-col>
 		<ak-col k-title="Bin" k-width="180px" k-field="Bin"></ak-col>
 

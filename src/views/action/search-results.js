@@ -578,8 +578,8 @@ export class SearchResults {
     // see reporduction.js to do it the same way
     let currentModel = {}
     currentModel.currentItem = this.item
-    currentModel.item = this.item
-
+    currentModel.item = this.item 
+    if( this.exhibitionbatchno!==undefined) currentModel.currentItem.ReproductionExhibit= this.exhibitionbatchno
     currentModel.currentItem.hide1 = true
 
     this.dialogService.open({ viewModel: Promptrepro, model: currentModel, lock: false }).whenClosed(async response => {
@@ -853,17 +853,17 @@ export class SearchResults {
       })
 
   }
-
+ 
   async save2() {
     this.item.savedlist = this.savedlist
     let jsonResna = await this.api.getbatchno();
 
     let batchno = jsonResna[0].nextavail
-    this.item.batchno = batchno
+    this.exhibitionbatchno = batchno
     this.api.batchExhibit(this.item)
       .then((jsonRes) => {
         if (jsonRes.data === 'success') {
-          this.dialogService.open({ viewModel: Promptmess, model: `batch updated  batchno= ${this.item.batchno} `, lock: true }).whenClosed(async response => { });
+          this.dialogService.open({ viewModel: Promptmess, model: `batch updated  batchno= ${this.exhibitionbatchno} `, lock: true }).whenClosed(async response => { });
           this.item = {}
         } else this.dialogService.open({ viewModel: Promptmess, model: `batch failed `, lock: true }).whenClosed(async response => { });
       })

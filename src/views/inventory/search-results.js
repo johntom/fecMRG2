@@ -65,7 +65,9 @@ export class SearchResults {
         id: "id", // Must assign id for update to work
         fields: {
           // LegacyID: { type: "number" }, // scan template
-          Artist: { type: "string" }, // barcode insured
+          Artist: { type: "string" }, 
+            artist: { type: "string" }, // barcode insured
+       
           //  ArtistRegistra: { type: "string" },
           InventoryCode: { type: "string" },
           Title: { type: "string" },
@@ -82,7 +84,7 @@ export class SearchResults {
     pageSize: 10,
     //  serverPaging: true,
     //   serverSorting: true,
-    sort: { field: 'Title', dir: 'asc' },
+    sort: { field: 'InventoryCode', dir: 'asc' },
     // aggregate: [{ field: "type", aggregate: "count" },
     //   { field: "template", aggregate: "count" }
     // ]

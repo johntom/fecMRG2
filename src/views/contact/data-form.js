@@ -74,6 +74,24 @@ export class DataForm {
   // @computedFrom('FirstName', 'LastName') currentItem.Salutation  currentItem.Suffix
   @computedFrom('currentItem.Salutation', 'currentItem.FirstName', 'currentItem.LastName', 'currentItem.Suffix', 'currentItem.address')
   get fullName() {
+      // let sal =  this.currentItem.Salutation
+    // let suf =  this.currentItem.Suffix
+//  If a single person: 
+// [Salutation] (if not null) [FirstName] [LastName}
+
+// married couple traditional: no LastName2 should get entered: 
+// [Salutation] (if not null) [FirstName] [LastName]
+
+// (if null salutation) [FirstName] and [FirstName2] [LastName]
+
+// partners: [FirstName2] & [LastName2] are entered, use salutations if available
+//  2 line entry
+
+// if there is data in “address as “ field, this overrides everything
+
+    if( this.currentItem.Salutation === null) this.currentItem.Salutation='' 
+     if( this.currentItem.Suffix === null) this.currentItem.Suffix=''
+  
     return `${this.currentItem.Salutation} ${this.currentItem.FirstName} ${this.currentItem.LastName} ${this.currentItem.Suffix} ${this.currentItem.address}`;
   }
   modal() {
@@ -394,6 +412,7 @@ export class DataForm {
           this.appService.originalContactrec = JSON.parse(JSON.stringify(this.currentItem))
           this.skippromt = true
           if (option === 1) {
+            
             this.requestclose()
           } else {
 

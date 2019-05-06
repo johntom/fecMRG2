@@ -559,10 +559,11 @@ if (fieldname === 'SoldToID' || fieldname === 'OwnerID') {
 
     if (this.recordId === 'create') {
       // console.log(  this.currentItem, this.currentItem)
+      // || this.currentItem.MediumSupportobj === undefined
+        
       if (this.currentItem.Title === undefined || this.currentItem.InventoryCode === undefined
-        || this.currentItem.MediumSupportobj === undefined
         || this.currentItem.artist === undefined || this.currentItem.OwnedBy === undefined) {
-        alert('Please fix  Title, InventoryCode, MediumSupport,Owned By and or Artist ')
+        alert('Please fix  Title, InventoryCode, Owned By and or Artist ')
       } else {
         this.api.createinventory(this.currentItem).then((jsonRes) => {
           console.log('jsonRes ', jsonRes);

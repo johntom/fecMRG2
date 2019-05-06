@@ -54,7 +54,9 @@
 								</th>
 								<th width="100px" class="header">Area
 								</th>
-								<th width="300px" class="header">Ext
+								<th width="100px" class="header">Ext
+								</th>
+                <th width="100px" class="header">Note
 								</th>
 								<!-- <th width="225px" class="header">Cmd
 
@@ -93,19 +95,17 @@
 								<input show.bind="phone.edit" class="form-control input-sm" disabled.bind="!phone.edit" type="text" value.bind="area"> -->
 								<input  class="form-control input-sm"  type="text" value.bind="area">
 							</td>
-							<td width="300px">
+							<td width="100px">
 
 								<!-- <span show.bind="!phone.edit">${ext}</span> -->
 
 								<!-- <input show.bind="phone.edit" class="form-control input-sm" disabled.bind="!phone.edit" type="text" value.bind="ext"> -->
                 <input  class="form-control input-sm"  type="text" value.bind="ext">
 							</td>
-							<td width="225px">
+							<td width="100px">
 
-								<!-- <button class="btn  btn-sm  btn-primary" click.delegate="saveitem(phone,$index)">${ !phone.edit ? 'Edit' : 'Done' }</button>
-
-								<button class="btn  btn-sm  btn-danger" click.delegate="remove(v,$index)">Delete</button> -->
-
+						       <input  class="form-control input-sm"  type="text" value.bind="Note">
+				
 							</td>
 
 
@@ -130,6 +130,8 @@
 								<th width="200px" class="header">Email
 								</th>
 								<th width="200px" class="header">Mail Chimp
+								</th>
+                  <th width="100px" class="header">Note
 								</th>
 								<!-- <th width="225px" class="header">Cmd
 
@@ -171,13 +173,17 @@
 								<input type="checkbox" id="emailchimp" checked.bind="emailchimp"> ${emailchimp}
 
 							</td>
-							<td width="225px">
+              <td width="100px">
 
-								<!-- <button class="btn  btn-sm  btn-primary" click.delegate="saveitem(email,$index)">${ !email.edit ? 'Edit' : 'Done' }</button>
-
-								<button class="btn  btn-sm  btn-danger" click.delegate="remove(email,$index)">Delete</button> -->
-
+						       <input  class="form-control input-sm"  type="text" value.bind="Note">
+				
 							</td>
+								<!--<td width="225px">
+
+							 <button class="btn  btn-sm  btn-primary" click.delegate="saveitem(email,$index)">${ !email.edit ? 'Edit' : 'Done' }</button>
+
+
+							</td>-->
 
 
 					</tbody>

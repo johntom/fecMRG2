@@ -160,26 +160,29 @@
 									<strong>batch-no needed to get exhibit-id (previous step) </strong>
 								</div>
 								<div class="Rtable-cell-70  Rtable-cell--light">
+									<input type="text" id="exhibitionbatchno" class="form-control input-sm " value.bind="item.ReproductionExhibit">
 
-									<textarea id="ExhibitMemo" cols="66" rows="10" class="form-control input-sm" wrap value.bind="item.exhibitionbatchno">	</textarea>
+									<!-- <textarea id="exhibitionbatchno" cols="66" rows="10" class="form-control input-sm" wrap value.bind="item.ReproductionExhibit">	</textarea> -->
 								</div>
 							</div>
 
-							<div show.bind="!item.hide1">
+							<!-- <div show.bind="!item.hide1">
 								<div class="Rtable Rtable--2cols">
 									<div class=" Rtable-cell-30 Rtable-cell--highlight">
 										<strong> Select Exhibition </strong>
 									</div>
-									<div class="Rtable-cell-70  Rtable-cell--light">
-										<select id="ReproductionExhibit" class="form-control  input-sm" value.bind="item.ReproductionExhibit"> 
+									<div class="Rtable-cell-70  Rtable-cell--light"> -->
+										<!-- <select id="ReproductionExhibit" class="form-control  input-sm" value.bind="item.ReproductionExhibit"> 
                       <option model.bind="null">Choose...</option> 
                          <option change.delegate="changeSelect(opt)" repeat.for="opt of currentItem.exhibition " model.bind="opt.id">
                ${opt.id}  /  ${opt.ExhibitTitle} /  ${opt.ExhibitSponser}
                       </option> 
-                    </select>
-									</div>
+                    </select> -->
+										<!-- <input type="text" id="xReproductionPage" class="form-control input-sm " value.bind="item.ReproductionExhibit"> -->
+
+									<!-- </div>
 								</div>
-							</div>
+							</div> -->
 							${batchno}
 						</tbody>
 					</table>

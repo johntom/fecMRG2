@@ -43,12 +43,12 @@
 	<require from="../../resources/value-converters/get-artist"></require>
 	<require from="../../resources/value-converters/upper-case"></require>
 
-	<h3> Count: ${recCount}
+	<h3> Count: ${recct}
 
-		<div if.bind="appService.currentsavedlist===undefined || appService.currentsavedlist===''">no active saved list </div>
+		<!-- <div if.bind="appService.currentsavedlist===undefined || appService.currentsavedlist===''">no active saved list </div>
 		<div else>
-			active saved list: ${appService.currentsavedlist} /  ${sllen}
-		</div>
+			active saved list: ${appService.currentsavedlist} /  ${recct}
+		</div> -->
 	</h3>
 
 	<ak-grid class="flex-row-1 overflow-y-auto" id="grid" k-data-source.bind="datasource" k-widget.bind="grid" k-sortable.bind="{ mode: 'multiple',   allowUnsort: 'true'}"
@@ -63,7 +63,7 @@
 
 			<!-- <ak-col k-field="ID" k-filterable.bind="true" k-title="Edit-" k-width.bind="180" k-template="<button click.delegate='detailsEdit($event)' class='k-button'>#=id#</button>">
 			</ak-col> -->
-      <ak-col k-field="LastName" k-filterable.bind="true" k-title="Edit" k-width.bind="180" k-template="<button click.delegate='detailsEdit($event)' class='k-button'>#=LastName#</button>">
+      <ak-col k-field="LastName" k-filterable.bind="true" k-title="LastName(Edit)" k-width.bind="180" k-template="<button click.delegate='detailsEdit($event)' class='k-button'>#=LastName#</button>">
 			</ak-col>
       <!-- <ak-col k-title="Last Name" k-width="180px" k-field="LastName"></ak-col> -->
 		
