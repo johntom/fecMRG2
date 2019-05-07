@@ -4,7 +4,7 @@ import { ApplicationService } from '../../../services/application-service';
 import { Aurelia } from 'aurelia-framework';
 import { DialogService } from 'aurelia-dialog';
 // import { ynPrompt } from '../../../services/prompt';
-import { Prompt } from   '../../../services/prompt';
+import { Prompt } from '../../../services/prompt';
 // import { Prompt } from '../prompt';
 // import { InvPrompt } from '../../../views/inventory/prompt';
 import { bindable } from 'aurelia-framework';
@@ -79,15 +79,26 @@ export class Artists {
         let artistrec = {}
         artistrec.id = this.currentItem.artist.id;
         artistrec.ArtistName = this.currentItem.artist.ArtistName;
-         artistrec.yearofBirth = this.currentItem.artist.YearofBirth;
+        artistrec.yearofBirth = this.currentItem.artist.YearofBirth;
         artistrec.died = this.currentItem.artist.Died;
-
-
         this.currentItem.artists[index] = artistrec;
         this.currentItem.artists = this.currentItem.artists
         this.artname = artistrec
 
- this.artist= artistrec
+        this.artist = artistrec
+
+  // this.currentItem = this.appService.currentContactItem//testrec;
+ 
+        //  this.artist = {}
+        // this.artist.id = this.currentItem.artist.id;
+        // this.artist.ArtistName = this.currentItem.artist.ArtistName;
+        // this.artist.yearofBirth = this.currentItem.artist.YearofBirth;
+        // this.artist.died = this.currentItem.artist.Died;
+        // this.currentItem.artists[index] = this.artist;
+        // this.currentItem.artists = this.currentItem.artists
+        // this.artname = this.artist
+
+        // this.artist = artistrec
         // delete this.currentItem.artist
 
 

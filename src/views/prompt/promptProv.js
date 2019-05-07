@@ -27,7 +27,7 @@ export class Promptprov {
   activate(currentmodel) {
     this.item = currentmodel.item;
     this.currentItem = currentmodel.currentItem
-    this.heading = "Provonamce"
+    this.heading = "Provenance"
   }
 
 

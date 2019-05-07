@@ -25,23 +25,24 @@
 			</a>
 		</h4> -->
 		<div class="Rtable Rtable--2cols">
-	<div class="Rtable-cell-50 Rtable-cell">
-<h4>
-			<i class="fa fa-folder-open"></i> Phone
-			<a slot="buttons-slot" class="btn btn-primary" click.delegate="addPhone()">
-				<i class="fa fa-plus"></i> Add Phone
-			</a>
-		</h4>
-	</div>
-  <div class="Rtable-cell-50 Rtable-cell">
-  <h4>
-					<i class="fa fa-folder-open"></i> Email
+			<div class="Rtable-cell-50 Rtable-cell">
+				<h4>
+					<i class="fa fa-folder-open"></i> Phone:
+					<a slot="buttons-slot" class="btn btn-primary" click.delegate="addPhone()">
+						<i class="fa fa-plus"></i> Add Phone
+					</a>
+				</h4>
+			</div>
+			<div class="Rtable-cell-50 Rtable-cell">
+				<h4>
+					<i class="fa fa-folder-open"></i> Email:
 					<a slot="buttons-slot" class="btn btn-primary" click.delegate="addEmail()">
 						<i class="fa fa-plus"></i> Add Email
 					</a>
 				</h4>
-</div>
-	<div class="Rtable Rtable--2cols">
+			</div>
+		</div>
+		<div class="Rtable Rtable--2cols">
 			<div class="Rtable-cell-50 Rtable-cell--highlight">
 				<table class="table-condensed table">
 					<thead class="table-header-blue">
@@ -56,7 +57,7 @@
 								</th>
 								<th width="100px" class="header">Ext
 								</th>
-                <th width="100px" class="header">Note
+								<th width="100px" class="header">Note
 								</th>
 								<!-- <th width="225px" class="header">Cmd
 
@@ -87,25 +88,25 @@
 								<!-- <span show.bind="!phone.edit">${phoneno}</span> -->
 
 								<!-- <input show.bind="phone.edit" class="form-control input-sm" disabled.bind="!phone.edit" type="phone" value.bind="phoneno"> -->
-								<input  class="form-control input-sm" type="phone" value.bind="phoneno">
-							
-              </td>
+								<input class="form-control input-sm" type="phone" value.bind="phoneno">
+
+							</td>
 							<td width="100px">
 								<!-- <span show.bind="!phone.edit">${area}</span>
 								<input show.bind="phone.edit" class="form-control input-sm" disabled.bind="!phone.edit" type="text" value.bind="area"> -->
-								<input  class="form-control input-sm"  type="text" value.bind="area">
+								<input class="form-control input-sm" type="text" value.bind="area">
 							</td>
 							<td width="100px">
 
 								<!-- <span show.bind="!phone.edit">${ext}</span> -->
 
 								<!-- <input show.bind="phone.edit" class="form-control input-sm" disabled.bind="!phone.edit" type="text" value.bind="ext"> -->
-                <input  class="form-control input-sm"  type="text" value.bind="ext">
+								<input class="form-control input-sm" type="text" value.bind="ext">
 							</td>
 							<td width="100px">
 
-						       <input  class="form-control input-sm"  type="text" value.bind="Note">
-				
+								<input class="form-control input-sm" type="text" value.bind="Note">
+
 							</td>
 
 
@@ -131,7 +132,7 @@
 								</th>
 								<th width="200px" class="header">Mail Chimp
 								</th>
-                  <th width="100px" class="header">Note
+								<th width="100px" class="header">Note
 								</th>
 								<!-- <th width="225px" class="header">Cmd
 
@@ -140,6 +141,7 @@
 					</thead>
 					<tfoot>
 						<tr>
+							<td></td>
 							<td></td>
 							<td></td>
 							<td></td>
@@ -173,12 +175,12 @@
 								<input type="checkbox" id="emailchimp" checked.bind="emailchimp"> ${emailchimp}
 
 							</td>
-              <td width="100px">
+							<td width="100px">
 
-						       <input  class="form-control input-sm"  type="text" value.bind="Note">
-				
+								<input class="form-control input-sm" type="text" value.bind="Note">
+
 							</td>
-								<!--<td width="225px">
+							<!--<td width="225px">
 
 							 <button class="btn  btn-sm  btn-primary" click.delegate="saveitem(email,$index)">${ !email.edit ? 'Edit' : 'Done' }</button>
 
@@ -188,10 +190,10 @@
 
 					</tbody>
 				</table>
-
-
 			</div>
 
+	
+		</div>
 
 	</section>
 </template>

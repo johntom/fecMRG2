@@ -141,8 +141,8 @@
 							<div class="form-group flex-column-1 Rtable-cell--highlight">
 								<!--  class="form-control input-sm"  -->
 								<div class="Rtable Rtable--4cols">
-									<div class="Rtable-cell Rtable-cell--highlight" style="color: #666699">
-										<strong >Inv Code</strong>
+									<div class="Rtable-cell Rtable-cell--highlight" style="color: purple">
+										<strong>Inv Code</strong>
 									</div>
 									<div class="Rtable-cell Rtable-cell--highlight">
 										<div if.bind="recordId === 'create'">
@@ -218,10 +218,10 @@
 									</div>
 
 
-									<div class="Rtable-cell-30 Rtable-cell--highlight" style="color: #666699">
+									<div class="Rtable-cell-30 Rtable-cell--highlight" style="color: purple">
 										<strong> Title</strong>
 									</div>
-									<div class="Rtable-cell-70  Rtable-cell--highlight" style="color: #666699">
+									<div class="Rtable-cell-70  Rtable-cell--highlight" style="color: purple">
 
 										<input type="text" xid="Title" class="form-control" value.bind="currentItem.Title">
 										<!--  & validate -->
@@ -233,7 +233,7 @@
 									<!-- <div class="Rtable-cell-70  Rtable-cell--highlight">
 									<a click.delegate="showModal( 'MediumSupportobj')">${currentItem.MediumSupportobj.Description} </a>
 									</div> -->
-									<div class="Rtable-cell-70  Rtable-cell--light" >
+									<div class="Rtable-cell-70  Rtable-cell--light">
 										<div style="height:15px;margin-left:10px;margin-top:5px;margin-bottom:10px" if.bind="currentItem.MediumSupportobj===undefined || currentItem.MediumSupportobj===''">
 											<a click.delegate="showModal( 'MediumSupportobj')">select_link </a>
 										</div>
@@ -530,6 +530,26 @@
 
 
 									</div>
+                  		<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong> Current Location</strong>
+									</div>
+									<div class="Rtable-cell-70 Rtable-cell--highlight">
+										<select id="CurrentLocation " class="form-control " value.bind="currentItem.CurrentLocation">
+											<option model.bind="null">Choose...</option>
+											<option repeat.for="opt of appService.codesInventoryLocation " model.bind="opt.id">
+												${opt.Description}
+											</option>
+										</select>
+									</div>
+
+								
+
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong> Bin</strong>
+									</div>
+									<div class="Rtable-cell-70 Rtable-cell--highlight">
+										<input type="text " id="Bin" class="form-control " value.bind="currentItem.Bin">
+									</div>
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
 										<strong>Added/modified</strong>
 									</div>
@@ -580,11 +600,22 @@
 
 									</div>
 
-									<div class="Rtable-cell-30 Rtable-cell--highlight" style="color: #666699">
+									<div class="Rtable-cell-30 Rtable-cell--highlight" style="color:purple">
 										<strong> Owned Status</strong>
 									</div>
 									<div class="Rtable-cell-70 Rtable-cell--highlight">
-										<select id="OwnedBy " class="form-control  " value.bind="currentItem.OwnedBy">
+										<select id="OwnedBy " class="form-control  " value.bind="currentItem.OwnedId">
+											<option model.bind="null">Choose...</option>
+											<option repeat.for="opt of appService.codesOwnership " model.bind="opt.id">
+												${opt.Description}
+											</option>
+										</select>
+									</div>
+									<div class="Rtable-cell-30 Rtable-cell--highlight" style="color: purple">
+										<strong> Owned By</strong>
+									</div>
+									<div class="Rtable-cell-70 Rtable-cell--highlight">
+										<select id="OwnedBy " class="form-control  " value.bind="currentItem.OwnedId">
 											<option model.bind="null">Choose...</option>
 											<option repeat.for="opt of appService.codesOwnership " model.bind="opt.id">
 												${opt.Description}
@@ -592,6 +623,20 @@
 										</select>
 									</div>
 
+									<!-- <div class="Rtable-cell-70  Rtable-cell--highlight">
+
+										<div style="height:15px;margin-left:10px;margin-top:5px;margin-bottom:10px" if.bind="currentItem.ownedbyname===undefined || currentItem.ownedbyname==='' ">
+											<a click.delegate="showModal( 'OwnedBy')">select_link </a>
+										</div>
+										<div style="height:15px;margin-left:10px;margin-top:5px;margin-bottom:10px" else>
+											<a click.delegate="showModal( 'OwnedBy')">${currentItem.ownedbyname} </a>
+											&nbsp;&nbsp;
+											<a click.delegate="ownedbyEdit()">...Open...</a>
+
+
+										</div>
+
+									</div> -->
 
 
 
@@ -603,20 +648,7 @@
 										<!--  input-sm -->
 										<input type="text " xid="ArtValue " class="form-control " value.bind="currentItem.ArtValue">
 									</div>
-
-									<div class="Rtable-cell-30 Rtable-cell--highlight">
-										<strong> Current Location</strong>
-									</div>
-									<div class="Rtable-cell-70 Rtable-cell--highlight">
-										<select id="CurrentLocation " class="form-control " value.bind="currentItem.CurrentLocation">
-											<option model.bind="null">Choose...</option>
-											<option repeat.for="opt of appService.codesInventoryLocation " model.bind="opt.id">
-												${opt.Description}
-											</option>
-										</select>
-									</div>
-
-									<!-- <div class="Rtable-cell-30 Rtable-cell--highlight">
+	<!-- <div class="Rtable-cell-30 Rtable-cell--highlight">
 										<strong> MRG Location</strong>
 									</div>
 									<div class="Rtable-cell-70 Rtable-cell--highlight">
@@ -628,13 +660,7 @@
 										</select>
 									</div> -->
 
-
-									<div class="Rtable-cell-30 Rtable-cell--highlight">
-										<strong> Bin</strong>
-									</div>
-									<div class="Rtable-cell-70 Rtable-cell--highlight">
-										<input type="text " id="Bin" class="form-control " value.bind="currentItem.Bin">
-									</div>
+							
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
 										<strong> Image Info & Dims 	<button class="btn btn-sm btn-success"
                      click.delegate="getimageinfo(1)">

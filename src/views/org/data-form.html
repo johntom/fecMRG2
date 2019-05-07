@@ -1,10 +1,10 @@
 <template>
-  <style>
-    	#data-form-ext .tab.tab-selected .form-tab-box {
+	<style>
+		#data-form-ext .tab.tab-selected .form-tab-box {
 			background-color: lightblue;
 			border-color: #7bbbce
 		}
-</style>
+	</style>
 
 	<section class="full-height flex-column-1 au-animate ignore">
 		<div class="flex-row-none section-header">
@@ -57,7 +57,7 @@
 										<input type="text" id="PurchasedDate" class="form-control input-sm" value.bind="org.Status">
 									</div>
 
-	<div class="Rtable-cell-30 Rtable-cell--highlight">
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
 										<strong>Website</strong>
 									</div>
 
@@ -66,18 +66,18 @@
 									</div>
 
 
-									
+
 								</div>
 
 							</div>
 							<div class="form-group flex-column-1 margin-left-10">
 								<div class="Rtable Rtable--2cols">
-<div class="Rtable-cell-30 Rtable-cell--highlight">
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
 										<strong> Note</strong>
 									</div>
 									<div class="Rtable-cell-70  Rtable-cell--highlight">
-									<textarea id="Notes" cols="66" rows="3" class="form-control input-sm" wrap value.bind="org.org">	</textarea>
-		          		</div>
+										<textarea id="Notes" cols="66" rows="3" class="form-control input-sm" wrap value.bind="org.org">	</textarea>
+									</div>
 									<!-- <div class="Rtable-cell-30 Rtable-cell--highlight">
 										<strong> Contact tab below is read-only</strong>
 									</div> -->
@@ -85,14 +85,25 @@
 
 
 								</div>
-							</div>
+							
+
+	<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong> Address Label</strong>
+									</div>
+									<div class="Rtable-cell-70 Rtable-cell--highlight">
+										<textarea rows="6" cols="100" id="Notes" class="form-control input-sm" value.bind="fullName"></textarea>
+
+
+									</div>
+</div>
+
 
 						</div>
 					</div>
 
 				</div>
 
-					<div if.bind="recordId==='create'">ORG FORM IS NOT AVAIL for Create Mode. Please save record before entering tabs </div>
+				<div if.bind="recordId==='create'">ORG FORM IS NOT AVAIL for Create Mode. Please save record before entering tabs </div>
 				<div else>
 
 					<div id="bottom-left" class="flex-row-3">
@@ -114,10 +125,10 @@
 
 			</form>
 		</div>
-		
 
-	<div class="flex-column-none section-footer">
-		
+
+		<div class="flex-column-none section-footer">
+
 			<span>&nbsp;&nbsp;
 					<button class="btn btn-sm btn-primary " click.delegate="saveclaim(0)">
 						Save & Stay
@@ -137,6 +148,6 @@
           <b>  ${message} </b>
 				</span>
 
-	</div>
+		</div>
 	</section>
 </template>
