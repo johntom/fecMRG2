@@ -7,9 +7,9 @@ import { ApiService } from '../../utils/servicesApi';
 
 export class Home {
   heading = "MRG Home Page";
-  version = 301.39 
+  version = 301.40
   // versionDate = 'Mon 5/6/2019 11pm'
-versionDate = 'Sun 5/12/2019 12pm'
+  versionDate = 'Sat 5/18/2019 12pm'
 
   issues = [
     " finish action exhi/repro ",
@@ -26,8 +26,23 @@ versionDate = 'Sun 5/12/2019 12pm'
     , "git config --global user.email jrt@gtz.com"
     , "git config --global user.name johntom"
     , "git config --list  git config user.name displays"
-
+    , ' let d1 = Date.now()'
+    , '      let d2 = (new Date).toISOString()'
+    , '      // month starts at 0 so 6 = may not june'
+    , '      let d3 = new Date(Date.UTC(2019, 6, 7, 7));'
+    , '      let dd = 2019-06-07'
+    , '      let d4 = new Date(dd);'
+    , '      let d5 = new Date("2019-06-07 11:13:00");'
+    , '      let array2 = dol1.split("-");'
+    , '      let yy = array2[0]  //DATE_OF_LOSS.getFullYear();'
+    , '      let mm = array2[1] - 1  //month is 0 based'
+    , '      let dd = array2[2] + 1// DATE_OF_LOSS.getDate();// l this will use time to convert date so if time <5 then date will -1'
+    , '      let dol_2 = new Date(Date.UTC(yy, mm, dd, 10));'
+  ,'  let paramDate = req.param(DATE_OF_LOSS)
+    ,'      let d6 = new Date(`${paramDate}  10:00:00`);'// set the time easist way to make sure date does not change
+    ,'      model.DATE_OF_LOSS = d6'
   ]
+
   majorfix = [
     "300.36 - rtf"
   ]
