@@ -1,0 +1,29 @@
+<template>
+
+	<!-- Modal edit window -->
+	<div class="modal fade" tabindex="-1" role="dialog">
+	<!--<div>-->
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+
+				<div class="modal-header modal-header-success">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span>&times;</span></button>
+					<h4 class="modal-title">hi ${title}</h4>
+				</div>
+				<div class="modal-body">
+
+				 <div class="alert alert-danger" if.bind="error">${error}</div> 
+
+				<slot><!-- Custom element inner content will be inserted here --></slot>
+
+				</div>
+				<div class="modal-footer">
+					 <button type="button" class="btn btn-danger pull-left" click.delegate="deleteRecord()" if.bind="record_id" tabindex=99>Delete</button> 
+					<button type="button" class="btn btn-secondary" click.delegate="closeModal()">Cancel</button>
+					<button type="button" class="btn btn-primary" click.delegate="saveRecord()">Save</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</template>
