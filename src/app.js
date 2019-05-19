@@ -22,7 +22,7 @@ export class App {
   configureRouter(config, router) {
     config.title = 'MRG Layout';
     config.addPipelineStep('authorize', AuthorizeStep);
-    config.map([ 
+    config.map([
       { "route": '', redirect: 'home' },
       { "route": 'home', name: 'home', moduleId: PLATFORM.moduleName('./views/home/home'), nav: true, title: 'Home' },
       { "route": 'inventory/:id', name: 'inventory-search-results', "moduleId": PLATFORM.moduleName('./views/inventory/search-results'), title: 'Search Results', activationStrategy: 'replace' },
@@ -46,12 +46,17 @@ export class App {
 
       // { "route": 'batchupdate', name: 'batchupdate', moduleId: PLATFORM.moduleName('./views/batchupdate/batchupdate'), nav: true, title: 'Search Results', activationStrategy: 'replace' },
       // { "route": 'batchupdate', name: 'batchupdate', moduleId: PLATFORM.moduleName('./views/batchupdate/search-results'), title: 'Batch' },
-     
+
       { "route": 'org', name: 'org', moduleId: PLATFORM.moduleName('./views/org/org'), nav: true, title: 'Org' },
       { "route": 'org/:id', name: 'org-search-results', moduleId: PLATFORM.moduleName('./views/org/search-results'), title: 'Search Results', activationStrategy: 'replace' },
       { "route": 'org/data/:id', name: 'org-data-form', moduleId: PLATFORM.moduleName('./views/org/data-form'), title: 'Data Form' }, // ,activationStrategy:'replace'
 
-      { route: 'maint', name: 'maint', moduleId: PLATFORM.moduleName('./views/maint/maint'), nav: true, title: 'Maintenence' },
+       { route: 'mailinglist/:id', name: 'mailinglist-search-results', moduleId: PLATFORM.moduleName('./views/mailinglist/search-results'), title: 'Search Results', activationStrategy: 'replace' },
+      { route: 'mailinglist/data/:id', name: 'mailinglist-data-form', moduleId: PLATFORM.moduleName('./views/mailinglist/data-form'), title: 'Data Form', activationStrategy: 'replace' },
+      { route: 'mailinglist', name: 'email', moduleId: PLATFORM.moduleName('./views/mailinglist/mailinglist'), nav: true, title: 'Mailinglist' },
+      
+      
+       { route: 'maint', name: 'maint', moduleId: PLATFORM.moduleName('./views/maint/maint'), nav: true, title: 'Maintenence' },
 
 
       { "route": 'artist', name: 'artist', moduleId: PLATFORM.moduleName('./views/artist/artist'), nav: false, title: 'Artist' },
@@ -64,13 +69,11 @@ export class App {
       { route: 'todo/:id', name: 'todo-search-results', moduleId: PLATFORM.moduleName('./views/todo/search-results'), title: 'Search Results', activationStrategy: 'replace' },
       { route: 'todo/data/:id', name: 'todo-data-form', moduleId: PLATFORM.moduleName('./views/todo/data-form'), title: 'Data Form', activationStrategy: 'replace' },
       { route: 'todo', name: 'todo', moduleId: PLATFORM.moduleName('./views/todo/todo'), nav: false, title: 'Todo' },
-      { route: 'mailinglist/:id', name: 'mailinglist-search-results', moduleId: PLATFORM.moduleName('./views/mailinglist/search-results'), title: 'Search Results', activationStrategy: 'replace' },
-      { route: 'mailinglist/data/:id', name: 'mailinglist-data-form', moduleId: PLATFORM.moduleName('./views/mailinglist/data-form'), title: 'Data Form', activationStrategy: 'replace' },
-      { route: 'mailinglist', name: 'email', moduleId: PLATFORM.moduleName('./views/mailinglist/email'), nav: false, title: 'Mailinglist' },
-  // { route: 'email/:id', name: 'email-search-results', moduleId: PLATFORM.moduleName('./views/emaillist/search-results'), title: 'Search Results', activationStrategy: 'replace' },
-  //     { route: 'email/data/:id', name: 'email-data-form', moduleId: PLATFORM.moduleName('./views/emaillist/data-form'), title: 'Data Form', activationStrategy: 'replace' },
-  //     { route: 'email', name: 'email', moduleId: PLATFORM.moduleName('./views/emaillist/email'), nav: false, title: 'Email' },
-
+    
+      
+      // { route: 'email/:id', name: 'email-search-results', moduleId: PLATFORM.moduleName('./views/emaillist/search-results'), title: 'Search Results', activationStrategy: 'replace' },
+      // { route: 'email/data/:id', name: 'email-data-form', moduleId: PLATFORM.moduleName('./views/emaillist/data-form'), title: 'Data Form', activationStrategy: 'replace' },
+      // { route: 'email', name: 'email', moduleId: PLATFORM.moduleName('./views/emaillist/email'), nav: false, title: 'Email' },
       // { "route":  'action', name: 'action', moduleId: PLATFORM.moduleName('./views/action/action'), nav: true, title: 'Actions', settings: { 
       // children: [
       //   { href: '/fecMRG2/#/action', title: 'Action' },

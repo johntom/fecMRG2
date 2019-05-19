@@ -115,52 +115,37 @@ selectOptions = {
     // return Promise.delay(500, promise);
   }
 
-  getStates(filter, limit) {
-    let filterlc = filter.toLowerCase()
-    let states
-    let Promise = this.dataService.loadStates()
-      .then(response => {
-        states = response
-        console.log('states', states)
-        return states //response // .json();
-      })
-      .then(states => filter.length > 0 ? states.filter(item => item.name.toLowerCase().indexOf(filter.toLowerCase()) > -1) : states)
-      .then(states => filter.length > 0 ? states.filter(item => item.name.toLowerCase().indexOf(filterlc) > -1) : states)
+  // getStates(filter, limit) {
+  //   let filterlc = filter.toLowerCase()
+  //   let states
+  //   let Promise = this.dataService.loadStates()
+  //     .then(response => {
+  //       states = response
+  //       console.log('states', states)
+  //       return states //response // .json();
+  //     })
+  //     .then(states => filter.length > 0 ? states.filter(item => item.name.toLowerCase().indexOf(filter.toLowerCase()) > -1) : states)
+  //     .then(states => filter.length > 0 ? states.filter(item => item.name.toLowerCase().indexOf(filterlc) > -1) : states)
 
-    return Promise
-  }
+  //   return Promise
+  // }
  performSearchSL() {
-    let savedlist = this.myDatalist.value //datalist
-    if (savedlist !== 'undefined' && savedlist !== 'null') this.search.savedlists = savedlist // `${this.name.name}`
+  
+    let mailinglist = this.myDatalist.value //datalist
+    if (mailinglist !== 'undefined' && mailinglist !== 'null') this.search.mailinglist = mailinglist // `${this.name.name}`
     if (this.search) {
-      // this.search={savedlists:this.search.savedlists);
     let qs = this.utilService.generateQueryString(this.search);
     console.log('this.search ', this.search)
     let counter = this.utilService.counter++
     // name as - at end its a singleton
-    let path = `Actionlist-${qs}`;
+    let path = `Mailinglist-${qs}`;
    // see authorize-step.js on how I make this a singleton with saving the result set
     this.appService.actionsearchresults='';// reset 
-    this.router.navigate(`#/action/${path}&tabname=actionlist`);
+    this.router.navigate(`#/mailinglist/${path}&tabname=mailinglist`);
     this.appService.currentSearch = path
     } else alert('Please make a selection')
   }
-  // performSearch() {
-  //   let savedlist = `${this.name}`
-  //   if (savedlist === 'undefined' || savedlist === undefined) {
-  //     alert('Please make a selection')
-  //   } else
-  //     if (this.search) {
-  //       if (savedlist !== 'undefined' && savedlist !== 'null') this.search.savedlists = `${this.name.name}`
-  //       let qs = this.utilService.generateQueryString(this.search);
-  //       let counter = this.utilService.counter++
-  //       //let path = `list${counter}${qs}`;
-  //       let path = `list${counter}${qs}`;
-  //       this.appService.currentActionlist = this.search.savedlists
-  //       this.router.navigate(`#/action/actionview`);
-  //       this.appService.currentSearch = path //`Search${counter}`
-  //     } else alert('Please make a selection')
-  // }
+
 
   performClear() {
     this.search = {}

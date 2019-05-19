@@ -47,11 +47,11 @@ export class Maint {
 
     this.router.navigate(rt2);
   }
-  menu4() {
-    let rt2 = '#/mailinglist';
+  // menu4() {
+  //   let rt2 = '#/mailinglist';
 
-    this.router.navigate(rt2);
-  }
+  //   this.router.navigate(rt2);
+  // }
   // menu5() {
   //   let rt2 = '#/adjuster';
 

@@ -133,11 +133,11 @@ export class DataForm {
     });
   }
   saveRecord() {
-   // window.alert("Save successful!");
+    // window.alert("Save successful!");
   }
 
   deleteRecord() {
-  //  window.alert("Delete successful!");
+    //  window.alert("Delete successful!");
   }
 
   closeModal() {
@@ -152,14 +152,12 @@ export class DataForm {
   // }
 
   showKeywords() {
-   // alert(`GenreTypes: ${this.currentItem.keywords}`);
+    // alert(`GenreTypes: ${this.currentItem.keywords}`);
     //  alert(`Attendees: ${this.required}, \nOptional: ${this.optional}`);
   }
 
-
-
   selectChange(GenreID) {
-  //  alert('in c ' + opt + GenreID)
+    //  alert('in c ' + opt + GenreID)
     // let genres = this.appService.codesGenre
     // let gid = genres.findIndex(x => x.id === genreid)
     // let item = genres[aid];// { ADJUSTER_ID: 4, ADJUSTER_NAME: "Donna Luciani", edit: true }
@@ -168,12 +166,12 @@ export class DataForm {
   }
 
   showAttendees() {
-  //  alert(`GenreTypes: ${this.currentItem.genretypes}`);
+    //  alert(`GenreTypes: ${this.currentItem.genretypes}`);
     //  alert(`Attendees: ${this.required}, \nOptional: ${this.optional}`);
   }
   // (MediumSupport,currentItem.MediumSupport)
   selectChangedMS(MediumSupport) {
-  //  alert('in selectChangedMS  ', MediumSupport, this.MediumSupport1)
+    //  alert('in selectChangedMS  ', MediumSupport, this.MediumSupport1)
     // this.MediumText=''
     // let genres = this.appService.codesGenre
     // let gid = genres.findIndex(x => x.id === genreid)
@@ -182,7 +180,7 @@ export class DataForm {
 
   }
   DropdownChanged(changedVal) {
-   // alert(changedVal);
+    // alert(changedVal);
   }
   activate(params, routeConfig) {
     this.tabname = this.appService.currentSearch
@@ -229,14 +227,14 @@ export class DataForm {
             } else {
               oid = orgs.findIndex(x => x._id === this.currentItem.SoldTo)
               orgobj = this.appService.orgsList[oid]//10]
-              if (orgobj!==undefined)       this.currentItem.soldtoname = orgobj.OrgName
-             }
+              if (orgobj !== undefined) this.currentItem.soldtoname = orgobj.OrgName
+            }
 
             if ((this.currentItem.OwnerID === undefined) || (this.currentItem.orgsList === null)) {
             } else {
               oid = orgs.findIndex(x => x._id === this.currentItem.OwnerID)
               orgobj = this.appService.orgsList[oid]//10]
-              if (orgobj!==undefined)   this.currentItem.ownername = orgobj.OrgName
+              if (orgobj !== undefined) this.currentItem.ownername = orgobj.OrgName
               // this.OrgName = orgobj
               // this.dorg.value = this.OrgName  this.currentItem.ownername this.currentItem.soldtoname
             }

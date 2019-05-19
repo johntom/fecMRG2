@@ -17,16 +17,16 @@
 
 						<require from="../../resources/value-converters/stringify"></require>
 
-						<h3>Select the Saved List you wish to use for a batch update</h3>
+						<h3>Select the catalog you wish to use for a build a mailing list</h3>
 
 
 						<div class="col-md-6">
-
+${appService.catalogList.length}
 							<div class="form-group flex-column-1">
-								<input ref="myDatalist" type="text" list="myDatalist" placeholder="search on savedlist" change.delegate="performSearchSL()"
+								<input ref="myDatalist" type="text" list="myDatalist" placeholder="search on catalogList" change.delegate="performSearchSL()"
 								 input.delegate="selectedValue = findOption($event.target.value)" />
 								<datalist id="myDatalist">
-									<option repeat.for="option of appService.savedlists">${option.name}</option>
+									<option repeat.for="option of appService.catalogList">${option.CatalogTitle}</option>
 								</datalist>
 							</div>
 
