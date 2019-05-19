@@ -22,6 +22,13 @@ export class Contact {
     this.utilService = utilService;
     this.api = api;
     this.eventAggregator = eventAggregator
+    this.search = {}
+    // this.search.deceased = true
+    // this.search.nomailings = true
+    // this.search.noinfo = true
+    this.search.keywords = []
+    this.search.genres = []
+
   }
   attached() {
     this.altAKeyPressSubscription = this.eventAggregator.subscribe('keydown:alt-a', this.addinventory.bind(this));
@@ -59,31 +66,31 @@ export class Contact {
       // this.mru.push(this.mruinfo.mru5)
 
 
-if (this.mruinfo.mru1 !== undefined) {
+      if (this.mruinfo.mru1 !== undefined) {
         // this.mru.push(this.mruinfo.mru1.name)
-          this.mru.push(this.mruinfo.mru1)
-      } 
-     
+        this.mru.push(this.mruinfo.mru1)
+      }
+
 
 
       if (this.mruinfo.mru2 !== undefined) {
         this.mru.push(this.mruinfo.mru2)
-      } 
+      }
       // else this.mru.push(this.mruinfo.mru2)
 
       if (this.mruinfo.mru3 !== undefined) {
         this.mru.push(this.mruinfo.mru3)
-      } 
+      }
       // else this.mru.push(this.mruinfo.mru3)
 
       if (this.mruinfo.mru4 !== undefined) {
         this.mru.push(this.mruinfo.mru4)
-      } 
+      }
       // else this.mru.push(this.mruinfo.mru4)
 
       if (this.mruinfo.mru5 !== undefined) {
         this.mru.push(this.mruinfo.mru5)
-      } 
+      }
 
 
 

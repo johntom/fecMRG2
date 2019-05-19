@@ -28,11 +28,69 @@ export class SearchResults {
   queryParams = '';
   hide1 = true
   hide2 = true
- 
+
   hide9 = true
   item = {}
- 
+
   message = ''//Hello Inventory 101- a!';
+// artists
+
+// dataSourceArtist = new kendo.data.DataSource({
+//     transport: {
+//       read: (options) => {
+//         options.success(this.appService.artistList);
+//       },
+     
+//       parameterMap: function (options, operation) {
+//         if (operation !== "read" && options.models) {
+//           return { models: kendo.stringify(options.models) };
+//         }
+//       }
+
+//     },
+//     schema: {
+//       model: {
+//         id: "id",
+//         fields: {
+//           "ArtistName": { type: "string" },
+//           "Died": { type: "string" },
+//           "YearofBirth": { type: "string" },
+//         }
+
+
+//       }
+//     }
+//   });
+  // this is keywords
+  // dataSource = new kendo.data.DataSource({
+  //   transport: {
+  //     read: (options) => {
+  //       options.success(this.appService.codesGenre);
+  //     },
+  //     // create: {
+  //     //     url: "https://demos.telerik.com/kendo-ui/service/Products/Create",
+  //     //     dataType: "jsonp"
+  //     // },
+  //     parameterMap: function (options, operation) {
+  //       if (operation !== "read" && options.models) {
+  //         return { models: kendo.stringify(options.models) };
+  //       }
+  //     }
+
+  //   },
+  //   schema: {
+  //     model: {
+  //       id: "id",
+  //       fields: {
+  //         "CodeType": { type: "number" },
+  //         "Description": { type: "string" },
+  //         "CodeTypeDesc": { type: "string" },
+  //       }
+  //     }
+  //   }
+  // });
+
+
   datasource = new kendo.data.DataSource({
     transport: {
       read: (options) => {
@@ -90,7 +148,12 @@ export class SearchResults {
     this.ImageID = '20150921_153441_resized_2'
     this.dialogService = dialogService
     this.appService.rfreshLoaded = false;
-  
+    this.search = {}
+    this.search.deceased = true
+    this.search.nomailings = true
+    this.search.noinfo = true
+    this.search.keywords = []
+
   }
 
 
@@ -119,20 +182,53 @@ export class SearchResults {
 
   activate(params, routeConfig) {
     // //http://74.114.164.24/api/v1/inventorycontent?artistl=s%26artistf=c 
-    //   this.queryParams = this.utilService.parseQueryStringUrl();
-    // const qs = this.queryParams.substring(this.queryParams.indexOf('?') + 1)
-    // const pairs = qs.split('&')
-    // const queryParams = {}
-    // let slname
-    // let ct = 0
-    // pairs.forEach(p => {
-    //   const kv = p.split('=')
-    //   if (ct === 0) slname = kv[1]
-    //   ct++
-    // });
-    //   this.savedlist = slname// this.item.savedlist 
+    this.queryParams = this.utilService.parseQueryStringUrl();
+    const qs = this.queryParams.substring(this.queryParams.indexOf('?') + 1)
+    const pairs = qs.split('&')
+    const queryParams = {}
+    let slname
+    let ct = 0
+    pairs.forEach(p => {
+      const kv = p.split('=')
+      if (ct === 0) slname = kv[1]
+      ct++
+    });
+    this.mailinglist = slname// this.item.savedlist 
     // this.datasource.read()
-    //  this.codesListLocation = this.appService.codesListLocation
+
+  }
+  performSearch() {
+    // let keyword = `${this.keywordDescription}`//.Description}` //aubs-typeahead 
+    // let medsupport = `${this.DescriptionMS}`
+    // let currentlocation = `${this.DescriptionLoc}`
+    // let multikeys = `${this.multikeywords}`
+    // let sold = this.search.sold// `${this.search.sold}`
+
+    if (this.search) {
+      // if (keyword !== 'undefined' && keyword !== 'null') this.search.keywords = `${this.keywordDescription.Description}`
+      console.log('this.search.keywords', this.search.keywords)
+      //   //  if (savedlist !== 'undefined' && savedlist !== 'null') this.search.savedlists = `${this.name.name}`
+
+      //   if (medsupport !== 'undefined') this.search.mediumsupport = `${this.DescriptionMS.Description}`
+      //   if (currentlocation !== 'undefined') this.search.currentlocation = `${this.DescriptionLoc.Description}`
+      //   if (multikeys !== 'undefined') this.search.multikeywords = `${this.multikeywords}`
+      //   if (sold !== 'undefined') this.search.sold = sold
+      //   if (selecteddate !== 'undefined') this.search.selectedDateId = selecteddate
+      //   if (owndedby !== 'undefined') this.search.owndedby = owndedby //search.owndedby
+
+      //   let qs = this.utilService.generateQueryString(this.search);
+      //   console.log('this.search ', this.search)
+      //   let counter = this.utilService.counter++
+      //   // let path = `Search${counter}${qs}`;
+      //   // this.router.navigate(`#/inventory/${path}`);
+
+
+      //   let path = `searchInv${qs}&tabname=searchInv${this.utilService.counter++}`;
+      //   let rt2 = `#/inventory/${path}`
+      //   this.router.navigate(rt2);
+
+      //   this.appService.currentSearch = path //`Search${counter}`
+    }
   }
 
 
@@ -170,7 +266,7 @@ export class SearchResults {
   }
 
   closeTab(tab) {
-   let index = this.appService.tabs.indexOf(tab);
+    let index = this.appService.tabs.indexOf(tab);
     tab.isSelected = false;
     this.appService.tabs.splice(index, 1);
   }
@@ -190,11 +286,11 @@ export class SearchResults {
     this.datasource.read()
   }
   performAction1() {
-      //https://docs.telerik.com/kendo-ui/knowledge-base/persist-row-selection-while-paging
+    //https://docs.telerik.com/kendo-ui/knowledge-base/persist-row-selection-while-paging
     let sels
     if (this.selectedids === undefined) {
       sels = []
-   
+
     } else sels = this.selectedids
     console.log('Action1 sels', sels)
     var grid = this.grid;
@@ -225,7 +321,7 @@ export class SearchResults {
     }
 
   }
-  
+
   detailsFactSheet(e) {
     let grid = this.grid;
     let targetRow = $(e.target).closest("tr");
@@ -256,7 +352,7 @@ export class SearchResults {
 
   action1() {
     this.item = {}
-  
+
     let currentModel = {}
     currentModel.currentItem = this.item
     currentModel.item = this.item
@@ -281,7 +377,7 @@ export class SearchResults {
 
   }
 
- 
+
 
 
 
@@ -393,10 +489,10 @@ export class SearchResults {
   }
 
   setInitialValue(edt) {
-   
+
 
   }
-  
+
   async save1() {
 
     //     let dtransportto = `${this.Description.Description}`
@@ -417,10 +513,10 @@ export class SearchResults {
       })
 
   }
- 
- 
+
+
   changeCallbackOrg(selectedValue) {
-   
+
     let values = this.myDatalistO.value
     var res = values.split(";");
 
