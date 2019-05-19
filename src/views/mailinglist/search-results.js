@@ -33,34 +33,34 @@ export class SearchResults {
   item = {}
 
   message = ''//Hello Inventory 101- a!';
-// artists
+  // artists
 
-// dataSourceArtist = new kendo.data.DataSource({
-//     transport: {
-//       read: (options) => {
-//         options.success(this.appService.artistList);
-//       },
-     
-//       parameterMap: function (options, operation) {
-//         if (operation !== "read" && options.models) {
-//           return { models: kendo.stringify(options.models) };
-//         }
-//       }
+  // dataSourceArtist = new kendo.data.DataSource({
+  //     transport: {
+  //       read: (options) => {
+  //         options.success(this.appService.artistList);
+  //       },
 
-//     },
-//     schema: {
-//       model: {
-//         id: "id",
-//         fields: {
-//           "ArtistName": { type: "string" },
-//           "Died": { type: "string" },
-//           "YearofBirth": { type: "string" },
-//         }
+  //       parameterMap: function (options, operation) {
+  //         if (operation !== "read" && options.models) {
+  //           return { models: kendo.stringify(options.models) };
+  //         }
+  //       }
+
+  //     },
+  //     schema: {
+  //       model: {
+  //         id: "id",
+  //         fields: {
+  //           "ArtistName": { type: "string" },
+  //           "Died": { type: "string" },
+  //           "YearofBirth": { type: "string" },
+  //         }
 
 
-//       }
-//     }
-//   });
+  //       }
+  //     }
+  //   });
   // this is keywords
   // dataSource = new kendo.data.DataSource({
   //   transport: {
@@ -207,6 +207,16 @@ export class SearchResults {
     if (this.search) {
       // if (keyword !== 'undefined' && keyword !== 'null') this.search.keywords = `${this.keywordDescription.Description}`
       console.log('this.search.keywords', this.search.keywords)
+      //this.queryParams
+      return this.api.findContact(this.search, this.listname)//searchrec)
+        .then((jsonRes) => {
+          // inv = jsonRes.data;
+          this.invdata = jsonRes.data//inv;
+          this.recct = inv.length;
+          this.datasource.read()
+        });
+
+
       //   //  if (savedlist !== 'undefined' && savedlist !== 'null') this.search.savedlists = `${this.name.name}`
 
       //   if (medsupport !== 'undefined') this.search.mediumsupport = `${this.DescriptionMS.Description}`
@@ -240,26 +250,26 @@ export class SearchResults {
   }
 
   async loadData() {
+    console.log('this.loadData ')
+    let s2 = '1-1-2016';
+    let s3 = '10-21-2016';
     let inv;
-    ///api/v1/inventory/getall
-    // if (this.appService.actionsearchresults && !this.appService.rfreshLoaded) {
-    //   return this.appService.actionsearchresults;
-    // } else {
-    //   return this.api.findInventory(this.queryParams)
-    //    .then((jsonRes) => {
-    //       inv = jsonRes.data;
-    //       if (inv === 0 || inv.length === 0) {
-    //         this.dialogService.open({ viewModel: Promptmess, model: `no records found  `, lock: true }).whenClosed(async response => { });
-    //         let tab = this.appService.tabs.find(f => f.isSelected);
-    //         this.closeTab(tab);
-    //         let rt2 = '#/home'// inventory'
-    //         this.router.navigate(rt2);// `#/inventory/${path}`);
-    //       } else {
-    //         this.appService.actionsearchresults = inv;
-    //         return inv
-    //        }
-    //     });
-    // }
+    this.listname = 'test'
+    return this.api.findmailinglist(this.listname).then((jsonRes) => {
+      inv = jsonRes.data;
+      this.invdata = inv;
+      this.recct = inv.length;
+      // this.datasource.read()
+      return inv
+    });
+
+    // return this.api.findContact(this.queryParams, listname)//searchrec)
+    //   .then((jsonRes) => {
+    //     inv = jsonRes.data;
+    //     this.invdata = inv;
+    //     this.recct = inv.length;
+
+    //   });
   }
   detached() {
     //  this.appService.actionsearchresults='';

@@ -7,15 +7,13 @@ export class ApiService {
   constructor(http) {
     this.http = http;
     this.upmess = ''
+    //    this.baseweb = 'https://gtztest.com/api/' 
     this.baseweb = 'https://artbased.com/api/'
-    // this.basewebjif = 'https://jif.bergenrisk.com/api/';
-    // this.baseBB = 'https://buildings-207021.appspot.com/query'// bin/1022709
-
-      /// https://gtztest.com/api/v1/inmate
+    /// https://gtztest.com/api/v1/inmate
     // https://gtztest.com/api/v1/getonePdf/:template/:filename
-  
- //    this.baseweb = 'https://gtztest.com/api/' 
-   
+    this.basewebjif = 'https://jif.bergenrisk.com/api/';
+    this.baseBB = 'https://buildings-207021.appspot.com/query'// bin/1022709
+
   }
   // getBB(bin) {
   //   let bod = { bin: bin, name: bin }
@@ -83,11 +81,28 @@ export class ApiService {
   }
 
 
-
-  findContact(search) {
+// { method: ['get'], path: '/api/v1/mailinglist/:id', handler: 'MailinglistController.findone' },
+findmailinglist(listname) {
     // search has fullu formed query string
-    alert (search)
-    var url = this.baseweb + 'v1/contactcontent' + search
+    //  search.buildlist = 'test'
+    // alert (search)
+    // var url = this.baseweb + 'v1/contactcontent' + search+'&buildlist=test'
+    var url = this.baseweb + `v1/mailinglist/${listname}`
+    console.log('url ', url)
+    return this.http.fetch(url, {
+      method: 'get',
+      mode: 'cors'
+    }).then((res) => res.json());
+    //return this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())
+  }
+  findContact(search,listname) {
+    // search has fullu formed query string
+    //  search.buildlist = 'test'
+    // alert (search)
+    if (listname){ 
+    // var url = this.baseweb + 'v1/contactcontent' + search+'&buildlist=test'
+    var url = this.baseweb + `v1/contactcontent${search}&buildlist=${listname}`
+    } else  var url = this.baseweb + `v1/contactcontent${search}`
     console.log('url ', url)
     return this.http.fetch(url, {
       method: 'get',
@@ -155,23 +170,30 @@ export class ApiService {
     var url = this.baseweb + 'v1/artist';
     return this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())
   }
+
   // all new 2019 AA methods
+
   // https://artbased.com/api/v1/savedlists/getinventory/ { method: ['get'], path: '/api/v1/savedlists/getinventory/:id', handler: 'SavedlistsController.getinventory' },
   async findInventorySavedLists(search) {
     var url = this.baseweb + 'v1/savedlists/getinventory/' + search
     return await this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())
+
   }
+
   async findArtistsContent(search) {
     var url = this.baseweb + 'v1/artistcontent' + search
     return await this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())
+
   }
   async findArtistid(search) {
     var url = this.baseweb + 'v1/artist/' + search
     return await this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())
+
   }
   async getCatalogsent(cat) {
     var url = this.baseweb + 'v1/catalog/getcatalogsent/' + cat
     return await this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())
+
   }
 
   async findTodo(search) {
