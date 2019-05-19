@@ -104,7 +104,7 @@ export class SearchResults {
     }
   }
 
-  loadData() {
+  async loadData() {
     console.log('this.loadData ')
     let s2 = '1-1-2016';
     let s3 = '10-21-2016';

@@ -1,18 +1,21 @@
-import {  inject,  singleton} from 'aurelia-dependency-injection';
-import {  HttpClient } from 'aurelia-fetch-client'
+
+import { inject, singleton } from 'aurelia-dependency-injection';
+import { HttpClient } from 'aurelia-fetch-client'
 // sample-layout-mrg
 @inject(HttpClient)
 export class ApiService {
   constructor(http) {
     this.http = http;
     this.upmess = ''
-    //    this.baseweb = 'https://gtztest.com/api/' 
     this.baseweb = 'https://artbased.com/api/'
-    /// https://gtztest.com/api/v1/inmate
-    // https://gtztest.com/api/v1/getonePdf/:template/:filename
-    this.basewebjif = 'https://jif.bergenrisk.com/api/';
-    this.baseBB = 'https://buildings-207021.appspot.com/query'// bin/1022709
+    // this.basewebjif = 'https://jif.bergenrisk.com/api/';
+    // this.baseBB = 'https://buildings-207021.appspot.com/query'// bin/1022709
 
+      /// https://gtztest.com/api/v1/inmate
+    // https://gtztest.com/api/v1/getonePdf/:template/:filename
+  
+ //    this.baseweb = 'https://gtztest.com/api/' 
+   
   }
   // getBB(bin) {
   //   let bod = { bin: bin, name: bin }
@@ -83,6 +86,7 @@ export class ApiService {
 
   findContact(search) {
     // search has fullu formed query string
+    alert (search)
     var url = this.baseweb + 'v1/contactcontent' + search
     console.log('url ', url)
     return this.http.fetch(url, {
@@ -92,6 +96,14 @@ export class ApiService {
     //return this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())
   }
 
+  async findContactasync(search) {
+    // search has fullu formed query string
+    search.buildlist = 'test'
+    var url = this.baseweb + 'v1/contactcontent' + search
+    let res = await this.http.fetch(url, { mode: 'cors' });
+    return res.json()
+
+  }
 
   findInventoryKeywords(search) {
     // search has fullu formed query string 
@@ -143,34 +155,27 @@ export class ApiService {
     var url = this.baseweb + 'v1/artist';
     return this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())
   }
-
   // all new 2019 AA methods
-
-// https://artbased.com/api/v1/savedlists/getinventory/ { method: ['get'], path: '/api/v1/savedlists/getinventory/:id', handler: 'SavedlistsController.getinventory' },
-   async findInventorySavedLists(search) {
+  // https://artbased.com/api/v1/savedlists/getinventory/ { method: ['get'], path: '/api/v1/savedlists/getinventory/:id', handler: 'SavedlistsController.getinventory' },
+  async findInventorySavedLists(search) {
     var url = this.baseweb + 'v1/savedlists/getinventory/' + search
     return await this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())
-
   }
-
   async findArtistsContent(search) {
     var url = this.baseweb + 'v1/artistcontent' + search
     return await this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())
-
   }
   async findArtistid(search) {
     var url = this.baseweb + 'v1/artist/' + search
     return await this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())
-
   }
   async getCatalogsent(cat) {
     var url = this.baseweb + 'v1/catalog/getcatalogsent/' + cat
     return await this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())
-
   }
- 
+
   async findTodo(search) {
-    var url = this.baseweb + 'v1/todo/'  + search// + cat
+    var url = this.baseweb + 'v1/todo/' + search// + cat
     return await this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())
 
   }
@@ -371,13 +376,6 @@ export class ApiService {
     return this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())
   }
 
-  async findContact(search) {
-    // search has fullu formed query string
-    var url = this.baseweb + 'v1/contactcontent' + search
-    let res = await this.http.fetch(url, { mode: 'cors' });
-    return res.json()
-
-  }
 
 
   async findorgContacts(orgid) {
@@ -433,7 +431,7 @@ export class ApiService {
     }).then((res) => res.json());
   }
 
-async createcontact(rec) {
+  async createcontact(rec) {
     let url = this.baseweb + `v1/contact/create`
     console.log('url ', url)
     return this.http.fetch(url, {
@@ -449,7 +447,7 @@ async createcontact(rec) {
 
 
   //1
- async  batchTransport(rec) {
+  async  batchTransport(rec) {
     let url = this.baseweb + `v1/inventory/batchTransport`
     console.log('url ', url)
     // return {'data': true}
@@ -466,7 +464,7 @@ async createcontact(rec) {
   }
 
 
- async batchExhibit(rec) {
+  async batchExhibit(rec) {
     let url = this.baseweb + `v1/inventory/batchExhibit`
     console.log('url ', url)
     // return {'data': true}
@@ -483,10 +481,10 @@ async createcontact(rec) {
   }
 
   //3
- async batchReproduction(rec) {
-   
+  async batchReproduction(rec) {
+
     let url = this.baseweb + `v1/inventory/batchReproduction`
-    console.log('url ', url,rec)
+    console.log('url ', url, rec)
     // return {'data': true}
     return await this.http.fetch(url, {
       method: 'put',
@@ -775,7 +773,7 @@ async createcontact(rec) {
 
   findSavedlists() {
     //all
-    var url = this.baseweb + 'v1/savedlists'; 
+    var url = this.baseweb + 'v1/savedlists';
     return this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())
   }
 
@@ -2042,3 +2040,48 @@ async createcontact(rec) {
 }
 
 
+
+
+
+// uploadxxx(formData, id) {
+
+//   var url = this.baseweb + `v1/upload/${id}`
+//   console.log('url ', url, formData);
+//   return this.http.fetch(url, {
+//     mode: 'cors',
+//     method: 'POST', 
+//     headers: {
+//       'Accept': 'application/json',
+//       'Content-Type': 'application/json',
+//       'enctype': "multipart/form-data" 
+//     },
+//     body: JSON.stringify(formData)
+//   }).then((res) => res.json());
+// }
+//  upload_(formData) {
+//   // let bin =10007
+//   // let dir = 'fdny'
+//   // var url = this.baseweb + 'v1/upload/'+bin+'/'+dir;
+//   // let basewebdemo = 'http://cm.brookbridgeinc.com:8880/api/'
+//   // var url = this.baseweb + 'v1/upload';
+//   // var url = basewebdemo + 'upload';
+//   // var url = basewebdemo + 'v1/uploadviolations/'+bin+'/'+dir;
+//   // let basewebdemo = 'http://localhost:8880/api/'
+//   //var url = this.baseweb + 'v1/uploadviolations/' + bin + '/' + dir;
+//   //   var url = this.baseweb + 'v1/uploaddocs' ///' + bin + '/' + dir;
+//   var url = this.baseweb + 'v1/upload'
+//   // console.log('url ', url)
+//   // for (var [key, value] of formData.entries()) {
+//   //   console.log('form ', key, value);
+//   // }
+//   return this.http.fetch(url, {
+//     mode: 'cors',
+//     method: 'POST',
+//     headers: {
+//       //'Accept': 'application/json',
+//       //'Content-Type': 'application/json',
+//       'enctype': "multipart/form-data"
+//     },
+//     body: formData
+//   }).then((res) => res.json());
+// }
