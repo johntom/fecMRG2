@@ -169,11 +169,11 @@ export class SearchResults {
   }
 
 
-async deleteData(updatedItem){
+  async deleteData(updatedItem) {
 
-   let response = await this.api.deletemlrow(updatedItem);
-     this.datasource.read()
-}
+    let response = await this.api.deletemlrow(updatedItem);
+    this.datasource.read()
+  }
   updateData(e) {
     console.log('updateData ', e)
     return this.api.saveinventory(e).then((jsonRes) => {
@@ -196,7 +196,7 @@ async deleteData(updatedItem){
     })
   }
 
-  activate(params, routeConfig) {
+  async activate(params, routeConfig) {
     // //http://74.114.164.24/api/v1/inventorycontent?artistl=s%26artistf=c 
     this.queryParams = this.utilService.parseQueryStringUrl();
     const qs = this.queryParams.substring(this.queryParams.indexOf('?') + 1)
@@ -211,10 +211,41 @@ async deleteData(updatedItem){
     });
     this.mailinglist = slname// this.item.savedlist 
     // this.datasource.read()
+    // alert(this.mailinglist)
+    let response = await this.api.findCatalog(this.mailinglist);
+    this.catalog = response.data[0]
+    alert(this.catalog)
 
-  let response = await this.api.findCatalog(this.mailinglist);
-  this.catalog= response.data[0]
-   
+    //     { 
+    //     "_id" : ObjectId("5c23f71f656e49b813c982bd"), 
+    //     "ID" : NumberInt(387), 
+    //     "CatalogTitle" : "1Atest", 
+    //     "Isbn" : "", 
+    //     "PubDate" : "", 
+    //     "NoPages" : "", 
+    //     "BW" : "", 
+    //     "Color" : "", 
+    //     "TotalWarehouse" : "", 
+    //     "LocGallery" : "", 
+    //     "PulisherID" : "", 
+    //     "ContactID" : "", 
+    //     "AuthorForward" : "", 
+    //     "ExhibitionID" : "", 
+    //     "CatalogDescription" : "", 
+    //     "Weight" : "", 
+    //     "Postage" : "", 
+    //     "Dimensions" : "", 
+    //     "CoverID" : "", 
+    //     "LocationNotes" : "", 
+    //     "DateLastUpdate" : "", 
+    //     "CatalogNotes" : "", 
+    //     "CoverIllustration" : "", 
+    //     "BoxDimensions" : "", 
+    //     "searchCriteria" : "artist:abbot, bernice", 
+    //     "createdAt" : ISODate("2018-12-27T04:48:15.473+0700"), 
+    //     "updatedAt" : ISODate("2018-12-27T04:48:15.473+0700")
+    // }
+    // alert( response.data+' '+this.catalog.CatalogTitle+' c '+this.catalog.searchCriteria )
   }
   performSearch() {
     // let keyword = `${this.keywordDescription}`//.Description}` //aubs-typeahead 
@@ -248,7 +279,7 @@ async deleteData(updatedItem){
 
 
       console.log('this.search.keywords', this.search.keywords)
-      return this.api.findContact(this.queryParams, this.mailinglist )//this.listname)
+      return this.api.findContact(this.queryParams, this.mailinglist)//this.listname)
 
         // return this.api.findContact(ds, this.listname)
 
@@ -296,11 +327,11 @@ async deleteData(updatedItem){
     console.log('this.loadData ')
     let s2 = '1-1-2016';
     let s3 = '10-21-2016';
-    let inv; 
+    let inv;
     // this.listname = 'test'
     // return this.api.findmailinglist(this.listname).then((jsonRes) => {
-     
-     return this.api.findmailinglist(this.mailinglist).then((jsonRes) => {
+
+    return this.api.findmailinglist(this.mailinglist).then((jsonRes) => {
 
       inv = jsonRes.data;
       this.invdata = inv;

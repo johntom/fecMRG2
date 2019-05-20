@@ -355,7 +355,10 @@ export class ApiService {
   }
   async findCatalog(search) {
     // var url = this.baseweb + 'v1/inventorycontent' + search
-    var url = this.baseweb + `v1/catalog/find${search}`;
+    // var url = this.baseweb + `v1/catalog/find${search}`;
+       var url = this.baseweb + `v1/catalog/find/${search}`; 
+          console.log('url',url)
+ 
     let res = await this.http.fetch(url, { mode: 'cors' })
     return res.json()
   }
@@ -363,6 +366,7 @@ export class ApiService {
   async findCatalogone(id) {
     // var url = this.baseweb + 'v1/inventorycontent' + search
     var url = this.baseweb + `v1/catalog/find/${id}`;
+      console.log('url',url)
     let res = await this.http.fetch(url, { mode: 'cors' })
     return res.json()
   }

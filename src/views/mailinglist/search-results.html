@@ -130,7 +130,7 @@
 	<!-- /.modal form-->
 	<section class="full-height flex-column-1 au-animate ignore">
 		<div class="flex-column-1 overflow-y-auto">
-			<h3> ${mailinglist} / Record Count: ${datasource._data.length} ${catalog} </h3>
+			<h3> ${mailinglist} / Record Count: ${datasource._data.length} ${catalog.searchCriteria} </h3>
 
 			<form class="flex-column-1">
 				<div id="top" class="flex-row-none">
@@ -220,7 +220,7 @@
 									</div>
                   	<div class="Rtable-cell-70  Rtable-cell--highlight">
 								
-	<textarea rows="8" cols="100" id="searchCritera" class="form-control input " value.bind="catalog.searchCritera"></textarea>
+	<textarea rows="8" cols="100" id="searchCriteria" class="form-control input " value.bind="catalog.searchCriteria" enabled="false"></textarea>
 				</div> 
 
 								</div>
