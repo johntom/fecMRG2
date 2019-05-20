@@ -130,7 +130,7 @@
 	<!-- /.modal form-->
 	<section class="full-height flex-column-1 au-animate ignore">
 		<div class="flex-column-1 overflow-y-auto">
-			<h3> ${mailinglist} / Record Count: ${datasource._data.length}</h3>
+			<h3> ${mailinglist} / Record Count: ${datasource._data.length} ${catalog} </h3>
 
 			<form class="flex-column-1">
 				<div id="top" class="flex-row-none">
@@ -215,79 +215,13 @@
 									<div class="Rtable-cell-70  Rtable-cell--highlight">
 										<input type="text " xid="State " class="form-control input-sm " value.bind="search.state">
 									</div>
-
-
-
-
-
-									<!-- <div class="Rtable-cell-30 Rtable-cell--highlight">
-										<strong> Artist</strong>
+	<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong>Search Criteria</strong>
 									</div>
-									<div class="Rtable-cell-70 Rtable-cell--highlight">
-										<input class="form-control" focus.bind="hasFocus" ref="myDatalistA" type="text" list="myDatalistA" change.delegate="changeCallbackArtist(selectedValue)"
-										 input.delegate="selectedValueA = findOptionA($event.target.value)" />
-										<datalist id="myDatalistA">
-											<option repeat.for="option of appService.artistList">${option.ArtistName}</option>
-										</datalist>
-										</div> -->
-
-									<!-- only radio string works with flex -->
-
-									<!-- <div class="Rtable-cell-30 Rtable-cell--highlight">
-										<strong> Sold Status </strong>
-									</div>
-									<div class="Rtable-cell-70 Rtable-cell--highlight">
-
-										<select id="Sold" class="form-control " value.bind="currentItem.Sold">
-											<option model.bind="null">Choose...</option>
-											<option repeat.for="opt of searchsold " model.bind="opt.id">
-												${opt.name}
-											</option>
-										</select>
-									</div>
-									<div class="Rtable-cell-30 Rtable-cell--highlight" style="color:purple">
-										<strong> Owned Status</strong>
-									</div>
-									<div class="Rtable-cell-70 Rtable-cell--highlight">
-										<select id="OwnedBy " class="form-control  " value.bind="currentItem.OwnedId">
-											<option model.bind="null">Choose...</option>
-											<option repeat.for="opt of appService.codesOwnership " model.bind="opt.id">
-												${opt.Description}
-											</option>
-										</select>
-									</div>
-									<div class="Rtable-cell-30 Rtable-cell--highlight" style="color: purple">
-										<strong> Owned By</strong>
-									</div>
-									<div class="Rtable-cell-70 Rtable-cell--highlight">
-										<select id="OwnedBy " class="form-control  " value.bind="currentItem.OwnedId">
-											<option model.bind="null">Choose...</option>
-											<option repeat.for="opt of appService.codesOwnership " model.bind="opt.id">
-												${opt.Description}
-											</option>
-										</select>
-									</div>
-
-									<div class="Rtable-cell-30 Rtable-cell--highlight">
-										<strong>Contact/Org1</strong>
-									</div>
-									<div class="Rtable-cell-70 Rtable-cell--highlight">
-
-										<input class="form-control" ref="myDatalistO" type="text" list="myDatalistO" change.delegate="changeCallbackOrg(selectedValueO)"
-										 input.delegate="selectedValueO = findOptionO($event.target.value)" attach-focus="true" />
-										<datalist id="myDatalistO">
-											<option repeat.for="option of appService.orgsList">${option.OrgName} ; ${option.BusIndivid} ; ${option._id}</option>
-										</datalist>
-
-									</div>
-
-
-									<div class="Rtable-cell-30 Rtable-cell--highlight">
-										<strong>Added/modified</strong>
-									</div>
-									<div class="Rtable-cell-70 Rtable-cell--highlight">
-										${currentItem.DateAdded} / ${currentItem.updatedAt | dateFormat }
-                     </div>-->
+                  	<div class="Rtable-cell-70  Rtable-cell--highlight">
+								
+	<textarea rows="8" cols="100" id="searchCritera" class="form-control input " value.bind="catalog.searchCritera"></textarea>
+				</div> 
 
 								</div>
 								<!-- END COL1 -->

@@ -212,6 +212,9 @@ async deleteData(updatedItem){
     this.mailinglist = slname// this.item.savedlist 
     // this.datasource.read()
 
+  let response = await this.api.findCatalog(this.mailinglist);
+  this.catalog= response.data[0]
+   
   }
   performSearch() {
     // let keyword = `${this.keywordDescription}`//.Description}` //aubs-typeahead 
@@ -245,7 +248,7 @@ async deleteData(updatedItem){
 
 
       console.log('this.search.keywords', this.search.keywords)
-      return this.api.findContact(this.queryParams, this.listname)
+      return this.api.findContact(this.queryParams, this.mailinglist )//this.listname)
 
         // return this.api.findContact(ds, this.listname)
 
@@ -293,9 +296,12 @@ async deleteData(updatedItem){
     console.log('this.loadData ')
     let s2 = '1-1-2016';
     let s3 = '10-21-2016';
-    let inv;
-    this.listname = 'test'
-    return this.api.findmailinglist(this.listname).then((jsonRes) => {
+    let inv; 
+    // this.listname = 'test'
+    // return this.api.findmailinglist(this.listname).then((jsonRes) => {
+     
+     return this.api.findmailinglist(this.mailinglist).then((jsonRes) => {
+
       inv = jsonRes.data;
       this.invdata = inv;
       this.recct = inv.length;
