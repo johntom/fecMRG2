@@ -112,7 +112,19 @@ export class SearchResults {
           })
 
         options.success(updatedItem)
-      }
+      },
+      destroy: (options) => {
+
+        let updatedItem = options.data;
+        // alert(`delete ${updatedItem.LastName}, ${updatedItem.LastName} `)
+        // console.log('   updatedItem ', updatedItem)
+        this.deleteData(updatedItem)
+          .then((scans) => {
+            options.success(scans)
+            this.dataSource.read()
+          })
+        options.success()
+      },
     },
     schema: {
       model: {
@@ -121,17 +133,17 @@ export class SearchResults {
           offeramount: { type: "number" }, // scan template
           // Artist: { type: "string" }, // barcode insured
           //  ArtistRegistra: { type: "string" },
-          InventoryCode: { type: "string", editable: false },
-          Title: { type: "string", editable: false },
-          Image: { type: "string", editable: false },
+          listName: { type: "string", editable: false },
+          FirstName: { type: "string", editable: false },
+          LastName: { type: "string", editable: false },
+          contactid: { type: "string", editable: false },
 
-          //  "artist.lastName": { type: "string", editable: false },
-          // MediumSupport: { type: "string" },
-          // CurrentLocation: { type: "string" },
-          // Bin: { type: "string" }, // barcode insured
-          // Owner: { type: "string" },
-          // InvYear: { type: "string" },
-          // UnframedHeight: { type: "string" },
+          //       "listName" : "test", 
+          // "contactid" : "5c146faed2c10b602e3515fa", 
+          // "FirstName" : "Dennis", 
+          // "LastName" : "Gleason", 
+          // "createdAt" : ISODate("2019-05-20T06:53:07.972+0700"), 
+          // "updatedAt" : ISODate("2019-05-20T06:53:07.972+0700")
         }
       }
     },
@@ -157,7 +169,11 @@ export class SearchResults {
   }
 
 
+async deleteData(updatedItem){
 
+   let response = await this.api.deletemlrow(updatedItem);
+     this.datasource.read()
+}
   updateData(e) {
     console.log('updateData ', e)
     return this.api.saveinventory(e).then((jsonRes) => {
@@ -205,14 +221,38 @@ export class SearchResults {
     // let sold = this.search.sold// `${this.search.sold}`
 
     if (this.search) {
-      // if (keyword !== 'undefined' && keyword !== 'null') this.search.keywords = `${this.keywordDescription.Description}`
+      let ds = `?artists=${this.search.artists}`
+
+      let qs = this.utilService.generateQueryString(this.search);
+      console.log('this.search ', this.search)
+      let counter = this.utilService.counter++
+      // let path = `Search${counter}${qs}`;
+      // this.router.navigate(`#/inventory/${path}`);
+
+
+      // let path = `searchInv${qs}&tabname=searchInv${this.utilService.counter++}`;
+      // let rt2 = `#/inventory/${path}`
+      // this.router.navigate(rt2);
+      let path = `Mailinglist-${qs}`
+      this.router.navigate(`#/mailinglist/${path}`);
+      this.appService.currentSearch = path
+
+      // see authorize-step.js on how I make this a singleton with saving the result set
+      this.appService.actionsearchresults = '';// reset 
+      // this.router.navigate(`#/mailinglist/${path}
+
+      this.queryParams = this.utilService.parseQueryStringUrl();
+
+
       console.log('this.search.keywords', this.search.keywords)
-      //this.queryParams
-      return this.api.findContact(this.search, this.listname)//searchrec)
+      return this.api.findContact(this.queryParams, this.listname)
+
+        // return this.api.findContact(ds, this.listname)
+
         .then((jsonRes) => {
           // inv = jsonRes.data;
           this.invdata = jsonRes.data//inv;
-          this.recct = inv.length;
+          this.recct = this.invdata.length;
           this.datasource.read()
         });
 
@@ -295,56 +335,8 @@ export class SearchResults {
     this.appService.rfreshLoaded = true;
     this.datasource.read()
   }
-  performAction1() {
-    //https://docs.telerik.com/kendo-ui/knowledge-base/persist-row-selection-while-paging
-    let sels
-    if (this.selectedids === undefined) {
-      sels = []
-
-    } else sels = this.selectedids
-    console.log('Action1 sels', sels)
-    var grid = this.grid;
-    var selectedRows = grid.select();
-    var maxRows = selectedRows.length / 2;
-    var i;
-    var a1;
-    for (i = 0; i < maxRows; i++) {
-      a1 = selectedRows[i];
-      let dataItem = grid.dataItem(a1);
-      let mid = sels.findIndex(x => x === dataItem.InventoryCode)
-      if (mid === -1) {
-        sels.push(dataItem.InventoryCode);
-      }
-      if (i === maxRows - 1) {
-        this.selectedids = sels;
-        this.dialogService.open({ viewModel: Promptmess, model: `you are about to remove the following ${this.selectedids} from saved list ${this.savedlist} `, lock: true }).whenClosed(async response => { });
-
-        this.api.deleteSavedlists(this.savedlist, this.selectedids).then((jsonRes) => {
-          console.log('jsonRes ', jsonRes);
-
-          this.datasource.read();
 
 
-        });
-      }
-
-    }
-
-  }
-
-  detailsFactSheet(e) {
-    let grid = this.grid;
-    let targetRow = $(e.target).closest("tr");
-    grid.select(targetRow);
-    let selectedRow = grid.select();
-    let dataItem = grid.dataItem(selectedRow);
-
-    //https://artbased.com/api/v1/downloadonepdf/output/SELIGE0327.doc
-    let rt2 = `https://artbased.com/api/v1/downloadonepdf/output/${dataItem.InventoryCode}.doc`
-
-    //  alert('rt2 '+rt2)
-    window.open(rt2);
-  }
 
   detailsEdit(e) {
     let grid = this.grid;
@@ -352,139 +344,21 @@ export class SearchResults {
     grid.select(targetRow);
     let selectedRow = grid.select();
     let dataItem = grid.dataItem(selectedRow);
-    let rt2 = '#/inventory/data/' + dataItem.InventoryCode;
 
-    this.router.navigate(rt2);// `#/inventory/${path}`);
-
-  }
-
-
-
-  action1() {
-    this.item = {}
-
-    let currentModel = {}
-    currentModel.currentItem = this.item
-    currentModel.item = this.item
-
-    currentModel.currentItem.hide1 = true
-
-    this.dialogService.open({ viewModel: Prompttransport, model: currentModel, lock: true }).whenClosed(async response => {
-      console.log('this.item', response, this.item)
-      if (!response.wasCancelled) {
-        // this.item.Transport = null
-
-        this.save1()
-
-      } else {
-        // if (this.currentItem.artist === null) {
-
-        // }
-        console.log('cancel');
-      }
-      console.log(response)//.output);
-    });
-
-  }
-
-
-
-
-
-  async action9() {
-    // this.hide1 = true
-    // this.hide2 = true
-    // this.hide3 = true
-    // this.hide4 = true
-    // this.hide5 = true
-    // this.hide6 = true
-    // this.hide7 = true
-    // // this.hide9 ? this.hide9 = false : this.hide9 = true
-    // this.hide9 = false
-    // this.hide8 = true
-
-    // let segment
-    // segment = `<h1 style="text-align:center;">${this.savedlist}</h1> <table><tbody>`
-    // for (const invitem of this.datasource._data) {
-    //   let ww = invitem.clientWidthRatio
-    //   let hh = invitem.clientHeightRatio
-    //   if (ww === undefined) ww = 1
-    //   if (hh === undefined) hh = 1
-    //   ww = 225 * ww
-    //   hh = 225 * hh
-    //   // we have  the ratio of each image
-    //   // ie h=1 w=1
-    //   // w h-1 w=.5
-    //   // save to    https://artbased.com/api/v1/downloadonepdf/lists/sl2.doc
-    //   segment += `<tr style="height:17%;"><td style="width:8%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>`
-    //   segment += `<td style="width:42%;">${invitem.rtf2}</td>`
-    //   segment += `<td style="width:8%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>`
-    //   segment += `<td style="width:42%;"><img src="https://artbased.com/api/v1/getimage/inv/${invitem.InventoryCode}.jpg" alt="" width="${ww}" height=${hh} /></td>`
-    //   segment += `</tr>`
+    // if (this.datasource._data.length === 1) {
+    //   let tab = this.appService.tabs.find(f => f.isSelected);
+    //   this.closeTab(tab);
     // }
-    // segment += `</tbody></table>`
-    // this.editor.value(segment)
-    // this.saveMerge()
+    // find index
+    //  let garray = this.datasource._data;
+    let gid = this.invdata.findIndex(x => x.id === dataItem.id)
+    let rt2 = '#/contact/data/' + dataItem.contactid + '?' + dataItem.LastName + ',' + dataItem.FirstName + '-' + gid///+' '+dataItem.ID
 
-    ////////////////////
-    let currentModel = {}
-    currentModel.currentItem = this.item
-    currentModel.item = this.item
-    currentModel.currentItem.hide4 = true
+    // let rt2 = '#/contact/data/' + dataItem.id;
+    this.router.navigate(rt2);
 
-    //////////
-
-    let sels
-    if (this.selectedids === undefined) {
-      sels = []
-      // if (!this.selectedids.length > 0) {
-      //   sels = []//this.selectedids//[];
-
-    } else sels = this.selectedids
-    console.log('Action1 sels', sels)
-    // var sels = this.selectedids//[];
-    let grid = this.grid;
-    let selectedRows = grid.select();
-    var maxRows = selectedRows.length / 2;
-    let newcount = 0
-
-    var i;
-    var a1;
-    for (i = 0; i < maxRows; i++) {
-      a1 = selectedRows[i];
-      let dataItem = grid.dataItem(a1);
-      // let mid = sels.findIndex(x => x.InventoryCode === dataItem.InventoryCode)
-      let mid = sels.findIndex(x => x === dataItem.InventoryCode)
-      if (mid === -1) {
-        sels.push(dataItem.InventoryCode);
-        newcount++
-      }
-      // if (i === maxRows - 1) {
-      //   this.selectedids = sels;
-
-      // }
-
-    }
-
-    //  ??
-    if (newcount === 0) sels = this.datasource._data
-    this.dialogService.open({ viewModel: Promptmerge, model: sels, lock: true }).whenClosed(async response => {
-
-      // this.dialogService.open({ viewModel: Promptmerge, model: this.datasource._data, lock: true }).whenClosed(async response => {
-      console.log('this.item', response, this.item)
-      if (!response.wasCancelled) {
-        // this.item.Provenance = null
-        // this.save4()
-        this.saveMerge
-      } else {
-        // if (this.currentItem.artist === null) { 
-        // }
-        console.log('cancel');
-      }
-      console.log(response)//.output);
-    });
-    ////////////
   }
+
 
   saveMerge() {
     let savetime = moment().format('MM/DD/YY h:mm:ss a')
@@ -500,27 +374,6 @@ export class SearchResults {
 
   setInitialValue(edt) {
 
-
-  }
-
-  async save1() {
-
-    //     let dtransportto = `${this.Description.Description}`
-    //     let dtransportfrom = `${this.Description2.Description}`
-    let jsonResna = await this.api.getbatchno();
-
-    this.item.batchno = jsonResna[0].nextavail
-    this.item.savedlist = this.savedlist
-    this.api.batchTransport(this.item)
-      .then((jsonRes) => {
-        if (jsonRes.data === 'success') {
-          // alert(' batch updated  batchno= ' + batchno + ' ' + this.item)
-          this.dialogService.open({ viewModel: Promptmess, model: `batch updated  batchno= ${this.item.batchno}  `, lock: true }).whenClosed(async response => { });
-          this.item = {}//.TransportDate = ''
-        } else {
-          this.dialogService.open({ viewModel: Promptmess, model: `batch failed `, lock: true }).whenClosed(async response => { });
-        }
-      })
 
   }
 

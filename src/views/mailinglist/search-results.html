@@ -292,27 +292,36 @@
 								</div>
 								<!-- END COL1 -->
 							</div>
-							<!-- xid no form store id hs prev vals  input-sm  vss none-->
+							<!--  k-selectable="multiple"  xid no form store id hs prev vals  input-sm  vss none-->
 							<div class="form-group flex-column-1 margin-left-10">
 								<div class="form-group flex-column-1 Rtable-cell--highlight">
-									grid ${datasource}
 
-									<ak-grid class="flex-row-1 overflow-y-auto" id="grid" k-data-source.bind="datasource" k-widget.bind="grid" k-sortable.bind="{ mode: 'multiple',   allowUnsort: 'true'}"
-									 k-filterable.bind="{  mode: 'row' }" k-editable="inline" k-reorderable.bind="true" k-resizable.bind="true" k-on-edit.delegate="onEdit($event.detail)"
-									 k-selectable="multiple" k-on-change.delegate="rowSelected($event.detail)" k-column-menu.bind="true" k-pageable.bind="true">
-										<ak-col k-filterable.bind="false" k-width="120px" k-title="Cmd" k-command.bind="['edit']" k-title="&nbsp;" k-locked.bind="true"
-										 k-lockable.bind="false"></ak-col>
+									<ak-grid class="flex-row-1 overflow-y-auto" id="grid" k-data-source.bind="datasource"
+                   k-widget.bind="grid" k-sortable.bind="{ mode: 'multiple',   allowUnsort: 'true'}"
+									 k-filterable.bind="{  mode: 'row' }" k-editable="inline" k-reorderable.bind="true"
+                    k-resizable.bind="true" k-on-edit.delegate="onEdit($event.detail)"
+									k-on-change.delegate="rowSelected($event.detail)" k-column-menu.bind="true" k-pageable.bind="true">
+											<!-- <ak-col k-title="id" k-width="110px" k-field="id"></ak-col> -->
+    <ak-col k-field="LastName" k-filterable.bind="true" k-title="LastName(Edit)" 
+      k-width.bind="180" k-template="<button click.delegate='detailsEdit($event)' class='k-button'>#=LastName#</button>">
+			</ak-col>
+                	<ak-col k-title="FirstName" k-width="110px" k-field="FirstName"></ak-col>
+									
 
-  
-		<ak-col k-title="listName" k-width="110px" k-field="listName"></ak-col>
-								
+										<ak-col k-title="listName" k-width="110px" k-field="listName"></ak-col>
 
-										<ak-col k-title="FirstName" k-width="110px" k-field="FirstName"></ak-col>
-										<ak-col k-title="LastName" k-width="200px" k-field="LastName"></ak-col>
+
+											<!-- <ak-col k-title="City" k-width="110px" k-field="city"></ak-col>
+										<ak-col k-title="State" k-width="110px" k-field="state"></ak-col>
+									 -->
+                    
+                      <ak-col k-command="destroy" k-title="&nbsp;" k-width.bind="150"></ak-col>
+										<br />
 									</ak-grid>
 
-							
 									<br />
+							
+
 								</div>
 								<!-- 2nd -->
 

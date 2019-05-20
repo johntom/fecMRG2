@@ -81,8 +81,8 @@ export class ApiService {
   }
 
 
-// { method: ['get'], path: '/api/v1/mailinglist/:id', handler: 'MailinglistController.findone' },
-findmailinglist(listname) {
+  // { method: ['get'], path: '/api/v1/mailinglist/:id', handler: 'MailinglistController.findone' },
+  findmailinglist(listname) {
     // search has fullu formed query string
     //  search.buildlist = 'test'
     // alert (search)
@@ -95,14 +95,15 @@ findmailinglist(listname) {
     }).then((res) => res.json());
     //return this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())
   }
-  findContact(search,listname) {
+  findContact(search, listname) {
     // search has fullu formed query string
     //  search.buildlist = 'test'
     // alert (search)
-    if (listname){ 
-    // var url = this.baseweb + 'v1/contactcontent' + search+'&buildlist=test'
-    var url = this.baseweb + `v1/contactcontent${search}&buildlist=${listname}`
-    } else  var url = this.baseweb + `v1/contactcontent${search}`
+    var url
+    if (listname) {
+      url = this.baseweb + 'v1/contactcontent' + search + `&buildlist=${listname}`
+      // var url = this.baseweb + `v1/contactcontent${search}&buildlist=${listname}`
+    } else var url = this.baseweb + `v1/contactcontent${search}`
     console.log('url ', url)
     return this.http.fetch(url, {
       method: 'get',
@@ -117,6 +118,32 @@ findmailinglist(listname) {
     var url = this.baseweb + 'v1/contactcontent' + search
     let res = await this.http.fetch(url, { mode: 'cors' });
     return res.json()
+
+  }
+
+ async deletemlrow(row) {
+    // search has fullu formed query string
+    // search.buildlist = 'test'
+    // var url = this.baseweb + 'v1/contactcontent' + search
+    // let res = await this.http.fetch(url, { mode: 'cors' });
+    // return res.json()
+
+//  let pid = row.id
+    let url = this.baseweb + `v1/mailinglist/delete`
+    return await this.http.fetch(url, {
+      method: 'delete',
+      mode: 'cors',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+    //    , 'Authorization': 'JWT ' + token
+      },
+      body: JSON.stringify(row)
+    }).then((res) => res.json());
+
+
+
+
 
   }
 
