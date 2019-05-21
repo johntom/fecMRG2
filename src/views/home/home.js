@@ -9,7 +9,8 @@ export class Home {
   heading = "MRG Home Page";
   version = 301.49
   // versionDate = 'Mon 5/6/2019 11pm'
-  versionDate = 'Mon 5/20/2019 8pm'
+
+  versionDate = 'Tue 5/21/2019 2pm'
 
   issues = [
     `dirty: "phones": [       "type": null" not type:0 {"phones.type":  0} fixContactType`  ,
@@ -41,7 +42,7 @@ export class Home {
     , '      let mm = array2[1] - 1  //month is 0 based'
     , '      let dd = array2[2] + 1// DATE_OF_LOSS.getDate();// l this will use time to convert date so if time <5 then date will -1'
     , '      let dol_2 = new Date(Date.UTC(yy, mm, dd, 10));'
-    , '  let paramDate = req.param(DATE_OF_LOSS)'
+    , '      let paramDate = req.param(DATE_OF_LOSS)'
     , '      let d6 = new Date(`${paramDate}  10:00:00`);'// set the time easist way to make sure date does not change
     , '      model.DATE_OF_LOSS = d6'
   ]

@@ -149,9 +149,6 @@
 									<div class="Rtable-cell-70  Rtable-cell--highlight">
 										<input type="text" id="FirstName" class="form-control input-sm" value.bind="currentItem.FirstName ">
 
-
-
-
 									</div>
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
 										<strong>Last Name</strong>
@@ -349,7 +346,7 @@
 									<div class="Rtable-cell-70 Rtable-cell--highlight">
 										<!-- ${currentItem.contacttypes} -->
 										<ak-multiselect k-value.two-way="currentItem.contacttypes" k-placeholder="Select contacttypes..." k-data-text-field="Description"
-										 k-data-value-field="Description" k-height.bind="400" k-data-source.bind="dataSource" k-widget.two-way="multiselect"
+										 k-data-value-field="Description" k-height.bind="400" k-data-source.bind="appService.codesOrgContactTypes" k-widget.two-way="multiselect"
 										 id="multiselect-customizing-templates-codes">
 											<ak-template for="noDataTemplate">
 												<div>
