@@ -161,11 +161,11 @@ export class SearchResults {
     this.dialogService = dialogService
     this.appService.rfreshLoaded = false;
     this.search = {}
-    this.search.deceased = true
-    this.search.nomailings = true
-    this.search.noinfo = true
+    // this.search.deceased = true
+    // this.search.nomailings = true
+    // this.search.noinfo = true
     this.search.keywords = []
-
+  this.search.genres = []
   }
 
 
@@ -199,6 +199,8 @@ export class SearchResults {
   async activate(params, routeConfig) {
     // //http://74.114.164.24/api/v1/inventorycontent?artistl=s%26artistf=c 
     this.queryParams = this.utilService.parseQueryStringUrl();
+
+
     const qs = this.queryParams.substring(this.queryParams.indexOf('?') + 1)
     const pairs = qs.split('&')
     const queryParams = {}
@@ -210,108 +212,70 @@ export class SearchResults {
       ct++
     });
     this.mailinglist = slname// this.item.savedlist 
+    this.search.mailinglist = slname
     // this.datasource.read()
     // alert(this.mailinglist)
-    let response = await this.api.findCatalog(this.mailinglist);
-    this.catalog = response.data[0]
-    alert(this.catalog)
+    console.log('activate this.mailinglist queryParams', this.mailinglist, this.queryParams)
+    
+    
+    
+    // let response = await this.api.findCatalogone(this.mailinglist);
+    // this.catalog = response.data[0]
 
-    //     { 
-    //     "_id" : ObjectId("5c23f71f656e49b813c982bd"), 
-    //     "ID" : NumberInt(387), 
-    //     "CatalogTitle" : "1Atest", 
-    //     "Isbn" : "", 
-    //     "PubDate" : "", 
-    //     "NoPages" : "", 
-    //     "BW" : "", 
-    //     "Color" : "", 
-    //     "TotalWarehouse" : "", 
-    //     "LocGallery" : "", 
-    //     "PulisherID" : "", 
-    //     "ContactID" : "", 
-    //     "AuthorForward" : "", 
-    //     "ExhibitionID" : "", 
-    //     "CatalogDescription" : "", 
-    //     "Weight" : "", 
-    //     "Postage" : "", 
-    //     "Dimensions" : "", 
-    //     "CoverID" : "", 
-    //     "LocationNotes" : "", 
-    //     "DateLastUpdate" : "", 
-    //     "CatalogNotes" : "", 
-    //     "CoverIllustration" : "", 
-    //     "BoxDimensions" : "", 
-    //     "searchCriteria" : "artist:abbot, bernice", 
-    //     "createdAt" : ISODate("2018-12-27T04:48:15.473+0700"), 
-    //     "updatedAt" : ISODate("2018-12-27T04:48:15.473+0700")
-    // }
-    // alert( response.data+' '+this.catalog.CatalogTitle+' c '+this.catalog.searchCriteria )
   }
-  performSearch() {
-    // let keyword = `${this.keywordDescription}`//.Description}` //aubs-typeahead 
-    // let medsupport = `${this.DescriptionMS}`
-    // let currentlocation = `${this.DescriptionLoc}`
-    // let multikeys = `${this.multikeywords}`
-    // let sold = this.search.sold// `${this.search.sold}`
+  async performSearch() {
 
     if (this.search) {
-      let ds = `?artists=${this.search.artists}`
+      
+      let search = this.search //JSON.stringify(this.search)    
+      let str = `?mailinglist=${search.mailinglist}`
+      if (search.artists !== undefined) {
+        str += `&artists=${search.artists}`
+      }
+      if (search.keywords !== undefined) {
+        str += `&keywords=${search.keywords}`
+      }
+       if (search.genres !== undefined) {
+        str += `&genres=${search.genres}`
+      }
+      if (search.city !== undefined) {
+        str += `&city=${search.city}`
+      }
+      if (search.state !== undefined) {
+        str += `&state=${search.state}`
+      }
 
-      let qs = this.utilService.generateQueryString(this.search);
-      console.log('this.search ', this.search)
-      let counter = this.utilService.counter++
-      // let path = `Search${counter}${qs}`;
-      // this.router.navigate(`#/inventory/${path}`);
-
-
-      // let path = `searchInv${qs}&tabname=searchInv${this.utilService.counter++}`;
-      // let rt2 = `#/inventory/${path}`
-      // this.router.navigate(rt2);
-      let path = `Mailinglist-${qs}`
-      this.router.navigate(`#/mailinglist/${path}`);
-      this.appService.currentSearch = path
-
-      // see authorize-step.js on how I make this a singleton with saving the result set
-      this.appService.actionsearchresults = '';// reset 
-      // this.router.navigate(`#/mailinglist/${path}
-
-      this.queryParams = this.utilService.parseQueryStringUrl();
-
-
-      console.log('this.search.keywords', this.search.keywords)
-      return this.api.findContact(this.queryParams, this.mailinglist)//this.listname)
-
+      if (search.holidaylist === true) {
+        str += `&holidaylist=${search.holidaylist}`
+      }
+      if (search.masterlist === true) {
+        str += `&masterlist=${search.masterlist}`
+      }
+      if (search.nomailings === true) {
+        str += `&nomailings=${search.nomailings}`
+      }
+      if (search.deceased === true) {
+        str += `&deceased=${search.deceased}`
+      }
+      if (search.noinfo === true) {
+        str += `&noinfo=${search.noinfo}`
+      }
+      if (search.international === true) {
+        str += `&international=${search.international}`
+      }
+      return this.api.findContact(str, this.mailinglist)//this.listname)
         // return this.api.findContact(ds, this.listname)
-
         .then((jsonRes) => {
           // inv = jsonRes.data;
+
+         
+
           this.invdata = jsonRes.data//inv;
           this.recct = this.invdata.length;
           this.datasource.read()
         });
+         
 
-
-      //   //  if (savedlist !== 'undefined' && savedlist !== 'null') this.search.savedlists = `${this.name.name}`
-
-      //   if (medsupport !== 'undefined') this.search.mediumsupport = `${this.DescriptionMS.Description}`
-      //   if (currentlocation !== 'undefined') this.search.currentlocation = `${this.DescriptionLoc.Description}`
-      //   if (multikeys !== 'undefined') this.search.multikeywords = `${this.multikeywords}`
-      //   if (sold !== 'undefined') this.search.sold = sold
-      //   if (selecteddate !== 'undefined') this.search.selectedDateId = selecteddate
-      //   if (owndedby !== 'undefined') this.search.owndedby = owndedby //search.owndedby
-
-      //   let qs = this.utilService.generateQueryString(this.search);
-      //   console.log('this.search ', this.search)
-      //   let counter = this.utilService.counter++
-      //   // let path = `Search${counter}${qs}`;
-      //   // this.router.navigate(`#/inventory/${path}`);
-
-
-      //   let path = `searchInv${qs}&tabname=searchInv${this.utilService.counter++}`;
-      //   let rt2 = `#/inventory/${path}`
-      //   this.router.navigate(rt2);
-
-      //   this.appService.currentSearch = path //`Search${counter}`
     }
   }
 
@@ -330,6 +294,8 @@ export class SearchResults {
     let inv;
     // this.listname = 'test'
     // return this.api.findmailinglist(this.listname).then((jsonRes) => {
+ let response = await this.api.findCatalogone(this.mailinglist);
+    this.catalog = response.data[0]
 
     return this.api.findmailinglist(this.mailinglist).then((jsonRes) => {
 

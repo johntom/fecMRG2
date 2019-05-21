@@ -95,32 +95,63 @@ export class ApiService {
     }).then((res) => res.json());
     //return this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())
   }
+  // findContact(search, listname) {
+  //   // search has fullu formed query string
+  //   //  search.buildlist = 'test'
+  //   // alert (search)
+  //   var url
+  //   if (listname) {
+  //     // url = this.baseweb + 'v1/contactcontent' + search + `&buildlist=${listname}`
+  //        url = this.baseweb + 'v1/contactcontent' + search + `&buildlist=${listname}`
+   
+  //     // var url = this.baseweb + `v1/contactcontent${search}&buildlist=${listname}`
+  //   } else var url = this.baseweb + `v1/contactcontent${search}`
+  //   console.log('url ', url)
+  //   return this.http.fetch(url, {
+  //     method: 'get',
+  //     mode: 'cors'
+  //   }).then((res) => res.json());
+  //   //return this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())
+  // }
+
+
+
   findContact(search, listname) {
-    // search has fullu formed query string
-    //  search.buildlist = 'test'
-    // alert (search)
-    var url
-    if (listname) {
-      url = this.baseweb + 'v1/contactcontent' + search + `&buildlist=${listname}`
-      // var url = this.baseweb + `v1/contactcontent${search}&buildlist=${listname}`
-    } else var url = this.baseweb + `v1/contactcontent${search}`
+  //  search= JSON.stringify(search) 
+ let url = this.baseweb + `v1/contactcontent${search}&buildlist=${listname}`
     console.log('url ', url)
     return this.http.fetch(url, {
       method: 'get',
-      mode: 'cors'
+      mode: 'cors',
+    
     }).then((res) => res.json());
     //return this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())
   }
+  // async findContactasync(search) {
+  //   // search has fullu formed query string
+  //   search.buildlist = 'test'
+  //   var url = this.baseweb + 'v1/contactcontent' + search
+  //   let res = await this.http.fetch(url, { mode: 'cors' });
+  //   return res.json()
+
+  // }
 
   async findContactasync(search) {
     // search has fullu formed query string
     search.buildlist = 'test'
-    var url = this.baseweb + 'v1/contactcontent' + search
-    let res = await this.http.fetch(url, { mode: 'cors' });
+    var url = this.baseweb + 'v1/contactcontent' 
+    let res = await this.http.fetch(url, { 
+      mode: 'cors',
+      
+      body: JSON.stringify(search) });
     return res.json()
 
   }
 
+
+
+
+  
  async deletemlrow(row) {
     // search has fullu formed query string
     // search.buildlist = 'test'

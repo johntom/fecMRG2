@@ -49,8 +49,13 @@ export class Conservation {
     } else {
       oid = orgs.findIndex(x => x._id === this.currentItem.ConservedBy)
       orgobj = this.appService.orgsList[oid]//10]
-      if (orgobj !== undefined) this.currentItem.conservedbyname = orgobj.OrgName
+      if (orgobj !== undefined) {
+         this.currentItem.conservedbyname = orgobj.OrgName
+         this.appService.originalrec.conservedbyname = this.currentItem.conservedbyname// fix dirty
+   
+      }
     }
+            
   }
   remove(item, index) {
     // alert('you are about to delete ' + item.Notes + ' ' + index)
@@ -80,7 +85,8 @@ export class Conservation {
     this.currentItem.fieldname = fieldname
     this.currentItem.ConservedBy = this.currentItem.conservation[index].ConservedBy // mongoid
     this.currentItem.conservedbyname = this.currentItem.conservation[index].conservedbyname
-
+    this.appService.originalrec.conservedbyname = this.currentItem.conservedbyname// fix dirty
+   
     // this.dialogService.open({ viewModel: Prompt, model: fieldname, lock: false }).whenClosed(response => {
         
     this.dialogService.open({ viewModel: Promptorg, model: this.currentItem, lock: true }).whenClosed(response => {
@@ -88,6 +94,8 @@ export class Conservation {
     
       this.currentItem.conservation[index].ConservedBy = this.currentItem.ConservedBy
       this.currentItem.conservation[index].conservedbyname = this.currentItem.conservedbyname
+      this.appService.originalrec.conservedbyname = this.currentItem.conservedbyname// fix dirty
+   
       if (!response.wasCancelled) {
         // console.log('Delete') currentItem.conservation
         // let notes = this.currentItem.notes

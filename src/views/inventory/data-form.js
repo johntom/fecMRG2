@@ -187,12 +187,12 @@ export class DataForm {
 
 
 
-//  let topos = this.orgfields.findIndex(x => x === fieldname);
-//     if (topos !== -1) {
-//       // orgfields orgfielddesc 
-//       // let odesc = this.orgfielddesc[topos]
-//       // this.heading = `Org/Contact ${odesc} Search`
-//     }
+    //  let topos = this.orgfields.findIndex(x => x === fieldname);
+    //     if (topos !== -1) {
+    //       // orgfields orgfielddesc 
+    //       // let odesc = this.orgfielddesc[topos]
+    //       // this.heading = `Org/Contact ${odesc} Search`
+    //     }
 
 
     // if (this.currentItem.OwnerID === 6275) this.currentItem.OwnerID = '5c434cc100a8a1588c6407b7'
@@ -209,11 +209,11 @@ export class DataForm {
     // this.currentItem.SoldToID=''
     //     }
     // if (fieldname === 'SoldToID') {
-// let topos = this.orgfields.findIndex(x => x === fieldname);
-  // if (topos !== -1) {
-// only 2 on main form
-if (fieldname === 'SoldToID' || fieldname === 'OwnerID') {
-  
+    // let topos = this.orgfields.findIndex(x => x === fieldname);
+    // if (topos !== -1) {
+    // only 2 on main form
+    if (fieldname === 'SoldToID' || fieldname === 'OwnerID') {
+
       this.dialogService.open({ viewModel: Promptorg, model: this.currentItem, lock: true }).whenClosed(response => {
 
         if (!response.wasCancelled) {
@@ -379,6 +379,9 @@ if (fieldname === 'SoldToID' || fieldname === 'OwnerID') {
             let inv = jsonRes.data;
             this.currentItem = inv[0]
             delete this.currentItem.updatedAt;
+            // delete this.currentItem.conservedbyname
+            // this.saveinventory(0)
+
             // never been saved from view
 
             // // move to attach
@@ -402,8 +405,10 @@ if (fieldname === 'SoldToID' || fieldname === 'OwnerID') {
 
 
             this.currentItem.isDirty = () => {
+              // this.appService.originalrec.conservedbyname = this.currentItem.conservedbyname// fix dirty
               const currentJSON = JSON.stringify(this.currentItem);
               const originalJSON = JSON.stringify(this.appService.originalrec);
+              
               console.log('currentJSON');
 
               console.log(currentJSON);
@@ -531,11 +536,13 @@ if (fieldname === 'SoldToID' || fieldname === 'OwnerID') {
     // move to attach
     // bypass save if in create mode
     if (this.recordId !== 'create') {
+// fix dirty
+            this.appService.originalrec.OwnedId =  this.appService.currentItem.OwnedId
+
 
 
 
       let tabinfo, tabindex
-
       tabinfo = localStorage.getItem('tabinfo' + this.currentItem.InventoryCode);
       if (tabinfo === null) {
         tabindex = 0
@@ -543,7 +550,6 @@ if (fieldname === 'SoldToID' || fieldname === 'OwnerID') {
         tabinfo = JSON.parse(tabinfo)
         tabindex = tabinfo.tabindex
       }
-
       if (this.appService.dataFormOneToManyTabs.length > 0) {
         let tab = this.appService.dataFormOneToManyTabs[tabindex];
         this.selectOneToManyTab(tab);
@@ -560,7 +566,7 @@ if (fieldname === 'SoldToID' || fieldname === 'OwnerID') {
     if (this.recordId === 'create') {
       // console.log(  this.currentItem, this.currentItem)
       // || this.currentItem.MediumSupportobj === undefined
-        
+
       if (this.currentItem.Title === undefined || this.currentItem.InventoryCode === undefined
         || this.currentItem.artist === undefined || this.currentItem.OwnedBy === undefined) {
         alert('Please fix  Title, InventoryCode, Owned By and or Artist ')

@@ -7,11 +7,14 @@ import { ApiService } from '../../utils/servicesApi';
 
 export class Home {
   heading = "MRG Home Page";
-  version = 301.48
+  version = 301.49
   // versionDate = 'Mon 5/6/2019 11pm'
-  versionDate = 'Mon 5/20/2019 12pm'
+  versionDate = 'Mon 5/20/2019 8pm'
 
   issues = [
+    `dirty: "phones": [       "type": null" not type:0 {"phones.type":  0} fixContactType`  ,
+    `dirty: this.appService.originalrec.conservedbyname = this.currentItem.conservedbyname fix dirty`,
+   ` dirty:this.appService.originalrec.OwnedId =  this.appService.currentItem.OwnedId`,
     " finish action exhi/repro ",
     `"@progress/kendo-ui": "^2017.2.504"`,
     ' python -m SimpleHTTPServer D:\Frameworks\fecMRG2-Staging\www\pythonserver.bat',

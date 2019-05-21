@@ -153,7 +153,9 @@
 							<td width="100px">
 
 								<select id="phonetype" class="form-control  input-sm" value.bind="email.type"> 
-                      <option model.bind="null">Choose...filterOnCode</option> 
+                      <!-- <option model.bind="null">Choose...filterOnCode</option>  -->
+                        <option model.bind=0>Choose...filterOnCode</option> 
+                    
                          <option repeat.for="opt of appService.codesPhoneType " model.bind="opt.id">
                     ${opt.Description} 
                       </option> 
@@ -180,12 +182,7 @@
 								<input class="form-control input-sm" type="text" value.bind="Note">
 
 							</td>
-							<!--<td width="225px">
-
-							 <button class="btn  btn-sm  btn-primary" click.delegate="saveitem(email,$index)">${ !email.edit ? 'Edit' : 'Done' }</button>
-
-
-							</td>-->
+						
 
 
 					</tbody>
