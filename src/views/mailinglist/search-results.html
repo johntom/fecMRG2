@@ -134,16 +134,16 @@
 
 			<form class="flex-column-1">
 				<div id="top" class="flex-row-none">
-					<div id="top-left" class="data-form overflow-y-auto flex-column-2">
+					<div id="top-left" class="data-form overflow-y-auto flex-column-12">
 						<!-- row1 -->
 
 						<div class="Rtable Rtable--2cols">
-							<div class="Rtable-cell-50 Rtable-cell--highlight">
-								<strong> Search </strong>
+							<div class="Rtable-cell-65 Rtable-cell--highlight">
+								<strong> Results  </strong>
 
 							</div>
-							<div class="Rtable-cell-50 Rtable-cell--highlight">
-								<strong> Results </strong>
+							<div class="Rtable-cell-35 Rtable-cell--highlight">
+								<strong> Search </strong>
 
 							</div>
 						</div>
@@ -153,8 +153,36 @@
 							<!-- end <div class="Rtable Rtable--7cols"> -->
 
 							<!-- demo middle col -->
-							<div class="form-group flex-column-1 margin-left-10">
+							<div class="form-group flex-column-2 margin-left-10">
 								<div class="Rtable Rtable--2cols">
+
+
+	<ak-grid class="flex-row-1 overflow-y-auto" id="grid" k-data-source.bind="datasource" k-widget.bind="grid" k-sortable.bind="{ mode: 'multiple',   allowUnsort: 'true'}"
+									 k-filterable.bind="{  mode: 'row' }" k-editable="inline" k-reorderable.bind="true" k-resizable.bind="true" k-on-edit.delegate="onEdit($event.detail)"
+									 k-on-change.delegate="rowSelected($event.detail)" k-column-menu.bind="true" k-pageable.bind="true">
+										<!-- <ak-col k-title="id" k-width="110px" k-field="id"></ak-col> -->
+										<ak-col k-field="LastName" k-filterable.bind="true" k-title="LastName(Edit)" k-width.bind="180" k-template="<button click.delegate='detailsEdit($event)' class='k-button'>#=LastName#</button>">
+										</ak-col>
+										<ak-col k-title="FirstName" k-width="110px" k-field="FirstName"></ak-col>
+										<ak-col k-title="listName" k-width="110px" k-field="listName"></ak-col>
+										<!-- <ak-col k-title="City" k-width="110px" k-field="city"></ak-col>
+										<ak-col k-title="State" k-width="110px" k-field="state"></ak-col>
+									 -->
+										<ak-col k-command="destroy" k-title="&nbsp;" k-width.bind="150"></ak-col>
+										<br />
+									</ak-grid>
+
+									<br />
+
+
+								</div>
+								<!-- END COL1 -->
+          
+							</div>
+							<!--  k-selectable="multiple"  xid no form store id hs prev vals  input-sm  vss none-->
+							<div class="form-group flex-column-1 margin-left-10">
+								<div class="form-group flex-column-1 Rtable-cell--highlight">
+
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
 										<strong> Catalog</strong>
 									</div>
@@ -242,37 +270,9 @@
 										<textarea rows="8" cols="100" id="searchCriteria" class="form-control input " value.bind="catalog.searchCriteria" enabled="false"></textarea>
 									</div>
 
-								</div>
-								<!-- END COL1 -->
-                					<button id="searchInputBtn" class="btn btn-primary" click.delegate="performSearch()" type="button"><strong>S</strong>earch & Build list! </button>
+  					<button id="searchInputBtn" class="btn btn-primary" click.delegate="performSearch()" type="button"><strong>S</strong>earch & Build list! </button>
 		
-							</div>
-							<!--  k-selectable="multiple"  xid no form store id hs prev vals  input-sm  vss none-->
-							<div class="form-group flex-column-1 margin-left-10">
-								<div class="form-group flex-column-1 Rtable-cell--highlight">
-
-									<ak-grid class="flex-row-1 overflow-y-auto" id="grid" k-data-source.bind="datasource" k-widget.bind="grid" k-sortable.bind="{ mode: 'multiple',   allowUnsort: 'true'}"
-									 k-filterable.bind="{  mode: 'row' }" k-editable="inline" k-reorderable.bind="true" k-resizable.bind="true" k-on-edit.delegate="onEdit($event.detail)"
-									 k-on-change.delegate="rowSelected($event.detail)" k-column-menu.bind="true" k-pageable.bind="true">
-										<!-- <ak-col k-title="id" k-width="110px" k-field="id"></ak-col> -->
-										<ak-col k-field="LastName" k-filterable.bind="true" k-title="LastName(Edit)" k-width.bind="180" k-template="<button click.delegate='detailsEdit($event)' class='k-button'>#=LastName#</button>">
-										</ak-col>
-										<ak-col k-title="FirstName" k-width="110px" k-field="FirstName"></ak-col>
-
-
-										<ak-col k-title="listName" k-width="110px" k-field="listName"></ak-col>
-
-
-										<!-- <ak-col k-title="City" k-width="110px" k-field="city"></ak-col>
-										<ak-col k-title="State" k-width="110px" k-field="state"></ak-col>
-									 -->
-
-										<ak-col k-command="destroy" k-title="&nbsp;" k-width.bind="150"></ak-col>
-										<br />
-									</ak-grid>
-
-									<br />
-
+                
 
 								</div>
 								<!-- 2nd -->

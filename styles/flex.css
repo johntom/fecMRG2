@@ -257,6 +257,28 @@
 .Rtable-cell-45 > h6 {
   margin: 0;
 }
+
+.Rtable-cell-65 {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  -webkit-box-flex: 2;
+      -ms-flex-positive: 2;
+          flex-grow: 2;
+  width: 65%;
+  /* padding: 0.8em 1.2em; */
+  overflow: hidden;
+  list-style: none;
+  border: solid 3px white;
+  background: rgba(112, 128, 144, 0.2);
+}
+.Rtable-cell-65 > h1,
+.Rtable-cell-65 > h2,
+.Rtable-cell-65 > h3,
+.Rtable-cell-65 > h4,
+.Rtable-cell-65 > h5,
+.Rtable-cell-65 > h6 {
+  margin: 0;
+}
 		/* Table column sizing
 ================================== */
 .Rtable--1cols>.Rtable-cell {

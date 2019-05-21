@@ -7,10 +7,9 @@ import { ApiService } from '../../utils/servicesApi';
 
 export class Home {
   heading = "MRG Home Page";
-  version = 301.51
-  // versionDate = 'Mon 5/6/2019 11pm'
-
-  versionDate = 'Tue 5/21/2019 2pm'
+  version = 301.53
+ 
+  versionDate = 'Tue 5/21/2019 4pm'
 
   issues = [
     `dirty: "phones": [       "type": null" not type:0 {"phones.type":  0} fixContactType`  ,
