@@ -154,28 +154,27 @@
 
 							<!-- demo middle col -->
 							<div class="form-group flex-column-2 margin-left-10">
-							
 
-									<ak-grid class="flex-row-1 overflow-y-auto" id="grid" k-data-source.bind="datasource" k-widget.bind="grid" k-sortable.bind="{ mode: 'multiple',   allowUnsort: 'true'}"
-									 k-filterable.bind="{  mode: 'row' }" k-editable="inline" k-reorderable.bind="true" k-resizable.bind="true" k-on-edit.delegate="onEdit($event.detail)"
-									 k-on-change.delegate="rowSelected($event.detail)" k-column-menu.bind="true" k-pageable.bind="true">
-										<!-- <ak-col k-title="id" k-width="110px" k-field="id"></ak-col> -->
-										<ak-col k-field="LastName" k-filterable.bind="true" k-title="LastName(Edit)" k-width.bind="180" k-template="<button click.delegate='detailsEdit($event)' class='k-button'>#=LastName#</button>">
-										</ak-col>
-										<ak-col k-title="FirstName" k-width="110px" k-field="FirstName"></ak-col>
-										<ak-col k-title="listName" k-width="110px" k-field="listName"></ak-col>
-										<!-- <ak-col k-title="City" k-width="110px" k-field="city"></ak-col>
+
+								<ak-grid class="flex-row-1 overflow-y-auto" id="grid" k-data-source.bind="datasource" k-widget.bind="grid" k-sortable.bind="{ mode: 'multiple',   allowUnsort: 'true'}"
+								 k-filterable.bind="{  mode: 'row' }" k-editable="inline" k-reorderable.bind="true" k-resizable.bind="true" k-on-edit.delegate="onEdit($event.detail)"
+								 k-on-change.delegate="rowSelected($event.detail)" k-column-menu.bind="true" k-pageable.bind="true">
+									<!-- <ak-col k-title="id" k-width="110px" k-field="id"></ak-col> -->
+									<ak-col k-field="LastName" k-filterable.bind="true" k-title="LastName(Edit)" k-width.bind="180" k-template="<button click.delegate='detailsEdit($event)' class='k-button'>#=LastName#</button>">
+									</ak-col>
+									<ak-col k-title="FirstName" k-width="110px" k-field="FirstName"></ak-col>
+									<ak-col k-title="listName" k-width="110px" k-field="listName"></ak-col>
+									<!-- <ak-col k-title="City" k-width="110px" k-field="city"></ak-col>
 										<ak-col k-title="State" k-width="110px" k-field="state"></ak-col>
 									 -->
-										<ak-col k-command="destroy" k-title="&nbsp;" k-width.bind="150"></ak-col>
-										<br />
-									</ak-grid>
-
+									<ak-col k-command="destroy" k-title="&nbsp;" k-width.bind="150"></ak-col>
 									<br />
+								</ak-grid>
+
+								<br />
 
 
-								<
-								<!-- END COL1 -->
+								< <!-- END COL1 -->
 
 							</div>
 							<!--  k-selectable="multiple"  xid no form store id hs prev vals  input-sm  vss none-->
@@ -191,20 +190,18 @@
 											<input disabled=true type="text " xid="catalog" class="form-control input-sm " value.bind="search.mailinglist">
 										</div>
 										<div class="Rtable-cell-100 Rtable-cell--highlight">
-											<!-- <strong> 	<span if.bind="currentItem.mailings===undefined">-</span>&nbsp;announcements</strong> -->
-											<!-- <input type="checkbox" ref = "test" id="test" > -->
 
 
 											<strong> &nbsp;&nbsp;Y/N master list</strong>
 											<input type="checkbox" id="masterlist" checked.bind="search.masterlist">
 											<strong> &nbsp;&nbsp;Y/N holiday list</strong>
 											<input type="checkbox" id="holidaylist" checked.bind="search.holidaylist">
-											<strong> &nbsp;&nbsp;nomailings</strong>
+											<!-- <strong> &nbsp;&nbsp;nomailings</strong>
 											<input type="checkbox" id="nomailings" checked.bind="search.nomailings">
-											<strong> &nbsp;&nbsp;deceased</strong>
-											<input type="checkbox" id="deceased" checked.bind="search.deceased">
-											<strong> &nbsp;&nbsp;unsubsribed (no info?)</strong>
-											<input type="checkbox" id="noinfo" checked.bind="search.noinfo">
+											<strong> &nbsp;&nbsp;deceased</strong> -->
+											<!-- <input type="checkbox" id="deceased" checked.bind="search.deceased"> -->
+											<!-- <strong> &nbsp;&nbsp;unsubsribed (no info?)</strong>
+											<input type="checkbox" id="noinfo" checked.bind="search.noinfo"> -->
 											<strong> &nbsp;&nbsp;international</strong>
 											<input type="checkbox" id="international" checked.bind="currentItem.international">
 
@@ -212,8 +209,15 @@
 										<input type="checkbox" id="nolongerherecatalogssent" checked.bind="currentItem.nolongerherecatalogssent"> -->
 										</div>
 
-
-										<!-- k-data-source.bind="dataSource" -->
+										<div class="Rtable-cell-30 Rtable-cell--highlight">
+											<strong> Mailing Status</strong>
+										</div>
+										<div class="Rtable-cell-70 Rtable-cell--highlight">
+											<label repeat.for="ml of mailingstatus">
+                    
+                    	<input type="radio" name="group1" model.bind="ml.id" checked.bind="currentItem.mailingStatus"> ${ml.name} &nbsp;
+										  </label>
+                    </div>
 										<div class="Rtable-cell-30 Rtable-cell--highlight">
 											<strong> Contact Types </strong>
 
@@ -270,11 +274,11 @@
 											<textarea rows="8" cols="100" id="searchCriteria" class="form-control input " value.bind="catalog.searchCriteria" enabled="false"></textarea>
 										</div>
 
-									
+
 
 
 									</div>
-                  	<button id="searchInputBtn" class="btn btn-primary" click.delegate="performSearch()" type="button"><strong>S</strong>earch & Build list! </button>
+									<button id="searchInputBtn" class="btn btn-primary" click.delegate="performSearch()" type="button"><strong>S</strong>earch & Build list! </button>
 
 									<!-- 2nd -->
 

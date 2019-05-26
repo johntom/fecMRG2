@@ -282,26 +282,6 @@
 									</div>
 
 
-
-
-
-
-									<!-- <div class="Rtable-cell-70  Rtable-cell--highlight">
-
-										<div style="height:15px;margin-left:10px;margin-top:5px;margin-bottom:10px" if.bind="currentItem.soldtoname===undefined || currentItem.soldtoname==='' ">
-											<a click.delegate="showModal( 'SoldToID')">select_link </a>
-										</div>
-										<div style="height:15px;margin-left:10px;margin-top:5px;margin-bottom:10px" else>
-											<a click.delegate="showModal( 'SoldToID')">${currentItem.soldtoname} </a>
-											&nbsp;&nbsp;
-											<a click.delegate="soldtoEdit()">...Open...</a>
-
-
-										</div>
-
-									</div> -->
-
-
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
 										<strong> Bus/Individ</strong>
 									</div>
@@ -358,66 +338,40 @@
 									<!-- //announcements mrg driven  nomailings client driven  var checkbox = document.getElementById(currentItem.mailings");
 checkbox.indeterminate = true;-->
 									<div class="Rtable-cell-100 Rtable-cell--highlight">
-										<!-- <strong> 	<span if.bind="currentItem.mailings===undefined">-</span>&nbsp;announcements</strong> -->
-										<!-- <input type="checkbox" ref = "test" id="test" > -->
 
-										<strong><span if.bind="currentItem.mailings===undefined">-</span> &nbsp;announcements</strong>
+
+										<strong> &nbsp;&nbsp;international</strong>
+										<input type="checkbox" id="international" checked.bind="currentItem.international">
+										<strong> &nbsp;&nbsp;noinfo</strong>
+										<input type="checkbox" id="noinfo" checked.bind="currentItem.noinfo">
+										<strong> &nbsp;&nbsp;email</strong>
+										<input type="checkbox" id="email" checked.bind="currentItem.email">
+										<strong> &nbsp;&nbsp;nolongerherecatalogssent</strong>
+										<input type="checkbox" id="nolongerherecatalogssent" checked.bind="currentItem.nolongerherecatalogssent">
+									</div>
+									<!-- <strong><span if.bind="currentItem.mailings===undefined">-</span> &nbsp;announcements</strong>
 										<input type="checkbox" ref="mailings" id="mailings" checked.bind="currentItem.mailings">
 										<strong> &nbsp;&nbsp;nomailings</strong>
 										<input type="checkbox" id="nomailings" checked.bind="currentItem.nomailings">
-
-										<strong> &nbsp;&nbsp;international</strong>
-										<input type="checkbox" id="international" checked.bind="currentItem.international">
-										<strong> &nbsp;&nbsp;noinfo</strong>
-										<input type="checkbox" id="noinfo" checked.bind="currentItem.noinfo">
-										<strong> &nbsp;&nbsp;email</strong>
-										<input type="checkbox" id="email" checked.bind="currentItem.email">
-										<strong> &nbsp;&nbsp;nolongerherecatalogssent</strong>
-										<input type="checkbox" id="nolongerherecatalogssent" checked.bind="currentItem.nolongerherecatalogssent">
-									</div>
+ -->
 
 
-									<!-- <div class="Rtable-cell-50 Rtable-cell--highlight">
-										<strong>- &nbsp;&nbsp;mailings - </strong>
-										<input type="checkbox" id="mailings" checked.bind="currentItem.mailings">
-										<strong> &nbsp;&nbsp;international</strong>
-										<input type="checkbox" id="international" checked.bind="currentItem.international">
-										<strong> &nbsp;&nbsp;nomailings</strong>
-										<input type="checkbox" id="nomailings" checked.bind="currentItem.nomailings">
-										<stron>
-
-
-									</div>
-									<div class="Rtable-cell-50 Rtable-cell--highlight">
-										<strong> &nbsp;&nbsp;noinfo</strong>
-										<input type="checkbox" id="noinfo" checked.bind="currentItem.noinfo">
-										<strong> &nbsp;&nbsp;email</strong>
-										<input type="checkbox" id="email" checked.bind="currentItem.email">
-										<strong> &nbsp;&nbsp;nolongerherecatalogssent</strong>
-										<input type="checkbox" id="nolongerherecatalogssent" checked.bind="currentItem.nolongerherecatalogssent">
-
-									</div>
-
-
-									<div class="Rtable-cell-30 Rtable-cell--highlight">
-										<strong> mailings</strong>
-										<input type="checkbox" id="mailings" checked.bind="currentItem.mailings">
-									</div>
-
-									<div class="Rtable-cell-70 Rtable-cell--highlight">
-										<strong> international</strong>
-										<input type="checkbox" id="international" checked.bind="currentItem.international">
-									</div> -->
-
+								<div class="Rtable-cell-30 Rtable-cell--highlight">
+											<strong> Mailing Status</strong>
+										</div>
+										<div class="Rtable-cell-70 Rtable-cell--highlight">
+											<label repeat.for="ml of mailingstatus">
+                    
+                    	<input type="radio" name="group1" model.bind="ml.id" checked.bind="currentItem.mailingStatus"> ${ml.name} &nbsp;
+										  </label>
+                    </div>
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
 										<strong> Note</strong>
 									</div>
 									<div class="Rtable-cell-70 Rtable-cell--highlight">
 										<!-- <input type="text " xid="Edition " class="form-control input-sm " value.bind="currentItem.Notes"> -->
 										<textarea rows="6" cols="100" id="Notes" class="form-control input-sm" value.bind="currentItem.Notes"></textarea>
-
-
-									</div>
+  								</div>
 
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
 										<strong> Deceased</strong>

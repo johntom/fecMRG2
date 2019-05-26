@@ -32,7 +32,14 @@ export class SearchResults {
   hide9 = true
   item = {}
 
-  message = ''//Hello Inventory 101- a!';
+  message = ''
+ mailingstatus = [
+   { id: 1, name: 'Mailinglist' },
+   { id: 2, name: 'No Mailinglist' },
+   { id: 3, name: 'Unsubscribed' }
+]
+
+
   // artists
 
   // dataSourceArtist = new kendo.data.DataSource({

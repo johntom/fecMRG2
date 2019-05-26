@@ -28,6 +28,11 @@ export class DataForm {
     div_code: "S",
     div_name: "Secondary"
   };
+   mailingstatus = [
+   { id: 1, name: 'Mailinglist' },
+   { id: 2, name: 'No Mailinglist' },
+   { id: 3, name: 'Unsubscribed' }
+]
   // this is keywords
   dataSource = new kendo.data.DataSource({
     transport: {
