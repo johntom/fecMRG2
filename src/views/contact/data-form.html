@@ -339,7 +339,6 @@
 checkbox.indeterminate = true;-->
 									<div class="Rtable-cell-100 Rtable-cell--highlight">
 
-
 										<strong> &nbsp;&nbsp;international</strong>
 										<input type="checkbox" id="international" checked.bind="currentItem.international">
 										<strong> &nbsp;&nbsp;noinfo</strong>
@@ -352,17 +351,13 @@ checkbox.indeterminate = true;-->
 									<!-- <strong><span if.bind="currentItem.mailings===undefined">-</span> &nbsp;announcements</strong>
 										<input type="checkbox" ref="mailings" id="mailings" checked.bind="currentItem.mailings">
 										<strong> &nbsp;&nbsp;nomailings</strong>
-										<input type="checkbox" id="nomailings" checked.bind="currentItem.nomailings">
- -->
-
-
+										<input type="checkbox" id="nomailings" checked.bind="currentItem.nomailings"> -->
 								<div class="Rtable-cell-30 Rtable-cell--highlight">
 											<strong> Mailing Status</strong>
 										</div>
 										<div class="Rtable-cell-70 Rtable-cell--highlight">
 											<label repeat.for="ml of mailingstatus">
-                    
-                    	<input type="radio" name="group1" model.bind="ml.id" checked.bind="currentItem.mailingStatus"> ${ml.name} &nbsp;
+                     	<input type="radio" name="group1" model.bind="ml.id" checked.bind="currentItem.mailingStatus"> ${ml.name} &nbsp;
 										  </label>
                     </div>
 									<div class="Rtable-cell-30 Rtable-cell--highlight">

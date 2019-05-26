@@ -33,11 +33,11 @@ export class SearchResults {
   item = {}
 
   message = ''
- mailingstatus = [
-   { id: 1, name: 'Mailinglist' },
-   { id: 2, name: 'No Mailinglist' },
-   { id: 3, name: 'Unsubscribed' }
-]
+  mailingstatus = [
+    { id: 1, name: 'Mailinglist' },
+    { id: 2, name: 'No Mailinglist' },
+    { id: 3, name: 'Unsubscribed' }
+  ]
 
 
   // artists
@@ -143,8 +143,8 @@ export class SearchResults {
           listName: { type: "string", editable: false },
           FirstName: { type: "string", editable: false },
           LastName: { type: "string", editable: false },
-          contactid: { type: "string", editable: false },
-
+          contactid: { type: "string", editable: false }
+        //  ,interests: { type: "textarea"} //eq error
           //       "listName" : "test", 
           // "contactid" : "5c146faed2c10b602e3515fa", 
           // "FirstName" : "Dennis", 
@@ -172,10 +172,32 @@ export class SearchResults {
     // this.search.nomailings = true
     // this.search.noinfo = true
     this.search.keywords = []
-  this.search.genres = []
+    this.search.genres = []
   }
+//   setInitialValue(edt) {
+//     if (this.currentItem.interests !== undefined) 
+//     edt.value(this.currentItem.interests);
+//   }
+//   textAreaEditor(container, options) {
+//     alert ('ta')
+//   //  $('<textarea class="k-textbox" name="' + options.field + '" style="width:100%;height:100%;" />').appendTo(container);
+//    $('<textarea class="k-textbox" name="interests" style="width:100%;height:100%;" />').appendTo(container);
+//   // $('<textarea name="interests" cols="100"  rows="6" />').appendTo(container);
 
+//     // $('<textarea name="' + options.field + '" cols="100"  rows="6" />').appendTo(container);
+//   }
+//  nonEditor(container, options) {
+//   //  console.log('in nonEditor', options.field)
+ 
+//         // container.text(options.model[options.field]);
+//         // container.interests.textarea(container.interests);
+//       //  container.interests(container.interests);
+//        //    container.interests.text=container.interests
+//         // let grid = this.grid;
+//         // let targetRow = $(container.target).closest("tr");
+//         // grid.select(targetRow);
 
+//     }
   async deleteData(updatedItem) {
 
     let response = await this.api.deletemlrow(updatedItem);
@@ -223,9 +245,9 @@ export class SearchResults {
     // this.datasource.read()
     // alert(this.mailinglist)
     console.log('activate this.mailinglist queryParams', this.mailinglist, this.queryParams)
-    
-    
-    
+
+
+
     // let response = await this.api.findCatalogone(this.mailinglist);
     // this.catalog = response.data[0]
 
@@ -233,7 +255,7 @@ export class SearchResults {
   async performSearch() {
 
     if (this.search) {
-      
+
       let search = this.search //JSON.stringify(this.search)    
       let str = `?mailinglist=${search.mailinglist}`
       if (search.artists !== undefined) {
@@ -242,7 +264,7 @@ export class SearchResults {
       if (search.keywords !== undefined) {
         str += `&keywords=${search.keywords}`
       }
-       if (search.genres !== undefined) {
+      if (search.genres !== undefined) {
         str += `&genres=${search.genres}`
       }
       if (search.city !== undefined) {
@@ -275,13 +297,13 @@ export class SearchResults {
         .then((jsonRes) => {
           // inv = jsonRes.data;
 
-         
+
 
           this.invdata = jsonRes.data//inv;
           this.recct = this.invdata.length;
           this.datasource.read()
         });
-         
+
 
     }
   }
@@ -301,7 +323,7 @@ export class SearchResults {
     let inv;
     // this.listname = 'test'
     // return this.api.findmailinglist(this.listname).then((jsonRes) => {
- let response = await this.api.findCatalogone(this.mailinglist);
+    let response = await this.api.findCatalogone(this.mailinglist);
     this.catalog = response.data[0]
 
     return this.api.findmailinglist(this.mailinglist).then((jsonRes) => {

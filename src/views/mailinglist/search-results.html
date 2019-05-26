@@ -142,8 +142,9 @@
 								<strong> Results  </strong>
 
 							</div>
+							<!-- ----- -->
 							<div class="Rtable-cell-35 Rtable-cell--highlight">
-								<strong>----- Search </strong>
+								<strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Search </strong>
 
 							</div>
 						</div>
@@ -154,21 +155,41 @@
 
 							<!-- demo middle col -->
 							<div class="form-group flex-column-2 margin-left-10">
+								<br/>
+								<script>
+									excelExport:
+                        function (e) {
 
+                            var sheet = e.workbook.sheets[0];
+                            var template = kendo.template(this.columns[8].template);
 
+                            for (var i = 1; i < sheet.rows.length; i++) {
+                                var row = sheet.rows[i];
+
+                                let diff = row.cells[6].value - row.cells[7].value
+                                row.cells.push({ 'value': diff })
+                            }
+                        }
+								</script>
 								<ak-grid class="flex-row-1 overflow-y-auto" id="grid" k-data-source.bind="datasource" k-widget.bind="grid" k-sortable.bind="{ mode: 'multiple',   allowUnsort: 'true'}"
 								 k-filterable.bind="{  mode: 'row' }" k-editable="inline" k-reorderable.bind="true" k-resizable.bind="true" k-on-edit.delegate="onEdit($event.detail)"
-								 k-on-change.delegate="rowSelected($event.detail)" k-column-menu.bind="true" k-pageable.bind="true">
+								 k-toolbar.bind="['excel']" k-excel.bind="{ fileName: 'mailinglist.xlsx' }" k-on-change.delegate="rowSelected($event.detail)"
+								 k-column-menu.bind="true" k-pageable.bind="true">
 									<!-- <ak-col k-title="id" k-width="110px" k-field="id"></ak-col> -->
 									<ak-col k-field="LastName" k-filterable.bind="true" k-title="LastName(Edit)" k-width.bind="180" k-template="<button click.delegate='detailsEdit($event)' class='k-button'>#=LastName#</button>">
 									</ak-col>
 									<ak-col k-title="FirstName" k-width="110px" k-field="FirstName"></ak-col>
 									<ak-col k-title="listName" k-width="110px" k-field="listName"></ak-col>
-									<!-- <ak-col k-title="City" k-width="110px" k-field="city"></ak-col>
-										<ak-col k-title="State" k-width="110px" k-field="state"></ak-col>
+									<ak-col k-title="interests" k-width="210px" k-field="interests"></ak-col>
+									<!-- <ak-col k-title="interests" k-width="210px" k-field="interests"></ak-col> -->
+									<!-- k-template.bind="textAreaEditor"  k-editable="false"  -->
+									<!-- <ak-col k-field="interests" k-title="Interests" k-width.bind="330"> <ak-col>  -->
+
+
+										<!--	<ak-col k-title="State" k-width="110px" k-field="state"></ak-col>
 									 -->
-									<ak-col k-command="destroy" k-title="&nbsp;" k-width.bind="150"></ak-col>
-									<br />
+										<ak-col k-command="destroy" k-title="&nbsp;" k-width.bind="150"></ak-col>
+										<br />
 								</ak-grid>
 
 								<br />
@@ -217,7 +238,7 @@
                     
                     	<input type="radio" name="group1" model.bind="ml.id" checked.bind="currentItem.mailingStatus"> ${ml.name} &nbsp;
 										  </label>
-                    </div>
+										</div>
 										<div class="Rtable-cell-30 Rtable-cell--highlight">
 											<strong> Contact Types </strong>
 
@@ -369,3 +390,14 @@
 		</footerform>
 	</section>
 </template>
+
+
+
+<!-- <require from="aurelia-kendoui-bridge/mediaplayer/mediaplayer"></require>
+
+  <div id="mediaPlayer" style="height:360px"
+      ak-mediaplayer="k-media.bind: { title: 'Recap of Progress', source: 'https://www.youtube.com/watch?v=tc3xhD24iTU' };
+      k-auto-play.bind: true;
+      k-navigatable.bind: true;
+      k-widget.bind=mediaPlayer">
+  </div> -->
