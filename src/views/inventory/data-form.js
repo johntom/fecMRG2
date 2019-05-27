@@ -724,8 +724,8 @@ export class DataForm {
       } else {
         resolve(true);
       }
-    });
-  }
+    }); 
+  } 
   requestclose() {
     //console.log(this.appService.originalrec, this.currentItem)
 

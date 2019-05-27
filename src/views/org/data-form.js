@@ -30,7 +30,7 @@ export class DataForm {
 
 
 
-    if (params.id) { 
+    if (params.id) {
       this.recordId = params.id;
 
 
@@ -91,9 +91,15 @@ export class DataForm {
   }
 
 
-  saveclaim() {
+  async saveclaim() {
 
+    let response2 = await this.api.saveorg(this.org)// ID);
+    let savetime = moment().format('MM/DD/YY h:mm:ss a')
+
+    this.message = "Save successful. org updated @ " + savetime
   }
+
+
   //  if (this.appService.dataFormOneToManyTabs3.length > 0) {
   //       let tab = this.appService.dataFormOneToManyTabs3[0];
   //       this.selectOneToManyTab(tab);
@@ -122,6 +128,26 @@ export class DataForm {
     // localStorage.setItem('tabinfoC' + this.currentItem.id, JSON.stringify(tabinfo));
     return true;
   }
+  close() {
+    let savetime = moment().format('MM/DD/YY h:mm:ss a')
 
+
+    this.message = "Save successful. org updated @ " + savetime
+
+    let tab = this.appService.tabs.find(f => f.isSelected);
+    // Next, we navigate to the newly created claim
+    // Finally, we close out this tab
+    this.closeTab(tab);
+    // let rt2 = '#/inventory/' + this.tabname ///claim'//Search?'cant use when search has a number 
+    // console.log('this.tabname ', this.tabname)
+    // this.router.navigate(rt2);
+  }
+
+  closeTab(tab) {
+
+    let index = this.appService.tabs.indexOf(tab);
+    tab.isSelected = false;
+    this.appService.tabs.splice(index, 1);
+  }
 }
 

@@ -416,7 +416,7 @@ export class ApiService {
 
   async saveorg(rec) {
     //alert('in saveclaim')
-    let url = this.baseweb + `v1/contact/update`
+    let url = this.baseweb + `v1/orgs/update`
     console.log('url ', url)
     //return {'data': true}
     return this.http.fetch(url, {
