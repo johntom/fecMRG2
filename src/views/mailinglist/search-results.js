@@ -34,8 +34,8 @@ export class SearchResults {
 
   message = ''
   mailingstatus = [
-    { id: 1, name: 'Mailinglist' },
-    { id: 2, name: 'No Mailinglist' },
+    { id: 1, name: 'Mailing list' },
+    { id: 2, name: 'No Mailings' },
     { id: 3, name: 'Unsubscribed' }
   ]
 
@@ -144,7 +144,7 @@ export class SearchResults {
           FirstName: { type: "string", editable: false },
           LastName: { type: "string", editable: false },
           contactid: { type: "string", editable: false }
-        //  ,interests: { type: "textarea"} //eq error
+          //  ,interests: { type: "textarea"} //eq error
           //       "listName" : "test", 
           // "contactid" : "5c146faed2c10b602e3515fa", 
           // "FirstName" : "Dennis", 
@@ -174,30 +174,30 @@ export class SearchResults {
     this.search.keywords = []
     this.search.genres = []
   }
-//   setInitialValue(edt) {
-//     if (this.currentItem.interests !== undefined) 
-//     edt.value(this.currentItem.interests);
-//   }
-//   textAreaEditor(container, options) {
-//     alert ('ta')
-//   //  $('<textarea class="k-textbox" name="' + options.field + '" style="width:100%;height:100%;" />').appendTo(container);
-//    $('<textarea class="k-textbox" name="interests" style="width:100%;height:100%;" />').appendTo(container);
-//   // $('<textarea name="interests" cols="100"  rows="6" />').appendTo(container);
+  //   setInitialValue(edt) {
+  //     if (this.currentItem.interests !== undefined) 
+  //     edt.value(this.currentItem.interests);
+  //   }
+  //   textAreaEditor(container, options) {
+  //     alert ('ta')
+  //   //  $('<textarea class="k-textbox" name="' + options.field + '" style="width:100%;height:100%;" />').appendTo(container);
+  //    $('<textarea class="k-textbox" name="interests" style="width:100%;height:100%;" />').appendTo(container);
+  //   // $('<textarea name="interests" cols="100"  rows="6" />').appendTo(container);
 
-//     // $('<textarea name="' + options.field + '" cols="100"  rows="6" />').appendTo(container);
-//   }
-//  nonEditor(container, options) {
-//   //  console.log('in nonEditor', options.field)
- 
-//         // container.text(options.model[options.field]);
-//         // container.interests.textarea(container.interests);
-//       //  container.interests(container.interests);
-//        //    container.interests.text=container.interests
-//         // let grid = this.grid;
-//         // let targetRow = $(container.target).closest("tr");
-//         // grid.select(targetRow);
+  //     // $('<textarea name="' + options.field + '" cols="100"  rows="6" />').appendTo(container);
+  //   }
+  //  nonEditor(container, options) {
+  //   //  console.log('in nonEditor', options.field)
 
-//     }
+  //         // container.text(options.model[options.field]);
+  //         // container.interests.textarea(container.interests);
+  //       //  container.interests(container.interests);
+  //        //    container.interests.text=container.interests
+  //         // let grid = this.grid;
+  //         // let targetRow = $(container.target).closest("tr");
+  //         // grid.select(targetRow);
+
+  //     }
   async deleteData(updatedItem) {
 
     let response = await this.api.deletemlrow(updatedItem);
@@ -252,6 +252,11 @@ export class SearchResults {
     // this.catalog = response.data[0]
 
   }
+
+  performClear() {
+    this.currentItem.mailingStatus = ''
+
+  }
   async performSearch() {
 
     if (this.search) {
@@ -261,16 +266,16 @@ export class SearchResults {
       if (search.artists !== undefined) {
         str += `&artists=${search.artists}`
       }
-      if (search.keywords !== undefined) {
+      if (search.keywords.length !== 0) {
         str += `&keywords=${search.keywords}`
       }
-      if (search.genres !== undefined) {
+      if (search.genres.length !== 0) {
         str += `&genres=${search.genres}`
       }
-      if (search.city !== undefined) {
+      if (search.city !== undefined) { 
         str += `&city=${search.city}`
       }
-      if (search.state !== undefined) {
+      if  (search.state !== undefined) {
         str += `&state=${search.state}`
       }
 
@@ -280,15 +285,20 @@ export class SearchResults {
       if (search.masterlist === true) {
         str += `&masterlist=${search.masterlist}`
       }
-      if (search.nomailings === true) {
-        str += `&nomailings=${search.nomailings}`
+ if (search.mailingStatus !== undefined) {
+        str += `&mailingStatus=${search.mailingStatus}`
       }
+       console.log('\n\n================= ')
+
+      // if (search.nomailings === true) {
+      //   str += `&nomailings=${search.nomailings}`
+      // }
       if (search.deceased === true) {
         str += `&deceased=${search.deceased}`
       }
-      if (search.noinfo === true) {
-        str += `&noinfo=${search.noinfo}`
-      }
+      // if (search.noinfo === true) {
+      //   str += `&noinfo=${search.noinfo}`
+      // }
       if (search.international === true) {
         str += `&international=${search.international}`
       }

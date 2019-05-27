@@ -7,11 +7,15 @@ import { ApiService } from '../../utils/servicesApi';
 
 export class Home {
   heading = "MRG Home Page";
-  version = 301.57
+  version = 301.59
  
   versionDate = 'Sun 5/26/2019 1pm'
 
   issues = [
+    `"international": false for us new rec = false`,
+    'on convert international mailing/international press international=true else false ',
+    `convert org dont use address only adress1/2 3?`,
+    ` use text area for address on org`,
     `dirty: "phones": [       "type": null" not type:0 {"phones.type":  0} fixContactType`  ,
     `dirty: this.appService.originalrec.conservedbyname = this.currentItem.conservedbyname fix dirty`,
    ` dirty:this.appService.originalrec.OwnedId =  this.appService.currentItem.OwnedId`,

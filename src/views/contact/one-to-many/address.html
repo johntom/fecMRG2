@@ -43,8 +43,13 @@
 			<tbody>
 				<tr repeat.for="address of currentItem.addresses" with.bind="address">
 					<!-- <td width="70px"><input type="text" id="id" class="form-control  input-sm" value.bind="id"></td> -->
-					<td width="220px"><input type="text" id="xContactAddress" class="form-control  input-sm" value.bind="address"></td>
-					<td width="220px"><input type="text" id="xContactCity" class="form-control  input-sm" value.bind="city"></td>
+					<!-- <td width="220px"><input type="text" id="xContactAddress" class="form-control  input-sm" value.bind="address"></td> -->
+					<td width="220px">
+            
+         <!-- <input type="textarea" lines=3 id="xContactAddress" class="form-control  input-sm" value.bind="address"></td> -->
+			<textarea rows="3" cols="100" id="100" class="form-control input-sm" value.bind="address"></textarea>
+		
+      		<td width="220px"><input type="text" id="xContactCity" class="form-control  input-sm" value.bind="city"></td>
 
 					<td width="300px">
 						<!-- <input type="text" id="xContactState" class="form-control  input-sm" value.bind="state"> -->

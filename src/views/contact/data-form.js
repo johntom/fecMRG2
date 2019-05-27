@@ -28,11 +28,11 @@ export class DataForm {
     div_code: "S",
     div_name: "Secondary"
   };
-   mailingstatus = [
-   { id: 1, name: 'Mailinglist' },
-   { id: 2, name: 'No Mailinglist' },
-   { id: 3, name: 'Unsubscribed' }
-]
+  mailingstatus = [
+    { id: 1, name: 'Mailing list' },
+    { id: 2, name: 'No Mailings' },
+    { id: 3, name: 'Unsubscribed' }
+  ]
   // this is keywords
   dataSource = new kendo.data.DataSource({
     transport: {
@@ -79,24 +79,24 @@ export class DataForm {
   // @computedFrom('FirstName', 'LastName') currentItem.Salutation  currentItem.Suffix
   @computedFrom('currentItem.Salutation', 'currentItem.FirstName', 'currentItem.LastName', 'currentItem.Suffix', 'currentItem.address')
   get fullName() {
-      // let sal =  this.currentItem.Salutation
+    // let sal =  this.currentItem.Salutation
     // let suf =  this.currentItem.Suffix
-//  If a single person: 
-// [Salutation] (if not null) [FirstName] [LastName}
+    //  If a single person: 
+    // [Salutation] (if not null) [FirstName] [LastName}
 
-// married couple traditional: no LastName2 should get entered: 
-// [Salutation] (if not null) [FirstName] [LastName]
+    // married couple traditional: no LastName2 should get entered: 
+    // [Salutation] (if not null) [FirstName] [LastName]
 
-// (if null salutation) [FirstName] and [FirstName2] [LastName]
+    // (if null salutation) [FirstName] and [FirstName2] [LastName]
 
-// partners: [FirstName2] & [LastName2] are entered, use salutations if available
-//  2 line entry
+    // partners: [FirstName2] & [LastName2] are entered, use salutations if available
+    //  2 line entry
 
-// if there is data in “address as “ field, this overrides everything
+    // if there is data in “address as “ field, this overrides everything
 
-    if( this.currentItem.Salutation === null) this.currentItem.Salutation='' 
-     if( this.currentItem.Suffix === null) this.currentItem.Suffix=''
-  
+    if (this.currentItem.Salutation === null) this.currentItem.Salutation = ''
+    if (this.currentItem.Suffix === null) this.currentItem.Suffix = ''
+
     return `${this.currentItem.Salutation} ${this.currentItem.FirstName} ${this.currentItem.LastName} ${this.currentItem.Suffix} ${this.currentItem.address}`;
   }
   modal() {
@@ -197,11 +197,15 @@ export class DataForm {
         this.currentContactItem = {}
         this.currentContactItem.id = 'create'
         this.currentItem.contacttypes = []
+        this.currentItem.international = false
+        this.currentItem.deceased = false
+
+        // this.appService.testrec = {}
         // this.appService.testrec = {}
         // this.appService.originalrec = {}
         this.appService.testcontactrec = {}
         this.appService.originalontactrec = {}
-      //  let checkbox
+        //  let checkbox
         // let checkbox = document.getElementById("mailings");
         // checkbox.indeterminate = true;//-->
         // <div class="Rtable-cell-100 Rtable-cell--highlight">
@@ -216,9 +220,9 @@ export class DataForm {
             console.log('jsonRes ', jsonRes);
             let inv = jsonRes.data;
             this.currentItem = inv[0]
-  // let  checkbox2 = document.getElementById("test");
-  //             checkbox2.indeterminate = true;//-->
-        
+            // let  checkbox2 = document.getElementById("test");
+            //             checkbox2.indeterminate = true;//-->
+
 
             // if (this.currentItemmailings === undefined) {
             // let  checkbox = document.getElementById("mailings");
@@ -417,7 +421,7 @@ export class DataForm {
           this.appService.originalContactrec = JSON.parse(JSON.stringify(this.currentItem))
           this.skippromt = true
           if (option === 1) {
-            
+
             this.requestclose()
           } else {
 
@@ -427,7 +431,7 @@ export class DataForm {
     }
   }
 
-  
+
 
   canDeactivate() {
     return new Promise((resolve, reject) => {
