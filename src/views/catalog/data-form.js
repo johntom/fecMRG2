@@ -19,27 +19,27 @@ export class DataForm {
   }
 
   async activate(params, routeConfig) {
+     this.recordId = params.id;
     if (params.id) {
-      this.recordId = params.id;
-      this.heading = `DataForm for record ${this.recordId}`;
-      console.log('this.recordId ', this.recordId);
-      let response = await this.api.findCatalogone(this.recordId);
-      this.currentItem = response.data[0]
-      this.appService.currentCatalogItem = this.currentItem;
-      return this.currentItem
-      // return this.api.findInventoryOne(this.recordId)
-      //   .then((jsonRes) => {
-      //     console.log('jsonRes ', jsonRes);          
-      //     let inv = jsonRes.data;
-      //     this.currentItem = inv[0];
-      //     console.log('data-form:activate - currentItem', this.currentItem);
-      //     this.inv = inv[0]
-      //     // console.log('this.inv loadData 0 ', inv[0].InventoryCode);
-      //     return inv
-      //   });
+      if (this.recordId === 'create') {
+        this.currentItem = {}
+       
+        this.appService.testcontactrec = {}
+        this.appService.originalontactrec = {}
+
+      } else {
+        console.log('this.recordId ', this.recordId);
+        this.recordId = params.id;
+        this.heading = `DataForm for record ${this.recordId}`;
+        console.log('this.recordId ', this.recordId);
+        let response = await this.api.findCatalogone(this.recordId);
+        this.currentItem = response.data[0]
+        this.appService.currentCatalogItem = this.currentItem;
+        return this.currentItem
+      }
     }
   }
-  
+
   attached() {
 
 
@@ -49,20 +49,17 @@ export class DataForm {
     }
   }
 
-async savetodo(option) {
-    let response = await this.api.updatetodo(this.currentItem);
-    // if (this.artist.id === 'create') {
-    //   let val = await this.api.findArtistsAA();
-    //   // this.appService.artistList = val.data;
-    //   this.artist.id ='';
-    //     let nlist = []
-    //     for (const item of val.data) {
-    //       item.ArtistName = item.LastName + ', ' + item.FirstName
-    //       nlist.push(item)
-    //     }
-    //    this.appService.artistList = lodash.sortBy(nlist, 'ArtistName');
-
-    // }
+  async savecatalog(option) {
+    if (this.recordId === 'create') {
+      // let val = await this.api.findArtistsAA();
+      // this.appService.artistList = val.data;
+      this.recordId ='';
+      let response = await this.api.createcatalog(this.currentItem);
+   
+    } else {
+       let response = await this.api.updatecatalog(this.currentItem);
+   
+    }
     if (option === 1) this.requestclose()
   }
 
@@ -71,7 +68,7 @@ async savetodo(option) {
     const resetFunc = () => { this.appService.originalrec = this.currentItem; };
     let tab = this.appService.tabs.find(f => f.isSelected);
     let index = this.appService.tabs.findIndex(f => f.isSelected)
-    let rt2 = '#/artist/' + this.tabname
+    let rt2 = '#/catalog/' + this.tabname
 
 
     let newIndex = (index > 0) ? index - 1 : 0;

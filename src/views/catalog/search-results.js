@@ -73,6 +73,10 @@ export class SearchResults {
      this.appService = appService;
   }
 
+  addcatalog() {
+
+    this.router.navigate(`#/catalog/data/create`);
+  }
   activate(params, routeConfig) {
     //http://74.114.164.24/api/v1/inventorycontent?artistl=s%26artistf=c 
    
@@ -136,9 +140,14 @@ export class SearchResults {
     grid.select(targetRow);
     let selectedRow = grid.select();
     let dataItem = grid.dataItem(selectedRow);
+  //   let rt2  
+  //  if (dataItem.ID!==undefined){
+  //   rt2 = '#/catalog/data/' + dataItem.id+'/'+ dataItem.ID;
+  //  } else {
+  //    rt2 = '#/catalog/data/' + dataItem.id+'/'+ dataItem.CatalogTitle;
+  //  }
+   let  rt2 = '#/catalog/data/' + dataItem.id+'/'+ dataItem.CatalogTitle.slice(1, 11);
    
-    let rt2 = '#/catalog/data/' + dataItem.id+'/'+ dataItem.ID;
-
     this.router.navigate(rt2);// `#/inventory/${path}`);
 
   }

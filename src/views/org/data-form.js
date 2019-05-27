@@ -4,8 +4,8 @@ import { ApplicationService } from '../../services/application-service';
 import { MyDataService } from "../../services/my-data-service";
 import { EventAggregator } from 'aurelia-event-aggregator';
 
-
-@inject(ApiService, ApplicationService, MyDataService, EventAggregator)
+import { Router } from 'aurelia-router';
+@inject(Router, ApiService, ApplicationService, MyDataService, EventAggregator)
 export class DataForm {
   heading = 'DataAddForm HEADER...';
   footer = 'DataAddForm FOOTER...';
@@ -13,20 +13,21 @@ export class DataForm {
   recordId = '';
 
 
-  constructor(api, appService, dataService, eventAggregator) {
+  constructor(router, api, appService, dataService, eventAggregator) {
     this.api = api;
     this.appService = appService;
     this.inv = '';
     this.dataService = dataService;
     this.eventAggregator = eventAggregator;
     this.createEventListeners();
-
+    this.router = router
   }
 
   async activate(params, routeConfig) {
     let pp = JSON.stringify(params);
     this.cname = pp.substring(2, pp.indexOf(':') - 3);// params.indexOf(':')
     this.heading = `DataForm for record  ${this.cname} `;
+    this.tabname = this.appService.currentSearch
 
 
 
@@ -128,19 +129,16 @@ export class DataForm {
     // localStorage.setItem('tabinfoC' + this.currentItem.id, JSON.stringify(tabinfo));
     return true;
   }
-  close() {
+  requestclose() {
     let savetime = moment().format('MM/DD/YY h:mm:ss a')
-
-
     this.message = "Save successful. org updated @ " + savetime
-
     let tab = this.appService.tabs.find(f => f.isSelected);
     // Next, we navigate to the newly created claim
     // Finally, we close out this tab
     this.closeTab(tab);
-    // let rt2 = '#/inventory/' + this.tabname ///claim'//Search?'cant use when search has a number 
-    // console.log('this.tabname ', this.tabname)
-    // this.router.navigate(rt2);
+    let rt2 = '#/org/' + this.tabname ///claim'//Search?'cant use when search has a number 
+    console.log('this.tabname ', this.tabname)
+    this.router.navigate(rt2);
   }
 
   closeTab(tab) {

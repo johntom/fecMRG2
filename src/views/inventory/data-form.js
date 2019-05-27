@@ -726,13 +726,16 @@ export class DataForm {
       }
     }); 
   } 
+
+  
+
   requestclose() {
     //console.log(this.appService.originalrec, this.currentItem)
 
     const resetFunc = () => { this.appService.originalrec = this.currentItem; };
     let tab = this.appService.tabs.find(f => f.isSelected);
     let index = this.appService.tabs.findIndex(f => f.isSelected)
-    let rt2 = '#/inventory/' + this.tabname
+    let rt2 = '#/org/' + this.tabname
 
 
     let newIndex = (index > 0) ? index - 1 : 0;

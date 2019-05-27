@@ -83,11 +83,7 @@ export class ApiService {
 
   // { method: ['get'], path: '/api/v1/mailinglist/:id', handler: 'MailinglistController.findone' },
   findmailinglist(listname) {
-    // search has fullu formed query string
-    //  search.buildlist = 'test'
-    // alert (search)
-    // var url = this.baseweb + 'v1/contactcontent' + search+'&buildlist=test'
-    var url = this.baseweb + `v1/mailinglist/${listname}`
+       var url = this.baseweb + `v1/mailinglist/${listname}`
     console.log('url ', url)
     return this.http.fetch(url, {
       method: 'get',
@@ -95,71 +91,17 @@ export class ApiService {
     }).then((res) => res.json());
     //return this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())
   }
-  // findContact(search, listname) {
-  //   // search has fullu formed query string
-  //   //  search.buildlist = 'test'
-  //   // alert (search)
-  //   var url
-  //   if (listname) {
-  //     // url = this.baseweb + 'v1/contactcontent' + search + `&buildlist=${listname}`
-  //        url = this.baseweb + 'v1/contactcontent' + search + `&buildlist=${listname}`
-   
-  //     // var url = this.baseweb + `v1/contactcontent${search}&buildlist=${listname}`
-  //   } else var url = this.baseweb + `v1/contactcontent${search}`
-  //   console.log('url ', url)
-  //   return this.http.fetch(url, {
-  //     method: 'get',
-  //     mode: 'cors'
-  //   }).then((res) => res.json());
-  //   //return this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())
-  // }
-
-
-
-  findContact(search, listname) {
-  //  search= JSON.stringify(search) 
- let url = this.baseweb + `v1/contactcontent${search}&buildlist=${listname}`
-    console.log('url ', url)
-    return this.http.fetch(url, {
-      method: 'get',
-      mode: 'cors',
-    
-    }).then((res) => res.json());
-    //return this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())
-  }
-  // async findContactasync(search) {
-  //   // search has fullu formed query string
-  //   search.buildlist = 'test'
-  //   var url = this.baseweb + 'v1/contactcontent' + search
-  //   let res = await this.http.fetch(url, { mode: 'cors' });
-  //   return res.json()
-
-  // }
-
-  async findContactasync(search) {
-    // search has fullu formed query string
-    search.buildlist = 'test'
-    var url = this.baseweb + 'v1/contactcontent' 
-    let res = await this.http.fetch(url, { 
-      mode: 'cors',
-      
-      body: JSON.stringify(search) });
-    return res.json()
-
-  }
-
-
-
-
   
- async deletemlrow(row) {
-    // search has fullu formed query string
-    // search.buildlist = 'test'
-    // var url = this.baseweb + 'v1/contactcontent' + search
-    // let res = await this.http.fetch(url, { mode: 'cors' });
-    // return res.json()
 
-//  let pid = row.id
+
+
+
+
+
+
+
+  async deletemlrow(row) {
+   
     let url = this.baseweb + `v1/mailinglist/delete`
     return await this.http.fetch(url, {
       method: 'delete',
@@ -167,15 +109,10 @@ export class ApiService {
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
-    //    , 'Authorization': 'JWT ' + token
+        //    , 'Authorization': 'JWT ' + token
       },
       body: JSON.stringify(row)
     }).then((res) => res.json());
-
-
-
-
-
   }
 
   findInventoryKeywords(search) {
@@ -206,17 +143,6 @@ export class ApiService {
   }
 
 
-
-  findContactOne(contactid) {
-    // search has fullu formed query string
-    var url = this.baseweb + `v1/contact/${contactid}`
-    console.log('url ', url)
-    return this.http.fetch(url, {
-      method: 'get',
-      mode: 'cors'
-    }).then((res) => res.json());
-
-  }
 
   findusers() {
     var url = this.baseweb + 'v1/findusers';
@@ -379,6 +305,7 @@ export class ApiService {
     let res = await this.http.fetch(url, { mode: 'cors' })
     return res.json()
   }
+  // catalog 
   async getCatalogsAA() {
     var url = this.baseweb + 'v1/catalog';
     let res = await this.http.fetch(url, { mode: 'cors' })
@@ -387,25 +314,51 @@ export class ApiService {
   async findCatalog(search) {
     // var url = this.baseweb + 'v1/inventorycontent' + search
     // var url = this.baseweb + `v1/catalog/find${search}`;
-       var url = this.baseweb + `v1/catalog/find/${search}`; 
-          console.log('url',url)
- 
+    var url = this.baseweb + `v1/catalog/find/${search}`;
+    console.log('url', url)
+
     let res = await this.http.fetch(url, { mode: 'cors' })
     return res.json()
   }
+  async createcatalog(rec) {
+    let url = this.baseweb + `v1/catalog/create`
+    console.log('url ', url)
+    return this.http.fetch(url, {
+      method: 'post',
+      mode: 'cors',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(rec)
+    }).then((res) => res.json());
+  }
+  updatecatalog(rec) {
+     let url = this.baseweb + `v1/catalog/update`
+    console.log('url ', url)
+    return this.http.fetch(url, {
+      method: 'put',
+      mode: 'cors', 
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+        // , 'Authorization': 'JWT ' + token
+      },
+      body: JSON.stringify(rec)
+    }).then((res) => res.json());
+  }
+
 
   async findCatalogone(id) {
     // var url = this.baseweb + 'v1/inventorycontent' + search
     var url = this.baseweb + `v1/catalog/find/${id}`;
-      console.log('url',url)
+    console.log('url', url)
     let res = await this.http.fetch(url, { mode: 'cors' })
     return res.json()
   }
 
-  // let response = await this.http.get(reposUrl);
-  // this.repos = response.content
-  // .sort((a, b) => b.stargazers_count - a.stargazers_count);
-  // { method: ['get'], path: '/api/v1/findofferings/:id', handler: 'InventoryController.findofferings' },
+///////////////////////////
+
   // https://artbased.com/api/v1/findofferings/5c14696ba3e3847c0f5a62c3
   async findofferings(id) {
     var url = this.baseweb + `v1/findofferings/${id}`;
@@ -454,6 +407,87 @@ export class ApiService {
   }
 
 
+  findContactOne(contactid) {
+    // search has fullu formed query string
+    var url = this.baseweb + `v1/contact/${contactid}`
+    console.log('url ', url)
+    return this.http.fetch(url, {
+      method: 'get',
+      mode: 'cors'
+    }).then((res) => res.json());
+
+  }
+  findContact(search, listname) {
+    //  search= JSON.stringify(search) 
+    let url = this.baseweb + `v1/contactcontent${search}&buildlist=${listname}`
+    console.log('url ', url)
+    return this.http.fetch(url, {
+      method: 'get',
+      mode: 'cors',
+
+    }).then((res) => res.json());
+    //return this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())
+  }
+
+
+  async findContactasync(search) {
+    // search has fullu formed query string
+    search.buildlist = 'test'
+    var url = this.baseweb + 'v1/contactcontent'
+    let res = await this.http.fetch(url, {
+      mode: 'cors',
+
+      body: JSON.stringify(search)
+    });
+    return res.json()
+
+  }
+  async createcontact(rec) {
+    let url = this.baseweb + `v1/contact/create`
+    console.log('url ', url)
+    return this.http.fetch(url, {
+      method: 'post',
+      mode: 'cors',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(rec)
+    }).then((res) => res.json());
+  }
+  savecontact(rec) {
+    //alert('in saveclaim')
+    let url = this.baseweb + `v1/contact/update`
+    console.log('url ', url)
+    //return {'data': true}
+    return this.http.fetch(url, {
+      method: 'put',
+      mode: 'cors',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+        // , 'Authorization': 'JWT ' + token
+      },
+      body: JSON.stringify(rec)
+    }).then((res) => res.json());
+  }
+
+  addcontact(rec) {
+    console.log('addcontact rec', rec)
+    let url = this.baseweb + `v1/contact/create`
+    console.log('url ', url)
+    //return {'data': true}
+    return this.http.fetch(url, {
+      method: 'post',
+      mode: 'cors',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+
+      },
+      body: JSON.stringify(rec)
+    }).then((res) => res.json());
+  }
 
   findOrgs() {
     var url = this.baseweb + 'v1/orgs';
@@ -478,22 +512,6 @@ export class ApiService {
 
 
 
-  // let response = await this.http.get(reposUrl);
-  // this.repos = response.content
-  //   .sort((a, b) => b.stargazers_count - a.stargazers_count);
-
-  //  findArtists() {
-  //     var url = this.baseweb + 'v1/artist/'
-  //     console.log('url artist ', url)
-  //     return this.http.fetch(url, {
-  //       method: 'get',
-  //       mode: 'cors'
-  //     }).then((res) => res.json());
-  //   }
-
-
-
-
 
   //http://localhost:8080/api/v1/artist
   findCodes() {
@@ -515,19 +533,6 @@ export class ApiService {
     }).then((res) => res.json());
   }
 
-  async createcontact(rec) {
-    let url = this.baseweb + `v1/contact/create`
-    console.log('url ', url)
-    return this.http.fetch(url, {
-      method: 'post',
-      mode: 'cors',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(rec)
-    }).then((res) => res.json());
-  }
 
 
   //1
@@ -1110,39 +1115,6 @@ export class ApiService {
   }
 
 
-  savecontact(rec) {
-    //alert('in saveclaim')
-    let url = this.baseweb + `v1/contact/update`
-    console.log('url ', url)
-    //return {'data': true}
-    return this.http.fetch(url, {
-      method: 'put',
-      mode: 'cors',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-        // , 'Authorization': 'JWT ' + token
-      },
-      body: JSON.stringify(rec)
-    }).then((res) => res.json());
-  }
-
-  addcontact(rec) {
-    console.log('addcontact rec', rec)
-    let url = this.baseweb + `v1/contact/create`
-    console.log('url ', url)
-    //return {'data': true}
-    return this.http.fetch(url, {
-      method: 'post',
-      mode: 'cors',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-
-      },
-      body: JSON.stringify(rec)
-    }).then((res) => res.json());
-  }
 
   //  uploadPARKTOWER(formData,id) {
   //     //http://arabsight.github.io/uploading-files-with-aurelia

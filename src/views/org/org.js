@@ -63,9 +63,9 @@ export class Org {
 
   //  path = path.replace( /\s/g, "")
       let rt2 = `#/org/${path}`
-      
+       this.appService.currentSearch = path
       this.router.navigate(rt2)
-
+ 
     }
   }
 
