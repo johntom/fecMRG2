@@ -254,7 +254,13 @@ export class SearchResults {
   }
 
   performClear() {
-    this.currentItem.mailingStatus = ''
+    this.search.mailingStatus = ''
+
+  }
+  performDefault() {
+    this.search.mailingStatus = 1
+    this.search.notinternational = true
+
 
   }
   async performSearch() {
@@ -272,10 +278,10 @@ export class SearchResults {
       if (search.genres.length !== 0) {
         str += `&genres=${search.genres}`
       }
-      if (search.city !== undefined) { 
+      if (search.city !== undefined) {
         str += `&city=${search.city}`
       }
-      if  (search.state !== undefined) {
+      if (search.state !== undefined) {
         str += `&state=${search.state}`
       }
 
@@ -285,10 +291,10 @@ export class SearchResults {
       if (search.masterlist === true) {
         str += `&masterlist=${search.masterlist}`
       }
- if (search.mailingStatus !== undefined) {
+      if (search.mailingStatus !== undefined) {
         str += `&mailingStatus=${search.mailingStatus}`
       }
-       console.log('\n\n================= ')
+      console.log('\n\n================= ')
 
       // if (search.nomailings === true) {
       //   str += `&nomailings=${search.nomailings}`
@@ -302,6 +308,10 @@ export class SearchResults {
       if (search.international === true) {
         str += `&international=${search.international}`
       }
+      if (search.notinternational === true) {
+        str += `&notinternational=${search.notinternational}`
+      }
+
       return this.api.findContact(str, this.mailinglist)//this.listname)
         // return this.api.findContact(ds, this.listname)
         .then((jsonRes) => {

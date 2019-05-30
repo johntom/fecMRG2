@@ -147,7 +147,7 @@
 								<strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Search &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   	<button id="clearbtn" class="btn btn-primary" click.delegate="performClear()" type="button"><strong>C</strong>lear search </button>
      	<button id="clearbtn" class="btn btn-primary" click.delegate="performClear()" type="button"><strong>C</strong>lear search </button>
-	<button id="group1" class="btn btn-primary" click.delegate="performGroup1()" type="button">Group1</button>
+	<button id="group1" class="btn btn-primary" click.delegate="performDefault()" type="button">Default Search</button>
 
                     </strong>
 
@@ -251,7 +251,7 @@
 										<div class="Rtable-cell-70 Rtable-cell--highlight">
 											<ak-multiselect k-value.two-way="search.keywords" k-placeholder="Select ContactTypes..." k-data-text-field="Description"
 											 k-data-value-field="Description" k-height.bind="400" k-data-source.bind="appService.codesOrgContactTypes" k-widget.two-way="multiselect"
-											 id="multiselect-customizing-templates-codes">
+											 id="multiselect-keywords">
 
 											</ak-multiselect>
 										</div>
@@ -261,7 +261,7 @@
 										</div>
 										<div class="Rtable-cell-70 Rtable-cell--highlight">
 											<ak-multiselect k-value.two-way="search.genres" k-placeholder="Select genres..." k-data-text-field="Description" k-data-value-field="Description"
-											 k-height.bind="400" k-data-source.bind="appService.codesGenre" k-widget.two-way="multiselect" id="multiselect-customizing-templates-codes">
+											 k-height.bind="400" k-data-source.bind="appService.codesGenre" k-widget.two-way="multiselect" id="multiselect-genre">
 
 											</ak-multiselect>
 										</div>
@@ -272,7 +272,7 @@
 										</div>
 										<div class="Rtable-cell-70 Rtable-cell--highlight">
 											<ak-multiselect k-value.two-way="search.artists" k-placeholder="Select artists..." k-data-text-field="ArtistName" k-data-value-field="ArtistName"
-											 k-height.bind="400" k-data-source.bind="appService.artistList" k-widget.two-way="multiselect" id="multiselect-customizing-templates-codes">
+											 k-height.bind="400" k-data-source.bind="appService.artistList" k-widget.two-way="multiselect" id="multiselect-artists">
 
 											</ak-multiselect>
 										</div>
