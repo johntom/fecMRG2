@@ -13,11 +13,11 @@ export class Catalogssentto {
   heading = 'DataForm HEADER...';
   footer = 'DataForm FOOTER...';
   recordId = '';
-
+ 
   constructor(api, appService, dialogService) {
     this.api = api;
     this.appService = appService;
-    this.inv = '';
+    this.inv = ''; 
     this.currentItem = this.appService.currentCatalogItem;
     console.log('this.currentCatalogItem', this.appService.currentCatalogItem);
     this.dialogService = dialogService
@@ -28,8 +28,8 @@ export class Catalogssentto {
 
   async activate(params, routeConfig) {
     // this.exhibition = this.appService.currentItem.exhibition 
-
-    let response = await this.api.getCatalogsent('78');
+    console.log('this.Catalogssentto ', this.appService.currentCatalogItem)
+    let response = await this.api.getCatalogsent(this.appService.currentCatalogItem.ID )//CatalogID)//'78');
     // this.appService.catalogList = response.data
     // console.log('this.repos ', this.api.catalogList)
 
