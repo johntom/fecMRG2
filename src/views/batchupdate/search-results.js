@@ -83,11 +83,10 @@ export class SearchResults {
     this.dataService = dataService;
     this.ImageID = '20150921_153441_resized_2'
     // this.appService.actionlist ='closed'
+   // alert ('in srch')
   }
   updateData(e) {
-    console.log('updateData ', e)
-
-
+    //console.log('updateData ', e)
     return this.api.saveinventory(e).then((jsonRes) => {
       // console.log('jsonRes ', jsonRes);
       // window.alert("Save successful!");
@@ -103,27 +102,17 @@ export class SearchResults {
     let datasource = this.datasource
     e.container.find(".k-grid-cancel").bind("click", function () {
       flag = true
-
       datasource.read()
-
     })
-
-
 
   }
 
 
   activate(params, routeConfig) {
-
     // this.queryParams = this.utilService.parseQueryStringUrl();
-
     // this.item.savedlist = this.appService.currentActionlist
-
     // this.savedlist = this.appService.currentActionlist
-
     this.datasource.read()
-
-
   }
 
   loadGrid() {
@@ -146,7 +135,7 @@ export class SearchResults {
         inv = jsonRes//.data;
         if (inv === 0 || inv.length === 0) {
           alert(' no records found ')
-          let tab = this.appService.tabs.find(f => f.isSelected);
+          let tab = this.appService.tabs.find(f => f.isSelected );
           this.closeTab(tab);
           let rt2 = '#/home'// inventory'
           this.router.navigate(rt2);// `#/inventory/${path}`);

@@ -39,8 +39,11 @@ export class App {
       { "route": 'action/:id', name: 'action-search-results', moduleId: PLATFORM.moduleName('./views/action/search-results'), title: 'Search Results', activationStrategy: 'replace' },
       { "route": 'action/data/:id', name: 'action-data-form', moduleId: PLATFORM.moduleName('./views/action/data-form'), title: 'Data Form', activationStrategy: 'replace' },
 
-      { "route": 'batchupdate', name: 'batchupdate', moduleId: PLATFORM.moduleName('./views/batchupdate/batchupdate'), nav: true, title: 'Batch' },
-      { "route": 'batchupdate/:id', name: 'batchupdate-search-results', moduleId: PLATFORM.moduleName('./views/batchupdate/search-results'), title: 'Search Results', activationStrategy: 'replace' },
+      //{ "route": 'batchupdate', name: 'batchupdate', moduleId: PLATFORM.moduleName('./views/batchupdate/batchupdate'),{ "route": 'batchupdate/:id', name: 'batchupdate-search-results', moduleId: PLATFORM.moduleName('./views/batchupdate/search-results'), title: 'Search Results', activationStrategy: 'replace' },
+
+      //{ "route": 'batchupdate/:id', name: 'batchupdate-search-results', moduleId: PLATFORM.moduleName('./views/batchupdate/search-results'), title: 'Search Results', activationStrategy: 'replace' },
+      { "route": 'batchupdate/batchupdate', name: 'batchupdate', nav: true, moduleId: PLATFORM.moduleName('./views/batchupdate/search-results'), title: 'BatchUpdate', activationStrategy: 'replace' },
+
       // { "route": 'batchupdate/data/:id', name: 'batchupdate-data-form', moduleId: PLATFORM.moduleName('./views/batchupdate/data-form'), title: 'Data Form', activationStrategy: 'replace' },
 
 
@@ -51,12 +54,12 @@ export class App {
       { "route": 'org/:id', name: 'org-search-results', moduleId: PLATFORM.moduleName('./views/org/search-results'), title: 'Search Results', activationStrategy: 'replace' },
       { "route": 'org/data/:id', name: 'org-data-form', moduleId: PLATFORM.moduleName('./views/org/data-form'), title: 'Data Form' }, // ,activationStrategy:'replace'
 
-       { route: 'mailinglist/:id', name: 'mailinglist-search-results', moduleId: PLATFORM.moduleName('./views/mailinglist/search-results'), title: 'Search Results', activationStrategy: 'replace' },
+      { route: 'mailinglist/:id', name: 'mailinglist-search-results', moduleId: PLATFORM.moduleName('./views/mailinglist/search-results'), title: 'Search Results', activationStrategy: 'replace' },
       { route: 'mailinglist/data/:id', name: 'mailinglist-data-form', moduleId: PLATFORM.moduleName('./views/mailinglist/data-form'), title: 'Data Form', activationStrategy: 'replace' },
       { route: 'mailinglist', name: 'email', moduleId: PLATFORM.moduleName('./views/mailinglist/mailinglist'), nav: true, title: 'Mailinglist' },
-      
-      
-       { route: 'maint', name: 'maint', moduleId: PLATFORM.moduleName('./views/maint/maint'), nav: true, title: 'Maintenence' },
+
+
+      { route: 'maint', name: 'maint', moduleId: PLATFORM.moduleName('./views/maint/maint'), nav: true, title: 'Maintenence' },
 
 
       { "route": 'artist', name: 'artist', moduleId: PLATFORM.moduleName('./views/artist/artist'), nav: false, title: 'Artist' },
@@ -69,8 +72,8 @@ export class App {
       { route: 'todo/:id', name: 'todo-search-results', moduleId: PLATFORM.moduleName('./views/todo/search-results'), title: 'Search Results', activationStrategy: 'replace' },
       { route: 'todo/data/:id', name: 'todo-data-form', moduleId: PLATFORM.moduleName('./views/todo/data-form'), title: 'Data Form', activationStrategy: 'replace' },
       { route: 'todo', name: 'todo', moduleId: PLATFORM.moduleName('./views/todo/todo'), nav: false, title: 'Todo' },
-    
-      
+
+
       // { route: 'email/:id', name: 'email-search-results', moduleId: PLATFORM.moduleName('./views/emaillist/search-results'), title: 'Search Results', activationStrategy: 'replace' },
       // { route: 'email/data/:id', name: 'email-data-form', moduleId: PLATFORM.moduleName('./views/emaillist/data-form'), title: 'Data Form', activationStrategy: 'replace' },
       // { route: 'email', name: 'email', moduleId: PLATFORM.moduleName('./views/emaillist/email'), nav: false, title: 'Email' },

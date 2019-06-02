@@ -10,31 +10,36 @@
 			<div class="flex-column-1 search-panel">
 				<!-- <form> -->
 				<div class="flex-row-none">
-			
+
 
 					<div class="form-group flex-column-1 margin-left-10">
-				
-					
+
+
 						<h3>Batch And SaveList Management </h3>
 
 						<div class="col-md-12">
-						<!-- fixabpSelect -->
-									<!-- <abp-select picker-options.bind="selectOptions" empty-on-null="true" 
+							<!-- fixabpSelect -->
+							<!-- <abp-select picker-options.bind="selectOptions" empty-on-null="true" 
                   selected-item.bind="name" selected-value.bind="SaveListValue"
 									 disabled="false" collection.bind="appService.savedlists"
                     data-mapping-structure.bind="mappingDataStructure" object-key="id"
 									 element.bind="selectSaveList"></abp-select>
 								</div> -->
-						
-
-							</div>
+							<input ref="myDatalist" type="text" list="myDatalist" placeholder="search on savedlist" change.delegate="performSearchSL()"
+							 input.delegate="selectedValue = findOption($event.target.value)" />
+							<datalist id="myDatalist">
+								<option repeat.for="option of appService.savedlists">${option.name}</option>
+							</datalist>
 						</div>
 
+
 					</div>
+
 				</div>
-
-
 			</div>
+
+
+
 		</div>
 
 
