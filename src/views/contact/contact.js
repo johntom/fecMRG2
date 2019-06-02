@@ -16,7 +16,11 @@ export class Contact {
   options = [];//multiselect select2
   selected = [];//multiselect select2
   altAKeyPressSubscription;
-
+ mailingstatus = [
+    { id: 1, name: 'Mailing list' },
+    { id: 2, name: 'No Mailings' },
+    { id: 3, name: 'Unsubscribed' }
+  ]
   constructor(router, utilService, api, eventAggregator) {
     this.router = router;
     this.utilService = utilService;

@@ -144,6 +144,7 @@ selectOptions = {
     this.router.navigate(`#/mailinglist/${path}&tabname=mailinglist`);
     this.appService.currentSearch = path
     } else alert('Please make a selection')
+    
   }
 
 
