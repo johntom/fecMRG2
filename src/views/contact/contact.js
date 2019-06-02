@@ -47,6 +47,17 @@ export class Contact {
     alert('add')
     // this.router.navigate(`#/inventory/data/create`);
   }
+  
+  performClear() {
+    this.search.mailingStatus = ''
+
+  }
+  performDefault() {
+    this.search.mailingStatus = 1
+    this.search.notinternational = true
+
+
+  }
   activate() {
 
     console.log('name-tag activate before attached ');
@@ -110,7 +121,7 @@ export class Contact {
       this.router.navigate(rt2);
       // this.router.navigate(`#/inventory/${this.search}`);
       // this.router.navigate(`#/inventory/InvSearch`);
-    }
+    } 
   }
 
   populateInv(e) {

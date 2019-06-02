@@ -173,6 +173,8 @@ export class SearchResults {
     // this.search.noinfo = true
     this.search.keywords = []
     this.search.genres = []
+     this.search.mailingStatus = 0
+
   }
   //   setInitialValue(edt) {
   //     if (this.currentItem.interests !== undefined) 
@@ -228,8 +230,7 @@ export class SearchResults {
   async activate(params, routeConfig) {
     // //http://74.114.164.24/api/v1/inventorycontent?artistl=s%26artistf=c 
     this.queryParams = this.utilService.parseQueryStringUrl();
-
-
+ 
     const qs = this.queryParams.substring(this.queryParams.indexOf('?') + 1)
     const pairs = qs.split('&')
     const queryParams = {}
@@ -246,15 +247,13 @@ export class SearchResults {
     // alert(this.mailinglist)
     console.log('activate this.mailinglist queryParams', this.mailinglist, this.queryParams)
 
-
-
     // let response = await this.api.findCatalogone(this.mailinglist);
     // this.catalog = response.data[0]
 
   }
 
   performClear() {
-    this.search.mailingStatus = ''
+    this.search.mailingStatus = 0
 
   }
   performDefault() {

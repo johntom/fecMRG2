@@ -7,7 +7,7 @@ import { ApiService } from '../../utils/servicesApi';
 
 export class Home {
   heading = "MRG Home Page";
-  version = 301.67
+  version = 301.68
  
   versionDate = 'Su 6/2/2019 1pm'
 
@@ -16,7 +16,7 @@ export class Home {
     'on convert international mailing/international press international=true else false ',
     `convert org dont use address only adress1/2 3?`,
     ` use text area for address on org`,
-    `dirty: "phones": [       "type": null" not type:0 {"phones.type":  0} fixContactType`  ,
+    `dirty: "phones": ["type": null" not type:0 {"phones.type":  0} fixContactType`  ,
     `dirty: this.appService.originalrec.conservedbyname = this.currentItem.conservedbyname fix dirty`,
    ` dirty:this.appService.originalrec.OwnedId =  this.appService.currentItem.OwnedId`,
     " finish action exhi/repro ",
@@ -313,7 +313,6 @@ export class Home {
         this.appService.codesInventoryLocation = codesInventoryLocation//1,
         this.appService.codesInventoryType = codesInventoryType//2,
         this.appService.codesGenre = codesGenre//3,  codesGenre.push(newi)
-
         this.appService.codesOwnership = codesOwnership//4,
         this.appService.codesFormat = codesFormat//5
         this.appService.codesPaymentMethod = codesPaymentMethod//6
@@ -393,15 +392,12 @@ export class Home {
   //     return Promise.all([
   //       this.dataService.loadArtists(),
   //       this.dataService.loadCodes,
-
   //     ]).then(values => {
   //       this.appService.artistList = values[0];
   //       this.appService.codesList = values[1];
-
   //       return Promise.all([
   //         this.dataService.loadCodesLocation(values[1]),
   //         this.dataService.loadCodesMediumSupport(values[1]),
-
   //       ]).then(values => {
   //         this.appService.codesListLocation = values[0];
   //         this.appService.codesListMediumSupport = values[1];
@@ -410,7 +406,6 @@ export class Home {
   //         //   console.log(' this.artistList', this.appService.artistList.length)
   //         //   console.log(' this.codesListLocation', this.appService.codesListLocation )
   //       })
-
   //       console.log(' this.artistList', this.appService.artistList.length)
   //       console.log(' this.codesList', this.appService.codesList)
   //     }).catch(error => {

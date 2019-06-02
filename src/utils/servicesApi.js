@@ -311,7 +311,7 @@ export class ApiService {
     let res = await this.http.fetch(url, { mode: 'cors' })
     return res.json()
   }
-  async findCatalog(search) {
+  async findCatalog(search) { 
     // var url = this.baseweb + 'v1/inventorycontent' + search
     // var url = this.baseweb + `v1/catalog/find${search}`;
     var url = this.baseweb + `v1/catalog/find/${search}`;
