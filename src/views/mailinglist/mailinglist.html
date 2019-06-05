@@ -21,7 +21,7 @@
 
 
 						<div class="col-md-6">
-${appService.catalogList.length}
+							${appService.catalogList.length}
 							<div class="form-group flex-column-1">
 								<input ref="myDatalist" type="text" list="myDatalist" placeholder="search on catalogList" change.delegate="performSearchSL()"
 								 input.delegate="selectedValue = findOption($event.target.value)" />
@@ -38,20 +38,16 @@ ${appService.catalogList.length}
                 </pre>
 						</div>
 					</div>
-  			</div>
+				</div>
 			</div>
 		</div>
-	
 
 
 		<div class="flex-row-none">
 			<div class="form-group flex-column-1">
-
-		<button id="searchInputBtn" class="btn btn-success" type="button" click.delegate="addinventory()"><strong>A</strong>dd Inventory</button>
-						</div>
-		  
+				<button id="searchInputBtn" class="btn btn-success" type="button" click.delegate="addinventory()"><strong>A</strong>dd Inventory</button>
+			</div>
 		</div>
 
 	</section>
 </template>
-

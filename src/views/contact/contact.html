@@ -68,13 +68,13 @@
 						<div class="Rtable-cell-50 Rtable-cell">
 
 							<div class="form-group flex-column-1 margin-left-10">
-								<label for="adjuster">mru</label>
+								<label for="adjuster">mru</label> 
 								<ul>
 									<li repeat.for='e of mru'>
 										<a click.delegate="populateInv(e)"> ${e.name} ${e.bori}</a>
 									</li>
 								</ul>
-							</div>
+							</div> 
 						</div>
 					</div>
 
@@ -87,7 +87,7 @@
 						<input type="checkbox" id="holidaylist" checked.bind="search.holidaylist">
 						<strong> &nbsp;&nbsp;international</strong>
 						<input type="checkbox" id="international" checked.bind="search.international">
-						<strong> &nbsp;&nbsp;not international</strong>
+						<strong> &nbsp;&nbsp;domestic</strong>
 						<input type="checkbox" id="notinternational" checked.bind="search.notinternational">
 					</div>
 
@@ -100,8 +100,8 @@
 
 					<br />
 					<button id="searchInputBtn" class="btn btn-primary" type="button" click.delegate="performSearch()">Search!</button>
-   	<button id="clearbtn" class="btn btn-primary" click.delegate="performClear()" type="button"><strong>C</strong>lear search </button>
-	<button id="group1" class="btn btn-primary" click.delegate="performDefault()" type="button">Default Search</button>
+					<button id="clearbtn" class="btn btn-primary" click.delegate="performClear()" type="button"><strong>C</strong>lear search </button>
+					<button id="group1" class="btn btn-primary" click.delegate="performDefault()" type="button">Default Search</button>
 
 				</form>
 

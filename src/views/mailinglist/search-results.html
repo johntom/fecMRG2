@@ -145,13 +145,10 @@
 							<!-- ----- -->
 							<div class="Rtable-cell-35 Rtable-cell--highlight">
 								<strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Search &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  	<button id="clearbtn" class="btn btn-primary" click.delegate="performClear()" type="button"><strong>C</strong>lear search </button>
-     	<button id="clearbtn" class="btn btn-primary" click.delegate="performClear()" type="button"><strong>C</strong>lear search </button>
-	<button id="group1" class="btn btn-primary" click.delegate="performDefault()" type="button">Default Search</button>
-
-                    </strong>
-
-							</div>
+                	<button id="clearbtn" class="btn btn-primary" click.delegate="performClear()" type="button"><strong>C</strong>lear search </button>
+   								<button id="group1" class="btn btn-primary" click.delegate="performDefault()" type="button">Default Search</button>
+								</strong>
+    					</div>
 						</div>
 
 						<div class="flex-row-none">
@@ -189,12 +186,13 @@
 									<ak-col k-title="types" k-width="110px" k-field="types"></ak-col>
 									<ak-col k-title="artists" k-width="110px" k-field="artists"></ak-col>
 									<ak-col k-title="genres" k-width="110px" k-field="genres"></ak-col>
-                	<!-- <ak-col k-title="interests" k-width="210px" k-field="interests"></ak-col> -->
+									<!-- <ak-col k-title="interests" k-width="210px" k-field="interests"></ak-col> -->
 									<!-- k-template.bind="textAreaEditor"  k-editable="false"  -->
 									<!-- <ak-col k-field="interests" k-title="Interests" k-width.bind="330"> <ak-col>  -->
-									<!--	<ak-col k-title="State" k-width="110px" k-field="state"></ak-col>	 -->
-										<ak-col k-command="destroy" k-title="&nbsp;" k-width.bind="150"></ak-col>
-										<br />
+										<ak-col k-title="State" k-width="110px" k-field="state"></ak-col>	
+                    <ak-col k-title="City" k-width="110px" k-field="city"></ak-col>	
+									<ak-col k-command="destroy" k-title="&nbsp;" k-width.bind="150"></ak-col>
+									<br />
 								</ak-grid>
 
 								<br />
@@ -230,7 +228,7 @@
 											<input type="checkbox" id="noinfo" checked.bind="search.noinfo"> -->
 											<strong> &nbsp;&nbsp;international</strong>
 											<input type="checkbox" id="international" checked.bind="search.international">
-<strong> &nbsp;&nbsp;not international</strong>
+											<strong> &nbsp;&nbsp;domestic</strong>
 											<input type="checkbox" id="notinternational" checked.bind="search.notinternational">
 
 											<!-- <strong> &nbsp;&nbsp;noinfo</strong>
@@ -247,7 +245,7 @@
 										</div>
 										<div class="Rtable-cell-30 Rtable-cell--highlight">
 											<strong> Contact Types </strong>
-                    </div>
+										</div>
 										<div class="Rtable-cell-70 Rtable-cell--highlight">
 											<ak-multiselect k-value.two-way="search.keywords" k-placeholder="Select ContactTypes..." k-data-text-field="Description"
 											 k-data-value-field="Description" k-height.bind="400" k-data-source.bind="appService.codesOrgContactTypes" k-widget.two-way="multiselect"
