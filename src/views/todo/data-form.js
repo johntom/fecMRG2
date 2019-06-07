@@ -44,7 +44,7 @@ export class DataForm {
   //  ]
   types = [
 
-    { id: 0, name: 'Inv Search Screen' },
+    { id: 0, name: 'Inv Search Screen1' },
     { id: 0, name: 'Inv Search Results Grid' },
     { id: 0, name: 'Inv Form' },
     { id: 0, name: 'Inv Tab: Text ' },
