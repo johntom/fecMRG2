@@ -145,10 +145,11 @@
 							<!-- ----- -->
 							<div class="Rtable-cell-35 Rtable-cell--highlight">
 								<strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Search &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                	<button id="clearbtn" class="btn btn-primary" click.delegate="performClear()" type="button"><strong>C</strong>lear search </button>
-   								<button id="group1" class="btn btn-primary" click.delegate="performDefault()" type="button">Default Search</button>
+                	<button id="clearbtn" class="btn btn-primary" click.delegate="performClear()" type="button"><strong>C</strong>lear
+								search </button>
+								<button id="group1" class="btn btn-primary" click.delegate="performDefault()" type="button">Default Search</button>
 								</strong>
-    					</div>
+							</div>
 						</div>
 
 						<div class="flex-row-none">
@@ -189,8 +190,8 @@
 									<!-- <ak-col k-title="interests" k-width="210px" k-field="interests"></ak-col> -->
 									<!-- k-template.bind="textAreaEditor"  k-editable="false"  -->
 									<!-- <ak-col k-field="interests" k-title="Interests" k-width.bind="330"> <ak-col>  -->
-										<ak-col k-title="State" k-width="110px" k-field="state"></ak-col>	
-                    <ak-col k-title="City" k-width="110px" k-field="city"></ak-col>	
+									<ak-col k-title="State" k-width="110px" k-field="state"></ak-col>
+									<ak-col k-title="City" k-width="110px" k-field="city"></ak-col>
 									<ak-col k-command="destroy" k-title="&nbsp;" k-width.bind="150"></ak-col>
 									<br />
 								</ak-grid>
@@ -288,8 +289,42 @@
 
 
 										<div class="Rtable-cell-70  Rtable-cell--highlight">
-											<input type="text " xid="State " class="form-control input-sm " value.bind="search.state">
+											<!-- <input type="text " xid="State " class="form-control input-sm " value.bind="search.state"> -->
+
+
+						<select id="state" class="form-control " value.bind="state">
+											<option model.bind="0">Choose...</option>
+											<option repeat.for="opt of appService.stateList " model.bind="search.state">
+												${opt.name}
+											</option>
+										</select>
+					
+
 										</div>
+
+										<div class="Rtable-cell-30 Rtable-cell--highlight">
+											<strong>Last Name user pop from Inv</strong>
+										</div>
+
+
+										<div class="Rtable-cell-70  Rtable-cell--highlight">
+											<input type="text " xid="State " class="form-control input-sm " value.bind="search.contactl">
+										</div>
+
+										<div class="Rtable-cell-30 Rtable-cell--highlight">
+											<strong>First Name</strong>
+										</div>
+
+
+										<div class="Rtable-cell-70  Rtable-cell--highlight">
+											<input type="text " xid="State " class="form-control input-sm " value.bind="search.contactf">
+										</div>
+
+
+
+
+
+
 										<div class="Rtable-cell-30 Rtable-cell--highlight">
 											<strong>Search Criteria</strong>
 										</div>

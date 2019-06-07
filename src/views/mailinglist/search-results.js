@@ -284,6 +284,14 @@ export class SearchResults {
         str += `&state=${search.state}`
       }
 
+
+  if (search.contactl !== undefined) {
+        str += `&contactl=${search.contactl}`
+      }
+      if (search.contactf !== undefined) {
+        str += `&contactf=${search.contactf}`
+      }
+
       if (search.holidaylist === true) {
         str += `&holidaylist=${search.holidaylist}`
       }

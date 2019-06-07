@@ -7,11 +7,12 @@ import { ApiService } from '../../utils/servicesApi';
 
 export class Home {
   heading = "MRG Home Page";
-  version = 301.71
+  version = 301.72
  
-  versionDate = 'We 6/5/2019 1pm'
+  versionDate = 'Fri 6/5/2019 1pm'
 
   issues = [
+    `catalog kendogrid responive others not`,
     `"international": false for us new rec = false`,
     'on convert international mailing/international press international=true else false ',
     `convert org dont use address only adress1/2 3?`,

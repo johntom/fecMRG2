@@ -93,6 +93,8 @@ export class DataForm {
     { id: 0, name: 'Org Search Results Grid' },
     { id: 0, name: 'Org Form' },
     { id: 0, name: 'Org Issues/Questions' },
+    { id: 0, name: 'Mailing List Search Form' },
+    { id: 0, name: 'Mailing List Search Results' },
     { id: 0, name: 'Catalog Search Form' },
     { id: 0, name: 'Catalog Search Results Grid' },
     { id: 0, name: 'Catalog Form' },

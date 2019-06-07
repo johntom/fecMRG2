@@ -90,29 +90,21 @@ export class Address {
 
 
   //  modal(item, index) {
-
   //     // this.currentItem.recordId = this.recordId model:this.currentItem
   //     let currentModel = {}
   //     currentModel.currentItem = this.currentItem
   //     currentModel.item = item
-
   //     // currentModel.currentItem.hide1 = false
-
-
   //     // this.dialogService.open({ viewModel: PromptForm, model: currentModel, lock: false }).whenClosed(response => {
   //     this.dialogService.open({ viewModel: Promptexhibit, model: currentModel, lock: false }).whenClosed(response => {
-
   //       if (!response.wasCancelled) {
   //         console.log('item', item);
   //       item.edit = false//this.saveitem(item, index)
   //       } else {
-
   //         console.log('cancel');
   //       }
   //       console.log(response)//.output);
   //     });
   //   }
-
-
 
 }

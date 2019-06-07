@@ -66,7 +66,7 @@ export class Phone {
   }
 
 
-  addPhone() {
+  addPhone() { 
 
   let phones= this.currentItem.phones
     let flag = false
@@ -86,7 +86,7 @@ export class Phone {
   }
 
 addEmail() {
-
+ 
   let emails= this.currentItem.emails
     let flag = false
     let item
@@ -95,12 +95,13 @@ addEmail() {
       emails = []
     }
     //Type Phoneno Area  Ext
-    item = { Type: '', email: '', edit: true }
+    item = { Type: '', email: '', unsub:false,edit: true }
     emails.unshift(item)
     if (flag) this.currentItem.emails = emails
 
     this.newNoteWorkDate = '';
     this.newNoteNote = '';
+//  this.unsub = '';
 
   }
 
@@ -136,7 +137,36 @@ addEmail() {
 
 
   }
-
+                
+  removeEmail(item, index) {
+    this.mode = 0
+  
+    this.dialogService.open({ viewModel: Prompt, model: 'Delete or Cancel?', lock: false }).whenClosed(response => {
+      if (!response.wasCancelled) {
+        console.log('Delete')
+        let emails = this.currentItem.emails
+        emails.splice(index, 1)
+      } else {
+        console.log('cancel');
+      }
+      console.log(response.output);
+    });
+  }
+                
+  removePhone(item, index) {
+    this.mode = 0
+   
+    this.dialogService.open({ viewModel: Prompt, model: 'Delete or Cancel?', lock: false }).whenClosed(response => {
+      if (!response.wasCancelled) {
+        console.log('Delete')
+        let phones = this.currentItem.phones
+        phones.splice(index, 1)
+      } else {
+        console.log('cancel');
+      }
+      console.log(response.output);
+    });
+  }
 
 }
  
