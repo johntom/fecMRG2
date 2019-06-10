@@ -199,7 +199,7 @@ export class DataForm {
         this.currentItem.contacttypes = []
         this.currentItem.international = false
         this.currentItem.deceased = false
-
+        this.currentItem.mailingStatus = 2;
         // this.appService.testrec = {}
         // this.appService.testrec = {}
         // this.appService.originalrec = {}
