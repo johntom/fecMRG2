@@ -9,9 +9,23 @@ export class Home {
   heading = "MRG Home Page";
   version = 301.75
  
-  versionDate = 'Mon 6/10/2019 1pm'
+  versionDate = 'Sun 6/16/2019 1pm'
 
   issues = [ 
+    'JUNE 15 CONV',
+    'contact note see roberta smith',
+    'A1 roberta smith b had mailing code mailing list should have mail status 1 ',
+    'roberta smith b has contact type vip should be part of contact type',
+    'a2 RS comp cat sent missing cat name ',
+    'look at legacy phone tab and split phone/email ',
+    'RS B from legacy shd have ORNAME and ORG Addr  in Adddres tab on new systme ',
+    'RS I missing Phone/Email Info from header  ',
+    'RS I MISSING MAILING STATUS SEE A1 ',
+    'NO MAILING 2  ',
+    'a2 CONTACT RS comp cat sent missing cat name ',
+    'grossm0018 grossm0188  OWED Status=consign, owned by=NGrosssan, see sik ',
+    ' ',
+    ' ',
     `catalog kendogrid responive others not`,
     `"international": false for us new rec = false`,
     'on convert international mailing/international press international=true else false ',

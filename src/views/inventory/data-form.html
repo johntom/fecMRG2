@@ -564,7 +564,7 @@
 							<div class="form-group flex-column-1 margin-left-10">
 								<div class="Rtable Rtable--2cols">
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
-										<strong> Sold Status </strong>
+										<strong> Sold Status ${currentItem.Sold}</strong>
 									</div>
 									<!-- ${search.httpsselectedSoldId} checked.bind="search.selectedSoldId selectedSoldId"-->
 									<div class="Rtable-cell-70 Rtable-cell--highlight">
@@ -601,7 +601,7 @@
 									</div>
 
 									<div class="Rtable-cell-30 Rtable-cell--highlight" style="color:purple">
-										<strong> Owned Status</strong>
+										<strong> Owned Status  ${currentItem.Sold} </strong>
 									</div>
 									<div class="Rtable-cell-70 Rtable-cell--highlight">
 										<select id="OwnedBy " class="form-control  " value.bind="currentItem.OwnedId">
@@ -612,7 +612,7 @@
 										</select>
 									</div>
 									<div class="Rtable-cell-30 Rtable-cell--highlight" style="color: purple">
-										<strong> Owned By</strong>
+										<strong> Owned By  ${currentItem.OwnedId}</strong>
 									</div>
 									<div class="Rtable-cell-70 Rtable-cell--highlight">
 										<select id="OwnedBy " class="form-control  " value.bind="currentItem.OwnedId">
