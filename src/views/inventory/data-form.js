@@ -59,7 +59,7 @@ export class DataForm {
   //   { id: 2, name: 'NFS' },
   //   { id: 3, name: 'DON' },
   // ];
-  searchsold = [
+  searchsold2 = [
      {id:-1,name:'Y'},
      { id: 0, name: 'Y' },
     { id: 1, name: 'Y' },
@@ -67,6 +67,16 @@ export class DataForm {
     { id: 3, name: 'NFS' },
     { id: 4, name: 'DON' },
   ];
+
+  searchsold = [
+     {id:-1,name:'Y'},
+ 
+    { id: 0, name: 'N' },
+    { id: 2, name: 'NFS' },
+    { id: 3, name: 'DON' },
+  ];
+
+
   products = [
     { id: '0', name: 'Motherboard' },
     { id: '1', name: 'CPU' },
