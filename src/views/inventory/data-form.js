@@ -42,6 +42,7 @@ export class DataForm {
     { id: 15, name: '15/16' },
   ];
   measures = [
+   
     { id: 0, name: '1/8' },
     { id: 1, name: '1/4' },
     { id: 3, name: '3/8' },
@@ -59,6 +60,8 @@ export class DataForm {
   //   { id: 3, name: 'DON' },
   // ];
   searchsold = [
+     {id:-1,name:'Y'},
+     { id: 0, name: 'Y' },
     { id: 1, name: 'Y' },
     { id: 2, name: 'N' },
     { id: 3, name: 'NFS' },

@@ -601,10 +601,10 @@
 									</div>
 
 									<div class="Rtable-cell-30 Rtable-cell--highlight" style="color:purple">
-										<strong> Owned Status  ${currentItem.Sold} </strong>
+										<strong> Owned Status OwnedBy: ${currentItem.OwnedBy} </strong>
 									</div>
 									<div class="Rtable-cell-70 Rtable-cell--highlight">
-										<select id="OwnedBy " class="form-control  " value.bind="currentItem.OwnedId">
+										<select id="OwnedBy " class="form-control  " value.bind="currentItem.OwnedBy">
 											<option model.bind="null">Choose...</option>
 											<option repeat.for="opt of appService.codesOwnership " model.bind="opt.id">
 												${opt.Description}
@@ -612,10 +612,10 @@
 										</select>
 									</div>
 									<div class="Rtable-cell-30 Rtable-cell--highlight" style="color: purple">
-										<strong> Owned By  ${currentItem.OwnedId}</strong>
+										<strong> Owned By OwnedID ${currentItem.OwnedID}</strong>
 									</div>
 									<div class="Rtable-cell-70 Rtable-cell--highlight">
-										<select id="OwnedBy " class="form-control  " value.bind="currentItem.OwnedId">
+										<select id="OwnedBy2" class="form-control  " value.bind="currentItem.OwnedID">
 											<option model.bind="null">Choose...</option>
 											<option repeat.for="opt of appService.codesOwnership " model.bind="opt.id">
 												${opt.Description}

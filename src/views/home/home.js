@@ -7,9 +7,9 @@ import { ApiService } from '../../utils/servicesApi';
 
 export class Home {
   heading = "MRG Home Page";
-  version = 301.75
+  version = 301.76 
  
-  versionDate = 'Sun 6/16/2019 1pm'
+  versionDate = 'Mon 6/17/2019 1pm'
 
   issues = [ 
     'JUNE 15 CONV',
@@ -24,8 +24,8 @@ export class Home {
     'NO MAILING 2  ',
     'a2 CONTACT RS comp cat sent missing cat name ',
     'grossm0018 grossm0188  OWED Status=consign, owned by=NGrosssan, see sik ',
-    ' ',
-    ' ',
+    ' fixed SoldStatus making 0,1 the same fix on next conv',
+    ' fixed OwnedId OwnedBy 59d282beb777d41f42a5a2c3',
     `catalog kendogrid responive others not`,
     `"international": false for us new rec = false`,
     'on convert international mailing/international press international=true else false ',

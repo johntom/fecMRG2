@@ -87,9 +87,11 @@ id="grid" k-data-source.bind="datasource" k-widget.bind="grid" k-sortable.bind="
 		<ak-col k-title="Artist Name" k-field="artist.ArtistName" k-template="#= (artist) ? artist.ArtistName : '' #"></ak-col>
 		<ak-col k-title="Title" k-width="180px" k-field="Title"></ak-col>
 		<ak-col k-title="Inv Year" k-width="180px" k-field="InvYear"></ak-col>
-		<ak-col k-title="Medium" k-width="180px" k-field="MediumSupportobj.Description"></ak-col>
+		<!-- <ak-col k-title="Medium" k-width="180px" k-field="MediumSupportobj.Description"></ak-col> -->
 		<ak-col k-title="Bin" k-width="180px" k-field="Bin"></ak-col>
-		<!-- <ak-col  k-title="Medium Support" k-field="MediumSupportobj.Description" k-template="#= (MediumSupportobj.Description) ? MediumSupportobj.Description : `` #"></ak-col> -->
+		
+    
+    <!-- <ak-col  k-title="Medium Support" k-field="MediumSupportobj.Description" k-template="#= (MediumSupportobj.Description) ? MediumSupportobj.Description : `` #"></ak-col> -->
 		<!-- <ak-col  k-title="Medium Support" k-field="MediumSupportobj" k-template="#= (MediumSupportobj) ? MediumSupportobj.Description : `` #"></ak-col> -->
 
 	</ak-grid>
