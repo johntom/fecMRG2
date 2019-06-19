@@ -7,12 +7,13 @@ import { ApiService } from '../../utils/servicesApi';
 
 export class Home {
   heading = "MRG Home Page";
-  version = 301.77 
+  version = 301.78 
  
-  versionDate = 'Mon 6/17/2019 1pm'
+  versionDate = 'Mon 6/19/2019 4pm'
 
   issues = [ 
     'JUNE 15 CONV',
+    'MediumSupportobj.Description issue',
     'contact note see roberta smith',
     'A1 roberta smith b had mailing code mailing list should have mail status 1 ',
     'roberta smith b has contact type vip should be part of contact type',

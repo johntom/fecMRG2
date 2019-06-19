@@ -579,7 +579,7 @@
 									</div>
 
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
-										<span dblclick.delegate="showModal( 'SoldToID') ">	<strong> Sold To ${SoldToID}</strong></span>
+										<span dblclick.delegate="showModal( 'SoldToID') ">	<strong> Sold To ${currentItem.SoldToID}</strong></span>
 									</div>
 
 
@@ -611,7 +611,30 @@
 											</option>
 										</select>
 									</div>
-									<div class="Rtable-cell-30 Rtable-cell--highlight" style="color: purple">
+									
+                  	<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<span dblclick.delegate="showModal( 'OwnerID') ">	<strong> Owned By OwnedID ${currentItem.OwnedID}</strong></span>
+									</div>
+
+<!-- OwnerID not OwnedID -->
+									<!-- <div class="Rtable-cell-70  Rtable-cell--light"> -->
+
+									<div class="Rtable-cell-70  Rtable-cell--highlight">
+
+										<div style="height:15px;margin-left:10px;margin-top:5px;margin-bottom:10px" if.bind="currentItem.ownername===undefined || currentItem.ownername==='' ">
+											<a click.delegate="showModal( 'OwnerID')">select_link </a>
+										</div>
+										<div style="height:15px;margin-left:10px;margin-top:5px;margin-bottom:10px" else>
+											<a click.delegate="showModal( 'OwnerID')">${currentItem.ownername} </a>
+											&nbsp;&nbsp;
+											<a click.delegate="OwnerIDEdit()">...Open...</a>
+
+
+										</div>
+
+									</div>
+                  
+                  <!-- <div class="Rtable-cell-30 Rtable-cell--highlight" style="color: purple">
 										<strong> Owned By OwnedID ${currentItem.OwnedID}</strong>
 									</div>
 									<div class="Rtable-cell-70 Rtable-cell--highlight">
@@ -621,7 +644,7 @@
 												${opt.Description}
 											</option>
 										</select>
-									</div>
+									</div> -->
 
 									<!-- <div class="Rtable-cell-70  Rtable-cell--highlight">
 
