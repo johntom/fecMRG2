@@ -7,13 +7,15 @@ import { ApiService } from '../../utils/servicesApi';
 
 export class Home {
   heading = "MRG Home Page";
-  version = 301.78 
+  version = 301.81 
  
-  versionDate = 'Mon 6/19/2019 4pm'
+  versionDate = 'Wed 6/19/2019 4pm'
 
   issues = [ 
     'JUNE 15 CONV',
-    'MediumSupportobj.Description issue',
+    'mailing list state not working',
+    'org breaks getting contacts tab not displayed   con',
+    'MediumSupportobj.Description issue cjeck stat n address',
     'contact note see roberta smith',
     'A1 roberta smith b had mailing code mailing list should have mail status 1 ',
     'roberta smith b has contact type vip should be part of contact type',
@@ -108,7 +110,7 @@ export class Home {
 
     let response = await this.api.getCatalogsAA();
     this.appService.catalogList = response.data
-    console.log('this.repos ', this.api.catalogList)
+    console.log('this.catalogList ', this.api.catalogList)
 
 
     if (this.appService.LookupDataLoaded) {

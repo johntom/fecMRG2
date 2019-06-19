@@ -284,21 +284,39 @@
 											<input type="text " xid="City " class="form-control input-sm " value.bind="search.city">
 										</div>
 										<div class="Rtable-cell-30 Rtable-cell--highlight">
-											<strong>State</strong>
-										</div>
+											<strong>State -</strong>
+										</div> 
 
 
 										<div class="Rtable-cell-70  Rtable-cell--highlight">
 											<!-- <input type="text " xid="State " class="form-control input-sm " value.bind="search.state"> -->
 
 
-						<select id="state" class="form-control " value.bind="state">
-											<option model.bind="0">Choose...</option>
+						<!-- <select id="state" class="form-control " value.bind="state">
+											<option model.bind="null">Choose...</option>
 											<option repeat.for="opt of appService.stateList " model.bind="search.state">
 												${opt.name}
 											</option>
 										</select>
-					
+					 -->
+
+
+		<select id="state " class="form-control " value.bind="search.state" placeholder="search stateList">
+											<option model.bind="null">Choose...</option>
+											<option repeat.for="opt of appService.stateList " model.bind="search.state">
+												${opt.name}
+											</option>
+										</select>
+
+	<select id="state" class="form-control" value.bind="search.search"> 
+                      <option model.bind="null">Choose...</option> 
+                      <option repeat.for="opt of appService.stateList" model.bind="opt.name">
+                          ${opt.name} 
+                      </option> 
+                      </select>
+
+
+
 
 										</div>
 

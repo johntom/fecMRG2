@@ -31,7 +31,6 @@ export class SearchResults {
 
   hide9 = true
   item = {}
-
   message = ''
   mailingstatus = [
     { id: 1, name: 'Mailing list' },
@@ -168,6 +167,8 @@ export class SearchResults {
     this.dialogService = dialogService
     this.appService.rfreshLoaded = false;
     this.search = {}
+    this.search.state='null'
+
     // this.search.deceased = true
     // this.search.nomailings = true
     // this.search.noinfo = true
