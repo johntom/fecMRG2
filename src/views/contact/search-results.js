@@ -125,9 +125,9 @@ export class SearchResults {
         // alert(' no records found ')
         this.message = ' no records found '
         let tab = this.appService.tabs.find(f => f.isSelected);
-        this.closeTab(tab);
-        let rt2 = '#/home'
-        this.router.navigate(rt2);
+        // this.closeTab(tab);
+        // let rt2 = '#/home'
+        // this.router.navigate(rt2);
       } else return inv
       });
   }

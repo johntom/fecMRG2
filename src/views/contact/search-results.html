@@ -64,17 +64,19 @@
 
 			<!-- <ak-col k-field="ID" k-filterable.bind="true" k-title="Edit-" k-width.bind="180" k-template="<button click.delegate='detailsEdit($event)' class='k-button'>#=id#</button>">
 			</ak-col> -->
-      <ak-col k-field="LastName" k-filterable.bind="true" k-title="LastName(Edit)" 
+      <ak-col k-field="LastName" k-filterable.bind="true" k-title="Last Name" 
       k-width.bind="180" k-template="<button click.delegate='detailsEdit($event)' class='k-button'>#=LastName#</button>">
 			</ak-col>
       <!-- <ak-col k-title="Last Name" k-width="180px" k-field="LastName"></ak-col> -->
 		
-			<ak-col k-title="FirstName" k-width="180px" k-field="FirstName"></ak-col>
-			<ak-col k-title="Title Desc" k-width="180px" k-field="TitleDesc"></ak-col>
+			<ak-col k-title="First Name" k-width="180px" k-field="FirstName"></ak-col>
+			<ak-col k-title="Title" k-width="180px" k-field="TitleDesc"></ak-col>
 			<ak-col k-title="Deceased" k-width="180px" k-field="deceased"></ak-col>
 			<ak-col k-title="Bus/Individ" k-width="180px" k-field="BusIndivid"></ak-col>
 			<ak-col k-title="Org" k-width="220px" k-template="#= (typeof org == 'undefined' || org == null) ? '' : org.OrgName #"></ak-col>
-
+	<ak-col k-title="Deceased" k-width="180px" k-field="deceased"></ak-col>
+		<ak-col k-title="Mailing Status LU" k-width="180px" k-field="mailingStatus"></ak-col>
+	
 	
 	</ak-grid>
 	<div class="flex-row-none section-footer">

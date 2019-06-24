@@ -25,7 +25,7 @@ export class Address {
 
 
   activate(params, routeConfig) {
-    this.exhibition = this.appService.currentItem.exhibition   // this.currentItem.exhibition
+    this.addresses = this.appService.currentItem.addresses   // this.currentItem.exhibition
   }
   remove(item, index) {
     // alert('you are about to delete ' + item.address) address of currentItem.addresses
