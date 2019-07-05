@@ -7,7 +7,7 @@ import { ApiService } from '../../utils/servicesApi';
 
 export class Home {
   heading = "MRG Home Page";
-  version = 301.85
+  version = 301.86
 
   versionDate = 'Wed 7/3/2019 9am'
 
@@ -335,7 +335,7 @@ export class Home {
         }
         console.log(' ===================codes 39', codesPhotographers)
         let pt = [{ id: 1, Description: 'work' }, { id: 2, Description: 'mobile' }, { id: 3, Description: 'home' }, { id: 4, Description: 'fax' }, { id: 5, Description: 'na' }];
-        let et = [{ id: 1, Description: 'work' }, { id: 2, Description: 'personal' }];
+        let et = [{ id: 1, Description: 'work' }, { id: 2, Description: 'personal' }, { id: 3, Description: 'na' }];
         this.appService.codesPhoneType = pt;
         this.appService.codesEmailType = et;
 
