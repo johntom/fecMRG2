@@ -7,12 +7,13 @@ import { ApiService } from '../../utils/servicesApi';
 
 export class Home {
   heading = "MRG Home Page";
-  version = 301.83 
- 
-  versionDate = 'Tues 6/24/2019 5pm'
+  version = 301.84
 
-  issues = [ 
+  versionDate = 'Wed 7/3/2019 9am'
+
+  issues = [
     'JUNE 15 CONV fix org/contacts save both cols before redo',
+    'ui to combine contacts ie ',
     'mailing list state not working',
     'org breaks getting contacts tab not displayed   con',
     'MediumSupportobj.Description issue cjeck stat n address',
@@ -34,9 +35,9 @@ export class Home {
     'on convert international mailing/international press international=true else false ',
     `convert org dont use address only adress1/2 3?`,
     ` use text area for address on org`,
-    `dirty: "phones": ["type": null" not type:0 {"phones.type":  0} fixContactType`  ,
+    `dirty: "phones": ["type": null" not type:0 {"phones.type":  0} fixContactType`,
     `dirty: this.appService.originalrec.conservedbyname = this.currentItem.conservedbyname fix dirty`,
-   ` dirty:this.appService.originalrec.OwnedId =  this.appService.currentItem.OwnedId`,
+    ` dirty:this.appService.originalrec.OwnedId =  this.appService.currentItem.OwnedId`,
     " finish action exhi/repro ",
     `"@progress/kendo-ui": "^2017.2.504"`,
     ' python -m SimpleHTTPServer D:\Frameworks\fecMRG2-Staging\www\pythonserver.bat',
@@ -182,13 +183,18 @@ export class Home {
         let codesPhotographers = []//39
         let codesSuffix = []//40,
         let codesAdmin = []//41,
+
+        let codesEmailType = []//new,
+
+
+
         let newi //= {}
 
         for (i = 0; i < this.appService.codesList.length; i++) {
           item = this.appService.codesList[i]
           // console.log(' item ', item)
           ct = item.CodeType //* 1
-          //  console.log(' ct ', ct)
+
           newi = {}
           newi.CodeType = ct
           newi.Description = item.Description
@@ -256,9 +262,9 @@ export class Home {
             case 19:
               codesPeriod.push(newi)
               break;
-            case 20:
-              codesPhoneType.push(newi)
-              break;
+            // case 20:
+            //   codesPhoneType.push(newi)
+            //   break;
             case 21:
               codesTitle.push(newi)
               break;
@@ -328,6 +334,12 @@ export class Home {
           }
         }
         console.log(' ===================codes 39', codesPhotographers)
+        let pt = [{ id: 1, Description: 'work' }, { id: 2, Description: 'mobile' }, { id: 3, Description: 'home' }, { id: 4, Description: 'fax' }];
+        let et = [{ id: 1, Description: 'work' }, { id: 2, Description: 'personal' }];
+        this.appService.codesPhoneType = pt;
+        this.appService.codesEmailType = et;
+
+
         this.appService.codesInventoryLocation = codesInventoryLocation//1,
         this.appService.codesInventoryType = codesInventoryType//2,
         this.appService.codesGenre = codesGenre//3,  codesGenre.push(newi)
@@ -347,7 +359,7 @@ export class Home {
         this.appService.codesListLocation = codesListLocation//17
         this.appService.codesSalutation = codesSalutation//18
         this.appService.codesPeriod = codesPeriod//19
-        this.appService.codesPhoneType = codesPhoneType//20
+        // this.appService.codesPhoneType = codesPhoneType//20
         this.appService.codesTitle = codesTitle //21
         this.appService.codesDepartment = codesDepartment //22
         this.appService.codesCity = codesCity//23

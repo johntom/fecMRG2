@@ -75,8 +75,8 @@ export class Phone {
       flag = true
       phones = []
     }
-    //Type Phoneno Area  Ext
-    item = { Type: '', Phoneno: '', edit: true }
+    //Type Phoneno Area  Ext , edit: true 
+    item = { type: '', Phoneno: ''}
     phones.unshift(item)
     if (flag) this.currentItem.phones = phones
 
@@ -94,8 +94,8 @@ addEmail() {
       flag = true
       emails = []
     }
-    //Type Phoneno Area  Ext
-    item = { Type: '', email: '', unsub:false,edit: true }
+    //Type Phoneno Area  Ext ,edit: true 
+    item = { type: '', email: '', unsub:false}
     emails.unshift(item)
     if (flag) this.currentItem.emails = emails
 

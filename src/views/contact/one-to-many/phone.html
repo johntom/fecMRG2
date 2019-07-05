@@ -76,8 +76,9 @@
 
 							<td width="100px">
 
-								<select id="phonetype" class="form-control  input-sm" value.bind="phone.type"> 
-                      <option model.bind="null">Choose...filterOnCode</option> 
+
+								<select id="phonetype" class="form-control  input-sm" value.bind="type"> 
+                      <option model.bind="null">Choose...</option> 
                          <option repeat.for="opt of appService.codesPhoneType " model.bind="opt.id">
                     ${opt.Description} 
                       </option> 
@@ -166,11 +167,11 @@
 
 							<td width="100px">
 
-								<select id="phonetype" class="form-control  input-sm" value.bind="email.type"> 
+								<select id="phonetype" class="form-control  input-sm" value.bind="type"> 
                       <!-- <option model.bind="null">Choose...filterOnCode</option>  -->
-                        <option model.bind=0>Choose...filterOnCode</option> 
+                        <option model.bind=0>Choose...</option> 
                     
-                         <option repeat.for="opt of appService.codesPhoneType " model.bind="opt.id">
+                         <option repeat.for="opt of appService.codesEmailType " model.bind="opt.id">
                     ${opt.Description} 
                       </option> 
                     </select>

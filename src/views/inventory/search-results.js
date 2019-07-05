@@ -253,7 +253,7 @@ export class SearchResults {
     // return inv
 
 
-    return this.api.findInventory(this.queryParams)
+    return this.api.findInventory(this.queryParams) 
       //return this.api.findInventoryKeywords(this.queryParams)
 
       .then((jsonRes) => {
