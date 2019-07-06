@@ -9,7 +9,7 @@ import { DialogService } from 'aurelia-dialog';
 export class Org {
   static inject = [Router, UtilService, ApplicationService, ApiService, DialogService];
 
-  heading = 'Welcome to the Adjusterprep page';
+  heading = 'Orgs where "BusIndivid" = "B"';
   counter = 1;
   search = {}
   selectedValue = null; //ADJUSTER_NAME

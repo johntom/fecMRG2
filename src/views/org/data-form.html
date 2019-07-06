@@ -29,9 +29,9 @@
 									</div>
 									<div class="Rtable-cell-70  Rtable-cell--highlight">
 										<!-- <input type="text" lines="3" id="Address" class="form-control input-sm" value.bind="org.Address"> -->
-									<textarea rows="3" cols="100" class="form-control input-sm" value.bind="org.Address"></textarea>
-	
-                  </div>
+										<textarea rows="3" cols="100" class="form-control input-sm" value.bind="org.Address"></textarea>
+
+									</div>
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
 										<strong> City</strong>
 									</div>
@@ -84,12 +84,13 @@
 										<strong> Contact tab below is read-only</strong>
 									</div> -->
 
-
-
 								</div>
-							
 
-	<div class="Rtable-cell-30 Rtable-cell--highlight">
+
+								<div class="Rtable Rtable--2cols">
+
+
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
 										<strong> Address Label</strong>
 									</div>
 									<div class="Rtable-cell-70 Rtable-cell--highlight">
@@ -97,12 +98,12 @@
 
 
 									</div>
-</div>
+								</div>
 
 
+							</div>
 						</div>
 					</div>
-
 				</div>
 
 				<div if.bind="recordId==='create'">ORG FORM IS NOT AVAIL for Create Mode. Please save record before entering tabs </div>
@@ -124,9 +125,9 @@
 						</div>
 					</div>
 				</div>
-
-			</form>
 		</div>
+		</form>
+
 
 
 		<div class="flex-column-none section-footer">
@@ -150,6 +151,7 @@
           <b>  ${message} </b>
 				</span>
 
+		</div>
 		</div>
 	</section>
 </template>
