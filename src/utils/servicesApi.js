@@ -639,6 +639,7 @@ export class ApiService {
   }
 
   batchMrglocation(rec) {
+    alert(rec.batchno)
     let url = this.baseweb + `v1/inventory/batchMrglocation`
     console.log('url ', url)
     // return {'data': true}

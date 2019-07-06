@@ -850,7 +850,7 @@ export class SearchResults {
         } else {
           this.dialogService.open({ viewModel: Promptmess, model: `batch failed `, lock: true }).whenClosed(async response => { });
         }
-      })
+      } )
 
   }
  
@@ -860,6 +860,8 @@ export class SearchResults {
 
     let batchno = jsonResna[0].nextavail
     this.exhibitionbatchno = batchno
+    this.item.batchno=batchno
+    // this.item.exhibitionbatchno=batchno
     this.api.batchExhibit(this.item)
       .then((jsonRes) => {
         if (jsonRes.data === 'success') {
@@ -907,6 +909,7 @@ export class SearchResults {
     this.item.savedlist = this.savedlist
     let jsonResna = await this.api.getbatchno();
     this.item.batchno = jsonResna[0].nextavail
+    console.log('item',this.item)
     this.api.batchMrglocation(this.item)
       .then((jsonRes) => {
         if (jsonRes.data === 'success') {
