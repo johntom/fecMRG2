@@ -149,8 +149,12 @@ export class ApplicationService {
       name: "Vat",
       viewModel: "./one-to-one/vat",
       isSelected: false
-    }
-
+    },
+{
+      name: "Insurance",
+      viewModel: "./one-to-one/insurance",
+      isSelected: false
+    },
 
 
   ];

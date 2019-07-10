@@ -30,7 +30,14 @@ export class Promptexhibit {
     this.heading = "Exhibition"
   }
 
+ populate(){
+    this.item.ExhibitTitle='test '
+     this.item.ExhibitSponser='test spn'
+      this.item.ExhibitDates='01-12' 
+      this.item.Traveled=true
+       this.item.ExhibitMemo='test memp'
 
+ }
   attached() {
 
 
