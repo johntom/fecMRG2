@@ -9,7 +9,7 @@ export class Home {
   heading = "MRG Home Page";
   version = 301.93
 
-  versionDate = 'Thur 7/10/2019 2pm'
+  versionDate = 'Thur 7/11/2019 2pm'
 
   issues = [
     'JUNE 15 CONV fix org/contacts save both cols before redo',
