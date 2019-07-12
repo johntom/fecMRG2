@@ -185,19 +185,6 @@ export class DataForm {
 
   }
 
-  showModal(fieldname) {
-    this.currentItem.fieldname = fieldname
-    this.currentItem.recordId = this.recordId
-    if (fieldname === 'SoldToID') {
-      let findOptions = this.appService.orgsList.find(x => x._id === this.currentItem.SoldToID)
-      // this.currentItem.recordId = this.currentItem.SoldToID
-    } else {
-
-      // if (this.currentItem.OwnerID === 6275) this.currentItem.OwnerID = '5c434cc100a8a1588c6407b7'
-      let findOptiono = this.appService.orgsList.find(x => x._id === this.currentItem.OwnerID)
-      console.log('appService.orgsList', findOptiono)
-    }
-
 
 
     //  let topos = this.orgfields.findIndex(x => x === fieldname);
@@ -225,6 +212,22 @@ export class DataForm {
     // let topos = this.orgfields.findIndex(x => x === fieldname);
     // if (topos !== -1) {
     // only 2 on main form
+
+  showModal(fieldname) {
+    this.currentItem.fieldname = fieldname
+    this.currentItem.recordId = this.recordId
+    if (fieldname === 'SoldToID') {
+      let findOptions = this.appService.orgsList.find(x => x._id === this.currentItem.SoldToID)
+      // this.currentItem.recordId = this.currentItem.SoldToID
+    } else {
+
+      // if (this.currentItem.OwnerID === 6275) this.currentItem.OwnerID = '5c434cc100a8a1588c6407b7'
+      let findOptiono = this.appService.orgsList.find(x => x._id === this.currentItem.OwnerID)
+      console.log('appService.orgsList', findOptiono)
+    }
+
+
+
     if (fieldname === 'SoldToID' || fieldname === 'OwnerID') {
 
       this.dialogService.open({ viewModel: Promptorg, model: this.currentItem, lock: true }).whenClosed(response => {

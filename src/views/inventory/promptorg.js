@@ -246,14 +246,7 @@ export class Promptorg {
     }
 
 
-    // let opos = this.orgfields.findIndex(x => x === this.fieldname);
-    // if (opos !== -1) {
-    //   this.orgfielddescription = this.orgfielddesc[opos]
-
-    // } else {
-    //   this.orgfielddescription = this.fieldname
-    // }
-    //  this.heading = ` Org/Contact ${this.fieldname} Search`
+ 
     if (this.fieldname === 'SoldToID') {
 
       findOptions = this.appService.orgsList.find(x => x._id === this.currentItem.SoldToID)
@@ -281,27 +274,6 @@ export class Promptorg {
 
 
 
-    // let topos = this.textfields.findIndex(x => x === this.fieldname);
-    // if (topos !== -1) {
-    //   this.textfielddescription = this.textfielddesc[topos]
-    //   this.doc = ` ${this.textfielddescription} .`
-    //   this.heading = ` ${this.textfielddescription} .`
-    //   this.placeholder = `${this.textfielddescription}`
-    // } else {
-    //   this.doc = `Select ${this.orgfielddescription} .`
-    //   this.heading = `Select ${this.orgfielddescription}`
-    //   this.placeholder = `select ${this.orgfielddescription} .`
-
-    // }
-    // if (this.fieldname === 'SoldToID') {
-    //   this.hasFocus = true;
-    //   if (this.currentItem.SoldToID === undefined || this.currentItem.SoldToID === '') {
-    //   } else {
-    //     this.myDatalistO.value = this.currentItem.soldtoname
-    //     // this.selectedValueO = this.currentItem.soldtoname;
-    //     // this.origorg = this.currentItem.soldtoname;
-    //   }
-    // }
 
     if (this.fieldname === 'ConservedBy') {
       findOptions = this.appService.orgsList.find(x => x._id === this.currentItem.ConservedBy)

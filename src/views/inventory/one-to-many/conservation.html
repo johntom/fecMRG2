@@ -45,14 +45,20 @@
 					<td width="225px">
 				
 
-						<div if.bind="conservedbyname===undefined || conservedbyname===''">
+						<!-- <div if.bind="conservedbyname===undefined || conservedbyname===''">
 							<a click.delegate="showModal( 'ConservedBy',$index)">select_link </a>
 						</div>
 						<div else>
 							<a click.delegate="showModal('ConservedBy',$index)">${conservation.conservedbyname}</a>
 
-						</div>
+						</div> -->
+	<span show.bind="!conservation.edit">${conservation.conservedbyname}</span>
 
+							<input show.bind="conservation.edit" class="form-control input-sm" disabled.bind="!conservation.edit" type="text" value.bind="conservedbyname">						</td>
+				
+					
+
+						</div>
 
 
 

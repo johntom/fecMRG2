@@ -7,7 +7,7 @@ import { ApiService } from '../../utils/servicesApi';
 
 export class Home {
   heading = "MRG Home Page";
-  version = 301.93
+  version = 301.95
 
   versionDate = 'Thur 7/11/2019 2pm'
 
@@ -384,6 +384,9 @@ export class Home {
         // console.log(' this.orgsList', this.appService.orgsList)
         console.log(' this.appService.codesGenre', this.appService.codesGenre)
         console.log(' this.artistList', this.appService.artistList.length)
+
+
+       console.log(' this.codesInventoryLocation', this.appService.codesInventoryLocation) 
         // bad   this.currentItem = this.items.find(f => f.id == params.id);
         // for (i = 0; i < this.appService.artistList.length; i++) {
         //   this.appService.artistList[i].ArtistName = this.appService.artistList[i].lastName + ', ' + this.appService.artistList[i].firstName
