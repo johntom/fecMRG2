@@ -494,11 +494,11 @@ export class DataForm {
       if (temp[2] != undefined) this.mru3 = temp[2];
       if (temp[3] != undefined) this.mru4 = temp[3];
       if (temp[4] != undefined) this.mru5 = temp[4];
-       if (temp[5] != undefined) this.mru1 = temp[5];
-      if (temp[6] != undefined) this.mru2 = temp[6];
-      if (temp[7] != undefined) this.mru3 = temp[7];
-      if (temp[8] != undefined) this.mru4 = temp[8];
-      if (temp[9] != undefined) this.mru5 = temp[9];
+       if (temp[5] != undefined) this.mru6 = temp[5];
+      if (temp[6] != undefined) this.mru7 = temp[6];
+      if (temp[7] != undefined) this.mru8 = temp[7];
+      if (temp[8] != undefined) this.mru9 = temp[8];
+      if (temp[9] != undefined) this.mru10 = temp[9];
       //  this.tabindex = temp[1];
     }
 
