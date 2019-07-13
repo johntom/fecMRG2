@@ -22,7 +22,7 @@ export class Insurance {
     this.api = api;
     this.appService = appService;
     this.inv = '';
-    this.currentItem = this.appService.testrec;
+    this.currentItem = this.appService.currentItem// testrec;
    // console.log('consignedto ',this.currentItem.consignedto)
     this.dialogService = dialogService
   }

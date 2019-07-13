@@ -162,13 +162,7 @@
 										<input type="text" xid="Inventory Code" class="form-control" value.bind="currentItem.InventoryCode">
 									</div>
 
-									<div class="Rtable-cell-30 Rtable-cell--highlight" style="color: purple">
-										<strong> AltID</strong>
-									</div>
-									<div class="Rtable-cell-70  Rtable-cell--highlight" style="color: purple">
 
-										<input type="text" xid="AltID" class="form-control" value.bind="currentItem.AltID">
-									</div>
 									<div class=" Rtable-cell-30 Rtable-cell--highlight" style="color: purple">
 
 										<!-- <div if.bind="recordId === 'create'"><strong> Artist >></strong></div>
@@ -239,7 +233,8 @@
 										</select>  -->
 								<!-- <input disabled dblclick.delegate="showModal( 'MediumSupportobj') " type="text " xid="MediumSupportobj " class="form-control input-sm "
 										 value.bind="currentItem.MediumSupportobj.Description"> -->
-								<div class="Rtable Rtable--4cols">
+
+								<!-- <div class="Rtable Rtable--4cols">
 									<div class="Rtable-cell Rtable-cell--highlight">
 										<strong> Catalogue No</strong>
 									</div>
@@ -254,7 +249,7 @@
 									<div class=" Rtable-cell Rtable-cell--highlight">
 										<input type=" text " id="InvYear" class="form-control " value.bind="currentItem.InvYear">
 									</div>
-								</div>
+								</div> -->
 
 
 								<div class="Rtable Rtable--7cols">
@@ -481,6 +476,32 @@
 										</ak-multiselect>
 									</div>
 
+
+									<div class="Rtable-cell-30 Rtable-cell--highlight" style="color: purple">
+										<strong> AltID</strong>
+									</div>
+									<div class="Rtable-cell-70  Rtable-cell--highlight" style="color: purple">
+
+										<input type="text" xid="AltID" class="form-control" value.bind="currentItem.AltID">
+									</div>
+
+									<div class="Rtable-cell-30 Rtable-cell--highlight" style="color: purple">
+										<strong> Catalogue No</strong>
+									</div>
+									<div class="Rtable-cell-70  Rtable-cell--highlight" style="color: purple">
+
+										<input type="text" xid="CatalogueNo" class="form-control" value.bind="currentItem.CatalogueNo">
+									</div>
+
+									<div class="Rtable-cell-30 Rtable-cell--highlight" style="color: purple">
+										<strong> InvYear</strong>
+									</div>
+									<div class="Rtable-cell-70  Rtable-cell--highlight" style="color: purple">
+
+										<input type="text" xid="InvYear" class="form-control" value.bind="currentItem.InvYear">
+									</div>
+
+
 									<div class="Rtable-cell-50 Rtable-cell--highlight">
 										<strong> Signed  &nbsp;</strong>
 										<input type="checkbox" id="Signed" checked.bind="currentItem.Signed">
@@ -546,95 +567,91 @@
 									<div class="Rtable-cell-70 Rtable-cell--highlight">
 										<input type="text " id="Bin" class="form-control " value.bind="currentItem.Bin">
 									</div>
+							
+
+
+
+								</div>
+
+							</div>
+							<!-- xid no form store id hs prev vals  input-sm  vss none-->
+							<div class="form-group flex-column-1 margin-left-10">
+								<div class="Rtable Rtable--2cols">
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
-										<strong>Added/modified</strong>
+										<strong> Sold Status Sold: ${currentItem.Sold}</strong>
 									</div>
+									<!-- ${search.httpsselectedSoldId} checked.bind="search.selectedSoldId selectedSoldId"-->
 									<div class="Rtable-cell-70 Rtable-cell--highlight">
-										<!-- ${currentItem.DateAdded} / ${currentItem.ModifiedDate} -->
-										<!-- after convert use createdAt -->
-										${currentItem.DateAdded} / ${currentItem.updatedAt | dateFormat } </div>
 
-								</div>
-						
-						</div>
-						<!-- xid no form store id hs prev vals  input-sm  vss none-->
-						<div class="form-group flex-column-1 margin-left-10">
-							<div class="Rtable Rtable--2cols">
-								<div class="Rtable-cell-30 Rtable-cell--highlight">
-									<strong> Sold Status Sold: ${currentItem.Sold}</strong>
-								</div>
-								<!-- ${search.httpsselectedSoldId} checked.bind="search.selectedSoldId selectedSoldId"-->
-								<div class="Rtable-cell-70 Rtable-cell--highlight">
-
-									<!-- only radio string works with flex -->
-									<select id="Sold" class="form-control " value.bind="currentItem.Sold">
+										<!-- only radio string works with flex -->
+										<select id="Sold" class="form-control " value.bind="currentItem.Sold">
 											<option model.bind="null">Choose...</option>
 											<option repeat.for="opt of searchsold " model.bind="opt.id">
 												${opt.name}
 											</option>
 										</select>
-								</div>
-
-								<div class="Rtable-cell-30 Rtable-cell--highlight">
-									<span dblclick.delegate="showModal( 'SoldToID') ">	<strong> Sold To ${currentItem.SoldToID}</strong></span>
-								</div>
-
-
-								<!-- <div class="Rtable-cell-70  Rtable-cell--light"> -->
-
-								<div class="Rtable-cell-70  Rtable-cell--highlight">
-
-									<div style="height:15px;margin-left:10px;margin-top:5px;margin-bottom:10px" if.bind="currentItem.soldtoname===undefined || currentItem.soldtoname==='' ">
-										<a click.delegate="showModal( 'SoldToID')">select_link </a>
-									</div>
-									<div style="height:15px;margin-left:10px;margin-top:5px;margin-bottom:10px" else>
-										<a click.delegate="showModal( 'SoldToID')">${currentItem.soldtoname} </a>
-										&nbsp;&nbsp;
-										<a click.delegate="soldtoEdit()">...Open...</a>
-
-
 									</div>
 
-								</div>
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<span dblclick.delegate="showModal( 'SoldToID') ">	<strong> Sold To ${currentItem.SoldToID}</strong></span>
+									</div>
 
-								<div class="Rtable-cell-30 Rtable-cell--highlight" style="color:purple">
-									<!-- <strong> Owned Status OwnedBy: ${currentItem.OwnedBy} </strong> -->
-									<strong> Owned Status </strong>
-								</div>
-								<div class="Rtable-cell-70 Rtable-cell--highlight">
-									<select id="OwnedBy " class="form-control  " value.bind="currentItem.OwnedBy">
+
+									<!-- <div class="Rtable-cell-70  Rtable-cell--light"> -->
+
+									<div class="Rtable-cell-70  Rtable-cell--highlight">
+
+										<div style="height:15px;margin-left:10px;margin-top:5px;margin-bottom:10px" if.bind="currentItem.soldtoname===undefined || currentItem.soldtoname==='' ">
+											<a click.delegate="showModal( 'SoldToID')">select_link </a>
+										</div>
+										<div style="height:15px;margin-left:10px;margin-top:5px;margin-bottom:10px" else>
+											<a click.delegate="showModal( 'SoldToID')">${currentItem.soldtoname} </a>
+											&nbsp;&nbsp;
+											<a click.delegate="soldtoEdit()">...Open...</a>
+
+
+										</div>
+
+									</div>
+
+									<div class="Rtable-cell-30 Rtable-cell--highlight" style="color:purple">
+										<!-- <strong> Owned Status OwnedBy: ${currentItem.OwnedBy} </strong> -->
+										<strong> Owned Status </strong>
+									</div>
+									<div class="Rtable-cell-70 Rtable-cell--highlight">
+										<select id="OwnedBy " class="form-control  " value.bind="currentItem.OwnedBy">
 											<option model.bind="null">Choose...</option>
 											<option repeat.for="opt of appService.codesOwnership " model.bind="opt.id">
 												${opt.Description}
 											</option>
 										</select>
-								</div>
-
-								<div class="Rtable-cell-30 Rtable-cell--highlight">
-									<!-- <span dblclick.delegate="showModal( 'OwnerID') ">	<strong> Owned By OwnedID ${currentItem.OwnedID}</strong></span> -->
-									<span dblclick.delegate="showModal( 'OwnedID') ">	<strong> Owned By (OwnedID ${currentItem.OwnedID}) </strong></span>
-
-								</div>
-
-								<!-- OwnerID not OwnedID -->
-								<!-- <div class="Rtable-cell-70  Rtable-cell--light"> -->
-
-								<div class="Rtable-cell-70  Rtable-cell--highlight">
-
-									<div style="height:15px;margin-left:10px;margin-top:5px;margin-bottom:10px" if.bind="currentItem.ownername===undefined || currentItem.ownername==='' ">
-										<a click.delegate="showModal( 'OwnerID')">select_link </a>
 									</div>
-									<div style="height:15px;margin-left:10px;margin-top:5px;margin-bottom:10px" else>
-										<a click.delegate="showModal( 'OwnerID')">${currentItem.OwnerID}/${currentItem.ownername} </a>
-										&nbsp;&nbsp;
-										<a click.delegate="OwnerIDEdit()">...Open...</a>
 
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<!-- <span dblclick.delegate="showModal( 'OwnerID') ">	<strong> Owned By OwnedID ${currentItem.OwnedID}</strong></span> -->
+										<span dblclick.delegate="showModal( 'OwnedID') ">	<strong> Owned By (OwnedID ${currentItem.OwnedID}) </strong></span>
 
 									</div>
 
-								</div>
+									<!-- OwnerID not OwnedID -->
+									<!-- <div class="Rtable-cell-70  Rtable-cell--light"> -->
 
-								<!-- <div class="Rtable-cell-30 Rtable-cell--highlight" style="color: purple">
+									<div class="Rtable-cell-70  Rtable-cell--highlight">
+
+										<div style="height:15px;margin-left:10px;margin-top:5px;margin-bottom:10px" if.bind="currentItem.ownername===undefined || currentItem.ownername==='' ">
+											<a click.delegate="showModal( 'OwnerID')">select_link </a>
+										</div>
+										<div style="height:15px;margin-left:10px;margin-top:5px;margin-bottom:10px" else>
+											<a click.delegate="showModal( 'OwnerID')">${currentItem.OwnerID}/${currentItem.ownername} </a>
+											&nbsp;&nbsp;
+											<a click.delegate="OwnerIDEdit()">...Open...</a>
+
+
+										</div>
+
+									</div>
+
+									<!-- <div class="Rtable-cell-30 Rtable-cell--highlight" style="color: purple">
 										<strong> Owned By OwnedID ${currentItem.OwnedID}</strong>
 									</div>
 									<div class="Rtable-cell-70 Rtable-cell--highlight">
@@ -646,7 +663,7 @@
 										</select>
 									</div> -->
 
-								<!-- <div class="Rtable-cell-70  Rtable-cell--highlight">
+									<!-- <div class="Rtable-cell-70  Rtable-cell--highlight">
 										<div style="height:15px;margin-left:10px;margin-top:5px;margin-bottom:10px" if.bind="currentItem.ownedbyname===undefined || currentItem.ownedbyname==='' ">
 											<a click.delegate="showModal( 'OwnedBy')">select_link </a>
 										</div>
@@ -660,55 +677,56 @@
 
 
 
-								<div class="Rtable-cell-30 Rtable-cell--highlight">
-									<strong> Retail Price </strong>
-								</div>
-								<div class="Rtable-cell-70 Rtable-cell--highlight">
-									<!--  input-sm -->
-									<input type="text " xid="ArtValue " class="form-control " value.bind="currentItem.ArtValue">
-								</div>
-								<!-- <div class="Rtable-cell-30 Rtable-cell--highlight">
-										<strong> MRG Location</strong>
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong> Retail Price </strong>
 									</div>
 									<div class="Rtable-cell-70 Rtable-cell--highlight">
-										<select id="MRGLocation " class="form-control  " value.bind="currentItem.MRGLocation">
-											<option model.bind="null">Choose...</option>
-											<option repeat.for="opt of appService.codesInventoryLocation " model.bind="opt.id">
-												${opt.Description}
-											</option>
-										</select>
-									</div> -->
+										<!--  input-sm -->
+										<input type="text " xid="ArtValue " class="form-control " value.bind="currentItem.ArtValue">
+									</div>
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong>Entered</strong>
+									</div>
+									<div class="Rtable-cell-70 Rtable-cell--highlight">
+										${currentItem.DateEntered | dateFormat }
+									</div>
 
 
-								<div class="Rtable-cell-30 Rtable-cell--highlight">
-									<strong> Image Info & Dims 	<button class="btn btn-sm btn-success"
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong> Image Info & Dims 	<button class="btn btn-sm btn-success"
                      click.delegate="getimageinfo(1)">
 						fix ratio
 					</button></strong>
-								</div>
-								<div class="Rtable-cell-70 Rtable-cell--highlight">
+									</div>
+									<div class="Rtable-cell-70 Rtable-cell--highlight">
 
-									<span> ratio h: ${currentItem.clientHeightRatio} -- w: ${currentItem.clientWidthRatio} dim:
+										<span> ratio h: ${currentItem.clientHeightRatio} -- w: ${currentItem.clientWidthRatio} dim:
              h: ${currentItem.clientHeight} / w: ${currentItem.clientWidth} </span>
-									<!-- <span> ratio h: ${currentDim.clientHeightRatio} -- w: ${currentDim.clientWidthRatio} dim:
+										<!-- <span> ratio h: ${currentDim.clientHeightRatio} -- w: ${currentDim.clientWidthRatio} dim:
              h: ${currentDim.clientHeight} / w: ${currentDim.clientWidth} </span>
 										<span>https://artbased.com/api/v1/getimage/inv/${currentItem.InventoryCode}.jpg </span> -->
+									</div>
+		<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong>Added/modified</strong>
+									</div>
+									<div class="Rtable-cell-70 Rtable-cell--highlight">
+										<!-- after convert use createdAt -->
+										${currentItem.DateAdded  | dateFormat} / ${currentItem.updatedAt | dateFormat }
+									</div>
+
 								</div>
-
-
+								<!-- 2nd -->
 							</div>
-							<!-- 2nd -->
 						</div>
+
+						<!-- flex row none -->
 					</div>
+					<!--top left  -->
 
-					<!-- flex row none -->
-				</div>
-				<!--top left  -->
-
-				<!-- <a slot="buttons-slot" class="btn btn-success" click.delegate="addInventory(file)">
+					<!-- <a slot="buttons-slot" class="btn btn-success" click.delegate="addInventory(file)">
 				<i class="fa fa-plus"></i>Upload File
 			</a> -->
-				<!-- <input class="form-control" type="text"/>
+					<!-- <input class="form-control" type="text"/>
             <div class="input-group-btn">
                 <label for="file" class="btn btn-default">browse</label>
                 <input id="file" type="file" class="btn btn-success"  
@@ -717,27 +735,27 @@
             
             <label for=file>
     <u>Select image and upload </u> -->
-				<div if.bind="recordId==='create'"></div>
-				<div else>
+					<div if.bind="recordId==='create'"></div>
+					<div else>
 
-					<div id="top-right" class="flex-column-none data-form-image" if.bind="recordId !== 'create'">
-						<img ref="mainimage" class="responsive-img" src="https://artbased.com/api/v1/getimage/inv/${currentItem.InventoryCode}.jpg"
-						 click.delegate="showModalImg()">
-						<!-- <input class="custom-file-input"  id='file' type="file" name="file" files.bind="file" 
+						<div id="top-right" class="flex-column-none data-form-image" if.bind="recordId !== 'create'">
+							<img ref="mainimage" class="responsive-img" src="https://artbased.com/api/v1/getimage/inv/${currentItem.InventoryCode}.jpg"
+							 click.delegate="showModalImg()">
+							<!-- <input class="custom-file-input"  id='file' type="file" name="file" files.bind="file" 
              change.delegate="addInventory(file)" >
 		  -->
 
-						<input class="btn btn-primary" id="file" type="file" name="file" files.bind="file" change.delegate="addInventory(file)" accept='image/jpg'>
-						</label>
+							<input class="btn btn-primary" id="file" type="file" name="file" files.bind="file" change.delegate="addInventory(file)" accept='image/jpg'>
+							</label>
 
 
+						</div>
+						<div else>
+							<input class="btn btn-primary" id="file" type="file" name="file" files.bind="file" change.delegate="addInventory(file)" accept='image/jpg'>
+
+						</div>
 					</div>
-					<div else>
-						<input class="btn btn-primary" id="file" type="file" name="file" files.bind="file" change.delegate="addInventory(file)" accept='image/jpg'>
-
-					</div>
-				</div>
-				<!-- <div id="top-right " class="flex-column-none data-form-image">
+					<!-- <div id="top-right " class="flex-column-none data-form-image">
             <img ref="mainimage" class="responsive-img" src="https://artbased.com/api/v1/getimage/inv/${currentItem.InventoryCode}.jpg"
             click.delegate="showModalImg()">
             <br>
@@ -747,39 +765,39 @@
             </a>
 					</div> -->
 
-				<!-- end middle and top right -->
-		</div>
+					<!-- end middle and top right -->
+				</div>
 
 
-		<!--  class="tab tab-top ${tab.isSelected ? 'tab-selected' : ''}"> -->
+				<!--  class="tab tab-top ${tab.isSelected ? 'tab-selected' : ''}"> -->
 
-		<div if.bind="recordId==='create'">Create Mode. Please save record before entering tabs </div>
-		<div else>
+				<div if.bind="recordId==='create'">Create Mode. Please save record before entering tabs </div>
+				<div else>
 
-			<div id="bottom-left" class="flex-row-3">
-				<div id="data-form-ext" class="flex-column-1">
-					<div id="data-form-one-to-many-tabs" class="flex-row-none flex-wrap">
-						<div repeat.for="tab of appService.dataFormOneToManyTabs" class="tab ${tab.isSelected ? 'tab-selected' : ''}">
-							<div class="form-tab-box" click.delegate="selectOneToManyTab(tab)">
-								<span>${tab.name}</span>
+					<div id="bottom-left" class="flex-row-3">
+						<div id="data-form-ext" class="flex-column-1">
+							<div id="data-form-one-to-many-tabs" class="flex-row-none flex-wrap">
+								<div repeat.for="tab of appService.dataFormOneToManyTabs" class="tab ${tab.isSelected ? 'tab-selected' : ''}">
+									<div class="form-tab-box" click.delegate="selectOneToManyTab(tab)">
+										<span>${tab.name}</span>
+									</div>
+								</div>
+							</div>
+							<div id="data-form-one-to-many-tab-content overflow-y-hidden" class="data-form flex-row-1" style="background:
+										 darkgray;">
+								<compose view-model.bind="currentOneToManyTab.viewModel"></compose>
 							</div>
 						</div>
 					</div>
-					<div id="data-form-one-to-many-tab-content overflow-y-hidden" class="data-form flex-row-1" style="background:
-										 darkgray;">
-						<compose view-model.bind="currentOneToManyTab.viewModel"></compose>
-					</div>
 				</div>
-			</div>
-		</div>
-		<!-- <ul>
+				<!-- <ul>
 						<li repeat.for='e of controller.errors'>
 							${e.message}
 						</li>
 					</ul> -->
-		<!-- </form> -->
-		<!-- after or before the form -->
-		</form>
+				<!-- </form> -->
+				<!-- after or before the form -->
+			</form>
 		</div>
 		<footerform class="flex-row-none">
 			inventory-

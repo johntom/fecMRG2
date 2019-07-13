@@ -36,6 +36,8 @@ table  tbody{
           	<tr>
 						<th width="300px"class="header">Work Date
 						</th>
+
+            	
 						<th width="400px" class="header">Note
              
 						</th>
@@ -53,18 +55,21 @@ table  tbody{
 			</tfoot>
 			<tbody>
 			<tr repeat.for="note of currentItem.notes" with.bind="note">
-					<td width="300px">
+					<td width="155px">
           
-          <!-- <td width="30%"> -->
-          	<span show.bind="!note.edit">${WorkDate | dateFormat }}</span>
-						<input show.bind="note.edit" class="form-control input-sm" disabled.bind="!note.edit" type="date" value.bind="WorkDate">
+          	<span show.bind="!note.edit">${WorkDate | dateFormat }</span>
+						<input show.bind="note.edit" class="form-control input-sm" disabled.bind="!note.edit" type="date" value.bind="WorkDate | dateFormat">
 					</td>
+
 					<td width="400px">
             <!-- <td width="50%"> -->
 						<span show.bind="!note.edit">${Notes}</span>
 
 						<input show.bind="note.edit" class="form-control input-sm" disabled.bind="!note.edit" type="text" value.bind="Notes">
          	</td>
+
+
+
 <!-- <td width="20%"> -->
 					<td width="225px">
 					<!-- <button class="btn btn-primary" click.delegate="note.edit=!note.edit">${ !note.edit ? 'Update' : 'Done' }</button> -->

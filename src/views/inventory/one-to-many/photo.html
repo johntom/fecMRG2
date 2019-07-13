@@ -33,8 +33,7 @@
 			<table class="table-condensed table">
 				<thead class="table-header-blue" data-sort="items.bind: currentItem.photo; cols: ['WorkDate','Notes']">
 					<tr>
-            	<th class="header">File Name </th>
-					
+           
 						<th class="header">Photogpraher </th>
 						<th class="header">Format </th>
 						<th class="header">Date </th>
@@ -58,13 +57,7 @@
 				<tbody>
  
 					<tr repeat.for="photo of currentItem.photo" with.bind="photo">
-            	<td width="350px">
-
-					
-          		<a size='100' class="form-control  input-sm" target="_blank" href="https://artbased.com/api/v1/getonepdf/inv/${currentItem.InventoryCode}.jpg">
-						<span>https://artbased.com/api/v1/getonepdf/inv/${currentItem.InventoryCode}.jpg</span>
-						</a>
-						</td>
+           
 
           
           	
@@ -93,9 +86,9 @@
 
 						</td>
 
-						<td width="120px"><input type="date" id="Date" class="form-control  input-sm" value.bind="PhotoDate"  ></td>
+						<td width="120px"><input type="date" id="Date" class="form-control  input-sm" value.bind="PhotoDate | dateFormat"  ></td>
 
-						<td width="120px"><input type="text" id="Note" class="form-control  input-sm" value.bind="PhotoMemo"></td>
+						<td width="320px"><input type="text" id="Note" class="form-control  input-sm" value.bind="PhotoMemo"></td>
 						<!-- <td width="120px"><input type="text" id="PhotoTaken" class="form-control  input-sm" value.bind="photo.PhotoTaken"></td> -->
 
 

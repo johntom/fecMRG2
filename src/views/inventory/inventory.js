@@ -269,6 +269,27 @@ let provarray=[{id:1,sord:3,id:2,sord:1,id:3,sord:2}]
         this.mru.push(this.mruinfo.mru5.InvCode)
       } 
      
+    if (this.mruinfo.mru6 !== undefined) {
+        this.mru.push(this.mruinfo.mru6.InvCode)
+      } 
+     
+      if (this.mruinfo.mru7 !== undefined) {
+        this.mru.push(this.mruinfo.mru7.InvCode)
+      } 
+    
+      if (this.mruinfo.mru8 !== undefined) {
+        this.mru.push(this.mruinfo.mru8.InvCode)
+      } 
+    
+      if (this.mruinfo.mru9 !== undefined) {
+        this.mru.push(this.mruinfo.mru9.InvCode)
+      } 
+    
+      if (this.mruinfo.mru10 !== undefined) {
+        this.mru.push(this.mruinfo.mru10.InvCode)
+      } 
+
+
     }
     // for select2
     this.selectOptions = [
@@ -337,25 +358,3 @@ let provarray=[{id:1,sord:3,id:2,sord:1,id:3,sord:2}]
   // }
   // this.dow.value = this.oname
 
-
-
-
-//  products = [
-  //       { id: 0, name: 'Motherboard' },
-  //       { id: 1, name: 'CPU' },
-  //       { id: 2, name: 'Memory' },
-  //     ];
-
-  //     selectedProductId = 1;
-
-  //   title: 0,
-  //   invcode: 0
-  // };
-  /** <label repeat.for="product of products">
-          <input type="radio" name="group1"
-                 model.bind="product.id" checked.bind="selectedProductId">
-          ${product.id} - ${product.name}
-        </label> */
-  // search.selectedSoldId search.selectedDateId search.startdate search.stopdate
-  // value
-  // 	export class App {

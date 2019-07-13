@@ -37,11 +37,14 @@
 				<tbody>
 					<tr repeat.for="doc of currentItem.docs" with.bind="doc">
 						<td  width="225px">  
-     			         <a  size='200' class="form-control  input-sm" target="_blank"
+     			         <!-- <a  size='200' class="form-control  input-sm" target="_blank"
                  href="https://artbased.com/api/v1/getinvcodeimage/${currentItem.InventoryCode}/${doc.FILE_NAME}">
 							${FILE_NAME}
 							</a>
-                 
+                  -->
+                 		<a size='100' class="form-control  input-sm" target="_blank" href="https://artbased.com/api/v1/getonepdf/inv/${currentItem.InventoryCode}.jpg">
+						<span>https://artbased.com/api/v1/getonepdf/inv/${currentItem.InventoryCode}.jpg</span>
+						</a>
                  <!-- ${currentItem.InventoryCode}.jpg
                   </span>http://adjusters.markadjustment.com/docs/${currentItem.CLAIM_NO}/${doc.FILE_NAME}">
 							${FILE_NAME} -->

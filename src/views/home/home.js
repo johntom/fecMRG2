@@ -7,12 +7,15 @@ import { ApiService } from '../../utils/servicesApi';
 
 export class Home {
   heading = "MRG Home Page";
-  version = 301.95
+  version = 301.96
 
-  versionDate = 'Thur 7/11/2019 2pm'
+  versionDate = 'Sat 7/13/2019 3pm'
 
   issues = [
     'JUNE 15 CONV fix org/contacts save both cols before redo',
+    `not data for tax or insurance`,
+    'fix open on inv',
+    ' convert images again for docs also',
     'ui to combine contacts ie ',
     'mailing list state not working',
     'org breaks getting contacts tab not displayed   con',
@@ -140,7 +143,7 @@ export class Home {
         let i, item, ct
         this.appService.LookupDataLoaded = true;
         let codesInventoryLocation = []//1,
-        let codesInventoryType = []//2,
+        let codesInventoryType = []//2, ArtType
         let codesGenre = []//3, change to keyword
         let allothers = []
         let codesOwnership = []//4,
@@ -208,7 +211,8 @@ export class Home {
               codesInventoryLocation.push(newi)
               break;
             case 2:
-              codesInventoryType.push(newi)
+              // codesInventoryType.push(newi)
+                  codesGenre.push(newi)
               break;
             case 3:
               codesGenre.push(newi)

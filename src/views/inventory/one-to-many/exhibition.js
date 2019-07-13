@@ -19,7 +19,7 @@ export class Exhibition {
     this.appService = appService;
     this.inv = '';
     this.currentItem = this.appService.currentItem;
-    console.log('this.currentItem  Exhibition', this.appService.currentItem);
+    console.log('this.currentItem  Exhibition', this.appService.currentItem.exhibition);
     this.dialogService = dialogService
   }
 

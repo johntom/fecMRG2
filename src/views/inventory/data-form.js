@@ -464,6 +464,11 @@ export class DataForm {
     if (prevtemp[2] != undefined && newrec.id === prevtemp[2].id) this.skip = true;
     if (prevtemp[3] != undefined && newrec.id === prevtemp[3].id) this.skip = true;
     if (prevtemp[4] != undefined && newrec.id === prevtemp[4].id) this.skip = true;
+ if (prevtemp[5] != undefined && newrec.id === prevtemp[5].id) this.skip = true;
+ if (prevtemp[6] != undefined && newrec.id === prevtemp[6].id) this.skip = true;
+ if (prevtemp[7] != undefined && newrec.id === prevtemp[7].id) this.skip = true;
+ if (prevtemp[8] != undefined && newrec.id === prevtemp[8].id) this.skip = true;
+ if (prevtemp[9] != undefined && newrec.id === prevtemp[9].id) this.skip = true;
 
 
     // if (newrec.id === temp[5].id) this.skip = true;
@@ -489,11 +494,16 @@ export class DataForm {
       if (temp[2] != undefined) this.mru3 = temp[2];
       if (temp[3] != undefined) this.mru4 = temp[3];
       if (temp[4] != undefined) this.mru5 = temp[4];
+       if (temp[5] != undefined) this.mru1 = temp[5];
+      if (temp[6] != undefined) this.mru2 = temp[6];
+      if (temp[7] != undefined) this.mru3 = temp[7];
+      if (temp[8] != undefined) this.mru4 = temp[8];
+      if (temp[9] != undefined) this.mru5 = temp[9];
       //  this.tabindex = temp[1];
     }
 
-    const prevtemp = [mruget.mru1, mruget.mru2, mruget.mru3, mruget.mru4, mruget.mru5];
-    const temp = [{ id: this.recordId, InvCode: this.currentItem.InventoryCode }, mruget.mru1, mruget.mru2, mruget.mru3, mruget.mru4];
+    const prevtemp = [mruget.mru1, mruget.mru2, mruget.mru3, mruget.mru4, mruget.mru5,mruget.mru6, mruget.mru7, mruget.mru8, mruget.mru9, mruget.mru10];
+    const temp = [{ id: this.recordId, InvCode: this.currentItem.InventoryCode }, mruget.mru1, mruget.mru2, mruget.mru3, mruget.mru4, mruget.mru5,mruget.mru6, mruget.mru7, mruget.mru8, mruget.mru9, mruget.mru10];
     const newrec = { id: this.recordId, InvCode: this.currentItem.InventoryCode }
 
     this.mrucheck(newrec, prevtemp);

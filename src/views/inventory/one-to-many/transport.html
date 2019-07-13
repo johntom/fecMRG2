@@ -41,42 +41,9 @@
 
 					<td width="90px">
 						<span show.bind="!transport.edit">${TransportDate | dateFormat }</span>
-						<input show.bind="transport.edit" class="form-control input-sm" disabled.bind="!transport.edit" type="date" value.bind="TransportDate ">
+						<input show.bind="transport.edit" class="form-control input-sm" disabled.bind="!transport.edit" type="date" value.bind="TransportDate | dateFormat ">
 					</td>
 
-
-<!-- 
-					<td width="125px">
-						<span show.bind="!transport.edit">	
-              <select disabled show.bind="!transport.edit" id="tt1" class="form-control input-sm" value.two-way="TransportTo" > 
-						<option model.bind="null">Choose...</option> 
-						<option repeat.for="opt of appService.codesListLocation" model.bind="opt.ID">
-							${opt.Description} 
-						</option> 
-						</select></span>
-						<select show.bind="transport.edit" id="tt" class="form-control input-sm" value.two-way="TransportTo" change.delegate="selectChanged(transport, ID)"> 
-						<option model.bind="null">...</option> 
-						<option repeat.for="opt of appService.codesListLocation" model.bind="opt.ID">
-							${opt.Description} 
-						</option> 
-						</select>
-					</td>
-
-					<td width="125px">
-					   <select disabled show.bind="!transport.edit" id="tt1" class="form-control input-sm" value.two-way="TransportFrom" > 
-						<option model.bind="null">Choose...</option> 
-						<option repeat.for="opt of appService.codesListLocation" model.bind="opt.id">
-							${opt.Description} 
-						</option> 
-						</select>
-            
-						<select show.bind="transport.edit" id="tf" class="form-control input-sm" value.two-way="TransportFrom" change.delegate="selectChanged(transport, ID)"> 
-						<option model.bind="null">Choose...</option> 
-						<option repeat.for="opt of appService.codesListLocation" model.bind="opt.id">
-							${opt.Description} 
-						</option> 
-						</select>
-					</td> -->
 
 					<td width="490px">
 						<span show.bind="!transport.edit">${TransportNotes}</span>

@@ -13,7 +13,7 @@
 	</style>
 	<div class="Rtable Rtable--2cols">
 		<div class="Rtable-cell-30 Rtable-cell--highlight">
-			<strong> Shipping From</strong>
+			<strong> Consigned From ${currentItem.ConsignedFromID} </strong>
 		</div>
 		<div class="Rtable-cell-70  Rtable-cell--light">
 	
@@ -21,11 +21,11 @@
 <!-- <input click.delegate="showModal('ConsignmentShippingID')" type="text"
  id="ConsignmentShippingID" class="form-control input-sm" value.bind="currentItem.consignmentshippingname"> -->
 
-<div if.bind="currentItem.consignmentshippingname===undefined || currentItem.consignmentshippingname===''">
-							<a click.delegate="showModal( 'ConsignmentShippingID')">select_link </a>
+<div if.bind="currentItem.consignedfromname===undefined || currentItem.consignedfromname===''">
+							<a click.delegate="showModal( 'ConsignedFromID')">select_link </a>
 						</div>
 						<div else>
-							<a click.delegate="showModal('ConsignmentShippingID')">${currentItem.consignmentshippingname}</a>
+							<a click.delegate="showModal('ConsignedFromID')">${currentItem.consignedfromname}</a>
 
 						</div>
 

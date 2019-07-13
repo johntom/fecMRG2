@@ -19,18 +19,37 @@
 
 			<div class="form-group flex-column-1 ">
 				<div class="Rtable Rtable--2cols">
-					<div class="Rtable-cell-30 Rtable-cell--highlight">
-						<strong> Purchased From</strong>
-					</div>
-					<div class="Rtable-cell-70  Rtable-cell--light">
-						<div if.bind="currentItem.purchasedfromname===undefined || currentItem.purchasedfromname===''">
-							<a click.delegate="showModal( 'PurchasedFrom')">select_link </a>
-						</div>
-						<div else>
-							<a click.delegate="showModal('PurchasedFrom')">${currentItem.purchasedfromname}</a>
+					
+			<div class="Rtable-cell-30 Rtable-cell--highlight" style="color:purple">
+									<strong>Purchased From </strong>
+								</div>
+								<div class="Rtable-cell-70 Rtable-cell--highlight">
+									<select id="PurchasedFrom " class="form-control  " value.bind="currentItem.PurchasedFrom">
+											<option model.bind="null">Choose...</option>
+											<option repeat.for="opt of appService.codesOwnership " model.bind="opt.id">
+												${opt.Description}
+											</option>
+										</select>
+								</div>
 
-						</div>
-					</div>
+
+
+
+				<td width="200px">
+						<select id="ReproductionLocation" class="form-control  input-sm" value.bind="ReproductionLocation"> 
+                      <!-- <option model.bind="null">Choose...filterOnCode</option>  -->
+                       <option model.bind="''">Choose...filterOnCode</option> 
+                    
+                         <option repeat.for="opt of appService.codesProvenanceLocation" model.bind="opt.id">
+                    ${opt.Description} 
+                    <!-- codesProvenanceLocation -->
+                      </option> 
+                    </select>
+
+					</td>
+
+
+
 					<div class="Rtable-cell-30 Rtable-cell--highlight">
 						<strong> Price</strong>
 					</div>

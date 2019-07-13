@@ -488,7 +488,7 @@ export class ApiService {
       body: JSON.stringify(rec)
     }).then((res) => res.json());
   }
-
+//https://artbased.com/api/v1/orgs
   findOrgs() {
     var url = this.baseweb + 'v1/orgs';
     return this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())
