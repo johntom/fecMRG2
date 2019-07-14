@@ -904,7 +904,12 @@ there are extra ' when there are fractions
     if (this.currentItem.CatalogueNo !== undefined && this.currentItem.CatalogueNo !== '')
       // this.segment2 += ` Catalogue No: ${this.currentItem.CatalogueNo} <br>  <br> <br> `
 
-      this.segment2 += ` no. ${this.currentItem.CatalogueNo} <br>  <br> <br> `
+    this.segment2 += ` no. ${this.currentItem.CatalogueNo} <br>   `
+    this.segment2 += ` AltID. ${this.currentItem.AltID} <br>  <br> <br> `
+
+
+
+
 
     this.buildEdition()
 

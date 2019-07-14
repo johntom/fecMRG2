@@ -3,7 +3,7 @@
 
 	<require from="./docs.css"></require>
 	<require from="../../../resources/value-converters/date-format"></require>
-  <require from="../../../resources/value-converters/date-formatiso"></require>
+  <!-- <require from="../../../resources/value-converters/date-formatiso"></require> -->
 
 	<section class="docs full-height flex-column-1 overflow-y-auto ignore">
 		<h4>
@@ -65,7 +65,7 @@
 					</td>
 				
 					<td width="330px"><input type="text" id="ExhibitDates" class="form-control  input-sm" value.bind="exhibition.ExhibitDates "></td>
-					<td width="125px"><input type="date" id="ExhibitSortDate" class="form-control  input-sm" value.bind="ExhibitSortDate | dateFormat "></td>
+					<td width="125px"><input type="date" id="ExhibitSortDate" class="form-control  input-sm" value.bind="exhibition.ExhibitSortDate | dateFormat"></td>
 				
          	
 					<td width="120px">
