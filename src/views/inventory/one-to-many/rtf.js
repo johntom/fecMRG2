@@ -464,8 +464,10 @@ data = ppre + `${item.ReproductionAuthor}. <em>${item.ReproductionTitle}</em> ${
         semisPos = rightofcolonbaseText.indexOf(";");
         if (semisPos === -1) {
           semisPos = rightofcolonbaseText.length
-          rightofcolonTextem = '<em>' + rightofcolonbaseText.substr(0, semisPos - 1) + '</em>'; //+ '</em><br>';
-          iLines.push(leftofcolonText + ' ' + rightofcolonTextem)
+          // rightofcolonTextem = '<em>' + rightofcolonbaseText.substr(0, semisPos - 1) + '</em>'; //+ '</em><br>';
+           rightofcolonTextem = '<em>' + rightofcolonbaseText.substr(0, semisPos ) + '</em>'; //+ '</em><br>';
+        
+          iLines.push(leftofcolonText + ' ' + rightofcolonTextem) 
         } else {
           // there is a semi so add br
           rightofcolonTextem = '<em>' + rightofcolonbaseText.substr(1, semisPos - 1) + '</em><br>';
@@ -473,7 +475,9 @@ data = ppre + `${item.ReproductionAuthor}. <em>${item.ReproductionTitle}</em> ${
 
           colonPos = restoftext.indexOf(":");
           leftofcolonText2 = restoftext.substr(0, colonPos);
-          rightofcolonTextem2 = '<em>' + restoftext.substr(colonPos + 1, restoftext.length - colonPos) + '</em>';
+          // rightofcolonTextem2 = '<em>' + restoftext.substr(colonPos + 1, restoftext.length - colonPos +1) + '</em>';
+            rightofcolonTextem2 = '<em>' + restoftext.substr(colonPos + 1, restoftext.length - colonPos ) + '</em>';
+  
           iLines.push(leftofcolonText + ' ' + rightofcolonTextem + ' ' + leftofcolonText2 + ' ' + rightofcolonTextem2)
         }
       }
