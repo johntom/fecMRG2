@@ -1,4 +1,5 @@
 <template>
+  	<require from="../../../resources/value-converters/date-format"></require>
 	<div class="Rtable Rtable--2cols">
 
 		<div class="Rtable-cell-30 Rtable-cell--highlight">
@@ -25,20 +26,20 @@
 			<strong> Date</strong>
 		</div>
 		<div class="Rtable-cell-70  Rtable-cell--highlight">
-			<input type="date" id="SoldDate" class="form-control input-sm" value.bind="currentItem.SoldDate">
+			<input type="date" id="SoldDate" class="form-control input-sm" value.bind="currentItem.SoldDate | dateFormat">
 		</div>
 		<div class="Rtable-cell-30 Rtable-cell--highlight">
-			<strong> Price</strong>
+			<strong> Price</strong> 
 		</div>
 		<div class="Rtable-cell-70  Rtable-cell--highlight">
-			<input type="text" id="SoldPrice" class="form-control input-sm" value.bind="currentItem.SoldPrice">
+			<input type="text" id="SoldPrice" class="form-control input-sm" value.bind="currentItem.SoldFor">
 		</div>
 		<div class="Rtable-cell-30 Rtable-cell--highlight">
 			<strong> Payment Method</strong>
 		</div>
 
 		<div class="Rtable-cell-70  Rtable-cell--highlight">
-			<select id="SoldPayment" class="form-control input-sm" value.bind="SoldPayment"> 
+			<select id="SoldPayment" class="form-control input-sm" value.bind="currentItem.SoldPayment"> 
                       <option model.bind="null">Choose...</option> 
                      <option repeat.for="opt of appService.codesPaymentMethod" model.bind="opt.id">
                            ${opt.Description} 

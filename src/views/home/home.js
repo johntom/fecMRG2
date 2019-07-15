@@ -5,10 +5,10 @@ import { ApiService } from '../../utils/servicesApi';
 
 @inject(ApplicationService, MyDataService, ApiService)
 
-export class Home {
+export class Home { 
   heading = "MRG Home Page";
-  version = 301.99 
-
+  version = 302.01 
+ 
   versionDate = 'Sun 7/14/2019 11pm'
 
   issues = [

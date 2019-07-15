@@ -734,22 +734,22 @@ there are extra ' when there are fractions
     let ufwcm
     if (this.currentItem.UnframedHeight16 === null) {
       this.dims = this.currentItem.UnframedHeight + ' x '
-      this.dimscm = (this.currentItem.UnframedHeight * 2.54) + ' x '
+      this.dimscm = this.roundNumber((this.currentItem.UnframedHeight * 2.54).toPrecision(2), 1) + ' x ' //fix
     } else {
       this.dims = `${this.currentItem.UnframedHeight} <span style="font-size:x-small;"> ${this.currentItem.UnframedHeight16}</span> x `
-      this.dimscm = this.roundNumber((this.currentItem.UnframedHeight * 2.54) + cmuh, 1) + ' x '
+      this.dimscm = this.roundNumber((this.currentItem.UnframedHeight * 2.54).toPrecision(2) + cmuh, 1) + ' x '
     }
 
     if (this.currentItem.UnframedWidth16 === null) {
       this.dims += this.currentItem.UnframedWidth
       ufwcm = this.currentItem.UnframedWidth * 2.54
-      this.dimscm += this.roundNumber((ufwcm), 1) + ' x '
+      this.dimscm += this.roundNumber((ufwcm), 1).toPrecision(2) + ' x '
     } else {
       this.dims += `${this.currentItem.UnframedWidth}       <span style="font-size:x-small;"> ${this.currentItem.UnframedWidth16} </span>`
-      ufwcm = this.currentItem.UnframedWidth * 2.54
+      ufwcm = this.roundNumber(this.currentItem.UnframedWidth * 2.54, 1).toPrecision(2)
       // this.dimscm += this.roundNumber( ((this.currentItem.UnframedWidth * 2.54) + cmuw), 1)
 
-      this.dimscm += (ufwcm + cmuw)
+      this.dimscm += (ufwcm + cmuw.toPrecision(2))
 
     }
 
@@ -758,13 +758,13 @@ there are extra ' when there are fractions
         this.dims += ' x ' + this.currentItem.UnframedDepth
         ufwcm = this.currentItem.UnframedDepth * 2.54
         console.log('ufwcm', ufwcm)
-        this.dimscm += ' x ' + this.roundNumber(ufwcm, 1)
+        this.dimscm += ' x ' + this.roundNumber(ufwcm, 1).toPrecision(2)
         //  this.dimscm +=  ' x ' +ufwcm
         console.log('  this.dimscm', this.dimscm)
       }
     } else {
       this.dims += ' x ' + `${this.currentItem.UnframedDepth}   <span style="font-size:x-small;"> ${this.currentItem.UnframedDepth16} </span>`
-      ufwcm = this.currentItem.UnframedDepth * 2.54   // this.dimscm += ' x ' + this.roundNumber((( this.currentItem.UnframedDepth * 2.54) + cmud), 1) //+ ' cm '
+      ufwcm = this.roundNumber(this.currentItem.UnframedDepth * 2.54,1).toPrecision(2)   // this.dimscm += ' x ' + this.roundNumber((( this.currentItem.UnframedDepth * 2.54) + cmud), 1) //+ ' cm '
 
       this.dimscm += ' x ' + ((ufwcm) + cmud) //+ ' cm '
 
@@ -776,10 +776,10 @@ there are extra ' when there are fractions
     if (this.currentItem.FramedHeight !== 0) {
       if (this.currentItem.FramedHeight16 === null) {
         this.dimsf = `${this.currentItem.FramedHeight} <span style="font-size:x-small;"> ${this.currentItem.FramedHeight} </span> x `
-        this.dimscmf = this.roundNumber((this.currentItem.FramedHeight * 2.54), 1) + ' x ' //+ ' cm ' //
+        this.dimscmf = this.roundNumber((this.currentItem.FramedHeight * 2.54).toPrecision(2), 1) + ' x ' //+ ' cm ' //
       } else {
         this.dimsf = `${this.currentItem.FramedHeight} <span style="font-size:x-small;"> ${this.currentItem.FramedHeight16} </span> x `
-        this.dimscmf = this.roundNumber((this.currentItem.FramedHeight * 2.54) + cmuw, 1) + ' x '// + ' cm ' //
+        this.dimscmf = this.roundNumber((this.currentItem.FramedHeight * 2.54).toPrecision(2) + cmuw, 1) + ' x '// + ' cm ' //
       }
 
       if (this.currentItem.FramedWidth16 === null) {
@@ -787,27 +787,97 @@ there are extra ' when there are fractions
         this.dimscmf += (this.currentItem.FramedWidth * 2.54).toPrecision(2)
       } else {
         this.dimsf += `${this.currentItem.FramedWidth}  <span style="font-size:x-small;"> ${this.currentItem.FramedWidth16} </span>  `
-        this.dimscmf += this.roundNumber((this.currentItem.FramedWidth * 2.54) + cmfw, 1) //+ ' cm ' //+ ' x '
+        this.dimscmf += this.roundNumber((this.currentItem.FramedWidth * 2.54).toPrecision(2) + cmfw, 1) //+ ' cm ' //+ ' x '
       }
     }
 
-
+ 
     if (this.currentItem.FramedDepth16 === null) {
       if (this.currentItem.FamedDepth === null || this.currentItem.FramedDepth === 0) { } else {
         this.dimsf += ' x ' + this.currentItem.FramedDepth
-        this.dimscmf = + ' x ' + this.roundNumber((this.currentItem.FramedDepth * 2.54), 1)
+        this.dimscmf = + ' x ' + this.roundNumber((this.currentItem.FramedDepth * 2.54).toPrecision(2), 1)
       }
     } else {
       this.dimsf += ' x ' + `${this.currentItem.FramedDepth}       <span style="font-size:x-small;"> ${this.currentItem.FramedDepth16} </span>`
-      this.dimscmf += ' x ' + this.roundNumber((this.currentItem.FramedDepth * 2.54) + cmfd, 1) //+ ' cm '
+      this.dimscmf += ' x ' + this.roundNumber((this.currentItem.FramedDepth * 2.54).toPrecision(2) + cmfd, 1) //+ ' cm '
 
     }
 
 
 
   }
+// edition
+buildEditionLogic(edition) {
+    // rules:
+    // 1 everying to left of : is plain text and to right is em
+    // 2 until it finds a ; (convert ; to </em> <br>)  
+    // 3 repeat 1 from new position
 
-  createRTF() {
+    // let inscribed = this.currentItem.Inscribed
+    let iLines = []
+    console.log('this.currentItem.EditionComment==================== ', edition)//this.currentItem.EditionComment
+    if (edition !== undefined) {
+      let a2 = ''
+      let a3 = ''
+
+      this.inscribedText = ''
+
+      let semisCount = (edition).match('/;/g')
+      let strCount = (edition).match(new RegExp(";", "g"))
+      let colonPos
+      let leftofcolonText, leftofcolonText2
+      let rightofcolonbaseText
+      let semisPos
+      let rightofcolonTextem, rightofcolonTextem2
+      let restoftext
+      console.log(semisCount, strCount);
+      colonPos = edition.indexOf(":");
+      leftofcolonText = edition.substr(0, colonPos);
+      rightofcolonbaseText = edition.substr(colonPos + 1, edition.length - colonPos);
+      semisPos = rightofcolonbaseText.indexOf(";");
+      if (semisPos === -1) {
+        semisPos = rightofcolonbaseText.length
+        rightofcolonTextem = '<em>' + rightofcolonbaseText.substr(0, semisPos - 1) + '</em>'; //+ '</em><br>';
+        iLines.push(leftofcolonText + ' ' + rightofcolonTextem)
+      } else {
+        // there is a semi so add br
+        rightofcolonTextem = '<em>' + rightofcolonbaseText.substr(1, semisPos - 1) + '</em><br>';
+        restoftext = rightofcolonbaseText.substr(semisPos + 1, rightofcolonbaseText.length);
+
+        colonPos = restoftext.indexOf(":");
+        leftofcolonText2 = restoftext.substr(0, colonPos);
+        rightofcolonTextem2 = '<em>' + restoftext.substr(colonPos + 1, restoftext.length - colonPos) + '</em>';
+        iLines.push(leftofcolonText + ' ' + rightofcolonTextem + ' ' + leftofcolonText2 + ' ' + rightofcolonTextem2)
+      }
+      for (const item of iLines) {
+        this.EditionCommentFormat += item //+ '<br>'
+      }
+
+
+    }
+
+  }
+
+
+
+  buildEdition() {
+        this.EditionCommentFormat=''
+    this.buildEditionLogic(this.currentItem.EditionComment)
+    this.currentItem.EditionText = this.currentItem.Edition + '\n' + this.EditionCommentFormat + '\n'
+    this.currentItem.EditionText += this.currentItem.Chop + '\n'
+    this.currentItem.EditionText += this.currentItem.Publisher + ', ' + this.currentItem.PublisherLocation + '\n'
+    this.currentItem.EditionText += this.currentItem.Printer + ', ' + this.currentItem.PrinterLocation + '\n'
+    delete this.EditionCommentFormat
+   
+
+
+  }
+
+
+
+  createRTF() { 
+
+    // this.buildEdition();
     this.createDim()
     let artist = this.currentItem.artist
     let artistWdates = `<strong>${artist.firstName} ${artist.lastName}`

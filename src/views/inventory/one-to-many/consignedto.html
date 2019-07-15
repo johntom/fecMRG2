@@ -26,6 +26,7 @@
 					<th class="header">Artwork</br>Released </th>
 					<th class="header">Signed </th>
 					<th class="header">PDF </th>
+          	<th class="header">Returned </th>
 					<th class="header">Notes </th>
 					<th class="header">Sold </th>
 					<th class="header">Cmd </th>
@@ -102,7 +103,10 @@
 						<span show.bind="!consignedto.edit">${PDF}</span>
 						<input show.bind="consignedto.edit" disabled.bind="!consignedto.edit" type="checkbox" checked.bind="PDF"> </td>
 					</td>
-
+	<td width="85px">
+						<span show.bind="!consignedto.edit" type="checkbox">${Returned}</span>
+						<input show.bind="consignedto.edit" disabled.bind="!consignedto.edit" type="checkbox" checked.bind="Returned"> </td>
+					</td>
 					<td width="145px">
 						<span show.bind="!consignedto.edit">${ConsignmentNotes}</span>
 						<input show.bind="consignedto.edit" disabled.bind="!consignedto.edit" type="text" value.bind="ConsignmentNotes">
