@@ -21,6 +21,7 @@ export class Purchased {
     this.inv = '';
     this.currentItem = this.appService.currentItem// testrec;
     this.dialogService = dialogService
+    console.log('this.currentItem ',this.currentItem.PurchasedPayment);
   }
 
   activate(params, routeConfig) {

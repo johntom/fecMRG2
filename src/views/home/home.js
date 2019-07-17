@@ -7,13 +7,19 @@ import { ApiService } from '../../utils/servicesApi';
 
 export class Home { 
   heading = "MRG Home Page";
-  version = 302.03 
+  version = 302.04
  
-  versionDate = 'Sun 7/14/2019 11pm'
+  versionDate = 'Tue 7/16/2019 8pm'
 
   issues = [
     'JUNE 15 CONV fix org/contacts save both cols before redo',
-    
+    ' check out mailing list check contact conversion ',
+    'a action abs exp',
+    'mailing list 111test',
+    'contact conversion ',
+    'contact merge conversion ',
+
+
 // unsaved changes tab pop up: 
 // Bontecou Purchased From tab
 
