@@ -32,7 +32,7 @@
 			<tbody>
 			<tr repeat.for="condition of currentItem.condition" with.bind="condition">
 					<td width="125px">
-						<span show.bind="!condition.edit">${ConditionDate | dateFormat }}</span>
+						<span show.bind="!condition.edit">${ConditionDate | dateFormat }</span>
 						<input show.bind="condition.edit" class="form-control input-sm" disabled.bind="!condition.edit" type="date" value.bind="ConditionDate">
 					</td>
 					<td width="325px">

@@ -7,12 +7,30 @@ import { ApiService } from '../../utils/servicesApi';
 
 export class Home { 
   heading = "MRG Home Page";
-  version = 302.02 
+  version = 302.03 
  
   versionDate = 'Sun 7/14/2019 11pm'
 
   issues = [
     'JUNE 15 CONV fix org/contacts save both cols before redo',
+    
+// unsaved changes tab pop up: 
+// Bontecou Purchased From tab
+
+// consigned to 
+// no consignee comes in: grossman, crawford
+
+// museum loan
+// Bontecou not coming in
+
+// purchased from
+// Bontecou, Crawford: no purchased from org, payment id still code
+// Crawford: no date
+
+// Edition Tab
+// Grossman:
+// When you build the Edition text, the note is coming in with <em></em> and not displaying last character
+// Edition is not coming into Inventory text
     `not data for tax or insurance`,
     'fix open on inv',
     ' convert images again for docs also',

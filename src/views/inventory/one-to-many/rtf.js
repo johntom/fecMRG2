@@ -5,7 +5,7 @@ import { ApplicationService } from '../../../services/application-service';
 import { Aurelia } from 'aurelia-framework';
 import { DialogService } from 'aurelia-dialog';
 import { Prompt } from '../../../services/prompt';
-
+//https://wesbos.com/template-strings-html/
 @inject(ApiService, ApplicationService, DialogService)
 export class Rtf {
   tools = [

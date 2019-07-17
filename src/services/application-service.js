@@ -145,16 +145,16 @@ export class ApplicationService {
       viewModel: "./one-to-one/editions",
       isSelected: false
     },
-    {
-      name: "Vat",
-      viewModel: "./one-to-one/vat",
-      isSelected: false
-    },
-{
-      name: "Insurance",
-      viewModel: "./one-to-one/insurance",
-      isSelected: false
-    },
+//     {
+//       name: "Vat",
+//       viewModel: "./one-to-one/vat",
+//       isSelected: false
+//     },
+// {
+//       name: "Insurance",
+//       viewModel: "./one-to-one/insurance",
+//       isSelected: false
+//     },
 
 
   ];

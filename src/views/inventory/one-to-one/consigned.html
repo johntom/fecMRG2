@@ -1,5 +1,5 @@
 <template>
-  	<style>
+	<style>
 		.RLeft {
 			display: -webkit-box;
 			display: -ms-flexbox;
@@ -11,91 +11,122 @@
 			width: 70%;
 		}
 	</style>
+	<require from="../../../resources/value-converters/date-format"></require>
 	<div class="Rtable Rtable--2cols">
-		<div class="Rtable-cell-30 Rtable-cell--highlight">
-			<strong> Consigned From ${currentItem.ConsignedFromID} </strong>
-		</div>
-		<div class="Rtable-cell-70  Rtable-cell--light">
-	
+		<div class="Rtable-cell-50 Rtable-cell">
+			<div class="Rtable Rtable--2cols">
+				<div class="Rtable-cell-30 Rtable-cell--highlight">
+					<strong> Consigned From ${currentItem.ConsignedFromID} </strong>
+				</div>
+				<div class="Rtable-cell-70  Rtable-cell--light">
 
-<!-- <input click.delegate="showModal('ConsignmentShippingID')" type="text"
+
+					<!-- <input click.delegate="showModal('ConsignmentShippingID')" type="text"
  id="ConsignmentShippingID" class="form-control input-sm" value.bind="currentItem.consignmentshippingname"> -->
 
-<div if.bind="currentItem.consignedfromname===undefined || currentItem.consignedfromname===''">
-							<a click.delegate="showModal( 'ConsignedFromID')">select_link </a>
-						</div>
-						<div else>
-							<a click.delegate="showModal('ConsignedFromID')">${currentItem.consignedfromname}</a>
+					<div if.bind="currentItem.consignedfromname===undefined || currentItem.consignedfromname===''">
+						<a click.delegate="showModal( 'ConsignedFromID')">select_link </a>
+					</div>
+					<div else>
+						<a click.delegate="showModal('ConsignedFromID')">${currentItem.consignedfromname}</a>
 
-						</div>
+					</div>
 
-		</div>
-		<div class="Rtable-cell-30 Rtable-cell--highlight">
+				</div>
+				<!-- <div class="Rtable-cell-30 Rtable-cell--highlight">
 			<strong> Time</strong>
 		</div>
 		<div class="Rtable-cell-70  Rtable-cell--highlight">
 			<input type="text" id="UnframedHeight" class="form-control input-sm" value.bind="currentItem.ConsignmentTime">
-		</div>
+		</div> -->
 
-		<div class="Rtable-cell-30 Rtable-cell--highlight">
-			<strong> Received</strong>
-		</div>
-		<div class="Rtable-cell-70  Rtable-cell--highlight">
-			<input type="date" id="UnframedHeight" class="form-control input-sm" value.bind="currentItem.ConsignmentReceived">
-		</div>
 
-		<div class="Rtable-cell-30 Rtable-cell--highlight">
-			<strong> From </strong>
-		</div>
-		<div class="Rtable-cell-70  Rtable-cell--highlight">
-			<!-- <select id="OwnerID" class="form-control" value.bind='currentItem.ConsignedFromID'> 
+
+				<div class="Rtable-cell-30 Rtable-cell--highlight">
+					<strong> From </strong>
+				</div>
+				<div class="Rtable-cell-70  Rtable-cell--highlight">
+					<!-- <select id="OwnerID" class="form-control" value.bind='currentItem.ConsignedFromID'> 
                       <option model.bind="null">Choose...</option> 
                        <option repeat.for="opt of appService.orgsList" model.bind="opt._id">
                         ${opt.OrgName} 
                       </option> 
                     </select> -->
-	<input click.delegate="showModal('ConsignedFromID')" type="text" id="ConsignedFromID" class="form-control input-sm" value.bind="currentItem.consignedfromname">
+					<input click.delegate="showModal('ConsignedFromID')" type="text" id="ConsignedFromID" class="form-control input-sm" value.bind="currentItem.consignedfromname">
 
 
-		</div>
+				</div>
 
-		<!--  -->
-		<div class="Rtable-cell-30  Rtable-cell--highlight">
-			<strong> Start Date</strong>
-		</div>
-		<div class="Rtable-cell-70  Rtable-cell--highlight">
-			<input type="date" id="UnframedHeight" class="form-control input-sm" value.bind="currentItem.ConsignedStartDate">
-		</div>
+				<!--  -->
+				<div class="Rtable-cell-30  Rtable-cell--highlight">
+					<strong> Start Date</strong>
+				</div>
+				<div class="Rtable-cell-70  Rtable-cell--highlight">
+					<input type="date" id="UnframedHeight" class="form-control input-sm" value.bind="currentItem.ConsignedStartDate  | dateFormat ">
+				</div>
 
-		<div class="Rtable-cell-30 Rtable-cell--highlight">
-			<strong> End Date</strong>
-		</div>
-		<div class="Rtable-cell-70  Rtable-cell--highlight">
-			<input type="date" id="UnframedHeight" class="form-control input-sm" value.bind="currentItem.ConsignedEndDate">
-		</div>
-		<div class="Rtable-cell-30 Rtable-cell--highlight">
-			<strong> Note</strong>
-		</div>
-		<div class="Rtable-cell-70  Rtable-cell--highlight">
-			<input type="text" id="UnframedHeight" class="form-control input-sm" value.bind="currentItem.ConsignedNotes">
-		</div>
+				<div class="Rtable-cell-30 Rtable-cell--highlight">
+					<strong> End Date</strong>
+				</div>
+				<div class="Rtable-cell-70  Rtable-cell--highlight">
+					<input type="date" id="UnframedHeight" class="form-control input-sm" value.bind="currentItem.ConsignedEndDate | dateFormat ">
+				</div>
+				<div class="Rtable-cell-30 Rtable-cell--highlight">
+					<strong> Note</strong>
+				</div>
+				<div class="Rtable-cell-70  Rtable-cell--highlight">
+					<input type="text" id="UnframedHeight" class="form-control input-sm" value.bind="currentItem.ConsignedNotes">
+				</div>
 
-		<div class="Rtable-cell-30 Rtable-cell--highlight">
-			<strong> Signed</strong>
-		</div>
-		<div class="Rtable-cell-70  Rtable-cell--highlight">
-			<input type="text" id="UnframedHeight" class="form-control input-sm" value.bind="currentItem.ConsigendSigned">
-		</div>
-
-
-		<div class="Rtable-cell-30 Rtable-cell--highlight">
-			<strong> Net Price</strong>
-		</div>
-		<div class="Rtable-cell-70  Rtable-cell--highlight">
-			<input type="text" id="UnframedHeight" class="form-control input-sm" value.bind="currentItem.ConsignedNetPrice">
-		</div>
+				<div class="Rtable-cell-30 Rtable-cell--highlight">
+					<strong> Signed</strong>
+				</div>
+				<div class="Rtable-cell-70  Rtable-cell--highlight">
+					<!-- <input type="checkbox" id="Signed" class="form-control input-sm" value.bind="currentItem.ConsigendSigned"> -->
+					<input type="checkbox" id="Signed" checked.bind="currentItem.ConsigendSigned"> &nbsp; ${currentItem.ConsigendSigned}
+				</div>
 
 
+				<div class="Rtable-cell-30 Rtable-cell--highlight">
+					<strong> Net Price to Owner</strong>
+				</div>
+				<div class="Rtable-cell-70  Rtable-cell--highlight">
+					<input type="text" id="UnframedHeight" class="form-control input-sm" value.bind="currentItem.ConsignedNetPrice">
+				</div>
+
+				<div class="Rtable-cell-30 Rtable-cell--highlight">
+					<strong> Min Selling Price</strong>
+				</div>
+				<div class="Rtable-cell-70  Rtable-cell--highlight">
+					<input type="text" id="UnframedHeight" class="form-control input-sm" value.bind="currentItem.ConsignedPriceAlpha">
+				</div>
+
+
+			</div>
+		</div>
+		<div class="Rtable-cell-50 Rtable-cell">
+			<div class="Rtable Rtable--2cols">
+				<div class="Rtable-cell-30 Rtable-cell--highlight">
+					<strong> Sold To </strong>
+				</div>
+				<div class="Rtable-cell-70  Rtable-cell--highlight">
+					<input type="text" id="SoldDate" class="form-control input-sm" value.bind="currentItem.soldtoname">
+				</div>
+
+				<div class="Rtable-cell-30 Rtable-cell--highlight">
+					<strong> Date</strong>
+				</div>
+				<div class="Rtable-cell-70  Rtable-cell--highlight">
+					<input type="date" id="SoldDate" class="form-control input-sm" value.bind="currentItem.SoldDate | dateFormat">
+				</div>
+				<div class="Rtable-cell-30 Rtable-cell--highlight">
+					<strong> Price</strong>
+				</div>
+				<div class="Rtable-cell-70  Rtable-cell--highlight">
+					<input type="text" id="SoldPrice" class="form-control input-sm" value.bind="currentItem.SoldFor">
+				</div>
+			</div>
+
+		</div>
 	</div>
-
 </template>
