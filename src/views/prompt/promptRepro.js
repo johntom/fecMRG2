@@ -27,8 +27,8 @@ export class Promptrepro {
   activate(currentmodel) {
     // this.item = currentmodel.item;
     this.currentItem = currentmodel.currentItem
-       this.item = this.currentItem
-   this.heading = "Reproduction exhibit batchno= "+ this.item.ReproductionExhibit
+    this.item = currentmodel.item
+    this.heading = "Reproduction "//exhibit batchno= "+ this.item.ReproductionExhibit
  
   }
 
@@ -45,6 +45,7 @@ export class Promptrepro {
 
 
   save() {
+    this.currentItem = this.item
     this.controller.ok('added')
   }
 }

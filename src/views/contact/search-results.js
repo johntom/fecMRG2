@@ -109,8 +109,8 @@ export class SearchResults {
     let s2 = '1-1-2016';
     let s3 = '10-21-2016';
     let inv;
-    
-    return this.api.findContact(this.queryParams)//searchrec)
+    let notmailinglist=0;
+    return this.api.findContact(this.queryParams,notmailinglist)//searchrec)
       .then((jsonRes) => {
         inv = jsonRes.data;
         this.invdata = inv;

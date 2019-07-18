@@ -42,7 +42,7 @@ export class Reproduction {
 
     // this.currentItem.recordId = this.recordId model:this.currentItem
     let currentModel = {}
-    currentModel.currentItem = this.currentItem
+     currentModel.currentItem = this.currentItem
     currentModel.item = item
 
     currentModel.currentItem.hide1 = false
@@ -50,10 +50,11 @@ export class Reproduction {
 
     // this.dialogService.open({ viewModel: PromptForm, model: currentModel, lock: false }).whenClosed(response => {
     this.dialogService.open({ viewModel: Promptrepro, model: currentModel, lock: true }).whenClosed(response => {
+// this.dialogService.open({ viewModel: Promptrepro, model: item, lock: true }).whenClosed(response => {
 
       if (!response.wasCancelled) {
         console.log('item', item);
-      item.edit = false//this.saveitem(item, index)
+        item.edit = false//this.saveitem(item, index)
       } else {
 
         console.log('cancel');

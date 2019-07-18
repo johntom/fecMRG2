@@ -790,6 +790,7 @@ export class SearchResults {
     let batchno = jsonResna[0].nextavail
     this.exhibitionbatchno = batchno
     this.item.batchno=batchno
+    this.lastbatch=batchno
     // this.item.exhibitionbatchno=batchno
     this.api.batchExhibit(this.item)
       .then((jsonRes) => {
