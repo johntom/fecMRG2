@@ -179,7 +179,11 @@ export class ApiService {
     return await this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())
 
   }
+ async getcatalogsenttocontact(cat) {
+    var url = this.baseweb + 'v1/catalog/getcatalogsenttocontact/' + cat
+    return await this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())
 
+  }
   async findTodo(search) {
     var url = this.baseweb + 'v1/todo/' + search// + cat
     return await this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())

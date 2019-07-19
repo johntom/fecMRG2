@@ -23,13 +23,18 @@ export class Catalogssentto {
     this.dialogService = dialogService
 
   }
-
+ 
 
 
   async activate(params, routeConfig) {
     // this.exhibition = this.appService.currentItem.exhibition 
     console.log('this.Catalogssentto ', this.appService.currentCatalogItem)
-    let response = await this.api.getCatalogsent(this.appService.currentCatalogItem.ID )//CatalogID)//'78');
+    // let response = await this.api.getCatalogsent(this.appService.currentCatalogItem.ID )//CatalogID)//'78');
+let response = await this.api.getcatalogsenttocontact(this.appService.currentCatalogItem.CatalogID)// ID )//CatalogID)//'78');
+
+ 
+
+
     // this.appService.catalogList = response.data
     // console.log('this.repos ', this.api.catalogList)
 

@@ -7,9 +7,9 @@ import { ApiService } from '../../utils/servicesApi';
 
 export class Home { 
   heading = "MRG Home Page";
-  version = 302.05 
+  version = 302.06 
  
-  versionDate = 'Thru 7/18/2019 1pm'
+  versionDate = 'Thru 7/18/2019 10pm'
 
   issues = [
     'JUNE 15 CONV fix org/contacts save both cols before redo',
@@ -18,7 +18,9 @@ export class Home {
     'mailing list 111test',
     'contact conversion ',
     'contact merge conversion ',
-
+//  orgi			new
+//  "ProvLoc": 0   not exits
+// "ReproductionExhibit": null,				   "ReproductionExhibit": "",
 
 // unsaved changes tab pop up: 
 // Bontecou Purchased From tab

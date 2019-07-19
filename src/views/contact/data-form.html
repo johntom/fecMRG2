@@ -279,7 +279,7 @@
 										<input type="text " xid="Website " class="form-control input-sm " value.bind="currentItem.Website">
 									</div>
 
-
+ 
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
 										<strong> Bus/Individ</strong>
 									</div>
@@ -289,19 +289,28 @@
 									</div>
 
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
-										<!-- <span dblclick.delegate="showModal( 'OrgID') ">	<strong> Org </strong></span> -->
-										<button class="btn btn-success" click.delegate="modal(org)">View Org</button>
-										<button class="btn btn-success" click.delegate="editorg(org)">Edit Org</button>
+										<div if.bind="currentItem.BusIndivid==='B'">
 
+											<button class="btn btn-success" click.delegate="modal(org)">View Org</button>
+											<button class="btn btn-success" click.delegate="editorg(org)">Edit Org</button>
+										</div>
+										<div else>
+											<strong> Parents</strong>	
+										</div>
 									</div>
 
-
 									<div class="Rtable-cell-70  Rtable-cell--highlight">
-										<div style="height:15px;margin-left:10px;margin-top:5px;margin-bottom:10px" if.bind="currentItem.org.OrgName===undefined || currentItem.org.OrgName==='' ">
-											<a click.delegate="showModal( 'OrgID')">select_link </a>
+										<div if.bind="currentItem.BusIndivid==='B'">
+											<div style="height:15px;margin-left:10px;margin-top:5px;margin-bottom:10px" if.bind="currentItem.org.OrgName===undefined || currentItem.org.OrgName==='' ">
+												<a click.delegate="showModal( 'OrgID')">select_link </a>
+											</div>
+											<div style="height:15px;margin-left:10px;margin-top:5px;margin-bottom:10px" else>
+												<a click.delegate="showModal( 'OrgID')">${currentItem.org.OrgName} </a>
+											</div>
 										</div>
-										<div style="height:15px;margin-left:10px;margin-top:5px;margin-bottom:10px" else>
-											<a click.delegate="showModal( 'OrgID')">${currentItem.org.OrgName} </a>
+										<div else>
+									${currentItem.ParentName} / id: 	${currentItem.ID}	- ${currentItem.ParentID} 
+
 										</div>
 									</div>
 
@@ -335,8 +344,8 @@
 									</div>
 									<!-- //announcements mrg driven  nomailings client driven  var checkbox = document.getElementById(currentItem.mailings");
 checkbox.indeterminate = true;-->
-						
-	<div class="Rtable-cell-30 Rtable-cell--highlight">
+
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
 										<strong> Mailchimp[email]</strong>
 									</div>
 									<div class="Rtable-cell-70 Rtable-cell--highlight">
@@ -349,25 +358,25 @@ checkbox.indeterminate = true;-->
 										<input type="checkbox" ref="mailings" id="mailings" checked.bind="currentItem.mailings">
 										<strong> &nbsp;&nbsp;nomailings</strong>
 										<input type="checkbox" id="nomailings" checked.bind="currentItem.nomailings"> -->
-								<div class="Rtable-cell-30 Rtable-cell--highlight">
-											<strong> Mailing Status</strong>
-										</div>
-										<div class="Rtable-cell-70 Rtable-cell--highlight">
-											<label repeat.for="ml of mailingstatus">
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong> Mailing Status</strong>
+									</div>
+									<div class="Rtable-cell-70 Rtable-cell--highlight">
+										<label repeat.for="ml of mailingstatus">
                      	<input type="radio" name="group1" model.bind="ml.id" checked.bind="currentItem.mailingStatus"> ${ml.name} &nbsp;
 										  </label>
-                    </div>
+									</div>
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
 										<strong> Note</strong>
 									</div>
 									<div class="Rtable-cell-70 Rtable-cell--highlight">
 										<!-- <input type="text " xid="Edition " class="form-control input-sm " value.bind="currentItem.Notes"> -->
 										<textarea rows="6" cols="100" id="Notes" class="form-control input-sm" value.bind="currentItem.Notes"></textarea>
-  								</div>
+									</div>
 
-								
 
-                  	<div class="Rtable-cell-30 Rtable-cell--highlight">
+
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
 										<strong> Masterlist</strong>
 									</div>
 									<div class="Rtable-cell-70 Rtable-cell--highlight">
@@ -375,33 +384,33 @@ checkbox.indeterminate = true;-->
 
 
 									</div>
-                  	<div class="Rtable-cell-30 Rtable-cell--highlight">
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
 										<strong> Holidaylist</strong>
 									</div>
 									<div class="Rtable-cell-70 Rtable-cell--highlight">
 										<input type="checkbox" id="ynHolidaylist" checked.bind="currentItem.ynHolidaylist">
 									</div>
 
-	<div class="Rtable-cell-30 Rtable-cell--highlight">
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
 										<strong> International</strong>
 									</div>
 									<div class="Rtable-cell-70 Rtable-cell--highlight">
 										<input type="checkbox" id="international" checked.bind="currentItem.international">
 									</div>
 
-	<div class="Rtable-cell-30 Rtable-cell--highlight">
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
 										<strong> Deceased</strong>
 									</div>
 									<div class="Rtable-cell-70 Rtable-cell--highlight">
 										<input type="checkbox" id="deceased" checked.bind="currentItem.deceased">
 									</div>
-	<div class="Rtable-cell-30 Rtable-cell--highlight">
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
 										<strong> nolongerherecatalogssent</strong>
 									</div>
 									<div class="Rtable-cell-70 Rtable-cell--highlight">
 										<input type="checkbox" id="deceased" checked.bind="currentItem.nolongerherecatalogssent">
 									</div>
-	
+
 
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
 										<strong> Address Label</strong>
@@ -419,7 +428,7 @@ checkbox.indeterminate = true;-->
 
 									<div class="Rtable-cell-70  Rtable-cell--highlight">
 										<input type="text " xid="ContactID " class="form-control input-sm " value.bind="currentItem.id">
-									</div> 
+									</div>
 
 
 
