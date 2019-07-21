@@ -39,6 +39,7 @@ export class Home {
 // Grossman:
 // When you build the Edition text, the note is coming in with <em></em> and not displaying last character
 // Edition is not coming into Inventory text
+ `finishe ContactController see await Inv`,
     `not data for tax or insurance`,
     'fix open on inv',
     ' convert images again for docs also',

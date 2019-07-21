@@ -18,12 +18,7 @@
 		}
 	</style>
 	<section class="docs full-height flex-column-1 overflow-y-auto ignore">
-		<!-- <h4>
-			<i class="fa fa-folder-open"></i> Phone
-			<a slot="buttons-slot" class="btn btn-primary" click.delegate="addPhone()">
-				<i class="fa fa-plus"></i> Add Phone
-			</a>
-		</h4> -->
+	
 		<div class="Rtable Rtable--2cols">
 			<div class="Rtable-cell-50 Rtable-cell">
 				<h4>
@@ -86,26 +81,13 @@
 
 							</td>
 							<td width="200px">
-								<!-- <span show.bind="!phone.edit">${phoneno}</span> -->
-
-								<!-- <input show.bind="phone.edit" class="form-control input-sm" disabled.bind="!phone.edit" type="phone" value.bind="phoneno"> -->
-								<input class="form-control input-sm" type="phone" value.bind="phoneno">
+									<input class="form-control input-sm" type="phone" value.bind="phoneno">
 
 							</td>
 							<td width="100px">
-								<!-- <span show.bind="!phone.edit">${area}</span>
-								<input show.bind="phone.edit" class="form-control input-sm" disabled.bind="!phone.edit" type="text" value.bind="area"> -->
-								<input class="form-control input-sm" type="text" value.bind="area">
+									<input class="form-control input-sm" type="text" value.bind="area">
 							</td>
 							<td width="100px">
-
-								<!-- <span show.bind="!phone.edit">${ext}</span> -->
-  <!-- "type" : "5d18fca15d5342e04835b265", 
-            "notes" : "Office", 
-            "phoneno" : "922 1200", 
-            "area" : "214", 
-            "ext" : "x1789" -->
-								<!-- <input show.bind="phone.edit" class="form-control input-sm" disabled.bind="!phone.edit" type="text" value.bind="ext"> -->
 								<input class="form-control input-sm" type="text" value.bind="ext">
 							</td>
 							<td width="100px">
@@ -128,12 +110,7 @@
 				</table>
 			</div>
 			<div class="Rtable-cell-50 Rtable-cell--highlight">
-				<!-- <h4>
-					<i class="fa fa-folder-open"></i> Email
-					<a slot="buttons-slot" class="btn btn-primary" click.delegate="addEmail()">
-						<i class="fa fa-plus"></i> Add Email
-					</a>
-				</h4> -->
+			
 
 				<table class="table-condensed table">
 					<thead class="table-header-blue">
@@ -168,7 +145,6 @@
 							<td width="100px">
 
 								<select id="phonetype" class="form-control  input-sm" value.bind="type"> 
-                      <!-- <option model.bind="null">Choose...filterOnCode</option>  -->
                         <option model.bind=0>Choose...</option> 
                     
                          <option repeat.for="opt of appService.codesEmailType " model.bind="opt.id">
@@ -178,22 +154,15 @@
 
 							</td>
 							<td width="200px">
-								<!-- <span show.bind="!email.edit">${email}</span> -->
-
+						
 								<input class="form-control input-sm" type="email" value.bind="email">
 							</td>
 							<td width="200px">
-								<!-- <span show.bind="!email.edit">${emailchimp}</span> -->
-
-
+							
 								<span if.bind="unsub===undefined">-</span>
-
-
-								<input type="checkbox" id="unsub" checked.bind="unsub"> ${unsub}
-
+             	<input type="checkbox" id="unsub" checked.bind="unsub"> ${unsub}
 							</td>
 							<td width="100px">
-
 								<input class="form-control input-sm" type="text" value.bind="Note">
 
 							</td>

@@ -3,7 +3,7 @@ import { inject, singleton } from 'aurelia-dependency-injection';
 import { HttpClient } from 'aurelia-fetch-client'
 // sample-layout-mrg
 @inject(HttpClient)
-export class ApiService {
+export class ApiServicePrev {
   constructor(http) {
     this.http = http;
     this.upmess = ''

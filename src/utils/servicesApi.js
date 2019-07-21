@@ -8,14 +8,14 @@ export class ApiService {
     this.http = http;
     this.upmess = ''
     //    new fastify backend
-     this.baseweb = 'https://artbased.com/api/'
+    this.baseweb = 'https://artbased.com/api/'
     // fastify with static routes
-  //  this.basewebfastify = 'https://artbased.com/api/v0/mrg/'
-   
-  //  this.basewebfastify = 'https://artbased.com/api/gofer/v0/mrg/'
-  
+    //  this.basewebfastify = 'https://artbased.com/api/v0/mrg/'
+
+    //  this.basewebfastify = 'https://artbased.com/api/gofer/v0/mrg/'
+
   }
-  
+
 
 
 
@@ -48,7 +48,7 @@ export class ApiService {
     return this.http.fetch(url, {
       method: 'get',
       mode: 'cors'
-    }).then((res) => res.json()); 
+    }).then((res) => res.json());
   }
   findInventory(search) {
     // search has fullu formed query string
@@ -65,7 +65,7 @@ export class ApiService {
 
   // { method: ['get'], path: '/api/v1/mailinglist/:id', handler: 'MailinglistController.findone' },
   findmailinglist(listname) {
-       var url = this.baseweb + `v1/mailinglist/${listname}`
+    var url = this.baseweb + `v1/mailinglist/${listname}`
     console.log('url ', url)
     return this.http.fetch(url, {
       method: 'get',
@@ -73,17 +73,23 @@ export class ApiService {
     }).then((res) => res.json());
     //return this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())
   }
-  
 
 
 
+  //https://artbased.com/api/v1/fincontactdups
+  async findContactdups() {
 
+    var url = this.baseweb + 'v1/fincontactdups'
+    return await this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())
+
+
+  }
 
 
 
 
   async deletemlrow(row) {
-   
+
     let url = this.baseweb + `v1/mailinglist/delete`
     return await this.http.fetch(url, {
       method: 'delete',
@@ -161,7 +167,7 @@ export class ApiService {
     return await this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())
 
   }
- async getcatalogsenttocontact(cat) {
+  async getcatalogsenttocontact(cat) {
     var url = this.baseweb + 'v1/catalog/getcatalogsenttocontact/' + cat
     return await this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())
 
@@ -297,7 +303,7 @@ export class ApiService {
     let res = await this.http.fetch(url, { mode: 'cors' })
     return res.json()
   }
-  async findCatalog(search) { 
+  async findCatalog(search) {
     // var url = this.baseweb + 'v1/inventorycontent' + search
     // var url = this.baseweb + `v1/catalog/find${search}`;
     var url = this.baseweb + `v1/catalog/find/${search}`;
@@ -320,11 +326,11 @@ export class ApiService {
     }).then((res) => res.json());
   }
   updatecatalog(rec) {
-     let url = this.baseweb + `v1/catalog/update`
+    let url = this.baseweb + `v1/catalog/update`
     console.log('url ', url)
     return this.http.fetch(url, {
       method: 'put',
-      mode: 'cors', 
+      mode: 'cors',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
@@ -343,7 +349,7 @@ export class ApiService {
     return res.json()
   }
 
-///////////////////////////
+  ///////////////////////////
 
   // https://artbased.com/api/v1/findofferings/5c14696ba3e3847c0f5a62c3
   async findofferings(id) {
@@ -458,6 +464,23 @@ export class ApiService {
     }).then((res) => res.json());
   }
 
+
+  async savedups(rec) {
+    let url = this.baseweb + `v1/contact/updatedups`
+    console.log('url ', url)
+    //return {'data': true}
+    return await this.http.fetch(url, {
+      method: 'put',
+      mode: 'cors',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+        // , 'Authorization': 'JWT ' + token
+      },
+      body: JSON.stringify(rec)
+    }).then((res) => res.json());
+  }
+
   addcontact(rec) {
     console.log('addcontact rec', rec)
     let url = this.baseweb + `v1/contact/create`
@@ -474,7 +497,7 @@ export class ApiService {
       body: JSON.stringify(rec)
     }).then((res) => res.json());
   }
-//https://artbased.com/api/v1/orgs
+  //https://artbased.com/api/v1/orgs
   findOrgs() {
     var url = this.baseweb + 'v1/orgs';
     return this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())
