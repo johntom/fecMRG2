@@ -1172,6 +1172,30 @@ export class ApiService {
     // .catch(error => console.log(error));
   }
 
+async uploadfast(formData){
+   let x =  formData.get("file"); 
+ let y =  formData.get("dir");
+   console.log('dir ',y,x)// JSON.stringify(formData))
+    let basewebfast = 'https://gallery.meledandri.com:9020/api/gallerynm/'
+ 
+    var url = basewebfast + `upload`
+
+    console.log('url ', url, formData);
+    return this.http.fetch(url, {
+      mode: 'cors',
+      method: 'POST',
+      // headers: {
+      //   // 'enctype': "multipart/form-data"
+      //      'Content-Type': 'multipart/form-data'
+      // },
+      body: formData
+
+      // body: JSON.stringify(formData)
+    }).then((res) => res.json());
+    // .then(data => console.log('data.message', data.message))
+    // .catch(error => console.log(error));
+  }
+
   uploadinvphoto(formData, id) {
     //http://arabsight.github.io/uploading-files-with-aurelia
     var url = this.baseweb + `v1/uploadinvphoto/${id}`

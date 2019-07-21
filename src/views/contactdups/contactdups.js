@@ -69,12 +69,14 @@ export class Contactdups {
     this.api = api;
     this.utilService = utilService;
     this.appService = appService;
+    this.message=''
   }
 
   activate(params, routeConfig) {
    
     this.queryParams = this.utilService.parseQueryStringUrl();
     console.log('queryParams', this.queryParams);
+     
     this.datasource.read()
   }
   detailsEdit(e) {
@@ -141,6 +143,7 @@ export class Contactdups {
     this.dataItem=dataItem;
     this.queryParams=`?contactl=${dataItem.LastName}&contactf=${dataItem.FirstName}`
     let notmailinglist=0
+    this.message=''
     return this.api.findContact(this.queryParams,notmailinglist)//searchrec)
       .then((jsonRes) => {
         this.dups = jsonRes.data;
@@ -152,8 +155,8 @@ export class Contactdups {
 async savedups() {
    let response = await this.api.savedups(this.dups);
   //  thi.appService.catalogList = response.data
-  alert (` save the dups ${response}`)
-  
+  // alert (` save the dups ${response}`)
+  this.message=response
 
 }
 

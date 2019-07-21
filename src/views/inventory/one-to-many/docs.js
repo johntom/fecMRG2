@@ -40,7 +40,7 @@ export class Docs {
   }
 
 
-  addDocs(images) {
+  async addDocs(images) {
     //images is file
     //https://stackoverflow.com/questions/32736599/html-file-upload-and-action-on-single-button
     let docs = this.currentItem.docs
@@ -76,7 +76,13 @@ export class Docs {
 
         $("#file").val("");
       })
-  }
+  
+//  let upl = await this.api.uploadfast(formData)
+ 
+}
+
+
+
   // addDocs1(images) {
   //   //images is file
   //   //https://stackoverflow.com/questions/32736599/html-file-upload-and-action-on-single-button
