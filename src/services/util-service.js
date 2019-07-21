@@ -20,7 +20,24 @@ export class UtilService {
     console.log('QueryString: ', result);
     return result;
   }
-
+//  generateQueryStringFastify(searchCriteria) {  
+//     let params = [];
+//     // ?n=John&n=Susan  
+//     //https://artbased.com/api/mrg/inventory?filter={"artist.lastName":{"$regex":"sel","$options":"i"}}   
+//     //artistl=seliger
+//     Object.keys(searchCriteria).forEach((k, i) => {
+//       if (searchCriteria[k]) {
+//         // params.push(`${k}=${searchCriteria[k]}`); 
+//          params.push(`${k}":{"$regex": "${searchCriteria[k]}","$options":"i"}}   `);  
+//       }
+//     });
+//     let sub = params.join('&');
+//     let result = `?filter={"${encodeURIComponent(sub)}"`;   
+//     // let result = `?filter={"${encodeURIComponent(sub)}`;
+    
+//     console.log('QueryString: ', result);
+//     return result;
+//   }
   /**
    * This function parses the query string from a 
    * window.location.hash. It returns a hydrated

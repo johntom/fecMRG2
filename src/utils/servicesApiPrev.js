@@ -7,15 +7,34 @@ export class ApiService {
   constructor(http) {
     this.http = http;
     this.upmess = ''
-    //    new fastify backend
-     this.baseweb = 'https://artbased.com/api/mrg/'
-    // fastify with static routes
-  //  this.basewebfastify = 'https://artbased.com/api/v0/mrg/'
-   
-  //  this.basewebfastify = 'https://artbased.com/api/gofer/v0/mrg/'
-  
+    //    this.baseweb = 'https://gtztest.com/api/' 
+    this.baseweb = 'https://artbased.com/api/' 
+    /// https://gtztest.com/api/v1/inmate
+    // https://gtztest.com/api/v1/getonePdf/:template/:filename
+    this.basewebjif = 'https://jif.bergenrisk.com/api/';
+    this.baseBB = 'https://buildings-207021.appspot.com/query'// bin/1022709
+
   }
-  
+  // getBB(bin) {
+  //   let bod = { bin: bin, name: bin }
+  //   console.log(bod)
+  //   // var url = this.baseBB + `/bin/${bin}`;
+  //   // var url = this.baseBB + `/bin?bin=${bin}`;
+  //   var url = this.baseBB + `?bin=${bin}`;
+  //   //var url = this.baseBB + '/bin'
+  //   return this.http.fetch(url, {
+  //     method: 'get', //post
+  //     mode: 'no-cors',
+  //     headers: {
+  //       'Accept': 'application/json',
+  //       'Content-Type': 'application/json',
+  //       'encoding': "application/x-www-form-urlencoded",
+  //       'enctype': "application/x-www-form-urlencoded"
+  //     }
+  //     //, body: JSON.stringify(bod)
+  //   }).then((res) => res.json());
+
+  // }
 
 
 
@@ -48,16 +67,15 @@ export class ApiService {
     return this.http.fetch(url, {
       method: 'get',
       mode: 'cors'
-    }).then((res) => res.json()); 
+    }).then((res) => res.json());
   }
   findInventory(search) {
     // search has fullu formed query string
-    https://artbased.com/api/mrg/inventory?filter={"artist.lastName":{"$regex":"sel","$options":"i"}} 
-    var url = this.baseweb + 'inventory' + search
+    var url = this.baseweb + 'v1/inventorycontent' + search
     console.log('url ', url)
     return this.http.fetch(url, {
-      method: 'get'
-      // , mode: 'cors'
+      method: 'get',
+      mode: 'cors'
     }).then((res) => res.json());
     //return this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())
   }

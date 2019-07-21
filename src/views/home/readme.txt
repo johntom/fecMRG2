@@ -1,3 +1,11 @@
+
+// move database to scalegrid
+1. create mrg in scalegrid
+2. use s3t to mirgrate, i do a copy paste collections
+3. it keeps same objectid's
+ 
+
+
 // import ably from 'Ably';
 // var ably = new Ably.Realtime('xVLyHw.DLnxAQ:9f4EUo2vKYzao1fr');
 // var channel = ably.channels.get('length');
