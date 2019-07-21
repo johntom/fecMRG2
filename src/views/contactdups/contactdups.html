@@ -20,54 +20,63 @@
 						</ak-template>
 					</ak-col>
 
- <ak-col k-field="LastName" k-filterable.bind="true" k-title="Last Name" 
-      k-width.bind="180" k-template="<button click.delegate='detailsEdit($event)' class='k-button'>#=LastName#</button>">
-			</ak-col>
+					<ak-col k-field="LastName" k-filterable.bind="true" k-title="Last Name" k-width.bind="180" k-template="<button click.delegate='detailsEdit($event)' class='k-button'>#=LastName#</button>">
+					</ak-col>
 					<ak-col k-title="FirstName" k-width="180px" k-field="FirstName"></ak-col>
-								<ak-col k-title="count" k-width="180px" k-field="count"></ak-col>
+					<ak-col k-title="count" k-width="180px" k-field="count"></ak-col>
 
 				</ak-grid>
 			</div>
 
 			<div class="Rtable-cell-50 Rtable-cell">
-			
-        		<div class="form-group flex-column-1 margin-left-10">
-							<button id="searchInputBtn" class="btn btn-success" type="button" click.delegate="savedups()"><strong>S</strong>ave	${dataItem.LastName},${dataItem.FirstName},${dataItem.count} ${message}</button>
-						</div>
-<!--  -->
-	<table class="table-condensed table">
-			<thead class="table-header-blue">
-				<tr>
- this.dups
-					<tr>
-						<th width="50px" class="header">ID		</th>
-            <!-- <th width="50px" class="header">id		</th>-->
-            	<th width="150px" class="header">Parent or 0</th>
-            <th width="350px" class="header">Last		</th>
-<th width="150px" class="header">First			</th>
-<th width="50px" class="header">B/I			</th>
-					
-					</tr>
-			</thead>
-			<tfoot>
-				<tr>
-					<td></td>
-					<td></td>
-				</tr>
-			</tfoot>
-			<tbody>
-<tr repeat.for="contact of dups" with.bind="contact">
+
+				<div class="form-group flex-column-1 margin-left-10">
+					<button id="searchInputBtn" class="btn btn-success" type="button" click.delegate="savedups()"><strong>S</strong>ave	${dataItem.LastName},${dataItem.FirstName},${dataItem.count} ${message}</button>
+				</div>
+				<!--  -->
+				<table class="table-condensed table">
+					<thead class="table-header-blue">
+						<tr>
+
+							<tr>
+								<th width="50px" class="header">ID </th>
+								<!-- <th width="50px" class="header">id		</th>-->
+								<th width="150px" class="header">Parent or 0</th>
+								<th width="50px" class="header">nolongerhere </th>
+								<th width="250px" class="header">Last </th>
+								<th width="100px" class="header">First </th>
+								<th width="50px" class="header">B/I </th>
+								<th width="250px" class="header">Parent info </th>
+
+
+							</tr>
+					</thead>
+					<tfoot>
+						<tr>
+							<td></td>
+							<td></td>
+						</tr>
+					</tfoot>
+					<tbody>
+						<tr repeat.for="contact of dups" with.bind="contact">
 
 							<td width="50px">
 
-${ID}
+								${ID}
 							</td>
-					
-<!-- ${id} -->
-	<td width="150px">
-									<input class="form-control input-sm" type="text" value.bind="parent">
-			
-					
+
+							<!-- ${id} -->
+							<td width="150px">
+								<input class="form-control input-sm" type="text" value.bind="parent">
+
+
+							</td>
+
+							<td width="50px">
+
+								<input type="checkbox" id="nolongerherecatalogssent" checked.bind="nolongerherecatalogssent">
+
+
 							</td>
 							<td width="250px">
 
@@ -79,24 +88,23 @@ ${ID}
 
 								<input class="form-control input-sm" type="text" value.bind="FirstName">
 							</td>
-	<td width="50px">
+							<td width="50px">
 
 								<input class="form-control input-sm" type="text" value.bind="BusIndivid">
 							</td>
 
-				
-
-				
-
-				</tr>
-			</tbody>
-		</table>
-
+							<td width="250px">
+								${ParentName} / id: ${ID} - ${ParentID}
+							</td>
+						</tr>
+					</tbody>
+				</table>
 
 
 
 
-<!--  -->
+
+				<!--  -->
 			</div>
 		</div>
 

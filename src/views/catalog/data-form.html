@@ -121,7 +121,7 @@
 									</div>
 
 									<div class="Rtable-cell-70  Rtable-cell--highlight">
-										<input type="text " xid="PubDate " class="form-control input-sm " value.bind="currentItem.PubDate">
+										<input type="text " xid="PubDate " class="form-control input-sm " value.bind="currentItem.PubDate | dateFormat">
 									</div>
 
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
@@ -130,7 +130,12 @@
 									<div class="Rtable-cell-70  Rtable-cell--highlight">
 										<input type="text " xid="NoPages " class="form-control input-sm " value.bind="currentItem.NoPages">
 									</div>
-
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong> Price</strong>
+									</div>
+									<div class="Rtable-cell-70  Rtable-cell--highlight">
+										<input type="text " xid="Price " class="form-control input-sm " value.bind="currentItem.Price">
+									</div>
 
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
 										<strong> BW</strong>
@@ -149,39 +154,14 @@
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
 										<strong> TotalWarehouse</strong>
 									</div>
-
 									<div class="Rtable-cell-70  Rtable-cell--highlight">
-										<input type="text " xid="TotalWarehouse " class="form-control input-sm " value.bind="currentItem.TotalWarehouse">
+										<input type="text " xid="Color " class="form-control input-sm " value.bind="currentItem.Color">
 									</div>
-
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
-										<strong> PulisherID</strong>
+										<strong> TotalGallery</strong>
 									</div>
-
 									<div class="Rtable-cell-70  Rtable-cell--highlight">
-
-										<select id="PulisherID" class="form-control  input-sm" value.bind="currentItem.PulisherID"> 
-                      <option model.bind="null">Choose...</option> 
-                         <option repeat.for="opt of appService.codesSuffix " model.bind="opt.id">
-                    ${opt.Description} 
-                      </option> 
-                    </select>
-
-									</div>
-
-									<div class="Rtable-cell-30 Rtable-cell--highlight">
-										<strong> ?LocGallery</strong>
-									</div>
-
-									<div class="Rtable-cell-70  Rtable-cell--highlight">
-
-
-										<select id="phonetype" class="form-control  input-sm" value.bind="currentItem.LocGallery"> 
-                      <option model.bind="null">Choose...</option> 
-                         <option repeat.for="opt of appService.codesSalutation " model.bind="opt.id">
-                    ${opt.Description} 
-                      </option> 
-                    </select>
+										<input type="text " xid="TotalGallery " class="form-control input-sm " value.bind="currentItem.TotalGallery">
 									</div>
 
 
@@ -195,30 +175,52 @@
 							<div class="form-group flex-column-1 margin-left-10">
 								<div class="Rtable Rtable--2cols">
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
-										<strong> TotalWarehouse</strong>
-									</div>
-
-									<div class="Rtable-cell-70  Rtable-cell--highlight">
-										<input type="text " xid="TotalWarehouse " class="form-control input-sm " value.bind="currentItem.TotalWarehouse">
-									</div>
-
-
-									<div class="Rtable-cell-30 Rtable-cell--highlight">
-										<strong> LocGallery</strong>
-									</div>
-
-									<div class="Rtable-cell-70  Rtable-cell--highlight">
-										<input type="text " xid="LocGallery " class="form-control input-sm " value.bind="currentItem.LocGallery">
-									</div>
-
-
-									<div class="Rtable-cell-30 Rtable-cell--highlight">
 										<strong> PulisherID</strong>
 									</div>
 
 									<div class="Rtable-cell-70  Rtable-cell--highlight">
-										<input type="text " xid="PulisherID " class="form-control input-sm " value.bind="currentItem.PulisherID">
+${currentItem.publishername}
+										<select id="PulisherID" class="form-control  input-sm" value.bind="currentItem.PulisherID"> 
+                      <option model.bind="null">Choose...</option> 
+                         <option repeat.for="opt of appService.orgsList " model.bind="opt.id">
+                    ${opt.OrgName} 
+                      </option> 
+                    </select>
+
 									</div>
+
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong> CoverID</strong>
+									</div>
+
+									<div class="Rtable-cell-70  Rtable-cell--highlight">
+
+										<select id="CoverID" class="form-control  input-sm" value.bind="currentItem.CoverID"> 
+                      <option model.bind="null">Choose...</option> 
+                         <option repeat.for="opt of appService.codesCoverType " model.bind="opt.id">
+                    ${opt.Description} 
+                      </option> 
+                    </select>
+
+									</div>
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong> CatalogNotes</strong>
+									</div>
+									<div class="Rtable-cell-70  Rtable-cell--highlight">
+										<input type="text " xid="CatalogNotes " class="form-control input-sm " value.bind="currentItem.CatalogNotes">
+									</div>
+
+
+
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong> CoverIllustration</strong>
+									</div>
+									<div class="Rtable-cell-70  Rtable-cell--highlight">
+										<input type="text " xid="CoverIllustration " class="form-control input-sm " value.bind="currentItem.CoverIllustration">
+									</div>
+
+
+
 
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
 										<strong> AuthorForward</strong>
@@ -227,23 +229,24 @@
 									<div class="Rtable-cell-70  Rtable-cell--highlight">
 										<input type="text " xid="AuthorForward " class="form-control input-sm " value.bind="currentItem.AuthorForward">
 									</div>
+
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
-										<strong> ExhibitionID</strong>
+										<strong> ids</strong>
 									</div>
 
 									<div class="Rtable-cell-70  Rtable-cell--highlight">
-										<input type="text " xid="ExhibitionID " class="form-control input-sm " value.bind="currentItem.ExhibitionID">
+									${currentItem.id}/ ${currentItem.ID}
 									</div>
+
 
 
 
 
 
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
-										<strong> Catalog Description</strong>
+										<strong> Catalog Description Build?</strong>
 									</div>
 									<div class="Rtable-cell-70 Rtable-cell--highlight">
-										<!-- <input type="text " xid="Edition " class="form-control input-sm " value.bind="currentItem.Notes"> -->
 										<textarea rows="6" cols="100" id="Notes" class="form-control input-sm" value.bind="currentItem.CatalogDescription"></textarea>
 
 

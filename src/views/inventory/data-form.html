@@ -707,13 +707,21 @@
 										<span>https://artbased.com/api/v1/getimage/inv/${currentItem.InventoryCode}.jpg </span> -->
 									</div>
 		<div class="Rtable-cell-30 Rtable-cell--highlight">
-										<strong>Added/modified</strong>
+										<strong>Added/updatedAt</strong>
 									</div>
 									<div class="Rtable-cell-70 Rtable-cell--highlight">
 										<!-- after convert use createdAt -->
-										${currentItem.DateAdded  | dateFormat} / ${currentItem.updatedAt | dateFormat }
-									</div>
 
+										${currentItem.DateAdded  | dateFormat} / ${currentItem.updatedAt | dateFormat } 							</div>
+<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong>legacy modified</strong>
+									</div>
+									<div class="Rtable-cell-70 Rtable-cell--highlight">
+										<!-- after convert use createdAt -->
+
+									 ${currentItem.ModifiedDate | dateFormat }
+
+									</div>
 								</div>
 								<!-- 2nd -->
 							</div>

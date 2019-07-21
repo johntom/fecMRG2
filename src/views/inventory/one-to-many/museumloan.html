@@ -28,6 +28,7 @@
 						<th class="header">Catalog </th>
 						<th class="header">Updated</br>Factsheet </th>
 
+
 						<th class="header"> </th>
 				</tr>
 			</thead>
@@ -67,7 +68,7 @@
  	      	<input id="chkToggleAll" click.delegate="toggleAll()" type="checkbox" /> </th>
      	    -->
 					<td width="220px"><input type="text" id="ExhTitle" class="form-control  input-sm" value.bind="museumloan.ExhibitionTitle"></td>
-					<td width="220px"><input type="text" id="VenuesAndDates" class="form-control  input-sm" value.bind="museumloan.VenuesAndDates"></td>
+					<td width="220px"><input type="text" id="VenuesAndDates" class="form-control  input-sm" value.bind="museumloan.ExhibitionVenuesDates"></td>
 					<td width="120px"><input type="checkbox" id="Returned" checked.bind="museumloan.Returned"></td>
 
 					<td width="120px"><input type="checkbox" id="AgreementFormSignedMRG" checked.bind="museumloan.AgreementFormSignedMRG"></td>
@@ -78,6 +79,7 @@
 
 					<td width="120px"><input type="checkbox" id="Catalog" checked.bind="museumloan.Catalog"></td>
 					<td width="120px"><input type="checkbox" id="UpdatedFactSheet" checked.bind="museumloan.UpdatedFactSheet"></td>
+
 
 					<td width="225px">
 						<!-- <button class="btn btn-primary" click.delegate="museumloan.edit=!museumloan.edit">${ !museumloan.edit ? 'Update' : 'Done' }</button> -->

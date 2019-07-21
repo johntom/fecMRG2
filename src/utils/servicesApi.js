@@ -53,7 +53,9 @@ export class ApiService {
   findInventory(search) {
     // search has fullu formed query string
     https://artbased.com/api/mrg/inventory?filter={"artist.lastName":{"$regex":"sel","$options":"i"}} 
-    var url = this.baseweb + 'inventory' + search
+    // var url = this.baseweb + 'inventory' + search
+    var url = this.baseweb + 'v1/inventorycontent' + search
+    
     console.log('url ', url)
     return this.http.fetch(url, {
       method: 'get'

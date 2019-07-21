@@ -36,14 +36,20 @@ PurchasedPayment: 609 -->
 						</div>
   
   	</div>
+    	</div>
 						<!-- <select id="PurchasedFrom " class="form-control  " value.bind="currentItem.PurchasedFrom">
 											<option model.bind="null">Choose...</option>
 											<option repeat.for="opt of appService.codesOwnership " model.bind="opt.id">
 												${opt.Description}
 											</option>
 										</select> -->
+				
+	<div class="Rtable-cell-30 Rtable-cell--highlight">
+						<strong> PurchasedFrom</strong>
 					</div>
-
+					<div class="Rtable-cell-70  Rtable-cell--highlight">
+						<input type="text" id="PurchasedFrom" class="form-control input-sm" value.bind="currentItem.PurchasedFrom">
+					</div>
 					<div class="Rtable-cell-30 Rtable-cell--highlight" style="color:purple">
 						<strong>Purchased Payment : ${currentItem.PurchasedPayment}</strong>
 					</div>
