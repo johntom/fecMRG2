@@ -52,11 +52,14 @@
 							<a click.delegate="showModal('ConservedBy',$index)">${conservation.conservedbyname}</a>
 
 						</div> -->
-	<span show.bind="!conservation.edit">${conservation.conservedbyname}</span>
+	<!-- <span show.bind="!conservation.edit">${conservation.conservedbyname}</span>
 
 							<input show.bind="conservation.edit" class="form-control input-sm" disabled.bind="!conservation.edit" type="text" value.bind="conservedbyname">						</td>
+				 -->
+						<span show.bind="!conservation.edit">${conservation.ConservedBy}</span>
+
+							<input show.bind="conservation.edit" class="form-control input-sm" disabled.bind="!conservation.edit" type="text" value.bind="ConservedBy">						</td>
 				
-					
 
 						</div>
 
@@ -65,7 +68,7 @@
 					</td>
 <!--  | dateFormat -->
 					<td width="325px">
-						<span show.bind="!conservation.edit">${Dates  }</span>
+						<span show.bind="!conservation.edit">${Dates}</span>
 						<input show.bind="conservation.edit" class="form-control input-sm" disabled.bind="!conservation.edit" type="text" value.bind="Dates">						</td>
 					</td>
 
