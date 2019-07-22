@@ -2,6 +2,7 @@
 
 
 	<require from="../../resources/value-converters/date-format"></require>
+<require from="../../resources/value-converters/currency-format"></require>
 
 	<require from="../../resources/value-converters/upper-case"></require>
 
@@ -85,7 +86,11 @@
 			background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
 		}
 	</style>
-
+	<!-- make Price currency
+Pub Date should be text not date
+Pub ID dropdown on the old system is much shorter and different
+we need both the AuthorForward & the AuthorEssay fields 
+missing Dimensions field -->
 	<section class="full-height flex-column-1 au-animate ignore">
 		<div class="flex-column-1 overflow-y-auto">
 
@@ -121,7 +126,7 @@
 									</div>
 
 									<div class="Rtable-cell-70  Rtable-cell--highlight">
-										<input type="text " xid="PubDate " class="form-control input-sm " value.bind="currentItem.PubDate | dateFormat">
+										<input type="text " xid="PubDate " class="form-control input-sm " value.bind="currentItem.PubDate">
 									</div>
 
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
@@ -134,7 +139,7 @@
 										<strong> Price</strong>
 									</div>
 									<div class="Rtable-cell-70  Rtable-cell--highlight">
-										<input type="text " xid="Price " class="form-control input-sm " value.bind="currentItem.Price">
+										<input type="text " xid="Price " class="form-control input-sm " value.bind="currentItem.Price | currencyFormat">
 									</div>
 
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
@@ -166,6 +171,7 @@
 
 
 
+
 								</div>
 							</div>
 							<!-- 2nd col -->
@@ -179,7 +185,7 @@
 									</div>
 
 									<div class="Rtable-cell-70  Rtable-cell--highlight">
-${currentItem.publishername}
+										${currentItem.publishername}
 										<select id="PulisherID" class="form-control  input-sm" value.bind="currentItem.PulisherID"> 
                       <option model.bind="null">Choose...</option> 
                          <option repeat.for="opt of appService.orgsList " model.bind="opt.id">
@@ -229,13 +235,25 @@ ${currentItem.publishername}
 									<div class="Rtable-cell-70  Rtable-cell--highlight">
 										<input type="text " xid="AuthorForward " class="form-control input-sm " value.bind="currentItem.AuthorForward">
 									</div>
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong> AuthorEssay</strong>
+									</div>
+									<div class="Rtable-cell-70  Rtable-cell--highlight">
+										<input type="text " xid="AuthorEssay " class="form-control input-sm " value.bind="currentItem.AuthorEssay">
+									</div>
 
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong> Dimensions</strong>
+									</div>
+									<div class="Rtable-cell-70  Rtable-cell--highlight">
+										<input type="text " xid="Dimensions " class="form-control input-sm " value.bind="currentItem.Dimensions">
+									</div>
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
 										<strong> ids</strong>
 									</div>
 
 									<div class="Rtable-cell-70  Rtable-cell--highlight">
-									${currentItem.id}/ ${currentItem.ID}
+										${currentItem.id}/ ${currentItem.ID}
 									</div>
 
 
