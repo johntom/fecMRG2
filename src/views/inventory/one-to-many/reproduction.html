@@ -1,10 +1,41 @@
 <template>
-	<require from="./docs.css"></require>
+	<!-- <require from="./docs.css"></require> -->
 	<require from="../../../resources/value-converters/date-format"></require>
-
+	<style>
+		.docs {
+			padding: 0 20px;
+		}
+	
+		.docs .table-header-blue {
+			background-color: deepskyblue;
+			color: white;
+      width: 100%;
+      height:60px;
+		}
+	
+	
+		.docs .table {
+			height: 200px; // <-- Select the height of the table
+			display: -moz-groupbox; // For firefox bad effect
+       width: 100%;
+		}
+.docs	tr {
+width: 100%;
+display: inline-table;
+height:50px;
+  
+}
+		.docs tbody {
+ 
+			overflow-y: scroll;
+			height: 200px; //  <-- Select the height of the body
+			width: 100%;
+			position: absolute;
+		}
+	</style>
 
 	<section class="docs  full-height  flex-column-1 overflow-y-auto ignore">
-    	
+
 		<h4>
 			<!-- href="#/provenance/new"> -->
 			<i class="fa fa-folder-open"></i> Reproduction
@@ -14,33 +45,27 @@
 			</a>
 		</h4>
 
-<table  class="table-condensed table">
+		<table class="table-condensed table">
 
 			<thead class="table-header-blue" data-sort="items.bind: currentItem.reproduction; cols: ['WorkDate','Notes']">
-			
-      	<tr>
-					<th class="header">Author</th>
-					<th class="header">First</th>
-					<th class="header">Last</th>
-					<th class="header">Ed</th>
-					<th class="header">Title </th>
-					<th class="header">Publisher </th>
-					<th class="header">Location </th>
-					<th class="header">Date </th>
-					<th class="header">No. </th>
 
-
-
-					<th class="header">Page </th>
-					<th class="header">Type </th>
-
-					<th class="header">Color/BW </th>
-					<th class="header">Sort Date </th>
-      	
-					<th class="header">Select<br>Exhibition</th>
-					<th class="header">Batch No </th>
-
-					<th class="header"> </th>
+				<tr>
+					<th width="125px" class="header">Author</th>
+					<th width="125px" class="header">First</th>
+					<th width="125px" class="header">Last</th>
+					<th width="70px" class="header">Ed</th>
+					<th width="225px" class="header">Title </th>
+					<th width="200px" class="header">Publisher </th>
+					<th width="200px" class="header">Location </th>
+					<th width="180px" class="header">Date </th>
+					<th width="80px" class="header">No. </th>
+					<th width="225px"  class="header">Page </th>
+					<th width="200px" class="header">Type </th>
+					<th width="120px" class="header">Color/BW </th>
+					<th width="160px" class="header">Sort Date </th>
+					<th width="300px" class="header">Select<br>Exhibition</th>
+					<th width="60px" class="header">Batch No </th>
+					<th width="325px" class="header"> cmd </th>
 				</tr>
 			</thead>
 			<tfoot>
@@ -72,20 +97,20 @@
 						 type="text" value.bind="AuthorLast">
 					</td>
 
-					<td width="65px">
+					<td width="70px">
 						<input type="checkbox" id="Editor" checked.bind="reproduction.Editor">
 
 
 					</td>
 
- 
+
 
 					<td width="225px">
 						<span show.bind="!reproduction.edit">${ReproductionTitle}</span>
 						<input show.bind="reproduction.edit" id="zReproductionTitle" class="form-control input-sm" disabled.bind="!reproduction.edit"
 						 type="text" value.bind="ReproductionTitle">
 					</td>
-					<td width="225px">
+					<td width="200px">
 						<span show.bind="!reproduction.edit">${ReproductionName}</span>
 						<input show.bind="reproduction.edit" id="zReproductionAuthor" class="form-control input-sm" disabled.bind="!reproduction.edit"
 						 type="text" value.bind="ReproductionName">
@@ -104,7 +129,7 @@
 					</td>
 
 					<td width="180px"><input type="text" id="ReproductionDate" class="form-control  input-sm" value.bind="ReproductionDate "></td>
-					<td width="90px"><input type="text" id="Number" class="form-control  input-sm" value.bind="no"></td>
+					<td width="80px"><input type="text" id="Number" class="form-control  input-sm" value.bind="no"></td>
 
 
 					<td width="225px"><input type="text" id="zReproductionPage" class="form-control  input-sm" value.bind="ReproductionPage"></td>
@@ -130,9 +155,9 @@
                     </select>
 
 					</td>
-				<td width="160px"><input type="date" id="ReproductionSortDate" class="form-control  input-sm" value.bind="ReproductionSortDate | dateFormat "></td>
+					<td width="160px"><input type="date" id="ReproductionSortDate" class="form-control  input-sm" value.bind="ReproductionSortDate | dateFormat "></td>
 
-			
+
 
 					<td width="300px">
 
