@@ -879,7 +879,7 @@ buildEditionLogic(edition) {
 
 
   createRTF() { 
-
+alert('in create')
     // this.buildEdition();
     this.createDim()
     let artist = this.currentItem.artist

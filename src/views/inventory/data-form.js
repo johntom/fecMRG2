@@ -745,6 +745,8 @@ async addRTF(){
   alert('addRTF')
  let r = await this.rtfService.addRTF()
  alert ('r'+r)
+ let rr = await this.rtfService.createRTF()
+ alert ('r'+rr)
 }
 
 
