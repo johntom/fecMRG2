@@ -2,10 +2,21 @@
     padding: 0 20px;
   }
   .docs .table-header-blue {
+    height:150px;
     background-color: deepskyblue;
     color: white;
   }
 
-.docs .th {
-  height: 150px;
+.docs tr {
+width: 100%;
+display: inline-table;
+height:60px;                // <-- the rows height 
+}
+
+
+.docs tbody{
+  overflow-y: scroll;      
+  height: 150px;            //  <-- Select the height of the body
+  width: 100%;
+  position: absolute;
 }
