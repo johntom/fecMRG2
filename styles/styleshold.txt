@@ -336,10 +336,10 @@ section.fec-web {
   justify-content: center;
   align-items: center;
 
-  font-size: 10px;
+  font-size: 14px;
   font-family: inherit;
   color: black;
-  height: 24px;
+  height: 30px;
   background: #eee;
   border-radius: 4px 4px 0 0;
   border-top: 1px solid #ccc;
