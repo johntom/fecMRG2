@@ -1,9 +1,10 @@
 <template>
+    <!-- <component-rtf view-model.ref="rtf"></component-rtf> -->
 		<section>
 		<span>&nbsp;&nbsp;	
 					<button class="btn btn-sm btn-success" click.delegate="createRTF()">
 						Create Label and Fact Sheet v103
-					</button>
+					</button> to change image size select ratio and press Create
 
 						 		<label repeat.for="sold of searchsold">
          <input type="radio" name="group1"
@@ -11,7 +12,10 @@
                 ${sold.name} &nbsp;  
               </label>
 				</span>
-		<div id="top-left" class="data-form overflow-y-auto flex-column-2">
+       <div> 1. Open Word. Click the “File” tab on the ribbon. Click “Options” at the bottom of the drop-down menu.
+        2. Click "Advanced" in the left pane. In the right pane, scroll down to the General area. Select the "Confirm File Format Conversion on Open" check box and then click "OK."
+			</div>
+    <div id="top-left" class="data-form overflow-y-auto flex-column-2">
 			<!-- row1 -->
 			<div class="flex-row-none">
 

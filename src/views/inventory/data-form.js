@@ -8,9 +8,12 @@ import { Prompt } from './prompt';
 
 import { Promptorg } from './promptorg';
 import { DialogImage } from './dialogImage';
+import {bindable} from 'aurelia-framework';
+// import { Rtf } from './one-to-many/rtf';
 
 @inject(Router, ApiService, ApplicationService, MyDataService, DialogService)
 export class DataForm {
+  @bindable createRTF
   controller = null;
   MediumSupportobj = '';
   Title = '';
@@ -42,7 +45,7 @@ export class DataForm {
     { id: 15, name: '15/16' },
   ];
   measures = [
-   
+
     { id: 0, name: '1/8' },
     { id: 1, name: '1/4' },
     { id: 3, name: '3/8' },
@@ -60,8 +63,8 @@ export class DataForm {
   //   { id: 3, name: 'DON' },
   // ];
   searchsold2 = [
-     {id:-1,name:'Y'},
-     { id: 0, name: 'Y' },
+    { id: -1, name: 'Y' },
+    { id: 0, name: 'Y' },
     { id: 1, name: 'Y' },
     { id: 2, name: 'N' },
     { id: 3, name: 'NFS' },
@@ -69,8 +72,8 @@ export class DataForm {
   ];
 
   searchsold = [
-     {id:-1,name:'Y'},
- 
+    { id: -1, name: 'Y' },
+
     { id: 0, name: 'N' },
     { id: 2, name: 'NFS' },
     { id: 3, name: 'DON' },
@@ -162,7 +165,7 @@ export class DataForm {
     this.router = router
     this.dialogService = dialogService
     this.skippromt = false
-
+// this.rtf=rtf
   }
 
   soldtoEdit() {
@@ -187,31 +190,31 @@ export class DataForm {
 
 
 
-    //  let topos = this.orgfields.findIndex(x => x === fieldname);
-    //     if (topos !== -1) {
-    //       // orgfields orgfielddesc 
-    //       // let odesc = this.orgfielddesc[topos]
-    //       // this.heading = `Org/Contact ${odesc} Search`
-    //     }
+  //  let topos = this.orgfields.findIndex(x => x === fieldname);
+  //     if (topos !== -1) {
+  //       // orgfields orgfielddesc 
+  //       // let odesc = this.orgfielddesc[topos]
+  //       // this.heading = `Org/Contact ${odesc} Search`
+  //     }
 
 
-    // if (this.currentItem.OwnerID === 6275) this.currentItem.OwnerID = '5c434cc100a8a1588c6407b7'
-    // let findOptiono = this.appService.orgsList.find(x => x._id === this.currentItem.OwnerID)
-    // console.log('appService.orgsList', findOptiono)
-    // let findOptions = this.appService.orgsList.find(x => x._id === this.currentItem.SoldToID)
-    // console.log('appService.orgsList', findOptions)
-    //     if (findOptiono === undefined) {
-    //       findOptiono = '';
-    // this.currentItem.OwnerID=''
-    //     }
-    //     if (findOptions === undefined) {
-    //       findOptions = ''; 
-    // this.currentItem.SoldToID=''
-    //     }
-    // if (fieldname === 'SoldToID') {
-    // let topos = this.orgfields.findIndex(x => x === fieldname);
-    // if (topos !== -1) {
-    // only 2 on main form
+  // if (this.currentItem.OwnerID === 6275) this.currentItem.OwnerID = '5c434cc100a8a1588c6407b7'
+  // let findOptiono = this.appService.orgsList.find(x => x._id === this.currentItem.OwnerID)
+  // console.log('appService.orgsList', findOptiono)
+  // let findOptions = this.appService.orgsList.find(x => x._id === this.currentItem.SoldToID)
+  // console.log('appService.orgsList', findOptions)
+  //     if (findOptiono === undefined) {
+  //       findOptiono = '';
+  // this.currentItem.OwnerID=''
+  //     }
+  //     if (findOptions === undefined) {
+  //       findOptions = ''; 
+  // this.currentItem.SoldToID=''
+  //     }
+  // if (fieldname === 'SoldToID') {
+  // let topos = this.orgfields.findIndex(x => x === fieldname);
+  // if (topos !== -1) {
+  // only 2 on main form
 
   showModal(fieldname) {
     this.currentItem.fieldname = fieldname
@@ -394,7 +397,11 @@ export class DataForm {
             console.log('jsonRes ', jsonRes);
             let inv = jsonRes.data;
             this.currentItem = inv[0]
-            delete this.currentItem.updatedAt;
+
+            //7-22    delete this.currentItem.updatedAt;
+
+
+
             // delete this.currentItem.conservedbyname
             // this.saveinventory(0)
 
@@ -424,7 +431,7 @@ export class DataForm {
               // this.appService.originalrec.conservedbyname = this.currentItem.conservedbyname// fix dirty
               const currentJSON = JSON.stringify(this.currentItem);
               const originalJSON = JSON.stringify(this.appService.originalrec);
-              
+
               console.log('currentJSON');
 
               console.log(currentJSON);
@@ -464,11 +471,11 @@ export class DataForm {
     if (prevtemp[2] != undefined && newrec.id === prevtemp[2].id) this.skip = true;
     if (prevtemp[3] != undefined && newrec.id === prevtemp[3].id) this.skip = true;
     if (prevtemp[4] != undefined && newrec.id === prevtemp[4].id) this.skip = true;
- if (prevtemp[5] != undefined && newrec.id === prevtemp[5].id) this.skip = true;
- if (prevtemp[6] != undefined && newrec.id === prevtemp[6].id) this.skip = true;
- if (prevtemp[7] != undefined && newrec.id === prevtemp[7].id) this.skip = true;
- if (prevtemp[8] != undefined && newrec.id === prevtemp[8].id) this.skip = true;
- if (prevtemp[9] != undefined && newrec.id === prevtemp[9].id) this.skip = true;
+    if (prevtemp[5] != undefined && newrec.id === prevtemp[5].id) this.skip = true;
+    if (prevtemp[6] != undefined && newrec.id === prevtemp[6].id) this.skip = true;
+    if (prevtemp[7] != undefined && newrec.id === prevtemp[7].id) this.skip = true;
+    if (prevtemp[8] != undefined && newrec.id === prevtemp[8].id) this.skip = true;
+    if (prevtemp[9] != undefined && newrec.id === prevtemp[9].id) this.skip = true;
 
 
     // if (newrec.id === temp[5].id) this.skip = true;
@@ -494,7 +501,7 @@ export class DataForm {
       if (temp[2] != undefined) this.mru3 = temp[2];
       if (temp[3] != undefined) this.mru4 = temp[3];
       if (temp[4] != undefined) this.mru5 = temp[4];
-       if (temp[5] != undefined) this.mru6 = temp[5];
+      if (temp[5] != undefined) this.mru6 = temp[5];
       if (temp[6] != undefined) this.mru7 = temp[6];
       if (temp[7] != undefined) this.mru8 = temp[7];
       if (temp[8] != undefined) this.mru9 = temp[8];
@@ -502,8 +509,8 @@ export class DataForm {
       //  this.tabindex = temp[1];
     }
 
-    const prevtemp = [mruget.mru1, mruget.mru2, mruget.mru3, mruget.mru4, mruget.mru5,mruget.mru6, mruget.mru7, mruget.mru8, mruget.mru9, mruget.mru10];
-    const temp = [{ id: this.recordId, InvCode: this.currentItem.InventoryCode }, mruget.mru1, mruget.mru2, mruget.mru3, mruget.mru4, mruget.mru5,mruget.mru6, mruget.mru7, mruget.mru8, mruget.mru9, mruget.mru10];
+    const prevtemp = [mruget.mru1, mruget.mru2, mruget.mru3, mruget.mru4, mruget.mru5, mruget.mru6, mruget.mru7, mruget.mru8, mruget.mru9, mruget.mru10];
+    const temp = [{ id: this.recordId, InvCode: this.currentItem.InventoryCode }, mruget.mru1, mruget.mru2, mruget.mru3, mruget.mru4, mruget.mru5, mruget.mru6, mruget.mru7, mruget.mru8, mruget.mru9, mruget.mru10];
     const newrec = { id: this.recordId, InvCode: this.currentItem.InventoryCode }
 
     this.mrucheck(newrec, prevtemp);
@@ -562,8 +569,8 @@ export class DataForm {
     // move to attach
     // bypass save if in create mode
     if (this.recordId !== 'create') {
-// fix dirty
-            this.appService.originalrec.OwnedId =  this.appService.currentItem.OwnedId
+      // fix dirty
+      this.appService.originalrec.OwnedId = this.appService.currentItem.OwnedId
 
 
 
@@ -587,8 +594,9 @@ export class DataForm {
 
   saveinventory(option) {
     //this.controller.validate();
+    //  class Rtf
+    this.createRTF() 
     let savetime = moment().format('MM/DD/YY h:mm:ss a')
-
     if (this.recordId === 'create') {
       // console.log(  this.currentItem, this.currentItem)
       // || this.currentItem.MediumSupportobj === undefined
@@ -750,10 +758,10 @@ export class DataForm {
       } else {
         resolve(true);
       }
-    }); 
-  } 
+    });
+  }
 
-  
+
 
   requestclose() {
     //console.log(this.appService.originalrec, this.currentItem)
