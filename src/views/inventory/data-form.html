@@ -178,11 +178,12 @@
 									<div class="Rtable-cell-70  Rtable-cell--highlight">
 
 										<!-- <div if.bind="recordId === 'create'"> -->
-										<div style="height:15px;margin-left:10px;margin-top:5px;margin-bottom:10px" if.bind="currentItem.artist===undefined || currentItem.artist===''">
+										<!-- <div style="height:15px;margin-left:10px;margin-top:5px;margin-bottom:10px" if.bind="currentItem.artist===undefined || currentItem.artist===''"> -->
+										<div style="height:12px;margin-left:8px;margin-top:2px;margin-bottom:5px" if.bind="currentItem.artist===undefined || currentItem.artist===''">
 											<a click.delegate="showModal( 'Artist')">select_link </a>
 
 										</div>
-										<div style="height:15px;margin-left:10px;margin-top:5px;margin-bottom:10px" else>
+										<div style="height:12px;margin-left:8px;margin-top:2px;margin-bottom:5px" else>
 
 
 											<a click.delegate="showModal( 'Artist')">${currentItem.artist.lastName}, ${currentItem.artist.firstName}
@@ -221,38 +222,7 @@
 										</div>
 									</div>
 								</div>
-								<!--
-                           <a class=" waves-effect waves-lightd tooltipped" data-position="bottom"
-                                  data-delay="50" data-tooltip="Zoning Owned Public Space"
-                                   target='_blank' href="${building.Zoning}">Click Here
-                                </a>
-                      
-                       <select ref="MediumSupport11" id="MediumSupport11" class="form-control input-sm" value.bind="currentItem.MediumSupportobj"> 
-                      <!-- & validate -->
-								<!-- <option model.bind=" null">Choose...</option>
-											<option ref="MediumSupport21 " repeat.for="opt of appService.codesListMediumSupport " model.bind="opt">
-												${opt.Description}
-											</option>
-										</select>  -->
-								<!-- <input disabled dblclick.delegate="showModal( 'MediumSupportobj') " type="text " xid="MediumSupportobj " class="form-control input-sm "
-										 value.bind="currentItem.MediumSupportobj.Description"> -->
-
-								<!-- <div class="Rtable Rtable--4cols">
-									<div class="Rtable-cell Rtable-cell--highlight">
-										<strong> Catalogue No</strong>
-									</div>
-
-									<div class="Rtable-cell Rtable-cell--highlight">
-										<input type="text " xid="CatalogueNo " class="form-control  " value.bind="currentItem.CatalogueNo">
-									</div>
-
-									<div class=" Rtable-cell Rtable-cell--highlight">
-										<strong>Year</strong>
-									</div>
-									<div class=" Rtable-cell Rtable-cell--highlight">
-										<input type=" text " id="InvYear" class="form-control " value.bind="currentItem.InvYear">
-									</div>
-								</div> -->
+							
 
 
 								<div class="Rtable Rtable--7cols">
@@ -553,7 +523,7 @@
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
 										<strong> Current Location</strong>
 									</div>
-									<div class="Rtable-cell-70 Rtable-cell--highlight">
+									<div styles=" height:34px;" class="Rtable-cell-70 Rtable-cell--highlight">
 										<select id="CurrentLocation " class="form-control " value.bind="currentItem.CurrentLocation">
 											<option model.bind="null">Choose...</option>
 											<option repeat.for="opt of appService.codesInventoryLocation " model.bind="opt.id">

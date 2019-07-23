@@ -7,11 +7,14 @@ import { ApiService } from '../../utils/servicesApi';
 
 export class Home { 
   heading = "MRG Home Page";
-  version = 302.15 
+  version = 302.16 
  
   versionDate = 'Mon 7/22/2019 11pm'
 
   issues = [
+    `1. Open Word. Click the “File” tab on the ribbon. Click “Options” at the bottom of the drop-down menu.`,
+     `2. Click "Advanced" in the left pane. In the right pane, scroll down to the General area. Select the "Confirm File Format Conversion on Open" check box and then click "OK."
+	`,
     'JUNE 15 CONV fix org/contacts save both cols before redo',
     ' check out mailing list check contact conversion ',
     'a action abs exp',
