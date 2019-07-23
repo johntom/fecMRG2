@@ -8,11 +8,10 @@
 	<require from="./modal-form"></require>
 	<require from="../../resources/value-converters/date-format"></require>
 	<require from="../../resources/value-converters/upper-case"></require>
-  <require from="./one-to-many/rtf"></require>
-    <!-- <component-a createRTF.call="rtf.createRTF()"></component-a> -->
-    <!-- //  @bindable createRTF; -->
+	<!-- <require from="./one-to-many/rtf"></require> -->
+	<!-- <component-a createRTF.call="rtf.createRTF()"></component-a> -->
+	<!-- //  @bindable createRTF; -->
 	<style>
-
 		img.responsive-imgV {
 			max-height: 300px;
 			width: auto;
@@ -222,7 +221,7 @@
 										</div>
 									</div>
 								</div>
-							
+
 
 
 								<div class="Rtable Rtable--7cols">
@@ -540,7 +539,7 @@
 									<div class="Rtable-cell-70 Rtable-cell--highlight">
 										<input type="text " id="Bin" class="form-control " value.bind="currentItem.Bin">
 									</div>
-							
+
 
 
 
@@ -679,20 +678,20 @@
              h: ${currentDim.clientHeight} / w: ${currentDim.clientWidth} </span>
 										<span>https://artbased.com/api/v1/getimage/inv/${currentItem.InventoryCode}.jpg </span> -->
 									</div>
-		<div class="Rtable-cell-30 Rtable-cell--highlight">
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
 										<strong>Added/updatedAt</strong>
 									</div>
 									<div class="Rtable-cell-70 Rtable-cell--highlight">
 										<!-- after convert use createdAt -->
 
-										${currentItem.DateAdded  | dateFormat} / ${currentItem.updatedAt | dateFormat } 							</div>
-<div class="Rtable-cell-30 Rtable-cell--highlight">
+										${currentItem.DateAdded | dateFormat} / ${currentItem.updatedAt | dateFormat } </div>
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
 										<strong>legacy modified</strong>
 									</div>
 									<div class="Rtable-cell-70 Rtable-cell--highlight">
 										<!-- after convert use createdAt -->
 
-									 ${currentItem.ModifiedDate | dateFormat }
+										${currentItem.ModifiedDate | dateFormat }
 
 									</div>
 								</div>
@@ -777,7 +776,7 @@
 						</li>
 					</ul> -->
 				<!-- </form> -->
-				<!-- after or before the form --> 
+				<!-- after or before the form -->
 			</form>
 		</div>
 		<footerform class="flex-row-none">
@@ -791,7 +790,7 @@
 					</button>
 &nbsp;&nbsp;
 
-<button click.delegate="createRTF()">createRTF</button>
+<button click.delegate="addRTF()">addRTF</button>
 
 				</span>
 			<!-- <button class="btn btn-sm btn-primary " click.delegate="factsheet()">

@@ -1,3 +1,147 @@
+GENERAL
+
+arbitrary date for when date field is new to this system: 1/1/1980
+contact created
+condition date
+note date
+
+Invalid date: does this mean there was a date that didn’t convert or that the field was empty or either?
+HOFFMA0001 date added
+POLLOCJ005 prov tab
+
+Code cleanup
+medium support: Hooper
+ProvLoc: Prov Loc
+Like artist they will make exact dupes for codes that need to be merged
+any medium code that is xxx or zzz can be deleted, there are no corresponding records
+they are doing this directly in the code management of the old system
+
+what is the 1st column in all search results grid? 
+what does the check box do (everyone clicks it)
+
+_________________________________________________
+
+CONTACT DUPES
+
+merge contacts is there any way to see if a contact has a primary
+
+
+_________________________________________________
+
+CONVERSION
+
+Org/Contact
+
+phone conversion 
+if (B) tel is work
+if (I) tel is home
+
+
+Will we be getting rid of primary address checks for no mailings during conversion ?
+
+_________________________________________________
+
+ACTIONS
+
+right panel: 
+delete from list not working
+add Date (InvYear) for sorting
+review other columns (edit? FactsheetGownload?)  
+do we need tf2 if we know that these texts will be automatically updated?
+
+implement export of the merge images function using sort order created in grid
+
+Zak needs option of adding the retail price (numeric) to the merge images function
+
+adding Exhibit did not add exhibit ID saved list: dOVE batch ID 126
+
+is there a solution to this:
+we have a saved list, we create an exhibition action (batch 126), someone adds a new inv item to the saved list, someone updates batch 126, that exhibition is unaffected, doesn’t have the exhibition…
+
+_________________________________________________
+
+FACT SHEET/CHECKLIST
+
+when changes are saved, both should update
+
+DOVEAR0014
+dimensions 3/4 going to 3 places
+inches eliminate the 0: 0 3/4 in. (this happens when there is an 0 in the integer column)
+cm: 0.01.905 cm
+
+keep semicolon in inscription
+
+if no alt ID don’t have text “Alt ID”
+
+new: automatically generate a “-“ before note in Prov Memo
+
+Hooper REALLY needs this
+Check list text (right side)
+format like fact sheet (without all the spaces between lines)
+Artist (b d)
+Title
+Date
+Medium
+unframed dim without word unframed (just like fact sheet)
+if they exist, sight dimensions with text “sight size”
+if they exist framed dimensions with text “framed”
+inscription text
+
+_________________________________________________
+
+
+INVENTORY
+
+Just a questioning: possibility for an endless scroll for Inv Search Results?
+
+Search Results Grid: (will column settings hold for each user?) 
+This combines Hooper & Zaks list, i think it includes halley’s as well
+Inv Code
+Title
+Artist
+Med
+Date
+Current Loc
+Unframed Dim (all 6 fields)
+Bin
+Owner Status
+Owner
+Sold Status
+Sold To ID
+Sold Date
+Purchased From
+
+
+Main Form
+do we need to keep image info & Dim field
+
+inventory fields make backgrounds white (not blue)
+artist
+sold to
+owned by
+
+change all fields labels back to black from purple (this is per Hooper)
+
+Inv Year is Date on Search, search results grid & header
+
+review date added/date modified/legacy date modified
+
+On “Add New” only required fields are inv code & artist 
+
+inv tab Sold to: can click on sold to contact, opens tab but can’t access it
+
+_________________________________________________
+
+
+ORG/CONTACT
+
+Org tab phone:  add email
+
+Contact/Org: make email address clickable to open mail program
+
+Contact Search Results grid: show last name
+
+
 
 // move database to scalegrid
 1. create mrg in scalegrid

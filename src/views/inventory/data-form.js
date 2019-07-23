@@ -1,6 +1,9 @@
 import { inject } from 'aurelia-dependency-injection';
 import { ApiService } from '../../utils/servicesApi';
 import { ApplicationService } from '../../services/application-service';
+
+import { RtfService } from '../../services/rtf-service';
+
 import { MyDataService } from "../../services/my-data-service";
 import { Router } from 'aurelia-router';
 import { DialogService } from 'aurelia-dialog';
@@ -11,7 +14,8 @@ import { DialogImage } from './dialogImage';
 import {bindable} from 'aurelia-framework';
 // import { Rtf } from './one-to-many/rtf';
 
-@inject(Router, ApiService, ApplicationService, MyDataService, DialogService)
+@inject(Router, ApiService, ApplicationService, MyDataService, DialogService,RtfService)
+// @inject(Router, ApiService, ApplicationService, MyDataService, DialogService)
 export class DataForm {
   @bindable createRTF
   controller = null;
@@ -156,10 +160,12 @@ export class DataForm {
     dataSource.sync();
     widget.refresh();// keep the focus
   }
-
-  constructor(router, api, appService, dataService, dialogService, controllerFactory) {
-    this.api = api
+//controllerFactory
+  constructor(router, api, appService, dataService, dialogService, rtfService) {
+  //  constructor(router, api, appService, dataService, dialogService, controllerFactory) {
+   this.api = api
     this.appService = appService
+    this.rtfService = rtfService
     this.inv = ''
     this.dataService = dataService
     this.router = router
@@ -731,6 +737,15 @@ export class DataForm {
 
   }
 
+createRTF(){
+  alert('crt')
+ this.rtfService.createRTF()
+}
+async addRTF(){
+  alert('addRTF')
+ let r = await this.rtfService.addRTF()
+ alert ('r'+r)
+}
 
 
 
@@ -789,7 +804,6 @@ export class DataForm {
 
 
   }
-
 
 
 
