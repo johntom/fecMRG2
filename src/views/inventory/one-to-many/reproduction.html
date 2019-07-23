@@ -99,11 +99,7 @@ height:50px;
 
 					<td width="70px">
 						<input type="checkbox" id="Editor" checked.bind="reproduction.Editor">
-
-
 					</td>
-
-
 
 					<td width="225px">
 						<span show.bind="!reproduction.edit">${ReproductionTitle}</span>
@@ -127,11 +123,8 @@ height:50px;
                     </select>
 
 					</td>
-
 					<td width="180px"><input type="text" id="ReproductionDate" class="form-control  input-sm" value.bind="ReproductionDate "></td>
 					<td width="80px"><input type="text" id="Number" class="form-control  input-sm" value.bind="no"></td>
-
-
 					<td width="225px"><input type="text" id="zReproductionPage" class="form-control  input-sm" value.bind="ReproductionPage"></td>
 					<!-- <td width="120px"><input type="text" id="Sequence" class="form-control  input-sm" value.bind="Sequence"></td>
 						<td width="120px"><input type="date" id="ReproductionType" class="form-control  input-sm" value.bind="ReproductionType"></td>
@@ -143,9 +136,7 @@ height:50px;
                     ${opt.Description} 
                       </option> 
                     </select>
-
 					</td>
-
 					<td width="120px">
 						<select id="ColorBW" class="form-control  input-sm" value.bind="ColorBW"> 
                       <option model.bind="''">Choose...</option> 
@@ -156,11 +147,7 @@ height:50px;
 
 					</td>
 					<td width="160px"><input type="date" id="ReproductionSortDate" class="form-control  input-sm" value.bind="ReproductionSortDate | dateFormat "></td>
-
-
-
 					<td width="300px">
-
 						<select id="ReproductionExhibit" class="form-control  input-sm" value.bind="ReproductionExhibit"> 
                       <option model.bind="''" >Choose...</option> 
                          <option change.delegate="changeSelect(opt)" repeat.for="opt of currentItem.exhibition" 
@@ -168,25 +155,16 @@ height:50px;
                ${opt.id}  /  ${opt.ExhibitTitle} /  ${opt.ExhibitSponser}
                       </option> 
                     </select>
-
-
 					</td>
 					<td width="60px"><span> ${batchno}</span></td>
-
 					<td width="325px">
 						<!-- <button class="btn btn-primary" click.delegate="reproduction.edit=!reproduction.edit">${ !reproduction.edit ? 'Update' : 'Done' }</button>					 -->
 						<button class="btn btn-primary" click.delegate="saveitem(reproduction,$index)">${!reproduction.edit ? 'Edit' : 'Save' }</button>
-
 						<button class="btn btn-danger" click.delegate="remove(reproduction,$index)">Del</button>
 						<button class="btn btn-success" click.delegate="modal(reproduction,$index)">Pop</button>
-
 					</td>
-
 				</tr>
-
 			</tbody>
 		</table>
-
-
 	</section>
 </template>
