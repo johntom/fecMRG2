@@ -813,14 +813,15 @@ there are extra ' when there are fractions
     this.buildEdition()
     this.buildProv()
     this.buildRepro()
-     if (createopt === 1) { 
-    this.editor.value('<p>' + this.segment2 + '</p>');
-    this.currentItem.rtf1 = this.editor.value()// factsheet
-    this.editorlabel.value('<p>' + segment1 + '</p>');
-    this.currentItem.rtf2 = this.editorlabel.value()// label
+    //  if (createopt === 1) { 
+    // this.editor.value('<p>' + this.segment2 + '</p>');
+    // this.currentItem.rtf1 = this.editor.value()// factsheet
+    // this.editorlabel.value('<p>' + segment1 + '</p>');
+    // this.currentItem.rtf2 = this.editorlabel.value()// label
+    this.currentItem.rtf1 = '<p>' + this.segment2 + '</p>'
+    this.currentItem.rtf2 = '<p>' + this.segment1 + '</p>'
 
-    
-    }
+    // }
     return this.currentItem.rtf1
 
   }

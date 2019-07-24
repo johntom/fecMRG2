@@ -11,10 +11,10 @@ import { Prompt } from './prompt';
 
 import { Promptorg } from './promptorg';
 import { DialogImage } from './dialogImage';
-import {bindable} from 'aurelia-framework';
+import { bindable } from 'aurelia-framework';
 // import { Rtf } from './one-to-many/rtf';
 
-@inject(Router, ApiService, ApplicationService, MyDataService, DialogService,RtfService)
+@inject(Router, ApiService, ApplicationService, MyDataService, DialogService, RtfService)
 // @inject(Router, ApiService, ApplicationService, MyDataService, DialogService)
 export class DataForm {
   @bindable createRTF
@@ -160,10 +160,10 @@ export class DataForm {
     dataSource.sync();
     widget.refresh();// keep the focus
   }
-//controllerFactory
+  //controllerFactory
   constructor(router, api, appService, dataService, dialogService, rtfService) {
-  //  constructor(router, api, appService, dataService, dialogService, controllerFactory) {
-   this.api = api
+    //  constructor(router, api, appService, dataService, dialogService, controllerFactory) {
+    this.api = api
     this.appService = appService
     this.rtfService = rtfService
     this.inv = ''
@@ -171,7 +171,7 @@ export class DataForm {
     this.router = router
     this.dialogService = dialogService
     this.skippromt = false
-// this.rtf=rtf
+    // this.rtf=rtf
   }
 
   soldtoEdit() {
@@ -611,6 +611,9 @@ export class DataForm {
         || this.currentItem.artist === undefined || this.currentItem.OwnedBy === undefined) {
         alert('Please fix  Title, InventoryCode, Owned By and or Artist ')
       } else {
+        this.rtfService.currentItem = this.currentItem
+        let createopt = 2; // 1 is from tab
+        let rr = await this.rtfService.createRTF(createopt)
         this.api.createinventory(this.currentItem).then((jsonRes) => {
           console.log('jsonRes ', jsonRes);
           this.recordId = jsonRes.id
@@ -737,19 +740,19 @@ export class DataForm {
 
   }
 
-createRTF(createopt){
-  alert('crt')
- this.rtfService.createRTF()
-}
-async addRTF(){
-//   alert('addRTF')
-//  let r = await this.rtfService.addRTF()
-//  alert ('r'+r)
-this.rtfService.currentItem = this.currentItem
-let createopt=2; // 1 is from tab
- let rr = await this.rtfService.createRTF(createopt)
- alert ('r'+rr)
-}
+  createRTF(createopt) {
+    alert('crt')
+    this.rtfService.createRTF()
+  }
+  async addRTF() {
+    //   alert('addRTF')
+    //  let r = await this.rtfService.addRTF()
+    //  alert ('r'+r)
+    this.rtfService.currentItem = this.currentItem
+    let createopt = 2; // 1 is from tab
+    let rr = await this.rtfService.createRTF(createopt)
+    alert('r' + rr)
+  }
 
 
 
