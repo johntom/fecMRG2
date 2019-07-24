@@ -3,9 +3,9 @@ import { Prompt } from './prompt';
 import { Router } from 'aurelia-router';
 import { inject } from 'aurelia-dependency-injection';
 import { ApplicationService } from './application-service';
-@inject(Router, DialogService,ApplicationService)
+@inject(Router, DialogService, ApplicationService)
 export class RtfService {
-  
+
   currentItem;
   currentView;
   // tabs = [];
@@ -25,7 +25,7 @@ export class RtfService {
 
 
 
- 
+
   searchsold = [
     { id: 0, name: 'normal size', factor: 1 },
     { id: 1, name: '1.5 size', factor: 1.5 },
@@ -36,10 +36,10 @@ export class RtfService {
 
   ];
   selectedimagesize = 0;//null searchsold[0];
-  constructor(router, dialogService,appService) {
+  constructor(router, dialogService, appService) {
     this.dialogService = dialogService
     this.router = router
-  
+
     // this.api = api;
     this.appService = appService;
     this.provenance = '';
@@ -88,13 +88,13 @@ export class RtfService {
     let provenance = this.currentItem.provenance
     if (provenance !== undefined && provenance.length !== 0) {
       let iarray = []
-   
+
       let provheader = `<span style='text-decoration-line:underline'><u>PROVENANCE</u></span><br>`
 
       let provarray = []
 
       for (const item of provenance) {
-        
+
         let pl = this.appService.codesProvenanceLocation
         let oid
         if ((item.ProvLoc + '').length < 6) {
@@ -121,12 +121,12 @@ export class RtfService {
           }
 
         }
-        
+
       }
       let myObjects = _.sortBy(provarray, 'sord');
       this.segment2 += provheader
       for (const obj of myObjects) {
-       this.segment2 += obj.exception
+        this.segment2 += obj.exception
       }
     }
 
@@ -153,7 +153,7 @@ export class RtfService {
     // conbine both tables
     let provloc = this.appService.codesProvenanceLocation
 
-   
+
     let exhibition = undefined
     let reproduction = undefined
     if (this.currentItem.exhibition !== undefined) exhibition = JSON.parse(JSON.stringify(this.currentItem.exhibition));
@@ -167,7 +167,7 @@ export class RtfService {
       for (const item of exhibition) {
         console.log('==================-item==========', item.ExhibitTitle)
         ct++
-     
+
 
 
         // check to see if link in repo (loop thru exhibit and find repo match)
@@ -175,7 +175,7 @@ export class RtfService {
           let eid = reproduction.findIndex(x => x.ReproductionExhibit === item.id)
           let reporec
           linkPageNo = ''
-       
+
           if (eid !== -1) {
             reporec = reproduction[eid]
             console.log('link in exhibit from repo ct', ct, reporec.ReproductionPage, reporec)
@@ -186,7 +186,7 @@ export class RtfService {
           } else console.log('no link in exhibit from repo ct', ct)
 
         } else linkPageNo = ''
-   let oid
+        let oid
         if ((item.ExhibitLocation + '').length < 6) {
 
           oid = provloc.findIndex(x => x.ID === item.ExhibitLocation)
@@ -197,7 +197,7 @@ export class RtfService {
         if (oid == -1) oid = 1
         let ExhibitLocationDesc = provloc[oid].Description
 
-         let ExhibitMemo
+        let ExhibitMemo
         let lpn
         console.log('===================item.id linkPageNo', item.id, linkPageNo + '...')
         if (linkPageNo === undefined || linkPageNo === "") {
@@ -218,7 +218,7 @@ export class RtfService {
         }
 
         rec = {
-         
+
           date: item.ExhibitSortDate,
           exception: exceptline
 
@@ -230,9 +230,9 @@ export class RtfService {
     } else exhibition = []
     let rct = 0
     if (reproduction !== undefined) {
-        var i;
-        let item
-        for (i = 0; i < reproduction.length; i++) { 
+      var i;
+      let item
+      for (i = 0; i < reproduction.length; i++) {
         item = reproduction[i];
         rct++
         console.log('rct ', rct) //, item.ReproductionPage, itm.ReproductionDate,item.ReproductionExhibit+'...')
@@ -242,15 +242,15 @@ export class RtfService {
           let oid = provloc.findIndex(x => x.id === item.ReproductionLocation)
           if (oid == -1) oid = 1
           let ReproductionLocationDesc = provloc[oid].Description
-           let data
+          let data
           if (item.ReproductionAuthor !== "") {
-data = ppre + `${item.ReproductionAuthor}. <em>${item.ReproductionTitle}</em> ${preafter}`
-          } else 
-          data = ppre + `${item.AuthorLast}, ${item.AuthorFirst}. <em>${item.ReproductionTitle}</em> ${preafter}`
-         
+            data = ppre + `${item.ReproductionAuthor}. <em>${item.ReproductionTitle}</em> ${preafter}`
+          } else
+            data = ppre + `${item.AuthorLast}, ${item.AuthorFirst}. <em>${item.ReproductionTitle}</em> ${preafter}`
+
           data += `(${ReproductionLocationDesc}: ${item.ReproductionName}, ${item.ReproductionDate}) <br>`
           data += `${item.ReproductionPage} <br> ${ppost}<br>`
-                   rec = {
+          rec = {
             date: item.ReproductionSortDate,
             exception: data
           }
@@ -263,7 +263,7 @@ data = ppre + `${item.ReproductionAuthor}. <em>${item.ReproductionTitle}</em> ${
 
     if (exhibitandpubs.length > 0) {
       myObjects = _.sortBy(exhibitandpubs, 'date');
-      
+
       this.segment2 += exandpubhead
       for (const obj of myObjects) {
         // this.segment2 += obj.date + ' ' + obj.exception
@@ -309,9 +309,9 @@ data = ppre + `${item.ReproductionAuthor}. <em>${item.ReproductionTitle}</em> ${
         if (semisPos === -1) {
           semisPos = rightofcolonbaseText.length
           // rightofcolonTextem = '<em>' + rightofcolonbaseText.substr(0, semisPos - 1) + '</em>'; //+ '</em><br>';
-           rightofcolonTextem = '<em>' + rightofcolonbaseText.substr(0, semisPos ) + '</em>'; //+ '</em><br>';
-        
-          iLines.push(leftofcolonText + ' ' + rightofcolonTextem) 
+          rightofcolonTextem = '<em>' + rightofcolonbaseText.substr(0, semisPos) + '</em>'; //+ '</em><br>';
+
+          iLines.push(leftofcolonText + ' ' + rightofcolonTextem)
         } else {
           // there is a semi so add br
           rightofcolonTextem = '<em>' + rightofcolonbaseText.substr(1, semisPos - 1) + '</em><br>';
@@ -320,8 +320,8 @@ data = ppre + `${item.ReproductionAuthor}. <em>${item.ReproductionTitle}</em> ${
           colonPos = restoftext.indexOf(":");
           leftofcolonText2 = restoftext.substr(0, colonPos);
           // rightofcolonTextem2 = '<em>' + restoftext.substr(colonPos + 1, restoftext.length - colonPos +1) + '</em>';
-            rightofcolonTextem2 = '<em>' + restoftext.substr(colonPos + 1, restoftext.length - colonPos ) + '</em>';
-  
+          rightofcolonTextem2 = '<em>' + restoftext.substr(colonPos + 1, restoftext.length - colonPos) + '</em>';
+
           iLines.push(leftofcolonText + ' ' + rightofcolonTextem + ' ' + leftofcolonText2 + ' ' + rightofcolonTextem2)
         }
       }
@@ -595,7 +595,7 @@ there are extra ' when there are fractions
     } else {
       this.dims += `${this.currentItem.UnframedWidth}       <span style="font-size:x-small;"> ${this.currentItem.UnframedWidth16} </span>`
       ufwcm = this.roundNumber(this.currentItem.UnframedWidth * 2.54, 1).toPrecision(2)
-  
+
       this.dimscm += (ufwcm + cmuw.toPrecision(2))
 
     }
@@ -611,7 +611,7 @@ there are extra ' when there are fractions
       }
     } else {
       this.dims += ' x ' + `${this.currentItem.UnframedDepth}   <span style="font-size:x-small;"> ${this.currentItem.UnframedDepth16} </span>`
-      ufwcm = this.roundNumber(this.currentItem.UnframedDepth * 2.54,1).toPrecision(2)   // this.dimscm += ' x ' + this.roundNumber((( this.currentItem.UnframedDepth * 2.54) + cmud), 1) //+ ' cm '
+      ufwcm = this.roundNumber(this.currentItem.UnframedDepth * 2.54, 1).toPrecision(2)   // this.dimscm += ' x ' + this.roundNumber((( this.currentItem.UnframedDepth * 2.54) + cmud), 1) //+ ' cm '
 
       this.dimscm += ' x ' + ((ufwcm) + cmud) //+ ' cm '
 
@@ -638,7 +638,7 @@ there are extra ' when there are fractions
       }
     }
 
- 
+
     if (this.currentItem.FramedDepth16 === null) {
       if (this.currentItem.FamedDepth === null || this.currentItem.FramedDepth === 0) { } else {
         this.dimsf += ' x ' + this.currentItem.FramedDepth
@@ -650,8 +650,8 @@ there are extra ' when there are fractions
 
     }
   }
-// edition
-buildEditionLogic(edition) {
+  // edition
+  buildEditionLogic(edition) {
     // rules:
     // 1 everying to left of : is plain text and to right is em
     // 2 until it finds a ; (convert ; to </em> <br>)  
@@ -705,25 +705,25 @@ buildEditionLogic(edition) {
 
 
   buildEdition() {
-        this.EditionCommentFormat=''
+    this.EditionCommentFormat = ''
     this.buildEditionLogic(this.currentItem.EditionComment)
     this.currentItem.EditionText = this.currentItem.Edition + '\n' + this.EditionCommentFormat + '\n'
     this.currentItem.EditionText += this.currentItem.Chop + '\n'
     this.currentItem.EditionText += this.currentItem.Publisher + ', ' + this.currentItem.PublisherLocation + '\n'
     this.currentItem.EditionText += this.currentItem.Printer + ', ' + this.currentItem.PrinterLocation + '\n'
     delete this.EditionCommentFormat
-   
+
 
 
   }
-async addRTF(){
-  alert ('add')
-  return await  true
-}
+  async addRTF() {
+    alert('add')
+    return await true
+  }
 
 
-  async createRTF() { 
- alert ('createRTF')
+  async createRTF(createopt) {
+    //  alert ('createRTF')
     this.createDim()
     let artist = this.currentItem.artist
     let artistWdates = `<strong>${artist.firstName} ${artist.lastName}`
@@ -798,7 +798,7 @@ async addRTF(){
     this.segment2 += ` <em>${this.currentItem.Title}</em>, ${this.currentItem.InvYear}<br>`
     if (this.currentItem.MediumSupportobj !== undefined)
       this.segment2 += ` ${this.currentItem.MediumSupportobj.Description}  <br> `
-  
+
     if (this.dims !== undefined) this.segment2 += `  ${this.dims} in.`
     if (this.dimscm !== undefined) this.segment2 += ` / ${this.dimscm} cm <br>  `
 
@@ -807,18 +807,21 @@ async addRTF(){
     if (this.currentItem.CatalogueNo !== undefined && this.currentItem.CatalogueNo !== '')
       // this.segment2 += ` Catalogue No: ${this.currentItem.CatalogueNo} <br>  <br> <br> `
 
-    this.segment2 += ` no. ${this.currentItem.CatalogueNo} <br>   `
+      this.segment2 += ` no. ${this.currentItem.CatalogueNo} <br>   `
     this.segment2 += ` AltID. ${this.currentItem.AltID} <br>  <br> <br> `
 
     this.buildEdition()
     this.buildProv()
     this.buildRepro()
+     if (createopt === 1) { 
     this.editor.value('<p>' + this.segment2 + '</p>');
     this.currentItem.rtf1 = this.editor.value()// factsheet
     this.editorlabel.value('<p>' + segment1 + '</p>');
     this.currentItem.rtf2 = this.editorlabel.value()// label
 
-return await this.currentItem.rtf1
+    
+    }
+    return this.currentItem.rtf1
 
   }
 
@@ -860,7 +863,7 @@ return await this.currentItem.rtf1
     this.currentItem.rtf2 = this.editorlabel.value()
   }
 
- 
+
   // remove(item, index) {
   //   //alert('you are about to delete ' + item.Notes + ' ' + index)
   //   this.mode = 0

@@ -878,8 +878,8 @@ buildEditionLogic(edition) {
 
 
 
-  createRTF() { 
-alert('in create')
+  createRTF(createopt) { 
+// alert('in create')
     // this.buildEdition();
     this.createDim()
     let artist = this.currentItem.artist
@@ -986,18 +986,21 @@ alert('in create')
 
     this.buildEdition()
 
-
+ 
     this.buildProv()
     this.buildRepro()
 
 
     // this.editor.value('<p>' + segment1 + '</p>' + '<hr><p>' +  this.segment2 + '</p>');
-
+if (createopt===1) {
+  // caled from rtf tab
     this.editor.value('<p>' + this.segment2 + '</p>');
     this.currentItem.rtf1 = this.editor.value()// factsheet
 
     this.editorlabel.value('<p>' + segment1 + '</p>');
     this.currentItem.rtf2 = this.editorlabel.value()// label
+    // return this.currentItem.rtf1
+}
 
 
 

@@ -46,7 +46,7 @@ bottom: .5em;
 					 <th>Sort Date </th>
 					 <th>Select<br>Exhibition</th>
 					 <th>Batch No </th>
-					 <th> cmd </th>
+					 <th> cmd  </th>
            </tr>
 				</thead>
     
@@ -125,14 +125,18 @@ bottom: .5em;
                ${opt.id}  /  ${opt.ExhibitTitle} /  ${opt.ExhibitSponser}
                       </option> 
                     </select>
+              
 					</td>
 					<td ><span> ${batchno}</span></td>
 					<td >
-						<!-- <button class="btn btn-primary" click.delegate="reproduction.edit=!reproduction.edit">${ !reproduction.edit ? 'Update' : 'Done' }</button>					 -->
+			    
+         
+           
 						<button class="btn btn-primary" click.delegate="saveitem(reproduction,$index)">${!reproduction.edit ? 'Edit' : 'Save' }</button>
 						<button class="btn btn-danger" click.delegate="remove(reproduction,$index)">Del</button>
 						<button class="btn btn-success" click.delegate="modal(reproduction,$index)">Pop</button>
-					</td>
+					  _______________________ 
+          </td> 
 				</tr>
 			</tbody>
        <tfoot>

@@ -601,7 +601,7 @@ export class DataForm {
   saveinventory(option) {
     //this.controller.validate();
     //  class Rtf
-    this.createRTF() 
+    // this.createRTF() 
     let savetime = moment().format('MM/DD/YY h:mm:ss a')
     if (this.recordId === 'create') {
       // console.log(  this.currentItem, this.currentItem)
@@ -737,15 +737,17 @@ export class DataForm {
 
   }
 
-createRTF(){
+createRTF(createopt){
   alert('crt')
  this.rtfService.createRTF()
 }
 async addRTF(){
-  alert('addRTF')
- let r = await this.rtfService.addRTF()
- alert ('r'+r)
- let rr = await this.rtfService.createRTF()
+//   alert('addRTF')
+//  let r = await this.rtfService.addRTF()
+//  alert ('r'+r)
+this.rtfService.currentItem = this.currentItem
+let createopt=2; // 1 is from tab
+ let rr = await this.rtfService.createRTF(createopt)
  alert ('r'+rr)
 }
 
