@@ -1,100 +1,22 @@
 <template>
 	<!-- <require from="./docs.css"></require> -->
 	<require from="../../../resources/value-converters/date-format"></require>
-	<style>
-h1{
-  font-size: 30px;
-  color: #fff;
-  text-transform: uppercase;
-  font-weight: 300;
-  text-align: center;
-  margin-bottom: 15px;
-}
-table{
-  width:100%;
-  table-layout: fixed;
-}
-.tbl-header{
-  background-color: rgba(255,255,255,0.3);
- }
-.tbl-content{
-  height:300px;
-  overflow-x:auto;
-  margin-top: 0px;
-  border: 1px solid rgba(255,255,255,0.3);
-}
-th{
-  padding: 20px 15px;
-  text-align: left;
-  font-weight: 500;
-  font-size: 12px;
-  color: #fff;
-  text-transform: uppercase;
-}
-td{
-  padding: 15px;
-  text-align: left;
-  vertical-align:middle;
-  font-weight: 300;
-  font-size: 12px;
-  color: #fff;
-  border-bottom: solid 1px rgba(255,255,255,0.1);
-}
-
-
-/* demo styles */
-
-@import url(https://fonts.googleapis.com/css?family=Roboto:400,500,300,700);
-body{
-  background: -webkit-linear-gradient(left, #25c481, #25b7c4);
-  background: linear-gradient(to right, #25c481, #25b7c4);
-  font-family: 'Roboto', sans-serif;
-}
-section{
-  margin: 50px;
-}
-
-
-/* follow me template */
-.made-with-love {
-  margin-top: 40px;
-  padding: 10px;
-  clear: left;
-  text-align: center;
-  font-size: 10px;
-  font-family: arial;
-  color: #fff;
-}
-.made-with-love i {
-  font-style: normal;
-  color: blue;
-  font-size: 14px;
-  position: relative;
-  top: 2px;
-}
-.made-with-love a {
-  color: #fff;
-  text-decoration: none;
-}
-.made-with-love a:hover {
-  text-decoration: underline;
-}
-
-
-/* for custom scrollbar for webkit browser*/
-
-::-webkit-scrollbar {
-    width: 6px;
-} 
-::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
-} 
-::-webkit-scrollbar-thumb {
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+<style>
+  table.dataTable thead .sorting:after,
+table.dataTable thead .sorting:before,
+table.dataTable thead .sorting_asc:after,
+table.dataTable thead .sorting_asc:before,
+table.dataTable thead .sorting_asc_disabled:after,
+table.dataTable thead .sorting_asc_disabled:before,
+table.dataTable thead .sorting_desc:after,
+table.dataTable thead .sorting_desc:before,
+table.dataTable thead .sorting_desc_disabled:after,
+table.dataTable thead .sorting_desc_disabled:before {
+bottom: .5em;
 }
 	</style>
 
-	<section class="docs  full-height  flex-column-1 overflow-y-auto ignore">
+	<section class="docs  full-height  flex-column-1 overflow-y-auto ignore" style="height:400px">
 
 		<h4>
 			<!-- href="#/provenance/new"> -->
@@ -105,66 +27,63 @@ section{
 			</a>
 		</h4> 
 
-	<div class="tbl-header">
-    <table cellpadding="0" cellspacing="0" border="0">
-      <thead>
-        <tr>
-					<th width="125px" class="header">Author</th>
-					<th width="125px" class="header">First</th>
-					<th width="125px" class="header">Last</th>
-					<th width="70px" class="header">Ed</th>
-					<th width="225px" class="header">Title </th>
-					<th width="200px" class="header">Publisher </th>
-					<th width="200px" class="header">Location </th>
-					<th width="180px" class="header">Date </th>
-					<th width="80px" class="header">No. </th>
-					<th width="225px"  class="header">Page </th>
-					<th width="200px" class="header">Type </th>
-					<th width="120px" class="header">Color/BW </th>
-					<th width="160px" class="header">Sort Date </th>
-					<th width="300px" class="header">Select<br>Exhibition</th>
-					<th width="60px" class="header">Batch No </th>
-					<th width="325px" class="header"> cmd </th>
+<table id="dtVerticalScrollExample" class="table table-striped table-bordered table-sm" cellspacing="0"
+  width="100%">
+  <thead>
+    <tr>
+					 <th>Author</th>
+					 <th>First</th>
+					 <th>Last</th>
+					 <th>Ed</th>
+					 <th>Title </th>
+				   <th>Publisher </th>
+					 <th>ocation </th>
+					 <th>Date </th>
+					 <th>No. </th>
+					 <th>Page </th>
+					 <th>Type </th>
+					 <th>Color/BW </th>
+					 <th>Sort Date </th>
+					 <th>Select<br>Exhibition</th>
+					 <th>Batch No </th>
+					 <th> cmd </th>
+           </tr>
 				</thead>
-    </table>
-  </div>
-  <div class="tbl-content">
-    <table cellpadding="0" cellspacing="0" border="0">
+    
       <tbody>
         
 				<tr repeat.for="reproduction of currentItem.reproduction " with.bind="reproduction">
-					<!-- <td width="120px"><input type="text" id="ProvOwner" class="form-control  input-sm" value.bind="ProvOwner"></td> -->
-					<td width="125px">
+					<td >
 						<span show.bind="!reproduction.edit">${ReproductionAuthor}</span>
 						<input show.bind="reproduction.edit" id="zReproductionAuthor" class="form-control input-sm" disabled.bind="!reproduction.edit"
 						 type="text" value.bind="ReproductionAuthor">
 					</td>
-					<td width="125px">
+						<td >
 						<span show.bind="!reproduction.edit">${AuthorFirst}</span>
 						<input show.bind="reproduction.edit" id="zReproductionTitle2" class="form-control input-sm" disabled.bind="!reproduction.edit"
 						 type="text" value.bind="AuthorFirst">
 					</td>
-					<td width="125px">
+						<td >
 						<span show.bind="!reproduction.edit">${AuthorLast}</span>
 						<input show.bind="reproduction.edit" id="zReproductionTitle3" class="form-control input-sm" disabled.bind="!reproduction.edit"
 						 type="text" value.bind="AuthorLast">
 					</td>
 
-					<td width="70px">
+					<td >
 						<input type="checkbox" id="Editor" checked.bind="reproduction.Editor">
 					</td>
 
-					<td width="225px">
+					<td >
 						<span show.bind="!reproduction.edit">${ReproductionTitle}</span>
 						<input show.bind="reproduction.edit" id="zReproductionTitle" class="form-control input-sm" disabled.bind="!reproduction.edit"
 						 type="text" value.bind="ReproductionTitle">
 					</td>
-					<td width="200px">
+						<td >
 						<span show.bind="!reproduction.edit">${ReproductionName}</span>
 						<input show.bind="reproduction.edit" id="zReproductionAuthor" class="form-control input-sm" disabled.bind="!reproduction.edit"
 						 type="text" value.bind="ReproductionName">
 					</td>
-					<td width="200px">
+						<td >
 						<select id="ReproductionLocation" class="form-control  input-sm" value.bind="ReproductionLocation"> 
                       <!-- <option model.bind="null">Choose...filterOnCode</option>  -->
                        <option model.bind="''">Choose...filterOnCode</option> 
@@ -176,13 +95,11 @@ section{
                     </select>
 
 					</td>
-					<td width="180px"><input type="text" id="ReproductionDate" class="form-control  input-sm" value.bind="ReproductionDate "></td>
-					<td width="80px"><input type="text" id="Number" class="form-control  input-sm" value.bind="no"></td>
-					<td width="225px"><input type="text" id="zReproductionPage" class="form-control  input-sm" value.bind="ReproductionPage"></td>
-					<!-- <td width="120px"><input type="text" id="Sequence" class="form-control  input-sm" value.bind="Sequence"></td>
-						<td width="120px"><input type="date" id="ReproductionType" class="form-control  input-sm" value.bind="ReproductionType"></td>
-					 -->
-					<td width="200px">
+						<td ><input type="text" id="ReproductionDate" class="form-control  input-sm" value.bind="ReproductionDate "></td>
+						<td ><input type="text" id="Number" class="form-control  input-sm" value.bind="no"></td>
+					<td ><input type="text" id="zReproductionPage" class="form-control  input-sm" value.bind="ReproductionPage"></td>
+					
+				<td >
 						<select id="ReproductionType" class="form-control  input-sm" value.bind="ReproductionType"> 
                       <option model.bind="''" >Choose...</option> 
                          <option repeat.for="opt of appService.codesPublicationType " model.bind="opt.id">
@@ -190,7 +107,7 @@ section{
                       </option> 
                     </select>
 					</td>
-					<td width="120px">
+					<td >
 						<select id="ColorBW" class="form-control  input-sm" value.bind="ColorBW"> 
                       <option model.bind="''">Choose...</option> 
                          <option repeat.for="opt of appService.codesReproductionType" model.bind="opt.id">
@@ -199,8 +116,8 @@ section{
                     </select>
 
 					</td>
-					<td width="160px"><input type="date" id="ReproductionSortDate" class="form-control  input-sm" value.bind="ReproductionSortDate | dateFormat "></td>
-					<td width="300px">
+					<td ><input type="date" id="ReproductionSortDate" class="form-control  input-sm" value.bind="ReproductionSortDate | dateFormat "></td>
+					<td >
 						<select id="ReproductionExhibit" class="form-control  input-sm" value.bind="ReproductionExhibit"> 
                       <option model.bind="''" >Choose...</option> 
                          <option change.delegate="changeSelect(opt)" repeat.for="opt of currentItem.exhibition" 
@@ -209,8 +126,8 @@ section{
                       </option> 
                     </select>
 					</td>
-					<td width="60px"><span> ${batchno}</span></td>
-					<td width="325px">
+					<td ><span> ${batchno}</span></td>
+					<td >
 						<!-- <button class="btn btn-primary" click.delegate="reproduction.edit=!reproduction.edit">${ !reproduction.edit ? 'Update' : 'Done' }</button>					 -->
 						<button class="btn btn-primary" click.delegate="saveitem(reproduction,$index)">${!reproduction.edit ? 'Edit' : 'Save' }</button>
 						<button class="btn btn-danger" click.delegate="remove(reproduction,$index)">Del</button>
@@ -218,6 +135,27 @@ section{
 					</td>
 				</tr>
 			</tbody>
+       <tfoot>
+    <tr>
+					 <th>Author</th>
+					 <th>First</th>
+					 <th>Last</th>
+					 <th>Ed</th>
+					 <th>Title </th>
+				   <th>Publisher </th>
+					 <th>ocation </th>
+					 <th>Date </th>
+					 <th>No. </th>
+					 <th>Page </th>
+					 <th>Type </th>
+					 <th>Color/BW </th>
+					 <th>Sort Date </th>
+					 <th>Select<br>Exhibition</th>
+					 <th>Batch No </th>
+					 <th> cmd </th>
+           </tr>
+			
+      </tfoot>
 		</table>
 	</section>
 </template>

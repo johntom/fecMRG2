@@ -77,7 +77,17 @@ export class Museamloan {
       if (orgobj !== undefined) this.currentItem.conservedbyname = orgobj.OrgName
     }
   }
+  attached() {
+    $(document).ready(function () {
+      $('#dtVerticalScrollExample').DataTable({
+        "scrollY": "200px",
+        "scrollCollapse": true,
+        "ordering": false,
+      });
+      $('.dataTables_length').addClass('bs-select');
+    });
 
+  }
   saveitem(item, index) {
     item.edit = !item.edit
 

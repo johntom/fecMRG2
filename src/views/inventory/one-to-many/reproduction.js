@@ -37,12 +37,26 @@ export class Reproduction {
     //       return inv
     //     });
     // }
+
   }
+
+  attached() {
+    $(document).ready(function () {
+      $('#dtVerticalScrollExample').DataTable({
+        "scrollY": "200px",
+        "scrollCollapse": true,
+        "ordering": true,
+      });
+      $('.dataTables_length').addClass('bs-select');
+    });
+
+  }
+
   modal(item, index) {
 
     // this.currentItem.recordId = this.recordId model:this.currentItem
     let currentModel = {}
-     currentModel.currentItem = this.currentItem
+    currentModel.currentItem = this.currentItem
     currentModel.item = item
 
     currentModel.currentItem.hide1 = false
@@ -50,7 +64,7 @@ export class Reproduction {
 
     // this.dialogService.open({ viewModel: PromptForm, model: currentModel, lock: false }).whenClosed(response => {
     this.dialogService.open({ viewModel: Promptrepro, model: currentModel, lock: true }).whenClosed(response => {
-// this.dialogService.open({ viewModel: Promptrepro, model: item, lock: true }).whenClosed(response => {
+      // this.dialogService.open({ viewModel: Promptrepro, model: item, lock: true }).whenClosed(response => {
 
       if (!response.wasCancelled) {
         console.log('item', item);
@@ -110,7 +124,7 @@ export class Reproduction {
     if (flag) this.currentItem.reproduction = reproduction
 
     this.modal(item, 0) // unshirt reproduction.length + 1)
- 
+
     // this.newNoteWorkDate = '';
     // this.newNoteNote = '';
 
