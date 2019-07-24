@@ -598,7 +598,7 @@ export class DataForm {
   }
 
 
-  saveinventory(option) {
+  async saveinventory(option) {
     //this.controller.validate();
     //  class Rtf
     // this.createRTF() 
