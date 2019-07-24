@@ -1,0 +1,30 @@
+.docs {
+  padding: 0 20px;
+}
+
+.docs .table-header-blue {
+  background-color: deepskyblue;
+  color: white;
+  width: 100%;
+  height:60px;
+}
+
+
+.docs .table {
+  height: 200px; // <-- Select the height of the table
+  display: -moz-groupbox; // For firefox bad effect
+    width: 100%;
+}
+.docs	tr {
+width: 100%;
+display: inline-table;
+height:50px;
+
+}
+.docs tbody {
+
+  overflow-y: scroll;
+  height: 200px; //  <-- Select the height of the body
+  width: 100%;
+  position: absolute;
+}
