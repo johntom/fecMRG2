@@ -89,5 +89,18 @@ export class Provenance {
     if (flag) this.currentItem.provenance = provenance
   }
 
+
+    attached() {
+    $(document).ready(function () {
+      $('#dtVerticalScrollExample').DataTable({
+        "scrollY": "200px",
+        "scrollCollapse": true,
+        "ordering": false,
+      });
+      // $('.dataTables_length').addClass('bs-select');
+    });
+
+  }
+
 }
 

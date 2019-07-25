@@ -82,7 +82,7 @@ export class SearchResults {
       }
     },
     // pageSize: 10,
-  
+    height: 400,
   
     //  serverPaging: true,
     //   serverSorting: true,
