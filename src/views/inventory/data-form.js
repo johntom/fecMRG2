@@ -17,7 +17,7 @@ import { bindable } from 'aurelia-framework';
 @inject(Router, ApiService, ApplicationService, MyDataService, DialogService, RtfService)
 // @inject(Router, ApiService, ApplicationService, MyDataService, DialogService)
 export class DataForm {
-  @bindable createRTF
+  // @bindable createRTF
   controller = null;
   MediumSupportobj = '';
   Title = '';
@@ -601,7 +601,9 @@ export class DataForm {
   async saveinventory(option) {
     //this.controller.validate();
     //  class Rtf
-    // this.createRTF() 
+    // this.createRTF()
+    this.addRTF(2);
+
     let savetime = moment().format('MM/DD/YY h:mm:ss a')
     if (this.recordId === 'create') {
       // console.log(  this.currentItem, this.currentItem)
@@ -612,8 +614,8 @@ export class DataForm {
         alert('Please fix  Title, InventoryCode, Owned By and or Artist ')
       } else {
         this.rtfService.currentItem = this.currentItem
-        let createopt = 2; // 1 is from tab
-        let rr = await this.rtfService.createRTF(createopt)
+      //  let createopt = 2; // 1 is from tab
+       // let rr = await this.rtfService.createRTF(createopt)
         this.api.createinventory(this.currentItem).then((jsonRes) => {
           console.log('jsonRes ', jsonRes);
           this.recordId = jsonRes.id
@@ -640,8 +642,8 @@ export class DataForm {
         // SAVE WITH IMAGE INFO IN CASE ITS MISSING
         // nsure if needed this.getimageinfo()
 
- let createopt = 2; // 1 is from tab
-        let rr = await this.rtfService.createRTF(createopt)
+ //let createopt = 2; // 1 is from tab
+   //     let rr = await this.rtfService.createRTF(createopt)
 
         this.api.saveinventory(this.currentItem).then((jsonRes) => {
           console.log('jsonRes ', jsonRes)
@@ -752,7 +754,7 @@ export class DataForm {
     this.rtfService.currentItem = this.currentItem
     let createopt = 2; // 1 is from tab
     let rr = await this.rtfService.createRTF(createopt)
-    this.currentItem.rtf1
+    //this.currentItem.rtf1
     // alert('r' +  this.currentItem.rtf1)
   }
 
