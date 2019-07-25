@@ -751,7 +751,8 @@ export class DataForm {
     this.rtfService.currentItem = this.currentItem
     let createopt = 2; // 1 is from tab
     let rr = await this.rtfService.createRTF(createopt)
-    alert('r' + rr)
+    this.currentItem.rtf1
+    alert('r' +  this.currentItem.rtf1)
   }
 
 

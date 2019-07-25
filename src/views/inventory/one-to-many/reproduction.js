@@ -45,9 +45,9 @@ export class Reproduction {
       $('#dtVerticalScrollExample').DataTable({
         "scrollY": "200px",
         "scrollCollapse": true,
-        "ordering": true,
+        "ordering": false,
       });
-      $('.dataTables_length').addClass('bs-select');
+      // $('.dataTables_length').addClass('bs-select');
     });
 
   }

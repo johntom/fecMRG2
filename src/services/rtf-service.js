@@ -1,3 +1,4 @@
+
 import { DialogService } from 'aurelia-dialog';
 import { Prompt } from './prompt';
 import { Router } from 'aurelia-router';
@@ -564,9 +565,7 @@ export class RtfService {
     // num.toPrecision(2)
     /*
     we lost the Height dimension in the cm part
-
 there are extra ' when there are fractions
-
 14 5/8 ' x '12 1/4 in. / __ x 31 cm
 17 1/2 ' x '22 1/4 in. / __ x 57 cm   */
     // let dims
@@ -813,16 +812,26 @@ there are extra ' when there are fractions
     this.buildEdition()
     this.buildProv()
     this.buildRepro()
-    //  if (createopt === 1) { 
-    // this.editor.value('<p>' + this.segment2 + '</p>');
-    // this.currentItem.rtf1 = this.editor.value()// factsheet
-    // this.editorlabel.value('<p>' + segment1 + '</p>');
-    // this.currentItem.rtf2 = this.editorlabel.value()// label
-    this.currentItem.rtf1 = '<p>' + this.segment2 + '</p>'
-    this.currentItem.rtf2 = '<p>' + this.segment1 + '</p>'
+     if (createopt === 1) { 
+    this.editor.value('<span style="font-family:Calibri, Geneva, sans-serif;font-size:11.0pt">' + this.segment2 + '</span>');
+    this.currentItem.rtf1 = this.editor.value()// factsheet
 
-    // }
-    return this.currentItem.rtf1
+    this.editorlabel.value('<span style="font-family:Calibri, Geneva, sans-serif;font-size:11.0pt">' + this.segment1 + '</span>');
+    this.currentItem.rtf2 = this.editorlabel.value()// label
+
+
+
+
+    
+    }
+    
+    this.currentItem.rtf1 ='<span style="font-family:Calibri, Geneva, sans-serif;font-size:11.0pt">' + this.segment2+ '</span>';
+    this.currentItem.rtf2 ='<span style="font-family:Calibri, Geneva, sans-serif;font-size:11.0pt">' + this.segment1+ '</span>';
+
+ 
+
+
+    //return this.currentItem.rtf1
 
   }
 

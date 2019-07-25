@@ -7,9 +7,9 @@ import { ApiService } from '../../utils/servicesApi';
 
 export class Home { 
   heading = "MRG Home Page";
-  version = 302.37 
+  version = 302.38 
   
-  versionDate = 'Wed 7/24/2019 9am'
+  versionDate = 'Wed 7/24/2019 11pm'
 
   issues = [
     `1. Open Word. Click the “File” tab on the ribbon. Click “Options” at the bottom of the drop-down menu.`,

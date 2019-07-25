@@ -81,7 +81,9 @@ export class SearchResults {
         }
       }
     },
-    pageSize: 10,
+    // pageSize: 10,
+  
+  
     //  serverPaging: true,
     //   serverSorting: true,
     sort: { field: 'InventoryCode', dir: 'asc' },

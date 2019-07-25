@@ -65,7 +65,7 @@
 id="grid" k-data-source.bind="datasource" k-widget.bind="grid" k-sortable.bind="{ mode: 'multiple',   allowUnsort: 'true'}"
 	 k-filterable.bind="{  mode: 'row' }" k-editable="inline" k-reorderable.bind="true" k-groupable.bind="true" k-resizable.bind="true"
 	 k-selectable="[row,multiple]" k-on-edit.delegate="onEdit($event.detail)" k-on-data-bound.delegate="onDataBound($event.detail)"
-	 k-on-change.delegate="rowSelected($event.detail)" k-column-menu.bind="true" k-pageable.bind="true">
+	 k-on-change.delegate="rowSelected($event.detail)" k-column-menu.bind="true" k-pageable.bind="true" k-scrollable.bind="scrollable">
 		<ak-col k-title="CB" ref="CB" k-locked.bind="true" k-lockable.bind="false" k-width.bind="85" k-template="<input type='checkbox' class='checkbox' ref='T#=InventoryCode#' id='T#=InventoryCode#' >T#=InventoryCode#</> ">
 			<ak-template for="headerTemplate">
 				<input type='checkbox' class='checkboxY' checked.bind="isChecked" id='header-chb' />

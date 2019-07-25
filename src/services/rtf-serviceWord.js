@@ -1,106 +1,32 @@
-
-import { inject } from 'aurelia-dependency-injection';
-import { ApiService } from '../../../utils/servicesApi';
-import { ApplicationService } from '../../../services/application-service';
-import { Aurelia } from 'aurelia-framework';
 import { DialogService } from 'aurelia-dialog';
-import { Prompt } from '../../../services/prompt';
-//https://wesbos.com/template-strings-html/
-@inject(ApiService, ApplicationService, DialogService)
-export class Rtf {
-  tools = [
-    'pdf',
-    'html', 
-    'bold', 
-    'italic',
-    'underline',
-    // 'strikethrough',
-    // 'justifyLeft',
-    // 'justifyCenter',
-    // 'justifyRight',
-    // 'justifyFull',
-    // 'insertUnorderedList',
-    // 'insertOrderedList',
-    // 'indent',
-    // 'outdent',
-    // 'createLink',
-    // 'unlink',
-    // 'insertImage',
-    // 'insertFile',
-    'subscript',
-    'superscript',
-    // 'createTable',
-    // 'addRowAbove',
-    // 'addRowBelow',
-    // 'addColumnLeft',
-    // 'addColumnRight',
-    // 'deleteRow',
-    // 'deleteColumn',
-    'viewHtml',
-    'formatting',
-    'cleanFormatting',
-    'fontName',
-    'fontSize'
-    // 'foreColor',
-    // 'backColor',
-    // 'print'
-  ];
-  resizable = {
-    content: true,
-    toolbar: true
-  }
-  heading = 'DataForm HEADER...';
-  footer = 'DataForm FOOTER...';
-  recordId = '';
-  // provenance: Provenance[] = []
-  done = false;
-  edit = false;
-  pre = '<p>'
-  post = '</p>'
-  prebefore = '</p>'
-  preafter = ' '
-  preitalic = '<em>'
-  postitalic = '</em>'
-  lineBreak = '<br>'
+import { Prompt } from './prompt';
+import { Router } from 'aurelia-router';
+import { inject } from 'aurelia-dependency-injection';
+import { ApplicationService } from './application-service';
+@inject(Router, DialogService, ApplicationService)
+export class RtfServiceWord {
+
+  currentItem;
+  currentView;
+  // tabs = [];
+  // asyncHandleDirty() {
+  //   const model = 'You have unsaved changes. '//Cancel to stay OK to leave';
+
+  //   const options = { viewModel: Prompt, model: model, lock: false };
+  //   return this.dialogService.open(options).whenClosed(response => response);
+  // }
+
+  // navigate(route) {
+  //   this.router.navigate(route);
+  // }
 
 
-  stylesheets = ['https://demos.telerik.com/kendo-ui/content/web/editor/pdf-export-styles.css'];
-  pdf = {
-    fileName: 'NewDocument.pdf',
-    proxyURL: '//demos.telerik.com/kendo-ui/service/export',
-    paperSize: 'letter',
-    margin: {
-      bottom: 20,
-      left: 30,
-      right: 20,
-      top: 20
-    }
-  };
-  html = {
-    fileName: 'NewDocument.html',
-    proxyURL: '//demos.telerik.com/kendo-ui/service/export',
-    paperSize: 'letter',
-    margin: {
-      bottom: 20,
-      left: 20,
-      right: 20,
-      top: 20
-    }
-  };
 
-  //  imagesizes = [
-  //         { id: 0, name: 'normal',factor:1 },
-  //         { id: 1, name: 'x1.5' ,factor:1.5},
-  //         { id: 2, name: 'x2' ,factor:2},
-  //         { id: 3,  name: 'x3' ,factor:3},
-  //       ];
 
-  //       selectedimagesize = imagesizes[0];
+
+
+
   searchsold = [
-    // { id: 0, name: 'Y' },
-    // { id: 1, name: 'N' },
-    // { id: 2, name: 'NFS' },
-    // { id: 3, name: 'DON' },
     { id: 0, name: 'normal size', factor: 1 },
     { id: 1, name: '1.5 size', factor: 1.5 },
     { id: 2, name: '2 size', factor: 2 },
@@ -110,8 +36,11 @@ export class Rtf {
 
   ];
   selectedimagesize = 0;//null searchsold[0];
-  constructor(api, appService, dialogService) {
-    this.api = api;
+  constructor(router, dialogService, appService) {
+    this.dialogService = dialogService
+    this.router = router
+
+    // this.api = api;
     this.appService = appService;
     this.provenance = '';
     this.currentItem = this.appService.currentItem//testrec;
@@ -119,21 +48,16 @@ export class Rtf {
     this.editrec = '';
     this.isDisableEdit = true
     this.currentprovenance = '';
-    this.dialogService = dialogService
+    // this.dialogService = dialogService
 
   }
+
+
   created(owningView, myView) {
-    // Invoked once the component is created...
-    //  if (this.currentItem.rtf1 !== undefined)      this.editor.value(this.currentItem.rtf1);
   }
 
   bind(bindingContext, overrideContext) {
-    // Invoked once the databinding is activated...
-    //  if (this.currentItem.rtf1 !== undefined)      this.editor.value(this.currentItem.rtf1);
   }
-  // activate(params, routeConfig) {
-
-  // }
 
   setInitialValue(edt) {
     if (this.currentItem.rtf1 !== undefined) edt.value(this.currentItem.rtf1);
@@ -143,36 +67,12 @@ export class Rtf {
     if (this.currentItem.rtf2 !== undefined) edt.value(this.currentItem.rtf2);
   }
 
-  // attached() {
-
-  // }
-  // buildExhibit(segment2) {
-  // buildExhibit() {
-  //   let exhibition = this.currentItem.exhibition
-  //   if (exhibition !== undefined) {
-  //     // this.currentItem.exhibition
-  //     let iarray = []
-  //     this.segment2 += ` <br><p>EXHIBITION HISTORY: </p>`
-  //     for (const item of exhibition) {
-  //       console.log("loopitem ====", item)
-  //       //  iarray.push(item)
-
-  //       this.segment2 += '<br>' + item.ExhibitTitle + ' ' + item.ExhibitSponser + ' ' + item.Reproduction + ' ' + item.ExhibitDates + ' '
-  //     }
-  //     // return segment2
-  //   }
-  // }
-
   buildEdition() {
-    // let segmentEditionHead = `<p><span style='text-decoration-line:underline'><u>EDITION</u></span><u></u></p>`
     let segmentEditionHead = `<span style='text-decoration-line:underline'><u>EDITION</u></span><u></u><br>`
 
     let segmentEdition = ''
     let PublisherLoc
     let PrinterLoc
-
-    // if (this.currentItem.EditionText !== '') {
-    //  if (this.currentItem.EditionText !== null || this.currentItem.EditionText !== undefined || this.currentItem.EditionText !== '') {
 
     if (this.currentItem.EditionText !== null && this.currentItem.EditionText !== undefined && this.currentItem.EditionText !== '') {
 
@@ -186,25 +86,14 @@ export class Rtf {
 
   buildProv() {
     let provenance = this.currentItem.provenance
-    //  if (provenance !== undefined) {
-    //   if (provenance.length !== 0) {
     if (provenance !== undefined && provenance.length !== 0) {
       let iarray = []
-      // let provheader = `<p><span style='text-decoration-line:underline'><strong><u>PROVENANCE</u></strong></span><u></u></p>`
-      // let provheader = `<p><span style='text-decoration-line:underline'><u>PROVENANCE</u></span><u></u></p>`
 
       let provheader = `<span style='text-decoration-line:underline'><u>PROVENANCE</u></span><br>`
 
       let provarray = []
 
       for (const item of provenance) {
-        //  console.log("loopitem provenance====", item)
-        // let ProvOwner = req.param('ProvOwner')
-        // let ProvDate = req.param('ProvDate')
-        // let ProvSortDate = req.param('ProvSortDate')
-        // let ProvMemo = req.param('ProvMemo');
-        // let Sequence = req.param('Sequence')
-        // let ProvLoc = req.param('Description');
 
         let pl = this.appService.codesProvenanceLocation
         let oid
@@ -220,28 +109,23 @@ export class Rtf {
         if (oid !== -1) {
           let ProvLoc = this.appService.codesProvenanceLocation[oid].Description
           if (item.ProvMemo === null || item.ProvMemo === undefined || item.ProvMemo === '') {
-            // this.segment2 += `${item.ProvOwner}, ${ProvLoc}<br>`
             provarray.unshift({ sord: item.Sequence, exception: `${item.ProvOwner}, ${ProvLoc}<br>` })
           } else {
             provarray.unshift({ sord: item.Sequence, exception: `${item.ProvOwner}, ${ProvLoc}<br>${item.ProvMemo}<br>` })
           }
         } else {
           if (item.ProvMemo === null || item.ProvMemo === undefined || item.ProvMemo === '') {
-            // this.segment2 += `${item.ProvOwner}<br>`
             provarray.unshift({ sord: item.Sequence, exception: `${item.ProvOwner}<br>` })
           } else {
             provarray.unshift({ sord: item.Sequence, exception: `${item.ProvOwner}<br>${item.ProvMemo}<br>` })
           }
 
         }
-        //
-        //	this.segment2 += `${item.ProvOwner}, ${ProvLoc}<br> ${item.ProvMemo}`
+
       }
-      // let myObjects = lodash.sortBy(provarray, 'sord');
       let myObjects = _.sortBy(provarray, 'sord');
       this.segment2 += provheader
       for (const obj of myObjects) {
-        // this.segment2 += obj.date + ' ' + obj.exception
         this.segment2 += obj.exception
       }
     }
@@ -260,8 +144,6 @@ export class Rtf {
     let preitalic = '<em>'
     let postitalic = '</em>'
     let lineBreak = '<br>'
-    //let exandpubhead = `<br><br><br><p><span style='text-decoration-line:underline'><strong><u>EXHIBITION & PUBLICATION HISTORY</u></strong></span><u></u></p><br>`
-    // let exandpubhead = `<br><br><br><p><span style='text-decoration-line:underline'><u>EXHIBITION & PUBLICATION HISTORY</u></span><u></u></p><br>`
     let exandpubhead = `<br><span style='text-decoration-line:underline'><u>EXHIBITION & PUBLICATION HISTORY</u></span><br>`
 
     let exhibitandpubs = []
@@ -271,8 +153,7 @@ export class Rtf {
     // conbine both tables
     let provloc = this.appService.codesProvenanceLocation
 
-    // let exhibition = this.currentItem.exhibition
-    // let reproduction = this.currentItem.reproduction
+
     let exhibition = undefined
     let reproduction = undefined
     if (this.currentItem.exhibition !== undefined) exhibition = JSON.parse(JSON.stringify(this.currentItem.exhibition));
@@ -286,24 +167,14 @@ export class Rtf {
       for (const item of exhibition) {
         console.log('==================-item==========', item.ExhibitTitle)
         ct++
-        // let ExhibitTitle = req.param('ExhibitTitle')
-        // let ExhibitSponser = req.param('ExhibitSponser')
-        // let ExhibitLocation = req.param('Description') //typeahead
-        // let ExhibitDates = req.param('ExhibitDates')
-        // let ExhibitSortDate = req.param('ExhibitSortDate')
-        // let Traveled = req.param('Traveled')
-        // let batchno = req.param('batchno')
-        // let ExhibitMemo = req.param('ExhibitMemo')
+
 
 
         // check to see if link in repo (loop thru exhibit and find repo match)
         if (reproduction !== undefined) {
-          // let eid = reproduction.findIndex(x => x.ReproductionExhibit === item.ExhibitTitle)
-          // let eid = reproduction.findIndex(x => x.id === item.ReproductionExhibit)
           let eid = reproduction.findIndex(x => x.ReproductionExhibit === item.id)
           let reporec
           linkPageNo = ''
-          // console.log('eid ', eid, linkPageNo) //ColorBWDesc1)
 
           if (eid !== -1) {
             reporec = reproduction[eid]
@@ -315,8 +186,6 @@ export class Rtf {
           } else console.log('no link in exhibit from repo ct', ct)
 
         } else linkPageNo = ''
-
-        //console.log('item.ReproductionExhibit ',  item.ReproductionExhibit, 'linkPageNo', linkPageNo)
         let oid
         if ((item.ExhibitLocation + '').length < 6) {
 
@@ -325,12 +194,9 @@ export class Rtf {
           oid = provloc.findIndex(x => x.id === item.ExhibitLocation)
 
         }
-        //  oid = provloc.findIndex(x => x.id === item.ExhibitLocation) 
         if (oid == -1) oid = 1
         let ExhibitLocationDesc = provloc[oid].Description
 
-        // , ${item.ExhibitMemo}`
-        // console.log('moment', moment(item.ExhibitSortDate,'YYYYmmdd'))
         let ExhibitMemo
         let lpn
         console.log('===================item.id linkPageNo', item.id, linkPageNo + '...')
@@ -340,7 +206,6 @@ export class Rtf {
           lpn = `<br>${linkPageNo}<br><br>`
         }
         console.log('===================item.id linkPageNo', item.id, lpn)
-        //	item.ExhibitMemo === undefined ? ExhibitMemo = '' : ExhibitMemo = ', ' + item.ExhibitMemo <strong>DD:</strong>
         let exceptline
         if (item.ExhibitMemo === null || item.ExhibitMemo === undefined || item.ExhibitMemo === '') {
           exceptline = ppre + `<em>${item.ExhibitTitle}</em>, ${item.ExhibitSponser}, ${ExhibitLocationDesc}, ${item.ExhibitDates} ${lpn}`
@@ -353,10 +218,8 @@ export class Rtf {
         }
 
         rec = {
-          // date: moment(item.ExhibitSortDate,'YYYYmmdd'),
-          //ReproductionSortDate ExhibitSortDate
+
           date: item.ExhibitSortDate,
-          //   exception: pre + item.ExhibitTitle + ', ' + item.ReproductionLocation + ', ' + item.ExhibitDates + post
           exception: exceptline
 
         }
@@ -367,13 +230,11 @@ export class Rtf {
     } else exhibition = []
     let rct = 0
     if (reproduction !== undefined) {
-      // for (const item of reproduction) {
-        var i;
-        let item
-        for (i = 0; i < reproduction.length; i++) { 
+      var i;
+      let item
+      for (i = 0; i < reproduction.length; i++) {
         item = reproduction[i];
         rct++
-        //alert(rct + ' ' + item.ReproductionExhibit + ' ' + item.ReproductionLocation + ' ')
         console.log('rct ', rct) //, item.ReproductionPage, itm.ReproductionDate,item.ReproductionExhibit+'...')
 
         if (item.ReproductionExhibit === null || item.ReproductionExhibit === undefined || item.ReproductionExhibit === "") {//selected choose)
@@ -381,27 +242,14 @@ export class Rtf {
           let oid = provloc.findIndex(x => x.id === item.ReproductionLocation)
           if (oid == -1) oid = 1
           let ReproductionLocationDesc = provloc[oid].Description
-          //alert(rct + ' ReproductionLocationDesc ' + ReproductionLocationDesc + ' ')
-
-          // let ColorBWDesc = ''
-          // if (item.ColorBW !== null && item.ColorBW !== undefined) {
-          //   //let cid = this.appService.codesReproductionType.findIndex(x => x.id === item.ColorBW)
-          //   // ColorBWDesc = `${this.appService.codesReproductionType}[${cid}].Description, `
-          //   let rec = this.appService.codesReproductionType.find(x => x.id === item.ColorBW)
-          //   ColorBWDesc = rec.Description + ', '
-          // }
-           let data
+          let data
           if (item.ReproductionAuthor !== "") {
-data = ppre + `${item.ReproductionAuthor}. <em>${item.ReproductionTitle}</em> ${preafter}`
-          } else 
-          data = ppre + `${item.AuthorLast}, ${item.AuthorFirst}. <em>${item.ReproductionTitle}</em> ${preafter}`
-          //alert(rct + ' ReproductionLocationDesc ' + ReproductionLocationDesc + ' data ' + data)
+            data = ppre + `${item.ReproductionAuthor}. <em>${item.ReproductionTitle}</em> ${preafter}`
+          } else
+            data = ppre + `${item.AuthorLast}, ${item.AuthorFirst}. <em>${item.ReproductionTitle}</em> ${preafter}`
 
           data += `(${ReproductionLocationDesc}: ${item.ReproductionName}, ${item.ReproductionDate}) <br>`
           data += `${item.ReproductionPage} <br> ${ppost}<br>`
-          //alert(rct + ' data 2  ' + data)
-          //alert(rct + ' ' + item.ReproductionSortDate)
-
           rec = {
             date: item.ReproductionSortDate,
             exception: data
@@ -415,10 +263,7 @@ data = ppre + `${item.ReproductionAuthor}. <em>${item.ReproductionTitle}</em> ${
 
     if (exhibitandpubs.length > 0) {
       myObjects = _.sortBy(exhibitandpubs, 'date');
-      //  console.log('============myObjects===========================================')
-      // lodash.forEach(myObjects, function (result) {
-      //   console.log('result ', result);
-      // });
+
       this.segment2 += exandpubhead
       for (const obj of myObjects) {
         // this.segment2 += obj.date + ' ' + obj.exception
@@ -464,9 +309,9 @@ data = ppre + `${item.ReproductionAuthor}. <em>${item.ReproductionTitle}</em> ${
         if (semisPos === -1) {
           semisPos = rightofcolonbaseText.length
           // rightofcolonTextem = '<em>' + rightofcolonbaseText.substr(0, semisPos - 1) + '</em>'; //+ '</em><br>';
-           rightofcolonTextem = '<em>' + rightofcolonbaseText.substr(0, semisPos ) + '</em>'; //+ '</em><br>';
-        
-          iLines.push(leftofcolonText + ' ' + rightofcolonTextem) 
+          rightofcolonTextem = '<em>' + rightofcolonbaseText.substr(0, semisPos) + '</em>'; //+ '</em><br>';
+
+          iLines.push(leftofcolonText + ' ' + rightofcolonTextem)
         } else {
           // there is a semi so add br
           rightofcolonTextem = '<em>' + rightofcolonbaseText.substr(1, semisPos - 1) + '</em><br>';
@@ -475,8 +320,8 @@ data = ppre + `${item.ReproductionAuthor}. <em>${item.ReproductionTitle}</em> ${
           colonPos = restoftext.indexOf(":");
           leftofcolonText2 = restoftext.substr(0, colonPos);
           // rightofcolonTextem2 = '<em>' + restoftext.substr(colonPos + 1, restoftext.length - colonPos +1) + '</em>';
-            rightofcolonTextem2 = '<em>' + restoftext.substr(colonPos + 1, restoftext.length - colonPos ) + '</em>';
-  
+          rightofcolonTextem2 = '<em>' + restoftext.substr(colonPos + 1, restoftext.length - colonPos) + '</em>';
+
           iLines.push(leftofcolonText + ' ' + rightofcolonTextem + ' ' + leftofcolonText2 + ' ' + rightofcolonTextem2)
         }
       }
@@ -484,7 +329,7 @@ data = ppre + `${item.ReproductionAuthor}. <em>${item.ReproductionTitle}</em> ${
         this.inscribedText += item + '<br>'
       }
 
-
+      this.inscribedText = this.font + this.inscribedText + this.fontend
       //console.log('semis',semisCount,semisPos ,colonPos ,leftofcolonText ,rightofcolonText)
       // let n1 = inscribed.indexOf(":");
       // let a1 = inscribed.substr(0, n1);
@@ -736,8 +581,8 @@ there are extra ' when there are fractions
 
     let ufwcm
     if (this.currentItem.UnframedHeight16 === null) {
-      this.dims = this.currentItem.UnframedHeight + ' x '
-      this.dimscm = this.roundNumber((this.currentItem.UnframedHeight * 2.54).toPrecision(2), 1) + ' x ' //fix
+      this.dims = this.font + this.currentItem.UnframedHeight + ' x '
+      this.dimscm = this.font + this.roundNumber((this.currentItem.UnframedHeight * 2.54).toPrecision(2), 1) + ' x ' //fix
     } else {
       this.dims = `${this.currentItem.UnframedHeight} <span style="font-size:x-small;"> ${this.currentItem.UnframedHeight16}</span> x `
       this.dimscm = this.roundNumber((this.currentItem.UnframedHeight * 2.54).toPrecision(2) + cmuh, 1) + ' x '
@@ -750,7 +595,6 @@ there are extra ' when there are fractions
     } else {
       this.dims += `${this.currentItem.UnframedWidth}       <span style="font-size:x-small;"> ${this.currentItem.UnframedWidth16} </span>`
       ufwcm = this.roundNumber(this.currentItem.UnframedWidth * 2.54, 1).toPrecision(2)
-      // this.dimscm += this.roundNumber( ((this.currentItem.UnframedWidth * 2.54) + cmuw), 1)
 
       this.dimscm += (ufwcm + cmuw.toPrecision(2))
 
@@ -767,7 +611,7 @@ there are extra ' when there are fractions
       }
     } else {
       this.dims += ' x ' + `${this.currentItem.UnframedDepth}   <span style="font-size:x-small;"> ${this.currentItem.UnframedDepth16} </span>`
-      ufwcm = this.roundNumber(this.currentItem.UnframedDepth * 2.54,1).toPrecision(2)   // this.dimscm += ' x ' + this.roundNumber((( this.currentItem.UnframedDepth * 2.54) + cmud), 1) //+ ' cm '
+      ufwcm = this.roundNumber(this.currentItem.UnframedDepth * 2.54, 1).toPrecision(2)   // this.dimscm += ' x ' + this.roundNumber((( this.currentItem.UnframedDepth * 2.54) + cmud), 1) //+ ' cm '
 
       this.dimscm += ' x ' + ((ufwcm) + cmud) //+ ' cm '
 
@@ -794,7 +638,7 @@ there are extra ' when there are fractions
       }
     }
 
- 
+
     if (this.currentItem.FramedDepth16 === null) {
       if (this.currentItem.FamedDepth === null || this.currentItem.FramedDepth === 0) { } else {
         this.dimsf += ' x ' + this.currentItem.FramedDepth
@@ -805,12 +649,11 @@ there are extra ' when there are fractions
       this.dimscmf += ' x ' + this.roundNumber((this.currentItem.FramedDepth * 2.54).toPrecision(2) + cmfd, 1) //+ ' cm '
 
     }
-
-
-
+    this.dimsf += this.fontend;
+    this.dimscmf += this.fontend;
   }
-// edition
-buildEditionLogic(edition) {
+  // edition
+  buildEditionLogic(edition) {
     // rules:
     // 1 everying to left of : is plain text and to right is em
     // 2 until it finds a ; (convert ; to </em> <br>)  
@@ -853,7 +696,7 @@ buildEditionLogic(edition) {
         iLines.push(leftofcolonText + ' ' + rightofcolonTextem + ' ' + leftofcolonText2 + ' ' + rightofcolonTextem2)
       }
       for (const item of iLines) {
-        this.EditionCommentFormat += item //+ '<br>'
+        this.EditionCommentFormat += this.font + item + this.fontend //+ '<br>'
       }
 
 
@@ -864,42 +707,45 @@ buildEditionLogic(edition) {
 
 
   buildEdition() {
-        this.EditionCommentFormat=''
+    this.EditionCommentFormat = ''
     this.buildEditionLogic(this.currentItem.EditionComment)
     this.currentItem.EditionText = this.currentItem.Edition + '\n' + this.EditionCommentFormat + '\n'
     this.currentItem.EditionText += this.currentItem.Chop + '\n'
     this.currentItem.EditionText += this.currentItem.Publisher + ', ' + this.currentItem.PublisherLocation + '\n'
     this.currentItem.EditionText += this.currentItem.Printer + ', ' + this.currentItem.PrinterLocation + '\n'
     delete this.EditionCommentFormat
-   
+    this.currentItem.EditionText = this.font + this.currentItem.EditionText + this.fontend
 
 
   }
+  async addRTF() {
+    alert('add')
+    return await true
+  }
 
 
-
-  createRTF(createopt) { 
-// alert('in create')
-    // this.buildEdition();
-    createopt=1;
+  async createRTF(createopt) {
+    //  alert ('createRTF')
+    this.font = `<p class=MsoNormal>` // <span style='font-family:"Calibri","sans-serif"'>`
+    this.fontend = '</p>' //span'
     this.createDim()
-    let artist = this.currentItem.artist
-    let artistWdates = `<strong>${artist.firstName} ${artist.lastName}`
+    let artist = `${this.font}this.currentItem.artist`
+    let artistWdates = `${this.font}<strong>${artist.firstName} ${artist.lastName}`
     if (artist.died) {
       artistWdates += ` (${artist.yearofBirth}-${artist.died})`
     } else {
       artistWdates += ` (b.${artist.yearofBirth})`
     }
-    artistWdates += '</strong>'
+    artistWdates += `</strong>${this.fontend}`
 
-    let artistWdates1 = `${artist.firstName} ${artist.lastName}`
+    let artistWdates1 = `${this.font}${artist.firstName} ${artist.lastName}`
 
     if (artist.died) {
-      artistWdates1 += ` (${artist.yearofBirth}-${artist.died})`
+      artistWdates1 += ` (${artist.yearofBirth}-${artist.died})${this.fontend}${this.font}`
     } else {
       // (b.1950)
 
-      artistWdates1 += ` (b.${artist.yearofBirth})`
+      artistWdates1 += ` (b.${artist.yearofBirth})${this.font}`
     }
 
 
@@ -907,13 +753,11 @@ buildEditionLogic(edition) {
     this.buildInscribed(this.currentItem.Inscribed)
 
 
-    //1
-    let segment1 = ` ${artistWdates1}<br>`
+    let segment1 = `${this.font} ${artistWdates1}<br>`
     segment1 += ` <em> ${this.currentItem.Title}</em>, ${this.currentItem.InvYear} <br> `
 
     if (this.currentItem.MediumSupportobj !== undefined)
-      segment1 += `  ${this.currentItem.MediumSupportobj.Description}<br> `
-    //  let uidx = (this.dimsf.indexOf('undefined'));
+      segment1 += `  ${this.currentItem.MediumSupportobj.Description}${this.fontend}<br> `
     let uidx
     this.dimsf === undefined ? uidx = -1 : uidx = (this.dimsf.indexOf('undefined'))
 
@@ -934,15 +778,12 @@ buildEditionLogic(edition) {
     if (this.currentItem.Signed === true) segment1 += 'signed'
 
 
-    // if (this.currentItem.Dated !=='N' && this.currentItem.Dated !== undefined) {
     if (this.currentItem.Dated === true) {
 
       if (this.currentItem.Signed === true) {
         segment1 += ' and dated '
       } else segment1 += 'dated '
     }
-    // segment1 += ` ${this.inscribedText}<br> ` 
-
 
 
     let fac = this.searchsold[this.selectedimagesize] // - ${this.sold.factor}
@@ -957,57 +798,131 @@ buildEditionLogic(edition) {
     // 	<img ref="mainimage" class="responsive-img"
     this.segment2 = `<p><img class="responsive-img" src="https://artbased.com/api/v1/getimage/inv/${this.currentItem.InventoryCode}.jpg" alt="" width="${ww}" height="${hh}" /></p>`
 
-    // this.segment2 = `<p><img src="https://artbased.com/api/v1/getonepdf/inv/POLLOCJ005.jpg" alt="" width="${ww}" height="${hh}" /></p>`
-    // this.segment2 = `<p><img src="https://artbased.com/api/v1/getonepdf/inv/${this.currentItem.InventoryCode}.jpg" alt="" width="${this.appService.cli}" height="${hh}" /></p>`
-
     this.segment2 += ` ${artistWdates}<br><br><br>`
-    this.segment2 += ` <em>${this.currentItem.Title}</em>, ${this.currentItem.InvYear}<br>`
+    this.segment2 += `${this.font} <em>${this.currentItem.Title}</em>, ${this.currentItem.InvYear}<br>${this.fontend}`
     if (this.currentItem.MediumSupportobj !== undefined)
       this.segment2 += ` ${this.currentItem.MediumSupportobj.Description}  <br> `
-    // this.segment2 += ` <p> ${this.currentItem.InvYear} </p> `
-    // if (dimsf !== undefined) this.segment2 += `  ${dimsf} in framed<br> `
-    // if (dimscmf !== undefined) this.segment2 += `  ${dimscmf} cm framed<br>  `
+
     if (this.dims !== undefined) this.segment2 += `  ${this.dims} in.`
     if (this.dimscm !== undefined) this.segment2 += ` / ${this.dimscm} cm <br>  `
 
-    // this.segment2 += `<br> ${this.currentItem.SignedLocation} <br>`
-    // this.segment2 += ` ${this.currentItem.SignedLocation} <br>`
-    // this.segment2 += `<br><br>no. P606 <br>`
     this.segment2 += ` ${this.inscribedText}<br> `
 
     if (this.currentItem.CatalogueNo !== undefined && this.currentItem.CatalogueNo !== '')
       // this.segment2 += ` Catalogue No: ${this.currentItem.CatalogueNo} <br>  <br> <br> `
 
-    this.segment2 += ` no. ${this.currentItem.CatalogueNo} <br>   `
+      this.segment2 += ` no. ${this.currentItem.CatalogueNo} <br>   `
     this.segment2 += ` AltID. ${this.currentItem.AltID} <br>  <br> <br> `
 
-
-
-
-
     this.buildEdition()
-
- 
     this.buildProv()
     this.buildRepro()
+    //  if (createopt === 1) { 
+    // this.editor.value('<p>' + this.segment2 + '</p>');
+    // this.currentItem.rtf1 = this.editor.value()// factsheet
+    // this.editorlabel.value('<p>' + segment1 + '</p>');
+    // this.currentItem.rtf2 = this.editorlabel.value()// label
+
+    let ln = '<html>'
+    ln += '<head>'
+
+    ln += '<style>'
+    ln += '<!--'
+    ln += '/* Font Definitions */'
+    ln += '@font-face'
+    ln += '{font-family:"Cambria Math";'
+    ln += 'panose-1:2 4 5 3 5 4 6 3 2 4;'
+    ln += 'mso-font-charset:1;'
+    ln += 'mso-generic-font-family:roman;'
+    ln += '	mso-font-format:other;'
+    ln += '	mso-font-pitch:variable;'
+    ln += '	mso-font-signature:0 0 0 0 0 0;}'
+    ln += '@font-face'
+    ln += '	{font-family:Calibri;'
+    ln += '	panose-1:2 15 5 2 2 2 4 3 2 4;'
+    ln += '	mso-font-charset:0;'
+    ln += '	mso-generic-font-family:swiss;'
+    ln += '	mso-font-pitch:variable;'
+    ln += '	mso-font-signature:-536859905 -1073732485 9 0 511 0;}'
+    ln += ' /* Style Definitions */'
+    ln += ' p.MsoNormal, li.MsoNormal, div.MsoNormal'
+    ln += '	{mso-style-unhide:no;'
+    ln += '	mso-style-qformat:yes;'
+    ln += '	mso-style-parent:"";'
+    ln += '	margin-top:0in;'
+    ln += '	margin-right:0in;'
+    ln += '	margin-bottom:10.0pt;'
+    ln += '	margin-left:0in;'
+    ln += '	line-height:115%;'
+    ln += '	mso-pagination:widow-orphan;'
+    ln += '	font-size:11.0pt;'
+    ln += '	font-family:"Calibri","sans-serif";'
+    ln += '	mso-ascii-font-family:Calibri;'
+    ln += '	mso-ascii-theme-font:minor-latin;'
+    ln += '	mso-fareast-font-family:Calibri;'
+    ln += '	mso-fareast-theme-font:minor-latin;'
+    ln += '	mso-hansi-font-family:Calibri;'
+    ln += '	mso-hansi-theme-font:minor-latin;'
+    ln += '	mso-bidi-font-family:"Times New Roman";'
+    ln += '	mso-bidi-theme-font:minor-bidi;}'
+
+    ln += '-->'
+    ln += '</style>'
+
+ln += '<!--[if gte mso 10]>'
+    ln += '<style>'
+    
+    ln += '/* Style Definitions */'
+    ln += 'table.MsoNormalTable'
+    ln += '{mso-style-name:"Table Normal"';
+    ln += 'mso-tstyle-rowband-size:0';
+    ln += 'mso-tstyle-colband-size:0';
+    ln += 'mso-style-noshow:yes';
+    ln += 'mso-style-priority:99';
+    ln += 'mso-style-qformat:yes';
+    ln += 'mso-style-parent:""';
+    ln += 'mso-padding-alt:0in 5.4pt 0in 5.4pt';
+    ln += 'mso-para-margin-top:0in';
+    ln += 'mso-para-margin-right:0in';
+    ln += 'mso-para-margin-bottom:10.0pt';
+    ln += 'mso-para-margin-left:0in';
+    ln += 'line-height:115%';
+    ln += 'mso-pagination:widow-orphan';
+    ln += 'font-size:11.0pt';
+    ln += 'font-family:"Calibri","sans-serif"';
+    ln += 'mso-ascii-font-family:Calibri';
+    ln += 'mso-ascii-theme-font:minor-latin';
+    ln += 'mso-hansi-font-family:Calibri';
+    ln += `ln+='mso-hansi-theme-font:minor-latin;'`
+    ln += 'mso-bidi-font-family:"Times New Roman";'
+    ln += 'mso-bidi-theme-font:minor-bidi;}'
+    ln += '</style>'
+    ln += '<![endif]--><!--[if gte mso 9]><xml>'
+    ln += '<o:shapedefaults v:ext="edit" spidmax="2050"/>'
+    ln += '</xml><![endif]--><!--[if gte mso 9]><xml>'
+    ln += '<o:shapelayout v:ext="edit">'
+    ln += '<o:idmap v:ext="edit" data="1"/>'
+    ln += '</o:shapelayout></xml><![endif]-->'
+    ln += '</head>'
+    ln += `<body lang=EN-US style='tab-interval:.5in'>`
+
+    ln += '<div class=WordSection1>'
+    ln += '</head>'
+
+    ln += `<body lang=EN-US style='tab-interval:.5in'>`
+
+    ln += `<div class=WordSection1>`
+
+    ln += `<p class=MsoNormal>aaa</p>`
+    // alert(ln)
+    this.currentItem.rtf1 = ln + '</div></body></html>'
 
 
-    // this.editor.value('<p>' + segment1 + '</p>' + '<hr><p>' +  this.segment2 + '</p>');
-if (createopt===1) {
-  // caled from rtf tab
-    this.editor.value('<span style="font-family:Calibri, Geneva, sans-serif;font-size:11.0pt">' + this.segment2 + '</span>');
-    this.currentItem.rtf1 = this.editor.value()// factsheet
+    // this.currentItem.rtf1 = ln + this.segment2 + '</div></body></html>'
+    this.currentItem.rtf2 = ln + this.segment1 + '</div></body></html>'
 
-    this.editorlabel.value('<span style="font-family:Calibri, Geneva, sans-serif;font-size:11.0pt">' + segment1 + '</span>');
-    this.currentItem.rtf2 = this.editorlabel.value()// label
-
-
-
-
-    // return this.currentItem.rtf1
-}
-
-
+    // }
+    return this.currentItem.rtf1
 
   }
 
@@ -1049,197 +964,19 @@ if (createopt===1) {
     this.currentItem.rtf2 = this.editorlabel.value()
   }
 
-  // let img1 = `https://artbased.com/api/v1/getonePdf/inv/${this.currentItem.InventoryCode}.jpg" `
-  // EXIF.getData(img1, function () {
-  //   var make = EXIF.getTag(this, "Make");
-  //   var model = EXIF.getTag(this, "Model");
-  //   var makeAndModel = document.getElementById("makeAndModel");
-  //   this.makeAndModel = `${make} ${model}`;
-  // });
-  remove(item, index) {
-    //alert('you are about to delete ' + item.Notes + ' ' + index)
-    this.mode = 0
-    this.dialogService.open({ viewModel: Prompt, model: 'Delete or Cancel?', lock: false }).whenClosed(response => {
-      if (!response.wasCancelled) {
-        console.log('Delete')
-        let provenance = this.currentItem.provenance
-        provenance.splice(index, 1)
-      } else {
-        console.log('cancel');
-      }
-      console.log(response.output);
-    });
-  }
-}
 
- // buildRepro() {
-  //   let reproduction = this.currentItem.reproduction
-  //   if (reproduction !== undefined) {
-  //     let iarray = []
-  //     this.segment2 += `<p><span style="text-decoration-line:underline;"><strong>EXHIBITION & PUBLICATION HISTORY</strong></span></p>`
-
-  //     for (const item of reproduction) {
-  //       console.log("loopitem ====", item)
-
-  //       this.segment2 += '<br>' + item.ReproductionName + ' ' + item.ReproductionTitle + ' '
-  //         + item.ReproductionAuthor
-  //         + item.ReproductionDate
-
+  // remove(item, index) {
+  //   //alert('you are about to delete ' + item.Notes + ' ' + index)
+  //   this.mode = 0
+  //   this.dialogService.open({ viewModel: Prompt, model: 'Delete or Cancel?', lock: false }).whenClosed(response => {
+  //     if (!response.wasCancelled) {
+  //       console.log('Delete')
+  //       let provenance = this.currentItem.provenance
+  //       provenance.splice(index, 1)
+  //     } else {
+  //       console.log('cancel');
   //     }
-
-  //   }
-  //   this.segment2 += ` <br />`
-  //   let exhibition = this.currentItem.exhibition
-  //   if (exhibition !== undefined) {
-  //     // this.currentItem.exhibition
-  //     let iarray = []
-  //     this.segment2 += ` <br><p>EXHIBITION HISTORY: </p>`
-  //     for (const item of exhibition) {
-  //       console.log("loopitem ====", item)
-  //       //  iarray.push(item)
-  //       this.segment2 += '<br>' + item.ExhibitTitle + ' ' + item.ExhibitSponser + ' ' + item.Reproduction + ' ' + item.ExhibitDates + ' '
-  //     }
-  //   }
+  //     console.log(response.output);
+  //   });
   // }
-
-
-  //   <p>Charles Porter ( 1847 -  1923 )<br />
-  // <em>Untitled (Peonies)</em>, c.1890 <br />
-  // box assemblage of wood, glass, <br />
-  // 24 x 20 in framed<br />
-  // 60.96 cm  x 50.8 cm framed<br />
-  // 20 3/8 x 16 1/4 in unframed<br />
-  // 50.8 NaN x 40.64 NaN cm unframed<br />
-  // signed <br />
-  // signed lower right: "C E Porter"<br />
-  // </p>
-
-  //=======================================\\
-  // <hr />
-  // <p><img src="https://artbased.com/api/v1/getonePdf/inv/PORTERC008.jpg" alt="" width="300" height="300" /></p>
-  // <p><strong>Charles Porter ( 1847 -  1923 )</strong><br />
-  // </p>
-  // <p><em>Untitled (Peonies)</em>, c.1890</p>
-  // <p>box assemblage of wood, glass,<br />
-  // </p>
-  // <p><br />
-  // </p>
-  // <p>20 3/8 x 16 1/4 in unframed<br />
-  // 50.8 NaN x 40.64 NaN cm unframed<br />
-  // <br />
-  // signed lower right: "C E Porter" <br />
-  // titled verso:signed lower right: "C E Porter" <br />
-  // </p>
-  // <p><span style="text-decoration-line:underline;"><strong>PROVONANCE</strong></span></p>
-  // <p><br />
-  // Charles Ethan Porter&nbsp;<br />
-  // Farmington Fine Arts Auction&nbsp;<br />
-  // Private Collection&nbsp;<br />
-  // Michael Rosenfeld Gallery LLC&nbsp;</p>
-  // <p>REPRODUCTION HISTORY:</p>
-  // <p><br />
-  // <br />
-  // undefined undefined undefined10/1/2018<br />
-  // undefined undefined undefined01/01/2018</p>
-  // <p><br />
-  // </p>
-  // <p><span style="text-decoration:underline;"><strong>EXHIBITION &amp; PUBLICATION HISTORY</strong></span></p>
-  // <p><br />
-  // Test1 Sponser1 undefined  <br />
-  // Windows on the City: Looking Out at Gracie&rsquo;s New York The Gracie Mansion Conservancy undefined November 10, 2013-November 30, 2016 <br />
-  // nancy nancy2 undefined Da  <br />
-  // </p>
-  // <p><br />
-  // </p>
-  // <p>&nbsp;</p>
-
-
-
-
- /**Charles Ethan Porter (1847-1923)
- Untitled (Peonies), c.1890
- oil on canvas
- 20" x 16" unframed 
- signed 
- signed lower right: CE Porter
-  ==============================
-  Charles Porter ( 1847 - 1923 )
- 
- undefined , c.2003
- 
- )
- 59d282beb777d41f42a5b2ee
- 
- )
- signed
- 
- )
- signed lower right: "C E Porter"
- 
- )
-  
-  
-  */
-    // artist.yearofBirth artist.died
-    //   "firstName" : "Charles", 
-    // "lastName" : "Porter", 
-    // if (this.currentItem.rtf1 !== undefined) {
-    //   this.editor.value(this.currentItem.rtf1)
-    // } else {
-    /* "UnframedHeight" : 20.0, 
-  "UnframedHeight16" : null, 
-  "UnframedWidth" : 16.0, 
-  "UnframedWidth16" : null, 
-  "UnframedDepth" : 0.0, 
-  "UnframedDepth16" : null, 
-  "FramedHeight" : 0.0, 
-  "FramedHeight16" : null, 
-  "FramedWidth" : 0.0, 
-  "FramedWidth16" : null, 
-  "FramedDepth" : 0.0, 
-  "FramedDepth16" : null,  */
-
-
-
-    //  prp.Lines.Strings[12] := 'PUBLICATION HISTORY';
-    //     artist_name := artist_name + HREPO + '</p>';
-    //     while not eof do
-    //     begin
-
-    //       repo := ''; repo2 := ''; repo3 := '';
-    //       repo := repo + '<p>' + frmInv.qReproduction.fieldbyname('Reproduction Author').asstring + ','; // NO SPACE BEC NEXT IS <I>
-    //       //      repo2 := repo2 + ' ' + frmInv.qReproduction.fieldbyname('Reproduction Title').asstring + ', ';
-    //       repo2 := repo2 + '<i>' + frmInv.qReproduction.fieldbyname('Reproduction Title').AsString + '</i>' + ', ';
-    //       if frmInv.qReproduction.fieldbyname('Reproduction Name').asstring <> '' then
-    //         repo3 := repo3 {+ ' (' } + frmInv.qReproduction.fieldbyname('Reproduction Name').asstring + ', ';
-
-
-
-    //       if frmInv.qReproduction.fieldbyname('Reproduction Location').asstring <> '' then
-    //       begin
-    //         qCodes.Locate('ID', frmInv.qReproduction.fieldbyname('Reproduction Location').asstring, []);
-
-    //         repo3 := repo3 + ' (' + qCodes.FieldByName('Description').AsString;
-    //       end else
-    //         repo3 := repo3 + ' (';
-
-
-
-    //       if frmInv.qReproduction.fieldbyname('Reproduction Date').asstring <> '' then
-    //         repo3 := repo3 + ', ' + frmInv.qReproduction.fieldbyname('Reproduction Date').asstring + ')'
-    //       else
-    //         repo3 := repo3 + ')';
-    //       if frmInv.qReproduction.fieldbyname('Reproduction Page').asstring <> '0' then
-    //         repo3 := repo3 + ', ' + frmInv.qReproduction.fieldbyname('Reproduction Page').asstring;
-    //       repo3 := trim(repo3) + '</p>';
-    //       if trim(repo) <> '' then
-    //       begin
-
-    //         artist_name := artist_name + repo + ' ' + repo2 + repo3 + '<p></p>'; // take space away
-    //       end;
-
-    // <p><strong>Features include:</strong></p>
-    // 				Create Label and Fact Sheet
-    // 			</button>
-    // 			</span>
-    // <textarea ak-rich-editor style="height:440px">
+}
