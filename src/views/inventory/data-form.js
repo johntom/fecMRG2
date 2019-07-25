@@ -640,7 +640,8 @@ export class DataForm {
         // SAVE WITH IMAGE INFO IN CASE ITS MISSING
         // nsure if needed this.getimageinfo()
 
-
+ let createopt = 2; // 1 is from tab
+        let rr = await this.rtfService.createRTF(createopt)
 
         this.api.saveinventory(this.currentItem).then((jsonRes) => {
           console.log('jsonRes ', jsonRes)
@@ -752,7 +753,7 @@ export class DataForm {
     let createopt = 2; // 1 is from tab
     let rr = await this.rtfService.createRTF(createopt)
     this.currentItem.rtf1
-    alert('r' +  this.currentItem.rtf1)
+    // alert('r' +  this.currentItem.rtf1)
   }
 
 
