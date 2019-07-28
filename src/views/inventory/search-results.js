@@ -60,8 +60,11 @@ export class SearchResults {
       //   options.success()
       // }
     },
+ 
     schema: {
+   
       model: {
+  
         id: "id", // Must assign id for update to work
         fields: {
           // LegacyID: { type: "number" }, // scan template
@@ -77,6 +80,10 @@ export class SearchResults {
           SoldDate: { type: "date" },
           "Sold": { type: "string" },
           "soldtoname": { type: "string" },
+            
+  
+     
+
           UnframedHeight: { type: "number" },
           UnframedHeight16: { type: "string" },
           UnframedWidth: { type: "number" },
@@ -95,17 +102,52 @@ export class SearchResults {
           Bin: { type: "string", sortable: false, menu: false }, // barcode insured
           Owner: { type: "string" },
           InvYear: { type: "string" },
-
+         groupedColumns : [{
+    field: 'UnframedHeight',
+    title: 'Hght',
+    width: 50,
+    type: "number"
+  }, {
+    field: 'UnframedHeight16',
+    title: ' ',
+    width: 50,
+    type: "string"
+  }, {
+   field: 'UnframedWidth',
+    title: 'Wdth',
+    width: 50,
+    type: "number"
+  }, {
+    field: 'UnframedWidth16',
+    title: ' ',
+    width: 50,
+    type: "string"
+  }, 
+    {
+   field: 'UnframedDepth',
+    title: 'Dpth',
+    width: 50,
+    type: "number"
+  }, {
+    field: 'UnframedDepth16',
+    title: ' ',
+    width: 50,
+    type: "string"
+  }
+  ],
           // Image : { type: "string", editable: false },
         }
       }
     },
     // pageSize: 10,
+    
     height: 400,
 
     //  serverPaging: true,
     //   serverSorting: true,
     sort: { field: 'InventoryCode', dir: 'asc' },
+   
+
     // aggregate: [{ field: "type", aggregate: "count" },
     //   { field: "template", aggregate: "count" }
     // ]
