@@ -10,7 +10,8 @@ import { DialogService } from 'aurelia-dialog';
 
 import { Promptyn } from '../../../services/promptyn';
 import { Promptorg } from '../promptorg';
-
+import jsRapTable from '../../../../jslib/jsRapTable';
+ 
 // @inject(TaskQueue, BindingSignaler, ApiService, ApplicationService, DialogService)
 @inject(ApiService, ApplicationService, DialogService)
 
@@ -166,5 +167,24 @@ export class Museamloan {
   }
   camelCaseToProperCase(input) {
     return this.dataService.camelCaseToProperCase(input);
+  }
+     attached() {
+    $(document).ready(function () {
+      $('#raptable').jsRapTable({
+        onSort: function (i, d) {
+          $('tbody').find('td').filter(function () {
+            return $(this).index() === i;
+          }).sortElements(function (a, b) {
+            if (i)
+              return $.text([a]).localeCompare($.text([b])) * (d ? -1 : 1);
+            else
+              return (parseInt($.text([a])) - parseInt($.text([b]))) * (d ? -1 : 1);
+          }, function () {
+            return this.parentNode;
+          });
+        },
+      });
+
+    })
   }
 }

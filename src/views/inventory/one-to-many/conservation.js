@@ -8,6 +8,8 @@ import { DialogService } from 'aurelia-dialog';
 
 import { Promptyn } from '../../../services/promptyn';
 import { Promptorg } from '../promptorg';
+import jsRapTable from '../../../../jslib/jsRapTable';
+ 
 @inject(ApiService, ApplicationService, DialogService)
 export class Conservation {
   heading = 'DataForm HEADER...';
@@ -107,20 +109,25 @@ export class Conservation {
     });
   }
 
-  //  showModal(fieldname,index) {
-  //     this.dialogService.open({ viewModel: Prompt, model: fieldname, lock: false }).whenClosed(response => {
-  //     this.currentItem.consignedto[index].ConsignedTo = this.currentItem.ConsignedTo
-  //     this.currentItem.consignedto[index].consignedtoname = this.currentItem.consignedtoname
-  //       if (!response.wasCancelled) {
-  //         // console.log('Delete') InsuredBy
-  //         // let notes = this.currentItem.notes
-  //         // notes.splice(index, 1)// start, deleteCount)
-  //       } else {
-  //         console.log('cancel');
-  //       }
-  //       console.log(response.output);
-  //     });
-  //   }
+     attached() {
+    $(document).ready(function () {
+      $('#raptable').jsRapTable({
+        onSort: function (i, d) {
+          $('tbody').find('td').filter(function () {
+            return $(this).index() === i;
+          }).sortElements(function (a, b) {
+            if (i)
+              return $.text([a]).localeCompare($.text([b])) * (d ? -1 : 1);
+            else
+              return (parseInt($.text([a])) - parseInt($.text([b]))) * (d ? -1 : 1);
+          }, function () {
+            return this.parentNode;
+          });
+        },
+      });
+
+    })
+  }
 
   addDetail() {
     let conservation = this.currentItem.conservation

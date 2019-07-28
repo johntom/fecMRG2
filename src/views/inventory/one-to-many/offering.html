@@ -10,9 +10,12 @@
 		
 		</h3>
 
-		<table class="table-condensed table">
-			<thead class="table-header-blue" data-sort="items.bind: currentItem.offerings; cols: ['ENTERED','REMIND','CANCELED','NOTES']">
-				<tr>
+		<!-- <table class="table-condensed table">
+			<thead class="table-header-blue" data-sort="items.bind: currentItem.offerings; cols: ['ENTERED','REMIND','CANCELED','NOTES']"> -->
+			<div id="raptable">
+	<table>
+		<thead>
+      	<tr>
 					<th class="header">Client
 					</th>
 					<th class="header">Offer Date
@@ -30,15 +33,15 @@
 			<tbody>
      
 				<tr repeat.for="offering of currentItem.offerings" with.bind="offering">
-					<td width="325px">
+					<td >
 						<span show.bind="!offering.edit">${clientname}</span>
 						<input show.bind="offering.edit" class="form-control input-sm" disabled.bind="!offering.edit" type="text" value.bind="clientname">
 					</td>
-					<td width="125px">
+					<td >
 						<span show.bind="!offering.edit">${offerdate   | dateFormat }</span>
 						<input show.bind="offering.edit" class="form-control input-sm" disabled.bind="!offering.edit" type="date" value.bind="offerdate">
 					</td>
-					<td width="125px">
+					<td >
 						<span show.bind="!offering.edit">${offeramount}</span>
 						<input show.bind="offering.edit" class="form-control input-sm" disabled.bind="!offering.edit" type="text" value.bind="offeramount">
 					</td>
@@ -46,7 +49,7 @@
 				</tr>
 			</tbody>
 		</table>
-
+</div>
 
 	</section>
 </template>

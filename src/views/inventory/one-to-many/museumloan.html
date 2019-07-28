@@ -1,7 +1,7 @@
 <template>
 	<!-- <require from="./docs.css"></require> -->
-  <require from="../../../resources/value-converters/date-format"></require>
- <!-- <styzle>
+	<require from="../../../resources/value-converters/date-format"></require>
+	<!-- <styzle>
 
   table.dataTable thead .sorting:after,
 table.dataTable thead .sorting:before,
@@ -26,78 +26,84 @@ bottom: .5em;
 		</h4>
 
 
-		<table class="table-condensed table">
+		<!-- <table class="table-condensed table">
 			<thead class="table-header-blue" data-sort="items.bind: currentItem.museumloan; cols: ['WorkDate','Notes']">
-				<tr>
-					<th class="header">Loan To </th>
-					<th class="header">Ins Value </th>
-					<th class="header">Ins Value Amt </th>
-					<th class="header">Exh Title </th>
-					<th class="header">Venues And Dates </th>
-					<th class="header">Returned </th>
-					<th class="header">Agreement</br>Form Signed MRG </th>
-					<th class="header">Agreement</br>Countersigned </th>
-					<th class="header">CofI </th>
-					<th class="header">Artwork</br>Released </th>
+			 -->
+		<div id="raptable">
+			<table>
+				<thead>
+
+					<tr>
+						<th class="header">Loan To </th>
+						<th class="header">Ins Value </th>
+						<th class="header">Ins Value Amt </th>
+						<th class="header">Exh Title </th>
+						<th class="header">Venues And Dates </th>
+						<th class="header">Returned </th>
+						<th class="header">Agreement</br>Form Signed MRG </th>
+						<th class="header">Agreement</br>Countersigned </th>
+						<th class="header">CofI </th>
+						<th class="header">Artwork</br>Released </th>
 						<th class="header">Notes </th>
 						<th class="header">Catalog </th>
 						<th class="header">Updated</br>Factsheet </th>
 
 
 						<th class="header"> </th>
-				</tr>
-			</thead>
-			<tfoot>
-				<tr>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
-			</tfoot>
-			<tbody>
-				<tr repeat.for="museumloan of currentItem.museumloan" with.bind="museumloan">
-								<td width="250px">
-					
-			      	<div class="form-control  input-sm" if.bind="loantoname===undefined || loantoname===''">
-							<a click.delegate="showModal( 'LoanTo',$index)">select_link </a>
-						</div>
-						<div class="form-control  input-sm" else>
-							<a click.delegate="showModal('LoanTo',$index)">${museumloan.loantoname}</a>
+					</tr>
+				</thead>
+				<tfoot>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+				</tfoot>
+				<tbody>
+					<tr repeat.for="museumloan of currentItem.museumloan" with.bind="museumloan">
+						<td>
 
-						</div>
-           
-          </td>
+							<div class="form-control  input-sm" if.bind="loantoname===undefined || loantoname===''">
+								<a click.delegate="showModal( 'LoanTo',$index)">select_link </a>
+							</div>
+							<div class="form-control  input-sm" else>
+								<a click.delegate="showModal('LoanTo',$index)">${museumloan.loantoname}</a>
 
-					<td width="120px"><input type="text" id="InsValue" class="form-control  input-sm" value.bind="museumloan.InsuranceValue"></td>
-					<td width="120px"><input type="text" id="InsValueAmt" class="form-control  input-sm" value.bind="museumloan.InsuranceValueAmt"></td>
-		<td width="220px"><input type="text" id="ExhTitle" class="form-control  input-sm" value.bind="museumloan.ExhibitionTitle"></td>
-					<td width="220px"><input type="text" id="VenuesAndDates" class="form-control  input-sm" value.bind="museumloan.ExhibitionVenuesDates"></td>
-					<td width="120px"><input type="checkbox" id="Returned" checked.bind="museumloan.Returned"></td>
+							</div>
 
-					<td width="120px"><input type="checkbox" id="AgreementFormSignedMRG" checked.bind="museumloan.AgreementFormSignedMRG"></td>
-					<td width="120px"><input type="checkbox" id="AgreementFormCountersigned" checked.bind="museumloan.AgreementFormCountersigned"></td>
-					<td width="120px"><input type="checkbox" id="CofI" checked.bind="museumloan.CofI"></td>
-					<td width="120px"><input type="date" id="ArtworkReleased" checked.bind="museumloan.ArtworkReleased  | dateFormat "></td>
-					<td width="220px"><input type="text" id="TransportNotes" class="form-control  input-sm" value.bind="museumloan.TransportNotes"></td>
+						</td>
 
-					<td width="120px"><input type="checkbox" id="Catalog" checked.bind="museumloan.Catalog"></td>
-					<td width="120px"><input type="checkbox" id="UpdatedFactSheet" checked.bind="museumloan.UpdatedFactSheet"></td>
+						<td><input type="text" id="InsValue" class="form-control  input-sm" value.bind="museumloan.InsuranceValue"></td>
+						<td><input type="text" id="InsValueAmt" class="form-control  input-sm" value.bind="museumloan.InsuranceValueAmt"></td>
+						<td><input type="text" id="ExhTitle" class="form-control  input-sm" value.bind="museumloan.ExhibitionTitle"></td>
+						<td><input type="text" id="VenuesAndDates" class="form-control  input-sm" value.bind="museumloan.ExhibitionVenuesDates"></td>
+						<td><input type="checkbox" id="Returned" checked.bind="museumloan.Returned"></td>
 
+						<td><input type="checkbox" id="AgreementFormSignedMRG" checked.bind="museumloan.AgreementFormSignedMRG"></td>
+						<td><input type="checkbox" id="AgreementFormCountersigned" checked.bind="museumloan.AgreementFormCountersigned"></td>
+						<td><input type="checkbox" id="CofI" checked.bind="museumloan.CofI"></td>
+						<td><input type="date" id="ArtworkReleased" checked.bind="museumloan.ArtworkReleased  | dateFormat "></td>
+						<td><input type="text" id="TransportNotes" class="form-control  input-sm" value.bind="museumloan.TransportNotes"></td>
 
-					<td width="225px">
-								<button class="btn btn-primary" click.delegate="saveitem(museumloan,$index)">${ !museumloan.edit ? 'Edit' : 'Save' }</button>
-
-          	<button class="btn btn-sm btn-danger" click.delegate="remove(museumloan,$index)">           Delete            </button>
-					</td>
+						<td><input type="checkbox" id="Catalog" checked.bind="museumloan.Catalog"></td>
+						<td><input type="checkbox" id="UpdatedFactSheet" checked.bind="museumloan.UpdatedFactSheet"></td>
 
 
-				</tr>
-			</tbody>
-		</table>
+						<td>
+							<button class="btn btn-primary" click.delegate="saveitem(museumloan,$index)">${ !museumloan.edit ? 'Edit' : 'Save' }</button>
 
+							<button class="btn btn-sm btn-danger" click.delegate="remove(museumloan,$index)">           Delete            </button>
+						</td>
+
+
+					</tr>
+				</tbody>
+			</table>
+		</div>
 	</section>
 </template>
+<!-- <td width="225px"> -->

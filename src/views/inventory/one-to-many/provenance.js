@@ -9,7 +9,8 @@ import { DialogService } from 'aurelia-dialog';
 import { Promptyn } from '../../../services/promptyn';
 import { Prompt } from '../prompt';
 
-
+import jsRapTable from '../../../../jslib/jsRapTable';
+ 
 @inject(ApiService, ApplicationService, DialogService)
 export class Provenance {
   heading = 'DataForm HEADER...';
@@ -90,16 +91,24 @@ export class Provenance {
   }
 
 
-    attached() {
+     attached() {
     $(document).ready(function () {
-      $('#dtVerticalScrollExample').DataTable({
-        "scrollY": "200px",
-        "scrollCollapse": true,
-        "ordering": false,
+      $('#raptable').jsRapTable({
+        onSort: function (i, d) {
+          $('tbody').find('td').filter(function () {
+            return $(this).index() === i;
+          }).sortElements(function (a, b) {
+            if (i)
+              return $.text([a]).localeCompare($.text([b])) * (d ? -1 : 1);
+            else
+              return (parseInt($.text([a])) - parseInt($.text([b]))) * (d ? -1 : 1);
+          }, function () {
+            return this.parentNode;
+          });
+        },
       });
-      // $('.dataTables_length').addClass('bs-select');
-    });
 
+    })
   }
 
 }

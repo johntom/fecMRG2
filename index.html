@@ -7,27 +7,28 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+
+	<link rel="stylesheet" href="styles/theme.default.css">
+
+	<script type="text/javascript" src="jslib/jquery.tablesorter.min.js"></script>
+	<script type="text/javascript" src="jslib/jquery.tablesorter.widgets.js"></script>
+	<script type="text/javascript" src="jslib/widget-scroller.js"></script>
+
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+
+
 	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" 
-	crossorigin="anonymous" rel="stylesheet">
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	 crossorigin="anonymous" rel="stylesheet">
 
-
-
-
-<link rel="stylesheet" type="text/css" href="styles/custom.css">
-
+	<link rel="stylesheet" type="text/css" href="styles/custom.css">
 	<link rel="stylesheet" href="https://kendo.cdn.telerik.com/2018.2.620/styles/kendo.common.min.css">
 	<link rel="stylesheet" href="https://kendo.cdn.telerik.com/2018.2.620/styles/kendo.default.min.css">
-	<!-- <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2018.2.620/styles/kendo.bootstrap.min.css"> -->
-
-  
-  <!-- <link rel="stylesheet" href="styles/kendo.common.min.css">
-	<link rel="stylesheet" href="kendo/kendo.default.min.css">
-	<link rel="stylesheet" href="kendo/kendo.bootstrap.min.css"> -->
-	<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.min.css"> -->
 	<link rel="stylesheet" href="styles/styles.css">
 	<link rel="stylesheet" href="styles/flex.css">
 	<link rel="stylesheet" href="styles/kendo.css">
+	<link rel="stylesheet" href="styles/jsRapTable.css">
 
 
 	<style>
@@ -44,33 +45,22 @@
 		}
 	</style>
 	<script type="text/javascript">
-		// Single Page Apps for GitHub Pages
-      // https://github.com/rafrex/spa-github-pages
-      // Copyright (c) 2016 Rafael Pedicini, licensed under the MIT License
-      // ----------------------------------------------------------------------
-      // This script checks to see if a redirect is present in the query string
-      // and converts it back into the correct url and adds it to the
-      // browser's history using window.history.replaceState(...),
-      // which won't cause the browser to attempt to load the new url.
-      // When the single page app is loaded further down in this file,
-      // the correct url will be waiting in the browser's history for
-      // the single page app to route accordingly.
-      (function(l) {
-        if (l.search) {
-          var q = {};
-          l.search.slice(1).split('&').forEach(function(v) {
-            var a = v.split('=');
-            q[a[0]] = a.slice(1).join('=').replace(/~and~/g, '&');
-          });
-          if (q.p !== undefined) {
-            window.history.replaceState(null, null,
-              l.pathname.slice(0, -1) + (q.p || '') +
-              (q.q ? ('?' + q.q) : '') +
-              l.hash
-            );
-          }
-        }
-      }(window.location))
+		(function (l) {
+			if (l.search) {
+				var q = {};
+				l.search.slice(1).split('&').forEach(function (v) {
+					var a = v.split('=');
+					q[a[0]] = a.slice(1).join('=').replace(/~and~/g, '&');
+				});
+				if (q.p !== undefined) {
+					window.history.replaceState(null, null,
+						l.pathname.slice(0, -1) + (q.p || '') +
+						(q.q ? ('?' + q.q) : '') +
+						l.hash
+					);
+				}
+			}
+		}(window.location))
 	</script>
 </head>
 
@@ -78,15 +68,8 @@
 	<h1 class="loading">Loading...</h1>
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
-
-	<!-- 2017.2.621 -->
-
-	<script src="https://kendo.cdn.telerik.com/2018.2.620/js/jquery.min.js"></script>
 	<script src="https://kendo.cdn.telerik.com/2018.2.620/js/jszip.min.js"></script>
 	<script src="https://kendo.cdn.telerik.com/2018.2.620/js/kendo.all.min.js"></script>
-	<!-- <script src="../kendo/jquery.min.js"></script>
-	<script src="../kendo/jszip.min.js"></script>
-	<script src="../kendo/kendo.all.min.js"></script> -->
 
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.min.js"></script>

@@ -4,53 +4,55 @@
 
 
 	<section class="docs full-height flex-column-1 overflow-y-auto ignore" style="height:400px">
-<table id="dtVerticalScrollExample" class="table  table-bordered table-sm" cellspacing="0"
-		<h4>
+<h4>
 			<i class="fa fa-folder-open"></i> Provenance
 			<a slot="buttons-slot" class="btn btn-primary" click.delegate="addDetail()">
 				<i class="fa fa-plus"></i> Add Provenance
 			</a>
 
-		</h4>
+			</h4>
 
 
 
-<table id="dtVerticalScrollExample" class="table  table-bordered table-sm" cellspacing="0"
-  width="100%">
-			<thead class="table-header-blue" data-sort="items.bind: currentItem.provenance; cols: ['ProvDate','ProvMemo']">
-				<tr>
-					<th class="header">Owner </th>
+			<!-- <table id="dtVerticalScrollExample" class="table  table-bordered table-sm" cellspacing="0"
+  width="100%"> -->
+			<!-- <thead class="table-header-blue" data-sort="items.bind: currentItem.provenance; cols: ['ProvDate','ProvMemo']"> -->
+			<div id="raptable">
+				<table>
+					<thead>
+						<tr>
+							<th>Owner </th>
 
-					<th class="header">Location</th>
+							<th>Location</th>
 
-					<th class="header">Date </th>
+							<th>Date </th>
 
-					<th class="header">Note </th>
-					<!-- <th class="header">Sort Date </th> -->
-					<th class="header">Sequence </th>
-				</tr>
-			</thead>
-			<tfoot>
-				<tr>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
-			</tfoot>
-			<tbody>
-				<tr repeat.for="provenance of currentItem.provenance " with.bind="provenance">
+							<th>Note </th>
+							<!-- <th class="header">Sort Date </th> -->
+							<th>Sequence </th>
+						</tr>
+					</thead>
+					<tfoot>
+						<tr>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+					</tfoot>
+					<tbody>
+						<tr repeat.for="provenance of currentItem.provenance " with.bind="provenance">
 
-			
-					<td >
-       
-	<span show.bind="!provenance.edit">${ProvOwner }</span>
-						<input show.bind="provenance.edit" class="form-control input-sm" disabled.bind="!provenance.edit" type="text" value.bind="ProvOwner">
-</td>
 
-					<td>
-						<select id="ProvLoc" class="form-control  input-sm" value.bind="ProvLoc"> 
+							<td>
+
+								<span show.bind="!provenance.edit">${ProvOwner }</span>
+								<input show.bind="provenance.edit" class="form-control input-sm" disabled.bind="!provenance.edit" type="text" value.bind="ProvOwner">
+							</td>
+
+							<td>
+								<select id="ProvLoc" class="form-control  input-sm" value.bind="ProvLoc"> 
                       <!-- <option model.bind="null">Choose...filterOnCode</option>  -->
                          <option model.bind=0>Choose...filterOnCode</option> 
                       <option repeat.for="opt of appService.codesProvenanceLocation " model.bind="opt.id">
@@ -58,40 +60,40 @@
                       </option> 
                     </select>
 
-					</td>
+							</td>
 
-					<!-- <td width="120px"><input type="date" id="ProvDate" class="form-control  input-sm" value.bind="ProvDate  | dateFormat "></td> -->
-					<td>
-            <span show.bind="!provenance.edit">${ProvDate | dateFormat }</span>
-	
-   
-            <input show.bind="provenance.edit" disabled.bind="!provenance.edit" type="date" id="ProvDate" class="form-control" value.bind="ProvDate">
-            </td>
-					<td>
-            	<span show.bind="!provenance.edit">${ProvMemo }</span>
-
-            <input show.bind="provenance.edit" disabled.bind="!provenance.edit"  type="text" id="ProvMemo" class="form-control " value.bind="ProvMemo">
-            
-            </td>
-
-					<td>
-            	<span show.bind="!provenance.edit">${Sequence }</span>
-
-            <input show.bind="provenance.edit" disabled.bind="!provenance.edit"  type="text" id="Sequence" class="form-control " value.bind="Sequence">
-            </td>
-
-					<td>
-
-						<button class="btn btn-primary" click.delegate="saveitem(provenance,$index)">${ !provenance.edit ? 'Edit' : 'Save' }</button>
-
-						<button class="btn btn-danger" click.delegate="remove(provenance,$index)">Delete</button>
-             _________________
-					</td>
-
-				</tr>
-			</tbody>
-		</table>
+							<!-- <td width="120px"><input type="date" id="ProvDate" class="form-control  input-sm" value.bind="ProvDate  | dateFormat "></td> -->
+							<td>
+								<span show.bind="!provenance.edit">${ProvDate | dateFormat }</span>
 
 
+								<input show.bind="provenance.edit" disabled.bind="!provenance.edit" type="date" id="ProvDate" class="form-control" value.bind="ProvDate">
+							</td>
+							<td>
+								<!-- <span show.bind="!provenance.edit">${ProvMemo }</span> -->
+<!-- show.bind="provenance.edit" disabled.bind="!provenance.edit" -->
+								<input  type="text" id="ProvMemo" class="form-control " value.bind="ProvMemo">
+
+							</td>
+
+							<td>
+								<span show.bind="!provenance.edit">${Sequence }</span>
+
+								<input show.bind="provenance.edit" disabled.bind="!provenance.edit" type="text" id="Sequence" class="form-control " value.bind="Sequence">
+							</td>
+
+							<td>
+
+								<button class="btn btn-primary" click.delegate="saveitem(provenance,$index)">${ !provenance.edit ? 'Edit' : 'Save' }</button>
+
+								<button class="btn btn-danger" click.delegate="remove(provenance,$index)">Delete</button>
+
+							</td>
+
+						</tr>
+					</tbody>
+				</table>
+
+			</div>
 	</section>
 </template>

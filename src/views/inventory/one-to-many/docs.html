@@ -19,11 +19,14 @@
 		</h4>
 
 		<form>
-			<table class="table-condensed table">
-				<thead class="table-header-blue" data-sort="items.bind: currentItem.docs; cols: ['FILE_NAME','FILE_EXT']">
-					<tr>
-						<th class="header"  width="225px" >FILE_NAME		</th>
-						<th class="header"  width="55px">FILE_EXT			</th>
+			<!-- <table class="table-condensed table">
+				<thead class="table-header-blue" data-sort="items.bind: currentItem.docs; cols: ['FILE_NAME','FILE_EXT']"> -->
+				<div id="raptable">
+	<table>
+		<thead>
+        	<tr>
+						<th  >FILE_NAME		</th>
+						<th >FILE_EXT			</th>
 
 					</tr>
 				</thead>
@@ -36,7 +39,7 @@
 				</tfoot>
 				<tbody>
 					<tr repeat.for="doc of currentItem.docs" with.bind="doc">
-						<td  width="225px">  
+						<td >  
      			         <!-- <a  size='200' class="form-control  input-sm" target="_blank"
                  href="https://artbased.com/api/v1/getinvcodeimage/${currentItem.InventoryCode}/${doc.FILE_NAME}">
 							${FILE_NAME}
@@ -50,12 +53,13 @@
 							${FILE_NAME} -->
 							
 						</td>
-          	<td  width="55px" ><input type="text" id="FILE_EXT" class="form-control  input-sm"
+          	<td  ><input type="text" id="FILE_EXT" class="form-control  input-sm"
                 value.bind="FILE_EXT"></td>
 
 					</tr>
 				</tbody>
 			</table>
+      </div>
 		</form>
 
 	</section>

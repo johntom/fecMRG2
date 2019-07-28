@@ -5,6 +5,8 @@ import { ApplicationService } from '../../../services/application-service';
 
 import { DialogService } from 'aurelia-dialog';
 import { Prompt } from '../../../services/prompt';
+import jsRapTable from '../../../../jslib/jsRapTable';
+ 
 @inject(ApiService, ApplicationService, DialogService)
 export class Adjusternotes {
   heading = 'DataForm HEADER...';
@@ -118,7 +120,25 @@ export class Adjusternotes {
 
 
   }
+   attached() {
+    $(document).ready(function () {
+      $('#raptable').jsRapTable({
+        onSort: function (i, d) {
+          $('tbody').find('td').filter(function () {
+            return $(this).index() === i;
+          }).sortElements(function (a, b) {
+            if (i)
+              return $.text([a]).localeCompare($.text([b])) * (d ? -1 : 1);
+            else
+              return (parseInt($.text([a])) - parseInt($.text([b]))) * (d ? -1 : 1);
+          }, function () {
+            return this.parentNode;
+          });
+        },
+      });
 
+    })
+  }
 
 }
  

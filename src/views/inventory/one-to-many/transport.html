@@ -12,9 +12,12 @@
 
 		</h4>
 
-		<table class="table-condensed table">
-			<thead class="table-header-blue" data-sort="items.bind: currentItem.transport; cols: ['TransportDate','TransportNotes']">
-				<tr>
+		<!-- <table class="table-condensed table">
+			<thead class="table-header-blue" data-sort="items.bind: currentItem.transport; cols: ['TransportDate','TransportNotes']"> -->
+				<div id="raptable">
+	<table>
+		<thead>
+        <tr>
 					<th class="header">Date
 					</th>
 					<!-- <th class="header">TransportTo
@@ -39,13 +42,13 @@
 			<tbody>
 				<tr repeat.for="transport of currentItem.transport" with.bind="transport">
 
-					<td width="90px">
+					<td >
 						<span show.bind="!transport.edit">${TransportDate | dateFormat }</span>
 						<input show.bind="transport.edit" class="form-control input-sm" disabled.bind="!transport.edit" type="date" value.bind="TransportDate | dateFormat ">
 					</td>
 
 
-					<td width="490px">
+					<td >
 						<span show.bind="!transport.edit">${TransportNotes}</span>
 						<input show.bind="transport.edit" class="form-control input-sm" disabled.bind="!transport.edit" type="textarea" rowspan="2"
 						 value.bind="TransportNotes">
@@ -53,7 +56,7 @@
 
 
 
-					<td width="225px">
+					<td >
 						<!-- <button class="btn btn-primary" click.delegate="transport.edit=!transport.edit">${ !transport.edit ? 'Update' : 'Done' }</button> -->
 						<button class="btn btn-primary" click.delegate="saveitem(transport,$index)">${ !transport.edit ? 'Edit' : 'Save' }</button>
 
@@ -63,6 +66,6 @@
 				</tr>
 			</tbody>
 		</table>
-
+</div>		
 	</section>
 </template>

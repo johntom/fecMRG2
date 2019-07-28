@@ -30,9 +30,13 @@
 		   
 		</h4>
 
-			<table class="table-condensed table">
+			<!-- <table class="table-condensed table">
 				<thead class="table-header-blue" data-sort="items.bind: currentItem.photo; cols: ['WorkDate','Notes']">
-					<tr>
+				 -->
+       <div id="raptable">
+	<table>
+		<thead> 
+        	<tr>
            
 						<th class="header">Photogpraher </th>
 						<th class="header">Format </th>
@@ -62,7 +66,7 @@
           
           	
 						</td>
-						<td width="250px">
+						<td >
 					<select id="PhotographerID" class="form-control  input-sm" value.bind="PhotographerID"> 
                 <option model.bind="null">Choose...</option> 
                 <option repeat.for="opt of appService.codesPhotographers " model.bind="opt.ID">
@@ -76,7 +80,7 @@
 			
 						</td>
 
-						<td width="200px">
+						<td>
 							<select id="PhotoFormatID" class="form-control  input-sm" value.bind="PhotoFormatID"> 
                 <option model.bind="null">...</option> 
                 <option repeat.for="opt of appService.codesPhotoFormat " model.bind="opt.ID">
@@ -86,13 +90,13 @@
 
 						</td>
 
-						<td width="120px"><input type="date" id="Date" class="form-control  input-sm" value.bind="PhotoDate | dateFormat"  ></td>
+						<td><input type="date" id="Date" class="form-control  input-sm" value.bind="PhotoDate | dateFormat"  ></td>
 
-						<td width="320px"><input type="text" id="Note" class="form-control  input-sm" value.bind="PhotoMemo"></td>
+						<td ><input type="text" id="Note" class="form-control  input-sm" value.bind="PhotoMemo"></td>
 						<!-- <td width="120px"><input type="text" id="PhotoTaken" class="form-control  input-sm" value.bind="photo.PhotoTaken"></td> -->
 
 
-						<td width="225px">
+						<td >
 							<!-- <button class="btn btn-primary" click.delegate="museumloan.edit=!museumloan.edit">${ !museumloan.edit ? 'Update' : 'Done' }</button> -->
 						
             			<button class="btn btn-primary" click.delegate="saveitem(photo,$index)">${ !photo.edit ? 'Edit' : 'Save' }</button>
@@ -105,6 +109,6 @@
 					</tr>
 				</tbody>
 			</table>
-
+</div>		
 		</section>
 	</template>

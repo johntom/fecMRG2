@@ -1,7 +1,7 @@
 <template>
 	<!-- <require from="./docs.css"></require> -->
 	<require from="../../../resources/value-converters/date-format"></require>
-<!-- <style>
+	<!-- <style>
   table.dataTable thead .sorting:after,
 table.dataTable thead .sorting:before,
 table.dataTable thead .sorting_asc:after,
@@ -15,76 +15,77 @@ table.dataTable thead .sorting_desc_disabled:before {
 bottom: .5em;
 }
 	</style> -->
-
-	<section class="docs  full-height  flex-column-1 overflow-y-auto ignore" style="height:400px">
+	<!-- style="height:400px" -->
+	<section class="docs  full-height  flex-column-1 overflow-y-auto ignore">
 
 		<h4>
 			<!-- href="#/provenance/new"> -->
 			<i class="fa fa-folder-open"></i> Reproduction
-			<a slot="buttons-slot" class="btn btn-primary" click.delegate="addRepro()">
+			<a slot="buttons-slot" class="btn btn-primary" click.delegate="addRepro()"> edit: ${reproduction.edit}
 
 				<i class="fa fa-plus"></i> Add Reproduction
 			</a>
-		</h4> 
+		</h4>
 
-<table id="dtVerticalScrollExample" class="table  table-bordered table-sm" cellspacing="0"
+		<!-- <table id="dtVerticalScrollExample" class="table  table-bordered table-sm" cellspacing="0"
   width="100%">
-  <thead>
-    <tr>
-					 <th>Author</th>
-					 <th>First</th>
-					 <th>Last</th>
-					 <th>Ed</th>
-					 <th>Title </th>
-				   <th>Publisher </th>
-					 <th>ocation </th>
-					 <th>Date </th>
-					 <th>No. </th>
-					 <th>Page </th>
-					 <th>Type </th>
-					 <th>Color/BW </th>
-					 <th>Sort Date </th>
-					 <th>Select<br>Exhibition</th>
-					 <th>Batch No </th>
-					 <th> cmd  </th>
-           </tr>
+  <thead> -->
+		<div id="raptable">
+			<table>
+				<thead>
+					<tr>
+						<th>Author</th>
+						<th>First</th>
+						<th>Last</th>
+						<th>Ed</th>
+						<th>Title </th>
+						<th>Publisher </th>
+						<th>Location </th>
+						<th>Date </th>
+						<th>No. </th>
+						<th>Page </th>
+						<th>Type </th>
+						<th>Color/BW </th>
+						<th>Sort Date </th>
+						<th>Select<br>Exhibition</th>
+						<th>Batch#</th>
+						<th> cmd </th>
+					</tr>
 				</thead>
-    
-      <tbody>
-        
-				<tr repeat.for="reproduction of currentItem.reproduction " with.bind="reproduction">
-					<td >
-						<span show.bind="!reproduction.edit">${ReproductionAuthor}</span>
-						<input show.bind="reproduction.edit" id="zReproductionAuthor" class="form-control input-sm" disabled.bind="!reproduction.edit"
-						 type="text" value.bind="ReproductionAuthor">
-					</td>
-						<td >
-						<span show.bind="!reproduction.edit">${AuthorFirst}</span>
-						<input show.bind="reproduction.edit" id="zReproductionTitle2" class="form-control input-sm" disabled.bind="!reproduction.edit"
-						 type="text" value.bind="AuthorFirst">
-					</td>
-						<td >
-						<span show.bind="!reproduction.edit">${AuthorLast}</span>
-						<input show.bind="reproduction.edit" id="zReproductionTitle3" class="form-control input-sm" disabled.bind="!reproduction.edit"
-						 type="text" value.bind="AuthorLast">
-					</td>
 
-					<td >
-						<input type="checkbox" id="Editor" checked.bind="reproduction.Editor">
-					</td>
+				<tbody>
 
-					<td >
-						<span show.bind="!reproduction.edit">${ReproductionTitle}</span>
-						<input show.bind="reproduction.edit" id="zReproductionTitle" class="form-control input-sm" disabled.bind="!reproduction.edit"
-						 type="text" value.bind="ReproductionTitle">
-					</td>
-						<td >
-						<span show.bind="!reproduction.edit">${ReproductionName}</span>
-						<input show.bind="reproduction.edit" id="zReproductionAuthor" class="form-control input-sm" disabled.bind="!reproduction.edit"
-						 type="text" value.bind="ReproductionName">
-					</td>
-						<td >
-						<select id="ReproductionLocation" class="form-control  input-sm" value.bind="ReproductionLocation"> 
+					<tr repeat.for="reproduction of currentItem.reproduction " with.bind="reproduction" dblclick="modal(reproduction,$index)">
+						<td>
+							<!-- <span show.bind="!reproduction.edit">${ReproductionAuthor}</span> -->
+							<input class="form-control input-sm" disabled.bind="!reproduction.edit" type="text" value.bind="ReproductionAuthor">
+						</td>
+						<td>
+							<!-- <span show.bind="!reproduction.edit">${AuthorFirst}</span> -->
+							<input class="form-control input-sm" disabled.bind="!reproduction.edit" type="text" value.bind="AuthorFirst">
+						</td>
+						<td>
+							<!-- <span show.bind="!reproduction.edit">${AuthorLast}</span> -->
+							<input class="form-control input-sm" disabled.bind="!reproduction.edit" type="text" value.bind="AuthorLast">
+						</td>
+
+						<td>
+							<input type="checkbox" id="Editor" checked.bind="reproduction.Editor">
+						</td>
+
+						<td width="225px">
+              <!-- <span  show.bind="!reproduction.edit">1,${reproduction.edit} ${ReproductionTitle}</span> -->
+							<!-- <span style="max-width:225px" show.bind="!reproduction.edit">${ReproductionTitle}</span> -->
+							<input style="width:225px" class="form-control input-sm" show.bind="!reproduction.edit" type="text" value.bind="ReproductionTitle" !enabled>
+					
+              <input class="form-control input-sm" show.bind="reproduction.edit" type="text" value.bind="ReproductionTitle">
+						</td>
+						<td width="225px">
+							<!-- <span show.bind="!reproduction.edit">${ReproductionName}</span> -->
+							<input class="form-control input-sm"  type="text" value.bind="ReproductionName">
+						</td>
+					<td width="225px">
+							<select id="ReproductionLocation" class="form-control  input-sm" value.bind="ReproductionLocation"> 
                       <!-- <option model.bind="null">Choose...filterOnCode</option>  -->
                        <option model.bind="''">Choose...filterOnCode</option> 
                     
@@ -94,52 +95,52 @@ bottom: .5em;
                       </option> 
                     </select>
 
-					</td>
-						<td ><input type="text" id="ReproductionDate" class="form-control  input-sm" value.bind="ReproductionDate "></td>
-						<td ><input type="text" id="Number" class="form-control  input-sm" value.bind="no"></td>
-					<td ><input type="text" id="zReproductionPage" class="form-control  input-sm" value.bind="ReproductionPage"></td>
-					
-				<td >
-						<select id="ReproductionType" class="form-control  input-sm" value.bind="ReproductionType"> 
+						</td>
+						<td width="125px"><input type="text" id="ReproductionDate" class="form-control  input-sm" value.bind="ReproductionDate "></td>
+						<td><input type="text" id="Number" class="form-control  input-sm" value.bind="no"></td>
+						<td><input type="text" id="zReproductionPage" class="form-control  input-sm" value.bind="ReproductionPage"></td>
+
+							<td width="125px">
+							<select id="ReproductionType" class="form-control  input-sm" value.bind="ReproductionType"> 
                       <option model.bind="''" >Choose...</option> 
                          <option repeat.for="opt of appService.codesPublicationType " model.bind="opt.id">
                     ${opt.Description} 
                       </option> 
                     </select>
-					</td>
-					<td >
-						<select id="ColorBW" class="form-control  input-sm" value.bind="ColorBW"> 
+						</td>
+								<td width="125px">
+							<select id="ColorBW" class="form-control  input-sm" value.bind="ColorBW"> 
                       <option model.bind="''">Choose...</option> 
                          <option repeat.for="opt of appService.codesReproductionType" model.bind="opt.id">
                     ${opt.Description} 
                       </option> 
                     </select>
 
-					</td>
-					<td ><input type="date" id="ReproductionSortDate" class="form-control  input-sm" value.bind="ReproductionSortDate | dateFormat "></td>
-					<td >
-						<select id="ReproductionExhibit" class="form-control  input-sm" value.bind="ReproductionExhibit"> 
+						</td>
+								<td width="125px"><input type="date" id="ReproductionSortDate" class="form-control  input-sm" value.bind="ReproductionSortDate | dateFormat "></td>
+						<td>
+							<select id="ReproductionExhibit" class="form-control  input-sm" value.bind="ReproductionExhibit"> 
                       <option model.bind="''" >Choose...</option> 
                          <option change.delegate="changeSelect(opt)" repeat.for="opt of currentItem.exhibition" 
                          model.bind="opt.id">
                ${opt.id}  /  ${opt.ExhibitTitle} /  ${opt.ExhibitSponser}
                       </option> 
                     </select>
-              
-					</td>
-					<td ><span> ${batchno}</span></td>
-					<td >
-			    
-         
-           
-						<button class="btn btn-primary" click.delegate="saveitem(reproduction,$index)">${!reproduction.edit ? 'Edit' : 'Save' }</button>
-						<button class="btn btn-danger" click.delegate="remove(reproduction,$index)">Del</button>
-						<button class="btn btn-success" click.delegate="modal(reproduction,$index)">Pop</button>
-					  _______________________ 
-          </td> 
-				</tr>
-			</tbody>
-       <tfoot>
+
+						</td>
+								<td width="75px"><span> ${batchno}</span></td>
+						<td>
+
+
+
+							<!-- <button class="btn btn-primary" click.delegate="saveitem(reproduction,$index)">${!reproduction.edit ? 'Edit' : 'Save' }</button> -->
+							<button class="btn btn-danger" click.delegate="remove(reproduction,$index)">Del</button>
+							<button class="btn btn-success" click.delegate="modal(reproduction,$index)">Pop</button>
+
+						</td>
+					</tr>
+				</tbody>
+				<!-- <tfoot>
     <tr>
 					 <th>Author</th>
 					 <th>First</th>
@@ -159,7 +160,8 @@ bottom: .5em;
 					 <th> cmd </th>
            </tr>
 			
-      </tfoot>
-		</table>
+      </tfoot> -->
+			</table>
+		</div>
 	</section>
 </template>
