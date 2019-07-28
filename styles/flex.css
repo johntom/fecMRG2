@@ -372,11 +372,16 @@
 
 
 	.Rtable-cell--highlight {
-		 background-color: lightblue;
+		 background-color: white;
       border-color: #7bbbce 
     
 		}
 
+	.Rtable-cell--highlightlightblue {
+		 background-color: lightblue;
+      border-color: #7bbbce 
+    
+		}
 
 		.Rtable-cell--alert {
 			background-color: darkorange;

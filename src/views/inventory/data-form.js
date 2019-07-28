@@ -607,10 +607,10 @@ export class DataForm {
     let savetime = moment().format('MM/DD/YY h:mm:ss a')
     if (this.recordId === 'create') {
       // console.log(  this.currentItem, this.currentItem)
-      // || this.currentItem.MediumSupportobj === undefined
+      // || this.currentItem.MediumSupportobj === undefined this.currentItem.Title === undefined |
 
-      if (this.currentItem.Title === undefined || this.currentItem.InventoryCode === undefined
-        || this.currentItem.artist === undefined || this.currentItem.OwnedBy === undefined) {
+      if ( this.currentItem.InventoryCode === undefined
+        || this.currentItem.artist === undefined) {
         alert('Please fix  Title, InventoryCode, Owned By and or Artist ')
       } else {
         this.rtfService.currentItem = this.currentItem
