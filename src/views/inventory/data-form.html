@@ -178,11 +178,12 @@
 
 										<!-- <div if.bind="recordId === 'create'"> -->
 										<!-- <div style="height:15px;margin-left:10px;margin-top:5px;margin-bottom:10px" if.bind="currentItem.artist===undefined || currentItem.artist===''"> -->
-										<div style="height:12px;margin-left:8px;margin-top:2px;margin-bottom:5px" if.bind="currentItem.artist===undefined || currentItem.artist===''">
+										<div style="height:12px;margin-left:4px;margin-top:2px;margin-bottom:5px" 
+                    if.bind="currentItem.artist===undefined || currentItem.artist===''">
 											<a click.delegate="showModal( 'Artist')">select_link </a>
 
 										</div>
-										<div style="height:12px;margin-left:8px;margin-top:2px;margin-bottom:5px" else>
+										<div style="height:12px;margin-left:4px;margin-top:2px;margin-bottom:5px" else>
 											<a click.delegate="showModal( 'Artist')">${currentItem.artist.lastName}, ${currentItem.artist.firstName}
 												<span show.bind="currentItem.artist.died==='' || currentItem.artist.died===0 || currentItem.artist.died===undefined"> (b.${currentItem.artist.yearofBirth})</span>
 												<span show.bind="currentItem.artist.died!==''  && currentItem.artist.died!==0 && currentItem.artist.died!==undefined"> (${currentItem.artist.yearofBirth}-${currentItem.artist.died})</span>												</strong>
@@ -207,10 +208,10 @@
 									<a click.delegate="showModal( 'MediumSupportobj')">${currentItem.MediumSupportobj.Description} </a>
 									</div> -->
 									<div class="Rtable-cell-70  Rtable-cell--light">
-										<div style="height:15px;margin-left:10px;margin-top:5px;margin-bottom:10px" if.bind="currentItem.MediumSupportobj===undefined || currentItem.MediumSupportobj===''">
+										<div style="height:12px;margin-left:4px;margin-top:2px;margin-bottom:5px" if.bind="currentItem.MediumSupportobj===undefined || currentItem.MediumSupportobj===''">
 											<a click.delegate="showModal( 'MediumSupportobj')">select_link </a>
 										</div>
-										<div style="height:15px;margin-left:10px;margin-top:5px;margin-bottom:10px" else>
+										<div style="height:12px;margin-left:4px;margin-top:2px;margin-bottom:5px" else>
 											<a click.delegate="showModal( 'MediumSupportobj')">${currentItem.MediumSupportobj.Description} </a>
 										</div>
 									</div>
@@ -503,10 +504,10 @@
 									<div class="Rtable-cell-70  Rtable-cell--light">
 
 										<!-- <a click.delegate="showModal( 'Inscribed')">${currentItem.Inscribed} </a> -->
-										<div style="height:15px;margin-left:10px;margin-top:5px;margin-bottom:10px" if.bind="currentItem.Inscribed===undefined || currentItem.Inscribed==='' ">
+										<div style="height:12px;margin-left:4px;margin-top:2px;margin-bottom:5px" if.bind="currentItem.Inscribed===undefined || currentItem.Inscribed==='' ">
 											<a click.delegate="showModal( 'Inscribed')">enter_inscribed </a>
 										</div>
-										<div style="height:15px;margin-left:10px;margin-top:5px;margin-bottom:10px" else>
+										<div style="height:12px;margin-left:4px;margin-top:2px;margin-bottom:5px" else>
 											<a click.delegate="showModal( 'Inscribed')">${currentItem.Inscribed} </a>
 										</div>
 
@@ -558,8 +559,9 @@
 										</select>
 									</div>
 
-									<div class="Rtable-cell-30 Rtable-cell--highlight">
-										<span dblclick.delegate="showModal( 'SoldToID') ">	<strong> Sold To ${currentItem.SoldToID}</strong></span>
+									<div class="Rtable-cell-30 Rtable-cell--highlight"> 
+                    <!-- ${currentItem.SoldToID} -->
+										<span dblclick.delegate="showModal( 'SoldToID') ">	<strong> Sold To</strong></span>
 									</div>
 
 
@@ -567,10 +569,10 @@
 
 									<div class="Rtable-cell-70  Rtable-cell--highlight">
 
-										<div style="height:15px;margin-left:10px;margin-top:5px;margin-bottom:10px" if.bind="currentItem.soldtoname===undefined || currentItem.soldtoname==='' ">
+										<div style="height:12px;margin-left:4px;margin-top:2px;margin-bottom:5px" if.bind="currentItem.soldtoname===undefined || currentItem.soldtoname==='' ">
 											<a click.delegate="showModal( 'SoldToID')">select_link </a>
 										</div>
-										<div style="height:15px;margin-left:10px;margin-top:5px;margin-bottom:10px" else>
+										<div style="height:12px;margin-left:4px;margin-top:2px;margin-bottom:5px" else>
 											<a click.delegate="showModal( 'SoldToID')">${currentItem.soldtoname} </a>
 											&nbsp;&nbsp;
 											<a click.delegate="soldtoEdit()">...Open...</a>
@@ -604,14 +606,14 @@
 
 									<div class="Rtable-cell-70  Rtable-cell--highlight">
 
-										<div style="height:15px;margin-left:10px;margin-top:5px;margin-bottom:10px" if.bind="currentItem.ownername===undefined || currentItem.ownername==='' ">
+										<div style="height:12px;margin-left:4px;margin-top:2px;margin-bottom:5px" if.bind="currentItem.ownername===undefined || currentItem.ownername==='' ">
 											<a click.delegate="showModal( 'OwnerID')">select_link </a>
 										</div>
-										<div style="height:15px;margin-left:10px;margin-top:5px;margin-bottom:10px" else>
-											<a click.delegate="showModal( 'OwnerID')">${currentItem.OwnerID}/${currentItem.ownername} </a>
-											&nbsp;&nbsp;
+										<div style="height:12px;margin-left:4px;margin-top:2px;margin-bottom:5px" else>
+											<a click.delegate="showModal( 'OwnerID')"${currentItem.ownername} </a>
+									
 											<a click.delegate="OwnerIDEdit()">...Open...</a>
-
+<!-- >${currentItem.OwnerID}/ -->
 
 										</div>
 
@@ -662,14 +664,14 @@
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
 										<strong>Added/updatedAt</strong>
 									</div>
-									<div class="Rtable-cell-70 Rtable-cell--highlight">
+									<div  class="Rtable-cell-70 Rtable-cell--highlight">
 										<!-- after convert use createdAt -->
 
 										${currentItem.DateAdded | dateFormat} / ${currentItem.updatedAt | dateFormat } </div>
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
 										<strong>legacy modified</strong>
 									</div>
-									<div class="Rtable-cell-70 Rtable-cell--highlight">
+									<div   class="Rtable-cell-70 Rtable-cell--highlight">
 										<!-- after convert use createdAt -->
 
 										${currentItem.ModifiedDate | dateFormat }
