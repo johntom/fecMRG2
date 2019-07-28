@@ -183,19 +183,13 @@
 
 										</div>
 										<div style="height:12px;margin-left:8px;margin-top:2px;margin-bottom:5px" else>
-
-
 											<a click.delegate="showModal( 'Artist')">${currentItem.artist.lastName}, ${currentItem.artist.firstName}
 												<span show.bind="currentItem.artist.died==='' || currentItem.artist.died===0 || currentItem.artist.died===undefined"> (b.${currentItem.artist.yearofBirth})</span>
 												<span show.bind="currentItem.artist.died!==''  && currentItem.artist.died!==0 && currentItem.artist.died!==undefined"> (${currentItem.artist.yearofBirth}-${currentItem.artist.died})</span>												</strong>
 												</span>
-
 											</a>
-
-
 										</div>
 									</div>
-
 
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
 										<strong> Title</strong>

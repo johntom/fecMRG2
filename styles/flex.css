@@ -319,7 +319,8 @@
 		.Rtable-cell {
 			margin: -3px 0 0 -3px;
 			background-color: white;
-			border-color: #e2e6e9;
+			/* border-color: #e2e6e9; */
+          border-color: #7bbbce 
 		}
 
 		.Rtable-cell-1 {
