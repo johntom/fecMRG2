@@ -74,8 +74,7 @@ export class SearchResults {
           dir: 'asc'
         }],
         group: {
-          field: "CodeTypeDesc"
-         
+          field: "CodeType" // field: "CodeTypeDesc" 
         },
     schema: {
       model: {
@@ -112,6 +111,7 @@ export class SearchResults {
       .then((jsonRes) => {
         console.log('this.scans ', jsonRes)
         return jsonRes
+     
       })
   }
   activate(params, routeConfig) {
@@ -148,6 +148,7 @@ export class SearchResults {
         this.origItems = values[0]//.data;
         code = this.origItems;
         console.log('code ', code.length)
+           this.spinner.remove()
         return code
         //bad   this.currentItem = this.items.find(f => f.id == params.id);
       }).catch(error => {

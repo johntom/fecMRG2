@@ -323,6 +323,7 @@ export class SearchResults {
         inv = jsonRes.data;
         this.inventory = jsonRes.data;
         this.recCount = inv.length;
+               this.spinner.remove()
         if (inv === 0 || inv.length === 0) {
           // alert(' no records found ')
           this.message = ' no records found '
