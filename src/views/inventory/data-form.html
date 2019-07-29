@@ -597,7 +597,7 @@
 
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
 										<!-- <span dblclick.delegate="showModal( 'OwnedID') ">	<strong> Owned By (OwnedID ${currentItem.OwnedID}) </strong></span> -->
-	<span dblclick.delegate="showModal( 'OwnedID') ">	<strong> Owned By </strong></span>
+	<span dblclick.delegate="showModal( 'OwnedID') ">	<strong> Owned By  </strong></span>
 
 									</div>
 
@@ -610,10 +610,9 @@
 											<a click.delegate="showModal( 'OwnerID')">select_link </a>
 										</div>
 										<div style="height:12px;margin-left:4px;margin-top:2px;margin-bottom:5px" else>
-											<a click.delegate="showModal( 'OwnerID')"${currentItem.ownername} </a>
-									
+											<a click.delegate="showModal( 'OwnerID')">${currentItem.OwnerID}/${currentItem.ownername} </a>
+											&nbsp;&nbsp;
 											<a click.delegate="OwnerIDEdit()">...Open...</a>
-<!-- >${currentItem.OwnerID}/ -->
 
 										</div>
 
@@ -664,14 +663,14 @@
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
 										<strong>Added/updatedAt</strong>
 									</div>
-									<div  class="Rtable-cell-70 Rtable-cell--highlight">
+									<div style="padding-left:4px;" class="Rtable-cell-70 Rtable-cell--highlight">
 										<!-- after convert use createdAt -->
 
 										${currentItem.DateAdded | dateFormat} / ${currentItem.updatedAt | dateFormat } </div>
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
 										<strong>legacy modified</strong>
 									</div>
-									<div   class="Rtable-cell-70 Rtable-cell--highlight">
+									<div style="padding-left:4px;"   class="Rtable-cell-70 Rtable-cell--highlight">
 										<!-- after convert use createdAt -->
 
 										${currentItem.ModifiedDate | dateFormat }
