@@ -5,13 +5,8 @@ import { Prompt } from '../../../services/prompt';
 import { DialogService } from 'aurelia-dialog';
 import { Promptexhibit } from '../../prompt/promptExhibit';
 // with kendo version must load tablesorter here
-// import tablesorter from  '../../../../jslib/jquery.tablesorter.min';
-// import tablesorterw from '../../../../jslib/jquery.tablesorter.widgets';
-// import tablesorters from '../../../../jslib/widget-scroller';
 
 import jsRapTable from '../../../../jslib/jsRapTable';
-
-
 
 
 @inject(ApiService, ApplicationService, DialogService)
@@ -137,44 +132,3 @@ export class Exhibition {
 }
 
 
-
-  // attached() {
-      // $(function() {
-    //   $("#myTable").tablesorter();
-    // });
-  //   $(document).ready(function () {
-  //     $('#dtVerticalScrollExample').DataTable({
-  //       "scrollY": "200px",
-  //       "scrollCollapse": true,
-  //       "ordering": false,
-  //     });
-  //     // $('.dataTables_length').addClass('bs-select');
-  //   });
-
-  // }
-// attached() {
-//     $(document).ready(function () {
-//       // $('table').tablesorter({
-//       $('table').tablesorter({
-//         theme: 'default',
-//          widgets: ['filter', 'scroller'],
-//         widgetOptions: {
-//            scroller_fixedColumns: 1,
-//           scroller_height: 400,
-//           scroller_upAfterSort: true,
-//            scroller_jumpToHeader: true,
-//             scroller_addFixedOverlay: false,
-//            scroll_barWidth: null,
-//            scroller_rowHighlight: "hover"
-       
-//       },
-//         initialized: function (table) {
-//           // Not an ideal solution to fix column alignment,
-//           // but it works (for now)
-//           $(table).resize();
-//         }
-//       });
-
-
-//   });
-// }
