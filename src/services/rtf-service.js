@@ -316,7 +316,8 @@ export class RtfService {
         } else {
           // there is a semi so add br
           rightofcolonTextem = '<em>' + rightofcolonbaseText.substr(1, semisPos - 1) + '</em><br>';
-          restoftext = rightofcolonbaseText.substr(semisPos + 1, rightofcolonbaseText.length);
+          // restoftext = rightofcolonbaseText.substr(semisPos + 1, rightofcolonbaseText.length);
+ restoftext = rightofcolonbaseText.substr(semisPos, rightofcolonbaseText.length);
 
           colonPos = restoftext.indexOf(":");
           leftofcolonText2 = restoftext.substr(0, colonPos);
@@ -782,7 +783,6 @@ there are extra ' when there are fractions
 
 
     let fac = this.searchsold[this.selectedimagesize] // - ${this.sold.factor}
-
     let ww = this.currentItem.clientWidth * fac.factor
     let hh = this.currentItem.clientHeight * fac.factor
 
@@ -807,7 +807,10 @@ there are extra ' when there are fractions
       // this.segment2 += ` Catalogue No: ${this.currentItem.CatalogueNo} <br>  <br> <br> `
 
       this.segment2 += ` no. ${this.currentItem.CatalogueNo} <br>   `
+    if (this.currentItem.AltID!==undefined) {
     this.segment2 += ` AltID. ${this.currentItem.AltID} <br>  <br> <br> `
+    }
+
 
     this.buildEdition()
     this.buildProv()
@@ -815,11 +818,8 @@ there are extra ' when there are fractions
      if (createopt === 1) { 
     this.editor.value('<span style="font-family:Calibri, Geneva, sans-serif;font-size:11.0pt">' + this.segment2 + '</span>');
     this.currentItem.rtf1 = this.editor.value()// factsheet
-
     this.editorlabel.value('<span style="font-family:Calibri, Geneva, sans-serif;font-size:11.0pt">' + this.segment1 + '</span>');
     this.currentItem.rtf2 = this.editorlabel.value()// label
-
-
 
 
     

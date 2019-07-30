@@ -10,8 +10,8 @@ import { Prompt } from '../../../services/prompt';
 export class Rtf {
   tools = [
     'pdf',
-    'html', 
-    'bold', 
+    'html',
+    'bold',
     'italic',
     'underline',
     // 'strikethrough',
@@ -368,9 +368,9 @@ export class Rtf {
     let rct = 0
     if (reproduction !== undefined) {
       // for (const item of reproduction) {
-        var i;
-        let item
-        for (i = 0; i < reproduction.length; i++) { 
+      var i;
+      let item
+      for (i = 0; i < reproduction.length; i++) {
         item = reproduction[i];
         rct++
         //alert(rct + ' ' + item.ReproductionExhibit + ' ' + item.ReproductionLocation + ' ')
@@ -390,11 +390,11 @@ export class Rtf {
           //   let rec = this.appService.codesReproductionType.find(x => x.id === item.ColorBW)
           //   ColorBWDesc = rec.Description + ', '
           // }
-           let data
+          let data
           if (item.ReproductionAuthor !== "") {
-data = ppre + `${item.ReproductionAuthor}. <em>${item.ReproductionTitle}</em> ${preafter}`
-          } else 
-          data = ppre + `${item.AuthorLast}, ${item.AuthorFirst}. <em>${item.ReproductionTitle}</em> ${preafter}`
+            data = ppre + `${item.ReproductionAuthor}. <em>${item.ReproductionTitle}</em> ${preafter}`
+          } else
+            data = ppre + `${item.AuthorLast}, ${item.AuthorFirst}. <em>${item.ReproductionTitle}</em> ${preafter}`
           //alert(rct + ' ReproductionLocationDesc ' + ReproductionLocationDesc + ' data ' + data)
 
           data += `(${ReproductionLocationDesc}: ${item.ReproductionName}, ${item.ReproductionDate}) <br>`
@@ -464,19 +464,20 @@ data = ppre + `${item.ReproductionAuthor}. <em>${item.ReproductionTitle}</em> ${
         if (semisPos === -1) {
           semisPos = rightofcolonbaseText.length
           // rightofcolonTextem = '<em>' + rightofcolonbaseText.substr(0, semisPos - 1) + '</em>'; //+ '</em><br>';
-           rightofcolonTextem = '<em>' + rightofcolonbaseText.substr(0, semisPos ) + '</em>'; //+ '</em><br>';
-        
-          iLines.push(leftofcolonText + ' ' + rightofcolonTextem) 
+          rightofcolonTextem = '<em>' + rightofcolonbaseText.substr(0, semisPos) + '</em>'; //+ '</em><br>';
+
+          iLines.push(leftofcolonText + ' ' + rightofcolonTextem)
         } else {
           // there is a semi so add br
           rightofcolonTextem = '<em>' + rightofcolonbaseText.substr(1, semisPos - 1) + '</em><br>';
-          restoftext = rightofcolonbaseText.substr(semisPos + 1, rightofcolonbaseText.length);
+          // restoftext = rightofcolonbaseText.substr(semisPos + 1, rightofcolonbaseText.length);
+          restoftext = rightofcolonbaseText.substr(semisPos, rightofcolonbaseText.length);
 
           colonPos = restoftext.indexOf(":");
           leftofcolonText2 = restoftext.substr(0, colonPos);
           // rightofcolonTextem2 = '<em>' + restoftext.substr(colonPos + 1, restoftext.length - colonPos +1) + '</em>';
-            rightofcolonTextem2 = '<em>' + restoftext.substr(colonPos + 1, restoftext.length - colonPos ) + '</em>';
-  
+          rightofcolonTextem2 = '<em>' + restoftext.substr(colonPos + 1, restoftext.length - colonPos) + '</em>';
+
           iLines.push(leftofcolonText + ' ' + rightofcolonTextem + ' ' + leftofcolonText2 + ' ' + rightofcolonTextem2)
         }
       }
@@ -531,10 +532,11 @@ data = ppre + `${item.ReproductionAuthor}. <em>${item.ReproductionTitle}</em> ${
     let cmfh = this.currentItem.FramedHeight16
     let cmuw = this.currentItem.UnframedWidth16
     let cmfw = this.currentItem.FramedWidth16
-
     let cmud = this.currentItem.UnframedDepth16
     let cmfd = this.currentItem.FramedDepth16
 
+    //  let cmsd = this.currentItem.SeightDepth16
+    //     let cmsd = this.currentItem.FramedDepth16
 
 
     let factor = 0.3175 //.125 * 2.54 
@@ -729,88 +731,206 @@ there are extra ' when there are fractions
     // let dimsf
     // let dimscmf
 
-    this.dims = undefined
-    this.dimscm = undefined
+    this.dims = '';//undefined
+    this.dimscm = '';// undefined
     this.dimsf = undefined
     this.dimscmf = undefined
 
     let ufwcm
-    if (this.currentItem.UnframedHeight16 === null) {
-      this.dims = this.currentItem.UnframedHeight + ' x '
-      this.dimscm = this.roundNumber((this.currentItem.UnframedHeight * 2.54).toPrecision(2), 1) + ' x ' //fix
-    } else {
-      this.dims = `${this.currentItem.UnframedHeight} <span style="font-size:x-small;"> ${this.currentItem.UnframedHeight16}</span> x `
-      this.dimscm = this.roundNumber((this.currentItem.UnframedHeight * 2.54).toPrecision(2) + cmuh, 1) + ' x '
+
+    // let cmuh = buildFactor(this.currentItem.UnframedHeight16)
+    // let cmuw = buildFactor(this.currentItem[UnframedWidth16])
+    // let cmud = buildFactor(this.currentItem[UnframedDepth16])
+
+    // let cmfh = buildFactor(this.currentItem[heightfraction])
+    // let cmfw = buildFactor(this.currentItem[heightfraction])
+    // let cmfd = buildFactor(this.currentItem[heightfraction])
+
+    // let cmsh = buildFactor(this.currentItem[heightfraction])
+    // let cmsw = buildFactor(this.currentItem[heightfraction])
+    // let cmsd = buildFactor(this.currentItem[heightfraction])
+
+    let cmh = this.buildFactor(this.currentItem.UnframedHeight16)
+    let cmw = this.buildFactor(this.currentItem.UnframedWidth16)
+    let cmd = this.buildFactor(this.currentItem.UnframedDepth16)
+
+    this.buildDimLogic('unframed', 'UnframedHeight', 'UnframedHeight16', 'UnframedWidth', 'UnframedWidth16', 'UnframedDepth', 'UnframedDepth16', cmh, cmw, cmd)
+
+    // cmh = this.buildFactor(this.currentItem.SeightHeight16)
+    // cmw = this.buildFactor(this.currentItem.SeightWidth16)
+    // cmd = this.buildFactor(this.currentItem.SeightDepth16)
+    // // this.buildDimLogic('seight',SeightHeight', 'SeightHeight16', 'SeightWidth', 'SeightWidth16', 'SeightDepth', 'SeightDepth16', cmh, cmw,cmd)
+    // cmh = this.buildFactor(this.currentItem.FramedHeight16)
+    // cmw = this.buildFactor(this.currentItem.FramedWidth16)
+    // cmd = this.buildFactor(this.currentItem.FramedDepth16)
+
+    // // this.buildDimLogic('framed', 'FramedHeight','FramedHeight16',  'FramedWidth', 'FramedWidth16', 'FramedDepth', 'FramedDepth16',  cmh, cmw,cmd)
+    // cmh = this.buildFactor(this.currentItem.imageHeight16)
+    // cmw = this.buildFactor(this.currentItem.imagetWidth16)
+    // cmd = this.buildFactor(this.currentItem.imageDepth16)
+    // this.buildDimLogic('image','imageHeight', 'imageHeight16', 'imageWidth', 'imageWidth16', 'imageDepth', 'imageDepth16',  cmh, cmw,cmd)
+    // imageHeight16  SeightHeight16 imageWidth16 FramedWidth16
+    
+  
+    //
+    //  if (this.currentItem.UnframedHeight16 === null) {
+    //       this.dims = this.currentItem.UnframedHeight + ' x '
+    //       this.dimscm = this.roundNumber((this.currentItem.UnframedHeight * 2.54).toPrecision(2), 1) + ' x ' //fix
+    //     } else {
+    //       this.dims = `${this.currentItem.UnframedHeight} <span style="font-size:x-small;"> ${this.currentItem.UnframedHeight16}</span> x `
+    //       this.dimscm = this.roundNumber((this.currentItem.UnframedHeight * 2.54).toPrecision(2) + cmuh, 1) + ' x '
+    //     }
+
+    //     if (this.currentItem.UnframedWidth16 === null) {
+    //       this.dims += this.currentItem.UnframedWidth
+    //       ufwcm = this.currentItem.UnframedWidth * 2.54
+    //       this.dimscm += this.roundNumber((ufwcm), 1).toPrecision(2) + ' x '
+    //     } else {
+    //       this.dims += `${this.currentItem.UnframedWidth}       <span style="font-size:x-small;"> ${this.currentItem.UnframedWidth16} </span>`
+    //       ufwcm = this.roundNumber(this.currentItem.UnframedWidth * 2.54, 1).toPrecision(2)
+    //       // this.dimscm += this.roundNumber( ((this.currentItem.UnframedWidth * 2.54) + cmuw), 1)
+
+    //       this.dimscm += (ufwcm + cmuw.toPrecision(2))
+
+    //     }
+
+    //     if (this.currentItem.UnframedDepth16 === null) {
+    //       if (this.currentItem.UnframedDepth === null || this.currentItem.UnframedDepth === 0) { } else {
+    //         this.dims += ' x ' + this.currentItem.UnframedDepth
+    //         ufwcm = this.currentItem.UnframedDepth * 2.54
+    //         console.log('ufwcm', ufwcm)
+    //         this.dimscm += ' x ' + this.roundNumber(ufwcm, 1).toPrecision(2)
+    //         //  this.dimscm +=  ' x ' +ufwcm
+    //         console.log('  this.dimscm', this.dimscm)
+    //       }
+    //     } else {
+    //       this.dims += ' x ' + `${this.currentItem.UnframedDepth}   <span style="font-size:x-small;"> ${this.currentItem.UnframedDepth16} </span>`
+    //       ufwcm = this.roundNumber(this.currentItem.UnframedDepth * 2.54,1).toPrecision(2)   // this.dimscm += ' x ' + this.roundNumber((( this.currentItem.UnframedDepth * 2.54) + cmud), 1) //+ ' cm '
+
+    //       this.dimscm += ' x ' + ((ufwcm) + cmud) //+ ' cm '
+
+    //     }
+    //     //   cmfd cmud
+
+    //     /////////////////////////////
+
+    //     if (this.currentItem.FramedHeight !== 0) {
+    //       if (this.currentItem.FramedHeight16 === null) {
+    //         this.dimsf = `${this.currentItem.FramedHeight} <span style="font-size:x-small;"> ${this.currentItem.FramedHeight} </span> x `
+    //         this.dimscmf = this.roundNumber((this.currentItem.FramedHeight * 2.54).toPrecision(2), 1) + ' x ' //+ ' cm ' //
+    //       } else {
+    //         this.dimsf = `${this.currentItem.FramedHeight} <span style="font-size:x-small;"> ${this.currentItem.FramedHeight16} </span> x `
+    //         this.dimscmf = this.roundNumber((this.currentItem.FramedHeight * 2.54).toPrecision(2) + cmuw, 1) + ' x '// + ' cm ' //
+    //       }
+
+    //       if (this.currentItem.FramedWidth16 === null) {
+    //         this.dimsf += this.currentItem.FramedWidth
+    //         this.dimscmf += (this.currentItem.FramedWidth * 2.54).toPrecision(2)
+    //       } else {
+    //         this.dimsf += `${this.currentItem.FramedWidth}  <span style="font-size:x-small;"> ${this.currentItem.FramedWidth16} </span>  `
+    //         this.dimscmf += this.roundNumber((this.currentItem.FramedWidth * 2.54).toPrecision(2) + cmfw, 1) //+ ' cm ' //+ ' x '
+    //       }
+    //     }
+
+
+    //     if (this.currentItem.FramedDepth16 === null) {
+    //       if (this.currentItem.FamedDepth === null || this.currentItem.FramedDepth === 0) { } else {
+    //         this.dimsf += ' x ' + this.currentItem.FramedDepth
+    //         this.dimscmf = + ' x ' + this.roundNumber((this.currentItem.FramedDepth * 2.54).toPrecision(2), 1)
+    //       }
+    //     } else {
+    //       this.dimsf += ' x ' + `${this.currentItem.FramedDepth}       <span style="font-size:x-small;"> ${this.currentItem.FramedDepth16} </span>`
+    //       this.dimscmf += ' x ' + this.roundNumber((this.currentItem.FramedDepth * 2.54).toPrecision(2) + cmfd, 1) //+ ' cm '
+
+    //     }
+
+  }
+  buildFactor(dim) {
+    let factor = 0.3175 //.125 * 2.54 
+    switch (dim) {
+      case null:
+        dim = 0
+        break;
+      case '0/0':
+        dim = 0
+        break;
+      case '1/8':
+        dim = factor
+        break;
+      case '1/4':
+        dim = factor * 2
+      case '3/8':
+        dim = factor * 3
+        break;
+      case '1/2':
+        dim = factor * 4
+        break;
+      case '5/8':
+        dim = factor * 5
+        break;
+      case '3/4':
+        dim = factor * 6
+        break;
+      case '7/8':
+        dim = factor * 7
+        break;
     }
+    return dim
+  }
 
-    if (this.currentItem.UnframedWidth16 === null) {
-      this.dims += this.currentItem.UnframedWidth
-      ufwcm = this.currentItem.UnframedWidth * 2.54
-      this.dimscm += this.roundNumber((ufwcm), 1).toPrecision(2) + ' x '
-    } else {
-      this.dims += `${this.currentItem.UnframedWidth}       <span style="font-size:x-small;"> ${this.currentItem.UnframedWidth16} </span>`
-      ufwcm = this.roundNumber(this.currentItem.UnframedWidth * 2.54, 1).toPrecision(2)
-      // this.dimscm += this.roundNumber( ((this.currentItem.UnframedWidth * 2.54) + cmuw), 1)
 
-      this.dimscm += (ufwcm + cmuw.toPrecision(2))
+  buildDimLogic(dtype, height, heightfraction, width, widthfraction, depth, depthfraction,  cmh, cmw, cmd) {
+    // buildDimLogic('Unframed','Unframed16','UnframedWidth','UnframedWidth16','UnframedDepth','UnframedDepth16',cmuh,ufwcm)
+    //  
+    // rules: 
+    if (this.currentItem[heightfraction] === undefined | this.currentItem[heightfraction] === 0 || this.currentItem[height] === null) {this.currentItem[heightfraction] = '';cmh=''; cmw=''; cmd='';}
+    if (this.currentItem[widthfraction] === undefined | this.currentItem[widthfraction] === 0 || this.currentItem[widthfraction] === null) {this.currentItem[heightfraction] = '';cmh=''; cmw=''; cmd='';}
+    if (this.currentItem[depthfraction] === undefined | this.currentItem[depthfraction] === 0 || this.currentItem[depthfraction] === null) {this.currentItem[heightfraction] = '';cmh=''; cmw=''; cmd='';}
+    if (this.currentItem[height] === undefined || this.currentItem[height] === 0 || this.currentItem[height] === null) this.currentItem[height] = ''
+    if (this.currentItem[width] === undefined || this.currentItem[width] === 0 || this.currentItem[width] === null) this.currentItem[width] = ''
+    if (this.currentItem[depth] === undefined || this.currentItem[depth] === 0 || this.currentItem[depth] === null) this.currentItem[depth] = ''
 
-    }
+    if (this.currentItem[height] === '' && this.currentItem[width] === null) { } {
+      if (this.currentItem[height] === '') {
+        this.dims += this.currentItem[heightfraction] + ' x '
+        this.dimscm += this.roundNumber((this.currentItem[height]  * 2.54).toPrecision(2), 1) + ' x ' //fix
+      } else {
+        this.dims += `${this.currentItem[height]} <span style="font-size:x-small;"> ${this.currentItem[heightfraction]}</span> x `
+        this.dimscm += this.roundNumber((this.currentItem[height]  * 2.54).toPrecision(2) + cmuh, 1) + ' x '
+      }
 
-    if (this.currentItem.UnframedDepth16 === null) {
-      if (this.currentItem.UnframedDepth === null || this.currentItem.UnframedDepth === 0) { } else {
-        this.dims += ' x ' + this.currentItem.UnframedDepth
-        ufwcm = this.currentItem.UnframedDepth * 2.54
-        console.log('ufwcm', ufwcm)
-        this.dimscm += ' x ' + this.roundNumber(ufwcm, 1).toPrecision(2)
+      if (this.currentItem[width] === '') {
+        this.dims += this.currentItem[widthfraction] + ' x '
+        this.dimscm += this.roundNumber((this.currentItem[width]  * 2.54).toPrecision(2), 1) + ' x ' //fix
+      } else {
+        this.dims += `${this.currentItem[width]} <span style="font-size:x-small;"> ${this.currentItem[widthfraction]}</span> x `
+        this.dimscm += this.roundNumber((this.currentItem[width]  * 2.54).toPrecision(2) + cmuw, 1) + ' x '
+      }
+
+      if (this.currentItem[depth] === '') {
+        this.dims += ' ' + this.currentItem[widthfraction]
+        ufwcm = cmw * 2.54
+        // console.log('ufwcm', ufwcm)
+        this.dimscm += ' ' + this.roundNumber(ufwcm, 1).toPrecision(2)
         //  this.dimscm +=  ' x ' +ufwcm
-        console.log('  this.dimscm', this.dimscm)
-      }
-    } else {
-      this.dims += ' x ' + `${this.currentItem.UnframedDepth}   <span style="font-size:x-small;"> ${this.currentItem.UnframedDepth16} </span>`
-      ufwcm = this.roundNumber(this.currentItem.UnframedDepth * 2.54,1).toPrecision(2)   // this.dimscm += ' x ' + this.roundNumber((( this.currentItem.UnframedDepth * 2.54) + cmud), 1) //+ ' cm '
+        // console.log('  this.dimscm', this.dimscm)
 
-      this.dimscm += ' x ' + ((ufwcm) + cmud) //+ ' cm '
-
-    }
-    //   cmfd cmud
-
-    /////////////////////////////
-
-    if (this.currentItem.FramedHeight !== 0) {
-      if (this.currentItem.FramedHeight16 === null) {
-        this.dimsf = `${this.currentItem.FramedHeight} <span style="font-size:x-small;"> ${this.currentItem.FramedHeight} </span> x `
-        this.dimscmf = this.roundNumber((this.currentItem.FramedHeight * 2.54).toPrecision(2), 1) + ' x ' //+ ' cm ' //
       } else {
-        this.dimsf = `${this.currentItem.FramedHeight} <span style="font-size:x-small;"> ${this.currentItem.FramedHeight16} </span> x `
-        this.dimscmf = this.roundNumber((this.currentItem.FramedHeight * 2.54).toPrecision(2) + cmuw, 1) + ' x '// + ' cm ' //
-      }
+        this.dims += ' x ' + `${this.currentItem[depth]}   <span style="font-size:x-small;"> ${this.currentItem[depthfraction]} </span>`
+        ufwcm = this.roundNumber(this.currentItem[depth]* 2.54, 1).toPrecision(2)
+        this.dimscm += ' x ' + (ufwcm + cmud)
 
-      if (this.currentItem.FramedWidth16 === null) {
-        this.dimsf += this.currentItem.FramedWidth
-        this.dimscmf += (this.currentItem.FramedWidth * 2.54).toPrecision(2)
-      } else {
-        this.dimsf += `${this.currentItem.FramedWidth}  <span style="font-size:x-small;"> ${this.currentItem.FramedWidth16} </span>  `
-        this.dimscmf += this.roundNumber((this.currentItem.FramedWidth * 2.54).toPrecision(2) + cmfw, 1) //+ ' cm ' //+ ' x '
       }
+      this.dims += ` in. ${dtype} <br> `
+      this.dimscm += ` cm ${dtype} <br> `
     }
-
- 
-    if (this.currentItem.FramedDepth16 === null) {
-      if (this.currentItem.FamedDepth === null || this.currentItem.FramedDepth === 0) { } else {
-        this.dimsf += ' x ' + this.currentItem.FramedDepth
-        this.dimscmf = + ' x ' + this.roundNumber((this.currentItem.FramedDepth * 2.54).toPrecision(2), 1)
-      }
-    } else {
-      this.dimsf += ' x ' + `${this.currentItem.FramedDepth}       <span style="font-size:x-small;"> ${this.currentItem.FramedDepth16} </span>`
-      this.dimscmf += ' x ' + this.roundNumber((this.currentItem.FramedDepth * 2.54).toPrecision(2) + cmfd, 1) //+ ' cm '
-
-    }
-
 
 
   }
-// edition
-buildEditionLogic(edition) {
+
+
+  // edition
+  buildEditionLogic(edition) {
     // rules:
     // 1 everying to left of : is plain text and to right is em
     // 2 until it finds a ; (convert ; to </em> <br>)  
@@ -864,24 +984,24 @@ buildEditionLogic(edition) {
 
 
   buildEdition() {
-        this.EditionCommentFormat=''
+    this.EditionCommentFormat = ''
     this.buildEditionLogic(this.currentItem.EditionComment)
     this.currentItem.EditionText = this.currentItem.Edition + '\n' + this.EditionCommentFormat + '\n'
     this.currentItem.EditionText += this.currentItem.Chop + '\n'
     this.currentItem.EditionText += this.currentItem.Publisher + ', ' + this.currentItem.PublisherLocation + '\n'
     this.currentItem.EditionText += this.currentItem.Printer + ', ' + this.currentItem.PrinterLocation + '\n'
     delete this.EditionCommentFormat
-   
+
 
 
   }
 
 
 
-  createRTF(createopt) { 
-// alert('in create')
+  createRTF(createopt) {
+    // alert('in create')
     // this.buildEdition();
-    createopt=1;
+    createopt = 1;
     this.createDim()
     let artist = this.currentItem.artist
     let artistWdates = `<strong>${artist.firstName} ${artist.lastName}`
@@ -915,16 +1035,17 @@ buildEditionLogic(edition) {
       segment1 += `  ${this.currentItem.MediumSupportobj.Description}<br> `
     //  let uidx = (this.dimsf.indexOf('undefined'));
     let uidx
-    this.dimsf === undefined ? uidx = -1 : uidx = (this.dimsf.indexOf('undefined'))
+    // this.dimsf === undefined ? uidx = -1 : uidx = (this.dimsf.indexOf('undefined'))
 
-    if (uidx > -1) {
-    } else {
-      segment1 += `  ${this.dimsf} in. framed<br> `
-      segment1 += `  ${this.dimscmf} cm framed<br> `
-    }
+    // if (uidx > -1) {
+    // } else {
+    //   segment1 += `  ${this.dimsf} in. framed<br> `
+    //   segment1 += `  ${this.dimscmf} cm framed<br> `
+    // }
 
-    segment1 += `  ${this.dims} in. unframed<br> `
-    segment1 += `  ${this.dimscm} cm unframed<br> `
+
+    segment1 += `  ${this.dimsf} `
+    segment1 += `  ${this.dimscmf}  `
 
     if (this.currentItem.Signed === 'Y') this.currentItem.Signed === true
     if (this.currentItem.Signed === 'N') this.currentItem.Signed === false
@@ -978,34 +1099,34 @@ buildEditionLogic(edition) {
     if (this.currentItem.CatalogueNo !== undefined && this.currentItem.CatalogueNo !== '')
       // this.segment2 += ` Catalogue No: ${this.currentItem.CatalogueNo} <br>  <br> <br> `
 
-    this.segment2 += ` no. ${this.currentItem.CatalogueNo} <br>   `
-    this.segment2 += ` AltID. ${this.currentItem.AltID} <br>  <br> <br> `
-
-
+      this.segment2 += ` no. ${this.currentItem.CatalogueNo} <br>   `
+    if (this.currentItem.AltID !== undefined) {
+      this.segment2 += ` AltID. ${this.currentItem.AltID} <br>  <br> <br> `
+    }
 
 
 
     this.buildEdition()
 
- 
+
     this.buildProv()
     this.buildRepro()
 
 
     // this.editor.value('<p>' + segment1 + '</p>' + '<hr><p>' +  this.segment2 + '</p>');
-if (createopt===1) {
-  // caled from rtf tab
-    this.editor.value('<span style="font-family:Calibri, Geneva, sans-serif;font-size:11.0pt">' + this.segment2 + '</span>');
-    this.currentItem.rtf1 = this.editor.value()// factsheet
+    if (createopt === 1) {
+      // caled from rtf tab
+      this.editor.value('<span style="font-family:Calibri, Geneva, sans-serif;font-size:11.0pt">' + this.segment2 + '</span>');
+      this.currentItem.rtf1 = this.editor.value()// factsheet
 
-    this.editorlabel.value('<span style="font-family:Calibri, Geneva, sans-serif;font-size:11.0pt">' + segment1 + '</span>');
-    this.currentItem.rtf2 = this.editorlabel.value()// label
-
-
+      this.editorlabel.value('<span style="font-family:Calibri, Geneva, sans-serif;font-size:11.0pt">' + segment1 + '</span>');
+      this.currentItem.rtf2 = this.editorlabel.value()// label
 
 
-    // return this.currentItem.rtf1
-}
+
+
+      // return this.currentItem.rtf1
+    }
 
 
 
