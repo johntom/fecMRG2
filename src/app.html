@@ -59,7 +59,6 @@ input.menu-input[type="checkbox"]{
     <div class="main-menu flex-row-1">
       <aside class="flex-column-none">
         <div class="logo-wrapper flex-column-none">
-           <!-- src="https://5924b98cbd966f546312882f.blob.core.windows.net/mrg-new/src/images/MRG_logo-white.png"> -->
         
           <img class="logo" 
          
@@ -77,7 +76,6 @@ input.menu-input[type="checkbox"]{
                 ${row.title}
               </label>
               <a if.bind="isSingleActionMenu(row)" href.bind="row.href">${row.title}</a>
-                <!-- if.bind="isCollapsibleMenu(row)"> -->
               <ul class="menu flex-column-1"
                 if.bind="row.settings.isOpen">
                 <li repeat.for="sub of row.settings.children"
@@ -87,18 +85,7 @@ input.menu-input[type="checkbox"]{
               </ul>
           </li>
         </ul>
-        <!-- <ul class="menu flex-column-1">
-          <li repeat.for="row of router.navigation" 
-            class="menu-item ${row.isActive ? 'active' : ''}">
-            <a href.bind="row.href">${row.title}</a>
-            <ul if.bind="row.settings && row.settings.children">
-              <li repeat.for="sub of row.settings.children"
-                class="menu-item ${sub.isActive ? 'active' : ''}">
-                <a href.bind="sub.href">${sub.title}</a>
-              </li>
-            </ul>
-          </li>
-        </ul> -->
+        
       </aside>
       <main class="flex-column-4 ignore">
         <div class="flex-column-1 ignore">
