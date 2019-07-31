@@ -602,7 +602,8 @@ export class DataForm {
     //this.controller.validate();
     //  class Rtf
     // this.createRTF()
-    this.addRTF(2);
+   
+   // this.addRTF(2); HOLD OFF
 
     let savetime = moment().format('MM/DD/YY h:mm:ss a')
     if (this.recordId === 'create') {

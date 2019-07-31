@@ -441,7 +441,7 @@ export class Rtf {
     console.log('inscribed==================== ', inscribed)
     if (inscribed !== undefined) {
       let a2 = ''
-      let a3 = ''
+      let a3 = '' 
 
       this.inscribedText = ''
 
@@ -458,7 +458,7 @@ export class Rtf {
       if (colonPos === -1) {
         iLines.push(inscribed)
       } else {
-        leftofcolonText = inscribed.substr(0, colonPos);
+        leftofcolonText = inscribed.substr(0, colonPos+1);
         rightofcolonbaseText = inscribed.substr(colonPos + 1, inscribed.length - colonPos);
         semisPos = rightofcolonbaseText.indexOf(";");
         if (semisPos === -1) {
@@ -576,7 +576,7 @@ export class Rtf {
     this.buildDimLogic('sight', 'SightHeight', 'SightHeight16', 'SightWidth', 'SightWidth16', 'SightDepth', 'SightDepth16', cmh, cmw, cmd)
     if (this.dims !== '') {
       this.dimsight = this.dims
-      this.dimscmsight = this.dimscmm
+      this.dimscmsight = this.dimscm
     }
 
     //      this.dims=''
@@ -638,13 +638,16 @@ export class Rtf {
     //  
     // rules:
     let ufwcm
+    let frac
+    let mdim
     if (this.currentItem[heightfraction] === undefined | this.currentItem[heightfraction] === '0' || this.currentItem[heightfraction] === 0 || this.currentItem[heightfraction] === null) { this.currentItem[heightfraction] = ''; cmh = 0; cmw = 0; cmd = 0; }
     if (this.currentItem[widthfraction] === undefined | this.currentItem[widthfraction] === '0' || this.currentItem[widthfraction] === 0 || this.currentItem[widthfraction] === null) { this.currentItem[heightfraction] = ''; cmh = 0; cmw = 0; cmd = 0; }
     if (this.currentItem[depthfraction] === undefined | this.currentItem[depthfraction] === '0' || this.currentItem[depthfraction] === 0 || this.currentItem[depthfraction] === null) { this.currentItem[depthfraction] = ''; cmh = 0; cmw = 0; cmd = 0; }
     if (this.currentItem[height] === undefined || this.currentItem[height] === '0' || this.currentItem[height] === 0 || this.currentItem[height] === null) this.currentItem[height] = ''
     if (this.currentItem[width] === undefined || this.currentItem[width] === '0' || this.currentItem[width] === 0 || this.currentItem[width] === null) this.currentItem[width] = ''
     if (this.currentItem[depth] === undefined || this.currentItem[depth] === '0' || this.currentItem[depth] === 0 || this.currentItem[depth] === null) this.currentItem[depth] = ''
-console.log( this.currentItem[heightfraction] ,this.currentItem[widthfraction],this.currentItem[depthfraction]  )
+    console.log('frac ',this.currentItem[heightfraction], this.currentItem[widthfraction], this.currentItem[depthfraction])
+    console.log('deim ',this.currentItem[height], this.currentItem[width], this.currentItem[depth])
     // if ((this.currentItem[height] === '' || this.currentItem[width] === null || this.currentItem[width] === 0) && (this.currentItem[heightfraction] === '' || this.currentItem[heightfraction] === null || this.currentItem[heightfraction] === 0) ) { } {
     if ((this.currentItem[height] === '' || this.currentItem[width] === '') && (this.currentItem[heightfraction] === '')) { } else {
       if (this.currentItem[height] === '') {
@@ -652,32 +655,58 @@ console.log( this.currentItem[heightfraction] ,this.currentItem[widthfraction],t
         this.dimscm += this.roundNumber((this.currentItem[height] * 2.54).toPrecision(2), 1) + ' x ' //fix
       } else {
         this.dims += `${this.currentItem[height]} <span style="font-size:x-small;"> ${this.currentItem[heightfraction]}</span> x `
-        this.dimscm += this.roundNumber((this.currentItem[height] * 2.54).toPrecision(2) + cmh, 1) + ' x '
+        //  this.dimscm += this.roundNumber(((this.currentItem[height] * 2.54)+ cmh).toPrecision(2) , 1) + ' x '
+        frac = cmh * 2.54
+        mdim = (this.currentItem[height] * 2.54) + cmw
+        this.dimscm += this.roundNumber((mdim + frac).toPrecision(2), 1) + ' x '
+
+
+
+
       }
 
       if (this.currentItem[width] === '') {
-        this.dims += this.currentItem[widthfraction] + ' x '
-        this.dimscm += this.roundNumber((this.currentItem[width] * 2.54).toPrecision(2), 1) + ' x ' //fix
-      } else {
-        this.dims += `${this.currentItem[width]} <span style="font-size:x-small;"> ${this.currentItem[widthfraction]}</span> x `
-        this.dimscm += this.roundNumber((this.currentItem[width] * 2.54).toPrecision(2) + cmw, 1) + ' x '
-      }
+        this.dims += this.currentItem[widthfraction] 
+        // this.dimscm += this.roundNumber((this.currentItem[width] * 2.54).toPrecision(2), 1) + ' x ' //fix
 
-      if (this.currentItem[depth] === '') {
-        this.dims += ' ' + this.currentItem[widthfraction]
-        ufwcm = cmw * 2.54
-        // console.log('ufwcm', ufwcm)
-        this.dimscm += ' ' + this.roundNumber((ufwcm, 1).toPrecision(2), 1)
-        //  this.dimscm +=  ' x ' +ufwcm
-        // console.log('  this.dimscm', this.dimscm)
+        frac = cmw * 2.54
+        mdim = (this.currentItem[width] * 2.54) + cmw
+        this.dimscm += this.roundNumber((mdim + frac).toPrecision(2), 1)
+
+ 
+      } else { 
+        this.dims += `${this.currentItem[width]} <span style="font-size:x-small;"> ${this.currentItem[widthfraction]}</span> `
+        // this.dimscm += this.roundNumber(((this.currentItem[width] * 2.54)+ cmw).toPrecision(2) , 1) + ' x '
+        frac = cmw * 2.54
+        mdim = (this.currentItem[width] * 2.54) + cmw
+        this.dimscm += this.roundNumber((mdim + frac).toPrecision(2), 1) 
+  
+      } 
+
+      if (this.currentItem[depth] === '' ) {
+        if( this.currentItem[depthfraction]!==""){
+        this.dims += ' x ' + this.currentItem[depthfraction]
+        // ufwcm = cmw * 2.54
+        // this.dimscm += ' ' + this.roundNumber((ufwcm, 1).toPrecision(2), 1)
+        frac = cmd * 2.54
+        mdim = (this.currentItem[depth] * 2.54) + cmd
+        this.dimscm += ' x ' +this.roundNumber((mdim + frac).toPrecision(2), 1) 
+        } 
 
       } else {
         // this.dims += ' x ' + `${this.currentItem[depth]}   <span style="font-size:x-small;"> ${this.currentItem[depthfraction]} </span>`
         // ufwcm = this.roundNumber((this.currentItem[depth] * 2.54, 1).toPrecision(2), 1)
         // this.dimscm += ' x ' + (ufwcm + cmd)
-        this.dims += `${this.currentItem[depth]}   <span style="font-size:x-small;"> ${this.currentItem[depthfraction]} </span>`
-        ufwcm = this.roundNumber((this.currentItem[depth] * 2.54, 1).toPrecision(2), 1)
-        this.dimscm += (ufwcm + cmd)
+        this.dims += ` x ${this.currentItem[depth]}   <span style="font-size:x-small;"> ${this.currentItem[depthfraction]} </span>`
+        frac = cmd * 2.54
+        mdim = (this.currentItem[depth] * 2.54) + cmd
+        
+        // console.log('  this.dimscm ',   this.currentItem[depth] * 2.54, (this.currentItem[depth] * 2.54)+cmd)
+        this.dimscm += ' x ' +this.roundNumber((mdim*1 + frac*1).toPrecision(2), 1)
+        console.log('  this.dimscm ', this.dimscm)
+
+        // ufwcm = this.roundNumber((this.currentItem[depth] * 2.54, 1).toPrecision(2), 1)
+        // this.dimscm += (ufwcm + cmd)
       }
       // 10 1/2 x 8 3/4 x 3/4 in. / 251.3 x 201.9 x 0.01.905 cm 
       //seight and framed  for hooper
@@ -803,7 +832,7 @@ console.log( this.currentItem[heightfraction] ,this.currentItem[widthfraction],t
       // (b.1950)
 
       artistWdates1 += ` (b.${artist.yearofBirth})`
-    }
+    } 
 
     this.buildInscribed(this.currentItem.Inscribed)
 
@@ -826,9 +855,9 @@ console.log( this.currentItem[heightfraction] ,this.currentItem[widthfraction],t
     if (this.currentItem.Dated === true) {
 
       if (this.currentItem.Signed === true) {
-        this.segment2 += ' and dated '
-      } else this.segment2 += 'dated '
-    }
+        this.segment2 += ' and dated<br> '
+      } else this.segment2 += 'dated <br>'
+    } else this.segment2 +=  '<br>'
 
 
 
@@ -869,7 +898,7 @@ console.log( this.currentItem[heightfraction] ,this.currentItem[widthfraction],t
     }
 
 
-    if (this.dimsight !== undefined) {
+    if (this.dimsight !== '') {
 
       this.segment2 += ` ${this.dimsight} in`
       this.segment2 += ` / ${this.dimscmsight} cm sight <br>  `
