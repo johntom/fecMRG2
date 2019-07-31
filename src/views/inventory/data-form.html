@@ -236,7 +236,7 @@
 									</div>
 									<div class="Rtable-cell">
 										<select style="width: 45px " value.bind="currentItem.UnframedHeight16">
-												<option model.bind="null">0/0</option>
+												<option model.bind="''">''</option>
 												<option repeat.for="measure of measures " model.bind="measure.name">
 													${measure.name}
 												</option>
@@ -247,7 +247,7 @@
 									</div>
 									<div class="Rtable-cell">
 										<select style="width: 45px " value.bind="currentItem.UnframedWidth16">
-												<option model.bind="null">0/0</option>
+												<option model.bind="''">''</option>
 												<option repeat.for="measure of measures" model.bind="measure.name">
 													${measure.name}
 												</option>
@@ -258,7 +258,7 @@
 									</div>
 									<div class="Rtable-cell">
 										<select style="width: 45px " value.bind="currentItem.UnframedDepth16">
-												<option model.bind="null">0/0</option>
+												<option model.bind="''">''</option>
 												<option repeat.for="measure of measures " model.bind="measure.name">
 													${measure.name}
 												</option>
@@ -280,7 +280,7 @@
 									<div class="Rtable-cell">
 
 										<select style="width: 45px " value.bind="currentItem.imageHeight16">
-												<option model.bind="null">0/0</option>
+												<option model.bind="''">''</option>
 												<option repeat.for="measure of measures " model.bind="measure.name">
 													${measure.name}
 												</option>
@@ -293,7 +293,7 @@
 									<div class="Rtable-cell">
 
 										<select style="width: 45px " value.bind="currentItem.imageWidth16">
-												<option model.bind="null">0/0</option>
+												<option model.bind="''">''</option>
 												<option repeat.for="measure of measures " model.bind="measure.name">
 													${measure.name}
 												</option>
@@ -306,7 +306,7 @@
 									<div class="Rtable-cell">
 
 										<select style="width: 45px " value.bind="currentItem.imageDepth16">
-												<option model.bind="null">0/0</option>
+												<option model.bind="''">''</option>
 												<option repeat.for="measure of measures " model.bind="measure.name">
 													${measure.name}
 												</option>
@@ -326,7 +326,7 @@
 									<div class="Rtable-cell">
 
 										<select style="width: 45px " value.bind="currentItem.SightHeight16">
-												<option model.bind="null">0/0</option>
+												<option model.bind="''">''</option>
 												<option repeat.for="measure of measures " model.bind="measure.name">
 													${measure.name}
 												</option>
@@ -339,7 +339,7 @@
 									<div class="Rtable-cell">
 
 										<select style="width: 45px " value.bind="currentItem.SightWidth16">
-												<option model.bind="null">0/0</option>
+												<option model.bind="''">''</option>
 												<option repeat.for="measure of measures " model.bind="measure.name">
 													${measure.name}
 												</option>
@@ -352,7 +352,7 @@
 									<div class="Rtable-cell">
 
 										<select style="width: 45px " value.bind="currentItem.SightDepth16">
-												<option model.bind="null">0/0</option>
+												<option model.bind="''">''</option>
 												<option repeat.for="measure of measures " model.bind="measure.name">
 													${measure.name}
 												</option>
@@ -370,7 +370,7 @@
 									<div class="Rtable-cell">
 
 										<select style="width: 45px " value.bind="currentItem.FramedHeight16">
-												<option model.bind="null">0/0</option>
+												<option model.bind="''">''</option>
 												<option repeat.for="measure of measures " model.bind="measure.name">
 													${measure.name}
 												</option>
@@ -381,9 +381,9 @@
 
 									</div>
 									<div class="Rtable-cell">
-
+ 
 										<select style="width: 45px " value.bind="currentItem.FramedWidth16">
-												<option model.bind="null">0/0</option>
+												<option model.bind="''">''</option>
 												<option repeat.for="measure of measures " model.bind="measure.name">
 													${measure.name}
 												</option>
@@ -396,7 +396,7 @@
 									<div class="Rtable-cell">
 
 										<select style="width: 45px " value.bind="currentItem.FramedDepth16">
-												<option model.bind="null">0/0</option>
+												<option model.bind="''">''</option>
 												<option repeat.for="measure of measures " model.bind="measure.name">
 													${measure.name}
 												</option>
@@ -519,7 +519,7 @@
 									</div>
 									<div styles=" height:34px;" class="Rtable-cell-70 Rtable-cell--highlight">
 										<select id="CurrentLocation " class="form-control " value.bind="currentItem.CurrentLocation">
-											<option model.bind="null">Choose...</option>
+											<option model.bind="''">Choose...</option>
 											<option repeat.for="opt of appService.codesInventoryLocation " model.bind="opt.id">
 												${opt.Description}
 											</option>
@@ -552,7 +552,7 @@
 
 										<!-- only radio string works with flex -->
 										<select id="Sold" class="form-control " value.bind="currentItem.Sold">
-											<option model.bind="null">Choose...</option>
+											<option model.bind="''">Choose...</option>
 											<option repeat.for="opt of searchsold " model.bind="opt.id">
 												${opt.name}
 											</option>
@@ -588,7 +588,7 @@
 									</div>
 									<div class="Rtable-cell-70 Rtable-cell--highlight">
 										<select id="OwnedBy " class="form-control  " value.bind="currentItem.OwnedBy">
-											<option model.bind="null">Choose...</option>
+											<option model.bind="''">Choose...</option>
 											<option repeat.for="opt of appService.codesOwnership " model.bind="opt.id">
 												${opt.Description}
 											</option>
