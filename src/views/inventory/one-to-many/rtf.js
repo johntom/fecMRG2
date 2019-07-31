@@ -146,20 +146,20 @@ export class Rtf {
   // attached() {
 
   // }
-  // buildExhibit(segment2) {
+  // buildExhibit(segment1) {
   // buildExhibit() {
   //   let exhibition = this.currentItem.exhibition
   //   if (exhibition !== undefined) {
   //     // this.currentItem.exhibition
   //     let iarray = []
-  //     this.segment2 += ` <br><p>EXHIBITION HISTORY: </p>`
+  //     this.segment1 += ` <br><p>EXHIBITION HISTORY: </p>`
   //     for (const item of exhibition) {
   //       console.log("loopitem ====", item)
   //       //  iarray.push(item)
 
-  //       this.segment2 += '<br>' + item.ExhibitTitle + ' ' + item.ExhibitSponser + ' ' + item.Reproduction + ' ' + item.ExhibitDates + ' '
+  //       this.segment1 += '<br>' + item.ExhibitTitle + ' ' + item.ExhibitSponser + ' ' + item.Reproduction + ' ' + item.ExhibitDates + ' '
   //     }
-  //     // return segment2
+  //     // return segment1
   //   }
   // }
 
@@ -178,8 +178,8 @@ export class Rtf {
 
       let EditionText = this.currentItem.EditionText
       EditionText = EditionText.replace(new RegExp('\n', 'gi'), `<br>`);
-      this.segment2 += segmentEditionHead
-      this.segment2 += EditionText + `<br>`
+      this.segment1 += segmentEditionHead
+      this.segment1 += EditionText + `<br>`
 
     }
   }
@@ -220,14 +220,14 @@ export class Rtf {
         if (oid !== -1) {
           let ProvLoc = this.appService.codesProvenanceLocation[oid].Description
           if (item.ProvMemo === null || item.ProvMemo === undefined || item.ProvMemo === '') {
-            // this.segment2 += `${item.ProvOwner}, ${ProvLoc}<br>`
+            // this.segment1 += `${item.ProvOwner}, ${ProvLoc}<br>`
             provarray.unshift({ sord: item.Sequence, exception: `${item.ProvOwner}, ${ProvLoc}<br>` })
           } else {
             provarray.unshift({ sord: item.Sequence, exception: `${item.ProvOwner}, ${ProvLoc}<br>${item.ProvMemo}<br>` })
           }
         } else {
           if (item.ProvMemo === null || item.ProvMemo === undefined || item.ProvMemo === '') {
-            // this.segment2 += `${item.ProvOwner}<br>`
+            // this.segment1 += `${item.ProvOwner}<br>`
             provarray.unshift({ sord: item.Sequence, exception: `${item.ProvOwner}<br>` })
           } else {
             provarray.unshift({ sord: item.Sequence, exception: `${item.ProvOwner}<br>${item.ProvMemo}<br>` })
@@ -235,14 +235,14 @@ export class Rtf {
 
         }
         //
-        //	this.segment2 += `${item.ProvOwner}, ${ProvLoc}<br> ${item.ProvMemo}`
+        //	this.segment1 += `${item.ProvOwner}, ${ProvLoc}<br> ${item.ProvMemo}`
       }
       // let myObjects = lodash.sortBy(provarray, 'sord');
       let myObjects = _.sortBy(provarray, 'sord');
-      this.segment2 += provheader
+      this.segment1 += provheader
       for (const obj of myObjects) {
-        // this.segment2 += obj.date + ' ' + obj.exception
-        this.segment2 += obj.exception
+        // this.segment1 += obj.date + ' ' + obj.exception
+        this.segment1 += obj.exception
       }
     }
 
@@ -419,10 +419,10 @@ export class Rtf {
       // lodash.forEach(myObjects, function (result) {
       //   console.log('result ', result);
       // });
-      this.segment2 += exandpubhead
+      this.segment1 += exandpubhead
       for (const obj of myObjects) {
-        // this.segment2 += obj.date + ' ' + obj.exception
-        this.segment2 += obj.exception
+        // this.segment1 += obj.date + ' ' + obj.exception
+        this.segment1 += obj.exception
       }
 
     }
@@ -535,197 +535,13 @@ export class Rtf {
     let cmud = this.currentItem.UnframedDepth16
     let cmfd = this.currentItem.FramedDepth16
 
-    //  let cmsd = this.currentItem.SeightDepth16
-    //     let cmsd = this.currentItem.FramedDepth16
 
-
-    let factor = 0.3175 //.125 * 2.54 
-    switch (cmuh) {
-      case null:
-        cmuh = 0
-        break;
-      case '0/0':
-        cmuh = 0
-        break;
-      case '1/8':
-        cmuh = factor
-        break;
-      case '1/4':
-        cmuh = factor * 2
-      case '3/8':
-        cmuh = factor * 3
-        break;
-      case '1/2':
-        cmuh = factor * 4
-        break;
-      case '5/8':
-        cmuh = factor * 5
-        break;
-      case '3/4':
-        cmuh = factor * 6
-        break;
-      case '7/8':
-        cmuh = factor * 7
-        break;
-    }
-
-    switch (cmfh) {
-      case null:
-        cmfh = 0
-        break;
-
-      case '0/0':
-        cmfh = 0
-        break;
-      case '1/8':
-        cmfh = factor
-        break;
-      case '1/4':
-        cmfh = factor * 2
-      case '3/8':
-        cmfh = factor * 3
-        break;
-      case '1/2':
-        cmfh = factor * 4
-        break;
-      case '5/8':
-        cmfh = factor * 5
-        break;
-      case '3/4':
-        cmfh = factor * 6
-        break;
-      case '7/8':
-        cmfh = factor * 7
-        break;
-
-    }
-    switch (cmuw) {
-      case null:
-        cmuw = 0
-        break;
-
-      case '0/0':
-        cmuw = 0
-        break;
-      case '1/8':
-        cmuw = factor
-        break;
-      case '1/4':
-        cmuw = factor * 2
-      case '3/8':
-        cmuw = factor * 3
-        break;
-      case '1/2':
-        cmuw = factor * 4
-        break;
-      case '5/8':
-        cmuw = factor * 5
-        break;
-      case '3/4':
-        cmuw = factor * 6
-        break;
-      case '7/8':
-        cmuw = factor * 7
-        break;
-
-    }
-
-    switch (cmfw) {
-      case null:
-        cmfw = 0
-        break;
-      case '0/0':
-        cmfw = 0
-        break;
-      case '1/8':
-        cmfw = factor
-        break;
-      case '1/4':
-        cmfw = factor * 2
-      case '3/8':
-        cmfw = factor * 3
-        break;
-      case '1/2':
-        cmfw = factor * 4
-        break;
-      case '5/8':
-        cmfw = factor * 5
-        break;
-      case '3/4':
-        cmfw = factor * 6
-        break;
-      case '7/8':
-        cmfw = factor * 7
-        break;
-    }
-
-
-
-    switch (cmud) {
-      case null:
-        cmud = 0
-        break;
-      case '0/0':
-        cmud = 0
-        break;
-      case '1/8':
-        cmud = factor
-        break;
-      case '1/4':
-        cmud = factor * 2
-      case '3/8':
-        cmud = factor * 3
-        break;
-      case '1/2':
-        cmud = factor * 4
-        break;
-      case '5/8':
-        cmud = factor * 5
-        break;
-      case '3/4':
-        cmud = factor * 6
-        break;
-      case '7/8':
-        cmud = factor * 7
-        break;
-    }
-    switch (cmfd) {
-      case null:
-        cmfd = 0
-        break;
-      case '0/0':
-        cmfd = 0
-        break;
-      case '1/8':
-        cmfd = factor
-        break;
-      case '1/4':
-        cmfd = factor * 2
-      case '3/8':
-        cmfd = factor * 3
-        break;
-      case '1/2':
-        cmfd = factor * 4
-        break;
-      case '5/8':
-        cmfd = factor * 5
-        break;
-      case '3/4':
-        cmfd = factor * 6
-        break;
-      case '7/8':
-        cmfd = factor * 7
-        break;
-    }
 
     // num.toPrecision(2)
-    /*
-    we lost the Height dimension in the cm part
-
-there are extra ' when there are fractions
-
-14 5/8 ' x '12 1/4 in. / __ x 31 cm
-17 1/2 ' x '22 1/4 in. / __ x 57 cm   */
+    //     we lost the Height dimension in the cm part
+    // there are extra ' when there are fractions
+    // 14 5/8 ' x '12 1/4 in. / __ x 31 cm
+    // 17 1/2 ' x '22 1/4 in. / __ x 57 cm  
     // let dims
     // let dimscm
     // let dimsf
@@ -738,17 +554,6 @@ there are extra ' when there are fractions
 
     let ufwcm
 
-    // let cmuh = buildFactor(this.currentItem.UnframedHeight16)
-    // let cmuw = buildFactor(this.currentItem[UnframedWidth16])
-    // let cmud = buildFactor(this.currentItem[UnframedDepth16])
-
-    // let cmfh = buildFactor(this.currentItem[heightfraction])
-    // let cmfw = buildFactor(this.currentItem[heightfraction])
-    // let cmfd = buildFactor(this.currentItem[heightfraction])
-
-    // let cmsh = buildFactor(this.currentItem[heightfraction])
-    // let cmsw = buildFactor(this.currentItem[heightfraction])
-    // let cmsd = buildFactor(this.currentItem[heightfraction])
 
     let cmh = this.buildFactor(this.currentItem.UnframedHeight16)
     let cmw = this.buildFactor(this.currentItem.UnframedWidth16)
@@ -756,93 +561,42 @@ there are extra ' when there are fractions
 
     this.buildDimLogic('unframed', 'UnframedHeight', 'UnframedHeight16', 'UnframedWidth', 'UnframedWidth16', 'UnframedDepth', 'UnframedDepth16', cmh, cmw, cmd)
 
-    // cmh = this.buildFactor(this.currentItem.SeightHeight16)
-    // cmw = this.buildFactor(this.currentItem.SeightWidth16)
-    // cmd = this.buildFactor(this.currentItem.SeightDepth16)
-    // // this.buildDimLogic('seight',SeightHeight', 'SeightHeight16', 'SeightWidth', 'SeightWidth16', 'SeightDepth', 'SeightDepth16', cmh, cmw,cmd)
+    this.dimsfactsheet = this.dims
+    this.dimscmfactsheet = this.dimscm
+
+    this.dims = ''
+    this.dimscm = ''
+    this.dimsight = ''
+    this.dimscmsight = ''
+
+
+    cmh = this.buildFactor(this.currentItem.SightHeight16)
+    cmw = this.buildFactor(this.currentItem.SightWidth16)
+    cmd = this.buildFactor(this.currentItem.SightDepth16)
+    this.buildDimLogic('sight', 'SightHeight', 'SightHeight16', 'SightWidth', 'SightWidth16', 'SightDepth', 'SightDepth16', cmh, cmw, cmd)
+    if (this.dims !== '') {
+      this.dimsight = this.dims
+      this.dimscmsight = this.dimscmm
+    }
+
+    //      this.dims=''
+    // this.dimscm=''
+
     // cmh = this.buildFactor(this.currentItem.FramedHeight16)
     // cmw = this.buildFactor(this.currentItem.FramedWidth16)
     // cmd = this.buildFactor(this.currentItem.FramedDepth16)
 
-    // // this.buildDimLogic('framed', 'FramedHeight','FramedHeight16',  'FramedWidth', 'FramedWidth16', 'FramedDepth', 'FramedDepth16',  cmh, cmw,cmd)
-    // cmh = this.buildFactor(this.currentItem.imageHeight16)
-    // cmw = this.buildFactor(this.currentItem.imagetWidth16)
-    // cmd = this.buildFactor(this.currentItem.imageDepth16)
-    // this.buildDimLogic('image','imageHeight', 'imageHeight16', 'imageWidth', 'imageWidth16', 'imageDepth', 'imageDepth16',  cmh, cmw,cmd)
-    // imageHeight16  SeightHeight16 imageWidth16 FramedWidth16
-    
-  
-    //
-    //  if (this.currentItem.UnframedHeight16 === null) {
-    //       this.dims = this.currentItem.UnframedHeight + ' x '
-    //       this.dimscm = this.roundNumber((this.currentItem.UnframedHeight * 2.54).toPrecision(2), 1) + ' x ' //fix
-    //     } else {
-    //       this.dims = `${this.currentItem.UnframedHeight} <span style="font-size:x-small;"> ${this.currentItem.UnframedHeight16}</span> x `
-    //       this.dimscm = this.roundNumber((this.currentItem.UnframedHeight * 2.54).toPrecision(2) + cmuh, 1) + ' x '
-    //     }
-
-    //     if (this.currentItem.UnframedWidth16 === null) {
-    //       this.dims += this.currentItem.UnframedWidth
-    //       ufwcm = this.currentItem.UnframedWidth * 2.54
-    //       this.dimscm += this.roundNumber((ufwcm), 1).toPrecision(2) + ' x '
-    //     } else {
-    //       this.dims += `${this.currentItem.UnframedWidth}       <span style="font-size:x-small;"> ${this.currentItem.UnframedWidth16} </span>`
-    //       ufwcm = this.roundNumber(this.currentItem.UnframedWidth * 2.54, 1).toPrecision(2)
-    //       // this.dimscm += this.roundNumber( ((this.currentItem.UnframedWidth * 2.54) + cmuw), 1)
-
-    //       this.dimscm += (ufwcm + cmuw.toPrecision(2))
-
-    //     }
-
-    //     if (this.currentItem.UnframedDepth16 === null) {
-    //       if (this.currentItem.UnframedDepth === null || this.currentItem.UnframedDepth === 0) { } else {
-    //         this.dims += ' x ' + this.currentItem.UnframedDepth
-    //         ufwcm = this.currentItem.UnframedDepth * 2.54
-    //         console.log('ufwcm', ufwcm)
-    //         this.dimscm += ' x ' + this.roundNumber(ufwcm, 1).toPrecision(2)
-    //         //  this.dimscm +=  ' x ' +ufwcm
-    //         console.log('  this.dimscm', this.dimscm)
-    //       }
-    //     } else {
-    //       this.dims += ' x ' + `${this.currentItem.UnframedDepth}   <span style="font-size:x-small;"> ${this.currentItem.UnframedDepth16} </span>`
-    //       ufwcm = this.roundNumber(this.currentItem.UnframedDepth * 2.54,1).toPrecision(2)   // this.dimscm += ' x ' + this.roundNumber((( this.currentItem.UnframedDepth * 2.54) + cmud), 1) //+ ' cm '
-
-    //       this.dimscm += ' x ' + ((ufwcm) + cmud) //+ ' cm '
-
-    //     }
-    //     //   cmfd cmud
-
-    //     /////////////////////////////
-
-    //     if (this.currentItem.FramedHeight !== 0) {
-    //       if (this.currentItem.FramedHeight16 === null) {
-    //         this.dimsf = `${this.currentItem.FramedHeight} <span style="font-size:x-small;"> ${this.currentItem.FramedHeight} </span> x `
-    //         this.dimscmf = this.roundNumber((this.currentItem.FramedHeight * 2.54).toPrecision(2), 1) + ' x ' //+ ' cm ' //
-    //       } else {
-    //         this.dimsf = `${this.currentItem.FramedHeight} <span style="font-size:x-small;"> ${this.currentItem.FramedHeight16} </span> x `
-    //         this.dimscmf = this.roundNumber((this.currentItem.FramedHeight * 2.54).toPrecision(2) + cmuw, 1) + ' x '// + ' cm ' //
-    //       }
-
-    //       if (this.currentItem.FramedWidth16 === null) {
-    //         this.dimsf += this.currentItem.FramedWidth
-    //         this.dimscmf += (this.currentItem.FramedWidth * 2.54).toPrecision(2)
-    //       } else {
-    //         this.dimsf += `${this.currentItem.FramedWidth}  <span style="font-size:x-small;"> ${this.currentItem.FramedWidth16} </span>  `
-    //         this.dimscmf += this.roundNumber((this.currentItem.FramedWidth * 2.54).toPrecision(2) + cmfw, 1) //+ ' cm ' //+ ' x '
-    //       }
-    //     }
+    // this.buildDimLogic('framed', 'FramedHeight', 'FramedHeight16', 'FramedWidth', 'FramedWidth16', 'FramedDepth', 'FramedDepth16', cmh, cmw, cmd)
 
 
-    //     if (this.currentItem.FramedDepth16 === null) {
-    //       if (this.currentItem.FamedDepth === null || this.currentItem.FramedDepth === 0) { } else {
-    //         this.dimsf += ' x ' + this.currentItem.FramedDepth
-    //         this.dimscmf = + ' x ' + this.roundNumber((this.currentItem.FramedDepth * 2.54).toPrecision(2), 1)
-    //       }
-    //     } else {
-    //       this.dimsf += ' x ' + `${this.currentItem.FramedDepth}       <span style="font-size:x-small;"> ${this.currentItem.FramedDepth16} </span>`
-    //       this.dimscmf += ' x ' + this.roundNumber((this.currentItem.FramedDepth * 2.54).toPrecision(2) + cmfd, 1) //+ ' cm '
 
-    //     }
+    ///  cmh = this.buildFactor(this.currentItem.imageHeight16)
+    ///  cmw = this.buildFactor(this.currentItem.imagetWidth16)
+    ///  cmd = this.buildFactor(this.currentItem.imageDepth16)
+    ///  this.buildDimLogic('image','imageHeight', 'imageHeight16', 'imageWidth', 'imageWidth16', 'imageDepth', 'imageDepth16',  cmh, cmw,cmd)
+
+
+
 
   }
   buildFactor(dim) {
@@ -879,50 +633,79 @@ there are extra ' when there are fractions
   }
 
 
-  buildDimLogic(dtype, height, heightfraction, width, widthfraction, depth, depthfraction,  cmh, cmw, cmd) {
+  buildDimLogic(dtype, height, heightfraction, width, widthfraction, depth, depthfraction, cmh, cmw, cmd) {
     // buildDimLogic('Unframed','Unframed16','UnframedWidth','UnframedWidth16','UnframedDepth','UnframedDepth16',cmuh,ufwcm)
     //  
-    // rules: 
-    if (this.currentItem[heightfraction] === undefined | this.currentItem[heightfraction] === 0 || this.currentItem[height] === null) {this.currentItem[heightfraction] = '';cmh=''; cmw=''; cmd='';}
-    if (this.currentItem[widthfraction] === undefined | this.currentItem[widthfraction] === 0 || this.currentItem[widthfraction] === null) {this.currentItem[heightfraction] = '';cmh=''; cmw=''; cmd='';}
-    if (this.currentItem[depthfraction] === undefined | this.currentItem[depthfraction] === 0 || this.currentItem[depthfraction] === null) {this.currentItem[heightfraction] = '';cmh=''; cmw=''; cmd='';}
-    if (this.currentItem[height] === undefined || this.currentItem[height] === 0 || this.currentItem[height] === null) this.currentItem[height] = ''
-    if (this.currentItem[width] === undefined || this.currentItem[width] === 0 || this.currentItem[width] === null) this.currentItem[width] = ''
-    if (this.currentItem[depth] === undefined || this.currentItem[depth] === 0 || this.currentItem[depth] === null) this.currentItem[depth] = ''
-
-    if (this.currentItem[height] === '' && this.currentItem[width] === null) { } {
+    // rules:
+    let ufwcm
+    if (this.currentItem[heightfraction] === undefined | this.currentItem[heightfraction] === '0' || this.currentItem[heightfraction] === 0 || this.currentItem[heightfraction] === null) { this.currentItem[heightfraction] = ''; cmh = 0; cmw = 0; cmd = 0; }
+    if (this.currentItem[widthfraction] === undefined | this.currentItem[widthfraction] === '0' || this.currentItem[widthfraction] === 0 || this.currentItem[widthfraction] === null) { this.currentItem[heightfraction] = ''; cmh = 0; cmw = 0; cmd = 0; }
+    if (this.currentItem[depthfraction] === undefined | this.currentItem[depthfraction] === '0' || this.currentItem[depthfraction] === 0 || this.currentItem[depthfraction] === null) { this.currentItem[depthfraction] = ''; cmh = 0; cmw = 0; cmd = 0; }
+    if (this.currentItem[height] === undefined || this.currentItem[height] === '0' || this.currentItem[height] === 0 || this.currentItem[height] === null) this.currentItem[height] = ''
+    if (this.currentItem[width] === undefined || this.currentItem[width] === '0' || this.currentItem[width] === 0 || this.currentItem[width] === null) this.currentItem[width] = ''
+    if (this.currentItem[depth] === undefined || this.currentItem[depth] === '0' || this.currentItem[depth] === 0 || this.currentItem[depth] === null) this.currentItem[depth] = ''
+console.log( this.currentItem[heightfraction] ,this.currentItem[widthfraction],this.currentItem[depthfraction]  )
+    // if ((this.currentItem[height] === '' || this.currentItem[width] === null || this.currentItem[width] === 0) && (this.currentItem[heightfraction] === '' || this.currentItem[heightfraction] === null || this.currentItem[heightfraction] === 0) ) { } {
+    if ((this.currentItem[height] === '' || this.currentItem[width] === '') && (this.currentItem[heightfraction] === '')) { } else {
       if (this.currentItem[height] === '') {
         this.dims += this.currentItem[heightfraction] + ' x '
-        this.dimscm += this.roundNumber((this.currentItem[height]  * 2.54).toPrecision(2), 1) + ' x ' //fix
+        this.dimscm += this.roundNumber((this.currentItem[height] * 2.54).toPrecision(2), 1) + ' x ' //fix
       } else {
         this.dims += `${this.currentItem[height]} <span style="font-size:x-small;"> ${this.currentItem[heightfraction]}</span> x `
-        this.dimscm += this.roundNumber((this.currentItem[height]  * 2.54).toPrecision(2) + cmuh, 1) + ' x '
+        this.dimscm += this.roundNumber((this.currentItem[height] * 2.54).toPrecision(2) + cmh, 1) + ' x '
       }
 
       if (this.currentItem[width] === '') {
         this.dims += this.currentItem[widthfraction] + ' x '
-        this.dimscm += this.roundNumber((this.currentItem[width]  * 2.54).toPrecision(2), 1) + ' x ' //fix
+        this.dimscm += this.roundNumber((this.currentItem[width] * 2.54).toPrecision(2), 1) + ' x ' //fix
       } else {
         this.dims += `${this.currentItem[width]} <span style="font-size:x-small;"> ${this.currentItem[widthfraction]}</span> x `
-        this.dimscm += this.roundNumber((this.currentItem[width]  * 2.54).toPrecision(2) + cmuw, 1) + ' x '
+        this.dimscm += this.roundNumber((this.currentItem[width] * 2.54).toPrecision(2) + cmw, 1) + ' x '
       }
 
       if (this.currentItem[depth] === '') {
         this.dims += ' ' + this.currentItem[widthfraction]
         ufwcm = cmw * 2.54
         // console.log('ufwcm', ufwcm)
-        this.dimscm += ' ' + this.roundNumber(ufwcm, 1).toPrecision(2)
+        this.dimscm += ' ' + this.roundNumber((ufwcm, 1).toPrecision(2), 1)
         //  this.dimscm +=  ' x ' +ufwcm
         // console.log('  this.dimscm', this.dimscm)
 
       } else {
-        this.dims += ' x ' + `${this.currentItem[depth]}   <span style="font-size:x-small;"> ${this.currentItem[depthfraction]} </span>`
-        ufwcm = this.roundNumber(this.currentItem[depth]* 2.54, 1).toPrecision(2)
-        this.dimscm += ' x ' + (ufwcm + cmud)
-
+        // this.dims += ' x ' + `${this.currentItem[depth]}   <span style="font-size:x-small;"> ${this.currentItem[depthfraction]} </span>`
+        // ufwcm = this.roundNumber((this.currentItem[depth] * 2.54, 1).toPrecision(2), 1)
+        // this.dimscm += ' x ' + (ufwcm + cmd)
+        this.dims += `${this.currentItem[depth]}   <span style="font-size:x-small;"> ${this.currentItem[depthfraction]} </span>`
+        ufwcm = this.roundNumber((this.currentItem[depth] * 2.54, 1).toPrecision(2), 1)
+        this.dimscm += (ufwcm + cmd)
       }
-      this.dims += ` in. ${dtype} <br> `
-      this.dimscm += ` cm ${dtype} <br> `
+      // 10 1/2 x 8 3/4 x 3/4 in. / 251.3 x 201.9 x 0.01.905 cm 
+      //seight and framed  for hooper
+      //       George Gershwin-"Rhapsody in Blue," Part I, 1927
+      // oil and metallic paint on aluminum with metal clock spring 
+      // 10 1/2 x 8 3/4 x 3/4 in. / 251.3 x 201.9 x 0.01.905 cm 
+      // titled verso George Gershwin / Rhapsody in Blue / Part I
+
+      // -----------------------------------------------------------------------------
+
+      // Hooper
+      // Check list text (right side) 
+      // format like fact sheet (without all the spaces between lines)
+      // Artist (b d)
+      // Title
+      // Date 
+      // Medium
+      // unframed dim without word unframed (just like fact sheet)
+      // if they exist, sight dimensions with text “sight size”
+      // if they exist framed dimensions with text “framed”
+      // inscription text
+      // if (dtype === 'unframed') { 
+      // //   // this.dims += ` in. ` 
+      // //   // this.dimscm += ` cm  `
+      //  } else {
+      //    this.dims += ` in.  `
+      //    this.dimscm += ` cm ${dtype} <br> `
+      //  }
     }
 
 
@@ -1022,47 +805,30 @@ there are extra ' when there are fractions
       artistWdates1 += ` (b.${artist.yearofBirth})`
     }
 
-
-
     this.buildInscribed(this.currentItem.Inscribed)
 
-
     //1
-    let segment1 = ` ${artistWdates1}<br>`
-    segment1 += ` <em> ${this.currentItem.Title}</em>, ${this.currentItem.InvYear} <br> `
+    this.segment2 = ` ${artistWdates1}<br>`
+    this.segment2 += ` <em> ${this.currentItem.Title}</em>, ${this.currentItem.InvYear} <br> `
 
     if (this.currentItem.MediumSupportobj !== undefined)
-      segment1 += `  ${this.currentItem.MediumSupportobj.Description}<br> `
-    //  let uidx = (this.dimsf.indexOf('undefined'));
+      this.segment2 += `  ${this.currentItem.MediumSupportobj.Description}<br> `
     let uidx
-    // this.dimsf === undefined ? uidx = -1 : uidx = (this.dimsf.indexOf('undefined'))
-
-    // if (uidx > -1) {
-    // } else {
-    //   segment1 += `  ${this.dimsf} in. framed<br> `
-    //   segment1 += `  ${this.dimscmf} cm framed<br> `
-    // }
-
-
-    segment1 += `  ${this.dimsf} `
-    segment1 += `  ${this.dimscmf}  `
 
     if (this.currentItem.Signed === 'Y') this.currentItem.Signed === true
     if (this.currentItem.Signed === 'N') this.currentItem.Signed === false
     if (this.currentItem.Dated === 'Y') this.currentItem.Dated === true
     if (this.currentItem.Dated === 'N') this.currentItem.Dated === false
 
-    if (this.currentItem.Signed === true) segment1 += 'signed'
+    if (this.currentItem.Signed === true) this.segment2 += 'signed'
 
 
-    // if (this.currentItem.Dated !=='N' && this.currentItem.Dated !== undefined) {
     if (this.currentItem.Dated === true) {
 
       if (this.currentItem.Signed === true) {
-        segment1 += ' and dated '
-      } else segment1 += 'dated '
+        this.segment2 += ' and dated '
+      } else this.segment2 += 'dated '
     }
-    // segment1 += ` ${this.inscribedText}<br> ` 
 
 
 
@@ -1076,32 +842,56 @@ there are extra ' when there are fractions
     if (ww === 0) ww = 450
     if (hh === 0) hh = 450
     // 	<img ref="mainimage" class="responsive-img"
-    this.segment2 = `<p><img class="responsive-img" src="https://artbased.com/api/v1/getimage/inv/${this.currentItem.InventoryCode}.jpg" alt="" width="${ww}" height="${hh}" /></p>`
+    this.segment1 = `<p><img class="responsive-img" src="https://artbased.com/api/v1/getimage/inv/${this.currentItem.InventoryCode}.jpg" alt="" width="${ww}" height="${hh}" /></p>`
 
-    // this.segment2 = `<p><img src="https://artbased.com/api/v1/getonepdf/inv/POLLOCJ005.jpg" alt="" width="${ww}" height="${hh}" /></p>`
-    // this.segment2 = `<p><img src="https://artbased.com/api/v1/getonepdf/inv/${this.currentItem.InventoryCode}.jpg" alt="" width="${this.appService.cli}" height="${hh}" /></p>`
 
-    this.segment2 += ` ${artistWdates}<br><br><br>`
-    this.segment2 += ` <em>${this.currentItem.Title}</em>, ${this.currentItem.InvYear}<br>`
+    this.segment1 += ` ${artistWdates}<br><br><br>`
+    this.segment1 += ` <em>${this.currentItem.Title}</em>, ${this.currentItem.InvYear}<br>`
     if (this.currentItem.MediumSupportobj !== undefined)
-      this.segment2 += ` ${this.currentItem.MediumSupportobj.Description}  <br> `
-    // this.segment2 += ` <p> ${this.currentItem.InvYear} </p> `
-    // if (dimsf !== undefined) this.segment2 += `  ${dimsf} in framed<br> `
-    // if (dimscmf !== undefined) this.segment2 += `  ${dimscmf} cm framed<br>  `
-    if (this.dims !== undefined) this.segment2 += `  ${this.dims} in.`
-    if (this.dimscm !== undefined) this.segment2 += ` / ${this.dimscm} cm <br>  `
+      this.segment1 += ` ${this.currentItem.MediumSupportobj.Description}  <br> `
+    // this.segment1 += ` <p> ${this.currentItem.InvYear} </p> `
+    // if (dimsf !== undefined) this.segment1 += `  ${dimsf} in framed<br> `
+    // if (dimscmf !== undefined) this.segment1 += `  ${dimscmf} cm framed<br>  `
+    //     this.dimsfactsheet=this.dims
+    // this.dimscmfactsheet=this.dimscm
 
-    // this.segment2 += `<br> ${this.currentItem.SignedLocation} <br>`
-    // this.segment2 += ` ${this.currentItem.SignedLocation} <br>`
-    // this.segment2 += `<br><br>no. P606 <br>`
+    if (this.dimsfactsheet !== undefined) {
+      this.segment1 += `  ${this.dimsfactsheet} in.`
+      this.segment2 += `  ${this.dimsfactsheet} in. `
+      // this.segment2 += `  ${this.dimscm} in.`
+    }
+
+    if (this.dimscm !== undefined) {
+
+      this.segment1 += ` / ${this.dimscmfactsheet} cm <br>  `
+      this.segment2 += ` / ${this.dimscmfactsheet} cm  <br>  `
+      // this.segment2 += ` / ${this.dimscm} cm <br>  `
+    }
+
+
+    if (this.dimsight !== undefined) {
+
+      this.segment2 += ` ${this.dimsight} in`
+      this.segment2 += ` / ${this.dimscmsight} cm sight <br>  `
+      // this.segment2 += ` / ${this.dimscm} cm <br>  `
+    }
+    // if (this.dimsight !== undefined) {
+
+    //   this.segment2 += ` ${this.dimsight} in`
+    //   this.segment2 += ` / ${this.dimscmsight} cm sight <br>  `
+    //   // this.segment2 += ` / ${this.dimscm} cm <br>  `
+    // }
+    // this.segment1 += `<br> ${this.currentItem.SignedLocation} <br>`
+    // this.segment1 += ` ${this.currentItem.SignedLocation} <br>`
+    // this.segment1 += `<br><br>no. P606 <br>`
+    this.segment1 += ` ${this.inscribedText}<br> `
     this.segment2 += ` ${this.inscribedText}<br> `
-
     if (this.currentItem.CatalogueNo !== undefined && this.currentItem.CatalogueNo !== '')
-      // this.segment2 += ` Catalogue No: ${this.currentItem.CatalogueNo} <br>  <br> <br> `
+      // this.segment1 += ` Catalogue No: ${this.currentItem.CatalogueNo} <br>  <br> <br> `
 
-      this.segment2 += ` no. ${this.currentItem.CatalogueNo} <br>   `
+      this.segment1 += ` no. ${this.currentItem.CatalogueNo} <br>   `
     if (this.currentItem.AltID !== undefined) {
-      this.segment2 += ` AltID. ${this.currentItem.AltID} <br>  <br> <br> `
+      this.segment1 += ` AltID. ${this.currentItem.AltID} <br>  <br> <br> `
     }
 
 
@@ -1113,13 +903,13 @@ there are extra ' when there are fractions
     this.buildRepro()
 
 
-    // this.editor.value('<p>' + segment1 + '</p>' + '<hr><p>' +  this.segment2 + '</p>');
+    // this.editor.value('<p>' + segment2 + '</p>' + '<hr><p>' +  this.segment1 + '</p>');
     if (createopt === 1) {
       // caled from rtf tab
-      this.editor.value('<span style="font-family:Calibri, Geneva, sans-serif;font-size:11.0pt">' + this.segment2 + '</span>');
+      this.editor.value('<span style="font-family:Calibri, Geneva, sans-serif;font-size:11.0pt">' + this.segment1 + '</span>');
       this.currentItem.rtf1 = this.editor.value()// factsheet
 
-      this.editorlabel.value('<span style="font-family:Calibri, Geneva, sans-serif;font-size:11.0pt">' + segment1 + '</span>');
+      this.editorlabel.value('<span style="font-family:Calibri, Geneva, sans-serif;font-size:11.0pt">' + this.segment2 + '</span>');
       this.currentItem.rtf2 = this.editorlabel.value()// label
 
 
@@ -1197,28 +987,28 @@ there are extra ' when there are fractions
   //   let reproduction = this.currentItem.reproduction
   //   if (reproduction !== undefined) {
   //     let iarray = []
-  //     this.segment2 += `<p><span style="text-decoration-line:underline;"><strong>EXHIBITION & PUBLICATION HISTORY</strong></span></p>`
+  //     this.segment1 += `<p><span style="text-decoration-line:underline;"><strong>EXHIBITION & PUBLICATION HISTORY</strong></span></p>`
 
   //     for (const item of reproduction) {
   //       console.log("loopitem ====", item)
 
-  //       this.segment2 += '<br>' + item.ReproductionName + ' ' + item.ReproductionTitle + ' '
+  //       this.segment1 += '<br>' + item.ReproductionName + ' ' + item.ReproductionTitle + ' '
   //         + item.ReproductionAuthor
   //         + item.ReproductionDate
 
   //     }
 
   //   }
-  //   this.segment2 += ` <br />`
+  //   this.segment1 += ` <br />`
   //   let exhibition = this.currentItem.exhibition
   //   if (exhibition !== undefined) {
   //     // this.currentItem.exhibition
   //     let iarray = []
-  //     this.segment2 += ` <br><p>EXHIBITION HISTORY: </p>`
+  //     this.segment1 += ` <br><p>EXHIBITION HISTORY: </p>`
   //     for (const item of exhibition) {
   //       console.log("loopitem ====", item)
   //       //  iarray.push(item)
-  //       this.segment2 += '<br>' + item.ExhibitTitle + ' ' + item.ExhibitSponser + ' ' + item.Reproduction + ' ' + item.ExhibitDates + ' '
+  //       this.segment1 += '<br>' + item.ExhibitTitle + ' ' + item.ExhibitSponser + ' ' + item.Reproduction + ' ' + item.ExhibitDates + ' '
   //     }
   //   }
   // }
