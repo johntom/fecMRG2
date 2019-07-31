@@ -55,7 +55,7 @@ export class SearchResults {
         // }
       }
     },
-    pageSize: 12,
+    // pageSize: 12,
 
     // aggregate: [{ field: "type", aggregate: "count" },
     //   { field: "template", aggregate: "count" }
@@ -114,7 +114,8 @@ export class SearchResults {
       .then((jsonRes) => {
         inv = jsonRes.data;
         this.invdata = inv;
-       this.recct = inv.length;//  this.recCount = inv.length;
+       this.recct = inv.length;
+              this.spinner.remove()
     if (this.recct === 1) {
       let rt2 = '#/contact/data/' + inv[0].id + '?' + inv[0].LastName + ',' + inv[0].FirstName
       this.router.navigate(rt2);

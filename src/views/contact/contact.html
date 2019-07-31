@@ -77,9 +77,9 @@
 							</div> 
 						</div>
 					</div>
+	<div class="Rtable Rtable--1cols">
 
-
-
+<div class="Rtable-cell Rtable-cell">
 					<div class="flex-row-none">
 						<strong> &nbsp;&nbsp;Y/N master list</strong>
 						<input type="checkbox" id="masterlist" checked.bind="search.masterlist">
@@ -90,14 +90,14 @@
 						<strong> &nbsp;&nbsp;domestic</strong>
 						<input type="checkbox" id="notinternational" checked.bind="search.notinternational">
 					</div>
-
-					<div class="flex-row-none">
+	</div>
+					<div class="Rtable-cell Rtable-cell">
 						<label repeat.for="ml of mailingstatus">
                	<input type="radio" name="group1" model.bind="ml.id" checked.bind="search.mailingStatus"> ${ml.name} &nbsp;
 						  </label>
 					</div>
 
-
+	</div>
 					<br />
 					<button id="searchInputBtn" class="btn btn-primary" type="button" click.delegate="performSearch()">Search!</button>
 					<button id="clearbtn" class="btn btn-primary" click.delegate="performClear()" type="button"><strong>C</strong>lear search </button>

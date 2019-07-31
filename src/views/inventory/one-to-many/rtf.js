@@ -52,7 +52,7 @@ export class Rtf {
   heading = 'DataForm HEADER...';
   footer = 'DataForm FOOTER...';
   recordId = '';
-  // provenance: Provenance[] = []
+
   done = false;
   edit = false;
   pre = '<p>'
@@ -88,19 +88,9 @@ export class Rtf {
     }
   };
 
-  //  imagesizes = [
-  //         { id: 0, name: 'normal',factor:1 },
-  //         { id: 1, name: 'x1.5' ,factor:1.5},
-  //         { id: 2, name: 'x2' ,factor:2},
-  //         { id: 3,  name: 'x3' ,factor:3},
-  //       ];
 
-  //       selectedimagesize = imagesizes[0];
   searchsold = [
-    // { id: 0, name: 'Y' },
-    // { id: 1, name: 'N' },
-    // { id: 2, name: 'NFS' },
-    // { id: 3, name: 'DON' },
+
     { id: 0, name: 'normal size', factor: 1 },
     { id: 1, name: '1.5 size', factor: 1.5 },
     { id: 2, name: '2 size', factor: 2 },
@@ -131,9 +121,7 @@ export class Rtf {
     // Invoked once the databinding is activated...
     //  if (this.currentItem.rtf1 !== undefined)      this.editor.value(this.currentItem.rtf1);
   }
-  // activate(params, routeConfig) {
 
-  // }
 
   setInitialValue(edt) {
     if (this.currentItem.rtf1 !== undefined) edt.value(this.currentItem.rtf1);
@@ -143,25 +131,6 @@ export class Rtf {
     if (this.currentItem.rtf2 !== undefined) edt.value(this.currentItem.rtf2);
   }
 
-  // attached() {
-
-  // }
-  // buildExhibit(segment1) {
-  // buildExhibit() {
-  //   let exhibition = this.currentItem.exhibition
-  //   if (exhibition !== undefined) {
-  //     // this.currentItem.exhibition
-  //     let iarray = []
-  //     this.segment1 += ` <br><p>EXHIBITION HISTORY: </p>`
-  //     for (const item of exhibition) {
-  //       console.log("loopitem ====", item)
-  //       //  iarray.push(item)
-
-  //       this.segment1 += '<br>' + item.ExhibitTitle + ' ' + item.ExhibitSponser + ' ' + item.Reproduction + ' ' + item.ExhibitDates + ' '
-  //     }
-  //     // return segment1
-  //   }
-  // }
 
   buildEdition() {
     // let segmentEditionHead = `<p><span style='text-decoration-line:underline'><u>EDITION</u></span><u></u></p>`
@@ -186,25 +155,15 @@ export class Rtf {
 
   buildProv() {
     let provenance = this.currentItem.provenance
-    //  if (provenance !== undefined) {
-    //   if (provenance.length !== 0) {
     if (provenance !== undefined && provenance.length !== 0) {
       let iarray = []
-      // let provheader = `<p><span style='text-decoration-line:underline'><strong><u>PROVENANCE</u></strong></span><u></u></p>`
-      // let provheader = `<p><span style='text-decoration-line:underline'><u>PROVENANCE</u></span><u></u></p>`
 
-      let provheader = `<span style='text-decoration-line:underline'><u>PROVENANCE</u></span><br>`
+      let provheader = `<br><span style='text-decoration-line:underline'><u>PROVENANCE</u></span><br>`
 
       let provarray = []
 
       for (const item of provenance) {
-        //  console.log("loopitem provenance====", item)
-        // let ProvOwner = req.param('ProvOwner')
-        // let ProvDate = req.param('ProvDate')
-        // let ProvSortDate = req.param('ProvSortDate')
-        // let ProvMemo = req.param('ProvMemo');
-        // let Sequence = req.param('Sequence')
-        // let ProvLoc = req.param('Description');
+
 
         let pl = this.appService.codesProvenanceLocation
         let oid
@@ -267,12 +226,9 @@ export class Rtf {
     let exhibitandpubs = []
 
     console.log('===========buildRepro')
-
     // conbine both tables
     let provloc = this.appService.codesProvenanceLocation
 
-    // let exhibition = this.currentItem.exhibition
-    // let reproduction = this.currentItem.reproduction
     let exhibition = undefined
     let reproduction = undefined
     if (this.currentItem.exhibition !== undefined) exhibition = JSON.parse(JSON.stringify(this.currentItem.exhibition));
@@ -286,14 +242,6 @@ export class Rtf {
       for (const item of exhibition) {
         console.log('==================-item==========', item.ExhibitTitle)
         ct++
-        // let ExhibitTitle = req.param('ExhibitTitle')
-        // let ExhibitSponser = req.param('ExhibitSponser')
-        // let ExhibitLocation = req.param('Description') //typeahead
-        // let ExhibitDates = req.param('ExhibitDates')
-        // let ExhibitSortDate = req.param('ExhibitSortDate')
-        // let Traveled = req.param('Traveled')
-        // let batchno = req.param('batchno')
-        // let ExhibitMemo = req.param('ExhibitMemo')
 
 
         // check to see if link in repo (loop thru exhibit and find repo match)
@@ -381,15 +329,7 @@ export class Rtf {
           let oid = provloc.findIndex(x => x.id === item.ReproductionLocation)
           if (oid == -1) oid = 1
           let ReproductionLocationDesc = provloc[oid].Description
-          //alert(rct + ' ReproductionLocationDesc ' + ReproductionLocationDesc + ' ')
 
-          // let ColorBWDesc = ''
-          // if (item.ColorBW !== null && item.ColorBW !== undefined) {
-          //   //let cid = this.appService.codesReproductionType.findIndex(x => x.id === item.ColorBW)
-          //   // ColorBWDesc = `${this.appService.codesReproductionType}[${cid}].Description, `
-          //   let rec = this.appService.codesReproductionType.find(x => x.id === item.ColorBW)
-          //   ColorBWDesc = rec.Description + ', '
-          // }
           let data
           if (item.ReproductionAuthor !== "") {
             data = ppre + `${item.ReproductionAuthor}. <em>${item.ReproductionTitle}</em> ${preafter}`
@@ -441,7 +381,7 @@ export class Rtf {
     console.log('inscribed==================== ', inscribed)
     if (inscribed !== undefined) {
       let a2 = ''
-      let a3 = '' 
+      let a3 = ''
 
       this.inscribedText = ''
 
@@ -458,7 +398,7 @@ export class Rtf {
       if (colonPos === -1) {
         iLines.push(inscribed)
       } else {
-        leftofcolonText = inscribed.substr(0, colonPos+1);
+        leftofcolonText = inscribed.substr(0, colonPos + 1);
         rightofcolonbaseText = inscribed.substr(colonPos + 1, inscribed.length - colonPos);
         semisPos = rightofcolonbaseText.indexOf(";");
         if (semisPos === -1) {
@@ -486,30 +426,6 @@ export class Rtf {
       }
 
 
-      //console.log('semis',semisCount,semisPos ,colonPos ,leftofcolonText ,rightofcolonText)
-      // let n1 = inscribed.indexOf(":");
-      // let a1 = inscribed.substr(0, n1);
-      // a2 = inscribed.substr(n1, inscribed.length)
-
-      // let n2 = a2.indexOf(";");
-      // console.log('n2', n2)
-      // if (n2 > -1) {
-      //   a3 = a2.substr(n2 + 1, inscribed.length)
-      //   a2 = inscribed.substr(n1, n2)
-      // } // else a2=inscribedText
-      // // let rawInsribed
-      // // (a3 === undefined) ? inscribedText = pre + a1 + preitalic + a2 + postitalic +
-      // //  preafter + post : inscribedText = pre + a1 + preitalic + a2 + postitalic + preafter + ',' + a3 + post
-
-      // // (a3 === undefined) ? inscribedText = this.pre + a1 + this.preitalic + a2 + this.postitalic + this.post : inscribedText = pre + a1 + this.preitalic + a2 + this.postitalic + this.preafter + ',' + a3 + this.post
-      // if (a3 === '') {
-      //   inscribedText = this.pre + a1 + this.preitalic + a2 + this.postitalic + this.post
-      // } else {
-      //   inscribedText = pre + a1 + this.preitalic + a2 + this.postitalic + this.preafter + ',' + a3 + this.post
-      // }
-      // this.inscribedText = inscribedText
-
-      // console.log('inscribedText', this.inscribedText)
     }
 
   }
@@ -579,23 +495,20 @@ export class Rtf {
       this.dimscmsight = this.dimscm
     }
 
-    //      this.dims=''
-    // this.dimscm=''
+    this.dims = ''
+    this.dimscm = ''
+    this.dimframed = ''
+    this.dimcmframed = ''
 
-    // cmh = this.buildFactor(this.currentItem.FramedHeight16)
-    // cmw = this.buildFactor(this.currentItem.FramedWidth16)
-    // cmd = this.buildFactor(this.currentItem.FramedDepth16)
+    cmh = this.buildFactor(this.currentItem.FramedHeight16)
+    cmw = this.buildFactor(this.currentItem.FramedWidth16)
+    cmd = this.buildFactor(this.currentItem.FramedDepth16)
 
-    // this.buildDimLogic('framed', 'FramedHeight', 'FramedHeight16', 'FramedWidth', 'FramedWidth16', 'FramedDepth', 'FramedDepth16', cmh, cmw, cmd)
-
-
-
-    ///  cmh = this.buildFactor(this.currentItem.imageHeight16)
-    ///  cmw = this.buildFactor(this.currentItem.imagetWidth16)
-    ///  cmd = this.buildFactor(this.currentItem.imageDepth16)
-    ///  this.buildDimLogic('image','imageHeight', 'imageHeight16', 'imageWidth', 'imageWidth16', 'imageDepth', 'imageDepth16',  cmh, cmw,cmd)
-
-
+    this.buildDimLogic('framed', 'FramedHeight', 'FramedHeight16', 'FramedWidth', 'FramedWidth16', 'FramedDepth', 'FramedDepth16', cmh, cmw, cmd)
+    if (this.dims !== '') {
+      this.dimframed = this.dims
+      this.dimcmframed = this.dimscm
+    }
 
 
   }
@@ -640,18 +553,25 @@ export class Rtf {
     let ufwcm
     let frac
     let mdim
-    if (this.currentItem[heightfraction] === undefined | this.currentItem[heightfraction] === '0' || this.currentItem[heightfraction] === 0 || this.currentItem[heightfraction] === null) { this.currentItem[heightfraction] = ''; cmh = 0; cmw = 0; cmd = 0; }
-    if (this.currentItem[widthfraction] === undefined | this.currentItem[widthfraction] === '0' || this.currentItem[widthfraction] === 0 || this.currentItem[widthfraction] === null) { this.currentItem[heightfraction] = ''; cmh = 0; cmw = 0; cmd = 0; }
-    if (this.currentItem[depthfraction] === undefined | this.currentItem[depthfraction] === '0' || this.currentItem[depthfraction] === 0 || this.currentItem[depthfraction] === null) { this.currentItem[depthfraction] = ''; cmh = 0; cmw = 0; cmd = 0; }
+    // console.log('dep:', this.currentItem[depth],'d-',this.currentItem[depth]==='')
+    console.log('dep:', '1', this.currentItem[depth] === undefined, '2', this.currentItem[depth] === '0', '3', this.currentItem[depth] === 0, '4', this.currentItem[depth] === null, '5', this.currentItem[depth] = '')
+    if (this.currentItem[heightfraction] === undefined || this.currentItem[heightfraction] === '0' || this.currentItem[heightfraction] === 0 || this.currentItem[heightfraction] === null) { this.currentItem[heightfraction] = ''; cmh = 0; cmw = 0; cmd = 0; }
+    if (this.currentItem[widthfraction] === undefined || this.currentItem[widthfraction] === '0' || this.currentItem[widthfraction] === 0 || this.currentItem[widthfraction] === null) { this.currentItem[widthfraction] = ''; cmh = 0; cmw = 0; cmd = 0; }
+    if (this.currentItem[depthfraction] === undefined || this.currentItem[depthfraction] === '0' || this.currentItem[depthfraction] === 0 || this.currentItem[depthfraction] === null) { this.currentItem[depthfraction] = ''; cmh = 0; cmw = 0; cmd = 0; }
     if (this.currentItem[height] === undefined || this.currentItem[height] === '0' || this.currentItem[height] === 0 || this.currentItem[height] === null) this.currentItem[height] = ''
     if (this.currentItem[width] === undefined || this.currentItem[width] === '0' || this.currentItem[width] === 0 || this.currentItem[width] === null) this.currentItem[width] = ''
     if (this.currentItem[depth] === undefined || this.currentItem[depth] === '0' || this.currentItem[depth] === 0 || this.currentItem[depth] === null) this.currentItem[depth] = ''
-    console.log('frac ',this.currentItem[heightfraction], this.currentItem[widthfraction], this.currentItem[depthfraction])
-    console.log('deim ',this.currentItem[height], this.currentItem[width], this.currentItem[depth])
+    console.log('dep::', '1', this.currentItem[depth] === undefined, '2', this.currentItem[depth] === '0', '3', this.currentItem[depth] === 0, '4', this.currentItem[depth] === null, '5', this.currentItem[depth] = '')
+
+    console.log('frac ', this.currentItem[heightfraction], this.currentItem[widthfraction], this.currentItem[depthfraction])
+    console.log('deim ', this.currentItem[height], this.currentItem[width], this.currentItem[depth], 'd-', this.currentItem[depth] === '')
     // if ((this.currentItem[height] === '' || this.currentItem[width] === null || this.currentItem[width] === 0) && (this.currentItem[heightfraction] === '' || this.currentItem[heightfraction] === null || this.currentItem[heightfraction] === 0) ) { } {
     if ((this.currentItem[height] === '' || this.currentItem[width] === '') && (this.currentItem[heightfraction] === '')) { } else {
       if (this.currentItem[height] === '') {
         this.dims += this.currentItem[heightfraction] + ' x '
+        if (this.currentItem[heightfraction] !== "") {
+          this.dims += this.currentItem[heightfraction] + ' x '
+        } else this.dims += ' x '
         this.dimscm += this.roundNumber((this.currentItem[height] * 2.54).toPrecision(2), 1) + ' x ' //fix
       } else {
         this.dims += `${this.currentItem[height]} <span style="font-size:x-small;"> ${this.currentItem[heightfraction]}</span> x `
@@ -666,32 +586,35 @@ export class Rtf {
       }
 
       if (this.currentItem[width] === '') {
-        this.dims += this.currentItem[widthfraction] 
+        if (this.currentItem[widthfraction] !== "") {
+          this.dims += this.currentItem[widthfraction] + ' x '
+        } else this.dims += ' x '
+        // this.dims += this.currentItem[widthfraction]
         // this.dimscm += this.roundNumber((this.currentItem[width] * 2.54).toPrecision(2), 1) + ' x ' //fix
 
         frac = cmw * 2.54
         mdim = (this.currentItem[width] * 2.54) + cmw
         this.dimscm += this.roundNumber((mdim + frac).toPrecision(2), 1)
 
- 
-      } else { 
+
+      } else {
         this.dims += `${this.currentItem[width]} <span style="font-size:x-small;"> ${this.currentItem[widthfraction]}</span> `
         // this.dimscm += this.roundNumber(((this.currentItem[width] * 2.54)+ cmw).toPrecision(2) , 1) + ' x '
         frac = cmw * 2.54
         mdim = (this.currentItem[width] * 2.54) + cmw
-        this.dimscm += this.roundNumber((mdim + frac).toPrecision(2), 1) 
-  
-      } 
+        this.dimscm += this.roundNumber((mdim + frac).toPrecision(2), 1)
 
-      if (this.currentItem[depth] === '' ) {
-        if( this.currentItem[depthfraction]!==""){
-        this.dims += ' x ' + this.currentItem[depthfraction]
-        // ufwcm = cmw * 2.54
-        // this.dimscm += ' ' + this.roundNumber((ufwcm, 1).toPrecision(2), 1)
-        frac = cmd * 2.54
-        mdim = (this.currentItem[depth] * 2.54) + cmd
-        this.dimscm += ' x ' +this.roundNumber((mdim + frac).toPrecision(2), 1) 
-        } 
+      }
+
+      if (this.currentItem[depth] === '') {
+        if (this.currentItem[depthfraction] !== "") {
+          this.dims += ' x ' + this.currentItem[depthfraction]
+          // ufwcm = cmw * 2.54
+          // this.dimscm += ' ' + this.roundNumber((ufwcm, 1).toPrecision(2), 1)
+          frac = cmd * 2.54
+          mdim = (this.currentItem[depth] * 2.54) + cmd
+          this.dimscm += ' x ' + this.roundNumber((mdim + frac).toPrecision(2), 1)
+        }
 
       } else {
         // this.dims += ' x ' + `${this.currentItem[depth]}   <span style="font-size:x-small;"> ${this.currentItem[depthfraction]} </span>`
@@ -700,9 +623,9 @@ export class Rtf {
         this.dims += ` x ${this.currentItem[depth]}   <span style="font-size:x-small;"> ${this.currentItem[depthfraction]} </span>`
         frac = cmd * 2.54
         mdim = (this.currentItem[depth] * 2.54) + cmd
-        
+
         // console.log('  this.dimscm ',   this.currentItem[depth] * 2.54, (this.currentItem[depth] * 2.54)+cmd)
-        this.dimscm += ' x ' +this.roundNumber((mdim*1 + frac*1).toPrecision(2), 1)
+        this.dimscm += ' x ' + this.roundNumber((mdim * 1 + frac * 1).toPrecision(2), 1)
         console.log('  this.dimscm ', this.dimscm)
 
         // ufwcm = this.roundNumber((this.currentItem[depth] * 2.54, 1).toPrecision(2), 1)
@@ -832,7 +755,7 @@ export class Rtf {
       // (b.1950)
 
       artistWdates1 += ` (b.${artist.yearofBirth})`
-    } 
+    }
 
     this.buildInscribed(this.currentItem.Inscribed)
 
@@ -841,7 +764,8 @@ export class Rtf {
     this.segment2 += ` <em> ${this.currentItem.Title}</em>, ${this.currentItem.InvYear} <br> `
 
     if (this.currentItem.MediumSupportobj !== undefined)
-      this.segment2 += `  ${this.currentItem.MediumSupportobj.Description}<br> `
+      this.segment2 += `  ${this.currentItem.MediumSupportobj.Description}`
+    // <br> 
     let uidx
 
     if (this.currentItem.Signed === 'Y') this.currentItem.Signed === true
@@ -857,7 +781,7 @@ export class Rtf {
       if (this.currentItem.Signed === true) {
         this.segment2 += ' and dated<br> '
       } else this.segment2 += 'dated <br>'
-    } else this.segment2 +=  '<br>'
+    } else this.segment2 += '<br>'
 
 
 
@@ -902,24 +826,21 @@ export class Rtf {
 
       this.segment2 += ` ${this.dimsight} in`
       this.segment2 += ` / ${this.dimscmsight} cm sight <br>  `
-      // this.segment2 += ` / ${this.dimscm} cm <br>  `
     }
-    // if (this.dimsight !== undefined) {
+    if (this.dimframed !== '') {
 
-    //   this.segment2 += ` ${this.dimsight} in`
-    //   this.segment2 += ` / ${this.dimscmsight} cm sight <br>  `
-    //   // this.segment2 += ` / ${this.dimscm} cm <br>  `
-    // }
-    // this.segment1 += `<br> ${this.currentItem.SignedLocation} <br>`
-    // this.segment1 += ` ${this.currentItem.SignedLocation} <br>`
-    // this.segment1 += `<br><br>no. P606 <br>`
+      this.segment2 += ` ${this.dimframed} in`
+      this.segment2 += ` / ${this.dimcmframed} cm framed <br>  `
+    }
     this.segment1 += ` ${this.inscribedText}<br> `
     this.segment2 += ` ${this.inscribedText}<br> `
     if (this.currentItem.CatalogueNo !== undefined && this.currentItem.CatalogueNo !== '')
       // this.segment1 += ` Catalogue No: ${this.currentItem.CatalogueNo} <br>  <br> <br> `
 
       this.segment1 += ` no. ${this.currentItem.CatalogueNo} <br>   `
-    if (this.currentItem.AltID !== undefined) {
+    this.currentItem.AltID += this.currentItem.AltID + ''
+    console.log('this.currentItem.AltID', this.currentItem.AltID)
+    if (this.currentItem.AltID !== '') {
       this.segment1 += ` AltID. ${this.currentItem.AltID} <br>  <br> <br> `
     }
 
@@ -1011,175 +932,3 @@ export class Rtf {
     });
   }
 }
-
- // buildRepro() {
-  //   let reproduction = this.currentItem.reproduction
-  //   if (reproduction !== undefined) {
-  //     let iarray = []
-  //     this.segment1 += `<p><span style="text-decoration-line:underline;"><strong>EXHIBITION & PUBLICATION HISTORY</strong></span></p>`
-
-  //     for (const item of reproduction) {
-  //       console.log("loopitem ====", item)
-
-  //       this.segment1 += '<br>' + item.ReproductionName + ' ' + item.ReproductionTitle + ' '
-  //         + item.ReproductionAuthor
-  //         + item.ReproductionDate
-
-  //     }
-
-  //   }
-  //   this.segment1 += ` <br />`
-  //   let exhibition = this.currentItem.exhibition
-  //   if (exhibition !== undefined) {
-  //     // this.currentItem.exhibition
-  //     let iarray = []
-  //     this.segment1 += ` <br><p>EXHIBITION HISTORY: </p>`
-  //     for (const item of exhibition) {
-  //       console.log("loopitem ====", item)
-  //       //  iarray.push(item)
-  //       this.segment1 += '<br>' + item.ExhibitTitle + ' ' + item.ExhibitSponser + ' ' + item.Reproduction + ' ' + item.ExhibitDates + ' '
-  //     }
-  //   }
-  // }
-
-
-  //   <p>Charles Porter ( 1847 -  1923 )<br />
-  // <em>Untitled (Peonies)</em>, c.1890 <br />
-  // box assemblage of wood, glass, <br />
-  // 24 x 20 in framed<br />
-  // 60.96 cm  x 50.8 cm framed<br />
-  // 20 3/8 x 16 1/4 in unframed<br />
-  // 50.8 NaN x 40.64 NaN cm unframed<br />
-  // signed <br />
-  // signed lower right: "C E Porter"<br />
-  // </p>
-
-  //=======================================\\
-  // <hr />
-  // <p><img src="https://artbased.com/api/v1/getonePdf/inv/PORTERC008.jpg" alt="" width="300" height="300" /></p>
-  // <p><strong>Charles Porter ( 1847 -  1923 )</strong><br />
-  // </p>
-  // <p><em>Untitled (Peonies)</em>, c.1890</p>
-  // <p>box assemblage of wood, glass,<br />
-  // </p>
-  // <p><br />
-  // </p>
-  // <p>20 3/8 x 16 1/4 in unframed<br />
-  // 50.8 NaN x 40.64 NaN cm unframed<br />
-  // <br />
-  // signed lower right: "C E Porter" <br />
-  // titled verso:signed lower right: "C E Porter" <br />
-  // </p>
-  // <p><span style="text-decoration-line:underline;"><strong>PROVONANCE</strong></span></p>
-  // <p><br />
-  // Charles Ethan Porter&nbsp;<br />
-  // Farmington Fine Arts Auction&nbsp;<br />
-  // Private Collection&nbsp;<br />
-  // Michael Rosenfeld Gallery LLC&nbsp;</p>
-  // <p>REPRODUCTION HISTORY:</p>
-  // <p><br />
-  // <br />
-  // undefined undefined undefined10/1/2018<br />
-  // undefined undefined undefined01/01/2018</p>
-  // <p><br />
-  // </p>
-  // <p><span style="text-decoration:underline;"><strong>EXHIBITION &amp; PUBLICATION HISTORY</strong></span></p>
-  // <p><br />
-  // Test1 Sponser1 undefined  <br />
-  // Windows on the City: Looking Out at Gracie&rsquo;s New York The Gracie Mansion Conservancy undefined November 10, 2013-November 30, 2016 <br />
-  // nancy nancy2 undefined Da  <br />
-  // </p>
-  // <p><br />
-  // </p>
-  // <p>&nbsp;</p>
-
-
-
-
- /**Charles Ethan Porter (1847-1923)
- Untitled (Peonies), c.1890
- oil on canvas
- 20" x 16" unframed 
- signed 
- signed lower right: CE Porter
-  ==============================
-  Charles Porter ( 1847 - 1923 )
- 
- undefined , c.2003
- 
- )
- 59d282beb777d41f42a5b2ee
- 
- )
- signed
- 
- )
- signed lower right: "C E Porter"
- 
- )
-  
-  
-  */
-    // artist.yearofBirth artist.died
-    //   "firstName" : "Charles", 
-    // "lastName" : "Porter", 
-    // if (this.currentItem.rtf1 !== undefined) {
-    //   this.editor.value(this.currentItem.rtf1)
-    // } else {
-    /* "UnframedHeight" : 20.0, 
-  "UnframedHeight16" : null, 
-  "UnframedWidth" : 16.0, 
-  "UnframedWidth16" : null, 
-  "UnframedDepth" : 0.0, 
-  "UnframedDepth16" : null, 
-  "FramedHeight" : 0.0, 
-  "FramedHeight16" : null, 
-  "FramedWidth" : 0.0, 
-  "FramedWidth16" : null, 
-  "FramedDepth" : 0.0, 
-  "FramedDepth16" : null,  */
-
-
-
-    //  prp.Lines.Strings[12] := 'PUBLICATION HISTORY';
-    //     artist_name := artist_name + HREPO + '</p>';
-    //     while not eof do
-    //     begin
-
-    //       repo := ''; repo2 := ''; repo3 := '';
-    //       repo := repo + '<p>' + frmInv.qReproduction.fieldbyname('Reproduction Author').asstring + ','; // NO SPACE BEC NEXT IS <I>
-    //       //      repo2 := repo2 + ' ' + frmInv.qReproduction.fieldbyname('Reproduction Title').asstring + ', ';
-    //       repo2 := repo2 + '<i>' + frmInv.qReproduction.fieldbyname('Reproduction Title').AsString + '</i>' + ', ';
-    //       if frmInv.qReproduction.fieldbyname('Reproduction Name').asstring <> '' then
-    //         repo3 := repo3 {+ ' (' } + frmInv.qReproduction.fieldbyname('Reproduction Name').asstring + ', ';
-
-
-
-    //       if frmInv.qReproduction.fieldbyname('Reproduction Location').asstring <> '' then
-    //       begin
-    //         qCodes.Locate('ID', frmInv.qReproduction.fieldbyname('Reproduction Location').asstring, []);
-
-    //         repo3 := repo3 + ' (' + qCodes.FieldByName('Description').AsString;
-    //       end else
-    //         repo3 := repo3 + ' (';
-
-
-
-    //       if frmInv.qReproduction.fieldbyname('Reproduction Date').asstring <> '' then
-    //         repo3 := repo3 + ', ' + frmInv.qReproduction.fieldbyname('Reproduction Date').asstring + ')'
-    //       else
-    //         repo3 := repo3 + ')';
-    //       if frmInv.qReproduction.fieldbyname('Reproduction Page').asstring <> '0' then
-    //         repo3 := repo3 + ', ' + frmInv.qReproduction.fieldbyname('Reproduction Page').asstring;
-    //       repo3 := trim(repo3) + '</p>';
-    //       if trim(repo) <> '' then
-    //       begin
-
-    //         artist_name := artist_name + repo + ' ' + repo2 + repo3 + '<p></p>'; // take space away
-    //       end;
-
-    // <p><strong>Features include:</strong></p>
-    // 				Create Label and Fact Sheet
-    // 			</button>
-    // 			</span>
-    // <textarea ak-rich-editor style="height:440px">

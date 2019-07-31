@@ -1,49 +1,79 @@
-
-
-
 <template>
+
+
+	<style>
+		.demo-section label {
+			display: block;
+			margin: 15px 0 5px 0;
+		}
+
+		.k-grid {
+			/* width: 1500px; */
+			width: 94%;
+			/* float: left; */
+		}
+
+		.k-grid-header .k-header {
+			height: 20px;
+			padding: 0;
+		}
+
+		.k-grid tbody tr {
+			line-height: 14px;
+		}
+
+		.k-grid tbody td {
+			padding: 0;
+		}
+	</style>
 
 
 	<require from="../../resources/value-converters/get-artist"></require>
 	<require from="../../resources/value-converters/upper-case"></require>
 
-	<h3> Count: ${recct}
-
-		<!-- <div if.bind="appService.currentsavedlist===undefined || appService.currentsavedlist===''">no active saved list </div>
-		<div else>
-			active saved list: ${appService.currentsavedlist} /  ${recct}
-		</div> -->
-	</h3>
+	<!-- <section class="customers au-animate"> -->
 	<section class="full-height flex-column-1 au-animate ignore">
 
-	<ak-grid class="flex-row-1 overflow-y-auto" id="grid" k-data-source.bind="datasource" k-widget.bind="grid" k-sortable.bind="{ mode: 'multiple',   allowUnsort: 'true'}"
+		<h3>Contacts ( ${recct})</h3>
+		<div ref="spinner" class="splash">
+			<div class="message">fetching records</div>
+			<i class="fa fa-spinner fa-spin"></i>
+		</div>
+    
+		<!-- k-pageable.bind="true"> -->
+		<!-- <ak-grid class="flex-row-1 overflow-y-auto" id="grid" k-data-source.bind="datasource" k-widget.bind="grid" k-sortable.bind="{ mode: 'multiple',   allowUnsort: 'true'}"
 	 k-filterable.bind="{  mode: 'row' }" k-editable="inline" k-reorderable.bind="true" k-groupable.bind="true" k-resizable.bind="true"
 	 k-selectable="[row,multiple]" k-on-edit.delegate="onEdit($event.detail)" k-on-data-bound.delegate="onDataBound($event.detail)"
-	 k-on-change.delegate="rowSelected($event.detail)" k-column-menu.bind="true" k-pageable.bind="true">
-		<ak-col k-title="CB" ref="CB" k-locked.bind="true" k-lockable.bind="false" k-width.bind="85" k-template="<input type='checkbox' class='checkbox' ref='T#=id#' id='T#=id#' ></> ">
-				<ak-template for="headerTemplate">
-					<input type='checkbox' class='checkboxY' checked.bind="isChecked" id='header-chb' />
-				</ak-template>
-			</ak-col>
-			<ak-col k-field="ID" k-filterable.bind="true" k-title="Edit-" k-width.bind="180" k-template="<button click.delegate='detailsEdit($event)' class='k-button'>#=id#</button>">
-			</ak-col>
-			<ak-col k-title="First Name" k-width="180px" k-field="FirstName"></ak-col>
-			<ak-col k-title="Title" k-width="180px" k-field="TitleDesc"></ak-col>
-			<ak-col k-title="Deceased" k-width="180px" k-field="deceased"></ak-col>
-			<ak-col k-title="Bus/Individ" k-width="180px" k-field="BusIndivid"></ak-col>
-			<ak-col k-title="Org" k-width="220px" k-template="#= (typeof org == 'undefined' || org == null) ? '' : org.OrgName #"></ak-col>
-	<ak-col k-title="Deceased" k-width="180px" k-field="deceased"></ak-col>
-		<ak-col k-title="Mailing Status LU" k-width="180px" k-field="mailingStatus"></ak-col>
-	
-	
-	</ak-grid>
-	<div class="flex-row-none section-footer">
-	     	${footer} <span>  ${queryParams}</span> <span>&nbsp;&nbsp;	
-      	<button id="addInputBtn" class="btn btn-sm btn-success" type="button" click.delegate="addcontact()"><strong>A</strong>dd Contact</button>
-		</span>
-		<b>  ${message} </b>
-	</div>
+	 k-on-change.delegate="rowSelected($event.detail)" k-column-menu.bind="true" k-height.bind="700" k-scrollable.bind="scrollable"> -->
 
+
+				<ak-grid class="flex-row-1 overflow-y-auto" id="grid" k-data-source.bind="datasource" k-widget.bind="grid" k-sortable.bind="{ mode: 'multiple',   allowUnsort: 'true'}"
+				 k-height.bind="700" k-filterable.bind="{  mode: 'row' }" k-editable="inline" k-reorderable.bind="true" k-groupable.bind="true"
+				 k-resizable.bind="true" k-selectable="[row,multiple]" k-on-edit.delegate="onEdit($event.detail)" k-on-data-bound.delegate="onDataBound($event.detail)"
+				 k-on-change.delegate="rowSelected($event.detail)" k-column-menu.bind="true" k-scrollable.bind="scrollable">
+
+
+
+
+					<!-- <ak-col k-field="ID" k-filterable.bind="true" k-title="Edit-" k-width.bind="180" k-template="<button click.delegate='detailsEdit($event)' class='k-button'>#=id#</button>">
+			</ak-col> -->
+					<ak-col k-title="Last Name" k-width="180px" k-field="LastName" k-filterable.bind="true" k-template="<button click.delegate='detailsEdit($event)' class='k-button'>#=LastName#</button>"></ak-col>
+
+					<ak-col k-title="First Name" k-width="120px" k-field="FirstName"></ak-col>
+					<ak-col k-title="Title" k-width="180px" k-field="TitleDesc"></ak-col>
+					<ak-col k-title="Deceased" k-width="180px" k-field="deceased"></ak-col>
+					<ak-col k-title="Bus/Individ" k-width="120px" k-field="BusIndivid"></ak-col>
+					<ak-col k-title="Org" k-width="220px" k-template="#= (typeof org == 'undefined' || org == null) ? '' : org.OrgName #"></ak-col>
+					<ak-col k-title="Deceased" k-width="90px" k-field="deceased"></ak-col>
+					<!-- <ak-col k-title="Mailing Status LU" k-width="180px" k-field="mailingStatus"></ak-col> -->
+
+
+				</ak-grid>
+				<div class="flex-row-none section-footer">
+					${footer} <span>  ${queryParams}</span> <span>&nbsp;&nbsp;	
+      	  <button id="addInputBtn" class="btn btn-sm btn-success" type="button" click.delegate="addcontact()"><strong>A</strong>dd Contact</button>
+		      </span>
+					<b>  ${message} </b>
+			</div>
 	</section>
-
 </template>
