@@ -50,11 +50,18 @@
 					<button id="factsheet3" style="width:125px" class="btn btn-primary" type="button" click.delegate="action3()">Reproduction</button>
 					<button id="factsheet4" style="width:125px" class="btn btn-primary" type="button" click.delegate="action4()">Provenance</button>
 					<br>
-					<br>
+					<br>  
 					<button id="factsheet5" style="width:125px" class="btn btn-primary" type="button" click.delegate="action5()">MRG Location</button>
 					<!-- <button id="factsheet6" style="width:125px" class="btn btn-primary" type="button" click.delegate="action6()">Temp Location</button> -->
 					<button id="factsheet7" style="width:125px" class="btn btn-primary" type="button" click.delegate="action8()">Offerings</button>
-					<button id="image1" style="width:125px" class="btn btn-primary" type="button" click.delegate="action9()">Merge Images</button>
+</br><hr>				 
+          <button id="image1" style="width:125px" class="btn btn-primary" type="button" click.delegate="action9()">Merge Images</button>
+
+						<label repeat.for="list of listtypes">
+               	<input type="radio" name="group1" model.bind="list.id" checked.bind="selectedlist"> ${list.name} &nbsp;
+						  </label>
+					
+
 
 					<div show.bind="!hide1">
 						Transport Date <input type="date" id="TransportDate" class="form-control input-sm" value.bind="item.TransportDate">

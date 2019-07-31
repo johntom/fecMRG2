@@ -134,7 +134,7 @@ export class SearchResults {
     pageSize: 12,
 
   })
-
+listtypes=[{id:0,name:"check list"},{id:1,name:"price list"},{id:2,name:"list3"},{id:3,name:"list4"}]
   constructor(router, api, utilService, appService, dataService, dialogService) {
     this.router = router;
     this.api = api;
@@ -144,9 +144,10 @@ export class SearchResults {
     this.ImageID = '20150921_153441_resized_2'
     this.dialogService = dialogService
     this.appService.rfreshLoaded = false;
+       this.selectedlist = 0
     // this.appService.actionlist ='closed'
   }
-
+ 
 
 
   updateData(e) {
@@ -634,39 +635,7 @@ export class SearchResults {
   }
 
   async action9() {
-    // this.hide1 = true
-    // this.hide2 = true
-    // this.hide3 = true
-    // this.hide4 = true
-    // this.hide5 = true
-    // this.hide6 = true
-    // this.hide7 = true
-    // // this.hide9 ? this.hide9 = false : this.hide9 = true
-    // this.hide9 = false
-    // this.hide8 = true
-
-    // let segment
-    // segment = `<h1 style="text-align:center;">${this.savedlist}</h1> <table><tbody>`
-    // for (const invitem of this.datasource._data) {
-    //   let ww = invitem.clientWidthRatio
-    //   let hh = invitem.clientHeightRatio
-    //   if (ww === undefined) ww = 1
-    //   if (hh === undefined) hh = 1
-    //   ww = 225 * ww
-    //   hh = 225 * hh
-    //   // we have  the ratio of each image
-    //   // ie h=1 w=1
-    //   // w h-1 w=.5
-    //   // save to    https://artbased.com/api/v1/downloadonepdf/lists/sl2.doc
-    //   segment += `<tr style="height:17%;"><td style="width:8%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>`
-    //   segment += `<td style="width:42%;">${invitem.rtf2}</td>`
-    //   segment += `<td style="width:8%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>`
-    //   segment += `<td style="width:42%;"><img src="https://artbased.com/api/v1/getimage/inv/${invitem.InventoryCode}.jpg" alt="" width="${ww}" height=${hh} /></td>`
-    //   segment += `</tr>`
-    // }
-    // segment += `</tbody></table>`
-    // this.editor.value(segment)
-    // this.saveMerge()
+ 
 
     ////////////////////
     let currentModel = {}
@@ -706,12 +675,13 @@ export class SearchResults {
 
       // }
 
-    }
-
+    } 
+// model.bind="list.id" checked.bind="search.listtype"
     //  ??
     if (newcount === 0) sels = this.datasource._data
     // this.dialogService.open({ viewModel: Promptmerge, model: sels, lock: true }).whenClosed(async response => {
-    this.dialogService.open({ viewModel: Promptmerge, model: { head: this.savedlist, detail: sels }, lock: true }).whenClosed(async response => {
+    let listname=this.listtypes[ this.selectedlist].name
+    this.dialogService.open({ viewModel: Promptmerge, model: { head: this.savedlist, listtype: this.selectedlist,listname:listname , detail: sels }, lock: true }).whenClosed(async response => {
 
       // this.dialogService.open({ viewModel: Promptmerge, model: this.datasource._data, lock: true }).whenClosed(async response => {
       console.log('this.item', response, this.item)

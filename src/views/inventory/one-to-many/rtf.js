@@ -513,11 +513,13 @@ export class Rtf {
 
   }
   buildFactor(dim) {
+    if (dim === '') dim = 0
     let factor = 0.3175 //.125 * 2.54 
     switch (dim) {
       case null:
         dim = 0
         break;
+
       case '0/0':
         dim = 0
         break;
@@ -553,6 +555,15 @@ export class Rtf {
     let ufwcm
     let frac
     let mdim
+
+
+
+    if (cmh === undefined || cmh === '') cmh = 0;
+    if (cmw === undefined || cmw === '') cmw = 0;
+    if (cmd === undefined || cmd === '') cmd = 0;
+
+
+
     // console.log('dep:', this.currentItem[depth],'d-',this.currentItem[depth]==='')
     console.log('dep:', '1', this.currentItem[depth] === undefined, '2', this.currentItem[depth] === '0', '3', this.currentItem[depth] === 0, '4', this.currentItem[depth] === null, '5', this.currentItem[depth] = '')
     if (this.currentItem[heightfraction] === undefined || this.currentItem[heightfraction] === '0' || this.currentItem[heightfraction] === 0 || this.currentItem[heightfraction] === null) { this.currentItem[heightfraction] = ''; cmh = 0; cmw = 0; cmd = 0; }
@@ -568,17 +579,23 @@ export class Rtf {
     // if ((this.currentItem[height] === '' || this.currentItem[width] === null || this.currentItem[width] === 0) && (this.currentItem[heightfraction] === '' || this.currentItem[heightfraction] === null || this.currentItem[heightfraction] === 0) ) { } {
     if ((this.currentItem[height] === '' || this.currentItem[width] === '') && (this.currentItem[heightfraction] === '')) { } else {
       if (this.currentItem[height] === '') {
-        this.dims += this.currentItem[heightfraction] + ' x '
+        // this.dims += this.currentItem[heightfraction] + ' x '
+
         if (this.currentItem[heightfraction] !== "") {
-          this.dims += this.currentItem[heightfraction] + ' x '
+          this.dims += `<span style="font-size:x-small;">${this.currentItem[heightfraction]} x `
         } else this.dims += ' x '
+
         this.dimscm += this.roundNumber((this.currentItem[height] * 2.54).toPrecision(2), 1) + ' x ' //fix
       } else {
+
         this.dims += `${this.currentItem[height]} <span style="font-size:x-small;"> ${this.currentItem[heightfraction]}</span> x `
         //  this.dimscm += this.roundNumber(((this.currentItem[height] * 2.54)+ cmh).toPrecision(2) , 1) + ' x '
-        frac = cmh * 2.54
-        mdim = (this.currentItem[height] * 2.54) + cmw
-        this.dimscm += this.roundNumber((mdim + frac).toPrecision(2), 1) + ' x '
+        if (cmh === 0) { frac = 0 } else frac = cmh * 2.54
+        mdim = (this.currentItem[height] * 2.54) + cmh
+        // this.dimscm += this.roundNumber((mdim + frac).toPrecision(2), 1) + ' x '
+        // this.dimscm += this.roundNumber((mdim ).toPrecision(2), 1) + ' x '
+
+        this.dimscm += this.roundNumber(mdim, 2) + ' x '
 
 
 
@@ -587,47 +604,61 @@ export class Rtf {
 
       if (this.currentItem[width] === '') {
         if (this.currentItem[widthfraction] !== "") {
-          this.dims += this.currentItem[widthfraction] + ' x '
+          this.dims += `<span style="font-size:x-small;">${this.currentItem[widthfraction]} x `
         } else this.dims += ' x '
         // this.dims += this.currentItem[widthfraction]
         // this.dimscm += this.roundNumber((this.currentItem[width] * 2.54).toPrecision(2), 1) + ' x ' //fix
+        if (cmw === 0) { frac = 0 } else frac = cmw * 2.54
 
-        frac = cmw * 2.54
         mdim = (this.currentItem[width] * 2.54) + cmw
-        this.dimscm += this.roundNumber((mdim + frac).toPrecision(2), 1)
+        // this.dimscm += this.roundNumber((mdim + frac).toPrecision(2), 1)
+        this.dimscm += this.roundNumber(mdim, 2)
 
 
       } else {
         this.dims += `${this.currentItem[width]} <span style="font-size:x-small;"> ${this.currentItem[widthfraction]}</span> `
         // this.dimscm += this.roundNumber(((this.currentItem[width] * 2.54)+ cmw).toPrecision(2) , 1) + ' x '
-        frac = cmw * 2.54
+
+        if (cmw === 0) { frac = 0 } else frac = cmw * 2.54
+
         mdim = (this.currentItem[width] * 2.54) + cmw
-        this.dimscm += this.roundNumber((mdim + frac).toPrecision(2), 1)
+        // this.dimscm += this.roundNumber((mdim ).toPrecision(2), 1)
+        this.dimscm += this.roundNumber(mdim, 2)
 
       }
 
       if (this.currentItem[depth] === '') {
         if (this.currentItem[depthfraction] !== "") {
-          this.dims += ' x ' + this.currentItem[depthfraction]
+          this.dims += ` <span style="font-size:x-small;"> ${this.currentItem[depthfraction]} </span>`
           // ufwcm = cmw * 2.54
           // this.dimscm += ' ' + this.roundNumber((ufwcm, 1).toPrecision(2), 1)
-          frac = cmd * 2.54
+          if (cmd === 0) { cmd = 0 } else frac = cmd * 2.54
+
+          // frac = cmd * 2.54
           mdim = (this.currentItem[depth] * 2.54) + cmd
-          this.dimscm += ' x ' + this.roundNumber((mdim + frac).toPrecision(2), 1)
+          this.dimscm += ' x ' + this.roundNumber((mdim).toPrecision(2), 1)
+          this.dimscm += ' x ' + this.roundNumber(mdim, 2)
+
         }
 
       } else {
         // this.dims += ' x ' + `${this.currentItem[depth]}   <span style="font-size:x-small;"> ${this.currentItem[depthfraction]} </span>`
         // ufwcm = this.roundNumber((this.currentItem[depth] * 2.54, 1).toPrecision(2), 1)
         // this.dimscm += ' x ' + (ufwcm + cmd)
-        this.dims += ` x ${this.currentItem[depth]}   <span style="font-size:x-small;"> ${this.currentItem[depthfraction]} </span>`
-        frac = cmd * 2.54
-        mdim = (this.currentItem[depth] * 2.54) + cmd
+        if (this.currentItem[depthfraction] === "") {
+          this.dims += ` x ${this.currentItem[depth]}  `
+        } else {
+          this.dims += ` x ${this.currentItem[depth]}   <span style="font-size:x-small;"> ${this.currentItem[depthfraction]} </span>`
 
-        // console.log('  this.dimscm ',   this.currentItem[depth] * 2.54, (this.currentItem[depth] * 2.54)+cmd)
-        this.dimscm += ' x ' + this.roundNumber((mdim * 1 + frac * 1).toPrecision(2), 1)
-        console.log('  this.dimscm ', this.dimscm)
+          // frac = cmd * 2.54
+          if (cmd === 0) { cmd = 0 } else frac = cmd * 2.54
 
+          mdim = (this.currentItem[depth] * 2.54) + cmd
+
+          // console.log('  this.dimscm ',   this.currentItem[depth] * 2.54, (this.currentItem[depth] * 2.54)+cmd)
+          this.dimscm += ' x ' + this.roundNumber((mdim * 1 + frac * 1).toPrecision(2), 1)
+          console.log('  this.dimscm ', this.dimscm)
+        }
         // ufwcm = this.roundNumber((this.currentItem[depth] * 2.54, 1).toPrecision(2), 1)
         // this.dimscm += (ufwcm + cmd)
       }
@@ -767,23 +798,23 @@ export class Rtf {
       this.segment2 += `  ${this.currentItem.MediumSupportobj.Description}`
     // <br> 
     let uidx
-if(this.currentItem.Signed===undefined) this.currentItem.Signed=false
-if(this.currentItem.Dated===undefined) this.currentItem.Dated=false
-this.currentItem.Dated=this.currentItem.Dated+''
+    if (this.currentItem.Signed === undefined) this.currentItem.Signed = false
+    if (this.currentItem.Dated === undefined) this.currentItem.Dated = false
+    this.currentItem.Dated = this.currentItem.Dated + ''
     if (this.currentItem.Signed === 'Y') this.currentItem.Signed === true
-    if (this.currentItem.Signed === 'N' ) this.currentItem.Signed === false
+    if (this.currentItem.Signed === 'N') this.currentItem.Signed === false
     if (this.currentItem.Dated === 'Y') this.currentItem.Dated === true
     if (this.currentItem.Dated === 'N') this.currentItem.Dated === false
 
-    if (this.currentItem.Signed === true) this.segment2 += '<br>signed'
+    // if (this.currentItem.Signed === true) this.segment2 += '<br>signed'
 
 
-    if (this.currentItem.Dated === true) {
+    // if (this.currentItem.Dated === true) {
 
-      if (this.currentItem.Signed === true) {
-        this.segment2 += ' and dated<br> '
-      } else this.segment2 += 'dated <br>'
-    } else this.segment2 += '<br>'
+    //   if (this.currentItem.Signed === true) {
+    //     this.segment2 += ' and dated<br> '
+    //   } else this.segment2 += 'dated <br>'
+    // } else this.segment2 += '<br>'
 
 
 
@@ -815,7 +846,7 @@ this.currentItem.Dated=this.currentItem.Dated+''
       this.segment2 += `  ${this.dimsfactsheet} in. `
       // this.segment2 += `  ${this.dimscm} in.`
     }
- 
+
     if (this.dimscm !== undefined) {
 
       this.segment1 += ` / ${this.dimscmfactsheet} cm <br>  `
@@ -827,12 +858,12 @@ this.currentItem.Dated=this.currentItem.Dated+''
     if (this.dimsight !== '') {
 
       this.segment2 += ` ${this.dimsight} in`
-      this.segment2 += ` / ${this.dimscmsight} cm sight <br>  `
+      this.segment2 += ` / ${this.dimscmsight} cm sight size<br>  `
     }
     if (this.dimframed !== '') {
 
       this.segment2 += ` ${this.dimframed} in`
-      this.segment2 += ` / ${this.dimcmframed} cm framed <br>  `
+      this.segment2 += ` / ${this.dimcmframed} cm framed size <br>  `
     }
     this.segment1 += ` ${this.inscribedText}<br> `
     this.segment2 += ` ${this.inscribedText}<br> `
