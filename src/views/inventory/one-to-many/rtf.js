@@ -767,13 +767,15 @@ export class Rtf {
       this.segment2 += `  ${this.currentItem.MediumSupportobj.Description}`
     // <br> 
     let uidx
-
+if(this.currentItem.Signed===undefined) this.currentItem.Signed=false
+if(this.currentItem.Dated===undefined) this.currentItem.Dated=false
+this.currentItem.Dated=this.currentItem.Dated+''
     if (this.currentItem.Signed === 'Y') this.currentItem.Signed === true
-    if (this.currentItem.Signed === 'N') this.currentItem.Signed === false
+    if (this.currentItem.Signed === 'N' ) this.currentItem.Signed === false
     if (this.currentItem.Dated === 'Y') this.currentItem.Dated === true
     if (this.currentItem.Dated === 'N') this.currentItem.Dated === false
 
-    if (this.currentItem.Signed === true) this.segment2 += 'signed'
+    if (this.currentItem.Signed === true) this.segment2 += '<br>signed'
 
 
     if (this.currentItem.Dated === true) {
@@ -813,7 +815,7 @@ export class Rtf {
       this.segment2 += `  ${this.dimsfactsheet} in. `
       // this.segment2 += `  ${this.dimscm} in.`
     }
-
+ 
     if (this.dimscm !== undefined) {
 
       this.segment1 += ` / ${this.dimscmfactsheet} cm <br>  `

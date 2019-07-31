@@ -37,6 +37,11 @@
 			<div class="alert alert-danger">
 				<h3 >${heading}</h3>
  	</div>
+   	<button click.trigger="controller.cancel()">Cancel and Close </button>
+			<button click.trigger="saveMerge()">Save Doc </button>
+        	<a href="https://artbased.com/api/v1/downloadonepdf/lists/${currentmodel.head}.doc" class="btn btn-sm btn-primary">
+				<span class="glyphicon glyphicon-th-list"></span> Download Merge
+			</a>
 		 </ux-dialog-header>
 		<ux-dialog-body>
 				<textarea style="height:650px;width:600px" 
@@ -46,7 +51,7 @@
     </ux-dialog-body>
     	<ux-dialog-footer>
 			<button click.trigger="controller.cancel()">Cancel and Close </button>
-			<button click.trigger="save()">Save Editor and Close </button>
+			<button click.trigger="saveMerge()">Save Doc</button>
 		</ux-dialog-footer>
   </ux-dialog>
 </template>

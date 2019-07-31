@@ -46,11 +46,11 @@ export class Promptmerge {
   //     // Invoked when component is unbound...
   //  }
   async activate(currentmodel) {
-  
-    this.heading = "merge"
+  this.currentmodel=currentmodel
+    this.heading = `merge ${currentmodel.head}`
       let segment
-    segment = `<h1 style="text-align:center;">${this.savedlist}</h1> <table><tbody>`
-    for (const invitem of currentmodel){ //this.datasource._data) {
+    segment = `<h1 style="text-align:center;">${currentmodel.head}</h1> <table><tbody>`
+    for (const invitem of currentmodel.detail){ //this.datasource._data) {
       let ww = invitem.clientWidthRatio
       let hh = invitem.clientHeightRatio
       if (ww === undefined) ww = 1
@@ -66,7 +66,7 @@ export class Promptmerge {
    
       segment += `<td style="width:42%;">${invitem.rtf2}</td>`
       segment += `<td style="width:8%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>`
-      segment += `<td style="width:42%;"><img src="https://artbased.com/api/v1/getimage/inv/${invitem.InventoryCode}.jpg" alt="" width="${ww}" height=${hh} /></td>`
+      // segment += `<td style="width:42%;"><img src="https://artbased.com/api/v1/getimage/inv/${invitem.InventoryCode}.jpg" alt="" width="${ww}" height=${hh} /></td>`
       segment += `</tr>`
     }
     segment += `</tbody></table>`
@@ -83,8 +83,8 @@ export class Promptmerge {
 
   saveMerge() {
     let savetime = moment().format('MM/DD/YY h:mm:ss a')
-    console.log('this.editor.value()',this.savedlist, this.editor.value())
-    this.api.saveMerge(this.savedlist, this.editor.value())
+    console.log('this.editor.value()',this.currentmodel.head, this.editor.value())
+    this.api.saveMerge(this.currentmodel.head, this.editor.value())
       .then((jsonRes) => {
         if (jsonRes.data === 'success') {
           this.message = "Save successful. merge added @ " + savetime

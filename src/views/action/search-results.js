@@ -274,40 +274,43 @@ export class SearchResults {
 
     } else sels = this.selectedids
     console.log('Action1 sels', sels)
-    // var sels = this.selectedids//[];
-    var grid = this.grid;
-    var selectedRows = grid.select();
-    var maxRows = selectedRows.length / 2;
-    // selectedRows.each(function (idx, el) {
-    //   let dataItem = grid.dataItem(el);
-    // });
+    if (sels.length === 0) {
+      alert('no rows selected')
+    } else {
+      // var sels = this.selectedids//[];
+      var grid = this.grid;
+      var selectedRows = grid.select();
+      var maxRows = selectedRows.length / 2;
+      // selectedRows.each(function (idx, el) {
+      //   let dataItem = grid.dataItem(el);
+      // });
 
-    var i;
-    var a1;
-    for (i = 0; i < maxRows; i++) {
-      a1 = selectedRows[i];
-      let dataItem = grid.dataItem(a1);
-      // let mid = sels.findIndex(x => x.InventoryCode === dataItem.InventoryCode)
-      let mid = sels.findIndex(x => x === dataItem.InventoryCode)
-      if (mid === -1) {
-        sels.push(dataItem.InventoryCode);
+      var i;
+      var a1;
+      for (i = 0; i < maxRows; i++) {
+        a1 = selectedRows[i];
+        let dataItem = grid.dataItem(a1);
+        // let mid = sels.findIndex(x => x.InventoryCode === dataItem.InventoryCode)
+        let mid = sels.findIndex(x => x === dataItem.InventoryCode)
+        if (mid === -1) {
+          sels.push(dataItem.InventoryCode);
+        }
+        if (i === maxRows - 1) {
+          this.selectedids = sels;
+          // alert('you are about to remove the following ' + this.selectedids + ' from saved list ' + this.savedlist)
+          this.dialogService.open({ viewModel: Promptmess, model: `you are about to remove the following ${this.selectedids} from saved list ${this.savedlist} `, lock: true }).whenClosed(async response => { });
+
+          this.api.deleteSavedlists(this.savedlist, this.selectedids).then((jsonRes) => {
+            console.log('jsonRes ', jsonRes);
+
+            this.datasource.read();
+
+
+          });
+        }
+
       }
-      if (i === maxRows - 1) {
-        this.selectedids = sels;
-        // alert('you are about to remove the following ' + this.selectedids + ' from saved list ' + this.savedlist)
-        this.dialogService.open({ viewModel: Promptmess, model: `you are about to remove the following ${this.selectedids} from saved list ${this.savedlist} `, lock: true }).whenClosed(async response => { });
-
-        this.api.deleteSavedlists(this.savedlist, this.selectedids).then((jsonRes) => {
-          console.log('jsonRes ', jsonRes);
-
-          this.datasource.read();
-
-
-        });
-      }
-
     }
-
   }
   // closeTab(tab) {
 
@@ -507,8 +510,8 @@ export class SearchResults {
     // see reporduction.js to do it the same way
     let currentModel = {}
     currentModel.currentItem = this.item
-    currentModel.item = this.item 
-    if( this.exhibitionbatchno!==undefined) currentModel.currentItem.ReproductionExhibit= this.exhibitionbatchno
+    currentModel.item = this.item
+    if (this.exhibitionbatchno !== undefined) currentModel.currentItem.ReproductionExhibit = this.exhibitionbatchno
     currentModel.currentItem.hide1 = true
 
     this.dialogService.open({ viewModel: Promptrepro, model: currentModel, lock: false }).whenClosed(async response => {
@@ -707,7 +710,8 @@ export class SearchResults {
 
     //  ??
     if (newcount === 0) sels = this.datasource._data
-    this.dialogService.open({ viewModel: Promptmerge, model: sels, lock: true }).whenClosed(async response => {
+    // this.dialogService.open({ viewModel: Promptmerge, model: sels, lock: true }).whenClosed(async response => {
+    this.dialogService.open({ viewModel: Promptmerge, model: { head: this.savedlist, detail: sels }, lock: true }).whenClosed(async response => {
 
       // this.dialogService.open({ viewModel: Promptmerge, model: this.datasource._data, lock: true }).whenClosed(async response => {
       console.log('this.item', response, this.item)
@@ -779,18 +783,18 @@ export class SearchResults {
         } else {
           this.dialogService.open({ viewModel: Promptmess, model: `batch failed `, lock: true }).whenClosed(async response => { });
         }
-      } )
+      })
 
   }
- 
+
   async save2() {
     this.item.savedlist = this.savedlist
     let jsonResna = await this.api.getbatchno();
 
     let batchno = jsonResna[0].nextavail
     this.exhibitionbatchno = batchno
-    this.item.batchno=batchno
-    this.lastbatch=batchno
+    this.item.batchno = batchno
+    this.lastbatch = batchno
     // this.item.exhibitionbatchno=batchno
     this.api.batchExhibit(this.item)
       .then((jsonRes) => {
@@ -807,7 +811,7 @@ export class SearchResults {
     let jsonResna = await this.api.getbatchno();
 
     let batchno = jsonResna[0].nextavail
-     this.item.batchno= batchno
+    this.item.batchno = batchno
     //this.item.exhibitionbatchno= batchno 
     // this.item.batchno= batchno   
     // this.item.Edition ? this.item.Edition=true :this.item.Edition=false;
@@ -841,7 +845,7 @@ export class SearchResults {
     this.item.savedlist = this.savedlist
     let jsonResna = await this.api.getbatchno();
     this.item.batchno = jsonResna[0].nextavail
-    console.log('item',this.item)
+    console.log('item', this.item)
     this.api.batchMrglocation(this.item)
       .then((jsonRes) => {
         if (jsonRes.data === 'success') {
@@ -961,7 +965,7 @@ export class SearchResults {
 
 //         e.sender.select(itemsToSelect);
 //       }
-  
+
     // change: function (e, args) {
     //   var grid = e//.sender; 
     //   var items = grid.items//();
@@ -978,7 +982,7 @@ export class SearchResults {
     //       }
     //   });
 
-    
+
     // },
     // dataBound: function (e) {
     //   var grid = e//.sender;

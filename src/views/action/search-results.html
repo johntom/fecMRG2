@@ -272,8 +272,6 @@
 						</ak-col>
 
 
-
-
 						<ak-col k-title="Title" k-width="110px" k-field="Title"></ak-col>
 						<ak-col k-title="Artist" k-width="200px" k-field="artist.ArtistName"></ak-col>
 					</ak-grid>
@@ -283,6 +281,10 @@
 						${footer} <span>  ${queryParams}</span>
              <span>&nbsp;&nbsp;	<button id="searchInputBtn" class="btn btn-primary" type="button" click.delegate="performAction1Refresh()">Refresh Updated list for Merge</button></span>
              <span>&nbsp;&nbsp;	<button id="searchInputBtn" class="btn btn-primary" type="button" click.delegate="performAction1()">Delete from Saved List</button></span>
+ 	<a href="https://artbased.com/api/v1/downloadonepdf/lists/${savedlist}.doc" class="btn btn-primary">
+				<span class="glyphicon glyphicon-th-list"></span> Download Merge
+			</a>
+  <!-- <a class="btn btn-primary" href="https://artbased.com/api/v1/downloadonepdf/lists/${savedlist}.doc" >Download Merge	</a> -->
 
 					</div>
 				</div>
