@@ -61,7 +61,7 @@
 
 	<!-- <require from="./customers.css"></require> -->
 	<section class="customers au-animate">
-		<h2>Claims ( ${origItems.length})</h2>
+		<h2>Inventory ( ${recCount})</h2>
 	<div ref="spinner" class="splash">
 			<div class="message">fetching records</div>
 			<i class="fa fa-spinner fa-spin"></i>
@@ -91,8 +91,8 @@
 
 			<ak-col k-title="Title" k-width="180px" k-field="Title"></ak-col>
 			<ak-col k-title="Inv Year" k-width="180px" k-field="InvYear"></ak-col>
-			<ak-col k-title="Medium" k-width="180px" k-template="#=MediumSupportobj.Description#"> </ak-col>
-
+			<!-- <ak-col k-title="Medium" k-width="180px" k-template="#=MediumSupportobj.Description#"> </ak-col> -->
+<ak-col k-title="Medium" k-width="180px"  k-template="#= (typeof MediumSupportobj == 'undefined' || MediumSupportobj == null) ? '' : MediumSupportobj.Description #"></ak-col>
 			<ak-col k-title="Unframed" k-width="340px">
 				<ak-col k-title="H" k-width.bind="50" k-field="UnframedHeight"></ak-col>
 				<ak-col k-title=" " k-width.bind="50" k-field="UnframedHeight16"></ak-col>

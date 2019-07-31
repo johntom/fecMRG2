@@ -97,7 +97,6 @@ export class SearchResults {
           //  ArtistRegistra: { type: "string" },
           InventoryCode: { type: "string" },
           Title: { type: "string" },
-          MediumSupport: { type: "string" },
           CurrentLocation: { type: "string" },
           Bin: { type: "string", sortable: false, menu: false }, // barcode insured
           Owner: { type: "string" },
