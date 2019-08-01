@@ -16,6 +16,43 @@ export class Contactdups {
   queryParams = '';
   //  console.log(' inv SearchResults ');
   // message = 'Hello Contact 101!';
+  tools = [
+    'pdf',
+    'html',
+    'bold',
+    'italic',
+    'underline',
+    // 'strikethrough',
+    'justifyLeft',
+    'justifyCenter',
+    'justifyRight',
+    'justifyFull',
+    // 'insertUnorderedList',
+    // 'insertOrderedList',
+    // 'indent',
+    // 'outdent',
+    // 'createLink',
+    // 'unlink',
+     'insertImage',
+    // 'insertFile',
+    'subscript',
+    'superscript',
+    'createTable',
+    'addRowAbove',
+    'addRowBelow',
+    'addColumnLeft',
+    'addColumnRight',
+    'deleteRow',
+    'deleteColumn',
+    'viewHtml',
+    'formatting',
+    'cleanFormatting',
+    'fontName',
+    'fontSize'
+    // 'foreColor',
+    // 'backColor',
+    // 'print'
+  ];
   datasource = new kendo.data.DataSource({
     transport: {
       read: (options) => {

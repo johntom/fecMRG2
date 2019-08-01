@@ -15,27 +15,27 @@ export class Rtf {
     'italic',
     'underline',
     // 'strikethrough',
-    // 'justifyLeft',
-    // 'justifyCenter',
-    // 'justifyRight',
-    // 'justifyFull',
+    'justifyLeft',
+    'justifyCenter',
+    'justifyRight',
+    'justifyFull',
     // 'insertUnorderedList',
     // 'insertOrderedList',
     // 'indent',
     // 'outdent',
     // 'createLink',
     // 'unlink',
-    // 'insertImage',
+     'insertImage',
     // 'insertFile',
     'subscript',
     'superscript',
-    // 'createTable',
-    // 'addRowAbove',
-    // 'addRowBelow',
-    // 'addColumnLeft',
-    // 'addColumnRight',
-    // 'deleteRow',
-    // 'deleteColumn',
+    'createTable',
+    'addRowAbove',
+    'addRowBelow',
+    'addColumnLeft',
+    'addColumnRight',
+    'deleteRow',
+    'deleteColumn',
     'viewHtml',
     'formatting',
     'cleanFormatting',
@@ -45,6 +45,43 @@ export class Rtf {
     // 'backColor',
     // 'print'
   ];
+  // tools = [
+  //   'pdf',
+  //   'html',
+  //   'bold',
+  //   'italic',
+  //   'underline',
+  //   // 'strikethrough',
+  //   // 'justifyLeft',
+  //   // 'justifyCenter',
+  //   // 'justifyRight',
+  //   // 'justifyFull',
+  //   // 'insertUnorderedList',
+  //   // 'insertOrderedList',
+  //   // 'indent',
+  //   // 'outdent',
+  //   // 'createLink',
+  //   // 'unlink',
+  //   // 'insertImage',
+  //   // 'insertFile',
+  //   'subscript',
+  //   'superscript',
+  //   // 'createTable',
+  //   // 'addRowAbove',
+  //   // 'addRowBelow',
+  //   // 'addColumnLeft',
+  //   // 'addColumnRight',
+  //   // 'deleteRow',
+  //   // 'deleteColumn',
+  //   'viewHtml',
+  //   'formatting',
+  //   'cleanFormatting',
+  //   'fontName',
+  //   'fontSize'
+  //   // 'foreColor',
+  //   // 'backColor',
+  //   // 'print'
+  // ];
   resizable = {
     content: true,
     toolbar: true
@@ -787,15 +824,15 @@ export class Rtf {
 
       artistWdates1 += ` (b.${artist.yearofBirth})`
     }
-
+ 
     this.buildInscribed(this.currentItem.Inscribed)
 
-    //1
+    //1  this.inscribedText += item + '<br>'
     this.segment2 = ` ${artistWdates1}<br>`
     this.segment2 += ` <em> ${this.currentItem.Title}</em>, ${this.currentItem.InvYear} <br> `
 
     if (this.currentItem.MediumSupportobj !== undefined)
-      this.segment2 += `  ${this.currentItem.MediumSupportobj.Description}`
+      this.segment2 += `  ${this.currentItem.MediumSupportobj.Description}<br>`
     // <br> 
     let uidx
     if (this.currentItem.Signed === undefined) this.currentItem.Signed = false
@@ -858,15 +895,15 @@ export class Rtf {
     if (this.dimsight !== '') {
 
       this.segment2 += ` ${this.dimsight} in`
-      this.segment2 += ` / ${this.dimscmsight} cm sight size<br>  `
+      this.segment2 += ` / ${this.dimscmsight} cm sight size</br>  `
     }
     if (this.dimframed !== '') {
 
       this.segment2 += ` ${this.dimframed} in`
-      this.segment2 += ` / ${this.dimcmframed} cm framed size <br>  `
+      this.segment2 += ` / ${this.dimcmframed} cm framed size </br>  `
     }
-    this.segment1 += ` ${this.inscribedText}<br> `
-    this.segment2 += ` ${this.inscribedText}<br> `
+    this.segment1 += ` ${this.inscribedText}</br> `
+    this.segment2 += ` ${this.inscribedText}</br> `
     if (this.currentItem.CatalogueNo !== undefined && this.currentItem.CatalogueNo !== '')
       // this.segment1 += ` Catalogue No: ${this.currentItem.CatalogueNo} <br>  <br> <br> `
 

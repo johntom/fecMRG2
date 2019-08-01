@@ -18,6 +18,12 @@ Lynne Cooke (18763)
  
 	</h4>
 	<section class="full-height flex-column-1 au-animate ignore">
+
+		<textarea ak-rich-editor="k-tools.bind: tools; k-resizable.bind: resizable; k-widget.two-way: editorlabel" k-on-change.delegate="onChangelabel($event.detail)"
+					 k-on-ready.delegate="setInitialValueLabel($event.detail)" style="height:260px">
+
+    </textarea>
+
 		<div class="Rtable Rtable--2cols">
 			<div class="Rtable-cell-50 Rtable-cell">
 				<ak-grid class="flex-row-1 overflow-y-auto" id="grid" k-data-source.bind="datasource" k-widget.bind="grid" k-sortable.bind="{ mode: 'multiple',   allowUnsort: 'true'}"

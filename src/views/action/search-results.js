@@ -134,7 +134,8 @@ export class SearchResults {
     pageSize: 12,
 
   })
-listtypes=[{id:0,name:"check list"},{id:1,name:"price list"},{id:2,name:"list3"},{id:3,name:"list4"}]
+listtypes=[{id:0,name:"check list"},{id:1,name:"price list"},{id:2,name:"inventory list"},
+{id:3,name:"box label"},{id:4,name:"condition"}]
   constructor(router, api, utilService, appService, dataService, dialogService) {
     this.router = router;
     this.api = api;

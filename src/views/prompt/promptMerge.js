@@ -33,7 +33,7 @@ export class Promptmerge {
     this.controller = controller;
     this.answer = null;
     this.appService = appService;
-
+    this.filename = 0
 
     controller.settings.lock = false;
     // this.addlist//='aaa'
@@ -74,7 +74,13 @@ export class Promptmerge {
 
     this.heading = `merge ${currentmodel.head} type: ${this.listname}`
     let segment
-    segment = `<h1 style="text-align:center;">${currentmodel.head}</h1> <table><tbody>`
+    if (this.listtype === 0 || this.listtype === 3) {
+
+      segment = `<h1 style="text-align:center;"></h1> <table><tbody>`
+    } else segment = `<h1 style="text-align:center;">${currentmodel.head}</h1> <table><tbody>`
+
+
+
     for (const invitem of currentmodel.detail) { //this.datasource._data) {
       let ww = invitem.clientWidthRatio
       let hh = invitem.clientHeightRatio
@@ -86,37 +92,89 @@ export class Promptmerge {
       // ie h=1 w=1
       // w h-1 w=.5
       // save to    https://artbased.com/api/v1/downloadonepdf/lists/sl2.doc
+      //       listtypes=[{id:0,name:"check list"},{id:1,name:"price list"},{id:2,name:"inventory list"},
+      // {id:3,name:"box label"},{id:4,name:"condition"}]
       if (this.listtype === 0) {
-        segment += `<tr style="height:17%;"><td style="width:8%;vertical-align:top">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>`
-        segment += `<td style="width:42%;vertical-align:top">${invitem.InventoryCode}</td>`
+        segment += `<tr style="height:17%;"><td style="width:5%;vertical-align:top">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>`
+        segment += `<td style="font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;width:20%;vertical-align:top;padding-left:2px">${invitem.InventoryCode}</td>`
 
-        segment += `<td style="width:42%;vertical-align:top">${invitem.rtf2}</td>`
+        segment += `<td style="font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;width:45%;vertical-align:top">${invitem.rtf2}</td>`
         // segment += `<td style="width:8%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>`
-        segment += `<td style="width:42%;vertical-align:top"><img src="https://artbased.com/api/v1/getimage/inv/${invitem.InventoryCode}.jpg" alt="" width="${ww}" height=${hh} /></td>`
+        segment += `<td style="width:25%;text-align:center;"><img src="https://artbased.com/api/v1/getimage/inv/${invitem.InventoryCode}.jpg" alt="" width="${ww}" height=${hh} /></td>`
         segment += `</tr>`
       }
 
 
       if (this.listtype === 1) {
-        segment += `<tr style="height:17%;"><td style="width:8%;vertical-align:top">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>`
-        segment += `<td style="width:32%;vertical-align:top">${invitem.InventoryCode}</td>`
-        segment += `<td style="width:22%;vertical-align:top">Price:$10.000</td>`
+        segment += `<tr style="height:17%;"><td style="width:5%;vertical-align:top">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>`
+        segment += `<td style="width:70%;vertical-align:top">${invitem.rtf2}</br></br>`
+        segment += `$10.000</td>`
 
-        segment += `<td style="width:32%;vertical-align:top">${invitem.rtf2}</td>`
-        segment += `<td style="width:22%;vertical-align:top"><img src="https://artbased.com/api/v1/getimage/inv/${invitem.InventoryCode}.jpg" alt="" width="${ww}" height=${hh} /></td>`
+        segment += `<td style="width:25%;vertical-align:top"><img src="https://artbased.com/api/v1/getimage/inv/${invitem.InventoryCode}.jpg" alt="" width="${ww}" height=${hh} /></td>`
         segment += `</tr>`
       }
+
+      if (this.listtype === 2) {
+        segment += `<tr style="height:17%;"><td style="width:5%;vertical-align:top">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>`
+        segment += `<td style="width:70%;vertical-align:top">${invitem.rtf2}</br></br>`
+        segment += `$10.000</td>`
+
+        segment += `<td style="width:25%;vertical-align:top"><img src="https://artbased.com/api/v1/getimage/inv/${invitem.InventoryCode}.jpg" alt="" width="${ww}" height=${hh} /></td>`
+        segment += `</tr>`
+      }
+  
+
+      if (this.listtype === 3) {
+        // {id:3,name:"box label"}
+        //   <p style="text-align:center;"><span style="font-size:48pt;font-family:Arial, Helvetica, sans-serif;"><strong>THOMAS</strong></span></p>
+        // <p style="text-align:center;"><span style="font-size:xx-large;font-family:Arial, Helvetica, sans-serif;">title</span></p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        ww = ww+ww
+        hh = hh+hh
+        // width="60" height="60"
+        segment += `<tr style="height:17%;"><td style="width:5%;vertical-align:top"></td>`
+        segment += `<td style="width:20%;vertical-align:top"><img src="https://artbased.com/api/v1/getimage/inv/${invitem.InventoryCode}.jpg" alt="" width="${ww}" height=${hh} /></td>`
+        segment += `<td style="width:60%;vertical-align:top;text-align:center;font-size:48pt;font-family:Arial, Helvetica, sans-serif;"><strong>${invitem.InventoryCode}</strong></br><span style="width:70%;text-align:center;vertical-align:top;font-size:34pt;">${invitem.Title}</span></br>`
+        segment += `</tr>`
+
+        segment += `<tr style="height:17%;"><td style="width:5%;vertical-align:top"></td>`
+        segment += `<td style="width:20%;vertical-align:top"><img  src="https://artbased.com/api/v1/getimage/inv/${invitem.InventoryCode}.jpg" alt="" width="${ww}" height=${hh} /></td>`
+        segment += `<td style="width:60%;vertical-align:top;text-align:center;font-size:48pt;font-family:Arial, Helvetica, sans-serif;"><strong>${invitem.InventoryCode}</strong></br><span style="width:70%;text-align:center;vertical-align:top;font-size:34pt;">${invitem.Title}</span></br>`
+        segment += `</tr>`
+
+        segment += `<tr style="height:17%;"><td style="width:5%;vertical-align:top"></td>`
+        segment += `<td style="width:20%;vertical-align:top"><img src="https://artbased.com/api/v1/getimage/inv/${invitem.InventoryCode}.jpg" alt="" width="${ww}" height=${hh} /></td>`
+        segment += `<td style="width:60%;vertical-align:top;text-align:center;font-size:48pt;font-family:Arial, Helvetica, sans-serif;"><strong>${invitem.InventoryCode}</strong></br><span style="width:70%;text-align:center;vertical-align:top;font-size:34pt;">${invitem.Title}</span></br>`
+        segment += `</tr>`
+
+        segment += `<tr style="height:17%;"><td style="width:5%;vertical-align:top"></td>`
+        segment += `<td style="width:20%;vertical-align:top"><img src="https://artbased.com/api/v1/getimage/inv/${invitem.InventoryCode}.jpg" alt="" width="${ww}" height=${hh} /></td>`
+        segment += `<td style="width:60%;vertical-align:top;text-align:center;font-size:48pt;font-family:Arial, Helvetica, sans-serif;"><strong>${invitem.InventoryCode}</strong></br><span style="width:70%;text-align:center;vertical-align:top;font-size:34pt;">${invitem.Title}</span></br>`
+        segment += `</tr>`
+
+       
+      }
+
+
+      if (this.listtype === 4) {
+        segment += `<tr style="height:17%;"><td style="width:5%;vertical-align:top">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>`
+        segment += `<td style="width:65%;vertical-align:top">${invitem.rtf2}</br></br>`
+        segment += `$10.000</td>`
+
+        segment += `<td style="width:35%;vertical-align:top"><img src="https://artbased.com/api/v1/getimage/inv/${invitem.InventoryCode}.jpg" alt="" width="${ww}" height=${hh} /></td>`
+        segment += `</tr>`
+      }
+
     }
 
-
     segment += `</tbody></table>`
-    this.segment = segment;
-
+      this.segment = segment 
+    
   }
 
 
 
   setInitialValue(edt) {
+    //  edt.value(`<span style="font-family:Calibri, Geneva, sans-serif;font-size:11.0pt">${this.segment}</span>`);
     edt.value(this.segment);
   }
 
@@ -124,7 +182,9 @@ export class Promptmerge {
   saveMerge() {
     let savetime = moment().format('MM/DD/YY h:mm:ss a')
     console.log('this.editor.value()', this.currentmodel.head, this.editor.value())
-    this.api.saveMerge(this.currentmodel.head, this.editor.value())
+    let dt = moment().unix();//..new Date();
+    this.filename = this.currentmodel.head + '_' + dt
+    this.api.saveMerge(this.filename, this.editor.value())
       .then((jsonRes) => {
         if (jsonRes.data === 'success') {
           this.message = "Save successful. merge added @ " + savetime
