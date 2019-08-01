@@ -237,28 +237,28 @@ export class Promptmerge {
         segment += `<tr style="height:17%">`
 
         segment += `<td style="font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;text-align:left;
-        padding-left:40px;"><br><br><br><br><br><br><br><br></td></tr>`
+        padding-left:30px;"><br><br><br><br><br><br><br><br></td></tr>`
         segment += `<tr style="height:17%">`
         //  segment +=`<td style="width:15%;vertical-align:top;text-align:left;left-margin:20px">1</td>`
 
         segment += `<td style="font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;text-align:left;
-        padding-left:40px;"><strong>CONDITION REPORT</<strong><br><br></td></tr>`
+        padding-left:30px;"><strong>CONDITION REPORT</<strong><br><br></td></tr>`
         segment += `<tr style="height:17%">`
         // segment +=`<td style="width:15%;vertical-align:top;">2</td>`
 
-        segment += `<td style="font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;width:55%;vertical-align:top;text-align:left;padding-left:40px;">Date:&nbsp;&nbsp;${today}<br><br></td></tr>`
+        segment += `<td style="font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;width:55%;vertical-align:top;text-align:left;padding-left:30px;">Date:&nbsp;&nbsp;${today}<br><br></td></tr>`
 
-        segment += `<tr style="height:17%;"><td style="font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;width:55%;vertical-align:top;padding-left:40px;">PREPARED BY:&nbsp;&nbsp;Hooper Turner, Senior Registra<br><br></td></tr>`
-        segment += `<tr style="height:17%;"><td style="font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;width:55%;vertical-align:top;padding-left:40px;">WORK:<br><br></td></tr>`
+        segment += `<tr style="height:17%;"><td style="font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;width:55%;vertical-align:top;padding-left:30px;">PREPARED BY:&nbsp;&nbsp;Hooper Turner, Senior Registrar<br><br></td></tr>`
+        segment += `<tr style="height:17%;"><td style="font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;width:55%;vertical-align:top;padding-left:30px;">WORK:<br><br></td></tr>`
 
-        segment += `<td style="font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;width:65%;vertical-align:top;padding-left:40px;">${invitem.rtf2}</td>`
+        segment += `<td style="font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;width:65%;vertical-align:top;padding-left:30px;">${invitem.rtf2}</td>`
         segment += `<td style="width:35%;vertical-align:top"><img src="https://artbased.com/api/v1/getimage/inv/${invitem.InventoryCode}.jpg" alt="" width="${ww}" height=${hh} /></td>`
         segment += `</tr>`
-        segment += `<tr style="height:17%;"><td style="font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;width:55%;vertical-align:top;padding-left:40px;">NOTES:</td></tr>`
-        segment += `<td style="font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;width:90%;vertical-align:top;padding-left:40px;">${invitem.Condition}</br></br></td></tr>`
+        segment += `<tr style="height:17%;"><td style="font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;width:55%;vertical-align:top;padding-left:30px;">NOTES:</td></tr>`
+        segment += `<td style="font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;width:90%;vertical-align:top;padding-left:30px;">${invitem.Condition}</br></br></td></tr>`
         segment += `<tr><td><br><br><br></td></tr>`
         segment += `<tr style="height:17%;">`
-        segment += `<td style="font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;width:55%;vertical-align:top;padding-left:40px;">By:&nbsp;&nbsp;&nbsp;&nbsp;________________________&nbsp;&nbsp;  Date:&nbsp;&nbsp;${today}<br><br></td></tr>`
+        segment += `<td style="font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;width:55%;vertical-align:top;padding-left:30px;">By:&nbsp;&nbsp;&nbsp;&nbsp;________________________&nbsp;&nbsp;  Date:&nbsp;&nbsp;${today}<br><br></td></tr>`
         segment += `<tr style="height:17%;">`
 
         segment += `<td style="font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;width:65%;vertical-align:top;margin-left:20px;padding-left:60px;">Hooper Turner, Senior Registrar <br><br></td></tr>`
