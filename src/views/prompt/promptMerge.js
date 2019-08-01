@@ -77,9 +77,13 @@ export class Promptmerge {
     if (this.listtype === 0 || this.listtype === 3) {
 
       segment = `<h1 style="text-align:center;"></h1> <table><tbody>`
-    } else segment = `<h1 style="text-align:center;">${currentmodel.head}</h1> <table><tbody>`
-
-
+    } else {
+      if (this.listtype === 2) {
+        segment = `<h1 style="text-align:center;width:1024px"></h1> <table "><tbody>`
+       
+      } else segment = `<h1 style="text-align:center;">${currentmodel.head}</h1> <table><tbody>`
+    }
+//  <table style="border-width:1px;border-style:solid;border-color:#2b2a2a;"><tbody>`
 
     for (const invitem of currentmodel.detail) { //this.datasource._data) {
       let ww = invitem.clientWidthRatio
@@ -115,21 +119,30 @@ export class Promptmerge {
       }
 
       if (this.listtype === 2) {
-        segment += `<tr style="height:17%;"><td style="width:5%;vertical-align:top">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>`
-        segment += `<td style="width:70%;vertical-align:top">${invitem.rtf2}</br></br>`
-        segment += `$10.000</td>`
+        ww = 100
+        hh = 100
+        // segment += `<tr style="width:25%;border-width:1px;border-style:solid;border-color:#2b2a2a;height:17%;"><td style="width:5%;vertical-align:top">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>`
+        segment += `<td style="width:15%;border-width:1px;border-style:solid;border-color:#2b2a2a;font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;vertical-align:top;padding-left:2px">${invitem.InventoryCode}</td>`
 
-        segment += `<td style="width:25%;vertical-align:top"><img src="https://artbased.com/api/v1/getimage/inv/${invitem.InventoryCode}.jpg" alt="" width="${ww}" height=${hh} /></td>`
+        segment += `<td style="width:15%;border-width:1px;border-style:solid;border-color:#2b2a2a;font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;vertical-align:top">${invitem.artist.ArtistName}</td>`
+        segment += `<td style="width:15%;border-width:1px;border-style:solid;border-color:#2b2a2a;font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;vertical-align:top">${invitem.Title}</td>`
+
+        segment += `<td style="width:15%;border-width:1px;border-style:solid;border-color:#2b2a2a;font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;vertical-align:top">${invitem.Year}</td>`
+        //  segment += `<td style="font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;width:15%;vertical-align:top">${invitem.MediumSupportobj.Description}</td>`
+        segment += `<td style="width:15%;border-width:1px;border-style:solid;border-color:#2b2a2a;font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;vertical-align:top">${invitem.currentocationname}</td>`
+
+        segment += `<td style="width:25%;border-width:1px;border-style:solid;border-color:#2b2a2a;text-align:center;"><img src="https://artbased.com/api/v1/getimage/inv/${invitem.InventoryCode}.jpg" alt="" width="${ww}" height=${hh} /></td>`
         segment += `</tr>`
       }
-  
+
+
 
       if (this.listtype === 3) {
         // {id:3,name:"box label"}
         //   <p style="text-align:center;"><span style="font-size:48pt;font-family:Arial, Helvetica, sans-serif;"><strong>THOMAS</strong></span></p>
         // <p style="text-align:center;"><span style="font-size:xx-large;font-family:Arial, Helvetica, sans-serif;">title</span></p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        ww = ww+ww
-        hh = hh+hh
+        ww = 125
+        hh = 125
         // width="60" height="60"
         segment += `<tr style="height:17%;"><td style="width:5%;vertical-align:top"></td>`
         segment += `<td style="width:20%;vertical-align:top"><img src="https://artbased.com/api/v1/getimage/inv/${invitem.InventoryCode}.jpg" alt="" width="${ww}" height=${hh} /></td>`
@@ -150,8 +163,12 @@ export class Promptmerge {
         segment += `<td style="width:20%;vertical-align:top"><img src="https://artbased.com/api/v1/getimage/inv/${invitem.InventoryCode}.jpg" alt="" width="${ww}" height=${hh} /></td>`
         segment += `<td style="width:60%;vertical-align:top;text-align:center;font-size:48pt;font-family:Arial, Helvetica, sans-serif;"><strong>${invitem.InventoryCode}</strong></br><span style="width:70%;text-align:center;vertical-align:top;font-size:34pt;">${invitem.Title}</span></br>`
         segment += `</tr>`
+        // segment += ` ^m`
+        // segment += ` <p><!-- pagebreak --></p>`
 
-       
+        //<P style="page-break-before: always">`
+
+
       }
 
 
@@ -167,8 +184,8 @@ export class Promptmerge {
     }
 
     segment += `</tbody></table>`
-      this.segment = segment 
-    
+    this.segment = segment
+
   }
 
 
