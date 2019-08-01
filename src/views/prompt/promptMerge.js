@@ -118,18 +118,19 @@ export class Promptmerge {
       // save to    https://artbased.com/api/v1/downloadonepdf/lists/sl2.doc
       //       listtypes=[{id:0,name:"check list"},{id:1,name:"price list"},{id:2,name:"inventory list"},
       // {id:3,name:"box label"},{id:4,name:"condition"}]
-      if (this.listtype === 0) {
-        //{id:0,name:"check list"}
-        segment += `<tr style="height:17%;"><td style="width:5%;vertical-align:top">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>`
-        segment += `<td style="font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;width:10%;vertical-align:top;padding-left:2px">${invitem.InventoryCode}</td>`
+     
+      // if (this.listtype === 0) {
+      //   //{id:0,name:"check list"}
+      //   segment += `<tr style="height:17%;"><td style="width:5%;vertical-align:top">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>`
+      //   segment += `<td style="font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;width:10%;vertical-align:top;padding-left:2px">${invitem.InventoryCode}</td>`
 
-        segment += `<td style="font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;width:30%;vertical-align:top">${invitem.rtf2}</td>`
-        // segment += `<td style="width:8%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>`
-        segment += `<td style="width:20%;text-align:center;"><img src="https://artbased.com/api/v1/getimage/inv/${invitem.InventoryCode}.jpg" alt="" width="${ww}" height=${hh} /></td>`
-        segment += `<td style="width:10%;text-align:center;">&nbsp;&nbsp;</td>`
+      //   segment += `<td style="font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;width:30%;vertical-align:top">${invitem.rtf2}</td>`
+      //   // segment += `<td style="width:8%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>`
+      //   segment += `<td style="width:20%;text-align:center;"><img src="https://artbased.com/api/v1/getimage/inv/${invitem.InventoryCode}.jpg" alt="" width="${ww}" height=${hh} /></td>`
+      //   segment += `<td style="width:10%;text-align:center;">&nbsp;&nbsp;</td>`
 
-        segment += `</tr>`
-      }
+      //   segment += `</tr>`
+      // }
 
 
       if (this.listtype === 1) {
