@@ -181,28 +181,26 @@ export class Promptmerge {
         // width="60" height="60"
         segment += `<tr style="height:17%;"><td style="width:5%;vertical-align:top"></td>`
         segment += `<td style="width:20%;vertical-align:top"><img src="https://artbased.com/api/v1/getimage/inv/${invitem.InventoryCode}.jpg" alt="" width="${ww}" height=${hh} /></td>`
-        segment += `<td style="width:60%;vertical-align:top;text-align:center;font-size:48pt;font-family:Arial, Helvetica, sans-serif;"><strong>${invitem.InventoryCode}</strong></br><span style="width:70%;text-align:center;vertical-align:top;font-size:34pt;">${invitem.Title}</span></br>`
+        segment += `<td style="width:60%;vertical-align:top;text-align:center;font-size:48pt;font-family:Arial, Helvetica, sans-serif;"><strong>${invitem.InventoryCode}</strong></br><span style="width:70%;text-align:center;vertical-align:top;font-size:34pt;">${invitem.Title}</br></span>`
         segment += `</tr>`
 
         segment += `<tr style="height:17%;"><td style="width:5%;vertical-align:top"></td>`
         segment += `<td style="width:20%;vertical-align:top"><img  src="https://artbased.com/api/v1/getimage/inv/${invitem.InventoryCode}.jpg" alt="" width="${ww}" height=${hh} /></td>`
-        segment += `<td style="width:60%;vertical-align:top;text-align:center;font-size:48pt;font-family:Arial, Helvetica, sans-serif;"><strong>${invitem.InventoryCode}</strong></br><span style="width:70%;text-align:center;vertical-align:top;font-size:34pt;">${invitem.Title}</span></br>`
+        segment += `<td style="width:60%;vertical-align:top;text-align:center;font-size:48pt;font-family:Arial, Helvetica, sans-serif;"><strong>${invitem.InventoryCode}</strong></br><span style="width:70%;text-align:center;vertical-align:top;font-size:34pt;">${invitem.Title}</br></span>`
         segment += `</tr>`
 
         segment += `<tr style="height:17%;"><td style="width:5%;vertical-align:top"></td>`
         segment += `<td style="width:20%;vertical-align:top"><img src="https://artbased.com/api/v1/getimage/inv/${invitem.InventoryCode}.jpg" alt="" width="${ww}" height=${hh} /></td>`
-        segment += `<td style="width:60%;vertical-align:top;text-align:center;font-size:48pt;font-family:Arial, Helvetica, sans-serif;"><strong>${invitem.InventoryCode}</strong></br><span style="width:70%;text-align:center;vertical-align:top;font-size:34pt;">${invitem.Title}</span></br>`
+        segment += `<td style="width:60%;vertical-align:top;text-align:center;font-size:48pt;font-family:Arial, Helvetica, sans-serif;"><strong>${invitem.InventoryCode}</strong></br><span style="width:70%;text-align:center;vertical-align:top;font-size:34pt;">${invitem.Title}</br></span>`
         segment += `</tr>`
 
         segment += `<tr style="height:17%;"><td style="width:5%;vertical-align:top"></td>`
         segment += `<td style="width:20%;vertical-align:top"><img src="https://artbased.com/api/v1/getimage/inv/${invitem.InventoryCode}.jpg" alt="" width="${ww}" height=${hh} /></td>`
-        segment += `<td style="width:60%;vertical-align:top;text-align:center;font-size:48pt;font-family:Arial, Helvetica, sans-serif;"><strong>${invitem.InventoryCode}</strong></br><span style="width:70%;text-align:center;vertical-align:top;font-size:34pt;">${invitem.Title}</span></br>`
+        segment += `<td style="width:60%;vertical-align:top;text-align:center;font-size:48pt;font-family:Arial, Helvetica, sans-serif;"><strong>${invitem.InventoryCode}</strong></br><span style="width:70%;text-align:center;vertical-align:top;font-size:34pt;">${invitem.Title}</br></span>`
         segment += `</tr>`
         // segment += ` ^m`
         // segment += ` <p><!-- pagebreak --></p>`
-
         //<P style="page-break-before: always">`
-
 
       }
 
@@ -213,7 +211,10 @@ export class Promptmerge {
         //moment().format('MMMM Do YYYY
         let today = moment().format('LL');
         //&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        segment += `<tr style="height:17%">`
 
+        segment += `<td style="font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;text-align:left;
+        padding-left:40px;"><br><br><br><br><br><br><br><br></td></tr>`
         segment += `<tr style="height:17%">`
         //  segment +=`<td style="width:15%;vertical-align:top;text-align:left;left-margin:20px">1</td>`
 
@@ -242,13 +243,11 @@ export class Promptmerge {
       }
       if (this.listtype === 5) {
         // {id:5,name:"registra"}]
-
         // segment = `<h1 style="font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;text-align:center;"></h1> <table><tbody>`
         ww = 75
         hh = 75
         segment += `<tr style="height:17%;"><td style="width:5%;vertical-align:top">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>`
         segment += `<td style="font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;width:20%;vertical-align:top;padding-left:2px">${invitem.InventoryCode}</td>`
-
         segment += `<td style="font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;width:45%;vertical-align:top">${invitem.rtf2}</td>`
         segment += `<td style="width:25%;text-align:center;vertical-align:top;"><img src="https://artbased.com/api/v1/getimage/inv/${invitem.InventoryCode}.jpg" alt="" width="${ww}" height=${hh} /></td>`
         segment += `</tr>`

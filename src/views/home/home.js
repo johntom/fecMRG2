@@ -7,21 +7,20 @@ import { ApiService } from '../../utils/servicesApi';
 
 export class Home { 
   heading = "MRG Home Page";
-  version = ' 303.35 '
-  
-  versionDate = 'Wed 7/31/2019 9pm'
+  version = ' 303.36 '
+  versionDate = 'Thur 8/1/2019 3pm'
 
   issues = [
     `1. Open Word. Click the “File” tab on the ribbon. Click “Options” at the bottom of the drop-down menu.`,
     `2. Click "Advanced" in the left pane. In the right pane, scroll down to the General area. Select the "Confirm File Format Conversion on Open" check box and then click "OK."`,
-    `Click File > Options.Click Trust Center > Trust Center Settings >`,
-    ` Protected View.Uncheck Enable Protected View for files originating from the internet.Mar 22, 2018`,
-    'JUNE 15 CONV fix org/contacts save both cols before redo',
-    ' check out mailing list check contact conversion ',
-    'a action abs exp',
-    'mailing list 111test',
-    'contact conversion ',
-    'contact merge conversion ',
+    `3. Click File > Options.Click Trust Center > Trust Center Settings >`,
+    `4. Protected View.Uncheck Enable Protected View for files originating from the internet.Mar 22, 2018`,
+    // 'JUNE 15 CONV fix org/contacts save both cols before redo',
+    // ' check out mailing list check contact conversion ',
+    // 'a action abs exp',
+    // 'mailing list 111test',
+    // 'contact conversion ',
+    // 'contact merge conversion ',
 //  orgi			new
 //  "ProvLoc": 0   not exits
 // "ReproductionExhibit": null,				   "ReproductionExhibit": "",
