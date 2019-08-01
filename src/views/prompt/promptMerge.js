@@ -174,8 +174,8 @@ export class Promptmerge {
         segment += `<td style="width:8%;border-width:1px;border-style:none;border-color:#2b2a2a;font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;vertical-align:top">${invitem.currentocationname}</td>`
         segment += `<td style="width:8%;border-width:1px;border-style:none;border-color:#2b2a2a;font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;vertical-align:top">${invitem.Bin}</td>`
         segment += `<td style="width:15%;border-width:1px;border-style:none;border-color:#2b2a2a;text-align:center;"><img src="https://artbased.com/api/v1/getimage/inv/${invitem.InventoryCode}.jpg" alt="" width="${ww}" height=${hh} /></td>`
-        seg
-
+     
+ segment += `</tr>`
 
 
       }
