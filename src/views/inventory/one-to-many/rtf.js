@@ -619,13 +619,13 @@ export class Rtf {
         // this.dims += this.currentItem[heightfraction] + ' x '
 
         if (this.currentItem[heightfraction] !== "") {
-          this.dims += `<span style="font-size:x-small;">${this.currentItem[heightfraction]} x `
+          this.dims += `<span style="font-size:8.5pt;">${this.currentItem[heightfraction]} x `
         } else this.dims += ' x '
 
         this.dimscm += this.roundNumber((this.currentItem[height] * 2.54).toPrecision(2), 1) + ' x ' //fix
       } else {
 
-        this.dims += `${this.currentItem[height]} <span style="font-size:x-small;"> ${this.currentItem[heightfraction]}</span> x `
+        this.dims += `${this.currentItem[height]} <span style="font-size:8.5pt;"> ${this.currentItem[heightfraction]}</span> x `
         //  this.dimscm += this.roundNumber(((this.currentItem[height] * 2.54)+ cmh).toPrecision(2) , 1) + ' x '
         if (cmh === 0) { frac = 0 } else frac = cmh * 2.54
         mdim = (this.currentItem[height] * 2.54) + cmh
@@ -641,7 +641,7 @@ export class Rtf {
 
       if (this.currentItem[width] === '') {
         if (this.currentItem[widthfraction] !== "") {
-          this.dims += `<span style="font-size:x-small;">${this.currentItem[widthfraction]} x `
+          this.dims += `<span style="font-size:8.5pt;">${this.currentItem[widthfraction]} x `
         } else this.dims += ' x '
         // this.dims += this.currentItem[widthfraction]
         // this.dimscm += this.roundNumber((this.currentItem[width] * 2.54).toPrecision(2), 1) + ' x ' //fix
@@ -653,7 +653,7 @@ export class Rtf {
 
 
       } else {
-        this.dims += `${this.currentItem[width]} <span style="font-size:x-small;"> ${this.currentItem[widthfraction]}</span> `
+        this.dims += `${this.currentItem[width]} <span style="font-size:8.5pt;"> ${this.currentItem[widthfraction]}</span> `
         // this.dimscm += this.roundNumber(((this.currentItem[width] * 2.54)+ cmw).toPrecision(2) , 1) + ' x '
 
         if (cmw === 0) { frac = 0 } else frac = cmw * 2.54
@@ -666,7 +666,7 @@ export class Rtf {
 
       if (this.currentItem[depth] === '') {
         if (this.currentItem[depthfraction] !== "") {
-          this.dims += `  x  <span style="font-size:x-small;"> ${this.currentItem[depthfraction]} </span>`
+          this.dims += `  x  <span style="font-size:8.5pt;"> ${this.currentItem[depthfraction]} </span>`
           // ufwcm = cmw * 2.54
           // this.dimscm += ' ' + this.roundNumber((ufwcm, 1).toPrecision(2), 1)
           if (cmd === 0) { cmd = 0 } else frac = cmd * 2.54
@@ -685,7 +685,7 @@ export class Rtf {
         if (this.currentItem[depthfraction] === "") {
           this.dims += ` x ${this.currentItem[depth]}  `
         } else {
-          this.dims += ` x ${this.currentItem[depth]}   <span style="font-size:x-small;"> ${this.currentItem[depthfraction]} </span>`
+          this.dims += ` x ${this.currentItem[depth]}   <span style="font-size:8.5pt;"> ${this.currentItem[depthfraction]} </span>`
 
           // frac = cmd * 2.54
           if (cmd === 0) { cmd = 0 } else frac = cmd * 2.54
@@ -898,7 +898,7 @@ export class Rtf {
       this.segment2 += ` / ${this.dimscmsight} cm sight size</br>  `
     }
     if (this.dimframed !== '') {
-
+ 
       this.segment2 += ` ${this.dimframed} in`
       this.segment2 += ` / ${this.dimcmframed} cm framed size </br>  `
     }
@@ -908,10 +908,10 @@ export class Rtf {
       // this.segment1 += ` Catalogue No: ${this.currentItem.CatalogueNo} <br>  <br> <br> `
 
       this.segment1 += ` no. ${this.currentItem.CatalogueNo} <br>   `
-    this.currentItem.AltID += this.currentItem.AltID + ''
+    this.currentItem.AltID = this.currentItem.AltID + ''
     console.log('this.currentItem.AltID', this.currentItem.AltID)
     if (this.currentItem.AltID !== '') {
-      this.segment1 += ` AltID. ${this.currentItem.AltID} <br>  <br> <br> `
+      this.segment1 += ` ${this.currentItem.AltID} <br> `
     }
 
 

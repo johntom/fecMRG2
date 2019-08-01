@@ -81,21 +81,23 @@ export class Promptmerge {
     } else {
       if (this.listtype === 2) {
         // <table width=1024>
-        segment = `<h1 style="text-align:center;width:1024px"> &nbsp;</h1><table><tbody>`
-        segment += `<tr style="width:8%;border-width:1px;border-style:none;border-color:#2b2a2a;height:17%;"><td style="width:5%;vertical-align:top">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>`
+        // segment = `<h1 style="text-align:center;width:1024px"> &nbsp;</h1><table><tbody>`
+        segment = `<table><tbody>`
+        // segment += `<tr style="width:8%;border-width:1px;border-style:none;border-color:#2b2a2a;height:17%;"><td style="width:5%;vertical-align:top">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>`
 
         segment += `<td style="width:8%;border-width:1px;border-style:none;border-color:#2b2a2a;font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;vertical-align:top;padding-left:2px">Inventory Code</td>`
 
         segment += `<td style="width:8%;border-width:1px;border-style:none;border-color:#2b2a2a;font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;vertical-align:top">Artist</td>`
         segment += `<td style="width:8%;border-width:1px;border-style:none;border-color:#2b2a2a;font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;vertical-align:top">Title</td>`
 
-        segment += `<td style="width:8%;border-width:1px;border-style:none;border-color:#2b2a2a;font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;vertical-align:top">Inv Year</td>`
+        segment += `<td style="width:8%;border-width:1px;border-style:none;border-color:#2b2a2a;font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;vertical-align:top">Date</td>`
 
-        segment += `<td style="width:8%;border-width:1px;border-style:none;border-color:#2b2a2a;font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;vertical-align:top">Medium Text</td>`
+        segment += `<td style="width:8%;border-width:1px;border-style:none;border-color:#2b2a2a;font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;vertical-align:top">Medium</td>`
 
-        segment += `<td style="width:8%;border-width:1px;border-style:none;border-color:#2b2a2a;font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;vertical-align:top">Unframed Ht</td>`
-        segment += `<td style="width:8%;border-width:1px;border-style:none;border-color:#2b2a2a;font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;vertical-align:top">Unframed Wdth</td>`
-        segment += `<td style="width:8%;border-width:1px;border-style:none;border-color:#2b2a2a;font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;vertical-align:top">Current Location</td>`
+        segment += `<td style="width:8%;border-width:1px;border-style:none;border-color:#2b2a2a;font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;vertical-align:top">Height</td>`
+        segment += `<td style="width:8%;border-width:1px;border-style:none;border-color:#2b2a2a;font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;vertical-align:top">Width</td>`
+        segment += `<td style="width:8%;border-width:1px;border-style:none;border-color:#2b2a2a;font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;vertical-align:top">Depth</td>`
+        segment += `<td style="width:8%;border-width:1px;border-style:none;border-color:#2b2a2a;font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;vertical-align:top">Current<br> Location</td>`
         segment += `<td style="width:8%;border-width:1px;border-style:none;border-color:#2b2a2a;font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;vertical-align:top">Bin</td>`
         segment += `<td style="width:15%;border-width:1px;border-style:none;border-color:#2b2a2a;font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;vertical-align:top">Image</td>`
         segment += `</tr>`
@@ -147,30 +149,35 @@ export class Promptmerge {
         // {id:2,name:"location list"},
         ww = 100
         hh = 100
+        // segment += `<td style="width:8%;border-width:1px;border-style:solid;border-color:#2b2a2a;font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;vertical-align:top;padding-left:2px">${invitem.InventoryCode}</td>`
+        // segment += `<td style="width:8%;border-width:1px;border-style:solid;border-color:#2b2a2a;font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;vertical-align:top">${invitem.artist.ArtistName}</td>`
+        // segment += `<td style="width:8%;border-width:1px;border-style:solid;border-color:#2b2a2a;font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;vertical-align:top">${invitem.Title}</td>`
+        // segment += `<td style="width:8%;border-width:1px;border-style:solid;border-color:#2b2a2a;font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;vertical-align:top;text-align:left;">${invitem.InvYear}</td>`
+        // segment += `<td style="font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;width:8%;border-width:1px;border-style:solid;border-color:#2b2a2a;vertical-align:top;text-align:left;">${invitem.MediumSupportobj.Description}</td>`
+        // segment += `<td style="font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;width:8%;border-width:1px;border-style:solid;border-color:#2b2a2a;vertical-align:top;text-align:center;">${invitem.UnframedHeight}</td>`
+        // segment += `<td style="font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;width:8%;border-width:1px;border-style:solid;border-color:#2b2a2a;vertical-align:top;text-align:center;">${invitem.UnframedWidth}</td>`
+        // segment += `<td style="font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;width:8%;border-width:1px;border-style:solid;border-color:#2b2a2a;vertical-align:top;text-align:center;">${invitem.UnframedDepth}</td>`
+        // segment += `<td style="width:8%;border-width:1px;border-style:solid;border-color:#2b2a2a;font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;vertical-align:top">${invitem.currentocationname}</td>`
+        // segment += `<td style="width:8%;border-width:1px;border-style:solid;border-color:#2b2a2a;font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;vertical-align:top">${invitem.Bin}</td>`
+        // segment += `<td style="width:15%;border-width:1px;border-style:solid;border-color:#2b2a2a;text-align:center;"><img src="https://artbased.com/api/v1/getimage/inv/${invitem.InventoryCode}.jpg" alt="" width="${ww}" height=${hh} /></td>`
+        // segment += `</tr>`
+
+        segment += `<td style="width:8%;border-width:1px;border-style:none;border-color:#2b2a2a;font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;vertical-align:top;padding-left:2px">${invitem.InventoryCode}</td>`
+        segment += `<td style="width:8%;border-width:1px;border-style:none;border-color:#2b2a2a;font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;vertical-align:top">${invitem.artist.ArtistName}</td>`
+        segment += `<td style="width:8%;border-width:1px;border-style:none;border-color:#2b2a2a;font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;vertical-align:top">${invitem.Title}</td>`
+        segment += `<td style="width:8%;border-width:1px;border-style:none;border-color:#2b2a2a;font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;vertical-align:top;text-align:left;">${invitem.InvYear}</td>`
+        segment += `<td style="font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;width:8%;border-width:1px;border-style:none;border-color:#2b2a2a;vertical-align:top;text-align:left;">${invitem.MediumSupportobj.Description}</td>`
+        segment += `<td style="font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;width:8%;border-width:1px;border-style:none;border-color:#2b2a2a;vertical-align:top;text-align:center;">${invitem.UnframedHeight}</td>`
+        segment += `<td style="font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;width:8%;border-width:1px;border-style:none;border-color:#2b2a2a;vertical-align:top;text-align:center;">${invitem.UnframedWidth}</td>`
+        segment += `<td style="font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;width:8%;border-width:1px;border-style:none;border-color:#2b2a2a;vertical-align:top;text-align:center;">${invitem.UnframedDepth}</td>`
+        segment += `<td style="width:8%;border-width:1px;border-style:none;border-color:#2b2a2a;font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;vertical-align:top">${invitem.currentocationname}</td>`
+        segment += `<td style="width:8%;border-width:1px;border-style:none;border-color:#2b2a2a;font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;vertical-align:top">${invitem.Bin}</td>`
+        segment += `<td style="width:15%;border-width:1px;border-style:none;border-color:#2b2a2a;text-align:center;"><img src="https://artbased.com/api/v1/getimage/inv/${invitem.InventoryCode}.jpg" alt="" width="${ww}" height=${hh} /></td>`
+        seg
 
 
 
-
-        segment += `<tr style="width:8%;border-width:1px;border-style:solid;border-color:#2b2a2a;height:17%;"><td style="width:5%;vertical-align:top">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>`
-
-        segment += `<td style="width:8%;border-width:1px;border-style:solid;border-color:#2b2a2a;font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;vertical-align:top;padding-left:2px">${invitem.InventoryCode}</td>`
-
-        segment += `<td style="width:8%;border-width:1px;border-style:solid;border-color:#2b2a2a;font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;vertical-align:top">${invitem.artist.ArtistName}</td>`
-        segment += `<td style="width:8%;border-width:1px;border-style:solid;border-color:#2b2a2a;font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;vertical-align:top">${invitem.Title}</td>`
-
-        segment += `<td style="width:8%;border-width:1px;border-style:solid;border-color:#2b2a2a;font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;vertical-align:top;text-align:left;">${invitem.InvYear}</td>`
-        segment += `<td style="font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;width:8%;border-width:1px;border-style:solid;border-color:#2b2a2a;vertical-align:top;text-align:left;">${invitem.MediumSupportobj.Description}</td>`
-        segment += `<td style="font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;width:8%;border-width:1px;border-style:solid;border-color:#2b2a2a;vertical-align:top;text-align:center;">${invitem.UnframedHeight}</td>`
-        segment += `<td style="font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;width:8%;border-width:1px;border-style:solid;border-color:#2b2a2a;vertical-align:top;text-align:center;">${invitem.UnframedWidth}</td>`
-        segment += `<td style="width:8%;border-width:1px;border-style:solid;border-color:#2b2a2a;font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;vertical-align:top">${invitem.currentocationname}</td>`
-        segment += `<td style="width:8%;border-width:1px;border-style:solid;border-color:#2b2a2a;font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;vertical-align:top">${invitem.Bin}</td>`
-
-
-        segment += `<td style="width:15%;border-width:1px;border-style:solid;border-color:#2b2a2a;text-align:center;"><img src="https://artbased.com/api/v1/getimage/inv/${invitem.InventoryCode}.jpg" alt="" width="${ww}" height=${hh} /></td>`
-        segment += `</tr>`
       }
-
-
 
       if (this.listtype === 3) {
         // {id:3,name:"box label"}
@@ -181,22 +188,37 @@ export class Promptmerge {
         // width="60" height="60"
         segment += `<tr style="height:17%;"><td style="width:5%;vertical-align:top"></td>`
         segment += `<td style="width:20%;vertical-align:top"><img src="https://artbased.com/api/v1/getimage/inv/${invitem.InventoryCode}.jpg" alt="" width="${ww}" height=${hh} /></td>`
-        segment += `<td style="width:60%;vertical-align:top;text-align:center;font-size:48pt;font-family:Arial, Helvetica, sans-serif;"><strong>${invitem.InventoryCode}</strong></br><span style="width:70%;text-align:center;vertical-align:top;font-size:34pt;">${invitem.Title}</br></span>`
+        segment += `<td style="width:60%;vertical-align:top;text-align:center;font-size:50pt;font-family:Helvetica, sans-serif;"><strong>${invitem.InventoryCode}</strong></br><span style="font-family:Helvetica, sans-serif;width:70%;text-align:center;vertical-align:top;font-size:30pt;">${invitem.Title}</br></span>`
         segment += `</tr>`
 
-        segment += `<tr style="height:17%;"><td style="width:5%;vertical-align:top"></td>`
-        segment += `<td style="width:20%;vertical-align:top"><img  src="https://artbased.com/api/v1/getimage/inv/${invitem.InventoryCode}.jpg" alt="" width="${ww}" height=${hh} /></td>`
-        segment += `<td style="width:60%;vertical-align:top;text-align:center;font-size:48pt;font-family:Arial, Helvetica, sans-serif;"><strong>${invitem.InventoryCode}</strong></br><span style="width:70%;text-align:center;vertical-align:top;font-size:34pt;">${invitem.Title}</br></span>`
-        segment += `</tr>`
-
-        segment += `<tr style="height:17%;"><td style="width:5%;vertical-align:top"></td>`
+          segment += `<tr style="height:17%;"><td style="width:5%;vertical-align:top"></td>`
         segment += `<td style="width:20%;vertical-align:top"><img src="https://artbased.com/api/v1/getimage/inv/${invitem.InventoryCode}.jpg" alt="" width="${ww}" height=${hh} /></td>`
-        segment += `<td style="width:60%;vertical-align:top;text-align:center;font-size:48pt;font-family:Arial, Helvetica, sans-serif;"><strong>${invitem.InventoryCode}</strong></br><span style="width:70%;text-align:center;vertical-align:top;font-size:34pt;">${invitem.Title}</br></span>`
+        segment += `<td style="width:60%;vertical-align:top;text-align:center;font-size:50pt;font-family:Helvetica, sans-serif;"><strong>${invitem.InventoryCode}</strong></br><span style="font-family:Helvetica, sans-serif;width:70%;text-align:center;vertical-align:top;font-size:30pt;">${invitem.Title}</br></span>`
         segment += `</tr>`
 
-        segment += `<tr style="height:17%;"><td style="width:5%;vertical-align:top"></td>`
+          segment += `<tr style="height:17%;"><td style="width:5%;vertical-align:top"></td>`
         segment += `<td style="width:20%;vertical-align:top"><img src="https://artbased.com/api/v1/getimage/inv/${invitem.InventoryCode}.jpg" alt="" width="${ww}" height=${hh} /></td>`
-        segment += `<td style="width:60%;vertical-align:top;text-align:center;font-size:48pt;font-family:Arial, Helvetica, sans-serif;"><strong>${invitem.InventoryCode}</strong></br><span style="width:70%;text-align:center;vertical-align:top;font-size:34pt;">${invitem.Title}</br></span>`
+        segment += `<td style="width:60%;vertical-align:top;text-align:center;font-size:50pt;font-family:Helvetica, sans-serif;"><strong>${invitem.InventoryCode}</strong></br><span style="font-family:Helvetica, sans-serif;width:70%;text-align:center;vertical-align:top;font-size:30pt;">${invitem.Title}</br></span>`
+        segment += `</tr>`
+
+          segment += `<tr style="height:17%;"><td style="width:5%;vertical-align:top"></td>`
+        segment += `<td style="width:20%;vertical-align:top"><img src="https://artbased.com/api/v1/getimage/inv/${invitem.InventoryCode}.jpg" alt="" width="${ww}" height=${hh} /></td>`
+        segment += `<td style="width:60%;vertical-align:top;text-align:center;font-size:50pt;font-family:Helvetica, sans-serif;"><strong>${invitem.InventoryCode}</strong></br><span style="font-family:Helvetica, sans-serif;width:70%;text-align:center;vertical-align:top;font-size:30pt;">${invitem.Title}</br></span>`
+        segment += `</tr>`
+
+          segment += `<tr style="height:17%;"><td style="width:5%;vertical-align:top"></td>`
+        segment += `<td style="width:20%;vertical-align:top"><img src="https://artbased.com/api/v1/getimage/inv/${invitem.InventoryCode}.jpg" alt="" width="${ww}" height=${hh} /></td>`
+        segment += `<td style="width:60%;vertical-align:top;text-align:center;font-size:50pt;font-family:Helvetica, sans-serif;"><strong>${invitem.InventoryCode}</strong></br><span style="font-family:Helvetica, sans-serif;width:70%;text-align:center;vertical-align:top;font-size:30pt;">${invitem.Title}</br></span>`
+        segment += `</tr>`
+
+          segment += `<tr style="height:17%;"><td style="width:5%;vertical-align:top"></td>`
+        segment += `<td style="width:20%;vertical-align:top"><img src="https://artbased.com/api/v1/getimage/inv/${invitem.InventoryCode}.jpg" alt="" width="${ww}" height=${hh} /></td>`
+        segment += `<td style="width:60%;vertical-align:top;text-align:center;font-size:50pt;font-family:Helvetica, sans-serif;"><strong>${invitem.InventoryCode}</strong></br><span style="font-family:Helvetica, sans-serif;width:70%;text-align:center;vertical-align:top;font-size:30pt;">${invitem.Title}</br></span>`
+        segment += `</tr>`
+
+          segment += `<tr style="height:17%;"><td style="width:5%;vertical-align:top"></td>`
+        segment += `<td style="width:20%;vertical-align:top"><img src="https://artbased.com/api/v1/getimage/inv/${invitem.InventoryCode}.jpg" alt="" width="${ww}" height=${hh} /></td>`
+        segment += `<td style="width:60%;vertical-align:top;text-align:center;font-size:50pt;font-family:Helvetica, sans-serif;"><strong>${invitem.InventoryCode}</strong></br><span style="font-family:Helvetica, sans-serif;width:70%;text-align:center;vertical-align:top;font-size:30pt;">${invitem.Title}</br></span>`
         segment += `</tr>`
         // segment += ` ^m`
         // segment += ` <p><!-- pagebreak --></p>`
@@ -246,7 +268,6 @@ export class Promptmerge {
         // segment = `<h1 style="font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;text-align:center;"></h1> <table><tbody>`
         ww = 75
         hh = 75
-        segment += `<tr style="height:17%;"><td style="width:5%;vertical-align:top">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>`
         segment += `<td style="font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;width:20%;vertical-align:top;padding-left:2px">${invitem.InventoryCode}</td>`
         segment += `<td style="font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;width:45%;vertical-align:top">${invitem.rtf2}</td>`
         segment += `<td style="width:25%;text-align:center;vertical-align:top;"><img src="https://artbased.com/api/v1/getimage/inv/${invitem.InventoryCode}.jpg" alt="" width="${ww}" height=${hh} /></td>`
