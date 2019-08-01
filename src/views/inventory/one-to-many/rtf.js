@@ -666,7 +666,7 @@ export class Rtf {
 
       if (this.currentItem[depth] === '') {
         if (this.currentItem[depthfraction] !== "") {
-          this.dims += ` <span style="font-size:x-small;"> ${this.currentItem[depthfraction]} </span>`
+          this.dims += `  x  <span style="font-size:x-small;"> ${this.currentItem[depthfraction]} </span>`
           // ufwcm = cmw * 2.54
           // this.dimscm += ' ' + this.roundNumber((ufwcm, 1).toPrecision(2), 1)
           if (cmd === 0) { cmd = 0 } else frac = cmd * 2.54

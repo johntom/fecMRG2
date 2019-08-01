@@ -134,8 +134,8 @@ export class SearchResults {
     pageSize: 12,
 
   })
-listtypes=[{id:0,name:"check list"},{id:1,name:"price list"},{id:2,name:"inventory list"},
-{id:3,name:"box label"},{id:4,name:"condition"}]
+listtypes=[{id:0,name:"check list"},{id:1,name:"price list"},{id:2,name:"location list"},
+{id:3,name:"box label"},{id:4,name:"condition"},{id:5,name:"registra"}]
   constructor(router, api, utilService, appService, dataService, dialogService) {
     this.router = router;
     this.api = api;
@@ -634,7 +634,10 @@ listtypes=[{id:0,name:"check list"},{id:1,name:"price list"},{id:2,name:"invento
     this.hide9 = true
 
   }
+// actionMergeone() {
+  
 
+//     } 
   async action9() {
  
 
@@ -661,14 +664,14 @@ listtypes=[{id:0,name:"check list"},{id:1,name:"price list"},{id:2,name:"invento
     let newcount = 0
 
     var i;
-    var a1;
+    var a1; 
     for (i = 0; i < maxRows; i++) {
       a1 = selectedRows[i];
       let dataItem = grid.dataItem(a1);
       // let mid = sels.findIndex(x => x.InventoryCode === dataItem.InventoryCode)
       let mid = sels.findIndex(x => x === dataItem.InventoryCode)
       if (mid === -1) {
-        sels.push(dataItem.InventoryCode);
+        sels.push(dataItem)//.InventoryCode);
         newcount++
       }
       // if (i === maxRows - 1) {

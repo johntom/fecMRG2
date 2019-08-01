@@ -101,6 +101,8 @@ selectOptions = {
     // this.page = '#/action'
     // this.search.inventorycode = 'PORTERC008'
     this.dataService = dataService;
+    this.selectedValue='dOVE'
+    // this.myDatalist.value='dOVE'
   }
 
   getStatesExample(filter, limit) {
