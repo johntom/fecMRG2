@@ -7,8 +7,8 @@ import { ApiService } from '../../utils/servicesApi';
 
 export class Home { 
   heading = "MRG Home Page";
-  version = ' 303.42 ' 
-  versionDate = 'Thur 8/1/2019 5pm'
+  version = ' 303.44 ' 
+  versionDate = 'Fri 8/2/2019 8am'
 
   issues = [
     `1. Open Word. Click the “File” tab on the ribbon. Click “Options” at the bottom of the drop-down menu.`,
@@ -372,8 +372,6 @@ export class Home {
         let et = [{ id: 1, Description: 'work' }, { id: 2, Description: 'personal' }, { id: 3, Description: 'na' }];
         this.appService.codesPhoneType = pt;
         this.appService.codesEmailType = et;
-
-
         this.appService.codesInventoryLocation = codesInventoryLocation//1,
         this.appService.codesInventoryType = codesInventoryType//2,
         this.appService.codesGenre = codesGenre//3,  codesGenre.push(newi)
@@ -418,14 +416,11 @@ export class Home {
         // console.log(' this.orgsList', this.appService.orgsList)
         console.log(' this.appService.codesGenre', this.appService.codesGenre)
         console.log(' this.artistList', this.appService.artistList.length)
-
-
-       console.log(' this.codesInventoryLocation', this.appService.codesInventoryLocation) 
+        console.log(' this.codesInventoryLocation', this.appService.codesInventoryLocation) 
         // bad   this.currentItem = this.items.find(f => f.id == params.id);
         // for (i = 0; i < this.appService.artistList.length; i++) {
         //   this.appService.artistList[i].ArtistName = this.appService.artistList[i].lastName + ', ' + this.appService.artistList[i].firstName
         // }
-
         let nlist = []
         for (const item of this.appService.artistList) {
           item.ArtistName = item.LastName + ', ' + item.FirstName
@@ -438,7 +433,6 @@ export class Home {
         //   return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
         // });
         console.log('artistList ', this.appService.artistList)
-
         // let pct
         // for (let bk of this.appService.artistList) {
         //       //  console.log('bk2 ', bk2)

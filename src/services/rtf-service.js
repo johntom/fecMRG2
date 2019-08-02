@@ -486,9 +486,16 @@ export class RtfService {
     alert('add')
     return await true
   }
+  //  formattypes = [
+  //     { id: 0, name: 'landscape' },
+  //     { id: 1, name: 'portrait' },
 
-  async createRTF(createopt) {
+  //   ];
+  //   selectedtype = 0;
+  async createRTF(createopt, selectedtype,selectedimagesize) {
     // 1 MEANS UI DISPLAYS HTML 2; // 1 is from tab
+    if (selectedtype === undefined) selectedtype = 0;
+
     this.createDim()
     let artist = this.currentItem.artist
     let artistWdates = `<strong>${artist.firstName} ${artist.lastName}`
@@ -526,47 +533,66 @@ export class RtfService {
     //   } else this.segment2 += 'dated <br>'
     // } else this.segment2 += '<br>'
     ///////////////////////////////////////////////////////////////////////////  
-    let fac = this.searchsold[this.selectedimagesize]
+    let fac = this.searchsold[selectedimagesize]
     let ww = this.currentItem.clientWidth * fac.factor
     let hh = this.currentItem.clientHeight * fac.factor
     //console.log(hh, ww)
+
     if (ww === 0) ww = 450
     if (hh === 0) hh = 450
-    this.segment1 = `<p><img class="responsive-img" src="https://artbased.com/api/v1/getimage/inv/${this.currentItem.InventoryCode}.jpg" alt="" width="${ww}" height="${hh}" /></p>`
+    let headerinfo1='', headerinfo2=''
+ 
+    // this.segment1 = `<p><img class="responsive-img" src="https://artbased.com/api/v1/getimage/inv/${this.currentItem.InventoryCode}.jpg" alt="" width="${ww}" height="${hh}" /></p>`
 
-
-    this.segment1 += ` ${artistWdates}<br><br><br>`
-    this.segment1 += ` <em>${this.currentItem.Title}</em>, ${this.currentItem.InvYear}<br>`
+    headerinfo1 += ` ${artistWdates}<br><br><br>`
+    headerinfo1 += ` <em>${this.currentItem.Title}</em>, ${this.currentItem.InvYear}<br>`
+headerinfo2 = ` ${artistWdates1}<br>`
+ headerinfo2 += ` <em>${this.currentItem.Title}</em>, ${this.currentItem.InvYear}<br>`
+   
     if (this.currentItem.MediumSupportobj !== undefined)
-      this.segment1 += ` ${this.currentItem.MediumSupportobj.Description}  <br> `
-
+      headerinfo1 += ` ${this.currentItem.MediumSupportobj.Description}  <br> `
+       headerinfo2 += ` ${this.currentItem.MediumSupportobj.Description}  <br> `
     if (this.dimsfactsheet !== undefined) {
-      this.segment1 += `  ${this.dimsfactsheet} in.`
-      this.segment2 += `  ${this.dimsfactsheet} in. `
-
+      headerinfo1 += `  ${this.dimsfactsheet} in.`
+      headerinfo2 += `  ${this.dimsfactsheet} in. `
     }
-
     if (this.dimscm !== undefined) {
-      this.segment1 += ` / ${this.dimscmfactsheet} cm <br>  `
-      this.segment2 += ` / ${this.dimscmfactsheet} cm  <br>  `
+      headerinfo1 += ` / ${this.dimscmfactsheet} cm <br>  `
+      headerinfo2 += ` / ${this.dimscmfactsheet} cm  <br>  `
     }
     if (this.dimsight !== '') {
-      this.segment2 += ` ${this.dimsight} in`
-      this.segment2 += ` / ${this.dimscmsight} cm sight size</br>  `
-    }
+      headerinfo2 += ` ${this.dimsight} in`
+      headerinfo2 += ` / ${this.dimscmsight} cm sight size</br>  `
+    } 
     if (this.dimframed !== '') {
-      this.segment2 += ` ${this.dimframed} in`
-      this.segment2 += ` / ${this.dimcmframed} cm framed size </br>  `
+      headerinfo2 += ` ${this.dimframed} in`
+      headerinfo2 += ` / ${this.dimcmframed} cm framed size </br>  `
     }
-    this.segment1 += ` ${this.inscribedText}</br> `
-    this.segment2 += ` ${this.inscribedText}</br> `
+    headerinfo1 += ` ${this.inscribedText}</br> `
+    headerinfo2 += ` ${this.inscribedText}</br> `
     if (this.currentItem.CatalogueNo !== undefined && this.currentItem.CatalogueNo !== '')
-      this.segment1 += ` no. ${this.currentItem.CatalogueNo} <br>   `
+      headerinfo1 += ` no. ${this.currentItem.CatalogueNo} <br>   `
     this.currentItem.AltID = this.currentItem.AltID + ''
     // console.log('this.currentItem.AltID', this.currentItem.AltID)
     if (this.currentItem.AltID !== '') {
-      this.segment1 += ` ${this.currentItem.AltID} <br> `
+      headerinfo1 += ` ${this.currentItem.AltID} <br> <br>`
     }
+ 
+    // 
+    this.segment2 = headerinfo2
+
+    if (selectedtype === 0) {
+      this.segment1 = `<p><img class="responsive-img" src="https://artbased.com/api/v1/getimage/inv/${this.currentItem.InventoryCode}.jpg" alt="" width="${ww}" height="${hh}" /></p>`
+      this.segment1 += headerinfo1
+    }
+    if (selectedtype === 1) {
+      this.segment1 = ` <table><scan style="text-align:center;width:1024px"></scan><tbody>`
+      this.segment1 += `<td style="font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;width:50%;vertical-align:top;text-align:left;padding-left:2px">${headerinfo2}</td>`
+      this.segment1 += `<td style="width:50%;text-align:center;vertical-align:top;"><img src="https://artbased.com/api/v1/getimage/inv/${this.currentItem.InventoryCode}.jpg" alt="" width="${ww}" height=${hh} /></td>`
+      this.segment1 += `</tr></tbody></table>`
+      //
+    }
+
     this.buildEdition()
     this.buildProv()
     this.buildRepro()

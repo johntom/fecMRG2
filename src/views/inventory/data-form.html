@@ -21,8 +21,12 @@
 		img.responsive-img {
 			/* max-height:  auto;
 			width:300px; */
-			max-width: 325px;
-			max-height: 325px;
+			/* max-width: 325px;
+			max-height: 325px; */
+	max-width: 295px;
+			max-height: 295px;
+
+
 			width: auto;
 			height: auto;
 			/* hor */
@@ -666,12 +670,24 @@
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
 										<strong>legacy modified</strong>
 									</div>
-									<div style="padding-left:4px;"   class="Rtable-cell-70 Rtable-cell--highlight">
-										<!-- after convert use createdAt -->
+                  <div class="Rtable-cell-70 Rtable-cell--highlight">
 
 										${currentItem.ModifiedDate | dateFormat }
 
 									</div>
+
+		<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong> Image Info & Dims 	<button class="btn btn-sm btn-success"
+                     click.delegate="getimageinfo(1)">
+						fix ratio
+					</button></strong>
+									</div>
+									<div class="Rtable-cell-70 Rtable-cell--highlight">
+
+										<span> ratio h: ${currentItem.clientHeightRatio} -- w: ${currentItem.clientWidthRatio} dim:
+             h: ${currentItem.clientHeight} / w: ${currentItem.clientWidth} </span>
+														</div>
+
 								</div>
 <input class="btn btn-primary" id="file" type="file" name="file" files.bind="file" change.delegate="addInventory(file)" accept='image/jpg'>
 
@@ -695,12 +711,12 @@
             </div>  
             
             <label for=file>
-    <u>Select image and upload </u> -->
+    <u>Select image and upload </u> --> 
 					<div if.bind="recordId==='create'"></div>
 					<div else>
 
 						<div id="top-right" class="flex-column-none data-form-image" if.bind="recordId !== 'create'">
-							<img ref="mainimage" class="responsive-img" src="https://artbased.com/api/v1/getimage/inv/${currentItem.InventoryCode}.jpg"
+							<img  ref="mainimage" class="responsive-img" src="https://artbased.com/api/v1/getimage/inv/${currentItem.InventoryCode}.jpg?${epoch} "
 							 click.delegate="showModalImg()">
 							<!-- <input class="custom-file-input"  id='file' type="file" name="file" files.bind="file" 
              change.delegate="addInventory(file)" >
@@ -770,14 +786,14 @@
 						Save & Close
 					</button>
 &nbsp;&nbsp;
-
+ 
 <!-- <button click.delegate="addRTF()">addRTF</button> -->
 
 				</span>
 			<!-- <button class="btn btn-sm btn-primary " click.delegate="factsheet()">
 					FactSheet
 				</button> -->
-			<a href="https://artbased.com/api/v1/downloadonepdf/output/${currentItem.InventoryCode}.doc" class="btn btn-sm btn-primary">
+			<a href="https://artbased.com/api/v1/downloadonepdf/output/${currentItem.InventoryCode}.doc?${epoch}" class="btn btn-sm btn-primary">
 				<span class="glyphicon glyphicon-th-list"></span> Download Doc FactSheet
 			</a>
 			<span>&nbsp;&nbsp;
@@ -785,6 +801,10 @@
 						Close
 					</button>
           <b>  ${message} </b>
+
+           <!-- <button click.delegate = "publish()">PUBLISH</button><br/>
+   <button click.delegate = "subscribe()">SUBSCRIBE</button><br/>
+   <button click.delegate = "dispose()">DISPOSE</button> -->
 				</span>
 
 			<!-- <button class="btn btn-sm btn-danger " click.delegate="getmainimage()">

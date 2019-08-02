@@ -9,9 +9,9 @@ import { Promptorg } from './promptorg';
 import { DialogImage } from './dialogImage';
 import { bindable } from 'aurelia-framework';
 import { RtfService } from '../../services/rtf-service';
+import { EventAggregator } from 'aurelia-event-aggregator';
 
-
-@inject(Router, ApiService, ApplicationService, MyDataService, DialogService, RtfService)
+@inject(Router, ApiService, ApplicationService, MyDataService, DialogService, RtfService, EventAggregator)
 // @inject(Router, ApiService, ApplicationService, MyDataService, DialogService)
 export class DataForm {
   // @bindable createRTF
@@ -158,7 +158,7 @@ export class DataForm {
     widget.refresh();// keep the focus
   }
   //controllerFactory
-  constructor(router, api, appService, dataService, dialogService, rtfService) {
+  constructor(router, api, appService, dataService, dialogService, rtfService, eventAggregator) {
     //  constructor(router, api, appService, dataService, dialogService, controllerFactory) {
     this.api = api
     this.appService = appService
@@ -168,8 +168,21 @@ export class DataForm {
     this.dialogService = dialogService
     this.skippromt = false
     this.rtfService = rtfService
+    this.eventAggregator = eventAggregator;
   }
-
+  publish() {
+    var payload = 'This is some data...';
+    this.eventAggregator.publish('myEventName', payload);
+  }
+  subscribe() {
+    this.subscriber = this.eventAggregator.subscribe('myEventName', payload => {
+      console.log(payload);
+    });
+  }
+  dispose() {
+    this.subscriber.dispose();
+    console.log('Disposed!!!');
+  }
   soldtoEdit() {
     // this.currentItem.SoldToBusIndivid = this.BusIndivid  
     // this.currentItem.SoldToID = this.orgId  
@@ -525,6 +538,7 @@ export class DataForm {
 
 
   loadimage() {
+    this.epoch = moment().unix();
     let imageWidth, imageHeight, clientHeightRatio, clientWidthRatio
     return new Promise((resolve, reject) => {
       this.mainimage.onload = function () { // alert alert("Height: " + this.height+' '+ this.width); 
@@ -532,7 +546,7 @@ export class DataForm {
         imageWidth = this.width
         resolve(imageWidth);
       }
-      this.mainimage.src = `https://artbased.com/api/v1/getimage/inv/${this.currentItem.InventoryCode}.jpg`;
+      this.mainimage.src = `https://artbased.com/api/v1/getimage/inv/${this.currentItem.InventoryCode}.jpg?${this.epoch}`;
     })
   }
 
@@ -569,6 +583,10 @@ export class DataForm {
   attached() {
     // move to attach
     // bypass save if in create mode
+
+    this.subscriber = this.eventAggregator.subscribe('rtfpayload', payload => {
+      console.log(payload);
+    });
     if (this.recordId !== 'create') {
       // fix dirty
       this.appService.originalrec.OwnedId = this.appService.currentItem.OwnedId
@@ -639,15 +657,20 @@ export class DataForm {
         // SAVE WITH IMAGE INFO IN CASE ITS MISSING
         // nsure if needed this.getimageinfo()
 
-        this.rtfService.currentItem = this.currentItem
-        let createopt = 2; // 1 is from tab
-        let rr = await this.rtfService.createRTF(createopt)
+
+        // I used eventaggrgator insteead
+        // this.rtfService.currentItem = this.currentItem
+        // let createopt = 2; // 1 is from tab
+        // let rr = await this.rtfService.createRTF(createopt)
+        var payload = 'refresh rtf';
+        this.eventAggregator.publish('rtfpayload', payload);
+
         // if on rtf tab move off
         // let tabindex = this.appService.dataFormOneToManyTabs.findIndex(f => f.isSelected)
         //tabindex this.tabindex =
 
 
-// idea to move off code if rtf changed so we can see it
+        // idea to move off code if rtf changed so we can see it
         // if (this.tabindex === 0) {
         //   let tab = this.appService.dataFormOneToManyTabs[this.tabindex];
         //   let tab2 = this.appService.dataFormOneToManyTabs[1];
@@ -728,7 +751,7 @@ export class DataForm {
       .then((jsonRes) => {
         this.upmess = jsonRes.data
         //force rediplay not to use browser cache var url = 'http://.../?' + escape(new Date())
-        let fd = new Date();
+        let fd = new Date(); // use epoch
         this.mainimage.src = `https://artbased.com/api/v1/getimage/inv/${this.currentItem.InventoryCode}.jpg?${fd}`;
         // "http://localhost/image/id/image" + count++ + ".jpg";
         this.getimageinfo(0)
@@ -818,7 +841,7 @@ export class DataForm {
 
 
   closeTab(tab) {
-
+    this.subscriber.dispose();
     let index = this.appService.tabs.indexOf(tab);
     tab.isSelected = false;
     this.appService.tabs.splice(index, 1);

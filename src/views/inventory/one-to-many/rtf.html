@@ -2,25 +2,59 @@
 	<!-- <component-rtf view-model.ref="rtf"></component-rtf> -->
 	<section style="height:300px;">
 		<span>&nbsp;&nbsp;	
-					<button class="btn btn-sm btn-success" click.delegate="createRTF(1)">
+					<!-- <button class="btn btn-sm btn-success" click.delegate="createRTF(1)">
 						Create Label and Fact Sheet v103
-					</button> to change image size select ratio and press Create
+					</button>
+           to change image size select ratio and press Create
 						<label repeat.for="sold of searchsold">
                 <input type="radio" name="group1"
                  model.bind="sold.id" checked.bind="selectedimagesize">
                 ${sold.name} &nbsp;  
           </label>
+            select portrait/landscape 
+						<label repeat.for="ft of formattypes">
+                <input type="radio" name="group2"
+                 model.bind="ft.id" checked.bind="selectedtype">
+                 ${ft.name} &nbsp;  
+          </label>
       </span>
 		<span>
-      							<strong> Image Info & Dims 	<button class="btn btn-sm btn-success"
-                     click.delegate="getimageinfo(1)">
+    <strong> Image Info & Dims 	<button class="btn btn-sm btn-success"
+            click.delegate="getimageinfo(1)">
 						fix ratio
+					</button>
+						 ratio h: ${currentItem.clientHeightRatio} -- w: ${currentItem.clientWidthRatio} dim:
+             h: ${currentItem.clientHeight} / w: ${currentItem.clientWidth} </span>
+
+		</span> -->
+				<button class="btn btn-sm btn-success" click.delegate="createRTF()">
+						Create Label and Fact Sheet v103
+					</button>
+          select portrait/landscape 
+						<label repeat.for="ft of formattypes">
+                <input type="radio" name="group2"
+                 model.bind="ft.id" checked.bind="selectedtype">
+                 ${ft.name} &nbsp;  
+          </label>
+          
+           to change image size select ratio and press Create
+
+						 		<label repeat.for="sold of searchsold">
+         <input type="radio" name="group1"
+                    model.bind="sold.id" checked.bind="selectedimagesize">
+                ${sold.name} &nbsp;  
+              </label>
+              </span>
+		<span>
+      						 <!-- Image Info & Dims 	<button class="btn btn-sm btn-success"
+                     click.delegate="getimageinfo(1)">
+						fix ratio -->
 					</button>
 								
 								 ratio h: ${currentItem.clientHeightRatio} -- w: ${currentItem.clientWidthRatio} dim:
-             h: ${currentItem.clientHeight} / w: ${currentItem.clientWidth} </span>
-
+             h: ${currentItem.clientHeight} / w: ${currentItem.clientWidth} 
 		</span>
+	</span>
 
 		<div id="top-left" class="data-form overflow-y-auto flex-column-2">
 			<!-- row1 -->

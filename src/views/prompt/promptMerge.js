@@ -73,11 +73,12 @@ export class Promptmerge {
     this.listname = currentmodel.listname
     // listtypes=[{id:0,name:"check list"},{id:1,name:"price list"},{id:2,name:"location list"},
     // {id:3,name:"box label"},{id:4,name:"condition"},{id:5,name:"registra"}]
+    (this.listtype === 5) ? dimwdimwidthith=1024 :  dimwidth=768
     this.heading = `merge ${currentmodel.head} type: ${this.listname}`
     let segment
     if (this.listtype === 0 || this.listtype === 3 || this.listtype === 4 || this.listtype === 5) {
 
-      segment = `<h1 style="text-align:center;width:768px"></h1> <table ><tbody>`
+      segment = `<h1 style="text-align:center;width:${dimwidth}"></h1> <table ><tbody>`
     } else {
       if (this.listtype === 2) {
         // <table width=1024>
@@ -86,14 +87,10 @@ export class Promptmerge {
         // segment += `<tr style="width:8%;border-width:1px;border-style:none;border-color:#2b2a2a;height:17%;"><td style="width:5%;vertical-align:top">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>`
 
         segment += `<td style="width:8%;border-width:1px;border-style:none;border-color:#2b2a2a;font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;vertical-align:top;padding-left:2px">Inventory Code</td>`
-
         segment += `<td style="width:8%;border-width:1px;border-style:none;border-color:#2b2a2a;font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;vertical-align:top">Artist</td>`
         segment += `<td style="width:8%;border-width:1px;border-style:none;border-color:#2b2a2a;font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;vertical-align:top">Title</td>`
-
         segment += `<td style="width:8%;border-width:1px;border-style:none;border-color:#2b2a2a;font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;vertical-align:top">Date</td>`
-
         segment += `<td style="width:8%;border-width:1px;border-style:none;border-color:#2b2a2a;font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;vertical-align:top">Medium</td>`
-
         segment += `<td style="width:8%;border-width:1px;border-style:none;border-color:#2b2a2a;font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;vertical-align:top">Height</td>`
         segment += `<td style="width:8%;border-width:1px;border-style:none;border-color:#2b2a2a;font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;vertical-align:top">Width</td>`
         segment += `<td style="width:8%;border-width:1px;border-style:none;border-color:#2b2a2a;font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;vertical-align:top">Depth</td>`
@@ -118,7 +115,7 @@ export class Promptmerge {
       // save to    https://artbased.com/api/v1/downloadonepdf/lists/sl2.doc
       //       listtypes=[{id:0,name:"check list"},{id:1,name:"price list"},{id:2,name:"inventory list"},
       // {id:3,name:"box label"},{id:4,name:"condition"}]
-     
+
       // if (this.listtype === 0) {
       //   //{id:0,name:"check list"}
       //   segment += `<tr style="height:17%;"><td style="width:5%;vertical-align:top">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>`
@@ -174,8 +171,8 @@ export class Promptmerge {
         segment += `<td style="width:8%;border-width:1px;border-style:none;border-color:#2b2a2a;font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;vertical-align:top">${invitem.currentocationname}</td>`
         segment += `<td style="width:8%;border-width:1px;border-style:none;border-color:#2b2a2a;font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;vertical-align:top">${invitem.Bin}</td>`
         segment += `<td style="width:15%;border-width:1px;border-style:none;border-color:#2b2a2a;text-align:center;"><img src="https://artbased.com/api/v1/getimage/inv/${invitem.InventoryCode}.jpg" alt="" width="${ww}" height=${hh} /></td>`
-     
- segment += `</tr>`
+
+        segment += `</tr>`
 
 
       }
@@ -192,32 +189,32 @@ export class Promptmerge {
         segment += `<td style="width:60%;vertical-align:top;text-align:center;font-size:50pt;font-family:Helvetica, sans-serif;"><strong>${invitem.InventoryCode}</strong></br><span style="font-family:Helvetica, sans-serif;width:70%;text-align:center;vertical-align:top;font-size:30pt;">${invitem.Title}</br></span>`
         segment += `</tr>`
 
-          segment += `<tr style="height:17%;"><td style="width:5%;vertical-align:top"></td>`
+        segment += `<tr style="height:17%;"><td style="width:5%;vertical-align:top"></td>`
         segment += `<td style="width:20%;vertical-align:top"><img src="https://artbased.com/api/v1/getimage/inv/${invitem.InventoryCode}.jpg" alt="" width="${ww}" height=${hh} /></td>`
         segment += `<td style="width:60%;vertical-align:top;text-align:center;font-size:50pt;font-family:Helvetica, sans-serif;"><strong>${invitem.InventoryCode}</strong></br><span style="font-family:Helvetica, sans-serif;width:70%;text-align:center;vertical-align:top;font-size:30pt;">${invitem.Title}</br></span>`
         segment += `</tr>`
 
-          segment += `<tr style="height:17%;"><td style="width:5%;vertical-align:top"></td>`
+        segment += `<tr style="height:17%;"><td style="width:5%;vertical-align:top"></td>`
         segment += `<td style="width:20%;vertical-align:top"><img src="https://artbased.com/api/v1/getimage/inv/${invitem.InventoryCode}.jpg" alt="" width="${ww}" height=${hh} /></td>`
         segment += `<td style="width:60%;vertical-align:top;text-align:center;font-size:50pt;font-family:Helvetica, sans-serif;"><strong>${invitem.InventoryCode}</strong></br><span style="font-family:Helvetica, sans-serif;width:70%;text-align:center;vertical-align:top;font-size:30pt;">${invitem.Title}</br></span>`
         segment += `</tr>`
 
-          segment += `<tr style="height:17%;"><td style="width:5%;vertical-align:top"></td>`
+        segment += `<tr style="height:17%;"><td style="width:5%;vertical-align:top"></td>`
         segment += `<td style="width:20%;vertical-align:top"><img src="https://artbased.com/api/v1/getimage/inv/${invitem.InventoryCode}.jpg" alt="" width="${ww}" height=${hh} /></td>`
         segment += `<td style="width:60%;vertical-align:top;text-align:center;font-size:50pt;font-family:Helvetica, sans-serif;"><strong>${invitem.InventoryCode}</strong></br><span style="font-family:Helvetica, sans-serif;width:70%;text-align:center;vertical-align:top;font-size:30pt;">${invitem.Title}</br></span>`
         segment += `</tr>`
 
-          segment += `<tr style="height:17%;"><td style="width:5%;vertical-align:top"></td>`
+        segment += `<tr style="height:17%;"><td style="width:5%;vertical-align:top"></td>`
         segment += `<td style="width:20%;vertical-align:top"><img src="https://artbased.com/api/v1/getimage/inv/${invitem.InventoryCode}.jpg" alt="" width="${ww}" height=${hh} /></td>`
         segment += `<td style="width:60%;vertical-align:top;text-align:center;font-size:50pt;font-family:Helvetica, sans-serif;"><strong>${invitem.InventoryCode}</strong></br><span style="font-family:Helvetica, sans-serif;width:70%;text-align:center;vertical-align:top;font-size:30pt;">${invitem.Title}</br></span>`
         segment += `</tr>`
 
-          segment += `<tr style="height:17%;"><td style="width:5%;vertical-align:top"></td>`
+        segment += `<tr style="height:17%;"><td style="width:5%;vertical-align:top"></td>`
         segment += `<td style="width:20%;vertical-align:top"><img src="https://artbased.com/api/v1/getimage/inv/${invitem.InventoryCode}.jpg" alt="" width="${ww}" height=${hh} /></td>`
         segment += `<td style="width:60%;vertical-align:top;text-align:center;font-size:50pt;font-family:Helvetica, sans-serif;"><strong>${invitem.InventoryCode}</strong></br><span style="font-family:Helvetica, sans-serif;width:70%;text-align:center;vertical-align:top;font-size:30pt;">${invitem.Title}</br></span>`
         segment += `</tr>`
 
-          segment += `<tr style="height:17%;"><td style="width:5%;vertical-align:top"></td>`
+        segment += `<tr style="height:17%;"><td style="width:5%;vertical-align:top"></td>`
         segment += `<td style="width:20%;vertical-align:top"><img src="https://artbased.com/api/v1/getimage/inv/${invitem.InventoryCode}.jpg" alt="" width="${ww}" height=${hh} /></td>`
         segment += `<td style="width:60%;vertical-align:top;text-align:center;font-size:50pt;font-family:Helvetica, sans-serif;"><strong>${invitem.InventoryCode}</strong></br><span style="font-family:Helvetica, sans-serif;width:70%;text-align:center;vertical-align:top;font-size:30pt;">${invitem.Title}</br></span>`
         segment += `</tr>`
@@ -265,7 +262,7 @@ export class Promptmerge {
 
       }
       if (this.listtype === 5) {
-        // {id:5,name:"registra"}]
+        // {id:5,name:"registrar"}]
         // segment = `<h1 style="font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;text-align:center;"></h1> <table><tbody>`
         ww = 75
         hh = 75

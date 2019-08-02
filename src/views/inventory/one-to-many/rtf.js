@@ -6,9 +6,11 @@ import { Aurelia } from 'aurelia-framework';
 import { DialogService } from 'aurelia-dialog';
 import { Prompt } from '../../../services/prompt';
 import { RtfService } from '../../../services/rtf-service';
+import {EventAggregator} from 'aurelia-event-aggregator';
+
 
 //https://wesbos.com/template-strings-html/
-@inject(ApiService, ApplicationService, DialogService, RtfService)
+@inject(ApiService, ApplicationService, DialogService, RtfService,EventAggregator)
 export class Rtf {
   tools = [
     'pdf',
@@ -132,9 +134,17 @@ export class Rtf {
     { id: 4, name: '.5 size', factor: .5 },
     { id: 5, name: '.3 size', factor: .3 },
   ];
-  selectedimagesize = 0;//null searchsold[0];
-  constructor(api, appService, dialogService, rtfService) {
-    this.api = api;
+  selectedimagesize = 0;
+ formattypes = [
+    { id: 0, name: 'landscape' },
+    { id: 1, name: 'portrait' },
+  
+  ];
+  selectedtype = 0;
+
+  constructor(api, appService, dialogService, rtfService,eventAggregator) {
+    
+    this.api = api; 
     this.appService = appService;
     this.provenance = '';
     this.currentItem = this.appService.currentItem//testrec;
@@ -144,8 +154,60 @@ export class Rtf {
     this.currentprovenance = '';
     this.dialogService = dialogService
     this.rtfService = rtfService
- 
+    this.eventAggregator = eventAggregator;
+   // this.mainimage.src = null;
   }
+  loadimage() {
+    this.epoch = moment().unix();
+    let imageWidth, imageHeight, clientHeightRatio, clientWidthRatio
+    return new Promise((resolve, reject) => {
+      this.mainimage.onload = function () { // alert alert("Height: " + this.height+' '+ this.width); 
+        imageHeight = this.height
+        imageWidth = this.width
+        resolve(imageWidth);
+      }
+      this.mainimage.src = `https://artbased.com/api/v1/getimage/inv/${this.currentItem.InventoryCode}.jpg?${epoch}`;
+    })
+  }
+  getimageinfo(opt) {
+    if (this.currentItem.clientHeight === undefined || this.currentItem.clientHeight === 0 || opt === 1) {
+      let imageWidth, imageHeight, clientHeightRatio, clientWidthRatio
+
+      let Promise = this.loadimage()
+        .then(response => {
+          this.currentItem.clientHeight = this.mainimage.clientHeight
+          this.currentItem.clientWidth = this.mainimage.clientWidth
+
+          if (this.currentItem.clientHeight === this.currentItem.clientWidth) {
+            clientHeightRatio = 1
+            clientWidthRatio = 1
+          } else if (this.currentItem.clientHeight > this.currentItem.clientWidth) {
+            clientHeightRatio = 1
+            clientWidthRatio = (this.currentItem.clientWidth / this.currentItem.clientHeight).toPrecision(2)
+
+
+          } if (this.currentItem.clientWidth > this.currentItem.clientHeight) {
+            clientWidthRatio = 1
+            clientHeightRatio = (this.currentItem.clientHeight / this.currentItem.clientWidth).toPrecision(2)
+          }
+          this.currentItem.clientHeightRatio = clientHeightRatio
+          this.currentItem.clientWidthRatio = clientWidthRatio
+          this.appService.originalrec = JSON.parse(JSON.stringify(this.currentItem))// inv[0]));
+
+        })
+    }
+  }
+
+ attached(){
+  //  let selectedtype
+  // (this.currentItem.clientHeight>this.currentItem.clientWidth) ? this.selectedtype=1 : this.selectedtype=0
+   this.subscriber = this.eventAggregator.subscribe('rtfpayload', payload => {
+         console.log('rtfpayload',payload);
+         this.createRTF(1,this.selectedtype)
+      });
+
+ }
+
   created(owningView, myView) {
     // Invoked once the component is created...
     //  if (this.currentItem.rtf1 !== undefined)      this.editor.value(this.currentItem.rtf1);
@@ -165,7 +227,7 @@ export class Rtf {
     // alert('in create')
      this.rtfService.currentItem = this.currentItem
      let createopt = 1; // 1 MEANS UI DISPLAYS HTML 2; // 1 is from tab
-     let rr = await this.rtfService.createRTF(createopt)
+     let rr = await this.rtfService.createRTF(createopt,this.selectedtype,this.selectedimagesize)
      this.editor.value( this.currentItem.rtf1 );
      this.editorlabel.value(this.currentItem.rtf2 ); 
     // if (createopt === 1) {
