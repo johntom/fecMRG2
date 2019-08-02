@@ -6,26 +6,12 @@ import { inject } from 'aurelia-dependency-injection';
 import { ApplicationService } from './application-service';
 @inject(Router, DialogService, ApplicationService)
 export class RtfService {
-
+  // call  from another module this.rtfService.currentItem = this.currentItem
+  // then 
+  // let createopt = 2; // 1 is from tab
+  // let rr = await this.rtfService.createRTF(createopt)
   currentItem;
   currentView;
-  // tabs = [];
-  // asyncHandleDirty() {
-  //   const model = 'You have unsaved changes. '//Cancel to stay OK to leave';
-
-  //   const options = { viewModel: Prompt, model: model, lock: false };
-  //   return this.dialogService.open(options).whenClosed(response => response);
-  // }
-
-  // navigate(route) {
-  //   this.router.navigate(route);
-  // }
-
-
-
-
-
-
 
   searchsold = [
     { id: 0, name: 'normal size', factor: 1 },
@@ -40,73 +26,64 @@ export class RtfService {
   constructor(router, dialogService, appService) {
     this.dialogService = dialogService
     this.router = router
-
     // this.api = api;
     this.appService = appService;
     this.provenance = '';
-    this.currentItem = this.appService.currentItem//testrec;
+    this.currentItem = this.appService.currentItem
     this.mode = 0;
     this.editrec = '';
     this.isDisableEdit = true
     this.currentprovenance = '';
-    // this.dialogService = dialogService
 
   }
-
-
   created(owningView, myView) {
   }
-
   bind(bindingContext, overrideContext) {
   }
-
   setInitialValue(edt) {
     if (this.currentItem.rtf1 !== undefined) edt.value(this.currentItem.rtf1);
   }
-
   setInitialValueLabel(edt) {
     if (this.currentItem.rtf2 !== undefined) edt.value(this.currentItem.rtf2);
   }
-
+  // WOKRER buildEdition not sure what version
   buildEdition() {
-    let segmentEditionHead = `<span style='text-decoration-line:underline'><u>EDITION</u></span><u></u><br>`
-
-    let segmentEdition = ''
-    let PublisherLoc
-    let PrinterLoc
-
-    if (this.currentItem.EditionText !== null && this.currentItem.EditionText !== undefined && this.currentItem.EditionText !== '') {
-
-      let EditionText = this.currentItem.EditionText
-      EditionText = EditionText.replace(new RegExp('\n', 'gi'), `<br>`);
-      this.segment2 += segmentEditionHead
-      this.segment2 += EditionText + `<br>`
-
-    }
+    this.EditionCommentFormat = ''
+    this.buildEditionLogic(this.currentItem.EditionComment)
+    this.currentItem.EditionText = this.currentItem.Edition + '\n' + this.EditionCommentFormat + '\n'
+    this.currentItem.EditionText += this.currentItem.Chop + '\n'
+    this.currentItem.EditionText += this.currentItem.Publisher + ', ' + this.currentItem.PublisherLocation + '\n'
+    this.currentItem.EditionText += this.currentItem.Printer + ', ' + this.currentItem.PrinterLocation + '\n'
+    delete this.EditionCommentFormat
   }
+  // buildEdition() {
+  //   let segmentEditionHead = `<span style='text-decoration-line:underline'><u>EDITION</u></span><u></u><br>`
+  //   let segmentEdition = ''
+  //   let PublisherLoc
+  //   let PrinterLoc
+  //   if (this.currentItem.EditionText !== null && this.currentItem.EditionText !== undefined && this.currentItem.EditionText !== '') {
+  //     let EditionText = this.currentItem.EditionText
+  //     EditionText = EditionText.replace(new RegExp('\n', 'gi'), `<br>`);
+  //     this.segment1 += segmentEditionHead
+  //     this.segment1 += EditionText + `<br>`
+  //   }
+  // }
 
   buildProv() {
     let provenance = this.currentItem.provenance
     if (provenance !== undefined && provenance.length !== 0) {
       let iarray = []
-
       let provheader = `<span style='text-decoration-line:underline'><u>PROVENANCE</u></span><br>`
-
       let provarray = []
-
       for (const item of provenance) {
-
         let pl = this.appService.codesProvenanceLocation
         let oid
         if ((item.ProvLoc + '').length < 6) {
-
           oid = pl.findIndex(x => x.ID === item.ProvLoc)
         } else {
           oid = pl.findIndex(x => x.id === item.ProvLoc)
-
         }
         //unshift Adds new elements to the beginning of an array, and returns the new length
-
         if (oid !== -1) {
           let ProvLoc = this.appService.codesProvenanceLocation[oid].Description
           if (item.ProvMemo === null || item.ProvMemo === undefined || item.ProvMemo === '') {
@@ -120,68 +97,50 @@ export class RtfService {
           } else {
             provarray.unshift({ sord: item.Sequence, exception: `${item.ProvOwner}<br>${item.ProvMemo}<br>` })
           }
-
         }
-
       }
       let myObjects = _.sortBy(provarray, 'sord');
-      this.segment2 += provheader
+      this.segment1 += provheader
       for (const obj of myObjects) {
-        this.segment2 += obj.exception
+        this.segment1 += obj.exception
       }
     }
-
-
   }
-  buildRepro() {
 
+  buildRepro() {
     let pre = '<p>'
     let post = '</p>'
     let ppre = ''
     let ppost = ''
-
     let prebefore = '</p>'
     let preafter = ' '
     let preitalic = '<em>'
     let postitalic = '</em>'
     let lineBreak = '<br>'
     let exandpubhead = `<br><span style='text-decoration-line:underline'><u>EXHIBITION & PUBLICATION HISTORY</u></span><br>`
-
     let exhibitandpubs = []
-
-    console.log('===========buildRepro')
-
     // conbine both tables
     let provloc = this.appService.codesProvenanceLocation
-
-
     let exhibition = undefined
     let reproduction = undefined
     if (this.currentItem.exhibition !== undefined) exhibition = JSON.parse(JSON.stringify(this.currentItem.exhibition));
     if (this.currentItem.reproduction !== undefined) reproduction = JSON.parse(JSON.stringify(this.currentItem.reproduction));
-
     let myObjects
     let rec = {}
     let linkPageNo
     if (exhibition !== undefined) {
       let ct = 0
       for (const item of exhibition) {
-        console.log('==================-item==========', item.ExhibitTitle)
+        //console.log('==================-item==========', item.ExhibitTitle)
         ct++
-
-
-
         // check to see if link in repo (loop thru exhibit and find repo match)
         if (reproduction !== undefined) {
           let eid = reproduction.findIndex(x => x.ReproductionExhibit === item.id)
           let reporec
           linkPageNo = ''
-
           if (eid !== -1) {
             reporec = reproduction[eid]
-            console.log('link in exhibit from repo ct', ct, reporec.ReproductionPage, reporec)
-
-            // linkPageNo = `, ${reporec.ReproductionPage}`
+            // console.log('link in exhibit from repo ct', ct, reporec.ReproductionPage, reporec)
             linkPageNo = ` ${reporec.ReproductionPage}`
             item.ExhibitSortDate = reporec.ReproductionSortDate
           } else console.log('no link in exhibit from repo ct', ct)
@@ -189,60 +148,52 @@ export class RtfService {
         } else linkPageNo = ''
         let oid
         if ((item.ExhibitLocation + '').length < 6) {
-
           oid = provloc.findIndex(x => x.ID === item.ExhibitLocation)
         } else {
           oid = provloc.findIndex(x => x.id === item.ExhibitLocation)
-
         }
         if (oid == -1) oid = 1
         let ExhibitLocationDesc = provloc[oid].Description
-
         let ExhibitMemo
         let lpn
-        console.log('===================item.id linkPageNo', item.id, linkPageNo + '...')
+        // console.log('===================item.id linkPageNo', item.id, linkPageNo + '...')
         if (linkPageNo === undefined || linkPageNo === "") {
           lpn = '<br><br>'
         } else {
           lpn = `<br>${linkPageNo}<br><br>`
         }
-        console.log('===================item.id linkPageNo', item.id, lpn)
+        // console.log('===================item.id linkPageNo', item.id, lpn)
         let exceptline
         if (item.ExhibitMemo === null || item.ExhibitMemo === undefined || item.ExhibitMemo === '') {
           exceptline = ppre + `<em>${item.ExhibitTitle}</em>, ${item.ExhibitSponser}, ${ExhibitLocationDesc}, ${item.ExhibitDates} ${lpn}`
-          console.log('===================item.id linkPageNo', exceptline)
-
+          //console.log('===================item.id linkPageNo', exceptline)
         }
         else {
           exceptline = `<em>${item.ExhibitTitle}</em>, ${item.ExhibitSponser}, ${ExhibitLocationDesc}, ${item.ExhibitDates}; ${item.ExhibitMemo} ${lpn} `
-          console.log('==================no link exceptline', exceptline)
+          //console.log('==================no link exceptline', exceptline)
         }
-
         rec = {
-
           date: item.ExhibitSortDate,
           exception: exceptline
-
         }
-        console.log('rec.date/ exception', rec.date, rec.exception)
-
         exhibitandpubs.push(rec)
       }
     } else exhibition = []
     let rct = 0
     if (reproduction !== undefined) {
+      // for (const item of reproduction) {
       var i;
       let item
       for (i = 0; i < reproduction.length; i++) {
         item = reproduction[i];
         rct++
-        console.log('rct ', rct) //, item.ReproductionPage, itm.ReproductionDate,item.ReproductionExhibit+'...')
 
         if (item.ReproductionExhibit === null || item.ReproductionExhibit === undefined || item.ReproductionExhibit === "") {//selected choose)
           console.log('reproduction item ', rct, item.ReproductionPage, item.ReproductionDate)
           let oid = provloc.findIndex(x => x.id === item.ReproductionLocation)
           if (oid == -1) oid = 1
           let ReproductionLocationDesc = provloc[oid].Description
+
           let data
           if (item.ReproductionAuthor !== "") {
             data = ppre + `${item.ReproductionAuthor}. <em>${item.ReproductionTitle}</em> ${preafter}`
@@ -251,12 +202,12 @@ export class RtfService {
 
           data += `(${ReproductionLocationDesc}: ${item.ReproductionName}, ${item.ReproductionDate}) <br>`
           data += `${item.ReproductionPage} <br> ${ppost}<br>`
+
           rec = {
             date: item.ReproductionSortDate,
             exception: data
           }
-
-          console.log('push item ', rct, rec)
+          //console.log('push item ', rct, rec)
           exhibitandpubs.push(rec)
         }
       }
@@ -264,33 +215,29 @@ export class RtfService {
 
     if (exhibitandpubs.length > 0) {
       myObjects = _.sortBy(exhibitandpubs, 'date');
-
-      this.segment2 += exandpubhead
+      this.segment1 += exandpubhead
       for (const obj of myObjects) {
-        // this.segment2 += obj.date + ' ' + obj.exception
-        this.segment2 += obj.exception
+        // this.segment1 += obj.date + ' ' + obj.exception
+        this.segment1 += obj.exception
       }
 
     }
-    console.log('===========buildRepro End')
+    //console.log('===========buildRepro End')
   }
 
-  //1
+
   buildInscribed(inscribed) {
     // rules:
     // 1 everying to left of : is plain text and to right is em
     // 2 until it finds a ; (convert ; to </em> <br>)  
     // 3 repeat 1 from new position
-
     // let inscribed = this.currentItem.Inscribed
     let iLines = []
     console.log('inscribed==================== ', inscribed)
     if (inscribed !== undefined) {
       let a2 = ''
       let a3 = ''
-
       this.inscribedText = ''
-
       let semisCount = (inscribed).match('/;/g')
       let strCount = (inscribed).match(new RegExp(";", "g"))
       let colonPos
@@ -299,29 +246,23 @@ export class RtfService {
       let semisPos
       let rightofcolonTextem, rightofcolonTextem2
       let restoftext
-      console.log(semisCount, strCount);
+      //console.log(semisCount, strCount);
       colonPos = inscribed.indexOf(":");
       if (colonPos === -1) {
         iLines.push(inscribed)
       } else {
-        leftofcolonText = inscribed.substr(0, colonPos);
+        leftofcolonText = inscribed.substr(0, colonPos + 1);
         rightofcolonbaseText = inscribed.substr(colonPos + 1, inscribed.length - colonPos);
         semisPos = rightofcolonbaseText.indexOf(";");
         if (semisPos === -1) {
           semisPos = rightofcolonbaseText.length
-          // rightofcolonTextem = '<em>' + rightofcolonbaseText.substr(0, semisPos - 1) + '</em>'; //+ '</em><br>';
           rightofcolonTextem = '<em>' + rightofcolonbaseText.substr(0, semisPos) + '</em>'; //+ '</em><br>';
-
           iLines.push(leftofcolonText + ' ' + rightofcolonTextem)
         } else {
-          // there is a semi so add br
           rightofcolonTextem = '<em>' + rightofcolonbaseText.substr(1, semisPos - 1) + '</em><br>';
-          // restoftext = rightofcolonbaseText.substr(semisPos + 1, rightofcolonbaseText.length);
- restoftext = rightofcolonbaseText.substr(semisPos, rightofcolonbaseText.length);
-
+          restoftext = rightofcolonbaseText.substr(semisPos, rightofcolonbaseText.length);
           colonPos = restoftext.indexOf(":");
           leftofcolonText2 = restoftext.substr(0, colonPos);
-          // rightofcolonTextem2 = '<em>' + restoftext.substr(colonPos + 1, restoftext.length - colonPos +1) + '</em>';
           rightofcolonTextem2 = '<em>' + restoftext.substr(colonPos + 1, restoftext.length - colonPos) + '</em>';
 
           iLines.push(leftofcolonText + ' ' + rightofcolonTextem + ' ' + leftofcolonText2 + ' ' + rightofcolonTextem2)
@@ -330,36 +271,8 @@ export class RtfService {
       for (const item of iLines) {
         this.inscribedText += item + '<br>'
       }
-
-
-      //console.log('semis',semisCount,semisPos ,colonPos ,leftofcolonText ,rightofcolonText)
-      // let n1 = inscribed.indexOf(":");
-      // let a1 = inscribed.substr(0, n1);
-      // a2 = inscribed.substr(n1, inscribed.length)
-
-      // let n2 = a2.indexOf(";");
-      // console.log('n2', n2)
-      // if (n2 > -1) {
-      //   a3 = a2.substr(n2 + 1, inscribed.length)
-      //   a2 = inscribed.substr(n1, n2)
-      // } // else a2=inscribedText
-      // // let rawInsribed
-      // // (a3 === undefined) ? inscribedText = pre + a1 + preitalic + a2 + postitalic +
-      // //  preafter + post : inscribedText = pre + a1 + preitalic + a2 + postitalic + preafter + ',' + a3 + post
-
-      // // (a3 === undefined) ? inscribedText = this.pre + a1 + this.preitalic + a2 + this.postitalic + this.post : inscribedText = pre + a1 + this.preitalic + a2 + this.postitalic + this.preafter + ',' + a3 + this.post
-      // if (a3 === '') {
-      //   inscribedText = this.pre + a1 + this.preitalic + a2 + this.postitalic + this.post
-      // } else {
-      //   inscribedText = pre + a1 + this.preitalic + a2 + this.postitalic + this.preafter + ',' + a3 + this.post
-      // }
-      // this.inscribedText = inscribedText
-
-      // console.log('inscribedText', this.inscribedText)
     }
-
   }
-
 
   // https://www.npmjs.com/package/docxtemplater
   // let pre = '<p>'
@@ -373,299 +286,167 @@ export class RtfService {
   // 45.72 cm x 27.94 NaN cm unframed
   // toma 14 x 22 x 1 in. / NaN cm 
   createDim() {
-
     let cmuh = this.currentItem.UnframedHeight16
     let cmfh = this.currentItem.FramedHeight16
     let cmuw = this.currentItem.UnframedWidth16
     let cmfw = this.currentItem.FramedWidth16
-
     let cmud = this.currentItem.UnframedDepth16
     let cmfd = this.currentItem.FramedDepth16
-
-
-
-    let factor = 0.3175 //.125 * 2.54 
-    switch (cmuh) {
-      case null:
-        cmuh = 0
-        break;
-      case '0/0':
-        cmuh = 0
-        break;
-      case '1/8':
-        cmuh = factor
-        break;
-      case '1/4':
-        cmuh = factor * 2
-      case '3/8':
-        cmuh = factor * 3
-        break;
-      case '1/2':
-        cmuh = factor * 4
-        break;
-      case '5/8':
-        cmuh = factor * 5
-        break;
-      case '3/4':
-        cmuh = factor * 6
-        break;
-      case '7/8':
-        cmuh = factor * 7
-        break;
-    }
-
-    switch (cmfh) {
-      case null:
-        cmfh = 0
-        break;
-
-      case '0/0':
-        cmfh = 0
-        break;
-      case '1/8':
-        cmfh = factor
-        break;
-      case '1/4':
-        cmfh = factor * 2
-      case '3/8':
-        cmfh = factor * 3
-        break;
-      case '1/2':
-        cmfh = factor * 4
-        break;
-      case '5/8':
-        cmfh = factor * 5
-        break;
-      case '3/4':
-        cmfh = factor * 6
-        break;
-      case '7/8':
-        cmfh = factor * 7
-        break;
-
-    }
-    switch (cmuw) {
-      case null:
-        cmuw = 0
-        break;
-
-      case '0/0':
-        cmuw = 0
-        break;
-      case '1/8':
-        cmuw = factor
-        break;
-      case '1/4':
-        cmuw = factor * 2
-      case '3/8':
-        cmuw = factor * 3
-        break;
-      case '1/2':
-        cmuw = factor * 4
-        break;
-      case '5/8':
-        cmuw = factor * 5
-        break;
-      case '3/4':
-        cmuw = factor * 6
-        break;
-      case '7/8':
-        cmuw = factor * 7
-        break;
-
-    }
-
-    switch (cmfw) {
-      case null:
-        cmfw = 0
-        break;
-      case '0/0':
-        cmfw = 0
-        break;
-      case '1/8':
-        cmfw = factor
-        break;
-      case '1/4':
-        cmfw = factor * 2
-      case '3/8':
-        cmfw = factor * 3
-        break;
-      case '1/2':
-        cmfw = factor * 4
-        break;
-      case '5/8':
-        cmfw = factor * 5
-        break;
-      case '3/4':
-        cmfw = factor * 6
-        break;
-      case '7/8':
-        cmfw = factor * 7
-        break;
-    }
-
-
-
-    switch (cmud) {
-      case null:
-        cmud = 0
-        break;
-      case '0/0':
-        cmud = 0
-        break;
-      case '1/8':
-        cmud = factor
-        break;
-      case '1/4':
-        cmud = factor * 2
-      case '3/8':
-        cmud = factor * 3
-        break;
-      case '1/2':
-        cmud = factor * 4
-        break;
-      case '5/8':
-        cmud = factor * 5
-        break;
-      case '3/4':
-        cmud = factor * 6
-        break;
-      case '7/8':
-        cmud = factor * 7
-        break;
-    }
-    switch (cmfd) {
-      case null:
-        cmfd = 0
-        break;
-      case '0/0':
-        cmfd = 0
-        break;
-      case '1/8':
-        cmfd = factor
-        break;
-      case '1/4':
-        cmfd = factor * 2
-      case '3/8':
-        cmfd = factor * 3
-        break;
-      case '1/2':
-        cmfd = factor * 4
-        break;
-      case '5/8':
-        cmfd = factor * 5
-        break;
-      case '3/4':
-        cmfd = factor * 6
-        break;
-      case '7/8':
-        cmfd = factor * 7
-        break;
-    }
-
     // num.toPrecision(2)
-    /*
-    we lost the Height dimension in the cm part
-there are extra ' when there are fractions
-14 5/8 ' x '12 1/4 in. / __ x 31 cm
-17 1/2 ' x '22 1/4 in. / __ x 57 cm   */
-    // let dims
-    // let dimscm
-    // let dimsf
-    // let dimscmf
-
-    this.dims = undefined
-    this.dimscm = undefined
+    this.dims = '';//undefined
+    this.dimscm = '';// undefined
     this.dimsf = undefined
     this.dimscmf = undefined
-
     let ufwcm
-    if (this.currentItem.UnframedHeight16 === null) {
-      this.dims = this.currentItem.UnframedHeight + ' x '
-      this.dimscm = this.roundNumber((this.currentItem.UnframedHeight * 2.54).toPrecision(2), 1) + ' x ' //fix
-    } else {
-      this.dims = `${this.currentItem.UnframedHeight} <span style="font-size:x-small;"> ${this.currentItem.UnframedHeight16}</span> x `
-      this.dimscm = this.roundNumber((this.currentItem.UnframedHeight * 2.54).toPrecision(2) + cmuh, 1) + ' x '
+    let cmh = this.buildFactor(this.currentItem.UnframedHeight16)
+    let cmw = this.buildFactor(this.currentItem.UnframedWidth16)
+    let cmd = this.buildFactor(this.currentItem.UnframedDepth16)
+    this.buildDimLogic('unframed', 'UnframedHeight', 'UnframedHeight16', 'UnframedWidth', 'UnframedWidth16', 'UnframedDepth', 'UnframedDepth16', cmh, cmw, cmd)
+    this.dimsfactsheet = this.dims
+    this.dimscmfactsheet = this.dimscm
+    this.dims = ''
+    this.dimscm = ''
+    this.dimsight = ''
+    this.dimscmsight = ''
+    cmh = this.buildFactor(this.currentItem.SightHeight16)
+    cmw = this.buildFactor(this.currentItem.SightWidth16)
+    cmd = this.buildFactor(this.currentItem.SightDepth16)
+    this.buildDimLogic('sight', 'SightHeight', 'SightHeight16', 'SightWidth', 'SightWidth16', 'SightDepth', 'SightDepth16', cmh, cmw, cmd)
+    if (this.dims !== '') {
+      this.dimsight = this.dims
+      this.dimscmsight = this.dimscm
     }
 
-    if (this.currentItem.UnframedWidth16 === null) {
-      this.dims += this.currentItem.UnframedWidth
-      ufwcm = this.currentItem.UnframedWidth * 2.54
-      this.dimscm += this.roundNumber((ufwcm), 1).toPrecision(2) + ' x '
-    } else {
-      this.dims += `${this.currentItem.UnframedWidth}       <span style="font-size:x-small;"> ${this.currentItem.UnframedWidth16} </span>`
-      ufwcm = this.roundNumber(this.currentItem.UnframedWidth * 2.54, 1).toPrecision(2)
+    this.dims = ''
+    this.dimscm = ''
+    this.dimframed = ''
+    this.dimcmframed = ''
 
-      this.dimscm += (ufwcm + cmuw.toPrecision(2))
+    cmh = this.buildFactor(this.currentItem.FramedHeight16)
+    cmw = this.buildFactor(this.currentItem.FramedWidth16)
+    cmd = this.buildFactor(this.currentItem.FramedDepth16)
 
+    this.buildDimLogic('framed', 'FramedHeight', 'FramedHeight16', 'FramedWidth', 'FramedWidth16', 'FramedDepth', 'FramedDepth16', cmh, cmw, cmd)
+    if (this.dims !== '') {
+      this.dimframed = this.dims
+      this.dimcmframed = this.dimscm
     }
 
-    if (this.currentItem.UnframedDepth16 === null) {
-      if (this.currentItem.UnframedDepth === null || this.currentItem.UnframedDepth === 0) { } else {
-        this.dims += ' x ' + this.currentItem.UnframedDepth
-        ufwcm = this.currentItem.UnframedDepth * 2.54
-        console.log('ufwcm', ufwcm)
-        this.dimscm += ' x ' + this.roundNumber(ufwcm, 1).toPrecision(2)
-        //  this.dimscm +=  ' x ' +ufwcm
-        console.log('  this.dimscm', this.dimscm)
-      }
-    } else {
-      this.dims += ' x ' + `${this.currentItem.UnframedDepth}   <span style="font-size:x-small;"> ${this.currentItem.UnframedDepth16} </span>`
-      ufwcm = this.roundNumber(this.currentItem.UnframedDepth * 2.54, 1).toPrecision(2)   // this.dimscm += ' x ' + this.roundNumber((( this.currentItem.UnframedDepth * 2.54) + cmud), 1) //+ ' cm '
-
-      this.dimscm += ' x ' + ((ufwcm) + cmud) //+ ' cm '
-
+  }
+  buildFactor(dim) {
+    if (dim === '') dim = 0
+    let factor = 0.3175 //.125 * 2.54 
+    switch (dim) {
+      case null:
+        dim = 0
+        break;
+      case '0/0':
+        dim = 0
+        break;
+      case '1/8':
+        dim = factor
+        break;
+      case '1/4':
+        dim = factor * 2
+      case '3/8':
+        dim = factor * 3
+        break;
+      case '1/2':
+        dim = factor * 4
+        break;
+      case '5/8':
+        dim = factor * 5
+        break;
+      case '3/4':
+        dim = factor * 6
+        break;
+      case '7/8':
+        dim = factor * 7
+        break;
     }
-    //   cmfd cmud
+    return dim
+  }
 
-    /////////////////////////////
+  buildDimLogic(dtype, height, heightfraction, width, widthfraction, depth, depthfraction, cmh, cmw, cmd) {
+    let ufwcm
+    let frac
+    let mdim
+    if (cmh === undefined || cmh === '') cmh = 0;
+    if (cmw === undefined || cmw === '') cmw = 0;
+    if (cmd === undefined || cmd === '') cmd = 0;
+    // console.log('dep:', '1', this.currentItem[depth] === undefined, '2', this.currentItem[depth] === '0', '3', this.currentItem[depth] === 0, '4', this.currentItem[depth] === null, '5', this.currentItem[depth] = '')
+    if (this.currentItem[heightfraction] === undefined || this.currentItem[heightfraction] === '0' || this.currentItem[heightfraction] === 0 || this.currentItem[heightfraction] === null) { this.currentItem[heightfraction] = ''; cmh = 0; cmw = 0; cmd = 0; }
+    if (this.currentItem[widthfraction] === undefined || this.currentItem[widthfraction] === '0' || this.currentItem[widthfraction] === 0 || this.currentItem[widthfraction] === null) { this.currentItem[widthfraction] = ''; cmh = 0; cmw = 0; cmd = 0; }
+    if (this.currentItem[depthfraction] === undefined || this.currentItem[depthfraction] === '0' || this.currentItem[depthfraction] === 0 || this.currentItem[depthfraction] === null) { this.currentItem[depthfraction] = ''; cmh = 0; cmw = 0; cmd = 0; }
+    if (this.currentItem[height] === undefined || this.currentItem[height] === '0' || this.currentItem[height] === 0 || this.currentItem[height] === null) this.currentItem[height] = ''
+    if (this.currentItem[width] === undefined || this.currentItem[width] === '0' || this.currentItem[width] === 0 || this.currentItem[width] === null) this.currentItem[width] = ''
+    if (this.currentItem[depth] === undefined || this.currentItem[depth] === '0' || this.currentItem[depth] === 0 || this.currentItem[depth] === null) this.currentItem[depth] = ''
+    // console.log('dep::', '1', this.currentItem[depth] === undefined, '2', this.currentItem[depth] === '0', '3', this.currentItem[depth] === 0, '4', this.currentItem[depth] === null, '5', this.currentItem[depth] = '')
+    // console.log('frac ', this.currentItem[heightfraction], this.currentItem[widthfraction], this.currentItem[depthfraction])
+    // console.log('deim ', this.currentItem[height], this.currentItem[width], this.currentItem[depth], 'd-', this.currentItem[depth] === '')
+    if ((this.currentItem[height] === '' || this.currentItem[width] === '') && (this.currentItem[heightfraction] === '')) { } else {
+      if (this.currentItem[height] === '') {
+        if (this.currentItem[heightfraction] !== "") {
+          this.dims += `<span style="font-size:8.5pt;">${this.currentItem[heightfraction]} x `
+        } else this.dims += ' x '
 
-    if (this.currentItem.FramedHeight !== 0) {
-      if (this.currentItem.FramedHeight16 === null) {
-        this.dimsf = `${this.currentItem.FramedHeight} <span style="font-size:x-small;"> ${this.currentItem.FramedHeight} </span> x `
-        this.dimscmf = this.roundNumber((this.currentItem.FramedHeight * 2.54).toPrecision(2), 1) + ' x ' //+ ' cm ' //
+        this.dimscm += this.roundNumber((this.currentItem[height] * 2.54).toPrecision(2), 1) + ' x ' //fix
       } else {
-        this.dimsf = `${this.currentItem.FramedHeight} <span style="font-size:x-small;"> ${this.currentItem.FramedHeight16} </span> x `
-        this.dimscmf = this.roundNumber((this.currentItem.FramedHeight * 2.54).toPrecision(2) + cmuw, 1) + ' x '// + ' cm ' //
+        this.dims += `${this.currentItem[height]} <span style="font-size:8.5pt;"> ${this.currentItem[heightfraction]}</span> x `
+        if (cmh === 0) { frac = 0 } else frac = cmh * 2.54
+        mdim = (this.currentItem[height] * 2.54) + cmh
+        this.dimscm += this.roundNumber(mdim, 2) + ' x '
       }
 
-      if (this.currentItem.FramedWidth16 === null) {
-        this.dimsf += this.currentItem.FramedWidth
-        this.dimscmf += (this.currentItem.FramedWidth * 2.54).toPrecision(2)
+      if (this.currentItem[width] === '') {
+        if (this.currentItem[widthfraction] !== "") {
+          this.dims += `<span style="font-size:8.5pt;">${this.currentItem[widthfraction]} x `
+        } else this.dims += ' x '
+        if (cmw === 0) { frac = 0 } else frac = cmw * 2.54
+        mdim = (this.currentItem[width] * 2.54) + cmw
+        this.dimscm += this.roundNumber(mdim, 2)
       } else {
-        this.dimsf += `${this.currentItem.FramedWidth}  <span style="font-size:x-small;"> ${this.currentItem.FramedWidth16} </span>  `
-        this.dimscmf += this.roundNumber((this.currentItem.FramedWidth * 2.54).toPrecision(2) + cmfw, 1) //+ ' cm ' //+ ' x '
+        this.dims += `${this.currentItem[width]} <span style="font-size:8.5pt;"> ${this.currentItem[widthfraction]}</span> `
+        if (cmw === 0) { frac = 0 } else frac = cmw * 2.54
+        mdim = (this.currentItem[width] * 2.54) + cmw
+        this.dimscm += this.roundNumber(mdim, 2)
       }
-    }
 
+      if (this.currentItem[depth] === '') {
+        if (this.currentItem[depthfraction] !== "") {
+          this.dims += `  x  <span style="font-size:8.5pt;"> ${this.currentItem[depthfraction]} </span>`
+          if (cmd === 0) { cmd = 0 } else frac = cmd * 2.54
+          mdim = (this.currentItem[depth] * 2.54) + cmd
+          this.dimscm += ' x ' + this.roundNumber((mdim).toPrecision(2), 1)
+          this.dimscm += ' x ' + this.roundNumber(mdim, 2)
+        }
 
-    if (this.currentItem.FramedDepth16 === null) {
-      if (this.currentItem.FamedDepth === null || this.currentItem.FramedDepth === 0) { } else {
-        this.dimsf += ' x ' + this.currentItem.FramedDepth
-        this.dimscmf = + ' x ' + this.roundNumber((this.currentItem.FramedDepth * 2.54).toPrecision(2), 1)
+      } else {
+        if (this.currentItem[depthfraction] === "") {
+          this.dims += ` x ${this.currentItem[depth]}  `
+        } else {
+          this.dims += ` x ${this.currentItem[depth]}   <span style="font-size:8.5pt;"> ${this.currentItem[depthfraction]} </span>`
+          // frac = cmd * 2.54
+          if (cmd === 0) { cmd = 0 } else frac = cmd * 2.54
+          mdim = (this.currentItem[depth] * 2.54) + cmd
+          this.dimscm += ' x ' + this.roundNumber((mdim * 1 + frac * 1).toPrecision(2), 1)
+          //console.log('  this.dimscm ', this.dimscm)
+        }
       }
-    } else {
-      this.dimsf += ' x ' + `${this.currentItem.FramedDepth}       <span style="font-size:x-small;"> ${this.currentItem.FramedDepth16} </span>`
-      this.dimscmf += ' x ' + this.roundNumber((this.currentItem.FramedDepth * 2.54).toPrecision(2) + cmfd, 1) //+ ' cm '
-
     }
   }
-  // edition
   buildEditionLogic(edition) {
     // rules:
     // 1 everying to left of : is plain text and to right is em
     // 2 until it finds a ; (convert ; to </em> <br>)  
     // 3 repeat 1 from new position
-
     // let inscribed = this.currentItem.Inscribed
     let iLines = []
     console.log('this.currentItem.EditionComment==================== ', edition)//this.currentItem.EditionComment
     if (edition !== undefined) {
       let a2 = ''
       let a3 = ''
-
       this.inscribedText = ''
-
       let semisCount = (edition).match('/;/g')
       let strCount = (edition).match(new RegExp(";", "g"))
       let colonPos
@@ -687,7 +468,6 @@ there are extra ' when there are fractions
         // there is a semi so add br
         rightofcolonTextem = '<em>' + rightofcolonbaseText.substr(1, semisPos - 1) + '</em><br>';
         restoftext = rightofcolonbaseText.substr(semisPos + 1, rightofcolonbaseText.length);
-
         colonPos = restoftext.indexOf(":");
         leftofcolonText2 = restoftext.substr(0, colonPos);
         rightofcolonTextem2 = '<em>' + restoftext.substr(colonPos + 1, restoftext.length - colonPos) + '</em>';
@@ -696,34 +476,19 @@ there are extra ' when there are fractions
       for (const item of iLines) {
         this.EditionCommentFormat += item //+ '<br>'
       }
-
-
     }
-
   }
 
 
 
-  buildEdition() {
-    this.EditionCommentFormat = ''
-    this.buildEditionLogic(this.currentItem.EditionComment)
-    this.currentItem.EditionText = this.currentItem.Edition + '\n' + this.EditionCommentFormat + '\n'
-    this.currentItem.EditionText += this.currentItem.Chop + '\n'
-    this.currentItem.EditionText += this.currentItem.Publisher + ', ' + this.currentItem.PublisherLocation + '\n'
-    this.currentItem.EditionText += this.currentItem.Printer + ', ' + this.currentItem.PrinterLocation + '\n'
-    delete this.EditionCommentFormat
-
-
-
-  }
+  ///WORKER END
   async addRTF() {
     alert('add')
     return await true
   }
 
-
   async createRTF(createopt) {
-    //  alert ('createRTF')
+    // 1 MEANS UI DISPLAYS HTML 2; // 1 is from tab
     this.createDim()
     let artist = this.currentItem.artist
     let artistWdates = `<strong>${artist.firstName} ${artist.lastName}`
@@ -733,106 +498,83 @@ there are extra ' when there are fractions
       artistWdates += ` (b.${artist.yearofBirth})`
     }
     artistWdates += '</strong>'
-
     let artistWdates1 = `${artist.firstName} ${artist.lastName}`
-
     if (artist.died) {
       artistWdates1 += ` (${artist.yearofBirth}-${artist.died})`
     } else {
-      // (b.1950)
-
       artistWdates1 += ` (b.${artist.yearofBirth})`
     }
-
-
-
     this.buildInscribed(this.currentItem.Inscribed)
-
-
-    let segment1 = ` ${artistWdates1}<br>`
-    segment1 += ` <em> ${this.currentItem.Title}</em>, ${this.currentItem.InvYear} <br> `
+    this.segment2 = ` ${artistWdates1}<br>`
+    this.segment2 += ` <em> ${this.currentItem.Title}</em>, ${this.currentItem.InvYear} <br> `
 
     if (this.currentItem.MediumSupportobj !== undefined)
-      segment1 += `  ${this.currentItem.MediumSupportobj.Description}<br> `
+      this.segment2 += `  ${this.currentItem.MediumSupportobj.Description}<br>`
+
     let uidx
-    this.dimsf === undefined ? uidx = -1 : uidx = (this.dimsf.indexOf('undefined'))
-
-    if (uidx > -1) {
-    } else {
-      segment1 += `  ${this.dimsf} in. framed<br> `
-      segment1 += `  ${this.dimscmf} cm framed<br> `
-    }
-
-    segment1 += `  ${this.dims} in. unframed<br> `
-    segment1 += `  ${this.dimscm} cm unframed<br> `
-
+    if (this.currentItem.Signed === undefined) this.currentItem.Signed = false
+    if (this.currentItem.Dated === undefined) this.currentItem.Dated = false
+    this.currentItem.Dated = this.currentItem.Dated + ''
     if (this.currentItem.Signed === 'Y') this.currentItem.Signed === true
     if (this.currentItem.Signed === 'N') this.currentItem.Signed === false
     if (this.currentItem.Dated === 'Y') this.currentItem.Dated === true
     if (this.currentItem.Dated === 'N') this.currentItem.Dated === false
-
-    if (this.currentItem.Signed === true) segment1 += 'signed'
-
-
-    if (this.currentItem.Dated === true) {
-
-      if (this.currentItem.Signed === true) {
-        segment1 += ' and dated '
-      } else segment1 += 'dated '
-    }
-
-
-    let fac = this.searchsold[this.selectedimagesize] // - ${this.sold.factor}
+    // if (this.currentItem.Signed === true) this.segment2 += '<br>signed'
+    // if (this.currentItem.Dated === true) {
+    //   if (this.currentItem.Signed === true) {
+    //     this.segment2 += ' and dated<br> '
+    //   } else this.segment2 += 'dated <br>'
+    // } else this.segment2 += '<br>'
+    ///////////////////////////////////////////////////////////////////////////  
+    let fac = this.searchsold[this.selectedimagesize]
     let ww = this.currentItem.clientWidth * fac.factor
     let hh = this.currentItem.clientHeight * fac.factor
-
-
-    console.log(hh, ww)
+    //console.log(hh, ww)
     if (ww === 0) ww = 450
     if (hh === 0) hh = 450
-    // 	<img ref="mainimage" class="responsive-img"
-    this.segment2 = `<p><img class="responsive-img" src="https://artbased.com/api/v1/getimage/inv/${this.currentItem.InventoryCode}.jpg" alt="" width="${ww}" height="${hh}" /></p>`
+    this.segment1 = `<p><img class="responsive-img" src="https://artbased.com/api/v1/getimage/inv/${this.currentItem.InventoryCode}.jpg" alt="" width="${ww}" height="${hh}" /></p>`
 
-    this.segment2 += ` ${artistWdates}<br><br><br>`
-    this.segment2 += ` <em>${this.currentItem.Title}</em>, ${this.currentItem.InvYear}<br>`
+
+    this.segment1 += ` ${artistWdates}<br><br><br>`
+    this.segment1 += ` <em>${this.currentItem.Title}</em>, ${this.currentItem.InvYear}<br>`
     if (this.currentItem.MediumSupportobj !== undefined)
-      this.segment2 += ` ${this.currentItem.MediumSupportobj.Description}  <br> `
+      this.segment1 += ` ${this.currentItem.MediumSupportobj.Description}  <br> `
 
-    if (this.dims !== undefined) this.segment2 += `  ${this.dims} in.`
-    if (this.dimscm !== undefined) this.segment2 += ` / ${this.dimscm} cm <br>  `
+    if (this.dimsfactsheet !== undefined) {
+      this.segment1 += `  ${this.dimsfactsheet} in.`
+      this.segment2 += `  ${this.dimsfactsheet} in. `
 
-    this.segment2 += ` ${this.inscribedText}<br> `
-
-    if (this.currentItem.CatalogueNo !== undefined && this.currentItem.CatalogueNo !== '')
-      // this.segment2 += ` Catalogue No: ${this.currentItem.CatalogueNo} <br>  <br> <br> `
-
-      this.segment2 += ` no. ${this.currentItem.CatalogueNo} <br>   `
-    if (this.currentItem.AltID!==undefined) {
-    this.segment2 += ` AltID. ${this.currentItem.AltID} <br>  <br> <br> `
     }
 
-
+    if (this.dimscm !== undefined) {
+      this.segment1 += ` / ${this.dimscmfactsheet} cm <br>  `
+      this.segment2 += ` / ${this.dimscmfactsheet} cm  <br>  `
+    }
+    if (this.dimsight !== '') {
+      this.segment2 += ` ${this.dimsight} in`
+      this.segment2 += ` / ${this.dimscmsight} cm sight size</br>  `
+    }
+    if (this.dimframed !== '') {
+      this.segment2 += ` ${this.dimframed} in`
+      this.segment2 += ` / ${this.dimcmframed} cm framed size </br>  `
+    }
+    this.segment1 += ` ${this.inscribedText}</br> `
+    this.segment2 += ` ${this.inscribedText}</br> `
+    if (this.currentItem.CatalogueNo !== undefined && this.currentItem.CatalogueNo !== '')
+      this.segment1 += ` no. ${this.currentItem.CatalogueNo} <br>   `
+    this.currentItem.AltID = this.currentItem.AltID + ''
+    // console.log('this.currentItem.AltID', this.currentItem.AltID)
+    if (this.currentItem.AltID !== '') {
+      this.segment1 += ` ${this.currentItem.AltID} <br> `
+    }
     this.buildEdition()
     this.buildProv()
     this.buildRepro()
-     if (createopt === 1) { 
-    this.editor.value('<span style="font-family:Calibri, Geneva, sans-serif;font-size:11.0pt">' + this.segment2 + '</span>');
-    this.currentItem.rtf1 = this.editor.value()// factsheet
-    this.editorlabel.value('<span style="font-family:Calibri, Geneva, sans-serif;font-size:11.0pt">' + this.segment1 + '</span>');
-    this.currentItem.rtf2 = this.editorlabel.value()// label
 
-
-    
-    }
-    
-    this.currentItem.rtf1 ='<span style="font-family:Calibri, Geneva, sans-serif;font-size:11.0pt">' + this.segment2+ '</span>';
-    this.currentItem.rtf2 ='<span style="font-family:Calibri, Geneva, sans-serif;font-size:11.0pt">' + this.segment1+ '</span>';
-
- 
-
-
-    //return this.currentItem.rtf1
-
+    // WRAP IT ???
+    this.currentItem.rtf1 = '<span style="font-family:Calibri, Geneva, sans-serif;font-size:11.0pt">' + this.segment1 + '</span>';
+    this.currentItem.rtf2 = '<span style="font-family:Calibri, Geneva, sans-serif;font-size:11.0pt">' + this.segment2 + '</span>';
+    return
   }
 
   roundNumber(num, scale) {
@@ -858,34 +600,6 @@ there are extra ' when there are fractions
     return num;
   }
 
-  onChange(e) {
-    // this.logger.log('value change');
-    this.currentItem.rtf1 = this.editor.value()
-  }
-  onChangelabel(e) {
-    this.currentItem.rtf2 = this.editorlabel.value()
-  }
-
-  saveChanges() {
-    this.currentItem.rtf1 = this.editor.value()
-  }
-  saveChangesDetail() {
-    this.currentItem.rtf2 = this.editorlabel.value()
-  }
 
 
-  // remove(item, index) {
-  //   //alert('you are about to delete ' + item.Notes + ' ' + index)
-  //   this.mode = 0
-  //   this.dialogService.open({ viewModel: Prompt, model: 'Delete or Cancel?', lock: false }).whenClosed(response => {
-  //     if (!response.wasCancelled) {
-  //       console.log('Delete')
-  //       let provenance = this.currentItem.provenance
-  //       provenance.splice(index, 1)
-  //     } else {
-  //       console.log('cancel');
-  //     }
-  //     console.log(response.output);
-  //   });
-  // }
 }

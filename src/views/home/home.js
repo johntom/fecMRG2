@@ -42,64 +42,64 @@ export class Home {
 // Grossman:
 // When you build the Edition text, the note is coming in with <em></em> and not displaying last character
 // Edition is not coming into Inventory text
- `finishe ContactController see await Inv`,
-    `not data for tax or insurance`,
-    'fix open on inv',
-    ' convert images again for docs also',
-    'ui to combine contacts ie ',
-    'mailing list state not working',
-    'org breaks getting contacts tab not displayed   con',
-    'MediumSupportobj.Description issue cjeck stat n address',
-    'contact note see roberta smith',
-    'A1 roberta smith b had mailing code mailing list should have mail status 1 ',
-    'roberta smith b has contact type vip should be part of contact type',
-    'a2 RS comp cat sent missing cat name ',
-    'look at legacy phone tab and split phone/email ',
-    'RS B from legacy shd have ORNAME and ORG Addr  in Adddres tab on new systme ',
-    'RS I missing Phone/Email Info from header  ',
-    'RS I MISSING MAILING STATUS SEE A1 ',
-    'NO MAILING 2  ',
-    'a2 CONTACT RS comp cat sent missing cat name ',
-    'grossm0018 grossm0188  OWED Status=consign, owned by=NGrosssan, see sik ',
-    ' fixed SoldStatus making 0,1 the same fix on next conv',
-    ' fixed OwnedId OwnedBy 59d282beb777d41f42a5a2c3',
-    `catalog kendogrid responive others not`,
-    `"international": false for us new rec = false`,
-    'on convert international mailing/international press international=true else false ',
-    `convert org dont use address only adress1/2 3?`,
-    ` use text area for address on org`,
-    `dirty: "phones": ["type": null" not type:0 {"phones.type":  0} fixContactType`,
-    `dirty: this.appService.originalrec.conservedbyname = this.currentItem.conservedbyname fix dirty`,
-    ` dirty:this.appService.originalrec.OwnedId =  this.appService.currentItem.OwnedId`,
-    " finish action exhi/repro ",
-    `"@progress/kendo-ui": "^2017.2.504"`,
-    ' python -m SimpleHTTPServer D:\Frameworks\fecMRG2-Staging\www\pythonserver.bat',
-    "to test what lib to use in package.json",
-    `"https://unpkg.com/lodash@4.17.11/" Change all ref from lodash to _`,
-    "Remove auto-complete field entries in Google Chrome",
-    "never pass id to put or post /:id",
-    "to trip cci do a commit",
-    "https://circleci.com/gh/johntom/fecMRG2/edit  https://circleci.com/gh/johntom/fecMRG2/21 build and deploy"
-    , "SAVE THIS AS LST REPO BEFORE ALL CHANGES"
-    , "deleted select2...selectize"
-    , "git config --global user.email jrt@gtz.com"
-    , "git config --global user.name johntom"
-    , "git config --list  git config user.name displays"
-    , ' let d1 = Date.now()'
-    , '      let d2 = (new Date).toISOString()'
-    , '      // month starts at 0 so 6 = may not june'
-    , '      let d3 = new Date(Date.UTC(2019, 6, 7, 7));'
-    , '      let dd = 2019-06-07'
-    , '      let d4 = new Date(dd);'
-    , '      let d5 = new Date("2019-06-07 11:13:00");'
-    , '      let array2 = dol1.split("-");'
-    , '      let yy = array2[0]  //DATE_OF_LOSS.getFullYear();'
-    , '      let mm = array2[1] - 1  //month is 0 based'
-    , '      let dd = array2[2] + 1// DATE_OF_LOSS.getDate();// l this will use time to convert date so if time <5 then date will -1'
-    , '      let dol_2 = new Date(Date.UTC(yy, mm, dd, 10));'
-    , '      let paramDate = req.param(DATE_OF_LOSS)'
-    , '      let d6 = new Date(`${paramDate}  10:00:00`);'// set the time easist way to make sure date does not change
-    , '      model.DATE_OF_LOSS = d6'
+//  `finishe ContactController see await Inv`,
+//     `not data for tax or insurance`,
+//     'fix open on inv',
+//     ' convert images again for docs also',
+//     'ui to combine contacts ie ',
+//     'mailing list state not working',
+//     'org breaks getting contacts tab not displayed   con',
+//     'MediumSupportobj.Description issue cjeck stat n address',
+//     'contact note see roberta smith',
+//     'A1 roberta smith b had mailing code mailing list should have mail status 1 ',
+//     'roberta smith b has contact type vip should be part of contact type',
+//     'a2 RS comp cat sent missing cat name ',
+//     'look at legacy phone tab and split phone/email ',
+//     'RS B from legacy shd have ORNAME and ORG Addr  in Adddres tab on new systme ',
+//     'RS I missing Phone/Email Info from header  ',
+//     'RS I MISSING MAILING STATUS SEE A1 ',
+//     'NO MAILING 2  ',
+//     'a2 CONTACT RS comp cat sent missing cat name ',
+//     'grossm0018 grossm0188  OWED Status=consign, owned by=NGrosssan, see sik ',
+//     ' fixed SoldStatus making 0,1 the same fix on next conv',
+//     ' fixed OwnedId OwnedBy 59d282beb777d41f42a5a2c3',
+//     `catalog kendogrid responive others not`,
+//     `"international": false for us new rec = false`,
+//     'on convert international mailing/international press international=true else false ',
+//     `convert org dont use address only adress1/2 3?`,
+//     ` use text area for address on org`,
+//     `dirty: "phones": ["type": null" not type:0 {"phones.type":  0} fixContactType`,
+//     `dirty: this.appService.originalrec.conservedbyname = this.currentItem.conservedbyname fix dirty`,
+//     ` dirty:this.appService.originalrec.OwnedId =  this.appService.currentItem.OwnedId`,
+//     " finish action exhi/repro ",
+//     `"@progress/kendo-ui": "^2017.2.504"`,
+//     ' python -m SimpleHTTPServer D:\Frameworks\fecMRG2-Staging\www\pythonserver.bat',
+//     "to test what lib to use in package.json",
+//     `"https://unpkg.com/lodash@4.17.11/" Change all ref from lodash to _`,
+//     "Remove auto-complete field entries in Google Chrome",
+//     "never pass id to put or post /:id",
+//     "to trip cci do a commit",
+//     "https://circleci.com/gh/johntom/fecMRG2/edit  https://circleci.com/gh/johntom/fecMRG2/21 build and deploy"
+//     , "SAVE THIS AS LST REPO BEFORE ALL CHANGES"
+//     , "deleted select2...selectize"
+//     , "git config --global user.email jrt@gtz.com"
+//     , "git config --global user.name johntom"
+//     , "git config --list  git config user.name displays"
+//     , ' let d1 = Date.now()'
+//     , '      let d2 = (new Date).toISOString()'
+//     , '      // month starts at 0 so 6 = may not june'
+//     , '      let d3 = new Date(Date.UTC(2019, 6, 7, 7));'
+//     , '      let dd = 2019-06-07'
+//     , '      let d4 = new Date(dd);'
+//     , '      let d5 = new Date("2019-06-07 11:13:00");'
+//     , '      let array2 = dol1.split("-");'
+//     , '      let yy = array2[0]  //DATE_OF_LOSS.getFullYear();'
+//     , '      let mm = array2[1] - 1  //month is 0 based'
+//     , '      let dd = array2[2] + 1// DATE_OF_LOSS.getDate();// l this will use time to convert date so if time <5 then date will -1'
+//     , '      let dol_2 = new Date(Date.UTC(yy, mm, dd, 10));'
+//     , '      let paramDate = req.param(DATE_OF_LOSS)'
+//     , '      let d6 = new Date(`${paramDate}  10:00:00`);'// set the time easist way to make sure date does not change
+//     , '      model.DATE_OF_LOSS = d6'
   ]
 
   majorfix = [

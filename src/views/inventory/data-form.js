@@ -1,18 +1,15 @@
 import { inject } from 'aurelia-dependency-injection';
 import { ApiService } from '../../utils/servicesApi';
 import { ApplicationService } from '../../services/application-service';
-
-import { RtfService } from '../../services/rtf-service';
-
 import { MyDataService } from "../../services/my-data-service";
 import { Router } from 'aurelia-router';
 import { DialogService } from 'aurelia-dialog';
 import { Prompt } from './prompt';
-
 import { Promptorg } from './promptorg';
 import { DialogImage } from './dialogImage';
 import { bindable } from 'aurelia-framework';
-// import { Rtf } from './one-to-many/rtf';
+import { RtfService } from '../../services/rtf-service';
+
 
 @inject(Router, ApiService, ApplicationService, MyDataService, DialogService, RtfService)
 // @inject(Router, ApiService, ApplicationService, MyDataService, DialogService)
@@ -165,13 +162,12 @@ export class DataForm {
     //  constructor(router, api, appService, dataService, dialogService, controllerFactory) {
     this.api = api
     this.appService = appService
-    this.rtfService = rtfService
     this.inv = ''
     this.dataService = dataService
     this.router = router
     this.dialogService = dialogService
     this.skippromt = false
-    // this.rtf=rtf
+    this.rtfService = rtfService
   }
 
   soldtoEdit() {
@@ -571,15 +567,11 @@ export class DataForm {
 
 
   attached() {
-
     // move to attach
     // bypass save if in create mode
     if (this.recordId !== 'create') {
       // fix dirty
       this.appService.originalrec.OwnedId = this.appService.currentItem.OwnedId
-
-
-
 
       let tabinfo, tabindex
       tabinfo = localStorage.getItem('tabinfo' + this.currentItem.InventoryCode);
@@ -594,6 +586,9 @@ export class DataForm {
         this.selectOneToManyTab(tab);
       }
       this.getimageinfo(0)
+      // this.tabindex=tabindex
+
+
     }
   }
 
@@ -602,21 +597,23 @@ export class DataForm {
     //this.controller.validate();
     //  class Rtf
     // this.createRTF()
-   
-   // this.addRTF(2); HOLD OFF
+    // this.addRTF(2); HOLD OFF
+    //  this.rtfService.currentItem = this.currentItem
+    //  let createopt = 2; // 1 is from tab
+    //  let rr = await this.rtfService.createRTF(createopt)
+
 
     let savetime = moment().format('MM/DD/YY h:mm:ss a')
     if (this.recordId === 'create') {
       // console.log(  this.currentItem, this.currentItem)
       // || this.currentItem.MediumSupportobj === undefined this.currentItem.Title === undefined |
-
-      if ( this.currentItem.InventoryCode === undefined
+      if (this.currentItem.InventoryCode === undefined
         || this.currentItem.artist === undefined) {
         alert('Please fix  Title, InventoryCode, Owned By and or Artist ')
       } else {
         this.rtfService.currentItem = this.currentItem
-      //  let createopt = 2; // 1 is from tab
-       // let rr = await this.rtfService.createRTF(createopt)
+        //  let createopt = 2; // 1 is from tab
+        // let rr = await this.rtfService.createRTF(createopt)
         this.api.createinventory(this.currentItem).then((jsonRes) => {
           console.log('jsonRes ', jsonRes);
           this.recordId = jsonRes.id
@@ -630,21 +627,33 @@ export class DataForm {
           // this.currentItem = 0
           this.appService.currentItem = this.currentItem//inv[0]
           this.appService.originalrec = JSON.parse(JSON.stringify(this.currentItem))
-
-
           this.requestclose()
           // this.requestcloseNoCheck
           this.router.navigate(`#/inventory/data/${this.currentItem.InventoryCode}`)
         });
       }
     } else {
+
       this.getimageinfo(0) // fix issue with isdirty
       if (JSON.stringify(this.currentItem) !== JSON.stringify(this.appService.originalrec)) {
         // SAVE WITH IMAGE INFO IN CASE ITS MISSING
         // nsure if needed this.getimageinfo()
 
- //let createopt = 2; // 1 is from tab
-   //     let rr = await this.rtfService.createRTF(createopt)
+        this.rtfService.currentItem = this.currentItem
+        let createopt = 2; // 1 is from tab
+        let rr = await this.rtfService.createRTF(createopt)
+        // if on rtf tab move off
+        // let tabindex = this.appService.dataFormOneToManyTabs.findIndex(f => f.isSelected)
+        //tabindex this.tabindex =
+
+
+// idea to move off code if rtf changed so we can see it
+        // if (this.tabindex === 0) {
+        //   let tab = this.appService.dataFormOneToManyTabs[this.tabindex];
+        //   let tab2 = this.appService.dataFormOneToManyTabs[1];
+        //   this.selectOneToManyTab(tab2);
+        //   this.selectOneToManyTab(tab);
+        // }
 
         this.api.saveinventory(this.currentItem).then((jsonRes) => {
           console.log('jsonRes ', jsonRes)
@@ -653,9 +662,7 @@ export class DataForm {
           this.message = "Save successful. Inventory updated @ " + savetime
           this.appService.testrec = this.currentItem
           this.appService.currentView = this.currentItem
-
           this.appService.originalrec = JSON.parse(JSON.stringify(this.currentItem))
-
           this.skippromt = true
           if (option === 1) {
             // alert('jr')
@@ -711,17 +718,13 @@ export class DataForm {
   }
 
   addInventory(images) {
-
     let formData = new FormData()
     formData.append('file', images[0])
     console.log('file', images[0]);
     // var newImage = new Image();
     // newImage.src = `https://artbased.com/api/v1/getimage/inv/${this.currentItem.InventoryCode}.jpg`;
     this.mainimage.src = null;
-
     this.api.upload(formData, this.currentItem.InventoryCode)
-
-
       .then((jsonRes) => {
         this.upmess = jsonRes.data
         //force rediplay not to use browser cache var url = 'http://.../?' + escape(new Date())
@@ -744,20 +747,15 @@ export class DataForm {
 
   }
 
-  createRTF(createopt) {
-    alert('crt')
-    this.rtfService.createRTF()
-  }
-  async addRTF() {
-    //   alert('addRTF')
-    //  let r = await this.rtfService.addRTF()
-    //  alert ('r'+r)
-    this.rtfService.currentItem = this.currentItem
-    let createopt = 2; // 1 is from tab
-    let rr = await this.rtfService.createRTF(createopt)
-    //this.currentItem.rtf1
-    // alert('r' +  this.currentItem.rtf1)
-  }
+  // createRTF(createopt) {
+  //   alert('crt')
+  //   this.rtfService.createRTF()
+  // }
+  // async addRTF() {
+  //   this.rtfService.currentItem = this.currentItem
+  //   let createopt = 2; // 1 is from tab
+  //   let rr = await this.rtfService.createRTF(createopt)
+  // }
 
 
 
@@ -844,8 +842,11 @@ export class DataForm {
     }
     var temp = [this.currentItem.InventoryCode, tabindex];
     tabinfo = new tabinfo(temp);
+
     // localStorage.setItem('tabinfo', JSON.stringify(tabinfo));
+
     localStorage.setItem('tabinfo' + this.currentItem.InventoryCode, JSON.stringify(tabinfo));
+    this.tabindex = tabindex// get clearded from line above
     return true;
   }
 }
