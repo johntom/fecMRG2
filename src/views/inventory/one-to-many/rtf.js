@@ -130,9 +130,9 @@ export class Rtf {
     { id: 0, name: 'normal size', factor: 1 },
     { id: 1, name: '1.5 size', factor: 1.5 },
     { id: 2, name: '2 size', factor: 2 },
-    { id: 3, name: '3 size', factor: 3 },
-    { id: 4, name: '.5 size', factor: .5 },
-    { id: 5, name: '.3 size', factor: .3 },
+    // { id: 3, name: '3 size', factor: 3 },
+    // { id: 4, name: '.5 size', factor: .5 },
+    // { id: 5, name: '.3 size', factor: .3 },
   ];
   selectedimagesize = 0;
  formattypes = [
@@ -200,7 +200,9 @@ export class Rtf {
 
  attached(){
   //  let selectedtype
-  // (this.currentItem.clientHeight>this.currentItem.clientWidth) ? this.selectedtype=1 : this.selectedtype=0
+  //{ id: 0, name: 'landscape' },    { id: 1, name: 'portrait' },
+   (this.currentItem.clientHeight>=this.currentItem.clientWidth) ? this.selectedtype=1 : this.selectedtype=0
+  
    this.subscriber = this.eventAggregator.subscribe('rtfpayload', payload => {
          console.log('rtfpayload',payload);
          this.createRTF(1,this.selectedtype)

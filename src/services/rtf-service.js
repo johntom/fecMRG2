@@ -492,7 +492,7 @@ export class RtfService {
 
   //   ];
   //   selectedtype = 0;
-  async createRTF(createopt, selectedtype,selectedimagesize) {
+  async createRTF(createopt, selectedtype, selectedimagesize) {
     // 1 MEANS UI DISPLAYS HTML 2; // 1 is from tab
     if (selectedtype === undefined) selectedtype = 0;
 
@@ -540,18 +540,18 @@ export class RtfService {
 
     if (ww === 0) ww = 450
     if (hh === 0) hh = 450
-    let headerinfo1='', headerinfo2=''
- 
+    let headerinfo1 = '', headerinfo2 = ''
+
     // this.segment1 = `<p><img class="responsive-img" src="https://artbased.com/api/v1/getimage/inv/${this.currentItem.InventoryCode}.jpg" alt="" width="${ww}" height="${hh}" /></p>`
 
     headerinfo1 += ` ${artistWdates}<br><br><br>`
     headerinfo1 += ` <em>${this.currentItem.Title}</em>, ${this.currentItem.InvYear}<br>`
-headerinfo2 = ` ${artistWdates1}<br>`
- headerinfo2 += ` <em>${this.currentItem.Title}</em>, ${this.currentItem.InvYear}<br>`
-   
+    headerinfo2 = ` ${artistWdates1}<br>`
+    headerinfo2 += ` <em>${this.currentItem.Title}</em>, ${this.currentItem.InvYear}<br>`
+
     if (this.currentItem.MediumSupportobj !== undefined)
       headerinfo1 += ` ${this.currentItem.MediumSupportobj.Description}  <br> `
-       headerinfo2 += ` ${this.currentItem.MediumSupportobj.Description}  <br> `
+    headerinfo2 += ` ${this.currentItem.MediumSupportobj.Description}  <br> `
     if (this.dimsfactsheet !== undefined) {
       headerinfo1 += `  ${this.dimsfactsheet} in.`
       headerinfo2 += `  ${this.dimsfactsheet} in. `
@@ -563,7 +563,7 @@ headerinfo2 = ` ${artistWdates1}<br>`
     if (this.dimsight !== '') {
       headerinfo2 += ` ${this.dimsight} in`
       headerinfo2 += ` / ${this.dimscmsight} cm sight size</br>  `
-    } 
+    }
     if (this.dimframed !== '') {
       headerinfo2 += ` ${this.dimframed} in`
       headerinfo2 += ` / ${this.dimcmframed} cm framed size </br>  `
@@ -577,7 +577,7 @@ headerinfo2 = ` ${artistWdates1}<br>`
     if (this.currentItem.AltID !== '') {
       headerinfo1 += ` ${this.currentItem.AltID} <br> <br>`
     }
- 
+
     // 
     this.segment2 = headerinfo2
 
@@ -587,7 +587,7 @@ headerinfo2 = ` ${artistWdates1}<br>`
     }
     if (selectedtype === 1) {
       this.segment1 = ` <table><scan style="text-align:center;width:1024px"></scan><tbody>`
-      this.segment1 += `<td style="font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;width:50%;vertical-align:top;text-align:left;padding-left:2px">${headerinfo2}</td>`
+      this.segment1 += `<td style="font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;width:50%;vertical-align:top;text-align:left;padding-left:2px">${headerinfo1}</td>`
       this.segment1 += `<td style="width:50%;text-align:center;vertical-align:top;"><img src="https://artbased.com/api/v1/getimage/inv/${this.currentItem.InventoryCode}.jpg" alt="" width="${ww}" height=${hh} /></td>`
       this.segment1 += `</tr></tbody></table>`
       //
