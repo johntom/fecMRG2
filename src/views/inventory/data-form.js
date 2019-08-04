@@ -538,7 +538,6 @@ export class DataForm {
 
 
   loadimage() {
-    this.epoch = moment().unix();
     let imageWidth, imageHeight, clientHeightRatio, clientWidthRatio
     return new Promise((resolve, reject) => {
       this.mainimage.onload = function () { // alert alert("Height: " + this.height+' '+ this.width); 
@@ -546,7 +545,7 @@ export class DataForm {
         imageWidth = this.width
         resolve(imageWidth);
       }
-      this.mainimage.src = `https://artbased.com/api/v1/getimage/inv/${this.currentItem.InventoryCode}.jpg?${this.epoch}`;
+      this.mainimage.src = `https://artbased.com/api/v1/getimage/inv/${this.currentItem.InventoryCode}.jpg`;
     })
   }
 
@@ -662,8 +661,9 @@ export class DataForm {
         // this.rtfService.currentItem = this.currentItem
         // let createopt = 2; // 1 is from tab
         // let rr = await this.rtfService.createRTF(createopt)
-        var payload = 'refresh rtf';
-        this.eventAggregator.publish('rtfpayload', payload);
+
+        this.eventAggregator.publish('rtfpayload', 'refresh');
+
 
         // if on rtf tab move off
         // let tabindex = this.appService.dataFormOneToManyTabs.findIndex(f => f.isSelected)
@@ -751,7 +751,7 @@ export class DataForm {
       .then((jsonRes) => {
         this.upmess = jsonRes.data
         //force rediplay not to use browser cache var url = 'http://.../?' + escape(new Date())
-        let fd = new Date(); // use epoch
+        let fd = new Date();
         this.mainimage.src = `https://artbased.com/api/v1/getimage/inv/${this.currentItem.InventoryCode}.jpg?${fd}`;
         // "http://localhost/image/id/image" + count++ + ".jpg";
         this.getimageinfo(0)

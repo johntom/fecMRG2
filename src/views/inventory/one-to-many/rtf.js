@@ -130,9 +130,9 @@ export class Rtf {
     { id: 0, name: 'normal size', factor: 1 },
     { id: 1, name: '1.5 size', factor: 1.5 },
     { id: 2, name: '2 size', factor: 2 },
-    // { id: 3, name: '3 size', factor: 3 },
-    // { id: 4, name: '.5 size', factor: .5 },
-    // { id: 5, name: '.3 size', factor: .3 },
+    { id: 3, name: '3 size', factor: 3 },
+    { id: 4, name: '.5 size', factor: .5 },
+    { id: 5, name: '.3 size', factor: .3 },
   ];
   selectedimagesize = 0;
  formattypes = [
@@ -144,7 +144,7 @@ export class Rtf {
 
   constructor(api, appService, dialogService, rtfService,eventAggregator) {
     
-    this.api = api; 
+    this.api = api;
     this.appService = appService;
     this.provenance = '';
     this.currentItem = this.appService.currentItem//testrec;
@@ -155,57 +155,13 @@ export class Rtf {
     this.dialogService = dialogService
     this.rtfService = rtfService
     this.eventAggregator = eventAggregator;
-   // this.mainimage.src = null;
-  }
-  loadimage() {
-    this.epoch = moment().unix();
-    let imageWidth, imageHeight, clientHeightRatio, clientWidthRatio
-    return new Promise((resolve, reject) => {
-      this.mainimage.onload = function () { // alert alert("Height: " + this.height+' '+ this.width); 
-        imageHeight = this.height
-        imageWidth = this.width
-        resolve(imageWidth);
-      }
-      this.mainimage.src = `https://artbased.com/api/v1/getimage/inv/${this.currentItem.InventoryCode}.jpg?${epoch}`;
-    })
-  }
-  getimageinfo(opt) {
-    if (this.currentItem.clientHeight === undefined || this.currentItem.clientHeight === 0 || opt === 1) {
-      let imageWidth, imageHeight, clientHeightRatio, clientWidthRatio
-
-      let Promise = this.loadimage()
-        .then(response => {
-          this.currentItem.clientHeight = this.mainimage.clientHeight
-          this.currentItem.clientWidth = this.mainimage.clientWidth
-
-          if (this.currentItem.clientHeight === this.currentItem.clientWidth) {
-            clientHeightRatio = 1
-            clientWidthRatio = 1
-          } else if (this.currentItem.clientHeight > this.currentItem.clientWidth) {
-            clientHeightRatio = 1
-            clientWidthRatio = (this.currentItem.clientWidth / this.currentItem.clientHeight).toPrecision(2)
-
-
-          } if (this.currentItem.clientWidth > this.currentItem.clientHeight) {
-            clientWidthRatio = 1
-            clientHeightRatio = (this.currentItem.clientHeight / this.currentItem.clientWidth).toPrecision(2)
-          }
-          this.currentItem.clientHeightRatio = clientHeightRatio
-          this.currentItem.clientWidthRatio = clientWidthRatio
-          this.appService.originalrec = JSON.parse(JSON.stringify(this.currentItem))// inv[0]));
-
-        })
-    }
+   
   }
 
  attached(){
-  //  let selectedtype
-  //{ id: 0, name: 'landscape' },    { id: 1, name: 'portrait' },
-   (this.currentItem.clientHeight>=this.currentItem.clientWidth) ? this.selectedtype=1 : this.selectedtype=0
-  
    this.subscriber = this.eventAggregator.subscribe('rtfpayload', payload => {
          console.log('rtfpayload',payload);
-         this.createRTF(1,this.selectedtype)
+         this.createRTF(1,selectedtype)
       });
 
  }
@@ -229,7 +185,7 @@ export class Rtf {
     // alert('in create')
      this.rtfService.currentItem = this.currentItem
      let createopt = 1; // 1 MEANS UI DISPLAYS HTML 2; // 1 is from tab
-     let rr = await this.rtfService.createRTF(createopt,this.selectedtype,this.selectedimagesize)
+     let rr = await this.rtfService.createRTF(createopt,this.selectedtype)
      this.editor.value( this.currentItem.rtf1 );
      this.editorlabel.value(this.currentItem.rtf2 ); 
     // if (createopt === 1) {

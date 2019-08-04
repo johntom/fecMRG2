@@ -21,12 +21,8 @@
 		img.responsive-img {
 			/* max-height:  auto;
 			width:300px; */
-			/* max-width: 325px;
-			max-height: 325px; */
-			max-width: 295px;
-			max-height: 295px;
-
-
+			max-width: 325px;
+			max-height: 325px;
 			width: auto;
 			height: auto;
 			/* hor */
@@ -156,16 +152,16 @@
 
 								<div class="Rtable Rtable--2cols">
 
-									<div class="Rtable-cell-30 Rtable-cell--highlight">
+									<div class="Rtable-cell-30 Rtable-cell--highlight" >
 										<strong> Inv Code</strong>
 									</div>
-									<div class="Rtable-cell-70  Rtable-cell--highlight">
+									<div class="Rtable-cell-70  Rtable-cell--highlight" >
 
 										<input type="text" xid="Inventory Code" class="form-control" value.bind="currentItem.InventoryCode">
 									</div>
 
 
-									<div class=" Rtable-cell-30 Rtable-cell--highlight">
+									<div class=" Rtable-cell-30 Rtable-cell--highlight" >
 
 										<!-- style="color: purple" <div if.bind="recordId === 'create'"><strong> Artist >></strong></div>
 										<div else><strong> Artist </strong></div> -->
@@ -178,7 +174,8 @@
 
 										<!-- <div if.bind="recordId === 'create'"> -->
 										<!-- <div style="height:15px;margin-left:10px;margin-top:5px;margin-bottom:10px" if.bind="currentItem.artist===undefined || currentItem.artist===''"> -->
-										<div style="height:12px;margin-left:4px;margin-top:2px;margin-bottom:5px" if.bind="currentItem.artist===undefined || currentItem.artist===''">
+										<div style="height:12px;margin-left:4px;margin-top:2px;margin-bottom:5px" 
+                    if.bind="currentItem.artist===undefined || currentItem.artist===''">
 											<a click.delegate="showModal( 'Artist')">select_link </a>
 
 										</div>
@@ -380,7 +377,7 @@
 
 									</div>
 									<div class="Rtable-cell">
-
+ 
 										<select style="width: 45px " value.bind="currentItem.FramedWidth16">
 												<option model.bind="''">''</option>
 												<option repeat.for="measure of measures " model.bind="measure.name">
@@ -451,7 +448,7 @@
 										<input type="text" xid="AltID" class="form-control" value.bind="currentItem.AltID">
 									</div>
 
-									<div class="Rtable-cell-30 Rtable-cell--highlight">
+									<div class="Rtable-cell-30 Rtable-cell--highlight" >
 										<strong> Catalogue No</strong>
 									</div>
 									<div class="Rtable-cell-70  Rtable-cell--highlight">
@@ -459,10 +456,10 @@
 										<input type="text" xid="CatalogueNo" class="form-control" value.bind="currentItem.CatalogueNo">
 									</div>
 
-									<div class="Rtable-cell-30 Rtable-cell--highlight">
+									<div class="Rtable-cell-30 Rtable-cell--highlight" >
 										<strong> InvYear</strong>
 									</div>
-									<div class="Rtable-cell-70  Rtable-cell--highlight">
+									<div class="Rtable-cell-70  Rtable-cell--highlight" >
 
 										<input type="text" xid="InvYear" class="form-control" value.bind="currentItem.InvYear">
 									</div>
@@ -558,8 +555,8 @@
 										</select>
 									</div>
 
-									<div class="Rtable-cell-30 Rtable-cell--highlight">
-										<!-- ${currentItem.SoldToID} -->
+									<div class="Rtable-cell-30 Rtable-cell--highlight"> 
+                    <!-- ${currentItem.SoldToID} -->
 										<span dblclick.delegate="showModal( 'SoldToID') ">	<strong> Sold To</strong></span>
 									</div>
 
@@ -581,7 +578,7 @@
 
 									</div>
 
-									<div class="Rtable-cell-30 Rtable-cell--highlight">
+									<div class="Rtable-cell-30 Rtable-cell--highlight" >
 										<!-- <strong> Owned Status OwnedBy: ${currentItem.OwnedBy} </strong> -->
 										<strong> Owned Status </strong>
 									</div>
@@ -596,7 +593,7 @@
 
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
 										<!-- <span dblclick.delegate="showModal( 'OwnedID') ">	<strong> Owned By (OwnedID ${currentItem.OwnedID}) </strong></span> -->
-										<span dblclick.delegate="showModal( 'OwnedID') ">	<strong> Owned By  </strong></span>
+	<span dblclick.delegate="showModal( 'OwnedID') ">	<strong> Owned By  </strong></span>
 
 									</div>
 
@@ -658,7 +655,7 @@
 									</div> -->
 
 
-
+	
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
 										<strong>Added/updatedAt</strong>
 									</div>
@@ -669,25 +666,14 @@
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
 										<strong>legacy modified</strong>
 									</div>
-									<div class="Rtable-cell-70 Rtable-cell--highlight">
+									<div style="padding-left:4px;"   class="Rtable-cell-70 Rtable-cell--highlight">
+										<!-- after convert use createdAt -->
 
 										${currentItem.ModifiedDate | dateFormat }
 
 									</div>
-
-									<div class="Rtable-cell-30 Rtable-cell--highlight">
-										<button class="btn btn-sm btn-success" click.delegate="getimageinfo(1)">
-						fix ratio dims
-					</button>
-									</div>
-									<div class="Rtable-cell-70 Rtable-cell--highlight">
-
-										<span> ratio h: ${currentItem.clientHeightRatio} -- w: ${currentItem.clientWidthRatio} dim:
-             h: ${currentItem.clientHeight} / w: ${currentItem.clientWidth} </span>
-									</div>
-
 								</div>
-								<input class="btn btn-primary" id="file" type="file" name="file" files.bind="file" change.delegate="addInventory(file)" accept='image/jpg'>
+<input class="btn btn-primary" id="file" type="file" name="file" files.bind="file" change.delegate="addInventory(file)" accept='image/jpg'>
 
 
 								<!-- 2nd -->
@@ -714,7 +700,7 @@
 					<div else>
 
 						<div id="top-right" class="flex-column-none data-form-image" if.bind="recordId !== 'create'">
-							<img ref="mainimage" class="responsive-img" src="https://artbased.com/api/v1/getimage/inv/${currentItem.InventoryCode}.jpg?${epoch} "
+							<img ref="mainimage" class="responsive-img" src="https://artbased.com/api/v1/getimage/inv/${currentItem.InventoryCode}.jpg"
 							 click.delegate="showModalImg()">
 							<!-- <input class="custom-file-input"  id='file' type="file" name="file" files.bind="file" 
              change.delegate="addInventory(file)" >
@@ -791,7 +777,7 @@
 			<!-- <button class="btn btn-sm btn-primary " click.delegate="factsheet()">
 					FactSheet
 				</button> -->
-			<a href="https://artbased.com/api/v1/downloadonepdf/output/${currentItem.InventoryCode}.doc?${epoch}" class="btn btn-sm btn-primary">
+			<a href="https://artbased.com/api/v1/downloadonepdf/output/${currentItem.InventoryCode}.doc" class="btn btn-sm btn-primary">
 				<span class="glyphicon glyphicon-th-list"></span> Download Doc FactSheet
 			</a>
 			<span>&nbsp;&nbsp;

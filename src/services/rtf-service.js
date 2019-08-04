@@ -492,7 +492,7 @@ export class RtfService {
 
   //   ];
   //   selectedtype = 0;
-  async createRTF(createopt, selectedtype, selectedimagesize) {
+  async createRTF(createopt, selectedtype) {
     // 1 MEANS UI DISPLAYS HTML 2; // 1 is from tab
     if (selectedtype === undefined) selectedtype = 0;
 
@@ -533,25 +533,21 @@ export class RtfService {
     //   } else this.segment2 += 'dated <br>'
     // } else this.segment2 += '<br>'
     ///////////////////////////////////////////////////////////////////////////  
-    let fac = this.searchsold[selectedimagesize]
+    let fac = this.searchsold[this.selectedimagesize]
     let ww = this.currentItem.clientWidth * fac.factor
     let hh = this.currentItem.clientHeight * fac.factor
     //console.log(hh, ww)
-
     if (ww === 0) ww = 450
     if (hh === 0) hh = 450
-    let headerinfo1 = '', headerinfo2 = ''
-
+    let headerinfo1='', headerinfo2=''
+ 
     // this.segment1 = `<p><img class="responsive-img" src="https://artbased.com/api/v1/getimage/inv/${this.currentItem.InventoryCode}.jpg" alt="" width="${ww}" height="${hh}" /></p>`
 
     headerinfo1 += ` ${artistWdates}<br><br><br>`
     headerinfo1 += ` <em>${this.currentItem.Title}</em>, ${this.currentItem.InvYear}<br>`
-    headerinfo2 = ` ${artistWdates1}<br>`
-    headerinfo2 += ` <em>${this.currentItem.Title}</em>, ${this.currentItem.InvYear}<br>`
-
     if (this.currentItem.MediumSupportobj !== undefined)
       headerinfo1 += ` ${this.currentItem.MediumSupportobj.Description}  <br> `
-    headerinfo2 += ` ${this.currentItem.MediumSupportobj.Description}  <br> `
+       headerinfo2 = headerinfo1
     if (this.dimsfactsheet !== undefined) {
       headerinfo1 += `  ${this.dimsfactsheet} in.`
       headerinfo2 += `  ${this.dimsfactsheet} in. `
@@ -563,7 +559,7 @@ export class RtfService {
     if (this.dimsight !== '') {
       headerinfo2 += ` ${this.dimsight} in`
       headerinfo2 += ` / ${this.dimscmsight} cm sight size</br>  `
-    }
+    } 
     if (this.dimframed !== '') {
       headerinfo2 += ` ${this.dimframed} in`
       headerinfo2 += ` / ${this.dimcmframed} cm framed size </br>  `
@@ -577,7 +573,7 @@ export class RtfService {
     if (this.currentItem.AltID !== '') {
       headerinfo1 += ` ${this.currentItem.AltID} <br> <br>`
     }
-
+ 
     // 
     this.segment2 = headerinfo2
 

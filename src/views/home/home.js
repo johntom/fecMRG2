@@ -7,14 +7,15 @@ import { ApiService } from '../../utils/servicesApi';
 
 export class Home { 
   heading = "MRG Home Page";
-  version = ' 303.45 ' 
-  versionDate = 'Fri 8/2/2019 8am'
+  version = ' 303.44 ' 
+  versionDate = 'Sun 8/4/2019 8am'
 
   issues = [
     `1. Open Word. Click the “File” tab on the ribbon. Click “Options” at the bottom of the drop-down menu.`,
     `2. Click "Advanced" in the left pane. In the right pane, scroll down to the General area. Select the "Confirm File Format Conversion on Open" check box and then click "OK."`,
     `3. Click File > Options.Click Trust Center > Trust Center Settings >`,
     `4. Protected View.Uncheck Enable Protected View for files originating from the internet.Mar 22, 2018`,
+    // https://www.tutorialspoint.com/aurelia/aurelia_event_aggregator.htm
     // 'JUNE 15 CONV fix org/contacts save both cols before redo',
     // ' check out mailing list check contact conversion ',
     // 'a action abs exp',
