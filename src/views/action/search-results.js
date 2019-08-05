@@ -135,7 +135,9 @@ export class SearchResults {
 
   })
   // {id:0,name:"check list"},
-listtypes=[{id:0,name:"exhibition(not avail yet)"},{id:1,name:"price list"},{id:2,name:"location list"},{id:3,name:"box label"},{id:4,name:"condition"},{id:5,name:"registrar"},{id:6,name:"presentation(not avail yet)"}]
+listtypes=[{id:0,name:"exhibition(not avail yet)"},{id:1,name:"price list"},
+{id:2,name:"location list"},{id:3,name:"box label"},{id:4,name:"condition"},
+{id:5,name:"registrar"},{id:6,name:"presentation(not avail yet)"}]
   constructor(router, api, utilService, appService, dataService, dialogService) {
     this.router = router;
     this.api = api;

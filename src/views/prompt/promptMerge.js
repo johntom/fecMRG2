@@ -132,6 +132,38 @@ export class Promptmerge {
     document.body.removeChild(link);
     return segment
   };
+
+  // async wordportraitcondition(segment) {
+  //   var html, link, blob, url, css;
+
+  //   css = (
+  //     '<style>' +
+  //     '@page WordSection1{size: 595.35pt 700pt;margin:54.0pt 36.0pt 36.0pt 36.0pt;}' +
+  //     'div.WordSection1 {page: WordSection1;}' +
+  //     'table{border-collapse:collapse;}td{border:0px gray none;width:5em;padding:2px;}' +
+  //     '</style>'
+  //   );
+
+
+
+  //   html = segment;//window.docx.innerHTML;
+  //   blob = new Blob(['\ufeff', css + html], {
+  //     type: 'application/msword'
+  //   });
+  //   url = URL.createObjectURL(blob);
+  //   link = document.createElement('A');
+  //   link.href = url;
+  //   // Set default file name. 
+  //   // Word will append file extension - do not add an extension here.
+  //   link.download = this.savelistname;//'Document';
+  //   document.body.appendChild(link);
+  //   if (navigator.msSaveOrOpenBlob) navigator.msSaveOrOpenBlob(blob, this.savelistname + '.doc'); //'Document.doc' IE10-11
+  //   else link.click();  // other browsers
+  //   document.body.removeChild(link);
+  //   return segment
+  // };
+
+
   async wordlandscape(segment) {
     var html, link, blob, url, css;
     // https://jsfiddle.net/78xa14vz/3/
@@ -143,6 +175,36 @@ export class Promptmerge {
       '@page WordSection1{size: 841.95pt 595.35pt;mso-page-orientation: landscape;}' +
       'div.WordSection1 {page: WordSection1;}' +
       'table{border-collapse:collapse;}td{border:1px gray solid;width:5em;padding:2px;}' +
+      '</style>'
+    );
+
+    html = segment;//window.docx.innerHTML;
+    blob = new Blob(['\ufeff', css + html], {
+      type: 'application/msword'
+    });
+    url = URL.createObjectURL(blob);
+    link = document.createElement('A');
+    link.href = url;
+    // Set default file name. 
+    // Word will append file extension - do not add an extension here.
+    link.download = this.savelistname;//'Document';
+    document.body.appendChild(link);
+    if (navigator.msSaveOrOpenBlob) navigator.msSaveOrOpenBlob(blob, this.savelistname + '.doc'); //'Document.doc' IE10-11
+    else link.click();  // other browsers
+    document.body.removeChild(link);
+    return segment
+  };
+  async wordlandscapenolines(segment) {
+    var html, link, blob, url, css;
+    // https://jsfiddle.net/78xa14vz/3/
+    // EU A4 use: size: 841.95pt 595.35pt;
+    // US Letter use: size:11.0in 8.5in;
+
+    css = (
+      '<style>' +
+      '@page WordSection1{size: 841.95pt 595.35pt;mso-page-orientation: landscape;}' +
+      'div.WordSection1 {page: WordSection1;}' +
+      'table{border-collapse:collapse;}td{border:0px none;width:5em;padding:2px;}' +
       '</style>'
     );
 
@@ -199,10 +261,15 @@ export class Promptmerge {
 
     //   // segment = `<h1 style="text-align:center;width:${dimwidth}"></h1> <table ><tbody>`
     // } else {
-      
-//!!!!!!!!!!!!!!!!!!!!!!
-// table width matters
-      //<table style="width:650px;
+
+    //!!!!!!!!!!!!!!!!!!!!!!
+    // table width matters
+    //<table style="width:650px;
+    //       listtypes=[{id:0,name:"exhibition(not avail yet)"},{id:1,name:"price list"},
+    // {id:2,name:"location list"},
+    // {id:3,name:"box label"},
+    // {id:4,name:"condition"},
+    // {id:5,name:"registrar"},{id:6,name:"presentation(not avail yet)"}]
     if (this.listtype === 0) {
       segment = `<div id="docx">`
       segment += `<div class="WordSection1">`
@@ -212,9 +279,13 @@ export class Promptmerge {
     if (this.listtype === 1) {
       segment = `<div id="docx">`
       segment += `<div class="WordSection1">`
-      segment += `<table style="width:1024px; border-style:solid;border-color:black;border-collapse:collapse;border-width:1px;"><tbody>`
+      segment += `<table style="width:650px; border-style:solid;border-color:black;border-collapse:collapse;border-width:1px;"><tbody>`
 
     }
+
+
+  
+
     if (this.listtype === 2) {
 
       // https://jsfiddle.net/78xa14vz/3/
@@ -245,14 +316,22 @@ export class Promptmerge {
       //   width: 5em;
       // }
 
-
-
     }
+
+
     if (this.listtype === 3) {
       segment = `<div id="docx">`
       segment += `<div class="WordSection1">`
       segment += `<table style="width:650px; border-style:none;border-color:gray;border-collapse:collapse;border-width:0px;"><tbody>`
 
+    }
+
+      if (this.listtype === 4) {
+        // {id:4,name:"condition"},
+      segment = `<div id="docx">`
+      segment += `<div class="WordSection1">`
+     segment += `<table style="width:650px height:820px ; border-style:none;border-color:black;border-collapse:collapse;border-width:0px;"><tbody>`
+//  595.35pt 841.95pt;
     }
     if (this.listtype === 5) {
       // https://jsfiddle.net/78xa14vz/3/
@@ -261,7 +340,7 @@ export class Promptmerge {
       //segment += `<table style="width:768px;border-collapse:collapse;border-width:1px; border-style:solid;border-color:gray;padding: 4px;width: 5em;"><tbody>`
       segment += `<table style="width:650px; border-style:solid;border-color:gray;border-collapse:collapse;border-width:1px;"><tbody>`
       // segment += `<tr>`
-    
+
 
       // segment += `<td style="${styh},width:10%">Inventory Code</td>`
       // segment += `<td style="${styh},width:20%">Artist</td>`
@@ -346,6 +425,7 @@ export class Promptmerge {
       if (this.listtype === 1) {
         // {id:1,name:"price list"}
         let oa = numeral(invitem.offeramount).format('($0,0.00)')
+        segment += `<tr style="height:17%;">`
         segment += `<td style="width:70%;vertical-align:top">${invitem.rtf2}</br></br>`
         segment += `${oa}</td>`
         segment += `<td style="width:25%;vertical-align:top;text-align:center;"><img src="https://artbased.com/api/v1/getimage/inv/${invitem.InventoryCode}.jpg" alt="" width="${ww}" height=${hh} /></td>`
@@ -356,7 +436,7 @@ export class Promptmerge {
         // {id:2,name:"location list"},
         ww = 90
         hh = 90
-             segment += `<tr style="height:17%;">`
+        segment += `<tr style="height:17%;">`
         segment += `<td style="${sty1},width:11%">${invitem.InventoryCode}</td>`
         segment += `<td style="${sty1},width:11%">${invitem.artist.ArtistName}</td>`
         segment += `<td style="${sty1},width:11%">${invitem.Title}</td>`
@@ -404,15 +484,18 @@ export class Promptmerge {
 
       if (this.listtype === 4) {
         // {id:4,name:"condition"}
+         ww = 200
+        hh = 200//25
         let today = moment().format('LL');
         //&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        segment += `<tr style="height:17%">`
-        segment += `<td style="font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;text-align:left;
-        padding-left:30px;"><br><br><br><br><br><br><br><br></td></tr>`
+        // make table for each page
+        // segment += `<table style="width:650px; border-style:solid;border-color:gray;border-collapse:collapse;border-width:1px;"><tbody>`
+     
+   
         segment += `<tr style="height:17%">`
         //  segment +=`<td style="width:15%;vertical-align:top;text-align:left;left-margin:20px">1</td>`
         segment += `<td style="font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;text-align:left;
-        padding-left:30px;"><strong>CONDITION REPORT</<strong><br><br></td></tr>`
+        padding-left:30px;"><strong>CONDITION REPORT</strong><br><br></td></tr>`
         segment += `<tr style="height:17%">`
         // segment +=`<td style="width:15%;vertical-align:top;">2</td>`
         segment += `<td style="font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;width:55%;vertical-align:top;text-align:left;padding-left:30px;">Date:&nbsp;&nbsp;${today}<br><br></td></tr>`
@@ -427,9 +510,14 @@ export class Promptmerge {
         segment += `<tr style="height:17%;">`
         segment += `<td style="font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;width:55%;vertical-align:top;padding-left:30px;">By:&nbsp;&nbsp;&nbsp;&nbsp;________________________&nbsp;&nbsp;  Date:&nbsp;&nbsp;${today}<br><br></td></tr>`
         segment += `<tr style="height:17%;">`
-
         segment += `<td style="font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;width:65%;vertical-align:top;margin-left:20px;padding-left:60px;">Hooper Turner, Senior Registrar <br><br></td></tr>`
-        segment += `<div style="page-break-after: always"><span style="display: none;">&nbsp;</span></div>`
+       segment += `<tr style="height:17%;">`
+        
+        segment += `<td><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br></td></tr>`
+        // only way to force page break
+        // segment += `<pre><br clear=all style='mso-special-character:line-break;page-break-before:always'></pre>`
+        // segment += `<tr><td br  style="page-break-before: always" >======</td></tr>` 
+        // style="page-break-before: always"div style="page-break-after: always"><span style="display: none;">&nbsp;========</span></div>`
 
       }
       if (this.listtype === 5) {
@@ -443,22 +531,22 @@ export class Promptmerge {
         // segment += `<td style="${sty1},width:8%">${invitem.rtf2}</td>`
         // segment += `<td style="width:2%;vertical-align:middle;text-align: center;"><img  src="https://artbased.com/api/v1/getimage/inv/${invitem.InventoryCode}.jpg" alt="" width="${ww}" height="${hh}" /></td>`
 
-      //   segment += `<tr style="height:17%;">`
-      //   segment += `<td style="${sty1},width:11%">${invitem.InventoryCode}</td>`
-      //   segment += `<td style="${sty1},width:30%">${invitem.rtf2}</td>`
-      //   // segment += `<td style="width:12%;text-align:center;"><img src="https://artbased.com/api/v1/getimage/inv/${invitem.InventoryCode}.jpg" alt="" width="${ww}" height=${hh} /></td>`
-       
-      //  segment += `<td style="width:12%;text-align:center;">${invitem.Artist}</td>`
-       
+        //   segment += `<tr style="height:17%;">`
+        //   segment += `<td style="${sty1},width:11%">${invitem.InventoryCode}</td>`
+        //   segment += `<td style="${sty1},width:30%">${invitem.rtf2}</td>`
+        //   // segment += `<td style="width:12%;text-align:center;"><img src="https://artbased.com/api/v1/getimage/inv/${invitem.InventoryCode}.jpg" alt="" width="${ww}" height=${hh} /></td>`
+
+        //  segment += `<td style="width:12%;text-align:center;">${invitem.Artist}</td>`
 
 
-       segment += `<td style="${sty1},width:15%">${invitem.InventoryCode}</td>`
-       segment += `<td style="${sty1},width:40%">${invitem.rtf2}</td>`
-       segment += `<td style="width:20%;vertical-align:middle;text-align:center;"><img src="https://artbased.com/api/v1/getimage/inv/${invitem.InventoryCode}.jpg" alt="" width="${ww}" height=${hh} /></td>`
-      
-      
-     
-       
+
+        segment += `<td style="${sty1},width:15%">${invitem.InventoryCode}</td>`
+        segment += `<td style="${sty1},width:40%">${invitem.rtf2}</td>`
+        segment += `<td style="width:20%;vertical-align:middle;text-align:center;"><img src="https://artbased.com/api/v1/getimage/inv/${invitem.InventoryCode}.jpg" alt="" width="${ww}" height=${hh} /></td>`
+
+
+
+
         // vertical-align:middle;
         // segment += `<td style="${sty1}">${invitem.InventoryCode}</td>`
         // segment += `<td style="${sty1}">${invitem.rtf2}</td>`
@@ -481,7 +569,12 @@ export class Promptmerge {
     //     this.controller.ok('added')
     // } else  this.segment = segment
 
-
+    if (this.listtype === 1) {
+      segment += `</tbody></table>`
+      segment += `</div></div>`
+      this.wordportrait(segment);
+      this.controller.ok('added')
+    }
     if (this.listtype === 2) {
       segment += `</tbody></table>`
       segment += `</div></div>`
@@ -490,7 +583,7 @@ export class Promptmerge {
     }
 
     if (this.listtype === 3) {
-  segment += `</tbody></table>`
+      segment += `</tbody></table>`
       segment += `</div></div>`
       this.wordportrait(segment);
 
@@ -498,7 +591,15 @@ export class Promptmerge {
 
       this.controller.ok('added')
     }
+    if (this.listtype === 4) {
+      segment += `</tbody></table>`
+      segment += `</div></div>`
+      this.wordportrait(segment);
 
+      // this.wordportraitcondition(segment);
+
+      this.controller.ok('added') 
+    }
     if (this.listtype === 5) {
       segment += `</tbody></table>`
       segment += `</div></div>`
