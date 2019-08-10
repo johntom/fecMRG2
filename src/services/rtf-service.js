@@ -576,11 +576,10 @@ export class RtfService {
 
 
     // if (this.currentItem.CatalogueNo !== undefined && this.currentItem.CatalogueNo !== '')
-    this.currentItem.CatalogueNo = this.currentItem.CatalogueNo + ''
-    if (this.currentItem.CatalogueNo !== '' && this.currentItem.AltID === '' ){
+     if (this.currentItem.CatalogueNo !== '' && this.currentItem.AltID === '' ){
       headerinfo1 += ` no. ${this.currentItem.CatalogueNo} <br>  <br>   `
     } else 
-      headerinfo1 += ` no. ${this.currentItem.CatalogueNo} <br>   `
+       if (this.currentItem.CatalogueNo !== '')  headerinfo1 += ` no. ${this.currentItem.CatalogueNo} <br>   `
     // console.log('this.currentItem.AltID', this.currentItem.AltID)
     this.currentItem.AltID = this.currentItem.AltID + ''// good for test
     if (this.currentItem.AltID !== '') {
