@@ -169,6 +169,7 @@ export class DataForm {
     this.skippromt = false
     this.rtfService = rtfService
     this.eventAggregator = eventAggregator;
+    this.epoch = moment().unix();
   }
   publish() {
     var payload = 'This is some data...';
@@ -412,10 +413,10 @@ export class DataForm {
             console.log('jsonRes ', jsonRes);
             let inv = jsonRes.data;
             this.currentItem = inv[0]
-
+ 
             //7-22    delete this.currentItem.updatedAt;
 
-
+ 
 
             // delete this.currentItem.conservedbyname
             // this.saveinventory(0)
@@ -423,12 +424,12 @@ export class DataForm {
             // never been saved from view
 
             // // move to attach
-            // if (!this.currentItem.savedonce || this.currentItem.savedonce === undefined) {
+             if (!this.currentItem.savedonce || this.currentItem.savedonce === undefined) {
             //   // if (!this.currentItem.savedonce || this.currentItem.savedonce === true) {
             //   // force it all the time
-            //   this.currentItem.savedonce = true
-            //   this.saveinventory(0)
-            // }
+               this.currentItem.savedonce = true
+               this.saveinventory(0)
+             }
             // ffixes to stop dirty
             // http://www.jsondiff.com/
             this.mrubuild()

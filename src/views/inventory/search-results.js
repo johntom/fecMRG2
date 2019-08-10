@@ -169,7 +169,7 @@ export class SearchResults {
     this.dialogService = dialogService
     this.eventAggregator = eventAggregator
     //   this.currentsavedlist;
-
+ this.epoch = moment().unix();
   }
 
   selectAll() {

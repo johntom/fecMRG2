@@ -700,7 +700,7 @@
 					<div else>
 
 						<div id="top-right" class="flex-column-none data-form-image" if.bind="recordId !== 'create'">
-							<img ref="mainimage" class="responsive-img" src="https://artbased.com/api/v1/getimage/inv/${currentItem.InventoryCode}.jpg"
+							<img ref="mainimage" class="responsive-img" src="https://artbased.com/api/v1/getimage/inv/${currentItem.InventoryCode}.jpg?${epoch}"
 							 click.delegate="showModalImg()">
 							<!-- <input class="custom-file-input"  id='file' type="file" name="file" files.bind="file" 
              change.delegate="addInventory(file)" >
