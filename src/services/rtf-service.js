@@ -89,13 +89,13 @@ export class RtfService {
           if (item.ProvMemo === null || item.ProvMemo === undefined || item.ProvMemo === '') {
             provarray.unshift({ sord: item.Sequence, exception: `${item.ProvOwner}, ${ProvLoc}<br>` })
           } else {
-            provarray.unshift({ sord: item.Sequence, exception: `${item.ProvOwner}, ${ProvLoc}<br>${item.ProvMemo}<br>` })
+            provarray.unshift({ sord: item.Sequence, exception: `${item.ProvOwner}, ${ProvLoc}<br>-${item.ProvMemo}<br>` })
           }
         } else {
           if (item.ProvMemo === null || item.ProvMemo === undefined || item.ProvMemo === '') {
             provarray.unshift({ sord: item.Sequence, exception: `${item.ProvOwner}<br>` })
           } else {
-            provarray.unshift({ sord: item.Sequence, exception: `${item.ProvOwner}<br>${item.ProvMemo}<br>` })
+            provarray.unshift({ sord: item.Sequence, exception: `${item.ProvOwner}<br>-${item.ProvMemo}<br>` })
           }
         }
       }
@@ -294,7 +294,7 @@ export class RtfService {
     let cmfd = this.currentItem.FramedDepth16
     // num.toPrecision(2)
     this.dims = '';//undefined
-    this.dimscm = '';// undefined
+    this.dimscm = '';// undefined 
     this.dimsf = undefined
     this.dimscmf = undefined
     let ufwcm
@@ -417,10 +417,10 @@ export class RtfService {
           this.dims += `  x  <span style="font-size:8.5pt;"> ${this.currentItem[depthfraction]} </span>`
           if (cmd === 0) { cmd = 0 } else frac = cmd * 2.54
           mdim = (this.currentItem[depth] * 2.54) + cmd
-          this.dimscm += ' x ' + this.roundNumber((mdim).toPrecision(2), 1)
+          // this.dimscm += ' x ' + this.roundNumber((mdim).toPrecision(2), 1)
           this.dimscm += ' x ' + this.roundNumber(mdim, 2)
         }
-
+ 
       } else {
         if (this.currentItem[depthfraction] === "") {
           this.dims += ` x ${this.currentItem[depth]}  `
@@ -539,15 +539,15 @@ export class RtfService {
     //console.log(hh, ww)
     if (ww === 0) ww = 450
     if (hh === 0) hh = 450
-    let headerinfo1='', headerinfo2=''
- 
+    let headerinfo1 = '', headerinfo2 = ''
+
     // this.segment1 = `<p><img class="responsive-img" src="https://artbased.com/api/v1/getimage/inv/${this.currentItem.InventoryCode}.jpg" alt="" width="${ww}" height="${hh}" /></p>`
 
     headerinfo1 += ` ${artistWdates}<br><br><br>`
     headerinfo1 += ` <em>${this.currentItem.Title}</em>, ${this.currentItem.InvYear}<br>`
     if (this.currentItem.MediumSupportobj !== undefined)
       headerinfo1 += ` ${this.currentItem.MediumSupportobj.Description}  <br> `
-       headerinfo2 = headerinfo1
+    headerinfo2 = headerinfo1
     if (this.dimsfactsheet !== undefined) {
       headerinfo1 += `  ${this.dimsfactsheet} in.`
       headerinfo2 += `  ${this.dimsfactsheet} in. `
@@ -559,21 +559,34 @@ export class RtfService {
     if (this.dimsight !== '') {
       headerinfo2 += ` ${this.dimsight} in`
       headerinfo2 += ` / ${this.dimscmsight} cm sight size</br>  `
-    } 
+    }
     if (this.dimframed !== '') {
       headerinfo2 += ` ${this.dimframed} in`
       headerinfo2 += ` / ${this.dimcmframed} cm framed size </br>  `
     }
-    headerinfo1 += ` ${this.inscribedText}</br> `
-    headerinfo2 += ` ${this.inscribedText}</br> `
-    if (this.currentItem.CatalogueNo !== undefined && this.currentItem.CatalogueNo !== '')
+    if (this.currentItem.inscribedText === 'undefined') this.currentItem.inscribedText = ''
+    if (this.currentItem.CatalogueNo === 'undefined') this.currentItem.CatalogueNo = ''
+    if (this.currentItem.AltID === 'undefined') this.currentItem.AltID = ''
+
+    //  this.currentItem.inscribedText=this.currentItem.inscribedText+''
+    if (this.currentItem.inscribedText !== '') {
+      headerinfo1 += ` ${this.inscribedText}</br> `
+      headerinfo2 += ` ${this.inscribedText}</br> `
+    }
+
+
+    // if (this.currentItem.CatalogueNo !== undefined && this.currentItem.CatalogueNo !== '')
+    this.currentItem.CatalogueNo = this.currentItem.CatalogueNo + ''
+    if (this.currentItem.CatalogueNo !== '' && this.currentItem.AltID === '' ){
+      headerinfo1 += ` no. ${this.currentItem.CatalogueNo} <br>  <br>   `
+    } else 
       headerinfo1 += ` no. ${this.currentItem.CatalogueNo} <br>   `
-    this.currentItem.AltID = this.currentItem.AltID + ''
     // console.log('this.currentItem.AltID', this.currentItem.AltID)
+    this.currentItem.AltID = this.currentItem.AltID + ''// good for test
     if (this.currentItem.AltID !== '') {
       headerinfo1 += ` ${this.currentItem.AltID} <br> <br>`
     }
- 
+
     // 
     this.segment2 = headerinfo2
 

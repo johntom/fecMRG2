@@ -284,7 +284,7 @@ export class Promptmerge {
     }
 
 
-  
+
 
     if (this.listtype === 2) {
 
@@ -326,12 +326,12 @@ export class Promptmerge {
 
     }
 
-      if (this.listtype === 4) {
-        // {id:4,name:"condition"},
+    if (this.listtype === 4) {
+      // {id:4,name:"condition"},
       segment = `<div id="docx">`
       segment += `<div class="WordSection1">`
-     segment += `<table style="width:650px height:820px ; border-style:none;border-color:black;border-collapse:collapse;border-width:0px;"><tbody>`
-//  595.35pt 841.95pt;
+      segment += `<table style="width:650px height:820px ; border-style:none;border-color:black;border-collapse:collapse;border-width:0px;"><tbody>`
+      //  595.35pt 841.95pt;
     }
     if (this.listtype === 5) {
       // https://jsfiddle.net/78xa14vz/3/
@@ -484,14 +484,14 @@ export class Promptmerge {
 
       if (this.listtype === 4) {
         // {id:4,name:"condition"}
-         ww = 200
+        ww = 200
         hh = 200//25
-        let today = moment().format('LL');
+        let today = moment().format('LL'); 
         //&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         // make table for each page
         // segment += `<table style="width:650px; border-style:solid;border-color:gray;border-collapse:collapse;border-width:1px;"><tbody>`
-     
-   
+        segment += '<br><br><br><br>' //logo
+
         segment += `<tr style="height:17%">`
         //  segment +=`<td style="width:15%;vertical-align:top;text-align:left;left-margin:20px">1</td>`
         segment += `<td style="font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;text-align:left;
@@ -511,8 +511,8 @@ export class Promptmerge {
         segment += `<td style="font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;width:55%;vertical-align:top;padding-left:30px;">By:&nbsp;&nbsp;&nbsp;&nbsp;________________________&nbsp;&nbsp;  Date:&nbsp;&nbsp;${today}<br><br></td></tr>`
         segment += `<tr style="height:17%;">`
         segment += `<td style="font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;width:65%;vertical-align:top;margin-left:20px;padding-left:60px;">Hooper Turner, Senior Registrar <br><br></td></tr>`
-       segment += `<tr style="height:17%;">`
-        
+        segment += `<tr style="height:17%;">`
+
         segment += `<td><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br></td></tr>`
         // only way to force page break
         // segment += `<pre><br clear=all style='mso-special-character:line-break;page-break-before:always'></pre>`
@@ -598,7 +598,7 @@ export class Promptmerge {
 
       // this.wordportraitcondition(segment);
 
-      this.controller.ok('added') 
+      this.controller.ok('added')
     }
     if (this.listtype === 5) {
       segment += `</tbody></table>`
