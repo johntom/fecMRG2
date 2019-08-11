@@ -205,7 +205,7 @@ export class DataForm {
         // this.appService.originalrec = {}
         this.appService.testcontactrec = {}
         this.appService.originalontactrec = {}
-        //  let checkbox
+        // let checkbox
         // let checkbox = document.getElementById("mailings");
         // checkbox.indeterminate = true;//-->
         // <div class="Rtable-cell-100 Rtable-cell--highlight">
@@ -233,12 +233,7 @@ export class DataForm {
             //  this.currentContactItem = inv[0]
             this.appService.currentContactItem = this.currentItem//inv[0]
             this.mrubuild()
-            // this.currentItem.isDirty = () => {
-            //   return JSON.stringify(this.currentItem) !== JSON.stringify(this.appService.originalContactrec)
-            // };
-            // this.currentItem.reset = () => {
-            //   this.appService.originalContactrec = JSON.parse(JSON.stringify(this.currentItem))
-            // }
+           
             this.currentItem.isDirty = () => {
               const currentJSON = JSON.stringify(this.currentItem);
               const originalJSON = JSON.stringify(this.appService.originalContactrec);
@@ -248,14 +243,8 @@ export class DataForm {
             };
             // http://www.jsondiff.com/
 
-
-
-
             this.appService.currentContactView = this.currentItem; // must set on every view
-            this.appService.originalContactrec = JSON.parse(JSON.stringify(this.currentItem))// inv[0]));
-
-
-
+            this.appService.originalContactrec = JSON.parse(JSON.stringify(this.currentItem))//
 
             console.log('finihed active1')
             // return inv
@@ -296,9 +285,7 @@ export class DataForm {
       //  this.tabindex = temp[1];
     }
 
-
     const prevtemp = [mruget.mru1, mruget.mru2, mruget.mru3, mruget.mru4, mruget.mru5];
-
     const temp = [{ id: this.recordId, name: this.cname, bori: this.currentItem.BusIndivid }, mruget.mru1, mruget.mru2, mruget.mru3, mruget.mru4];
     const newrec = { id: this.recordId, name: this.cname, bori: this.currentItem.BusIndivid }
 
@@ -394,15 +381,21 @@ export class DataForm {
       this.api.createcontact(this.currentItem).then((jsonRes) => {
         console.log('jsonRes ', jsonRes);
         this.recordId = jsonRes.id
-        //let tab = this.appService.tabs.find(f => f.isSelected);
-        if (this.currentItem.id === 'create') {
-          this.currentItem.id = ''
-          this.message = "Save successful. contact added @ " + savetime
-        }
+ 
+        // if (this.currentItem.id === 'create') {
+        // this.currentItem.id = ''
+        this.currentItem.id = this.recordId 
+        this.message = `Save successful. contact ${this.recordId} added @ ${savetime} `
+        // }
         //this.mrubuild() it will add if when opening
         this.requestclose()
-        this.router.navigate(`#/contact/data/${this.currentItem.id}`)
-      });
+        let rte = `#/contact/data/${this.currentItem.id}?${this.currentItem.LastName},${this.currentItem.FirstName}-1`
+        this.router.navigate(rte)
+
+        // https://johntom.github.io/fecMRG2/#/contact/data/5d4f579024e043d0084f7a60?Tomaselli,Janet-1
+        //https://johntom.github.io/fecMRG2/#/contact/data/5d4f5de224e043d0084f7a6a?Tomaselli,Way
+        // this.router.navigate(`#/contact/data/${this.currentItem.id}`)
+      }); 
       // }
     } else {
 
@@ -430,8 +423,6 @@ export class DataForm {
       }
     }
   }
-
-
 
   canDeactivate() {
     return new Promise((resolve, reject) => {
@@ -464,8 +455,6 @@ export class DataForm {
     let tab = this.appService.tabs.find(f => f.isSelected);
     let index = this.appService.tabs.findIndex(f => f.isSelected)
     let rt2 = '#/contact/' + this.tabname
-
-
     let newIndex = (index > 0) ? index - 1 : 0;
     let newTab = this.appService.tabs[newIndex];
     this.appService.tryCloseTab(this.appService.currentContactView, tab, newTab.href);
