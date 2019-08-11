@@ -21,13 +21,7 @@ export class Mailinglist {
   search = {}
   mappingDataStructure = {
     class: 'class',
-    // content: 'content',
-    // disabled: 'disabled',
-    // divider: 'divider',
-    // groupLabel: 'group',       // used by optgroup
-    // groupDisabled: 'disabled', // used by optgroup
-    // icon: 'icon',
-    // maxOptions: 'maxOptions',  // used by optgroup
+
     option: 'name',
     // option: 'option',
     // subtext: 'subtext',
@@ -35,7 +29,7 @@ export class Mailinglist {
     title: 'title',
     tokens: 'tokens'
   }
-selectOptions = {
+  selectOptions = {
     liveSearch: true,
     showSubtext: true,
     showTick: true,
@@ -48,7 +42,7 @@ selectOptions = {
     subtext: 'company'
   };
 
-  
+
   states = [
     { OrgName: 'Alabama', id: 'al' },
     { OrgName: 'Alaska', id: 'ak' },
@@ -129,57 +123,63 @@ selectOptions = {
 
   //   return Promise
   // }
- performSearchSL() {
-  
-    let mailinglist = this.myDatalist.value //datalist
-    if (mailinglist !== 'undefined' && mailinglist !== 'null') this.search.mailinglist = mailinglist // `${this.name.name}`
-    if (this.search) {
-    let qs = this.utilService.generateQueryString(this.search);
-    console.log('this.search ', this.search)
-    let counter = this.utilService.counter++
-    // name as - at end its a singleton
-    let path = `Mailinglist-${qs}`;
-   // see authorize-step.js on how I make this a singleton with saving the result set
-    this.appService.actionsearchresults='';// reset 
-    this.router.navigate(`#/mailinglist/${path}&tabname=mailinglist`);
-    this.appService.currentSearch = path
-    } else alert('Please make a selection')
-    
+  performSearchSL() {
+
+    let mailinglist = this.myDatalist.value
+    let idx = this.appService.catalogList.findIndex(x => x.CatalogTitle === mailinglist)
+    // let mid = sels.findIndex(x => x === dataItem.InventoryCode)
+    if (idx === -1) {
+      alert('Please make a selection')
+    } else { 
+
+      if (mailinglist !== 'undefined' && mailinglist !== 'null') this.search.mailinglist = mailinglist
+      if (this.search) {
+        let qs = this.utilService.generateQueryString(this.search);
+        console.log('this.search ', this.search)
+        let counter = this.utilService.counter++
+        // name as - at end its a singleton
+        let path = `Mailinglist-${qs}`;
+        // see authorize-step.js on how I make this a singleton with saving the result set
+        this.appService.actionsearchresults = '';// reset 
+        this.router.navigate(`#/mailinglist/${path}&tabname=mailinglist`);
+        this.appService.currentSearch = path
+      }
+
+    }
+ }
+
+    performClear() {
+      this.search = {}
+    }
+    attached() {
+      // this.savedlists = this.appService.savedlists
+    }
+
+    // activate() {
+
+    // }
+    activate(params, routeConfig) {
+      //   this.savedlists = this.appService.savedlists
+      //   this.queryParams = this.utilService.parseQueryStringUrl();
+      //   const qs = this.queryParams.substring(this.queryParams.indexOf('?') + 1)
+      //  this.myDatalist.value ='Test List'
+      //   this.performSearchSL()
+      // const pairs = qs.split('&')
+      // const queryParams = {}
+      // let slname
+      // let ct =0
+      // pairs.forEach(p => {
+      //   const kv = p.split('=')
+      //   if (ct===0) slname = kv[1]
+      //   ct++
+      // });
+      //1-27 this.item.savedlist = slname
+      // or
+      // this.item.savedlist = this.appService.currentActionlist
+
+    }
+
+
+
+
   }
-
-
-  performClear() {
-    this.search = {}
-  }
-  attached() {
-    // this.savedlists = this.appService.savedlists
-  }
- 
-  // activate() {
-
-  // }
- activate(params, routeConfig) {
-  //   this.savedlists = this.appService.savedlists
-  //   this.queryParams = this.utilService.parseQueryStringUrl();
-  //   const qs = this.queryParams.substring(this.queryParams.indexOf('?') + 1)
-  //  this.myDatalist.value ='Test List'
-  //   this.performSearchSL()
-    // const pairs = qs.split('&')
-    // const queryParams = {}
-    // let slname
-    // let ct =0
-    // pairs.forEach(p => {
-    //   const kv = p.split('=')
-    //   if (ct===0) slname = kv[1]
-    //   ct++
-    // });
-    //1-27 this.item.savedlist = slname
-    // or
-    // this.item.savedlist = this.appService.currentActionlist
-   
-  }
-
-
-
-
-}

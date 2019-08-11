@@ -15,7 +15,7 @@ export class SearchResults {
   invcode = '';
   queryParams = '';
   //  console.log(' inv SearchResults ');
-  message = 'Hello Inventory 101- a!';
+  message = ''//Hello Inventory 101- a!';
   datasource = new kendo.data.DataSource({
     transport: {
       read: (options) => {

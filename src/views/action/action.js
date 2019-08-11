@@ -35,7 +35,7 @@ export class Action {
     title: 'title',
     tokens: 'tokens'
   }
-selectOptions = {
+  selectOptions = {
     liveSearch: true,
     showSubtext: true,
     showTick: true,
@@ -48,7 +48,7 @@ selectOptions = {
     subtext: 'company'
   };
 
-  
+
   states = [
     { OrgName: 'Alabama', id: 'al' },
     { OrgName: 'Alaska', id: 'ak' },
@@ -101,7 +101,7 @@ selectOptions = {
     // this.page = '#/action'
     // this.search.inventorycode = 'PORTERC008'
     this.dataService = dataService;
-    this.selectedValue='dOVE'
+    this.selectedValue = 'dOVE'
     // this.myDatalist.value='dOVE'
   }
 
@@ -131,55 +131,45 @@ selectOptions = {
 
     return Promise
   }
- performSearchSL() {
-    let savedlist = this.myDatalist.value //datalist
-    if (savedlist !== 'undefined' && savedlist !== 'null') this.search.savedlists = savedlist // `${this.name.name}`
-    if (this.search) {
-      // this.search={savedlists:this.search.savedlists);
-    let qs = this.utilService.generateQueryString(this.search);
-    console.log('this.search ', this.search)
-    let counter = this.utilService.counter++
-    // name as - at end its a singleton
-    let path = `Actionlist-${qs}`;
-   // see authorize-step.js on how I make this a singleton with saving the result set
-    this.appService.actionsearchresults='';// reset 
-    this.router.navigate(`#/action/${path}&tabname=actionlist`);
-    this.appService.currentSearch = path
-    } else alert('Please make a selection')
-  }
-  // performSearch() {
-  //   let savedlist = `${this.name}`
-  //   if (savedlist === 'undefined' || savedlist === undefined) {
-  //     alert('Please make a selection')
-  //   } else
-  //     if (this.search) {
-  //       if (savedlist !== 'undefined' && savedlist !== 'null') this.search.savedlists = `${this.name.name}`
-  //       let qs = this.utilService.generateQueryString(this.search);
-  //       let counter = this.utilService.counter++
-  //       //let path = `list${counter}${qs}`;
-  //       let path = `list${counter}${qs}`;
-  //       this.appService.currentActionlist = this.search.savedlists
-  //       this.router.navigate(`#/action/actionview`);
-  //       this.appService.currentSearch = path //`Search${counter}`
-  //     } else alert('Please make a selection')
-  // }
+  performSearchSL() {
+    let savedlist = this.myDatalist.value
 
+
+    let idx = this.appService.savedlists.findIndex(x => x.name === savedlist)
+    if (idx === -1) {
+      alert('Please make a selection')
+    } else {
+
+      if (this.search) {
+
+        let qs = this.utilService.generateQueryString(this.search);
+        console.log('this.search ', this.search)
+        let counter = this.utilService.counter++
+        // name as - at end its a singleton
+        let path = `Actionlist-${qs}`;
+        // see authorize-step.js on how I make this a singleton with saving the result set
+        this.appService.actionsearchresults = '';// reset 
+        this.router.navigate(`#/action/${path}&tabname=actionlist`);
+        this.appService.currentSearch = path
+      } else alert('Please make a selection')
+    }
+  }
   performClear() {
     this.search = {}
   }
   attached() {
     // this.savedlists = this.appService.savedlists
   }
- 
+
   // activate() {
 
   // }
- activate(params, routeConfig) {
-  //   this.savedlists = this.appService.savedlists
-  //   this.queryParams = this.utilService.parseQueryStringUrl();
-  //   const qs = this.queryParams.substring(this.queryParams.indexOf('?') + 1)
-  //  this.myDatalist.value ='Test List'
-  //   this.performSearchSL()
+  activate(params, routeConfig) {
+    //   this.savedlists = this.appService.savedlists
+    //   this.queryParams = this.utilService.parseQueryStringUrl();
+    //   const qs = this.queryParams.substring(this.queryParams.indexOf('?') + 1)
+    //  this.myDatalist.value ='Test List'
+    //   this.performSearchSL()
     // const pairs = qs.split('&')
     // const queryParams = {}
     // let slname
@@ -192,7 +182,7 @@ selectOptions = {
     //1-27 this.item.savedlist = slname
     // or
     // this.item.savedlist = this.appService.currentActionlist
-   
+
   }
 
 
