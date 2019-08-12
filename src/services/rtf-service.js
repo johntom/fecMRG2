@@ -564,9 +564,9 @@ export class RtfService {
       headerinfo2 += ` ${this.dimframed} in`
       headerinfo2 += ` / ${this.dimcmframed} cm framed size </br>  `
     }
-    if (this.currentItem.inscribedText === 'undefined') this.currentItem.inscribedText = ''
-    if (this.currentItem.CatalogueNo === 'undefined') this.currentItem.CatalogueNo = ''
-    if (this.currentItem.AltID === 'undefined') this.currentItem.AltID = ''
+    if (this.currentItem.inscribedText === undefined) this.currentItem.inscribedText = ''
+    if (this.currentItem.CatalogueNo === undefined) this.currentItem.CatalogueNo = ''
+    if (this.currentItem.AltID === undefined) this.currentItem.AltID = '' 
 
     //  this.currentItem.inscribedText=this.currentItem.inscribedText+''
     if (this.currentItem.inscribedText !== '') {
@@ -576,16 +576,19 @@ export class RtfService {
 
 
     // if (this.currentItem.CatalogueNo !== undefined && this.currentItem.CatalogueNo !== '')
+    let mustaddbr=true
      if (this.currentItem.CatalogueNo !== '' && this.currentItem.AltID === '' ){
       headerinfo1 += ` no. ${this.currentItem.CatalogueNo} <br>  <br>   `
+      mustaddbr=false
     } else 
        if (this.currentItem.CatalogueNo !== '')  headerinfo1 += ` no. ${this.currentItem.CatalogueNo} <br>   `
     // console.log('this.currentItem.AltID', this.currentItem.AltID)
     this.currentItem.AltID = this.currentItem.AltID + ''// good for test
     if (this.currentItem.AltID !== '') {
       headerinfo1 += ` ${this.currentItem.AltID} <br> <br>`
+      mustaddbr=false
     }
-
+if(mustaddbr===true)   headerinfo1 += `  <br> <br>`
     // 
     this.segment2 = headerinfo2
 
