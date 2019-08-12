@@ -531,16 +531,16 @@ export class RtfService {
     //   if (this.currentItem.Signed === true) {
     //     this.segment2 += ' and dated<br> '
     //   } else this.segment2 += 'dated <br>'
-    // } else this.segment2 += '<br>'
+    // } else this.segment2 += '<br>' 
     ///////////////////////////////////////////////////////////////////////////  
     let fac = this.searchsold[this.selectedimagesize]
     let ww = this.currentItem.clientWidth * fac.factor
     let hh = this.currentItem.clientHeight * fac.factor
     //console.log(hh, ww)
-    if (ww === 0) ww = 450
-    if (hh === 0) hh = 450
+    if (ww === 0) ww = 450 * this.currentItem.clientWidthRatio
+    if (hh === 0) hh = 450 * this.currentItem.clientHeightRatio
     let headerinfo1 = '', headerinfo2 = ''
-
+ 
     // this.segment1 = `<p><img class="responsive-img" src="https://artbased.com/api/v1/getimage/inv/${this.currentItem.InventoryCode}.jpg" alt="" width="${ww}" height="${hh}" /></p>`
 
     headerinfo1 += ` ${artistWdates}<br><br><br>`
