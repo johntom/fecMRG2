@@ -357,12 +357,16 @@ export class Promptmerge {
     // }
     // 768px  1024px
     for (const invitem of currentmodel.detail) { //this.datasource._data) {
-      let ww = invitem.clientWidthRatio
-      let hh = invitem.clientHeightRatio
-      if (ww === undefined) ww = 1
-      if (hh === undefined) hh = 1
-      ww = 225 * ww
-      hh = 225 * hh
+      let wwr = invitem.clientWidthRatio
+      let hhr = invitem.clientHeightRatio
+      if (wwr === undefined) wwr = 1
+      if (hhr === undefined) hhr = 1
+      let ww = 225 * wwr
+      let  hh = 225 * hhr 
+
+        // ww = 95 * invitem.clientWidthRatio
+        // hh = 95* invitem.clientHeightRatio
+
       // we have  the ratio of each image
       // ie h=1 w=1
       // w h-1 w=.5
@@ -434,8 +438,13 @@ export class Promptmerge {
 
       if (this.listtype === 2) {
         // {id:2,name:"location list"},
-        ww = 90
-        hh = 90
+        // ww = 90
+        // hh = 90
+
+        ww = 90 * invitem.clientWidthRatio
+        hh = 90 * invitem.clientHeightRatio
+
+
         segment += `<tr style="height:17%;">`
         segment += `<td style="${sty1},width:11%">${invitem.InventoryCode}</td>`
         segment += `<td style="${sty1},width:11%">${invitem.artist.ArtistName}</td>`
@@ -458,8 +467,13 @@ export class Promptmerge {
         // {id:3,name:"box label"}
         //   <p style="text-align:center;"><span style="font-size: 46pt;font-family:Arial, Helvetica, sans-serif;"><strong>THOMAS</strong></span></p>
         // <p style="text-align:center;"><span style="font-size:xx-large;font-family:Arial, Helvetica, sans-serif;">title</span></p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        ww = 114
-        hh = 114//25
+        // ww = 114
+        // hh = 114
+
+  ww = 114 * invitem.clientWidthRatio
+        hh = 114 * invitem.clientHeightRatio
+
+
         // width="60" height="60"
         // 50 to 48
         var i;
@@ -484,8 +498,10 @@ export class Promptmerge {
 
       if (this.listtype === 4) {
         // {id:4,name:"condition"}
-        ww = 200
-        hh = 200//25
+        // ww = 200
+        // hh = 200//25
+          ww = 200 * invitem.clientWidthRatio
+        hh = 200 * invitem.clientHeightRatio
         let today = moment().format('LL'); 
         //&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         // make table for each page
@@ -523,8 +539,11 @@ export class Promptmerge {
       if (this.listtype === 5) {
         // {id:5,name:"registrar"}]
         // segment = `<h1 style="font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;text-align:center;"></h1> <table><tbody>`
-        ww = 95
-        hh = 95
+        ww = 95 * invitem.clientWidthRatio
+        hh = 95* invitem.clientHeightRatio
+
+  
+
         // style="height:17%;"
         // segment += `<tr >`
         // segment += `<td style="${sty1},width:2%">${invitem.InventoryCode}</td>`
