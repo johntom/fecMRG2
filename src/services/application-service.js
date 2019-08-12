@@ -307,12 +307,12 @@ export class ApplicationService {
       name: "Catalogs Sent To",
       viewModel: "./one-to-many/catalogssentto",
       isSelected: true
-    },
-     {
-      name: "Build",
-      viewModel: "./one-to-many/build",
-      isSelected: false
     }
+    //,  {
+    //   name: "Build",
+    //   viewModel: "./one-to-many/build",
+    //   isSelected: false
+    // }
   ];
  
   ConsignedTo = ''

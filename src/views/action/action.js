@@ -139,8 +139,9 @@ export class Action {
     if (idx === -1) {
       alert('Please make a selection')
     } else {
-
-      if (this.search) {
+       this.search.savedlists = savedlist
+       if (this.search) {
+   
 
         let qs = this.utilService.generateQueryString(this.search);
         console.log('this.search ', this.search)

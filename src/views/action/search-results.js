@@ -201,11 +201,15 @@ listtypes=[{id:0,name:"exhibition(not avail yet)"},{id:1,name:"price list"},
     //1-27 this.item.savedlist = slname
     // or
     // this.item.savedlist = this.appService.currentActionlist
+    if(slname===undefined){
+      alert('Please notify admin as there is aproblem with selection')
+    } else {
     this.savedlist = slname// this.item.savedlist 
     // this.appService.currentActionlist
     this.datasource.read()
     // make a dupe of folllowing to accoumodate 2 typeaheads
     this.codesListLocation = this.appService.codesListLocation
+    }
   }
 
 

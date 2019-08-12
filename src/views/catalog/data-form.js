@@ -55,25 +55,25 @@ export class DataForm {
       // this.appService.artistList = val.data;
       this.recordId ='';
       let response = await this.api.createcatalog(this.currentItem);
-   
+   this.requestclose()
     } else {
        let response = await this.api.updatecatalog(this.currentItem);
    
     }
-    if (option === 1) this.requestclose()
+    // if (option === 1) this.requestclose()
   }
 
   requestclose() {
 
-    const resetFunc = () => { this.appService.originalrec = this.currentItem; };
-    let tab = this.appService.tabs.find(f => f.isSelected);
-    let index = this.appService.tabs.findIndex(f => f.isSelected)
-    let rt2 = '#/catalog/' + this.tabname
+    // const resetFunc = () => { this.appService.originalrec = this.currentItem; };
+     let tab = this.appService.tabs.find(f => f.isSelected);
+     let index = this.appService.tabs.findIndex(f => f.isSelected)
+     let rt2 = '#/catalog/' + this.tabname
 
 
-    let newIndex = (index > 0) ? index - 1 : 0;
-    let newTab = this.appService.tabs[newIndex];
-    this.appService.tryCloseTab(this.appService.currentView, tab, newTab.href);
+     let newIndex = (index > 0) ? index - 1 : 0;
+     let newTab = this.appService.tabs[newIndex];
+     this.appService.tryCloseTab(this.appService.currentView, tab, newTab.href);
 
 
   }

@@ -614,29 +614,6 @@
 
 									</div>
 
-									<!-- <div class="Rtable-cell-30 Rtable-cell--highlight" style="color: purple">
-										<strong> Owned By OwnedID ${currentItem.OwnedID}</strong>
-									</div>
-									<div class="Rtable-cell-70 Rtable-cell--highlight">
-										<select id="OwnedBy2" class="form-control  " value.bind="currentItem.OwnedID">
-											<option model.bind="null">Choose...</option>
-											<option repeat.for="opt of appService.codesOwnership " model.bind="opt.id">
-												${opt.Description}
-											</option>
-										</select>
-									</div> -->
-
-									<!-- <div class="Rtable-cell-70  Rtable-cell--highlight">
-										<div style="height:15px;margin-left:10px;margin-top:5px;margin-bottom:10px" if.bind="currentItem.ownedbyname===undefined || currentItem.ownedbyname==='' ">
-											<a click.delegate="showModal( 'OwnedBy')">select_link </a>
-										</div>
-										<div style="height:15px;margin-left:10px;margin-top:5px;margin-bottom:10px" else>
-											<a click.delegate="showModal( 'OwnedBy')">${currentItem.ownedbyname} </a>
-											&nbsp;&nbsp;
-											<a click.delegate="ownedbyEdit()">...Open...</a>
-										</div>
-									</div> -->
-
 
 
 
@@ -647,14 +624,7 @@
 										<!--  input-sm -->
 										<input type="text " xid="ArtValue " class="form-control " value.bind="currentItem.ArtValue">
 									</div>
-									<!-- <div class="Rtable-cell-30 Rtable-cell--highlight">
-										<strong>Entered</strong>
-									</div>
-									<div class="Rtable-cell-70 Rtable-cell--highlight">
-										${currentItem.SellPriceDate | dateFormat }
-									</div> -->
-
-
+								
 	
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
 										<strong>Added/updatedAt</strong>
@@ -684,47 +654,25 @@
 					</div>
 					<!--top left  -->
 
-					<!-- <a slot="buttons-slot" class="btn btn-success" click.delegate="addInventory(file)">
-				<i class="fa fa-plus"></i>Upload File
-			</a> -->
-					<!-- <input class="form-control" type="text"/>
-            <div class="input-group-btn">
-                <label for="file" class="btn btn-default">browse</label>
-                <input id="file" type="file" class="btn btn-success"  
-                change.delegate="addInventory(file)" style="visibility:hidden;"/>
-            </div>  
-            
-            <label for=file>
-    <u>Select image and upload </u> -->
+			 
 					<div if.bind="recordId==='create'"></div>
 					<div else>
 
 						<div id="top-right" class="flex-column-none data-form-image" if.bind="recordId !== 'create'">
 							<img ref="mainimage" class="responsive-img" src="https://artbased.com/api/v1/getimage/inv/${currentItem.InventoryCode}.jpg?${epoch}"
 							 click.delegate="showModalImg()">
-							<!-- <input class="custom-file-input"  id='file' type="file" name="file" files.bind="file" 
-             change.delegate="addInventory(file)" >
-		  -->
-
-							<input class="btn btn-primary" id="file" type="file" name="file" files.bind="file" change.delegate="addInventory(file)" accept='image/jpg'>
-							</label>
+			
+							<!-- <input class="btn btn-primary" id="file" type="file" name="file" files.bind="file" change.delegate="addInventory(file)" accept='image/jpg'> -->
+							
 
 
 						</div>
-						<div else>
+						<!-- <div else>
 							<input class="btn btn-primary" id="file" type="file" name="file" files.bind="file" change.delegate="addInventory(file)" accept='image/jpg'>
 
-						</div>
+						</div> -->
 					</div>
-					<!-- <div id="top-right " class="flex-column-none data-form-image">
-            <img ref="mainimage" class="responsive-img" src="https://artbased.com/api/v1/getimage/inv/${currentItem.InventoryCode}.jpg"
-            click.delegate="showModalImg()">
-            <br>
-            <input style='height:88' id='file' type="file" name="file" files.bind="file">
-            <a slot="buttons-slot" class="btn btn-success" click.delegate="addInventory(file)">
-            <i class="fa fa-plus"></i> Add Uploaded File
-            </a>
-					</div> -->
+				
 
 					<!-- end middle and top right -->
 				</div>

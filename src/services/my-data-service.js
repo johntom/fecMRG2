@@ -46,6 +46,7 @@ export class MyDataService {
 
   ];
   stateList = [
+     { name: 'null', value: '' },
     { name: 'Alabama', value: 'AL' },
     { name: 'Alaska', value: 'AK' },
     { name: 'America Samoa', value: 'america samoa' },

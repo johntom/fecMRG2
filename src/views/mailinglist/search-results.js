@@ -167,40 +167,18 @@ export class SearchResults {
     this.dialogService = dialogService
     this.appService.rfreshLoaded = false;
     this.search = {}
-    this.search.state='null'
-
+    this.search.state = 'null'
+    // search.state='';
+    // search.state 'null'
     // this.search.deceased = true
     // this.search.nomailings = true
     // this.search.noinfo = true
     this.search.keywords = []
     this.search.genres = []
-     this.search.mailingStatus = 0
+    this.search.mailingStatus = 0
 
   }
-  //   setInitialValue(edt) {
-  //     if (this.currentItem.interests !== undefined) 
-  //     edt.value(this.currentItem.interests);
-  //   }
-  //   textAreaEditor(container, options) {
-  //     alert ('ta')
-  //   //  $('<textarea class="k-textbox" name="' + options.field + '" style="width:100%;height:100%;" />').appendTo(container);
-  //    $('<textarea class="k-textbox" name="interests" style="width:100%;height:100%;" />').appendTo(container);
-  //   // $('<textarea name="interests" cols="100"  rows="6" />').appendTo(container);
 
-  //     // $('<textarea name="' + options.field + '" cols="100"  rows="6" />').appendTo(container);
-  //   }
-  //  nonEditor(container, options) {
-  //   //  console.log('in nonEditor', options.field)
-
-  //         // container.text(options.model[options.field]);
-  //         // container.interests.textarea(container.interests);
-  //       //  container.interests(container.interests);
-  //        //    container.interests.text=container.interests
-  //         // let grid = this.grid;
-  //         // let targetRow = $(container.target).closest("tr");
-  //         // grid.select(targetRow);
-
-  //     }
   async deleteData(updatedItem) {
 
     let response = await this.api.deletemlrow(updatedItem);
@@ -216,9 +194,7 @@ export class SearchResults {
     });
   }
   onEdit(e) {
-    // let grid = e.sender;
-    // var targetRow = $(e.container);
-    // grid.select(targetRow)
+
     let flag = false
     let datasource = this.datasource
     e.container.find(".k-grid-cancel").bind("click", function () {
@@ -231,7 +207,7 @@ export class SearchResults {
   async activate(params, routeConfig) {
     // //http://74.114.164.24/api/v1/inventorycontent?artistl=s%26artistf=c 
     this.queryParams = this.utilService.parseQueryStringUrl();
- 
+
     const qs = this.queryParams.substring(this.queryParams.indexOf('?') + 1)
     const pairs = qs.split('&')
     const queryParams = {}
@@ -264,7 +240,7 @@ export class SearchResults {
 
   }
   async performSearch() {
-
+    // this.spinner.class 
     if (this.search) {
 
       let search = this.search //JSON.stringify(this.search)    
@@ -286,7 +262,7 @@ export class SearchResults {
       }
 
 
-  if (search.contactl !== undefined) {
+      if (search.contactl !== undefined) {
         str += `&contactl=${search.contactl}`
       }
       if (search.contactf !== undefined) {
@@ -324,11 +300,9 @@ export class SearchResults {
         // return this.api.findContact(ds, this.listname)
         .then((jsonRes) => {
           // inv = jsonRes.data;
-
-
-
           this.invdata = jsonRes.data//inv;
           this.recct = this.invdata.length;
+          this.spinner.remove()
           this.datasource.read()
         });
 
@@ -360,6 +334,7 @@ export class SearchResults {
       this.invdata = inv;
       this.recct = inv.length;
       // this.datasource.read()
+       this.spinner.remove()
       return inv
     });
 

@@ -46,7 +46,8 @@ export class Promptrepro {
 
   save() {
     this.currentItem = this.item
-    this.controller.ok('added')
+    // this.controller.ok('added')
+     this.controller.ok(this.item)
   }
 }
 

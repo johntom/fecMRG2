@@ -6,9 +6,6 @@ import { Prompt } from '../../../services/prompt';
 import { PromptForm } from '../promptForm';
 import { Promptrepro } from '../../prompt/promptRepro';
 
-   import jsRapTable from '../../../../jslib/jsRapTable';
-
-
 
 @inject(ApiService, ApplicationService, DialogService)
 export class Reproduction {
@@ -16,6 +13,57 @@ export class Reproduction {
   footer = 'DataForm FOOTER...';
   recordId = '';
   edit = false;
+  scrollable = { virtual: true };
+  datasource = new kendo.data.DataSource({
+    transport: {
+      read: (options) => {
+        //  this.loadData(this.capColor, this.prevtown)
+        this.loadData()
+          .then((repro) => {
+            console.log(' repro datasource ', repro[0]);
+            options.success(repro);
+          });
+      },
+      update: (options) => {
+        let updatedItem = options.data;
+        updatedItem.offerdate = this.offerdate
+        console.log('   updatedItem ', updatedItem)
+        // this.updateData(updatedItem)
+        //   .then((scans) => {
+        //     options.success(scans)
+        //     this.datasource.read()
+        //   })
+
+        options.success(updatedItem)
+      }
+    },
+    schema: {
+      model: {
+        id: "id", // Must assign id for update to work
+        fields: {
+          offeramount: { type: "number" }, // scan template
+          ReproductionLocation: { type: "string", editable: true },
+          ReproductionAuthor: { type: "string", editable: true },
+          AuthorFirst: { type: "string", editable: true },
+          AuthorLast: { type: "string", editable: true },
+          ReproductionTitle: { type: "string", editable: true },
+          ReproductionName: { type: "string", editable: true },
+          AuthorFirst: { type: "string", editable: true },
+          ReproductionPage: { type: "string", editable: true },
+          ColorBW: { type: "string", editable: true },
+
+
+
+        }
+      }
+    },
+    pageSize: 12,
+
+  })
+
+
+
+
   constructor(api, appService, dialogService) {
     this.api = api;
     this.appService = appService;
@@ -24,51 +72,103 @@ export class Reproduction {
     this.dialogService = dialogService
   }
 
-  activate(params, routeConfig) {
-    // if (params.id) {
-    //   this.recordId = params.id; 
-    //   this.heading = `DataForm for record ${this.recordId}`;
 
-    //   console.log('this.recordId ', this.recordId);
-    //   return this.api.findInventoryOne(this.recordId)
-    //     .then((jsonRes) => {
-    //       console.log('jsonRes ', jsonRes);          
-    //       let inv = jsonRes.data;
-    //       this.currentItem = inv[0];
-    //       console.log('data-form:activate - currentItem', this.currentItem);
-    //       this.inv = inv[0]
-    //       // console.log('this.inv loadData 0 ', inv[0].InventoryCode);
-    //       return inv
-    //     });
-    // }
+
+ ColorBWDropDownEditor(container, options) {
+    $('<input required data-text-field="Description" data-value-field="Description" data-bind="value:' + options.field + '"/>')
+      .appendTo(container)
+      .kendoDropDownList({
+        autoBind: false,
+        type: 'json',
+        dataSource: {
+          transport: {
+            read: (options) => {
+              options.success(this.appService.codesReproductionType);
+            },
+          }
+        }
+      });
+  }
+
+
+
+// "legacyid" : NumberInt(16916), 
+//             "ExhibitTitle" : "Arthur Dove", 
+//             "ExhibitSponser" : "Albright-Knox Art Gallery", 
+//             "ExhibitLocation" : "5d5009e9ee1af1dc544c0939", 
+//             "ExhibitLocationDesc" : "Buffalo, NY", 
+//             "ExhibitDates" : "January 27 - March 2, 1975", 
+//             "ExhibitSortDate" : "1975-01-27T05:00:00.000Z", 
+//             "Traveled" : "Y", 
+//             "ExhibitMemo" : "", 
+            // "id" : NumberInt(8)
+            //options.field=ReproductionExhibit
+ exDownEditor(container, options) {
+  //  $('<input required data-text-field="ExhibitTitle" data-value-field="id" data-bind="value:' + options.field + '"/>')
+    console.log('options.field',options.field)
+    $('<input  data-text-field="ExhibitTitle" data-value-field="id" data-bind="value:' + options.field + '"/>')
+      .appendTo(container)
+      .kendoDropDownList({
+        autoBind: false,
+        type: 'json',
+        dataSource: {
+          transport: {
+            read: (options) => {
+              options.success(this.currentItem.exhibition);
+            },
+          }
+        }
+      });
+  }
+
+
+
+  typeDropDownEditor(container, options) {
+    $('<input required data-text-field="Description" data-value-field="Description" data-bind="value:' + options.field + '"/>')
+      .appendTo(container)
+      .kendoDropDownList({
+        autoBind: false,
+        type: 'json',
+        dataSource: {
+          transport: {
+            read: (options) => {
+              options.success(this.appService.codesPublicationType);
+            },
+          }
+        }
+      });
+  }
+  locDropDownEditor(container, options) {
+    $('<input required data-text-field="Description" data-value-field="Description" data-bind="value:' + options.field + '"/>')
+      .appendTo(container)
+      .kendoDropDownList({
+        autoBind: false,
+        type: 'json',
+        dataSource: {
+          transport: {
+
+            read: (options) => {
+              options.success(this.appService.codesProvenanceLocation);
+
+            },
+
+          }
+        }
+      });
+  }
+
+
+
+  activate(params, routeConfig) {
 
   }
 
-  // attached() {
-  //   $(document).ready(function () {
-  //     $('#dtVerticalScrollExample').DataTable({
-  //       "scrollY": "200px",
-  //       "scrollCollapse": true,
-  //       "ordering": false,
-  //     });
-  //     // $('.dataTables_length').addClass('bs-select');
-  //   });
-
-  // }
-
   modal(item, index) {
-
-    // this.currentItem.recordId = this.recordId model:this.currentItem
     let currentModel = {}
     currentModel.currentItem = this.currentItem
     currentModel.item = item
-
     currentModel.currentItem.hide1 = false
-
-
-    // this.dialogService.open({ viewModel: PromptForm, model: currentModel, lock: false }).whenClosed(response => {
     this.dialogService.open({ viewModel: Promptrepro, model: currentModel, lock: true }).whenClosed(response => {
-      // this.dialogService.open({ viewModel: Promptrepro, model: item, lock: true }).whenClosed(response => {
 
       if (!response.wasCancelled) {
         console.log('item', item);
@@ -80,15 +180,7 @@ export class Reproduction {
       console.log(response)//.output);
     });
   }
-  // selectChanged(ReproductionExhibit, index, opt) {
-  //   let rid = ReproductionExhibit// this.currentItem.reproduction[index]._id// ReproductionTitle
-  //   let mid = this.currentItem.exhibition.findIndex(x => x._id === rid)
-  //   // alert(this.currentItem.reproduction[index].ReproductionTitle)
-  //   this.currentItem.reproduction[index].ReproductionType = "59d282beb777d41f42a5a2c9"
-  //   this.currentItem.reproduction[index].ReproductionTitle = this.currentItem.exhibition[mid].ExhibitTitle
-  //   this.currentItem.reproduction[index].ReproductionExhibit = rid
-  //   console.log('rep ' + this.currentItem.exhibition[mid].ExhibitTitle + ' ' + `${this.ReproductionExhibit}` + ' ' + opt)
-  // }
+
   saveitem(item, index) {
     item.edit = !item.edit
 
@@ -129,9 +221,6 @@ export class Reproduction {
 
     this.modal(item, 0) // unshirt reproduction.length + 1)
 
-    // this.newNoteWorkDate = '';
-    // this.newNoteNote = '';
-
   }
   changeSelect(opt) {
 
@@ -140,9 +229,7 @@ export class Reproduction {
 
   remove(item, index) {
 
-    //     alert('you are about to delete ' + item.ProvMemo)
-    //     this.currentItem.reproduction[$index].
-    //   }
+
     this.dialogService.open({ viewModel: Prompt, model: 'Delete or Cancel?', lock: false }).whenClosed(response => {
       if (!response.wasCancelled) {
         console.log('Delete')
@@ -154,24 +241,96 @@ export class Reproduction {
       console.log(response.output);
     });
   }
-   attached() {
-    $(document).ready(function () {
-      $('#raptable').jsRapTable({
-        onSort: function (i, d) {
-          $('tbody').find('td').filter(function () {
-            return $(this).index() === i;
-          }).sortElements(function (a, b) {
-            if (i)
-              return $.text([a]).localeCompare($.text([b])) * (d ? -1 : 1);
-            else
-              return (parseInt($.text([a])) - parseInt($.text([b]))) * (d ? -1 : 1);
-          }, function () {
-            return this.parentNode;
-          });
-        },
-      });
+  attached() {
 
-    })
   }
 
+
+  async loadData() {
+    // console.log('this.loadData ')
+    let repro = this.currentItem.reproduction
+    this.repro = repro
+    return repro
+    // return this.appService.actionsearchresults
+
+  }
+
+  onEdit(e) {
+    // let grid = e.sender;
+    // let selectedRow = grid.select();
+    // let dataItem = grid.dataItem(selectedRow);
+    // this.dialogService.open({ viewModel: Promptrepro, model: dataItem, lock: true }).whenClosed(response => {
+
+    //   if (!response.wasCancelled) {
+    //     console.log('item', item);
+    //     item.edit = false//this.saveitem(item, index)
+    //   } else {
+
+    //     console.log('cancel');
+    //   }
+    //   console.log(response)//.output);
+    // });
+  }
+
+  rowSelected(e) {
+    // let grid = e.sender;
+    // let selectedRow = grid.select();
+    // let dataItem = grid.dataItem(selectedRow);
+    // this.dialogService.open({ viewModel: Promptrepro, model: dataItem, lock: true }).whenClosed(response => {
+
+    //   if (!response.wasCancelled) {
+    //     console.log('item', item);
+    //     item.edit = false//this.saveitem(item, index)
+    //   } else {
+
+    //     console.log('cancel');
+    //   }
+    //   console.log(response)//.output);
+    // });
+  }
+  rowpopSelected(e) {
+    let grid = this.grid;
+    let targetRow = $(e.target).closest("tr");
+    let currentRowIndex = targetRow.index();
+    grid.select(targetRow);
+    let selectedRow = grid.select();
+    let dataItem = grid.dataItem(selectedRow);
+    this.dialogService.open({ viewModel: Promptrepro, model: dataItem, lock: true }).whenClosed(response => {
+
+      if (!response.wasCancelled) {
+        console.log('item', response);
+        this.repro[currentRowIndex].AuthorFirst = response.output.AuthorFirst
+        // item.edit = false//this.saveitem(item, index)
+      } else {
+
+        console.log('cancel');
+      }
+      console.log(response)//.output);
+    });
+  }
+
+  modal(item, index) {
+    // prev popup
+    //   let currentModel = {}
+    //   currentModel.currentItem = this.currentItem
+    //   currentModel.item = item
+
+    //   currentModel.currentItem.hide1 = false
+
+
+    //   this.dialogService.open({ viewModel: Promptrepro, model: currentModel, lock: true }).whenClosed(response => {
+
+    //     if (!response.wasCancelled) {
+    //       console.log('item', item);
+    //       item.edit = false//this.saveitem(item, index)
+    //     } else {
+
+    //       console.log('cancel');
+    //     }
+    //     console.log(response)//.output);
+    //   });
+    // }
+
+
+  }
 }

@@ -174,10 +174,14 @@
                             }
                         }
 								</script>
+                	<div ref="spinner" class="splash">
+			<div class="message">fetching records</div>
+			<i class="fa fa-spinner fa-spin"></i>
+		</div>
 								<ak-grid class="flex-row-1 overflow-y-auto" id="grid" k-data-source.bind="datasource" k-widget.bind="grid" k-sortable.bind="{ mode: 'multiple',   allowUnsort: 'true'}"
 								 k-filterable.bind="{  mode: 'row' }" k-editable="inline" k-reorderable.bind="true" k-resizable.bind="true" k-on-edit.delegate="onEdit($event.detail)"
 								 k-toolbar.bind="['excel']" k-excel.bind="{ fileName: 'mailinglist.xlsx' }" k-on-change.delegate="rowSelected($event.detail)"
-								 k-column-menu.bind="true" k-pageable.bind="true">
+								 k-height.bind="600" k-column-menu.bind="true" k-pageable.bind="true">
 									<!-- <ak-col k-title="id" k-width="110px" k-field="id"></ak-col> -->
 									<ak-col k-field="LastName" k-filterable.bind="true" k-title="LastName(Edit)" k-width.bind="180" k-template="<button click.delegate='detailsEdit($event)' class='k-button'>#=LastName#</button>">
 									</ak-col>
@@ -284,38 +288,20 @@
 											<input type="text " xid="City " class="form-control input-sm " value.bind="search.city">
 										</div>
 										<div class="Rtable-cell-30 Rtable-cell--highlight">
-											<strong>State -</strong>
-										</div> 
+											<strong>State </strong>
+										</div>
 
 
 										<div class="Rtable-cell-70  Rtable-cell--highlight">
-											<!-- <input type="text " xid="State " class="form-control input-sm " value.bind="search.state"> -->
 
 
-						<!-- <select id="state" class="form-control " value.bind="state">
+
+											<select id="state" class="form-control " value.bind="search.state">
 											<option model.bind="null">Choose...</option>
-											<option repeat.for="opt of appService.stateList " model.bind="search.state">
+											<option repeat.for="opt of appService.stateList " model.bind="opt.value">
 												${opt.name}
 											</option>
 										</select>
-					 -->
-
-
-		<select id="state " class="form-control " value.bind="search.state" placeholder="search stateList">
-											<option model.bind="null">Choose...</option>
-											<option repeat.for="opt of appService.stateList " model.bind="search.state">
-												${opt.name}
-											</option>
-										</select>
-
-	<select id="state" class="form-control" value.bind="search.search"> 
-                      <option model.bind="null">Choose...</option> 
-                      <option repeat.for="opt of appService.stateList" model.bind="opt.name">
-                          ${opt.name} 
-                      </option> 
-                      </select>
-
-
 
 
 										</div>
@@ -338,11 +324,6 @@
 											<input type="text " xid="State " class="form-control input-sm " value.bind="search.contactf">
 										</div>
 
-
-
-
-
-
 										<div class="Rtable-cell-30 Rtable-cell--highlight">
 											<strong>Search Criteria</strong>
 										</div>
@@ -350,9 +331,6 @@
 
 											<textarea rows="8" cols="100" id="searchCriteria" class="form-control input " value.bind="catalog.searchCriteria" enabled="false"></textarea>
 										</div>
-
-
-
 
 									</div>
 									<button id="searchInputBtn" class="btn btn-primary" click.delegate="performSearch()" type="button"><strong>S</strong>earch & Build list! </button>
@@ -377,7 +355,7 @@
 							</div> -->
 						</div>
 
-						We have discontinued the use of a “mailing type” and added the following fields to facilitate creating mailing lists for
+						<!-- We have discontinued the use of a “mailing type” and added the following fields to facilitate creating mailing lists for
 						physical mail:
 						<br />deceased
 						<br />international
@@ -402,7 +380,7 @@
 						<br />Y/N holiday list (new)
 						<br />deceased” y/n
 						<br />“no mailings” y/n
-						<br />“unsubscribed” y/n
+						<br />“unsubscribed” y/n -->
 						<!-- flex row none -->
 					</div>
 					<!--top left  -->
