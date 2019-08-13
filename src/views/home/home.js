@@ -7,11 +7,11 @@ import { ApiService } from '../../utils/servicesApi';
 
 export class Home { 
   heading = "MRG Home Page";
-  version = ' 303.56 ' 
-  versionDate = 'Mon 8/12/2019 2pm'
+  version = ' 303.57 ' 
+  versionDate = 'Tue 8/13/2019 2pm'
   prevversion = ' 303.52 ' 
   prevversionDate = 'Mon 8/5/2019 5pm'
-
+ 
   issues = [
     `1. Open Word. Click the “File” tab on the ribbon. Click “Options” at the bottom of the drop-down menu.`,
     `2. Click "Advanced" in the left pane. In the right pane, scroll down to the General area. Select the "Confirm File Format Conversion on Open" check box and then click "OK."`,
