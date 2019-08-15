@@ -174,7 +174,11 @@
                             }
                         }
 								</script>
-                	<div ref="spinner" class="splash">
+                  <!-- <div show.bind="busy.active">
+    <div class="spinner"></div>
+    <div class="spinner-blocker"></div>
+  </div> -->
+                	<div show.bind="busy.active" ref="spinner" class="splash">
 			<div class="message">fetching records</div>
 			<i class="fa fa-spinner fa-spin"></i>
 		</div>

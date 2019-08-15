@@ -32,6 +32,7 @@ export class SearchResults {
   hide9 = true
   item = {}
   message = ''
+ 
   mailingstatus = [
     { id: 1, name: 'Mailing list' },
     { id: 2, name: 'No Mailings' },
@@ -176,7 +177,9 @@ export class SearchResults {
     this.search.keywords = []
     this.search.genres = []
     this.search.mailingStatus = 0
-
+    //http://www.sobell.net/busy-spinner-in-aurelia/
+    this.busy={}
+    this.busy.active=true
   }
 
   async deleteData(updatedItem) {
@@ -241,6 +244,7 @@ export class SearchResults {
   }
   async performSearch() {
     // this.spinner.class 
+    this.busy.active=true
     if (this.search) {
 
       let search = this.search //JSON.stringify(this.search)    
@@ -302,7 +306,11 @@ export class SearchResults {
           // inv = jsonRes.data;
           this.invdata = jsonRes.data//inv;
           this.recct = this.invdata.length;
-          this.spinner.remove()
+          // this.spinner.remove()
+
+this.busy.active=false
+
+
           this.datasource.read()
         });
 
@@ -334,7 +342,8 @@ export class SearchResults {
       this.invdata = inv;
       this.recct = inv.length;
       // this.datasource.read()
-       this.spinner.remove()
+      //  this.spinner.remove()
+       this.busy.active=false
       return inv
     });
 
@@ -406,7 +415,7 @@ export class SearchResults {
       })
 
   }
-
+ 
   setInitialValue(edt) {
 
 
