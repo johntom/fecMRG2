@@ -118,10 +118,29 @@ section.fec-web {
   max-height:300px; */
   margin: 10px;
   border: 1px dashed black;
-  width: 250px;
+  width: 325px;
   max-height:250px;
 }
+		img.responsive-imgV {
+			max-height: 250px;
+			width: auto;
+			/* vertical */
+		}
 
+		img.responsive-img {
+			/* max-height:  auto;
+			width:300px; */
+			max-width: 325px;
+			max-height: 250px;
+			width: auto;
+			height: auto;
+			/* hor */
+		}
+
+		video.responsive-video {
+			max-width: 100%;
+			height: auto;
+		}
 /*
   Layout
 */
