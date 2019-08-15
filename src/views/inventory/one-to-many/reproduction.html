@@ -14,7 +14,7 @@
 		<!--     k-on-change.delegate="rowSelected($event.detail)"  k-pageable.bind="true" k-filterable.bind="{  mode: 'row' }" -->
 		<ak-grid class="flex-row-1 overflow-y-auto" id="grid" k-data-source.bind="datasource" k-widget.bind="grid" k-sortable.bind="{ mode: 'multiple',   allowUnsort: 'true'}"
 		 k-editable="inline" k-reorderable.bind="true" k-resizable.bind="true" k-on-edit.delegate="onEdit($event.detail)" k-selectable="multiple"
-		 k-height.bind="300" k-column-menu.bind="true">
+	 k-width.bind="700"	 k-height.bind="300" k-column-menu.bind="true">
 			<ak-col k-filterable.bind="false" k-width="120px" k-title="Cmd" k-command.bind="['edit']" k-title="&nbsp;" k-locked.bind="true"
 			 k-lockable.bind="false"></ak-col>
 

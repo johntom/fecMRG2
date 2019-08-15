@@ -304,9 +304,9 @@
 		.Rtable--6cols>.Rtable-cell {
 			width: 16.6%;
 		}
-
+/* 	width: 14.285%; */
 		.Rtable--7cols>.Rtable-cell {
-			width: 14.285%;
+			width: 14.2%;
 		}
 	
 
