@@ -12,15 +12,13 @@
 	<!-- <component-a createRTF.call="rtf.createRTF()"></component-a> -->
 	<!-- //  @bindable createRTF; -->
 	<style>
-
-
 		#data-form-ext .tab.tab-selected .form-tab-box {
 			background-color: lightblue;
 			border-color: #7bbbce
 		}
 
 		#cap {
-					background-color: orange //transparent;
+			background-color: orange //transparent;
 		}
 
 		.black-cap {
@@ -124,16 +122,16 @@
 
 								<div class="Rtable Rtable--2cols">
 
-									<div class="Rtable-cell-30 Rtable-cell--highlight" >
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
 										<strong> Inv Code</strong>
 									</div>
-									<div class="Rtable-cell-70  Rtable-cell--highlight" >
+									<div class="Rtable-cell-70  Rtable-cell--highlight">
 
 										<input type="text" xid="Inventory Code" class="form-control" value.bind="currentItem.InventoryCode">
 									</div>
 
 
-									<div class=" Rtable-cell-30 Rtable-cell--highlight" >
+									<div class=" Rtable-cell-30 Rtable-cell--highlight">
 
 										<!-- style="color: purple" <div if.bind="recordId === 'create'"><strong> Artist >></strong></div>
 										<div else><strong> Artist </strong></div> -->
@@ -146,8 +144,7 @@
 
 										<!-- <div if.bind="recordId === 'create'"> -->
 										<!-- <div style="height:15px;margin-left:10px;margin-top:5px;margin-bottom:10px" if.bind="currentItem.artist===undefined || currentItem.artist===''"> -->
-										<div style="height:12px;margin-left:4px;margin-top:2px;margin-bottom:5px" 
-                    if.bind="currentItem.artist===undefined || currentItem.artist===''">
+										<div style="height:12px;margin-left:4px;margin-top:2px;margin-bottom:5px" if.bind="currentItem.artist===undefined || currentItem.artist===''">
 											<a click.delegate="showModal( 'Artist')">select_link </a>
 
 										</div>
@@ -183,7 +180,7 @@
 											<a click.delegate="showModal( 'MediumSupportobj')">${currentItem.MediumSupportobj.Description} </a>
 										</div>
 									</div>
-								</div>
+								<!--77 </div> -->
 
 
 
@@ -349,7 +346,7 @@
 
 									</div>
 									<div class="Rtable-cell">
- 
+
 										<select style="width: 45px " value.bind="currentItem.FramedWidth16">
 												<option model.bind="''">''</option>
 												<option repeat.for="measure of measures " model.bind="measure.name">
@@ -371,18 +368,11 @@
 											</select>
 									</div>
 									<!-- end framed -->
-
-
-
-
-
-
-									<!-- </div> -->
-
-
-
 								</div>
 							</div>
+              </div>
+	<!--77 </div> -->
+
 							<!-- end <div class="Rtable Rtable--7cols"> -->
 
 							<!-- demo middle col -->
@@ -420,7 +410,7 @@
 										<input type="text" xid="AltID" class="form-control" value.bind="currentItem.AltID">
 									</div>
 
-									<div class="Rtable-cell-30 Rtable-cell--highlight" >
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
 										<strong> Catalogue No</strong>
 									</div>
 									<div class="Rtable-cell-70  Rtable-cell--highlight">
@@ -428,10 +418,10 @@
 										<input type="text" xid="CatalogueNo" class="form-control" value.bind="currentItem.CatalogueNo">
 									</div>
 
-									<div class="Rtable-cell-30 Rtable-cell--highlight" >
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
 										<strong> InvYear</strong>
 									</div>
-									<div class="Rtable-cell-70  Rtable-cell--highlight" >
+									<div class="Rtable-cell-70  Rtable-cell--highlight">
 
 										<input type="text" xid="InvYear" class="form-control" value.bind="currentItem.InvYear">
 									</div>
@@ -527,8 +517,8 @@
 										</select>
 									</div>
 
-									<div class="Rtable-cell-30 Rtable-cell--highlight"> 
-                    <!-- ${currentItem.SoldToID} -->
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<!-- ${currentItem.SoldToID} -->
 										<span dblclick.delegate="showModal( 'SoldToID') ">	<strong> Sold To</strong></span>
 									</div>
 
@@ -550,7 +540,7 @@
 
 									</div>
 
-									<div class="Rtable-cell-30 Rtable-cell--highlight" >
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
 										<!-- <strong> Owned Status OwnedBy: ${currentItem.OwnedBy} </strong> -->
 										<strong> Owned Status </strong>
 									</div>
@@ -565,7 +555,7 @@
 
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
 										<!-- <span dblclick.delegate="showModal( 'OwnedID') ">	<strong> Owned By (OwnedID ${currentItem.OwnedID}) </strong></span> -->
-	<span dblclick.delegate="showModal( 'OwnedID') ">	<strong> Owned By  </strong></span>
+										<span dblclick.delegate="showModal( 'OwnedID') ">	<strong> Owned By  </strong></span>
 
 									</div>
 
@@ -596,27 +586,26 @@
 										<!--  input-sm -->
 										<input type="text " xid="ArtValue " class="form-control " value.bind="currentItem.ArtValue">
 									</div>
-								
-	
+
+
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
 										<strong>Added/updatedAt</strong>
 									</div>
 									<div style="padding-left:4px;" class="Rtable-cell-70 Rtable-cell--highlight">
-										<!-- after convert use createdAt -->
-
+							
 										${currentItem.DateAdded | dateFormat} / ${currentItem.updatedAt | dateFormat } </div>
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
 										<strong>legacy modified</strong>
 									</div>
-									<div style="padding-left:4px;"   class="Rtable-cell-70 Rtable-cell--highlight">
+									<div style="padding-left:4px;" class="Rtable-cell-70 Rtable-cell--highlight">
 										<!-- after convert use createdAt -->
 
 										${currentItem.ModifiedDate | dateFormat }
 
 									</div>
-								</div>
-<input class="btn btn-primary" id="file" type="file" name="file" files.bind="file" change.delegate="addInventory(file)" accept='image/jpg'>
-
+							
+								<input class="btn btn-primary" id="file" type="file" name="file" files.bind="file" change.delegate="addInventory(file)" accept='image/jpg'>
+	      </div>
 
 								<!-- 2nd -->
 							</div>
@@ -626,16 +615,16 @@
 					</div>
 					<!--top left  -->
 
-			 
+
 					<div if.bind="recordId==='create'"></div>
 					<div else>
 
 						<div id="top-right" class="flex-column-none data-form-image" if.bind="recordId !== 'create'">
 							<img ref="mainimage" class="responsive-img" src="https://artbased.com/api/v1/getimage/inv/${currentItem.InventoryCode}.jpg?${epoch}"
 							 click.delegate="showModalImg()">
-			
+
 							<!-- <input class="btn btn-primary" id="file" type="file" name="file" files.bind="file" change.delegate="addInventory(file)" accept='image/jpg'> -->
-							
+
 
 
 						</div>
@@ -644,7 +633,7 @@
 
 						</div> -->
 					</div>
-				
+
 
 					<!-- end middle and top right -->
 				</div>
