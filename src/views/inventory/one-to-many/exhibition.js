@@ -5,6 +5,7 @@ import { Prompt } from '../../../services/prompt';
 import { DialogService } from 'aurelia-dialog';
 import { Promptexhibit } from '../../prompt/promptExhibit';
 
+import products from './editing-custom-editor.json!';
 
 @inject(ApiService, ApplicationService, DialogService)
 
@@ -40,25 +41,30 @@ export class Exhibition {
       }
     },
 
-
     schema: {
       model: {
         id: "id", // Must assign id for update to work
         fields: {
-          Traveled: { type: "number" }, // scan template
+          Traveled: { type: "boolean" }, // scan template
+
+          id: { type: "number" }, // scan template
           ExhibitTitle: { type: "string", editable: true },
           ExhibitSponser: { type: "string", editable: true },
+          // ExhibitLocation: { type: "string", editable: true },
           ExhibitLocation: { type: "string", editable: true },
+          // ExhibitLocation: { defaultValue: { id: '5d5009e8ee1af1dc544c05e8', Description: 'New York, NY' } },
+
+          ExhibitLocationDesc: { type: "string", editable: true },
           ReproductionTitle: { type: "string", editable: true },
           ExhibitSortDate: { type: "date", editable: true },
           ExhibitDates: { type: "string", editable: true },
-
           ExhibitMemo: { type: "string", editable: true },
+          Category: { defaultValue: { CategoryID: 1, CategoryName: 'Beverages' } },
 
         }
       }
     },
-    pageSize: 12,
+    // pageSize: 12,
 
   })
 
@@ -71,6 +77,7 @@ export class Exhibition {
     this.currentItem = this.appService.currentItem;
     console.log('this.currentItem  exhibition', this.appService.currentItem.exhibition);
     this.dialogService = dialogService
+    this.codes = this.appService.codesProvenanceLocation
   }
 
 
@@ -78,21 +85,79 @@ export class Exhibition {
   activate(params, routeConfig) {
     this.exhibition = this.appService.currentItem.exhibition   // this.currentItem.exhibition
   }
-  locDropDownEditor(container, options) {
-    $('<input required data-text-field="Description" data-value-field="Description" data-bind="value:' + options.field + '"/>')
+  //https://gist.run/?id=3c1a0aab9ef1a0aaf037518b5d61c803
+  categoryDropDownEditor(container, options) {
+    $('<input required data-text-field="CategoryName" data-value-field="CategoryID" data-bind="value:' + options.field + '"/>')
       .appendTo(container)
       .kendoDropDownList({
         autoBind: false,
-        type: 'json',
         dataSource: {
+          type: 'odata',
           transport: {
-            read: (options) => {
-              options.success(this.appService.codesProvenanceLocation);
-            },
+            read: '//demos.telerik.com/kendo-ui/service/Northwind.svc/Categories'
           }
         }
       });
   }
+  categoryTemplate = '${Category ? Category.CategoryName : ""}';
+
+  locDropDownEditorID(container, options) {
+    // $('<input required data-text-field="Description" data-value-field="id" data-bind="value:' + options.field + '"/>')
+    $('<input required data-text-field="Description" data-value-field="id" data-bind="value:ExhibitLocation"/>')
+
+      .appendTo(container)
+      .kendoDropDownList({
+        dataSource: this.appService.codesProvenanceLocation,
+        dataTextField: "Description",
+        dataValueField: "id"
+      });
+  }
+  //  locTemplate = '${ExhibitLocation ? this.appService.codesProvenanceLocation.Description : ""}';
+
+  // locTemplate = '${ExhibitLocation ? ExhibitLocation.Description" : ""}';
+  locTemplate(container) {
+    //  return `${container.ExhibitLocation}--`
+    if (container.ExhibitLocation) {
+      console.log('this.c', this.appService.codesProvenanceLocation)
+      return `${container.ExhibitLocation}--`
+    } else return `missing--`
+  }
+  locDropDownEditor(container, options) {
+    $('<input required data-text-field="Description" data-value-field="Description" data-bind="value:' + options.field + '"/>')
+
+      .appendTo(container)
+      .kendoDropDownList({
+        autoBind: false,
+        type: 'json',
+        dataSource: this.appService.codesProvenanceLocation,
+        dataTextField: "Description",
+        dataValueField: "Description"
+      });
+
+  }
+
+  // dataSource: {      transport: {        read: (options) => {          options.success(this.appService.codesProvenanceLocation);},}}});
+
+  // locTemplate(container) {
+  //   return `${container.ExhibitLocation}--`
+
+  //   // let mid = this.appService.codesProvenanceLocation.find(x => x._id === container.ExhibitLocation)
+  //   //  console.log('this.codes',lthis.codes,container.ExhibitLocation)
+  //   //   let mid = lthis.codes.find(x => x._id === container.currentItem.ExhibitLocation)
+
+  //   // return `${container.ExhibitLocation}--jj1`
+  //   //  return  `${ExhibitLocation ? "john tom " : ""}`;
+  //   // let grid = this.grid;
+  //   // if(grid!==undefined){
+  //   // let targetRow = $(e.target).closest("tr");
+  //   // grid.select(targetRow);
+  //   // let selectedRow = grid.select();
+  //   // let dataItem = grid.dataItem(selectedRow);
+
+
+  //   // return `${dataItem.ExhibitLocation}--jj`
+  //   //   } else return 'jrt'
+  // }
 
   saveitem(item, index) {
     item.edit = !item.edit

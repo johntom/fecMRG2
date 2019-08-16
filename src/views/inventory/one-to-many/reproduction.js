@@ -62,7 +62,7 @@ export class Reproduction {
         }
       }
     },
-    pageSize: 12,
+    // pageSize: 12,
 
   })
 

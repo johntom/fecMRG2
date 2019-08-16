@@ -10,45 +10,48 @@
 			</a>
 		</h4>
 
-
-
-
-
-		
-
+	
+ <!--   k-on-edit.delegate="onEdit($event.detail)" -->
 		<ak-grid class="flex-row-1 overflow-y-auto" id="grid" k-data-source.bind="datasource" k-widget.bind="grid" k-sortable.bind="{ mode: 'multiple',   allowUnsort: 'true'}"
-		 k-editable="popup" k-reorderable.bind="true" k-resizable.bind="true" k-on-edit.delegate="onEdit($event.detail)" k-selectable="multiple"
+		 k-editable="popup" k-reorderable.bind="true" k-resizable.bind="true" 
+    k-selectable="multiple"
 		 k-height.bind="300" k-column-menu.bind="true">
-			<div style="width: 1200px"></div>
-			<ak-col k-filterable.bind="false" k-width="120px" k-title="Cmd" k-command.bind="['edit']" k-title="&nbsp;" k-locked.bind="true"
+			<div style="width: auto"></div>
+			<ak-col k-filterable.bind="false" k-width="90px" k-title="Cmd" k-command.bind="['edit']" 
+      k-title="&nbsp;" k-locked.bind="true"
 			 k-lockable.bind="false"></ak-col>
+			<ak-col k-field="id" k-locked.bind="true" k-filterable.bind="true" k-width.bind="60">
+			</ak-col>   
+			<ak-col k-title="Title" k-field="ExhibitTitle" k-filterable.bind="true" k-width.bind="180">
+			</ak-col> 
+			<ak-col k-title="Sponser" k-field="ExhibitSponser" k-filterable.bind="true" k-width.bind="180">
+			</ak-col>
+			<!-- <ak-col k-field="ExhibitLocationDesc" k-title="LocDesc" k-title="Location" k-width="180px" 
+      k-editor.bind="locDropDownEditor" k-filterable.bind="false"
+			 k-groupable.bind="false" ></ak-col>  -->
+	   <ak-col k-field="Category" k-title="Category" k-width="180px" k-editor.bind="categoryDropDownEditor" k-template.bind="categoryTemplate"></ak-col>
+     <ak-col k-field="ExhibitLocation" k-title="ExhLocation" k-width="180px" k-editor.bind="locDropDownEditorID" k-template.bind="locTemplate"></ak-col>
+   
+    
+	<!-- <ak-col k-field="ExhibitLocation" k-title="LocID" k-title="Loc2" k-width="180px" 
+      k-editor.bind="locDropDownEditorID" k-filterable.bind="false"
+	  	k-template.bind="locTemplate"	 k-groupable.bind="false"></ak-col> -->
 
 
-			<ak-col k-field="id" k-filterable.bind="true" k-width.bind="140">
-			</ak-col>
-			<ak-col k-title="Title" k-field="ExhibitTitle" k-filterable.bind="true" k-width.bind="140">
-			</ak-col>
-			<ak-col k-title="Sponser" k-field="ExhibitSponser" k-filterable.bind="true" k-width.bind="140">
-			</ak-col>
-			<ak-col k-field="ExhibitLocation" k-title="Loc" k-title="Location" k-width="180px" k-editor.bind="locDropDownEditor" k-filterable.bind="false"
-			 k-groupable.bind="false"></ak-col>
+    	<!-- <ak-col k-field="ExhibitLocation" k-title="LocID" k-title="Loc2" k-width="180px" 
+      k-editor.bind="locDropDownEditorID" k-filterable.bind="false"
+	  	k-template.bind="locTemplate"	 k-groupable.bind="false"></ak-col> -->
+	<!-- k-template.bind="locTemplate((container,appService.codesProvenanceLocation) $event,appService.codesProvenanceLocation)"	 k-groupable.bind="false"></ak-col> -->
 
-			<ak-col k-field="ReproductionTitle" k-filterable.bind="true" k-field="Title" k-width.bind="140">
-			</ak-col>
-			<ak-col k-field="ExhibitDates" k-filterable.bind="true" k-width.bind="140">
-			</ak-col>
-			<ak-col k-field="ExhibitSortDate" k-filterable.bind="true" k-width.bind="120">
-			</ak-col>
-			<ak-col k-field="ExhibitMemo" k-filterable.bind="true" k-width.bind="140">
-			</ak-col>
-      <!-- <input type="checkbox" id="Traveled" checked.bind="exhibition.Traveled"> -->
-
-			<ak-col k-title="Batch" k-width="110px" k-field="Batch"></ak-col>
-
-
+				<ak-col k-title="ExhibitDates" k-width="120px" k-field="ExhibitDates"></ak-col>
+   
+			<ak-col k-field="ExhibitSortDate" k-filterable.bind="true" k-format="{0:MM/dd/yyyy}" k-width.bind="90">	</ak-col> -->
+			<ak-col k-field="ExhibitMemo" k-filterable.bind="true" k-width.bind="140"></ak-col>
+      <ak-col k-title="Traveled" k-width="110px" k-field="Traveled"></ak-col>
+			<ak-col k-title="Batch" k-width="90px" k-field="Batch"></ak-col>
+      	
+    
 		</ak-grid>
-
-
 
 
 	</section>
