@@ -41,7 +41,7 @@ export class SearchResults {
             //		console.log('inv.length===1 && this.appService.onlyonce===0 ', inv.length === 1 && this.appService.onlyonce === 0, inv.length, inv.length)
             //10-18 if (inv.length === 1 && this.appService.onlyonce === 0) {
             // if (inv.length === 1 ) {
-            // 	let rt2 = '#/inventory/data/' + inv[0].InventoryCode;
+            // Rload	let rt2 = '#/inventory/data/' + inv[0].InventoryCode;
             // 	console.log('rt2 ', rt2)
             // 	let tab = this.appService.tabs.find(f => f.isSelected);
             // 	this.closeTab(tab);

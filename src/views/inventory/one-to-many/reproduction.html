@@ -12,101 +12,96 @@
 			</a>
 		</h4>
 		<!--     k-on-change.delegate="rowSelected($event.detail)"  k-pageable.bind="true" k-filterable.bind="{  mode: 'row' }" -->
-		<ak-grid class="flex-row-1 overflow-y-auto" id="grid" k-data-source.bind="datasource" k-widget.bind="grid" k-sortable.bind="{ mode: 'multiple',   allowUnsort: 'true'}"
-		 k-editable="inline" k-reorderable.bind="true" k-resizable.bind="true" k-on-edit.delegate="onEdit($event.detail)" k-selectable="multiple"
-	 k-width.bind="700"	 k-height.bind="300" k-column-menu.bind="true">
-			<ak-col k-filterable.bind="false" k-width="120px" k-title="Cmd" k-command.bind="['edit']" k-title="&nbsp;" k-locked.bind="true"
-			 k-lockable.bind="false"></ak-col>
 
-
-			<ak-col k-field="ReproductionAuthor" k-field="Author" k-filterable.bind="true" k-width.bind="140">
-			</ak-col>
-			<ak-col k-field="AuthorFirst" k-filterable.bind="true" k-width.bind="140">
-			</ak-col>
-			<ak-col k-field="AuthorLast" k-filterable.bind="true" k-width.bind="140">
-			</ak-col>
-			<ak-col k-field="ReproductionTitle" k-filterable.bind="true" k-field="Title" k-width.bind="140">
-			</ak-col>
-			<ak-col k-field="ReproductionName" k-filterable.bind="true" k-width.bind="140">
-			</ak-col>
-			<ak-col k-field="ReproductionDate" k-filterable.bind="true" k-width.bind="140">
-			</ak-col>
-			<ak-col k-field="ReproductionSortDate" k-filterable.bind="true" k-width.bind="120">
-			</ak-col>
 	
- 
+				<ak-grid class="flex-row-1 overflow-y-auto" id="grid" k-data-source.bind="datasource" k-widget.bind="grid" k-sortable.bind="{ mode: 'multiple',   allowUnsort: 'true'}"
+		 k-editable="popup" k-reorderable.bind="true" k-resizable.bind="true" k-on-edit.delegate="onEdit($event.detail)" k-selectable="multiple"
+				 k-height.bind="300" k-column-menu.bind="true">
+					 <div style="width: 1600px"></div>
+          <ak-col k-filterable.bind="false" k-width="120px" k-title="Cmd" k-command.bind="['edit']" k-title="&nbsp;" k-locked.bind="true"
+					 k-lockable.bind="false"></ak-col>
+
+
+					<ak-col k-field="ReproductionAuthor" k-field="Author" k-filterable.bind="true" k-width.bind="140">
+					</ak-col>
+					<ak-col k-field="AuthorFirst" k-filterable.bind="true" k-width.bind="140">
+					</ak-col>
+					<ak-col k-field="AuthorLast" k-filterable.bind="true" k-width.bind="140">
+					</ak-col>
+					<ak-col k-field="ReproductionTitle" k-filterable.bind="true" k-field="Title" k-width.bind="140">
+					</ak-col>
+					<ak-col k-field="ReproductionName" k-filterable.bind="true" k-width.bind="140">
+					</ak-col>
+					<ak-col k-field="ReproductionDate" k-filterable.bind="true" k-width.bind="140">
+					</ak-col>
+					<ak-col k-field="ReproductionSortDate" k-filterable.bind="true" k-width.bind="120">
+					</ak-col>
+
+
+					<ak-col k-field="ReproductionLocationDesc" k-title="Loc" k-title="Location" k-width="180px" k-editor.bind="locDropDownEditor"
+					 k-filterable.bind="false" k-groupable.bind="false"></ak-col>
+
+
+					<ak-col k-field="ReproductionTypeDesc" k-title="Type" k-title="Type" k-width="180px" k-editor.bind="typeDropDownEditor" k-filterable.bind="false"
+					 k-groupable.bind="false"></ak-col>
+
+					<ak-col k-field="ColorBWDesc" k-title="C/BW" k-width="180px" k-editor.bind="ColorBWDropDownEditor" k-filterable.bind="false"
+					 k-groupable.bind="false"></ak-col>
+
+					<ak-col k-field="ReproductionExhibit" k-title="Exh" k-width="180px" k-editor.bind="exhibitionDropDownEditor" k-filterable.bind="false"
+					 k-groupable.bind="false"></ak-col>
+
+
+					<ak-col k-field="no" k-filterable.bind="true" k-width.bind="140">
+					</ak-col>
+					<ak-col k-field="ReproductionPage" k-filterable.bind="true" k-width.bind="120">
+					</ak-col>
+
+					<ak-col k-title="Batch" k-width="110px" k-field="Batch"></ak-col>
 
 
 
+				</ak-grid>
 
-
-			<ak-col k-field="ReproductionLocationDesc" k-title="Loc" k-title="Location"
-       k-width="180px" k-editor.bind="locDropDownEditor" k-filterable.bind="false"
-			 k-groupable.bind="false"></ak-col>
-
-
-	<ak-col k-field="ReproductionTypeDesc" k-title="Type" k-title="Type"
-       k-width="180px" k-editor.bind="typeDropDownEditor" k-filterable.bind="false"
-			 k-groupable.bind="false"></ak-col>
-
-	<ak-col k-field="ColorBWDesc" k-title="C/BW" 
-       k-width="180px" k-editor.bind="ColorBWDropDownEditor" k-filterable.bind="false"
-			 k-groupable.bind="false"></ak-col>
-
-	<ak-col k-field="ReproductionExhibit" k-title="Exh"
-       k-width="180px" k-editor.bind="exDownEditor" k-filterable.bind="false"
-			 k-groupable.bind="false"></ak-col>
-
-
-		
-
-		
-
-			<ak-col k-field="no" k-filterable.bind="true" k-width.bind="140">
-			</ak-col>
-		
-    
-    	<ak-col k-title="ReproductionType" k-field="ReproductionType" k-width="140px">
-				<ak-template>
-					<ak-combobox k-value.two-way="ReproductionType">
-						<select id="ReproductionTypez" class="form-control  input-sm" value.bind="Description"> 
+	</section>
+</template>
+<!-- 
+	<ak-col k-title="ReproductionType" k-field="ReproductionType" k-width="140px">
+						<ak-template>
+							<ak-combobox k-value.two-way="ReproductionType">
+								<select id="ReproductionTypez" class="form-control  input-sm" value.bind="Description"> 
                        <option model.bind="''">Choose...filterOnCode</option> 
                         <option repeat.for="opt of appService.codesPublicationType" model.bind="id">
                     ${opt.Description} 
                       </option> 
                     </select>
-					</ak-combobox>
-				</ak-template>
-			</ak-col>
+							</ak-combobox>
+						</ak-template>
+					</ak-col>
 
 
 
 
-			<ak-col k-title="ColorBW" k-field="ColorBW" k-width="140px">
-				<ak-template>
-					<ak-combobox k-value.two-way="ColorBW">
-						<select id="ReproductionLocationx" class="form-control  input-sm" value.bind="Description"> 
+					<ak-col k-title="ColorBW" k-field="ColorBW" k-width="140px">
+						<ak-template>
+							<ak-combobox k-value.two-way="ColorBW">
+								<select id="ReproductionLocationx" class="form-control  input-sm" value.bind="Description"> 
                        <option model.bind="''">Choose...filterOnCode</option> 
                         <option repeat.for="opt of appService.codesReproductionType" model.bind="id">
                     ${opt.Description} 
                       </option> 
                     </select>
-					</ak-combobox>
-				</ak-template>
-			</ak-col>
+							</ak-combobox>
+						</ak-template>
+					</ak-col>
 
 
+					<ak-col k-title="Exhibit" k-field="ReproductionExhibit" k-width="140px">
+						<ak-template>
+							<ak-combobox k-value.two-way="ReproductionExhibit">
 
 
-
-
-
-			<ak-col k-title="Exhibit" k-field="ReproductionExhibit" k-width="140px">
-				<ak-template>
-					<ak-combobox k-value.two-way="ReproductionExhibit">
-
-
-						<select id="ReproductionExhibitx" class="form-control  input-sm" value.bind="ReproductionExhibit"> 
+								<select id="ReproductionExhibitx" class="form-control  input-sm" value.bind="ReproductionExhibit"> 
                       <option model.bind="''" >Choose...</option> 
                          <option  repeat.for="opt of currentItem.exhibition" 
                          model.bind="opt.id">
@@ -115,25 +110,9 @@
                     </select>
 
 
-					</ak-combobox>
-				</ak-template>
-			</ak-col>
-
-
-
-
-			<ak-col k-field="ReproductionPage" k-filterable.bind="true" k-width.bind="120">
-			</ak-col>
-
-			<ak-col k-title="Batch" k-width="110px" k-field="Batch"></ak-col>
-
-
-
-		</ak-grid>
-
-
-	</section>
-</template>
+							</ak-combobox>
+						</ak-template>
+					</ak-col> -->
 
 
 <!--	<ak-col k-field="ReproductionLocation"  k-title="Loc2" k-filterable.bind="true" k-width.bind="120">

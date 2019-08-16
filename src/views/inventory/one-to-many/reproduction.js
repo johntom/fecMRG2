@@ -51,9 +51,7 @@ export class Reproduction {
           AuthorFirst: { type: "string", editable: true },
           ReproductionPage: { type: "string", editable: true },
           ColorBW: { type: "string", editable: true },
-
-
-
+          ReproductionExhibit: { type: "string", editable: true },
         }
       }
     },
@@ -62,19 +60,23 @@ export class Reproduction {
   })
 
 
-
-
   constructor(api, appService, dialogService) {
     this.api = api;
     this.appService = appService;
     this.inv = '';
     this.currentItem = this.appService.currentItem
     this.dialogService = dialogService
+    let exdata = [];
+    this.exhibitiondropdown = ''
+    for (const item of this.currentItem.exhibition) {
+      item.id = item.id + '|' + item.ExhibitTitle.substr(0, 20)
+      exdata.push(item)
+    }
+    this.exhibitiondropdown = exdata
   }
 
 
-
- ColorBWDropDownEditor(container, options) {
+  ColorBWDropDownEditor(container, options) {
     $('<input required data-text-field="Description" data-value-field="Description" data-bind="value:' + options.field + '"/>')
       .appendTo(container)
       .kendoDropDownList({
@@ -92,21 +94,24 @@ export class Reproduction {
 
 
 
-// "legacyid" : NumberInt(16916), 
-//             "ExhibitTitle" : "Arthur Dove", 
-//             "ExhibitSponser" : "Albright-Knox Art Gallery", 
-//             "ExhibitLocation" : "5d5009e9ee1af1dc544c0939", 
-//             "ExhibitLocationDesc" : "Buffalo, NY", 
-//             "ExhibitDates" : "January 27 - March 2, 1975", 
-//             "ExhibitSortDate" : "1975-01-27T05:00:00.000Z", 
-//             "Traveled" : "Y", 
-//             "ExhibitMemo" : "", 
-            // "id" : NumberInt(8)
-            //options.field=ReproductionExhibit
- exDownEditor(container, options) {
-  //  $('<input required data-text-field="ExhibitTitle" data-value-field="id" data-bind="value:' + options.field + '"/>')
-    console.log('options.field',options.field)
-    $('<input  data-text-field="ExhibitTitle" data-value-field="id" data-bind="value:' + options.field + '"/>')
+  // "legacyid" : NumberInt(16916), 
+  //             "ExhibitTitle" : "Arthur Dove", 
+  //             "ExhibitSponser" : "Albright-Knox Art Gallery", 
+  //             "ExhibitLocation" : "5d5009e9ee1af1dc544c0939", 
+  //             "ExhibitLocationDesc" : "Buffalo, NY", 
+  //             "ExhibitDates" : "January 27 - March 2, 1975", 
+  //             "ExhibitSortDate" : "1975-01-27T05:00:00.000Z", 
+  //             "Traveled" : "Y", 
+  //             "ExhibitMemo" : "", 
+  // "id" : NumberInt(8)
+  //options.field=ReproductionExhibit 
+  exhibitionDropDownEditor(container, options) {  
+    //  $('<input required data-text-field="ExhibitTitle" data-value-field="id" data-bind="value:' + options.field + '"/>')
+    console.log('options.field', container, options, options.field)
+    // $('<input  data-text-field="ExhibitTitle" data-value-field="id" data-bind="value:' + options.field + '"/>')
+    // must store id for factsheet as title is not uniq
+    //  
+    $('<input  data-text-field="id" data-value-field="ExhibitTitle" data-bind="value:' + options.field + '"/>')
       .appendTo(container)
       .kendoDropDownList({
         autoBind: false,
@@ -114,15 +119,29 @@ export class Reproduction {
         dataSource: {
           transport: {
             read: (options) => {
-              options.success(this.currentItem.exhibition);
+              options.success(this.exhibitiondropdown);
+              // this.loadExhData()
+              //   .then((exdata) => {
+              //     options.success(exdata);
+
+              //   });
             },
           }
         }
       });
   }
+  // async loadExhData() {
 
+  //   let exdata = [];
+  //   this.currentItem.exhibition
+  //   for (const item of this.currentItem.exhibition) {
+  //     item.id = item.id + '|' + item.ExhibitTitle.substr(0,20)
 
+  //     exdata.push(item)
+  //   }
 
+  //   return exdata
+  // }
   typeDropDownEditor(container, options) {
     $('<input required data-text-field="Description" data-value-field="Description" data-bind="value:' + options.field + '"/>')
       .appendTo(container)
