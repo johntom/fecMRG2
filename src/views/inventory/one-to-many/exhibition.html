@@ -1,9 +1,5 @@
 <template>
-
-
-	<!-- <require from="./docs.css"></require> -->
 	<require from="../../../resources/value-converters/date-format"></require>
-	<!-- <require from="../../../resources/value-converters/date-formatiso"></require> -->
 
 	<section class="docs  full-height  flex-column-1 overflow-y-auto ignore" style="height:400px">
 
@@ -13,78 +9,47 @@
 				<i class="fa fa-plus"></i> Add Exhibition
 			</a>
 		</h4>
-		<!-- <th width="70px" class="header">ID </th> -->
-
-		<!-- <table id="dtVerticalScrollExample" class="table  table-bordered table-sm" cellspacing="0"
-  width="100%">
-			<thead class="table-header-blue" data-sort="items.bind: currentItem.exhibition; cols: ['WorkDate','Notes']">
-		 -->
-		<!-- <table id="raptable" > -->
-		<!-- <div id="raptable" style="width:600px"> -->
-		<!-- <table id="raptable" style="width:600px"> -->
-		<div id="raptable">
-			<table>
-				<thead>
-					<tr>
-						<th>ID </th>
-						<th>Title </th>
-						<th>Sponsor </th>
-						<th>Location </th>
-						<th>Dates </th>
-						<th>Sort Date </th>
-						<th>Traveled </th>
-
-						<th>Batch No </th>
 
 
-						<th>Note </th>
-						<th>Cmd</th>
-
-					</tr>
-				</thead>
-
-				<tbody>
-					<tr repeat.for="exhibition of currentItem.exhibition" with.bind="exhibition">
-						<!-- <td> ${ExhibitTitle} </td> -->
-						<td><input type="text" id="id" class="form-control  input-sm" value.bind="exhibition.id"></td>
-
-						<td><input type="text" id="ExhibitTitle" class="form-control  input-sm" value.bind="exhibition.ExhibitTitle"></td>
-						<td><input type="text" id="ExhibitSponser" class="form-control  input-sm" value.bind="exhibition.ExhibitSponser"></td>
-
-						<td>
-							<select id="ExhibitLocation" class="form-control input-sm" value.bind="ExhibitLocation"> 
-                      <option model.bind="null">Choose...</option> 
-                     <option repeat.for="opt of appService.codesProvenanceLocation" model.bind="opt.id">
-                       <!-- codesProvenanceLocation -->
-                           ${opt.Description} 
-                      </option> 
-                    </select>
-						</td>
-
-						<td><input type="text" id="ExhibitDates" class="form-control  input-sm" value.bind="exhibition.ExhibitDates "></td>
-						<td><input type="date" id="ExhibitSortDate" class="form-control  input-sm" value.bind="exhibition.ExhibitSortDate | dateFormat"></td>
 
 
-						<td>
-							<!-- <input type="text" id="Traveled" class="form-control  input-sm" value.bind="exhibition.Traveled"> -->
-							<input type="checkbox" id="Traveled" checked.bind="exhibition.Traveled">
 
-						</td>
-						<td><span> ${batchno}</span></td>
+		
 
-						<td><input type="text" id="ExhibitMemo" class="form-control  input-sm" value.bind="exhibition.ExhibitMemo"></td>
-						<td>
-							<!-- <button class="btn btn-primary" click.delegate="exhibition.edit=!exhibition.edit">${ !exhibition.edit ? 'Update' : 'Done' }</button> -->
-							<button class="btn btn-primary" click.delegate="saveitem(exhibition,$index)">${ !exhibition.edit ? 'Edit' : 'Save' }</button>
-							<button class="btn btn-sm btn-danger" click.delegate="remove(exhibition,$index)">           Delete            </button>
-							<button class="btn btn-success" click.delegate="modal(exhibition,$index)">Pop</button>
+		<ak-grid class="flex-row-1 overflow-y-auto" id="grid" k-data-source.bind="datasource" k-widget.bind="grid" k-sortable.bind="{ mode: 'multiple',   allowUnsort: 'true'}"
+		 k-editable="popup" k-reorderable.bind="true" k-resizable.bind="true" k-on-edit.delegate="onEdit($event.detail)" k-selectable="multiple"
+		 k-height.bind="300" k-column-menu.bind="true">
+			<div style="width: 1200px"></div>
+			<ak-col k-filterable.bind="false" k-width="120px" k-title="Cmd" k-command.bind="['edit']" k-title="&nbsp;" k-locked.bind="true"
+			 k-lockable.bind="false"></ak-col>
 
-						</td>
 
-					</tr>
-				</tbody>
-			</table>
-		</div>
+			<ak-col k-field="id" k-filterable.bind="true" k-width.bind="140">
+			</ak-col>
+			<ak-col k-title="Title" k-field="ExhibitTitle" k-filterable.bind="true" k-width.bind="140">
+			</ak-col>
+			<ak-col k-title="Sponser" k-field="ExhibitSponser" k-filterable.bind="true" k-width.bind="140">
+			</ak-col>
+			<ak-col k-field="ExhibitLocation" k-title="Loc" k-title="Location" k-width="180px" k-editor.bind="locDropDownEditor" k-filterable.bind="false"
+			 k-groupable.bind="false"></ak-col>
+
+			<ak-col k-field="ReproductionTitle" k-filterable.bind="true" k-field="Title" k-width.bind="140">
+			</ak-col>
+			<ak-col k-field="ExhibitDates" k-filterable.bind="true" k-width.bind="140">
+			</ak-col>
+			<ak-col k-field="ExhibitSortDate" k-filterable.bind="true" k-width.bind="120">
+			</ak-col>
+			<ak-col k-field="ExhibitMemo" k-filterable.bind="true" k-width.bind="140">
+			</ak-col>
+      <!-- <input type="checkbox" id="Traveled" checked.bind="exhibition.Traveled"> -->
+
+			<ak-col k-title="Batch" k-width="110px" k-field="Batch"></ak-col>
+
+
+		</ak-grid>
+
+
+
 
 	</section>
 </template>

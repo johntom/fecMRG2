@@ -16,14 +16,21 @@ export class Reproduction {
   scrollable = { virtual: true };
   datasource = new kendo.data.DataSource({
     transport: {
+      // read: (options) => {
+      //   //   this.currentItem.reproduction
+      //   this.loadData()
+      //     .then((repro) => {
+      //       console.log(' repro datasource ', repro[0]);
+      //       options.success(repro);
+      //     });
+
+      // },
+
       read: (options) => {
-        //  this.loadData(this.capColor, this.prevtown)
-        this.loadData()
-          .then((repro) => {
-            console.log(' repro datasource ', repro[0]);
-            options.success(repro);
-          });
-      },
+        options.success(this.currentItem.reproduction);
+        this.currentItem.reproduction = this.datasource._data // sync to our model
+       },
+
       update: (options) => {
         let updatedItem = options.data;
         updatedItem.offerdate = this.offerdate
@@ -66,13 +73,16 @@ export class Reproduction {
     this.inv = '';
     this.currentItem = this.appService.currentItem
     this.dialogService = dialogService
+    
     let exdata = [];
     this.exhibitiondropdown = ''
-    for (const item of this.currentItem.exhibition) {
+    let exhibitiondropdownclone = JSON.parse(JSON.stringify(this.currentItem.exhibition));
+    for (const item of exhibitiondropdownclone) {
       item.id = item.id + '|' + item.ExhibitTitle.substr(0, 20)
       exdata.push(item)
     }
     this.exhibitiondropdown = exdata
+  
   }
 
 
@@ -105,13 +115,13 @@ export class Reproduction {
   //             "ExhibitMemo" : "", 
   // "id" : NumberInt(8)
   //options.field=ReproductionExhibit 
-  exhibitionDropDownEditor(container, options) {  
+  exhibitionDropDownEditor(container, options) {
     //  $('<input required data-text-field="ExhibitTitle" data-value-field="id" data-bind="value:' + options.field + '"/>')
     console.log('options.field', container, options, options.field)
     // $('<input  data-text-field="ExhibitTitle" data-value-field="id" data-bind="value:' + options.field + '"/>')
     // must store id for factsheet as title is not uniq
     //  
-    $('<input  data-text-field="id" data-value-field="ExhibitTitle" data-bind="value:' + options.field + '"/>')
+    $('<input  data-text-field="id" data-value-field="id" data-bind="value:' + options.field + '"/>')
       .appendTo(container)
       .kendoDropDownList({
         autoBind: false,
@@ -123,25 +133,13 @@ export class Reproduction {
               // this.loadExhData()
               //   .then((exdata) => {
               //     options.success(exdata);
-
               //   });
             },
           }
         }
       });
   }
-  // async loadExhData() {
 
-  //   let exdata = [];
-  //   this.currentItem.exhibition
-  //   for (const item of this.currentItem.exhibition) {
-  //     item.id = item.id + '|' + item.ExhibitTitle.substr(0,20)
-
-  //     exdata.push(item)
-  //   }
-
-  //   return exdata
-  // }
   typeDropDownEditor(container, options) {
     $('<input required data-text-field="Description" data-value-field="Description" data-bind="value:' + options.field + '"/>')
       .appendTo(container)
@@ -170,12 +168,10 @@ export class Reproduction {
               options.success(this.appService.codesProvenanceLocation);
 
             },
-
           }
         }
       });
   }
-
 
 
   activate(params, routeConfig) {
@@ -247,8 +243,6 @@ export class Reproduction {
   }
 
   remove(item, index) {
-
-
     this.dialogService.open({ viewModel: Prompt, model: 'Delete or Cancel?', lock: false }).whenClosed(response => {
       if (!response.wasCancelled) {
         console.log('Delete')
@@ -268,88 +262,81 @@ export class Reproduction {
   async loadData() {
     // console.log('this.loadData ')
     let repro = this.currentItem.reproduction
-    this.repro = repro
+    // this.repro = repro
+
     return repro
     // return this.appService.actionsearchresults
 
   }
 
-  onEdit(e) {
-    // let grid = e.sender;
-    // let selectedRow = grid.select();
-    // let dataItem = grid.dataItem(selectedRow);
-    // this.dialogService.open({ viewModel: Promptrepro, model: dataItem, lock: true }).whenClosed(response => {
+  // onEdit(e) {
+  //   // let grid = e.sender;
+  //   // let selectedRow = grid.select();
+  //   // let dataItem = grid.dataItem(selectedRow);
+  //   // this.dialogService.open({ viewModel: Promptrepro, model: dataItem, lock: true }).whenClosed(response => {
 
-    //   if (!response.wasCancelled) {
-    //     console.log('item', item);
-    //     item.edit = false//this.saveitem(item, index)
-    //   } else {
+  //   //   if (!response.wasCancelled) {
+  //   //     console.log('item', item);
+  //   //     item.edit = false//this.saveitem(item, index)
+  //   //   } else {
 
-    //     console.log('cancel');
-    //   }
-    //   console.log(response)//.output);
-    // });
-  }
+  //   //     console.log('cancel');
+  //   //   }
+  //   //   console.log(response)//.output);
+  //   // });
+  // }
 
-  rowSelected(e) {
-    // let grid = e.sender;
-    // let selectedRow = grid.select();
-    // let dataItem = grid.dataItem(selectedRow);
-    // this.dialogService.open({ viewModel: Promptrepro, model: dataItem, lock: true }).whenClosed(response => {
+  // rowSelected(e) {
+  //   // let grid = e.sender;
+  //   // let selectedRow = grid.select();
+  //   // let dataItem = grid.dataItem(selectedRow);
+  //   // this.dialogService.open({ viewModel: Promptrepro, model: dataItem, lock: true }).whenClosed(response => {
+  //   //   if (!response.wasCancelled) {
+  //   //     console.log('item', item);
+  //   //     item.edit = false//this.saveitem(item, index)
+  //   //   } else {
 
-    //   if (!response.wasCancelled) {
-    //     console.log('item', item);
-    //     item.edit = false//this.saveitem(item, index)
-    //   } else {
+  //   //     console.log('cancel');
+  //   //   }
+  //   //   console.log(response)//.output);
+  //   // });
+  // }
+  // rowpopSelected(e) {
+  //   let grid = this.grid;
+  //   let targetRow = $(e.target).closest("tr");
+  //   let currentRowIndex = targetRow.index();
+  //   grid.select(targetRow);
+  //   let selectedRow = grid.select();
+  //   let dataItem = grid.dataItem(selectedRow);
+  //   this.dialogService.open({ viewModel: Promptrepro, model: dataItem, lock: true }).whenClosed(response => {
 
-    //     console.log('cancel');
-    //   }
-    //   console.log(response)//.output);
-    // });
-  }
-  rowpopSelected(e) {
-    let grid = this.grid;
-    let targetRow = $(e.target).closest("tr");
-    let currentRowIndex = targetRow.index();
-    grid.select(targetRow);
-    let selectedRow = grid.select();
-    let dataItem = grid.dataItem(selectedRow);
-    this.dialogService.open({ viewModel: Promptrepro, model: dataItem, lock: true }).whenClosed(response => {
+  //     if (!response.wasCancelled) {
+  //       console.log('item', response);
+  //       this.repro[currentRowIndex].AuthorFirst = response.output.AuthorFirst
+  //       // item.edit = false//this.saveitem(item, index)
+  //     } else {
 
-      if (!response.wasCancelled) {
-        console.log('item', response);
-        this.repro[currentRowIndex].AuthorFirst = response.output.AuthorFirst
-        // item.edit = false//this.saveitem(item, index)
-      } else {
+  //       console.log('cancel');
+  //     }
+  //     console.log(response)//.output);
+  //   });
+  // }
 
-        console.log('cancel');
-      }
-      console.log(response)//.output);
-    });
-  }
-
-  modal(item, index) {
-    // prev popup
-    //   let currentModel = {}
-    //   currentModel.currentItem = this.currentItem
-    //   currentModel.item = item
-
-    //   currentModel.currentItem.hide1 = false
-
-
-    //   this.dialogService.open({ viewModel: Promptrepro, model: currentModel, lock: true }).whenClosed(response => {
-
-    //     if (!response.wasCancelled) {
-    //       console.log('item', item);
-    //       item.edit = false//this.saveitem(item, index)
-    //     } else {
-
-    //       console.log('cancel');
-    //     }
-    //     console.log(response)//.output);
-    //   });
-    // }
-
-
-  }
+  // modal(item, index) {
+  //   // prev popup
+  //   //   let currentModel = {}
+  //   //   currentModel.currentItem = this.currentItem
+  //   //   currentModel.item = item
+  //   //   currentModel.currentItem.hide1 = false
+  //   //   this.dialogService.open({ viewModel: Promptrepro, model: currentModel, lock: true }).whenClosed(response => {
+  //   //     if (!response.wasCancelled) {
+  //   //       console.log('item', item);
+  //   //       item.edit = false//this.saveitem(item, index)
+  //   //     } else {
+  //   //       console.log('cancel');
+  //   //     }
+  //   //     console.log(response)//.output);
+  //   //   });
+  //   // }
+  // }
 }
