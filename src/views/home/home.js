@@ -418,7 +418,7 @@ export class Home {
         // console.log(' this.orgsList', this.appService.orgsList)
         console.log(' this.appService.codesGenre', this.appService.codesGenre)
         console.log(' this.artistList', this.appService.artistList.length)
-        console.log(' this.codesInventoryLocation', this.appService.codesInventoryLocation) 
+        console.log(' this.codesProvenanceLocation', this.appService.codesProvenanceLocation) 
 
 
         // bad   this.currentItem = this.items.find(f => f.id == params.id);
