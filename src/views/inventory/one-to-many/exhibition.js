@@ -107,51 +107,8 @@ export class Exhibition {
       });
   }
  
- 
- 
-  locTemplate = '${ExhibitLocation ? ExhibitLocation.Description : ""}'; 
-  locDropDownEditorID(container, options) {
-    $('<input required data-text-field="Description" data-value-field="id" data-bind="value:' + options.field + '"/>')
-    // $('<input required data-text-field="Description" data-value-field="id" data-bind="value:ExhibitLocation"/>')
-      .appendTo(container)
-      .kendoDropDownList({
-        autoBind: false,
-        type: 'json',
-        dataSource: this.appService.codesProvenanceLocation
-      });
+   locTemplate = '${ExhibitLocation ? ExhibitLocation.Description" : ""}';
 
-    // .kendoDropDownList({
-    //   dataSource: this.appService.codesProvenanceLocation
-    //   // ,
-    //   // dataTextField: "Description",
-    //   // dataValueField: "id"
-    // });
-  }
-
-  categoryDropDownEditor(container, options) {
-    $('<input required data-text-field="CategoryName" data-value-field="CategoryID" data-bind="value:' + options.field + '"/>')
-      .appendTo(container)
-      .kendoDropDownList({
-        autoBind: false,
-        dataSource: {
-          type: 'odata',
-          transport: {
-            read: '//demos.telerik.com/kendo-ui/service/Northwind.svc/Categories'
-          }
-        }
-      });
-  }
-  categoryTemplate = '${Category ? Category.CategoryName : ""}';
-
-  //  locTemplate = '${ExhibitLocation ? this.appService.codesProvenanceLocation.Description : ""}';
-  // locTemplate = '${ExhibitLocation ? ExhibitLocation.Description" : ""}';
-  // locTemplate(container) {
-  //   //  return `${container.ExhibitLocation}--`
-  //   if (container.ExhibitLocation) {
-  //     // console.log('this.c', this.appService.codesProvenanceLocation)
-  //     return `${container.ExhibitLocation}--`
-  //   } else return `missing--`
-  // }
   locDropDownEditor(container, options) {
     $('<input required data-text-field="Description" data-value-field="Description" data-bind="value:' + options.field + '"/>')
       .appendTo(container)
@@ -163,6 +120,51 @@ export class Exhibition {
         dataValueField: "Description"
       });
   }
+
+ 
+  // locTemplate = '${ExhibitLocation ? ExhibitLocation.Description : ""}'; 
+  // locDropDownEditorID(container, options) {
+  //   $('<input required data-text-field="Description" data-value-field="id" data-bind="value:' + options.field + '"/>')
+  //   // $('<input required data-text-field="Description" data-value-field="id" data-bind="value:ExhibitLocation"/>')
+  //     .appendTo(container)
+  //     .kendoDropDownList({
+  //       autoBind: false,
+  //       type: 'json',
+  //       dataSource: this.appService.codesProvenanceLocation
+  //     });
+
+  //   // .kendoDropDownList({
+  //   //   dataSource: this.appService.codesProvenanceLocation
+  //   //   // ,
+  //   //   // dataTextField: "Description",
+  //   //   // dataValueField: "id"
+  //   // });
+  // }
+
+  // categoryDropDownEditor(container, options) {
+  //   $('<input required data-text-field="CategoryName" data-value-field="CategoryID" data-bind="value:' + options.field + '"/>')
+  //     .appendTo(container)
+  //     .kendoDropDownList({
+  //       autoBind: false,
+  //       dataSource: {
+  //         type: 'odata',
+  //         transport: {
+  //           read: '//demos.telerik.com/kendo-ui/service/Northwind.svc/Categories'
+  //         }
+  //       }
+  //     });
+  // }
+  // categoryTemplate = '${Category ? Category.CategoryName : ""}';
+
+  //  locTemplate = '${ExhibitLocation ? this.appService.codesProvenanceLocation.Description : ""}';
+    // locTemplate(container) {
+  //   //  return `${container.ExhibitLocation}--`
+  //   if (container.ExhibitLocation) {
+  //     // console.log('this.c', this.appService.codesProvenanceLocation)
+  //     return `${container.ExhibitLocation}--`
+  //   } else return `missing--`
+  // }
+
 
   // dataSource: {      transport: {        read: (options) => {          options.success(this.appService.codesProvenanceLocation);},}}});
   // locTemplate(container) {

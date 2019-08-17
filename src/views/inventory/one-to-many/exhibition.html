@@ -1,6 +1,48 @@
 <template>
 	<require from="../../../resources/value-converters/date-format"></require>
+<style>
+/*
+    Increase the width of the edit form.
+    The default one is 400px.
+*/
 
+.k-edit-form-container
+{
+    width: 500px;
+}
+
+/*
+    Decrease the width of the edit form labels. The default one is 30%.
+    The new width should depend on the column titles.
+    Switch the text alignment to the left. By default, it is to the right.
+*/
+
+.k-popup-edit-form .k-edit-label
+{
+    width: 20%;
+    text-align: left;
+}
+
+/*
+    Increase the width of the textbox containers. The default one is 60%.
+    The sum of label and editor percentage widths should be around 90%, to make up for existing paddings.
+*/
+.k-popup-edit-form .k-edit-field
+{
+    width: 70%;
+}
+
+/*
+    Expand the edit textboxes and any other Kendo UI widgets.
+    In case of unexpected side effects, use widget-specific classes, instead of .k-widget.
+*/
+.k-popup-edit-form .k-edit-field > .k-textbox,
+.k-popup-edit-form .k-edit-field > .k-widget:not(.k-tooltip)
+{
+    width: 98%;
+}
+
+</style>
 	<section class="docs  full-height  flex-column-1 overflow-y-auto ignore" style="height:400px">
 
 		<h4>
@@ -30,11 +72,16 @@
       k-editor.bind="locDropDownEditor" k-filterable.bind="false"
 			 k-groupable.bind="false" ></ak-col>  -->
 	   <!-- <ak-col k-field="Category" k-title="Category" k-width="180px" k-editor.bind="categoryDropDownEditor" k-template.bind="categoryTemplate"></ak-col> -->
-     <ak-col k-field="ExhibitLocation" k-title="ExhLocation" k-width="180px"
+     <!-- <ak-col k-field="ExhibitLocation" k-title="ExhLocation" k-width="180px"
            k-editor.bind="locDropDownEditorID" k-template.bind="locTemplate"></ak-col>
-   	
-     <ak-col k-field="eloc" k-title="eloc" k-width="180px"
-      k-editor.bind="locationDropDownEditor"k-template.bind="locationTemplate"
+   	 -->
+		<ak-col k-field="ExhibitLocationDesc" k-title="LocDesc" k-title="Location" 
+      k-width="140px" 
+      k-editor.bind="locDropDownEditor" k-filterable.bind="false"
+			 k-groupable.bind="false" ></ak-col> 
+
+     <ak-col k-field="eloc" k-title="eloc" k-width="120px"
+      k-editor.bind="locationDropDownEditor" k-template.bind="locationTemplate"
         k-filterable.bind="false" k-groupable.bind="false" ></ak-col>
     
 
@@ -50,7 +97,7 @@
 	  	k-template.bind="locTemplate"	 k-groupable.bind="false"></ak-col> -->
 	<!-- k-template.bind="locTemplate((container,appService.codesProvenanceLocation) $event,appService.codesProvenanceLocation)"	 k-groupable.bind="false"></ak-col> -->
 
-				<ak-col k-title="ExhibitDates" k-width="120px" k-field="ExhibitDates"></ak-col>
+				<ak-col k-title="ExhibitDates" k-width="160px" k-field="ExhibitDates"></ak-col>
    
 			<ak-col k-field="ExhibitSortDate" k-filterable.bind="true" k-format="{0:MM/dd/yyyy}" k-width.bind="90">	</ak-col> -->
 			<ak-col k-field="ExhibitMemo" k-filterable.bind="true" k-width.bind="140"></ak-col>
