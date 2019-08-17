@@ -45,8 +45,8 @@ export class Exhibition {
           ExhibitTitle: { type: "string", editable: true },
           ExhibitSponser: { type: "string", editable: true },
           // ExhibitLocation: { type: "string", editable: true },
-          // ExhibitLocation: { type: "string", editable: true },
-          ExhibitLocation: { defaultValue: { id: '5d5009e8ee1af1dc544c05e8', Description: 'New York, NY' } },
+          ExhibitLocation: { type: "string", editable: true },
+          // ExhibitLocation: { defaultValue: { id: '5d5009e8ee1af1dc544c05e8', Description: 'New York, NY' } },
           ExhibitLocationDesc: { type: "string", editable: true },
           ReproductionTitle: { type: "string", editable: true },
           ExhibitSortDate: { type: "date", editable: true },
@@ -60,8 +60,7 @@ export class Exhibition {
     },
     // pageSize: 12,
   })
- //https://gist.run/?id=3c1a0aab9ef1a0aaf037518b5d61c803
- 
+
   constructor(api, appService, dialogService) {
     this.api = api;
     this.appService = appService;
@@ -78,56 +77,38 @@ export class Exhibition {
 
   staffTemplate = '${assignto ? assignto.StaffName : ""}';
   staffDropDownEditor(container, options) {
-    $('<input required data-text-field="StaffName" data-value-field="staffid" data-bind="value:' + options.field + '"/>')
-      .appendTo(container)
-      .kendoDropDownList({ 
-        autoBind: false,
-        type: 'json',
-        dataSource: {
-          transport: {
-            read: "https://backend.brmflow.com/api/v1/staff/find/"
-          }
-        }
-      });
-  }
-  //  <ak-col k-field="ExhibitLocation" k-title="ExhLocation" k-width="180px"
-  //   k-editor.bind="locDropDownEditorID" k-template.bind="locTemplate"></ak-col>
-  //  <ak-col k-field="eloc" k-title="eloc" k-width="180px"
-  //   k-editor.bind="locationDropDownEditor"k-template.bind="locationTemplate"
-  //    k-filterable.bind="false" k-groupable.bind="false" ></ak-col>
+        $('<input required data-text-field="StaffName" data-value-field="staffid" data-bind="value:' + options.field + '"/>')
+            .appendTo(container)
+            .kendoDropDownList({
+                autoBind: false,
+                type: 'json',
+                dataSource: {
+                    transport: {
+                           read: "https://backend.brmflow.com/api/v1/staff/find/"
+                    }
+                }
+            });
+    }						
+	
+	
+	 locationTemplate = '${eloc ? eloc.Description : ""}';
+   locationDropDownEditor(container, options) {
+        $('<input required data-text-field="Description" data-value-field="id" data-bind="value:' + options.field + '"/>')
+            .appendTo(container)
+            .kendoDropDownList({
+                autoBind: false,
+                type: 'json',
+                dataSource: this.appService.codesProvenanceLocation
+            });
+    }						
+	
+	
+	
 
-   locationTemplate = '${eloc ? eloc.Description : ""}';
-  locationDropDownEditor(container, options) {
-    $('<input required data-text-field="Description" data-value-field="id" data-bind="value:' + options.field + '"/>')
-      .appendTo(container)
-      .kendoDropDownList({
-        autoBind: false,
-        type: 'json',
-        dataSource: this.appService.codesProvenanceLocation
-      });
-  }
- 
- 
- 
-  locTemplate = '${ExhibitLocation ? ExhibitLocation.Description : ""}'; 
-  locDropDownEditorID(container, options) {
-    $('<input required data-text-field="Description" data-value-field="id" data-bind="value:' + options.field + '"/>')
-    // $('<input required data-text-field="Description" data-value-field="id" data-bind="value:ExhibitLocation"/>')
-      .appendTo(container)
-      .kendoDropDownList({
-        autoBind: false,
-        type: 'json',
-        dataSource: this.appService.codesProvenanceLocation
-      });
 
-    // .kendoDropDownList({
-    //   dataSource: this.appService.codesProvenanceLocation
-    //   // ,
-    //   // dataTextField: "Description",
-    //   // dataValueField: "id"
-    // });
-  }
 
+
+  //https://gist.run/?id=3c1a0aab9ef1a0aaf037518b5d61c803
   categoryDropDownEditor(container, options) {
     $('<input required data-text-field="CategoryName" data-value-field="CategoryID" data-bind="value:' + options.field + '"/>')
       .appendTo(container)
@@ -142,16 +123,25 @@ export class Exhibition {
       });
   }
   categoryTemplate = '${Category ? Category.CategoryName : ""}';
-
+  locDropDownEditorID(container, options) {
+    // $('<input required data-text-field="Description" data-value-field="id" data-bind="value:' + options.field + '"/>')
+    $('<input required data-text-field="Description" data-value-field="id" data-bind="value:ExhibitLocation"/>')
+      .appendTo(container)
+      .kendoDropDownList({
+        dataSource: this.appService.codesProvenanceLocation,
+        dataTextField: "Description",
+        dataValueField: "id"
+      });
+  }
   //  locTemplate = '${ExhibitLocation ? this.appService.codesProvenanceLocation.Description : ""}';
   // locTemplate = '${ExhibitLocation ? ExhibitLocation.Description" : ""}';
-  // locTemplate(container) {
-  //   //  return `${container.ExhibitLocation}--`
-  //   if (container.ExhibitLocation) {
-  //     // console.log('this.c', this.appService.codesProvenanceLocation)
-  //     return `${container.ExhibitLocation}--`
-  //   } else return `missing--`
-  // }
+  locTemplate(container) {
+    //  return `${container.ExhibitLocation}--`
+    if (container.ExhibitLocation) {
+     // console.log('this.c', this.appService.codesProvenanceLocation)
+      return `${container.ExhibitLocation}--`
+    } else return `missing--`
+  }
   locDropDownEditor(container, options) {
     $('<input required data-text-field="Description" data-value-field="Description" data-bind="value:' + options.field + '"/>')
       .appendTo(container)

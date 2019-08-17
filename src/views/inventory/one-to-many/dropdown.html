@@ -29,17 +29,13 @@
 			<!-- <ak-col k-field="ExhibitLocationDesc" k-title="LocDesc" k-title="Location" k-width="180px" 
       k-editor.bind="locDropDownEditor" k-filterable.bind="false"
 			 k-groupable.bind="false" ></ak-col>  -->
-	   <!-- <ak-col k-field="Category" k-title="Category" k-width="180px" k-editor.bind="categoryDropDownEditor" k-template.bind="categoryTemplate"></ak-col> -->
-     <ak-col k-field="ExhibitLocation" k-title="ExhLocation" k-width="180px"
-           k-editor.bind="locDropDownEditorID" k-template.bind="locTemplate"></ak-col>
-   	
-     <ak-col k-field="eloc" k-title="eloc" k-width="180px"
-      k-editor.bind="locationDropDownEditor"k-template.bind="locationTemplate"
-        k-filterable.bind="false" k-groupable.bind="false" ></ak-col>
+	   <ak-col k-field="Category" k-title="Category" k-width="180px" k-editor.bind="categoryDropDownEditor" k-template.bind="categoryTemplate"></ak-col>
+     <ak-col k-field="ExhibitLocation" k-title="ExhLocation" k-width="180px" k-editor.bind="locDropDownEditorID" k-template.bind="locTemplate"></ak-col>
+   	 <ak-col k-field="assignto" k-title="assignto" k-width="180px" k-editor.bind="staffDropDownEditor"
+                                    k-filterable.bind="false" k-groupable.bind="false" k-template.bind="staffTemplate"></ak-col>
+     <ak-col k-field="eloc" k-title="eloc" k-width="180px" k-editor.bind="locationDropDownEditor"
+                                    k-filterable.bind="false" k-groupable.bind="false" k-template.bind="locationTemplate"></ak-col>
     
-
-     <!-- <ak-col k-field="assignto" k-title="assignto" k-width="180px" k-editor.bind="staffDropDownEditor"
-                                    k-filterable.bind="false" k-groupable.bind="false" k-template.bind="staffTemplate"></ak-col> -->
 	<!-- <ak-col k-field="ExhibitLocation" k-title="LocID" k-title="Loc2" k-width="180px" 
       k-editor.bind="locDropDownEditorID" k-filterable.bind="false"
 	  	k-template.bind="locTemplate"	 k-groupable.bind="false"></ak-col> -->
