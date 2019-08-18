@@ -6,10 +6,8 @@ import { DialogService } from 'aurelia-dialog';
 // import { ynPrompt } from '../../../services/prompt';
 import { Promptyn } from '../../../services/promptyn';
 
- import { Promptorg } from '../promptorg';
- import jsRapTable from '../../../../jslib/jsRapTable';
- 
-// import { Prompt } from '../../../services/prompt';
+import { Promptorg } from '../promptorg';
+
 @inject(ApiService, ApplicationService, DialogService)
 export class Conssignedto {
   heading = 'DataForm HEADER...';
@@ -17,20 +15,71 @@ export class Conssignedto {
   recordId = '';
   done = false;
   edit = false;
-  // notes: Note[] = [];
-  //newNoteWorkDate = '';
-  //newNote= '';
+
+  scrollable = { virtual: true };
+  datasource = new kendo.data.DataSource({
+    transport: {
+      // read: (options) => {
+      //   //   this.currentItem.reproduction
+      //   this.loadData()
+      //     .then((repro) => {
+      //       console.log(' repro datasource ', repro[0]);
+      //       options.success(repro);
+      //     });
+      // },
+      read: (options) => {
+        options.success(this.currentItem.consignedto);
+        this.currentItem.consignedto = this.datasource._data // sync to our model
+      },
+      update: (options) => {
+        let updatedItem = options.data;
+        // updatedItem.offerdate = this.offerdate
+        // console.log('   updatedItem ', updatedItem)
+        options.success(updatedItem)
+      }
+    },
+
+    schema: {
+      model: {
+        id: "id", // Must assign id for update to work
+        fields: {
+          Sequence: { type: "number" }, // scan template
+          consignedto: { type: "string", editable: true },
+          // econsignedto: { type: "string", editable: true },
+       //   econsignedto: {defaultValue: {OrgName: "Ho, Christina", State: "", _id: "5d5005c2db929d74487d0c69" } },
+          econsignedto: { OrgName: "", State: "", _id: "" },
+       
+          eloc: { defaultValue: { id: '5d5009e8ee1af1dc544c05e8', Description: 'New York, NY' } },
+
+          // ProvLoc: { defaultValue: { id: '5d5009e8ee1af1dc544c05e8', Description: 'New York, NY' } },
+          ConsignedStartDate: { type: "date", editable: true },
+          ConsignedEndDate: { type: "date", editable: true },
+          ArtworkReleased: { type: "date", editable: true },
+          CreatedDate: { type: "date", editable: true },
+          Signed: { type: "string", editable: true },
+          PDF: { type: "string", editable: true },
+          //  Returned Sold
+
+        }
+      }
+    },
+    // pageSize: 12,
+  })
   constructor(api, appService, dialogService) {
     this.api = api;
     this.appService = appService;
     this.inv = '';
     this.currentItem = this.appService.currentItem;//testrec;
-    console.log('consignedto ',this.currentItem.consignedto)
+    //////////////////////////////////////////////////////////////////////////////
+    if (this.currentItem.consignedto === undefined) this.currentItem.consignedto = []
+    //////////////////////////////////////////////////////////////////////////////
+    console.log('consignedto ', this.currentItem.consignedto)
     this.dialogService = dialogService
+    this.epoch = moment().unix();
   }
 
-	// <input click.delegate="showModal('ConsignedTo')" type="text" id="ConsignedTo" class="form-control input-sm" value.bind="currentItem.consignedtoname">
-      
+  // <input click.delegate="showModal('ConsignedTo')" type="text" id="ConsignedTo" class="form-control input-sm" value.bind="currentItem.consignedtoname">
+
   activate(params, routeConfig) {
     let oid
     let orgobj
@@ -42,25 +91,35 @@ export class Conssignedto {
       orgobj = this.appService.orgsList[oid]//10]
       if (orgobj !== undefined) this.currentItem.consignedtoname = orgobj.OrgName
     }
-  } 		
+  }
   addDetail() {
     let consignedto = this.currentItem.consignedto
     let flag = false
     let item
-    // let newNoteWorkDate = moment().format('YYYY-MM-DD')
+
+    let dd = moment().format('YYYY-MM-DD')
     if (consignedto === undefined) {
       flag = true
-      consignedto = [] 
+      consignedto = []
     }
-     let cDate = moment().format('YYYY-MM-DD')
-  
-    item = { ConsignmentNotes: '', CreatedDate:cDate, edit: true }
+   
+    item = {
+      id: this.epoch, eloc: { id: '5d5009e8ee1af1dc544c05e8', Description: 'New York, NY' }, ConsignmentNotes: '',
+      ConsignedStartDate: dd,
+      ConsignedEndDate: dd,
+      ArtworkReleased: dd,
+      CreatedDate: dd,
+      econsignedto: { OrgName: "", State: "", _id: "5" }
+    }
+   
+  //     econsignedto: { OrgName: "Ho, Christina", State: "", _id: "5d5005c2db929d74487d0c69" }, CreatedDate: dd
+   
     consignedto.unshift(item)
     if (flag) this.currentItem.consignedto = consignedto
   }
-     saveitem(item,index) {
+  saveitem(item, index) {
     item.edit = !item.edit
-   
+
   }
   remove(item, index) {
     this.mode = 0
@@ -84,19 +143,43 @@ export class Conssignedto {
 
   }
   save(note, index) {
-
   }
- showModal(fieldname,index) {
-    this.currentItem.fieldname = fieldname
-   this.currentItem.ConsignedTo=   this.currentItem.consignedto[index].ConsignedTo  
-   this.currentItem.consignedtoname=  this.currentItem.consignedto[index].consignedtoname
-  
- 
-    // this.dialogService.open({ viewModel: Prompt, model: this.currentItem, lock: false }).whenClosed(response => {
-this.dialogService.open({ viewModel: Promptorg, model: this.currentItem, lock: true }).whenClosed(response => {
 
-    this.currentItem.consignedto[index].ConsignedTo = this.currentItem.ConsignedTo
-    this.currentItem.consignedto[index].consignedtoname = this.currentItem.consignedtoname
+  // this.appService.orgsList
+  orgTemplate = '${econsignedto ? econsignedto.OrgName : ""}';
+  orgDropDownEditor(container, options) {
+    $('<input required data-text-field="OrgName" data-value-field="_id" data-bind="value:' + options.field + '"/>')
+      .appendTo(container)
+      .kendoDropDownList({
+        autoBind: false,
+        type: 'json',
+        dataSource: this.appService.orgsList,
+        dataTextField: "OrgName",
+        dataValueField: "_id"
+      });
+  }
+
+  locationTemplate = '${eloc ? eloc.Description : ""}';
+  locationDropDownEditor(container, options) {
+    $('<input required data-text-field="Description" data-value-field="id" data-bind="value:' + options.field + '"/>')
+      .appendTo(container)
+      .kendoDropDownList({
+        autoBind: false,
+        type: 'json',
+        dataSource: this.appService.codesProvenanceLocation
+      });
+  }
+  showModal(fieldname, index) {
+    this.currentItem.fieldname = fieldname
+    this.currentItem.ConsignedTo = this.currentItem.consignedto[index].ConsignedTo
+    this.currentItem.consignedtoname = this.currentItem.consignedto[index].consignedtoname
+
+
+    // this.dialogService.open({ viewModel: Prompt, model: this.currentItem, lock: false }).whenClosed(response => {
+    this.dialogService.open({ viewModel: Promptorg, model: this.currentItem, lock: true }).whenClosed(response => {
+
+      this.currentItem.consignedto[index].ConsignedTo = this.currentItem.ConsignedTo
+      this.currentItem.consignedto[index].consignedtoname = this.currentItem.consignedtoname
       if (!response.wasCancelled) {
         // console.log('Delete') InsuredBy
         // let notes = this.currentItem.notes
@@ -107,23 +190,7 @@ this.dialogService.open({ viewModel: Promptorg, model: this.currentItem, lock: t
       console.log(response.output);
     });
   }
-   attached() {
-    $(document).ready(function () {
-      $('#raptable').jsRapTable({
-        onSort: function (i, d) {
-          $('tbody').find('td').filter(function () {
-            return $(this).index() === i;
-          }).sortElements(function (a, b) {
-            if (i)
-              return $.text([a]).localeCompare($.text([b])) * (d ? -1 : 1);
-            else
-              return (parseInt($.text([a])) - parseInt($.text([b]))) * (d ? -1 : 1);
-          }, function () {
-            return this.parentNode;
-          });
-        },
-      });
+  attached() {
 
-    })
   }
 }

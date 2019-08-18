@@ -16,8 +16,40 @@ export class Transport {
   done = false;
   edit = false;
 
-  
-
+  scrollable = { virtual: true };
+  datasource = new kendo.data.DataSource({
+    transport: {
+      // read: (options) => {
+      //   //   this.currentItem.reproduction
+      //   this.loadData()
+      //     .then((repro) => {
+      //       console.log(' repro datasource ', repro[0]);
+      //       options.success(repro);
+      //     });
+      // },
+      read: (options) => {
+        options.success(this.currentItem.transport);
+        this.currentItem.transport = this.datasource._data // sync to our model
+      },
+      update: (options) => {
+        let updatedItem = options.data;
+        updatedItem.offerdate = this.offerdate
+        console.log('   updatedItem ', updatedItem)
+        options.success(updatedItem)
+      }
+    },
+    schema: {
+      model: {
+        id: "id", // Must assign id for update to work
+        fields: {
+          TransportDate: { type: "date", editable: true },
+          TransportNotes: { type: "string", editable: true },
+         }
+      }
+    },
+    // pageSize: 12,
+  })
+  //use above function in grid configuration
   constructor(router, api, appService, dialogService) {
     this.api = api;
     this.appService = appService;
@@ -29,6 +61,8 @@ export class Transport {
     this.currenttransport = '';
     this.dialogService = dialogService
     this.router = router;
+     this.epoch = moment().unix();
+
   }
 
   activate(params, routeConfig) {
@@ -47,7 +81,7 @@ export class Transport {
     // selectedadjuster.ADJUSTER_NAME = adj.ADJUSTER_NAME;
   }
 
-  addDetail() {
+  addDetail() { 
  let transport = this.currentItem.transport
     let flag = false
     let item
@@ -56,7 +90,7 @@ export class Transport {
       flag = true
       transport = []
     }
-    item = {  TransportNotes: '', edit: true }
+    item = { id:this.epoch, TransportNotes: '', edit: true }
     transport.unshift(item)
     if (flag) this.currentItem.transport = transport
   }
@@ -66,7 +100,10 @@ export class Transport {
 
   }
   
-
+ textAreaEditor(container, options) {
+    $('<textarea class="k-textbox" name="' + options.field + '" style="width:100%;height:100%;" />').appendTo(container);
+    // $('<textarea data-text-field="Label" data-value-field="Value" data-bind="value:' + options.field + '" style="width: ' + (container.width() - 10) + 'px;height:' + (container.height() - 12) + 'px" />').appendTo(container);
+  }
 
   remove(item, index) {
     //alert('you are about to delete ' + item.Notes + ' ' + index)
@@ -84,25 +121,30 @@ export class Transport {
       console.log(response.output);
     });
   }
-
-   attached() {
-    $(document).ready(function () {
-      $('#raptable').jsRapTable({
-        onSort: function (i, d) {
-          $('tbody').find('td').filter(function () {
-            return $(this).index() === i;
-          }).sortElements(function (a, b) {
-            if (i)
-              return $.text([a]).localeCompare($.text([b])) * (d ? -1 : 1);
-            else
-              return (parseInt($.text([a])) - parseInt($.text([b]))) * (d ? -1 : 1);
-          }, function () {
-            return this.parentNode;
-          });
-        },
+ locationTemplate = '${eloc ? eloc.Description : ""}';
+  locationDropDownEditor(container, options) {
+    $('<input required data-text-field="Description" data-value-field="id" data-bind="value:' + options.field + '"/>')
+      .appendTo(container)
+      .kendoDropDownList({
+        autoBind: false,
+        type: 'json',
+        dataSource: this.appService.codesProvenanceLocation
       });
-
-    })
+  }
+  locTemplate = '${ExhibitLocation ? ExhibitLocation.Description" : ""}';
+  locDropDownEditor(container, options) {
+    $('<input required data-text-field="Description" data-value-field="Description" data-bind="value:' + options.field + '"/>')
+      .appendTo(container)
+      .kendoDropDownList({
+        autoBind: false,
+        type: 'json',
+        dataSource: this.appService.codesProvenanceLocation,
+        dataTextField: "Description",
+        dataValueField: "Description"
+      });
+  }
+   attached() {
+   
   }
 
 }

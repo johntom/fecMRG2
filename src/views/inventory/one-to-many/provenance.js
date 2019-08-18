@@ -9,8 +9,6 @@ import { DialogService } from 'aurelia-dialog';
 import { Promptyn } from '../../../services/promptyn';
 import { Prompt } from '../prompt';
 
-import jsRapTable from '../../../../jslib/jsRapTable';
- 
 @inject(ApiService, ApplicationService, DialogService)
 export class Provenance {
   heading = 'DataForm HEADER...';
@@ -19,6 +17,45 @@ export class Provenance {
   // provenance: Provenance[] = []
   done = false;
   edit = false;
+
+  scrollable = { virtual: true };
+  datasource = new kendo.data.DataSource({
+    transport: {
+     
+      read: (options) => {
+        options.success(this.currentItem.provenance);
+        this.currentItem.provenance = this.datasource._data // sync to our model
+      },
+      update: (options) => {
+        let updatedItem = options.data;
+        // updatedItem.offerdate = this.offerdate
+        // console.log('   updatedItem ', updatedItem)
+        options.success(updatedItem)
+      }
+    },
+
+    schema: {
+      model: {
+        id: "id", // Must assign id for update to work
+        fields: {
+          Sequence: { type: "number" }, // scan template
+          ProvDate: { type: "date", editable: true },
+          ProvMemo: { type: "string", editable: true },
+           ProvLocDesc: { type: "string", editable: true },
+          // ProvLocDesc: { defaultValue: { id: '5d5009e8ee1af1dc544c05e8', Description: 'New York, NY' } },
+        }
+      }
+    },
+    // pageSize: 12,
+  })
+
+
+
+
+  //use above function in grid configuration
+
+
+
   constructor(api, appService, dialogService) {
     this.api = api;
     this.appService = appService;
@@ -30,30 +67,14 @@ export class Provenance {
     this.currentprovenance = '';
     this.dialogService = dialogService
   }
-
+  textAreaEditor(container, options) {
+    $('<textarea class="k-textbox" name="' + options.field + '" style="width:100%;height:100%;" />').appendTo(container);
+    // $('<textarea data-text-field="Label" data-value-field="Value" data-bind="value:' + options.field + '" style="width: ' + (container.width() - 10) + 'px;height:' + (container.height() - 12) + 'px" />').appendTo(container);
+  }
   activate(params, routeConfig) {
 
   }
-  showModal(fieldname, index) {
-    this.currentItem.fieldname = fieldname
-    this.currentItem.ProvOwner = this.currentItem.provenance[index].ProvOwner
-    this.currentItem.provownername = this.currentItem.provenance[index].ProvOwner//provownername
-    this.currentItem.Provlegacyid = this.currentItem.provenance[index].legacyid
 
-    this.dialogService.open({ viewModel: Prompt, model: this.currentItem, lock: false }).whenClosed(response => {
-      // ProvOwnerID
-      this.currentItem.provenance[index].ProvOwner = this.currentItem.ProvOwner
-      this.currentItem.provenance[index].provownername = this.currentItem.provownername
-      if (!response.wasCancelled) {
-        // console.log('Delete') InsuredBy
-        // let notes = this.currentItem.notes
-        // notes.splice(index, 1)// start, deleteCount)
-      } else {
-        console.log('cancel');
-      }
-      console.log(response.output);
-    });
-  }
   saveitem(item, index) {
     item.edit = !item.edit
 
@@ -75,7 +96,7 @@ export class Provenance {
   addit() {
     //alert('in addit prov')
   }
-  addDetail() {
+  addDetail() { 
     //alert('in prov')
     let provenance = this.currentItem.provenance
     let flag = false
@@ -85,30 +106,46 @@ export class Provenance {
       flag = true
       provenance = []
     }
-    item = { ProvMemo: '', edit: true }
+        // "id" : "5d5002e2ac257d943dcfc52b", 
+        //     "legacyid" : NumberInt(27417), 
+        //     "ProvOwner" : "Arthur Dove", 
+        //     "ProvLoc" : "5d5009e8ee1af1dc544c05e8", 
+        //     "ProvLocDesc" : "New York, NY", 
+        //     "ProvDate" : "", 
+        //     "ProvMemo" : "", 
+        //     "Sequence" : NumberInt(1)
+    item = {  id:this.epoch+'', ProvMemo: '', ProvLocDesc:  '', Sequence:  '' }
     provenance.unshift(item)
     if (flag) this.currentItem.provenance = provenance
   }
-
-
-     attached() {
-    $(document).ready(function () {
-      $('#raptable').jsRapTable({
-        onSort: function (i, d) {
-          $('tbody').find('td').filter(function () {
-            return $(this).index() === i;
-          }).sortElements(function (a, b) {
-            if (i)
-              return $.text([a]).localeCompare($.text([b])) * (d ? -1 : 1);
-            else
-              return (parseInt($.text([a])) - parseInt($.text([b]))) * (d ? -1 : 1);
-          }, function () {
-            return this.parentNode;
-          });
-        },
+  locationTemplate = '${eloc ? eloc.Description : ""}';
+  locationDropDownEditor(container, options) {
+    $('<input required data-text-field="Description" data-value-field="id" data-bind="value:' + options.field + '"/>')
+      .appendTo(container)
+      .kendoDropDownList({
+        autoBind: false,
+        type: 'json',
+        dataSource: this.appService.codesProvenanceLocation
       });
+  }
 
-    })
+  locTemplate = '${ProvLocDesc ? ProvLocDesc.Description" : ""}';
+
+  locDropDownEditor(container, options) {
+    $('<input required data-text-field="Description" data-value-field="Description" data-bind="value:' + options.field + '"/>')
+      .appendTo(container)
+      .kendoDropDownList({
+        autoBind: false,
+        type: 'json',
+        dataSource: this.appService.codesProvenanceLocation,
+        dataTextField: "Description",
+        dataValueField: "Description"
+      });
+  }
+
+
+  attached() {
+
   }
 
 }

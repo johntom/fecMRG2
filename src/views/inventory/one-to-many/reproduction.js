@@ -50,6 +50,7 @@ export class Reproduction {
         fields: {
           offeramount: { type: "number" }, // scan template
           ReproductionLocation: { type: "string", editable: true },
+          ReproductionLocationDesc: { type: "string", editable: true },
           ReproductionAuthor: { type: "string", editable: true },
           AuthorFirst: { type: "string", editable: true },
           AuthorLast: { type: "string", editable: true },
@@ -65,7 +66,7 @@ export class Reproduction {
     // pageSize: 12,
 
   })
-
+ 
 
   constructor(api, appService, dialogService) {
     this.api = api;
@@ -78,11 +79,13 @@ export class Reproduction {
     this.exhibitiondropdown = ''
     let exhibitiondropdownclone = JSON.parse(JSON.stringify(this.currentItem.exhibition));
     for (const item of exhibitiondropdownclone) {
-      item.id = item.id + '|' + item.ExhibitTitle.substr(0, 20)
+    if(item.ExhibitTitle!==undefined)  item.id = item.id + '|' + item.ExhibitTitle.substr(0, 20)
       exdata.push(item)
     }
     this.exhibitiondropdown = exdata
-  
+ //////////////////////////////////////////////////////////////////////////
+   if (this.currentItem.reproduction === undefined) this.currentItem.reproduction = []
+    this.epoch = moment().unix();
   }
 
 
@@ -225,16 +228,26 @@ export class Reproduction {
       reproduction = []
     }
     item = {
-      ReproductionAuthor: '', AuthorFirst: '', AuthorLast: '', ReproductionTitle: '',
-      ReproductionName: '', ReproductionLocation: '',
+      id:this.epoch, ReproductionAuthor: '', AuthorFirst: '', AuthorLast: '', ReproductionTitle: '',
+      ReproductionName: '', ReproductionLocationDesc: '',
       ReproductionDate: '', ReproductionPage: '',
-      Sequence: '', ReproductionType: '', ReproductionPage: '', ColorBW: '', ReproductionSortDate: '', edit: true
+      Sequence: '', ReproductionTypeDesc: '', ReproductionPage: '', ColorBWDesc: '', ReproductionSortDate: ''
     }
 
     reproduction.unshift(item)
     if (flag) this.currentItem.reproduction = reproduction
-
-    this.modal(item, 0) // unshirt reproduction.length + 1)
+//  "ReproductionAuthor" : "",             "AuthorFirst" : "", 
+//             "AuthorLast" : "",            "ReproductionTitle" : "Arthur G. Dove Paintings", 
+//             "ReproductionName" : "The Intimate Gallery",             "ReproductionDate" : "1927", 
+//             "ReproductionPage" : "no. 2 (as Rhapsody in Blue, Part I--Gerschwin)", 
+//             "ReproductionType" : "5d5009e8ee1af1dc544c05df", 
+//             "ColorBW" : "5d5009edee1af1dc544c130d",             "ColorBWeLegacy" : NumberInt(4953), 
+//             "ReproductionLocation" : "5d5009e8ee1af1dc544c05e8", 
+//             "ReproductionExhibit" : "",             "ReproductionSortDate" : "1927-01-01T05:00:00.000Z", 
+//             "ReproductionLocationDesc" : "New York, NY",             "replaced" : true, 
+//             "ReproductionTypeLegacy" : NumberInt(34),             "ReproductionTypeDesc" : "catalogue", 
+//             "ColorBWDesc" : "N/A"
+   // this.modal(item, 0) // unshirt reproduction.length + 1)
 
   }
   changeSelect(opt) {

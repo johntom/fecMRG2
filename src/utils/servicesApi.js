@@ -1158,7 +1158,6 @@ export class ApiService {
     //http://arabsight.github.io/uploading-files-with-aurelia
     var url = this.baseweb + `v1/uploadinventory/${id}`
     ///  var url = this.basewebjif + `v1/upload/01-03166`
-
     console.log('url ', url, formData);
     return this.http.fetch(url, {
       mode: 'cors',
@@ -1167,7 +1166,6 @@ export class ApiService {
         'enctype': "multipart/form-data"
       },
       body: formData
-
       // body: JSON.stringify(formData)
     }).then((res) => res.json());
     // .then(data => console.log('data.message', data.message))

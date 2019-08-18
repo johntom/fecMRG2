@@ -1,23 +1,7 @@
 
 
 <template>
-  
-<style>
-table thead tr{
-    display:block;
-}
 
-table th,table td{ 
-    width:80%//1200px;//fixed width
-}
-
-
-table  tbody{
-  display:block;
-  height:200px;
-  overflow:auto;//set tbody to auto
-}
-</style>
 	<require from="./docs.css"></require>
     <require from="../../../resources/value-converters/date-format"></require>
 	<section class="docs full-height flex-column-1 overflow-y-auto ignore">
@@ -27,66 +11,32 @@ table  tbody{
 				<i class="fa fa-plus"></i> Add Note
 			</a>
 		</h4>
-		<!-- <table class="table-condensed table">
-			<thead class="table-header-blue" >  -->
-	
-<div id="raptable">
-	<table>
-		<thead>
-				
-  			<tr>
-				
-          	<tr>
-						<th width="300px"class="header">Work Date
-						</th>
 
-            	
-						<th width="400px" class="header">Note
-             
-						</th>
-						<th width="225px" class="header">Cmd
-						
-						</th>
-					</tr>
-			</thead>
-			<tfoot>
-				<tr>
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
-			</tfoot>
-			<tbody>
-			<tr repeat.for="note of currentItem.notes" with.bind="note">
-					<td width="155px">
+			<!-- <tr repeat.for="note of currentItem.notes" with.bind="note">
           
           	<span show.bind="!note.edit">${WorkDate | dateFormat }</span>
-						<input show.bind="note.edit" class="form-control input-sm" disabled.bind="!note.edit" type="date" value.bind="WorkDate | dateFormat">
-					</td>
 
-					<td width="400px">
-            <!-- <td width="50%"> -->
-						<span show.bind="!note.edit">${Notes}</span>
-
-						<input show.bind="note.edit" class="form-control input-sm" disabled.bind="!note.edit" type="text" value.bind="Notes">
-         	</td>
-
+						<span show.bind="!note.edit">${Notes}</span> -->
+		<ak-grid class="flex-row-1 overflow-y-auto" id="grid" k-data-source.bind="datasource" k-widget.bind="grid" k-sortable.bind="{ mode: 'multiple',   allowUnsort: 'true'}"
+		 k-editable="popup" k-reorderable.bind="true" k-resizable.bind="true" 
+				 k-height.bind="300" k-column-menu.bind="true">
+					 <div style="width: 900px"></div>
+          <ak-col k-filterable.bind="false" k-width="120px" k-title="Cmd" k-command.bind="['edit']" k-title="&nbsp;" k-locked.bind="true"
+					 k-lockable.bind="false"></ak-col>
 
 
-<!-- <td width="20%"> -->
-					<td width="225px">
-					<!-- <button class="btn btn-primary" click.delegate="note.edit=!note.edit">${ !note.edit ? 'Update' : 'Done' }</button> -->
-			 
-         	<button class="btn btn-primary" click.delegate="saveitem(note,$index)">${ !note.edit ? 'Edit' : 'Save' }</button>
-
-      		<button class="btn btn-danger" click.delegate="remove(note,$index)">Delete</button> 
-       
-					</td>
+			
+				<ak-col k-field="Notes" k-title="Memo" k-width="340px"  k-height="240px" k-editor.bind="textAreaEditor"
+					 k-filterable.bind="false" k-groupable.bind="false"></ak-col>
 	
+	
+	<ak-col k-field="WorkDate" k-filterable.bind="true" k-format="{0:MM/dd/yyyy}" k-width.bind="120">	</ak-col> 
+		
+					</ak-col>
+				
+				</ak-grid>
 
-			</tbody>
-		</table>
-	</div>
 	</section>
 </template>
+
 

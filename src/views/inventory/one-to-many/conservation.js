@@ -9,7 +9,7 @@ import { DialogService } from 'aurelia-dialog';
 import { Promptyn } from '../../../services/promptyn';
 import { Promptorg } from '../promptorg';
 import jsRapTable from '../../../../jslib/jsRapTable';
- 
+
 @inject(ApiService, ApplicationService, DialogService)
 export class Conservation {
   heading = 'DataForm HEADER...';
@@ -21,26 +21,87 @@ export class Conservation {
   newNoteWorkDate = '';
   newNote = '';
 
+  //  ConservedBy Dates InvoiceNo Treatment
+  scrollable = { virtual: true };
+  datasource = new kendo.data.DataSource({
+    transport: {
+
+      read: (options) => {
+        options.success(this.currentItem.conservation);
+        this.currentItem.conservation = this.datasource._data // sync to our model
+      },
+      update: (options) => {
+        let updatedItem = options.data;
+        // updatedItem.offerdate = this.offerdate
+        console.log('   updatedItem ', updatedItem)
+        options.success(updatedItem)
+      }
+    },
+
+    schema: {
+      model: {
+        id: "id", // Must assign id for update to work
+        fields: {
+          Treatment: { type: "string" },
+          Dates: { type: "string", editable: true },
+          InvoiceNo: { type: "string", editable: true },
+          ConservedBy: { defaultValue: { id: '5d5009e8ee1af1dc544c05e8', Description: 'New York, NY' } },
+        }
+      }
+    },
+    // pageSize: 12,
+  })
+ 
   constructor(api, appService, dialogService) {
     this.api = api;
     this.appService = appService;
     this.inv = '';
     this.currentItem = this.appService.currentItem;//testrec;
+    if( this.currentItem.conservation===undefined)this.currentItem.conservation=[]
     this.mode = 0;
     this.editrec = '';
     // this.inputable='disabled'
     this.isDisableEdit = true
     this.currentnote = '';
     this.dialogService = dialogService
+      this.epoch = moment().unix();
   }
+
+  textAreaEditor(container, options) {
+    $('<textarea class="k-textbox" name="' + options.field + '" style="width:100%;height:100%;" />').appendTo(container);
+    // $('<textarea data-text-field="Label" data-value-field="Value" data-bind="value:' + options.field + '" style="width: ' + (container.width() - 10) + 'px;height:' + (container.height() - 12) + 'px" />').appendTo(container);
+  }
+  locationTemplate = '${eloc ? eloc.Description : ""}';
+  locationDropDownEditor(container, options) {
+    $('<input required data-text-field="Description" data-value-field="id" data-bind="value:' + options.field + '"/>')
+      .appendTo(container)
+      .kendoDropDownList({
+        autoBind: false,
+        type: 'json',
+        dataSource: this.appService.codesProvenanceLocation
+      });
+  }
+  locTemplate = '${ExhibitLocation ? ExhibitLocation.Description" : ""}';
+  locDropDownEditor(container, options) {
+    $('<input required data-text-field="Description" data-value-field="Description" data-bind="value:' + options.field + '"/>')
+      .appendTo(container)
+      .kendoDropDownList({
+        autoBind: false,
+        type: 'json',
+        dataSource: this.appService.codesProvenanceLocation,
+        dataTextField: "Description",
+        dataValueField: "Description"
+      });
+  }
+
   test(index) {
     console.log('test ' + index, (index === this.editrec && this.mode > 0))
     return !(index === this.editrec && this.mode > 0)
 
   }
-   saveitem(item,index) {
+  saveitem(item, index) {
     item.edit = !item.edit
-   
+
   }
   activate(params, routeConfig) {
     let oid
@@ -52,12 +113,12 @@ export class Conservation {
       oid = orgs.findIndex(x => x._id === this.currentItem.ConservedBy)
       orgobj = this.appService.orgsList[oid]//10]
       if (orgobj !== undefined) {
-         this.currentItem.conservedbyname = orgobj.OrgName
-         this.appService.originalrec.conservedbyname = this.currentItem.conservedbyname// fix dirty
-   
+        this.currentItem.conservedbyname = orgobj.OrgName
+        this.appService.originalrec.conservedbyname = this.currentItem.conservedbyname// fix dirty
+
       }
     }
-            
+
   }
   remove(item, index) {
     // alert('you are about to delete ' + item.Notes + ' ' + index)
@@ -67,11 +128,8 @@ export class Conservation {
     // notes.splice(index, 1)// start, deleteCount)
     // this.dialogService.open({ viewModel: ynPrompt, model: 'Delete or Cancel?', lock: false }).whenClosed(response => {
 
-
-
-      
     this.dialogService.open({ viewModel: Promptyn, model: 'Delete or Cancel?', lock: false }).whenClosed(response => {
-  
+
       if (!response.wasCancelled) {
         console.log('Delete')
         let notes = this.currentItem.conservation
@@ -83,21 +141,21 @@ export class Conservation {
     });
   }
 
- async showModal(fieldname, index) {
+  async showModal(fieldname, index) {
     this.currentItem.fieldname = fieldname
     this.currentItem.ConservedBy = this.currentItem.conservation[index].ConservedBy // mongoid
     this.currentItem.conservedbyname = this.currentItem.conservation[index].conservedbyname
     this.appService.originalrec.conservedbyname = this.currentItem.conservedbyname// fix dirty
-   
+
     // this.dialogService.open({ viewModel: Prompt, model: fieldname, lock: false }).whenClosed(response => {
-        
+
     this.dialogService.open({ viewModel: Promptorg, model: this.currentItem, lock: true }).whenClosed(response => {
 
-    
+
       this.currentItem.conservation[index].ConservedBy = this.currentItem.ConservedBy
       this.currentItem.conservation[index].conservedbyname = this.currentItem.conservedbyname
       this.appService.originalrec.conservedbyname = this.currentItem.conservedbyname// fix dirty
-   
+
       if (!response.wasCancelled) {
         // console.log('Delete') currentItem.conservation
         // let notes = this.currentItem.notes
@@ -109,24 +167,8 @@ export class Conservation {
     });
   }
 
-     attached() {
-    $(document).ready(function () {
-      $('#raptable').jsRapTable({
-        onSort: function (i, d) {
-          $('tbody').find('td').filter(function () {
-            return $(this).index() === i;
-          }).sortElements(function (a, b) {
-            if (i)
-              return $.text([a]).localeCompare($.text([b])) * (d ? -1 : 1);
-            else
-              return (parseInt($.text([a])) - parseInt($.text([b]))) * (d ? -1 : 1);
-          }, function () {
-            return this.parentNode;
-          });
-        },
-      });
+  attached() {
 
-    })
   }
 
   addDetail() {
@@ -138,7 +180,7 @@ export class Conservation {
       flag = true
       conservation = []
     }
-    item = { Treatment: '', edit: true }
+    item = {   id:this.epoch,Treatment: '', edit: true }
     conservation.unshift(item)
     if (flag) this.currentItem.conservation = conservation
   }

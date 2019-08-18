@@ -4,7 +4,7 @@ import { ApplicationService } from '../../../services/application-service';
 import { Prompt } from '../../../services/prompt';
 import { DialogService } from 'aurelia-dialog';
 import { Promptexhibit } from '../../prompt/promptExhibit';
-import products from './editing-custom-editor.json!';
+// import products from './editing-custom-editor.json!';
 
 @inject(ApiService, ApplicationService, DialogService)
 
@@ -30,8 +30,8 @@ export class Exhibition {
       },
       update: (options) => {
         let updatedItem = options.data;
-        updatedItem.offerdate = this.offerdate
-        console.log('   updatedItem ', updatedItem)
+        // updatedItem.offerdate = this.offerdate
+        // console.log('   updatedItem ', updatedItem)
         options.success(updatedItem)
       }
     },
@@ -44,24 +44,25 @@ export class Exhibition {
           id: { type: "number" }, // scan template
           ExhibitTitle: { type: "string", editable: true },
           ExhibitSponser: { type: "string", editable: true },
-          // ExhibitLocation: { type: "string", editable: true },
-          // ExhibitLocation: { type: "string", editable: true },
-          ExhibitLocation: { defaultValue: { id: '5d5009e8ee1af1dc544c05e8', Description: 'New York, NY' } },
           ExhibitLocationDesc: { type: "string", editable: true },
           ReproductionTitle: { type: "string", editable: true },
           ExhibitSortDate: { type: "date", editable: true },
           ExhibitDates: { type: "string", editable: true },
           ExhibitMemo: { type: "string", editable: true },
-          Category: { defaultValue: { CategoryID: 1, CategoryName: 'Beverages' } },
-          assignto: { defaultValue: { staffid: 100, StaffName: 'Tomaselli, John' } },
           eloc: { defaultValue: { id: '5d5009e8ee1af1dc544c05e8', Description: 'New York, NY' } },
+  
+          // ExhibitLocation: { type: "string", editable: true },
+          // ExhibitLocation: { type: "string", editable: true },
+          // ExhibitLocation: { defaultValue: { id: '5d5009e8ee1af1dc544c05e8', Description: 'New York, NY' } },
+          // Category: { defaultValue: { CategoryID: 1, CategoryName: 'Beverages' } },
+          // assignto: { defaultValue: { staffid: 100, StaffName: 'Tomaselli, John' } },
         }
       }
     },
     // pageSize: 12,
   })
- //https://gist.run/?id=3c1a0aab9ef1a0aaf037518b5d61c803
- 
+  //https://gist.run/?id=3c1a0aab9ef1a0aaf037518b5d61c803
+
   constructor(api, appService, dialogService) {
     this.api = api;
     this.appService = appService;
@@ -70,6 +71,9 @@ export class Exhibition {
     console.log('this.currentItem  exhibition', this.appService.currentItem.exhibition);
     this.dialogService = dialogService
     this.codes = this.appService.codesProvenanceLocation
+       //////////////////////////////////////////////////////////////////////////
+   if (this.currentItem.exhibition === undefined) this.currentItem.exhibition = []
+    this.epoch = moment().unix();
   }
 
   activate(params, routeConfig) {
@@ -80,7 +84,7 @@ export class Exhibition {
   staffDropDownEditor(container, options) {
     $('<input required data-text-field="StaffName" data-value-field="staffid" data-bind="value:' + options.field + '"/>')
       .appendTo(container)
-      .kendoDropDownList({ 
+      .kendoDropDownList({
         autoBind: false,
         type: 'json',
         dataSource: {
@@ -96,7 +100,7 @@ export class Exhibition {
   //   k-editor.bind="locationDropDownEditor"k-template.bind="locationTemplate"
   //    k-filterable.bind="false" k-groupable.bind="false" ></ak-col>
 
-   locationTemplate = '${eloc ? eloc.Description : ""}';
+  locationTemplate = '${eloc ? eloc.Description : ""}';
   locationDropDownEditor(container, options) {
     $('<input required data-text-field="Description" data-value-field="id" data-bind="value:' + options.field + '"/>')
       .appendTo(container)
@@ -106,8 +110,8 @@ export class Exhibition {
         dataSource: this.appService.codesProvenanceLocation
       });
   }
- 
-   locTemplate = '${ExhibitLocation ? ExhibitLocation.Description" : ""}';
+
+  locTemplate = '${ExhibitLocation ? ExhibitLocation.Description" : ""}';
 
   locDropDownEditor(container, options) {
     $('<input required data-text-field="Description" data-value-field="Description" data-bind="value:' + options.field + '"/>')
@@ -121,7 +125,111 @@ export class Exhibition {
       });
   }
 
- 
+
+  saveitem(item, index) {
+    item.edit = !item.edit
+  }
+
+  remove(item, index) {
+    this.dialogService.open({ viewModel: Prompt, model: 'Delete or Cancel?', lock: true }).whenClosed(response => {
+      if (!response.wasCancelled) {
+        console.log('Delete')
+        let exhibition = this.currentItem.exhibition
+        exhibition.splice(index, 1)// start, deleteCount)
+      } else {
+        console.log('cancel');
+      }
+      console.log(response)//.output);
+    });
+  }
+
+
+  selectChanged(reproid) {
+    let aid = this.repro.findIndex(x => x._id === reproid)
+    this.currentItem.exhibition[aid].ExhibitRepro = reproid
+  }
+
+  addExhibit2() {
+    // addExhibit ExhibitSponser  ExhibitLocation ExhibitRepro ExhibitDates ExhibitSortDate Traveled ExhibitMemo
+    let exhibition = this.currentItem.exhibition
+    let flag = false
+    let item = {}
+    if (exhibition === undefined) {
+      flag = true
+      exhibition = []
+      item.id = 1
+    } else item.id = exhibition.length + 1
+    item = {
+      id: item.id,
+      addExhibit: '', ExhibitSponser: '', ExhibitLocation: '', ExhibitRepro: '',
+      ExhibitDates: '', ExhibitSortDate: '',
+      Traveled: '', ExhibitMemo: '',  eloc : ''
+    }
+    alert('1 ' + item.id)
+    exhibition.unshift(item)
+    alert('1a ' + item.id)
+    if (flag) this.currentItem.exhibition = exhibition
+    alert('2 ' + this.currentItem.exhibition)
+
+    // this.modal(item, 0) // unshirt reproduction.length + 1)
+  }
+  addExhibit() {
+    let exhibition = this.currentItem.exhibition
+    let flag = false
+    let item = {}
+    if (exhibition === undefined) {
+      flag = true
+      exhibition = []
+      item.id = 1
+    } else item.id = exhibition.length + 1 //this.epoch//
+
+
+     item = {
+      id: item.id,
+      addExhibit: '', ExhibitSponser: '', ExhibitLocation: '', ExhibitRepro: '',
+      ExhibitDates: '', ExhibitSortDate: '',
+      Traveled: '', ExhibitMemo: '', 
+      ExhibitLocationDesc: '',
+      eloc:{ id: '5d5009e8ee1af1dc544c05e8', Description: 'New York, NY' } ,
+    }
+   
+     exhibition.unshift(item)
+    if (flag) this.currentItem.exhibition = exhibition
+
+    // this.newNoteWorkDate = '';
+    // this.newNoteNote = '';
+  
+
+  }
+
+
+  addNote() {
+    let notes = this.currentItem.notes
+    let flag = false
+    let item
+    let newNoteWorkDate = moment().format('YYYY-MM-DD')
+    if (notes === undefined) {
+      flag = true
+      notes = []
+    }
+    item = { id:this.epoch,WorkDate: newNoteWorkDate, Notes: '' }
+    notes.unshift(item)
+    if (flag) this.currentItem.notes = notes
+
+    this.newNoteWorkDate = '';
+    this.newNoteNote = '';
+
+  }
+
+
+}
+
+
+
+
+
+
+
   // locTemplate = '${ExhibitLocation ? ExhibitLocation.Description : ""}'; 
   // locDropDownEditorID(container, options) {
   //   $('<input required data-text-field="Description" data-value-field="id" data-bind="value:' + options.field + '"/>')
@@ -157,7 +265,7 @@ export class Exhibition {
   // categoryTemplate = '${Category ? Category.CategoryName : ""}';
 
   //  locTemplate = '${ExhibitLocation ? this.appService.codesProvenanceLocation.Description : ""}';
-    // locTemplate(container) {
+  // locTemplate(container) {
   //   //  return `${container.ExhibitLocation}--`
   //   if (container.ExhibitLocation) {
   //     // console.log('this.c', this.appService.codesProvenanceLocation)
@@ -183,55 +291,3 @@ export class Exhibition {
   //   // return `${dataItem.ExhibitLocation}--jj`
   //   //   } else return 'jrt'
   // }
-
-  saveitem(item, index) {
-    item.edit = !item.edit
-  }
-
-  remove(item, index) {
-    this.dialogService.open({ viewModel: Prompt, model: 'Delete or Cancel?', lock: true }).whenClosed(response => {
-      if (!response.wasCancelled) {
-        console.log('Delete')
-        let exhibition = this.currentItem.exhibition
-        exhibition.splice(index, 1)// start, deleteCount)
-      } else {
-        console.log('cancel');
-      }
-      console.log(response)//.output);
-    });
-  }
-
-
-  selectChanged(reproid) {
-    let aid = this.repro.findIndex(x => x._id === reproid)
-    this.currentItem.exhibition[aid].ExhibitRepro = reproid
-  }
-
-  addExhibit() {
-    // addExhibit ExhibitSponser  ExhibitLocation ExhibitRepro ExhibitDates ExhibitSortDate Traveled ExhibitMemo
-    let exhibition = this.currentItem.exhibition
-    let flag = false
-    let item = {}
-    if (exhibition === undefined) {
-      flag = true
-      exhibition = []
-      item.id = 1
-    } else item.id = exhibition.length + 1
-    item = {
-      id: item.id,
-      addExhibit: '', ExhibitSponser: '', ExhibitLocation: '', ExhibitRepro: '',
-      ExhibitDates: '', ExhibitSortDate: '',
-      Traveled: '', ExhibitMemo: '', edit: true
-    }
-    exhibition.unshift(item)
-    if (flag) this.currentItem.exhibition = exhibition
-    this.modal(item, 0) // unshirt reproduction.length + 1)
-
-  }
-}
-
-
-
-
-
-

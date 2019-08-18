@@ -5,8 +5,7 @@ import { ApplicationService } from '../../../services/application-service';
 import { DialogService } from 'aurelia-dialog';
 import { Prompt } from '../../../services/prompt';
 import { Promptyn } from '../../../services/promptyn';
-import jsRapTable from '../../../../jslib/jsRapTable';
- 
+
 @inject(ApiService, ApplicationService, DialogService)
 export class Condition {
   heading = 'DataForm HEADER...';
@@ -14,21 +13,52 @@ export class Condition {
   recordId = '';
   done = false;
   edit = false;
-  // todos: Todo[] = [];
+  scrollable = { virtual: true };
+  datasource = new kendo.data.DataSource({
+    transport: {
+       
+      read: (options) => {
+        options.success(this.currentItem.condition);
+        this.currentItem.condition = this.datasource._data // sync to our model
+      },
+      update: (options) => {
+        let updatedItem = options.data;
+        // updatedItem.offerdate = this.offerdate
+        // console.log('   updatedItem ', updatedItem)
+        options.success(updatedItem)
+      }
+    },
  
- // condition: Condition[] = []; ASK Matt
- 
+    schema: {
+      model: {
+        id: "Condition", // Must assign id for update to work and it must be a string
+        fields: {
+          ConditionDate: { type: "date", editable: true },
+          Condition: { type: "string", editable: true },
+         }
+      }
+    },
+    // pageSize: 12,
+  })
+
+
+
+
+  //use above function in grid configuration
   constructor(api, appService, dialogService) {
     this.api = api;
     this.appService = appService;
     this.inv = '';
-    this.currentItem = this.appService.currentItem;//testrec;
+    this.currentItem = this.appService.currentItem;
+      if( this.currentItem.condition===undefined)this.currentItem.condition=[]
+  
     this.mode = 0;
     this.editrec = '';
     // this.inputable='disabled'
     this.isDisableEdit = true
     this.currentnote = '';
     this.dialogService = dialogService
+     this.epoch = moment().unix();
   }
   test(index) {
     console.log('test ' + index, (index === this.editrec && this.mode > 0))
@@ -42,7 +72,32 @@ export class Condition {
     item.edit = !item.edit
   
   }
-
+textAreaEditor(container, options) {
+    $('<textarea class="k-textbox" name="' + options.field + '" style="width:100%;height:100%;" />').appendTo(container);
+    // $('<textarea data-text-field="Label" data-value-field="Value" data-bind="value:' + options.field + '" style="width: ' + (container.width() - 10) + 'px;height:' + (container.height() - 12) + 'px" />').appendTo(container);
+  }
+  locationTemplate = '${eloc ? eloc.Description : ""}';
+  locationDropDownEditor(container, options) {
+    $('<input required data-text-field="Description" data-value-field="id" data-bind="value:' + options.field + '"/>')
+      .appendTo(container)
+      .kendoDropDownList({
+        autoBind: false,
+        type: 'json',
+        dataSource: this.appService.codesProvenanceLocation
+      });
+  }
+  locTemplate = '${ExhibitLocation ? ExhibitLocation.Description" : ""}';
+  locDropDownEditor(container, options) {
+    $('<input required data-text-field="Description" data-value-field="Description" data-bind="value:' + options.field + '"/>')
+      .appendTo(container)
+      .kendoDropDownList({
+        autoBind: false,
+        type: 'json',
+        dataSource: this.appService.codesProvenanceLocation,
+        dataTextField: "Description",
+        dataValueField: "Description"
+      });
+  }
   remove(item, index) {
     // alert('you are about to delete ' + item.Notes + ' ' + index)
     // this.mode = 0
@@ -71,27 +126,11 @@ export class Condition {
       flag = true
       condition = []
     }
-    item = { Condition: '', edit: true }
+    item = {  id:this.epoch, Condition: '', edit: true }
     condition.unshift(item)
     if (flag) this.currentItem.condition = condition
   }
    attached() {
-    $(document).ready(function () {
-      $('#raptable').jsRapTable({
-        onSort: function (i, d) {
-          $('tbody').find('td').filter(function () {
-            return $(this).index() === i;
-          }).sortElements(function (a, b) {
-            if (i)
-              return $.text([a]).localeCompare($.text([b])) * (d ? -1 : 1);
-            else
-              return (parseInt($.text([a])) - parseInt($.text([b]))) * (d ? -1 : 1);
-          }, function () {
-            return this.parentNode;
-          });
-        },
-      });
-
-    })
+   
   }
 }

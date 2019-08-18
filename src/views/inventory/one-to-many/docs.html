@@ -1,32 +1,41 @@
 <template>
-	<require from="./docs.css"></require>
-	<!-- <section class="customer-orders au-animate"> -->
+
 	<section class="docs full-height flex-column-1 overflow-y-auto ignore">
 		<h4>
-			<i class="fa fa-folder-open"></i> Docs 
-   <div class="row">
-                <div >
-                    <p> click button or drag file(s) to button</p>
-                   <p> <input style='height:88' id='file' type="file" name="file"  files.bind="file" multiple>
-                        </p>
-                </div>
-
-	<a slot="buttons-slot" class="btn btn-primary" click.delegate="addDocs(file)">
+			<i class="fa fa-folder-open"></i> Docs for ${currentItem.claimant.LAST_NAME} click button below or drag n drop files's
+			over button
+			<a slot="buttons-slot" class="btn btn-success" click.delegate="addDocs(file)">
 				<i class="fa fa-plus"></i> Add Uploaded File
 			</a>
 
-            </div>
+
+			<a slot="buttons-slot" class="btn btn-success" click.delegate="modalDocs()">
+				<i class="fa fa-plus"></i> Popup Docs
+			</a>
+
+			<a slot="buttons-slot">
+				<input id="icon_prefix" type="text" value.bind="searchdoc & debounce" class="validate">
+
+				<i class="material-icons prefix">search</i>
+			</a>
+	
+
+			<input style='height:88' id='file' type="file" name="file" files.bind="file" multiple>
+
 		</h4>
 
+
+
 		<form>
-			<!-- <table class="table-condensed table">
-				<thead class="table-header-blue" data-sort="items.bind: currentItem.docs; cols: ['FILE_NAME','FILE_EXT']"> -->
-				<div id="raptable">
-	<table>
-		<thead>
-        	<tr>
-						<th  >FILE_NAME		</th>
-						<th >FILE_EXT			</th>
+			<table class="table-condensed table">
+				<thead class="table-header-blue" data-sort="items.bind: currentItem.docs; cols: ['FILE_NAME','FILE_EXT']">
+					<tr>
+						<th class="header">File name </th>
+
+						<th class="header">Download </th>
+
+
+						<th class="header">File Extension </th>
 
 					</tr>
 				</thead>
@@ -38,28 +47,25 @@
 					</tr>
 				</tfoot>
 				<tbody>
-					<tr repeat.for="doc of currentItem.docs" with.bind="doc">
-						<td >  
-     			         <!-- <a  size='200' class="form-control  input-sm" target="_blank"
-                 href="https://artbased.com/api/v1/getinvcodeimage/${currentItem.InventoryCode}/${doc.FILE_NAME}">
-							${FILE_NAME}
+					<tr repeat.for="doc of showdocs" with.bind="doc">
+						<td>
+							<a size='100' class="form-control  input-sm" target="_blank" href="https://adjusters.markadjustment.com/docs/${currentItem.CLAIM_NO}/${doc.FILE_NAME}">
+								${FILE_NAME}
 							</a>
-                  -->
-                 		<a size='100' class="form-control  input-sm" target="_blank" href="https://artbased.com/api/v1/getonepdf/inv/${currentItem.InventoryCode}.jpg">
-						<span>https://artbased.com/api/v1/getonepdf/inv/${currentItem.InventoryCode}.jpg</span>
-						</a>
-                 <!-- ${currentItem.InventoryCode}.jpg
-                  </span>http://adjusters.markadjustment.com/docs/${currentItem.CLAIM_NO}/${doc.FILE_NAME}">
-							${FILE_NAME} -->
-							
 						</td>
-          	<td  ><input type="text" id="FILE_EXT" class="form-control  input-sm"
-                value.bind="FILE_EXT"></td>
+
+						<td>
+							<a size='100' class="form-control  input-sm" href="https://adjusters.markadjustment.com/pdf/${currentItem.CLAIM_NO}/${doc.FILE_NAME}">
+								${FILE_NAME}
+							</a>
+						</td>
+				
+
+						<td><input type="text" id="FILE_EXT" class="form-control  input-sm" value.bind="FILE_EXT"></td>
 
 					</tr>
 				</tbody>
 			</table>
-      </div>
 		</form>
 
 	</section>

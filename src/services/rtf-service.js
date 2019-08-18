@@ -108,6 +108,10 @@ export class RtfService {
   }
 
   buildRepro() {
+    // aug 2019 use
+    // ReproductionLocationDesc
+    //   "ExhibitLocationDesc" 
+
     let pre = '<p>'
     let post = '</p>'
     let ppre = ''
@@ -146,14 +150,17 @@ export class RtfService {
           } else console.log('no link in exhibit from repo ct', ct)
 
         } else linkPageNo = ''
-        let oid
-        if ((item.ExhibitLocation + '').length < 6) {
-          oid = provloc.findIndex(x => x.ID === item.ExhibitLocation)
-        } else {
-          oid = provloc.findIndex(x => x.id === item.ExhibitLocation)
-        }
-        if (oid == -1) oid = 1
-        let ExhibitLocationDesc = provloc[oid].Description
+        // let oid
+        // if ((item.ExhibitLocation + '').length < 6) {
+        //   oid = provloc.findIndex(x => x.ID === item.ExhibitLocation)
+        // } else {
+        //   oid = provloc.findIndex(x => x.id === item.ExhibitLocation)
+        // }
+        // if (oid == -1) oid = 1
+        // let ExhibitLocationDesc = provloc[oid].Description
+        let ExhibitLocationDesc = item.ExhibitLocationDesc
+ 
+
         let ExhibitMemo
         let lpn
         // console.log('===================item.id linkPageNo', item.id, linkPageNo + '...')
@@ -190,9 +197,10 @@ export class RtfService {
 
         if (item.ReproductionExhibit === null || item.ReproductionExhibit === undefined || item.ReproductionExhibit === "") {//selected choose)
           console.log('reproduction item ', rct, item.ReproductionPage, item.ReproductionDate)
-          let oid = provloc.findIndex(x => x.id === item.ReproductionLocation)
-          if (oid == -1) oid = 1
-          let ReproductionLocationDesc = provloc[oid].Description
+          // let oid = provloc.findIndex(x => x.id === item.ReproductionLocation)
+          // if (oid == -1) oid = 1
+          // let ReproductionLocationDesc = provloc[oid].Description
+          let ReproductionLocationDesc = item.ReproductionLocationDesc
 
           let data
           if (item.ReproductionAuthor !== "") {
@@ -420,7 +428,7 @@ export class RtfService {
           // this.dimscm += ' x ' + this.roundNumber((mdim).toPrecision(2), 1)
           this.dimscm += ' x ' + this.roundNumber(mdim, 2)
         }
- 
+
       } else {
         if (this.currentItem[depthfraction] === "") {
           this.dims += ` x ${this.currentItem[depth]}  `
@@ -540,7 +548,7 @@ export class RtfService {
     if (ww === 0) ww = 450 * this.currentItem.clientWidthRatio
     if (hh === 0) hh = 450 * this.currentItem.clientHeightRatio
     let headerinfo1 = '', headerinfo2 = ''
- 
+
     // this.segment1 = `<p><img class="responsive-img" src="https://artbased.com/api/v1/getimage/inv/${this.currentItem.InventoryCode}.jpg" alt="" width="${ww}" height="${hh}" /></p>`
 
     headerinfo1 += ` ${artistWdates}<br><br><br>`
@@ -566,7 +574,7 @@ export class RtfService {
     }
     if (this.currentItem.inscribedText === undefined) this.currentItem.inscribedText = ''
     if (this.currentItem.CatalogueNo === undefined) this.currentItem.CatalogueNo = ''
-    if (this.currentItem.AltID === undefined) this.currentItem.AltID = '' 
+    if (this.currentItem.AltID === undefined) this.currentItem.AltID = ''
 
     //  this.currentItem.inscribedText=this.currentItem.inscribedText+''
     if (this.currentItem.inscribedText !== '') {
@@ -576,19 +584,19 @@ export class RtfService {
 
 
     // if (this.currentItem.CatalogueNo !== undefined && this.currentItem.CatalogueNo !== '')
-    let mustaddbr=true
-     if (this.currentItem.CatalogueNo !== '' && this.currentItem.AltID === '' ){
+    let mustaddbr = true
+    if (this.currentItem.CatalogueNo !== '' && this.currentItem.AltID === '') {
       headerinfo1 += ` no. ${this.currentItem.CatalogueNo} <br>  <br>   `
-      mustaddbr=false
-    } else 
-       if (this.currentItem.CatalogueNo !== '')  headerinfo1 += ` no. ${this.currentItem.CatalogueNo} <br>   `
+      mustaddbr = false
+    } else
+      if (this.currentItem.CatalogueNo !== '') headerinfo1 += ` no. ${this.currentItem.CatalogueNo} <br>   `
     // console.log('this.currentItem.AltID', this.currentItem.AltID)
     this.currentItem.AltID = this.currentItem.AltID + ''// good for test
     if (this.currentItem.AltID !== '') {
       headerinfo1 += ` ${this.currentItem.AltID} <br> <br>`
-      mustaddbr=false
+      mustaddbr = false
     }
-if(mustaddbr===true)   headerinfo1 += `  <br> <br>`
+    if (mustaddbr === true) headerinfo1 += `  <br> <br>`
     // 
     this.segment2 = headerinfo2
 

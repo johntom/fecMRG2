@@ -5,8 +5,7 @@ import { ApplicationService } from '../../../services/application-service';
 
 import { DialogService } from 'aurelia-dialog';
 import { Prompt } from '../../../services/prompt';
-import jsRapTable from '../../../../jslib/jsRapTable';
- 
+
 @inject(ApiService, ApplicationService, DialogService)
 export class Adjusternotes {
   heading = 'DataForm HEADER...';
@@ -15,9 +14,35 @@ export class Adjusternotes {
   done = false;
   edit = false;
   // todos: Todo[] = [];
- // notes: Note[] = [];
+ // notes: Note[] = []; WorkDate Notes notes
   newNoteWorkDate = '';
   newNote = '';
+scrollable = { virtual: true };
+  datasource = new kendo.data.DataSource({
+    transport: {
+     
+      read: (options) => {
+        options.success(this.currentItem.notes);
+        this.currentItem.notes = this.datasource._data // sync to our model
+      },
+      update: (options) => {
+        let updatedItem = options.data;
+       
+        options.success(updatedItem)
+      }
+    },
+
+    schema: {
+      model: {
+        id: "WorkDate", // Must assign id for update to work
+        fields: {
+          WorkDate: { type: "date", editable: true },
+          notes: { type: "string", editable: true },
+        }
+      }
+    },
+    // pageSize: 12,
+  })
 
   constructor(api, appService ,dialogService) {
     this.api = api;
@@ -30,6 +55,7 @@ export class Adjusternotes {
     this.isDisableEdit = true
     this.currentnote = '';
     this.dialogService = dialogService 
+      this.epoch = moment().unix();
   }
   test(index) {
     console.log('test ' + index, (index === this.editrec && this.mode > 0))
@@ -78,7 +104,7 @@ export class Adjusternotes {
       flag = true
       notes = []
     }
-    item = { WorkDate: newNoteWorkDate, Notes: '', edit: true }
+    item = { id:this.epoch,WorkDate: newNoteWorkDate, Notes: '' }
     notes.unshift(item)
     if (flag) this.currentItem.notes = notes
 
@@ -121,23 +147,7 @@ export class Adjusternotes {
 
   }
    attached() {
-    $(document).ready(function () {
-      $('#raptable').jsRapTable({
-        onSort: function (i, d) {
-          $('tbody').find('td').filter(function () {
-            return $(this).index() === i;
-          }).sortElements(function (a, b) {
-            if (i)
-              return $.text([a]).localeCompare($.text([b])) * (d ? -1 : 1);
-            else
-              return (parseInt($.text([a])) - parseInt($.text([b]))) * (d ? -1 : 1);
-          }, function () {
-            return this.parentNode;
-          });
-        },
-      });
-
-    })
+   
   }
 
 }

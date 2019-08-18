@@ -1,159 +1,126 @@
 import { inject } from 'aurelia-dependency-injection';
 import { ApiService } from '../../../utils/servicesApi';
 import { ApplicationService } from '../../../services/application-service';
-
-import {DialogService} from 'aurelia-dialog';
-import {Prompt} from '../../../services/prompt';
-import jsRapTable from '../../../../jslib/jsRapTable';
- 
-@inject(ApiService, ApplicationService,DialogService)
+import moment from 'moment';
+import { DialogService } from 'aurelia-dialog';
+import { Promptyn } from '../../../services/promptyn';
+import { Prompt } from '../prompt';
+import { bindable } from 'aurelia-framework';
+@inject(ApiService, ApplicationService, DialogService)
 export class Docs {
+  @bindable searchdoc
   heading = 'DataForm HEADER...';
   footer = 'DataForm FOOTER...';
   recordId = '';
   done = false;
   edit = false;
-
-  constructor(api, appService,dialogService) {
+  status = false;
+  constructor(api, appService, dialogService) {
     this.api = api;
     this.appService = appService;
     this.inv = '';
-    this.currentItem = this.appService.currentItem;
-        this.dialogService = dialogService;
+    this.currentItem = this.appService.currentItem//testrec;
+    this.showdocs = this.currentItem.docs
+    this.dialogService = dialogService
   }
 
   activate(params, routeConfig) {
-    // if (params.id) {
-    //   this.recordId = params.id; 
-    //   this.heading = `DataForm for record ${this.recordId}`;
 
-    //   console.log('this.recordId ', this.recordId);
-    //   return this.api.findInventoryOne(this.recordId)
-    //     .then((jsonRes) => {
-    //       console.log('jsonRes ', jsonRes);          
-    //       let inv = jsonRes.data;
-    //       this.currentItem = inv[0];
-    //       console.log('data-form:activate - currentItem', this.currentItem);
-    //       this.inv = inv[0]
-    //       // console.log('this.inv loadData 0 ', inv[0].InventoryCode);
-    //       return inv
-    //     });
-    // }
+  }
+  modalDocs() {
+    this.currentItem.fieldname = 'docs'
+    this.dialogService.open({ viewModel: Promptyn, model: 'Delete or Cancel?', lock: true }).whenClosed(response => {
+      console.log(response.output);
+    });
+  }
+  searchdocChanged(value) {
+    this.showdocs = this.currentItem.docs.filter((item) => {
+      if (item['FILE_NAME'].toLowerCase().search(value.toLowerCase()) != -1) return true
+    });
+    return
   }
 
 
-  async addDocs(images) {
+  promiseDialog(obj) {
+    return new Promise((resolve, reject) => {
+      let rec = { name: `Press OK to Overwrite or Cancel ${obj.name} ?`, type: 3 }
+      this.dialogService.open({ viewModel: Promptyn, model: rec, lock: false }).whenClosed(response => {
+        let out = { name: obj.name, val: obj.val, ext: obj.ext, resp: response.wasCancelled }
+        // send object back with answer
+        resolve(out)
+      });
+    });
+  }
+
+
+  async checkData(images, formData) {
+    let promises = []
+    return new Promise((resolve, reject) => {
+      let i = 0;
+      let docs = this.currentItem.docs
+      if (docs === undefined) docs = []
+      let imagelen = images.length
+      for (i = 0; i < images.length; i++) {
+        let ext = images[i].name.split('.').pop();
+        let fname = images[i].name
+        let mid = -100// not needed
+        let ival = i
+        mid = docs.findIndex(x => x.FILE_NAME === fname)
+        if (mid > -1) {
+          let obj = { name: fname, val: ival, ext: ext }
+          var promise = this.promiseDialog(obj)
+
+          promises.push(promise);
+        } else {
+          var item = { FILE_NAME: fname, FILE_EXT: '.' + ext, OVERWRITE: 'N' }
+          docs.unshift(item)
+          formData.append('file', images[ival]);
+        }
+      }
+      return Promise.all(promises).then(values => {
+        for (i = 0; i < values.length; i++) {
+          if (!values[i].resp) {
+            var item = { FILE_NAME: values[i].name, FILE_EXT: values[i].ext, OVERWRITE: 'Y' }
+            formData.append('file', images[values[i].val]);
+          }
+        }
+        resolve(formData)
+      })
+    })
+  }
+
+  addDocs(images) {
     //images is file
+    //check for dups 2/21/2018
     //https://stackoverflow.com/questions/32736599/html-file-upload-and-action-on-single-button
+    if (this.currentItem.docs === undefined) this.currentItem.docs = []
     let docs = this.currentItem.docs
     let formData = new FormData()
     let newDate = moment().format('YYYY-MM-DD')
-
     let flag = false
-    if (docs === undefined) {
-      flag = true
-     docs = []
-    }
+    let prom = Promise.resolve(this.checkData(images, formData)).then(values => {
+      let newform = values;
+      console.log('after checkdata1 ', this.status, newform);
+       this.api.upload(newform, this.currentItem.InventoryCode)
+        .then((jsonRes) => {
+          this.showdocs = docs
 
-    for (let i = 0; i < images.length; i++) {
-
-      let ext = images[i].name.split('.').pop();
-      var item = { FILE_NAME: images[i].name, FILE_EXT: '.' + ext } //'.pdf' }
-
-      docs.unshift(item)
-      formData.append('file', images[i]);
-    }
-    if (flag)  this.currentItem.docs = docs
-    // send file
-
-    console.log('formData', formData)
-    //this.api.upload(formData)
-    console.log(this.currentItem)
-    // this.api.upload(formData, this.currentItem.CLAIM_NO)
-    //  this.api.uploadinvphoto(newform, this.currentItem.InventoryCode)
- this.api.uploadinvphoto(formData, this.currentItem.InventoryCode)
- 
-      .then((jsonRes) => {
-        this.upmess = jsonRes.message
-
-        $("#file").val("");
-      })
-  
-//  let upl = await this.api.uploadfast(formData)
- 
-}
-
-
-
-  // addDocs1(images) {
-  //   //images is file
-  //   //https://stackoverflow.com/questions/32736599/html-file-upload-and-action-on-single-button
-  //   let docs = this.currentItem.docs
-  //   let newDate = moment().format('YYYY-MM-DD')
-  //   let ext = images[0].name.split('.').pop();
-  //   var item = { FILE_NAME: images[0].name, FILE_EXT: ext } //'.pdf' }
-  //   docs.unshift(item)
-  //   // send file
-  //   var form = new FormData()
-  //   form.append("file", images[0]); //MUST BE LAST only 1 image allowed
-  //   console.log('formData', form)
-  //   this.api.upload(form)
-
-  //     .then((jsonRes) => {
-  //       this.upmess = jsonRes.message
-
-  //       $("#file").val("");
-  //     })
-  // }
-  remove(item) {
-  
-    //  this.dialogService.open({ viewModel: Prompt, model: 'Delete or Cancel?', lock: false }).whenClosed(response => {
-    //     if (!response.wasCancelled) {
-    //       console.log('Delete')
-    //       let contacts = this.currentItem.contacts
-    //       contacts.splice(index, 1)// start, deleteCount)
-    //     } else {
-    //       console.log('cancel');
-    //     }
-    //     console.log(response.output);
-    //   });
-  }
-
-  save(note, index) {
-    // this.mode = 0
-    // console.log(' this.currentItem.notes', this.currentItem.notes)
-    // this.isDisableEdit = true
-
-    var form = new FormData()
-    form.append("file", images[0]); //MUST BE LAST only 1 image allowed
-    console.log('formData', form, bin)
-    this.api.upload(form)
-
-      .then((jsonRes) => {
-        this.upmess = jsonRes.message
-
-        $("#file").val("");
-      })
-
-
-  }
-   attached() {
-    $(document).ready(function () {
-      $('#raptable').jsRapTable({
-        onSort: function (i, d) {
-          $('tbody').find('td').filter(function () {
-            return $(this).index() === i;
-          }).sortElements(function (a, b) {
-            if (i)
-              return $.text([a]).localeCompare($.text([b])) * (d ? -1 : 1);
-            else
-              return (parseInt($.text([a])) - parseInt($.text([b]))) * (d ? -1 : 1);
-          }, function () {
-            return this.parentNode;
-          });
-        },
-      });
-
+          $("#file").val("");
+        })
     })
+
+    // this is not a good way to get value this.items = Promise.resolve(this.checkData(images));
+    //  console.log('after checkdata1 just a promise cant pick off value ',  this.status,this.items);
+
+    //  return Promise.all([  this.checkData(images)]).then(values => {
+    //     this.items = values[0];
+    //      console.log('after checkdata1 ',  this.status,this.items);
+    //   }).catch(error => {
+    //     console.error("Error encountered while trying to get data.", error);
+    //   });
+
   }
+
 }
+
+

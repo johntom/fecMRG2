@@ -59,8 +59,6 @@
 		.custom-file-input:active::before {
 			background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
 		}
-
-
 	</style>
 	<div class="modal fade" id="myModal" ref="myModal">
 		<div class="modal-dialog">
@@ -121,11 +119,11 @@
 							<!-- <div class="form-group flex-column-1"> -->
 							<div class="form-group flex-column-1 Rtable-cell--highlight">
 								<!--  class="form-control input-sm"  -->
- 
-								<div class="Rtable Rtable--2cols"> 
+
+								<div class="Rtable Rtable--2cols">
 
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
-										<strong> Inv Code</strong>
+										<strong> Code</strong>
 									</div>
 									<div class="Rtable-cell-70  Rtable-cell--highlight">
 
@@ -182,198 +180,196 @@
 											<a click.delegate="showModal( 'MediumSupportobj')">${currentItem.MediumSupportobj.Description} </a>
 										</div>
 									</div>
-								<!--77 </div> -->
-
-<br> 
-
-								<div class="Rtable Rtable--7cols">
-									<!-- <div class="Rtable-cell Rtable-cell--alert">Dims</div> -->
-									<div class="Rtable-cell Rtable-cell--highlight"></div>
-									<div class="Rtable-cell Rtable-cell--highlight">Height</div>
-									<div class="Rtable-cell Rtable-cell--highlight">x/8</div>
-									<div class="Rtable-cell Rtable-cell--highlight">Width</div>
-									<div class="Rtable-cell Rtable-cell--highlight">x/8</div>
-									<div class="Rtable-cell Rtable-cell--highlight">Depth</div>
-									<div class="Rtable-cell Rtable-cell--highlight">x/8</div>
-									<div class="Rtable-cell Rtable-cell--highlight">
-										<strong>Size</strong>
-									</div>
-									<div class="Rtable-cell">
-										<input type="text " xid="UnframedHeight" class="form-control " value.bind="currentItem.UnframedHeight">
-									</div>
-									<div class="Rtable-cell">
-										<select style="width: 45px " value.bind="currentItem.UnframedHeight16">
+									<!--77 </div> -->
+									&nbsp;
+									<div class="Rtable Rtable--7cols">
+										<!-- <div class="Rtable-cell Rtable-cell--alert">Dims</div> -->
+										<div class="Rtable-cell Rtable-cell--highlight"></div>
+										<div class="Rtable-cell Rtable-cell--highlight">Height</div>
+										<div class="Rtable-cell Rtable-cell--highlight">x/8</div>
+										<div class="Rtable-cell Rtable-cell--highlight">Width</div>
+										<div class="Rtable-cell Rtable-cell--highlight">x/8</div>
+										<div class="Rtable-cell Rtable-cell--highlight">Depth</div>
+										<div class="Rtable-cell Rtable-cell--highlight">x/8</div>
+										<div class="Rtable-cell Rtable-cell--highlight">
+											<strong>Size</strong>
+										</div>
+										<div class="Rtable-cell">
+											<input type="text " xid="UnframedHeight" class="form-control " value.bind="currentItem.UnframedHeight">
+										</div>
+										<div class="Rtable-cell">
+											<select style="width: 45px " value.bind="currentItem.UnframedHeight16">
 												<option model.bind="''">''</option>
 												<option repeat.for="measure of measures " model.bind="measure.name">
 													${measure.name}
 												</option>
 											</select>
-									</div>
-									<div class="Rtable-cell">
-										<input type="text " xid="UnframedWidth" class="form-control  " value.bind="currentItem.UnframedWidth">
-									</div>
-									<div class="Rtable-cell">
-										<select style="width: 45px " value.bind="currentItem.UnframedWidth16">
+										</div>
+										<div class="Rtable-cell">
+											<input type="text " xid="UnframedWidth" class="form-control  " value.bind="currentItem.UnframedWidth">
+										</div>
+										<div class="Rtable-cell">
+											<select style="width: 45px " value.bind="currentItem.UnframedWidth16">
 												<option model.bind="''">''</option>
 												<option repeat.for="measure of measures" model.bind="measure.name">
 													${measure.name}
 												</option>
 											</select>
-									</div>
-									<div class="Rtable-cell">
-										<input type="text " xid="UnframedDepth " class="form-control " value.bind="currentItem.UnframedDepth">
-									</div>
-									<div class="Rtable-cell">
-										<select style="width: 45px " value.bind="currentItem.UnframedDepth16">
+										</div>
+										<div class="Rtable-cell">
+											<input type="text " xid="UnframedDepth " class="form-control " value.bind="currentItem.UnframedDepth">
+										</div>
+										<div class="Rtable-cell">
+											<select style="width: 45px " value.bind="currentItem.UnframedDepth16">
 												<option model.bind="''">''</option>
 												<option repeat.for="measure of measures " model.bind="measure.name">
 													${measure.name}
 												</option>
 											</select>
-									</div>
-									<!-- end unSeight -->
+										</div>
+										<!-- end unSeight -->
 
 
 
 
-									<!--image  -->
-									<div class="Rtable-cell Rtable-cell--highlight">
-										<strong>Image</strong>
-									</div>
-									<div class="Rtable-cell">
-										<input type="number " xid="imageHeight " class="form-control  " value.bind="currentItem.imageHeight">
+										<!--image  -->
+										<div class="Rtable-cell Rtable-cell--highlight">
+											<strong>Image</strong>
+										</div>
+										<div class="Rtable-cell">
+											<input type="number " xid="imageHeight " class="form-control  " value.bind="currentItem.imageHeight">
 
-									</div>
-									<div class="Rtable-cell">
+										</div>
+										<div class="Rtable-cell">
 
-										<select style="width: 45px " value.bind="currentItem.imageHeight16">
+											<select style="width: 45px " value.bind="currentItem.imageHeight16">
 												<option model.bind="''">''</option>
 												<option repeat.for="measure of measures " model.bind="measure.name">
 													${measure.name}
 												</option>
 											</select>
-									</div>
-									<div class="Rtable-cell">
-										<input type="number " xid="imageWidth " class="form-control  " value.bind="currentItem.imageWidth">
+										</div>
+										<div class="Rtable-cell">
+											<input type="number " xid="imageWidth " class="form-control  " value.bind="currentItem.imageWidth">
 
-									</div>
-									<div class="Rtable-cell">
+										</div>
+										<div class="Rtable-cell">
 
-										<select style="width: 45px " value.bind="currentItem.imageWidth16">
+											<select style="width: 45px " value.bind="currentItem.imageWidth16">
 												<option model.bind="''">''</option>
 												<option repeat.for="measure of measures " model.bind="measure.name">
 													${measure.name}
 												</option>
 											</select>
-									</div>
-									<div class="Rtable-cell">
-										<input type="number " xid="imageDepth " class="form-control " value.bind="currentItem.imageDepth">
+										</div>
+										<div class="Rtable-cell">
+											<input type="number " xid="imageDepth " class="form-control " value.bind="currentItem.imageDepth">
 
-									</div>
-									<div class="Rtable-cell">
+										</div>
+										<div class="Rtable-cell">
 
-										<select style="width: 45px " value.bind="currentItem.imageDepth16">
+											<select style="width: 45px " value.bind="currentItem.imageDepth16">
 												<option model.bind="''">''</option>
 												<option repeat.for="measure of measures " model.bind="measure.name">
 													${measure.name}
 												</option>
 											</select>
-									</div>
-									<!-- end image -->
+										</div>
+										<!-- end image -->
 
 
-									<!-- seight -->
-									<div class="Rtable-cell Rtable-cell--highlight">
-										<strong>Sight</strong>
-									</div>
-									<div class="Rtable-cell">
-										<input type="number " xid="SightHeight " class="form-control " value.bind="currentItem.SightHeight">
+										<!-- seight -->
+										<div class="Rtable-cell Rtable-cell--highlight">
+											<strong>Sight</strong>
+										</div>
+										<div class="Rtable-cell">
+											<input type="number " xid="SightHeight " class="form-control " value.bind="currentItem.SightHeight">
 
-									</div>
-									<div class="Rtable-cell">
+										</div>
+										<div class="Rtable-cell">
 
-										<select style="width: 45px " value.bind="currentItem.SightHeight16">
+											<select style="width: 45px " value.bind="currentItem.SightHeight16">
 												<option model.bind="''">''</option>
 												<option repeat.for="measure of measures " model.bind="measure.name">
 													${measure.name}
 												</option>
 											</select>
-									</div>
-									<div class="Rtable-cell">
-										<input type="number " xid="SightWidth " class="form-control  " value.bind="currentItem.SightWidth">
+										</div>
+										<div class="Rtable-cell">
+											<input type="number " xid="SightWidth " class="form-control  " value.bind="currentItem.SightWidth">
 
-									</div>
-									<div class="Rtable-cell">
+										</div>
+										<div class="Rtable-cell">
 
-										<select style="width: 45px " value.bind="currentItem.SightWidth16">
+											<select style="width: 45px " value.bind="currentItem.SightWidth16">
 												<option model.bind="''">''</option>
 												<option repeat.for="measure of measures " model.bind="measure.name">
 													${measure.name}
 												</option>
 											</select>
-									</div>
-									<div class="Rtable-cell">
-										<input type="number " xid="SeightDepth " class="form-control " value.bind="currentItem.SightDepth">
+										</div>
+										<div class="Rtable-cell">
+											<input type="number " xid="SeightDepth " class="form-control " value.bind="currentItem.SightDepth">
 
-									</div>
-									<div class="Rtable-cell">
+										</div>
+										<div class="Rtable-cell">
 
-										<select style="width: 45px " value.bind="currentItem.SightDepth16">
+											<select style="width: 45px " value.bind="currentItem.SightDepth16">
 												<option model.bind="''">''</option>
 												<option repeat.for="measure of measures " model.bind="measure.name">
 													${measure.name}
 												</option>
 											</select>
-									</div>
-									<!-- end seight->
+										</div>
+										<!-- end seight->
 <!-- framed -->
-									<div class="Rtable-cell Rtable-cell--highlight">
-										<strong>Framed</strong>
-									</div>
-									<div class="Rtable-cell">
-										<input type="number " xid="FramedHeight " class="form-control  " value.bind="currentItem.FramedHeight">
+										<div class="Rtable-cell Rtable-cell--highlight">
+											<strong>Framed</strong>
+										</div>
+										<div class="Rtable-cell">
+											<input type="number " xid="FramedHeight " class="form-control  " value.bind="currentItem.FramedHeight">
 
-									</div>
-									<div class="Rtable-cell">
+										</div>
+										<div class="Rtable-cell">
 
-										<select style="width: 45px " value.bind="currentItem.FramedHeight16">
+											<select style="width: 45px " value.bind="currentItem.FramedHeight16">
 												<option model.bind="''">''</option>
 												<option repeat.for="measure of measures " model.bind="measure.name">
 													${measure.name}
 												</option>
 											</select>
-									</div>
-									<div class="Rtable-cell">
-										<input type="number " xid="FramedWidth " class="form-control  " value.bind="currentItem.FramedWidth">
+										</div>
+										<div class="Rtable-cell">
+											<input type="number " xid="FramedWidth " class="form-control  " value.bind="currentItem.FramedWidth">
 
-									</div>
-									<div class="Rtable-cell">
+										</div>
+										<div class="Rtable-cell">
 
-										<select style="width: 45px " value.bind="currentItem.FramedWidth16">
+											<select style="width: 45px " value.bind="currentItem.FramedWidth16">
 												<option model.bind="''">''</option>
 												<option repeat.for="measure of measures " model.bind="measure.name">
 													${measure.name}
 												</option>
 											</select>
-									</div>
-									<div class="Rtable-cell">
-										<input type="number " xid="FramedDepth " class="form-control  " value.bind="currentItem.FramedDepth">
+										</div>
+										<div class="Rtable-cell">
+											<input type="number " xid="FramedDepth " class="form-control  " value.bind="currentItem.FramedDepth">
 
-									</div>
-									<div class="Rtable-cell">
+										</div>
+										<div class="Rtable-cell">
 
-										<select style="width: 45px " value.bind="currentItem.FramedDepth16">
+											<select style="width: 45px " value.bind="currentItem.FramedDepth16">
 												<option model.bind="''">''</option>
 												<option repeat.for="measure of measures " model.bind="measure.name">
 													${measure.name}
 												</option>
 											</select>
+										</div>
+										<!-- end framed -->
 									</div>
-									<!-- end framed -->
 								</div>
 							</div>
-              </div>
-	<!--77 </div> -->
+							<!--77 </div> -->
 
 							<!-- end <div class="Rtable Rtable--7cols"> -->
 
@@ -421,7 +417,7 @@
 									</div>
 
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
-										<strong> InvYear</strong>
+										<strong> Year</strong>
 									</div>
 									<div class="Rtable-cell-70  Rtable-cell--highlight">
 
@@ -505,7 +501,9 @@
 							<div class="form-group flex-column-1 margin-left-10">
 								<div class="Rtable Rtable--2cols">
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
-										<strong> Sold Status Sold: ${currentItem.Sold}</strong>
+										<strong> Sold Status
+                       <!-- Sold: ${currentItem.Sold} -->
+                       </strong>
 									</div>
 									<!-- ${search.httpsselectedSoldId} checked.bind="search.selectedSoldId selectedSoldId"-->
 									<div class="Rtable-cell-70 Rtable-cell--highlight">
@@ -594,7 +592,7 @@
 										<strong>Added/updatedAt</strong>
 									</div>
 									<div style="padding-left:4px;" class="Rtable-cell-70 Rtable-cell--highlight">
-							
+
 										${currentItem.DateAdded | dateFormat} / ${currentItem.updatedAt | dateFormat } </div>
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
 										<strong>legacy modified</strong>
@@ -605,9 +603,9 @@
 										${currentItem.ModifiedDate | dateFormat }
 
 									</div>
-							
-								<input class="btn btn-primary" id="file" type="file" name="file" files.bind="file" change.delegate="addInventory(file)" accept='image/jpg'>
-	      </div>
+
+									<input class="btn btn-primary" id="file" type="file" name="file" files.bind="file" change.delegate="addInventory(file)" accept='image/jpg'>
+								</div>
 
 								<!-- 2nd -->
 							</div>
