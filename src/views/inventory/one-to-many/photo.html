@@ -4,19 +4,16 @@
 	<section class="docs full-height flex-column-1 overflow-y-auto ignore">
 
 		<h4>
-			<i class="fa fa-folder-open"></i> Photos for ${currentItem.InventoryCode} click button below or drag n drop files's over
-			button
-			<a slot="buttons-slot" class="btn btn-success" click.delegate="addDocs(file)">
-				<i class="fa fa-plus"></i> Add Uploaded File
-			</a>
+			<i class="fa fa-folder-open"></i> Photos for ${currentItem.InventoryCode} 
+      <!-- click button below or drag n drop files's over			button -->
+		
 
-
-			<a slot="buttons-slot" class="btn btn-success" click.delegate="modalDocs()">
+			<!-- <a slot="buttons-slot" class="btn btn-success" click.delegate="modalDocs()">
 				<i class="fa fa-plus"></i> Popup Docs
-			</a>
+			</a>-->
 <a slot="buttons-slot" class="btn btn-primary" click.delegate="addPhoto()">
-				<i class="fa fa-plus"></i> Add Exhibition
-			</a>
+				<i class="fa fa-plus"></i> Add Photo Rec
+			</a> 
 			<a slot="buttons-slot">
 				<input id="icon_prefix" type="text" value.bind="searchdoc & debounce" class="validate">
 
@@ -24,7 +21,10 @@
 			</a>
 
 
-			<input style='height:88' id='file' type="file" name="file" files.bind="file" multiple>
+			<input class="btn btn-success" style='height:88' id='file' type="file" name="file" files.bind="file" multiple>
+	<a slot="buttons-slot" class="btn btn-success" click.delegate="addDocs(file)">
+			</i>Upload Files
+			</a>
 
 		</h4>
 
@@ -33,18 +33,26 @@
 
 		<ak-grid class="flex-row-1 overflow-y-auto" id="grid" k-data-source.bind="datasource" k-widget.bind="grid" k-sortable.bind="{ mode: 'multiple',   allowUnsort: 'true'}"
 		 k-editable="popup" k-reorderable.bind="true" k-resizable.bind="true" k-height.bind="300" k-column-menu.bind="true">
-			<div style="width: 900px"></div>
-			<ak-col k-filterable.bind="false" k-width="120px" k-title="Cmd" k-command.bind="['edit']" k-title="&nbsp;" k-locked.bind="true"
+			<div style="width: 1400px"></div>
+		
+    	<ak-col k-title="Image" k-filterable.bind="false" k-field="InventoryCode" k-width="150px">
+							<ak-template>
+								<div class='customer-photo-sq' style="background-image: url(https://artbased.com/api/v1/getimage/inv/${InventoryCode}.jpg);"
+								 click.delegate="showModalImg($event)"></div>
+							</ak-template>
+						</ak-col>
+    	<ak-col k-filterable.bind="false" k-width="120px" k-title="Cmd" k-command.bind="['edit','delete']" k-title="&nbsp;" k-locked.bind="true"
 			 k-lockable.bind="false"></ak-col>
-  		<ak-col k-field="Photogpraher" k-title="Format" k-width="180px" 
+  		<ak-col k-field="Photogpraher" k-title="Photogpraher" k-width="140px" 
       k-editor.bind="photograherDropDownEditor"></ak-col>
-			<ak-col k-field="Format" k-title="Format" k-width="180px" k-editor.bind="formatDropDownEditor"></ak-col>
+			<ak-col k-field="Format" k-title="Format" k-width="140px" k-editor.bind="formatDropDownEditor"></ak-col>
 			<ak-col k-field="Note" k-title="Note" k-width="340px" k-height="240px" k-editor.bind="textAreaEditor" k-filterable.bind="false"
 			 k-groupable.bind="false"></ak-col>
-			<ak-col k-field="PhotoTaken" k-title="# Taken" k-width="90px" k-editor.bind="textAreaEditor" k-filterable.bind="false"
+			<ak-col k-field="PhotoTaken" k-title="# Taken" k-width="90px"  k-filterable.bind="false"
 			 k-groupable.bind="false"></ak-col>
-    <ak-col k-field="Precons" k-title="Pre Cons" k-width="90px" k-editor.bind="textAreaEditor" k-filterable.bind="false"
-			 k-groupable.bind="false"></ak-col>
+    <ak-col k-field="Precons" k-title="Pre Cons" k-width="90px" k-editor.bind="checkboxEditor" k-editor.bind="Precons" k-filterable.bind="false"
+			 k-groupable.bind="false"></ak-col> 
+       <!--  k-editor.bind="checkboxEditor"  -->
     	<ak-col k-field="Date" k-filterable.bind="true" k-format="{0:MM/dd/yyyy}" k-width.bind="120"> </ak-col>
 
 		</ak-grid>

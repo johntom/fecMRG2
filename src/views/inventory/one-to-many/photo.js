@@ -28,38 +28,51 @@ export class Photo {
         // updatedItem.offerdate = this.offerdate
         // console.log('   updatedItem ', updatedItem)
         options.success(updatedItem)
+      },
+       remove: (options) => {
+         alert('in remove')
+        // let updatedItem = options.data;
+        
+        // options.success(updatedItem)
+      },
+       destroy: (options) => {
+         alert('in destroy')
+        // let updatedItem = options.data;
+        
+        // options.success(updatedItem)
       }
     },
 
+
+    // Photogpraher: { type: "string", editable: true },
+    // Format: { type: "string", editable: true },
+    // Photogpraher: { defaultValue: { id: '5d5009f5ee1af1dc544c2558', Description: 'Ryan Sobotka' } },
+    // Format: { defaultValue: { id: '5d5009edee1af1dc544c11da', Description: '8 x 10' } },
+
     schema: {
-      model: { 
-        id: "id", 
+      model: {
+        id: "id",
         fields: {
           Date: { type: "date", editable: true },
           Note: { type: "string", editable: true },
-      // Photogpraher: { type: "string", editable: true },
-      // Format: { type: "string", editable: true },
-       Precon: { type: "boolean" },
-      PhotoTaken  :{ type: "number", editable: true },
-          // Photogpraher: { defaultValue: { id: '5d5009f5ee1af1dc544c2558', Description: 'Ryan Sobotka' } },
-          // Format: { defaultValue: { id: '5d5009edee1af1dc544c11da', Description: '8 x 10' } },
-       Photogpraher: { defaultValue:'Ryan Sobotka' },
-       Format: { defaultValue:'professional high-rez digital tiff' },
-    
-           }
+          Precon: { type: "boolean" } ,editable: true },
+          PhotoTaken: { type: "number", editable: true },
+          Photogpraher: { defaultValue: 'Ryan Sobotka' },
+          Format: { defaultValue: 'professional high-rez digital tiff' },
+
       }
     },
-    
+
   })
 
-// 	<!-- <th class="header">Photogpraher </th>
-// 						<th class="header">Format </th>
-// 						<th class="header">Date </th>
-//          		<th class="header">Note </th>
-// 					photo
- 			
+  // 	<!-- <th class="header">Photogpraher </th>
+  // 						<th class="header">Format </th>
+  // 						<th class="header">Date </th>
+  //          		<th class="header">Note </th>
+  // 					photo
 
-// Date Note -->
+
+  // Date Note -->
 
 
   constructor(api, appService, dialogService) {
@@ -83,10 +96,10 @@ export class Photo {
 
   }
   // <input click.delegate="showModal('PhotographerID',$index)" type="text" id="PhotographerID" class="form-control input-sm" value.bind="photographername">
- cbTemplate = '${Returned ? Returned : ""}';
- 
+  cbTemplate = '${Returned ? Returned : ""}';
+
   checkboxEditor(container, options) {
-  $(`<input type="checkbox" #= ${options.field} ? 'checked="checked"':"" # disabled="disabled"  />`).appendTo(container);
+    $(`<input type="checkbox" #= ${options.field} ? 'checked="checked"':"" # disabled="disabled"  />`).appendTo(container);
   }
   modalDocs() {
 
@@ -112,7 +125,7 @@ export class Photo {
     $('<textarea class="k-textbox" name="' + options.field + '" style="width:100%;height:100%;" />').appendTo(container);
   }
 
-formatTemplate = '${Format ? Format.Description" : ""}';
+  formatTemplate = '${Format ? Format.Description" : ""}';
   formatDropDownEditor(container, options) {
     $('<input required data-text-field="Description" data-value-field="Description" data-bind="value:' + options.field + '"/>')
       .appendTo(container)
@@ -138,19 +151,19 @@ formatTemplate = '${Format ? Format.Description" : ""}';
   }
 
 
-// 					<select id="PhotographerID" class="form-control  input-sm" value.bind="PhotographerID"> 
-//                 <option model.bind="null">Choose...</option> 
-//                 <option repeat.for="opt of appService.codesPhotographers " model.bind="opt.ID">
-//                 ${opt.Description} 
-//                 </option> 
-//                 </select>
-      	
-// 							<select id="PhotoFormatID" class="form-control  input-sm" value.bind="PhotoFormatID"> 
-//                 <option model.bind="null">...</option> 
-//                 <option repeat.for="opt of appService.codesPhotoFormat " model.bind="opt.ID">
-//                 ${opt.Description} 
-//                 </option> 
-//                 </select>
+  // 					<select id="PhotographerID" class="form-control  input-sm" value.bind="PhotographerID"> 
+  //                 <option model.bind="null">Choose...</option> 
+  //                 <option repeat.for="opt of appService.codesPhotographers " model.bind="opt.ID">
+  //                 ${opt.Description} 
+  //                 </option> 
+  //                 </select>
+
+  // 							<select id="PhotoFormatID" class="form-control  input-sm" value.bind="PhotoFormatID"> 
+  //                 <option model.bind="null">...</option> 
+  //                 <option repeat.for="opt of appService.codesPhotoFormat " model.bind="opt.ID">
+  //                 ${opt.Description} 
+  //                 </option> 
+  //                 </select>
 
 
 
@@ -188,17 +201,17 @@ formatTemplate = '${Format ? Format.Description" : ""}';
     let flag = false
     let item
     let dd = moment().format('YYYY-MM-DD')
-   
+
     if (photo === undefined) {
       flag = true
       photo = []
     }
     // Photogpraher: { defaultValue:'Ryan Sobotka' },
-      // Format: { defaultValue:'8 x 10' },
-    item = {   id: this.epoch, Date:dd, Note: '',Photogpraher:'Ryan Sobotka' ,Format:'professional high-rez digital tiff'}
-   
-     
-   
+    // Format: { defaultValue:'8 x 10' },
+    item = { id: this.epoch, Date: dd, Note: '', Photogpraher: 'Ryan Sobotka', Format: 'professional high-rez digital tiff' }
+
+
+
 
     photo.unshift(item)
     if (flag) this.currentItem.photo = photo
@@ -259,7 +272,7 @@ formatTemplate = '${Format ? Format.Description" : ""}';
     });
   }
   attached() {
- 
+
   }
 }
 
