@@ -28,17 +28,12 @@ export class Photo {
         // console.log('   updatedItem ', updatedItem)
         options.success(updatedItem)
       },
-       remove: (options) => {
-         alert('in remove')
-        // let updatedItem = options.data;
-        
-        // options.success(updatedItem)
-      },
-       destroy: (options) => {
-         alert('in destroy')
-        // let updatedItem = options.data;
-        
-        // options.success(updatedItem)
+
+      destroy: (options) => {
+        let updatedItem = options.data;
+        // alert('in destroy'+updatedItem)
+
+        options.success(updatedItem)
       }
     },
 
@@ -54,14 +49,17 @@ export class Photo {
         fields: {
           Date: { type: "date", editable: true },
           Note: { type: "string", editable: true },
-          Precon: { type: "boolean" } ,editable: true },
-          PhotoTaken: { type: "number", editable: true },
+          Precons: { type: "boolean" },
+          PhotoTaken: { defaultValue: 1, type: "number" },
           Photogpraher: { defaultValue: 'Ryan Sobotka' },
           Format: { defaultValue: 'professional high-rez digital tiff' },
-
-      }
+     command: [
+                {name: "edit", text: { edit: " ", update: " ", cancel: " " }},
+                { name: "destroy", text: " "}
+              ]
+        }
+      },
     },
-
   })
 
   // 	<!-- <th class="header">Photogpraher </th>
@@ -95,11 +93,12 @@ export class Photo {
 
   }
   // <input click.delegate="showModal('PhotographerID',$index)" type="text" id="PhotographerID" class="form-control input-sm" value.bind="photographername">
-  cbTemplate = '${Returned ? Returned : ""}';
+  cbTemplate = '${Precons ? Precons : ""}';
 
   checkboxEditor(container, options) {
     $(`<input type="checkbox" #= ${options.field} ? 'checked="checked"':"" # disabled="disabled"  />`).appendTo(container);
   }
+
   modalDocs() {
 
     this.dialogService.open({ viewModel: Prompt, model: 'docs', lock: false }).whenClosed(response => {
@@ -113,11 +112,6 @@ export class Photo {
       if (item['FILE_NAME'].toLowerCase().search(value.toLowerCase()) != -1) return true
     });
     return
-  }
-  cbTemplate = '${Returned ? Returned : ""}';
-
-  checkboxEditor(container, options) {
-    $(`<input type="checkbox" #= ${options.field} ? 'checked="checked"':"" # disabled="disabled"  />`).appendTo(container);
   }
 
   textAreaEditor(container, options) {
@@ -207,8 +201,7 @@ export class Photo {
     }
     // Photogpraher: { defaultValue:'Ryan Sobotka' },
     // Format: { defaultValue:'8 x 10' },
-    item = { id: this.epoch, Date: dd, Note: '', Photogpraher: 'Ryan Sobotka', Format: 'professional high-rez digital tiff',Precons:false }
-
+    item = { id: this.epoch, PhotoTaken: 1, Date: dd, Note: '', Photogpraher: 'Ryan Sobotka', Format: 'professional high-rez digital tiff', Precons: true }
     photo.unshift(item)
     if (flag) this.currentItem.photo = photo
   }

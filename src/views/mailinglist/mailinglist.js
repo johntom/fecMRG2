@@ -141,11 +141,11 @@ export class Mailinglist {
         console.log('this.search ', this.search)
         let counter = this.utilService.counter++
         // name as - at end its a singleton
-        let path = `Mailinglist-${qs}`;
+        let path = `Mailinglistresult-${qs}`;
         //    let path = `Mailinglist-?mailinglist=${idx.id}`;
         // see authorize-step.js on how I make this a singleton with saving the result set
         this.appService.actionsearchresults = '';// reset 
-        this.router.navigate(`#/mailinglist/${path}&tabname=mailinglist`);
+        this.router.navigate(`#/mailinglist/${path}&tabname=mailinglistresult`);
         this.appService.currentSearch = path
       }
 

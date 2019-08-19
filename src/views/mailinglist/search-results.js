@@ -104,7 +104,6 @@ export class SearchResults {
         //  this.loadData(this.capColor, this.prevtown)
         this.loadData()
           .then((inv) => {
-
             // console.log(' inv datasource ', inv[0]);
             options.success(inv);
           });
@@ -112,25 +111,22 @@ export class SearchResults {
       update: (options) => {
         let updatedItem = options.data;
         // updatedItem.offerdate = this.offerdate
-        console.log('   updatedItem ', updatedItem)
-        this.updateData(updatedItem)
-          .then((scans) => {
-            options.success(scans)
-            this.datasource.read()
-          })
+        // console.log('   updatedItem ', updatedItem)
+        // this.updateData(updatedItem)
+        //   .then((scans) => {
+        //     options.success(scans)
+        //     this.datasource.read()
+        //   })
 
         options.success(updatedItem)
       },
       destroy: (options) => {
-
         let updatedItem = options.data;
-        // alert(`delete ${updatedItem.LastName}, ${updatedItem.LastName} `)
-        // console.log('   updatedItem ', updatedItem)
-        // this.deleteData(updatedItem)
-        //   .then((scans) => {
-        //     options.success(scans)
-        //     this.dataSource.read()
-        //   })
+        this.deleteData(updatedItem)
+          .then((scans) => {
+            options.success(scans)
+            // this.dataSource.read()
+          })
         options.success()
       },
     },
@@ -178,11 +174,15 @@ export class SearchResults {
     this.search.keywords = []
     this.search.genres = []
     this.search.mailingStatus = 0
+    this.search.searchedCriteria= ''
     //http://www.sobell.net/busy-spinner-in-aurelia/
     this.busy = {}
     this.busy.active = true
   }
 
+  textAreaEditor(container, options) {
+    $('<textarea class="k-textbox" name="' + options.field + '" style="width:100%;height:100%;" />').appendTo(container);
+   }
   async deleteData(updatedItem) {
 
     let response = await this.api.deletemlrow(updatedItem);
@@ -254,9 +254,7 @@ export class SearchResults {
       let str = `?mailinglist=${search.mailinglist}`
       if (search.artists !== undefined) {
         str += `&artists=${search.artists}`
-
         // str += `&artists="Bellows, George", "Lewis, Norman"`
-
       }
       if (search.keywords.length !== 0) {
         str += `&keywords=${search.keywords}`
@@ -270,15 +268,12 @@ export class SearchResults {
       if (search.state !== undefined) {
         str += `&state=${search.state}`
       }
-
-
       if (search.contactl !== undefined) {
         str += `&contactl=${search.contactl}`
       }
       if (search.contactf !== undefined) {
         str += `&contactf=${search.contactf}`
       }
-
       if (search.holidaylist === true) {
         str += `&holidaylist=${search.holidaylist}`
       }
@@ -289,7 +284,6 @@ export class SearchResults {
         str += `&mailingStatus=${search.mailingStatus}`
       }
       console.log('\n\n================= ')
-
       // if (search.nomailings === true) {
       //   str += `&nomailings=${search.nomailings}`
       // }
@@ -305,22 +299,18 @@ export class SearchResults {
       if (search.notinternational === true) {
         str += `&notinternational=${search.notinternational}`
       }
-
+      
       return this.api.findContact(str, this.mailinglist)//this.listname)
         // return this.api.findContact(ds, this.listname)
         .then((jsonRes) => {
           // inv = jsonRes.data;
           this.invdata = jsonRes.data//inv;
           this.recct = this.invdata.length;
+          if ( this.recct!==0) this.search.searchedCriteria+=';'+str
           // this.spinner.remove()
-
           this.busy.active = false
-
-
           this.datasource.read()
         });
-
-
     }
   }
 
@@ -331,7 +321,29 @@ export class SearchResults {
       this.grid.setOptions(JSON.parse(options))
     }
   }
- async loadData() {
+  async loadData() {
+    console.log('this.loadData ')
+    let s2 = '1-1-2016';
+    let s3 = '10-21-2016';
+    let inv;
+    // this.listname = 'test'
+    // return this.api.findmailinglist(this.listname).then((jsonRes) => {
+
+    //   // no need to get catalog as we have name
+    // let response = await this.api.findCatalogone(this.mailinglist);
+    // this.catalog = response.data[0]
+
+    return this.api.findmailinglist(this.mailinglist).then((jsonRes) => {
+
+      inv = jsonRes.data;
+      this.invdata = inv;
+      this.recct = inv.length;
+      this.busy.active = false
+      // this.datasource.read()
+      return inv
+    });
+ }
+ async loadDataHold() {
     console.log('this.loadData ')
     let s2 = '1-1-2016';
     let s3 = '10-21-2016';

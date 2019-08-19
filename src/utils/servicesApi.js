@@ -66,11 +66,18 @@ export class ApiService {
 
 
   // { method: ['get'], path: '/api/v1/mailinglist/:id', handler: 'MailinglistController.findone' },
-  findmailinglist(listname) {
+   findmailinglist(listname) {
+   // since listname can have / title use params
+    var url = this.baseweb + `v1/mailinglistparam?id=${listname}`
+    console.log('url ', url)
+    return this.http.fetch(url, {
+      method: 'get',
+      mode: 'cors'
+    }).then((res) => res.json());
+    //return this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())
+  }
+  findmailinglistHold(listname) {
     var url = this.baseweb + `v1/mailinglist/${listname}`
-    //findoneid
-    //  var url = this.baseweb + `v1/mailinglistid/${listname}`
-
     console.log('url ', url)
     return this.http.fetch(url, {
       method: 'get',

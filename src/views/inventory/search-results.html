@@ -73,16 +73,18 @@
 	 k-resizable.bind="true" k-selectable="[row,multiple]" k-on-edit.delegate="onEdit($event.detail)" k-on-data-bound.delegate="onDataBound($event.detail)"
 	 k-on-change.delegate="rowSelected($event.detail)" k-column-menu.bind="true" k-pageable.bind="true" k-scrollable.bind="scrollable">
 
-
-
 		<ak-col k-field="InventoryCode" k-locked.bind="true" k-lockable.bind="false" k-filterable.bind="true" k-title="Inv Code"
 		 k-width.bind="180" k-template="<button click.delegate='detailsEdit($event)' class='k-button'>#=InventoryCode#</button>">
 		</ak-col>
 
-		<ak-col k-title="Image2" k-field="InventoryCode" k-width="220px">
+		<ak-col k-title="Image" k-field="InventoryCode" k-width="120px">
 			<ak-template>
-				<div class='customer-photo-sq' style="background-image: url(https://artbased.com/api/v1/getimage/inv/${InventoryCode}.jpg?{epoch});"
+				<!-- <div class='customer-photo-sq' style="background-image: url(https://artbased.com/api/v1/getimage/inv/${InventoryCode}.jpg?{epoch});"
+				 click.delegate="showModalImg($event)"></div> archive -->
+
+<div class='customer-photo-sq' style="background-image: url(https://artbased.com/api/v1/getimage/inv/${InventoryCode}.jpg;"
 				 click.delegate="showModalImg($event)"></div>
+
 			</ak-template>
 
 		</ak-col>
@@ -127,7 +129,7 @@
 		<button show.bind="appService.currentsavedlist " id="searchInputBtn " class="btn btn-sm btn-primary " type="button
 			 "click.delegate="clearSelection()">Clear Selection</button>
   	<button id="addInputBtn " class="btn btn-sm btn-success " type="button " click.delegate="addinventory() "><strong>A</strong>dd Inventory</button>
-	
+	<span>&nbsp;&nbsp;	<button id="searchInputBtn" class="btn btn-primary" type="button" click.delegate="performAction1Refresh()">Refresh Search List</button></span>
 		</span>
 			<b>  ${message} </b>
 		</div>

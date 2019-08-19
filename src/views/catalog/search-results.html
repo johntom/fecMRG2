@@ -1,5 +1,10 @@
 <template>
-
+	<h3> Count: ${recct} </h3>
+	<div ref="spinner" class="splash">
+			<div class="message">fetching records</div>
+			<i class="fa fa-spinner fa-spin"></i>
+		</div>
+	
 	<section class="full-height flex-column-1 au-animate ignore">
 		<ak-grid class="flex-row-1"
       id="grid" 
@@ -33,6 +38,9 @@
    	<button id="addInputBtn" class="btn btn-sm btn-success" type="button" click.delegate="addcatalog()"><strong>A</strong>dd Catalog</button>
 	
 		</span>
+          	<span>&nbsp;&nbsp;	<button id="searchInputBtn" class="btn btn-primary" type="button" click.delegate="performAction1Refresh()">Refresh Search List</button></span>
+		</span>
+	
 		<b>  ${message} </b>
 		</div>
 	</section>

@@ -5,7 +5,7 @@ import { MyDataService } from "../../services/my-data-service";
 import { EventAggregator } from 'aurelia-event-aggregator';
 import { inject } from 'aurelia-dependency-injection';
 
-@inject(Router, UtilService, ApplicationService,MyDataService,EventAggregator)
+@inject(Router, UtilService, ApplicationService, MyDataService, EventAggregator)
 
 export class Inventory {
   // static inject = [Router, Router, ApplicationService, MyDataService, EventAggregator];
@@ -13,7 +13,7 @@ export class Inventory {
   heading = 'Inventory Search'// PORTERC007 PORTERC009 PORTERC008 PORTERC013';
   counter = 1;
   search = {}
-  
+
   selectedValue = null;
   // options1 = [ { id: 1, name: 'one' }, { id: 2, name: 'two' } ];
   // findOption = value => this.options1.find(x => x.name === value);
@@ -191,12 +191,16 @@ export class Inventory {
 
       let qs = this.utilService.generateQueryString(this.search);
       console.log('this.search ', this.search)
-      let counter = this.utilService.counter++
-      // let path = `Search${counter}${qs}`;
-      // this.router.navigate(`#/inventory/${path}`);
+      let counter = this.utilService.counter++ 
 
-
-      let path = `searchInv${qs}&tabname=searchInv${this.utilService.counter++}`;
+      // opens multiple search results forms
+      //      let path = `searchInv${qs}&tabname=searchInv${this.utilService.counter++}`;
+      // opens 1 search results forms // to create a singleton find if last char of keyHashroot='-'
+      // add - at end before ${qs} its a singleton
+      let path = `searchInv-${qs}&tabname=Invsearch`;
+      // see authorize-step.js on how I make this a singleton with saving the result set
+      this.appService.inventorysearchresults = '';// reset not clicking on tab
+      // this.router.navigate(`#/action/${path}&tabname=actionlist`);
       let rt2 = `#/inventory/${path}`
       this.router.navigate(rt2);
 
@@ -222,17 +226,17 @@ export class Inventory {
     this.search = {}
     //this.router.navigate(`#/inventory/`);
   }
-  
+
   // /////////////////////////////////////////
-  
+
   attached() {
     this.altAKeyPressSubscription = this.eventAggregator.subscribe('keydown:alt-a', this.addinventory.bind(this));
     this.altSKeyPressSubscription = this.eventAggregator.subscribe('keydown:alt-s', this.performSearch.bind(this));
 
- this.ndate= moment().format('YYYY-MM-DD')
-let provarray=[{id:1,sord:3,id:2,sord:1,id:3,sord:2}]
- this.testlodash = _.sortBy(provarray, 'sord');
-    
+    this.ndate = moment().format('YYYY-MM-DD')
+    let provarray = [{ id: 1, sord: 3, id: 2, sord: 1, id: 3, sord: 2 }]
+    this.testlodash = _.sortBy(provarray, 'sord');
+
   }
   detached() {
     this.altAKeyPressSubscription.dispose();
@@ -245,49 +249,49 @@ let provarray=[{id:1,sord:3,id:2,sord:1,id:3,sord:2}]
     let mruinfo, tabindex
     mruinfo = localStorage.getItem('mru-mrg');
     if (mruinfo === null) {
-       this.mruinfo = 0
+      this.mruinfo = 0
     } else {
       this.mruinfo = JSON.parse(mruinfo)
 
       if (this.mruinfo.mru1 !== undefined) {
         this.mru.push(this.mruinfo.mru1.InvCode)
-      } 
-     
+      }
+
       if (this.mruinfo.mru2 !== undefined) {
         this.mru.push(this.mruinfo.mru2.InvCode)
-      } 
-    
+      }
+
       if (this.mruinfo.mru3 !== undefined) {
         this.mru.push(this.mruinfo.mru3.InvCode)
-      } 
-    
+      }
+
       if (this.mruinfo.mru4 !== undefined) {
         this.mru.push(this.mruinfo.mru4.InvCode)
-      } 
-    
+      }
+
       if (this.mruinfo.mru5 !== undefined) {
         this.mru.push(this.mruinfo.mru5.InvCode)
-      } 
-     
-    if (this.mruinfo.mru6 !== undefined) {
+      }
+
+      if (this.mruinfo.mru6 !== undefined) {
         this.mru.push(this.mruinfo.mru6.InvCode)
-      } 
-     
+      }
+
       if (this.mruinfo.mru7 !== undefined) {
         this.mru.push(this.mruinfo.mru7.InvCode)
-      } 
-    
+      }
+
       if (this.mruinfo.mru8 !== undefined) {
         this.mru.push(this.mruinfo.mru8.InvCode)
-      } 
-    
+      }
+
       if (this.mruinfo.mru9 !== undefined) {
         this.mru.push(this.mruinfo.mru9.InvCode)
-      } 
-    
+      }
+
       if (this.mruinfo.mru10 !== undefined) {
         this.mru.push(this.mruinfo.mru10.InvCode)
-      } 
+      }
 
 
     }

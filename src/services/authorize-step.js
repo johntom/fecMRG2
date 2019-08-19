@@ -70,8 +70,6 @@ export class AuthorizeStep {
           //// This replace function removes both "r"
           name = name.replace(/%22/g, "")
           name = name.replace(/%20/g, "")
-
-
           name = name.replace(/%3D/g, ":")
           name = name.replace(/\s/g, "") //replace space
         }

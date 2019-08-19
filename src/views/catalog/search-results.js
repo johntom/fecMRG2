@@ -52,8 +52,6 @@ export class SearchResults {
           Owner: { type: "string" },
           InvYear: { type: "string" },
           UnframedHeight: { type: "string" },
-
-
         }
       }
     },
@@ -71,6 +69,7 @@ export class SearchResults {
     this.api = api;
     this.utilService = utilService;
      this.appService = appService;
+     this.appService.refreshcatalogLoaded = false;
   }
 
   addcatalog() {
@@ -78,24 +77,9 @@ export class SearchResults {
     this.router.navigate(`#/catalog/data/create`);
   }
   activate(params, routeConfig) {
-    //http://74.114.164.24/api/v1/inventorycontent?artistl=s%26artistf=c 
    
-    //let queryParams = this.utilService.parseQueryString();
-    //let queryParams2 = this.utilService.generateQueryString(queryParams);
-    // queryParams2.replace('%3D','=');
-    //   queryParams2.split('%3D').join('=');
-    // var find = '%3D';
-    // var re = new RegExp(find, 'g');
-    // queryParams2 = queryParams2.replace(re, '=');
-    // find = '%26';
-    // re = new RegExp(find, 'g');
-    // queryParams2 = queryParams2.replace(re, '&');
-    // this.queryParams = queryParams2
-    // console.log('squeryParams2', this.queryParams);
-
     this.queryParams = this.utilService.parseQueryStringUrl();
-    console.log('queryParams', this.queryParams);
-    this.datasource.read()
+   // this.datasource.read()
   }
 
   loadGrid() {
@@ -105,27 +89,46 @@ export class SearchResults {
     }
   }
 
-  async loadData() {
-    console.log('this.loadData ')
-    let s2 = '1-1-2016';
-    let s3 = '10-21-2016';
-    let inv;
-    ///api/v1/inventory/getall
+async loadData() {
+    let cat;
+    let notmailinglist = 0;
+    if (this.appService.catalogsearchresults && !this.appService.refreshcatalogLoaded) {
+      this.spinner.remove()
+      return this.appService.catalogsearchresults;
+    } else {
+      let response = await this.api.findCatalog(this.queryParams);
+      let cat = response.data
+      this.recct = org.length;
+      this.spinner.remove()
+      if (this.recct === 1) {
+        let rt2 = '#/catalog/data/' + cat[0].id + '?' + cat[0].OrgName
+        this.router.navigate(rt2);
+        let tab = this.appService.tabs.find(f => f.isSelected);
+        this.closeTab(tab);
+      } else
+        if (cat === 0 || this.recct === 0) {
+          this.message = ' no records found '
+          let tab = this.appService.tabs.find(f => f.isSelected);
+          this.closeTab(tab);
+          let rt2 = '#/home'
+          this.router.navigate(rt2);
+        } else {
+          this.appService.catalogsearchresults = cat;
+          return cat
+        }
+    }
+  }
+
   
+async loadDataHold() {
+    let inv;
     let response = await this.api.findCatalog(this.queryParams);
     return response.data
     console.log('this.repos ', this.api.catalogList)
 
 
-
-    // return this.api.findCatalog(this.queryParams)//searchrec)
-    //   .then((jsonRes) => {
-    //     inv = jsonRes.data;
-    //     // console.log('jsonRes ', jsonRes);
-    //     console.log('this.inv loadData 0 ', inv[0]);
-    //     return inv
-    //   });
   }
+
   rowSelected(e) {
     console.log('e ' + e.sender)
     let grid = e.sender;
@@ -140,17 +143,17 @@ export class SearchResults {
     grid.select(targetRow);
     let selectedRow = grid.select();
     let dataItem = grid.dataItem(selectedRow);
-  //   let rt2  
-  //  if (dataItem.ID!==undefined){
-  //   rt2 = '#/catalog/data/' + dataItem.id+'/'+ dataItem.ID;
-  //  } else {
-  //    rt2 = '#/catalog/data/' + dataItem.id+'/'+ dataItem.CatalogTitle;
-  //  }
-   let  rt2 = '#/catalog/data/' + dataItem.id+'/'+ dataItem.CatalogTitle.slice(1, 11);
-   
+    let  rt2 = '#/catalog/data/' + dataItem.id+'/'+ dataItem.CatalogTitle.slice(1, 11);
     this.router.navigate(rt2);// `#/inventory/${path}`);
 
   }
+
+    performRefresh() {
+    console.log('performRefresh ')
+    this.appService.searchDataLoaded = false;
+    this.datasource.read()  
+  }
+
   //////////////
 
   // performSearch() {

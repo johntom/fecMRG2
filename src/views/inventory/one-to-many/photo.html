@@ -2,7 +2,24 @@
 	<require from="./docs.css"></require>
 	<require from="../../../resources/value-converters/date-format"></require>
 	<section class="docs full-height flex-column-1 overflow-y-auto ignore">
+ <style>
+      .k-grid .k-grid-toolbar .k-grid-add,
+      .k-grid tbody .k-grid-edit,
+      .k-grid tbody .k-grid-update,
+      .k-grid tbody .k-grid-cancel,
+      .k-grid tbody .k-grid-delete {
+        min-width: 0;
+      }
 
+      .k-grid .k-grid-toolbar .k-grid-add .k-icon,
+      .k-grid tbody .k-grid-edit .k-icon,
+      .k-grid tbody .k-grid-update .k-icon,
+      .k-grid tbody .k-grid-cancel .k-icon,
+      .k-grid tbody .k-grid-delete .k-icon {
+        margin: 0;
+      }
+
+    </style>
 		<h4>
 			<i class="fa fa-folder-open"></i> Photos for ${currentItem.InventoryCode} 
       <!-- click button below or drag n drop files's over			button -->
@@ -36,6 +53,14 @@
 			<div style="width: 1400px"></div>
 		 	<ak-col k-filterable.bind="false" k-width="160px" k-title="Cmd" k-command.bind="['edit','delete']" k-title="&nbsp;" k-locked.bind="true"
 			 k-lockable.bind="false"></ak-col>
+<!-- <ak-col k-filterable.bind="false" k-width="160px" k-title="Cmd"  k-command.bind="[{name: "edit", text: "", width: "30px" }]" k-title="&nbsp;&nbsp;" k-locked.bind="true"
+			 k-lockable.bind="false"></ak-col> -->
+       <!-- { command: [{ name: "edit", text: "", width: "30px" }], title: " ", width: 55 }, -->
+ <!-- { command: [
+                {name: "edit", text: { edit: " ", update: " ", cancel: " " }},
+                { name: "destroy", text: " "} -->
+
+
     	<ak-col k-title="Image" k-filterable.bind="false" k-field="id" k-width="150px">
 							<ak-template>
 								<div class='customer-photo-sq' style="background-image: url(https://artbased.com/api/v1/getimage/inv/${id}.jpg);"
@@ -50,12 +75,16 @@
 			 k-groupable.bind="false"></ak-col>
 			<ak-col k-field="PhotoTaken" k-title="# Taken" k-width="90px"  k-filterable.bind="false"
 			 k-groupable.bind="false"></ak-col>
-    <ak-col k-field="Precons" k-title="Pre Cons" k-width="90px" k-editor.bind="checkboxEditor" k-editor.bind="Precons" k-filterable.bind="false"
-			 k-groupable.bind="false"></ak-col> 
-       <!--  k-editor.bind="checkboxEditor"  -->
+ 
+
+           <ak-col k-title="Precons" k-width="110px" k-field="Precons" ></ak-col>
+ 
     	<ak-col k-field="Date" k-filterable.bind="true" k-format="{0:MM/dd/yyyy}" k-width.bind="120"> </ak-col>
 
 		</ak-grid>
+  <!-- <ak-col k-field="Precons" k-title="Pre Cons" k-width="90px" k-editor.bind="checkboxEditor" k-editor.bind="Precons" k-filterable.bind="false"
+			 k-groupable.bind="false"></ak-col> -->
 
+       <!--  k-editor.bind="checkboxEditor"  -->
 	</section>
 </template>

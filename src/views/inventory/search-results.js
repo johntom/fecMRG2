@@ -8,10 +8,6 @@ import { DialogService } from 'aurelia-dialog'
 import { Prompt } from './prompt'
 import { DialogImage } from './dialogImage'
 import { EventAggregator } from 'aurelia-event-aggregator';
-
-
-
-
 import { Promptmess } from '../../services/promptmess';
 import { Promptyn } from '../../services/promptyn';
 
@@ -33,21 +29,10 @@ export class SearchResults {
   datasource = new kendo.data.DataSource({
     transport: {
       read: (options) => {
-        //  this.loadData(this.capColor, this.prevtown)
         this.loadData()
           .then((inv) => {
-            //	console.log(' inv datasource ', inv.length, inv[0]);
             options.success(inv);
-            //		console.log('inv.length===1 && this.appService.onlyonce===0 ', inv.length === 1 && this.appService.onlyonce === 0, inv.length, inv.length)
-            //10-18 if (inv.length === 1 && this.appService.onlyonce === 0) {
-            // if (inv.length === 1 ) {
-            // Rload	let rt2 = '#/inventory/data/' + inv[0].InventoryCode;
-            // 	console.log('rt2 ', rt2)
-            // 	let tab = this.appService.tabs.find(f => f.isSelected);
-            // 	this.closeTab(tab);
-            // 	this.router.navigate(rt2);
-            // 	//10-18 this.appService.onlyonce = 1
-            // }
+           
           });
       },
       // update: (options) => {
@@ -168,6 +153,7 @@ export class SearchResults {
     this.router = router
     this.dialogService = dialogService
     this.eventAggregator = eventAggregator
+     this.appService.refreshinvLoaded = false;
     //   this.currentsavedlist;
  this.epoch = moment().unix();
   }
@@ -264,6 +250,12 @@ export class SearchResults {
 
   }
   activate(params, routeConfig) {
+    this.queryParams = this.utilService.parseQueryStringUrl();
+    console.log('queryParams', this.queryParams);
+ 
+ 
+  //  this.datasource.read()
+
     //http://74.114.164.24/api/v1/inventorycontent?artistl=s%26artistf=c 
     //let queryParams = this.utilService.parseQueryString();
     //let queryParams2 = this.utilService.generateQueryString(queryParams);
@@ -277,15 +269,10 @@ export class SearchResults {
     // queryParams2 = queryParams2.replace(re, '&');
     // this.queryParams = queryParams2
     // console.log('squeryParams2', this.queryParams);
-
-    this.queryParams = this.utilService.parseQueryStringUrl();
-    console.log('queryParams', this.queryParams);
-    this.datasource.read()
-
-    // let meds = this.appService.savedlists
+   // let meds = this.appService.savedlists
     // let orgobj = this.appService.savedlists[0]
     // this.selectedids = orgobj.InventoryCodes
-
+ 
   }
 
   addinventory() {
@@ -299,37 +286,53 @@ export class SearchResults {
     }
   }
 
-  async loadData() {
-    console.log('this.loadData ')
-    let s2 = '1-1-2016';
-    let s3 = '10-21-2016';
+async loadData() { 
     let inv;
     ///api/v1/inventory/getall
-    // let searchrec={}
-    // if (this.title)  searchrec.title=this.title;
-    // if (this.invcode) searchrec.invcode=this.invcode;
-    console.log(this.queryParams)
-
-    // let response = await this.api.findInventory(this.queryParams);
-    // let inv = response.data
-    // return inv
-
-
+    if (this.appService.inventorysearchresults && !this.appService.refreshinvLoaded) {
+     this.spinner.remove()
+      return this.appService.inventorysearchresults;
+         
+    } else {
+      return this.api.findInventory(this.queryParams)
+        .then((jsonRes) => {
+          inv = jsonRes.data;
+            this.inventory = jsonRes.data;
+            this.recCount = inv.length;
+               this.spinner.remove()
+          if (inv === 0 || inv.length === 0) {
+            this.dialogService.open({ viewModel: Promptmess, model: `no records found  `, lock: true }).whenClosed(async response => { });
+            let tab = this.appService.tabs.find(f => f.isSelected);
+            this.closeTab(tab);
+            let rt2 = '#/inventory';
+            this.router.navigate(rt2);
+          } else {
+           this.appService.inventorysearchresults = inv;
+             return inv
+          }
+        });
+    }
+  }
+performAction1Refresh() {
+    //console.log('performRefresh ')
+    // alert('You have selected performRefresh')
+    this.appService.refreshinvLoaded = true;
+    this.datasource.read()
+  }
+  async loadDatanocache() {
+    let inv;
     return this.api.findInventory(this.queryParams)
-      //return this.api.findInventoryKeywords(this.queryParams)
-
-      .then((jsonRes) => {
+         .then((jsonRes) => {
         inv = jsonRes.data;
         this.inventory = jsonRes.data;
         this.recCount = inv.length;
                this.spinner.remove()
         if (inv === 0 || inv.length === 0) {
-          // alert(' no records found ')
           this.message = ' no records found '
           let tab = this.appService.tabs.find(f => f.isSelected);
           this.closeTab(tab);
-          let rt2 = '#/home'// inventory'
-          this.router.navigate(rt2);// `#/inventory/${path}`);
+          let rt2 = '#/inventory'
+          this.router.navigate(rt2);
         } else return inv
       });
 

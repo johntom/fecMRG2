@@ -17,9 +17,9 @@ export class Catalog {
   performSearch() {
     if (this.search) {
       let qs = this.utilService.generateQueryString(this.search);
-      // let path = `searchCatalog${this.utilService.counter++}${qs}`;
-      // this.router.navigate(`#/catalog/${path}`);
-      let path = `searchCatalog${qs}&tabname=searchCatalog${this.utilService.counter++}`;
+    //  let path = `searchCatalog${qs}&tabname=searchCatalog${this.utilService.counter++}`;
+      let path = `searchCatalog-${qs}&tabname=Catalogsearch`;
+      this.appService.catalogsearchresults = '';// reset not clicking on tab
       let rt2 = `#/catalog/${path}`
       this.router.navigate(rt2);
     }

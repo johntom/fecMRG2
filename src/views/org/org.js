@@ -41,7 +41,7 @@ export class Org {
   activate() {
     console.log('name-tag activate before attached ');
 
- 
+
   }
 
   detached() {
@@ -54,23 +54,21 @@ export class Org {
 
   performSearch() {
     if (this.search) {
-      console.log('this.search', this.search)
+      // console.log('this.search', this.search)
       let qs = this.utilService.generateQueryString(this.search);
-
-      // let adj = `${this.ADJUSTER_NAME.ADJUSTER_ID}`
-       //this.router.navigate(`#/contact/${path}&tabname=ContactSRH${this.utilService.counter++}`);
-      let path = `searchOrg${qs}&tabname=searchOrg${this.utilService.counter++}`;
-
-  //  path = path.replace( /\s/g, "")
+      // let path = `searchOrg${qs}&tabname=searchOrg${this.utilService.counter++}`;
+      let path = `searchOrg-${qs}&tabname=Contactsearch`;
+      // see authorize-step.js on how I make this a singleton with saving the result set
+      this.appService.orgsearchresults = '';// reset not clicking on tab
       let rt2 = `#/org/${path}`
-       this.appService.currentSearch = path
+      this.appService.currentSearch = path
       this.router.navigate(rt2)
- 
+
     }
   }
 
-addorg(){
+  addorg() {
     this.router.navigate(`#/org/data/create`);
-}
+  }
 
 }

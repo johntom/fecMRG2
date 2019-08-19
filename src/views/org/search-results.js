@@ -28,8 +28,8 @@ export class SearchResults {
         this.loadData()
           .then((orgs) => {
             options.success(orgs);
-                  //  console.log(' Adjusters datasource ', orgs[0], orgs.length)
-     
+            //  console.log(' Adjusters datasource ', orgs[0], orgs.length)
+
           });
       },
     },
@@ -47,13 +47,15 @@ export class SearchResults {
     this.utilService = utilService;
     this.appService = appService;
     this.dataService = dataService;
+    this.appService.refreshorgLoaded = false;
+    // orgsearchresults
   }
 
   activate(params, routeConfig) {
 
     this.queryParams = this.utilService.parseQueryStringUrl();
     console.log('queryParams', this.queryParams);
-    this.datasource.read()
+    // not needed this.datasource.read()
   }
 
   loadGrid() {
@@ -62,12 +64,41 @@ export class SearchResults {
       this.grid.setOptions(JSON.parse(options));
     }
   }
-
   async loadData() {
+    let inv;
+    let notmailinglist = 0;
+    if (this.appService.orgsearchresults && !this.appService.refreshorgLoaded) {
+      this.spinner.remove()
+      return this.appService.orgsearchresults;
 
-    //	let orgs;
-    // alert('a2')
-    console.log(this.queryParams)
+    } else {
+
+      // return this.api.findallorgs(this.queryParams)
+      let response = await this.api.findallorgs(this.queryParams);
+
+      let orgs = response.data
+      this.recct = orgs.length;
+      this.spinner.remove()
+      if (this.recct === 1) {
+        let rt2 = '#/org/data/' + orgs[0].id + '?' + orgs[0].OrgName
+        this.router.navigate(rt2);
+        let tab = this.appService.tabs.find(f => f.isSelected);
+        this.closeTab(tab);
+      } else
+        if (orgs === 0 || this.recct === 0) {
+          this.message = ' no records found '
+          let tab = this.appService.tabs.find(f => f.isSelected);
+          this.closeTab(tab);
+          let rt2 = '#/home'
+          this.router.navigate(rt2);
+        } else {
+          this.appService.orgsearchresults = orgs;
+          return orgs
+        }
+
+    }
+  }
+  async loadDataHold() {
 
     let response = await this.api.findallorgs(this.queryParams);
     let orgs = response.data
@@ -79,7 +110,6 @@ export class SearchResults {
       this.closeTab(tab);
     } else
       if (orgs === 0 || this.recct === 0) {
-        // alert(' no records found ')
         this.message = ' no records found '
         let tab = this.appService.tabs.find(f => f.isSelected);
         this.closeTab(tab);
@@ -87,10 +117,7 @@ export class SearchResults {
         this.router.navigate(rt2);
       } else return orgs
 
-
   }
-  // async loadData() {
-
 
 
   //   let response = await this.api.findallorgs(this.queryParams);

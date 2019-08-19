@@ -4,9 +4,9 @@ import { ApiService } from '../../utils/servicesApi';
 
 
 import { EventAggregator } from 'aurelia-event-aggregator';
-
+import { ApplicationService } from '../../services/application-service';
 export class Contact {
-  static inject = [Router, UtilService, ApiService, EventAggregator];
+  static inject = [Router, UtilService, ApiService, EventAggregator, ApplicationService];
 
   heading = 'SEARCH CONTACTS';
   counter = 1;
@@ -16,12 +16,12 @@ export class Contact {
   options = [];//multiselect select2
   selected = [];//multiselect select2
   altAKeyPressSubscription;
- mailingstatus = [
+  mailingstatus = [
     { id: 1, name: 'Mailing list' },
     { id: 2, name: 'No Mailings' },
     { id: 3, name: 'Unsubscribed' }
   ]
-  constructor(router, utilService, api, eventAggregator) {
+  constructor(router, utilService, api, eventAggregator, appService) {
     this.router = router;
     this.utilService = utilService;
     this.api = api;
@@ -32,6 +32,7 @@ export class Contact {
     // this.search.noinfo = true
     this.search.keywords = []
     this.search.genres = []
+    this.appService = appService;
 
   }
   attached() {
@@ -47,7 +48,7 @@ export class Contact {
     alert('add')
     // this.router.navigate(`#/inventory/data/create`);
   }
-  
+
   performClear() {
     this.search.mailingStatus = ''
 
@@ -115,13 +116,14 @@ export class Contact {
   performSearch() {
     if (this.search) {
       let qs = this.utilService.generateQueryString(this.search);
-
-      let path = `searchContact${qs}&tabname=searchCntct${this.utilService.counter++}`;
+      // let path = `searchContact${qs}&tabname=searchCntct${this.utilService.counter++}`;
+      let path = `searchContact-${qs}&tabname=Contactsearch`;
+      // see authorize-step.js on how I make this a singleton with saving the result set
+      this.appService.contactsearchresults = '';// reset not clicking on tab
       let rt2 = `#/contact/${path}`
       this.router.navigate(rt2);
-      // this.router.navigate(`#/inventory/${this.search}`);
-      // this.router.navigate(`#/inventory/InvSearch`);
-    } 
+      
+    }
   }
 
   populateInv(e) {
