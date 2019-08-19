@@ -1,4 +1,3 @@
-
 import { inject } from 'aurelia-dependency-injection';
 import { ApiService } from '../../../utils/servicesApi';
 import { ApplicationService } from '../../../services/application-service';
@@ -86,7 +85,7 @@ export class Photo {
     this.currentprovenance = '';
     this.dialogService = dialogService
     //////////////////////////////////////////////////////////////////////////////
-    if (this.currentItem.conservation === undefined) this.currentItem.conservation = []
+    if (this.currentItem.photo === undefined) this.currentItem.photo = []
     //////////////////////////////////////////////////////////////////////////////
     this.epoch = moment().unix();
     //   id:this.epoch,
@@ -208,10 +207,7 @@ export class Photo {
     }
     // Photogpraher: { defaultValue:'Ryan Sobotka' },
     // Format: { defaultValue:'8 x 10' },
-    item = { id: this.epoch, Date: dd, Note: '', Photogpraher: 'Ryan Sobotka', Format: 'professional high-rez digital tiff' }
-
-
-
+    item = { id: this.epoch, Date: dd, Note: '', Photogpraher: 'Ryan Sobotka', Format: 'professional high-rez digital tiff',Precons:false }
 
     photo.unshift(item)
     if (flag) this.currentItem.photo = photo

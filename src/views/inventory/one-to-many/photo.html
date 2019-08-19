@@ -34,15 +34,15 @@
 		<ak-grid class="flex-row-1 overflow-y-auto" id="grid" k-data-source.bind="datasource" k-widget.bind="grid" k-sortable.bind="{ mode: 'multiple',   allowUnsort: 'true'}"
 		 k-editable="popup" k-reorderable.bind="true" k-resizable.bind="true" k-height.bind="300" k-column-menu.bind="true">
 			<div style="width: 1400px"></div>
-		
-    	<ak-col k-title="Image" k-filterable.bind="false" k-field="InventoryCode" k-width="150px">
+		 	<ak-col k-filterable.bind="false" k-width="160px" k-title="Cmd" k-command.bind="['edit','delete']" k-title="&nbsp;" k-locked.bind="true"
+			 k-lockable.bind="false"></ak-col>
+    	<ak-col k-title="Image" k-filterable.bind="false" k-field="id" k-width="150px">
 							<ak-template>
-								<div class='customer-photo-sq' style="background-image: url(https://artbased.com/api/v1/getimage/inv/${InventoryCode}.jpg);"
+								<div class='customer-photo-sq' style="background-image: url(https://artbased.com/api/v1/getimage/inv/${id}.jpg);"
 								 click.delegate="showModalImg($event)"></div>
 							</ak-template>
 						</ak-col>
-    	<ak-col k-filterable.bind="false" k-width="120px" k-title="Cmd" k-command.bind="['edit','delete']" k-title="&nbsp;" k-locked.bind="true"
-			 k-lockable.bind="false"></ak-col>
+   
   		<ak-col k-field="Photogpraher" k-title="Photogpraher" k-width="140px" 
       k-editor.bind="photograherDropDownEditor"></ak-col>
 			<ak-col k-field="Format" k-title="Format" k-width="140px" k-editor.bind="formatDropDownEditor"></ak-col>

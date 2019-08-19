@@ -110,7 +110,7 @@ export class SearchResults {
       },
       update: (options) => {
         let updatedItem = options.data;
-        updatedItem.offerdate = this.offerdate
+        // updatedItem.offerdate = this.offerdate
         console.log('   updatedItem ', updatedItem)
         this.updateData(updatedItem)
           .then((scans) => {
@@ -125,11 +125,11 @@ export class SearchResults {
         let updatedItem = options.data;
         // alert(`delete ${updatedItem.LastName}, ${updatedItem.LastName} `)
         // console.log('   updatedItem ', updatedItem)
-        this.deleteData(updatedItem)
-          .then((scans) => {
-            options.success(scans)
-            this.dataSource.read()
-          })
+        // this.deleteData(updatedItem)
+        //   .then((scans) => {
+        //     options.success(scans)
+        //     this.dataSource.read()
+        //   })
         options.success()
       },
     },
@@ -186,6 +186,8 @@ export class SearchResults {
 
     let response = await this.api.deletemlrow(updatedItem);
     this.datasource.read()
+
+
   }
   updateData(e) {
     console.log('updateData ', e)
@@ -251,6 +253,9 @@ export class SearchResults {
       let str = `?mailinglist=${search.mailinglist}`
       if (search.artists !== undefined) {
         str += `&artists=${search.artists}`
+
+// str += `&artists="Bellows, George", "Lewis, Norman"`
+
       }
       if (search.keywords.length !== 0) {
         str += `&keywords=${search.keywords}`
