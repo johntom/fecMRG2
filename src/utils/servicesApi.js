@@ -314,6 +314,16 @@ export class ApiService {
     let res = await this.http.fetch(url, { mode: 'cors' })
     return res.json()
   }
+
+    async findCatalogone(id) {
+    // var url = this.baseweb + 'v1/inventorycontent' + search
+// this is not goot for id with a / in name
+
+    var url = this.baseweb + `v1/catalog/find/${id}`;
+    console.log('url', url)
+    let res = await this.http.fetch(url, { mode: 'cors' })
+    return res.json()
+  }
   async createcatalog(rec) {
     let url = this.baseweb + `v1/catalog/create`
     console.log('url ', url)
@@ -343,13 +353,7 @@ export class ApiService {
   }
 
 
-  async findCatalogone(id) {
-    // var url = this.baseweb + 'v1/inventorycontent' + search
-    var url = this.baseweb + `v1/catalog/find/${id}`;
-    console.log('url', url)
-    let res = await this.http.fetch(url, { mode: 'cors' })
-    return res.json()
-  }
+
 
   ///////////////////////////
 
