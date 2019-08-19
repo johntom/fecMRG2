@@ -55,7 +55,7 @@ export class ApiService {
     https://artbased.com/api/mrg/inventory?filter={"artist.lastName":{"$regex":"sel","$options":"i"}} 
     // var url = this.baseweb + 'inventory' + search
     var url = this.baseweb + 'v1/inventorycontent' + search
-    
+
     console.log('url ', url)
     return this.http.fetch(url, {
       method: 'get'
@@ -68,6 +68,9 @@ export class ApiService {
   // { method: ['get'], path: '/api/v1/mailinglist/:id', handler: 'MailinglistController.findone' },
   findmailinglist(listname) {
     var url = this.baseweb + `v1/mailinglist/${listname}`
+    //findoneid
+    //  var url = this.baseweb + `v1/mailinglistid/${listname}`
+
     console.log('url ', url)
     return this.http.fetch(url, {
       method: 'get',
@@ -314,15 +317,24 @@ export class ApiService {
     let res = await this.http.fetch(url, { mode: 'cors' })
     return res.json()
   }
-
-    async findCatalogone(id) {
+  async findCatalogone(id) { 
     // var url = this.baseweb + 'v1/inventorycontent' + search
-// this is not goot for id with a / in name
-
     var url = this.baseweb + `v1/catalog/find/${id}`;
     console.log('url', url)
     let res = await this.http.fetch(url, { mode: 'cors' })
     return res.json()
+  }
+  async findCatalogone2(id) { 
+
+    var url = this.baseweb + `v1/catalog/find/${id}`;
+    console.log('url', url)
+    let res = await this.http.fetch(url, { mode: 'cors' })
+    if (res.status === 404) {
+      let dataa = []
+      dataa.push('no data')
+      return { data: dataa }
+    } else return res.json()
+
   }
   async createcatalog(rec) {
     let url = this.baseweb + `v1/catalog/create`
@@ -1176,12 +1188,12 @@ export class ApiService {
     // .catch(error => console.log(error));
   }
 
-async uploadfast(formData){
-   let x =  formData.get("file"); 
- let y =  formData.get("dir");
-   console.log('dir ',y,x)// JSON.stringify(formData))
+  async uploadfast(formData) {
+    let x = formData.get("file");
+    let y = formData.get("dir");
+    console.log('dir ', y, x)// JSON.stringify(formData))
     let basewebfast = 'https://gallery.meledandri.com:9020/api/gallerynm/'
- 
+
     var url = basewebfast + `upload`
 
     console.log('url ', url, formData);

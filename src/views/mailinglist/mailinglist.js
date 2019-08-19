@@ -122,23 +122,27 @@ export class Mailinglist {
   //     .then(states => filter.length > 0 ? states.filter(item => item.name.toLowerCase().indexOf(filterlc) > -1) : states)
 
   //   return Promise
-  // }
+  // } 
   performSearchSL() {
 
     let mailinglist = this.myDatalist.value
-    let idx = this.appService.catalogList.findIndex(x => x.CatalogTitle === mailinglist)
+    // let idx = this.appService.catalogList.findIndex(x => x.CatalogTitle === mailinglist)
+    let idx = this.appService.catalogList.find(x => x.CatalogTitle === mailinglist)
+
     // let mid = sels.findIndex(x => x === dataItem.InventoryCode)
     if (idx === -1) {
       alert('Please make a selection')
-    } else { 
+    } else {
 
       if (mailinglist !== 'undefined' && mailinglist !== 'null') this.search.mailinglist = mailinglist
       if (this.search) {
         let qs = this.utilService.generateQueryString(this.search);
+        //        let qs = this.utilService.generateQueryString(idx.id);
         console.log('this.search ', this.search)
         let counter = this.utilService.counter++
         // name as - at end its a singleton
         let path = `Mailinglist-${qs}`;
+        //    let path = `Mailinglist-?mailinglist=${idx.id}`;
         // see authorize-step.js on how I make this a singleton with saving the result set
         this.appService.actionsearchresults = '';// reset 
         this.router.navigate(`#/mailinglist/${path}&tabname=mailinglist`);
@@ -146,40 +150,40 @@ export class Mailinglist {
       }
 
     }
- }
+  }
 
-    performClear() {
-      this.search = {}
-    }
-    attached() {
-      // this.savedlists = this.appService.savedlists
-    }
+  performClear() {
+    this.search = {}
+  }
+  attached() {
+    // this.savedlists = this.appService.savedlists
+  }
 
-    // activate() {
+  // activate() {
 
-    // }
-    activate(params, routeConfig) {
-      //   this.savedlists = this.appService.savedlists
-      //   this.queryParams = this.utilService.parseQueryStringUrl();
-      //   const qs = this.queryParams.substring(this.queryParams.indexOf('?') + 1)
-      //  this.myDatalist.value ='Test List'
-      //   this.performSearchSL()
-      // const pairs = qs.split('&')
-      // const queryParams = {}
-      // let slname
-      // let ct =0
-      // pairs.forEach(p => {
-      //   const kv = p.split('=')
-      //   if (ct===0) slname = kv[1]
-      //   ct++
-      // });
-      //1-27 this.item.savedlist = slname
-      // or
-      // this.item.savedlist = this.appService.currentActionlist
-
-    }
-
-
-
+  // }
+  activate(params, routeConfig) {
+    //   this.savedlists = this.appService.savedlists
+    //   this.queryParams = this.utilService.parseQueryStringUrl();
+    //   const qs = this.queryParams.substring(this.queryParams.indexOf('?') + 1)
+    //  this.myDatalist.value ='Test List'
+    //   this.performSearchSL()
+    // const pairs = qs.split('&')
+    // const queryParams = {}
+    // let slname
+    // let ct =0
+    // pairs.forEach(p => {
+    //   const kv = p.split('=')
+    //   if (ct===0) slname = kv[1]
+    //   ct++
+    // });
+    //1-27 this.item.savedlist = slname
+    // or
+    // this.item.savedlist = this.appService.currentActionlist
 
   }
+
+
+
+
+}
