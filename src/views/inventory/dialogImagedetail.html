@@ -5,7 +5,8 @@
       <button class="btn btn-sm btn-default" click.trigger="controller.cancel()">Close</button></h2>
       </ux-dialog-header>
 		<ux-dialog-body>
-			<img width="500" height="auto" src="https://artbased.com/api/v1/getimage/inv/${currentItem.InventoryCode}.jpg " click.delegate="showModalImg()">
+			<img width="500" height="auto" src="https://artbased.com/api/v1/getimagedetail/inv/${currentItem.InventoryCode}/${FILE_NAME}">
+
 		</ux-dialog-body>
 
 		<ux-dialog-footer>

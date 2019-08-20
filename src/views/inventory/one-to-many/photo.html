@@ -59,15 +59,17 @@
  <!-- { command: [
                 {name: "edit", text: { edit: " ", update: " ", cancel: " " }},
                 { name: "destroy", text: " "} -->
+ <!-- { method: ['get'], path: '/api/v1/getimagedetail/:template/:filename', handler: 'PdfController.getonedetailPdf' }, -->
+ 
 
-
-    	<ak-col k-title="Image" k-filterable.bind="false" k-field="id" k-width="150px">
+    	<ak-col k-title="Image" k-filterable.bind="false" k-field="id" k-width="150px"> 
 							<ak-template>
-								<div class='customer-photo-sq' style="background-image: url(https://artbased.com/api/v1/getimage/inv/${id}.jpg);"
+								<div class='customer-photo-sq' style="background-image: url(https://artbased.com/api/v1/getimagedetail/${currentItem.InventoryCode}/${FILE_NAME});"
 								 click.delegate="showModalImg($event)"></div>
 							</ak-template>
 						</ak-col>
-   
+   	<ak-col k-field="FILE_NAME" k-title="FILE_NAME" k-width="140px" ></ak-col>
+		
   		<ak-col k-field="Photogpraher" k-title="Photogpraher" k-width="140px" 
       k-editor.bind="photograherDropDownEditor"></ak-col>
 			<ak-col k-field="Format" k-title="Format" k-width="140px" k-editor.bind="formatDropDownEditor"></ak-col>

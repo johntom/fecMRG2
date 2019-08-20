@@ -1219,6 +1219,26 @@ export class ApiService {
     // .catch(error => console.log(error));
   }
 
+ uploadinvphotodetail(formData, id) {
+    //http://arabsight.github.io/uploading-files-with-aurelia
+    var url = this.baseweb + `v1/uploadinvphotodetail/${id}` 
+    ///  var url = this.basewebjif + `v1/upload/01-03166`
+
+    console.log('url ', url, formData);
+    return this.http.fetch(url, {
+      mode: 'cors',
+      method: 'POST',
+      headers: {
+        'enctype': "multipart/form-data"
+      },
+      body: formData
+
+      // body: JSON.stringify(formData)
+    }).then((res) => res.json());
+    // .then(data => console.log('data.message', data.message))
+    // .catch(error => console.log(error));
+  }
+
   uploadinvphoto(formData, id) {
     //http://arabsight.github.io/uploading-files-with-aurelia
     var url = this.baseweb + `v1/uploadinvphoto/${id}`

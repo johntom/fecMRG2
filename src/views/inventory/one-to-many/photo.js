@@ -6,6 +6,10 @@ import { DialogService } from 'aurelia-dialog';
 import { ynPrompt } from '../../../services/prompt';
 import { Prompt } from '../prompt';
 import { bindable } from 'aurelia-framework';
+
+// import { DialogImage } from '../dialogImage'
+import { DialogImagedetail } from '../DialogImagedetail'
+
 @inject(ApiService, ApplicationService, DialogService)
 export class Photo {
   @bindable searchdoc
@@ -53,10 +57,13 @@ export class Photo {
           PhotoTaken: { defaultValue: 1, type: "number" },
           Photogpraher: { defaultValue: 'Ryan Sobotka' },
           Format: { defaultValue: 'professional high-rez digital tiff' },
-     command: [
-                {name: "edit", text: { edit: " ", update: " ", cancel: " " }},
-                { name: "destroy", text: " "}
-              ]
+          FILE_NAME: { type: "string" },
+          FILE_EXT: { type: "string" },
+
+          command: [
+            { name: "edit", text: { edit: " ", update: " ", cancel: " " } },
+            { name: "destroy", text: " " }
+          ]
         }
       },
     },
@@ -100,9 +107,8 @@ export class Photo {
   }
 
   modalDocs() {
-
+//
     this.dialogService.open({ viewModel: Prompt, model: 'docs', lock: false }).whenClosed(response => {
-
       console.log(response.output);
     });
   }
@@ -210,7 +216,20 @@ export class Photo {
 
 
   }
-
+ showModalImg(e) {
+    let grid = this.grid;
+    let targetRow = $(e.target).closest("tr");
+    grid.select(targetRow);
+    let selectedRow = grid.select();
+    let dataItem = grid.dataItem(selectedRow);
+    this.dialogService.open({ viewModel: DialogImagedetail, model: dataItem, lock: true }).whenClosed(response => {
+      if (!response.wasCancelled) {
+      } else {
+        console.log('cancel');
+      }
+      console.log(response.output);
+    });
+  }
 
   addDocs(images) {
     //images is file
@@ -224,10 +243,9 @@ export class Photo {
       let newform = values;
       console.log('after checkdata1 ', this.status, newform);
       // this.api.upload(formData, this.currentItem.CLAIM_NO)
-      this.api.uploadinvphoto(newform, this.currentItem.InventoryCode)
+      this.api.uploadinvphotodetail(newform, this.currentItem.InventoryCode)
         .then((jsonRes) => {
           this.upmess = jsonRes.message
-
           $("#file").val("");
         })
     })
@@ -242,6 +260,56 @@ export class Photo {
     //     console.error("Error encountered while trying to get data.", error);
     //   });
 
+  }
+
+  async checkData(images, formData) {
+    let promises = []
+    let flag = true
+    return new Promise((resolve, reject) => {
+      let i = 0;
+      let dd = moment().format('YYYY-MM-DD')
+
+      let photo = this.currentItem.photo
+      if (photo === undefined) {
+        photo = []
+        flag = true
+      }
+      let imagelen = images.length
+      for (i = 0; i < images.length; i++) {
+        let ext = images[i].name.split('.').pop();
+        let fname = images[i].name
+        let mid = -100// not needed
+        let ival = i
+        if(!flag ) {
+        mid = photo.findIndex(x => x.FILE_NAME === fname)
+        }
+        if (mid > -1) {
+          let obj = { name: fname, val: ival, ext: ext }
+          var promise = this.promiseDialog(obj)
+
+          promises.push(promise);
+        } else {
+          // var item = { FILE_NAME: fname, FILE_EXT: '.' + ext, OVERWRITE: 'N' }
+          var item = { id: this.epoch, PhotoTaken: 1, Date: dd, Note: '', Photogpraher: 'Ryan Sobotka', Format: 'professional high-rez digital tiff', Precons: true, FILE_NAME: fname, FILE_EXT: '.' + ext, OVERWRITE: 'N' }
+          photo.unshift(item)
+          formData.append('file', images[ival]);
+          if (flag) this.currentItem.photo = photo
+          //
+
+
+
+        }
+      }
+      return Promise.all(promises).then(values => {
+        for (i = 0; i < values.length; i++) {
+          if (!values[i].resp) {
+            var item = { FILE_NAME: values[i].name, FILE_EXT: values[i].ext, OVERWRITE: 'Y' }
+            formData.append('file', images[values[i].val]);
+          }
+        }
+        resolve(formData)
+      })
+    })
   }
 
 
