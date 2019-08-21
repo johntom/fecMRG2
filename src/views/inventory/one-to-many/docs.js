@@ -92,7 +92,7 @@ export class Docs {
         let selectedRow = grid.select();
         let dataItem = grid.dataItem(selectedRow);
         // let rt2 = 'http://jif.bergenrisk.com:8080/api/v1/downloadonepdf/' + dataItem.template + '/' + dataItem.filename + '.pdf'
-        let rt2 = `https://artbased.com/api/v1/downloadonedetail/${currentItem.InventoryCode}/${dataItem.filename}`// + '.pdf'
+        let rt2 = `https://artbased.com/api/v1/downloadonedetail/${currentItem.InventoryCode}/${dataItem.FILE_NAME}`// + '.pdf'
 
         //  alert('rt2 '+rt2)
         window.open(rt2);

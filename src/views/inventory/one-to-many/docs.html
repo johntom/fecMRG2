@@ -36,14 +36,14 @@
 	 k-height.bind="300" k-filterable.bind="{  mode: 'row' }" k-editable="popup" k-reorderable.bind="true" k-groupable.bind="true"
 	 k-resizable.bind="true" k-selectable="[row]"
 	 k-on-change.delegate="rowSelected($event.detail)" k-column-menu.bind="true"  k-scrollable.bind="scrollable">
-
+ 
 			<div style="width: 1400px"></div>
 		 	<ak-col k-filterable.bind="false" k-width="160px" k-title="Cmd" k-command.bind="['edit','delete']" k-title="&nbsp;" k-locked.bind="true"
 			 k-lockable.bind="false"></ak-col>
 
 						
    <ak-col k-title="Download" k-width.bind="90">
-                                    <ak-grid-command k-name="Downld" k-click.call="detailsdownload($event)"></ak-grid-command>
+                                    <ak-grid-command  k-field="FILE_NAME" k-name="Downld" k-click.call="detailsdownload($event)"></ak-grid-command>
                                 </ak-col>
 
 
