@@ -8,7 +8,7 @@ import { Prompt } from '../prompt';
 import { bindable } from 'aurelia-framework';
 
 // import { DialogImage } from '../dialogImage'
-import { DialogImagedetail } from '../DialogImagedetail'
+import { DialogImagedetail } from '../dialogImagedetail'
 
 @inject(ApiService, ApplicationService, DialogService)
 export class Photo {
@@ -217,18 +217,25 @@ export class Photo {
 
   }
  showModalImg(e) {
+    this.grid.clearSelection(true);
     let grid = this.grid;
-    let targetRow = $(e.target).closest("tr");
+    let targetRow = $(e.target).closest("tr"); 
     grid.select(targetRow);
     let selectedRow = grid.select();
     let dataItem = grid.dataItem(selectedRow);
+   
+    dataItem.InventoryCode=this.currentItem.InventoryCode
     this.dialogService.open({ viewModel: DialogImagedetail, model: dataItem, lock: true }).whenClosed(response => {
       if (!response.wasCancelled) {
+         
       } else {
-        console.log('cancel');
+        console.log('cancel');  
       }
+     
       console.log(response.output);
     });
+    // // delete dataItem.InventoryCode
+    // grid.select(false);
   }
 
   addDocs(images) {

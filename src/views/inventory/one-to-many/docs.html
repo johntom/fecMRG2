@@ -1,72 +1,58 @@
 <template>
-
-	<section class="docs full-height flex-column-1 overflow-y-auto ignore">
+		<section class="docs full-height flex-column-1 overflow-y-auto ignore">
+ <style>
+      .k-grid .k-grid-toolbar .k-grid-add,
+      .k-grid tbody .k-grid-edit,
+      .k-grid tbody .k-grid-update,
+      .k-grid tbody .k-grid-cancel,
+      .k-grid tbody .k-grid-delete {
+        min-width: 0;
+      }
+      .k-grid .k-grid-toolbar .k-grid-add .k-icon,
+      .k-grid tbody .k-grid-edit .k-icon,
+      .k-grid tbody .k-grid-update .k-icon,
+      .k-grid tbody .k-grid-cancel .k-icon,
+      .k-grid tbody .k-grid-delete .k-icon {
+        margin: 0;
+      }
+    </style>
 		<h4>
-			<i class="fa fa-folder-open"></i> Docs for ${currentItem.claimant.LAST_NAME} click button below or drag n drop files's
-			over button
-			<a slot="buttons-slot" class="btn btn-success" click.delegate="addDocs(file)">
-				<i class="fa fa-plus"></i> Add Uploaded File
-			</a>
-
-
-			<a slot="buttons-slot" class="btn btn-success" click.delegate="modalDocs()">
-				<i class="fa fa-plus"></i> Popup Docs
-			</a>
-
+			<i class="fa fa-folder-open"></i> Docs for ${currentItem.InventoryCode} 
+    <a slot="buttons-slot" class="btn btn-primary" click.delegate="addPhoto()">
+				<i class="fa fa-plus"></i> Add Doc Rec
+			</a> 
 			<a slot="buttons-slot">
 				<input id="icon_prefix" type="text" value.bind="searchdoc & debounce" class="validate">
-
 				<i class="material-icons prefix">search</i>
 			</a>
-	
 
-			<input style='height:88' id='file' type="file" name="file" files.bind="file" multiple>
-
+			<input class="btn btn-success" style='height:88' id='file' type="file" name="file" files.bind="file" multiple>
+	<a slot="buttons-slot" class="btn btn-success" click.delegate="addDocs(file)">
+			</i>Upload Files
+			</a> 
+ 
 		</h4>
+ 	<ak-grid class="flex-row-1 overflow-y-auto" id="grid" k-data-source.bind="datasource" k-widget.bind="grid" k-sortable.bind="{ mode: 'multiple',   allowUnsort: 'true'}"
+	 k-height.bind="300" k-filterable.bind="{  mode: 'row' }" k-editable="popup" k-reorderable.bind="true" k-groupable.bind="true"
+	 k-resizable.bind="true" k-selectable="[row]"
+	 k-on-change.delegate="rowSelected($event.detail)" k-column-menu.bind="true"  k-scrollable.bind="scrollable">
+
+			<div style="width: 1400px"></div>
+		 	<ak-col k-filterable.bind="false" k-width="160px" k-title="Cmd" k-command.bind="['edit','delete']" k-title="&nbsp;" k-locked.bind="true"
+			 k-lockable.bind="false"></ak-col>
+
+						
+   <ak-col k-title="Download" k-width.bind="90">
+                                    <ak-grid-command k-name="Downld" k-click.call="detailsdownload($event)"></ak-grid-command>
+                                </ak-col>
 
 
 
-		<form>
-			<table class="table-condensed table">
-				<thead class="table-header-blue" data-sort="items.bind: currentItem.docs; cols: ['FILE_NAME','FILE_EXT']">
-					<tr>
-						<th class="header">File name </th>
+    	<ak-col k-field="Date" k-filterable.bind="true" k-format="{0:MM/dd/yyyy}" k-width.bind="120"> </ak-col>
 
-						<th class="header">Download </th>
+		</ak-grid>
 
 
-						<th class="header">File Extension </th>
-
-					</tr>
-				</thead>
-				<tfoot>
-					<tr>
-						<td></td>
-						<td></td>
-
-					</tr>
-				</tfoot>
-				<tbody>
-					<tr repeat.for="doc of showdocs" with.bind="doc">
-						<td>
-							<a size='100' class="form-control  input-sm" target="_blank" href="https://adjusters.markadjustment.com/docs/${currentItem.CLAIM_NO}/${doc.FILE_NAME}">
-								${FILE_NAME}
-							</a>
-						</td>
-
-						<td>
-							<a size='100' class="form-control  input-sm" href="https://adjusters.markadjustment.com/pdf/${currentItem.CLAIM_NO}/${doc.FILE_NAME}">
-								${FILE_NAME}
-							</a>
-						</td>
-				
-
-						<td><input type="text" id="FILE_EXT" class="form-control  input-sm" value.bind="FILE_EXT"></td>
-
-					</tr>
-				</tbody>
-			</table>
-		</form>
 
 	</section>
 </template>
