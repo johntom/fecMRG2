@@ -33,7 +33,7 @@ export class Docs {
 
       destroy: (options) => {
         let updatedItem = options.data;
-       
+
         options.success(updatedItem)
       }
     },
@@ -44,7 +44,7 @@ export class Docs {
         id: "id",
         fields: {
           Date: { type: "date", editable: true },
-       
+
           FILE_NAME: { type: "string" },
           FILE_EXT: { type: "string" },
 
@@ -76,28 +76,28 @@ export class Docs {
   activate(params, routeConfig) {
 
   }
-  
-// https://artbased.com/api/v1/downloadonedetail/DOVEAR0014/26492.pdf
 
-//     		<!-- div class='customer-photo-sq' style="background-image: url(https://artbased.com/api/v1/getimagedetail/${currentItem.InventoryCode}/${FILE_NAME});"-->
-			
-//    	<ak-col k-field="FILE_NAME" k-title="download" k-width="140px" ></ak-col>
-			
-  		 	// <a size='100' class="form-control  input-sm" href="https://artbased.com/api/v1/downloadonedetail/${currentItem.InventoryCode}/${currentItem.FILE_NAME};">
-    detailsdownload(e) {
-        let grid = this.grid;
+  // https://artbased.com/api/v1/downloadonedetail/DOVEAR0014/26492.pdf
 
-        var targetRow = $(e.target).closest("tr");
-        grid.select(targetRow);
-        let selectedRow = grid.select();
-        let dataItem = grid.dataItem(selectedRow);
-        // let rt2 = 'http://jif.bergenrisk.com:8080/api/v1/downloadonepdf/' + dataItem.template + '/' + dataItem.filename + '.pdf'
-        let rt2 = `https://artbased.com/api/v1/downloadonedetail/${currentItem.InventoryCode}/${dataItem.FILE_NAME}`// + '.pdf'
+  //     		<!-- div class='customer-photo-sq' style="background-image: url(https://artbased.com/api/v1/getimagedetail/${currentItem.InventoryCode}/${FILE_NAME});"-->
 
-        //  alert('rt2 '+rt2)
-        window.open(rt2);
-    }
-// https://artbased.com/api/v1/downloadonedetail/${currentItem.InventoryCode}/${currentItem.FILE_NAME}
+  //    	<ak-col k-field="FILE_NAME" k-title="download" k-width="140px" ></ak-col>
+
+  // <a size='100' class="form-control  input-sm" href="https://artbased.com/api/v1/downloadonedetail/${currentItem.InventoryCode}/${currentItem.FILE_NAME};">
+  detailsdownload(e) {
+    let grid = this.grid;
+
+    var targetRow = $(e.target).closest("tr");
+    grid.select(targetRow);
+    let selectedRow = grid.select();
+    let dataItem = grid.dataItem(selectedRow);
+    // let rt2 = 'http://jif.bergenrisk.com:8080/api/v1/downloadonepdf/' + dataItem.template + '/' + dataItem.filename + '.pdf'
+    let rtdown = `https://artbased.com/api/v1/downloadonedetail/${this.currentItem.InventoryCode}/${dataItem.FILE_NAME}`// + '.pdf'
+
+    //  alert('rt2 '+rt2)
+    window.open(rtdown);
+  }
+  // https://artbased.com/api/v1/downloadonedetail/${currentItem.InventoryCode}/${currentItem.FILE_NAME}
 
 
   searchdocChanged(value) {
@@ -108,48 +108,45 @@ export class Docs {
     return
   }
 
-  
 
-  addPhoto() {
-    let docs = this.currentItem.docs
-    let flag = false
-    let item
-    let dd = moment().format('YYYY-MM-DD')
 
-    if (docs === undefined) {
-      flag = true
-      docs = []
-    }
-    // Photogpraher: { defaultValue:'Ryan Sobotka' },
-    // Format: { defaultValue:'8 x 10' },
-    item = { id: this.epoch, PhotoTaken: 1, Date: dd, Note: '', Photogpraher: 'Ryan Sobotka', Format: 'professional high-rez digital tiff', Precons: true }
-    docs.unshift(item)
-    if (flag) this.currentItem.docs = docs
-  }
+  // addPhoto() {
+  //   let docs = this.currentItem.docs
+  //   let flag = false
+  //   let item
+  //   let dd = moment().format('YYYY-MM-DD')
+
+  //   if (docs === undefined) {
+  //     flag = true
+  //     docs = []
+  //   }
+  //   // Photogpraher: { defaultValue:'Ryan Sobotka' },
+  //   // Format: { defaultValue:'8 x 10' },
+  //   item = { id: this.epoch, PhotoTaken: 1, Date: dd, Note: '', Photogpraher: 'Ryan Sobotka', Format: 'professional high-rez digital tiff', Precons: true }
+  //   docs.unshift(item)
+  //   if (flag) this.currentItem.docs = docs
+  // }
   saveitem(item, index) {
     item.edit = !item.edit
 
 
   }
- showModalImg(e) {
+  showModalImg(e) {
     // this.grid.clearSelection(true);
     let grid = this.grid;
-    let targetRow = $(e.target).closest("tr"); 
+    let targetRow = $(e.target).closest("tr");
     grid.select(targetRow);
     let selectedRow = grid.select();
     let dataItem = grid.dataItem(selectedRow);
-   
-    dataItem.InventoryCode=this.currentItem.InventoryCode
+    dataItem.InventoryCode = this.currentItem.InventoryCode
     this.dialogService.open({ viewModel: DialogImagedetail, model: dataItem, lock: true }).whenClosed(response => {
       if (!response.wasCancelled) {
-         
       } else {
-        console.log('cancel');  
+        console.log('cancel');
       }
-     
       console.log(response.output);
     });
-    
+
   }
 
   addDocs(images) {
@@ -170,9 +167,6 @@ export class Docs {
           $("#file").val("");
         })
     })
-
-   
-
   }
 
   async checkData(images, formData) {
@@ -193,8 +187,8 @@ export class Docs {
         let fname = images[i].name
         let mid = -100// not needed
         let ival = i
-        if(!flag ) {
-        mid = photo.findIndex(x => x.FILE_NAME === fname)
+        if (!flag) {
+          mid = docs.findIndex(x => x.FILE_NAME === fname)
         }
         if (mid > -1) {
           let obj = { name: fname, val: ival, ext: ext }
@@ -207,7 +201,7 @@ export class Docs {
           docs.unshift(item)
           formData.append('file', images[ival]);
           if (flag) this.currentItem.docs = docs
-        
+
         }
       }
       return Promise.all(promises).then(values => {
@@ -354,7 +348,7 @@ export class Docs {
 //           $("#file").val("");
 //         })
 //     })
- 
+
 //   }
 
 // }

@@ -30,7 +30,7 @@
 	<a slot="buttons-slot" class="btn btn-success" click.delegate="addDocs(file)">
 			</i>Upload Files
 			</a> 
- 
+  
 		</h4>
  	<ak-grid class="flex-row-1 overflow-y-auto" id="grid" k-data-source.bind="datasource" k-widget.bind="grid" k-sortable.bind="{ mode: 'multiple',   allowUnsort: 'true'}"
 	 k-height.bind="300" k-filterable.bind="{  mode: 'row' }" k-editable="popup" k-reorderable.bind="true" k-groupable.bind="true"
@@ -41,11 +41,12 @@
 		 	<ak-col k-filterable.bind="false" k-width="160px" k-title="Cmd" k-command.bind="['edit','delete']" k-title="&nbsp;" k-locked.bind="true"
 			 k-lockable.bind="false"></ak-col>
 
-						
-   <ak-col k-title="Download" k-width.bind="90">
-                                    <ak-grid-command  k-field="FILE_NAME" k-name="Downld" k-click.call="detailsdownload($event)"></ak-grid-command>
-                                </ak-col>
+			  
+	<ak-col k-field="FILE_NAME" k-locked.bind="true" k-lockable.bind="false" k-filterable.bind="true" k-title="Download"
+		 k-width.bind="180" k-template="<button click.delegate='detailsdownload($event)' class='k-button'>#=FILE_NAME#</button>">
+		</ak-col>
 
+			
 
 
     	<ak-col k-field="Date" k-filterable.bind="true" k-format="{0:MM/dd/yyyy}" k-width.bind="120"> </ak-col>
