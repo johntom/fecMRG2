@@ -245,15 +245,16 @@ export class Photo {
     let docs = this.currentItem.docs
     let formData = new FormData()
     let newDate = moment().format('YYYY-MM-DD')
-    let flag = false
+    let flag = false 
     let prom = Promise.resolve(this.checkData(images, formData)).then(values => {
       let newform = values;
       console.log('after checkdata1 ', this.status, newform);
       // this.api.upload(formData, this.currentItem.CLAIM_NO)
       this.api.uploadinvphotodetail(newform, this.currentItem.InventoryCode)
         .then((jsonRes) => {
-          this.upmess = jsonRes.message
+          this.upmess = jsonRes.data
           $("#file").val("");
+          formData=''
         })
     })
 

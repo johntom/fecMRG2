@@ -163,7 +163,7 @@ export class Docs {
       // this.api.upload(formData, this.currentItem.CLAIM_NO)
       this.api.uploadinvphotodetail(newform, this.currentItem.InventoryCode)
         .then((jsonRes) => {
-          this.upmess = jsonRes.message
+         // this.upmess = jsonRes.message
           $("#file").val("");
         })
     })
