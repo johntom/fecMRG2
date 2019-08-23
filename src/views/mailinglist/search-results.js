@@ -42,61 +42,7 @@ export class SearchResults {
 
   // artists
 
-  // dataSourceArtist = new kendo.data.DataSource({
-  //     transport: {
-  //       read: (options) => {
-  //         options.success(this.appService.artistList);
-  //       },
-
-  //       parameterMap: function (options, operation) {
-  //         if (operation !== "read" && options.models) {
-  //           return { models: kendo.stringify(options.models) };
-  //         }
-  //       }
-
-  //     },
-  //     schema: {
-  //       model: {
-  //         id: "id",
-  //         fields: {
-  //           "ArtistName": { type: "string" },
-  //           "Died": { type: "string" },
-  //           "YearofBirth": { type: "string" },
-  //         }
-
-
-  //       }
-  //     }
-  //   });
-  // this is keywords
-  // dataSource = new kendo.data.DataSource({
-  //   transport: {
-  //     read: (options) => {
-  //       options.success(this.appService.codesGenre);
-  //     },
-  //     // create: {
-  //     //     url: "https://demos.telerik.com/kendo-ui/service/Products/Create",
-  //     //     dataType: "jsonp"
-  //     // },
-  //     parameterMap: function (options, operation) {
-  //       if (operation !== "read" && options.models) {
-  //         return { models: kendo.stringify(options.models) };
-  //       }
-  //     }
-
-  //   },
-  //   schema: {
-  //     model: {
-  //       id: "id",
-  //       fields: {
-  //         "CodeType": { type: "number" },
-  //         "Description": { type: "string" },
-  //         "CodeTypeDesc": { type: "string" },
-  //       }
-  //     }
-  //   }
-  // });
-
+ 
 
   datasource = new kendo.data.DataSource({
     transport: {

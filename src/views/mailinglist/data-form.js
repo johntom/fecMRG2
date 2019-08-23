@@ -7,7 +7,7 @@ import { Router } from 'aurelia-router';
 import { DialogService } from 'aurelia-dialog';
 //import { Prompt } from '../../../services/prompt';
 import { Prompt } from './prompt';
-import { DialogImage } from './dialogImage';
+// import { DialogImage } from './dialogImage';
 
 @inject(Router, ApiService, ApplicationService, MyDataService, DialogService)
 export class DataForm {
@@ -119,19 +119,17 @@ export class DataForm {
 
     $(this.edit_division).find(".modal").modal();
   }
-  showModalImg() {
-    // alert('in m')
-    this.dialogService.open({ viewModel: DialogImage, model: 'Delete or Cancel?', lock: false }).whenClosed(response => {
-      if (!response.wasCancelled) {
-        // console.log('Delete')
-        // let notes = this.currentItem.notes
-        // notes.splice(index, 1)// start, deleteCount)
-      } else {
-        console.log('cancel');
-      }
-      console.log(response.output);
-    });
-  }
+  // showModalImg() {
+  //   // alert('in m')
+  //   this.dialogService.open({ viewModel: DialogImage, model: 'Delete or Cancel?', lock: false }).whenClosed(response => {
+  //     if (!response.wasCancelled) {
+       
+  //     } else {
+  //       console.log('cancel');
+  //     }
+  //     console.log(response.output);
+  //   });
+  // }
   saveRecord() {
     // window.alert("Save successful!");
   }

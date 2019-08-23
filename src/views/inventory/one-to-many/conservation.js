@@ -8,7 +8,6 @@ import { DialogService } from 'aurelia-dialog';
 
 import { Promptyn } from '../../../services/promptyn';
 import { Promptorg } from '../promptorg';
-import jsRapTable from '../../../../jslib/jsRapTable';
 
 @inject(ApiService, ApplicationService, DialogService)
 export class Conservation {
@@ -121,14 +120,7 @@ export class Conservation {
 
   }
   remove(item, index) {
-    // alert('you are about to delete ' + item.Notes + ' ' + index)
-    // this.mode = 0
-
-    // let notes = this.currentItem.notes
-    // notes.splice(index, 1)// start, deleteCount)
-    // this.dialogService.open({ viewModel: ynPrompt, model: 'Delete or Cancel?', lock: false }).whenClosed(response => {
-
-    this.dialogService.open({ viewModel: Promptyn, model: 'Delete or Cancel?', lock: false }).whenClosed(response => {
+      this.dialogService.open({ viewModel: Promptyn, model: 'Delete or Cancel?', lock: false }).whenClosed(response => {
 
       if (!response.wasCancelled) {
         console.log('Delete')

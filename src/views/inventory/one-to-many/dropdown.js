@@ -4,7 +4,7 @@ import { ApplicationService } from '../../../services/application-service';
 import { Prompt } from '../../../services/prompt';
 import { DialogService } from 'aurelia-dialog';
 import { Promptexhibit } from '../../prompt/promptExhibit';
-import products from './editing-custom-editor.json!';
+// import products from './editing-custom-editor.json!';
 
 @inject(ApiService, ApplicationService, DialogService)
 
@@ -16,14 +16,7 @@ export class Exhibition {
   scrollable = { virtual: true };
   datasource = new kendo.data.DataSource({
     transport: {
-      // read: (options) => {
-      //   //   this.currentItem.reproduction
-      //   this.loadData()
-      //     .then((repro) => {
-      //       console.log(' repro datasource ', repro[0]);
-      //       options.success(repro);
-      //     });
-      // },
+     
       read: (options) => {
         options.success(this.currentItem.exhibition);
         this.currentItem.exhibition = this.datasource._data // sync to our model
@@ -133,9 +126,7 @@ export class Exhibition {
         dataValueField: "id"
       });
   }
-  //  locTemplate = '${ExhibitLocation ? this.appService.codesProvenanceLocation.Description : ""}';
-  // locTemplate = '${ExhibitLocation ? ExhibitLocation.Description" : ""}';
-  locTemplate(container) {
+   locTemplate(container) {
     //  return `${container.ExhibitLocation}--`
     if (container.ExhibitLocation) {
      // console.log('this.c', this.appService.codesProvenanceLocation)
@@ -154,23 +145,6 @@ export class Exhibition {
       });
   }
 
-  // dataSource: {      transport: {        read: (options) => {          options.success(this.appService.codesProvenanceLocation);},}}});
-  // locTemplate(container) {
-  //   return `${container.ExhibitLocation}--`
-  //   // let mid = this.appService.codesProvenanceLocation.find(x => x._id === container.ExhibitLocation)
-  //   //  console.log('this.codes',lthis.codes,container.ExhibitLocation)
-  //   //   let mid = lthis.codes.find(x => x._id === container.currentItem.ExhibitLocation)
-  //   // return `${container.ExhibitLocation}--jj1`
-  //   //  return  `${ExhibitLocation ? "john tom " : ""}`;
-  //   // let grid = this.grid;
-  //   // if(grid!==undefined){
-  //   // let targetRow = $(e.target).closest("tr");
-  //   // grid.select(targetRow);
-  //   // let selectedRow = grid.select();
-  //   // let dataItem = grid.dataItem(selectedRow);
-  //   // return `${dataItem.ExhibitLocation}--jj`
-  //   //   } else return 'jrt'
-  // }
 
   saveitem(item, index) {
     item.edit = !item.edit
