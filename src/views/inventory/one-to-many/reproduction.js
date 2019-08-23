@@ -35,12 +35,12 @@ export class Reproduction {
         let updatedItem = options.data;
         updatedItem.offerdate = this.offerdate
         console.log('   updatedItem ', updatedItem)
-        // this.updateData(updatedItem)
-        //   .then((scans) => {
-        //     options.success(scans)
-        //     this.datasource.read()
-        //   })
-
+       
+        options.success(updatedItem)
+     },
+        destroy: (options) => {
+        let updatedItem = options.data;
+       
         options.success(updatedItem)
       }
     },
@@ -60,6 +60,8 @@ export class Reproduction {
           ReproductionPage: { type: "string", editable: true },
           ColorBW: { type: "string", editable: true },
           ReproductionExhibit: { type: "string", editable: true },
+             Editor: { type: "boolean" }, // scan template
+       
         }
       }
     },
@@ -229,9 +231,9 @@ export class Reproduction {
     }
     item = {
       id:this.epoch, ReproductionAuthor: '', AuthorFirst: '', AuthorLast: '', ReproductionTitle: '',
-      ReproductionName: '', ReproductionLocationDesc: '',
-      ReproductionDate: '', ReproductionPage: '',
-      Sequence: '', ReproductionTypeDesc: '', ReproductionPage: '', ColorBWDesc: '', ReproductionSortDate: ''
+      ReproductionName: '', ReproductionLocationDesc: '', ReproductionDate: '', ReproductionPage: '',
+      Sequence: '', ReproductionTypeDesc: '', ReproductionPage: '', ColorBWDesc: '', ReproductionSortDate: '',
+      Editor:false
     }
 
     reproduction.unshift(item)
@@ -267,7 +269,7 @@ export class Reproduction {
       console.log(response.output);
     });
   }
-  attached() {
+  attached() { 
 
   }
 

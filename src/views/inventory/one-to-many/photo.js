@@ -207,7 +207,7 @@ export class Photo {
     }
     // Photogpraher: { defaultValue:'Ryan Sobotka' },
     // Format: { defaultValue:'8 x 10' },
-    item = { id: this.epoch, PhotoTaken: 1, Date: dd, Note: '', Photogpraher: 'Ryan Sobotka', Format: 'professional high-rez digital tiff', Precons: true }
+    item = { id: this.epoch, PhotoTaken: 1, Date: dd, Note: '', Photogpraher: 'Ryan Sobotka', Format: 'professional high-rez digital tiff', Precons: false }
     photo.unshift(item)
     if (flag) this.currentItem.photo = photo
   }
@@ -298,7 +298,7 @@ export class Photo {
           promises.push(promise);
         } else {
           // var item = { FILE_NAME: fname, FILE_EXT: '.' + ext, OVERWRITE: 'N' }
-          var item = { id: this.epoch, PhotoTaken: 1, Date: dd, Note: '', Photogpraher: 'Ryan Sobotka', Format: 'professional high-rez digital tiff', Precons: true, FILE_NAME: fname, FILE_EXT: '.' + ext, OVERWRITE: 'N' }
+          var item = { id: this.epoch, PhotoTaken: 1, Date: dd, Note: '', Photogpraher: 'Ryan Sobotka', Format: 'professional high-rez digital tiff', Precons: false, FILE_NAME: fname, FILE_EXT: '.' + ext, OVERWRITE: 'N' }
           photo.unshift(item)
           formData.append('file', images[ival]);
           if (flag) this.currentItem.photo = photo

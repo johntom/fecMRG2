@@ -18,22 +18,23 @@
     </style>
 		<h4>
 			<i class="fa fa-folder-open"></i> Docs for ${currentItem.InventoryCode} 
-    <a slot="buttons-slot" class="btn btn-primary" click.delegate="addPhoto()">
+   <!-- <a slot="buttons-slot" class="btn btn-primary" click.delegate="addPhoto()">
 				<i class="fa fa-plus"></i> Add Doc Rec
 			</a> 
 			<a slot="buttons-slot">
 				<input id="icon_prefix" type="text" value.bind="searchdoc & debounce" class="validate">
 				<i class="material-icons prefix">search</i>
 			</a>
-
+-->
 			<input class="btn btn-success" style='height:88' ref='file' id='file' type="file" name="file" files.bind="file" multiple>
 	<a slot="buttons-slot" class="btn btn-success" click.delegate="addDocs(file)">
 			</i>Upload Files
 			</a> 
   
 		</h4>
+   <!-- k-filterable.bind="{  mode: 'row' }" -->
  	<ak-grid class="flex-row-1 overflow-y-auto" id="grid" k-data-source.bind="datasource" k-widget.bind="grid" k-sortable.bind="{ mode: 'multiple',   allowUnsort: 'true'}"
-	 k-height.bind="300" k-filterable.bind="{  mode: 'row' }" k-editable="popup" k-reorderable.bind="true" k-groupable.bind="true"
+	 k-height.bind="300"  k-editable="popup" k-reorderable.bind="true" k-groupable.bind="true"
 	 k-resizable.bind="true" k-selectable="[row]"
 	 k-on-change.delegate="rowSelected($event.detail)" k-column-menu.bind="true"  k-scrollable.bind="scrollable">
  

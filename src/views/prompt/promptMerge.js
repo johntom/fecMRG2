@@ -540,7 +540,7 @@ export class Promptmerge {
         // {id:5,name:"registrar"}]
         // segment = `<h1 style="font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;text-align:center;"></h1> <table><tbody>`
         ww = 95 * invitem.clientWidthRatio
-        hh = 95* invitem.clientHeightRatio
+        hh = 95 * invitem.clientHeightRatio
 
   
 

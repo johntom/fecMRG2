@@ -28,10 +28,20 @@ export class Exhibition {
         options.success(this.currentItem.exhibition);
         this.currentItem.exhibition = this.datasource._data // sync to our model
       },
+      //  create: (options) => {
+      //   let updatedItem = options.data;
+      
+      //   options.success(updatedItem)
+      // },
       update: (options) => {
         let updatedItem = options.data;
         // updatedItem.offerdate = this.offerdate
         // console.log('   updatedItem ', updatedItem)
+        options.success(updatedItem)
+      },
+        destroy: (options) => {
+        let updatedItem = options.data;
+       
         options.success(updatedItem)
       }
     },
@@ -163,7 +173,7 @@ export class Exhibition {
       id: item.id,
       addExhibit: '', ExhibitSponser: '', ExhibitLocation: '', ExhibitRepro: '',
       ExhibitDates: '', ExhibitSortDate: '',
-      Traveled: '', ExhibitMemo: '',  eloc : ''
+      Traveled: false, ExhibitMemo: '',  eloc : ''
     }
     alert('1 ' + item.id)
     exhibition.unshift(item)
@@ -188,7 +198,7 @@ export class Exhibition {
       id: item.id,
       addExhibit: '', ExhibitSponser: '', ExhibitLocation: '', ExhibitRepro: '',
       ExhibitDates: '', ExhibitSortDate: '',
-      Traveled: '', ExhibitMemo: '', 
+      Traveled: false, ExhibitMemo: '', 
       ExhibitLocationDesc: '',
       eloc:{ id: '5d5009e8ee1af1dc544c05e8', Description: 'New York, NY' } ,
     }
