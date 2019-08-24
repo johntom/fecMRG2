@@ -16,9 +16,11 @@ import { Promptmerge } from '../prompt/promptMerge';
 
 import { Promptmess } from '../../services/promptmess';
 import { Promptyn } from '../../services/promptyn';
+import { EventAggregator } from 'aurelia-event-aggregator';
+
 
 // jrt
-@inject(Router, ApiService, UtilService, ApplicationService, MyDataService, DialogService)
+@inject(Router, ApiService, UtilService, ApplicationService, MyDataService, DialogService, EventAggregator)
 export class SearchResults {
   heading = 'Search Results...';
   footer = 'Search Results...';
@@ -135,10 +137,10 @@ export class SearchResults {
 
   })
   // {id:0,name:"check list"},
-listtypes=[{id:0,name:"exhibition(not avail yet)"},{id:1,name:"price list"},
-{id:2,name:"location list"},{id:3,name:"box label"},{id:4,name:"condition"},
-{id:5,name:"registrar"},{id:6,name:"presentation(not avail yet)"}]
-  constructor(router, api, utilService, appService, dataService, dialogService) {
+  listtypes = [{ id: 0, name: "exhibition(not avail yet)" }, { id: 1, name: "price list" },
+  { id: 2, name: "location list" }, { id: 3, name: "box label" }, { id: 4, name: "condition" },
+  { id: 5, name: "registrar" }, { id: 6, name: "presentation(not avail yet)" }]
+  constructor(router, api, utilService, appService, dataService, dialogService,eventAggregator) {
     this.router = router;
     this.api = api;
     this.utilService = utilService;
@@ -147,10 +149,11 @@ listtypes=[{id:0,name:"exhibition(not avail yet)"},{id:1,name:"price list"},
     this.ImageID = '20150921_153441_resized_2'
     this.dialogService = dialogService
     this.appService.rfreshLoaded = false;
-       this.selectedlist = 0
+    this.selectedlist = 0
     // this.appService.actionlist ='closed'
+    this.eventAggregator = eventAggregator;
   }
- 
+
 
 
   updateData(e) {
@@ -201,18 +204,27 @@ listtypes=[{id:0,name:"exhibition(not avail yet)"},{id:1,name:"price list"},
     //1-27 this.item.savedlist = slname
     // or
     // this.item.savedlist = this.appService.currentActionlist
-    if(slname===undefined){
+    if (slname === undefined) {
       alert('Please notify admin as there is aproblem with selection')
     } else {
-    this.savedlist = slname// this.item.savedlist 
-    // this.appService.currentActionlist
-    this.datasource.read()
-    // make a dupe of folllowing to accoumodate 2 typeaheads
-    this.codesListLocation = this.appService.codesListLocation
+      this.savedlist = slname// this.item.savedlist 
+      // this.appService.currentActionlist
+      this.datasource.read()
+      // make a dupe of folllowing to accoumodate 2 typeaheads
+      this.codesListLocation = this.appService.codesListLocation
     }
   }
 
+  attached() {
+    //1=port 0 land
 
+    this.subscriber = this.eventAggregator.subscribe('boxlabel', payload => {
+      console.log('attached in rft.js boxlabel ', payload);
+      this.selectedlist = 3 //boxlabel
+      this.action9()
+    });
+
+  }
   loadGrid() {
     let options = localStorage["kendo-grid-mail"]
     if (options) {
@@ -640,12 +652,12 @@ listtypes=[{id:0,name:"exhibition(not avail yet)"},{id:1,name:"price list"},
     this.hide9 = true
 
   }
-// actionMergeone() {
-  
+  // actionMergeone() {
 
-//     } 
+
+  //     } 
   async action9() {
- 
+
 
     ////////////////////
     let currentModel = {}
@@ -670,7 +682,7 @@ listtypes=[{id:0,name:"exhibition(not avail yet)"},{id:1,name:"price list"},
     let newcount = 0
 
     var i;
-    var a1; 
+    var a1;
     for (i = 0; i < maxRows; i++) {
       a1 = selectedRows[i];
       let dataItem = grid.dataItem(a1);
@@ -685,13 +697,13 @@ listtypes=[{id:0,name:"exhibition(not avail yet)"},{id:1,name:"price list"},
 
       // }
 
-    } 
-// model.bind="list.id" checked.bind="search.listtype"
+    }
+    // model.bind="list.id" checked.bind="search.listtype"
     //  ??
     if (newcount === 0) sels = this.datasource._data
     // this.dialogService.open({ viewModel: Promptmerge, model: sels, lock: true }).whenClosed(async response => {
-    let listname=this.listtypes[ this.selectedlist].name
-    this.dialogService.open({ viewModel: Promptmerge, model: { head: this.savedlist, listtype: this.selectedlist,listname:listname , detail: sels }, lock: true }).whenClosed(async response => {
+    let listname = this.listtypes[this.selectedlist].name
+    this.dialogService.open({ viewModel: Promptmerge, model: { head: this.savedlist, listtype: this.selectedlist, listname: listname, detail: sels }, lock: true }).whenClosed(async response => {
 
       // this.dialogService.open({ viewModel: Promptmerge, model: this.datasource._data, lock: true }).whenClosed(async response => {
       console.log('this.item', response, this.item)

@@ -56,21 +56,7 @@ export class DataForm {
     { id: 7, name: '7/8' }
   ];
 
-  // searchsold = [
 
-  //   { id: 0, name: 'Y' },
-  //   { id: 1, name: 'N' },
-  //   { id: 2, name: 'NFS' },
-  //   { id: 3, name: 'DON' },
-  // ];
-  searchsold2 = [
-    { id: -1, name: 'Y' },
-    { id: 0, name: 'Y' },
-    { id: 1, name: 'Y' },
-    { id: 2, name: 'N' },
-    { id: 3, name: 'NFS' },
-    { id: 4, name: 'DON' },
-  ];
 
   searchsold = [
     { id: -1, name: 'Y' },
@@ -102,16 +88,11 @@ export class DataForm {
       read: (options) => {
         options.success(this.appService.codesGenre);
       },
-      // create: {
-      //     url: "https://demos.telerik.com/kendo-ui/service/Products/Create",
-      //     dataType: "jsonp"
-      // },
       parameterMap: function (options, operation) {
         if (operation !== "read" && options.models) {
           return { models: kendo.stringify(options.models) };
         }
       }
-
     },
     schema: {
       model: {
@@ -413,10 +394,10 @@ export class DataForm {
             console.log('jsonRes ', jsonRes);
             let inv = jsonRes.data;
             this.currentItem = inv[0]
- 
+
             //7-22    delete this.currentItem.updatedAt;
 
- 
+
 
             // delete this.currentItem.conservedbyname
             // this.saveinventory(0)
@@ -424,12 +405,12 @@ export class DataForm {
             // never been saved from view
 
             // // move to attach
-             if (!this.currentItem.savedonce || this.currentItem.savedonce === undefined) {
-            //   // if (!this.currentItem.savedonce || this.currentItem.savedonce === true) {
-            //   // force it all the time
-               this.currentItem.savedonce = true
-               this.saveinventory(0)
-             }
+            if (!this.currentItem.savedonce || this.currentItem.savedonce === undefined) {
+              //   // if (!this.currentItem.savedonce || this.currentItem.savedonce === true) {
+              //   // force it all the time
+              this.currentItem.savedonce = true
+              this.saveinventory(0)
+            }
             // ffixes to stop dirty
             // http://www.jsondiff.com/
             this.mrubuild()
@@ -581,12 +562,13 @@ export class DataForm {
 
 
   attached() {
-    // move to attach
-    // bypass save if in create mode
 
-    this.subscriber = this.eventAggregator.subscribe('rtfpayload', payload => {
-      console.log(payload);
-    });
+    // this.subscriber = this.eventAggregator.subscribe('rtfpayload', payload => {
+    //   console.log('attached on data form',payload);
+    // });
+
+
+
     if (this.recordId !== 'create') {
       // fix dirty
       this.appService.originalrec.OwnedId = this.appService.currentItem.OwnedId
@@ -654,8 +636,7 @@ export class DataForm {
 
       this.getimageinfo(0) // fix issue with isdirty
       if (JSON.stringify(this.currentItem) !== JSON.stringify(this.appService.originalrec)) {
-        // SAVE WITH IMAGE INFO IN CASE ITS MISSING
-        // nsure if needed this.getimageinfo()
+        // SAVE WITH IMAGE INFO IN CASE ITS MISSING ensure if needed this.getimageinfo()
 
 
         // I used eventaggrgator insteead
@@ -873,7 +854,19 @@ export class DataForm {
     this.tabindex = tabindex// get clearded from line above
     return true;
   }
+
+  boxlabel() {
+    this.eventAggregator.publish('boxlabel', this.InventoryCode);
+
+    // Load Box Label
+  }
+
+
 }
+
+
+
+
 // end
 
  // // using fat arrow

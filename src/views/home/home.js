@@ -7,7 +7,7 @@ import { ApiService } from '../../utils/servicesApi';
  
 export class Home { 
   heading = "MRG Home Page";
-  version = ' 303.65.39 ' 
+  version = ' 303.65.41 ' 
   versionDate = 'Fri 8/21/2019 2pm'
   prevversion = ' 303.52 ' 
   prevversionDate = 'Mon 8/5/2019 5pm'
@@ -17,7 +17,10 @@ export class Home {
     `2. Click "Advanced" in the left pane. In the right pane, scroll down to the General area. Select the "Confirm File Format Conversion on Open" check box and then click "OK."`,
     `3. Click File > Options.Click Trust Center > Trust Center Settings >`,
     `4. Protected View.Uncheck Enable Protected View for files originating from the internet.Mar 22, 2018`,
+    //https://circleci.com/workflow-run/1f3685ab-daba-41d7-8d25-6279df547b19
+    
     // https://www.tutorialspoint.com/aurelia/aurelia_event_aggregator.htm
+
     // 'JUNE 15 CONV fix org/contacts save both cols before redo',
     // ' check out mailing list check contact conversion ',
     // 'a action abs exp',
@@ -139,20 +142,27 @@ export class Home {
   sendMessage() {
     channel.publish('greeting', 'Hello from the browser');
 
-  }
+  } 
 
-
+refreshSelection(){
+   this.appService.LookupDataLoaded = false;
+   this.activate()
+}
 
   async activate() {
 
-    let response = await this.api.getCatalogsAA();
-    this.appService.catalogList = response.data
-    console.log('https://artbased.com/api/v1/catalog catalogList ', this.appService.catalogList )
+    // let response = await this.api.getCatalogsAA();
+    // this.appService.catalogList = response.data
+    // console.log('https://artbased.com/api/v1/catalog catalogList ', this.appService.catalogList )
 
     if (this.appService.LookupDataLoaded) {
       console.log('using data cache from home....')
       return Promise.resolve(true);
     } else {
+    let response = await this.api.getCatalogsAA();
+    this.appService.catalogList = response.data
+    console.log('https://artbased.com/api/v1/catalog catalogList ', this.appService.catalogList )
+
       return Promise.all([
         this.dataService.loadArtists(),
         this.dataService.loadCodes(),

@@ -158,13 +158,13 @@ export class Rtf {
    
   }
 
- attached(){
+ attached(){ 
 //1=port 0 land
    if (this.currentItem.clientHeightRatio>=this.currentItem.clientWidthRatio) {
      this.selectedtype=1
    } else this.selectedtype=0
    this.subscriber = this.eventAggregator.subscribe('rtfpayload', payload => {
-         console.log('rtfpayload',payload);
+         console.log('attached in rft.js rtfpayload',payload);
         //  this.createRTF(1,selectedtype)
              this.createRTF(1,this.selectedtype)
       });

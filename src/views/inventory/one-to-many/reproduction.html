@@ -11,11 +11,11 @@
 				<i class="fa fa-plus"></i> Add Reproduction
 			</a>
 
-		</h4>
+		</h4>  
 		<!--   k-on-edit.delegate="onEdit($event.detail)" k-selectable="multiple" k-on-change.delegate="rowSelected($event.detail)"  k-pageable.bind="true" k-filterable.bind="{  mode: 'row' }" -->
 
 				<ak-grid class="flex-row-1 overflow-y-auto" id="grid" k-data-source.bind="datasource" k-widget.bind="grid" k-sortable.bind="{ mode: 'multiple',   allowUnsort: 'true'}"
-		 k-editable="popup" k-reorderable.bind="true" k-resizable.bind="true"
+		 k-editable="inline" k-reorderable.bind="true" k-resizable.bind="true"
      
 				 k-height.bind="300" k-column-menu.bind="true">
 					 <div style="width: 1500px"></div>
