@@ -2,15 +2,10 @@
 	<!-- <require from="../../value-converters/filter-by-code"></require> 
   https://codepen.io/johntom/pen/ypZVaM  this.currentItem.ownername this.currentItem.soldtoname
   -->
-	<!-- <require from="aurelia-kendoui-bridge/multiselect/multiselect"></require>
-	<require from="aurelia-kendoui-bridge/button/button"></require>
-	<requhttps://johntom.github.io/fecMRG2/ire from="aurelia-kendoui-bridge/common/template"></require> -->
 	<require from="./modal-form"></require>
 	<require from="../../resources/value-converters/date-format"></require>
 	<require from="../../resources/value-converters/upper-case"></require>
-	<!-- <require from="./one-to-many/rtf"></require> -->
-	<!-- <component-a createRTF.call="rtf.createRTF()"></component-a> -->
-	<!-- //  @bindable createRTF; -->
+
 	<style>
 		#data-form-ext .tab.tab-selected .form-tab-box {
 			background-color: lightblue;
@@ -75,12 +70,9 @@
 					<button type="button" class="btn btn-primary">Save changes</button>
 				</div>
 			</div>
-			<!-- /.modal-content -->
 		</div>
-		<!-- /.modal-dialog -->
 	</div>
-	<!-- /.modal -->
-	<!-- /.modal form-->
+	
 	<modal-form ref="edit_division" record_id.bind="division.div_id" title="${division.div_id ? 'Edit_Division' : 'New_Division'}"
 	 error.bind="error">
 		<form>
@@ -98,14 +90,6 @@
 			</div>
 		</form>
 	</modal-form>
-	<!-- /.modal form-->
-	<!--currentItem.InventoryCode | upperCase  & throttle 
-                    <input type="text" id="InventoryCode" class="form-control input-sm" value.bind="currentItem.InventoryCode"> -->
-	<!-- & validate -->
-	<!-- <div if.bind="recordId === 'create'">
-												<input type="text" id="InventoryCode" class="form-control input-sm" value.bind="currentItem.InventoryCode">
-											</div>
-					 						<div else>${currentItem.InventoryCode}</div> -->
 
 	<section class="full-height flex-column-1 au-animate ignore">
 		<div class="flex-column-1 overflow-y-auto">
