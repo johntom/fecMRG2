@@ -17,19 +17,19 @@ export class Provenance {
   // provenance: Provenance[] = []
   done = false;
   edit = false;
-
   scrollable = { virtual: true };
   datasource = new kendo.data.DataSource({
     transport: {
-     
       read: (options) => {
         options.success(this.currentItem.provenance);
         this.currentItem.provenance = this.datasource._data // sync to our model
       },
       update: (options) => {
         let updatedItem = options.data;
-        // updatedItem.offerdate = this.offerdate
-        // console.log('   updatedItem ', updatedItem)
+        options.success(updatedItem)
+      },
+      destroy: (options) => {
+        let updatedItem = options.data;
         options.success(updatedItem)
       }
     },
@@ -41,7 +41,8 @@ export class Provenance {
           Sequence: { type: "number" }, // scan template
           ProvDate: { type: "date", editable: true },
           ProvMemo: { type: "string", editable: true },
-           ProvLocDesc: { type: "string", editable: true },
+          ProvLocDesc: { type: "string", editable: true },
+          
           // ProvLocDesc: { defaultValue: { id: '5d5009e8ee1af1dc544c05e8', Description: 'New York, NY' } },
         }
       }
@@ -66,6 +67,9 @@ export class Provenance {
     this.isDisableEdit = true
     this.currentprovenance = '';
     this.dialogService = dialogService
+        //////////////////////////////////////////////////////////////////////////////
+    if (this.currentItem.provenance === undefined) this.currentItem.provenance = []
+    //////////////////////////////////////////////////////////////////////////////
   }
   textAreaEditor(container, options) {
     $('<textarea class="k-textbox" name="' + options.field + '" style="width:100%;height:100%;" />').appendTo(container);

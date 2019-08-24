@@ -9,8 +9,7 @@ import { DialogService } from 'aurelia-dialog';
 
 import { ynPrompt } from '../../../services/prompt';
 import { Prompt } from '../prompt';
-import jsRapTable from '../../../../jslib/jsRapTable';
- 
+
 // @inject(TaskQueue, BindingSignaler, ApiService, ApplicationService, DialogService)
 @inject(ApiService, ApplicationService, DialogService)
 
@@ -66,22 +65,6 @@ export class Offering {
     return this.dataService.camelCaseToProperCase(input);
   }
      attached() {
-    $(document).ready(function () {
-      $('#raptable').jsRapTable({
-        onSort: function (i, d) {
-          $('tbody').find('td').filter(function () {
-            return $(this).index() === i;
-          }).sortElements(function (a, b) {
-            if (i)
-              return $.text([a]).localeCompare($.text([b])) * (d ? -1 : 1);
-            else
-              return (parseInt($.text([a])) - parseInt($.text([b]))) * (d ? -1 : 1);
-          }, function () {
-            return this.parentNode;
-          });
-        },
-      });
 
-    })
   }
 }

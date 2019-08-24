@@ -26,6 +26,11 @@ export class Condition {
         // updatedItem.offerdate = this.offerdate
         // console.log('   updatedItem ', updatedItem)
         options.success(updatedItem)
+       },
+
+      destroy: (options) => {
+        let updatedItem = options.data;
+        options.success(updatedItem)
       }
     },
  

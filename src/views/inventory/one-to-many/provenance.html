@@ -13,7 +13,7 @@
      
 				 k-height.bind="300" k-column-menu.bind="true">
 					 <div style="width: 900px"></div>
-          <ak-col k-filterable.bind="false" k-width="120px" k-title="Cmd" k-command.bind="['edit']" k-title="&nbsp;" k-locked.bind="true"
+          <ak-col k-filterable.bind="false" k-width="160px" k-title="Cmd" k-command.bind="['edit','delete']" k-title="&nbsp;" k-locked.bind="true"
 					 k-lockable.bind="false"></ak-col>
 
 	<ak-col k-field="ProvLocDesc" k-title="Location" k-width="180px"
@@ -25,7 +25,7 @@
 					 k-filterable.bind="false" k-groupable.bind="false"></ak-col>
 	
 	
-	<ak-col k-field="ProvDate" k-filterable.bind="true" k-format="{0:MM/dd/yyyy}" k-width.bind="120">	</ak-col> 
+	<ak-col  k-title="Date" k-field="ProvDate" k-filterable.bind="true" k-format="{0:MM/dd/yyyy}" k-width.bind="120">	</ak-col> 
 		
 	<ak-col k-field="Sequence" k-filterable.bind="true" k-width.bind="90">
 					</ak-col>

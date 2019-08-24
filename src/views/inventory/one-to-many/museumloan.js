@@ -38,6 +38,11 @@ export class Museamloan {
         updatedItem.offerdate = this.offerdate
         console.log('   updatedItem ', updatedItem)
         options.success(updatedItem)
+        },
+
+      destroy: (options) => {
+        let updatedItem = options.data;
+        options.success(updatedItem)
       }
     },
 
@@ -45,18 +50,58 @@ export class Museamloan {
       model: {
         id: "id", // Must assign id for update to work
         fields: {
-          Returned: { type: "boolean" },
           ArtworkReleased: { type: "date", editable: true },
           TransportNotes: { type: "string", editable: true },
           loantoname: { OrgName: "", State: "", _id: "" },
+          Location: { type: "string", editable: true },
+          InsuranceValue: { type: "string", editable: true },
+          ExhibitionTitle: { type: "string", editable: true },
+          ExhibitionVenuesDates: { type: "string", editable: true },
+          AgreementFormSignedMRG: { type: "boolean" },
+          AgreementFormCountersigned: { type: "boolean" },
+          Returned: { type: "boolean" },
+          CofI: { type: "boolean" },
+          Catalog: { type: "boolean" },
+          CofI: { type: "boolean" },
+          UpdatedCV: { type: "boolean" },
+          InfoonfactsheetsinHost: { type: "boolean" },
+          UpdatedFactSheet: { type: "boolean" },
+
+
+
+          // "_id" : ObjectId("5d5005c4db929d74487d182e"), 
+          //     "ID" : NumberInt(8), 
+          //     "LoanTo" : NumberInt(1711), 
+          //     "InventoryToLoan" : "", 
+          //     "Location" : NumberInt(2596), 
+          //     "InsuranceValue" : "rsssss", 
+          //     "ExhibitionTitle" : "Romare Bearden: Southern Recollections", 
+          //     "ExhibitionVenuesDates" : "9/2/11-1/1/12", 
+          //     "AgreementFormSignedMRG" : "Y", 
+          //     "AgreementFormCountersigned" : "Y", 
+          //     "CofI" : "Y", 
+          //     "TransportNotes" : "", 
+          //     "Catalog" : "Y", 
+          //     "InfoonfactsheetsinHost" : "", 
+          //     "UpdatedCV" : "Y", 
+          //       "InsuranceValueAmt" : NumberInt(700000), 
+
+          //     "InventoryID" : NumberInt(11183), 
+          //     "CreatedDate" : "Thu Apr 26 2012 00:00:00 GMT-0400 (Eastern Daylight Time)", 
+          //     "ModifiedDate" : "Wed May 02 2012 00:00:00 GMT-0400 (Eastern Daylight Time)", 
+          //     "UpdatedFactSheet" : "Y", 
+          //     "Returned" : "", 
+          //     "createdAt" : ISODate("2019-08-11T12:10:44.875+0000"), 
+          //     "updatedAt" : ISODate("2019-08-11T12:10:44.875+0000")
+
           // loantoname: {defaultValue: {OrgName: "Ho, Christina", State: "", _id: "5d5005c2db929d74487d0c69" } },
-      
+
         }
       }
     },
     // pageSize: 12,
   })
-///////////
+  ///////////
   //  { template: '#=dirtyField(data,"Discontinued")#<input type="checkbox" #= Discontinued ? \'checked="checked"\' : "" # class="chkbx" />', width: 110 },
   //         { command: "destroy", title: "&nbsp;", width: 100 }],
   //       editable: true
@@ -66,7 +111,7 @@ export class Museamloan {
   //           dataItem = grid.dataItem($(e.target).closest("tr"));
   //       dataItem.set("Discontinued", this.checked);
   //     });
-//////////
+  //////////
 
   constructor(api, appService, dialogService) {
     // this.taskQueue = taskQueue;
@@ -88,13 +133,13 @@ export class Museamloan {
     return !(index === this.editrec && this.mode > 0)
 
   }
-   cbTemplate = '${Returned ? Returned : ""}';
- 
+  cbTemplate = '${Returned ? Returned : ""}';
+
   checkboxEditor(container, options) {
     // $('<textarea class="k-textbox" name="' + options.field + '" style="width:100%;height:100%;" />').appendTo(container);
     // $(`<input type="checkbox" #= ${options.field} ? 'checked="checked"':"" # class="chkbx"  />`).appendTo(container);
-   $(`<input type="checkbox" #= ${options.field} ? 'checked="checked"':"" # disabled="disabled"  />`).appendTo(container);
-   //    template: '#=dirtyField(data,"Discontinued")#<input type="checkbox" #= Discontinued ? \'checked="checked"\' : "" # class="chkbx" />', width: 110 },
+    $(`<input type="checkbox" #= ${options.field} ? 'checked="checked"':"" # disabled="disabled"  />`).appendTo(container);
+    //    template: '#=dirtyField(data,"Discontinued")#<input type="checkbox" #= Discontinued ? \'checked="checked"\' : "" # class="chkbx" />', width: 110 },
   }
 
   textAreaEditor(container, options) {
@@ -145,12 +190,21 @@ export class Museamloan {
       flag = true
       museumloan = []
     }
-    item = { id: this.epoch, TransportNotes: '', ArtworkReleased: dd,
-    // loantoname: {OrgName: "Ho, Christina", State: "", _id: "5d5005c2db929d74487d0c69" }, ArtworkReleased: false }
-    loantoname: { OrgName: "", State: "", _id: "" }, ArtworkReleased: false }
+  // loantoname: {OrgName: "Ho, Christina", State: "", _id: "5d5005c2db929d74487d0c69" }, ArtworkReleased: false }
+    item = {
+      id: this.epoch, TransportNotes: '', ArtworkReleased: dd,
+      loantoname: { OrgName: "", State: "", _id: "" }
+      , AgreementFormSignedMRG: false
+      , Returned: false
+      , CofI: false
+      , Catalog: false
+      , UpdatedCV: false
+      , InfoonfactsheetsinHost: false
+      , UpdatedFactSheet: false
+    }
     museumloan.unshift(item)
     if (flag) this.currentItem.museumloan = museumloan
-    
+
   }
 
   activate(params, routeConfig) {

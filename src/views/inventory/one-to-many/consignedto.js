@@ -36,29 +36,40 @@ export class Conssignedto {
         // updatedItem.offerdate = this.offerdate
         // console.log('   updatedItem ', updatedItem)
         options.success(updatedItem)
+      },
+
+      destroy: (options) => {
+        let updatedItem = options.data;
+     
+        options.success(updatedItem)
       }
     },
 
     schema: {
       model: {
-        id: "id", // Must assign id for update to work
+        id: "legacyid",//id", // Must assign id for update to work
         fields: {
           Sequence: { type: "number" }, // scan template
           consignedto: { type: "string", editable: true },
           // econsignedto: { type: "string", editable: true },
-       //   econsignedto: {defaultValue: {OrgName: "Ho, Christina", State: "", _id: "5d5005c2db929d74487d0c69" } },
+          // econsignedto: {defaultValue: {OrgName: "Ho, Christina", State: "", _id: "5d5005c2db929d74487d0c69" } },
           econsignedto: { OrgName: "", State: "", _id: "" },
-       
           eloc: { defaultValue: { id: '5d5009e8ee1af1dc544c05e8', Description: 'New York, NY' } },
-
           // ProvLoc: { defaultValue: { id: '5d5009e8ee1af1dc544c05e8', Description: 'New York, NY' } },
           ConsignedStartDate: { type: "date", editable: true },
           ConsignedEndDate: { type: "date", editable: true },
           ArtworkReleased: { type: "date", editable: true },
           CreatedDate: { type: "date", editable: true },
-          Signed: { type: "string", editable: true },
-          PDF: { type: "string", editable: true },
-          //  Returned Sold
+          Signed:{ type: "boolean" },
+          PDF: { type: "boolean" },
+          Returned:{ type: "boolean" },
+          Sold: { type: "boolean" },
+
+
+// Signed:{ type: "string" },
+// PDF: { type: "string" },
+// Returned:{ type: "string" },
+// Sold: { type: "string" },
 
         }
       }

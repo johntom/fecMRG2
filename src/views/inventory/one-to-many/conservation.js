@@ -24,15 +24,16 @@ export class Conservation {
   scrollable = { virtual: true };
   datasource = new kendo.data.DataSource({
     transport: {
-
       read: (options) => {
         options.success(this.currentItem.conservation);
         this.currentItem.conservation = this.datasource._data // sync to our model
       },
       update: (options) => {
         let updatedItem = options.data;
-        // updatedItem.offerdate = this.offerdate
-        console.log('   updatedItem ', updatedItem)
+          options.success(updatedItem)
+      },
+      destroy: (options) => {
+        let updatedItem = options.data;
         options.success(updatedItem)
       }
     },

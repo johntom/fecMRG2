@@ -34,7 +34,11 @@ export class Transport {
       update: (options) => {
         let updatedItem = options.data;
         updatedItem.offerdate = this.offerdate
-        console.log('   updatedItem ', updatedItem)
+        // console.log('   updatedItem ', updatedItem)
+        options.success(updatedItem)
+     },
+      destroy: (options) => {
+        let updatedItem = options.data;
         options.success(updatedItem)
       }
     },

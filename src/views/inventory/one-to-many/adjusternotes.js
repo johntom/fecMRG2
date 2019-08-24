@@ -29,6 +29,12 @@ scrollable = { virtual: true };
         let updatedItem = options.data;
        
         options.success(updatedItem)
+        },
+
+      destroy: (options) => {
+        let updatedItem = options.data;
+      
+        options.success(updatedItem)
       }
     },
 
@@ -49,6 +55,11 @@ scrollable = { virtual: true };
     this.appService = appService;
     this.inv = '';
     this.currentItem = this.appService.currentItem;//testrec;
+   
+    //////////////////////////////////////////////////////////////////////////////
+    if (this.currentItem.notes === undefined) this.currentItem.notes = []
+    //////////////////////////////////////////////////////////////////////////////
+   
     this.mode = 0;
     this.editrec = '';
     // this.inputable='disabled'
@@ -56,6 +67,8 @@ scrollable = { virtual: true };
     this.currentnote = '';
     this.dialogService = dialogService 
       this.epoch = moment().unix();
+
+
   }
   test(index) {
     console.log('test ' + index, (index === this.editrec && this.mode > 0))
