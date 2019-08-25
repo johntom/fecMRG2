@@ -6,7 +6,7 @@ import { UtilService } from '../../services/util-service';
 // import moment from 'moment';
 import { ApplicationService } from '../../services/application-service';
 
-@inject(Router, ApiService, UtilService,ApplicationService)
+@inject(Router, ApiService, UtilService, ApplicationService)
 export class SearchResults {
   heading = 'Search Results HEADER...';
   footer = 'Search Results FOOTER...';
@@ -62,24 +62,20 @@ export class SearchResults {
     // ]
   })
 
-
-
-  constructor(router, api, utilService,appService) {
+  constructor(router, api, utilService, appService) {
     this.router = router;
     this.api = api;
     this.utilService = utilService;
-     this.appService = appService;
-     this.appService.refreshcatalogLoaded = false;
+    this.appService = appService;
+    this.appService.refreshcatalogLoaded = false;
   }
 
   addcatalog() {
-
     this.router.navigate(`#/catalog/data/create`);
   }
   activate(params, routeConfig) {
-   
     this.queryParams = this.utilService.parseQueryStringUrl();
-   // this.datasource.read()
+    // this.datasource.read()
   }
 
   loadGrid() {
@@ -88,8 +84,13 @@ export class SearchResults {
       this.grid.setOptions(JSON.parse(options));
     }
   }
+  closeTab(tab) {
 
-async loadData() {
+    let index = this.appService.tabs.indexOf(tab);
+    tab.isSelected = false;
+    this.appService.tabs.splice(index, 1);
+  }
+  async loadData() {
     let cat;
     let notmailinglist = 0;
     if (this.appService.catalogsearchresults && !this.appService.refreshcatalogLoaded) {
@@ -98,13 +99,15 @@ async loadData() {
     } else {
       let response = await this.api.findCatalog(this.queryParams);
       let cat = response.data
-      this.recct = org.length;
+      this.recct = cat.length;
       this.spinner.remove()
       if (this.recct === 1) {
-        let rt2 = '#/catalog/data/' + cat[0].id + '?' + cat[0].OrgName
-        this.router.navigate(rt2);
         let tab = this.appService.tabs.find(f => f.isSelected);
         this.closeTab(tab);
+        let rt2 = '#/catalog/data/' + cat[0].id + '/' + cat[0].CatalogTitle.slice(0, 10);
+       
+        this.router.navigate(rt2);
+     
       } else
         if (cat === 0 || this.recct === 0) {
           this.message = ' no records found '
@@ -119,8 +122,8 @@ async loadData() {
     }
   }
 
-  
-async loadDataHold() {
+
+  async loadDataHold() {
     let inv;
     let response = await this.api.findCatalog(this.queryParams);
     return response.data
@@ -143,41 +146,18 @@ async loadDataHold() {
     grid.select(targetRow);
     let selectedRow = grid.select();
     let dataItem = grid.dataItem(selectedRow);
-    let  rt2 = '#/catalog/data/' + dataItem.id+'/'+ dataItem.CatalogTitle.slice(1, 11);
+    let rt2 = '#/catalog/data/' + dataItem.id + '/' + dataItem.CatalogTitle.slice(0, 10);
     this.router.navigate(rt2);// `#/inventory/${path}`);
 
   }
 
-    performRefresh() {
+  performRefresh() {
     console.log('performRefresh ')
     this.appService.searchDataLoaded = false;
-    this.datasource.read()  
+    this.datasource.read()
   }
 
-  //////////////
 
-  // performSearch() {
-  //   if (this.search) {
-  //     let qs = this.utilService.generateQueryString(this.search);
-  //     let path = `Search${this.utilService.counter++}${qs}`;
-  //     this.router.navigate(`#/inventory/${path}`);
-  //     // this.router.navigate(`#/inventory/${this.search}`);
-  //     // this.router.navigate(`#/inventory/InvSearch`);
-  //   }
-  // }
-
-
-  /////////
-
-  // updateData(e) {
-
-  //   return api.updatecase(e)
-  //     .then((jsonRes) => {
-  //       console.log('this.scans ', jsonRes)
-  //       return jsonRes
-
-  //     })
-  // }
 }
 
 

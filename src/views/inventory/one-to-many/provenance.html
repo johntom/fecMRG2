@@ -13,9 +13,19 @@
      
 				 k-height.bind="300" k-column-menu.bind="true">
 					 <div style="width: 1500px"></div>
+
+	<td >
+       
+	<span show.bind="!provenance.edit">${ProvOwner }</span>
+						<input show.bind="provenance.edit" class="form-control input-sm" disabled.bind="!provenance.edit" type="text" value.bind="ProvOwner">
+</td>
+
+
           <ak-col k-filterable.bind="false" k-width="160px" k-title="Cmd" k-command.bind="['edit','delete']" k-title="&nbsp;" k-locked.bind="true"
 					 k-lockable.bind="false"></ak-col>
-
+	<ak-col k-field="ProvOwner" k-title="Memo" k-width="540px"  k-height="240px"
+					 k-filterable.bind="false" k-groupable.bind="false"></ak-col>
+	
 	<ak-col k-field="ProvLocDesc" k-title="Location" k-width="300px"
    k-editor.bind="locDropDownEditor" 
 					 k-filterable.bind="false" k-groupable.bind="false"></ak-col>
