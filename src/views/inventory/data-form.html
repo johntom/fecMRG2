@@ -555,14 +555,8 @@
 											<a click.delegate="showModal( 'OwnerID')">${currentItem.OwnerID}/${currentItem.ownername} </a>
 											&nbsp;&nbsp;
 											<a click.delegate="OwnerIDEdit()">...Open...</a>
-
 										</div>
-
 									</div>
-
-
-
-
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
 										<strong> Retail Price </strong>
 									</div>
@@ -677,14 +671,12 @@
 				<span class="glyphicon glyphicon-th-list"></span> 
 			</a> -->
 			<!-- exhibition(not avail yet)    price list    location list    box label    condition    registrar    presentation(not avail yet)  -->
-			<div class="Rtable-cell-70 Rtable-cell--highlight">
-				<!--  input-sm -->
-				<input type="text " xid="ArtValue " class="form-control " value.bind="currentItem.ArtValue">
-
+			<!-- <div style="width:400px">	</div> -->
+			
 				<label repeat.for="list of listtypes">
                	<input type="radio" name="group1" model.bind="list.id" checked.bind="selectedlist"> ${list.name} &nbsp;
 						  </label>
-			</div>
+		
 			<button class="btn btn-sm btn-primary " click.delegate="wordmerge()">
 						wordmerge
 					</button>
