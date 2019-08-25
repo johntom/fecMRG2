@@ -7,8 +7,8 @@ import { ApiService } from '../../utils/servicesApi';
  
 export class Home { 
   heading = "MRG Home Page";
-  version = ' 303.82 '  
-  versionDate = 'Sun 8/25/2019 4pm'
+  version = ' 303.83 '  
+  versionDate = 'Sun 8/25/2019 5pm'
   prevversion = ' 303.52 ' 
   prevversionDate = 'Mon 8/5/2019 5pm'
  
@@ -17,6 +17,8 @@ export class Home {
     `2. Click "Advanced" in the left pane. In the right pane, scroll down to the General area. Select the "Confirm File Format Conversion on Open" check box and then click "OK."`,
     `3. Click File > Options.Click Trust Center > Trust Center Settings >`,
     `4. Protected View.Uncheck Enable Protected View for files originating from the internet.Mar 22, 2018`,
+    'Press f5 key to fetch new release or press refresh button upper left corner',
+  
     //https://circleci.com/workflow-run/1f3685ab-daba-41d7-8d25-6279df547b19
     
     // https://www.tutorialspoint.com/aurelia/aurelia_event_aggregator.htm
