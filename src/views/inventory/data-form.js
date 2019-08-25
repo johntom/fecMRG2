@@ -867,7 +867,7 @@ listtypes = [ { id: 1, name: "price list" },
     let detail = []
     detail.push(this.currentItem)
     this.dialogService.open({ viewModel: Promptmerge, model: { head: 'inventory', 
-    listtype: selectedlist, listname: 'box label', detail: detail }, lock: true }).whenClosed(async response => {
+    listtype: this.selectedlist, listname: 'inventory', detail: detail }, lock: true }).whenClosed(async response => {
       console.log('this.item', response, this.item)
       if (!response.wasCancelled) {
         this.saveMerge
