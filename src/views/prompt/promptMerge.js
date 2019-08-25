@@ -348,10 +348,10 @@ export class Promptmerge {
       if (wwr === undefined) wwr = 1
       if (hhr === undefined) hhr = 1
       let ww = 225 * wwr
-      let  hh = 225 * hhr 
+      let hh = 225 * hhr
 
-        // ww = 95 * invitem.clientWidthRatio
-        // hh = 95* invitem.clientHeightRatio
+      // ww = 95 * invitem.clientWidthRatio
+      // hh = 95* invitem.clientHeightRatio
 
       // we have  the ratio of each image
       // ie h=1 w=1
@@ -455,27 +455,24 @@ export class Promptmerge {
         // <p style="text-align:center;"><span style="font-size:xx-large;font-family:Arial, Helvetica, sans-serif;">title</span></p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         // ww = 114
         // hh = 114
-let titletruncate = invitem.Title.substring(0,27);
-  ww = 114 * invitem.clientWidthRatio
+        let titletruncate = invitem.Title.substring(0, 24);// DEPENDS ON SPACES AND case
+        ww = 114 * invitem.clientWidthRatio
         hh = 114 * invitem.clientHeightRatio
 
 
         // width="60" height="60"
         // 50 to 48
-           // attempt to no wrap
-          // segment += `<td style="width:70%;vertical-align:top;text-align:center;font-size: 48pt;font-family:Helvetica, sans-serif;"><strong>${invitem.InventoryCode}</strong></td>`
-          // segment += `<tr ><td style="width:70%;vertical-align:top;font-family:Helvetica, sans-serif;text-align:center;vertical-align:top;font-size:30pt;white-space: nowrap; text-overflow:ellipsis; overflow: hidden;max-width:1px;">${invitem.Title}</td></tr>`
+        // attempt to no wrap
+        // segment += `<td style="width:70%;vertical-align:top;text-align:center;font-size: 48pt;font-family:Helvetica, sans-serif;"><strong>${invitem.InventoryCode}</strong></td>`
+        // segment += `<tr ><td style="width:70%;vertical-align:top;font-family:Helvetica, sans-serif;text-align:center;vertical-align:top;font-size:30pt;white-space: nowrap; text-overflow:ellipsis; overflow: hidden;max-width:1px;">${invitem.Title}</td></tr>`
 
         var i;
         for (i = 0; i < 7; i++) {
           segment += `<tr >`
           segment += `<td style="width:25%;vertical-align:top"><img src="https://artbased.com/api/v1/getimage/inv/${invitem.InventoryCode}.jpg" alt="" width="${ww}" height=${hh} /></td>`
           // segment += `<td style="width:75%;vertical-align:top;text-align:left;font-size: 48pt;font-family:Helvetica, sans-serif;"><strong>${invitem.InventoryCode}</strong><br><span style="font-family:Helvetica, sans-serif;text-align:left;vertical-align:top;font-size:30pt;">${invitem.Title}</span></td>`
-  
           segment += `<td style="width:75%;vertical-align:top;text-align:left;font-size: 48pt;font-family:Helvetica, sans-serif;"><strong>${invitem.InventoryCode}</strong><br><span style="font-family:Helvetica, sans-serif;text-align:left;vertical-align:top;font-size:30pt;">${titletruncate}</span></td>`
           segment += `</tr>`
-       
-
         }
         // segment += `<div style="page-break-after: always"><span style="display: none;">&nbsp;</span></div>`
         segment += `<div style="page-break-after: always"><span style="display: none;">&nbsp;</span></div>`
@@ -487,9 +484,9 @@ let titletruncate = invitem.Title.substring(0,27);
         // {id:4,name:"condition"}
         // ww = 200
         // hh = 200//25
-          ww = 200 * invitem.clientWidthRatio
+        ww = 200 * invitem.clientWidthRatio
         hh = 200 * invitem.clientHeightRatio
-        let today = moment().format('LL'); 
+        let today = moment().format('LL');
         //&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         // make table for each page
         // segment += `<table style="width:650px; border-style:solid;border-color:gray;border-collapse:collapse;border-width:1px;"><tbody>`
@@ -529,7 +526,7 @@ let titletruncate = invitem.Title.substring(0,27);
         ww = 95 * invitem.clientWidthRatio
         hh = 95 * invitem.clientHeightRatio
 
-  
+
 
         // style="height:17%;"
         // segment += `<tr >`
