@@ -274,20 +274,14 @@ export class Promptmerge {
       segment = `<div id="docx">`
       segment += `<div class="WordSection1">`
       segment += `<table style="width:950px; border-style:solid;border-color:black;border-collapse:collapse;border-width:1px;"><tbody>`
-
     }
     if (this.listtype === 1) {
       segment = `<div id="docx">`
       segment += `<div class="WordSection1">`
       segment += `<table style="width:650px; border-style:solid;border-color:black;border-collapse:collapse;border-width:1px;"><tbody>`
-
     }
 
-
-
-
     if (this.listtype === 2) {
-
       // https://jsfiddle.net/78xa14vz/3/
       segment = `<div id="docx">`
       segment = `<div class="WordSection1">`
@@ -315,15 +309,12 @@ export class Promptmerge {
       //   padding: 4px;
       //   width: 5em;
       // }
-
     }
-
 
     if (this.listtype === 3) {
       segment = `<div id="docx">`
       segment += `<div class="WordSection1">`
       segment += `<table style="width:650px; border-style:none;border-color:gray;border-collapse:collapse;border-width:0px;"><tbody>`
-
     }
 
     if (this.listtype === 4) {
@@ -340,17 +331,12 @@ export class Promptmerge {
       //segment += `<table style="width:768px;border-collapse:collapse;border-width:1px; border-style:solid;border-color:gray;padding: 4px;width: 5em;"><tbody>`
       segment += `<table style="width:650px; border-style:solid;border-color:gray;border-collapse:collapse;border-width:1px;"><tbody>`
       // segment += `<tr>`
-
-
       // segment += `<td style="${styh},width:10%">Inventory Code</td>`
       // segment += `<td style="${styh},width:20%">Artist</td>`
       // segment += `<td style="${styh},width:40%">Title</td>`
       // segment += `<td style="${styh},width:10%">Image</td>`
       // segment += `</tr>`
-
       // segment += `<td style="${styhc},width:12%" >Image</td>`
-
-
     }
 
     //else segment = `<h1 style="text-align:center;width:768px">${currentmodel.head}</h1> <table><tbody>`

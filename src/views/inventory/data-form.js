@@ -10,6 +10,7 @@ import { DialogImage } from './dialogImage';
 import { bindable } from 'aurelia-framework';
 import { RtfService } from '../../services/rtf-service';
 import { EventAggregator } from 'aurelia-event-aggregator';
+import { Promptmerge } from '../prompt/promptMerge';
 
 @inject(Router, ApiService, ApplicationService, MyDataService, DialogService, RtfService, EventAggregator)
 // @inject(Router, ApiService, ApplicationService, MyDataService, DialogService)
@@ -72,8 +73,13 @@ export class DataForm {
     { id: '1', name: 'CPU' },
     { id: '2', name: 'Memory' },
   ];
+  // listtypes = [{ id: 0, name: "exhibition(not avail yet)" }, { id: 1, name: "price list" },
+  // { id: 2, name: "location list" }, { id: 3, name: "box label" }, { id: 4, name: "condition" },
+  // { id: 5, name: "registrar" }, { id: 6, name: "presentation(not avail yet)" }]
 
-  selectedProductId = 'CPU';//1';
+ listtypes = [{ id: 0, name: "exh(na)" }, { id: 1, name: "prce-lst" },
+  { id: 2, name: "loc-list" }, { id: 3, name: "box label" }, { id: 4, name: "condition" },
+  { id: 5, name: "registrar" }, { id: 6, name: "pres-na" }]
 
   fieldname = ''
   error = "";
@@ -151,20 +157,21 @@ export class DataForm {
     this.rtfService = rtfService
     this.eventAggregator = eventAggregator;
     this.epoch = moment().unix();
+    this.selectedlist = 5
   }
-  publish() {
-    var payload = 'This is some data...';
-    this.eventAggregator.publish('myEventName', payload);
-  }
-  subscribe() {
-    this.subscriber = this.eventAggregator.subscribe('myEventName', payload => {
-      console.log(payload);
-    });
-  }
-  dispose() {
-    this.subscriber.dispose();
-    console.log('Disposed!!!');
-  }
+  // publish() {
+  //   var payload = 'This is some data...';
+  //   this.eventAggregator.publish('myEventName', payload);
+  // }
+  // subscribe() {
+  //   this.subscriber = this.eventAggregator.subscribe('myEventName', payload => {
+  //     console.log('payload',payload);
+  //   });
+  // }
+  // dispose() {
+  //   this.subscriber.dispose();
+  //   console.log('Disposed!!!');
+  // }
   soldtoEdit() {
     // this.currentItem.SoldToBusIndivid = this.BusIndivid  
     // this.currentItem.SoldToID = this.orgId  
@@ -612,7 +619,7 @@ export class DataForm {
         alert('Please fix  Title, InventoryCode, Owned By and or Artist ')
       } else {
         this.rtfService.currentItem = this.currentItem
-        //  let createopt = 2; // 1 is from tab
+        // let createopt = 2; // 1 is from tab
         // let rr = await this.rtfService.createRTF(createopt)
         this.api.createinventory(this.currentItem).then((jsonRes) => {
           console.log('jsonRes ', jsonRes);
@@ -847,18 +854,28 @@ export class DataForm {
     }
     var temp = [this.currentItem.InventoryCode, tabindex];
     tabinfo = new tabinfo(temp);
-
     // localStorage.setItem('tabinfo', JSON.stringify(tabinfo));
-
     localStorage.setItem('tabinfo' + this.currentItem.InventoryCode, JSON.stringify(tabinfo));
     this.tabindex = tabindex// get clearded from line above
     return true;
   }
 
-  boxlabel() {
-    this.eventAggregator.publish('boxlabel', this.InventoryCode);
+  // wordmerge(selectedlist) {
+      wordmerge() {
+    let detail = []
+    detail.push(this.currentItem)
+    this.dialogService.open({ viewModel: Promptmerge, model: { head: 'inventory', 
+    listtype: selectedlist, listname: 'box label', detail: detail }, lock: true }).whenClosed(async response => {
+      console.log('this.item', response, this.item)
+      if (!response.wasCancelled) {
+        this.saveMerge
+      } else {
 
-    // Load Box Label
+        console.log('cancel');
+      }
+      console.log(response)//.output);
+    });
+
   }
 
 

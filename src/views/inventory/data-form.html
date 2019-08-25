@@ -72,7 +72,7 @@
 			</div>
 		</div>
 	</div>
-	
+
 	<modal-form ref="edit_division" record_id.bind="division.div_id" title="${division.div_id ? 'Edit_Division' : 'New_Division'}"
 	 error.bind="error">
 		<form>
@@ -673,14 +673,22 @@
 			<a href="https://artbased.com/api/v1/downloadonepdf/output/${currentItem.InventoryCode}.doc" class="btn btn-sm btn-primary">
 				<span class="glyphicon glyphicon-th-list"></span> Download Doc FactSheet
 			</a>
-	<a href="https://artbased.com/api/v1/downloadonepdf/output/${currentItem.InventoryCode}.doc" class="btn btn-sm btn-primary">
+			<!-- <a href="https://artbased.com/api/v1/downloadonepdf/output/${currentItem.InventoryCode}.doc" class="btn btn-sm btn-primary">
 				<span class="glyphicon glyphicon-th-list"></span> 
-			</a>
-	<button class="btn btn-sm btn-danger " click.delegate="boxlabel()">
-						Load Box Label
+			</a> -->
+			<!-- exhibition(not avail yet)    price list    location list    box label    condition    registrar    presentation(not avail yet)  -->
+			<div class="Rtable-cell-70 Rtable-cell--highlight">
+				<!--  input-sm -->
+				<input type="text " xid="ArtValue " class="form-control " value.bind="currentItem.ArtValue">
+
+				<label repeat.for="list of listtypes">
+               	<input type="radio" name="group1" model.bind="list.id" checked.bind="selectedlist"> ${list.name} &nbsp;
+						  </label>
+			</div>
+			<button class="btn btn-sm btn-primary " click.delegate="wordmerge()">
+						wordmerge
 					</button>
 
-  
 
 			<span>&nbsp;&nbsp;
 					<button class="btn btn-sm btn-danger " click.delegate="requestclose()">
@@ -688,11 +696,12 @@
 					</button>
           <b>  ${message} </b>
 
-           <!-- <button click.delegate = "publish()">PUBLISH</button><br/>
-   <button click.delegate = "subscribe()">SUBSCRIBE</button><br/>
-   <button click.delegate = "dispose()">DISPOSE</button> -->
 				</span>
 
+
+			<!-- <button click.delegate = "publish()">PUBLISH</button><br/>
+   <button click.delegate = "subscribe()">SUBSCRIBE</button><br/>
+   <button click.delegate = "dispose()">DISPOSE</button> -->
 			<!-- <button class="btn btn-sm btn-danger " click.delegate="getmainimage()">
 					mainimage
 				</button> -->

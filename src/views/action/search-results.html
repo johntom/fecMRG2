@@ -14,7 +14,7 @@
 			white-space: nowrap;
 		}
 
-	
+
 
 		.customer-photo-sq {
 			display: inline-block;
@@ -40,18 +40,19 @@
 					<button id="factsheet3" style="width:125px" class="btn btn-primary" type="button" click.delegate="action3()">Reproduction</button>
 					<button id="factsheet4" style="width:125px" class="btn btn-primary" type="button" click.delegate="action4()">Provenance</button>
 					<br>
-					<br>  
+					<br>
 					<button id="factsheet5" style="width:125px" class="btn btn-primary" type="button" click.delegate="action5()">MRG Location</button>
 					<!-- <button id="factsheet6" style="width:125px" class="btn btn-primary" type="button" click.delegate="action6()">Temp Location</button> -->
 					<button id="factsheet7" style="width:125px" class="btn btn-primary" type="button" click.delegate="action8()">Offerings</button>
-</br><hr>				 
-          <button id="image1" style="width:125px" class="btn btn-primary" type="button" click.delegate="action9()">Merge Images</button>
-          <!-- <button id="imageone" style="width:125px" class="btn btn-primary" type="button" click.delegate="actionMergeone()">Merge 1 Image</button> -->
-</br>
-						<label repeat.for="list of listtypes">
+					</br>
+					<hr>
+					<button id="image1" style="width:125px" class="btn btn-primary" type="button" click.delegate="action9()">Merge Images</button>
+					<!-- <button id="imageone" style="width:125px" class="btn btn-primary" type="button" click.delegate="actionMergeone()">Merge 1 Image</button> -->
+					</br>
+					<label repeat.for="list of listtypes">
                	<input type="radio" name="group1" model.bind="list.id" checked.bind="selectedlist"> ${list.name} &nbsp;
 						  </label>
-					
+
 
 
 					<div show.bind="!hide1">
@@ -163,7 +164,7 @@
 
 					</div>
 
-					<div show.bind="!hide4"> 
+					<div show.bind="!hide4">
 						Owner <input type="text" id="ProvOwner" class="form-control input-sm" value.bind="item.ProvOwner"> ProvLoc
 						<aubs-typeahead ref='provlocation' data.bind="appService.codesListLocation" value.bind="item.Description" debounce.bind="350"
 						 placeholder="mrg location" open-on-focus.bind="true" key="Description" results-limit.bind="12" select-single-result.bind="true">
@@ -199,7 +200,7 @@
 
 					<div show.bind="!hide8">
 
-				
+
 						<div class="Rtable Rtable--2cols">
 							<div class=" Rtable-cell-30 Rtable-cell--highlight">
 								<strong> Offer Date </strong>
@@ -240,8 +241,7 @@
 				</div>
 				<div class="Rtable-cell-2">
 					<ak-grid class="flex-row-1 overflow-y-auto" id="grid" k-data-source.bind="datasource" k-widget.bind="grid" k-sortable.bind="{ mode: 'multiple',   allowUnsort: 'true'}"
-					 k-filterable.bind="{  mode: 'row' }" k-editable="inline" k-reorderable.bind="true" k-resizable.bind="true"  
-            k-on-edit.delegate="onEdit($event.detail)"
+					 k-filterable.bind="{  mode: 'row' }" k-editable="inline" k-reorderable.bind="true" k-resizable.bind="true" k-on-edit.delegate="onEdit($event.detail)"
 					 k-selectable="multiple" k-on-change.delegate="rowSelected($event.detail)" k-column-menu.bind="true" k-pageable.bind="true">
 						<ak-col k-filterable.bind="false" k-width="120px" k-title="Cmd" k-command.bind="['edit']" k-title="&nbsp;" k-locked.bind="true"
 						 k-lockable.bind="false"></ak-col>
@@ -254,8 +254,8 @@
 								 click.delegate="showModalImg($event)"></div>
 							</ak-template>
 						</ak-col>
-            <ak-col k-title="rtf2" k-width="140px" k-field="rtf2"></ak-col>
-					
+						<ak-col k-title="rtf2" k-width="140px" k-field="rtf2"></ak-col>
+
 						<ak-col k-title="Offer Amount" k-width="140px" k-field="offeramount"></ak-col>
 						<ak-col k-title=" Retail Price " k-width="140px" k-field="ArtValue"></ak-col>
 						<!-- <ak-col k-field="InventoryCode" k-filterable.bind="true" k-title="Edit" k-width.bind="140"
@@ -272,12 +272,12 @@
 
 					<div class="flex-row-none section-footer">
 						${footer} <span>  ${queryParams}</span>
-             <span>&nbsp;&nbsp;	<button id="searchInputBtn" class="btn btn-primary" type="button" click.delegate="performAction1Refresh()">Refresh Updated list for Merge</button></span>
-             <span>&nbsp;&nbsp;	<button id="searchInputBtn" class="btn btn-primary" type="button" click.delegate="performAction1()">Delete from Saved List</button></span>
- 	<a href="https://artbased.com/api/v1/downloadonepdf/lists/${savedlist}.doc" class="btn btn-primary">
-				<span class="glyphicon glyphicon-th-list"></span> Download Merge
-			</a>
-  <!-- <a class="btn btn-primary" href="https://artbased.com/api/v1/downloadonepdf/lists/${savedlist}.doc" >Download Merge	</a> -->
+						<span>&nbsp;&nbsp;	<button id="searchInputBtn" class="btn btn-primary" type="button" click.delegate="performAction1Refresh()">Refresh Updated list for Merge</button></span>
+						<span>&nbsp;&nbsp;	<button id="searchInputBtn" class="btn btn-primary" type="button" click.delegate="performAction1()">Delete from Saved List</button></span>
+						<a href="https://artbased.com/api/v1/downloadonepdf/lists/${savedlist}.doc" class="btn btn-primary">
+							<span class="glyphicon glyphicon-th-list"></span> Download Merge
+						</a>
+						<!-- <a class="btn btn-primary" href="https://artbased.com/api/v1/downloadonepdf/lists/${savedlist}.doc" >Download Merge	</a> -->
 
 					</div>
 				</div>
@@ -289,7 +289,7 @@
 </template>
 
 
-	<!-- <div show.bind="!hide6">
+<!-- <div show.bind="!hide6">
 						Temp Location
 
 						<aubs-typeahead ref='templocation' data.bind="appService.codesInventoryLocation" value.bind="item.Description" debounce.bind="350"
@@ -298,6 +298,6 @@
 						<button id="save6" class="btn btn-primary" type="button" click.delegate="save6()">save 1</button>
 					</div> -->
 
-						<!-- <aubs-typeahead ref='doffering' data.bind="appService.orgsList" value.bind="item.OrgName" debounce.bind="350" placeholder="offering to arg"
+<!-- <aubs-typeahead ref='doffering' data.bind="appService.orgsList" value.bind="item.OrgName" debounce.bind="350" placeholder="offering to arg"
 						 open-on-focus.bind="true" key="OrgName" results-limit.bind="12" select-single-result.bind="true">
 						</aubs-typeahead> -->

@@ -149,7 +149,9 @@ export class SearchResults {
     this.ImageID = '20150921_153441_resized_2'
     this.dialogService = dialogService
     this.appService.rfreshLoaded = false;
-    this.selectedlist = 0
+
+    this.selectedlist = 5 // registra
+    
     // this.appService.actionlist ='closed'
     this.eventAggregator = eventAggregator;
   }
@@ -215,6 +217,20 @@ export class SearchResults {
     }
   }
 
+
+
+//  attached(){ 
+// //1=port 0 land
+//    if (this.currentItem.clientHeightRatio>=this.currentItem.clientWidthRatio) {
+//      this.selectedtype=1
+//    } else this.selectedtype=0
+//    this.subscriber = this.eventAggregator.subscribe('rtfpayload', payload => {
+//          console.log('attached in rft.js rtfpayload',payload);
+//         //  this.createRTF(1,selectedtype)
+//              this.createRTF(1,this.selectedtype)
+//       });
+
+//  }
   attached() {
     //1=port 0 land
 
