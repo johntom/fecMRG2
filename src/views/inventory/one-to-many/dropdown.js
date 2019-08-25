@@ -70,7 +70,7 @@ export class Exhibition {
 
   staffTemplate = '${assignto ? assignto.StaffName : ""}';
   staffDropDownEditor(container, options) {
-        $('<input required data-text-field="StaffName" data-value-field="staffid" data-bind="value:' + options.field + '"/>')
+        $('<input data-text-field="StaffName" data-value-field="staffid" data-bind="value:' + options.field + '"/>')
             .appendTo(container)
             .kendoDropDownList({
                 autoBind: false,
@@ -86,7 +86,7 @@ export class Exhibition {
 	
 	 locationTemplate = '${eloc ? eloc.Description : ""}';
    locationDropDownEditor(container, options) {
-        $('<input required data-text-field="Description" data-value-field="id" data-bind="value:' + options.field + '"/>')
+        $('<input data-text-field="Description" data-value-field="id" data-bind="value:' + options.field + '"/>')
             .appendTo(container)
             .kendoDropDownList({
                 autoBind: false,
@@ -103,7 +103,7 @@ export class Exhibition {
 
   //https://gist.run/?id=3c1a0aab9ef1a0aaf037518b5d61c803
   categoryDropDownEditor(container, options) {
-    $('<input required data-text-field="CategoryName" data-value-field="CategoryID" data-bind="value:' + options.field + '"/>')
+    $('<input data-text-field="CategoryName" data-value-field="CategoryID" data-bind="value:' + options.field + '"/>')
       .appendTo(container)
       .kendoDropDownList({
         autoBind: false,
@@ -117,8 +117,8 @@ export class Exhibition {
   }
   categoryTemplate = '${Category ? Category.CategoryName : ""}';
   locDropDownEditorID(container, options) {
-    // $('<input required data-text-field="Description" data-value-field="id" data-bind="value:' + options.field + '"/>')
-    $('<input required data-text-field="Description" data-value-field="id" data-bind="value:ExhibitLocation"/>')
+    // $('<input data-text-field="Description" data-value-field="id" data-bind="value:' + options.field + '"/>')
+    $('<input data-text-field="Description" data-value-field="id" data-bind="value:ExhibitLocation"/>')
       .appendTo(container)
       .kendoDropDownList({
         dataSource: this.appService.codesProvenanceLocation,
@@ -134,7 +134,7 @@ export class Exhibition {
     } else return `missing--`
   }
   locDropDownEditor(container, options) {
-    $('<input required data-text-field="Description" data-value-field="Description" data-bind="value:' + options.field + '"/>')
+    $('<input data-text-field="Description" data-value-field="Description" data-bind="value:' + options.field + '"/>')
       .appendTo(container)
       .kendoDropDownList({
         autoBind: false,

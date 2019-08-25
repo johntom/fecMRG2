@@ -124,7 +124,7 @@ export class Provenance {
   }
   locationTemplate = '${eloc ? eloc.Description : ""}';
   locationDropDownEditor(container, options) {
-    $('<input required data-text-field="Description" data-value-field="id" data-bind="value:' + options.field + '"/>')
+    $('<input data-text-field="Description" data-value-field="id" data-bind="value:' + options.field + '"/>')
       .appendTo(container)
       .kendoDropDownList({
         autoBind: false,
@@ -136,7 +136,7 @@ export class Provenance {
   locTemplate = '${ProvLocDesc ? ProvLocDesc.Description" : ""}';
 
   locDropDownEditor(container, options) {
-    $('<input required data-text-field="Description" data-value-field="Description" data-bind="value:' + options.field + '"/>')
+    $('<input data-text-field="Description" data-value-field="Description" data-bind="value:' + options.field + '"/>')
       .appendTo(container)
       .kendoDropDownList({
         autoBind: false,

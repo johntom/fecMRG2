@@ -92,7 +92,7 @@ export class Exhibition {
 
   staffTemplate = '${assignto ? assignto.StaffName : ""}';
   staffDropDownEditor(container, options) {
-    $('<input required data-text-field="StaffName" data-value-field="staffid" data-bind="value:' + options.field + '"/>')
+    $('<input data-text-field="StaffName" data-value-field="staffid" data-bind="value:' + options.field + '"/>')
       .appendTo(container)
       .kendoDropDownList({
         autoBind: false,
@@ -112,7 +112,7 @@ export class Exhibition {
 
   locationTemplate = '${eloc ? eloc.Description : ""}';
   locationDropDownEditor(container, options) {
-    $('<input required data-text-field="Description" data-value-field="id" data-bind="value:' + options.field + '"/>')
+    $('<input data-text-field="Description" data-value-field="id" data-bind="value:' + options.field + '"/>')
       .appendTo(container)
       .kendoDropDownList({
         autoBind: false,
@@ -124,7 +124,7 @@ export class Exhibition {
   locTemplate = '${ExhibitLocation ? ExhibitLocation.Description" : ""}';
 
   locDropDownEditor(container, options) {
-    $('<input required data-text-field="Description" data-value-field="Description" data-bind="value:' + options.field + '"/>')
+    $('<input data-text-field="Description" data-value-field="Description" data-bind="value:' + options.field + '"/>')
       .appendTo(container)
       .kendoDropDownList({
         autoBind: false,
@@ -242,8 +242,8 @@ export class Exhibition {
 
   // locTemplate = '${ExhibitLocation ? ExhibitLocation.Description : ""}'; 
   // locDropDownEditorID(container, options) {
-  //   $('<input required data-text-field="Description" data-value-field="id" data-bind="value:' + options.field + '"/>')
-  //   // $('<input required data-text-field="Description" data-value-field="id" data-bind="value:ExhibitLocation"/>')
+  //   $('<input data-text-field="Description" data-value-field="id" data-bind="value:' + options.field + '"/>')
+  //   // $('<input data-text-field="Description" data-value-field="id" data-bind="value:ExhibitLocation"/>')
   //     .appendTo(container)
   //     .kendoDropDownList({
   //       autoBind: false,
@@ -260,7 +260,7 @@ export class Exhibition {
   // }
 
   // categoryDropDownEditor(container, options) {
-  //   $('<input required data-text-field="CategoryName" data-value-field="CategoryID" data-bind="value:' + options.field + '"/>')
+  //   $('<input data-text-field="CategoryName" data-value-field="CategoryID" data-bind="value:' + options.field + '"/>')
   //     .appendTo(container)
   //     .kendoDropDownList({
   //       autoBind: false,

@@ -69,7 +69,8 @@ jobs:
             git config --global user.name johntom
 
             echo "Cloning Dev"
-       
+            git clone https://johntom:giDoghouse77@github.com/johntom/fecMRG2-Dev.git out
+
             cd out
             git checkout $TARGET_BRANCH || git checkout --orphan $TARGET_BRANCH
             git rm -rf .

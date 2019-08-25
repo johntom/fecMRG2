@@ -126,7 +126,7 @@ export class Photo {
 
   formatTemplate = '${Format ? Format.Description" : ""}';
   formatDropDownEditor(container, options) {
-    $('<input required data-text-field="Description" data-value-field="Description" data-bind="value:' + options.field + '"/>')
+    $('<input data-text-field="Description" data-value-field="Description" data-bind="value:' + options.field + '"/>')
       .appendTo(container)
       .kendoDropDownList({
         autoBind: false,
@@ -138,7 +138,7 @@ export class Photo {
   }
   photograherTemplate = '${Photogpraher ? Photogpraher.Description" : ""}';
   photograherDropDownEditor(container, options) {
-    $('<input required data-text-field="Description" data-value-field="Description" data-bind="value:' + options.field + '"/>')
+    $('<input data-text-field="Description" data-value-field="Description" data-bind="value:' + options.field + '"/>')
       .appendTo(container)
       .kendoDropDownList({
         autoBind: false,
@@ -168,7 +168,7 @@ export class Photo {
 
   // orgTemplate = '${loantoname ? loantoname.OrgName : ""}';
   // orgDropDownEditor(container, options) {
-  //   $('<input required data-text-field="OrgName" data-value-field="_id" data-bind="value:' + options.field + '"/>')
+  //   $('<input data-text-field="OrgName" data-value-field="_id" data-bind="value:' + options.field + '"/>')
   //     .appendTo(container)
   //     .kendoDropDownList({
   //       autoBind: false,
