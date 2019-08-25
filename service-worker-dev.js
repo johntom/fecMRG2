@@ -31,8 +31,6 @@ self.addEventListener('activate', event => {
 // If no response is found, it populates the runtime cache with the response
 // from the network before returning it to the page.
 self.addEventListener('fetch', event => {
-  const reqUrl = new URL(event.request.url);
-  // const refUrl = new URL(event.request.referrer);
   let CACHE_NAME = RUNTIME;
   event.respondWith(
     caches.match(event.request).then(cachedResponse => {
@@ -40,18 +38,36 @@ self.addEventListener('fetch', event => {
         return cachedResponse;
       }
       return caches.open(CACHE_NAME).then(cache => {
-        return fetch(event.request).then(response => {
-          if (event.request.method === 'GET' &&
-            !NO_CACHE_ORIGINS.includes(reqUrl.origin)) {
-            console.log('sw:caching (', CACHE_NAME, ') - ', event.request.url);
-            // Put a copy of the response in the runtime cache.
-            return cache.put(event.request, response.clone()).then(() => {
-              return response;
-            });
-          } else {
-            return response;
-          }
-        });
+				if (reqUrl.startsWith('https://johntom.github.io') && event.request.method === 'GET') {
+					const cacheTime = Date.now();
+					const reqUrl = new URL(`${event.request.url}?version='${cacheTime}'`);
+					const request = new Request(reqUrl, {method: 'GET'});
+					return fetch(request).then(response => {
+						if (event.request.method === 'GET' &&
+							!NO_CACHE_ORIGINS.includes(reqUrl.origin)) {
+							console.log('sw:caching (', CACHE_NAME, ') - ', event.request.url);
+							// Put a copy of the response in the runtime cache.
+							return cache.put(event.request, response.clone()).then(() => {
+								return response;
+							});
+						} else {
+							return response;
+						}
+					});
+				} else {
+					return fetch(event.request).then(response => {
+						if (event.request.method === 'GET' &&
+							!NO_CACHE_ORIGINS.includes(reqUrl.origin)) {
+							console.log('sw:caching (', CACHE_NAME, ') - ', event.request.url);
+							// Put a copy of the response in the runtime cache.
+							return cache.put(event.request, response.clone()).then(() => {
+								return response;
+							});
+						} else {
+							return response;
+						}
+					});
+				}
       });
     })
   );
