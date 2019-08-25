@@ -56,8 +56,6 @@ export class DataForm {
   }
 
   attached() {
-
-
     if (this.appService.dataFormOneToManyTabs4.length > 0) {
       let tab = this.appService.dataFormOneToManyTabs4[0];
       this.selectOneToManyTab(tab);
@@ -101,13 +99,14 @@ export class DataForm {
   }
 
 
-   async saveorg(opt) {
- if (this.recordId === 'create') {
-    let response2 = await this.api.createorg(this.org)// ID);
- } else {
- let response2 = await this.api.saveorg(this.org)// ID);
+  async saveorg(opt) {
+    if (this.recordId === 'create') {
+      this.org.BusIndivid = "B";
+      let response2 = await this.api.createorg(this.org)// ID);
+    } else {
+      let response2 = await this.api.saveorg(this.org)// ID);
 
- }
+    }
     let savetime = moment().format('MM/DD/YY h:mm:ss a')
 
     this.message = "Save successful. org updated @ " + savetime
