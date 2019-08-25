@@ -7,7 +7,7 @@ import { ApiService } from '../../utils/servicesApi';
  
 export class Home { 
   heading = "MRG Home Page";
-  version = ' 303.74 ' 
+  version = ' 303.74 '  
   versionDate = 'Sun 8/25/2019 2pm'
   prevversion = ' 303.52 ' 
   prevversionDate = 'Mon 8/5/2019 5pm'
@@ -162,7 +162,7 @@ refreshSelection(){
     } else {
     let response = await this.api.getCatalogsAA();
     this.appService.catalogList = response.data
-    console.log('https://artbased.com/api/v1/catalog catalogList ', this.appService.catalogList )
+    // console.log('https://artbased.com/api/v1/catalog catalogList ', this.appService.catalogList )
 
       return Promise.all([
         this.dataService.loadArtists(),
