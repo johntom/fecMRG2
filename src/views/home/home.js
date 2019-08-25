@@ -7,7 +7,7 @@ import { ApiService } from '../../utils/servicesApi';
  
 export class Home { 
   heading = "MRG Home Page";
-  version = ' 303.71 ' 
+  version = ' 303.72 ' 
   versionDate = 'Sun 8/25/2019 2pm'
   prevversion = ' 303.52 ' 
   prevversionDate = 'Mon 8/5/2019 5pm'
@@ -85,7 +85,8 @@ export class Home {
 //     "Remove auto-complete field entries in Google Chrome",
 //     "never pass id to put or post /:id",
 //     "to trip cci do a commit",
-//     "https://circleci.com/gh/johntom/fecMRG2/edit  https://circleci.com/gh/johntom/fecMRG2/21 build and deploy"
+//     "https://circleci.com/gh/johntom/fecMRG2/edit  h
+// ttps://circleci.com/gh/johntom/fecMRG2/21 build and deploy"
 //     , "SAVE THIS AS LST REPO BEFORE ALL CHANGES"
 //     , "deleted select2...selectize"
 //     , "git config --global user.email jrt@gtz.com"
