@@ -56,8 +56,10 @@ self.addEventListener('fetch', event => {
 					});
 				} else {
 					return fetch(event.request).then(response => {
+						const reqUrl = new URL(event.request.url);
 						if (event.request.method === 'GET' &&
 							!NO_CACHE_ORIGINS.includes(reqUrl.origin)) {
+
 							console.log('sw:caching (', CACHE_NAME, ') - ', event.request.url);
 							// Put a copy of the response in the runtime cache.
 							return cache.put(event.request, response.clone()).then(() => {
