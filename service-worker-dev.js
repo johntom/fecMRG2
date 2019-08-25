@@ -38,7 +38,7 @@ self.addEventListener('fetch', event => {
         return cachedResponse;
       }
       return caches.open(CACHE_NAME).then(cache => {
-				if (reqUrl.startsWith('https://johntom.github.io') && event.request.method === 'GET') {
+				if (event.request.url.startsWith('https://johntom.github.io') && event.request.method === 'GET') {
 					const cacheTime = Date.now();
 					const reqUrl = new URL(`${event.request.url}?version='${cacheTime}'`);
 					const request = new Request(reqUrl, {method: 'GET'});
