@@ -382,7 +382,22 @@ export class ApiService {
     let res = await this.http.fetch(url, { mode: 'cors' });//.then((res) => res.json())
     return res.json()
   }
+ async createorg(rec) {
+    console.log('addorg rec', rec)
+    let url = this.baseweb + `v1/orgs/create`
+    console.log('url ', url)
+    //return {'data': true}
+    return await this.http.fetch(url, {
+      method: 'post',
+      mode: 'cors',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
 
+      },
+      body: JSON.stringify(rec)
+    }).then((res) => res.json());
+  }
 
   async saveorg(rec) {
     //alert('in saveclaim')

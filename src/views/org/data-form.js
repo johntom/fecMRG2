@@ -101,17 +101,18 @@ export class DataForm {
   }
 
 
-  //  if (this.appService.dataFormOneToManyTabs3.length > 0) {
-  //       let tab = this.appService.dataFormOneToManyTabs3[0];
-  //       this.selectOneToManyTab(tab);
-  //     }
-  // selectOneToManyTab(tab) {
-  //   this.appService.dataFormOneToManyTabs4.forEach(t => t.isSelected = false);
-  //   tab.isSelected = true;
-  //   this.currentOneToManyTab = tab;
-  //   //   this.appService.currentItem = this.currentItem
-  //   return true;
-  // }
+   async saveorg(opt) {
+ if (this.recordId === 'create') {
+    let response2 = await this.api.createorg(this.org)// ID);
+ } else {
+ let response2 = await this.api.saveorg(this.org)// ID);
+
+ }
+    let savetime = moment().format('MM/DD/YY h:mm:ss a')
+
+    this.message = "Save successful. org updated @ " + savetime
+  }
+
 
   selectOneToManyTab(tab) {
     this.appService.dataFormOneToManyTabs4.forEach(t => t.isSelected = false);
