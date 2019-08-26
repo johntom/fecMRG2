@@ -134,21 +134,29 @@ export class Provenance {
   }
 
   locTemplate = '${ProvLocDesc ? ProvLocDesc.Description" : ""}';
-
+//  <ak-drop-down-list  k-data-text-field="name"
+//               					k-data-value-field="id"
+//                         k-data-source.bind="listtypes"
+//                         k-value.two-way="selectedlist"
+                     
+//                         k-on-change.delegate="wordmerge()"
+//                         style="width: 100px;">
+//       </ak-drop-down-list>
   locDropDownEditor(container, options) {
-    $('<input data-text-field="Description"   filter: true,  delay: 1000 , data-value-field="Description" data-bind="value:' + options.field + '"/>')
+    $('<input data-text-field="Description",   filter: true,  delay: 2000 , data-value-field="Description" data-bind="value:' + options.field + '"/>')
       .appendTo(container)
       .kendoDropDownList({
         autoBind: false,
       
-       
+          delay: 2000,
         type: 'json',
-        dataSource: this.appService.codesProvenanceLocation,
-        dataTextField: "Description",
-        dataValueField: "Description"
+        dataSource: this.appService.codesProvenanceLocation
+        //,
+        // dataTextField: "Description",
+        // dataValueField: "Description"
       });
   }
-//   delay: 1000 , filter: true,
+//   , filter: true,
 
   attached() {
 
