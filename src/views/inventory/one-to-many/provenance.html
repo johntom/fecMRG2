@@ -27,9 +27,10 @@
    k-editor.bind="locDropDownEditor" 
 					 k-filterable.bind="false" k-groupable.bind="false"></ak-col>
 
-				<ak-col  k-title="Date" k-field="ProvDate" k-filterable.bind="true" k-format="{0:MM/dd/yyyy}" k-width.bind="120">	</ak-col> 
+				<ak-col  k-title="Date" k-field="ProvDate" k-filterable.bind="true" 
+        k-format="{0:MM/dd/yyyy}" k-width.bind="120">	</ak-col> 
 		
-				<ak-col k-field="ProvMemo" k-title="Memo" k-width="350px"  k-height="240px" k-editor.bind="textAreaEditor"
+				<ak-col k-field="ProvMemo" k-title="Note" k-width="350px"  k-height="240px" k-editor.bind="textAreaEditor"
 					 k-filterable.bind="false" k-groupable.bind="false"></ak-col>
 	
 		<ak-col k-field="Sequence" k-filterable.bind="true" k-width.bind="90">

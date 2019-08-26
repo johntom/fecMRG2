@@ -61,7 +61,7 @@ export class Reproduction {
           ColorBW: { type: "string", editable: true },
           ReproductionExhibit: { type: "string", editable: true },
              Editor: { type: "boolean" }, // scan template
-       
+       ReproductionSortDate: { type: "date" }, 
         }
       }
     },

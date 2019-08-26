@@ -58,6 +58,7 @@ export class Conservation {
     this.inv = '';
     this.currentItem = this.appService.currentItem;//testrec;
     if( this.currentItem.conservation===undefined)this.currentItem.conservation=[]
+    
     this.mode = 0;
     this.editrec = '';
     // this.inputable='disabled'

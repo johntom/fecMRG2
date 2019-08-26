@@ -136,17 +136,19 @@ export class Provenance {
   locTemplate = '${ProvLocDesc ? ProvLocDesc.Description" : ""}';
 
   locDropDownEditor(container, options) {
-    $('<input data-text-field="Description" data-value-field="Description" data-bind="value:' + options.field + '"/>')
+    $('<input data-text-field="Description"   filter: true,  delay: 1000 , data-value-field="Description" data-bind="value:' + options.field + '"/>')
       .appendTo(container)
       .kendoDropDownList({
         autoBind: false,
+      
+       
         type: 'json',
         dataSource: this.appService.codesProvenanceLocation,
         dataTextField: "Description",
         dataValueField: "Description"
       });
   }
-
+//   delay: 1000 , filter: true,
 
   attached() {
 

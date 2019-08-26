@@ -55,8 +55,10 @@ export class Condition {
     this.appService = appService;
     this.inv = '';
     this.currentItem = this.appService.currentItem;
-      if( this.currentItem.condition===undefined)this.currentItem.condition=[]
-  
+
+     //////////////////////////////////////////////////////////////////////////////
+    if (this.currentItem.condition === undefined) this.currentItem.condition = []
+    ////////////////////////////////////////////////////////////////////////////// 
     this.mode = 0;
     this.editrec = '';
     // this.inputable='disabled'
