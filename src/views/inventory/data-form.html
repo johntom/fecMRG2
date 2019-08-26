@@ -680,11 +680,12 @@
 			<button class="btn btn-sm btn-primary " click.delegate="wordmerge()">
 						wordmerge
 					</button>
+          <!--    k-on-select.delegate="wordmerge($event.detail)" --> 
  <ak-drop-down-list  k-data-text-field="name"
               					k-data-value-field="id"
                         k-data-source.bind="listtypes"
                         k-value.two-way="selectedlist"
-                        k-on-select.delegate="wordmerge($event.detail)"
+                     
                         k-on-change.delegate="wordmerge()"
                         style="width: 100px;">
       </ak-drop-down-list>

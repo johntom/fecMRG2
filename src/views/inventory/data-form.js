@@ -76,7 +76,7 @@ export class DataForm {
   // listtypes = [{ id: 0, name: "exhibition(not avail yet)" }, { id: 1, name: "price list" },
   // { id: 2, name: "location list" }, { id: 3, name: "box label" }, { id: 4, name: "condition" },
   // { id: 5, name: "registrar" }, { id: 6, name: "presentation(not avail yet)" }]
-  listtypes = [{ id: 1, name: "price list" },
+  listtypes = [{id:-1,name:'choose'},{ id: 1, name: "price list" },
   { id: 2, name: "location list" }, { id: 3, name: "box label" }, { id: 4, name: "condition" },
   { id: 5, name: "registrar" }]
   //  listtypes = [{ id: 0, name: "exh(na)" }, { id: 1, name: "prce-lst" },
@@ -159,7 +159,8 @@ export class DataForm {
     this.rtfService = rtfService
     this.eventAggregator = eventAggregator;
     this.epoch = moment().unix();
-    this.selectedlist = 5
+    // this.selectedlist = 5
+    this.selectedlist=-1
   }
   // publish() {
   //   var payload = 'This is some data...';
@@ -865,6 +866,7 @@ export class DataForm {
   // wordmerge(selectedlist) {
   
   wordmerge() {
+    if (this.selectedlist!==-1){
     let detail = []
     detail.push(this.currentItem)
     this.dialogService.open({
@@ -880,9 +882,10 @@ export class DataForm {
 
         console.log('cancel');
       }
+      this.selectedlist=-1
       console.log(response)//.output);
     });
-
+    }
   }
 
  listChanged() {
