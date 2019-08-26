@@ -76,12 +76,12 @@ export class DataForm {
   // listtypes = [{ id: 0, name: "exhibition(not avail yet)" }, { id: 1, name: "price list" },
   // { id: 2, name: "location list" }, { id: 3, name: "box label" }, { id: 4, name: "condition" },
   // { id: 5, name: "registrar" }, { id: 6, name: "presentation(not avail yet)" }]
-listtypes = [ { id: 1, name: "price list" },
+  listtypes = [{ id: 1, name: "price list" },
   { id: 2, name: "location list" }, { id: 3, name: "box label" }, { id: 4, name: "condition" },
   { id: 5, name: "registrar" }]
-//  listtypes = [{ id: 0, name: "exh(na)" }, { id: 1, name: "prce-lst" },
-//   { id: 2, name: "loc-list" }, { id: 3, name: "box label" }, { id: 4, name: "condition" },
-//   { id: 5, name: "registrar" }, { id: 6, name: "pres-na" }]
+  //  listtypes = [{ id: 0, name: "exh(na)" }, { id: 1, name: "prce-lst" },
+  //   { id: 2, name: "loc-list" }, { id: 3, name: "box label" }, { id: 4, name: "condition" },
+  //   { id: 5, name: "registrar" }, { id: 6, name: "pres-na" }]
 
   fieldname = ''
   error = "";
@@ -863,11 +863,16 @@ listtypes = [ { id: 1, name: "price list" },
   }
 
   // wordmerge(selectedlist) {
-      wordmerge() {
+  
+  wordmerge() {
     let detail = []
     detail.push(this.currentItem)
-    this.dialogService.open({ viewModel: Promptmerge, model: { head: 'inventory', 
-    listtype: this.selectedlist, listname: 'inventory', detail: detail }, lock: true }).whenClosed(async response => {
+    this.dialogService.open({
+      viewModel: Promptmerge, model: {
+        head: 'inventory',
+        listtype: this.selectedlist, listname: 'inventory', detail: detail
+      }, lock: true
+    }).whenClosed(async response => {
       console.log('this.item', response, this.item)
       if (!response.wasCancelled) {
         this.saveMerge
@@ -879,6 +884,14 @@ listtypes = [ { id: 1, name: "price list" },
     });
 
   }
+
+ listChanged() {
+    // $(this.selectedlist)
+    // .toggleClass('black-cap', this.capColor === '1')
+    // .toggleClass('orange-cap', this.capColor === '2')
+    // .toggleClass('grey-cap', this.capColor === '3');
+  }
+
 
 
 }

@@ -7,19 +7,13 @@ import { ApiService } from '../../utils/servicesApi';
  
 export class Home { 
   heading = "MRG Home Page";
-  version = ' 303.86 '  
+  version = ' 303.88 '  
   versionDate = 'Sun 8/25/2019 5pm'
   prevversion = ' 303.52 ' 
   prevversionDate = 'Mon 8/5/2019 5pm'
  
   issues = [
-    `1. Open Word. Click the “File” tab on the ribbon. Click “Options” at the bottom of the drop-down menu.`,
-    `2. Click "Advanced" in the left pane. In the right pane, scroll down to the General area. Select the "Confirm File Format Conversion on Open" check box and then click "OK."`,
-    `3. Click File > Options.Click Trust Center > Trust Center Settings >`,
-    `4. Protected View.Uncheck Enable Protected View for files originating from the internet.Mar 22, 2018`,
-    'to assign F5 on Mac',
-    'system preferences —> keyboard—>shortcuts tab—>AppShortcuts—> + —>application: GoogleChrome—>Menu Title: Reload This Page—>Keyboard Shortcut: [press F5 key]Press f5 key or cmd+shift+R on mac to fetch new release',
-    // or press refresh button upper left corner',
+       // or press refresh button upper left corner',
   
     //https://circleci.com/workflow-run/1f3685ab-daba-41d7-8d25-6279df547b19
     
@@ -120,13 +114,21 @@ export class Home {
     'when selecting saved list inv/actions/batch go directly ...',
   ]
   features = [
-    'CTRL+SHIFT+F',
+    `1. Open Word. Click the “File” tab on the ribbon. Click “Options” at the bottom of the drop-down menu.`,
+    `2. Click "Advanced" in the left pane. In the right pane, scroll down to the General area. Select the "Confirm File Format Conversion on Open" check box and then click "OK."`,
+    `3. Click File > Options.Click Trust Center > Trust Center Settings >`,
+    `4. Protected View.Uncheck Enable Protected View for files originating from the internet.Mar 22, 2018`,
+    'to assign F5 on Mac if Cmd+R does not work',
+    'system preferences —> keyboard—>shortcuts tab—>AppShortcuts—> + —>application: GoogleChrome—>Menu Title: Reload This Page—>Keyboard Shortcut: [press F5 key]Press f5 key or cmd+shift+R on mac to fetch new release',
+
     "To insert an ASCII character, press and hold down ALT while typing the character code. For example, to insert the degree (º) symbol, press and hold down ALT while typing 0176 on the numeric keypad. You must use the numeric keypad to type the numbers, and not the keyboard.",
     , "https://support.office.com/en-us/article/insert-ascii-or-unicode-latin-based-symbols-and-characters-d13f58d3-7bcb-44a7-a4d5-972ee12e50e0"
+    ,'CTRL+SHIFT+F to find'
+  
   ]
   todo = [
 
-    'repo color type',
+   
 
 
   ]

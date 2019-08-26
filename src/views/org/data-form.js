@@ -27,7 +27,10 @@ export class DataForm {
     let pp = JSON.stringify(params);
     this.cname = pp.substring(2, pp.indexOf(':') - 3);// params.indexOf(':')
     this.heading = `DataForm for record  ${this.cname} `;
-    this.tabname = this.appService.currentSearch
+    if (this.appService.currentSearch === undefined) {
+      this.tabname = 0
+    } else
+      this.tabname = this.appService.currentSearch
 
 
 
@@ -102,6 +105,9 @@ export class DataForm {
   async saveorg(opt) {
     if (this.recordId === 'create') {
       this.org.BusIndivid = "B";
+      this.org.orgphones = []
+      this.org.emails = []
+
       let response2 = await this.api.createorg(this.org)// ID);
     } else {
       let response2 = await this.api.saveorg(this.org)// ID);
@@ -118,7 +124,7 @@ export class DataForm {
     tab.isSelected = true;
     this.currentOneToManyTab = tab;
     // let tabindex = this.appService.dataFormOneToManyTabs4.findIndex(f => f.isSelected)
-    // function tabinfo(temp) {
+    // function tabinfo(temp) { 
     //   this.recid = temp[0];
     //   this.tabindex = temp[1];
 
@@ -136,9 +142,11 @@ export class DataForm {
     // Next, we navigate to the newly created claim
     // Finally, we close out this tab
     this.closeTab(tab);
-    let rt2 = '#/org/' + this.tabname ///claim'//Search?'cant use when search has a number 
-    console.log('this.tabname ', this.tabname)
+    let rt2
+    (this.tabname === 0) ? rt2 = '#/org/' : rt2 = '#/org/' + this.tabname
+
     this.router.navigate(rt2);
+
   }
 
   closeTab(tab) {

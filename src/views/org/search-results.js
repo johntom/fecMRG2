@@ -148,7 +148,7 @@ export class SearchResults {
     let selectedRow = grid.select();
     let dataItem = grid.dataItem(selectedRow);
     // let  name = dataItem.OrgName.replace(/%20/g, '')
-    /\s/g, "X"
+    // /\s/g, "X"
     let name = dataItem.OrgName.replace(/\s/g, "")// (/ /g, '-')
     let rt2 = '#/org/data/' + dataItem.id + '?' + name
     // let rt2 = '#/contact/data/' + dataItem.id + '?' + dataItem.LastName + ',' + dataItem.FirstName + '-' + gid///+' '+dataItem.ID
