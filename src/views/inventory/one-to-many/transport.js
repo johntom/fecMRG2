@@ -11,7 +11,7 @@ import { Promptyn } from '../../../services/promptyn';
 export class Transport {
   heading = 'DataForm HEADER...';
   footer = 'DataForm FOOTER...';
-   recordId = '';
+  recordId = '';
   //  transport: Transport[] = []
   done = false;
   edit = false;
@@ -36,7 +36,7 @@ export class Transport {
         updatedItem.offerdate = this.offerdate
         // console.log('   updatedItem ', updatedItem)
         options.success(updatedItem)
-     },
+      },
       destroy: (options) => {
         let updatedItem = options.data;
         options.success(updatedItem)
@@ -48,7 +48,7 @@ export class Transport {
         fields: {
           TransportDate: { type: "date", editable: true },
           TransportNotes: { type: "string", editable: true },
-         }
+        }
       }
     },
     // pageSize: 12,
@@ -65,14 +65,16 @@ export class Transport {
     this.currenttransport = '';
     this.dialogService = dialogService
     this.router = router;
-     this.epoch = moment().unix();
-
+    this.epoch = moment().unix();
+   //////////////////////////////////////////////////////////////////////////////
+    if (this.currentItem.transport === undefined) this.currentItem.transport = []
+    //////////////////////////////////////////////////////////////////////////////
   }
 
   activate(params, routeConfig) {
   }
   selectChanged(selectedtransport, id) {
-  //  console.log('selectedtransport',selectedtransport)
+    //  console.log('selectedtransport',selectedtransport)
     // Find the selected adjuster object
     // let adj = this.appService.adjusterActiveList.find(x => x.ADJUSTER_ID === adjusterid);
     // // Update the current adjuster with the new values
@@ -85,16 +87,16 @@ export class Transport {
     // selectedadjuster.ADJUSTER_NAME = adj.ADJUSTER_NAME;
   }
 
-  addDetail() { 
- let transport = this.currentItem.transport
+  addDetail() {
+    let transport = this.currentItem.transport
     let flag = false
     let item
-   // let newNoteWorkDate = moment().format('YYYY-MM-DD')
+    // let newNoteWorkDate = moment().format('YYYY-MM-DD')
     if (transport === undefined) {
       flag = true
       transport = []
     }
-    item = { id:this.epoch, TransportNotes: '', edit: true }
+    item = { id: this.epoch, TransportNotes: '', edit: true }
     transport.unshift(item)
     if (flag) this.currentItem.transport = transport
   }
@@ -103,8 +105,8 @@ export class Transport {
     item.edit = !item.edit
 
   }
-  
- textAreaEditor(container, options) {
+
+  textAreaEditor(container, options) {
     $('<textarea class="k-textbox" name="' + options.field + '" style="width:100%;height:100%;" />').appendTo(container);
     // $('<textarea data-text-field="Label" data-value-field="Value" data-bind="value:' + options.field + '" style="width: ' + (container.width() - 10) + 'px;height:' + (container.height() - 12) + 'px" />').appendTo(container);
   }
@@ -125,7 +127,7 @@ export class Transport {
       console.log(response.output);
     });
   }
- locationTemplate = '${eloc ? eloc.Description : ""}';
+  locationTemplate = '${eloc ? eloc.Description : ""}';
   locationDropDownEditor(container, options) {
     $('<input required data-text-field="Description" data-value-field="id" data-bind="value:' + options.field + '"/>')
       .appendTo(container)
@@ -147,8 +149,8 @@ export class Transport {
         dataValueField: "Description"
       });
   }
-   attached() {
-   
+  attached() {
+
   }
 
 }

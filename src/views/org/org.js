@@ -57,7 +57,7 @@ export class Org {
       // console.log('this.search', this.search)
       let qs = this.utilService.generateQueryString(this.search);
       // let path = `searchOrg${qs}&tabname=searchOrg${this.utilService.counter++}`;
-      let path = `searchOrg-${qs}&tabname=Contactsearch`;
+      let path = `searchOrg-${qs}&tabname=Orgsearch`;
       // see authorize-step.js on how I make this a singleton with saving the result set
       this.appService.orgsearchresults = '';// reset not clicking on tab
       let rt2 = `#/org/${path}`

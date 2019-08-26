@@ -54,17 +54,21 @@ dt 		 ArtworkReleased			 -->
 			<ak-col k-field="InsuranceValue" k-title="Insurance Value" k-width="180px"></ak-col>
 			<ak-col k-field="ExhibitionTitle" k-title="Exhibition Title" k-width="180px"></ak-col>
 			<ak-col k-field="ExhibitionVenuesDates" k-title="Exhibition Dates" k-width="180px"></ak-col>
-			<ak-col k-field="TransportNotes" k-title="Memo" k-width="200px" k-height="240px" k-editor.bind="textAreaEditor" k-filterable.bind="false"
-			 k-groupable.bind="false"></ak-col>
-			<ak-col k-title="Artwork Released" k-field="ArtworkReleased" k-title="Artwork Released" k-filterable.bind="true" k-format="{0:MM/dd/yyyy}" k-width.bind="120"> </ak-col>
 			<ak-col k-title="Returned" k-width="110px" k-field="Returned"></ak-col>
 			<ak-col k-title="Signed MRG" k-width="110px" k-field="AgreementFormSignedMRG"></ak-col>
+			<ak-col k-title="Countersigned" k-width="110px" k-field="AgreementFormCountersigned"></ak-col>
 			<ak-col k-title="CofI" k-width="110px" k-field="CofI" ></ak-col>
-			<ak-col k-title="Catalog" k-width="110px" k-field="Catalog" ></ak-col>
-			<ak-col k-title="Updated CV" k-width="110px" k-field="UpdatedCV" ></ak-col>
-			<ak-col k-title="Info-Host" k-width="110px" k-field="InfoonfactsheetsinHost"></ak-col>
+			<ak-col k-title="Artwork Released" k-field="ArtworkReleased" k-title="Artwork Released" k-filterable.bind="true" k-format="{0:MM/dd/yyyy}" k-width.bind="120"> </ak-col>
+		
+      <ak-col k-field="TransportNotes" k-title="Memo" k-width="200px" k-height="240px" k-editor.bind="textAreaEditor" k-filterable.bind="false"
+			 k-groupable.bind="false"></ak-col>
+		
+      <ak-col k-title="Catalog" k-width="110px" k-field="Catalog" ></ak-col>
 			<ak-col k-title="Updated FactSheet" k-width="110px" k-field="UpdatedFactSheet"></ak-col>
-		</ak-grid>
+		
+      <ak-col k-title="Updated CV?" k-width="110px" k-field="UpdatedCV" ></ak-col>
+			<ak-col k-title="Info-Host?" k-width="110px" k-field="InfoonfactsheetsinHost"></ak-col>
+			</ak-grid>
 		<!-- k-template.bind="cbTemplate" <ak-col k-field="Returned" k-filterable.bind="true" class="chkbx" 
       k-editor.bind="Returned" k-width.bind="120"> </ak-col> -->
  
