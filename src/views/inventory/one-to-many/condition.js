@@ -23,11 +23,8 @@ export class Condition {
       },
       update: (options) => {
         let updatedItem = options.data;
-        // updatedItem.offerdate = this.offerdate
-        // console.log('   updatedItem ', updatedItem)
-        options.success(updatedItem)
-       },
-
+          options.success(updatedItem)
+      },
       destroy: (options) => {
         let updatedItem = options.data;
         options.success(updatedItem)
@@ -36,7 +33,7 @@ export class Condition {
  
     schema: {
       model: {
-        id: "Condition", // Must assign id for update to work and it must be a string
+        id: "id", // Must assign id for update to work and it must be a string
         fields: {
           ConditionDate: { type: "date", editable: true },
           Condition: { type: "string", editable: true },
@@ -128,12 +125,12 @@ textAreaEditor(container, options) {
     let condition = this.currentItem.condition
     let flag = false
     let item
-    // let newNoteWorkDate = moment().format('YYYY-MM-DD')
+    let dd = moment().format('YYYY-MM-DD')
     if (condition === undefined) {
       flag = true
       condition = []
     }
-    item = {  id:this.epoch, Condition: '', edit: true }
+    item = {  id:this.epoch, Condition: '',ConditionDate:dd}
     condition.unshift(item)
     if (flag) this.currentItem.condition = condition
   }
