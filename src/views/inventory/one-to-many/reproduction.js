@@ -23,19 +23,16 @@ export class Reproduction {
       //       console.log(' repro datasource ', repro[0]);
       //       options.success(repro);
       //     });
-
       // },
 
       read: (options) => {
         options.success(this.currentItem.reproduction);
         this.currentItem.reproduction = this.datasource._data // sync to our model
        },
-
       update: (options) => {
         let updatedItem = options.data;
         updatedItem.offerdate = this.offerdate
         console.log('   updatedItem ', updatedItem)
-       
         options.success(updatedItem)
      },
         destroy: (options) => {
@@ -60,8 +57,8 @@ export class Reproduction {
           ReproductionPage: { type: "string", editable: true },
           ColorBW: { type: "string", editable: true },
           ReproductionExhibit: { type: "string", editable: true },
-             Editor: { type: "boolean" }, // scan template
-       ReproductionSortDate: { type: "date" }, 
+          Editor: { type: "boolean" }, // scan template
+          ReproductionSortDate: { type: "date" }, 
         }
       }
     },

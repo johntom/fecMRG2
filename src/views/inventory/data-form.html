@@ -539,11 +539,14 @@
 
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
 										<!-- <strong> Owned Status OwnedBy: ${currentItem.OwnedBy} </strong> -->
+                    <!-- <option model.bind="''">Choose...</option> -->
+												<!-- <strong> Owned Status ${currentItem.OwnedByLegacy}/ ${currentItem.OwnedBy}/ ${currentItem.ownedbyname} </strong> -->
+									
 										<strong> Owned Status </strong>
 									</div>
 									<div class="Rtable-cell-70 Rtable-cell--highlight">
 										<select id="OwnedBy " class="form-control  " value.bind="currentItem.OwnedBy">
-											<option model.bind="''">Choose...</option>
+											<option model.bind="">Choose...</option>
 											<option repeat.for="opt of appService.codesOwnership " model.bind="opt.id">
 												${opt.Description}
 											</option>
