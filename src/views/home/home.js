@@ -7,7 +7,7 @@ import { ApiService } from '../../utils/servicesApi';
  
 export class Home { 
   heading = "MRG Home Page";
-  version = ' 303.97 '   
+  version = ' 303.98 '   
   versionDate = 'Wed 8/28/2019 9am'
   prevversion = ' 303.52 ' 
   prevversionDate = 'Mon 8/5/2019 5pm' 
@@ -459,7 +459,7 @@ refreshSelection(){
         //       bk.ArtistName = bk.lastName+', '+bk.firstName
         //}
 
-
+  console.log('finished loadiong data ')
       }).catch(error => {
         console.error("Error encountered while trying to get data.", error);
       });

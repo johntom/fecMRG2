@@ -93,6 +93,21 @@
                     </select>
 								</div>
 							</div>
+		<div class="Rtable Rtable--2cols">
+								<div class=" Rtable-cell-30 Rtable-cell--highlight">
+									<strong> LocationDesc </strong>
+								</div>
+								<div class="Rtable-cell-70 Rtable-cell--light">
+									<select id="ReproductionLocation" class="form-control  input-sm" value.bind="item.ReproductionLocationDesc"> 
+                      <option model.bind="null">Choose...filterOnCode</option> 
+                         <option repeat.for="opt of appService.codesProvenanceLocation" model.bind="opt.Description">
+                    ${opt.Description} 
+                      </option> 
+                    </select>
+								</div>
+							</div>
+
+              
 
 							<div class="Rtable Rtable--2cols">
 								<div class=" Rtable-cell-30 Rtable-cell--highlight">
@@ -133,9 +148,7 @@
 						
 
 
-
-							<div class="Rtable Rtable--2cols">
-								<div class=" Rtable-cell-30 Rtable-cell--highlight">
+        								<!-- <div class=" Rtable-cell-30 Rtable-cell--highlight">
 									<strong>Type </strong>
 								</div>
 								<div class="Rtable-cell-70  Rtable-cell--light">
@@ -146,15 +159,34 @@
                       </option> 
                     </select>
 								</div>
+							</div> -->
+
+							<div class="Rtable Rtable--2cols">
+								<div class=" Rtable-cell-30 Rtable-cell--highlight">
+									<strong>Type </strong>
+								</div>
+								<div class="Rtable-cell-70  Rtable-cell--light">
+									<select id="ReproductionType" class="form-control  input-sm" value.bind="item.ReproductionTypeDesc"> 
+                      <option model.bind="null">Choose...</option> 
+                         <option repeat.for="opt of appService.codesPublicationType " model.bind="opt.Description">
+                    ${opt.Description} 
+                      </option> 
+                    </select>
+								</div>
 							</div>
+              <!-- <select id="ColorBW" class="form-control  input-sm" value.bind="item.ColorBW"> 
+                      <option model.bind="null">Choose...</option> 
+                         <option repeat.for="opt of appService.codesReproductionType" model.bind="opt.id">
+                    ${opt.Description} 
+                      </option>  -->
 							<div class="Rtable Rtable--2cols">
 								<div class=" Rtable-cell-30 Rtable-cell--highlight">
 									<strong>Color BW </strong>
 								</div>
 								<div class="Rtable-cell-70  Rtable-cell--light">
-									<select id="ColorBW" class="form-control  input-sm" value.bind="item.ColorBW"> 
+									<select id="ColorBW" class="form-control  input-sm" value.bind="item.ColorBWDesc"> 
                       <option model.bind="null">Choose...</option> 
-                         <option repeat.for="opt of appService.codesReproductionType" model.bind="opt.id">
+                         <option repeat.for="opt of appService.codesReproductionType" model.bind="opt.Description">
                     ${opt.Description} 
                       </option> 
                     </select>

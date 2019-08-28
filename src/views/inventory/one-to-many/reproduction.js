@@ -28,16 +28,16 @@ export class Reproduction {
       read: (options) => {
         options.success(this.currentItem.reproduction);
         this.currentItem.reproduction = this.datasource._data // sync to our model
-       },
+      },
       update: (options) => {
         let updatedItem = options.data;
         updatedItem.offerdate = this.offerdate
         console.log('   updatedItem ', updatedItem)
         options.success(updatedItem)
-     },
-        destroy: (options) => {
+      },
+      destroy: (options) => {
         let updatedItem = options.data;
-       
+
         options.success(updatedItem)
       }
     },
@@ -58,14 +58,14 @@ export class Reproduction {
           ColorBW: { type: "string", editable: true },
           ReproductionExhibit: { type: "string", editable: true },
           Editor: { type: "boolean" }, // scan template
-          ReproductionSortDate: { type: "date" }, 
+          ReproductionSortDate: { type: "date" },
         }
       }
     },
     // pageSize: 12,
 
   })
- 
+
 
   constructor(api, appService, dialogService) {
     this.api = api;
@@ -73,17 +73,17 @@ export class Reproduction {
     this.inv = '';
     this.currentItem = this.appService.currentItem
     this.dialogService = dialogService
-    
+
     let exdata = [];
     this.exhibitiondropdown = ''
     let exhibitiondropdownclone = JSON.parse(JSON.stringify(this.currentItem.exhibition));
     for (const item of exhibitiondropdownclone) {
-    if(item.ExhibitTitle!==undefined)  item.id = item.id + '|' + item.ExhibitTitle.substr(0, 20)
+      if (item.ExhibitTitle !== undefined) item.id = item.id + '|' + item.ExhibitTitle.substr(0, 20)
       exdata.push(item)
     }
     this.exhibitiondropdown = exdata
- //////////////////////////////////////////////////////////////////////////
-   if (this.currentItem.reproduction === undefined) this.currentItem.reproduction = []
+    //////////////////////////////////////////////////////////////////////////
+    if (this.currentItem.reproduction === undefined) this.currentItem.reproduction = []
     this.epoch = moment().unix();
   }
 
@@ -218,37 +218,7 @@ export class Reproduction {
       console.log(response.output);
     });
   }
-  addRepro() {
-    let reproduction = this.currentItem.reproduction
-    let flag = false
-    let item
-    if (reproduction === undefined) {
-      flag = true
-      reproduction = []
-    }
-    item = {
-      id:this.epoch, ReproductionAuthor: '', AuthorFirst: '', AuthorLast: '', ReproductionTitle: '',
-      ReproductionName: '', ReproductionLocationDesc: '', ReproductionDate: '', ReproductionPage: '',
-      Sequence: '', ReproductionTypeDesc: '', ReproductionPage: '', ColorBWDesc: '', ReproductionSortDate: '',
-      Editor:false
-    }
-
-    reproduction.unshift(item)
-    if (flag) this.currentItem.reproduction = reproduction
-//  "ReproductionAuthor" : "",             "AuthorFirst" : "", 
-//             "AuthorLast" : "",            "ReproductionTitle" : "Arthur G. Dove Paintings", 
-//             "ReproductionName" : "The Intimate Gallery",             "ReproductionDate" : "1927", 
-//             "ReproductionPage" : "no. 2 (as Rhapsody in Blue, Part I--Gerschwin)", 
-//             "ReproductionType" : "5d5009e8ee1af1dc544c05df", 
-//             "ColorBW" : "5d5009edee1af1dc544c130d",             "ColorBWeLegacy" : NumberInt(4953), 
-//             "ReproductionLocation" : "5d5009e8ee1af1dc544c05e8", 
-//             "ReproductionExhibit" : "",             "ReproductionSortDate" : "1927-01-01T05:00:00.000Z", 
-//             "ReproductionLocationDesc" : "New York, NY",             "replaced" : true, 
-//             "ReproductionTypeLegacy" : NumberInt(34),             "ReproductionTypeDesc" : "catalogue", 
-//             "ColorBWDesc" : "N/A"
-   // this.modal(item, 0) // unshirt reproduction.length + 1)
-
-  }
+  
   changeSelect(opt) {
 
     console.log('opt', opt)
@@ -266,7 +236,7 @@ export class Reproduction {
       console.log(response.output);
     });
   }
-  attached() { 
+  attached() {
 
   }
 
@@ -333,7 +303,79 @@ export class Reproduction {
   //     console.log(response)//.output);
   //   });
   // }
+  detailsEdit(e) {
+    let grid = this.grid;
+    let targetRow = $(e.target).closest("tr");
+    grid.select(targetRow);
+    let selectedRow = grid.select();
+    let dataItem = grid.dataItem(selectedRow);
+    let currentModel = {}
+    currentModel.currentItem = this.currentItem
+    currentModel.item = dataItem
+    this.dialogService.open({ viewModel: Promptrepro, model: currentModel, lock: true }).whenClosed(response => {
+      if (!response.wasCancelled) {
+        console.log('dataItem', dataItem);
+        // not needed this.currentItem.reproduction[0]=dataItem
+         this.datasource.read()
+       
+      } else {
+        console.log('cancel');
+      }
 
+      // this.currentItem.reproduction = this.datasource._data 
+      console.log(response)//.output);
+    });
+  }
+
+addRepro() {
+    let reproduction = this.currentItem.reproduction
+    let flag = false
+    let item
+    if (reproduction === undefined) {
+      flag = true
+      reproduction = []
+    }
+    item = {
+      id: this.epoch, ReproductionAuthor: 'jrt', AuthorFirst: '', AuthorLast: '', ReproductionTitle: '',
+      ReproductionName: '', ReproductionLocationDesc: '', ReproductionDate: '', ReproductionPage: '',
+      Sequence: '', ReproductionTypeDesc: '', ReproductionPage: '', ColorBWDesc: '', ReproductionSortDate: '',
+      Editor: false
+    }
+
+    reproduction.unshift(item)
+    if (flag) this.currentItem.reproduction = reproduction
+    let currentModel = {}
+    currentModel.currentItem = this.currentItem
+    currentModel.item = item
+    this.dialogService.open({ viewModel: Promptrepro, model: currentModel, lock: true }).whenClosed(response => {
+    
+      if (!response.wasCancelled) {
+        console.log('dataItem', item);
+        //  needed this.currentItem.reproduction[0]=dataItem
+        this.currentItem.reproduction[0]=item
+         this.datasource.read()
+       
+      } else {
+        console.log('cancel');
+      }
+
+      // this.currentItem.reproduction = this.datasource._data 
+      console.log(response)//.output);
+    });
+
+  }
+//  "ReproductionAuthor" : "",             "AuthorFirst" : "", 
+    //             "AuthorLast" : "",            "ReproductionTitle" : "Arthur G. Dove Paintings", 
+    //             "ReproductionName" : "The Intimate Gallery",             "ReproductionDate" : "1927", 
+    //             "ReproductionPage" : "no. 2 (as Rhapsody in Blue, Part I--Gerschwin)", 
+    //             "ReproductionType" : "5d5009e8ee1af1dc544c05df", 
+    //             "ColorBW" : "5d5009edee1af1dc544c130d",             "ColorBWeLegacy" : NumberInt(4953), 
+    //             "ReproductionLocation" : "5d5009e8ee1af1dc544c05e8", 
+    //             "ReproductionExhibit" : "",             "ReproductionSortDate" : "1927-01-01T05:00:00.000Z", 
+    //             "ReproductionLocationDesc" : "New York, NY",             "replaced" : true, 
+    //             "ReproductionTypeLegacy" : NumberInt(34),             "ReproductionTypeDesc" : "catalogue", 
+    //             "ColorBWDesc" : "N/A"
+    // this.modal(item, 0) // unshirt reproduction.length + 1)
   // modal(item, index) {
   //   // prev popup
   //   //   let currentModel = {}

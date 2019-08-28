@@ -157,7 +157,7 @@ export class Conssignedto {
   }
 
   // this.appService.orgsList
-  orgTemplate = '${econsignedto ? econsignedto.OrgName : ""}';
+  orgTemplate = '${consignedtoname ? consignedtoname.OrgName : ""}';
   orgDropDownEditor(container, options) {
     $('<input required data-text-field="OrgName" data-value-field="_id" data-bind="value:' + options.field + '"/>')
       .appendTo(container)
