@@ -137,14 +137,13 @@
 
 										<!-- style="color: purple" <div if.bind="recordId === 'create'"><strong> Artist >></strong></div>
 										<div else><strong> Artist </strong></div> -->
-										<strong> Prev Artist </strong>
+										<strong> Prev Artist /ID</strong>
 
 									</div>
 
 									<!-- <div class="Rtable-cell-70  Rtable-cell--light"> -->
 									<div class="Rtable-cell-70  Rtable-cell--highlight">
-                    ${currentItem.ArtistIDprev}
-</div>
+                    ${currentItem.ArtistIDprev} /   ${currentItem.ID}</div>
 
 
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
@@ -532,7 +531,7 @@
 
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
 										<!-- <strong> Owned Status OwnedBy: ${currentItem.OwnedBy} </strong> -->
-										<strong> Owned Status </strong>
+										<strong> Owned Status <strong> Owned Status ${currentItem.OwnedByLegacy}/ ${currentItem.OwnedBy}/ ${currentItem.ownedbyname} </strong></strong>
 									</div>
 									<div class="Rtable-cell-70 Rtable-cell--highlight">
 										<select id="OwnedBy " class="form-control  " value.bind="currentItem.OwnedBy">

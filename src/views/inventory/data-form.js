@@ -1,5 +1,4 @@
 
-													<!-- <strong> Owned Status ${currentItem.OwnedByLegacy}/ ${currentItem.OwnedBy}/ ${currentItem.ownedbyname} </strong> -->
 import { inject } from 'aurelia-dependency-injection';
 import { ApiService } from '../../utils/servicesApi';
 import { ApplicationService } from '../../services/application-service';
@@ -13,6 +12,7 @@ import { bindable } from 'aurelia-framework';
 import { RtfService } from '../../services/rtf-service';
 import { EventAggregator } from 'aurelia-event-aggregator';
 import { Promptmerge } from '../prompt/promptMerge';
+		//  <strong> Owned Status ${currentItem.OwnedByLegacy}/ ${currentItem.OwnedBy}/ ${currentItem.ownedbyname} </strong> -->
 
 @inject(Router, ApiService, ApplicationService, MyDataService, DialogService, RtfService, EventAggregator)
 // @inject(Router, ApiService, ApplicationService, MyDataService, DialogService)

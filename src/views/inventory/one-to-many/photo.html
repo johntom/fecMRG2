@@ -53,7 +53,10 @@
 
 			<ak-col k-field="Photogpraher" k-title="Photogpraher" k-width="140px" k-editor.bind="photograherDropDownEditor"></ak-col>
 			<ak-col k-field="Format" k-title="Format" k-width="140px" k-editor.bind="formatDropDownEditor"></ak-col>
-			<ak-col k-field="Note" k-title="Note" k-width="340px" k-height="240px" k-editor.bind="textAreaEditor" k-filterable.bind="false"
+			<ak-col k-field="PhotographerID" k-title="PhotographerID" k-width="140px" k-editor.bind="formatDropDownEditor"></ak-col>
+			<ak-col k-field="PhotoFormatID" k-title="PhotoFormatID" k-width="140px" k-editor.bind="formatDropDownEditor"></ak-col>
+		
+    	<ak-col k-field="PhotoMemo" k-title="Note" k-width="340px" k-height="240px" k-editor.bind="textAreaEditor" k-filterable.bind="false"
 			 k-groupable.bind="false"></ak-col>
 			<ak-col k-field="PhotoTaken" k-title="# Taken" k-width="120px" k-filterable.bind="false" k-groupable.bind="false"></ak-col>
 
@@ -61,6 +64,7 @@
 			<ak-col k-title="Precons" k-width="110px" k-field="Precons"></ak-col>
 
 			<ak-col k-field="Date" k-filterable.bind="true" k-format="{0:MM/dd/yyyy}" k-width.bind="120"> </ak-col>
+	<ak-col k-field="PhotoPhotoDate" k-filterable.bind="true" k-format="{0:MM/dd/yyyy}" k-width.bind="120"> </ak-col>
 
 		</ak-grid>
 	</section>

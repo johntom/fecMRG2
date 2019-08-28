@@ -13,7 +13,7 @@
 			width: 70%;
 		}
 	</style>
-<!-- PurchasedFrom: "5d273ea0fe0cb61411752d92" purchasedfromname
+	<!-- PurchasedFrom: "5d273ea0fe0cb61411752d92" purchasedfromname
 PurchasedNotes: "Jay Barrows as agent for Sidney and Frances Lewis . Beda Jedlicka wired USD to The F/S Co., Inc."
 PurchasedPayment: 609 -->
 	<div class="flex-row-none">
@@ -25,37 +25,37 @@ PurchasedPayment: 609 -->
 						<strong>Purchased From </strong>
 					</div>
 					<div class="Rtable-cell-70 Rtable-cell--highlight">
-            	<div class="Rtable-cell-70  Rtable-cell--light">
+						<div class="Rtable-cell-70  Rtable-cell--light">
 
-  	<div if.bind="currentItem.purchasedfromname===undefined || currentItem.purchasedfromname===''">
-							<a click.delegate="showModal( 'PurchasedFrom')">select_link </a>
-						</div>
-						<div else>
-							<a click.delegate="showModal('PurchasedFrom')">${currentItem.purchasedfromname}</a>
+							<div if.bind="currentItem.purchasedfromname===undefined || currentItem.purchasedfromname===''">
+								<a click.delegate="showModal( 'PurchasedFrom')">select_link </a>
+							</div>
+							<div else>
+								<a click.delegate="showModal('PurchasedFrom')">${currentItem.purchasedfromname}</a>
+
+							</div>
 
 						</div>
-  
-  	</div>
-    	</div>
-						<!-- <select id="PurchasedFrom " class="form-control  " value.bind="currentItem.PurchasedFrom">
+					</div>
+					<!-- <select id="PurchasedFrom " class="form-control  " value.bind="currentItem.PurchasedFrom">
 											<option model.bind="null">Choose...</option>
 											<option repeat.for="opt of appService.codesOwnership " model.bind="opt.id">
 												${opt.Description}
 											</option>
 										</select> -->
-				
+
 
 					<div class="Rtable-cell-30 Rtable-cell--highlight" style="color:purple">
 						<strong>Purchased Payment : ${currentItem.PurchasedPayment}</strong>
 					</div>
 					<div class="Rtable-cell-70 Rtable-cell--highlight">
-<select id="PurchasedPayment " class="form-control  " value.bind="currentItem.PurchasedPayment">
+						<select id="PurchasedPayment " class="form-control  " value.bind="currentItem.PurchasedPayment">
 											<option model.bind="null">Choose...</option>
 											<option repeat.for="opt of appService.codesOwnership " model.bind="opt.id">
 												${opt.Description}
 											</option>
 										</select>
-				
+
 					</div>
 
 
@@ -96,7 +96,7 @@ PurchasedPayment: 609 -->
 						<textarea id="PurchasedNotes" cols="66" rows="3" class="form-control input-sm" wrap value.bind="currentItem.PurchasedNotes">	</textarea>
 
 					</div>
-	<div class="Rtable-cell-30 Rtable-cell--highlight">
+					<div class="Rtable-cell-30 Rtable-cell--highlight">
 						<strong> id </strong>
 					</div>
 					<div class="Rtable-cell-70  Rtable-cell--highlight">
