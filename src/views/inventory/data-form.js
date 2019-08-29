@@ -486,7 +486,7 @@ export class DataForm {
     if (prevtemp[8] != undefined && newrec.id === prevtemp[8].id) this.skip = true;
     if (prevtemp[9] != undefined && newrec.id === prevtemp[9].id) this.skip = true;
 
-
+ 
     // if (newrec.id === temp[5].id) this.skip = true;
 
     console.log('   this.skip ', this.skip)

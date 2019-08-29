@@ -267,7 +267,7 @@ export class Promptorg {
         this.currentItem.OwnerID = ''
       }
       else {
-        this.myDatalistO.value = this.currentItem.soldtoname
+        this.myDatalistO.value = this.currentItem.ownername
 
       }
     }
@@ -298,7 +298,7 @@ export class Promptorg {
       if (findOptions === undefined) {
         findOptions = '';
         this.currentItem.ConsignedFromID = ''
-      } else {
+      } else { 
         this.myDatalistO.value = this.currentItem.consignedfromname
         this.selectedValueO = this.currentItem.consignedfromname;
         this.origorg = this.currentItem.consignedfromname;

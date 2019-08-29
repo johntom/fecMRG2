@@ -4,18 +4,18 @@ import { MyDataService } from "../../services/my-data-service";
 import { ApiService } from '../../utils/servicesApi';
 
 @inject(ApplicationService, MyDataService, ApiService)
- 
-export class Home { 
+
+export class Home {
   heading = "MRG Home Page";
-  version = ' 304.03 '   
+  version = ' 304.04 '
   versionDate = 'Thur 8/29/2019 11am'
-  prevversion = ' 303.52 ' 
-  prevversionDate = 'Mon 8/5/2019 5pm' 
+  prevversion = ' 303.52 '
+  prevversionDate = 'Mon 8/5/2019 5pm'
   issues = [
-       // or press refresh button upper left corner',
-  
+    // or press refresh button upper left corner',
+
     //https://circleci.com/workflow-run/1f3685ab-daba-41d7-8d25-6279df547b19
-    
+
     // https://www.tutorialspoint.com/aurelia/aurelia_event_aggregator.htm
 
     // 'JUNE 15 CONV fix org/contacts save both cols before redo',
@@ -24,86 +24,86 @@ export class Home {
     // 'mailing list 111test',
     // 'contact conversion ',
     // 'contact merge conversion ',
-//  orgi			new
-//  "ProvLoc": 0   not exits
-// "ReproductionExhibit": null,				   "ReproductionExhibit": "",
+    //  orgi			new
+    //  "ProvLoc": 0   not exits
+    // "ReproductionExhibit": null,				   "ReproductionExhibit": "",
 
-// unsaved changes tab pop up: 
-// Bontecou Purchased From tab
+    // unsaved changes tab pop up: 
+    // Bontecou Purchased From tab
 
-// consigned to 
-// no consignee comes in: grossman, crawford
+    // consigned to 
+    // no consignee comes in: grossman, crawford
 
-// museum loan
-// Bontecou not coming in
+    // museum loan
+    // Bontecou not coming in
 
-// purchased from
-// Bontecou, Crawford: no purchased from org, payment id still code
-// Crawford: no date
+    // purchased from
+    // Bontecou, Crawford: no purchased from org, payment id still code
+    // Crawford: no date
 
-// Edition Tab
-// Grossman:
-// When you build the Edition text, the note is coming in with <em></em> and not displaying last character
-// Edition is not coming into Inventory text
-//  `finishe ContactController see await Inv`,
-//     `not data for tax or insurance`,
-//     'fix open on inv',
-//     ' convert images again for docs also',
-//     'ui to combine contacts ie ',
-//     'mailing list state not working',
-//     'org breaks getting contacts tab not displayed   con',
-//     'MediumSupportobj.Description issue cjeck stat n address',
-//     'contact note see roberta smith',
-//     'A1 roberta smith b had mailing code mailing list should have mail status 1 ',
-//     'roberta smith b has contact type vip should be part of contact type',
-//     'a2 RS comp cat sent missing cat name ',
-//     'look at legacy phone tab and split phone/email ',
-//     'RS B from legacy shd have ORNAME and ORG Addr  in Adddres tab on new systme ',
-//     'RS I missing Phone/Email Info from header  ',
-//     'RS I MISSING MAILING STATUS SEE A1 ',
-//     'NO MAILING 2  ',
-//     'a2 CONTACT RS comp cat sent missing cat name ',
-//     'grossm0018 grossm0188  OWED Status=consign, owned by=NGrosssan, see sik ',
-//     ' fixed SoldStatus making 0,1 the same fix on next conv',
-//     ' fixed OwnedId OwnedBy 59d282beb777d41f42a5a2c3',
-//     `catalog kendogrid responive others not`,
-//     `"international": false for us new rec = false`,
-//     'on convert international mailing/international press international=true else false ',
-//     `convert org dont use address only adress1/2 3?`,
-//     ` use text area for address on org`,
-//     `dirty: "phones": ["type": null" not type:0 {"phones.type":  0} fixContactType`,
-//     `dirty: this.appService.originalrec.conservedbyname = this.currentItem.conservedbyname fix dirty`,
-//     ` dirty:this.appService.originalrec.OwnedId =  this.appService.currentItem.OwnedId`,
-//     " finish action exhi/repro ",
-//     `"@progress/kendo-ui": "^2017.2.504"`,
-//     ' python -m SimpleHTTPServer D:\Frameworks\fecMRG2-Staging\www\pythonserver.bat',
-//     "to test what lib to use in package.json",
-//     `"https://unpkg.com/lodash@4.17.11/" Change all ref from lodash to _`,
-//     "Remove auto-complete field entries in Google Chrome",
-//     "never pass id to put or post /:id",
-//     "to trip cci do a commit",
-//     "https://circleci.com/gh/johntom/fecMRG2/edit  h
-// ttps://circleci.com/gh/johntom/fecMRG2/21 build and deploy"
-//     , "SAVE THIS AS LST REPO BEFORE ALL CHANGES"
-//     , "deleted select2...selectize"
-//     , "git config --global user.email jrt@gtz.com"
-//     , "git config --global user.name johntom"
-//     , "git config --list  git config user.name displays"
-//     , ' let d1 = Date.now()'
-//     , '      let d2 = (new Date).toISOString()'
-//     , '      // month starts at 0 so 6 = may not june'
-//     , '      let d3 = new Date(Date.UTC(2019, 6, 7, 7));'
-//     , '      let dd = 2019-06-07'
-//     , '      let d4 = new Date(dd);'
-//     , '      let d5 = new Date("2019-06-07 11:13:00");'
-//     , '      let array2 = dol1.split("-");'
-//     , '      let yy = array2[0]  //DATE_OF_LOSS.getFullYear();'
-//     , '      let mm = array2[1] - 1  //month is 0 based'
-//     , '      let dd = array2[2] + 1// DATE_OF_LOSS.getDate();// l this will use time to convert date so if time <5 then date will -1'
-//     , '      let dol_2 = new Date(Date.UTC(yy, mm, dd, 10));'
-//     , '      let paramDate = req.param(DATE_OF_LOSS)'
-//     , '      let d6 = new Date(`${paramDate}  10:00:00`);'// set the time easist way to make sure date does not change
-//     , '      model.DATE_OF_LOSS = d6'
+    // Edition Tab
+    // Grossman:
+    // When you build the Edition text, the note is coming in with <em></em> and not displaying last character
+    // Edition is not coming into Inventory text
+    //  `finishe ContactController see await Inv`,
+    //     `not data for tax or insurance`,
+    //     'fix open on inv',
+    //     ' convert images again for docs also',
+    //     'ui to combine contacts ie ',
+    //     'mailing list state not working',
+    //     'org breaks getting contacts tab not displayed   con',
+    //     'MediumSupportobj.Description issue cjeck stat n address',
+    //     'contact note see roberta smith',
+    //     'A1 roberta smith b had mailing code mailing list should have mail status 1 ',
+    //     'roberta smith b has contact type vip should be part of contact type',
+    //     'a2 RS comp cat sent missing cat name ',
+    //     'look at legacy phone tab and split phone/email ',
+    //     'RS B from legacy shd have ORNAME and ORG Addr  in Adddres tab on new systme ',
+    //     'RS I missing Phone/Email Info from header  ',
+    //     'RS I MISSING MAILING STATUS SEE A1 ',
+    //     'NO MAILING 2  ',
+    //     'a2 CONTACT RS comp cat sent missing cat name ',
+    //     'grossm0018 grossm0188  OWED Status=consign, owned by=NGrosssan, see sik ',
+    //     ' fixed SoldStatus making 0,1 the same fix on next conv',
+    //     ' fixed OwnedId OwnedBy 59d282beb777d41f42a5a2c3',
+    //     `catalog kendogrid responive others not`,
+    //     `"international": false for us new rec = false`,
+    //     'on convert international mailing/international press international=true else false ',
+    //     `convert org dont use address only adress1/2 3?`,
+    //     ` use text area for address on org`,
+    //     `dirty: "phones": ["type": null" not type:0 {"phones.type":  0} fixContactType`,
+    //     `dirty: this.appService.originalrec.conservedbyname = this.currentItem.conservedbyname fix dirty`,
+    //     ` dirty:this.appService.originalrec.OwnedId =  this.appService.currentItem.OwnedId`,
+    //     " finish action exhi/repro ",
+    //     `"@progress/kendo-ui": "^2017.2.504"`,
+    //     ' python -m SimpleHTTPServer D:\Frameworks\fecMRG2-Staging\www\pythonserver.bat',
+    //     "to test what lib to use in package.json",
+    //     `"https://unpkg.com/lodash@4.17.11/" Change all ref from lodash to _`,
+    //     "Remove auto-complete field entries in Google Chrome",
+    //     "never pass id to put or post /:id",
+    //     "to trip cci do a commit",
+    //     "https://circleci.com/gh/johntom/fecMRG2/edit  h
+    // ttps://circleci.com/gh/johntom/fecMRG2/21 build and deploy"
+    //     , "SAVE THIS AS LST REPO BEFORE ALL CHANGES"
+    //     , "deleted select2...selectize"
+    //     , "git config --global user.email jrt@gtz.com"
+    //     , "git config --global user.name johntom"
+    //     , "git config --list  git config user.name displays"
+    //     , ' let d1 = Date.now()'
+    //     , '      let d2 = (new Date).toISOString()'
+    //     , '      // month starts at 0 so 6 = may not june'
+    //     , '      let d3 = new Date(Date.UTC(2019, 6, 7, 7));'
+    //     , '      let dd = 2019-06-07'
+    //     , '      let d4 = new Date(dd);'
+    //     , '      let d5 = new Date("2019-06-07 11:13:00");'
+    //     , '      let array2 = dol1.split("-");'
+    //     , '      let yy = array2[0]  //DATE_OF_LOSS.getFullYear();'
+    //     , '      let mm = array2[1] - 1  //month is 0 based'
+    //     , '      let dd = array2[2] + 1// DATE_OF_LOSS.getDate();// l this will use time to convert date so if time <5 then date will -1'
+    //     , '      let dol_2 = new Date(Date.UTC(yy, mm, dd, 10));'
+    //     , '      let paramDate = req.param(DATE_OF_LOSS)'
+    //     , '      let d6 = new Date(`${paramDate}  10:00:00`);'// set the time easist way to make sure date does not change
+    //     , '      model.DATE_OF_LOSS = d6'
   ]
 
   majorfix = [
@@ -122,12 +122,12 @@ export class Home {
 
     "To insert an ASCII character, press and hold down ALT while typing the character code. For example, to insert the degree (º) symbol, press and hold down ALT while typing 0176 on the numeric keypad. You must use the numeric keypad to type the numbers, and not the keyboard.",
     , "https://support.office.com/en-us/article/insert-ascii-or-unicode-latin-based-symbols-and-characters-d13f58d3-7bcb-44a7-a4d5-972ee12e50e0"
-    ,'CTRL+SHIFT+F to find'
-  
+    , 'CTRL+SHIFT+F to find'
+
   ]
   todo = [
 
-   
+
 
 
   ]
@@ -148,12 +148,12 @@ export class Home {
   sendMessage() {
     channel.publish('greeting', 'Hello from the browser');
 
-  } 
+  }
 
-refreshSelection(){
-   this.appService.LookupDataLoaded = false;
-   this.activate()
-}
+  refreshSelection() {
+    this.appService.LookupDataLoaded = false;
+    this.activate()
+  }
 
   async activate() {
 
@@ -165,9 +165,9 @@ refreshSelection(){
       console.log('using data cache from home....')
       return Promise.resolve(true);
     } else {
-    let response = await this.api.getCatalogsAA();
-    this.appService.catalogList = response.data
-    // console.log('https://artbased.com/api/v1/catalog catalogList ', this.appService.catalogList )
+      let response = await this.api.getCatalogsAA();
+      this.appService.catalogList = response.data
+      // console.log('https://artbased.com/api/v1/catalog catalogList ', this.appService.catalogList )
 
       return Promise.all([
         this.dataService.loadArtists(),
@@ -180,13 +180,13 @@ refreshSelection(){
       ]).then(values => {
         this.appService.artistList = values[0];
         this.appService.codesList = values[1];
+        //////////////////////////////////////////////////////////////////
         this.appService.orgsList = values[2]; // merge of org and contact
+        //////////////////////////////////////////////////////////////////
         this.appService.savedlists = values[3];
         this.appService.stateList = values[4];
         //            this.appService.catalogList = values[5];
-
         console.log('using data orgsList....', this.appService.orgsList)
-
 
         let i, item, ct
         this.appService.LookupDataLoaded = true;
@@ -260,7 +260,7 @@ refreshSelection(){
               break;
             case 2:
               // codesInventoryType.push(newi)
-                  codesGenre.push(newi)
+              codesGenre.push(newi)
               break;
             case 3:
               codesGenre.push(newi)
@@ -441,25 +441,34 @@ refreshSelection(){
         // for (i = 0; i < this.appService.artistList.length; i++) {
         //   this.appService.artistList[i].ArtistName = this.appService.artistList[i].lastName + ', ' + this.appService.artistList[i].firstName
         // }
-        let nlist = []
-        for (const item of this.appService.artistList) {
-          item.ArtistName = item.LastName + ', ' + item.FirstName
-          nlist.push(item)
-        }
-        this.appService.artistList = _.sortBy(nlist, 'ArtistName');
+
+
+        // let nlist = []
+        // for (const item of this.appService.artistList) {
+        //   item.ArtistName = item.LastName + ', ' + item.FirstName
+        //   nlist.push(item)
+        // }
+        // this.appService.artistList = _.sortBy(nlist, 'ArtistName');
+
+        this.appService.artistList = _.sortBy(this.appService.artistList, 'ArtistName');
+
         // this.appService.artistList = nlist.sort(function (a, b) {
         //   var textA = a.ArtistName.toUpperCase();
         //   var textB = b.ArtistName.toUpperCase();
         //   return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
         // });
-        console.log('artistList ', this.appService.artistList)
+        console.log('artistList ', this.appService.artistList.length)
+        console.log('orgsList ', this.appService.orgsList.length)
+
+
+
         // let pct
         // for (let bk of this.appService.artistList) {
         //       //  console.log('bk2 ', bk2)
         //       bk.ArtistName = bk.lastName+', '+bk.firstName
         //}
 
-  console.log('finished loadiong data ')
+        console.log('finished loadiong data ')
       }).catch(error => {
         console.error("Error encountered while trying to get data.", error);
       });

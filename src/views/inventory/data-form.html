@@ -504,11 +504,11 @@
 												${opt.name}
 											</option>
 										</select>
-									</div>
+									</div> 
 
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
 										<!-- ${currentItem.SoldToID} -->
-										<span dblclick.delegate="showModal( 'SoldToID') ">	<strong> Sold To</strong></span>
+										<span dblclick.delegate="showModal( 'SoldToID') ">	<strong> Sold To </strong></span>
 									</div>
 
 
@@ -520,7 +520,7 @@
 											<a click.delegate="showModal( 'SoldToID')">select_link </a>
 										</div>
 										<div style="height:12px;margin-left:4px;margin-top:2px;margin-bottom:5px" else>
-											<a click.delegate="showModal( 'SoldToID')">${currentItem.soldtoname} </a>
+											<a click.delegate="showModal( 'SoldToID')">${currentItem.SoldToID} / ${currentItem.soldtoname} </a>
 											&nbsp;&nbsp;
 											<a click.delegate="soldtoEdit()">...Open...</a>
 
