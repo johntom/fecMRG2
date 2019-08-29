@@ -269,7 +269,7 @@ export class Reproduction {
        
       } else {
         console.log('cancel');
-      }
+      } 
 
       // this.currentItem.reproduction = this.datasource._data 
       console.log(response)//.output);

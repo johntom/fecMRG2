@@ -9,7 +9,6 @@ import { Promptyn } from '../../services/promptyn';
 export class Promptexhibit {
   static inject = [DialogController, ApplicationService, MyDataService, DialogService, ApiService];
 
-
   constructor(controller, appService, dataService, dialogService, api) {
     this.controller = controller;
     this.answer = null;
@@ -30,24 +29,20 @@ export class Promptexhibit {
     this.heading = "Exhibition"
   }
 
- populate(){
-    this.item.ExhibitTitle='test '
-     this.item.ExhibitSponser='test spn'
-      this.item.ExhibitDates='01-12' 
-      this.item.Traveled=true
-       this.item.ExhibitMemo='test memp'
-
- }
+  populate() {
+    this.item.ExhibitTitle = 'test '
+    this.item.ExhibitSponser = 'test spn'
+    this.item.ExhibitDates = '01-12'
+    this.item.Traveled = true
+    this.item.ExhibitMemo = 'test memp'
+  }
   attached() {
-
 
   }
 
   changeCallbackArtist(selectedValueA) {
     let findvalue = this.myDatalistA.value
   }
-
-
 
   save() {
     this.controller.ok('added')

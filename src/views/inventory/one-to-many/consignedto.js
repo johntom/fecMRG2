@@ -40,7 +40,7 @@ export class Conssignedto {
 
       destroy: (options) => {
         let updatedItem = options.data;
-     
+
         options.success(updatedItem)
       }
     },
@@ -51,25 +51,27 @@ export class Conssignedto {
         fields: {
           Sequence: { type: "number" }, // scan template
           consignedto: { type: "string", editable: true },
+          // consignedtoname: { type: "string", editable: true },
           // econsignedto: { type: "string", editable: true },
           // econsignedto: {defaultValue: {OrgName: "Ho, Christina", State: "", _id: "5d5005c2db929d74487d0c69" } },
-          econsignedto: { OrgName: "", State: "", _id: "" },
+          consignedtoname: { OrgName: "", State: "", _id: "" },
+
           eloc: { defaultValue: { id: '5d5009e8ee1af1dc544c05e8', Description: 'New York, NY' } },
           // ProvLoc: { defaultValue: { id: '5d5009e8ee1af1dc544c05e8', Description: 'New York, NY' } },
           ConsignedStartDate: { type: "date", editable: true },
           ConsignedEndDate: { type: "date", editable: true },
           ArtworkReleased: { type: "date", editable: true },
           CreatedDate: { type: "date", editable: true },
-          Signed:{ type: "boolean" },
+          Signed: { type: "boolean" },
           PDF: { type: "boolean" },
-          Returned:{ type: "boolean" },
+          Returned: { type: "boolean" },
           Sold: { type: "boolean" },
-   ModifiedDate: { type: "date"},
+          ModifiedDate: { type: "date" },
 
-// Signed:{ type: "string" },
-// PDF: { type: "string" },
-// Returned:{ type: "string" },
-// Sold: { type: "string" },
+          // Signed:{ type: "string" },
+          // PDF: { type: "string" },
+          // Returned:{ type: "string" },
+          // Sold: { type: "string" },
 
         }
       }
@@ -113,18 +115,18 @@ export class Conssignedto {
       flag = true
       consignedto = []
     }
-   
+
     item = {
       id: this.epoch, eloc: { id: '5d5009e8ee1af1dc544c05e8', Description: 'New York, NY' }, ConsignmentNotes: '',
       ConsignedStartDate: dd,
       ConsignedEndDate: dd,
       ArtworkReleased: dd,
       CreatedDate: dd,
-      econsignedto: { OrgName: "", State: "", _id: "5" }
+      consignedtoname: { OrgName: "", State: "", _id: "5" }
     }
-   
-  //     econsignedto: { OrgName: "Ho, Christina", State: "", _id: "5d5005c2db929d74487d0c69" }, CreatedDate: dd
-   
+
+    //     econsignedto: { OrgName: "Ho, Christina", State: "", _id: "5d5005c2db929d74487d0c69" }, CreatedDate: dd
+
     consignedto.unshift(item)
     if (flag) this.currentItem.consignedto = consignedto
   }

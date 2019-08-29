@@ -149,14 +149,10 @@ export class SearchResults {
     this.ImageID = '20150921_153441_resized_2'
     this.dialogService = dialogService
     this.appService.rfreshLoaded = false;
-
     this.selectedlist = 5 // registra
-    
     // this.appService.actionlist ='closed'
     this.eventAggregator = eventAggregator;
   }
-
-
 
   updateData(e) {
     console.log('updateData ', e)
@@ -165,13 +161,10 @@ export class SearchResults {
     //         console.log('this.scans ', jsonRes)
     //         return jsonRes
     //     })
-
-
     return this.api.saveinventory(e).then((jsonRes) => {
       // console.log('jsonRes ', jsonRes);
       // window.alert("Save successful!");
       return jsonRes
-
     });
   }
   onEdit(e) {
@@ -183,7 +176,6 @@ export class SearchResults {
     e.container.find(".k-grid-cancel").bind("click", function () {
       flag = true
       datasource.read()
-
     })
   }
 

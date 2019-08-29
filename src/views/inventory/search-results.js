@@ -10,10 +10,8 @@ import { DialogImage } from './dialogImage'
 import { EventAggregator } from 'aurelia-event-aggregator';
 import { Promptmess } from '../../services/promptmess';
 import { Promptyn } from '../../services/promptyn';
-
 // jrt
-@inject(Router, ApiService, UtilService, ApplicationService, MyDataService, DialogService)
-
+// @inject(Router, ApiService, UtilService, ApplicationService, MyDataService, DialogService)
 
 @inject(Router, ApiService, UtilService, ApplicationService, MyDataService, DialogService, EventAggregator)
 export class SearchResults {
@@ -27,30 +25,33 @@ export class SearchResults {
   message = ''//Hello Inventory !';
   scrollable = { virtual: true };
   datasource = new kendo.data.DataSource({
-      // toolbar: ["excel"],
-      // excel: {
-      //   fileName: "Kendo UI Grid Export.xlsx",
-      //   proxyURL: "//demos.telerik.com/kendo-ui/service/export",
-      //   filterable: true,
-      //   allPages: true
-      // },
-
-      // pdf: {
-      //   allPages: true,
-      //   avoidLinks: true,
-      //   paperSize: "A4",
-      //   margin: { top: "2cm", left: "1cm", right: "1cm", bottom: "1cm" },
-      //   landscape: true,
-      //   repeatHeaders: true,
-      //   template: $("#page-template").html(),
-      //   scale: 0.8
-      // },
+    //  toolbar: [{
+    //       name: 'saveGrid',
+    //       text: "Save Grid Settings"
+    //     }],
+    // toolbar: ["excel"],
+    // excel: {
+    //   fileName: "Kendo UI Grid Export.xlsx",
+    //   proxyURL: "//demos.telerik.com/kendo-ui/service/export",
+    //   filterable: true,
+    //   allPages: true
+    // },
+    // pdf: {
+    //   allPages: true,
+    //   avoidLinks: true,
+    //   paperSize: "A4",
+    //   margin: { top: "2cm", left: "1cm", right: "1cm", bottom: "1cm" },
+    //   landscape: true,
+    //   repeatHeaders: true,
+    //   template: $("#page-template").html(),
+    //   scale: 0.8
+    // },
     transport: {
       read: (options) => {
         this.loadData()
           .then((inv) => {
             options.success(inv);
-           
+
           });
       },
       // update: (options) => {
@@ -63,11 +64,11 @@ export class SearchResults {
       //   options.success()
       // }
     },
- 
+
     schema: {
-   
+
       model: {
-  
+
         id: "id", // Must assign id for update to work
         fields: {
           // LegacyID: { type: "number" }, // scan template
@@ -83,19 +84,12 @@ export class SearchResults {
           SoldDate: { type: "date" },
           "Sold": { type: "string" },
           "soldtoname": { type: "string" },
-            
-  
-     
-
           UnframedHeight: { type: "number" },
           UnframedHeight16: { type: "string" },
           UnframedWidth: { type: "number" },
           UnframedWidth16: { type: "string" },
           UnframedDepth: { type: "number" },
           UnframedDepth16: { type: "string" },
-
-
-         
           // Purchased From -->
           //  ArtistRegistra: { type: "string" },
           InventoryCode: { type: "string" },
@@ -104,58 +98,57 @@ export class SearchResults {
           Bin: { type: "string", sortable: false, menu: false }, // barcode insured
           Owner: { type: "string" },
           InvYear: { type: "string" },
-         groupedColumns : [{
-    field: 'UnframedHeight',
-    title: 'Hght',
-    width: 50,
-    type: "number"
-  }, {
-    field: 'UnframedHeight16',
-    title: ' ',
-    width: 50,
-    type: "string"
-  }, {
-   field: 'UnframedWidth',
-    title: 'Wdth',
-    width: 50,
-    type: "number"
-  }, {
-    field: 'UnframedWidth16',
-    title: ' ',
-    width: 50,
-    type: "string"
-  }, 
-    {
-   field: 'UnframedDepth',
-    title: 'Dpth',
-    width: 50,
-    type: "number"
-  }, {
-    field: 'UnframedDepth16',
-    title: ' ',
-    width: 50,
-    type: "string"
-  }
-  ],
+          groupedColumns: [{
+            field: 'UnframedHeight',
+            title: 'Hght',
+            width: 50,
+            type: "number"
+          }, {
+            field: 'UnframedHeight16',
+            title: ' ',
+            width: 50,
+            type: "string"
+          }, {
+            field: 'UnframedWidth',
+            title: 'Wdth',
+            width: 50,
+            type: "number"
+          }, {
+            field: 'UnframedWidth16',
+            title: ' ',
+            width: 50,
+            type: "string"
+          },
+          {
+            field: 'UnframedDepth',
+            title: 'Dpth',
+            width: 50,
+            type: "number"
+          }, {
+            field: 'UnframedDepth16',
+            title: ' ',
+            width: 50,
+            type: "string"
+          }
+          ],
           // Image : { type: "string", editable: false },
         }
       }
     },
     // pageSize: 10,
-    
+
     height: 400,
 
     //  serverPaging: true,
     //   serverSorting: true,
     sort: { field: 'InventoryCode', dir: 'asc' },
-   
+
 
     // aggregate: [{ field: "type", aggregate: "count" },
     //   { field: "template", aggregate: "count" }
     // ]
   })
   //Reference the Kendo Grid  
-
 
   constructor(router, api, utilService, appService, dataService, dialogService, eventAggregator) {
     this.router = router;
@@ -171,11 +164,32 @@ export class SearchResults {
     this.router = router
     this.dialogService = dialogService
     this.eventAggregator = eventAggregator
-     this.appService.refreshinvLoaded = false;
+    this.appService.refreshinvLoaded = false;
     //   this.currentsavedlist;
- this.epoch = moment().unix();
+    this.epoch = moment().unix();
+     this.busy = {}
+    this.busy.active = true
+  }
+  save() {
+    localStorage["kendo-grid-options"] = kendo.stringify(this.grid.getOptions());
+    alert("Saved to storage. Reload now and click the Load button");
   }
 
+  load() {
+  //  this.busy.active = true
+    var options = localStorage["kendo-grid-options"];
+    if (options) {
+      this.grid.setOptions(JSON.parse(options));
+    //  this.busy.active = false
+    }
+  }
+
+  reloadPage() {
+    // this.busy.active = true
+    // location.reload();
+    // this.router.navigate(rt + '?town=' + this.capColor + '&d1=' + s1 + '&d2=' + s2);
+
+  }
   selectAll() {
     // var movid;
     // var   movies=this.dataSource._data;
@@ -190,8 +204,6 @@ export class SearchResults {
   onDataBound(e) {
     let grid = e.sender;
     kendo.jQuery('[data-field=Bin].k-header-column-menu', grid.tbody).remove(); ///removeAttr('href');
-
-
   }
   showSavedlists() {
     this.currentItem = {}
@@ -203,7 +215,6 @@ export class SearchResults {
         let mid = meds.findIndex(x => x.name === this.appService.currentsavedlist)//'savedlist1')
         if (mid !== -1) {
           let orgobj = this.appService.savedlists[mid]
-
         }
       } else {
         console.log('cancel');
@@ -221,10 +232,8 @@ export class SearchResults {
     console.log('this.search ', this.search)
     // name as - at end its a singleton
     let path = `Actionlist-${qs}`;
-
     // see authorize-step.js on how I make this a singleton with saving the result set
     this.router.navigate(`#/action/${path}&tabname=actionlist`);
-
     //  let rt2 = `#/action/Actionlist-?savedlists=${this.appService.currentsavedlist}&tabname=actionlistInv`
     // this.router.navigate(rt2);// `#/inventory/${path}`);
     // https://johntom.github.io/fecMRG2/#/action/Actionlist-?savedlists%3DTest%20List&tabname=actionlist   openSelection()
@@ -270,10 +279,8 @@ export class SearchResults {
   activate(params, routeConfig) {
     this.queryParams = this.utilService.parseQueryStringUrl();
     console.log('queryParams', this.queryParams);
- 
- 
-  //  this.datasource.read()
 
+    //  this.datasource.read()
     //http://74.114.164.24/api/v1/inventorycontent?artistl=s%26artistf=c 
     //let queryParams = this.utilService.parseQueryString();
     //let queryParams2 = this.utilService.generateQueryString(queryParams);
@@ -287,10 +294,10 @@ export class SearchResults {
     // queryParams2 = queryParams2.replace(re, '&');
     // this.queryParams = queryParams2
     // console.log('squeryParams2', this.queryParams);
-   // let meds = this.appService.savedlists
+    // let meds = this.appService.savedlists
     // let orgobj = this.appService.savedlists[0]
     // this.selectedids = orgobj.InventoryCodes
- 
+
   }
 
   addinventory() {
@@ -304,20 +311,22 @@ export class SearchResults {
     }
   }
 
-async loadData() { 
+  async loadData() {
     let inv;
     ///api/v1/inventory/getall
     if (this.appService.inventorysearchresults && !this.appService.refreshinvLoaded) {
-     this.spinner.remove()
+      // this.spinner.remove()
+        this.busy.active = false
       return this.appService.inventorysearchresults;
-         
+
     } else {
       return this.api.findInventory(this.queryParams)
         .then((jsonRes) => {
           inv = jsonRes.data;
-            this.inventory = jsonRes.data;
-            this.recCount = inv.length;
-               this.spinner.remove()
+          this.inventory = jsonRes.data;
+          this.recCount = inv.length;
+          // this.spinner.remove()
+           this.busy.active = false
           if (inv === 0 || inv.length === 0) {
             this.dialogService.open({ viewModel: Promptmess, model: `no records found  `, lock: true }).whenClosed(async response => { });
             let tab = this.appService.tabs.find(f => f.isSelected);
@@ -325,13 +334,16 @@ async loadData() {
             let rt2 = '#/inventory';
             this.router.navigate(rt2);
           } else {
-           this.appService.inventorysearchresults = inv;
-             return inv
+            this.appService.inventorysearchresults = inv;
+            return inv
           }
         });
     }
   }
-performAction1Refresh() {
+
+
+
+  performAction1Refresh() {
     //console.log('performRefresh ')
     // alert('You have selected performRefresh')
     this.appService.refreshinvLoaded = true;
@@ -340,11 +352,13 @@ performAction1Refresh() {
   async loadDatanocache() {
     let inv;
     return this.api.findInventory(this.queryParams)
-         .then((jsonRes) => {
+      .then((jsonRes) => {
         inv = jsonRes.data;
         this.inventory = jsonRes.data;
         this.recCount = inv.length;
-               this.spinner.remove()
+        // this.spinner.remove()
+         this.busy.active = false
+        
         if (inv === 0 || inv.length === 0) {
           this.message = ' no records found '
           let tab = this.appService.tabs.find(f => f.isSelected);

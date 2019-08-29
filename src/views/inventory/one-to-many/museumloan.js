@@ -55,6 +55,7 @@ export class Museamloan {
           loantoname: { OrgName: "", State: "", _id: "" },
           Location: { type: "string", editable: true },
           InsuranceValue: { type: "string", editable: true },
+          InsuranceValueAmt :{ type: "numeric", format:"{0:c2}" },
           ExhibitionTitle: { type: "string", editable: true },
           ExhibitionVenuesDates: { type: "string", editable: true },
           AgreementFormSignedMRG: { type: "boolean" },

@@ -192,16 +192,14 @@ export class Exhibition {
     let currentModel = {}
     currentModel.currentItem = this.currentItem
     currentModel.item = dataItem
-    this.dialogService.open({ viewModel: Promptexhibition, model: currentModel, lock: true }).whenClosed(response => {
+    this.dialogService.open({ viewModel: Promptexhibit, model: currentModel, lock: true }).whenClosed(response => {
       if (!response.wasCancelled) {
         console.log('dataItem', dataItem);
          this.datasource.read()
-       
       } else {
         console.log('cancel');
       }
-
-      console.log(response)//.output);
+      console.log(response)
     });
   }
   addExhibit() {
@@ -226,7 +224,7 @@ export class Exhibition {
     let currentModel = {}
     currentModel.currentItem = this.currentItem
     currentModel.item = item
-    this.dialogService.open({ viewModel: Promptexhibition, model: currentModel, lock: true }).whenClosed(response => {
+    this.dialogService.open({ viewModel: Promptexhibit, model: currentModel, lock: true }).whenClosed(response => {
       if (!response.wasCancelled) {
         console.log('dataItem', item);
         this.currentItem.exhibition[0] = item

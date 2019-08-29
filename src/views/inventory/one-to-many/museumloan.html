@@ -47,11 +47,12 @@ dt 		 ArtworkReleased			 -->
 		<ak-grid class="flex-row-1 overflow-y-auto" id="grid" k-data-source.bind="datasource"
      k-widget.bind="grid" k-sortable.bind="{ mode: 'multiple',   allowUnsort: 'true'}"
 		 k-editable="popup" k-reorderable.bind="true" k-resizable.bind="true" k-height.bind="300" k-column-menu.bind="true">
-			<div style="width: 1500px"></div>
+			<div style="width: 1600px"></div>
 			<ak-col k-filterable.bind="false" k-width="160px" k-title=" " k-command.bind="['edit','Delete']" k-locked.bind="true"
 			 k-lockable.bind="false"></ak-col>
 			<ak-col k-field="loantoname" k-title="Loan To" k-width="180px" k-editor.bind="orgDropDownEditor" k-template.bind="orgTemplate"></ak-col>
 			<ak-col k-field="InsuranceValue" k-title="Insurance Value" k-width="180px"></ak-col>
+			<ak-col k-field="InsuranceValueAmt"  k-format="{0:c2}"   k-title="Insurance Val Amt" k-width="180px"></ak-col>
 			<ak-col k-field="ExhibitionTitle" k-title="Exhibition Title" k-width="180px"></ak-col>
 			<ak-col k-field="ExhibitionVenuesDates" k-title="Exhibition Dates" k-width="180px"></ak-col>
 			<ak-col k-title="Returned" k-width="110px" k-field="Returned"></ak-col>
@@ -59,14 +60,11 @@ dt 		 ArtworkReleased			 -->
 			<ak-col k-title="Countersigned" k-width="110px" k-field="AgreementFormCountersigned"></ak-col>
 			<ak-col k-title="CofI" k-width="110px" k-field="CofI" ></ak-col>
 			<ak-col k-title="Artwork Released" k-field="ArtworkReleased" k-title="Artwork Released" k-filterable.bind="true" k-format="{0:MM/dd/yyyy}" k-width.bind="120"> </ak-col>
-		
-      <ak-col k-field="TransportNotes" k-title="Memo" k-width="200px" k-height="240px" k-editor.bind="textAreaEditor" k-filterable.bind="false"
+		  <ak-col k-field="TransportNotes" k-title="Note" k-width="200px" k-height="240px" k-editor.bind="textAreaEditor" k-filterable.bind="false"
 			 k-groupable.bind="false"></ak-col>
-		
-      <ak-col k-title="Catalog" k-width="110px" k-field="Catalog" ></ak-col>
+		      <ak-col k-title="Catalog" k-width="110px" k-field="Catalog" ></ak-col>
 			<ak-col k-title="Updated FactSheet" k-width="110px" k-field="UpdatedFactSheet"></ak-col>
-		
-      <ak-col k-title="Updated CV?" k-width="110px" k-field="UpdatedCV" ></ak-col>
+		      <ak-col k-title="Updated CV?" k-width="110px" k-field="UpdatedCV" ></ak-col>
 			<ak-col k-title="Info-Host?" k-width="110px" k-field="InfoonfactsheetsinHost"></ak-col>
 			</ak-grid>
 		<!-- k-template.bind="cbTemplate" <ak-col k-field="Returned" k-filterable.bind="true" class="chkbx" 
