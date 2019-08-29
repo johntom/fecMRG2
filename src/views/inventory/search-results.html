@@ -67,11 +67,15 @@
 			<i class="fa fa-spinner fa-spin"></i>
 		</div>
 	</section>
-
+ 
 	<ak-grid class="flex-row-1 overflow-y-auto" id="grid" k-data-source.bind="datasource" k-widget.bind="grid" k-sortable.bind="{ mode: 'multiple',   allowUnsort: 'true'}"
 	 k-height.bind="700" k-filterable.bind="{  mode: 'row' }" k-editable="inline" k-reorderable.bind="true" k-groupable.bind="true"
 	 k-resizable.bind="true" k-selectable="[row,multiple]" k-on-edit.delegate="onEdit($event.detail)" k-on-data-bound.delegate="onDataBound($event.detail)"
-	 k-on-change.delegate="rowSelected($event.detail)" k-column-menu.bind="true" k-pageable.bind="true" k-scrollable.bind="scrollable">
+	 k-on-change.delegate="rowSelected($event.detail)"
+     k-toolbar.bind="['excel','pdf']"
+       k-excel.bind="{ fileName: 'Kendo UI Grid deposit.xlsx',allPages: true }"
+       k-pdf.bind="{ allPages: true, avoidLinks: true,landscape: true, repeatHeaders: true, paperSize: 'A4'}" 
+    k-column-menu.bind="true" k-pageable.bind="true" k-scrollable.bind="scrollable">
 
 		<ak-col k-field="InventoryCode" k-locked.bind="true" k-lockable.bind="false" k-filterable.bind="true" k-title="Inv Code"
 		 k-width.bind="180" k-template="<button click.delegate='detailsEdit($event)' class='k-button'>#=InventoryCode#</button>">

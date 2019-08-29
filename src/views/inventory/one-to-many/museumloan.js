@@ -35,8 +35,8 @@ export class Museamloan {
       },
       update: (options) => {
         let updatedItem = options.data;
-        updatedItem.offerdate = this.offerdate
-        console.log('   updatedItem ', updatedItem)
+      //  updatedItem.offerdate = this.offerdate
+      //  console.log('   updatedItem ', updatedItem)
         options.success(updatedItem)
         },
 
@@ -62,7 +62,6 @@ export class Museamloan {
           Returned: { type: "boolean" },
           CofI: { type: "boolean" },
           Catalog: { type: "boolean" },
-          CofI: { type: "boolean" },
           UpdatedCV: { type: "boolean" },
           InfoonfactsheetsinHost: { type: "boolean" },
           UpdatedFactSheet: { type: "boolean" },
@@ -125,7 +124,12 @@ export class Museamloan {
     this.isDisableEdit = true
     this.currentnote = '';
     this.dialogService = dialogService
+
+
+    //////////////////////////////////////////////////////////////////////////////
     if (this.currentItem.museumloan === undefined) this.currentItem.museumloan = []
+    ////////////////////////////////////////////////////////////////////////////// 
+
     this.epoch = moment().unix();
   }
   test(index) {
@@ -146,9 +150,12 @@ export class Museamloan {
     $('<textarea class="k-textbox" name="' + options.field + '" style="width:100%;height:100%;" />').appendTo(container);
     // $('<textarea data-text-field="Label" data-value-field="Value" data-bind="value:' + options.field + '" style="width: ' + (container.width() - 10) + 'px;height:' + (container.height() - 12) + 'px" />').appendTo(container);
   }
+ 
+//  required
+ 
   orgTemplate = '${loantoname ? loantoname.OrgName : ""}';
   orgDropDownEditor(container, options) {
-    $('<input required data-text-field="OrgName" data-value-field="_id" data-bind="value:' + options.field + '"/>')
+    $('<input  data-text-field="OrgName" data-value-field="_id" data-bind="value:' + options.field + '"/>')
       .appendTo(container)
       .kendoDropDownList({
         autoBind: false,
@@ -158,10 +165,10 @@ export class Museamloan {
         dataValueField: "_id"
       });
   }
-  // /////////////////////////////////////////////////////////////////////
+  //required /////////////////////////////////////////////////////////////////////
   locationTemplate = '${eloc ? eloc.Description : ""}';
   locationDropDownEditor(container, options) {
-    $('<input required data-text-field="Description" data-value-field="id" data-bind="value:' + options.field + '"/>')
+    $('<input  data-text-field="Description" data-value-field="id" data-bind="value:' + options.field + '"/>')
       .appendTo(container)
       .kendoDropDownList({
         autoBind: false,
@@ -170,8 +177,10 @@ export class Museamloan {
       });
   }
   locTemplate = '${ExhibitLocation ? ExhibitLocation.Description" : ""}';
+   //required /////////////////////////////////////////////////////////////////////
+ 
   locDropDownEditor(container, options) {
-    $('<input required data-text-field="Description" data-value-field="Description" data-bind="value:' + options.field + '"/>')
+    $('<input  data-text-field="Description" data-value-field="Description" data-bind="value:' + options.field + '"/>')
       .appendTo(container)
       .kendoDropDownList({
         autoBind: false,

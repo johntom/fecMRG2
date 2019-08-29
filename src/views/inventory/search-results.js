@@ -27,6 +27,24 @@ export class SearchResults {
   message = ''//Hello Inventory !';
   scrollable = { virtual: true };
   datasource = new kendo.data.DataSource({
+      // toolbar: ["excel"],
+      // excel: {
+      //   fileName: "Kendo UI Grid Export.xlsx",
+      //   proxyURL: "//demos.telerik.com/kendo-ui/service/export",
+      //   filterable: true,
+      //   allPages: true
+      // },
+
+      // pdf: {
+      //   allPages: true,
+      //   avoidLinks: true,
+      //   paperSize: "A4",
+      //   margin: { top: "2cm", left: "1cm", right: "1cm", bottom: "1cm" },
+      //   landscape: true,
+      //   repeatHeaders: true,
+      //   template: $("#page-template").html(),
+      //   scale: 0.8
+      // },
     transport: {
       read: (options) => {
         this.loadData()

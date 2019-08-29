@@ -46,17 +46,29 @@ PurchasedPayment: 609 -->
 
 
 					<div class="Rtable-cell-30 Rtable-cell--highlight" style="color:purple">
-						<strong>Purchased Payment : ${currentItem.PurchasedPayment}</strong>
-					</div>
+						<strong>Purchased Payment :  ${currentItem.PurchasedPayment}/${currentItem.purchasedpaymentname}</strong>
+					</div>   
 					<div class="Rtable-cell-70 Rtable-cell--highlight">
-						<select id="PurchasedPayment " class="form-control  " value.bind="currentItem.PurchasedPayment">
+						<select id="PurchasedPayment" class="form-control  " value.bind="currentItem.purchasedpaymentname">
 											<option model.bind="null">Choose...</option>
-											<option repeat.for="opt of appService.codesOwnership " model.bind="opt.id">
+											<option repeat.for="opt of appService.codesPaymentType " model.bind="opt.Description">
 												${opt.Description}
 											</option>
 										</select>
 
 					</div>
+			<!-- <div class="Rtable-cell-70 Rtable-cell--highlight">
+						<select id="PurchasedPayment " class="form-control  " value.bind="currentItem.PurchasedPayment">
+											<option model.bind="null">Choose...</option>
+											<option repeat.for="opt of appService.codesPaymentType " model.bind="opt.id">
+												${opt.Description}
+											</option>
+										</select>
+
+					</div> -->
+
+
+          
 
 
 

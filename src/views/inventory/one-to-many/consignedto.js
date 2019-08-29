@@ -64,7 +64,7 @@ export class Conssignedto {
           PDF: { type: "boolean" },
           Returned:{ type: "boolean" },
           Sold: { type: "boolean" },
-
+   ModifiedDate: { type: "date"},
 
 // Signed:{ type: "string" },
 // PDF: { type: "string" },

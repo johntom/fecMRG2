@@ -39,7 +39,7 @@ export class Provenance {
         id: "id", // Must assign id for update to work
         fields: {
           Sequence: { type: "number" }, // scan template
-          ProvDate: { type: "date", editable: true },
+          ProvDate: { type: "string", editable: true },
           ProvMemo: { type: "string", editable: true },
           ProvLocDesc: { type: "string", editable: true },
           

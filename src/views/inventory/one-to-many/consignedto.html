@@ -29,13 +29,20 @@
       <ak-col k-title="Retail Price" k-field="ConsignmentRetailPrice"  k-filterable.bind="true" k-width.bind="140"></ak-col>
 			<ak-col k-title="Retail Price Amt" k-field="ConsignmentRetailPriceAmt" k-filterable.bind="true" k-width.bind="140"> </ak-col>
 		  <ak-col k-title="Net MRG" k-field="NettoMRG" k-filterable.bind="true" k-width.bind="140"> </ak-col>
-			<ak-col k-title="Released" k-field="ArtworkReleased" k-filterable.bind="true" k-format="{0:MM/dd/yyyy}" k-width.bind="120">			</ak-col>
+			 <ak-col k-title="Net MRG $" k-field="NettoMRGAmt" k-filterable.bind="true" k-width.bind="140"> </ak-col>
+		
+      <ak-col k-title="Released" k-field="ArtworkReleased" k-filterable.bind="true" k-format="{0:MM/dd/yyyy}" k-width.bind="120">			</ak-col>
       <ak-col k-title="Signed" k-width="90px" k-field="Signed"> </ak-col>
 			<ak-col k-title="PDF" k-width="90px" k-field="PDF"> </ak-col>
 			<ak-col k-title="Returned" k-width="90px" k-field="Returned"> </ak-col>
 		  <ak-col k-title="Note" k-field="ConsignmentNotes" k-width.bind="120"></ak-col>
 			<ak-col k-title="Sold" k-width="90px" k-field="Sold"> </ak-col>
-		  <ak-col k-title="Created" k-field="CreatedDate" k-filterable.bind="true" k-format="{0:MM/dd/yyyy}" k-width.bind="120"> </ak-col>
+		  
+
+ <ak-col k-title="Modified" k-field="ModifiedDate" k-filterable.bind="true" k-format="{0:MM/dd/yyyy}" k-width.bind="120"> </ak-col>
+		
+
+      <!-- <ak-col k-title="Created" k-field="CreatedDate" k-filterable.bind="true" k-format="{0:MM/dd/yyyy}" k-width.bind="120"> </ak-col> -->
 				<!-- <ak-col k-field="eloc" k-title="eloc" k-width="120px" k-editor.bind="locationDropDownEditor" k-template.bind="locationTemplate"
 			 k-filterable.bind="false" k-groupable.bind="false"></ak-col> -->
 		
