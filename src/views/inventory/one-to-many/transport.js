@@ -7,6 +7,7 @@ import { DialogService } from 'aurelia-dialog';
 import { Prompt } from '../../../services/prompt';
 import { Router } from 'aurelia-router';
 import { Promptyn } from '../../../services/promptyn';
+import { Prompttransport } from '../../prompt/PromptTransport';
 @inject(Router, ApiService, ApplicationService, DialogService)
 export class Transport {
   heading = 'DataForm HEADER...';
@@ -87,20 +88,46 @@ export class Transport {
     // selectedadjuster.ADJUSTER_NAME = adj.ADJUSTER_NAME;
   }
 
-  addDetail() {
-    let transport = this.currentItem.transport
+  // addDetail() {
+  //   let transport = this.currentItem.transport
+  //   let flag = false
+  //   let item
+  //   // let newNoteWorkDate = moment().format('YYYY-MM-DD')
+  //   if (transport === undefined) {
+  //     flag = true
+  //     transport = []
+  //   }
+  //   item = { id: this.epoch, TransportNotes: '', edit: true }
+  //   transport.unshift(item)
+  //   if (flag) this.currentItem.transport = transport
+  // }
+addTransport() {
+    let exhibition = this.currentItem.transport
     let flag = false
-    let item
-    // let newNoteWorkDate = moment().format('YYYY-MM-DD')
+    let item = {}
     if (transport === undefined) {
       flag = true
       transport = []
-    }
-    item = { id: this.epoch, TransportNotes: '', edit: true }
+      item.id = 1
+    } else item.id = transport.length + 1 //this.epoch//
+     item = { id: this.epoch, TransportNotes: '', edit: true }
+
     transport.unshift(item)
     if (flag) this.currentItem.transport = transport
+    let currentModel = {}
+    currentModel.currentItem = this.currentItem
+    currentModel.item = item
+    this.dialogService.open({ viewModel: Prompttransport, model: currentModel, lock: true }).whenClosed(response => {
+      if (!response.wasCancelled) {
+        console.log('dataItem', item);
+        this.currentItem.transport[0] = item
+        this.datasource.read()
+      } else {
+        console.log('cancel');
+      }
+      console.log(response)//.output);
+    });
   }
-
   saveitem(item, index) {
     item.edit = !item.edit
 

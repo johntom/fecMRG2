@@ -251,58 +251,7 @@ export class Reproduction {
 
   }
 
-  // onEdit(e) {
-  //   // let grid = e.sender;
-  //   // let selectedRow = grid.select();
-  //   // let dataItem = grid.dataItem(selectedRow);
-  //   // this.dialogService.open({ viewModel: Promptrepro, model: dataItem, lock: true }).whenClosed(response => {
-
-  //   //   if (!response.wasCancelled) {
-  //   //     console.log('item', item);
-  //   //     item.edit = false//this.saveitem(item, index)
-  //   //   } else {
-
-  //   //     console.log('cancel');
-  //   //   }
-  //   //   console.log(response)//.output);
-  //   // });
-  // }
-
-  // rowSelected(e) {
-  //   // let grid = e.sender;
-  //   // let selectedRow = grid.select();
-  //   // let dataItem = grid.dataItem(selectedRow);
-  //   // this.dialogService.open({ viewModel: Promptrepro, model: dataItem, lock: true }).whenClosed(response => {
-  //   //   if (!response.wasCancelled) {
-  //   //     console.log('item', item);
-  //   //     item.edit = false//this.saveitem(item, index)
-  //   //   } else {
-
-  //   //     console.log('cancel');
-  //   //   }
-  //   //   console.log(response)//.output);
-  //   // });
-  // }
-  // rowpopSelected(e) {
-  //   let grid = this.grid;
-  //   let targetRow = $(e.target).closest("tr");
-  //   let currentRowIndex = targetRow.index();
-  //   grid.select(targetRow);
-  //   let selectedRow = grid.select();
-  //   let dataItem = grid.dataItem(selectedRow);
-  //   this.dialogService.open({ viewModel: Promptrepro, model: dataItem, lock: true }).whenClosed(response => {
-
-  //     if (!response.wasCancelled) {
-  //       console.log('item', response);
-  //       this.repro[currentRowIndex].AuthorFirst = response.output.AuthorFirst
-  //       // item.edit = false//this.saveitem(item, index)
-  //     } else {
-
-  //       console.log('cancel');
-  //     }
-  //     console.log(response)//.output);
-  //   });
-  // }
+  
   detailsEdit(e) {
     let grid = this.grid;
     let targetRow = $(e.target).closest("tr");
@@ -364,7 +313,62 @@ addRepro() {
     });
 
   }
-//  "ReproductionAuthor" : "",             "AuthorFirst" : "", 
+
+}
+// onEdit(e) {
+  //   // let grid = e.sender;
+  //   // let selectedRow = grid.select();
+  //   // let dataItem = grid.dataItem(selectedRow);
+  //   // this.dialogService.open({ viewModel: Promptrepro, model: dataItem, lock: true }).whenClosed(response => {
+
+  //   //   if (!response.wasCancelled) {
+  //   //     console.log('item', item);
+  //   //     item.edit = false//this.saveitem(item, index)
+  //   //   } else {
+
+  //   //     console.log('cancel');
+  //   //   }
+  //   //   console.log(response)//.output);
+  //   // });
+  // }
+
+  // rowSelected(e) {
+  //   // let grid = e.sender;
+  //   // let selectedRow = grid.select();
+  //   // let dataItem = grid.dataItem(selectedRow);
+  //   // this.dialogService.open({ viewModel: Promptrepro, model: dataItem, lock: true }).whenClosed(response => {
+  //   //   if (!response.wasCancelled) {
+  //   //     console.log('item', item);
+  //   //     item.edit = false//this.saveitem(item, index)
+  //   //   } else {
+
+  //   //     console.log('cancel');
+  //   //   }
+  //   //   console.log(response)//.output);
+  //   // });
+  // }
+  // rowpopSelected(e) {
+  //   let grid = this.grid;
+  //   let targetRow = $(e.target).closest("tr");
+  //   let currentRowIndex = targetRow.index();
+  //   grid.select(targetRow);
+  //   let selectedRow = grid.select();
+  //   let dataItem = grid.dataItem(selectedRow);
+  //   this.dialogService.open({ viewModel: Promptrepro, model: dataItem, lock: true }).whenClosed(response => {
+
+  //     if (!response.wasCancelled) {
+  //       console.log('item', response);
+  //       this.repro[currentRowIndex].AuthorFirst = response.output.AuthorFirst
+  //       // item.edit = false//this.saveitem(item, index)
+  //     } else {
+
+  //       console.log('cancel');
+  //     }
+  //     console.log(response)//.output);
+  //   });
+  // }
+
+  //  "ReproductionAuthor" : "",             "AuthorFirst" : "", 
     //             "AuthorLast" : "",            "ReproductionTitle" : "Arthur G. Dove Paintings", 
     //             "ReproductionName" : "The Intimate Gallery",             "ReproductionDate" : "1927", 
     //             "ReproductionPage" : "no. 2 (as Rhapsody in Blue, Part I--Gerschwin)", 
@@ -393,4 +397,3 @@ addRepro() {
   //   //   });
   //   // }
   // }
-}

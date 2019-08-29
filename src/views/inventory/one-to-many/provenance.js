@@ -5,6 +5,7 @@ import { Aurelia } from 'aurelia-framework';
 import { DialogService } from 'aurelia-dialog';
 // import { Prompt } from '../../../services/prompt';
 
+import { Promptprov } from '../../prompt/promptProv';
 
 import { Promptyn } from '../../../services/promptyn';
 import { Prompt } from '../prompt';
@@ -97,11 +98,58 @@ export class Provenance {
       console.log(response.output);
     });
   }
-  addit() {
-    //alert('in addit prov')
+detailsEdit(e) {
+    let grid = this.grid;
+    let targetRow = $(e.target).closest("tr");
+    grid.select(targetRow);
+    let selectedRow = grid.select();
+    let dataItem = grid.dataItem(selectedRow);
+    let currentModel = {}
+    currentModel.currentItem = this.currentItem
+    currentModel.item = dataItem
+    this.dialogService.open({ viewModel: Promptprov, model: currentModel, lock: true }).whenClosed(response => {
+      if (!response.wasCancelled) {
+        console.log('dataItem', dataItem);
+        // not needed this.currentItem.reproduction[0]=dataItem
+         this.datasource.read()
+       
+      } else {
+        console.log('cancel');
+      }
+
+      // this.currentItem.reproduction = this.datasource._data 
+      console.log(response)//.output);
+    });
+  }
+
+addProv() {
+    let provenance = this.currentItem.provenance
+    let flag = false
+    let item
+    if (provenance === undefined) {
+      flag = true
+      provenance = []
+    }
+     item = {  id:this.epoch+'', ProvMemo: '', ProvLocDesc:  '', Sequence:  '' }
+    provenance.unshift(item)
+    if (flag) this.currentItem.provenance = provenance
+    let currentModel = {}
+    currentModel.currentItem = this.currentItem
+    currentModel.item = item
+    this.dialogService.open({ viewModel: Promptprov, model: currentModel, lock: true }).whenClosed(response => {
+      if (!response.wasCancelled) {
+        console.log('dataItem', item);
+        //  needed this.currentItem.reproduction[0]=dataItem
+        this.currentItem.provenance[0]=item
+         this.datasource.read()
+      } else {
+        console.log('cancel');
+      }
+      // this.currentItem.reproduction = this.datasource._data 
+      console.log(response)//.output);
+    });
   }
   addDetail() { 
-    //alert('in prov')
     let provenance = this.currentItem.provenance
     let flag = false
     let item
@@ -156,7 +204,9 @@ export class Provenance {
         // dataValueField: "Description"
       });
   }
-//   , filter: true,
+
+
+
 
   attached() {
 

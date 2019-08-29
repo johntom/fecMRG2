@@ -3,7 +3,7 @@
 	<section class="docs full-height flex-column-1 overflow-y-auto ignore" style="height:400px">
      <h4>
 			<i class="fa fa-folder-open"></i> Provenance
-			<a slot="buttons-slot" class="btn btn-primary" click.delegate="addDetail()">
+			<a slot="buttons-slot" class="btn btn-primary" click.delegate="addProv()">
 				<i class="fa fa-plus"></i> Add Provenance
 			</a>
 			</h4>
@@ -14,13 +14,11 @@
      
 				 k-height.bind="300" k-column-menu.bind="true">
 					 <div style="width: 1500px"></div>
-
-
-
-
-          <ak-col k-filterable.bind="false" k-width="160px" k-title="Cmd" k-command.bind="['edit','delete']" k-title="&nbsp;" k-locked.bind="true"
-					 k-lockable.bind="false"></ak-col>
-
+ 
+          <!-- <ak-col k-filterable.bind="false" k-width="160px" k-title="Cmd" k-command.bind="['edit','delete']" k-title="&nbsp;" k-locked.bind="true"
+					 k-lockable.bind="false"></ak-col>  -->
+ <ak-col k-command="destroy" k-title=" " k-width="85px"></ak-col>
+ <ak-col k-locked.bind="true" k-lockable.bind="false" k-filterable.bind="true" k-title="Edit" k-width.bind="45" k-template="<button click.delegate='detailsEdit($event)' ><i class='fa fa-edit'></i></button>"></ak-col>
 	<ak-col k-field="ProvOwner" k-title="Owner" k-width="350px"  k-height="240px"
 					 k-filterable.bind="false" k-groupable.bind="false"></ak-col>
 	

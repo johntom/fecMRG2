@@ -61,9 +61,10 @@
  		 k-height.bind="300" k-column-menu.bind="true">
 			<div style="width: 1500px"></div>
 		
-    	<ak-col k-filterable.bind="false" k-width="160px" k-title="Cmd" k-command.bind="['edit','Del']"  k-title="&nbsp;" k-locked.bind="true" k-lockable.bind="false"></ak-col>
-		  
-      
+    
+      <ak-col k-command="destroy" k-title=" " k-width="85px"></ak-col>
+ <ak-col k-locked.bind="true" k-lockable.bind="false" k-filterable.bind="true" k-title="Edit" k-width.bind="45" k-template="<button click.delegate='detailsEdit($event)' ><i class='fa fa-edit'></i></button>"></ak-col>
+
      
       <ak-col k-field="id" k-locked.bind="true" k-filterable.bind="true" k-width.bind="50"></ak-col>   
 			<ak-col k-title="Title" k-field="ExhibitTitle" k-filterable.bind="true" k-width.bind="300"></ak-col> 

@@ -6,7 +6,7 @@
 			<!-- href="#/provenance/new"> -->
 			<i class="fa fa-folder-open"></i> Reproduction
 			<a slot="buttons-slot" class="btn btn-primary" click.delegate="addRepro()"> edit: ${reproduction.edit}
-			<i class="fa fa-plus"></i> Add Reproduction	</a>
+				<i class="fa fa-plus"></i> Add Reproduction </a>
 		</h4>
 		<!--   k-on-edit.delegate="onEdit($event.detail)" k-selectable="multiple" k-on-change.delegate="rowSelected($event.detail)"  k-pageable.bind="true" k-filterable.bind="{  mode: 'row' }" -->
 		<ak-grid class="flex-row-1 overflow-y-auto" id="grid" k-data-source.bind="datasource" k-widget.bind="grid" k-sortable.bind="{ mode: 'multiple',   allowUnsort: 'true'}"
@@ -14,15 +14,15 @@
 			<div style="width: 1500px"></div>
 			<!-- <ak-col k-filterable.bind="false" k-width="75px" k-title="Cmd" k-command.bind="['delete']"  k-locked.bind="true"
 			 k-lockable.bind="false"></ak-col> -->
-      <ak-col k-command="destroy" k-title=" " k-width="85px"></ak-col>
-	
-   		<!-- <ak-col k-filterable.bind="false" k-width="160px" k-title="Cmd" k-command.bind="['edit','Del']" k-title="&nbsp;" k-locked.bind="true"
+			<!-- <button ak-button="k-sprite-css-class: k-icon netherlandsFlag">Sprite icon</button> -->
+
+			<!-- <ak-col k-filterable.bind="false" k-width="160px" k-title="Cmd" k-command.bind="['edit','Del']" k-title="&nbsp;" k-locked.bind="true"
 					 k-lockable.bind="false"></ak-col> -->
+			<ak-col k-command="destroy" k-title=" " k-width="85px"></ak-col>
 
 			<ak-col k-locked.bind="true" k-lockable.bind="false" k-filterable.bind="true" k-title="Edit" k-width.bind="45" k-template="<button click.delegate='detailsEdit($event)' ><i class='fa fa-edit'></i></button>">
 			</ak-col>
 
-			<!-- <button ak-button="k-sprite-css-class: k-icon netherlandsFlag">Sprite icon</button> -->
 			<ak-col k-title="Author" k-field="ReproductionAuthor" k-field="Author" k-filterable.bind="true" k-width.bind="140">
 			</ak-col>
 			<ak-col k-title="First" k-field="AuthorFirst" k-filterable.bind="true" k-width.bind="90"></ak-col>

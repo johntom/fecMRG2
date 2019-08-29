@@ -30,7 +30,7 @@ export class Exhibition {
       },
       //  create: (options) => {
       //   let updatedItem = options.data;
-      
+
       //   options.success(updatedItem)
       // },
       update: (options) => {
@@ -39,9 +39,9 @@ export class Exhibition {
         // console.log('   updatedItem ', updatedItem)
         options.success(updatedItem)
       },
-        destroy: (options) => {
+      destroy: (options) => {
         let updatedItem = options.data;
-       
+
         options.success(updatedItem)
       }
     },
@@ -60,7 +60,7 @@ export class Exhibition {
           ExhibitDates: { type: "string", editable: true },
           ExhibitMemo: { type: "string", editable: true },
           eloc: { defaultValue: { id: '5d5009e8ee1af1dc544c05e8', Description: 'New York, NY' } },
-  
+
           // ExhibitLocation: { type: "string", editable: true },
           // ExhibitLocation: { type: "string", editable: true },
           // ExhibitLocation: { defaultValue: { id: '5d5009e8ee1af1dc544c05e8', Description: 'New York, NY' } },
@@ -81,8 +81,8 @@ export class Exhibition {
     console.log('this.currentItem  exhibition', this.appService.currentItem.exhibition);
     this.dialogService = dialogService
     this.codes = this.appService.codesProvenanceLocation
-       //////////////////////////////////////////////////////////////////////////
-   if (this.currentItem.exhibition === undefined) this.currentItem.exhibition = []
+    //////////////////////////////////////////////////////////////////////////
+    if (this.currentItem.exhibition === undefined) this.currentItem.exhibition = []
     this.epoch = moment().unix();
   }
 
@@ -159,30 +159,30 @@ export class Exhibition {
     this.currentItem.exhibition[aid].ExhibitRepro = reproid
   }
 
-  addExhibit2() {
-    // addExhibit ExhibitSponser  ExhibitLocation ExhibitRepro ExhibitDates ExhibitSortDate Traveled ExhibitMemo
-    let exhibition = this.currentItem.exhibition
-    let flag = false
-    let item = {}
-    if (exhibition === undefined) {
-      flag = true
-      exhibition = []
-      item.id = 1
-    } else item.id = exhibition.length + 1
-    item = {
-      id: item.id,
-      addExhibit: '', ExhibitSponser: '', ExhibitLocation: '', ExhibitRepro: '',
-      ExhibitDates: '', ExhibitSortDate: '',
-      Traveled: false, ExhibitMemo: '',  eloc : ''
-    }
-    alert('1 ' + item.id)
-    exhibition.unshift(item)
-    alert('1a ' + item.id)
-    if (flag) this.currentItem.exhibition = exhibition
-    alert('2 ' + this.currentItem.exhibition)
+  // addExhibit2() {
+  //   // addExhibit ExhibitSponser  ExhibitLocation ExhibitRepro ExhibitDates ExhibitSortDate Traveled ExhibitMemo
+  //   let exhibition = this.currentItem.exhibition
+  //   let flag = false
+  //   let item = {}
+  //   if (exhibition === undefined) {
+  //     flag = true
+  //     exhibition = []
+  //     item.id = 1
+  //   } else item.id = exhibition.length + 1
+  //   item = {
+  //     id: item.id,
+  //     addExhibit: '', ExhibitSponser: '', ExhibitLocation: '', ExhibitRepro: '',
+  //     ExhibitDates: '', ExhibitSortDate: '',
+  //     Traveled: false, ExhibitMemo: '',  eloc : ''
+  //   }
+  //   alert('1 ' + item.id)
+  //   exhibition.unshift(item)
+  //   alert('1a ' + item.id)
+  //   if (flag) this.currentItem.exhibition = exhibition
+  //   alert('2 ' + this.currentItem.exhibition)
 
-    // this.modal(item, 0) // unshirt reproduction.length + 1)
-  }
+  //   // this.modal(item, 0) // unshirt reproduction.length + 1)
+  // }
   addExhibit() {
     let exhibition = this.currentItem.exhibition
     let flag = false
@@ -192,47 +192,53 @@ export class Exhibition {
       exhibition = []
       item.id = 1
     } else item.id = exhibition.length + 1 //this.epoch//
-
-
-     item = {
+    item = {
       id: item.id,
       addExhibit: '', ExhibitSponser: '', ExhibitLocation: '', ExhibitRepro: '',
       ExhibitDates: '', ExhibitSortDate: '',
-      Traveled: false, ExhibitMemo: '', 
+      Traveled: false, ExhibitMemo: '',
       ExhibitLocationDesc: '',
-      eloc:{ id: '5d5009e8ee1af1dc544c05e8', Description: 'New York, NY' } ,
+      eloc: { id: '5d5009e8ee1af1dc544c05e8', Description: 'New York, NY' },
     }
-   
-     exhibition.unshift(item)
+
+    exhibition.unshift(item)
     if (flag) this.currentItem.exhibition = exhibition
-
-    // this.newNoteWorkDate = '';
-    // this.newNoteNote = '';
-  
-
+    let currentModel = {}
+    currentModel.currentItem = this.currentItem
+    currentModel.item = item
+    this.dialogService.open({ viewModel: Promptexhibit, model: currentModel, lock: true }).whenClosed(response => {
+      if (!response.wasCancelled) {
+        console.log('dataItem', item);
+        this.currentItem.exhibition[0] = item
+        this.datasource.read()
+      } else {
+        console.log('cancel');
+      }
+      console.log(response)//.output);
+    });
   }
-
-
-  addNote() {
-    let notes = this.currentItem.notes
-    let flag = false
-    let item
-    let newNoteWorkDate = moment().format('YYYY-MM-DD')
-    if (notes === undefined) {
-      flag = true
-      notes = []
-    }
-    item = { id:this.epoch,WorkDate: newNoteWorkDate, Notes: '' }
-    notes.unshift(item)
-    if (flag) this.currentItem.notes = notes
-
-    this.newNoteWorkDate = '';
-    this.newNoteNote = '';
-
-  }
-
 
 }
+  // addNote() {
+  //   let notes = this.currentItem.notes
+  //   let flag = false
+  //   let item
+  //   let newNoteWorkDate = moment().format('YYYY-MM-DD')
+  //   if (notes === undefined) {
+  //     flag = true
+  //     notes = []
+  //   }
+  //   item = { id:this.epoch,WorkDate: newNoteWorkDate, Notes: '' }
+  //   notes.unshift(item)
+  //   if (flag) this.currentItem.notes = notes
+
+  //   this.newNoteWorkDate = '';
+  //   this.newNoteNote = '';
+
+  // }
+
+
+
 
 
 
