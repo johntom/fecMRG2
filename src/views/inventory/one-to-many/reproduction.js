@@ -285,7 +285,7 @@ addRepro() {
       reproduction = []
     }
     item = {
-      id: this.epoch, ReproductionAuthor: 'jrt', AuthorFirst: '', AuthorLast: '', ReproductionTitle: '',
+      id: this.epoch, ReproductionAuthor: '', AuthorFirst: '', AuthorLast: '', ReproductionTitle: '',
       ReproductionName: '', ReproductionLocationDesc: '', ReproductionDate: '', ReproductionPage: '',
       Sequence: '', ReproductionTypeDesc: '', ReproductionPage: '', ColorBWDesc: '', ReproductionSortDate: '',
       Editor: false

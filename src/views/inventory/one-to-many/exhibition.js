@@ -183,6 +183,27 @@ export class Exhibition {
 
   //   // this.modal(item, 0) // unshirt reproduction.length + 1)
   // }
+   detailsEdit(e) {
+    let grid = this.grid;
+    let targetRow = $(e.target).closest("tr");
+    grid.select(targetRow);
+    let selectedRow = grid.select();
+    let dataItem = grid.dataItem(selectedRow);
+    let currentModel = {}
+    currentModel.currentItem = this.currentItem
+    currentModel.item = dataItem
+    this.dialogService.open({ viewModel: Promptexhibition, model: currentModel, lock: true }).whenClosed(response => {
+      if (!response.wasCancelled) {
+        console.log('dataItem', dataItem);
+         this.datasource.read()
+       
+      } else {
+        console.log('cancel');
+      }
+
+      console.log(response)//.output);
+    });
+  }
   addExhibit() {
     let exhibition = this.currentItem.exhibition
     let flag = false
@@ -200,13 +221,12 @@ export class Exhibition {
       ExhibitLocationDesc: '',
       eloc: { id: '5d5009e8ee1af1dc544c05e8', Description: 'New York, NY' },
     }
-
     exhibition.unshift(item)
     if (flag) this.currentItem.exhibition = exhibition
     let currentModel = {}
     currentModel.currentItem = this.currentItem
     currentModel.item = item
-    this.dialogService.open({ viewModel: Promptexhibit, model: currentModel, lock: true }).whenClosed(response => {
+    this.dialogService.open({ viewModel: Promptexhibition, model: currentModel, lock: true }).whenClosed(response => {
       if (!response.wasCancelled) {
         console.log('dataItem', item);
         this.currentItem.exhibition[0] = item
@@ -217,7 +237,6 @@ export class Exhibition {
       console.log(response)//.output);
     });
   }
-
 }
   // addNote() {
   //   let notes = this.currentItem.notes

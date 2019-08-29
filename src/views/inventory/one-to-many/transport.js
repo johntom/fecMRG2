@@ -7,7 +7,9 @@ import { DialogService } from 'aurelia-dialog';
 import { Prompt } from '../../../services/prompt';
 import { Router } from 'aurelia-router';
 import { Promptyn } from '../../../services/promptyn';
-import { Prompttransport } from '../../prompt/PromptTransport';
+import { Prompttransport } from '../../prompt/promptTransport';
+//Prompttransport
+
 @inject(Router, ApiService, ApplicationService, DialogService)
 export class Transport {
   heading = 'DataForm HEADER...';
@@ -81,30 +83,35 @@ export class Transport {
     // // Update the current adjuster with the new values
     // selectedadjuster.ADJUSTER_ID = adj.ADJUSTER_ID;
     // selectedadjuster.ACCOUNT_REP_ID = adj.ADJUSTER_ID;
-
-
-
     // // We don't need to change the TYPE as it is bound correctly from the UI
     // selectedadjuster.ADJUSTER_NAME = adj.ADJUSTER_NAME;
   }
+ detailsEdit(e) {
+    let grid = this.grid;
+    let targetRow = $(e.target).closest("tr");
+    grid.select(targetRow);
+    let selectedRow = grid.select();
+    let dataItem = grid.dataItem(selectedRow);
+    let currentModel = {}
+    currentModel.currentItem = this.currentItem
+    currentModel.item = dataItem
+    this.dialogService.open({ viewModel: Prompttransport, model: currentModel, lock: true }).whenClosed(response => {
+      if (!response.wasCancelled) {
+        console.log('dataItem', dataItem);
+         this.datasource.read()
+       
+      } else {
+        console.log('cancel');
+      }
 
-  // addDetail() {
-  //   let transport = this.currentItem.transport
-  //   let flag = false
-  //   let item
-  //   // let newNoteWorkDate = moment().format('YYYY-MM-DD')
-  //   if (transport === undefined) {
-  //     flag = true
-  //     transport = []
-  //   }
-  //   item = { id: this.epoch, TransportNotes: '', edit: true }
-  //   transport.unshift(item)
-  //   if (flag) this.currentItem.transport = transport
-  // }
+      console.log(response)//.output);
+    });
+  }
+ 
 addTransport() {
-    let exhibition = this.currentItem.transport
+    let transport = this.currentItem.transport
     let flag = false
-    let item = {}
+    let item = {} 
     if (transport === undefined) {
       flag = true
       transport = []

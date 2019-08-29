@@ -149,27 +149,27 @@ addProv() {
       console.log(response)//.output);
     });
   }
-  addDetail() { 
-    let provenance = this.currentItem.provenance
-    let flag = false
-    let item
-    // let newNoteWorkDate = moment().format('YYYY-MM-DD')
-    if (provenance === undefined) {
-      flag = true
-      provenance = []
-    }
-        // "id" : "5d5002e2ac257d943dcfc52b", 
-        //     "legacyid" : NumberInt(27417), 
-        //     "ProvOwner" : "Arthur Dove", 
-        //     "ProvLoc" : "5d5009e8ee1af1dc544c05e8", 
-        //     "ProvLocDesc" : "New York, NY", 
-        //     "ProvDate" : "", 
-        //     "ProvMemo" : "", 
-        //     "Sequence" : NumberInt(1)
-    item = {  id:this.epoch+'', ProvMemo: '', ProvLocDesc:  '', Sequence:  '' }
-    provenance.unshift(item)
-    if (flag) this.currentItem.provenance = provenance
-  }
+  // addDetail() { 
+  //   let provenance = this.currentItem.provenance
+  //   let flag = false
+  //   let item
+  //   // let newNoteWorkDate = moment().format('YYYY-MM-DD')
+  //   if (provenance === undefined) {
+  //     flag = true
+  //     provenance = []
+  //   }
+  //       // "id" : "5d5002e2ac257d943dcfc52b", 
+  //       //     "legacyid" : NumberInt(27417), 
+  //       //     "ProvOwner" : "Arthur Dove", 
+  //       //     "ProvLoc" : "5d5009e8ee1af1dc544c05e8", 
+  //       //     "ProvLocDesc" : "New York, NY", 
+  //       //     "ProvDate" : "", 
+  //       //     "ProvMemo" : "", 
+  //       //     "Sequence" : NumberInt(1)
+  //   item = {  id:this.epoch+'', ProvMemo: '', ProvLocDesc:  '', Sequence:  '' }
+  //   provenance.unshift(item)
+  //   if (flag) this.currentItem.provenance = provenance
+  // }
   locationTemplate = '${eloc ? eloc.Description : ""}';
   locationDropDownEditor(container, options) {
     $('<input data-text-field="Description" data-value-field="id" data-bind="value:' + options.field + '"/>')
