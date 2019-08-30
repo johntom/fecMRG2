@@ -70,6 +70,7 @@ export class Promptorg {
   orgName = '';
   ordId = '';
   myDatalistO = null;
+  id='';
   findOptionO = value => this.appService.orgsList.find(x => {
     if (x.OrgName === value) {
       let orgName = x.OrgName
@@ -248,7 +249,7 @@ export class Promptorg {
 
  
     if (this.fieldname === 'SoldToID') {
-
+this.id=this.currentItem.SoldToID
       findOptions = this.appService.orgsList.find(x => x._id === this.currentItem.SoldToID)
       if (findOptions === undefined) {
         findOptions = '';
@@ -261,6 +262,7 @@ export class Promptorg {
 
     }
     if (this.fieldname === 'OwnerID') {
+      this.id=this.currentItem.OwnerID
       findOptions = this.appService.orgsList.find(x => x._id === this.currentItem.OwnerID)
       if (findOptions === undefined) {
         findOptions = '';
@@ -276,6 +278,7 @@ export class Promptorg {
 
 
     if (this.fieldname === 'ConservedBy') {
+      this.id=this.currentItem.ConservedBy
       findOptions = this.appService.orgsList.find(x => x._id === this.currentItem.ConservedBy)
       // if (this.currentItem.ConservedBy === undefined || this.currentItem.ConservedBy === '') {
       if (findOptions === undefined) {
@@ -293,6 +296,8 @@ export class Promptorg {
 
 
     if (this.fieldname === 'ConsignedFromID') {
+       this.id=this.currentItem.ConsignedFromID
+     
       findOptions = this.appService.orgsList.find(x => x._id === this.currentItem.ConsignedFromID)
       // if (this.currentItem.ConsignedFromID === undefined || this.currentItem.ConsignedFromID === '') {
       if (findOptions === undefined) {
@@ -305,8 +310,9 @@ export class Promptorg {
       }
     }
     if (this.fieldname === 'ConsignmentShippingID') {
+      
+      this.id=this.currentItem.ConsignmentShippingID
       findOptions = this.appService.orgsList.find(x => x._id === this.currentItem.ConsignmentShippingID)
-
       // if (this.currentItem.ConsignmentShippingID === undefined || this.currentItem.ConsignmentShippingID === '') {
       if (findOptions === undefined) {
         findOptions = '';
@@ -319,6 +325,7 @@ export class Promptorg {
     }
 
     if (this.fieldname === 'ConsignedTo') {
+       this.id=this.currentItem.ConsignedTo
       findOptions = this.appService.orgsList.find(x => x._id === this.currentItem.ConsignedTo)
       if (findOptions === undefined) {
         findOptions = '';
@@ -331,6 +338,7 @@ export class Promptorg {
     }
     // }
     if (this.fieldname === 'PurchasedFrom') {
+      this.id=this.currentItem.PurchasedFrom
       findOptions = this.appService.orgsList.find(x => x._id === this.currentItem.PurchasedFrom)
 
       if (findOptions === undefined) {
@@ -344,6 +352,7 @@ export class Promptorg {
     }
 
     if (this.fieldname === 'LoanTo') {
+        this.id=this.currentItem.LoanTo
       findOptions = this.appService.orgsList.find(x => x._id === this.currentItem.loantoname)
 
       if (findOptions === undefined) {
@@ -356,6 +365,7 @@ export class Promptorg {
       }
     }
     if (this.fieldname === 'PhotographerID') {
+        this.id=this.currentItem.PhotographerID
       findOptions = this.appService.orgsList.find(x => x._id === this.currentItem.PhotographerID)
 
       if (findOptions === undefined) {
@@ -368,6 +378,7 @@ export class Promptorg {
       }
     }
     if (this.fieldname === 'ConsignmentShippingID') {
+         this.id=this.currentItem.ConsignmentShippingID
       //    findOptiono = this.appService.orgsList.find(x => x._id === this.currentItem.ConsignmentShippingID)
 
       // if (this.currentItem.ConsignmentShippingID === undefined || this.currentItem.ConsignmentShippingID === '') {

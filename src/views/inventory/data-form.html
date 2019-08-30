@@ -520,18 +520,19 @@
 											<a click.delegate="showModal( 'SoldToID')">select_link </a>
 										</div>
 										<div style="height:12px;margin-left:4px;margin-top:2px;margin-bottom:5px" else>
-											<a click.delegate="showModal( 'SoldToID')">${currentItem.SoldToID} / ${currentItem.soldtoname} </a>
+											<a click.delegate="showModal( 'SoldToID')"> ${currentItem.soldtoname} </a>
 											&nbsp;&nbsp;
 											<a click.delegate="soldtoEdit()">...Open...</a>
 
-
+<!-- ${currentItem.SoldToID} / -->
 										</div>
 
 									</div>
 
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
 										<!-- <strong> Owned Status OwnedBy: ${currentItem.OwnedBy} </strong> -->
-										<strong> Owned Status <strong> Owned Status ${currentItem.OwnedByLegacy}/ ${currentItem.OwnedBy}/ ${currentItem.ownedbyname} </strong></strong>
+										<strong> Owned Status </strong>
+                      <!-- <strong> Owned Status ${currentItem.OwnedByLegacy}/ ${currentItem.OwnedBy}/ ${currentItem.ownedbyname} </strong> -->
 									</div>
 									<div class="Rtable-cell-70 Rtable-cell--highlight">
 										<select id="OwnedBy " class="form-control  " value.bind="currentItem.OwnedBy">
@@ -550,16 +551,16 @@
 
 									<!-- OwnerID not OwnedID -->
 									<!-- <div class="Rtable-cell-70  Rtable-cell--light"> -->
-
+<!-- ${currentItem.OwnerID} -->
 									<div class="Rtable-cell-70  Rtable-cell--highlight">
 
 										<div style="height:12px;margin-left:4px;margin-top:2px;margin-bottom:5px" if.bind="currentItem.ownername===undefined || currentItem.ownername==='' ">
 											<a click.delegate="showModal( 'OwnerID')">select_link </a>
 										</div>
 										<div style="height:12px;margin-left:4px;margin-top:2px;margin-bottom:5px" else>
-											<a click.delegate="showModal( 'OwnerID')">${currentItem.OwnerID}/${currentItem.ownername} </a>
+											<a click.delegate="showModal( 'OwnerID')">${currentItem.ownername} </a>
 											&nbsp;&nbsp;
-											<a click.delegate="OwnerIDEdit()">...Open...</a>
+											<a click.delegate="OwnerIDEdit()">...Open...</a> 
 										</div>
 									</div>
 									<div class="Rtable-cell-30 Rtable-cell--highlight">

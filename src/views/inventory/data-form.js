@@ -178,18 +178,12 @@ export class DataForm {
   //   console.log('Disposed!!!');
   // }
   soldtoEdit() {
-    // this.currentItem.SoldToBusIndivid = this.BusIndivid  
-    // this.currentItem.SoldToID = this.orgId  
-    // this.currentItem.soldtoname = this.OrgName
-
+    
     let oid = this.currentItem.SoldToID
     let OrgName = this.currentItem.soldtoname
     let BusIndivid = this.currentItem.SoldToBusIndivid
-    // orgObject
-    // this.orgObject = {OrgName: this.OrgName , BusIndivid:this.BusIndivid ,_id:this.orgId  }
-    let rt2
-    // let rt2 = '#/org/data/' + dataItem.id + '?' + name
-
+     let rt2
+  
     (BusIndivid === 'B') ? rt2 = '#/org/data/' + oid + '?' + OrgName : rt2 = '#/contact/data/' + oid + '?' + OrgName
 
 
@@ -197,7 +191,19 @@ export class DataForm {
 
   }
 
+OwnerIDEdit() {
+  // OwnerID ownername  
+    let oid = this.currentItem.OwnerID
+    let OrgName = this.currentItem.ownername
+    let BusIndivid = this.currentItem.OwnerBusIndivid
+     let rt2
+  
+    (BusIndivid === 'B') ? rt2 = '#/org/data/' + oid + '?' + OrgName : rt2 = '#/contact/data/' + oid + '?' + OrgName
 
+
+    this.router.navigate(rt2);// `#/inventory/${path}`);
+
+  }
 
   //  let topos = this.orgfields.findIndex(x => x === fieldname);
   //     if (topos !== -1) {
