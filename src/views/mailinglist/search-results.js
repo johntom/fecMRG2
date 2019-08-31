@@ -247,25 +247,39 @@ export class SearchResults {
       if (search.notinternational === true) {
         str += `&notinternational=${search.notinternational}`
       }
-
-      return  this.api.findContact(str, this.mailinglist)//this.listname)
+      this.previnv = this.invdata
+     await  this.api.findContact(str, this.mailinglist)//this.listname)
         // return this.api.findContact(ds, this.listname)
         .then((jsonRes) => {
-          let  inv = jsonRes.data;
-          let previnv=  this.invdata
-//  var hege = ["Cecilie", "Lone"];
-// var stale = ["Emil", "Tobias", "Linus"];
-// var children = hege.concat(stale);
+          this.invdata = jsonRes.data;
+
+          //  var hege = ["Cecilie", "Lone"];
+          // var stale = ["Emil", "Tobias", "Linus"];
+          // var children = hege.concat(stale);
           // this.invdata = jsonRes.data//inv;
-         this.invdata = inv.concat( previnv);
+          //  this.invdata = inv.concat( previnv);
+
+          // this.invdata = list(set(first_list+second_list))
+          // first_list = [1, 2, 2, 5]
+          // second_list = [2, 5, 7, 9]
+
+          // this.invdata = list(set(inv+previnv))
+          //  this.appService.artistList = lodash.sortBy(nlist, 'ArtistName');
+
+
           this.recct = this.invdata.length;
           if (this.recct !== 0) this.search.searchedCriteria += ';' + str + ' ct=' + this.recct
           //await this.loadData();
-      this.busy.active = false
-      this.datasource.read()
+
 
         });
-     
+
+
+      // this.invdata = _.union(this.previnv, this.invdata);// sub arrasy show as object
+     await this.loadData();
+      this.busy.active = false
+    return  this.datasource.read()
+
     }
   }
 
