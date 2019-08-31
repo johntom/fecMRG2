@@ -246,7 +246,7 @@ export class SearchResults {
         str += `&notinternational=${search.notinternational}`
       }
       
-      return this.api.findContact(str, this.mailinglist)//this.listname)
+      return await this.api.findContact(str, this.mailinglist)//this.listname)
         // return this.api.findContact(ds, this.listname)
         .then((jsonRes) => {
           // inv = jsonRes.data;

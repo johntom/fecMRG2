@@ -449,11 +449,11 @@ export class ApiService {
     }).then((res) => res.json());
 
   }
-  findContact(search, listname) {
+  async findContact(search, listname) {
     //  search= JSON.stringify(search) 
     let url = this.baseweb + `v1/contactcontent${search}&buildlist=${listname}`
     console.log('url ', url)
-    return this.http.fetch(url, {
+    return await this.http.fetch(url, {
       method: 'get',
       mode: 'cors',
 
