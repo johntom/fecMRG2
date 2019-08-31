@@ -11,20 +11,21 @@ export class SearchResults {
   heading = 'Search Results HEADER...';
   footer = 'Search Results FOOTER...';
   recordId = '';
-  title = '';
+  title = ''; 
   invcode = '';
   queryParams = '';
   //  console.log(' inv SearchResults ');
   // message = 'Hello Contact 101!';
   datasource = new kendo.data.DataSource({
     transport: {
-      read: (options) => {
+      read: (options) => { 
         //  this.loadData(this.capColor, this.prevtown)
-        this.loadData()
-          .then((inv) => {
-            console.log(' inv datasource ', inv[0]);
-            options.success(inv);
-          });
+        // this.loadData()
+        // .then((inv) => {
+        //   console.log(' inv datasource ', inv[0]);
+        //   options.success(inv);
+        // });
+        options.success(this.invdata);
       },
       // update: (options) => {
       //   let updatedItem = options.data;
@@ -70,8 +71,9 @@ export class SearchResults {
     this.utilService = utilService;
     this.appService = appService;
     this.appService.refreshcontactLoaded = false;
-      this.busy = {}
+    this.busy = {}
     this.busy.active = true
+    this.loadData();
   }
 
   activate(params, routeConfig) {
@@ -93,14 +95,14 @@ export class SearchResults {
     }
     // find index
     //  let garray = this.datasource._data;
-   // let gid = this.invdata.findIndex(x => x.id === dataItem.id)
+    // let gid = this.invdata.findIndex(x => x.id === dataItem.id)
 
-let gid =   this.appService.contactsearchresults.findIndex(x => x.id === dataItem.id)
-// 2nd time in we loose this.invdata
+    let gid = this.appService.contactsearchresults.findIndex(x => x.id === dataItem.id)
+    // 2nd time in we loose this.invdata
     let rt2 = '#/contact/data/' + dataItem.id + '?' + dataItem.LastName + ',' + dataItem.FirstName + '-' + gid///+' '+dataItem.ID
-  // let rt2 = '#/contact/data/' + dataItem.id + '?' + dataItem.LastName + ',' + dataItem.FirstName 
+    // let rt2 = '#/contact/data/' + dataItem.id + '?' + dataItem.LastName + ',' + dataItem.FirstName 
 
- 
+
     // let rt2 = '#/contact/data/' + dataItem.id;
     this.router.navigate(rt2);
 
@@ -116,20 +118,20 @@ let gid =   this.appService.contactsearchresults.findIndex(x => x.id === dataIte
     let inv;
     let notmailinglist = 0;
     if (this.appService.contactsearchresults && !this.appService.refreshcontactLoaded) {
-     // this.spinner.remove()
-         this.busy.active = false
+      // this.spinner.remove()
+      this.busy.active = false
       return this.appService.contactsearchresults;
 
     } else {
 
-    return this.api.findContact(this.queryParams, notmailinglist)//searchrec)
-    
+      return this.api.findContact(this.queryParams, notmailinglist)//searchrec)
+
         .then((jsonRes) => {
           inv = jsonRes.data;
           this.invdata = inv;
           this.recct = inv.length;
           // this.spinner.remove()
-          this.busy.active = false 
+          this.busy.active = false
           if (this.recct === 1) {
             let rt2 = '#/contact/data/' + inv[0].id + '?' + inv[0].LastName + ',' + inv[0].FirstName
             this.router.navigate(rt2);
@@ -147,7 +149,7 @@ let gid =   this.appService.contactsearchresults.findIndex(x => x.id === dataIte
         });
     }
   }
- 
+
   performAction1Refresh() {
     this.appService.refreshcontactLoaded = true;
     this.datasource.read()

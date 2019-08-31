@@ -14,22 +14,16 @@
 			white-space: nowrap;
 			text-overflow: ellipsis;
 		}
-
 		.k-grid table {
 			table-layout: fixed;
 		}
-
-
 		#data-form-ext .tab.tab-selected .form-tab-box {
 			background-color: lightblue;
 			border-color: #7bbbce
 		}
-
-
 		.custom-file-input::-webkit-file-upload-button {
 			visibility: hidden;
 		}
-
 		.custom-file-input::before {
 			content: 'Select image file and upload';
 			display: inline-block;
@@ -45,11 +39,9 @@
 			font-weight: 700;
 			font-size: 10pt;
 		}
-
 		.custom-file-input:hover::before {
 			border-color: black;
 		}
-
 		.custom-file-input:active::before {
 			background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
 		}
@@ -127,13 +119,10 @@
 								<script>
 									excelExport:
                         function (e) {
-
                             var sheet = e.workbook.sheets[0];
                             var template = kendo.template(this.columns[8].template);
-
                             for (var i = 1; i < sheet.rows.length; i++) {
                                 var row = sheet.rows[i];
-
                                 let diff = row.cells[6].value - row.cells[7].value
                                 row.cells.push({ 'value': diff })
                             }
@@ -162,10 +151,11 @@
 									<ak-col k-title="artists" k-width="190px" k-field="artists" k-editor.bind="textAreaEditor"></ak-col>
                   
 									<ak-col k-title="genres" k-width="110px" k-field="genres" k-editor.bind="textAreaEditor"></ak-col>
-								
+										<ak-col k-title="Addr" k-width="110px" k-field="addr"></ak-col>
+                  	<ak-col k-title="City" k-width="110px" k-field="city"></ak-col>
+							
 									<ak-col k-title="State" k-width="110px" k-field="state"></ak-col>
-									<ak-col k-title="City" k-width="110px" k-field="city"></ak-col>
-									<!-- <ak-col k-command="destroy" k-title="&nbsp;" k-width.bind="150"></ak-col> -->
+                  	<ak-col k-title="Zip" k-width="110px" k-field="zip"></ak-col>
 									<br />
 								</ak-grid>
 
@@ -173,7 +163,6 @@
 	<!-- <ak-col k-title="interests" k-width="210px" k-field="interests"></ak-col> -->
 									<!-- k-template.bind="textAreaEditor"  k-editable="false"  -->
 									<!-- <ak-col k-field="interests" k-title="Interests" k-width.bind="330"> <ak-col>  --
-
 								< <!-- END COL1 -->
 
 							</div>
@@ -398,7 +387,6 @@
 
 
 <!-- <require from="aurelia-kendoui-bridge/mediaplayer/mediaplayer"></require>
-
   <div id="mediaPlayer" style="height:360px"
       ak-mediaplayer="k-media.bind: { title: 'Recap of Progress', source: 'https://www.youtube.com/watch?v=tc3xhD24iTU' };
       k-auto-play.bind: true;
