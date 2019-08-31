@@ -7,11 +7,11 @@ import { ApiService } from '../../utils/servicesApi';
 
 export class Home {
   heading = "MRG Home Page";
-  version = ' 304.10 ' 
+  version = ' 304.10 '  
   versionDate = 'Fri 8/30/2019 10pm'
   prevversion = ' 303.52 '
   prevversionDate = 'Mon 8/5/2019 5pm'
-  issues = [
+  issues = [ 
     // or press refresh button upper left corner',
 
     //https://circleci.com/workflow-run/1f3685ab-daba-41d7-8d25-6279df547b19
