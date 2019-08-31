@@ -178,7 +178,8 @@ export class DataForm {
   //   console.log('Disposed!!!');
   // }
   soldtoEdit() {
-    
+     // save 
+     this.saveinventory(0) 
     let oid = this.currentItem.SoldToID
     let OrgName = this.currentItem.soldtoname
     let BusIndivid = this.currentItem.SoldToBusIndivid
@@ -193,6 +194,7 @@ export class DataForm {
 
 OwnerIDEdit() {
   // OwnerID ownername  
+    this.saveinventory(0)
     let oid = this.currentItem.OwnerID
     let OrgName = this.currentItem.ownername
     let BusIndivid = this.currentItem.OwnerBusIndivid

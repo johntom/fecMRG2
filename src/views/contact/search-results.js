@@ -70,7 +70,8 @@ export class SearchResults {
     this.utilService = utilService;
     this.appService = appService;
     this.appService.refreshcontactLoaded = false;
-    
+      this.busy = {}
+    this.busy.active = true
   }
 
   activate(params, routeConfig) {
@@ -92,9 +93,14 @@ export class SearchResults {
     }
     // find index
     //  let garray = this.datasource._data;
-    let gid = this.invdata.findIndex(x => x.id === dataItem.id)
-    let rt2 = '#/contact/data/' + dataItem.id + '?' + dataItem.LastName + ',' + dataItem.FirstName + '-' + gid///+' '+dataItem.ID
+   // let gid = this.invdata.findIndex(x => x.id === dataItem.id)
 
+let gid =   this.appService.contactsearchresults.findIndex(x => x.id === dataItem.id)
+// 2nd time in we loose this.invdata
+    let rt2 = '#/contact/data/' + dataItem.id + '?' + dataItem.LastName + ',' + dataItem.FirstName + '-' + gid///+' '+dataItem.ID
+  // let rt2 = '#/contact/data/' + dataItem.id + '?' + dataItem.LastName + ',' + dataItem.FirstName 
+
+ 
     // let rt2 = '#/contact/data/' + dataItem.id;
     this.router.navigate(rt2);
 
@@ -110,7 +116,8 @@ export class SearchResults {
     let inv;
     let notmailinglist = 0;
     if (this.appService.contactsearchresults && !this.appService.refreshcontactLoaded) {
-      this.spinner.remove()
+     // this.spinner.remove()
+         this.busy.active = false
       return this.appService.contactsearchresults;
 
     } else {
@@ -121,7 +128,8 @@ export class SearchResults {
           inv = jsonRes.data;
           this.invdata = inv;
           this.recct = inv.length;
-          this.spinner.remove()
+          // this.spinner.remove()
+          this.busy.active = false 
           if (this.recct === 1) {
             let rt2 = '#/contact/data/' + inv[0].id + '?' + inv[0].LastName + ',' + inv[0].FirstName
             this.router.navigate(rt2);
@@ -139,33 +147,7 @@ export class SearchResults {
         });
     }
   }
-  async loadDataHold() {
-
-    let inv;
-    let notmailinglist = 0;
-    return this.api.findContact(this.queryParams, notmailinglist)//searchrec)
-      .then((jsonRes) => {
-        inv = jsonRes.data;
-        this.invdata = inv;
-        this.recct = inv.length;
-        this.spinner.remove()
-        if (this.recct === 1) {
-          let rt2 = '#/contact/data/' + inv[0].id + '?' + inv[0].LastName + ',' + inv[0].FirstName
-          this.router.navigate(rt2);
-          let tab = this.appService.tabs.find(f => f.isSelected);
-          this.closeTab(tab);
-        } else
-          if (inv === 0 || this.recct === 0) {
-            // alert(' no records found ')
-            this.message = ' no records found '
-            let tab = this.appService.tabs.find(f => f.isSelected);
-            // this.closeTab(tab);
-            // let rt2 = '#/home'
-            // this.router.navigate(rt2);
-          } else return inv
-      });
-  }
-
+ 
   performAction1Refresh() {
     this.appService.refreshcontactLoaded = true;
     this.datasource.read()
@@ -194,3 +176,29 @@ export class SearchResults {
   }
 }
 
+ // async loadDataHold() {
+
+  //   let inv;
+  //   let notmailinglist = 0;
+  //   return this.api.findContact(this.queryParams, notmailinglist)//searchrec)
+  //     .then((jsonRes) => {
+  //       inv = jsonRes.data;
+  //       this.invdata = inv;
+  //       this.recct = inv.length;
+  //       this.spinner.remove()
+  //       if (this.recct === 1) {
+  //         let rt2 = '#/contact/data/' + inv[0].id + '?' + inv[0].LastName + ',' + inv[0].FirstName
+  //         this.router.navigate(rt2);
+  //         let tab = this.appService.tabs.find(f => f.isSelected);
+  //         this.closeTab(tab);
+  //       } else
+  //         if (inv === 0 || this.recct === 0) {
+  //           // alert(' no records found ')
+  //           this.message = ' no records found '
+  //           let tab = this.appService.tabs.find(f => f.isSelected);
+  //           // this.closeTab(tab);
+  //           // let rt2 = '#/home'
+  //           // this.router.navigate(rt2);
+  //         } else return inv
+  //     });
+  // }

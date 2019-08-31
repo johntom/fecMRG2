@@ -35,7 +35,8 @@
 	<section class="full-height flex-column-1 au-animate ignore">
 
 		<h3>Contacts ( ${recct})</h3>
-		<div ref="spinner" class="splash">
+	
+		<div show.bind="busy.active" ref="spinner" class="splash">
 			<div class="message">fetching records</div>
 			<i class="fa fa-spinner fa-spin"></i>
 		</div>

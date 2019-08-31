@@ -115,6 +115,39 @@ export class Contact {
   }
   performSearch() {
     if (this.search) {
+// 
+ let keyword = `${this.keywordDescription}`
+
+   
+
+    let medsupport = `${this.DescriptionMS}`
+    let currentlocation = `${this.DescriptionLoc}`
+    let multikeys = `${this.multikeywords}`
+    // console.log('selectedSoldId', this.search.selectedSoldId)
+    let sold = this.search.sold// `${this.search.sold}`
+
+ 
+      // if (keywd !== 'undefined' && keywd !== 'null') this.search.keywords = `${this.Description.Description}`
+      if (keyword !== 'undefined' && keyword !== 'null') this.search.keywords = `${this.keywordDescription.Description}`
+
+      //  if (savedlist !== 'undefined' && savedlist !== 'null') this.search.savedlists = `${this.name.name}`
+
+      // if (medsupport !== 'undefined') this.search.mediumsupport = `${this.DescriptionMS.Description}`
+      // if (currentlocation !== 'undefined') this.search.currentlocation = `${this.DescriptionLoc.Description}`
+      if (multikeys !== 'undefined') this.search.multikeywords = `${this.multikeywords}`
+      // if (sold !== 'undefined') this.search.sold = sold
+      // if (selecteddate !== 'undefined') this.search.selectedDateId = selecteddate
+      // if (owndedby !== 'undefined') this.search.owndedby = owndedby //search.owndedby
+
+      // let qs = this.utilService.generateQueryString(this.search);
+      // console.log('this.search ', this.search)
+      // let counter = this.utilService.counter++ 
+
+
+//
+
+
+
       let qs = this.utilService.generateQueryString(this.search);
       // let path = `searchContact${qs}&tabname=searchCntct${this.utilService.counter++}`;
       let path = `searchContact-${qs}&tabname=Contactsearch`;
