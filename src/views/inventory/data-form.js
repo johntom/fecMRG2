@@ -420,17 +420,23 @@ OwnerIDEdit() {
 
 
             // delete this.currentItem.conservedbyname
-            // this.saveinventory(0)
+            
+            
+            
 
             // never been saved from view
 
             // // move to attach
-            if (!this.currentItem.savedonce || this.currentItem.savedonce === undefined) {
-              //   // if (!this.currentItem.savedonce || this.currentItem.savedonce === true) {
-              //   // force it all the time
-              this.currentItem.savedonce = true
-              this.saveinventory(0)
-            }
+             this.rtfService.currentItem = this.currentItem
+
+    this.saveinventory(0)
+
+            // if (!this.currentItem.savedonce || this.currentItem.savedonce === undefined) {
+            //   //   // if (!this.currentItem.savedonce || this.currentItem.savedonce === true) {
+            //   //   // force it all the time
+            //   this.currentItem.savedonce = true
+            //   this.saveinventory(0)
+            // }
             // ffixes to stop dirty
             // http://www.jsondiff.com/
             this.mrubuild()
