@@ -174,13 +174,13 @@ export class SearchResults {
     //   await  this.loadData();
     //     this.busy.active = false
     //  this.datasource.read()
-      await this.loadData();
+    await this.loadData();
     this.busy.active = false
   }
- async attached() {
-  // await this.loadData();
-  //   this.busy.active = false
-  
+  async attached() {
+    // await this.loadData();
+    //   this.busy.active = false
+
     this.datasource.read()
   }
   performClear() {
@@ -248,17 +248,24 @@ export class SearchResults {
         str += `&notinternational=${search.notinternational}`
       }
 
-      return this.api.findContact(str, this.mailinglist)//this.listname)
+      return  this.api.findContact(str, this.mailinglist)//this.listname)
         // return this.api.findContact(ds, this.listname)
         .then((jsonRes) => {
-          // inv = jsonRes.data;
-          this.invdata = jsonRes.data//inv;
+          let  inv = jsonRes.data;
+          let previnv=  this.invdata
+//  var hege = ["Cecilie", "Lone"];
+// var stale = ["Emil", "Tobias", "Linus"];
+// var children = hege.concat(stale);
+          // this.invdata = jsonRes.data//inv;
+         this.invdata = inv.concat( previnv);
           this.recct = this.invdata.length;
           if (this.recct !== 0) this.search.searchedCriteria += ';' + str + ' ct=' + this.recct
+          //await this.loadData();
+      this.busy.active = false
+      this.datasource.read()
 
-          this.busy.active = false
-          this.datasource.read()
         });
+     
     }
   }
 
