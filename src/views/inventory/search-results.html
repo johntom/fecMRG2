@@ -92,15 +92,8 @@
 		 k-pdf.bind="{ allPages: true, avoidLinks: true,landscape: true, repeatHeaders: true, paperSize: 'A4'}" k-column-menu.bind="true"
 		 k-scrollable.bind="scrollable">
 			<div style="width: 1750px"></div>
-			<!-- <ak-grid-toolbar>
-			<ak-template>
-			
-				<button click.delegate="save()" ak-button>Save</button>
-				<button click.delegate="reloadPage()" ak-button>Reload page</button>
-				<button click.delegate="load()" ak-button>Load</button>
-			</ak-template>
-		</ak-grid-toolbar> -->
-			<ak-col k-field="InventoryCode" k-locked.bind="true" k-lockable.bind="false" k-filterable.bind="true" k-title="Inv Code"
+	
+			<ak-col k-field="InventoryCode" k-locked.bind="true" k-lockable.bind="false" k-filterable.bind="true" k-title="Code"
 			 k-width.bind="180" k-template="<button click.delegate='detailsEdit($event)' class='k-button'>#=InventoryCode#</button>">
 			</ak-col>
 			<ak-col k-title="Image" k-field="InventoryCode" k-width="90px" k-filterable.bind="false">
@@ -111,12 +104,16 @@
 					 click.delegate="showModalImg($event)"></div>
 				</ak-template>
 			</ak-col>
-			<ak-col k-title="ArtistName" k-width="180px" k-template="#=artist.ArtistName#"> </ak-col>
+			<!-- <ak-col  k-field="ArtistName" k-title="Artist" k-width="180px" k-template="#=artist.ArtistName#"> </ak-col> -->
+<!-- <ak-col  k-field="ArtistName" k-title="Artist" k-width="180px" > </ak-col> -->
+<ak-col  k-field="artist.ArtistName" k-title="Artist" k-width="180px" > </ak-col>
 
 			<ak-col k-title="Title" k-width="180px" k-field="Title"></ak-col>
-			<ak-col k-title="Inv Year" k-width="110px" k-field="InvYear"></ak-col>
-			<ak-col k-title="Medium" k-width="180px" k-template="#= (typeof MediumSupportobj == 'undefined' || MediumSupportobj == null) ? '' : MediumSupportobj.Description #"></ak-col>
-			<ak-col k-title="Unframed" k-width="340px">
+			<ak-col k-title="Year" k-width="110px" k-field="InvYear"></ak-col>
+			<ak-col   k-title="Medium" k-width="180px" k-template="#= (typeof MediumSupportobj == 'undefined' || MediumSupportobj == null) ? '' : MediumSupportobj.Description #"></ak-col>
+			<!-- <ak-col  k-field="MediumSupportobj.Description" k-title="Medium" k-width="180px" > </ak-col> -->
+
+      <ak-col k-title="Unframed" k-width="340px">
 				<ak-col k-title="H" k-width.bind="50" k-field="UnframedHeight"></ak-col>
 				<ak-col k-title=" " k-width.bind="50" k-field="UnframedHeight16"></ak-col>
 				<ak-col k-title="W" k-width.bind="50" k-field="UnframedWidth"></ak-col>
@@ -149,15 +146,9 @@
 			</ak-col>
 			<ak-col k-title="Sold To " k-width="180px" k-field="soldtoname "></ak-col>
 			<ak-col k-title="Owend By" k-width="180px" k-field="ownername "></ak-col>
-			<ak-col k-title="Location" k-width="120px" k-field="currentocationname"></ak-col>
 			<ak-col k-title="Bin" k-width="100px" k-field="Bin"></ak-col>
-			<ak-col k-title="Status" k-width="100px" k-field="ownedbyname"></ak-col>
-			<ak-col k-title="SoldDate" k-width="110px" k-field="SoldDate" k-format="{0:MM/dd/yyyy}"></ak-col>
-			<ak-col k-title="Sold" k-width="60px">
-				<ak-template>
-					${Sold | soldstatus}
-				</ak-template>
-			</ak-col>
+			<ak-col k-title="Sold Date" k-width="110px" k-field="SoldDate" k-format="{0:MM/dd/yyyy}"></ak-col>
+		
 
 		</ak-grid>
 	</section>

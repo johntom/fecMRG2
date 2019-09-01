@@ -274,7 +274,7 @@ export class ApplicationService {
       isSelected: false
     },
     {
-      name: "Pervious Orgs",
+      name: "Previous Orgs",
       viewModel: "./one-to-many/org",
       isSelected: false
     },

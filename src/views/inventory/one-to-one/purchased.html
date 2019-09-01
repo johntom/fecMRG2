@@ -21,7 +21,7 @@ PurchasedPayment: 609 -->
 
 			<div class="form-group flex-column-1 ">
 				<div class="Rtable Rtable--2cols">
-					<div class="Rtable-cell-30 Rtable-cell--highlight" style="color:purple">
+					<div class="Rtable-cell-30 Rtable-cell--highlight" >
 						<strong>Purchased From </strong>
 					</div>
 					<div class="Rtable-cell-70 Rtable-cell--highlight">
@@ -42,10 +42,10 @@ PurchasedPayment: 609 -->
 											<option repeat.for="opt of appService.codesOwnership " model.bind="opt.id">
 												${opt.Description}
 											</option>
-										</select> -->
+										</select>  style="color:purple" -->
 
 
-					<div class="Rtable-cell-30 Rtable-cell--highlight" style="color:purple">
+					<div class="Rtable-cell-30 Rtable-cell--highlight">
 						<strong>Purchased Payment :  ${currentItem.PurchasedPayment}/${currentItem.purchasedpaymentname}</strong>
 					</div>   
 					<div class="Rtable-cell-70 Rtable-cell--highlight">
@@ -57,16 +57,6 @@ PurchasedPayment: 609 -->
 										</select>
 
 					</div>
-			<!-- <div class="Rtable-cell-70 Rtable-cell--highlight">
-						<select id="PurchasedPayment " class="form-control  " value.bind="currentItem.PurchasedPayment">
-											<option model.bind="null">Choose...</option>
-											<option repeat.for="opt of appService.codesPaymentType " model.bind="opt.id">
-												${opt.Description}
-											</option>
-										</select>
-
-					</div> -->
-
 
           
 

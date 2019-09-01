@@ -10,10 +10,9 @@ import { inject } from 'aurelia-dependency-injection';
 export class Inventory {
   // static inject = [Router, Router, ApplicationService, MyDataService, EventAggregator];
 
-  heading = 'Inventory Search'// PORTERC007 PORTERC009 PORTERC008 PORTERC013';
+  heading = 'INVENTORY SEARCH '
   counter = 1;
   search = {}
-
   selectedValue = null;
   // options1 = [ { id: 1, name: 'one' }, { id: 2, name: 'two' } ];
   // findOption = value => this.options1.find(x => x.name === value);
@@ -28,16 +27,7 @@ export class Inventory {
     { OrgName: 'California', id: 'ca' },
     { OrgName: 'Colorado', id: 'co' },
     { OrgName: 'Connecticut', id: 'cn' }]
-  stateListxx = [
-    { name: 'Alabama', value: 'al' },
-    { name: 'Alaska', value: 'ak' },
-    { name: 'America Samoa', value: 'america samoa' },
-    { name: 'Arizona', value: 'arizona' },
-    { name: 'Arkansas', value: 'arkansas' },
-    { name: 'California', value: 'california' },
-    { name: 'Colorado', value: 'colorado' },
-    { name: 'Connecticut', value: 'connecticut' },
-    { name: 'New York', value: 'NY' }]
+
   stateList = [
     { oname: 'Alabama', id: 'al' },
     { oname: 'Alaska', id: 'ak' },
@@ -62,17 +52,16 @@ export class Inventory {
     { name: 'November', short: 'Nov', number: 11 },
     { name: 'December', short: 'Dec', number: 12 }
   ];
-  searchdates = [
+  searchdates2 = [
     { id: 0, name: 'DateAdded' },
     { id: 1, name: 'DateModified' },
     { id: 2, name: 'SoldDate' },
   ];
-  // searchsold = [
-  //   { id: 0, name: 'Y' },
-  //   { id: 1, name: 'N' },
-  //   { id: 2, name: 'NFS' },
-  //   { id: 3, name: 'DON' },
-  // ];
+    searchdates = [
+    { id: 0, name: 'Added' },
+    { id: 1, name: 'Modified' },
+    { id: 2, name: 'Sold' },
+  ];
   searchsold = [
     { id: 1, name: 'Y' },
     { id: 2, name: 'N' },

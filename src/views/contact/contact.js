@@ -9,7 +9,7 @@ export class Contact {
   static inject = [Router, UtilService, ApiService, EventAggregator, ApplicationService];
 
   heading = 'SEARCH CONTACTS';
-  counter = 1;
+  // counter = 1;
   search = {}
   selectedValue = null;
   findOption = value => this.mru.find(x => x === value);

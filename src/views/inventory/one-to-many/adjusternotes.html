@@ -21,12 +21,13 @@
 		 k-editable="popup" k-reorderable.bind="true" k-resizable.bind="true" 
 				 k-height.bind="300" k-column-menu.bind="true">
 					 <div style="width: 900px"></div>
-          <ak-col k-filterable.bind="false" k-width="190px" k-title="Cmd" k-command.bind="['edit','delete']" k-title="&nbsp;" k-locked.bind="true"
+          <ak-col k-filterable.bind="false" k-width="190px" k-title=" " k-command.bind="['edit','delete']"
+           k-locked.bind="true"
 					 k-lockable.bind="false"></ak-col>
-  				<ak-col k-field="Notes" k-title="Memo" k-width="340px"  k-height="240px" k-editor.bind="textAreaEditor"
+  				<ak-col k-field="Notes" k-title="Note" k-width="340px"  k-height="240px" k-editor.bind="textAreaEditor"
 					 k-filterable.bind="false" k-groupable.bind="false"></ak-col>
 	
-         	<ak-col k-field="WorkDate" k-filterable.bind="true" k-format="{0:MM/dd/yyyy}" k-width.bind="120">	</ak-col> 
+         	<ak-col  k-title="Work Date" k-field="WorkDate" k-filterable.bind="true" k-format="{0:MM/dd/yyyy}" k-width.bind="120">	</ak-col> 
 		
 					</ak-col>
 				

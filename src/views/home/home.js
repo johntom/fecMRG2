@@ -7,8 +7,8 @@ import { ApiService } from '../../utils/servicesApi';
 
 export class Home {
   heading = "MRG Home Page";
-  version = ' 304.18 '  
-  versionDate = 'Sun 8/31/2019 11am'
+  version = ' 304.19 '  
+  versionDate = 'Sun 8/31/2019 1pm'
   prevversion = ' 303.52 '
   prevversionDate = 'Mon 8/5/2019 5pm'
   issues = [ 
@@ -127,6 +127,7 @@ export class Home {
   ]
   todo = [
 
+'!-- fix database spell ak-col k-field="Photogpraher" k-title="Photographer" k-width="140px" k-editor.bind="photograherDropDownEditor"></ak-col>',
 
 
 
