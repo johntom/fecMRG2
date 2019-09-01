@@ -60,9 +60,7 @@ export class Phone {
     });
   }
 
-
-  addphone() {
-
+  addPhone() {
     let orgphones = this.currentItem.orgphones
     let flag = false
     let item
@@ -74,13 +72,9 @@ export class Phone {
     item = { type: '', Phoneno: ''}
     orgphones.unshift(item)
     if (flag) this.currentItem.orgphones = orgphones
-
- 
-
   }
 
 addEmail() {
- 
   let emails= this.currentItem.emails
     let flag = false
     let item
@@ -92,9 +86,6 @@ addEmail() {
     item = { type: '', email: '', unsub:false}
     emails.unshift(item)
     if (flag) this.currentItem.emails = emails
-
- 
-
   }
 
 

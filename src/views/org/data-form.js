@@ -47,8 +47,16 @@ export class DataForm {
         // let response2 = await this.api.findorgContacts(this.org.id)// ID);
         // alert('dd '+this.org)
         let response2 = await this.api.findorgContacts(this.recordId)// ID);
-        this.contacts = response2.data;
-        this.appService.currentOrgItem = this.org
+        if (response2.data = '0') {
+          //   return 'No contacts found';
+          this.contacts = [];
+          this.appService.currentOrgItem = this.org
+
+        } else {
+          // console.log('2 ',response2)
+          this.contacts = response2.data;
+          this.appService.currentOrgItem = this.org
+        }
         // console.log('this.repos contacts ', this.contacts)
         // this.allcontacts = this.contacts
 
@@ -93,29 +101,30 @@ export class DataForm {
   }
 
 
-  async saveclaim() {
+  // async saveclaim() {
 
-    let response2 = await this.api.saveorg(this.org)// ID);
-    let savetime = moment().format('MM/DD/YY h:mm:ss a')
+  //   let response2 = await this.api.saveorg(this.org)// ID);
+  //   let savetime = moment().format('MM/DD/YY h:mm:ss a')
 
-    this.message = "Save successful. org updated @ " + savetime
-  }
+  //   this.message = "Save successful. org updated @ " + savetime
+  // }
 
 
   async saveorg(opt) {
     if (this.recordId === 'create') {
       this.org.BusIndivid = "B";
-      this.org.orgphones = []
-      this.org.emails = []
-
+      // this.org.orgphones = []
+      // this.org.emails = []
+      this.recordId = ''
+      this.appService.currentorgCount = 1
       let response2 = await this.api.createorg(this.org)// ID);
     } else {
       let response2 = await this.api.saveorg(this.org)// ID);
-
     }
+ 
     let savetime = moment().format('MM/DD/YY h:mm:ss a')
-
     this.message = "Save successful. org updated @ " + savetime
+    if (opt === 1) this.requestclose()
   }
 
 
@@ -143,8 +152,8 @@ export class DataForm {
     // Finally, we close out this tab
     this.closeTab(tab);
     let rt2
-    (this.tabname === 0) ? rt2 = '#/org/' : rt2 = '#/org/' + this.tabname
-
+    // (this.tabname === 0) ? rt2 = '#/org/' : rt2 = '#/org/' + this.tabname
+    (this.appService.currentorgCount === 1) ? rt2 = '#/org/' : rt2 = '#/org/' + this.tabname
     this.router.navigate(rt2);
 
   }

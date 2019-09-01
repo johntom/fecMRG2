@@ -75,12 +75,14 @@ export class SearchResults {
 
       // return this.api.findallorgs(this.queryParams)
       let response = await this.api.findallorgs(this.queryParams);
-
+// console.log('response ',response)  
       let orgs = response.data
       this.recct = orgs.length;
       this.spinner.remove()
-      if (this.recct === 1) {
+      // if (this.recct === 'jj'){//1) {
+        if (this.recct === 1) {
         let rt2 = '#/org/data/' + orgs[0].id + '?' + orgs[0].OrgName
+        this.appService.currentorgCount = 1
         this.router.navigate(rt2);
         let tab = this.appService.tabs.find(f => f.isSelected);
         this.closeTab(tab);
@@ -92,32 +94,33 @@ export class SearchResults {
           let rt2 = '#/home'
           this.router.navigate(rt2);
         } else {
+           this.appService.currentorgCount = orgs.length
           this.appService.orgsearchresults = orgs;
           return orgs
         }
 
     }
   }
-  async loadDataHold() {
+  // async loadDataHold() {
 
-    let response = await this.api.findallorgs(this.queryParams);
-    let orgs = response.data
-    this.recct = orgs.length;
-    if (this.recct === 1) {
-      let rt2 = '#/org/data/' + orgs[0].id + '?' + orgs[0].OrgName
-      this.router.navigate(rt2);
-      let tab = this.appService.tabs.find(f => f.isSelected);
-      this.closeTab(tab);
-    } else
-      if (orgs === 0 || this.recct === 0) {
-        this.message = ' no records found '
-        let tab = this.appService.tabs.find(f => f.isSelected);
-        this.closeTab(tab);
-        let rt2 = '#/home'
-        this.router.navigate(rt2);
-      } else return orgs
+  //   let response = await this.api.findallorgs(this.queryParams);
+  //   let orgs = response.data
+  //   this.recct = orgs.length;
+  //   if (this.recct === 1) {
+  //     let rt2 = '#/org/data/' + orgs[0].id + '?' + orgs[0].OrgName
+  //     this.router.navigate(rt2);
+  //     let tab = this.appService.tabs.find(f => f.isSelected);
+  //     this.closeTab(tab);
+  //   } else
+  //     if (orgs === 0 || this.recct === 0) {
+  //       this.message = ' no records found '
+  //       let tab = this.appService.tabs.find(f => f.isSelected);
+  //       this.closeTab(tab);
+  //       let rt2 = '#/home'
+  //       this.router.navigate(rt2);
+  //     } else return orgs
 
-  }
+  // }
 
 
   //   let response = await this.api.findallorgs(this.queryParams);
