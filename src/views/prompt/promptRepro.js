@@ -5,7 +5,7 @@ import { DialogService } from 'aurelia-dialog';
 import { PromptServ } from '../../services/promptserv';
 import { ApiService } from '../../utils/servicesApi';
 import { Promptyn } from '../../services/promptyn';
-
+import {computedFrom} from 'aurelia-framework';
 export class Promptrepro {
   static inject = [DialogController, ApplicationService, MyDataService, DialogService, ApiService];
 
@@ -32,7 +32,9 @@ export class Promptrepro {
  
   }
 
-
+  get ReproductionAuthor(){
+    return `${this.AuthorLast},  ${this.AuthorFirst}`;
+  }
   attached() {
 
 

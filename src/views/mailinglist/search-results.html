@@ -138,15 +138,15 @@
 								</div> 
 								<ak-grid class="flex-row-1 overflow-y-auto" id="grid" k-data-source.bind="datasource" k-widget.bind="grid" k-sortable.bind="{ mode: 'multiple',   allowUnsort: 'true'}"
 								 k-filterable.bind="{  mode: 'row' }" k-editable="popup" k-reorderable.bind="true" k-resizable.bind="true" k-on-edit.delegate="onEdit($event.detail)"
-								 k-toolbar.bind="['excel']" k-excel.bind="{ fileName: 'mailinglist.xlsx' }" k-on-change.delegate="rowSelected($event.detail)"
+								 k-toolbar.bind="['excel']" 
+                  k-on-change.delegate="rowSelected($event.detail)"  k-excel.bind="{ fileName:'Mailinglist.xlsx',allPages: true }"
 								 k-height.bind="600" k-column-menu.bind="true" k-pageable.bind="true">
 									<ak-col k-filterable.bind="false" k-width="160px" k-title="Cmd" k-command.bind="['edit','delete']" k-title="&nbsp;" k-locked.bind="true"
 									 k-lockable.bind="false"></ak-col>
 									<ak-col k-field="LastName" k-filterable.bind="true" k-title="LastName(Edit)" k-width.bind="180" k-template="<button click.delegate='detailsEdit($event)' class='k-button'>#=LastName#</button>">
 									</ak-col>
 									<ak-col k-title="FirstName" k-width="110px" k-field="FirstName"></ak-col>
-									<ak-col k-title="listName" k-width="110px" k-field="listName"></ak-col>
-									<!-- <ak-col k-title="interests" k-width="210px" k-field="interests"></ak-col> -->
+									<!-- <ak-col k-title="listName" k-width="110px" k-field="listName"></ak-col> -->
 									<ak-col k-title="types" k-width="110px" k-field="types" k-editor.bind="textAreaEditor"></ak-col>
 									<ak-col k-title="artists" k-width="190px" k-field="artists" k-editor.bind="textAreaEditor"></ak-col>
                   

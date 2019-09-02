@@ -93,6 +93,7 @@ export class SearchResults {
       }
     },
     pageSize: 12,
+sort: [{ field: 'LastName', dir: 'asc' }, { field: 'FirstName', dir: 'asc' }],
 
   })
 
