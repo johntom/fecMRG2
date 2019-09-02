@@ -118,6 +118,7 @@ export class DataForm {
       this.recordId = ''
       this.appService.currentorgCount = 1
       let response2 = await this.api.createorg(this.org)// ID);
+        this.recordId = response2.data.id;//
     } else {
       let response2 = await this.api.saveorg(this.org)// ID);
     }

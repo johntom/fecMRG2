@@ -5,10 +5,10 @@ import { DialogService } from 'aurelia-dialog';
 import { PromptServ } from '../../services/promptserv';
 import { ApiService } from '../../utils/servicesApi';
 import { Promptyn } from '../../services/promptyn';
-import { computedFrom } from 'aurelia-framework';
-export class Promptrepro {
+import {computedFrom} from 'aurelia-framework';
+export class Promptconsignedto {
   static inject = [DialogController, ApplicationService, MyDataService, DialogService, ApiService];
-
+ 
 
   constructor(controller, appService, dataService, dialogService, api) {
     this.controller = controller;
@@ -21,25 +21,19 @@ export class Promptrepro {
     // this.addlist//='aaa'
     this.dialogService = dialogService
     this.api = api
-    this.showbatch = false
   }
-
+ 
 
   activate(currentmodel) {
     // this.item = currentmodel.item;
     this.currentItem = currentmodel.currentItem
     this.item = currentmodel.item
-    this.popuptype = currentmodel.popuptype;
-    this.heading="Reproduction";
-    // this.heading = "Reproduction "//exhibit batchno= "+ this.item.ReproductionExhibit
-      (this.popuptype === 0) ? this.showbatch = false : this.showbatch = true // from action
-    //  this.popuptype = 0;// from inventory
-    //     currentModel.popuptype = 1;// from action
-    //     currentModel.popuptype = 2;// from actionbatch
-
+    this.heading = "Consigned to "//exhibit batchno= "+ this.item.ReproductionExhibit
+ //(currentModel.popuptype === 0) ? this.showbatch = false :this.showbatch = true // from action
+    
   }
 
-  get ReproductionAuthor() {
+  get ReproductionAuthor(){
     return `${this.AuthorLast},  ${this.AuthorFirst}`;
   }
   attached() {
@@ -56,7 +50,7 @@ export class Promptrepro {
   save() {
     this.currentItem = this.item
     // this.controller.ok('added')
-    this.controller.ok(this.item)
+     this.controller.ok(this.item)
   }
 }
 

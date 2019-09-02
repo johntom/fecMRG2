@@ -541,6 +541,9 @@ export class SearchResults {
     currentModel.item = this.item
     if (this.exhibitionbatchno !== undefined) currentModel.currentItem.ReproductionExhibit = this.exhibitionbatchno
     currentModel.currentItem.hide1 = true
+currentModel.popuptype = 0;// from inventory
+    // currentModel.popuptype = 1;// from action
+    // currentModel.popuptype = 2;// from actionbatch
 
     this.dialogService.open({ viewModel: Promptrepro, model: currentModel, lock: false }).whenClosed(async response => {
       console.log('this.item', response, this.item)

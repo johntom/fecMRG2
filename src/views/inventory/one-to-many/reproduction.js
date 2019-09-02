@@ -218,7 +218,7 @@ export class Reproduction {
       console.log(response.output);
     });
   }
-  
+
   changeSelect(opt) {
 
     console.log('opt', opt)
@@ -240,18 +240,14 @@ export class Reproduction {
 
   }
 
-
   async loadData() {
     // console.log('this.loadData ')
     let repro = this.currentItem.reproduction
     // this.repro = repro
-
     return repro
     // return this.appService.actionsearchresults
-
   }
 
-  
   detailsEdit(e) {
     let grid = this.grid;
     let targetRow = $(e.target).closest("tr");
@@ -265,18 +261,18 @@ export class Reproduction {
       if (!response.wasCancelled) {
         console.log('dataItem', dataItem);
         // not needed this.currentItem.reproduction[0]=dataItem
-         this.datasource.read()
-       
+        this.datasource.read()
+
       } else {
         console.log('cancel');
-      } 
+      }
 
       // this.currentItem.reproduction = this.datasource._data 
       console.log(response)//.output);
     });
   }
 
-addRepro() {
+  addRepro() {
     let reproduction = this.currentItem.reproduction
     let flag = false
     let item
@@ -296,14 +292,18 @@ addRepro() {
     let currentModel = {}
     currentModel.currentItem = this.currentItem
     currentModel.item = item
+    currentModel.popuptype = 0;// from inventory
+    // currentModel.popuptype = 1;// from action
+    // currentModel.popuptype = 2;// from actionbatch
+
     this.dialogService.open({ viewModel: Promptrepro, model: currentModel, lock: true }).whenClosed(response => {
-    
+
       if (!response.wasCancelled) {
         console.log('dataItem', item);
         //  needed this.currentItem.reproduction[0]=dataItem
-        this.currentItem.reproduction[0]=item
-         this.datasource.read()
-       
+        this.currentItem.reproduction[0] = item
+        this.datasource.read()
+
       } else {
         console.log('cancel');
       }
