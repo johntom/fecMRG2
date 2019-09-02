@@ -42,7 +42,12 @@
 		 	<ak-col k-filterable.bind="false" k-width="160px" k-title="Cmd" k-command.bind="['edit','delete']" k-title="&nbsp;" k-locked.bind="true"
 			 k-lockable.bind="false"></ak-col>
 
-			  
+			  			<ak-col k-title="Image" k-filterable.bind="false" k-field="id" k-width="75px">
+				<ak-template>
+					<div class='customer-photo-sq' style="background-image: url(https://artbased.com/api/v1/getimagedetail/${currentItem.InventoryCode}/${FILE_NAME});"
+					 click.delegate="showModalImg($event)"></div>
+				</ak-template>
+			</ak-col>
 	<ak-col k-field="FILE_NAME" k-locked.bind="true" k-lockable.bind="false" k-filterable.bind="true" k-title="Download"
 		 k-width.bind="180" k-template="<button click.delegate='detailsdownload($event)' class='k-button'>#=FILE_NAME#</button>">
 		</ak-col>

@@ -124,9 +124,9 @@ export class Photo {
     $('<textarea class="k-textbox" name="' + options.field + '" style="width:100%;height:100%;" />').appendTo(container);
   }
 
-  formatTemplate = '${Format ? Format.Description" : ""}';
+  // formatTemplate = '${Format ? Format.Description" : ""}';
   formatDropDownEditor(container, options) {
-    $('<input data-text-field="Description" data-value-field="Description" data-bind="value:' + options.field + '"/>')
+    $('<input data-text-field="Description" data-value-field="Format" data-bind="value:' + options.field + '"/>')
       .appendTo(container)
       .kendoDropDownList({
         autoBind: false,
@@ -136,9 +136,21 @@ export class Photo {
         dataValueField: "Description"
       });
   }
-  photograherTemplate = '${Photogpraher ? Photogpraher.Description" : ""}';
+  // photograherTemplate = '${Photogpraher ? Photogpraher.Description" : ""}';
+  // photograherDropDownEditor(container, options) {
+  //   $('<input data-text-field="Description" data-value-field="Description" data-bind="value:' + options.field + '"/>')
+  //     .appendTo(container)
+  //     .kendoDropDownList({
+  //       autoBind: false,
+  //       type: 'json',
+  //       dataSource: this.appService.codesPhotographers,
+  //       dataTextField: "Description",
+  //       dataValueField: "Description"
+  //     });
+  // }
+
   photograherDropDownEditor(container, options) {
-    $('<input data-text-field="Description" data-value-field="Description" data-bind="value:' + options.field + '"/>')
+    $('<input data-text-field="Description" data-value-field="Photographer" data-bind="value:' + options.field + '"/>')
       .appendTo(container)
       .kendoDropDownList({
         autoBind: false,
@@ -148,7 +160,6 @@ export class Photo {
         dataValueField: "Description"
       });
   }
-
 
   // 					<select id="PhotographerID" class="form-control  input-sm" value.bind="PhotographerID"> 
   //                 <option model.bind="null">Choose...</option> 
@@ -207,7 +218,7 @@ export class Photo {
     }
     // Photogpraher: { defaultValue:'Ryan Sobotka' },
     // Format: { defaultValue:'8 x 10' },
-    item = { id: this.epoch, PhotoTaken: 1, Date: dd, Note: '', Photogpraher: 'Ryan Sobotka', Format: 'professional high-rez digital tiff', Precons: false }
+    item = { id: this.epoch, PhotoTaken: 1, Date: dd, Note: '', Photographer: 'Ryan Sobotka', Format: 'professional high-rez digital tiff', Precons: false }
     photo.unshift(item)
     if (flag) this.currentItem.photo = photo
   }

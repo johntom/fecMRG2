@@ -19,18 +19,19 @@
 		</style>
 		<h4>
 			<!--		<i class="fa fa-folder-open"></i> Photos for ${currentItem.InventoryCode} 
-    <a slot="buttons-slot" class="btn btn-primary" click.delegate="addPhoto()">
-				<i class="fa fa-plus"></i> Add Photo Rec
-			</a> 
-			<a slot="buttons-slot">
+      	<a slot="buttons-slot">
 				<input id="icon_prefix" type="text" value.bind="searchdoc & debounce" class="validate">
 				<i class="material-icons prefix">search</i>
 			</a>-->
+   <a slot="buttons-slot" class="btn btn-primary" click.delegate="addPhoto()">
+				<i class="fa fa-plus"></i> Add Photo Rec
+			</a>  
+		
 
-			<input class="btn btn-success" style='height:88' id='file' type="file" name="file" files.bind="file" multiple>
+			<!-- <input class="btn btn-success" style='height:88' id='file' type="file" name="file" files.bind="file" multiple>
 			<a slot="buttons-slot" class="btn btn-success" click.delegate="addDocs(file)">
 				</i>Upload Files
-			</a>
+			</a> -->
 
 		</h4>
 		<!--  k-filterable.bind="{  mode: 'row' }" -->
@@ -51,7 +52,7 @@
 			</ak-col> -->
 			<ak-col k-field="FILE_NAME" k-title="File Name" k-width="140px"></ak-col>
 <!-- fix database spell -->
-			<ak-col k-field="PhotographerID" k-title="Photographer" k-width="140px" k-editor.bind="photograherDropDownEditor"></ak-col>
+			<ak-col k-field="Photographer" k-title="Photographer" k-width="140px" k-editor.bind="photograherDropDownEditor"></ak-col>
 			<ak-col k-field="Format" k-title="Format" k-width="140px" k-editor.bind="formatDropDownEditor"></ak-col>
 			<!-- <ak-col k-field="PhotographerID" k-title="Photographer ID" k-width="140px" k-editor.bind="formatDropDownEditor"></ak-col>
 			<ak-col k-field="PhotoFormatID" k-title="Photo Format ID" k-width="140px" k-editor.bind="formatDropDownEditor"></ak-col>
