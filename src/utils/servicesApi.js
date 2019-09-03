@@ -939,24 +939,23 @@ export class ApiService {
   //     method: 'get',
   //     mode: 'cors'
   //   }).then((res) => res.json());
-
   // }
-  updateSavedlists(slname, slids) {
-    //all   this.api.updateSavedlists(this.appService.currentsavedlist, this.selectedids).then((jsonRes) => {
 
-    var url = this.baseweb + `v1/savedlists/update/${slname}`;
+  updateSavedlists(slname, slids) { 
+    //all   this.api.updateSavedlists(this.appService.currentsavedlist, this.selectedids).then((jsonRes) => {
+    // var url = this.baseweb + `v1/savedlists/update/${slname}`;
+    var url = this.baseweb + `v1/savedlists/updatesl`;
     return this.http.fetch(url, {
       method: 'put',
       mode: 'cors',
       headers: {
         'Accept': 'application/json',
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json' 
         // , 'Authorization': 'JWT ' + token
       },
-      body: JSON.stringify(slids)
+      //  body: JSON.stringify(slids)
+       body: JSON.stringify({slname:slname,thelist:slids})
     }).then((res) => res.json());
-
-
   }
 
   deleteSavedlists(slname, slids) {

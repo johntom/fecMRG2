@@ -594,7 +594,7 @@ export class Promptmerge {
 
       ww = 160 * invitem.clientWidthRatio
       hh = 160 * invitem.clientHeightRatio
-
+      segment += `<tr style="height:17%;"><td>${heading}</td></tr></br>`
       segment += `<tr style="height:17%;">`
       segment += `<td style="width:70%;vertical-align:top">${invitem.rtf2}</br></br>`
       segment += `${wd}</td>`

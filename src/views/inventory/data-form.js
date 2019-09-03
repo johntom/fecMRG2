@@ -78,9 +78,9 @@ export class DataForm {
   // listtypes = [{ id: 0, name: "exhibition(not avail yet)" }, { id: 1, name: "price list" },
   // { id: 2, name: "location list" }, { id: 3, name: "box label" }, { id: 4, name: "condition" },
   // { id: 5, name: "registrar" }, { id: 6, name: "presentation(not avail yet)" }]
-  listtypes = [{ id: -1, name: 'choose' }, { id: 1, name: "price list" },
+  listtypes = [{ id: -1, name: 'choose' }, { id: 0, name: "exhibition"} , { id: 1, name: "price list" },
   { id: 2, name: "location list" }, { id: 3, name: "box label" }, { id: 4, name: "condition" },
-  { id: 5, name: "registrar" }]
+  { id: 5, name: "registrar"},{ id: 6, name: "presention"}]
   //  listtypes = [{ id: 0, name: "exh(na)" }, { id: 1, name: "prce-lst" },
   //   { id: 2, name: "loc-list" }, { id: 3, name: "box label" }, { id: 4, name: "condition" },
   //   { id: 5, name: "registrar" }, { id: 6, name: "pres-na" }]
