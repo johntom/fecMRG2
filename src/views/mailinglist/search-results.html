@@ -14,16 +14,20 @@
 			white-space: nowrap;
 			text-overflow: ellipsis;
 		}
+
 		.k-grid table {
 			table-layout: fixed;
 		}
+
 		#data-form-ext .tab.tab-selected .form-tab-box {
 			background-color: lightblue;
 			border-color: #7bbbce
 		}
+
 		.custom-file-input::-webkit-file-upload-button {
 			visibility: hidden;
 		}
+
 		.custom-file-input::before {
 			content: 'Select image file and upload';
 			display: inline-block;
@@ -39,9 +43,11 @@
 			font-weight: 700;
 			font-size: 10pt;
 		}
+
 		.custom-file-input:hover::before {
 			border-color: black;
 		}
+
 		.custom-file-input:active::before {
 			background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
 		}
@@ -104,7 +110,7 @@
 								<strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Search &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 	<button id="clearbtn" class="btn btn-primary" click.delegate="performClear()" type="button"><strong>C</strong>lear
 								search </button>
-								<button id="group1" class="btn btn-primary" click.delegate="performDefault()" type="button">Default Search</button>
+								<!-- <button id="group1" class="btn btn-primary" click.delegate="performDefault()" type="button">Default Search</button> -->
 								</strong>
 							</div>
 						</div>
@@ -135,34 +141,36 @@
 								<div show.bind="busy.active" ref="spinner" class="splash">
 									<div class="message">fetching records</div>
 									<i class="fa fa-spinner fa-spin"></i>
-								</div> 
+								</div>
 								<ak-grid class="flex-row-1 overflow-y-auto" id="grid" k-data-source.bind="datasource" k-widget.bind="grid" k-sortable.bind="{ mode: 'multiple',   allowUnsort: 'true'}"
 								 k-filterable.bind="{  mode: 'row' }" k-editable="popup" k-reorderable.bind="true" k-resizable.bind="true" k-on-edit.delegate="onEdit($event.detail)"
-								 k-toolbar.bind="['excel']" 
-                  k-on-change.delegate="rowSelected($event.detail)"  k-excel.bind="{ fileName:'Mailinglist.xlsx',allPages: true }"
+								 k-toolbar.bind="['excel']" k-on-change.delegate="rowSelected($event.detail)" k-excel.bind="{ fileName:'Mailinglist.xlsx',allPages: true }"
 								 k-height.bind="600" k-column-menu.bind="true" k-pageable.bind="true">
 									<ak-col k-filterable.bind="false" k-width="160px" k-title="Cmd" k-command.bind="['edit','delete']" k-title="&nbsp;" k-locked.bind="true"
 									 k-lockable.bind="false"></ak-col>
+									<ak-col k-title="Salutation" k-width="110px" k-field="Salutation"></ak-col>
 									<ak-col k-field="LastName" k-filterable.bind="true" k-title="LastName(Edit)" k-width.bind="180" k-template="<button click.delegate='detailsEdit($event)' class='k-button'>#=LastName#</button>">
 									</ak-col>
 									<ak-col k-title="FirstName" k-width="110px" k-field="FirstName"></ak-col>
 									<!-- <ak-col k-title="listName" k-width="110px" k-field="listName"></ak-col> -->
 									<ak-col k-title="types" k-width="110px" k-field="types" k-editor.bind="textAreaEditor"></ak-col>
 									<ak-col k-title="artists" k-width="190px" k-field="artists" k-editor.bind="textAreaEditor"></ak-col>
-                  
+
 									<ak-col k-title="genres" k-width="110px" k-field="genres" k-editor.bind="textAreaEditor"></ak-col>
-										<ak-col k-title="Addr" k-width="110px" k-field="addr"></ak-col>
-                  	<ak-col k-title="City" k-width="110px" k-field="city"></ak-col>
-							
+									<ak-col k-title="Addr" k-width="110px" k-field="addr"></ak-col>
+									<ak-col k-title="City" k-width="110px" k-field="city"></ak-col>
+
 									<ak-col k-title="State" k-width="110px" k-field="state"></ak-col>
-                  	<ak-col k-title="Zip" k-width="110px" k-field="zip"></ak-col>
+									<ak-col k-title="Zip" k-width="110px" k-field="zip"></ak-col>
+									<ak-col k-title="Country" k-width="110px" k-field="country"></ak-col>
+
 									<br />
 								</ak-grid>
 
 								<br />
-	<!-- <ak-col k-title="interests" k-width="210px" k-field="interests"></ak-col> -->
-									<!-- k-template.bind="textAreaEditor"  k-editable="false"  -->
-									<!-- <ak-col k-field="interests" k-title="Interests" k-width.bind="330"> <ak-col>  --
+								<!-- <ak-col k-title="interests" k-width="210px" k-field="interests"></ak-col> -->
+								<!-- k-template.bind="textAreaEditor"  k-editable="false"  -->
+								<!-- <ak-col k-field="interests" k-title="Interests" k-width.bind="330"> <ak-col>  --
 								< <!-- END COL1 -->
 
 							</div>
@@ -178,13 +186,24 @@
 										<div class="Rtable-cell-70  Rtable-cell--highlight">
 											<input disabled=true type="text " xid="catalog" class="form-control input-sm " value.bind="search.mailinglist">
 										</div>
+
+
+										<div class="Rtable-cell-30 Rtable-cell--highlight">
+											<strong> Mailing Status</strong>
+										</div>
+										<div class="Rtable-cell-70 Rtable-cell--highlight">
+											<label repeat.for="ml of mailingstatus">
+                    	<input type="radio" name="group1" model.bind="ml.id" checked.bind="search.mailingStatus"> ${ml.name} &nbsp;
+										  </label>
+										</div>
+
 										<div class="Rtable-cell-100 Rtable-cell--highlight">
 
 
-											<strong> &nbsp;&nbsp;Y/N master list</strong>
+											<!-- <strong> &nbsp;&nbsp;Y/N master list</strong>
 											<input type="checkbox" id="masterlist" checked.bind="search.masterlist">
 											<strong> &nbsp;&nbsp;Y/N holiday list</strong>
-											<input type="checkbox" id="holidaylist" checked.bind="search.holidaylist">
+											<input type="checkbox" id="holidaylist" checked.bind="search.holidaylist"> -->
 											<!-- <strong> &nbsp;&nbsp;nomailings</strong>
 											<input type="checkbox" id="nomailings" checked.bind="search.nomailings">
 											<strong> &nbsp;&nbsp;deceased</strong> -->
@@ -200,16 +219,9 @@
 										<input type="checkbox" id="nolongerherecatalogssent" checked.bind="currentItem.nolongerherecatalogssent"> -->
 										</div>
 
+
 										<div class="Rtable-cell-30 Rtable-cell--highlight">
-											<strong> Mailing Status</strong>
-										</div>
-										<div class="Rtable-cell-70 Rtable-cell--highlight">
-											<label repeat.for="ml of mailingstatus">
-                    	<input type="radio" name="group1" model.bind="ml.id" checked.bind="search.mailingStatus"> ${ml.name} &nbsp;
-										  </label>
-										</div>
-										<div class="Rtable-cell-30 Rtable-cell--highlight">
-											<strong> Contact Types </strong>
+											<strong> Contact Type </strong>
 										</div>
 										<div class="Rtable-cell-70 Rtable-cell--highlight">
 											<ak-multiselect k-value.two-way="search.keywords" k-placeholder="Select ContactTypes..." k-data-text-field="Description"
@@ -219,7 +231,7 @@
 											</ak-multiselect>
 										</div>
 										<div class="Rtable-cell-30 Rtable-cell--highlight">
-											<strong> genres </strong>
+											<strong> Genre </strong>
 
 										</div>
 										<div class="Rtable-cell-70 Rtable-cell--highlight">
@@ -262,27 +274,24 @@
 												${opt.name}
 											</option>
 										</select>
-
-
 										</div>
-
 										<div class="Rtable-cell-30 Rtable-cell--highlight">
-											<strong>Contact Last Namev</strong>
+											<strong> Last Name</strong>
 										</div>
-
 
 										<div class="Rtable-cell-70  Rtable-cell--highlight">
 											<input type="text " xid="State " class="form-control input-sm " value.bind="search.contactl">
 										</div>
-
 										<div class="Rtable-cell-30 Rtable-cell--highlight">
-											<strong>Contact First Name</strong>
+											<strong> First Name</strong>
 										</div>
-
 
 										<div class="Rtable-cell-70  Rtable-cell--highlight">
 											<input type="text " xid="State " class="form-control input-sm " value.bind="search.contactf">
 										</div>
+
+
+
 
 										<div class="Rtable-cell-30 Rtable-cell--highlight">
 											<strong>Search Criteria</strong>
@@ -314,33 +323,7 @@
 							</div> -->
 						</div>
 
-						<!-- We have discontinued the use of a “mailing type” and added the following fields to facilitate creating mailing lists for
-						physical mail:
-						<br />deceased
-						<br />international
-						<br />no mailings: contact has no address or they have been removed from mailing list by MRG*
-						<br />unsubscribed: contact has requested not to receive mail
-						<br />no info: “unassigned” in current system and anyone who has no new contact info after leaving an organization
-						but has received comp catalogues in the past
-						<br />Y/N master list: people on this list are those who receive catalogs 90% of the time
-						<br />Y/N holiday list: holiday gift list
-						<br />The Mailing List Creator will default to bring up all contacts except those checked:
-						<br />“deceased”
-						<br />“no mailings”
-						<br />“unsubscribed” OR "no info"
-						<br />UI This entire list can be printed or filtered to meet specific criteria:
-						<br />genre
-						<br />artists of interest
-						<br />contact type
-						<br />international y/n
-						<br />city
-						<br />state
-						<br />Y/N master list (new)
-						<br />Y/N holiday list (new)
-						<br />deceased” y/n
-						<br />“no mailings” y/n
-						<br />“unsubscribed” y/n -->
-						<!-- flex row none -->
+
 					</div>
 					<!--top left  -->
 
@@ -385,7 +368,33 @@
 </template>
 
 
-
+<!-- We have discontinued the use of a “mailing type” and added the following fields to facilitate creating mailing lists for
+						physical mail:
+						<br />deceased
+						<br />international
+						<br />no mailings: contact has no address or they have been removed from mailing list by MRG*
+						<br />unsubscribed: contact has requested not to receive mail
+						<br />no info: “unassigned” in current system and anyone who has no new contact info after leaving an organization
+						but has received comp catalogues in the past
+						<br />Y/N master list: people on this list are those who receive catalogs 90% of the time
+						<br />Y/N holiday list: holiday gift list
+						<br />The Mailing List Creator will default to bring up all contacts except those checked:
+						<br />“deceased”
+						<br />“no mailings”
+						<br />“unsubscribed” OR "no info"
+						<br />UI This entire list can be printed or filtered to meet specific criteria:
+						<br />genre
+						<br />artists of interest
+						<br />contact type
+						<br />international y/n
+						<br />city
+						<br />state
+						<br />Y/N master list (new)
+						<br />Y/N holiday list (new)
+						<br />deceased” y/n
+						<br />“no mailings” y/n
+						<br />“unsubscribed” y/n -->
+<!-- flex row none -->
 <!-- <require from="aurelia-kendoui-bridge/mediaplayer/mediaplayer"></require>
   <div id="mediaPlayer" style="height:360px"
       ak-mediaplayer="k-media.bind: { title: 'Recap of Progress', source: 'https://www.youtube.com/watch?v=tc3xhD24iTU' };

@@ -108,7 +108,7 @@ export class Promptmerge {
 
     css = (
       '<style>' +
-      '@page WordSection1{size: 595.35pt 841.95pt;margin:54.0pt 36.0pt 36.0pt 36.0pt;}' +
+      '@page WordSection1{size: 595.35pt 841.95pt;margin:182.0pt 36.0pt 36.0pt 36.0pt;}' +
       'div.WordSection1 {page: WordSection1;}' +
       'table{border-collapse:collapse;}td{border:0px gray none;width:5em;padding:2px;}' +
       '</style>'
@@ -273,7 +273,7 @@ export class Promptmerge {
     if (this.listtype === 0) {
       segment = `<div id="docx">`
       segment += `<div class="WordSection1">`
-      segment += `<table style="width:950px; border-style:solid;border-color:black;border-collapse:collapse;border-width:1px;"><tbody>`
+      segment += `<table style="width:650px; border-style:solid;border-color:black;border-collapse:collapse;border-width:1px;"><tbody>`
     }
     if (this.listtype === 1) {
       segment = `<div id="docx">`
@@ -338,7 +338,12 @@ export class Promptmerge {
       // segment += `</tr>`
       // segment += `<td style="${styhc},width:12%" >Image</td>`
     }
+    if (this.listtype === 6) {
+      segment = `<div id="docx">`
+      segment += `<div class="WordSection1">`
+      segment += `<table style="width:650px; border-style:solid;border-color:black;border-collapse:collapse;border-width:1px;"><tbody>`
 
+    }
     //else segment = `<h1 style="text-align:center;width:768px">${currentmodel.head}</h1> <table><tbody>`
     // }
     // 768px  1024px
@@ -359,55 +364,57 @@ export class Promptmerge {
 
 
       if (this.listtype === 0) {
-        //{id:0,name:"check list"}
-        //       <!-- Codes by HTML.am -->
-        // <!-- CSS Code -->
-        let sty1 = "border-width:1px;border-color:black;border-style:solid;padding:3px;"
-        segment = `<style type="text/css" scoped>`
-        segment += `table.GenTable {`
-        segment += `width:100%;`
-        // segment += `background-color:#FFFFFF;`
-        segment += `border-collapse:collapse;border-width:1px;`
-        segment += `border-color:black;`
-        segment += `border-style:solid;`
-        segment += `color:black;`
-        segment += `}`
-        segment += `table.GenTable td, table.GenTable th {`
-        segment += `border-width:1px;`
-        segment += `border-color:black;`
-        segment += `border-style:solid;`
-        segment += `padding:3px;`
-        segment += `}`
-        segment += `table.GenTable thead {`
-        segment += `background-color:black;`
-        segment += `}`
-        segment += `</style>`
-        segment += `<table class="GenTable">`
-        segment += `<thead>`
-        segment += `<tr>`
-        segment += `<th style=${sty1}>Header Cell 1</th>`
-        segment += `<th style=${sty1}>Header Cell 2</th>`
-        segment += `<th style=${sty1}>Header Cell 3</th>`
+        // let sty1 = "border-width:1px;border-color:black;border-style:solid;padding:3px;"
+        // segment = `<style type="text/css" scoped>`
+        // segment += `table.GenTable {`
+        // segment += `width:100%;`
+        // segment += `border-collapse:collapse;border-width:1px;`
+        // segment += `border-color:black;`
+        // segment += `border-style:solid;`
+        // segment += `color:black;`
+        // segment += `}`
+        // segment += `table.GenTable td, table.GenTable th {`
+        // segment += `border-width:1px;`
+        // segment += `border-color:black;`
+        // segment += `border-style:solid;`
+        // segment += `padding:3px;`
+        // segment += `}`
+        // segment += `table.GenTable thead {`
+        // segment += `background-color:black;`
+        // segment += `}`
+        // segment += `</style>`
+        // segment += `<table class="GenTable">`
+        // segment += `<thead>`
+        // segment += `<tr>`
+        // segment += `<th style=${sty1}>Header Cell 1</th>`
+        // segment += `<th style=${sty1}>Header Cell 2</th>`
+        // segment += `<th style=${sty1}>Header Cell 3</th>`
+        // segment += `</tr>`
+        // segment += `</thead>`
+        // segment += `<tbody>`
+        // segment += `<tr>`
+        // segment += `<td style=${sty1}>Row 1, Cell 1</td>`
+        // segment += `<td style=${sty1}>Row 1, Cell 2</td>`
+        // segment += `<td style=${sty1}>Row 1, Cell 3</td>`
+        // segment += `</tr>`
+        // segment += `<tr>`
+        // segment += `<td style=${sty1}>Row 2, Cell 1</td>`
+        // segment += `<td style=${sty1}>Row 2, Cell 2</td>`
+        // segment += `<td style=${sty1}>Row 2, Cell 3</td>`
+        // segment += `</tr>`
+        // segment += `<tr>`
+        // segment += `<td style=${sty1}>Row 3, Cell 1</td>`
+        // segment += `<td style=${sty1}>Row 3, Cell 2</td>`
+        // segment += `<td style=${sty1}>Row 3, Cell 3</td>`
+        // segment += `</tr>`
+        //  let oa = numeral(invitem.offeramount).format('($0,0.00)')
+        let sd = numeral(invitem.signed)
+
+        segment += `<tr style="height:17%;">`
+        segment += `<td style="width:70%;vertical-align:top">${invitem.rtf2}</br></br>`
+        segment += `${sd}</td>`
+        segment += `<td style="width:25%;vertical-align:top;text-align:center;"><img src="https://artbased.com/api/v1/getimage/inv/${invitem.InventoryCode}.jpg" alt="" width="${ww}" height=${hh} /></td>`
         segment += `</tr>`
-        segment += `</thead>`
-        segment += `<tbody>`
-        segment += `<tr>`
-        segment += `<td style=${sty1}>Row 1, Cell 1</td>`
-        segment += `<td style=${sty1}>Row 1, Cell 2</td>`
-        segment += `<td style=${sty1}>Row 1, Cell 3</td>`
-        segment += `</tr>`
-        segment += `<tr>`
-        segment += `<td style=${sty1}>Row 2, Cell 1</td>`
-        segment += `<td style=${sty1}>Row 2, Cell 2</td>`
-        segment += `<td style=${sty1}>Row 2, Cell 3</td>`
-        segment += `</tr>`
-        segment += `<tr>`
-        segment += `<td style=${sty1}>Row 3, Cell 1</td>`
-        segment += `<td style=${sty1}>Row 3, Cell 2</td>`
-        segment += `<td style=${sty1}>Row 3, Cell 3</td>`
-        segment += `</tr>`
-        // </tbody>
-        // </table>
 
       }
 
@@ -563,6 +570,17 @@ export class Promptmerge {
       }
 
     }
+    if (this.listtype === 6) {
+      let sd = numeral(invitem.signed)
+
+      segment += `<tr style="height:17%;">`
+      segment += `<td style="width:70%;vertical-align:top">${invitem.rtf2}</br></br>`
+      segment += `${sd}</td>`
+      segment += `<td style="width:25%;vertical-align:top;text-align:center;"><img src="https://artbased.com/api/v1/getimage/inv/${invitem.InventoryCode}.jpg" alt="" width="${ww}" height=${hh} /></td>`
+      segment += `</tr>`
+
+    }
+
 
 
     // if (this.listtype === 2 ||  this.listtype === 4 || this.listtype === 5) {
@@ -571,7 +589,12 @@ export class Promptmerge {
     //   this.wordlandscape(segment);
     //     this.controller.ok('added')
     // } else  this.segment = segment
-
+    if (this.listtype === 0) {
+      segment += `</tbody></table>`
+      segment += `</div></div>`
+      this.wordportrait(segment);
+      this.controller.ok('added')
+    }
     if (this.listtype === 1) {
       segment += `</tbody></table>`
       segment += `</div></div>`
@@ -609,6 +632,13 @@ export class Promptmerge {
 
       this.wordportraitlines(segment);
 
+      this.controller.ok('added')
+    }
+
+    if (this.listtype === 6) {
+      segment += `</tbody></table>`
+      segment += `</div></div>`
+      this.wordportrait(segment);
       this.controller.ok('added')
     }
     // if (this.listtype === 4) {

@@ -414,22 +414,14 @@ OwnerIDEdit() {
             console.log('jsonRes ', jsonRes);
             let inv = jsonRes.data;
             this.currentItem = inv[0]
-
             //7-22    delete this.currentItem.updatedAt;
-
-
-
             // delete this.currentItem.conservedbyname
-            
-            
-            
-
             // never been saved from view
-
             // // move to attach
              this.rtfService.currentItem = this.currentItem
-
-    this.saveinventory(0)
+            
+            //  this.eventAggregator.publish('rtfpayload', 'refresh');
+            //  this.saveinventory(0)
 
             // if (!this.currentItem.savedonce || this.currentItem.savedonce === undefined) {
             //   //   // if (!this.currentItem.savedonce || this.currentItem.savedonce === true) {
@@ -613,7 +605,8 @@ OwnerIDEdit() {
       }
       this.getimageinfo(0)
       // this.tabindex=tabindex
-
+  this.eventAggregator.publish('rtfpayload', 'refresh');
+             this.saveinventory(0)
 
     }
   }

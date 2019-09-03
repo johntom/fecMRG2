@@ -129,7 +129,7 @@
 
 									<div class="flex-row-none">
 										<div class="form-group flex-column-1">
-											<div class="form-group">Search on dates : ${search.selectedDateId}
+											<div class="form-group">Search on dates pending: ${search.selectedDateId}
 												<label repeat.for="dat of searchdates">
 					            <input type="radio" name="group2"
 					            model.bind="dat.name" checked.bind="search.selectedDateId">
@@ -139,18 +139,18 @@
 										</div>
 									</div>
 
-									<div class="flex-row-none">
+									<!-- <div class="flex-row-none">
 
 										<div class="form-group flex-column-1">
-											<label for="searchdrcvdatel"> Start Date >= </label>
+											<label for="searchdrcvdatel"> Start Date &geq; </label>
 											<input id="searchdrcvdatel" type="date" class="form-control" placeholder="Start Date gt or eq)  ..." value.bind="search.startdate">
 										</div>
 										<div class="form-group flex-column-1 margin-left-10">
-											<label for="searchdrcvdate2"> Stop Date >=  </label>
+											<label for="searchdrcvdate2"> Stop Date &leq;  </label>
 											<input id="searchdrcvdate2" type="date" class="form-control" placeholder="Stop Date (lt or eq)  .." value.bind="search.stopdate">
 										</div>
 
-									</div>
+									</div> -->
 								</div>
                 
 										

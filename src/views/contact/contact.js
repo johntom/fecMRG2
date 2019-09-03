@@ -51,16 +51,12 @@ export class Contact {
 
   performClear() {
     this.search.mailingStatus = ''
-
   }
   performDefault() {
     this.search.mailingStatus = 1
     this.search.notinternational = true
-
-
   }
   activate() {
-
     console.log('name-tag activate before attached ');
     this.mru = []
     let mruinfo, tabindex
@@ -86,9 +82,6 @@ export class Contact {
         // this.mru.push(this.mruinfo.mru1.name)
         this.mru.push(this.mruinfo.mru1)
       }
-
-
-
       if (this.mruinfo.mru2 !== undefined) {
         this.mru.push(this.mruinfo.mru2)
       }
@@ -107,47 +100,32 @@ export class Contact {
       if (this.mruinfo.mru5 !== undefined) {
         this.mru.push(this.mruinfo.mru5)
       }
-
-
-
     }
 
   }
   performSearch() {
     if (this.search) {
-// 
- let keyword = `${this.keywordDescription}`
-
-   
-
-    let medsupport = `${this.DescriptionMS}`
-    let currentlocation = `${this.DescriptionLoc}`
-    let multikeys = `${this.multikeywords}`
-    // console.log('selectedSoldId', this.search.selectedSoldId)
-    let sold = this.search.sold// `${this.search.sold}`
-
- 
+      // 
+      let keyword = `${this.keywordDescription}`
+      let medsupport = `${this.DescriptionMS}`
+      let currentlocation = `${this.DescriptionLoc}`
+      let multikeys = `${this.multikeywords}`
+      // console.log('selectedSoldId', this.search.selectedSoldId)
+      let sold = this.search.sold// `${this.search.sold}`
       // if (keywd !== 'undefined' && keywd !== 'null') this.search.keywords = `${this.Description.Description}`
       if (keyword !== 'undefined' && keyword !== 'null') this.search.keywords = `${this.keywordDescription.Description}`
-
       //  if (savedlist !== 'undefined' && savedlist !== 'null') this.search.savedlists = `${this.name.name}`
-
       // if (medsupport !== 'undefined') this.search.mediumsupport = `${this.DescriptionMS.Description}`
       // if (currentlocation !== 'undefined') this.search.currentlocation = `${this.DescriptionLoc.Description}`
       if (multikeys !== 'undefined') this.search.multikeywords = `${this.multikeywords}`
       // if (sold !== 'undefined') this.search.sold = sold
       // if (selecteddate !== 'undefined') this.search.selectedDateId = selecteddate
       // if (owndedby !== 'undefined') this.search.owndedby = owndedby //search.owndedby
-
       // let qs = this.utilService.generateQueryString(this.search);
       // console.log('this.search ', this.search)
       // let counter = this.utilService.counter++ 
-
-
-//
-
-
-
+      // 
+      this.search.deceased = '0'// bring up eveyone
       let qs = this.utilService.generateQueryString(this.search);
       // let path = `searchContact${qs}&tabname=searchCntct${this.utilService.counter++}`;
       let path = `searchContact-${qs}&tabname=Contactsearch`;
@@ -155,7 +133,7 @@ export class Contact {
       this.appService.contactsearchresults = '';// reset not clicking on tab
       let rt2 = `#/contact/${path}`
       this.router.navigate(rt2);
-      
+
     }
   }
 

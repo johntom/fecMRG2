@@ -137,9 +137,9 @@ export class SearchResults {
 
   })
   // {id:0,name:"check list"},
-  listtypes = [{ id: 0, name: "exhibition(not avail yet)" }, { id: 1, name: "price list" },
+  listtypes = [{ id: 0, name: "exhibition" }, { id: 1, name: "price list" },
   { id: 2, name: "location list" }, { id: 3, name: "box label" }, { id: 4, name: "condition" },
-  { id: 5, name: "registrar" }, { id: 6, name: "presentation(not avail yet)" }]
+  { id: 5, name: "registrar" }, { id: 6, name: "presentation" }]
   constructor(router, api, utilService, appService, dataService, dialogService,eventAggregator) {
     this.router = router;
     this.api = api;
@@ -541,7 +541,9 @@ export class SearchResults {
     currentModel.item = this.item
     if (this.exhibitionbatchno !== undefined) currentModel.currentItem.ReproductionExhibit = this.exhibitionbatchno
     currentModel.currentItem.hide1 = true
-currentModel.popuptype = 0;// from inventory
+    currentModel.popuptype = 0;// from inventory
+
+
     // currentModel.popuptype = 1;// from action
     // currentModel.popuptype = 2;// from actionbatch
 
@@ -550,12 +552,9 @@ currentModel.popuptype = 0;// from inventory
       if (!response.wasCancelled) {
         this.item.ReproductionExhibit = null
         // this.item.DescriptionLoc= this.item.ReproductionLocation // for all occurances that hit this
-
         this.save3()
-
       } else {
         // if (this.currentItem.artist === null) {
-
         // }
         console.log('cancel');
       }

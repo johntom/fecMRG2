@@ -39,14 +39,13 @@ export class App {
       { "route": 'action/:id', name: 'action-search-results', moduleId: PLATFORM.moduleName('./views/action/search-results'), title: 'Search Results', activationStrategy: 'replace' },
       { "route": 'action/data/:id', name: 'action-data-form', moduleId: PLATFORM.moduleName('./views/action/data-form'), title: 'Data Form', activationStrategy: 'replace' },
 
+
+//   { "route": 'batchupdate/batchupdate', name: 'batchupdate', nav: true, moduleId: PLATFORM.moduleName('./views/batchupdate/search-results'), title: 'BatchUpdate', activationStrategy: 'replace' },
+
+
       //{ "route": 'batchupdate', name: 'batchupdate', moduleId: PLATFORM.moduleName('./views/batchupdate/batchupdate'),{ "route": 'batchupdate/:id', name: 'batchupdate-search-results', moduleId: PLATFORM.moduleName('./views/batchupdate/search-results'), title: 'Search Results', activationStrategy: 'replace' },
-
       //{ "route": 'batchupdate/:id', name: 'batchupdate-search-results', moduleId: PLATFORM.moduleName('./views/batchupdate/search-results'), title: 'Search Results', activationStrategy: 'replace' },
-      { "route": 'batchupdate/batchupdate', name: 'batchupdate', nav: true, moduleId: PLATFORM.moduleName('./views/batchupdate/search-results'), title: 'BatchUpdate', activationStrategy: 'replace' },
-
       // { "route": 'batchupdate/data/:id', name: 'batchupdate-data-form', moduleId: PLATFORM.moduleName('./views/batchupdate/data-form'), title: 'Data Form', activationStrategy: 'replace' },
-
-
       // { "route": 'batchupdate', name: 'batchupdate', moduleId: PLATFORM.moduleName('./views/batchupdate/batchupdate'), nav: true, title: 'Search Results', activationStrategy: 'replace' },
       // { "route": 'batchupdate', name: 'batchupdate', moduleId: PLATFORM.moduleName('./views/batchupdate/search-results'), title: 'Batch' },
 

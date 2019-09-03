@@ -52,22 +52,31 @@ export class Inventory {
     { name: 'November', short: 'Nov', number: 11 },
     { name: 'December', short: 'Dec', number: 12 }
   ];
-  searchdates2 = [
-    { id: 0, name: 'DateAdded' },
-    { id: 1, name: 'DateModified' },
+  searchdates = [ 
+    // { id: 0, name: 'DateAdded' },
+    // { id: 1, name: 'DateModified' },
     { id: 2, name: 'SoldDate' },
   ];
-    searchdates = [
-    { id: 0, name: 'Added' },
-    { id: 1, name: 'Modified' },
-    { id: 2, name: 'Sold' },
+  //   searchdates = [
+  //   // { id: 0, name: 'Added' },
+  //   // { id: 1, name: 'Modified' },
+  //   { id: 2, name: 'Sold' },
+  // ];
+  // searchsold = [
+  //   { id: 1, name: 'Y' },
+  //   { id: 2, name: 'N' },
+  //   { id: 3, name: 'NFS' },
+  //   { id: 4, name: 'DON' },
+  // ];
+
+    searchsold = [
+    { id: -1, name: 'Y' },
+
+    { id: 0, name: 'N' },
+    { id: 2, name: 'NFS' },
+    { id: 3, name: 'DON' },
   ];
-  searchsold = [
-    { id: 1, name: 'Y' },
-    { id: 2, name: 'N' },
-    { id: 3, name: 'NFS' },
-    { id: 4, name: 'DON' },
-  ];
+
   altAKeyPressSubscription;
 
   constructor(router, utilService, appService, dataService, eventAggregator) {
