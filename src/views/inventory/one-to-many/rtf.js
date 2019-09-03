@@ -6,11 +6,11 @@ import { Aurelia } from 'aurelia-framework';
 import { DialogService } from 'aurelia-dialog';
 import { Prompt } from '../../../services/prompt';
 import { RtfService } from '../../../services/rtf-service';
-import {EventAggregator} from 'aurelia-event-aggregator';
+import { EventAggregator } from 'aurelia-event-aggregator';
 
 
 //https://wesbos.com/template-strings-html/
-@inject(ApiService, ApplicationService, DialogService, RtfService,EventAggregator)
+@inject(ApiService, ApplicationService, DialogService, RtfService, EventAggregator)
 export class Rtf {
   tools = [
     'pdf',
@@ -29,7 +29,7 @@ export class Rtf {
     // 'outdent',
     // 'createLink',
     // 'unlink',
-     'insertImage',
+    'insertImage',
     // 'insertFile',
     'subscript',
     'superscript',
@@ -135,15 +135,15 @@ export class Rtf {
     { id: 5, name: '.3 size', factor: .3 },
   ];
   selectedimagesize = 0;
- formattypes = [
+  formattypes = [
     { id: 0, name: 'landscape' },
     { id: 1, name: 'portrait' },
-  
+
   ];
   selectedtype = 0;
 
-  constructor(api, appService, dialogService, rtfService,eventAggregator) {
-    
+  constructor(api, appService, dialogService, rtfService, eventAggregator) {
+
     this.api = api;
     this.appService = appService;
     this.provenance = '';
@@ -155,21 +155,21 @@ export class Rtf {
     this.dialogService = dialogService
     this.rtfService = rtfService
     this.eventAggregator = eventAggregator;
-   
+
   }
 
- attached(){ 
-//1=port 0 land
-   if (this.currentItem.clientHeightRatio>=this.currentItem.clientWidthRatio) {
-     this.selectedtype=1
-   } else this.selectedtype=0
-   this.subscriber = this.eventAggregator.subscribe('rtfpayload', payload => {
-         console.log('attached in rft.js rtfpayload',payload);
-        //  this.createRTF(1,selectedtype)
-             this.createRTF(1,this.selectedtype)
-      });
+  attached() {
+    //1=port 0 land
+    if (this.currentItem.clientHeightRatio >= this.currentItem.clientWidthRatio) {
+      this.selectedtype = 1
+    } else this.selectedtype = 0
+    this.subscriber = this.eventAggregator.subscribe('rtfpayload', payload => {
+      console.log('attached in rft.js rtfpayload ', payload);
+      //  this.createRTF(1,selectedtype)
+      this.createRTF(1, this.selectedtype)
+    });
 
- }
+  }
 
   created(owningView, myView) {
     // Invoked once the component is created...
@@ -188,11 +188,12 @@ export class Rtf {
   }
   async createRTF(createoptval) {
     // alert('in create')
-     this.rtfService.currentItem = this.currentItem
-     let createopt = 1; // 1 MEANS UI DISPLAYS HTML 2; // 1 is from tab
-     let rr = await this.rtfService.createRTF(createopt,this.selectedtype)
-     this.editor.value( this.currentItem.rtf1 );
-     this.editorlabel.value(this.currentItem.rtf2 ); 
+    this.rtfService.currentItem = this.currentItem
+    // let createopt = 1; // 1 MEANS UI DISPLAYS HTML 2; // 1 is from tab
+    let createopt =2; // 1 MEANS UI DISPLAYS HTML 2; // 1 is from tab
+    let rr = await this.rtfService.createRTF(createopt, this.selectedtype)
+    this.editor.value(this.currentItem.rtf1);
+    this.editorlabel.value(this.currentItem.rtf2);
     // if (createopt === 1) {
     //   // caled from rtf tab
     //   this.editor.value('<span style="font-family:Calibri, Geneva, sans-serif;font-size:11.0pt">' + this.segment1 + '</span>');

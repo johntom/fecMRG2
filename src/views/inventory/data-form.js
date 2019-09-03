@@ -12,7 +12,7 @@ import { bindable } from 'aurelia-framework';
 import { RtfService } from '../../services/rtf-service';
 import { EventAggregator } from 'aurelia-event-aggregator';
 import { Promptmerge } from '../prompt/promptMerge';
-		//  <strong> Owned Status ${currentItem.OwnedByLegacy}/ ${currentItem.OwnedBy}/ ${currentItem.ownedbyname} </strong> -->
+//  <strong> Owned Status ${currentItem.OwnedByLegacy}/ ${currentItem.OwnedBy}/ ${currentItem.ownedbyname} </strong> -->
 
 @inject(Router, ApiService, ApplicationService, MyDataService, DialogService, RtfService, EventAggregator)
 // @inject(Router, ApiService, ApplicationService, MyDataService, DialogService)
@@ -78,7 +78,7 @@ export class DataForm {
   // listtypes = [{ id: 0, name: "exhibition(not avail yet)" }, { id: 1, name: "price list" },
   // { id: 2, name: "location list" }, { id: 3, name: "box label" }, { id: 4, name: "condition" },
   // { id: 5, name: "registrar" }, { id: 6, name: "presentation(not avail yet)" }]
-  listtypes = [{id:-1,name:'choose'},{ id: 1, name: "price list" },
+  listtypes = [{ id: -1, name: 'choose' }, { id: 1, name: "price list" },
   { id: 2, name: "location list" }, { id: 3, name: "box label" }, { id: 4, name: "condition" },
   { id: 5, name: "registrar" }]
   //  listtypes = [{ id: 0, name: "exh(na)" }, { id: 1, name: "prce-lst" },
@@ -162,7 +162,7 @@ export class DataForm {
     this.eventAggregator = eventAggregator;
     this.epoch = moment().unix();
     // this.selectedlist = 5
-    this.selectedlist=-1
+    this.selectedlist = -1
   }
   // publish() {
   //   var payload = 'This is some data...';
@@ -178,13 +178,13 @@ export class DataForm {
   //   console.log('Disposed!!!');
   // }
   soldtoEdit() {
-     // save 
-     this.saveinventory(0) 
+    // save 
+    this.saveinventory(0)
     let oid = this.currentItem.SoldToID
     let OrgName = this.currentItem.soldtoname
     let BusIndivid = this.currentItem.SoldToBusIndivid
-     let rt2
-  
+    let rt2
+
     (BusIndivid === 'B') ? rt2 = '#/org/data/' + oid + '?' + OrgName : rt2 = '#/contact/data/' + oid + '?' + OrgName
 
 
@@ -192,14 +192,14 @@ export class DataForm {
 
   }
 
-OwnerIDEdit() {
-  // OwnerID ownername  
+  OwnerIDEdit() {
+    // OwnerID ownername  
     this.saveinventory(0)
     let oid = this.currentItem.OwnerID
     let OrgName = this.currentItem.ownername
     let BusIndivid = this.currentItem.OwnerBusIndivid
-     let rt2
-  
+    let rt2
+
     (BusIndivid === 'B') ? rt2 = '#/org/data/' + oid + '?' + OrgName : rt2 = '#/contact/data/' + oid + '?' + OrgName
 
 
@@ -418,8 +418,8 @@ OwnerIDEdit() {
             // delete this.currentItem.conservedbyname
             // never been saved from view
             // // move to attach
-             this.rtfService.currentItem = this.currentItem
-            
+            this.rtfService.currentItem = this.currentItem
+
             //  this.eventAggregator.publish('rtfpayload', 'refresh');
             //  this.saveinventory(0)
 
@@ -492,7 +492,7 @@ OwnerIDEdit() {
     if (prevtemp[8] != undefined && newrec.id === prevtemp[8].id) this.skip = true;
     if (prevtemp[9] != undefined && newrec.id === prevtemp[9].id) this.skip = true;
 
- 
+
     // if (newrec.id === temp[5].id) this.skip = true;
 
     console.log('   this.skip ', this.skip)
@@ -537,7 +537,7 @@ OwnerIDEdit() {
   }
 
 
-  loadimage() {
+  async loadimage() {
     let imageWidth, imageHeight, clientHeightRatio, clientWidthRatio
     return new Promise((resolve, reject) => {
       this.mainimage.onload = function () { // alert alert("Height: " + this.height+' '+ this.width); 
@@ -549,69 +549,130 @@ OwnerIDEdit() {
     })
   }
 
-  getimageinfo(opt) {
-    if (this.currentItem.clientHeight === undefined || this.currentItem.clientHeight === 0 || opt === 1) {
-      let imageWidth, imageHeight, clientHeightRatio, clientWidthRatio
+  // async getimageinfo(opt) {
+  //   return new Promise((resolve, reject) => {
+  //   if (this.currentItem.clientHeight === undefined || this.currentItem.clientHeight === 0 || opt === 1) {
+  //     let imageWidth, imageHeight, clientHeightRatio, clientWidthRatio
+  //     let Promise = this.loadimage()
+  //       .then(response => {
+  //         this.currentItem.clientHeight = this.mainimage.clientHeight
+  //         this.currentItem.clientWidth = this.mainimage.clientWidth
+  //         if (this.currentItem.clientHeight === this.currentItem.clientWidth) {
+  //           clientHeightRatio = 1
+  //           clientWidthRatio = 1
+  //         } else if (this.currentItem.clientHeight > this.currentItem.clientWidth) {
+  //           clientHeightRatio = 1
+  //           clientWidthRatio = (this.currentItem.clientWidth / this.currentItem.clientHeight).toPrecision(2)
+  //         } if (this.currentItem.clientWidth > this.currentItem.clientHeight) {
+  //           clientWidthRatio = 1
+  //           clientHeightRatio = (this.currentItem.clientHeight / this.currentItem.clientWidth).toPrecision(2)
+  //         }
+  //         this.currentItem.clientHeightRatio = clientHeightRatio
+  //         this.currentItem.clientWidthRatio = clientWidthRatio
+  //         //??? this.appService.originalrec = JSON.parse(JSON.stringify(this.currentItem))// inv[0]));
+  //       })
+  //   }
+  //   resolve( this.currentItem.clientHeightRatio );
+  //   })
 
-      let Promise = this.loadimage()
-        .then(response => {
-          this.currentItem.clientHeight = this.mainimage.clientHeight
-          this.currentItem.clientWidth = this.mainimage.clientWidth
+  // } 
+  async getimageinfo(opt) {
+    return new Promise((resolve, reject) => {
+      if (this.currentItem.clientHeight === undefined || this.currentItem.clientHeight === 0 || opt === 1) {
+        let imageWidth, imageHeight, clientHeightRatio, clientWidthRatio
 
-          if (this.currentItem.clientHeight === this.currentItem.clientWidth) {
-            clientHeightRatio = 1
-            clientWidthRatio = 1
-          } else if (this.currentItem.clientHeight > this.currentItem.clientWidth) {
-            clientHeightRatio = 1
-            clientWidthRatio = (this.currentItem.clientWidth / this.currentItem.clientHeight).toPrecision(2)
-
-
-          } if (this.currentItem.clientWidth > this.currentItem.clientHeight) {
-            clientWidthRatio = 1
-            clientHeightRatio = (this.currentItem.clientHeight / this.currentItem.clientWidth).toPrecision(2)
-          }
-          this.currentItem.clientHeightRatio = clientHeightRatio
-          this.currentItem.clientWidthRatio = clientWidthRatio
-          this.appService.originalrec = JSON.parse(JSON.stringify(this.currentItem))// inv[0]));
-
-        })
-    }
+        this.currentItem.clientHeight = this.mainimage.clientHeight
+        this.currentItem.clientWidth = this.mainimage.clientWidth
+        if (this.currentItem.clientHeight === this.currentItem.clientWidth) {
+          clientHeightRatio = 1
+          clientWidthRatio = 1
+        } else if (this.currentItem.clientHeight > this.currentItem.clientWidth) {
+          clientHeightRatio = 1
+          clientWidthRatio = (this.currentItem.clientWidth / this.currentItem.clientHeight).toPrecision(2)
+        } if (this.currentItem.clientWidth > this.currentItem.clientHeight) {
+          clientWidthRatio = 1
+          clientHeightRatio = (this.currentItem.clientHeight / this.currentItem.clientWidth).toPrecision(2)
+        }
+        this.currentItem.clientHeightRatio = clientHeightRatio
+        this.currentItem.clientWidthRatio = clientWidthRatio
+        // this.appService.originalrec = JSON.parse(JSON.stringify(this.currentItem))// inv[0]));
+        resolve(imageWidth);
+      }
+      resolve(0);
+    })
+     resolve(0);
   }
 
-
-  attached() {
-
+  async attached() {
     // this.subscriber = this.eventAggregator.subscribe('rtfpayload', payload => {
     //   console.log('attached on data form',payload);
     // });
-
-
-
     if (this.recordId !== 'create') {
       // fix dirty
       this.appService.originalrec.OwnedId = this.appService.currentItem.OwnedId
 
-      let tabinfo, tabindex
-      tabinfo = localStorage.getItem('tabinfo' + this.currentItem.InventoryCode);
-      if (tabinfo === null) {
-        tabindex = 0
-      } else {
-        tabinfo = JSON.parse(tabinfo)
-        tabindex = tabinfo.tabindex
-      }
-      if (this.appService.dataFormOneToManyTabs.length > 0) {
-        let tab = this.appService.dataFormOneToManyTabs[tabindex];
-        this.selectOneToManyTab(tab);
-      }
-      this.getimageinfo(0)
-      // this.tabindex=tabindex
-  this.eventAggregator.publish('rtfpayload', 'refresh');
-             this.saveinventory(0)
+      // set rtf and save record on open
+      let tab = this.appService.dataFormOneToManyTabs[0];
+      this.selectOneToManyTab(tab);
+   //   this.mainimage.src = `https://artbased.com/api/v1/getimage/inv/${this.currentItem.InventoryCode}.jpg`;
+      //      return Promise
+      // await this.getimageinfo(0)
+      return Promise.all([
+        this.loadimage(),
+        this.getimageinfo(0)
+      ]).then(values => {
+        console.log('h ', this.currentItem.clientHeight)
+        console.log('w ', this.currentItem.clientWidth)
+        console.log('hr ', this.currentItem.clientHeightRatio)
+        console.log('wr ', this.currentItem.clientWidthRatio)
+        let createopt = 2; // 1 is from tab 2 is program
+        let rr = this.rtfService.createRTF(createopt)
+        this.eventAggregator.publish('rtfpayload', 'refresh');
+        this.saveinventory(0)
+        this.appService.originalrec = JSON.parse(JSON.stringify(this.currentItem))// inv[0]));
+        let tabinfo, tabindex
+        tabinfo = localStorage.getItem('tabinfo' + this.currentItem.InventoryCode);
+        if (tabinfo === null) {
+          tabindex = 0
+        } else {
+          tabinfo = JSON.parse(tabinfo)
+          tabindex = tabinfo.tabindex
+        }
+        if (this.appService.dataFormOneToManyTabs.length > 0) {
+          let tab = this.appService.dataFormOneToManyTabs[tabindex];
+          this.selectOneToManyTab(tab);
+        }
+      })
+      // // await this.getimageinfo(0)
+      // //  this.rtfService.currentItem = this.currentItem
+      // let createopt = 1;//2; // 1 is from tab 2 is program
+      // let rr = await this.rtfService.createRTF(createopt)
+      // await this.eventAggregator.publish('rtfpayload', 'refresh');
+      // await this.saveinventory(0)
+      // let tabinfo, tabindex
+      // tabinfo = localStorage.getItem('tabinfo' + this.currentItem.InventoryCode);
+      // if (tabinfo === null) {
+      //   tabindex = 0
+      // } else {
+      //   tabinfo = JSON.parse(tabinfo)
+      //   tabindex = tabinfo.tabindex
+      // }
+      // if (this.appService.dataFormOneToManyTabs.length > 0) {
+      //   let tab = this.appService.dataFormOneToManyTabs[tabindex];
+      //   this.selectOneToManyTab(tab);
+      // }
+      // //    this.getimageinfo(0)
+      // // this.tabindex=tabindex
+      // // this.eventAggregator.publish('rtfpayload', 'refresh');
+      // //            this.saveinventory(0)
 
     }
   }
 
-
+  async publish() {
+    this.eventAggregator.publish('rtfpayload', 'refresh');
+    this.saveinventory(0)
+  }
   async saveinventory(option) {
     //this.controller.validate();
     //  class Rtf
@@ -630,9 +691,13 @@ OwnerIDEdit() {
         || this.currentItem.artist === undefined) {
         alert('Please fix  Title, InventoryCode, Owned By and or Artist ')
       } else {
-        this.rtfService.currentItem = this.currentItem
+
+        /////////
+        // this.rtfService.currentItem = this.currentItem
         // let createopt = 2; // 1 is from tab
         // let rr = await this.rtfService.createRTF(createopt)
+
+
         this.api.createinventory(this.currentItem).then((jsonRes) => {
           console.log('jsonRes ', jsonRes);
           this.recordId = jsonRes.id
@@ -873,31 +938,31 @@ OwnerIDEdit() {
   }
 
   // wordmerge(selectedlist) {
-  
-  wordmerge() {
-    if (this.selectedlist!==-1){
-    let detail = []
-    detail.push(this.currentItem)
-    this.dialogService.open({
-      viewModel: Promptmerge, model: {
-        head: 'inventory',
-        listtype: this.selectedlist, listname: 'inventory', detail: detail
-      }, lock: true
-    }).whenClosed(async response => {
-      console.log('this.item', response, this.item)
-      if (!response.wasCancelled) {
-        this.saveMerge
-      } else {
 
-        console.log('cancel');
-      }
-      this.selectedlist=-1
-      console.log(response)//.output);
-    });
+  wordmerge() {
+    if (this.selectedlist !== -1) {
+      let detail = []
+      detail.push(this.currentItem)
+      this.dialogService.open({
+        viewModel: Promptmerge, model: {
+          head: 'inventory',
+          listtype: this.selectedlist, listname: 'inventory', detail: detail
+        }, lock: true
+      }).whenClosed(async response => {
+        console.log('this.item', response, this.item)
+        if (!response.wasCancelled) {
+          this.saveMerge
+        } else {
+
+          console.log('cancel');
+        }
+        this.selectedlist = -1
+        console.log(response)//.output);
+      });
     }
   }
 
- listChanged() {
+  listChanged() {
     // $(this.selectedlist)
     // .toggleClass('black-cap', this.capColor === '1')
     // .toggleClass('orange-cap', this.capColor === '2')

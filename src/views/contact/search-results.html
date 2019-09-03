@@ -41,7 +41,7 @@
 			<i class="fa fa-spinner fa-spin"></i>
 		</div>
     
-		<!-- k-pageable.bind="true"> -->
+		<!-- k-pageable.bind="true" k-scrollable.bind="scrollable"> -->
 		<!-- <ak-grid class="flex-row-1 overflow-y-auto" id="grid" k-data-source.bind="datasource" k-widget.bind="grid" k-sortable.bind="{ mode: 'multiple',   allowUnsort: 'true'}"
 	 k-filterable.bind="{  mode: 'row' }" k-editable="inline" k-reorderable.bind="true" k-groupable.bind="true" k-resizable.bind="true"
 	 k-selectable="[row,multiple]" k-on-edit.delegate="onEdit($event.detail)" k-on-data-bound.delegate="onDataBound($event.detail)"
@@ -51,7 +51,8 @@
 				<ak-grid class="flex-row-1 overflow-y-auto" id="grid" k-data-source.bind="datasource" k-widget.bind="grid" k-sortable.bind="{ mode: 'multiple',   allowUnsort: 'true'}"
 				 k-height.bind="700" k-filterable.bind="{  mode: 'row' }" k-editable="inline" k-reorderable.bind="true" k-groupable.bind="true"
 				 k-resizable.bind="true" k-selectable="[row,multiple]" k-on-edit.delegate="onEdit($event.detail)" k-on-data-bound.delegate="onDataBound($event.detail)"
-				 k-on-change.delegate="rowSelected($event.detail)" k-column-menu.bind="true" k-scrollable.bind="scrollable">
+				 k-on-change.delegate="rowSelected($event.detail)" k-column-menu.bind="true" 
+         k-pageable.bind="true">
 
 
 
@@ -66,7 +67,9 @@
 					<ak-col k-title="Org" k-width="220px" k-template="#= (typeof org == 'undefined' || org == null) ? '' : org.OrgName #"></ak-col>
 					<ak-col k-title="Deceased" k-width="90px" k-field="deceased"></ak-col>
 				
-        
+        	<ak-col k-title="City" k-width="90px" k-field="addresses[0].city"></ak-col>
+					<ak-col k-title="State" k-width="90px" k-field="addresses[0].state"></ak-col>
+		
         	<!-- <ak-col k-title="Mailing Status LU" k-width="180px" k-field="mailingStatus"></ak-col> -->
 
 

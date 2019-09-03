@@ -106,14 +106,20 @@ export class Promptmerge {
   async wordportrait(segment) {
     var html, link, blob, url, css;
 
+    // css = (
+    //   '<style>' +
+    //   '@page WordSection1{size: 595.35pt 841.95pt;margin:182.0pt 36.0pt 36.0pt 36.0pt;}' +
+    //   'div.WordSection1 {page: WordSection1;}' +
+    //   'table{border-collapse:collapse;}td{border:0px gray none;width:5em;padding:2px;}' +
+    //   '</style>'
+    // );
     css = (
       '<style>' +
       '@page WordSection1{size: 595.35pt 841.95pt;margin:182.0pt 36.0pt 36.0pt 36.0pt;}' +
       'div.WordSection1 {page: WordSection1;}' +
-      'table{border-collapse:collapse;}td{border:0px gray none;width:5em;padding:2px;}' +
+        'table{border-collapse:collapse;}td{border:0px none;width:1em;padding:2px;}' +
       '</style>'
     );
-
 
 
     html = segment;//window.docx.innerHTML;
@@ -270,10 +276,11 @@ export class Promptmerge {
     // {id:3,name:"box label"},
     // {id:4,name:"condition"},
     // {id:5,name:"registrar"},{id:6,name:"presentation(not avail yet)"}]
+    //   segment += `<table style="width:650px; border-style:solid;border-color:black;border-collapse:collapse;border-width:1px;"><tbody>` 
     if (this.listtype === 0) {
       segment = `<div id="docx">`
       segment += `<div class="WordSection1">`
-      segment += `<table style="width:650px; border-style:solid;border-color:black;border-collapse:collapse;border-width:1px;"><tbody>`
+      segment += `<table style="width:650px; border-collapse:collapse;border-width:1px;"><tbody>`
     }
     if (this.listtype === 1) {
       segment = `<div id="docx">`
@@ -341,7 +348,8 @@ export class Promptmerge {
     if (this.listtype === 6) {
       segment = `<div id="docx">`
       segment += `<div class="WordSection1">`
-      segment += `<table style="width:650px; border-style:solid;border-color:black;border-collapse:collapse;border-width:1px;"><tbody>`
+         segment += `<table style="width:650px; border-collapse:collapse;border-width:1px;"><tbody>`
+          //  segment += `<table style="width:650px; border-style:solid;border-color:black;border-collapse:collapse;border-width:1px;"><tbody>`
 
     }
     //else segment = `<h1 style="text-align:center;width:768px">${currentmodel.head}</h1> <table><tbody>`
@@ -408,13 +416,22 @@ export class Promptmerge {
         // segment += `<td style=${sty1}>Row 3, Cell 3</td>`
         // segment += `</tr>`
         //  let oa = numeral(invitem.offeramount).format('($0,0.00)')
-        let sd = numeral(invitem.signed)
+        ww = 160 * invitem.clientWidthRatio
+        hh = 160 * invitem.clientHeightRatio
+        let wd
+        if (invitem.Signed) wd = 'signed'
+        if (invitem.Dated) wd += ' and dated'
+
+        let sd = invitem.Signed // Dated
 
         segment += `<tr style="height:17%;">`
         segment += `<td style="width:70%;vertical-align:top">${invitem.rtf2}</br></br>`
-        segment += `${sd}</td>`
+        segment += `${wd}</td>`
         segment += `<td style="width:25%;vertical-align:top;text-align:center;"><img src="https://artbased.com/api/v1/getimage/inv/${invitem.InventoryCode}.jpg" alt="" width="${ww}" height=${hh} /></td>`
         segment += `</tr>`
+        segment += `<tr ><td>&nbsp;</td></tr>`
+        segment += `<tr ><td>&nbsp;</td></tr>`
+
 
       }
 
@@ -571,13 +588,18 @@ export class Promptmerge {
 
     }
     if (this.listtype === 6) {
-      let sd = numeral(invitem.signed)
+      let wd
+      if (invitem.Signed) wd = 'signed'
+      if (invitem.Dated) wd += ' and dated'
+
+      ww = 160 * invitem.clientWidthRatio
+      hh = 160 * invitem.clientHeightRatio
 
       segment += `<tr style="height:17%;">`
       segment += `<td style="width:70%;vertical-align:top">${invitem.rtf2}</br></br>`
-      segment += `${sd}</td>`
+      segment += `${wd}</td>`
       segment += `<td style="width:25%;vertical-align:top;text-align:center;"><img src="https://artbased.com/api/v1/getimage/inv/${invitem.InventoryCode}.jpg" alt="" width="${ww}" height=${hh} /></td>`
-      segment += `</tr>`
+      segment += `</tr></br></br>`
 
     }
 
