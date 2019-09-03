@@ -117,7 +117,7 @@ export class Promptmerge {
       '<style>' +
       '@page WordSection1{size: 595.35pt 841.95pt;margin:182.0pt 36.0pt 36.0pt 36.0pt;}' +
       'div.WordSection1 {page: WordSection1;}' +
-        'table{border-collapse:collapse;}td{border:0px none;width:1em;padding:2px;}' +
+      'table{border-collapse:collapse;}td{border:0px none;width:1em;padding:2px;}' +
       '</style>'
     );
 
@@ -233,6 +233,7 @@ export class Promptmerge {
 
   async activate(currentmodel) {
     this.currentmodel = currentmodel
+    this.slname  =this.currentmodel.head;
     this.listtype = currentmodel.listtype
     // let lname = currentmodel.listname;
     let dimwidth
@@ -348,8 +349,11 @@ export class Promptmerge {
     if (this.listtype === 6) {
       segment = `<div id="docx">`
       segment += `<div class="WordSection1">`
-         segment += `<table style="width:650px; border-collapse:collapse;border-width:1px;"><tbody>`
-          //  segment += `<table style="width:650px; border-style:solid;border-color:black;border-collapse:collapse;border-width:1px;"><tbody>`
+      segment += `<table style="width:650px; border-collapse:collapse;border-width:1px;"><tbody>`
+      segment += `<h2 style="text-align:left;width:768px">${this.slname}</h2> `
+      // <tr style="height:17%;"><td><strong>${this.savelistname}<strong></td></tr></br></br></br>`
+
+      //  segment += `<table style="width:650px; border-style:solid;border-color:black;border-collapse:collapse;border-width:1px;"><tbody>`
 
     }
     //else segment = `<h1 style="text-align:center;width:768px">${currentmodel.head}</h1> <table><tbody>`
@@ -586,23 +590,25 @@ export class Promptmerge {
         segment += `</tr>`
       }
 
+
+      if (this.listtype === 6) {
+        ww = 160 * invitem.clientWidthRatio
+        hh = 160 * invitem.clientHeightRatio
+        let wd
+        if (invitem.Signed) wd = 'signed'
+        if (invitem.Dated) wd += ' and dated'
+
+        let sd = invitem.Signed
+        segment += `<tr style="height:17%;">`
+        segment += `<td style="width:70%;vertical-align:top">${invitem.rtf2}</br></br>`
+        segment += `${wd}</td>`
+        segment += `<td style="width:25%;vertical-align:top;text-align:center;"><img src="https://artbased.com/api/v1/getimage/inv/${invitem.InventoryCode}.jpg" alt="" width="${ww}" height=${hh} /></td>`
+        segment += `</tr>`
+        segment += `<tr ><td>&nbsp;</td></tr>`
+        segment += `<tr ><td>&nbsp;</td></tr>`
+
+      }
     }
-    if (this.listtype === 6) {
-      let wd
-      if (invitem.Signed) wd = 'signed'
-      if (invitem.Dated) wd += ' and dated'
-
-      ww = 160 * invitem.clientWidthRatio
-      hh = 160 * invitem.clientHeightRatio
-      segment += `<tr style="height:17%;"><td>${heading}</td></tr></br>`
-      segment += `<tr style="height:17%;">`
-      segment += `<td style="width:70%;vertical-align:top">${invitem.rtf2}</br></br>`
-      segment += `${wd}</td>`
-      segment += `<td style="width:25%;vertical-align:top;text-align:center;"><img src="https://artbased.com/api/v1/getimage/inv/${invitem.InventoryCode}.jpg" alt="" width="${ww}" height=${hh} /></td>`
-      segment += `</tr></br></br>`
-
-    }
-
 
 
     // if (this.listtype === 2 ||  this.listtype === 4 || this.listtype === 5) {
@@ -677,8 +683,8 @@ export class Promptmerge {
     // }
 
 
-  }
 
+  }
 
 
   setInitialValue(edt) {
