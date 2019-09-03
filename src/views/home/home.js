@@ -13,11 +13,8 @@ export class Home {
   prevversionDate = 'Mon 8/5/2019 5pm'
   issues = [ 
     // or press refresh button upper left corner',
-
     //https://circleci.com/workflow-run/1f3685ab-daba-41d7-8d25-6279df547b19
-
     // https://www.tutorialspoint.com/aurelia/aurelia_event_aggregator.htm
-
     // 'JUNE 15 CONV fix org/contacts save both cols before redo',
     // ' check out mailing list check contact conversion ',
     // 'a action abs exp',
@@ -27,13 +24,10 @@ export class Home {
     //  orgi			new
     //  "ProvLoc": 0   not exits
     // "ReproductionExhibit": null,				   "ReproductionExhibit": "",
-
     // unsaved changes tab pop up: 
     // Bontecou Purchased From tab
-
     // consigned to 
     // no consignee comes in: grossman, crawford
-
     // museum loan
     // Bontecou not coming in
 

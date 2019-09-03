@@ -350,7 +350,7 @@ export class Promptmerge {
       segment = `<div id="docx">`
       segment += `<div class="WordSection1">`
       segment += `<table style="width:650px; border-collapse:collapse;border-width:1px;"><tbody>`
-      segment += `<h2 style="text-align:left;width:768px">${this.slname}</h2> `
+      segment += `<tr><td><h2 style="text-align:left;width:768px">${this.slname}</h2></td></tr> `
       // <tr style="height:17%;"><td><strong>${this.savelistname}<strong></td></tr></br></br></br>`
 
       //  segment += `<table style="width:650px; border-style:solid;border-color:black;border-collapse:collapse;border-width:1px;"><tbody>`
