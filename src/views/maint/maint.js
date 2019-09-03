@@ -47,12 +47,13 @@ export class Maint {
 
     this.router.navigate(rt2);
   }
-  // menu4() {
-  //   let rt2 = '#/mailinglist';
+  menu4() {
+    let rt2 = '#/contactdups';
 
-  //   this.router.navigate(rt2);
-  // }
-  // menu5() {
+    this.router.navigate(rt2);
+  }
+  // menu5() {   { route: 'contactdups', name: 'contactdups', moduleId: PLATFORM.moduleName('./views/contactdups/contactdups'), nav: true, title: 'Contactdups', activationStrategy: 'replace' },
+
   //   let rt2 = '#/adjuster';
 
   //   this.router.navigate(rt2);

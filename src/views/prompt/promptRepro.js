@@ -52,11 +52,12 @@ export class Promptrepro {
   }
 
 
-
-  save() {
+ 
+  save() { 
     this.currentItem = this.item
     // this.controller.ok('added')
+    this.item.exhibitsel=this.item.ReproductionExhibit
     this.controller.ok(this.item)
   }
-}
+} 
 

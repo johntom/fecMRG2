@@ -140,18 +140,15 @@
 											</a>
 										</div>
 									</div>
-									<div class=" Rtable-cell-30 Rtable-cell--highlight">
+                  			<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong> Year</strong>
+									</div>
+									<div class="Rtable-cell-70  Rtable-cell--highlight">
 
-										<!-- style="color: purple" <div if.bind="recordId === 'create'"><strong> Artist >></strong></div>
-										<div else><strong> Artist </strong></div> -->
-										<strong> Prev Artist /ID</strong>
-
+										<input type="text" xid="InvYear" class="form-control" value.bind="currentItem.InvYear">
 									</div>
 
-									<!-- <div class="Rtable-cell-70  Rtable-cell--light"> -->
-									<div class="Rtable-cell-70  Rtable-cell--highlight">
-										${currentItem.ArtistIDprev} / ${currentItem.ID}</div>
-
+					
 
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
 										<strong> Title</strong>
@@ -411,15 +408,19 @@
 
 										<input type="text" xid="CatalogueNo" class="form-control" value.bind="currentItem.CatalogueNo">
 									</div>
+				<div class=" Rtable-cell-30 Rtable-cell--highlight">
 
-									<div class="Rtable-cell-30 Rtable-cell--highlight">
-										<strong> Year</strong>
+										<!-- style="color: purple" <div if.bind="recordId === 'create'"><strong> Artist >></strong></div>
+										<div else><strong> Artist </strong></div> -->
+										<strong> Prev Artist /ID</strong>
+
 									</div>
+
+									<!-- <div class="Rtable-cell-70  Rtable-cell--light"> -->
 									<div class="Rtable-cell-70  Rtable-cell--highlight">
+										${currentItem.ArtistIDprev} / ${currentItem.ID}</div>
 
-										<input type="text" xid="InvYear" class="form-control" value.bind="currentItem.InvYear">
-									</div>
-
+						
 
 									<div class="Rtable-cell-50 Rtable-cell--highlight">
 										<strong> Signed  &nbsp;</strong>
@@ -678,7 +679,8 @@
 			<a href="https://artbased.com/api/v1/downloadonepdf/output/${currentItem.InventoryCode}.doc" class="btn btn-sm btn-primary">
 				<span class="glyphicon glyphicon-th-list"></span> Download Doc FactSheet
 			</a>
-	
+      &nbsp;
+
 			<!-- <label repeat.for="list of listtypes">
                	<input type="radio" name="group1" model.bind="list.id" checked.bind="selectedlist"> ${list.name} &nbsp;
 						  </label> -->
@@ -700,8 +702,8 @@
 				</span>
 
 
-			 <button click.delegate = "publish()">PUBLISH</button><br/>
-  <!-- <button click.delegate = "subscribe()">SUBSCRIBE</button><br/>
+			<!-- <button click.delegate = "publish()">PUBLISH</button><br/> -->
+			<!-- <button click.delegate = "subscribe()">SUBSCRIBE</button><br/>
    <button click.delegate = "dispose()">DISPOSE</button> -->
 			<!-- <button class="btn btn-sm btn-danger " click.delegate="getmainimage()">
 					mainimage

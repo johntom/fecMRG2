@@ -248,18 +248,20 @@ export class Reproduction {
     // return this.appService.actionsearchresults
   }
 
-  detailsEdit(e) {
+  detailsEdit(e) {  
     let grid = this.grid;
     let targetRow = $(e.target).closest("tr");
     grid.select(targetRow);
     let selectedRow = grid.select();
     let dataItem = grid.dataItem(selectedRow);
+    if (dataItem.ReproductionExhibit===undefined || dataItem.ReproductionExhibit===null) dataItem.ReproductionExhibit=-1
     let currentModel = {}
     currentModel.currentItem = this.currentItem
     currentModel.item = dataItem
     this.dialogService.open({ viewModel: Promptrepro, model: currentModel, lock: true }).whenClosed(response => {
       if (!response.wasCancelled) {
         console.log('dataItem', dataItem);
+    dataItem.ReproductionExhibit=   response.output.exhibitsel ;
         // not needed this.currentItem.reproduction[0]=dataItem
         this.datasource.read()
 

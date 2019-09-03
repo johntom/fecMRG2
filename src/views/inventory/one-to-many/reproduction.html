@@ -42,7 +42,8 @@
 			 k-groupable.bind="false"></ak-col>
 			<ak-col k-field="ColorBWDesc" k-title="C/BW" k-width="100px" k-editor.bind="ColorBWDropDownEditor" k-filterable.bind="false"
 			 k-groupable.bind="false"></ak-col>
-			<ak-col k-title="Exhibit" k-field="ReproductionExhibit" k-title="Exh" k-width="180px" k-editor.bind="exhibitionDropDownEditor"
+			<ak-col k-title="Exhibit" k-field="ReproductionExhibit" k-title="Exhibit"
+       k-width="180px" 
 			 k-filterable.bind="false" k-groupable.bind="false"></ak-col>
 			<ak-col k-title="No" k-field="no" k-filterable.bind="true" k-width.bind="140">
 			</ak-col>
@@ -54,6 +55,9 @@
 	</section>
 </template>
 <!-- 
+  <ak-col k-title="Exhibit" k-field="ReproductionExhibit" k-title="Exh"
+       k-width="180px" k-editor.bind="exhibitionDropDownEditor"
+			 k-filterable.bind="false" k-groupable.bind="false"></ak-col>
 	<ak-col k-title="ReproductionType" k-field="ReproductionType" k-width="140px">
 						<ak-template>
 							<ak-combobox k-value.two-way="ReproductionType">

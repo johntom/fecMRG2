@@ -271,7 +271,18 @@ sort: [{ field: 'LastName', dir: 'asc' }, { field: 'FirstName', dir: 'asc' }],
           this.recct = this.invdata.length;
           if (this.recct !== 0) this.search.searchedCriteria += ';' + str + ' ct=' + this.recct
           //await this.loadData();
-
+ this.search = {}
+    this.search.state = 'null'
+    // search.state='';
+    // search.state 'null'
+    // this.search.deceased = true
+    // this.search.nomailings = true
+    // this.search.noinfo = true
+    this.search.keywords = []
+    this.search.genres = []
+    this.search.mailingStatus = 0
+    this.search.searchedCriteria = ''
+  this.search.mailingStatus = 0
 
         });
 
