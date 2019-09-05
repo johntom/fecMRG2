@@ -57,8 +57,6 @@ export class SearchResults {
       },
       update: (options) => {
         let updatedItem = options.data;
-
-
         options.success(updatedItem)
       },
       destroy: (options) => {
@@ -92,7 +90,7 @@ export class SearchResults {
         }
       }
     },
-    pageSize: 12,
+    pageSize: 14, 
 sort: [{ field: 'LastName', dir: 'asc' }, { field: 'FirstName', dir: 'asc' }],
 
   })

@@ -140,7 +140,7 @@
 											</a>
 										</div>
 									</div>
-                  			<div class="Rtable-cell-30 Rtable-cell--highlight">
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
 										<strong> Year</strong>
 									</div>
 									<div class="Rtable-cell-70  Rtable-cell--highlight">
@@ -148,7 +148,7 @@
 										<input type="text" xid="InvYear" class="form-control" value.bind="currentItem.InvYear">
 									</div>
 
-					
+
 
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
 										<strong> Title</strong>
@@ -315,62 +315,16 @@
 											</select>
 										</div>
 										<!-- end seight->
-<!-- framed -->
-										<div class="Rtable-cell Rtable-cell--highlight">
-											<strong>Framed</strong>
-										</div>
-										<div class="Rtable-cell">
-											<input type="number " xid="FramedHeight " class="form-control  " value.bind="currentItem.FramedHeight">
 
-										</div>
-										<div class="Rtable-cell">
-
-											<select style="width: 45px " value.bind="currentItem.FramedHeight16">
-												<option model.bind="''">''</option>
-												<option repeat.for="measure of measures " model.bind="measure.name">
-													${measure.name}
-												</option>
-											</select>
-										</div>
-										<div class="Rtable-cell">
-											<input type="number " xid="FramedWidth " class="form-control  " value.bind="currentItem.FramedWidth">
-
-										</div>
-										<div class="Rtable-cell">
-
-											<select style="width: 45px " value.bind="currentItem.FramedWidth16">
-												<option model.bind="''">''</option>
-												<option repeat.for="measure of measures " model.bind="measure.name">
-													${measure.name}
-												</option>
-											</select>
-										</div>
-										<div class="Rtable-cell">
-											<input type="number " xid="FramedDepth " class="form-control  " value.bind="currentItem.FramedDepth">
-
-										</div>
-										<div class="Rtable-cell">
-
-											<select style="width: 45px " value.bind="currentItem.FramedDepth16">
-												<option model.bind="''">''</option>
-												<option repeat.for="measure of measures " model.bind="measure.name">
-													${measure.name}
-												</option>
-											</select>
-										</div>
+									
 										<!-- end framed -->
 									</div>
 								</div>
 							</div>
-							<!--77 </div> -->
-
-							<!-- end <div class="Rtable Rtable--7cols"> -->
 
 							<!-- demo middle col -->
 							<div class="form-group flex-column-1 margin-left-10">
 								<div class="Rtable Rtable--2cols">
-
-
 
 
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
@@ -408,7 +362,7 @@
 
 										<input type="text" xid="CatalogueNo" class="form-control" value.bind="currentItem.CatalogueNo">
 									</div>
-				<div class=" Rtable-cell-30 Rtable-cell--highlight">
+									<div class=" Rtable-cell-30 Rtable-cell--highlight">
 
 										<!-- style="color: purple" <div if.bind="recordId === 'create'"><strong> Artist >></strong></div>
 										<div else><strong> Artist </strong></div> -->
@@ -420,7 +374,7 @@
 									<div class="Rtable-cell-70  Rtable-cell--highlight">
 										${currentItem.ArtistIDprev} / ${currentItem.ID}</div>
 
-						
+
 
 									<div class="Rtable-cell-50 Rtable-cell--highlight">
 										<strong> Signed  &nbsp;</strong>
@@ -634,22 +588,22 @@
 				<div if.bind="recordId==='create'">Create Mode. Please save record before entering tabs </div>
 				<div else>
 
-					<div id="bottom-left" class="flex-row-3">
-						<div id="data-form-ext" class="flex-column-1">
-							<div id="data-form-one-to-many-tabs" class="flex-row-none flex-wrap">
-								<div repeat.for="tab of appService.dataFormOneToManyTabs" class="tab ${tab.isSelected ? 'tab-selected' : ''}">
-									<div class="form-tab-box" click.delegate="selectOneToManyTab(tab)">
-										<span>${tab.name}</span>
-									</div>
+					<!-- <div id="bottom-left" class="flex-row-3"> -->
+					<div id="data-form-ext" class="flex-column-1">
+						<div id="data-form-one-to-many-tabs" class="flex-row-none flex-wrap">
+							<div repeat.for="tab of appService.dataFormOneToManyTabs" class="tab ${tab.isSelected ? 'tab-selected' : ''}">
+								<div class="form-tab-box" click.delegate="selectOneToManyTab(tab)">
+									<span>${tab.name}</span>
 								</div>
 							</div>
-							<div id="data-form-one-to-many-tab-content overflow-y-hidden" class="data-form flex-row-1" style="background:
+						</div>
+						<div id="data-form-one-to-many-tab-content overflow-y-hidden" class="data-form flex-row-1" style="background:
 										 darkgray;">
-								<compose view-model.bind="currentOneToManyTab.viewModel"></compose>
-							</div>
+							<compose view-model.bind="currentOneToManyTab.viewModel"></compose>
 						</div>
 					</div>
 				</div>
+				<!-- </div> -->
 				<!-- <ul>
 						<li repeat.for='e of controller.errors'>
 							${e.message}
@@ -658,10 +612,10 @@
 				<!-- </form> -->
 				<!-- after or before the form -->
 			</form>
-		</div>
-		<footerform class="flex-row-none">
-			inventory-
-			<span>&nbsp;&nbsp;
+			<!-- </div> -->
+			<footerform class="flex-row-none">
+				inventory-
+				<span>&nbsp;&nbsp;
 					<button class="btn btn-sm btn-primary " click.delegate="saveinventory(0)">
 						Save & Stay
 					</button>
@@ -673,27 +627,27 @@
 <!-- <button click.delegate="addRTF()">addRTF</button> -->
 
 				</span>
-			<!-- <button class="btn btn-sm btn-primary " click.delegate="factsheet()">
+				<!-- <button class="btn btn-sm btn-primary " click.delegate="factsheet()">
 					FactSheet
 				</button> -->
-			<a href="https://artbased.com/api/v1/downloadonepdf/output/${currentItem.InventoryCode}.doc" class="btn btn-sm btn-primary">
-				<span class="glyphicon glyphicon-th-list"></span> Download Doc FactSheet
-			</a>
-      &nbsp;
+				<a href="https://artbased.com/api/v1/downloadonepdf/output/${currentItem.InventoryCode}.doc" class="btn btn-sm btn-primary">
+					<span class="glyphicon glyphicon-th-list"></span> Download Doc FactSheet
+				</a>
+				&nbsp;
 
-			<!-- <label repeat.for="list of listtypes">
+				<!-- <label repeat.for="list of listtypes">
                	<input type="radio" name="group1" model.bind="list.id" checked.bind="selectedlist"> ${list.name} &nbsp;
 						  </label> -->
 
-			<button class="btn btn-sm btn-primary " click.delegate="wordmerge()">
+				<button class="btn btn-sm btn-primary " click.delegate="wordmerge()">
 						wordmerge
 					</button>
-			<!--    k-on-select.delegate="wordmerge($event.detail)" -->
-			<ak-drop-down-list k-data-text-field="name" k-data-value-field="id" k-data-source.bind="listtypes" k-value.two-way="selectedlist"
-			 k-on-change.delegate="wordmerge()" style="width: 100px;">
-			</ak-drop-down-list>
-			<!--     -->
-			<span>&nbsp;&nbsp;
+				<!--    k-on-select.delegate="wordmerge($event.detail)" -->
+				<ak-drop-down-list k-data-text-field="name" k-data-value-field="id" k-data-source.bind="listtypes" k-value.two-way="selectedlist"
+				 k-on-change.delegate="wordmerge()" style="width: 100px;">
+				</ak-drop-down-list>
+				<!--     -->
+				<span>&nbsp;&nbsp;
 					<button class="btn btn-sm btn-danger " click.delegate="requestclose()">
 						Close
 					</button>
@@ -702,16 +656,16 @@
 				</span>
 
 
-			<!-- <button click.delegate = "publish()">PUBLISH</button><br/> -->
-			<!-- <button click.delegate = "subscribe()">SUBSCRIBE</button><br/>
+				<!-- <button click.delegate = "publish()">PUBLISH</button><br/> -->
+				<!-- <button click.delegate = "subscribe()">SUBSCRIBE</button><br/>
    <button click.delegate = "dispose()">DISPOSE</button> -->
-			<!-- <button class="btn btn-sm btn-danger " click.delegate="getmainimage()">
+				<!-- <button class="btn btn-sm btn-danger " click.delegate="getmainimage()">
 					mainimage
 				</button> -->
 
-			<!-- https://artbased.com/api/v1/downloadonepdf/output/POLLOCJ005.html -->
-			<!-- <a class="btn btn-primary"href='https://artbased.com/api/v1/downloadonepdf/output/${currentItem.InventoryCode}.doc' > Download doc (html format)</a> -->
+				<!-- https://artbased.com/api/v1/downloadonepdf/output/POLLOCJ005.html -->
+				<!-- <a class="btn btn-primary"href='https://artbased.com/api/v1/downloadonepdf/output/${currentItem.InventoryCode}.doc' > Download doc (html format)</a> -->
 
-		</footerform>
+			</footerform>
 	</section>
 </template>

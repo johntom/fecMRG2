@@ -1,22 +1,29 @@
 <template>
+		<style>
+		table thead tr {
+			display: block;
+		}
+
+		table th,
+		table td {
+			width: 80% //1200px;//fixed width
+		}
+
+		table tbody {
+			display: block;
+			height: 300px;
+			overflow: auto; //set tbody to auto
+		}
+	</style>
  <require from="../../../resources/value-converters/date-format"></require>
 
-	<section class="docs full-height flex-column-1 overflow-y-auto ignore">
-		<h3>
-			<!-- <i class="fa fa-folder-open"></i> Conservation (${currentItem.Title} ct:${currentItem.conservation.length}) -->
-	<i class="fa fa-folder-open"></i> Offering
 
-		
-		</h3>
-  <!-- offrec.id = inv._id
-            offrec.ArtistName = inv.ArtistName
-            offrec.ownername = inv.ownername
-            offrec.Title = inv.Title
-            for (const item of inv.offerings) {
-                if (item.client = inv.id) {
-                    offrec.offeramount = item.offeramount
-                    offrec.offerdate = item.offerdate
-                } -->
+<section class="docs full-height flex-column-1 overflow-y-auto ignore">
+		<h4>
+			<i class="fa fa-folder-open"></i> Offering
+		</h4>
+
+
 		<table class="table-condensed table">
 			<thead class="table-header-blue" data-sort="items.bind: currentItem.appService.offerings; cols: ['ENTERED','REMIND','CANCELED','NOTES']">
 				<tr>
@@ -34,13 +41,13 @@
 					<th class="header" width="125px">Offer Amt
 				</tr>
 			</thead>
-			<tfoot>
+			<!-- <tfoot>
 				<tr>
 					<td></td>
 					<td></td>
 
 				</tr>
-			</tfoot>
+			</tfoot> -->
 			<tbody>
      
 				<tr repeat.for="offering of appService.offerings" with.bind="offering">

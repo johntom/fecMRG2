@@ -12,7 +12,7 @@
 
 		table tbody {
 			display: block;
-			height: 500px;
+			height: 300px;
 			overflow: auto; //set tbody to auto
 		}
 	</style>
@@ -25,41 +25,28 @@
 			<a slot="buttons-slot" class="btn btn-primary" click.delegate="addItem()">
 				<i class="fa fa-plus"></i> Add Catalogue 
 			</a>
-
 		</h4>
 
-
-
-
-		<table class="table-condensed table">
+	<table class="table-condensed table">
 			<thead class="table-header-blue">
-
 				<tr>
-
 					<th width="450px" class="header">Catalogue</th>
 					<th width="200px" class="header">Date Sent</th>
-
 					<th width="95px" class="header">Qty</th>
 					<th width="225px" class="header">Cmd</th>
-
-
 				</tr>
 			</thead>
-			<tfoot>
+			<!-- <tfoot>
 				<tr>
 					<td></td>
 					<td></td>
 					<td></td>
 					<td></td>
-
 				</tr>
-			</tfoot>
+			</tfoot> -->
 			<tbody>
-
-
 				<tr repeat.for="catalogsent of currentItem.catalogsent " with.bind="catalogsent">
 					<td width="450px">
-
 						<!-- <div class="form-control input-sm" ref='catname' if.bind="CatalogTitle===undefined || CatalogTitle===''"> -->
 						<div class="form-control input-sm" if.bind="CatalogTitle===undefined || CatalogTitle===''">
 
@@ -71,19 +58,13 @@
 
 					</td>
 					<!-- <td>${catalogsent.DateSent  | dateFormat}</td> -->
-
 					<td width="200px">
 						<input class="form-control input-sm" type="date" value.bind="DateSent | dateFormat">
-
 					</td>
 					<td width="95px"><input type="text" id="Qty" class="form-control  input-sm" value.bind="Qty"></td>
-
 					<td width="225px">
-
-
 						<button class="btn btn-sm  btn-danger" click.delegate="remove(catalogsent,$index)">Delete</button>
 					</td>
-
 				</tr>
 			</tbody>
 		</table>

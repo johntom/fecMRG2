@@ -92,48 +92,13 @@
 			background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
 		}
 	</style>
-	<!-- <div class="modal fade" id="myModal" ref="myModal">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-					<h4 class="modal-title">Modal title</h4>
-				</div>
-				<div class="modal-body">
-					<p>One fine body…</p>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-primary">Save changes</button>
-				</div>
-			</div>
-		</div>
-	</div>
 
-	<modal-form ref="edit_division" record_id.bind="division.div_id" title="${division.div_id ? 'Edit_Division' : 'New_Division'}"
-	 error.bind="error">
-		<form>
-			<div class="form-group">
-				<label class="control-label" for="div_code">Division code2</label>
-				<input type="text" class="form-control" ref="div_code" value.bind="division.div_code" />
-			</div>
-			<div class="form-group">
-				<label class="control-label" for="div_name">Division name2</label>
-				<input type="text" class="form-control" value.bind="division.div_name">
-			</div>
-			<div class="form-group">
-				<label class="control-label" for="div_principal_p_id">Principal name2</label>
-				<input type="text" class="form-control" value.bind="division.div_principal_name">
-			</div>
-		</form>
-	</modal-form> -->
-	<!-- /.modal form-->
 	<section class="full-height flex-column-1 au-animate ignore">
 		<div class="flex-column-1 overflow-y-auto">
 
 			<form class="flex-column-1">
-				<!-- <div id="top" class="flex-row-3"> -->
-				<div id="top" class="flex-row-none">
+				<div id="top" class="flex-row-3">
+					<!-- <div id="top" class="flex-row-none"> -->
 					<div id="top-left" class="data-form overflow-y-auto flex-column-2">
 						<!-- row1 -->
 						<div class="flex-row-none">
@@ -154,7 +119,7 @@
 									<div class="Rtable-cell-70  Rtable-cell--highlight">
 										<input type=" text " id="LastName" class=" form-control input-sm " value.bind="currentItem.LastName">
 									</div>
-	<div class="Rtable-cell-30 Rtable-cell--highlight">
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
 										<strong>Spouse</strong>
 									</div>
 									<div class="Rtable-cell-70  Rtable-cell--highlight">
@@ -224,14 +189,6 @@
 									</div>
 
 
-									<!-- <div class="Rtable-cell-30 Rtable-cell--highlight">
-										<strong> Spouse</strong>
-									</div>
-
-									<div class="Rtable-cell-70  Rtable-cell--highlight">
-										<input type="text " xid="Spouse " class="form-control input-sm " value.bind="currentItem.Spouse">
-									</div>
- -->
 
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
 										<strong> Last Name 2</strong>
@@ -252,71 +209,10 @@
 
 
 
-									<div class="Rtable-cell-30 Rtable-cell--highlight">
-										<strong> Assistant</strong>
-									</div>
-
-									<div class="Rtable-cell-70  Rtable-cell--highlight">
-										<input type="text " xid="Assistant " class="form-control input-sm " value.bind="currentItem.Assistant">
-									</div>
-
-									<div class="Rtable-cell-30 Rtable-cell--highlight">
-										<strong> Title </strong>
-									</div>
-
-									<div class="Rtable-cell-70  Rtable-cell--highlight">
-										<input type="text " xid="TitleDesc " class="form-control input-sm " value.bind="currentItem.TitleDesc">
-									</div>
 
 
-									<div class="Rtable-cell-30 Rtable-cell--highlight">
-										<strong> Dept</strong>
-									</div>
 
-									<div class="Rtable-cell-70  Rtable-cell--highlight">
-										<input type="text " xid="Dept " class="form-control input-sm " value.bind="currentItem.Dept">
-									</div>
-									<div class="Rtable-cell-30 Rtable-cell--highlight">
-										<strong>Website</strong>
-									</div>
 
-									<div class="Rtable-cell-70  Rtable-cell--highlight">
-										<input type="text " xid="Website " class="form-control input-sm " value.bind="currentItem.Website">
-									</div>
-
- 
-									<div class="Rtable-cell-30 Rtable-cell--highlight">
-										<strong> Bus/Individ</strong>
-									</div>
-
-									<div class="Rtable-cell-70  Rtable-cell--highlight">
-										<input type="text " xid="BusIndivid " class="form-control input-sm " value.bind="currentItem.BusIndivid">
-									</div>
-
-									<div class="Rtable-cell-30 Rtable-cell--highlight">
-										<div if.bind="currentItem.BusIndivid==='B'">
-
-											<button class="btn btn-success" click.delegate="modal(org)">View Org</button>
-											<button class="btn btn-success" click.delegate="editorg(org)">Edit Org</button>
-										</div>
-										<div else>
-											<strong> Parent OrgID:${currentItem.OrgID}</strong>	
-										</div>
-									</div>
-
-									<div class="Rtable-cell-70  Rtable-cell--highlight">
-										<div if.bind="currentItem.BusIndivid==='B'">
-											<div style="height:15px;margin-left:10px;margin-top:5px;margin-bottom:10px" if.bind="currentItem.org.OrgName===undefined || currentItem.org.OrgName==='' ">
-												<a click.delegate="showModal( 'OrgID')">select_link </a>
-											</div>
-											<div style="height:15px;margin-left:10px;margin-top:5px;margin-bottom:10px" else>
-												<a click.delegate="showModal( 'OrgID')">${currentItem.org.OrgName} </a>
-											</div>
-										</div>
-										<div else>
-									${currentItem.ParentName} / id: 	${currentItem.ID}	- ${currentItem.ParentID} 
-										</div>
-									</div>
 
 								</div>
 							</div>
@@ -331,7 +227,6 @@
 										<!-- //Contact Type  -->
 									</div>
 									<div class="Rtable-cell-70 Rtable-cell--highlight">
-										<!-- ${currentItem.contacttypes} -->
 										<ak-multiselect k-value.two-way="currentItem.contacttypes" k-placeholder="Select contacttypes..." k-data-text-field="Description"
 										 k-data-value-field="Description" k-height.bind="400" k-data-source.bind="appService.codesOrgContactTypes" k-widget.two-way="multiselect"
 										 id="multiselect-customizing-templates-codes">
@@ -342,22 +237,10 @@
 											</ak-template>
 										</ak-multiselect>
 									</div>
-									<!-- //announcements mrg driven  nomailings client driven  var checkbox = document.getElementById(currentItem.mailings");
-checkbox.indeterminate = true;-->
-
-									<div class="Rtable-cell-30 Rtable-cell--highlight">
-										<strong> Mailchimp</strong>
-									</div>
-									<div class="Rtable-cell-70 Rtable-cell--highlight">
-										<input type="checkbox" id="email" checked.bind="currentItem.email">
-									</div>
 
 
 
-									<!-- <strong><span if.bind="currentItem.mailings===undefined">-</span> &nbsp;announcements</strong>
-										<input type="checkbox" ref="mailings" id="mailings" checked.bind="currentItem.mailings">
-										<strong> &nbsp;&nbsp;nomailings</strong>
-										<input type="checkbox" id="nomailings" checked.bind="currentItem.nomailings"> -->
+
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
 										<strong> Mailing Status</strong>
 									</div>
@@ -370,7 +253,6 @@ checkbox.indeterminate = true;-->
 										<strong> Note</strong>
 									</div>
 									<div class="Rtable-cell-70 Rtable-cell--highlight">
-										<!-- <input type="text " xid="Edition " class="form-control input-sm " value.bind="currentItem.Notes"> -->
 										<textarea rows="6" cols="100" id="Notes" class="form-control input-sm" value.bind="currentItem.Notes"></textarea>
 									</div>
 
@@ -412,16 +294,14 @@ checkbox.indeterminate = true;-->
 									</div>
 
 
-									<div class="Rtable-cell-30 Rtable-cell--highlight">
-										<strong> Address Label</strong>
-									</div>
-									<div class="Rtable-cell-70 Rtable-cell--highlight">
-										<textarea rows="6" cols="100" id="Notes" class="form-control input-sm" value.bind="fullName"></textarea>
 
+								</div>
 
-									</div>
-
-
+							</div>
+							<!-- 2nd -->
+							<!-- 3rd col -->
+							<div class="form-group flex-column-1 margin-left-10">
+								<div class="Rtable Rtable--2cols">
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
 										<strong> Contact ID (${currentItem.ID})</strong>
 									</div>
@@ -429,50 +309,121 @@ checkbox.indeterminate = true;-->
 									<div class="Rtable-cell-70  Rtable-cell--highlight">
 										<input type="text " xid="ContactID " class="form-control input-sm " value.bind="currentItem.id">
 									</div>
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong> Assistant</strong>
+									</div>
 
+									<div class="Rtable-cell-70  Rtable-cell--highlight">
+										<input type="text " xid="Assistant " class="form-control input-sm " value.bind="currentItem.Assistant">
+									</div>
+
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong> Title </strong>
+									</div>
+
+									<div class="Rtable-cell-70  Rtable-cell--highlight">
+										<input type="text " xid="TitleDesc " class="form-control input-sm " value.bind="currentItem.TitleDesc">
+									</div>
+
+
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong> Dept</strong>
+									</div>
+
+									<div class="Rtable-cell-70  Rtable-cell--highlight">
+										<input type="text " xid="Dept " class="form-control input-sm " value.bind="currentItem.Dept">
+									</div>
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong>Website</strong>
+									</div>
+
+									<div class="Rtable-cell-70  Rtable-cell--highlight">
+										<input type="text " xid="Website " class="form-control input-sm " value.bind="currentItem.Website">
+									</div>
+
+
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong> Bus/Individ</strong>
+									</div>
+
+									<div class="Rtable-cell-70  Rtable-cell--highlight">
+										<input type="text " xid="BusIndivid " class="form-control input-sm " value.bind="currentItem.BusIndivid">
+									</div>
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong> Address Label</strong>
+									</div>
+									<div class="Rtable-cell-70 Rtable-cell--highlight">
+										<textarea rows="3" cols="100" id="Notes" class="form-control input-sm" value.bind="fullName"></textarea>
+									</div>
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<div if.bind="currentItem.BusIndivid==='B'">
+
+											<button class="btn btn-success" click.delegate="modal(org)">View Org</button>
+											<button class="btn btn-success" click.delegate="editorg(org)">Edit Org</button>
+										</div>
+										<div else>
+											<strong> Parent OrgID:${currentItem.OrgID}</strong>
+										</div>
+									</div>
+									<div class="Rtable-cell-70  Rtable-cell--highlight">
+										<div if.bind="currentItem.BusIndivid==='B'">
+											<div style="height:15px;margin-left:10px;margin-top:5px;margin-bottom:10px" if.bind="currentItem.org.OrgName===undefined || currentItem.org.OrgName==='' ">
+												<a click.delegate="showModal( 'OrgID')">select_link </a>
+											</div>
+											<div style="height:15px;margin-left:10px;margin-top:5px;margin-bottom:10px" else>
+												<a click.delegate="showModal( 'OrgID')">${currentItem.org.OrgName} </a>
+											</div>
+										</div>
+										<div else>
+											${currentItem.ParentName} / id: ${currentItem.ID} - ${currentItem.ParentID}
+										</div>
+									</div>
 
 
 								</div>
-
 							</div>
-							<!-- 2nd -->
-						</div>
-					</div>
+							<!-- 3rd col end -->
 
-					<!-- flex row none -->
+
+						</div>
+
+					</div>
 				</div>
 
 				<!-- flex row none -->
+		</div>
 
-				<!--top left  -->
+		<!-- flex row none -->
+
+		<!--top left  -->
 
 
 
-				<!--  class="tab tab-top ${tab.isSelected ? 'tab-selected' : ''}"> -->
+		<!--  class="tab tab-top ${tab.isSelected ? 'tab-selected' : ''}"> -->
 
-				<div if.bind="recordId==='create'">Create Mode. Please save record before entering tabs </div>
-				<div else>
+		<div if.bind="recordId==='create'">Create Mode. Please save record before entering tabs </div>
+		<div else>
 
-					<div id="bottom-left" class="flex-row-3">
-						<div id="data-form-ext" class="flex-column-1">
-							<div id="dataFormOneToManyTabs3" class="flex-row-none flex-wrap">
-								<div repeat.for="tab of appService.dataFormOneToManyTabs3" class="tab ${tab.isSelected ? 'tab-selected' : ''}">
-									<div class="form-tab-box" click.delegate="selectOneToManyTab(tab)">
-										<span>${tab.name}</span>
-									</div>
-								</div>
-							</div>
-							<div id="data-form-one-to-many-tab-content overflow-y-hidden" class="data-form flex-row-1" style="background:
-										 darkgray;">
-								<compose view-model.bind="currentOneToManyTab.viewModel"></compose>
+			<div id="bottom-left" class="flex-row-3">
+				<div id="data-form-ext" class="flex-column-1">
+					<div id="dataFormOneToManyTabs3" class="flex-row-none flex-wrap">
+						<div repeat.for="tab of appService.dataFormOneToManyTabs3" class="tab ${tab.isSelected ? 'tab-selected' : ''}">
+							<div class="form-tab-box" click.delegate="selectOneToManyTab(tab)">
+								<span>${tab.name}</span>
 							</div>
 						</div>
 					</div>
+					<div id="data-form-one-to-many-tab-content overflow-y-hidden" class="data-form flex-row-1" style="background:
+										 darkgray;">
+						<compose view-model.bind="currentOneToManyTab.viewModel"></compose>
+					</div>
 				</div>
-
-
-			</form>
+			</div>
 		</div>
+
+
+		</form>
+		<!-- </div> -->
 		<footerform class="flex-row-none">
 			inventory-
 			<span>&nbsp;&nbsp;

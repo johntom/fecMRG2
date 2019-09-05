@@ -67,11 +67,12 @@
 					<button type="button" class="btn btn-primary">Save changes</button>
 				</div>
 			</div>
-
+			<!-- /.modal-content -->
 		</div>
-
+		<!-- /.modal-dialog -->
 	</div>
-
+	<!-- /.modal -->
+	<!-- /.modal form-->
 	<modal-form ref="edit_division" record_id.bind="division.div_id" title="${division.div_id ? 'Edit_Division' : 'New_Division'}"
 	 error.bind="error">
 		<form>
@@ -94,28 +95,34 @@
 		<div class="flex-column-1 overflow-y-auto">
 			<h3> ${mailinglist} / Record Count: ${datasource._data.length} </h3>
 
-			<div class="flex-column-1 overflow-y-auto">
-				<form ref="claimform" class="flex-column-1">
-					<div id="top" class="flex-row-3">
-						<div id="top-left" class="data-form overflow-y-auto flex-column-2">
-							<!-- row1 -->
+			<form class="flex-column-1">
+				<div id="top" class="flex-row-none">
+					<div id="top-left" class="data-form overflow-y-auto flex-column-12">
+						<!-- row1 -->
 
-							<!-- <div class="Rtable Rtable--2cols">
+						<div class="Rtable Rtable--2cols">
 							<div class="Rtable-cell-65 Rtable-cell--highlight">
 								<strong> Results  </strong>
 
 							</div>
+							<!-- ----- -->
 							<div class="Rtable-cell-35 Rtable-cell--highlight">
 								<strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Search &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 	<button id="clearbtn" class="btn btn-primary" click.delegate="performClear()" type="button"><strong>C</strong>lear
 								search </button>
-									</strong>
+								<!-- <button id="group1" class="btn btn-primary" click.delegate="performDefault()" type="button">Default Search</button> -->
+								</strong>
 							</div>
-						</div> -->
+						</div>
 
-							<div class="flex-row-none">
-								<div class="form-group flex-column-1">
-									<!-- <script>
+						<div class="flex-row-none">
+
+							<!-- end <div class="Rtable Rtable--7cols"> -->
+
+							<!-- demo middle col -->
+							<div class="form-group flex-column-2 margin-left-10">
+								<br/>
+								<script>
 									excelExport:
                         function (e) {
                             var sheet = e.workbook.sheets[0];
@@ -126,62 +133,51 @@
                                 row.cells.push({ 'value': diff })
                             }
                         }
-								</script> -->
-
-									<div show.bind="busy.active" ref="spinner" class="splash">
-										<div class="message">fetching records</div>
-										<i class="fa fa-spinner fa-spin"></i>
-									</div>
-                
-									<ak-grid class="flex-row-1 overflow-y-auto" id="grid" k-data-source.bind="datasource" k-widget.bind="grid" k-sortable.bind="{ mode: 'multiple',   allowUnsort: 'true'}"
-									 k-filterable.bind="{  mode: 'row' }" k-editable="popup" k-reorderable.bind="true" k-resizable.bind="true" k-on-edit.delegate="onEdit($event.detail)"
-									 k-toolbar.bind="['excel']" k-on-change.delegate="rowSelected($event.detail)" k-excel.bind="{ fileName:'Mailinglist.xlsx',allPages: true }"
-									 k-column-menu.bind="true" k-pageable.bind="true">
-                  <!-- <ak-col  k-template="#  #"></ak-col> -->
-										<ak-col k-filterable.bind="false" k-width="160px" k-title="Cmd" k-command.bind="['edit','delete']" k-title="&nbsp;" k-locked.bind="true"
-										 k-lockable.bind="true"></ak-col>
-										<ak-col k-title="Salutation" k-width="110px" k-field="Salutation"></ak-col>
-										<ak-col k-field="LastName" k-filterable.bind="true" k-title="Last Name" k-width.bind="180" k-template="<button click.delegate='detailsEdit($event)' class='k-button'>#=LastName#</button>">
-										</ak-col>
-										<ak-col k-title="First Name" k-width="110px" k-field="FirstName"></ak-col>
-										<ak-col k-title="Types" k-width="110px" k-field="types" k-editor.bind="textAreaEditor"></ak-col>
-										<ak-col k-title="Artists" k-width="190px" k-field="artists" k-editor.bind="textAreaEditor"></ak-col>
-
-										<ak-col k-title="Genres" k-width="110px" k-field="genres" k-editor.bind="textAreaEditor"></ak-col>
-										<ak-col k-title="Addr" k-width="110px" k-field="addr"></ak-col>
-										<ak-col k-title="City" k-width="110px" k-field="city"></ak-col>
-
-										<ak-col k-title="State" k-width="110px" k-field="state"></ak-col>
-										<ak-col k-title="Zip" k-width="110px" k-field="zip"></ak-col>
-										<ak-col k-title="Country" k-width="110px" k-field="country"></ak-col>
-
-
-									</ak-grid>
-
-
+								</script>
+							
+								<div show.bind="busy.active" ref="spinner" class="splash">
+									<div class="message">fetching records</div>
+									<i class="fa fa-spinner fa-spin"></i>
 								</div>
+								<ak-grid class="flex-row-1 overflow-y-auto" id="grid" k-data-source.bind="datasource" k-widget.bind="grid" k-sortable.bind="{ mode: 'multiple',   allowUnsort: 'true'}"
+								 k-filterable.bind="{  mode: 'row' }" k-editable="popup" k-reorderable.bind="true" k-resizable.bind="true" k-on-edit.delegate="onEdit($event.detail)"
+								 k-toolbar.bind="['excel']" k-on-change.delegate="rowSelected($event.detail)" k-excel.bind="{ fileName:'Mailinglist.xlsx',allPages: true }"
+								 k-height.bind="600" k-column-menu.bind="true" k-pageable.bind="true">
+									<ak-col k-filterable.bind="false" k-width="160px" k-title="Cmd" k-command.bind="['edit','delete']" k-title="&nbsp;" k-locked.bind="true"
+									 k-lockable.bind="false"></ak-col>
+									<ak-col k-title="Salutation" k-width="110px" k-field="Salutation"></ak-col>
+									<ak-col k-field="LastName" k-filterable.bind="true" k-title="Last Name" k-width.bind="180" k-template="<button click.delegate='detailsEdit($event)' class='k-button'>#=LastName#</button>">
+									</ak-col>
+									<ak-col k-title="First Name" k-width="110px" k-field="FirstName"></ak-col>
+									<ak-col k-title="Types" k-width="110px" k-field="types" k-editor.bind="textAreaEditor"></ak-col>
+									<ak-col k-title="Artists" k-width="190px" k-field="artists" k-editor.bind="textAreaEditor"></ak-col>
 
+									<ak-col k-title="Genres" k-width="110px" k-field="genres" k-editor.bind="textAreaEditor"></ak-col>
+									<ak-col k-title="Addr" k-width="110px" k-field="addr"></ak-col>
+									<ak-col k-title="City" k-width="110px" k-field="city"></ak-col>
 
-								<!--  k-selectable="multiple"  xid no form store id hs prev vals  input-sm  vss none-->
-								<div class="form-group flex-column-1 margin-left-10">
+									<ak-col k-title="State" k-width="110px" k-field="state"></ak-col>
+									<ak-col k-title="Zip" k-width="110px" k-field="zip"></ak-col>
+									<ak-col k-title="Country" k-width="110px" k-field="country"></ak-col>
 
+									<br />
+								</ak-grid>
 
+							
+							
+
+							</div>
+							<!--  k-selectable="multiple"  xid no form store id hs prev vals  input-sm  vss none-->
+							<div class="form-group flex-column-1 margin-left-10">
+								<div class="form-group flex-column-1 Rtable-cell--highlight">
 									<div class="Rtable Rtable--2cols">
 
-
-
-										<div class="Rtable-cell-30 Rtable-cell--highlight">
-											<strong> cmds</strong>
-										</div>
-										<div class="Rtable-cell-70  Rtable-cell--highlight">
-											<button id="clearbtn" class="btn btn-primary" click.delegate="performClear()" type="button"><strong>C</strong>lear
-								search </button> </div>
 										<div class="Rtable-cell-30 Rtable-cell--highlight">
 											<strong> Catalog</strong>
 										</div>
 
 										<div class="Rtable-cell-70  Rtable-cell--highlight">
-											<strong> ${search.mailinglist}</strong>
+											<input disabled=true type="text " xid="catalog" class="form-control input-sm " value.bind="search.mailinglist">
 										</div>
 
 
@@ -197,13 +193,13 @@
 										<div class="Rtable-cell-100 Rtable-cell--highlight">
 
 
-											<strong> &nbsp;&nbsp;international</strong>
+													<strong> &nbsp;&nbsp;international</strong>
 											<input type="checkbox" id="international" checked.bind="search.international">
 											<strong> &nbsp;&nbsp;domestic</strong>
 											<input type="checkbox" id="notinternational" checked.bind="search.notinternational">
 
-										</div>
-
+											</div>
+  
 
 										<div class="Rtable-cell-30 Rtable-cell--highlight">
 											<strong> Contact Type </strong>
@@ -288,18 +284,28 @@
 
 								</div>
 							</div>
+
 						</div>
+					
+
+
 					</div>
 					<!--top left  -->
+
+
+
+
 					<!-- end middle and top right -->
+				</div>
 
 
 
-				</form>
-			</div>
-			<footerform class="flex-row-none">
-				inventory-
-				<span>&nbsp;&nbsp;
+
+			</form>
+		</div>
+		<footerform class="flex-row-none">
+			inventory-
+			<span>&nbsp;&nbsp;
 					<button class="btn btn-sm btn-primary " click.delegate="saveinventory(0)">
 						Save & Stay
 					</button>
@@ -312,16 +318,16 @@
 
 				</span>
 
-				<a href="https://artbased.com/api/v1/downloadonepdf/output/${currentItem.InventoryCode}.doc" class="btn btn-sm btn-primary">
-					<span class="glyphicon glyphicon-th-list"></span> Download Doc FactSheet
-				</a>
-				<span>&nbsp;&nbsp;
+			<a href="https://artbased.com/api/v1/downloadonepdf/output/${currentItem.InventoryCode}.doc" class="btn btn-sm btn-primary">
+				<span class="glyphicon glyphicon-th-list"></span> Download Doc FactSheet
+			</a>
+			<span>&nbsp;&nbsp;
 					<button class="btn btn-sm btn-danger " click.delegate="requestclose()">
 						Close
 					</button>
           <b>  ${message} </b>
 				</span>
 
-			</footerform>
+		</footerform>
 	</section>
 </template>

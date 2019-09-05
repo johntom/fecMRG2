@@ -1,5 +1,22 @@
 <template>
 
+	<!-- <require from="./docs.css"></require> -->
+	<style>
+		table thead tr {
+			display: block;
+		}
+
+		table th,
+		table td {
+			width: 80% //1200px;//fixed width
+		}
+
+		table tbody {
+			display: block;
+			height: 300px;
+			overflow: auto; //set tbody to auto
+		}
+	</style>
 	<section class="docs full-height flex-column-1 overflow-y-auto ignore">
 		<h4>
 			<i class="fa fa-folder-open"></i> Address
@@ -7,7 +24,6 @@
 				<i class="fa fa-plus"></i> Add Address
 			</a>
 		</h4>
-
 		<table class="table-condensed table">
 			<thead class="table-header-blue" data-sort="items.bind: currentItem.addresses; cols: ['WorkDate','Notes']">
 				<tr>
@@ -27,7 +43,7 @@
 
 				</tr>
 			</thead>
-			<tfoot>
+			<!-- <tfoot>
 				<tr>
 					<td></td>
 					<td></td>
@@ -39,7 +55,7 @@
 					<td></td>
 					<td></td>
 				</tr>
-			</tfoot>
+			</tfoot> -->
 			<tbody>
  		
 				<tr repeat.for="address of currentItem.addresses" with.bind="address">
@@ -48,9 +64,7 @@
         
         		<td width="220px">
             
-         <!-- <input type="textarea" lines=3 id="xContactAddress" class="form-control  input-sm" value.bind="address"></td> -->
-			
-
+      
 
       
       <textarea rows="3" cols="100" id="100" class="form-control input-sm" value.bind="address"></textarea>
@@ -73,9 +87,7 @@
 					<td width="120px"><input type="text" id="xContactZip" class="form-control  input-sm" value.bind="zip"></td>
 		<td width="100px"><input type="text" id="xContactCountry" class="form-control  input-sm" value.bind="Country"></td>
 			
-					<!-- <td width="100px"><input type="text" id="xContactCountry" class="form-control  input-sm" value.bind="country"></td> -->
-					<!-- <td width="220px"><input type="text" id="xAddressLetter" class="form-control  input-sm" value.bind="letter"></td> -->
-
+			
 					<td width="65px">
 						<input type="checkbox" id="Primary" checked.bind="Primary">
 
@@ -85,18 +97,11 @@
 
 
 
-					<!--if using edit <td width="300px">
-          	<span show.bind="!note.edit">${Notes}</span>
-
-						<input show.bind="note.edit" class="form-control input-sm" disabled.bind="!note.edit" type="text" value.bind="Notes">
-         	</td> -->
-
+				
 
 					<td width="225px">
 
-						<!-- <button class="btn btn-primary" click.delegate="saveitem(address,$index)">${ !address.edit ? 'Edit' : 'Save' }</button> -->
-						<!-- <button class="btn btn-success" click.delegate="modal(address,$index)">Pop</button> -->
-						<button class="btn btn-sm btn-danger" click.delegate="remove(address,$index)">           Delete            </button>
+							<button class="btn btn-sm btn-danger" click.delegate="remove(address,$index)">           Delete            </button>
 						<button class="btn btn-sm btn-primary" click.delegate="build(address,$index)">           Build    </button>
 
 					</td>

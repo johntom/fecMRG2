@@ -105,7 +105,7 @@
 
 		table tbody {
 			display: block;
-			height: 500px;
+			height: 450px;
 			overflow: auto; //set tbody to auto
 		}
 	</style>
@@ -130,17 +130,17 @@
 						</th>
 					</tr>
 			</thead>
-			<tfoot>
+			<!-- <tfoot>
 				<tr>
 					<td></td>
 					<td></td>
 				</tr>
-			</tfoot>
+			</tfoot> -->
 			<tbody>
 				<tr repeat.for="genre of currentItem.genres" with.bind="genre">
 
 							<td width="350px">
-<!-- opt opt.id or opt.description -->
+
 								<select id="genre" class="form-control  input-sm" value.bind="GenreID"> 
                       <option model.bind="null">Choose...filterOnCode</option> 
                          <option repeat.for="opt of appService.codesGenre " model.bind="opt.id">
@@ -150,10 +150,7 @@
 
 							</td>
 
-							<!-- <td width="300px">
-
-								<input class="form-control input-sm" type="text" value.bind="GenreNotes">
-							</td> -->
+					
 
 
 
@@ -171,3 +168,9 @@
 
 	</section>
 </template>
+
+<!-- opt opt.id or opt.description -->
+		<!-- <td width="300px">
+
+								<input class="form-control input-sm" type="text" value.bind="GenreNotes">
+							</td> -->
