@@ -72,13 +72,29 @@ export class SearchResults {
         id: "id", // Must assign id for update to work
         fields: {
           // LegacyID: { type: "number" }, // scan template
-          Artist: { type: "string" },
-          artist: [
-            {
-              "ArtistName": { type: "string" },
-              "yearofBirth": { type: "string" }
-            }],
-          MediumSupportobj: { "Description": { type: "string" } },
+          // Artist: { type: "string" },
+          // artist: [
+          //   {
+          //     "ArtistName": { type: "string" },
+          //     "yearofBirth": { type: "string" }
+          //   }],
+
+
+          artist: { defaultValue: {} },
+          ArtistName: {
+            type: "string",
+            from: "artist.ArtistName"
+          },
+          MediumSupportobj: { defaultValue: {} },
+          Medium: {
+            type: "string",
+            from: "MediumSupportobj.Description"
+          },
+          // insco: { defaultValue: {} },
+          //           NAME: {
+          //             type: "string",
+          //             from: "insco.FIRST_NAME"
+          //           },
           "currentocationname": { type: "string" },
           "ownedbyname": { type: "string" },// ownerstatus
           SoldDate: { type: "date" },
@@ -141,7 +157,8 @@ export class SearchResults {
 
     //  serverPaging: true,
     //   serverSorting: true,
-    sort: { field: 'InventoryCode', dir: 'asc' },
+    // sort: { field: 'InventoryCode', dir: 'asc' },
+    sort: [{ field: 'ArtistName', dir: 'asc' }, { field: 'Title', dir: 'asc' }],
 
 
     // aggregate: [{ field: "type", aggregate: "count" },
@@ -167,7 +184,7 @@ export class SearchResults {
     this.appService.refreshinvLoaded = false;
     //   this.currentsavedlist;
     this.epoch = moment().unix();
-     this.busy = {}
+    this.busy = {}
     this.busy.active = true
   }
   save() {
@@ -176,11 +193,11 @@ export class SearchResults {
   }
 
   load() {
-  //  this.busy.active = true
+    //  this.busy.active = true
     var options = localStorage["kendo-grid-options"];
     if (options) {
       this.grid.setOptions(JSON.parse(options));
-    //  this.busy.active = false
+      //  this.busy.active = false
     }
   }
 
@@ -316,7 +333,7 @@ export class SearchResults {
     ///api/v1/inventory/getall
     if (this.appService.inventorysearchresults && !this.appService.refreshinvLoaded) {
       // this.spinner.remove()
-        this.busy.active = false
+      this.busy.active = false
       return this.appService.inventorysearchresults;
 
     } else {
@@ -326,7 +343,7 @@ export class SearchResults {
           this.inventory = jsonRes.data;
           this.recCount = inv.length;
           // this.spinner.remove()
-           this.busy.active = false
+          this.busy.active = false
           if (inv === 0 || inv.length === 0) {
             this.dialogService.open({ viewModel: Promptmess, model: `no records found  `, lock: true }).whenClosed(async response => { });
             let tab = this.appService.tabs.find(f => f.isSelected);
@@ -357,8 +374,8 @@ export class SearchResults {
         this.inventory = jsonRes.data;
         this.recCount = inv.length;
         // this.spinner.remove()
-         this.busy.active = false
-        
+        this.busy.active = false
+
         if (inv === 0 || inv.length === 0) {
           this.message = ' no records found '
           let tab = this.appService.tabs.find(f => f.isSelected);

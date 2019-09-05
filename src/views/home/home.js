@@ -7,8 +7,8 @@ import { ApiService } from '../../utils/servicesApi';
 
 export class Home {
   heading = "MRG Home Page";
-  version = ' 304.30 '  
-  versionDate = 'Tue 9/3/2019 4pm'
+  version = ' 304.31'  
+  versionDate = 'Thur 9/5/2019 12pm'
   prevversion = ' 303.52 '
   prevversionDate = 'Mon 8/5/2019 5pm'
   issues = [ 
@@ -428,7 +428,7 @@ export class Home {
         this.appService.codesAdmin = codesAdmin//41,
         // console.log(' this.orgsList', this.appService.orgsList)
         console.log(' this.appService.codesGenre', this.appService.codesGenre)
-        console.log(' this.artistList', this.appService.artistList.length)
+       // console.log(' this.artistList', this.appService.artistList.length)
         console.log(' this.codesPhotoFormat', this.appService.codesPhotoFormat)//codesProvenanceLocation) 
 
 
