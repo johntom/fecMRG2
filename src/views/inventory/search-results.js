@@ -151,7 +151,7 @@ export class SearchResults {
         }
       }
     },
-    // pageSize: 10,
+     pageSize: 15,
 
     height: 400,
 

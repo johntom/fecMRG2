@@ -6,6 +6,7 @@ import { PromptServ } from '../../services/promptserv';
 import { ApiService } from '../../utils/servicesApi';
 import { Promptyn } from '../../services/promptyn';
 import { computedFrom } from 'aurelia-framework';
+
 export class Promptrepro {
   static inject = [DialogController, ApplicationService, MyDataService, DialogService, ApiService];
 
@@ -27,22 +28,22 @@ export class Promptrepro {
 
   activate(currentmodel) {
     // this.item = currentmodel.item;
-   
+
     this.currentItem = currentmodel.currentItem
-     console.log('ex '+this.currentItem.exhibition)
+    console.log('ex ' + this.currentItem.exhibition)
     this.item = currentmodel.item
     this.popuptype = currentmodel.popuptype;
-    this.heading="Reproduction";
+    this.heading = "Reproduction";
     // this.heading = "Reproduction "//exhibit batchno= "+ this.item.ReproductionExhibit
-      (this.popuptype === 0) ? this.showbatch = false : this.showbatch = true // from action
+    (this.popuptype === 0) ? this.showbatch = false : this.showbatch = true // from action
     //  this.popuptype = 0;// from inventory
     //     currentModel.popuptype = 1;// from action
     //     currentModel.popuptype = 2;// from actionbatch
-this.item.exhibitsel=this.item.ReproductionExhibit
+    // 1 this.item.exhibitsel=this.item.ReproductionExhibit
   }
 
   get ReproductionAuthor() {
-    return `${this.AuthorLast},  ${this.AuthorFirst}`;
+    return `${this.item.AuthorLast},  ${this.item.AuthorFirst}`;
   }
   attached() {
 
@@ -54,12 +55,14 @@ this.item.exhibitsel=this.item.ReproductionExhibit
   }
 
 
- 
-  save() { 
+
+  save() {
     this.currentItem = this.item
     // this.controller.ok('added')
-    this.item.exhibitsel=this.item.ReproductionExhibit
+    this.item.exhibitsel = this.item.ReproductionExhibit
+    this.item.ReproductionAuthor = `${this.item.AuthorLast},  ${this.item.AuthorFirst}`
+
     this.controller.ok(this.item)
   }
-} 
+}
 

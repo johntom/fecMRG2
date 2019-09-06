@@ -1,5 +1,6 @@
 <template>
 		<require from="../../resources/value-converters/stringify"></require>
+    	<require from="../../resources/value-converters/date-format"></require>
 	<ux-dialog>
 		<ux-dialog-header class="modal-header modal-header-success">
 			<div class="alert alert-danger">
@@ -18,14 +19,7 @@
 						</tr>
 					</tfoot>
 					<tbody>
-						<!-- <div class="Rtable Rtable--2cols">
-							<div class=" Rtable-cell-30 Rtable-cell--highlight">
-								<strong> id </strong> 
-							</div>
-							<div class="Rtable-cell-70  Rtable-cell--light">
-								<input type="text" id="idx" class="form-control input-sm " value.bind="item.id">
-							</div>
-						</div> -->
+	
 						<div class="Rtable Rtable--2cols">
 							<div class=" Rtable-cell-30 Rtable-cell--highlight">
 								<strong> Title </strong>
@@ -48,9 +42,9 @@
 								<strong>Location </strong>
 							</div>
 							<div class="Rtable-cell-70  Rtable-cell--light">
-								<select id="ExhibitLocation" class="form-control input-sm" value.bind="item.ExhibitLocation"> 
+								<select id="ExhibitLocation" class="form-control input-sm" value.bind="item.ExhibitLocationDesc"> 
                       <option model.bind="null">Choose...</option> 
-                     <option repeat.for="opt of appService.codesProvenanceLocation" model.bind="opt.id">
+                     <option repeat.for="opt of appService.codesProvenanceLocation" model.bind="opt.Description">
                        <!-- codesProvenanceLocation -->
                            ${opt.Description} 
                       </option> 
@@ -58,6 +52,9 @@
 
 							</div>
 						</div>
+						
+
+
 
 
 						<div class="Rtable Rtable--2cols">
@@ -75,10 +72,11 @@
 								<strong> Sort Date </strong>
 							</div>
 							<div class="Rtable-cell-70  Rtable-cell--light">
-								<input type="date" id="ExhibitSortDate" class="form-control input-sm au-target" value.bind="item.ExhibitSortDate">
+								<input type="date" id="ExhibitSortDate" class="form-control input-sm au-target" value.bind="item.ExhibitSortDate | dateFormat">
 							</div>
 						</div>
-
+ <!-- <ak-col k-title="Sort Date"  k-field="ExhibitSortDate" k-filterable.bind="true" k-format="{0:MM/dd/yyyy}" k-width.bind="90">	</ak-col> 
+		  -->
 
 
 

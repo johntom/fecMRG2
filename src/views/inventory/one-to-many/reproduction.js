@@ -56,13 +56,14 @@ export class Reproduction {
           AuthorFirst: { type: "string", editable: true },
           ReproductionPage: { type: "string", editable: true },
           ColorBW: { type: "string", editable: true },
-          ReproductionExhibit: { type: "string", editable: true },
+          // ReproductionExhibit: { type: "string", editable: true },
+          ReproductionExhibit: { type: "number" },
           Editor: { type: "boolean" }, // scan template
           ReproductionSortDate: { type: "date" },
         }
       }
     },
-    // pageSize: 12,
+     pageSize: 12,
 
   })
 
@@ -117,30 +118,30 @@ export class Reproduction {
   //             "ExhibitMemo" : "", 
   // "id" : NumberInt(8)
   //options.field=ReproductionExhibit 
-  exhibitionDropDownEditor(container, options) {
-    //  $('<input required data-text-field="ExhibitTitle" data-value-field="id" data-bind="value:' + options.field + '"/>')
-    console.log('options.field', container, options, options.field)
-    // $('<input  data-text-field="ExhibitTitle" data-value-field="id" data-bind="value:' + options.field + '"/>')
-    // must store id for factsheet as title is not uniq
-    //  
-    $('<input  data-text-field="id" data-value-field="id" data-bind="value:' + options.field + '"/>')
-      .appendTo(container)
-      .kendoDropDownList({
-        autoBind: false,
-        type: 'json',
-        dataSource: {
-          transport: {
-            read: (options) => {
-              options.success(this.exhibitiondropdown);
-              // this.loadExhData()
-              //   .then((exdata) => {
-              //     options.success(exdata);
-              //   });
-            },
-          }
-        }
-      });
-  }
+  // exhibitionDropDownEditor(container, options) {
+  //   //  $('<input required data-text-field="ExhibitTitle" data-value-field="id" data-bind="value:' + options.field + '"/>')
+  //   console.log('options.field', container, options, options.field)
+  //   // $('<input  data-text-field="ExhibitTitle" data-value-field="id" data-bind="value:' + options.field + '"/>')
+  //   // must store id for factsheet as title is not uniq
+  //   //  
+  //   $('<input  data-text-field="id" data-value-field="id" data-bind="value:' + options.field + '"/>')
+  //     .appendTo(container)
+  //     .kendoDropDownList({
+  //       autoBind: false,
+  //       type: 'json',
+  //       dataSource: {
+  //         transport: {
+  //           read: (options) => {
+  //             options.success(this.exhibitiondropdown);
+  //             // this.loadExhData()
+  //             //   .then((exdata) => {
+  //             //     options.success(exdata);
+  //             //   });
+  //           },
+  //         }
+  //       }
+  //     });
+  // }
 
   typeDropDownEditor(container, options) {
     $('<input required data-text-field="Description" data-value-field="Description" data-bind="value:' + options.field + '"/>')
@@ -248,23 +249,22 @@ export class Reproduction {
     // return this.appService.actionsearchresults
   }
 
-  detailsEdit(e) {  
+  detailsEdit(e) {   
     let grid = this.grid;
-    let targetRow = $(e.target).closest("tr");
+    let targetRow = $(e.target).closest("tr"); 
     grid.select(targetRow);
     let selectedRow = grid.select();
     let dataItem = grid.dataItem(selectedRow);
-    if (dataItem.ReproductionExhibit===undefined || dataItem.ReproductionExhibit===null) 
-    dataItem.ReproductionExhibit=-1
+    if (dataItem.ReproductionExhibit===undefined || dataItem.ReproductionExhibit===null) dataItem.ReproductionExhibit=-1
     let currentModel = {}
     currentModel.currentItem = this.currentItem
     currentModel.item = dataItem
     this.dialogService.open({ viewModel: Promptrepro, model: currentModel, lock: true }).whenClosed(response => {
       if (!response.wasCancelled) {
         console.log('dataItem', dataItem);
-    dataItem.ReproductionExhibit=   response.output.exhibitsel ;
+     dataItem.ReproductionExhibit=   response.output.exhibitsel ; // dont know why it changes to null
         // not needed this.currentItem.reproduction[0]=dataItem
-        this.datasource.read()
+        this.datasource.read() 
 
       } else {
         console.log('cancel');

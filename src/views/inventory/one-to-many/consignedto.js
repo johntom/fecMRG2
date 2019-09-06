@@ -7,9 +7,10 @@ import { DialogService } from 'aurelia-dialog';
 import { Promptyn } from '../../../services/promptyn';
 
 import { Promptorg } from '../promptorg';
+import { Promptconsignedto } from '../../prompt/promptConsignedto';
 
 @inject(ApiService, ApplicationService, DialogService)
-export class Conssignedto {
+export class Consignedto {
   heading = 'DataForm HEADER...';
   footer = 'DataForm FOOTER...';
   recordId = '';
@@ -19,14 +20,7 @@ export class Conssignedto {
   scrollable = { virtual: true };
   datasource = new kendo.data.DataSource({
     transport: {
-      // read: (options) => {
-      //   //   this.currentItem.reproduction
-      //   this.loadData()
-      //     .then((repro) => {
-      //       console.log(' repro datasource ', repro[0]);
-      //       options.success(repro);
-      //     });
-      // },
+
       read: (options) => {
         options.success(this.currentItem.consignedto);
         this.currentItem.consignedto = this.datasource._data // sync to our model
@@ -105,31 +99,31 @@ export class Conssignedto {
       if (orgobj !== undefined) this.currentItem.consignedtoname = orgobj.OrgName
     }
   }
-  addDetail() {
-    let consignedto = this.currentItem.consignedto
-    let flag = false
-    let item
+  // addDetail() {
+  //   let consignedto = this.currentItem.consignedto
+  //   let flag = false
+  //   let item
 
-    let dd = moment().format('YYYY-MM-DD')
-    if (consignedto === undefined) {
-      flag = true
-      consignedto = []
-    }
+  //   let dd = moment().format('YYYY-MM-DD')
+  //   if (consignedto === undefined) {
+  //     flag = true
+  //     consignedto = []
+  //   }
 
-    item = {
-      id: this.epoch, eloc: { id: '5d5009e8ee1af1dc544c05e8', Description: 'New York, NY' }, ConsignmentNotes: '',
-      ConsignedStartDate: dd,
-      ConsignedEndDate: dd,
-      ArtworkReleased: dd,
-      CreatedDate: dd,
-      consignedtoname: { OrgName: "", State: "", _id: "5" }
-    }
+  //   item = {
+  //     id: this.epoch, eloc: { id: '5d5009e8ee1af1dc544c05e8', Description: 'New York, NY' }, ConsignmentNotes: '',
+  //     ConsignedStartDate: dd,
+  //     ConsignedEndDate: dd,
+  //     ArtworkReleased: dd,
+  //     CreatedDate: dd,
+  //     consignedtoname: { OrgName: "", State: "", _id: "5" }
+  //   }
 
-    //     econsignedto: { OrgName: "Ho, Christina", State: "", _id: "5d5005c2db929d74487d0c69" }, CreatedDate: dd
+  //   //     econsignedto: { OrgName: "Ho, Christina", State: "", _id: "5d5005c2db929d74487d0c69" }, CreatedDate: dd
 
-    consignedto.unshift(item)
-    if (flag) this.currentItem.consignedto = consignedto
-  }
+  //   consignedto.unshift(item)
+  //   if (flag) this.currentItem.consignedto = consignedto
+  // }
   saveitem(item, index) {
     item.edit = !item.edit
 
@@ -158,52 +152,58 @@ export class Conssignedto {
   save(note, index) {
   }
 
-  // this.appService.orgsList
-  orgTemplate = '${consignedtoname ? consignedtoname.OrgName : ""}';
-  orgDropDownEditor(container, options) {
-    $('<input required data-text-field="OrgName" data-value-field="_id" data-bind="value:' + options.field + '"/>')
-      .appendTo(container)
-      .kendoDropDownList({
-        autoBind: false,
-        type: 'json',
-        dataSource: this.appService.orgsList,
-        dataTextField: "OrgName",
-        dataValueField: "_id"
-      });
+  activate(params, routeConfig) {
+
   }
 
-  locationTemplate = '${eloc ? eloc.Description : ""}';
-  locationDropDownEditor(container, options) {
-    $('<input required data-text-field="Description" data-value-field="id" data-bind="value:' + options.field + '"/>')
-      .appendTo(container)
-      .kendoDropDownList({
-        autoBind: false,
-        type: 'json',
-        dataSource: this.appService.codesProvenanceLocation
-      });
-  }
-  showModal(fieldname, index) {
-    this.currentItem.fieldname = fieldname
-    this.currentItem.ConsignedTo = this.currentItem.consignedto[index].ConsignedTo
-    this.currentItem.consignedtoname = this.currentItem.consignedto[index].consignedtoname
 
+  addConsignedto() {
+     let consignedto = this.currentItem.consignedto
+    let flag = false
+    let item
 
-    // this.dialogService.open({ viewModel: Prompt, model: this.currentItem, lock: false }).whenClosed(response => {
-    this.dialogService.open({ viewModel: Promptorg, model: this.currentItem, lock: true }).whenClosed(response => {
+    let dd = moment().format('YYYY-MM-DD')
+    if (consignedto === undefined) {
+      flag = true
+      consignedto = []
+    }
+    // item = {
+    //   id: this.epoch, ReproductionAuthor: '', AuthorFirst: '', AuthorLast: '', ReproductionTitle: '',
+    //   ReproductionName: '', ReproductionLocationDesc: '', ReproductionDate: '', ReproductionPage: '',
+    //   Sequence: '', ReproductionTypeDesc: '', ReproductionPage: '', ColorBWDesc: '', ReproductionSortDate: '',
+    //   Editor: false
+    // }
+    item = {
+      id: this.epoch, eloc: { id: '5d5009e8ee1af1dc544c05e8', Description: 'New York, NY' }, ConsignmentNotes: '',
+      ConsignedStartDate: dd,
+      ConsignedEndDate: dd,
+      ArtworkReleased: dd,
+      CreatedDate: dd,
+      consignedtoname: { OrgName: "", State: "", _id: "5" }
+    }
 
-      this.currentItem.consignedto[index].ConsignedTo = this.currentItem.ConsignedTo
-      this.currentItem.consignedto[index].consignedtoname = this.currentItem.consignedtoname
+    consignedto.unshift(item)
+    if (flag) this.currentItem.consignedto = consignedto
+    let currentModel = {}
+    currentModel.currentItem = this.currentItem
+    currentModel.item = item
+    currentModel.popuptype = 0;
+
+    this.dialogService.open({ viewModel: Promptconsignedto, model: currentModel, lock: true }).whenClosed(response => {
+
       if (!response.wasCancelled) {
-        // console.log('Delete') InsuredBy
-        // let notes = this.currentItem.notes
-        // notes.splice(index, 1)// start, deleteCount)
+        console.log('dataItem', item);
+        this.currentItem.consignedto[0] = item
+        this.datasource.read()
+
       } else {
         console.log('cancel');
       }
-      console.log(response.output);
+
+      // this.currentItem.reproduction = this.datasource._data 
+      console.log(response)//.output);
     });
-  }
-  attached() {
 
   }
+
 }

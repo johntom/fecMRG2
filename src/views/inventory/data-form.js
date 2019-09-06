@@ -682,6 +682,13 @@ export class DataForm {
     //  let createopt = 2; // 1 is from tab
     //  let rr = await this.rtfService.createRTF(createopt)
 
+/// to prevent dirty  \\\
+if (this.currentItem.conservation !==undefined && this.currentItem.conservation.length===0){ delete this.currentItem.conservation }
+if (this.currentItem.museumloan !==undefined && this.currentItem.museumloan.length===0){ delete this.currentItem.museumloan }
+if (this.currentItem.consignedto !==undefined &&  this.currentItem.consignedto.length===0){ delete this.currentItem.consignedto }
+
+
+
 
     let savetime = moment().format('MM/DD/YY h:mm:ss a')
     if (this.recordId === 'create') {

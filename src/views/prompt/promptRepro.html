@@ -82,19 +82,7 @@
 									<input type="text" id="xReproductionName" class="form-control input-sm " value.bind="item.ReproductionName">
 								</div>
 							</div>
-							<!-- <div class="Rtable Rtable--2cols">
-								<div class=" Rtable-cell-30 Rtable-cell--highlight">
-									<strong> Location </strong>
-								</div>
-								<div class="Rtable-cell-70 Rtable-cell--light">
-									<select id="ReproductionLocation" class="form-control  input-sm" value.bind="item.ReproductionLocation"> 
-                      <option model.bind="null">Choose...filterOnCode</option> 
-                         <option repeat.for="opt of appService.codesProvenanceLocation" model.bind="opt.id">
-                    ${opt.Description} 
-                      </option> 
-                    </select>
-								</div>
-							</div> -->
+						
 							<div class="Rtable Rtable--2cols">
 								<div class=" Rtable-cell-30 Rtable-cell--highlight">
 									<strong> Location </strong>
@@ -202,18 +190,18 @@
 									</div>
 									<div class="Rtable-cell-70  Rtable-cell--light">
 										<input type="text" id="exhibitionbatchno" class="form-control input-sm " value.bind="item.ReproductionExhibitBatchNo">
-										<!-- ${batchno} -->
+										<!-- ${batchno} --> 
 										<!-- <textarea id="exhibitionbatchno" cols="66" rows="10" class="form-control input-sm" wrap value.bind="item.ReproductionExhibit">	</textarea> -->
 									</div>
 								</div>
 							</div>
 							<div class="Rtable Rtable--2cols">
 								<div class=" Rtable-cell-30 Rtable-cell--highlight">
-									<strong> Select Exhibition: ${item.ReproductionExhibit} </strong>
+									<strong> Select Exhibition: ${item.ReproductionExhibit} </strong> 
 								</div>
 								<div class="Rtable-cell-70  Rtable-cell--light">
 									<select id="ReproductionExhibit" class="form-control  input-sm" value.bind="item.ReproductionExhibit"> 
-                      <option model.bind="null">Choose...</option> 
+                      <option model.bind="null" >Choose...</option> 
                          <option change.delegate="changeSelect(opt)" repeat.for="opt of currentItem.exhibition " 
                          model.bind="opt.id">
                ${opt.id}  /  ${opt.ExhibitTitle} /  ${opt.ExhibitSponser}

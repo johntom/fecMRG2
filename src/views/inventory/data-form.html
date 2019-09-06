@@ -314,9 +314,49 @@
 												</option>
 											</select>
 										</div>
-										<!-- end seight->
+										<!-- end seight -->
+	<div class="Rtable-cell Rtable-cell--highlight">
+											<strong>Framed</strong>
+										</div>
+										<div class="Rtable-cell">
+											<input type="number " xid="FramedHeight " class="form-control  " value.bind="currentItem.FramedHeight">
 
-									
+										</div>
+										<div class="Rtable-cell">
+
+											<select style="width: 45px " value.bind="currentItem.FramedHeight16">
+												<option model.bind="''">''</option>
+												<option repeat.for="measure of measures " model.bind="measure.name">
+													${measure.name}
+												</option>
+											</select>
+										</div>
+										<div class="Rtable-cell">
+											<input type="number " xid="FramedWidth " class="form-control  " value.bind="currentItem.FramedWidth">
+
+										</div>
+										<div class="Rtable-cell">
+
+											<select style="width: 45px " value.bind="currentItem.FramedWidth16">
+												<option model.bind="''">''</option>
+												<option repeat.for="measure of measures " model.bind="measure.name">
+													${measure.name}
+												</option>
+											</select>
+										</div>
+										<div class="Rtable-cell">
+											<input type="number " xid="FramedDepth " class="form-control  " value.bind="currentItem.FramedDepth">
+
+										</div>
+										<div class="Rtable-cell">
+
+											<select style="width: 45px " value.bind="currentItem.FramedDepth16">
+												<option model.bind="''">''</option>
+												<option repeat.for="measure of measures " model.bind="measure.name">
+													${measure.name}
+												</option>
+											</select>
+										</div>
 										<!-- end framed -->
 									</div>
 								</div>

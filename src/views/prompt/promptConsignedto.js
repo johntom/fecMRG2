@@ -5,10 +5,11 @@ import { DialogService } from 'aurelia-dialog';
 import { PromptServ } from '../../services/promptserv';
 import { ApiService } from '../../utils/servicesApi';
 import { Promptyn } from '../../services/promptyn';
+import { Promptorg } from '../inventory/promptorg';
 
 export class Promptconsignedto {
   static inject = [DialogController, ApplicationService, MyDataService, DialogService, ApiService];
- 
+
 
   constructor(controller, appService, dataService, dialogService, api) {
     this.controller = controller;
@@ -21,16 +22,19 @@ export class Promptconsignedto {
     // this.addlist//='aaa'
     this.dialogService = dialogService
     this.api = api
+    this.showbatch = false
   }
- 
+
 
   activate(currentmodel) {
-    // this.item = currentmodel.item;
+   
     this.currentItem = currentmodel.currentItem
+    // console.log('ex ' + this.currentItem.exhibition)
     this.item = currentmodel.item
-    this.heading = "Consigned to "//exhibit batchno= "+ this.item.ReproductionExhibit
- //(currentModel.popuptype === 0) ? this.showbatch = false :this.showbatch = true // from action
-    
+    this.popuptype = currentmodel.popuptype;
+    this.heading = "Consigned To";
+    // (this.popuptype === 0) ? this.showbatch = false : this.showbatch = true // from action
+
   }
 
 
@@ -43,12 +47,23 @@ export class Promptconsignedto {
     let findvalue = this.myDatalistA.value
   }
 
+  showModal(fieldname) {
+    this.currentItem.fieldname = fieldname
+    this.dialogService.open({ viewModel: Promptorg, model: this.currentItem, lock: true }).whenClosed(response => {
 
+      if (!response.wasCancelled) {
+     
+      } else {
+        console.log('cancel');
+      }
+      console.log(response.output);
+    });
+  }
 
   save() {
     this.currentItem = this.item
-    // this.controller.ok('added')
-     this.controller.ok(this.item)
+
+    this.controller.ok(this.item)
   }
 }
 

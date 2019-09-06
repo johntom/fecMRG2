@@ -39,6 +39,8 @@ export class SearchResults {
       }
     },
     pageSize: 12,
+      sort: [{ field: 'OrgName', dir: 'asc' }],
+
   })
 
   constructor(router, api, utilService, appService, dataService) {

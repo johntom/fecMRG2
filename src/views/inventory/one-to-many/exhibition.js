@@ -90,50 +90,50 @@ export class Exhibition {
     this.exhibition = this.appService.currentItem.exhibition   // this.currentItem.exhibition
   }
 
-  staffTemplate = '${assignto ? assignto.StaffName : ""}';
-  staffDropDownEditor(container, options) {
-    $('<input data-text-field="StaffName" data-value-field="staffid" data-bind="value:' + options.field + '"/>')
-      .appendTo(container)
-      .kendoDropDownList({
-        autoBind: false,
-        type: 'json',
-        dataSource: {
-          transport: {
-            read: "https://backend.brmflow.com/api/v1/staff/find/"
-          }
-        }
-      });
-  }
+  // staffTemplate = '${assignto ? assignto.StaffName : ""}';
+  // staffDropDownEditor(container, options) {
+  //   $('<input data-text-field="StaffName" data-value-field="staffid" data-bind="value:' + options.field + '"/>')
+  //     .appendTo(container)
+  //     .kendoDropDownList({
+  //       autoBind: false,
+  //       type: 'json',
+  //       dataSource: {
+  //         transport: {
+  //           read: "https://backend.brmflow.com/api/v1/staff/find/"
+  //         }
+  //       }
+  //     });
+  // }
   //  <ak-col k-field="ExhibitLocation" k-title="ExhLocation" k-width="180px"
   //   k-editor.bind="locDropDownEditorID" k-template.bind="locTemplate"></ak-col>
   //  <ak-col k-field="eloc" k-title="eloc" k-width="180px"
   //   k-editor.bind="locationDropDownEditor"k-template.bind="locationTemplate"
   //    k-filterable.bind="false" k-groupable.bind="false" ></ak-col>
 
-  locationTemplate = '${eloc ? eloc.Description : ""}';
-  locationDropDownEditor(container, options) {
-    $('<input data-text-field="Description" data-value-field="id" data-bind="value:' + options.field + '"/>')
-      .appendTo(container)
-      .kendoDropDownList({
-        autoBind: false,
-        type: 'json',
-        dataSource: this.appService.codesProvenanceLocation
-      });
-  }
+  // locationTemplate = '${eloc ? eloc.Description : ""}';
+  // locationDropDownEditor(container, options) {
+  //   $('<input data-text-field="Description" data-value-field="id" data-bind="value:' + options.field + '"/>')
+  //     .appendTo(container)
+  //     .kendoDropDownList({
+  //       autoBind: false,
+  //       type: 'json',
+  //       dataSource: this.appService.codesProvenanceLocation
+  //     });
+  // }
 
-  locTemplate = '${ExhibitLocation ? ExhibitLocation.Description" : ""}';
+  // locTemplate = '${ExhibitLocation ? ExhibitLocation.Description" : ""}';
 
-  locDropDownEditor(container, options) {
-    $('<input data-text-field="Description" data-value-field="Description" data-bind="value:' + options.field + '"/>')
-      .appendTo(container)
-      .kendoDropDownList({
-        autoBind: false,
-        type: 'json',
-        dataSource: this.appService.codesProvenanceLocation,
-        dataTextField: "Description",
-        dataValueField: "Description"
-      });
-  }
+  // locDropDownEditor(container, options) {
+  //   $('<input data-text-field="Description" data-value-field="Description" data-bind="value:' + options.field + '"/>')
+  //     .appendTo(container)
+  //     .kendoDropDownList({
+  //       autoBind: false,
+  //       type: 'json',
+  //       dataSource: this.appService.codesProvenanceLocation,
+  //       dataTextField: "Description",
+  //       dataValueField: "Description"
+  //     });
+  // }
 
 
   saveitem(item, index) {

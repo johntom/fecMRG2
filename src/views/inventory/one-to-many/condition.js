@@ -131,6 +131,7 @@ textAreaEditor(container, options) {
       condition = []
     }
     item = {  id:this.epoch, Condition: '',ConditionDate:dd}
+     
     condition.unshift(item)
     if (flag) this.currentItem.condition = condition
   }

@@ -51,7 +51,8 @@ export class Photo {
       model: {
         id: "id",
         fields: {
-          Date: { type: "date", editable: true },
+          // Date: { type: "date", editable: true },
+          PhotoDate: { type: "date", editable: true },
           Note: { type: "string", editable: true },
           Precons: { type: "boolean" },
           PhotoTaken: { defaultValue: 1, type: "number" },
@@ -218,7 +219,10 @@ export class Photo {
     }
     // Photogpraher: { defaultValue:'Ryan Sobotka' },
     // Format: { defaultValue:'8 x 10' },
-    item = { id: this.epoch, PhotoTaken: 1, Date: dd, Note: '', Photographer: 'Ryan Sobotka', Format: 'professional high-rez digital tiff', Precons: false }
+    // item = { id: this.epoch, PhotoTaken: 1, Date: dd, Note: '', Photographer: 'Ryan Sobotka', Format: 'professional high-rez digital tiff', Precons: false }
+   item = { id: this.epoch, PhotoTaken: 1, PhotoDate: dd, Note: '', Photographer: 'Ryan Sobotka', Format: 'professional high-rez digital tiff', Precons: false }
+   
+   
     photo.unshift(item)
     if (flag) this.currentItem.photo = photo
   }
