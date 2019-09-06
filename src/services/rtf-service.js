@@ -139,7 +139,9 @@ export class RtfService {
         ct++
         // check to see if link in repo (loop thru exhibit and find repo match)
         if (reproduction !== undefined) {
-          let eid = reproduction.findIndex(x => x.ReproductionExhibit === item.id)
+  // let eid = reproduction.findIndex(x => x.ReproductionExhibit === item.id)
+// i replace with exhibitsel
+ let eid = reproduction.findIndex(x => x.exhibitsel === item.id)
           let reporec
           linkPageNo = ''
           if (eid !== -1) {
@@ -454,7 +456,9 @@ export class RtfService {
     if (edition !== undefined) {
       let a2 = ''
       let a3 = ''
-      this.inscribedText = ''
+      // this.inscribedText = ''
+       this.EditionCommentFormat = ''
+      
       let semisCount = (edition).match('/;/g')
       let strCount = (edition).match(new RegExp(";", "g"))
       let colonPos
@@ -577,7 +581,9 @@ export class RtfService {
     if (this.currentItem.AltID === undefined) this.currentItem.AltID = ''
 
     //  this.currentItem.inscribedText=this.currentItem.inscribedText+''
-    if (this.currentItem.inscribedText !== '') {
+    // /?????????????????????????????????????????
+    // if (this.currentItem.inscribedText !== '') {
+       if (this.inscribedText !== '') {
       headerinfo1 += ` ${this.inscribedText}</br> `
       headerinfo2 += ` ${this.inscribedText}</br> `
     }

@@ -27,7 +27,9 @@ export class Promptrepro {
 
   activate(currentmodel) {
     // this.item = currentmodel.item;
+   
     this.currentItem = currentmodel.currentItem
+     console.log('ex '+this.currentItem.exhibition)
     this.item = currentmodel.item
     this.popuptype = currentmodel.popuptype;
     this.heading="Reproduction";
@@ -36,7 +38,7 @@ export class Promptrepro {
     //  this.popuptype = 0;// from inventory
     //     currentModel.popuptype = 1;// from action
     //     currentModel.popuptype = 2;// from actionbatch
-
+this.item.exhibitsel=this.item.ReproductionExhibit
   }
 
   get ReproductionAuthor() {

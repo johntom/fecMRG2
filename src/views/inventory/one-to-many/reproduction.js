@@ -254,7 +254,8 @@ export class Reproduction {
     grid.select(targetRow);
     let selectedRow = grid.select();
     let dataItem = grid.dataItem(selectedRow);
-    if (dataItem.ReproductionExhibit===undefined || dataItem.ReproductionExhibit===null) dataItem.ReproductionExhibit=-1
+    if (dataItem.ReproductionExhibit===undefined || dataItem.ReproductionExhibit===null) 
+    dataItem.ReproductionExhibit=-1
     let currentModel = {}
     currentModel.currentItem = this.currentItem
     currentModel.item = dataItem

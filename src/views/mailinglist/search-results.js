@@ -90,7 +90,7 @@ export class SearchResults {
         }
       }
     },
-    pageSize: 14, 
+    pageSize: 12, 
 sort: [{ field: 'LastName', dir: 'asc' }, { field: 'FirstName', dir: 'asc' }],
 
   })

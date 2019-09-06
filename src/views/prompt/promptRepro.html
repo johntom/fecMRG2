@@ -209,10 +209,25 @@
 							</div>
 							<div class="Rtable Rtable--2cols">
 								<div class=" Rtable-cell-30 Rtable-cell--highlight">
-									<strong> Select Exhibition </strong>
+									<strong> Select Exhibition: ${item.ReproductionExhibit} </strong>
 								</div>
 								<div class="Rtable-cell-70  Rtable-cell--light">
 									<select id="ReproductionExhibit" class="form-control  input-sm" value.bind="item.ReproductionExhibit"> 
+                      <option model.bind="null">Choose...</option> 
+                         <option change.delegate="changeSelect(opt)" repeat.for="opt of currentItem.exhibition " 
+                         model.bind="opt.id">
+               ${opt.id}  /  ${opt.ExhibitTitle} /  ${opt.ExhibitSponser}
+                      </option> 
+                    </select>
+
+								</div>
+							</div>
+	<!-- <div class="Rtable Rtable--2cols">
+								<div class=" Rtable-cell-30 Rtable-cell--highlight">
+									<strong> Select Exhibition </strong>
+								</div>
+								<div class="Rtable-cell-70  Rtable-cell--light">
+									<select id="exhibitsel" class="form-control  input-sm" value.bind="item.exhibitsel"> 
                       <option model.bind="null">Choose...</option> 
                          <option change.delegate="changeSelect(opt)" repeat.for="opt of currentItem.exhibition " model.bind="opt.id">
                ${opt.id}  /  ${opt.ExhibitTitle} /  ${opt.ExhibitSponser}
@@ -220,8 +235,7 @@
                     </select>
 
 								</div>
-							</div>
-
+							</div> -->
 
 						</tbody>
 					</table>
