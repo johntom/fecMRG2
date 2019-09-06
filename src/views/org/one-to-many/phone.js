@@ -21,7 +21,8 @@ export class Phone {
     this.api = api;
     this.appService = appService;
     this.inv = '';
-    this.currentItem = this.appService.currentContactItem;
+    // this.currentItem = this.appService.currentContactItem;
+      this.currentItem = this.appService.currentOrgItem;
     this.mode = 0;
     this.editrec = '';
     // this.inputable='disabled'
@@ -68,7 +69,7 @@ export class Phone {
 
   addPhone() { 
 
-  let phones= this.currentItem.phones
+  let phones= this.currentItem.orgphones
     let flag = false
     let item
     if (phones === undefined) {
