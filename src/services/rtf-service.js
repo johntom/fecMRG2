@@ -269,8 +269,10 @@ export class RtfService {
           rightofcolonTextem = '<em>' + rightofcolonbaseText.substr(0, semisPos) + '</em>'; //+ '</em><br>';
           iLines.push(leftofcolonText + ' ' + rightofcolonTextem)
         } else {
-          rightofcolonTextem = '<em>' + rightofcolonbaseText.substr(1, semisPos - 1) + '</em><br>';
-          restoftext = rightofcolonbaseText.substr(semisPos, rightofcolonbaseText.length);
+          // rightofcolonTextem = '<em>' + rightofcolonbaseText.substr(1, semisPos - 1) + '</em><br>';
+           rightofcolonTextem = '<em>' + rightofcolonbaseText.substr(1, semisPos -1 ) + '</em><br>';
+        
+          restoftext = rightofcolonbaseText.substr(semisPos+1, rightofcolonbaseText.length);
           colonPos = restoftext.indexOf(":");
           leftofcolonText2 = restoftext.substr(0, colonPos);
           rightofcolonTextem2 = '<em>' + restoftext.substr(colonPos + 1, restoftext.length - colonPos) + '</em>';
