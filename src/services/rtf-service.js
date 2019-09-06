@@ -275,7 +275,8 @@ export class RtfService {
           restoftext = rightofcolonbaseText.substr(semisPos+1, rightofcolonbaseText.length);
           colonPos = restoftext.indexOf(":");
           leftofcolonText2 = restoftext.substr(0, colonPos);
-          rightofcolonTextem2 = '<em>' + restoftext.substr(colonPos + 1, restoftext.length - colonPos) + '</em>';
+         //2 rightofcolonTextem2 = '<em>' + restoftext.substr(colonPos + 1, restoftext.length - colonPos) + '</em>';
+ rightofcolonTextem2 = '<em>' + restoftext.substr(colonPos , restoftext.length - colonPos) + '</em>';
 
           iLines.push(leftofcolonText + ' ' + rightofcolonTextem + ' ' + leftofcolonText2 + ' ' + rightofcolonTextem2)
         }
