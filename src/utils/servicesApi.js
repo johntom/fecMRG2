@@ -87,7 +87,20 @@ export class ApiService {
   }
 
 
+ async replaceartistinfo(artist) {
+ let url = this.baseweb + `v1/replaceartistinfo`
+      return await this.http.fetch(url, {
+        method: 'put', mode: 'cors', headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(artist)
+      }).then((res) => res.json())
+    // var url = this.baseweb + `v1/replaceartistinfo/${artist}`
+    // return await this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())
 
+
+  }
   //https://artbased.com/api/v1/fincontactdups
   async findContactdups() {
 
@@ -962,6 +975,7 @@ export class ApiService {
     //all   this.api.updateSavedlists(this.appService.currentsavedlist, this.selectedids).then((jsonRes) => {
 
     var url = this.baseweb + `v1/savedlists/delete/${slname}`;
+    console.log('url ', url)
     return this.http.fetch(url, {
       method: 'put',
       mode: 'cors',

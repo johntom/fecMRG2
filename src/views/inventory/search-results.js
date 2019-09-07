@@ -439,9 +439,6 @@ export class SearchResults {
     let selectedRow = grid.select();
     let dataItem = grid.dataItem(selectedRow);
     this.dialogService.open({ viewModel: DialogImage, model: dataItem, lock: false }).whenClosed(response => {
-
-
-
       if (!response.wasCancelled) {
         // console.log('Delete')
         // let notes = this.currentItem.notes

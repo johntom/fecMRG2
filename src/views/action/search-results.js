@@ -42,31 +42,31 @@ export class SearchResults {
     'pdf',
     'html',
 
-    'bold',
-    'italic',
-    'underline',
-    'strikethrough',
-    'justifyLeft',
-    'justifyCenter',
-    'justifyRight',
-    'justifyFull',
-    'insertUnorderedList',
-    'insertOrderedList',
-    'indent',
-    'outdent',
-    'createLink',
-    'unlink',
-    'insertImage',
-    'insertFile',
-    'subscript',
-    'superscript',
-    'createTable',
-    'addRowAbove',
-    'addRowBelow',
-    'addColumnLeft',
-    'addColumnRight',
-    'deleteRow',
-    'deleteColumn',
+    // 'bold',
+    // 'italic',
+    // 'underline',
+    // 'strikethrough',
+    // 'justifyLeft',
+    // 'justifyCenter',
+    // 'justifyRight',
+    // 'justifyFull',
+    // 'insertUnorderedList',
+    // 'insertOrderedList',
+    // 'indent',
+    // 'outdent',
+    // 'createLink',
+    // 'unlink',
+    // 'insertImage',
+    // 'insertFile',
+    // 'subscript',
+    // 'superscript',
+    // 'createTable',
+    // 'addRowAbove',
+    // 'addRowBelow',
+    // 'addColumnLeft',
+    // 'addColumnRight',
+    // 'deleteRow',
+    // 'deleteColumn',
     'viewHtml',
     'formatting',
     'cleanFormatting',
@@ -140,7 +140,7 @@ export class SearchResults {
   listtypes = [{ id: 0, name: "exhibition" }, { id: 1, name: "price list" },
   { id: 2, name: "location list" }, { id: 3, name: "box label" }, { id: 4, name: "condition" },
   { id: 5, name: "registrar" }, { id: 6, name: "presentation" }]
-  constructor(router, api, utilService, appService, dataService, dialogService,eventAggregator) {
+  constructor(router, api, utilService, appService, dataService, dialogService, eventAggregator) {
     this.router = router;
     this.api = api;
     this.utilService = utilService;
@@ -150,6 +150,7 @@ export class SearchResults {
     this.dialogService = dialogService
     this.appService.rfreshLoaded = false;
     this.selectedlist = 5 // registra
+    this.selectedids = [];
     // this.appService.actionlist ='closed'
     this.eventAggregator = eventAggregator;
   }
@@ -211,18 +212,18 @@ export class SearchResults {
 
 
 
-//  attached(){ 
-// //1=port 0 land
-//    if (this.currentItem.clientHeightRatio>=this.currentItem.clientWidthRatio) {
-//      this.selectedtype=1
-//    } else this.selectedtype=0
-//    this.subscriber = this.eventAggregator.subscribe('rtfpayload', payload => {
-//          console.log('attached in rft.js rtfpayload',payload);
-//         //  this.createRTF(1,selectedtype)
-//              this.createRTF(1,this.selectedtype)
-//       });
+  //  attached(){ 
+  // //1=port 0 land
+  //    if (this.currentItem.clientHeightRatio>=this.currentItem.clientWidthRatio) {
+  //      this.selectedtype=1
+  //    } else this.selectedtype=0
+  //    this.subscriber = this.eventAggregator.subscribe('rtfpayload', payload => {
+  //          console.log('attached in rft.js rtfpayload',payload);
+  //         //  this.createRTF(1,selectedtype)
+  //              this.createRTF(1,this.selectedtype)
+  //       });
 
-//  }
+  //  }
   attached() {
     //1=port 0 land
 
@@ -301,45 +302,49 @@ export class SearchResults {
       //   sels = []//this.selectedids//[];
 
     } else sels = this.selectedids
-    console.log('Action1 sels', sels)
-    if (sels.length === 0) {
-      alert('no rows selected')
-    } else {
-      // var sels = this.selectedids//[];
-      var grid = this.grid;
-      var selectedRows = grid.select();
-      var maxRows = selectedRows.length / 2;
-      // selectedRows.each(function (idx, el) {
-      //   let dataItem = grid.dataItem(el);
-      // });
+    // console.log('Action1 sels', sels)
+    // if (sels.length === 0) {
+    // alert('no rows selected')
+    // } else {
+    // var sels = this.selectedids//[];
+    var grid = this.grid;
+    var selectedRows = grid.select();
+    var maxRows = selectedRows.length / 2;
+    // selectedRows.each(function (idx, el) {
+    //   let dataItem = grid.dataItem(el);
+    // });
 
-      var i;
-      var a1;
-      for (i = 0; i < maxRows; i++) {
-        a1 = selectedRows[i];
-        let dataItem = grid.dataItem(a1);
-        // let mid = sels.findIndex(x => x.InventoryCode === dataItem.InventoryCode)
-        let mid = sels.findIndex(x => x === dataItem.InventoryCode)
-        if (mid === -1) {
-          sels.push(dataItem.InventoryCode);
-        }
-        if (i === maxRows - 1) {
-          this.selectedids = sels;
-          // alert('you are about to remove the following ' + this.selectedids + ' from saved list ' + this.savedlist)
-          this.dialogService.open({ viewModel: Promptmess, model: `you are about to remove the following ${this.selectedids} from saved list ${this.savedlist} `, lock: true }).whenClosed(async response => { });
-
+    var i;
+    var a1;
+    for (i = 0; i < maxRows; i++) {
+      a1 = selectedRows[i];
+      let dataItem = grid.dataItem(a1);
+      // let mid = sels.findIndex(x => x.InventoryCode === dataItem.InventoryCode)
+      let mid = sels.findIndex(x => x === dataItem.InventoryCode)
+      if (mid === -1) {
+        sels.push(dataItem.InventoryCode);
+      }
+      if (i === maxRows - 1) {
+        this.selectedids = sels;
+        // alert('you are about to remove the following ' + this.selectedids + ' from saved list ' + this.savedlist)
+        this.dialogService.open({
+          viewModel: Promptmess, model: `you are about to remove the following ${this.selectedids} from saved list ${this.savedlist} `,
+          lock: true
+        }).whenClosed(async response => {
           this.api.deleteSavedlists(this.savedlist, this.selectedids).then((jsonRes) => {
             console.log('jsonRes ', jsonRes);
-
+            this.appService.rfreshLoaded = true;
             this.datasource.read();
-
-
           });
-        }
-
+        });
+       
       }
     }
+    if (sels.length === 0) {
+      alert('no rows selected to delete')
+    }
   }
+
   // closeTab(tab) {
 
   //   let index = this.appService.tabs.indexOf(tab);

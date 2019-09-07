@@ -5,9 +5,9 @@ import { MyDataService } from "../../services/my-data-service";
 import { EventAggregator } from 'aurelia-event-aggregator';
 @inject(ApiService, ApplicationService, MyDataService, EventAggregator)
 export class DataForm {
-  heading = 'DataAddForm HEADER...';
-  footer = 'DataAddForm FOOTER...';
-  adjusterList = 'adjusterList';
+  heading = 'Arist'//DataAddForm HEADER...';
+  // footer = 'DataAddForm FOOTER...';
+
   recordId = '';
 
 
@@ -23,8 +23,8 @@ export class DataForm {
   async addartist() {
     this.artist = {}
     this.artist.id = 'create'
-  
-  }
+
+  } 
   async activate(params, routeConfig) {
 
     if (params.id) {
@@ -35,7 +35,8 @@ export class DataForm {
         console.log('this.recordId ', this.recordId);
         let response = await this.api.findArtistid(this.recordId);
         this.artist = response.data[0];
-
+        // this.artistcached = response.data[0];
+        this.artistcached = JSON.parse(JSON.stringify(this.artist)) // deep copy
       }
     }
 
@@ -79,21 +80,22 @@ export class DataForm {
     // this.selectAdjusterElement.removeEventListener('change', this.adjusterSelectedListener);
   }
   async saveartist(option) {
+    if ((this.artistcached.Died !== this.artist.Died) || (this.artistcached.YearofBirth !== this.artist.YearofBirth)) {
+      let response = await this.api.replaceartistinfo(this.artist);
+      alert('add replaceartistinfo to backend ' + response)
+    }
     let response = await this.api.updateartistAA(this.artist);
     if (this.artist.id === 'create') {
       let val = await this.api.findArtistsAA();
-      
+
       // this.appService.artistList = val.data;
-      this.artist.id ='';
-        let nlist = []
-        for (const item of val.data) {
-          item.ArtistName = item.LastName + ', ' + item.FirstName
-          nlist.push(item)
-        }
-        this.appService.artistList = lodash.sortBy(nlist, 'ArtistName');
-
-
-
+      this.artist.id = '';
+      let nlist = []
+      for (const item of val.data) {
+        item.ArtistName = item.LastName + ', ' + item.FirstName
+        nlist.push(item)
+      }
+      this.appService.artistList = lodash.sortBy(nlist, 'ArtistName');
     }
     if (option === 1) this.requestclose()
   }
@@ -114,48 +116,7 @@ export class DataForm {
   }
 
 
-  async saveartist2() {
 
-    let response = await this.api.updateartistAA(this.artist);
-    // alert('save claim') //this.currentItem this.appService.originalrec 
-
-    // console.log(' call save ', JSON.stringify(this.appService.currentClaim) === JSON.stringify(this.appService.testrec)) //this.appService.currentClaim)
-    // //return 
-    // if (JSON.stringify(this.appService.currentClaim) !== JSON.stringify(this.appService.originalrec)) {
-
-    //   this.api.saveclaim(this.appService.currentClaim).then((jsonRes) => {
-    //     console.log('jsonRes ', jsonRes);
-
-    //   });
-
-    // }
-
-    // async  updateartist(rec) {  createartist
-
-    //     if (this.recordId === 'create') {
-    //       let response = await this.api.createartist(this.artist);
-    //       this.artist = response.data[0];
-
-    //     } else {
-    //       console.log('this.recordId ', this.recordId);
-
-    //       let response = await this.api.updateartist(this.artist);
-    //       this.artist = response.data[0];
-    // }
-    // this.artist = response.data[0];
-    // this.api.updateartist(this.artist).then((jsonRes) => {
-    //       console.log('jsonRes ', jsonRes);
-
-    //     });
-
-
-
-
-  }
-  //  if (this.appService.dataFormOneToManyTabs3.length > 0) {
-  //       let tab = this.appService.dataFormOneToManyTabs3[0];
-  //       this.selectOneToManyTab(tab);
-  //     }
   selectOneToManyTab(tab) {
     this.appService.dataFormOneToManyTabs3.forEach(t => t.isSelected = false);
     tab.isSelected = true;

@@ -8,7 +8,7 @@ import { ApplicationService } from '../../services/application-service';
 
 @inject(ApiService, ApplicationService)
 export class DataForm {
-  heading = 'DataForm HEADER...';
+  heading = 'Catalog';// HEADER...';
   footer = 'DataForm FOOTER...';
   recordId = '';
 

@@ -2,7 +2,7 @@
 
 
 	<require from="../../resources/value-converters/date-format"></require>
-<require from="../../resources/value-converters/currency-format"></require>
+	<require from="../../resources/value-converters/currency-format"></require>
 
 	<require from="../../resources/value-converters/upper-case"></require>
 
@@ -103,7 +103,7 @@ missing Dimensions field -->
 
 								<div class="Rtable Rtable--2cols">
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
-										<strong>CatalogTitle</strong>
+										<strong>Catalog Title</strong>
 									</div>
 									<div class="Rtable-cell-70  Rtable-cell--highlight">
 										<input type="text" id="CatalogTitle" class="form-control input-sm" value.bind="currentItem.CatalogTitle ">
@@ -114,7 +114,7 @@ missing Dimensions field -->
 									<div class="Rtable-cell-70  Rtable-cell--highlight">
 										<input type=" text " id="Isbn" class=" form-control input-sm " value.bind="currentItem.Isbn">
 									</div>
-								<div class="Rtable-cell-30 Rtable-cell--highlight">
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
 										<strong> Pub Date</strong>
 									</div>
 									<div class="Rtable-cell-70  Rtable-cell--highlight">
@@ -148,20 +148,17 @@ missing Dimensions field -->
 										<input type="text " xid="Color " class="form-control input-sm " value.bind="currentItem.Color">
 									</div>
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
-										<strong> TotalWarehouse</strong>
+										<strong> Total Warehouse</strong>
 									</div>
 									<div class="Rtable-cell-70  Rtable-cell--highlight">
 										<input type="text " xid="TotalWarehouse " class="form-control input-sm " value.bind="currentItem.TotalWarehouse">
 									</div>
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
-										<strong> TotalGallery</strong>
+										<strong> Total Gallery</strong>
 									</div>
 									<div class="Rtable-cell-70  Rtable-cell--highlight">
 										<input type="text " xid="TotalGallery " class="form-control input-sm " value.bind="currentItem.TotalGallery">
 									</div>
-
-
-
 
 								</div>
 							</div>
@@ -172,36 +169,36 @@ missing Dimensions field -->
 							<div class="form-group flex-column-1 margin-left-10">
 								<div class="Rtable Rtable--2cols">
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
-										<strong> PulisherID</strong>
+										<strong> Pulisher</strong>
 									</div>
 
 									<div class="Rtable-cell-70  Rtable-cell--highlight">
 										${currentItem.publishername}
-										<select id="PulisherID" class="form-control  input-sm" value.bind="currentItem.PulisherID"> 
-                      <option model.bind="null">Choose...</option> 
-                         <option repeat.for="opt of appService.orgsList " model.bind="opt.id">
-                    ${opt.OrgName} 
-                      </option> 
-                    </select>
+										<select id="PulisherID" class="form-control  input-sm" value.bind="currentItem.PulisherID">
+											<option model.bind="null">Choose...</option>
+											<option repeat.for="opt of appService.orgsList " model.bind="opt.id">
+												${opt.OrgName}
+											</option>
+										</select>
 
 									</div>
 
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
-										<strong> CoverID</strong>
+										<strong> Cover</strong>
 									</div>
 
 									<div class="Rtable-cell-70  Rtable-cell--highlight">
 
-										<select id="CoverID" class="form-control  input-sm" value.bind="currentItem.CoverID"> 
-                      <option model.bind="null">Choose...</option> 
-                         <option repeat.for="opt of appService.codesCoverType " model.bind="opt.id">
-                    ${opt.Description} 
-                      </option> 
-                    </select>
+										<select id="CoverID" class="form-control  input-sm" value.bind="currentItem.CoverID">
+											<option model.bind="null">Choose...</option>
+											<option repeat.for="opt of appService.codesCoverType " model.bind="opt.id">
+												${opt.Description}
+											</option>
+										</select>
 
 									</div>
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
-										<strong> CatalogNotes</strong>
+										<strong> Catalog Notes</strong>
 									</div>
 									<div class="Rtable-cell-70  Rtable-cell--highlight">
 										<input type="text " xid="CatalogNotes " class="form-control input-sm " value.bind="currentItem.CatalogNotes">
@@ -210,24 +207,21 @@ missing Dimensions field -->
 
 
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
-										<strong> CoverIllustration</strong>
+										<strong> Cover Illustration</strong>
 									</div>
 									<div class="Rtable-cell-70  Rtable-cell--highlight">
 										<input type="text " xid="CoverIllustration " class="form-control input-sm " value.bind="currentItem.CoverIllustration">
 									</div>
 
-
-
-
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
-										<strong> AuthorForward</strong>
+										<strong> Author Forward</strong>
 									</div>
 
 									<div class="Rtable-cell-70  Rtable-cell--highlight">
 										<input type="text " xid="AuthorForward " class="form-control input-sm " value.bind="currentItem.AuthorForward">
 									</div>
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
-										<strong> AuthorEssay</strong>
+										<strong> Author Essay</strong>
 									</div>
 									<div class="Rtable-cell-70  Rtable-cell--highlight">
 										<input type="text " xid="AuthorEssay " class="form-control input-sm " value.bind="currentItem.AuthorEssay">
@@ -247,24 +241,13 @@ missing Dimensions field -->
 										${currentItem.id}/ ${currentItem.ID}
 									</div>
 
-
-
-
-
-
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
 										<strong> Catalog Description Build?</strong>
 									</div>
 									<div class="Rtable-cell-70 Rtable-cell--highlight">
 										<textarea rows="6" cols="100" id="Notes" class="form-control input-sm" value.bind="currentItem.CatalogDescription"></textarea>
-
-
 									</div>
-
-
-
 								</div>
-
 							</div>
 							<!-- 2nd -->
 						</div>
@@ -272,14 +255,8 @@ missing Dimensions field -->
 
 					<!-- flex row none -->
 				</div>
-
 				<!-- flex row none -->
-
 				<!--top left  -->
-
-
-
-
 				<div if.bind="recordId==='create'">Create Mode. Please save record before entering tabs </div>
 				<div else>
 
@@ -299,30 +276,38 @@ missing Dimensions field -->
 						</div>
 					</div>
 				</div>
-
-
 			</form>
 		</div>
-		<footerform class="flex-row-none">
-			inventory-
+    <!-- <footer class="flex-row-none"> -->
+   <footer class="main footer">
+			Catalog-
 			<span>&nbsp;&nbsp;
-					<!-- <button class="btn btn-sm btn-primary " click.delegate="savecatalog(0)">
-						Save & Stay
-					</button> -->
 					<button class="btn btn-sm btn-info " click.delegate="savecatalog(1)">
 						Save & Close
 					</button>
             &nbsp;&nbsp;
 				</span>
-
 			<span>&nbsp;&nbsp;
 					<button class="btn btn-sm btn-danger " click.delegate="requestclose()">
 						Close
 					</button>
           <b>  ${message} </b>
 				</span>
-
-
-		</footerform>
+		</footer>
+		<!-- <footerform class="flex-row-none">
+			Catalog-
+			<span>&nbsp;&nbsp;
+					<button class="btn btn-sm btn-info " click.delegate="savecatalog(1)">
+						Save & Close
+					</button>
+            &nbsp;&nbsp;
+				</span>
+			<span>&nbsp;&nbsp;
+					<button class="btn btn-sm btn-danger " click.delegate="requestclose()">
+						Close
+					</button>
+          <b>  ${message} </b>
+				</span>
+		</footerform> -->
 	</section>
 </template>
