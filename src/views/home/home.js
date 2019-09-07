@@ -9,7 +9,7 @@ export class Home {
   heading = "MRG Home Page";
   version = ' 304.46'  
   versionDate = 'Sat 9/7/2019 2pm'
-  prevversion = ' 303.52 '
+  prevversion = ' 303.53 '
   prevversionDate = 'Mon 8/5/2019 5pm'
   issues = [ 
     // or press refresh button upper left corner',

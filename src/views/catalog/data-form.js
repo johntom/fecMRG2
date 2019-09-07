@@ -38,6 +38,7 @@ export class DataForm {
         return this.currentItem
       }
     }
+  alert('finished activate')
   }
 
   attached() {
@@ -47,6 +48,7 @@ export class DataForm {
       let tab = this.appService.dataFormOneToManyTabs5[0];
       this.selectOneToManyTab(tab);
     }
+      alert('finished attached')
   }
 
   async savecatalog(option) {
