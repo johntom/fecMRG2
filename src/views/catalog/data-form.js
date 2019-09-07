@@ -44,10 +44,10 @@ export class DataForm {
   attached() {
 
 
-    if (this.appService.dataFormOneToManyTabs5.length > 0) {
-      let tab = this.appService.dataFormOneToManyTabs5[0];
-      this.selectOneToManyTab(tab);
-    }
+    // if (this.appService.dataFormOneToManyTabs5.length > 0) {
+    //   let tab = this.appService.dataFormOneToManyTabs5[0];
+    //   this.selectOneToManyTab(tab);
+    // }
       alert('finished attached')
   }
 
