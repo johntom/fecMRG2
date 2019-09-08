@@ -19,48 +19,49 @@ export class DataForm {
   }
 
   async activate(params, routeConfig) {
-     this.recordId = params.id;
+    this.recordId = params.id;
     if (params.id) {
       if (this.recordId === 'create') {
         this.currentItem = {}
-       
+
         this.appService.testcontactrec = {}
         this.appService.originalontactrec = {}
 
       } else {
         console.log('this.recordId ', this.recordId);
-        this.recordId = params.id;
         this.heading = `DataForm for record ${this.recordId}`;
         console.log('this.recordId ', this.recordId);
         let response = await this.api.findCatalogone(this.recordId);
         this.currentItem = response.data[0]
         this.appService.currentCatalogItem = this.currentItem;
-        return this.currentItem
+       // return this.currentItem
       }
     }
-  alert('finished activate')
+    // alert('finished activate')
+       console.log('finished activate')
   }
 
   attached() {
 
 
-    // if (this.appService.dataFormOneToManyTabs5.length > 0) {
-    //   let tab = this.appService.dataFormOneToManyTabs5[0];
-    //   this.selectOneToManyTab(tab);
-    // }
-      alert('finished attached')
+    if (this.appService.dataFormOneToManyTabs5.length > 0) {
+      let tab = this.appService.dataFormOneToManyTabs5[0];
+      this.selectOneToManyTab(tab);
+    }
+   // console.log('attache3d')
+   // alert('finished attached')
   }
 
   async savecatalog(option) {
     if (this.recordId === 'create') {
       // let val = await this.api.findArtistsAA();
       // this.appService.artistList = val.data;
-      this.recordId ='';
+      this.recordId = '';
       let response = await this.api.createcatalog(this.currentItem);
-   this.requestclose()
+      this.requestclose()
     } else {
-       let response = await this.api.updatecatalog(this.currentItem);
-   
+      let response = await this.api.updatecatalog(this.currentItem);
+
     }
     // if (option === 1) this.requestclose()
   }
@@ -68,14 +69,14 @@ export class DataForm {
   requestclose() {
 
     // const resetFunc = () => { this.appService.originalrec = this.currentItem; };
-     let tab = this.appService.tabs.find(f => f.isSelected);
-     let index = this.appService.tabs.findIndex(f => f.isSelected)
-     let rt2 = '#/catalog/' + this.tabname
+    let tab = this.appService.tabs.find(f => f.isSelected);
+    let index = this.appService.tabs.findIndex(f => f.isSelected)
+    let rt2 = '#/catalog/' + this.tabname
 
 
-     let newIndex = (index > 0) ? index - 1 : 0;
-     let newTab = this.appService.tabs[newIndex];
-     this.appService.tryCloseTab(this.appService.currentView, tab, newTab.href);
+    let newIndex = (index > 0) ? index - 1 : 0;
+    let newTab = this.appService.tabs[newIndex];
+    this.appService.tryCloseTab(this.appService.currentView, tab, newTab.href);
 
 
   }

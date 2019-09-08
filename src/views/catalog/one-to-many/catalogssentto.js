@@ -13,31 +13,23 @@ export class Catalogssentto {
   heading = 'DataForm HEADER...';
   footer = 'DataForm FOOTER...';
   recordId = '';
- 
+
   constructor(api, appService, dialogService) {
     this.api = api;
     this.appService = appService;
-    this.inv = ''; 
+    this.inv = '';
     this.currentItem = this.appService.currentCatalogItem;
     console.log('this.currentCatalogItem', this.appService.currentCatalogItem);
     this.dialogService = dialogService
 
   }
- 
+
 
 
   async activate(params, routeConfig) {
-    // this.exhibition = this.appService.currentItem.exhibition 
+
     console.log('this.Catalogssentto ', this.appService.currentCatalogItem)
-    // let response = await this.api.getCatalogsent(this.appService.currentCatalogItem.ID )//CatalogID)//'78');
-let response = await this.api.getcatalogsenttocontact(this.appService.currentCatalogItem.CatalogID)// ID )//CatalogID)//'78');
-
- 
-
-
-    // this.appService.catalogList = response.data
-    // console.log('this.repos ', this.api.catalogList)
-
+    let response = await this.api.getcatalogsenttocontact(this.appService.currentCatalogItem.CatalogID)// ID )//CatalogID)//'78');
     this.compcatalogssent = response.data
 
   }
@@ -90,32 +82,6 @@ let response = await this.api.getcatalogsenttocontact(this.appService.currentCat
   }
 
 
-
-
-
-  //  modal(item, index) {
-
-  //     // this.currentItem.recordId = this.recordId model:this.currentItem
-  //     let currentModel = {}
-  //     currentModel.currentItem = this.currentItem
-  //     currentModel.item = item
-
-  //     // currentModel.currentItem.hide1 = false
-
-
-  //     // this.dialogService.open({ viewModel: PromptForm, model: currentModel, lock: false }).whenClosed(response => {
-  //     this.dialogService.open({ viewModel: Promptexhibit, model: currentModel, lock: false }).whenClosed(response => {
-
-  //       if (!response.wasCancelled) {
-  //         console.log('item', item);
-  //       item.edit = false//this.saveitem(item, index)
-  //       } else {
-
-  //         console.log('cancel');
-  //       }
-  //       console.log(response)//.output);
-  //     });
-  //   }
 
 
 

@@ -3,35 +3,9 @@
 
 	<require from="../../resources/value-converters/date-format"></require>
 	<require from="../../resources/value-converters/currency-format"></require>
-
 	<require from="../../resources/value-converters/upper-case"></require>
 
-	<style>
-		img.responsive-imgV {
-			max-height: 300px;
-			width: auto;
-			/* vertical */
-		}
-
-		img.responsive-img {
-			/* max-height:  auto;
-			width:300px; */
-			max-width: 325px;
-			max-height: 325px;
-			width: auto;
-			height: auto;
-
-			/* hor */
-		}
-
-		video.responsive-video {
-			max-width: 100%;
-			height: auto;
-		}
-
-		/* #data-form-ext .tab.tab-selected {
-   background-color: orange
- } */
+	<!-- <style>
 
 		#data-form-ext .tab.tab-selected .form-tab-box {
 			background-color: lightblue;
@@ -39,12 +13,7 @@
 		}
 
 		#cap {
-			// width: 242px;
-			//height: 225px;
-			//margin: 20px auto;
-			//  background-image: url('http://demos.telerik.com/kendo-ui/content/web/dropdownlist/cap.png');
-			//  background-repeat: no-repeat;
-			background-color: orange //transparent;
+					background-color: orange //transparent;
 		}
 
 		.black-cap {
@@ -85,7 +54,7 @@
 		.custom-file-input:active::before {
 			background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
 		}
-	</style>
+	</style> -->
 	<!-- make Price currency
 Pub Date should be text not date
 Pub ID dropdown on the old system is much shorter and different
@@ -169,20 +138,18 @@ missing Dimensions field -->
 							<div class="form-group flex-column-1 margin-left-10">
 								<div class="Rtable Rtable--2cols">
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
-										<strong> Pulisher</strong>
+										<strong> Pulisher [chg ID to id]</strong>
 									</div>
-
+ 
 									<div class="Rtable-cell-70  Rtable-cell--highlight">
 										${currentItem.publishername}
 										<select id="PulisherID" class="form-control  input-sm" value.bind="currentItem.PulisherID">
 											<option model.bind="null">Choose...</option>
-											<option repeat.for="opt of appService.orgsList " model.bind="opt.id">
+											<option repeat.for="opt of appService.publisherList " model.bind="opt.ID">
 												${opt.OrgName}
 											</option>
 										</select>
-
 									</div>
-
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
 										<strong> Cover</strong>
 									</div>
@@ -244,9 +211,7 @@ missing Dimensions field -->
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
 										<strong> Catalog Description Build?</strong>
 									</div>
-									<!-- <div class="Rtable-cell-70 Rtable-cell--highlight">
-										<textarea rows="6" cols="100" id="Notes" class="form-control input-sm" value.bind="currentItem.CatalogDescription"></textarea>
-									</div> -->
+								
 								</div>
 							</div>
 							<!-- 2nd -->

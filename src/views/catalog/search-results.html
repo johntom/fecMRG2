@@ -21,15 +21,15 @@
       k-column-menu.bind="true" 
       k-pageable.bind="true">
 
-			<ak-col k-field="CatalogTitle"  k-title="CatalogTitle"
+			<ak-col k-field="CatalogTitle"  k-title="Catalog Title"
         k-filterable.bind="true" 
         k-title="Edit" 
-        k-width.bind="180" 
+        k-width.bind="380" 
         k-template="<button click.delegate='details($event)' class='k-button'>#=CatalogTitle#</button>">
 			</ak-col>
 
-			<ak-col k-title="Isbn" k-width="180px" k-field="Isbn"></ak-col>
-			<ak-col k-title="PubDate" k-width="180px" k-field="PubDate"></ak-col>
+			<ak-col k-title="Isbn" k-width="90px" k-field="Isbn"></ak-col>
+			<ak-col k-title="Pub Date" k-width="110px" k-field="PubDate"></ak-col>
 		
 
 		</ak-grid>

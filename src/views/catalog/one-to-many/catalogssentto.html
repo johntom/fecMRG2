@@ -1,19 +1,70 @@
 <template>
 
-	<!-- <section class="docs full-height flex-column-1 overflow-y-auto ignore"> -->
-	<section height="300px" class="docs flex-column-1 overflow-y-auto ignore">
+		<section height="300px" class="docs flex-column-1 overflow-y-auto ignore">
 	
   	<h4>
 			<i class="fa fa-folder-open"></i> Catalogs Sent
-			<!-- <a slot="buttons-slot" class="btn btn-primary" click.delegate="addAddress()">
-				<i class="fa fa-plus"></i> Add Address
-			</a> -->
+	
 		</h4>
 
 		<table class="table-condensed table"> 
 			<thead class="table-header-blue" >
 				<tr>
-    <!-- "_id" : ObjectId("5c157817e20ab6202185df0c"), 
+  
+					<th width="220px" class="header">ContactID </th>
+					<th width="220px" class="header">SendType </th>
+					<th width="220px" class="header">DateSent </th>
+					<th width="220px" class="header">Qty </th>
+					
+					<th width="225px" class="header">Cmd</th>
+
+				</tr>
+			</thead>
+			<!-- <tfoot>
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+			</tfoot> -->
+			<tbody>  
+				<tr repeat.for="compcatsent of compcatalogssent" with.bind="compcatsent">
+     	<td width="220px"><input type="text" id="ContactID" class="form-control  input-sm" value.bind="ContactID"></td>
+			<td width="220px"><input type="text" id="SendType" class="form-control  input-sm" value.bind="SendType"></td>
+			<td width="220px"><input type="text" id="DateSent" class="form-control  input-sm" value.bind="DateSent"></td>
+	
+					<td width="225px">
+
+						<!-- <button class="btn btn-primary" click.delegate="saveitem(address,$index)">${ !address.edit ? 'Edit' : 'Save' }</button> -->
+						<!-- <button class="btn btn-success" click.delegate="modal(address,$index)">Pop</button> -->
+          	<button class="btn btn-sm btn-danger" click.delegate="remove(compcatsent,$index)">           Delete            </button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+
+
+	</section>
+</template>
+
+
+<!-- <section class="docs full-height flex-column-1 overflow-y-auto ignore"> -->
+
+		<!-- <a slot="buttons-slot" class="btn btn-primary" click.delegate="addAddress()">
+				<i class="fa fa-plus"></i> Add Address
+			</a> -->
+ 		<!-- <td width="70px"><input type="text" id="id" class="form-control  input-sm" value.bind="id"></td>
+					<td width="220px"><input type="text" id="CatalogTitle" class="form-control  input-sm" value.bind="CatalogTitle"></td>
+					<td width="220px"><input type="text" id="CatalogID" class="form-control  input-sm" value.bind="CatalogID"></td> -->
+		
+
+  <!-- "_id" : ObjectId("5c157817e20ab6202185df0c"), 
     "ID" : NumberInt(1516), 
     "CatalogID" : NumberInt(78), 
     "ContactID" : NumberInt(7220), 
@@ -30,52 +81,3 @@
   <th width="220px" class="header">CatalogTitle </th>
 					 -->
 					<!-- <th width="220px" class="header">CatalogID </th> -->
-					<th width="220px" class="header">ContactID </th>
-					<th width="220px" class="header">SendType </th>
-					<th width="220px" class="header">DateSent </th>
-					<th width="220px" class="header">Qty </th>
-					
-					<th width="225px" class="header">Cmd</th>
-
-				</tr>
-			</thead>
-			<tfoot>
-				<tr>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
-			</tfoot>
-			<tbody>  
-				<tr repeat.for="compcatsent of compcatalogssent" with.bind="compcatsent">
-      		<!-- <td width="70px"><input type="text" id="id" class="form-control  input-sm" value.bind="id"></td>
-					<td width="220px"><input type="text" id="CatalogTitle" class="form-control  input-sm" value.bind="CatalogTitle"></td>
-					<td width="220px"><input type="text" id="CatalogID" class="form-control  input-sm" value.bind="CatalogID"></td> -->
-			<td width="220px"><input type="text" id="ContactID" class="form-control  input-sm" value.bind="ContactID"></td>
-			<td width="220px"><input type="text" id="SendType" class="form-control  input-sm" value.bind="SendType"></td>
-		
-			<td width="220px"><input type="text" id="DateSent" class="form-control  input-sm" value.bind="DateSent"></td>
-				
-
-
-				
-
-					<td width="225px">
-
-						<!-- <button class="btn btn-primary" click.delegate="saveitem(address,$index)">${ !address.edit ? 'Edit' : 'Save' }</button> -->
-						<!-- <button class="btn btn-success" click.delegate="modal(address,$index)">Pop</button> -->
-          	<button class="btn btn-sm btn-danger" click.delegate="remove(compcatsent,$index)">           Delete            </button>
-					</td>
-				</tr>
-			</tbody>
-		</table>
-
-
-	</section>
-</template>

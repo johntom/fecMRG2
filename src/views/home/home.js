@@ -7,11 +7,11 @@ import { ApiService } from '../../utils/servicesApi';
 
 export class Home {
   heading = "MRG Home Page";
-  version = ' 304.47'  
-  versionDate = 'Sat 9/7/2019 2pm'
+  version = ' 304.49'
+  versionDate = 'Sat 9/7/2019 11pm'
   prevversion = ' 303.53 '
   prevversionDate = 'Mon 8/5/2019 5pm'
-  issues = [ 
+  issues = [
     // or press refresh button upper left corner',
     //https://circleci.com/workflow-run/1f3685ab-daba-41d7-8d25-6279df547b19
     // https://www.tutorialspoint.com/aurelia/aurelia_event_aggregator.htm
@@ -121,7 +121,7 @@ export class Home {
   ]
   todo = [
 
-'!-- fix database spell ak-col k-field="Photogpraher" k-title="Photographer" k-width="140px" k-editor.bind="photograherDropDownEditor"></ak-col>',
+    '!-- fix database spell ak-col k-field="Photogpraher" k-title="Photographer" k-width="140px" k-editor.bind="photograherDropDownEditor"></ak-col>',
 
 
 
@@ -160,9 +160,13 @@ export class Home {
       console.log('using data cache from home....')
       return Promise.resolve(true);
     } else {
-      let response = await this.api.getCatalogsAA();
-      this.appService.catalogList = response.data
+      let response = await this.api.getpublisher();
+      this.appService.publisherList = response.data
       // console.log('https://artbased.com/api/v1/catalog catalogList ', this.appService.catalogList )
+
+
+      let responsep = await this.api.getpublisher();
+      this.appService.publisherList = responsep.data
 
       return Promise.all([
         this.dataService.loadArtists(),
@@ -428,7 +432,7 @@ export class Home {
         this.appService.codesAdmin = codesAdmin//41,
         // console.log(' this.orgsList', this.appService.orgsList)
         console.log(' this.appService.codesGenre', this.appService.codesGenre)
-       // console.log(' this.artistList', this.appService.artistList.length)
+        // console.log(' this.artistList', this.appService.artistList.length)
         console.log(' this.codesPhotoFormat', this.appService.codesPhotoFormat)//codesProvenanceLocation) 
 
 
@@ -455,6 +459,9 @@ export class Home {
         console.log('artistList ', this.appService.artistList.length)
         console.log('orgsList ', this.appService.orgsList.length)
 
+
+
+        // [995,1067, 1096, 1096, 1711, 2176, 2802, 3056, 3142, 3142,3171 ,3349 ,3922 ,3940, 4461 ,5653, 5740, 6275, 6315, 6511, 6556 ,6921, 10059, 10094, 10635, 10965, 11362, 13715, 14491, 16358]
 
 
         // let pct
