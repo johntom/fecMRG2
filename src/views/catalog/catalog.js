@@ -5,7 +5,7 @@ import { ApplicationService } from '../../services/application-service';
 export class Catalog {
   static inject = [Router, UtilService, ApplicationService];
 
-  heading = 'Welcome to the Catalog page';
+  heading = 'SEARCH CATALOG';
   counter = 1;
   search = {}
 

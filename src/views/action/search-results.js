@@ -133,7 +133,7 @@ export class SearchResults {
         }
       }
     },
-    pageSize: 12,
+    pageSize: 8,
 
   })
   // {id:0,name:"check list"},
