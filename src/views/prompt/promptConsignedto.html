@@ -45,10 +45,10 @@
 								</div>
                 <div class="Rtable-cell-70  Rtable-cell--light">
 									<div if.bind="item.consignedtoname.OrgName===undefined || item.consignedtoname.OrgName===''">
-										<a click.delegate="showModal( 'ConsignedToID')">select_link </a>
+										<a click.delegate="showModal( 'ConsignedTo')">select_link </a>
 									</div>
 									<div else>
-										<a click.delegate="showModal('ConsignedToID')">${item.consignedtoname.OrgName}</a>
+										<a click.delegate="showModal('ConsignedTo')">${item.consignedtoname.OrgName}</a>
 									</div>
 								</div>
 								<!-- <div class="Rtable-cell-70  Rtable-cell--light">

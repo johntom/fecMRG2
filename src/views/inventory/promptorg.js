@@ -70,7 +70,7 @@ export class Promptorg {
   orgName = '';
   ordId = '';
   myDatalistO = null;
-  id='';
+  id = '';
   findOptionO = value => this.appService.orgsList.find(x => {
     if (x.OrgName === value) {
       let orgName = x.OrgName
@@ -247,9 +247,9 @@ export class Promptorg {
     }
 
 
- 
+
     if (this.fieldname === 'SoldToID') {
-this.id=this.currentItem.SoldToID
+      this.id = this.currentItem.SoldToID
       findOptions = this.appService.orgsList.find(x => x._id === this.currentItem.SoldToID)
       if (findOptions === undefined) {
         findOptions = '';
@@ -262,7 +262,7 @@ this.id=this.currentItem.SoldToID
 
     }
     if (this.fieldname === 'OwnerID') {
-      this.id=this.currentItem.OwnerID
+      this.id = this.currentItem.OwnerID
       findOptions = this.appService.orgsList.find(x => x._id === this.currentItem.OwnerID)
       if (findOptions === undefined) {
         findOptions = '';
@@ -278,7 +278,7 @@ this.id=this.currentItem.SoldToID
 
 
     if (this.fieldname === 'ConservedBy') {
-      this.id=this.currentItem.ConservedBy
+      this.id = this.currentItem.ConservedBy
       findOptions = this.appService.orgsList.find(x => x._id === this.currentItem.ConservedBy)
       // if (this.currentItem.ConservedBy === undefined || this.currentItem.ConservedBy === '') {
       if (findOptions === undefined) {
@@ -296,22 +296,22 @@ this.id=this.currentItem.SoldToID
 
 
     if (this.fieldname === 'ConsignedFromID') {
-       this.id=this.currentItem.ConsignedFromID
-     
+      this.id = this.currentItem.ConsignedFromID
+
       findOptions = this.appService.orgsList.find(x => x._id === this.currentItem.ConsignedFromID)
       // if (this.currentItem.ConsignedFromID === undefined || this.currentItem.ConsignedFromID === '') {
       if (findOptions === undefined) {
         findOptions = '';
         this.currentItem.ConsignedFromID = ''
-      } else { 
+      } else {
         this.myDatalistO.value = this.currentItem.consignedfromname
         this.selectedValueO = this.currentItem.consignedfromname;
         this.origorg = this.currentItem.consignedfromname;
       }
     }
     if (this.fieldname === 'ConsignmentShippingID') {
-      
-      this.id=this.currentItem.ConsignmentShippingID
+
+      this.id = this.currentItem.ConsignmentShippingID
       findOptions = this.appService.orgsList.find(x => x._id === this.currentItem.ConsignmentShippingID)
       // if (this.currentItem.ConsignmentShippingID === undefined || this.currentItem.ConsignmentShippingID === '') {
       if (findOptions === undefined) {
@@ -324,21 +324,48 @@ this.id=this.currentItem.SoldToID
       }
     }
 
+    // "consignedto" : [
+    //         {
+    //             "consignedtoname" : {
+    //                 "_id" : ObjectId("5d680dd4096d11502ab20ce4"), 
+    //                 "OrgName" : "Payne, Aaron", 
+    //                 "BusIndivid" : "I", 
+    //                 "City" : "Santa Fe", 
+    //                 "State" : "NM", 
+    //                 "legacyconsignedto" : 3448.0
+    //             }, 
+    //             "legacyid" : NumberInt(204), 
+    //             "ConsignedStartDate" : ISODate("2013-05-28T04:00:00.000+0000"), 
+    //             "ConsignedEndDate" : ISODate("2013-09-30T04:00:00.000+0000"), 
+    //             "ConsignmentRetailPrice" : "lrcsss", 
+    //             "NettoMRG" : "lsssss", 
+    //             "ConsignmentRetailPriceAmt" : 375000.0, 
+    //             "NettoMRGAmt" : 300000.0, 
+    //             "ArtworkReleased" : "", 
+    //             "Signed" : true, 
+    //             "PDF" : false, 
+    //             "Returned" : true, 
+    //             "ConsignmentNotes" : "", 
+    //             "CreatedDate" : "", 
+    //             "ModifiedDate" : ISODate("2015-09-25T04:00:00.000+0000"), 
+    //             "Sold" : "", 
+    //             "Location" : ""
+    //         }, 
     if (this.fieldname === 'ConsignedTo') {
-       this.id=this.currentItem.ConsignedTo
-      findOptions = this.appService.orgsList.find(x => x._id === this.currentItem.ConsignedTo)
+      this.id = this.currentItem.item._id
+      findOptions = this.appService.orgsList.find(x => x._id === this.id)// currentItem.ConsignedTo)
       if (findOptions === undefined) {
         findOptions = '';
         this.currentItem.ConsignedTo = ''
       } else {
-        this.myDatalistO.value = this.currentItem.consignedtoname
-        this.selectedValueO = this.currentItem.consignedtoname;
-        this.origorg = this.currentItem.consignedtoname;
+        this.myDatalistO.value = this.currentItem.item.OrgName// consignedtoname
+        this.selectedValueO = this.currentItem.item.OrgName//.consignedtoname;
+        this.origorg = this.currentItem.item.OrgName//.consignedtoname;
       }
     }
     // }
     if (this.fieldname === 'PurchasedFrom') {
-      this.id=this.currentItem.PurchasedFrom
+      this.id = this.currentItem.PurchasedFrom
       findOptions = this.appService.orgsList.find(x => x._id === this.currentItem.PurchasedFrom)
 
       if (findOptions === undefined) {
@@ -352,7 +379,7 @@ this.id=this.currentItem.SoldToID
     }
 
     if (this.fieldname === 'LoanTo') {
-        this.id=this.currentItem.LoanTo
+      this.id = this.currentItem.LoanTo
       findOptions = this.appService.orgsList.find(x => x._id === this.currentItem.loantoname)
 
       if (findOptions === undefined) {
@@ -365,7 +392,7 @@ this.id=this.currentItem.SoldToID
       }
     }
     if (this.fieldname === 'PhotographerID') {
-        this.id=this.currentItem.PhotographerID
+      this.id = this.currentItem.PhotographerID
       findOptions = this.appService.orgsList.find(x => x._id === this.currentItem.PhotographerID)
 
       if (findOptions === undefined) {
@@ -378,7 +405,7 @@ this.id=this.currentItem.SoldToID
       }
     }
     if (this.fieldname === 'ConsignmentShippingID') {
-         this.id=this.currentItem.ConsignmentShippingID
+      this.id = this.currentItem.ConsignmentShippingID
       //    findOptiono = this.appService.orgsList.find(x => x._id === this.currentItem.ConsignmentShippingID)
 
       // if (this.currentItem.ConsignmentShippingID === undefined || this.currentItem.ConsignmentShippingID === '') {
@@ -481,27 +508,26 @@ this.id=this.currentItem.SoldToID
 
         this.currentItem.ConsignedTo = this.orgId//OrgName._id
         this.currentItem.consignedtoname = this.OrgName//.OrgName
+        this.currentItem.orgObject = this.orgObject
       }
     }
 
     if (this.fieldname === 'PurchasedFrom') {
-
       if (this.OrgName !== null && this.origorg !== this.OrgName) {
         this.currentItem.PurchasedFrom = this.orgId
         this.currentItem.purchasedfromname = this.OrgName
-
       }
     }
+
     if (this.fieldname === 'LoanTo') {
       if (this.OrgName !== null && this.origorg !== this.OrgName) {
         this.currentItem.LoanTo = this.orgId
         this.currentItem.loantoname = this.OrgName
-
       }
     }
+
     if (this.fieldname === 'PhotographerID') {
       if (this.OrgName !== null && this.origorg !== this.OrgName) {
-
         this.currentItem.PhotographerID = this.orgId//OrgName._id
         this.currentItem.photographername = this.OrgName///.OrgName
       }
@@ -516,7 +542,7 @@ this.id=this.currentItem.SoldToID
 
 
 
-    this.controller.ok('saved')
+    this.controller.ok(this.currentItem)
   }
 
 }

@@ -34,7 +34,7 @@ export class Promptconsignedto {
     this.heading = "Consigned To";
     // (this.popuptype === 0) ? this.showbatch = false : this.showbatch = true // from action
 
-  } 
+  }
 
 
   attached() {
@@ -47,10 +47,9 @@ export class Promptconsignedto {
   }
 
   showModal(fieldname) {
-    // this.currentItem.fieldname = fieldname
-    this.item.fieldname = fieldname
-    // this.dialogService.open({ viewModel: Promptorg, model: this.currentItem, lock: true }).whenClosed(response => {
-    this.dialogService.open({ viewModel: Promptorg, model: this.item.consignedtoname, lock: true }).whenClosed(response => {
+    this.currentItem.fieldname = fieldname
+    this.currentItem.item = this.item.consignedtoname
+     this.dialogService.open({ viewModel: Promptorg, model: this.currentItem, lock: true }).whenClosed(response => {
 
       if (!response.wasCancelled) {
 
@@ -58,6 +57,14 @@ export class Promptconsignedto {
         console.log('cancel');
       }
       console.log(response.output);
+      //this.item.consignedtoname=  {"_id" : response.output.ConsignedTo,"OrgName" :response.output.consignedtoname} 
+    this.item.consignedtoname=  {"_id" : response.output.orgObject._id,
+    "OrgName" :response.output.orgObject.OrgName,"BusIndivid": response.output.orgObject.BusIndivid} 
+   delete   this.currentItem.ConsignedTo
+   delete this.currentItem.orgObject
+
+
+      
     });
   }
 
