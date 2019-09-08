@@ -372,6 +372,7 @@ export class DataForm {
     let savetime = moment().format('MM/DD/YY h:mm:ss a')
 
     if (this.recordId === 'create') {
+      this.currentItem.BusIndivid==='I' // support legacy
       // if (this.currentItem.Title === undefined || this.currentItem.InventoryCode === undefined
       //   || this.currentItem.MediumSupportobj === undefined
       //   || this.currentItem.artist === undefined) {

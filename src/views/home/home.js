@@ -7,7 +7,7 @@ import { ApiService } from '../../utils/servicesApi';
 
 export class Home {
   heading = "MRG Home Page";
-  version = ' 304.53'
+  version = ' 304.55'
   versionDate = 'Sun 9/7/2019 10am'
   prevversion = ' 303.53 '
   prevversionDate = 'Mon 8/5/2019 5pm'
@@ -114,9 +114,7 @@ export class Home {
     'to assign F5 on Mac if Cmd+R does not work',
     'system preferences —> keyboard—>shortcuts tab—>AppShortcuts—> + —>application: GoogleChrome—>Menu Title: Reload This Page—>Keyboard Shortcut: [press F5 key]Press f5 key or cmd+shift+R on mac to fetch new release',
 
-    "To insert an ASCII character, press and hold down ALT while typing the character code. For example, to insert the degree (º) symbol, press and hold down ALT while typing 0176 on the numeric keypad. You must use the numeric keypad to type the numbers, and not the keyboard.",
-    , "https://support.office.com/en-us/article/insert-ascii-or-unicode-latin-based-symbols-and-characters-d13f58d3-7bcb-44a7-a4d5-972ee12e50e0"
-    , 'CTRL+SHIFT+F to find'
+   
 
   ]
   todo = [
@@ -127,7 +125,9 @@ export class Home {
 
   ]
   todocomplete = [
-
+ "To insert an ASCII character, press and hold down ALT while typing the character code. For example, to insert the degree (º) symbol, press and hold down ALT while typing 0176 on the numeric keypad. You must use the numeric keypad to type the numbers, and not the keyboard.",
+    , "https://support.office.com/en-us/article/insert-ascii-or-unicode-latin-based-symbols-and-characters-d13f58d3-7bcb-44a7-a4d5-972ee12e50e0"
+    , 'CTRL+SHIFT+F to find'
 
 
   ]
