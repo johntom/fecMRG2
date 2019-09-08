@@ -322,6 +322,11 @@ export class ApiService {
     let res = await this.http.fetch(url, { mode: 'cors' })
     return res.json()
   } 
+    async getCatalogsAA() {
+    var url = this.baseweb + 'v1/catalog';
+    let res = await this.http.fetch(url, { mode: 'cors' })
+    return res.json()
+  }
   // catalog  https://artbased.com/api/https://artbased.com/api/v1/catalog
   async getpublisher() {
     var url = this.baseweb + 'v1/publisher';

@@ -52,3 +52,54 @@
 
 	</section>
 </template>
+
+
+<!-- <template>
+
+	<require from="../../resources/elements/multi-selector/multi-selector"></require>
+
+	<section class="full-height flex-column-1 au-animate ignore">
+		<div class="flex-row-none section-header">
+			<h4> ${heading} </h4>
+		</div>
+		<div class="flex-row-1 ignore">
+			<div class="flex-column-1 search-panel">
+				<div class="flex-row-none">
+
+
+					<div class="form-group flex-column-1 margin-left-10">
+
+
+						<require from="../../resources/value-converters/stringify"></require>
+
+						<h3>Select the catalog you wish to use for a build a mailing list</h3>
+
+
+						<div class="col-md-6">
+							${appService.catalogList.length}
+							<div class="form-group flex-column-1">
+								<input ref="myDatalist" type="text" list="myDatalist" placeholder="search on catalogList" 
+                change.delegate="performSearchSL()"
+								 input.delegate="selectedValue = findOption($event.target.value)" />
+								<datalist id="myDatalist">
+									<option repeat.for="option of appService.catalogList">${option.CatalogTitle}</option>
+								</datalist>
+							</div>
+
+							<pre>This form is used to perform batch updates on a group of 
+                inventory items that already exist as a Saved List.
+                You can make a new Saved List by selecting criteria through the 
+                Inventory Search screen
+                You can also add inventory items individually to a previously saved list.
+                </pre>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+
+
+	</section>
+</template> -->

@@ -95,7 +95,8 @@ export class Mailinglist {
     // this.page = '#/action'
     // this.search.inventorycode = 'PORTERC008'
     this.dataService = dataService;
-  }
+    let aa = this.appService.catalogList
+  } 
 
   getStatesExample(filter, limit) {
 
@@ -109,20 +110,7 @@ export class Mailinglist {
     // return Promise.delay(500, promise);
   }
 
-  // getStates(filter, limit) {
-  //   let filterlc = filter.toLowerCase()
-  //   let states
-  //   let Promise = this.dataService.loadStates()
-  //     .then(response => {
-  //       states = response
-  //       console.log('states', states)
-  //       return states //response // .json();
-  //     })
-  //     .then(states => filter.length > 0 ? states.filter(item => item.name.toLowerCase().indexOf(filter.toLowerCase()) > -1) : states)
-  //     .then(states => filter.length > 0 ? states.filter(item => item.name.toLowerCase().indexOf(filterlc) > -1) : states)
-
-  //   return Promise
-  // } 
+ 
   performSearchSL() {
 
     let mailinglist = this.myDatalist.value

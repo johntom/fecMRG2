@@ -7,7 +7,7 @@ import { ApiService } from '../../utils/servicesApi';
 
 export class Home {
   heading = "MRG Home Page";
-  version = ' 304.49'
+  version = ' 304.50'
   versionDate = 'Sat 9/7/2019 11pm'
   prevversion = ' 303.53 '
   prevversionDate = 'Mon 8/5/2019 5pm'
@@ -152,22 +152,20 @@ export class Home {
 
   async activate() {
 
-    // let response = await this.api.getCatalogsAA();
-    // this.appService.catalogList = response.data
-    // console.log('https://artbased.com/api/v1/catalog catalogList ', this.appService.catalogList )
+    let response = await this.api.getCatalogsAA();
+    this.appService.catalogList = response.data
+    console.log('https://artbased.com/api/v1/catalog catalogList ', this.appService.catalogList )
+     let responsep = await this.api.getpublisher();
+     this.appService.publisherList = responsep.data
 
     if (this.appService.LookupDataLoaded) {
       console.log('using data cache from home....')
       return Promise.resolve(true);
     } else {
-      let response = await this.api.getpublisher();
-      this.appService.publisherList = response.data
-      // console.log('https://artbased.com/api/v1/catalog catalogList ', this.appService.catalogList )
+        // console.log('https://artbased.com/api/v1/catalog catalogList ', this.appService.catalogList )
 
 
-      let responsep = await this.api.getpublisher();
-      this.appService.publisherList = responsep.data
-
+      
       return Promise.all([
         this.dataService.loadArtists(),
         this.dataService.loadCodes(),
