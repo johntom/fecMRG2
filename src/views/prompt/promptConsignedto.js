@@ -27,15 +27,14 @@ export class Promptconsignedto {
 
 
   activate(currentmodel) {
-   
+
     this.currentItem = currentmodel.currentItem
-    // console.log('ex ' + this.currentItem.exhibition)
-    this.item = currentmodel.item
+    this.item = currentmodel.item;  /////.consignedtoname// item
     this.popuptype = currentmodel.popuptype;
     this.heading = "Consigned To";
     // (this.popuptype === 0) ? this.showbatch = false : this.showbatch = true // from action
 
-  }
+  } 
 
 
   attached() {
@@ -48,11 +47,13 @@ export class Promptconsignedto {
   }
 
   showModal(fieldname) {
-    this.currentItem.fieldname = fieldname
-    this.dialogService.open({ viewModel: Promptorg, model: this.currentItem, lock: true }).whenClosed(response => {
+    // this.currentItem.fieldname = fieldname
+    this.item.fieldname = fieldname
+    // this.dialogService.open({ viewModel: Promptorg, model: this.currentItem, lock: true }).whenClosed(response => {
+    this.dialogService.open({ viewModel: Promptorg, model: this.item.consignedtoname, lock: true }).whenClosed(response => {
 
       if (!response.wasCancelled) {
-     
+
       } else {
         console.log('cancel');
       }

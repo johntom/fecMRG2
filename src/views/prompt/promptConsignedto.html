@@ -41,16 +41,24 @@
 							<div class="Rtable Rtable--2cols">
 
 								<div class="Rtable-cell-30 Rtable-cell--highlight">
-									<strong> Consigned To ${currentItem.ConsignedtoID} </strong>
+									<strong> Consigned To ${item.consignedtoname.OrgName} </strong>
 								</div>
-								<div class="Rtable-cell-70  Rtable-cell--light">
+                <div class="Rtable-cell-70  Rtable-cell--light">
+									<div if.bind="item.consignedtoname.OrgName===undefined || item.consignedtoname.OrgName===''">
+										<a click.delegate="showModal( 'ConsignedToID')">select_link </a>
+									</div>
+									<div else>
+										<a click.delegate="showModal('ConsignedToID')">${item.consignedtoname.OrgName}</a>
+									</div>
+								</div>
+								<!-- <div class="Rtable-cell-70  Rtable-cell--light">
 									<div if.bind="currentItem.consignedtoname===undefined || currentItem.consignedtoname===''">
 										<a click.delegate="showModal( 'ConsignedToID')">select_link </a>
 									</div>
 									<div else>
 										<a click.delegate="showModal('ConsignedToID')">${currentItem.consignedtoname}</a>
 									</div>
-								</div>
+								</div> -->
 								<div class=" Rtable-cell-30 Rtable-cell--highlight">
 									<strong>Start Date </strong>
 								</div>

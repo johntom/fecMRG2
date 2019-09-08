@@ -11,15 +11,18 @@
 		<ak-grid class="flex-row-1 overflow-y-auto" id="grid" k-data-source.bind="datasource" k-widget.bind="grid" k-sortable.bind="{ mode: 'multiple',   allowUnsort: 'true'}"
 		 k-editable="popup" k-reorderable.bind="true" k-resizable.bind="true" k-height.bind="300" k-column-menu.bind="true">
 			<div style="width: 1500px"></div>
-			<ak-col k-filterable.bind="false" k-width="170px" k-command.bind="['edit','destroy']" k-title=" " k-locked.bind="true" k-lockable.bind="false"></ak-col>
+			<!-- <ak-col k-filterable.bind="false" k-width="170px" k-command.bind="['edit','destroy']" k-title=" " k-locked.bind="true" k-lockable.bind="false"></ak-col> -->
 			<!-- <ak-col k-title='Consigned To' k-field="ConsignedTo"    k-width="140px" k-template.bind="orgTemplate"
 			 k-editor.bind="orgDropDownEditor" k-filterable.bind="false" k-groupable.bind="false"></ak-col> -->
 
-			<ak-col k-field="consignedtoname" k-title="Consigned To" k-width="180px" k-editor.bind="orgDropDownEditor" k-template.bind="orgTemplate"></ak-col>
+			<!-- <ak-col k-field="consignedtoname" k-title="Consigned To" k-width="180px" k-editor.bind="orgDropDownEditor" k-template.bind="orgTemplate"></ak-col> -->
+<ak-col k-locked.bind="true" k-filterable.bind="true" k-title="Edit" k-width.bind="45" k-template="<button click.delegate='detailsEdit($event)' ><i class='fa fa-edit'></i></button>"></ak-col>
 
-			<!-- <ak-col k-title="ConsignedTo" k-width="160px" k-field="ConsignedTo"> </ak-col>
- <ak-col k-title="consignedtoname" k-width="160px" k-field="consignedtoname"> </ak-col>
-		 -->
+      <ak-col k-locked.bind="true"k-command="destroy" k-title="Delete " k-width="85px"></ak-col>
+
+		
+ <ak-col k-title="OrgName" k-width="160px" k-field="OrgName"> </ak-col>
+		
 
 			<ak-col k-title="Start Date" k-field="ConsignedStartDate" k-filterable.bind="true" k-format="{0:MM/dd/yyyy}" k-width.bind="120">
 			</ak-col>

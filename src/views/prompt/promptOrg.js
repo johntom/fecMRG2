@@ -40,7 +40,6 @@ export class Promptorg {
     let response = await this.api.findorgOne(this.currentItem.org._id);//ID);
     this.item = response.data[0];
     console.log('this.repos ', this.item)
-
     // let response2 = await this.api.findorgContacts( this.item.ID)//this.currentItem.org._id);
     let response2 = await this.api.findorgContacts( this.currentItem.org._id);
     this.item.contacts = response2.data;
