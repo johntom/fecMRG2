@@ -24,7 +24,7 @@ export class DataForm {
     this.artist = {}
     this.artist.id = 'create'
 
-  } 
+  }
   async activate(params, routeConfig) {
 
     if (params.id) {
@@ -79,15 +79,19 @@ export class DataForm {
     // this.ratingElement.removeEventListener('change', this.ratingChangedListener);
     // this.selectAdjusterElement.removeEventListener('change', this.adjusterSelectedListener);
   }
-  async saveartist(option) { 
-    this.artist.ArtistName = this.artist.LastName + ', ' + this.artist.FirstName
- let response = await this.api.updateartistAA(this.artist);
-this.artist.id = response.data.id
+  async saveartist(option) {
+    let response
+    if (this.artist.id === 'create') {
+      this.artist.ArtistName = this.artist.LastName + ', ' + this.artist.FirstName
+      response = await this.api.updateartistAA(this.artist);
+
+      this.artist.id = response.data.id
+    } else response = await this.api.updateartistAA(this.artist);
     // if ((this.artistcached.Died !== this.artist.Died) || (this.artistcached.YearofBirth !== this.artist.YearofBirth)) {
     //   let response = await this.api.replaceartistinfo(this.artist);
     //   alert('add replaceartistinfo to backend ' + response)
     // }
-       // if (this.artist.id === 'create') {
+    // if (this.artist.id === 'create') {
     //   let val = await this.api.findArtistsAA();
 
     //   // this.appService.artistList = val.data;
@@ -99,11 +103,11 @@ this.artist.id = response.data.id
     //   }
     //   this.appService.artistList = lodash.sortBy(nlist, 'ArtistName');
     // } else {
-      
+
     // }
     let response2 = await this.api.findArtistsAA(this.artist);
     this.appService.artistList = response2.data
-    if (option === 1) this.requestclose() 
+    if (option === 1) this.requestclose()
   }
 
   requestclose() {
