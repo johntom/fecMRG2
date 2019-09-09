@@ -461,10 +461,12 @@ body {
   }
 }
 
-section {
+/* section {
   margin: 0 20px;
+} */
+section {
+  margin: 0 0px;
 }
-
 .navbar-nav li.loader {
   margin: 12px 24px 0 6px;
 }
