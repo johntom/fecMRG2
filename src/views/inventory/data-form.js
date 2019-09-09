@@ -12,6 +12,10 @@ import { bindable } from 'aurelia-framework';
 import { RtfService } from '../../services/rtf-service';
 import { EventAggregator } from 'aurelia-event-aggregator';
 import { Promptmerge } from '../prompt/promptMerge';
+
+// import { Pusher } from 'pusher';
+
+
 //  <strong> Owned Status ${currentItem.OwnedByLegacy}/ ${currentItem.OwnedBy}/ ${currentItem.ownedbyname} </strong> -->
 
 @inject(Router, ApiService, ApplicationService, MyDataService, DialogService, RtfService, EventAggregator)
@@ -78,9 +82,9 @@ export class DataForm {
   // listtypes = [{ id: 0, name: "exhibition(not avail yet)" }, { id: 1, name: "price list" },
   // { id: 2, name: "location list" }, { id: 3, name: "box label" }, { id: 4, name: "condition" },
   // { id: 5, name: "registrar" }, { id: 6, name: "presentation(not avail yet)" }]
-  listtypes = [{ id: -1, name: 'choose' }, { id: 0, name: "exhibition"} , { id: 1, name: "price list" },
+  listtypes = [{ id: -1, name: 'choose' }, { id: 0, name: "exhibition" }, { id: 1, name: "price list" },
   { id: 2, name: "location list" }, { id: 3, name: "box label" }, { id: 4, name: "condition" },
-  { id: 5, name: "registrar"},{ id: 6, name: "presention"}]
+  { id: 5, name: "registrar" }, { id: 6, name: "presention" }]
   //  listtypes = [{ id: 0, name: "exh(na)" }, { id: 1, name: "prce-lst" },
   //   { id: 2, name: "loc-list" }, { id: 3, name: "box label" }, { id: 4, name: "condition" },
   //   { id: 5, name: "registrar" }, { id: 6, name: "pres-na" }]
@@ -233,9 +237,10 @@ export class DataForm {
   // if (topos !== -1) {
   // only 2 on main form
 
-  showModal(fieldname) {
+  async showModal(fieldname) {
     this.currentItem.fieldname = fieldname
     this.currentItem.recordId = this.recordId
+    let refresha = false
     if (fieldname === 'SoldToID') {
       let findOptions = this.appService.orgsList.find(x => x._id === this.currentItem.SoldToID)
       // this.currentItem.recordId = this.currentItem.SoldToID
@@ -245,18 +250,12 @@ export class DataForm {
       let findOptiono = this.appService.orgsList.find(x => x._id === this.currentItem.OwnerID)
       console.log('appService.orgsList', findOptiono)
     }
-
-
-
     if (fieldname === 'SoldToID' || fieldname === 'OwnerID') {
-
       this.dialogService.open({ viewModel: Promptorg, model: this.currentItem, lock: true }).whenClosed(response => {
-
         if (!response.wasCancelled) {
           // console.log('Delete')
           // let notes = this.currentItem.notes
           // notes.splice(index, 1)// start, deleteCount)
-
         } else {
           if (this.currentItem.artist === null) {
             //// this.currentItem.artist.ArtistName=undefined
@@ -278,11 +277,19 @@ export class DataForm {
           if (this.currentItem.artist === null) {
             //// this.currentItem.artist.ArtistName=undefined
             //  this.controller.validate()
+          } else {
+            refresha = true
+            // let response = await this.api.findArtistsAA(this.artist);
+            // this.appService.artistList = response.data
           }
           console.log('cancel');
         }
         console.log(response)//.output);
       });
+    }
+    if (refresha) {
+      let response = await this.api.findArtistsAA(this.artist);
+      this.appService.artistList = response.data
     }
   }
 
@@ -600,7 +607,7 @@ export class DataForm {
       }
       resolve(0);
     })
-     resolve(0);
+    resolve(0);
   }
 
   async attached() {
@@ -614,7 +621,7 @@ export class DataForm {
       // set rtf and save record on open
       let tab = this.appService.dataFormOneToManyTabs[0];
       this.selectOneToManyTab(tab);
-   //   this.mainimage.src = `https://artbased.com/api/v1/getimage/inv/${this.currentItem.InventoryCode}.jpg`;
+      //   this.mainimage.src = `https://artbased.com/api/v1/getimage/inv/${this.currentItem.InventoryCode}.jpg`;
       //      return Promise
       // await this.getimageinfo(0)
       return Promise.all([
@@ -682,10 +689,10 @@ export class DataForm {
     //  let createopt = 2; // 1 is from tab
     //  let rr = await this.rtfService.createRTF(createopt)
 
-/// to prevent dirty  \\\
-if (this.currentItem.conservation !==undefined && this.currentItem.conservation.length===0){ delete this.currentItem.conservation }
-if (this.currentItem.museumloan !==undefined && this.currentItem.museumloan.length===0){ delete this.currentItem.museumloan }
-if (this.currentItem.consignedto !==undefined &&  this.currentItem.consignedto.length===0){ delete this.currentItem.consignedto }
+    /// to prevent dirty  \\\
+    if (this.currentItem.conservation !== undefined && this.currentItem.conservation.length === 0) { delete this.currentItem.conservation }
+    if (this.currentItem.museumloan !== undefined && this.currentItem.museumloan.length === 0) { delete this.currentItem.museumloan }
+    if (this.currentItem.consignedto !== undefined && this.currentItem.consignedto.length === 0) { delete this.currentItem.consignedto }
 
 
 

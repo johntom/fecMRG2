@@ -2,17 +2,18 @@ import { inject } from 'aurelia-dependency-injection';
 import { ApplicationService } from '../../services/application-service';
 import { MyDataService } from "../../services/my-data-service";
 import { ApiService } from '../../utils/servicesApi';
+// import { Pusher } from 'pusher'; 
 
 @inject(ApplicationService, MyDataService, ApiService)
 
 export class Home {
   heading = "MRG Home Page";
   footer = 'DataForm FOOTER...'
-  version = ' 304.65 '
+  version = ' 304.67 '
   versionDate = 'Mon 9/9/2019 12pm'
   prevversion = ' 303.53 '
   prevversionDate = 'Mon 8/5/2019 5pm'
- 
+
   issues = [
     // or press refresh button upper left corner',
     //https://circleci.com/workflow-run/1f3685ab-daba-41d7-8d25-6279df547b19
@@ -116,7 +117,7 @@ export class Home {
     'to assign F5 on Mac if Cmd+R does not work',
     'system preferences —> keyboard—>shortcuts tab—>AppShortcuts—> + —>application: GoogleChrome—>Menu Title: Reload This Page—>Keyboard Shortcut: [press F5 key]Press f5 key or cmd+shift+R on mac to fetch new release',
 
-   
+
 
   ]
   todo = [
@@ -127,7 +128,7 @@ export class Home {
 
   ]
   todocomplete = [
- "To insert an ASCII character, press and hold down ALT while typing the character code. For example, to insert the degree (º) symbol, press and hold down ALT while typing 0176 on the numeric keypad. You must use the numeric keypad to type the numbers, and not the keyboard.",
+    "To insert an ASCII character, press and hold down ALT while typing the character code. For example, to insert the degree (º) symbol, press and hold down ALT while typing 0176 on the numeric keypad. You must use the numeric keypad to type the numbers, and not the keyboard.",
     , "https://support.office.com/en-us/article/insert-ascii-or-unicode-latin-based-symbols-and-characters-d13f58d3-7bcb-44a7-a4d5-972ee12e50e0"
     , 'CTRL+SHIFT+F to find'
 
@@ -139,7 +140,7 @@ export class Home {
     this.appService = appService;
     this.dataService = dataService;
     this.api = api;
-   
+
   }
   //   this.dataService.loadCodes(values[1]), resolve all lists
 
@@ -153,22 +154,35 @@ export class Home {
     this.activate()
   }
 
+ attached() {
+    //  var pusher = new Pusher('f9bf10dcb8b1659ebf68', {
+    //   cluster: 'us2',
+    //   forceTLS: true
+    // });
+
+    // var channel = pusher.subscribe('my-channel');
+    // channel.bind('my-event', function(data) {
+    //   alert(JSON.stringify(data));
+    // });
+ }
+
+
   async activate() {
- this.appService.version=  this.version
+    this.appService.version = this.version
     let response = await this.api.getCatalogsAA();
     this.appService.catalogList = response.data
-    console.log('https://artbased.com/api/v1/catalog catalogList ', this.appService.catalogList )
-     let responsep = await this.api.getpublisher();
-     this.appService.publisherList = responsep.data
+    console.log('https://artbased.com/api/v1/catalog catalogList ', this.appService.catalogList)
+    let responsep = await this.api.getpublisher();
+    this.appService.publisherList = responsep.data
 
     if (this.appService.LookupDataLoaded) {
       console.log('using data cache from home....')
       return Promise.resolve(true);
     } else {
-        // console.log('https://artbased.com/api/v1/catalog catalogList ', this.appService.catalogList )
+      // console.log('https://artbased.com/api/v1/catalog catalogList ', this.appService.catalogList )
 
 
-      
+
       return Promise.all([
         this.dataService.loadArtists(),
         this.dataService.loadCodes(),

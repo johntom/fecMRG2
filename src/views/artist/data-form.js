@@ -79,25 +79,31 @@ export class DataForm {
     // this.ratingElement.removeEventListener('change', this.ratingChangedListener);
     // this.selectAdjusterElement.removeEventListener('change', this.adjusterSelectedListener);
   }
-  async saveartist(option) {
-    if ((this.artistcached.Died !== this.artist.Died) || (this.artistcached.YearofBirth !== this.artist.YearofBirth)) {
-      let response = await this.api.replaceartistinfo(this.artist);
-      alert('add replaceartistinfo to backend ' + response)
-    }
-    let response = await this.api.updateartistAA(this.artist);
-    if (this.artist.id === 'create') {
-      let val = await this.api.findArtistsAA();
+  async saveartist(option) { 
+    this.artist.ArtistName = this.artist.LastName + ', ' + this.artist.FirstName
+ let response = await this.api.updateartistAA(this.artist);
+this.artist.id = response.data.id
+    // if ((this.artistcached.Died !== this.artist.Died) || (this.artistcached.YearofBirth !== this.artist.YearofBirth)) {
+    //   let response = await this.api.replaceartistinfo(this.artist);
+    //   alert('add replaceartistinfo to backend ' + response)
+    // }
+       // if (this.artist.id === 'create') {
+    //   let val = await this.api.findArtistsAA();
 
-      // this.appService.artistList = val.data;
-      this.artist.id = '';
-      let nlist = []
-      for (const item of val.data) {
-        item.ArtistName = item.LastName + ', ' + item.FirstName
-        nlist.push(item)
-      }
-      this.appService.artistList = lodash.sortBy(nlist, 'ArtistName');
-    }
-    if (option === 1) this.requestclose()
+    //   // this.appService.artistList = val.data;
+    //   this.artist.id = '';
+    //   let nlist = []
+    //   for (const item of val.data) {
+    //     item.ArtistName = item.LastName + ', ' + item.FirstName
+    //     nlist.push(item)
+    //   }
+    //   this.appService.artistList = lodash.sortBy(nlist, 'ArtistName');
+    // } else {
+      
+    // }
+    let response2 = await this.api.findArtistsAA(this.artist);
+    this.appService.artistList = response2.data
+    if (option === 1) this.requestclose() 
   }
 
   requestclose() {

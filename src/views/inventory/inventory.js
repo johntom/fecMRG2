@@ -5,9 +5,9 @@ import { MyDataService } from "../../services/my-data-service";
 import { EventAggregator } from 'aurelia-event-aggregator';
 import { inject } from 'aurelia-dependency-injection';
 
-import {WebAPI} from '../../web-api';
-import {ContactUpdated,ContactViewed} from '../../messages';
-@inject(Router, UtilService, ApplicationService, MyDataService, EventAggregator,WebAPI)
+import { WebAPI } from '../../web-api';
+import { ContactUpdated, ContactViewed } from '../../messages';
+@inject(Router, UtilService, ApplicationService, MyDataService, EventAggregator, WebAPI)
 
 export class Inventory {
   // static inject = [Router, Router, ApplicationService, MyDataService, EventAggregator];
@@ -54,7 +54,7 @@ export class Inventory {
     { name: 'November', short: 'Nov', number: 11 },
     { name: 'December', short: 'Dec', number: 12 }
   ];
-  searchdates = [ 
+  searchdates = [
     // { id: 0, name: 'DateAdded' },
     // { id: 1, name: 'DateModified' },
     { id: 2, name: 'SoldDate' },
@@ -71,7 +71,7 @@ export class Inventory {
   //   { id: 4, name: 'DON' },
   // ];
 
-    searchsold = [
+  searchsold = [
     { id: -1, name: 'Y' },
 
     { id: 0, name: 'N' },
@@ -81,7 +81,7 @@ export class Inventory {
 
   altAKeyPressSubscription;
 
-  constructor(router, utilService, appService, dataService, eventAggregator,api) {
+  constructor(router, utilService, appService, dataService, eventAggregator, api) {
     this.router = router;
     this.utilService = utilService;
     this.appService = appService;
@@ -89,7 +89,7 @@ export class Inventory {
     // this.search.inventorycode = 'PORTERC008'
     this.dataService = dataService;
     this.eventAggregator = eventAggregator
-       this.api = api;
+    this.api = api;
   }
   getStatesExample(filter, limit) {
 
@@ -192,7 +192,7 @@ export class Inventory {
 
       let qs = this.utilService.generateQueryString(this.search);
       console.log('this.search ', this.search)
-      let counter = this.utilService.counter++ 
+      let counter = this.utilService.counter++
 
       // opens multiple search results forms
       //      let path = `searchInv${qs}&tabname=searchInv${this.utilService.counter++}`;
@@ -237,12 +237,14 @@ export class Inventory {
     this.ndate = moment().format('YYYY-MM-DD')
     let provarray = [{ id: 1, sord: 3, id: 2, sord: 1, id: 3, sord: 2 }]
     this.testlodash = _.sortBy(provarray, 'sord');
-let contact= {id:99,
-    firstName:'John',
-    lastName:'Tomaselli',
-    email:'jrt@gtz.com',
-    phoneNumber:'212-867-5309'}
-  this.eventAggregator.publish(new ContactUpdated(contact));
+    // let contact = {
+    //   id: 99,
+    //   firstName: 'John',
+    //   lastName: 'Tomaselli',
+    //   email: 'jrt@gtz.com',
+    //   phoneNumber: '212-867-5309'
+    // }
+    // this.eventAggregator.publish(new ContactUpdated(contact));
 
 
   }
@@ -300,12 +302,14 @@ let contact= {id:99,
       if (this.mruinfo.mru10 !== undefined) {
         this.mru.push(this.mruinfo.mru10.InvCode)
       }
-      let contact= {id:99,
-    firstName:'John',
-    lastName:'Tomaselli',
-    email:'jrt@gtz.com',
-    phoneNumber:'212-867-5309'}
-  this.eventAggregator.publish(new ContactViewed(contact));
+      let contact = {
+        id: 99,
+        firstName: 'John',
+        lastName: 'Tomaselli',
+        email: 'jrt@gtz.com',
+        phoneNumber: '212-867-5309'
+      }
+      this.eventAggregator.publish(new ContactViewed(contact));
 
     }
     // for select2

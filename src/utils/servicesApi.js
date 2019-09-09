@@ -162,12 +162,17 @@ export class ApiService {
     return this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())
 
   }
-  // http://74.114.164.24/api/v1/artist
+  // http://74.114.164.24/api/v1/artist  https://artbased.com/api/v1/artist
   findArtists() {
     var url = this.baseweb + 'v1/artist';
     return this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())
   }
-
+async   findArtistsAA() {
+    var url = this.baseweb + 'v1/artist';
+    return await this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())
+  }
+  
+  
   // all new 2019 AA methods
 
   // https://artbased.com/api/v1/savedlists/getinventory/ { method: ['get'], path: '/api/v1/savedlists/getinventory/:id', handler: 'SavedlistsController.getinventory' },

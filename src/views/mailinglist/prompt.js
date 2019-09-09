@@ -48,6 +48,7 @@ export class Prompt {
   }
 
   attached() {
+    
     // set typahead value for state MUST BE IN ATTACHED
     // this.name = {
     //   name: 'New York',
