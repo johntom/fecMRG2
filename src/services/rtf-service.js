@@ -243,11 +243,12 @@ export class RtfService {
     // 3 repeat 1 from new position
     // let inscribed = this.currentItem.Inscribed
     let iLines = []
+    this.inscribedText = ''
     console.log('inscribed==================== ', inscribed)
     if (inscribed !== undefined) {
       let a2 = ''
       let a3 = ''
-      this.inscribedText = ''
+      // this.inscribedText = ''
       let semisCount = (inscribed).match('/;/g')
       let strCount = (inscribed).match(new RegExp(";", "g"))
       let colonPos
@@ -458,7 +459,9 @@ export class RtfService {
     if (edition !== undefined) {
       let a2 = ''
       let a3 = ''
-      // this.inscribedText = ''
+      
+       //this.inscribedText = '' //9-9
+      
        this.EditionCommentFormat = ''
       
       let semisCount = (edition).match('/;/g')

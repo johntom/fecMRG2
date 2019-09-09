@@ -35,8 +35,8 @@ export class Promptartist {
  
 // // Accessing individual values
 // alert(nameArr[0]); // Outputs: Harry
-    this.artist.LastName = na[0]//this.artist.name.split(" ",1);
-    this.artist.FirstName =  na[1] //this.artist.name.split(" ",2);
+    this.artist.LastName = na[0].trim()//this.artist.name.split(" ",1);
+    this.artist.FirstName =  na[1].trim() //this.artist.name.split(" ",2);
   }
 
 
@@ -52,7 +52,7 @@ export class Promptartist {
 
   async save() { 
      delete this.artist.name;
-     this.artist.ArtistName=this.artist.LastName+', '+this.artist.FirstName
+     this.artist.ArtistName=this.artist.LastName.trim()+', '+this.artist.FirstName.trim()
      let response = await this.api.updateartistAA(this.artist);
    
      this.appService.artistList.push(response.data)//this.artist)

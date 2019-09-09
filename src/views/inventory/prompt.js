@@ -607,8 +607,8 @@ export class Prompt {
       console.log(this.selectedValueA)
       if (this.selectedValueA !== undefined) {
         if (this.currentItem.artist === undefined) this.currentItem.artist = {}
-        this.currentItem.artist.ArtistName = this.selectedValueA.ArtistName
-        this.currentItem.artist.firstName = this.selectedValueA.FirstName
+        this.currentItem.artist.ArtistName = this.selectedValueA.ArtistName.trim()
+        this.currentItem.artist.firstName = this.selectedValueA.FirstName.trim()
         this.currentItem.artist.id = this.selectedValueA.id
         this.currentItem.artist.lastName = this.selectedValueA.LastName
         this.currentItem.artist.yearofBirth = this.selectedValueA.YearofBirth
