@@ -6,8 +6,6 @@ import { MyDataService } from "../../services/my-data-service";
 
 export class Prompt {
   static inject = [DialogController, ApplicationService, MyDataService];
-
-
   constructor(controller, appService, dataService) {
     this.controller = controller;
     this.answer = null;

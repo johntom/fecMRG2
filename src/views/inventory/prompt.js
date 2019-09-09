@@ -508,7 +508,7 @@ export class Prompt {
 
       this.dialogService.open({ viewModel: Promptartist, model: { findvalue }, lock: true }).whenClosed(response => {
 
-        if (!response.wasCancelled) {
+        if (!response .wasCancelled) {
           // this.addArtist(findvalue)
 
           // this.myDatalistA = this.appService.addedartist;
@@ -525,6 +525,13 @@ export class Prompt {
         }
         console.log(response.output);
       });
+
+    } else {
+      let arts =this.findArtist
+          this.myDatalistA.value = arts.ArtistName;
+          this.selectedValueA = arts 
+          //this.findArtist = this.selectedValueA
+          this.appService.addedartist = '';
 
     }
   }

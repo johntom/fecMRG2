@@ -421,17 +421,12 @@ export class Promptorg {
         this.origorg = this.currentItem.consignmentshippingname;
       }
     }
-
-
-
   }
   changeCallbackOrg(selectedValue) {
-
     let values = this.myDatalistO.value
     // let semiPos = values.indexOf(";");
     // var res = values.trim();
     var res = values.split(";");
-
     this.OrgName = res[0].trim();
     this.BusIndivid = res[1].trim();
     this.orgId = res[2].trim();
