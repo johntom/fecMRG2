@@ -95,20 +95,6 @@ export class Type {
     });
   }
 
-  //  showModal(fieldname,index) {
-  //     this.dialogService.open({ viewModel: Prompt, model: fieldname, lock: false }).whenClosed(response => {
-  //     this.currentItem.consignedto[index].ConsignedTo = this.currentItem.ConsignedTo
-  //     this.currentItem.consignedto[index].consignedtoname = this.currentItem.consignedtoname
-  //       if (!response.wasCancelled) {
-  //         // console.log('Delete') InsuredBy
-  //         // let notes = this.currentItem.notes
-  //         // notes.splice(index, 1)// start, deleteCount)
-  //       } else {
-  //         console.log('cancel');
-  //       }
-  //       console.log(response.output);
-  //     });
-  //   }
 
   addDetail() {
     let conservation = this.currentItem.conservation
@@ -143,10 +129,19 @@ export class Type {
     this.mode = 0
     this.isDisableEdit = true
   }
-
-
-
-
-
-
 }
+
+  //  showModal(fieldname,index) {
+  //     this.dialogService.open({ viewModel: Prompt, model: fieldname, lock: false }).whenClosed(response => {
+  //     this.currentItem.consignedto[index].ConsignedTo = this.currentItem.ConsignedTo
+  //     this.currentItem.consignedto[index].consignedtoname = this.currentItem.consignedtoname
+  //       if (!response.wasCancelled) {
+  //         // console.log('Delete') InsuredBy
+  //         // let notes = this.currentItem.notes
+  //         // notes.splice(index, 1)// start, deleteCount)
+  //       } else {
+  //         console.log('cancel');
+  //       }
+  //       console.log(response.output);
+  //     });
+  //   }

@@ -5,7 +5,9 @@ import { MyDataService } from "../../services/my-data-service";
 import { EventAggregator } from 'aurelia-event-aggregator';
 import { inject } from 'aurelia-dependency-injection';
 
-@inject(Router, UtilService, ApplicationService, MyDataService, EventAggregator)
+import {WebAPI} from '../../web-api';
+import {ContactUpdated,ContactViewed} from '../../messages';
+@inject(Router, UtilService, ApplicationService, MyDataService, EventAggregator,WebAPI)
 
 export class Inventory {
   // static inject = [Router, Router, ApplicationService, MyDataService, EventAggregator];
@@ -79,7 +81,7 @@ export class Inventory {
 
   altAKeyPressSubscription;
 
-  constructor(router, utilService, appService, dataService, eventAggregator) {
+  constructor(router, utilService, appService, dataService, eventAggregator,api) {
     this.router = router;
     this.utilService = utilService;
     this.appService = appService;
@@ -87,6 +89,7 @@ export class Inventory {
     // this.search.inventorycode = 'PORTERC008'
     this.dataService = dataService;
     this.eventAggregator = eventAggregator
+       this.api = api;
   }
   getStatesExample(filter, limit) {
 
@@ -234,6 +237,13 @@ export class Inventory {
     this.ndate = moment().format('YYYY-MM-DD')
     let provarray = [{ id: 1, sord: 3, id: 2, sord: 1, id: 3, sord: 2 }]
     this.testlodash = _.sortBy(provarray, 'sord');
+let contact= {id:99,
+    firstName:'John',
+    lastName:'Tomaselli',
+    email:'jrt@gtz.com',
+    phoneNumber:'212-867-5309'}
+  this.eventAggregator.publish(new ContactUpdated(contact));
+
 
   }
   detached() {
@@ -290,7 +300,12 @@ export class Inventory {
       if (this.mruinfo.mru10 !== undefined) {
         this.mru.push(this.mruinfo.mru10.InvCode)
       }
-
+      let contact= {id:99,
+    firstName:'John',
+    lastName:'Tomaselli',
+    email:'jrt@gtz.com',
+    phoneNumber:'212-867-5309'}
+  this.eventAggregator.publish(new ContactViewed(contact));
 
     }
     // for select2

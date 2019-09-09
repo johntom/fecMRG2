@@ -508,6 +508,8 @@ export class RtfService {
   //   selectedtype = 0;
   async createRTF(createopt, selectedtype) {
     // 1 MEANS UI DISPLAYS HTML 2; // 1 is from tab
+    this.segment2 =''
+     this.segment1 =''
     if (selectedtype === undefined) selectedtype = 0;
 
     this.createDim()

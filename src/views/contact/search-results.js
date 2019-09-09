@@ -9,7 +9,7 @@ import { MyDataService } from "../../services/my-data-service"
 @inject(Router, ApiService, UtilService, ApplicationService)
 export class SearchResults {
   heading = 'Search Results HEADER...';
-  footer = 'Search Results FOOTER...';
+  // footer = 'Search Results FOOTER...';
   recordId = '';
   title = '';
   invcode = '';
@@ -139,11 +139,12 @@ let gid =   this.appService.contactsearchresults.findIndex(x => x.id === dataIte
             if (inv === 0 || this.recct === 0) {
               this.message = ' no records found '
               let tab = this.appService.tabs.find(f => f.isSelected);
-
+  this.busy.active = false
             } else {
               this.appService.contactsearchresults = inv;
-              return inv
+            
             }
+              return inv
         });
     }
   }

@@ -115,23 +115,3 @@ export class Compcatsent {
     });
   }
 }
-
-// export class filterOnCodeValueConverter {
-
-//   see require from= "../../../value-converters/filter-by-code" > </require>
-//   // | filterOnCode is 
-//   // //return item.ProjectStatus.indexOf(filterText) >= 0;
-//   // return item["Code Type"].indexOf(0) >= 0;
-//   toView(array: {}[], property: string, exp: string) {
-
-//     if (array === undefined || array === null || property === undefined || exp === undefined) {
-//       return array;
-//     }
-//     //   console.log('exp,property', exp, property)
-
-//     // return array.filter((item) =>   item["Code Type"] === 14)
-//     return array.filter((item) => item[property] === exp)
-
-//   }
-
-// }

@@ -344,16 +344,22 @@ export class SearchResults {
           this.recCount = inv.length;
           // this.spinner.remove()
           this.busy.active = false
-          if (inv === 0 || inv.length === 0) {
-            this.dialogService.open({ viewModel: Promptmess, model: `no records found  `, lock: true }).whenClosed(async response => { });
-            let tab = this.appService.tabs.find(f => f.isSelected);
-            this.closeTab(tab);
-            let rt2 = '#/inventory';
-            this.router.navigate(rt2);
-          } else {
-            this.appService.inventorysearchresults = inv;
+          // if (inv === 0 || inv.length === 0) {
+          //   this.dialogService.open({ viewModel: Promptmess, model: `no records found  `, lock: true }).whenClosed(async response => { });
+          //   let tab = this.appService.tabs.find(f => f.isSelected);
+          //   this.closeTab(tab);
+          //   let rt2 = '#/inventory';
+          //   this.router.navigate(rt2);
+          // } else {
+          //   this.appService.inventorysearchresults = inv;
+          //   return inv
+          // }
+            if (inv === 0 || inv.length === 0) {
+this.appService.inventorysearchresults = inv;
+this.recCount = 0
+            }
             return inv
-          }
+
         });
     }
   }

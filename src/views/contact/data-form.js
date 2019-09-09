@@ -200,11 +200,18 @@ export class DataForm {
         this.currentItem.international = false
         this.currentItem.deceased = false
         this.currentItem.mailingStatus = 2;
-        // this.appService.testrec = {}
-        // this.appService.testrec = {}
-        // this.appService.originalrec = {}
         this.appService.testcontactrec = {}
         this.appService.originalontactrec = {}
+       
+        this.currentItem.addresses = []
+
+       this.currentItem.addresses = []
+        this.currentItem.artists = []
+        this.currentItem.catalogsold = []
+        this.currentItem.phones = []
+        this.currentItem.emails = []
+        this.currentItem.addresses = []
+        
         // let checkbox
         // let checkbox = document.getElementById("mailings");
         // checkbox.indeterminate = true;//-->

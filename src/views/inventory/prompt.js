@@ -93,7 +93,7 @@ export class Prompt {
   //   this.ArtistName = this.currentItem.artist
   //   if (this.ArtistName.ArtistName === undefined) this.ArtistName.ArtistName = this.currentItem.artist.lastName + ', ' + this.currentItem.artist.firstName
 
-  constructor(controller, appService, dataService, dialogService, api){
+  constructor(controller, appService, dataService, dialogService, api) {
     // , element, taskQueue) {
     this.controller = controller;
     this.answer = null;
@@ -105,8 +105,8 @@ export class Prompt {
     this.addlist//='aaa'
     this.dialogService = dialogService
     this.api = api
-   // this.element = element;
-   // this.taskQueue = taskQueue;
+    // this.element = element;
+    // this.taskQueue = taskQueue;
     this.focusListener = e => this.value = true;
     this.blurListener = e => {
       if (document.activeElement !== this.element) {
@@ -512,11 +512,13 @@ export class Prompt {
           // this.addArtist(findvalue)
 
           // this.myDatalistA = this.appService.addedartist;
-          this.myDatalistA.value = this.appService.addedartist.ArtistName;
-
-          this.selectedValueA = this.appService.addedartist;
+          let arts = response.output
+          this.myDatalistA.value = arts.ArtistName;// this.appService.addedartist.ArtistName;
+          this.selectedValueA = arts //this.appService.addedartist;
           this.findArtist = this.selectedValueA
           this.appService.addedartist = '';
+
+
           //this.controller.cancel()
         } else {
           console.log('cancel');
@@ -602,29 +604,28 @@ export class Prompt {
     // this.currentItem.artistname = orgname
     //  this.currentItem.artist = this.ArtistName
     if (this.fieldname === 'Artist') {
-      // if (this.selectedValueA !== null && this.origartist !== this.selectedValueA) {
-
-      if (this.findArtist !== undefined) {
+      console.log(this.selectedValueA)
+      if (this.selectedValueA !== undefined) {
         if (this.currentItem.artist === undefined) this.currentItem.artist = {}
-        this.currentItem.artist.ArtistName = this.findArtist.ArtistName
-        this.currentItem.artist.died = this.findArtist.Died
-        this.currentItem.artist.firstName = this.findArtist.FirstName
-        this.currentItem.artist.id = this.findArtist.id
-        this.currentItem.artist.lastName = this.findArtist.LastName
-        this.currentItem.artist.yearofBirth = this.findArtist.YearofBirth
+        this.currentItem.artist.ArtistName = this.selectedValueA.ArtistName
+        this.currentItem.artist.firstName = this.selectedValueA.FirstName
+        this.currentItem.artist.id = this.selectedValueA.id
+        this.currentItem.artist.lastName = this.selectedValueA.LastName
+        this.currentItem.artist.yearofBirth = this.selectedValueA.YearofBirth
+        this.currentItem.artist.died = this.selectedValueA.Died
 
       }
-      // if (this.currentItem.artist === undefined) this.currentItem.artist = {}
 
-      // this.currentItem.artist.ArtistName = this.selectedValueA.ArtistName
-      // this.currentItem.artist.died = this.selectedValueA.Died
-      // this.currentItem.artist.firstName = this.selectedValueA.FirstName
-      // this.currentItem.artist.id = this.selectedValueA.id
-      // this.currentItem.artist.lastName = this.selectedValueA.LastName
-      // this.currentItem.artist.yearofBirth = this.selectedValueA.YearofBirth
+      // if (this.findArtist !== undefined) {
+      //   if (this.currentItem.artist === undefined) this.currentItem.artist = {}
+      //   this.currentItem.artist.ArtistName = this.findArtist.ArtistName
+      //   this.currentItem.artist.died = this.findArtist.Died
+      //   this.currentItem.artist.firstName = this.findArtist.FirstName
+      //   this.currentItem.artist.id = this.findArtist.id
+      //   this.currentItem.artist.lastName = this.findArtist.LastName
+      //   this.currentItem.artist.yearofBirth = this.findArtist.YearofBirth
+      // }
 
-
-      // this.currentItem.artist = this.selectedValueA// ArtistName
     }
     // this.appService.currentItem.artist = this.ArtistName
 
@@ -771,67 +772,7 @@ export class Prompt {
       // this.dsaved.value = this.name//this.addlist
       this.appService.currentsavedlist = name// dsaved.value
     }
-    this.controller.ok('saved')//cancel()
+    this.controller.ok(this.currentItem)//'saved')//cancel()
   }
 }
 
-
-      // Promise.resolve(this.dataService.MediumSupportobj()) //.then(values => {})
-      //       let rec = {
-      //         "CodeType": 3,
-      //         "Description": value,
-      //         "CodeTypeDesc": "Genre",
-      //         id: codeobj.id
-      //       }
-
-// if (this.fieldname === 'MediumSupportobj') {
-
-//       this.doc = `type any characters of the   "Medium/Support: select or add new."`
-//       this.heading = `Search Medium/Support: select or add new.`
-//       this.placeholder = `Enter any characters on Medium/Support: select or add new.`
-
-//       if (this.currentItem.MediumSupportobj === undefined) {
-
-//         // this.MedSup = this.appService.codesListMediumSupport[1]
-//       } else {
-//          this.MedSup = this.currentItem.MediumSupportobj
-//       // if (this.MedSup.Description === undefined) this.MedSup.Description = this.currentItem.MediumSupportobj.Description
-//       // this.dmediumsupport.value = this.MedSup
-
-//       //  if (this.MedSup.Description === undefined) {
-
-//       //  }
-//       // this.dmediumsupport.value = this.MedSup
-
-// // datlist
-// this.myDatalist.value=this.MedSup.Description
-
-//       }
-
-
-
-//     }
-
-  // created(SearchResults,prompt){
-  // if (this.fieldname === 'selectedids') {
-  //       // we dont send a name of the list
-  //       // let meds = this.appService.savedlists 
-  //       // if ((this.currentItem.SoldTo === undefined) || (this.currentItem.orgsList === null)) {
-  //       // } else {
-  //       //   let mid = meds.findIndex(x => x._id === this.currentItem.OwnerID)
-  //       //   let orgobj = this.appService.orgsList[mid]//10]
-  //       //   // console.log('orgobj', orgobj)
-  //       //   this.OrgName = orgobj
-  //       //   this.dsaved.value = this.OrgName
-  //       // }
-
-
-  //       // let meds = this.appService.savedlists
-  //       // let orgobj = this.appService.savedlists[0]
-  //       // this.appService.selectedids = orgobj.InventoryCodes
-  //       //this.myMultiSelect.kWidget.dataSource.add(this.appService.selectedids);
-  //       let ss = this.appService.selectedids
-  //        this.myMultiSelect.kWidget.setDataSource(ss);
-
-  //     }
-  // }

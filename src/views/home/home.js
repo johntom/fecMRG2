@@ -7,10 +7,12 @@ import { ApiService } from '../../utils/servicesApi';
 
 export class Home {
   heading = "MRG Home Page";
-  version = ' 304.56'
+  footer = 'DataForm FOOTER...'
+  version = ' 304.57'
   versionDate = 'Sun 9/7/2019 10am'
   prevversion = ' 303.53 '
   prevversionDate = 'Mon 8/5/2019 5pm'
+ 
   issues = [
     // or press refresh button upper left corner',
     //https://circleci.com/workflow-run/1f3685ab-daba-41d7-8d25-6279df547b19
@@ -231,11 +233,7 @@ export class Home {
         let codesPhotographers = []//39
         let codesSuffix = []//40,
         let codesAdmin = []//41,
-
         let codesEmailType = []//new,
-
-
-
         let newi //= {}
 
         for (i = 0; i < this.appService.codesList.length; i++) {

@@ -10,110 +10,102 @@
 </template>
  -->
 
-
-
 <template>
+  <require from="./footer-list" class=""></require>
 
-  
-  <section class="fec-web full-height flex-column-1">
-    <style>
-input.menu-input[type="checkbox"]{
-  position: absolute;
-  left: -9999px;
-}
-.list-group{
-    max-height: 300px;
-    margin-bottom: 10px;
-    overflow:scroll;
-    -webkit-overflow-scrolling: touch;
-}
-.flex-flow-column {
-  flex-flow: column;
-}
+	<section class="fec-web full-height flex-column-1">
+		<style>
+			input.menu-input[type="checkbox"] {
+				position: absolute;
+				left: -9999px;
+			}
 
-.fec-web .menu {
-   max-height: 500px;
-  padding: 0;
-  margin: 0;
-  list-style: none;
-}
-.fec-web .menu .menu-item {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 65px;
-  color: white;
-  border-left: 5px solid transparent;
-}
-.fec-web .menu .menu-item a {
-  color: white;
-  text-decoration: none;
-}
-.fec-web .menu .menu-item.active {
-  border-left: 5px solid lightskyblue;
-  background-color: #272823;
-}
+			.list-group {
+				max-height: 300px;
+				margin-bottom: 10px;
+				overflow: scroll;
+				-webkit-overflow-scrolling: touch;
+			}
 
-    </style>
+			.flex-flow-column {
+				flex-flow: column;
+			}
 
-    <div class="main-menu flex-row-1">
-      <aside class="flex-column-none">
-        <div class="logo-wrapper flex-column-none">
-        
-          <img class="logo" 
-         
-           src="https://johntom.github.io/fecMRG2/src/images/MRG_logo-white.png">
-        
-        </div>
-        <ul class="menu flex-column-1">
-          <li repeat.for="row of router.navigation" 
-            class="menu-item ${row.isActive ? 'active' : ''} ${row.settings.children ? 'flex-flow-column' : ''}">
-              <input class="menu-input" if.bind="isCollapsibleMenu(row)"
-                type="checkbox" id="list-item-${$index}"
-                checked.bind="row.settings.isOpen">
-              <label if.bind="isCollapsibleMenu(row)"
-                for="list-item-${$index}">
+			.fec-web .menu {
+				max-height: 500px;
+				padding: 0;
+				margin: 0;
+				list-style: none;
+			}
+
+			.fec-web .menu .menu-item {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				min-height: 65px;
+				color: white;
+				border-left: 5px solid transparent;
+			}
+
+			.fec-web .menu .menu-item a {
+				color: white;
+				text-decoration: none;
+			}
+
+			.fec-web .menu .menu-item.active {
+				border-left: 5px solid lightskyblue;
+				background-color: #272823;
+			}
+		</style>
+
+		<div class="main-menu flex-row-1">
+			<aside class="flex-column-none">
+				<div class="logo-wrapper flex-column-none">
+
+					<img class="logo" src="https://johntom.github.io/fecMRG2/src/images/MRG_logo-white.png">
+
+				</div>
+				<ul class="menu flex-column-1">
+					<li repeat.for="row of router.navigation" class="menu-item ${row.isActive ? 'active' : ''} ${row.settings.children ? 'flex-flow-column' : ''}">
+						<input class="menu-input" if.bind="isCollapsibleMenu(row)" type="checkbox" id="list-item-${$index}" checked.bind="row.settings.isOpen">
+						<label if.bind="isCollapsibleMenu(row)" for="list-item-${$index}">
                 ${row.title}
               </label>
-              <a if.bind="isSingleActionMenu(row)" href.bind="row.href">${row.title}</a>
-              <ul class="menu flex-column-1"
-                if.bind="row.settings.isOpen">
-                <li repeat.for="sub of row.settings.children"
-                  class="menu-item ${sub.isActive ? 'active' : ''}">
-                  <a href.bind="sub.href">${sub.title}</a>
-                </li>
-              </ul>
-          </li>
-        </ul>
-        
-      </aside>
-      <main class="flex-column-4 ignore">
-        <div class="flex-column-1 ignore">
-          <div class="flex-column-none ignore">
-            <div class="flex-row-1">
-              <div repeat.for="tab of appService.tabs" 
-                class="tab ${tab.isSelected ? 'tab-selected' : ''}">
-                <a class="tab-close" 
-                  show.bind="appService.tabs.length > 1"
-                  click.delegate="closeTab(tab, $index)">
-                  <i class="tab-close-icon fa fa-times"></i>
-                  <i class="tab-close-icon tab-close-icon-hover fa fa-times-circle"></i>
-                </a>
-                <a class="tab-box" href="${tab.href}"
-                    click.delegate="selectTab($event, tab)">
-                  <span>${tab.name}</span>
-                </a>
-              </div>
-            </div>
-          </div>
-          <article class="flex-column-1 ignore">
-            <router-view></router-view>
-          </article>
-        </div>
-        <footer class="flex-row-none">
-          FOOTER-- 
-        </footer>
-      </main>
-    </div>
-  </section>
+						<a if.bind="isSingleActionMenu(row)" href.bind="row.href">${row.title}</a>
+						<ul class="menu flex-column-1" if.bind="row.settings.isOpen">
+							<li repeat.for="sub of row.settings.children" class="menu-item ${sub.isActive ? 'active' : ''}">
+								<a href.bind="sub.href">${sub.title}</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+
+			</aside>
+			<main class="flex-column-4 ignore">
+				<div class="flex-column-1 ignore">
+					<div class="flex-column-none ignore">
+						<div class="flex-row-1">
+							<div repeat.for="tab of appService.tabs" class="tab ${tab.isSelected ? 'tab-selected' : ''}">
+								<a class="tab-close" show.bind="appService.tabs.length > 1" click.delegate="closeTab(tab, $index)">
+									<i class="tab-close-icon fa fa-times"></i>
+									<i class="tab-close-icon tab-close-icon-hover fa fa-times-circle"></i>
+								</a>
+								<a class="tab-box" href="${tab.href}" click.delegate="selectTab($event, tab)">
+									<span>${tab.name}</span>
+								</a>
+							</div>
+						</div>
+					</div>
+					<article class="flex-column-1 ignore">
+						<router-view></router-view>
+					</article>
+				</div>
+       
+				<footer class="flex-row-none">
+					<!-- FOOTER-- -->
+            <!-- <footer-list class=""></footer-list> -->
+				</footer>
+			</main>
+		</div>
+	</section>
 </template>
