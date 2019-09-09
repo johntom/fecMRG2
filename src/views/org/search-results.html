@@ -5,7 +5,7 @@
 	<require from="../../resources/value-converters/get-artist"></require>
 	<require from="../../resources/value-converters/upper-case"></require>
 
-	<h3> Count: ${recct} </h3>
+	<h3> Count: ${recct}  </h3>
 	<div ref="spinner" class="splash">
 			<div class="message">fetching records</div>
 			<i class="fa fa-spinner fa-spin"></i>
@@ -34,10 +34,11 @@
 	
 	</ak-grid>
 	<div class="flex-row-none section-footer">
-	     	${footer} <span>&nbsp;&nbsp;	
+	    <span>&nbsp;&nbsp;		
+      <button id="searchInputBtn" class="btn btn-success" type="button" click.delegate="addorg()"><strong>A</strong>dd Org</button>
+				
        <button id="searchInputBtn" class="btn btn-primary" type="button" click.delegate="performRefresh()"><strong>R</strong>refresh</button>
-     					<button id="searchInputBtn" class="btn btn-success" type="button" click.delegate="addorg()"><strong>A</strong>dd Org</button>
-					<span>  ${queryParams}</span> 
+     			<span>  ${queryParams}</span> 
 		</span>
 		<b>  ${message} </b>
 	</div>

@@ -52,6 +52,7 @@ export class Promptartist {
 
   async save() { 
      delete this.artist.name;
+     this.artist.Died="";
      this.artist.ArtistName=this.artist.LastName.trim()+', '+this.artist.FirstName.trim()
      let response = await this.api.updateartistAA(this.artist);
    

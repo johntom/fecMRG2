@@ -8,8 +8,8 @@ import { ApiService } from '../../utils/servicesApi';
 export class Home {
   heading = "MRG Home Page";
   footer = 'DataForm FOOTER...'
-  version = ' 304.61'
-  versionDate = 'Mon 9/9/2019 9am'
+  version = ' 304.63 '
+  versionDate = 'Mon 9/9/2019 12pm'
   prevversion = ' 303.53 '
   prevversionDate = 'Mon 8/5/2019 5pm'
  
@@ -139,6 +139,7 @@ export class Home {
     this.appService = appService;
     this.dataService = dataService;
     this.api = api;
+   
   }
   //   this.dataService.loadCodes(values[1]), resolve all lists
 
@@ -153,7 +154,7 @@ export class Home {
   }
 
   async activate() {
-
+ this.appService.version=  this.version
     let response = await this.api.getCatalogsAA();
     this.appService.catalogList = response.data
     console.log('https://artbased.com/api/v1/catalog catalogList ', this.appService.catalogList )

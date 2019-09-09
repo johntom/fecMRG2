@@ -202,16 +202,16 @@ export class DataForm {
         this.currentItem.mailingStatus = 2;
         this.appService.testcontactrec = {}
         this.appService.originalontactrec = {}
-       
+
         this.currentItem.addresses = []
 
-       this.currentItem.addresses = []
+        this.currentItem.addresses = []
         this.currentItem.artists = []
         this.currentItem.catalogsold = []
         this.currentItem.phones = []
         this.currentItem.emails = []
         this.currentItem.addresses = []
-        
+
         // let checkbox
         // let checkbox = document.getElementById("mailings");
         // checkbox.indeterminate = true;//-->
@@ -240,7 +240,7 @@ export class DataForm {
             //  this.currentContactItem = inv[0]
             this.appService.currentContactItem = this.currentItem//inv[0]
             this.mrubuild()
-           
+
             this.currentItem.isDirty = () => {
               const currentJSON = JSON.stringify(this.currentItem);
               const originalJSON = JSON.stringify(this.appService.originalContactrec);
@@ -270,6 +270,11 @@ export class DataForm {
     if (prevtemp[2] != undefined && newrec.id === prevtemp[2].id) this.skip = true;
     if (prevtemp[3] != undefined && newrec.id === prevtemp[3].id) this.skip = true;
     if (prevtemp[4] != undefined && newrec.id === prevtemp[4].id) this.skip = true;
+      if (prevtemp[5] != undefined && newrec.id === prevtemp[5].id) this.skip = true;
+    if (prevtemp[6] != undefined && newrec.id === prevtemp[6].id) this.skip = true;
+    if (prevtemp[7] != undefined && newrec.id === prevtemp[7].id) this.skip = true;
+    if (prevtemp[8] != undefined && newrec.id === prevtemp[8].id) this.skip = true;
+    if (prevtemp[9] != undefined && newrec.id === prevtemp[9].id) this.skip = true;
 
     console.log('   this.skip ', this.skip)
   }
@@ -289,17 +294,22 @@ export class DataForm {
       if (temp[2] != undefined) this.mru3 = temp[2];
       if (temp[3] != undefined) this.mru4 = temp[3];
       if (temp[4] != undefined) this.mru5 = temp[4];
+      if (temp[5] != undefined) this.mru6 = temp[5];
+      if (temp[6] != undefined) this.mru7 = temp[6];
+      if (temp[7] != undefined) this.mru8 = temp[7];
+      if (temp[8] != undefined) this.mru9 = temp[8];
+      if (temp[9] != undefined) this.mru10 = temp[9];
       //  this.tabindex = temp[1];
     }
 
-    const prevtemp = [mruget.mru1, mruget.mru2, mruget.mru3, mruget.mru4, mruget.mru5];
-    const temp = [{ id: this.recordId, name: this.cname, bori: this.currentItem.BusIndivid }, mruget.mru1, mruget.mru2, mruget.mru3, mruget.mru4];
+    const prevtemp = [mruget.mru1, mruget.mru2, mruget.mru3, mruget.mru4, mruget.mru5, mruget.mru6, mruget.mru7, mruget.mru8, mruget.mru9, mruget.mru10];
+    const temp = [{ id: this.recordId, name: this.cname, bori: this.currentItem.BusIndivid }, mruget.mru1, mruget.mru2, mruget.mru3, mruget.mru4, mruget.mru5, mruget.mru6, mruget.mru7, mruget.mru8, mruget.mru9, mruget.mru10];
     const newrec = { id: this.recordId, name: this.cname, bori: this.currentItem.BusIndivid }
 
     this.mrucheck(newrec, prevtemp);
     if (!this.skip) {
       if (this.recordId === mruget.mru1 || this.recordId === mruget.mru2 || this.recordId === mruget.mru3 ||
-        this.recordId === mruget.mru4 || this.recordId === mruget.mru5) { } else {
+        this.recordId === mruget.mru4 || this.recordId === mruget.mru5 || this.recordId === mruget.mru6 || this.recordId === mruget.mru7 || this.recordId === mruget.mru8 || this.recordId === mruget.mru9 || this.recordId === mruget.mru10) { } else {
         if (!this.skip) {
           mruinfo = new mruinfo(temp);
           localStorage.setItem('mru-mrgc', JSON.stringify(mruinfo));
@@ -379,7 +389,7 @@ export class DataForm {
     let savetime = moment().format('MM/DD/YY h:mm:ss a')
 
     if (this.recordId === 'create') {
-      this.currentItem.BusIndivid==='I' // support legacy
+      this.currentItem.BusIndivid === 'I' // support legacy
       // if (this.currentItem.Title === undefined || this.currentItem.InventoryCode === undefined
       //   || this.currentItem.MediumSupportobj === undefined
       //   || this.currentItem.artist === undefined) {
@@ -389,10 +399,10 @@ export class DataForm {
       this.api.createcontact(this.currentItem).then((jsonRes) => {
         console.log('jsonRes ', jsonRes);
         this.recordId = jsonRes.id
- 
+
         // if (this.currentItem.id === 'create') {
         // this.currentItem.id = ''
-        this.currentItem.id = this.recordId 
+        this.currentItem.id = this.recordId
         this.message = `Save successful. contact ${this.recordId} added @ ${savetime} `
         // }
         //this.mrubuild() it will add if when opening
@@ -403,7 +413,7 @@ export class DataForm {
         // https://johntom.github.io/fecMRG2/#/contact/data/5d4f579024e043d0084f7a60?Tomaselli,Janet-1
         //https://johntom.github.io/fecMRG2/#/contact/data/5d4f5de224e043d0084f7a6a?Tomaselli,Way
         // this.router.navigate(`#/contact/data/${this.currentItem.id}`)
-      }); 
+      });
       // }
     } else {
 

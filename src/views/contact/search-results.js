@@ -55,14 +55,12 @@ export class SearchResults {
         // }
       }
     },
-     pageSize: 20,
+    pageSize: 20,
 
     // aggregate: [{ field: "type", aggregate: "count" },
     //   { field: "template", aggregate: "count" }
     // ]
   })
-
-
 
   constructor(router, api, utilService, appService) {
     this.router = router;
@@ -70,7 +68,7 @@ export class SearchResults {
     this.utilService = utilService;
     this.appService = appService;
     this.appService.refreshcontactLoaded = false;
-      this.busy = {}
+    this.busy = {}
     this.busy.active = true
   }
 
@@ -93,14 +91,14 @@ export class SearchResults {
     }
     // find index
     //  let garray = this.datasource._data;
-   // let gid = this.invdata.findIndex(x => x.id === dataItem.id)
+    // let gid = this.invdata.findIndex(x => x.id === dataItem.id)
 
-let gid =   this.appService.contactsearchresults.findIndex(x => x.id === dataItem.id)
-// 2nd time in we loose this.invdata
+    let gid = this.appService.contactsearchresults.findIndex(x => x.id === dataItem.id)
+    // 2nd time in we loose this.invdata
     let rt2 = '#/contact/data/' + dataItem.id + '?' + dataItem.LastName + ',' + dataItem.FirstName + '-' + gid///+' '+dataItem.ID
-  // let rt2 = '#/contact/data/' + dataItem.id + '?' + dataItem.LastName + ',' + dataItem.FirstName 
+    // let rt2 = '#/contact/data/' + dataItem.id + '?' + dataItem.LastName + ',' + dataItem.FirstName 
 
- 
+
     // let rt2 = '#/contact/data/' + dataItem.id;
     this.router.navigate(rt2);
 
@@ -116,20 +114,22 @@ let gid =   this.appService.contactsearchresults.findIndex(x => x.id === dataIte
     let inv;
     let notmailinglist = 0;
     if (this.appService.contactsearchresults && !this.appService.refreshcontactLoaded) {
-     // this.spinner.remove()
-         this.busy.active = false
-      return this.appService.contactsearchresults;
+      // this.spinner.remove()
+        
+        this.busy.active = false
+        this.recct =this.appService.contactsearchresults.length
+ return this.appService.contactsearchresults;
 
-    } else {
+    } else { 
 
-    return this.api.findContact(this.queryParams, notmailinglist)//searchrec)
-    
+      return this.api.findContact(this.queryParams, notmailinglist)//searchrec)
+
         .then((jsonRes) => {
           inv = jsonRes.data;
           this.invdata = inv;
           this.recct = inv.length;
           // this.spinner.remove()
-          this.busy.active = false 
+          this.busy.active = false
           if (this.recct === 1) {
             let rt2 = '#/contact/data/' + inv[0].id + '?' + inv[0].LastName + ',' + inv[0].FirstName
             this.router.navigate(rt2);
@@ -139,16 +139,16 @@ let gid =   this.appService.contactsearchresults.findIndex(x => x.id === dataIte
             if (inv === 0 || this.recct === 0) {
               this.message = ' no records found '
               let tab = this.appService.tabs.find(f => f.isSelected);
-  this.busy.active = false
+              this.busy.active = false
             } else {
               this.appService.contactsearchresults = inv;
-            
+
             }
-              return inv
+          return inv
         });
     }
   }
- 
+
   performAction1Refresh() {
     this.appService.refreshcontactLoaded = true;
     this.datasource.read()

@@ -15,52 +15,67 @@
 		<div class="flex-row-1 ignore">
 			<div class="flex-column-1 search-panel">
 				<form submit.delegate="performSearch()">
-					<div class="flex-row-none">
-						<div class="form-group flex-column-1">
-							<input id="searchInput" type="text" class="form-control" placeholder="Search for org..." value.bind="search.orgname">
+					<div class="Rtable Rtable--2cols">
+						<div class="Rtable-cell-50 Rtable-cell">
+							<div class="flex-row-none">
+								<div class="form-group flex-column-1">
+									<input id="searchInput" type="text" class="form-control" placeholder="Search for org..." value.bind="search.orgname">
+								</div>
+							</div>
+							<div class="flex-row-none">
+								<div class="form-group flex-column-1">
+									<input id="orgaddress" type="text" class="form-control" placeholder="Search for address..." value.bind="search.address">
+								</div>
+
+							</div>
+
+							<div class="flex-row-none">
+								<div class="form-group flex-column-1">
+									<input id="orgcity" type="text" class="form-control" placeholder="Search for city..." value.bind="search.city">
+								</div>
+							</div>
+							<div class="flex-row-none">
+								<div class="form-group flex-column-1">
+									<input id="orgstate" type="text" class="form-control" placeholder="Search for state..." value.bind="search.state">
+								</div>
+							</div>
+							<div class="flex-row-none">
+								<div class="form-group flex-column-1">
+									<input id="orgzip" type="text" class="form-control" placeholder="Search for zip..." value.bind="search.zip">
+								</div>
+							</div>
 						</div>
-					</div>
-					<div class="flex-row-none">
-						<div class="form-group flex-column-1">
-							<input id="orgaddress" type="text" class="form-control" placeholder="Search for address..." value.bind="search.address">
+						<!--  -->
+						<div class="Rtable-cell-50 Rtable-cell">
+
+							<div class="form-group flex-column-1 margin-left-10">
+								<label for="adjuster">mru</label>
+								<ul>
+									<li repeat.for='e of mru'>
+										<a click.delegate="populateInv(e)"> ${e.name} ${e.bori}</a>
+									</li>
+								</ul>
+							</div>
 						</div>
 
-					</div>
-
-					<div class="flex-row-none">
-						<div class="form-group flex-column-1">
-							<input id="orgcity" type="text" class="form-control" placeholder="Search for city..." value.bind="search.city">
-						</div>
-					</div>
-					<div class="flex-row-none">
-						<div class="form-group flex-column-1">
-							<input id="orgstate" type="text" class="form-control" placeholder="Search for state..." value.bind="search.state">
-						</div>
-					</div>
-					<div class="flex-row-none">
-						<div class="form-group flex-column-1">
-							<input id="orgzip" type="text" class="form-control" placeholder="Search for zip..." value.bind="search.zip">
-						</div>
-					</div>
+            	<div class="flex-row-none">
+				<div class="form-group flex-column-1">
+					<button id="searchInputBtn" class="btn btn-primary" type="submit"><strong>S</strong>earch!</button>
+				</div>
 
 
-					<div class="flex-row-none">
-						<div class="form-group flex-column-1" >
-							<button id="searchInputBtn" class="btn btn-primary" type="submit"><strong>S</strong>earch!</button>
-						</div>
-					
-						<!-- <div class="form-group flex-column-1 margin-left-10">
-							<button id="searchInputBtn" class="btn btn-success" type="button" click.delegate="addorg()"><strong>A</strong>dd Org</button>
-						</div> -->
-				
-						<div class="form-group flex-column-1 margin-left-10">
-							<button id="searchInputBtn" class="btn btn-warning" type="button" click.delegate="performClear()">Clear</button>
-						</div>
-					</div>
-
-				</form>
+				<!-- <div class="form-group flex-column-1 margin-left-10">
+					<button id="searchInputBtn" class="btn btn-warning" type="button" click.delegate="performClear()">Clear</button>
+				</div> -->
 			</div>
+
+					</div>
+
+			</div>
+		
+			</form>
 		</div>
+	
 
 	</section>
 </template>

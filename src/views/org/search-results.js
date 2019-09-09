@@ -73,13 +73,14 @@ export class SearchResults {
     let notmailinglist = 0;
     if (this.appService.orgsearchresults && !this.appService.refreshorgLoaded) {
       this.spinner.remove()
+        this.recct =this.appService.currentorgCount// = this.appService.orgsearchresults.length
+          // this.appService.orgsearchresults = orgs;
       return this.appService.orgsearchresults;
 
     } else {
 
-      // return this.api.findallorgs(this.queryParams)
-      let response = await this.api.findallorgs(this.queryParams);
-// console.log('response ',response)  
+       let response = await this.api.findallorgs(this.queryParams);
+
       let orgs = response.data
       this.recct = orgs.length;
       this.spinner.remove()
@@ -102,40 +103,13 @@ export class SearchResults {
         //   this.appService.orgsearchresults = orgs;
         //   return orgs
         // }
-
           this.appService.currentorgCount = orgs.length
           this.appService.orgsearchresults = orgs;
           return orgs
 
     }
   }
-  // async loadDataHold() {
-
-  //   let response = await this.api.findallorgs(this.queryParams);
-  //   let orgs = response.data
-  //   this.recct = orgs.length;
-  //   if (this.recct === 1) {
-  //     let rt2 = '#/org/data/' + orgs[0].id + '?' + orgs[0].OrgName
-  //     this.router.navigate(rt2);
-  //     let tab = this.appService.tabs.find(f => f.isSelected);
-  //     this.closeTab(tab);
-  //   } else
-  //     if (orgs === 0 || this.recct === 0) {
-  //       this.message = ' no records found '
-  //       let tab = this.appService.tabs.find(f => f.isSelected);
-  //       this.closeTab(tab);
-  //       let rt2 = '#/home'
-  //       this.router.navigate(rt2);
-  //     } else return orgs
-
-  // }
-
-
-  //   let response = await this.api.findallorgs(this.queryParams);
-  //   this.item = response.data[0];
-  //   console.log('this.repos ', this.item)
-
-  // }
+  
 
   rowSelected(e) {
     console.log('e ' + e.sender)

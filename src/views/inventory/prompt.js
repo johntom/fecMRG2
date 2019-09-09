@@ -293,7 +293,7 @@ export class Prompt {
 
       this.doc = `Select org `
       //  this.doc2 = `Select Artist or add new if not in list.`
-      this.heading = `Org SEARCH `
+      this.heading = `ORG SEARCH `
       this.placeholder = `Select Org or add new if not in list.`
 
       // if (this.currentItem[this.fieldname] === undefined) {

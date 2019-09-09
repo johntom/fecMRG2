@@ -9,7 +9,7 @@ import { DialogService } from 'aurelia-dialog';
 export class Org {
   static inject = [Router, UtilService, ApplicationService, ApiService, DialogService];
 
-  heading = 'Orgs where "BusIndivid" = "B"';
+  heading = 'ORG SEARCH '// ("BusIndivid" = B';
   counter = 1;
   search = {}
   selectedValue = null; //ADJUSTER_NAME
@@ -39,10 +39,55 @@ export class Org {
 
 
   activate() {
-    console.log('name-tag activate before attached ');
+    //console.log('name-tag activate before attached ');
+    this.mru = []
+    let mruinfo, tabindex
+    mruinfo = localStorage.getItem('mru-mrgorg');
+    if (mruinfo === null) {
+      // tabindex = 0
+      this.mruinfo = 0
+    } else {
+      this.mruinfo = JSON.parse(mruinfo)
 
+
+
+      if (this.mruinfo.mru1 !== undefined) {
+        this.mru.push(this.mruinfo.mru1)
+      }
+      if (this.mruinfo.mru2 !== undefined) {
+        this.mru.push(this.mruinfo.mru2)
+      }
+
+      if (this.mruinfo.mru3 !== undefined) {
+        this.mru.push(this.mruinfo.mru3)
+      }
+
+      if (this.mruinfo.mru4 !== undefined) {
+        this.mru.push(this.mruinfo.mru4)
+      }
+
+      if (this.mruinfo.mru5 !== undefined) {
+        this.mru.push(this.mruinfo.mru5)
+      }
+      if (this.mruinfo.mru6 !== undefined) {
+        this.mru.push(this.mruinfo.mru6)
+      }
+      if (this.mruinfo.mru7 !== undefined) {
+        this.mru.push(this.mruinfo.mru7)
+      }
+      if (this.mruinfo.mru8 !== undefined) {
+        this.mru.push(this.mruinfo.mru8)
+      }
+      if (this.mruinfo.mru9 !== undefined) {
+        this.mru.push(this.mruinfo.mru9)
+      }
+      if (this.mruinfo.mru10 !== undefined) {
+        this.mru.push(this.mruinfo.mru10)
+      }
+    }
 
   }
+
 
   detached() {
     console.log('name-tag detached');
@@ -51,7 +96,7 @@ export class Org {
   unbind() {
     console.log('name-tag unbind');
   }
-
+ 
   performSearch() {
     if (this.search) {
       // console.log('this.search', this.search)
