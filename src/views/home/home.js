@@ -8,8 +8,8 @@ import { ApiService } from '../../utils/servicesApi';
 export class Home {
   heading = "MRG Home Page";
   footer = 'DataForm FOOTER...'
-  version = ' 304.60'
-  versionDate = 'Mon 9/8/2019 9am'
+  version = ' 304.61'
+  versionDate = 'Mon 9/9/2019 9am'
   prevversion = ' 303.53 '
   prevversionDate = 'Mon 8/5/2019 5pm'
  
