@@ -86,7 +86,12 @@ export class DataForm {
       response = await this.api.updateartistAA(this.artist);
 
       this.artist.id = response.data.id
-    } else response = await this.api.updateartistAA(this.artist);
+    } else { 
+       response = await this.api.updateartistAA(this.artist);
+    }
+
+    let response3 = await this.api.replaceartistinfo(this.artist);
+
     // if ((this.artistcached.Died !== this.artist.Died) || (this.artistcached.YearofBirth !== this.artist.YearofBirth)) {
     //   let response = await this.api.replaceartistinfo(this.artist);
     //   alert('add replaceartistinfo to backend ' + response)
