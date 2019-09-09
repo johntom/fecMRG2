@@ -39,28 +39,26 @@ export class SearchResults {
     schema: {
       model: {
         id: "id", // Must assign id for update to work
-        // fields: {
+        fields: {
+          addresses: { defaultValue: {} },
+          city: {
+            type: "string",
+            from: "addresses[0].city"
+          },
+          state: {
+            type: "string",
+            from: "addresses[0].state"
+          },
+          
+          }
+        }
+      },
+      pageSize: 20,
 
-        //   // LegacyID: { type: "number" }, // scan template
-        //   Artist: { type: "string" }, // barcode insured
-        //   //  ArtistRegistra: { type: "string" },
-        //   InventoryCode: { type: "string" },
-        //   Title: { type: "string" },
-        //   MediumSupport: { type: "string" },
-        //   CurrentLocation: { type: "string" },
-        //   Bin: { type: "string" }, // barcode insured
-        //   Owner: { type: "string" },
-        //   InvYear: { type: "string" },
-        //   UnframedHeight: { type: "string" },
-        // }
-      }
-    },
-    pageSize: 20,
-
-    // aggregate: [{ field: "type", aggregate: "count" },
-    //   { field: "template", aggregate: "count" }
-    // ]
-  })
+      // aggregate: [{ field: "type", aggregate: "count" },
+      //   { field: "template", aggregate: "count" }
+      // ]
+    })
 
   constructor(router, api, utilService, appService) {
     this.router = router;
@@ -115,12 +113,12 @@ export class SearchResults {
     let notmailinglist = 0;
     if (this.appService.contactsearchresults && !this.appService.refreshcontactLoaded) {
       // this.spinner.remove()
-        
-        this.busy.active = false
-        this.recct =this.appService.contactsearchresults.length
- return this.appService.contactsearchresults;
 
-    } else { 
+      this.busy.active = false
+      this.recct = this.appService.contactsearchresults.length
+      return this.appService.contactsearchresults;
+
+    } else {
 
       return this.api.findContact(this.queryParams, notmailinglist)//searchrec)
 
