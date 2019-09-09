@@ -34,9 +34,10 @@
 	
 	</ak-grid>
 	<div class="flex-row-none section-footer">
-	     	${footer} <span>  ${queryParams}</span> <span>&nbsp;&nbsp;	
+	     	${footer} <span>&nbsp;&nbsp;	
        <button id="searchInputBtn" class="btn btn-primary" type="button" click.delegate="performRefresh()"><strong>R</strong>refresh</button>
-     
+     					<button id="searchInputBtn" class="btn btn-success" type="button" click.delegate="addorg()"><strong>A</strong>dd Org</button>
+					<span>  ${queryParams}</span> 
 		</span>
 		<b>  ${message} </b>
 	</div>

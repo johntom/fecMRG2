@@ -59,7 +59,9 @@ export class SearchResults {
     console.log('queryParams', this.queryParams);
     // not needed this.datasource.read()
   }
-
+ addorg() {
+    this.router.navigate(`#/org/data/create`);
+  }
   loadGrid() {
     let options = localStorage["kendo-grid-mail"];
     if (options) {
@@ -89,17 +91,21 @@ export class SearchResults {
         let tab = this.appService.tabs.find(f => f.isSelected);
         this.closeTab(tab);
       } else
-        if (orgs === 0 || this.recct === 0) {
-          this.message = ' no records found '
-          let tab = this.appService.tabs.find(f => f.isSelected);
-          this.closeTab(tab);
-          let rt2 = '#/home'
-          this.router.navigate(rt2);
-        } else {
-           this.appService.currentorgCount = orgs.length
+        // if (orgs === 0 || this.recct === 0) {
+        //   this.message = ' no records found '
+        //   let tab = this.appService.tabs.find(f => f.isSelected);
+        //   this.closeTab(tab);
+        //   let rt2 = '#/home'
+        //   this.router.navigate(rt2);
+        // } else {
+        //    this.appService.currentorgCount = orgs.length
+        //   this.appService.orgsearchresults = orgs;
+        //   return orgs
+        // }
+
+          this.appService.currentorgCount = orgs.length
           this.appService.orgsearchresults = orgs;
           return orgs
-        }
 
     }
   }
