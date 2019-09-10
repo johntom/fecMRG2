@@ -17,7 +17,7 @@ export class Provenance {
   recordId = '';
   // provenance: Provenance[] = []
   done = false;
-  edit = false;
+  edit = false; 
   scrollable = { virtual: true };
   datasource = new kendo.data.DataSource({
     transport: {

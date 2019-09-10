@@ -115,5 +115,8 @@ export class Org {
   addorg() {
     this.router.navigate(`#/org/data/create`);
   }
-
+  populateInv(e) {
+   
+    this.router.navigate(`#/org/data/${e.id}?${e.name}`);
+  }
 }
