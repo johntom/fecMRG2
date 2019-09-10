@@ -92,7 +92,7 @@ export class DataForm {
       this.artist.id = response.data.id
     } else { 
        response = await this.api.updateartistAA(this.artist);
-       alert(response)
+      //  alert(response)
     }
 
     let response3 = await this.api.replaceartistinfo(this.artist);
