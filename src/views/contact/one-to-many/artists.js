@@ -9,12 +9,9 @@ import { Prompt } from '../../../services/prompt';
 // import { InvPrompt } from '../../../views/inventory/prompt';
 import { bindable } from 'aurelia-framework';
 // import { DialogService } from 'aurelia-dialog';
-
 import { Promptcontact } from '../prompt';
-
 // @inject()
 // @inject(Router, UtilService, ApplicationService, MyDataService,DialogService)
-
 
 @inject(ApiService, ApplicationService, DialogService)
 export class Artists {
@@ -35,13 +32,15 @@ export class Artists {
     this.isDisableEdit = true
     this.currentprovenance = '';
     this.dialogService = dialogService
-  }
+  } 
 
   activate(params, routeConfig) {
 
   }
   // <input click.delegate="showModal('PhotographerID',$index)" type="text" id="PhotographerID" class="form-control input-sm" value.bind="photographername">
-
+      attached() {
+    console.log(this.htmltable);
+  }
   modalDocs() {
 
     this.dialogService.open({ viewModel: Prompt, model: 'docs', lock: false }).whenClosed(response => {
@@ -51,58 +50,40 @@ export class Artists {
   }
   searchdocChanged(value) {
     //console.log('the value ', value)
-
     this.showdocs = this.currentItem.docs.filter((item) => {
       if (item['FILE_NAME'].toLowerCase().search(value.toLowerCase()) != -1) return true
     });
     return
   }
-
   // artists[{"id" : ObjectId("5c15812fd1ce1404366cd075"),             "ArtistName" : "Alston, Charles",             "yearofBirth" : NumberInt(1907),             "died" : NumberInt(1977)
   showModal(fieldname, index) {
-
     // make this work just on inventory and change prompt to maybe point to it
     this.currentItem.fieldname = 'Artist'//fieldname
-
     this.currentItem.artist = this.currentItem.artists[index]//.artists
     if (this.currentItem.artist.ArtistName === undefined) this.currentItem.artist.ArtistName = '';
-
     this.dialogService.open({ viewModel: Promptcontact, model: this.currentItem, lock: true }).whenClosed(response => {
       if (response.wasCancelled) {
         console.log('cancel');
       } else {
-        this.currentItem.artists[index].id = this.currentItem.artist.id
-        this.currentItem.artists[index].ArtistName = this.currentItem.artist.ArtistName
-        // this.currentItem.artists[index] = this.currentItem.artist;
-        // this.currentItem.artists = this.currentItem.artists
 
+        let artist = response.output.artist
         let artistrec = {}
-        artistrec.id = this.currentItem.artist.id;
-        artistrec.ArtistName = this.currentItem.artist.ArtistName;
-        artistrec.yearofBirth = this.currentItem.artist.YearofBirth;
-        artistrec.died = this.currentItem.artist.Died;
+        artistrec.id = artist.id;
+        artistrec.ArtistName = artist.ArtistName;
+        artistrec.yearofBirth = artist.YearofBirth;
+        artistrec.died = artist.Died;
         this.currentItem.artists[index] = artistrec;
-        this.currentItem.artists = this.currentItem.artists
-        this.artname = artistrec
-
-        this.artist = artistrec
-
-  // this.currentItem = this.appService.currentContactItem//testrec;
- 
-        //  this.artist = {}
-        // this.artist.id = this.currentItem.artist.id;
-        // this.artist.ArtistName = this.currentItem.artist.ArtistName;
-        // this.artist.yearofBirth = this.currentItem.artist.YearofBirth;
-        // this.artist.died = this.currentItem.artist.Died;
-        // this.currentItem.artists[index] = this.artist;
-        // this.currentItem.artists = this.currentItem.artists
-        // this.artname = this.artist
-
+        // get it to refresh
+        // let holdarray = this.currentItem.artists
+        // this.artname = artistrec
         // this.artist = artistrec
-        // delete this.currentItem.artist
+        // // this.currentItem.artists = ''//[]
+        //  this.currentItem.artists = holdarray
+        //    this.currentItem.note='test'
+// this.appService.currentContactItem = this.currentItem
 
-
-
+//  this.htmltable.refresh();
+   
 
       }
       console.log(response.output);
@@ -123,6 +104,7 @@ export class Artists {
     artists.unshift(item)
     if (flag) this.currentItem.artists = artists
     this.newartists = '';
+    this.showModal('Artist', 0)
   }
 
 

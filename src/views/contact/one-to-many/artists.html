@@ -23,7 +23,8 @@
 				<i class="fa fa-plus"></i> Add Artist
 			</a>
 		</h4>
-		<table class="table-condensed table">
+    ${ currentItem.artists[0].ArtistName}
+		<table ref='htmltable' class="table-condensed table">
 			<thead class="table-header-blue">
 				<tr>
 
@@ -43,7 +44,8 @@
 				</tr>
 			</tfoot>
 			<tbody>
-				<tr repeat.for="artist of currentItem.artists" with.bind="artist">
+
+				<tr  repeat.for="artist of currentItem.artists" with.bind="artist">
 
 					<td width="350px">
 				
@@ -52,29 +54,24 @@
             	<a click.delegate="showModal( 'id',$index)">select_link </a>
 						</div>
 					
-          	<!-- <div class="form-control  input-sm" else>
-							<a click.delegate="showModal('id',$index)">${artist.ArtistName} b.(${artist.YearofBirth})
-                 d.${artist.died }</a> artist.yearofBirth!==undefined && (
-						</div> -->
+          
+
+ 
 
             <a click.delegate="showModal('id',$index)">${artist.ArtistName}  
-              <span show.bind="artist.died==='' || artist.died===0 || artist.died===undefined"> (b.${artist.yearofBirth})</span>
-              <span show.bind="artist.died!==''  && artist.died!==0 && artist.died!==undefined"> (${artist.yearofBirth}-${artist.died})</span></strong>
+              <span show.bind="artist.died==='' || artist.died===0 || artist.died===undefined|| currentItem.artist.died===null"> (b.${artist.yearofBirth})</span>
+              <span show.bind="artist.died!==''  && artist.died!==0 && artist.died!==undefined || currentItem.artist.died===null"> (${artist.yearofBirth}-${artist.died})</span></strong>
               
             </a>
-
-
 
 
 					</td>
 
 
-
 					<td width="225px">
-						<!-- <button class="btn btn-primary" click.delegate="note.edit=!note.edit">${ !note.edit ? 'Update' : 'Done' }</button> -->
+						<!--button class="btn btn-primary" click.delegate="artist.edit=!artist.edit">${ !artist.edit ? 'Update' : 'Done' }</button--> 
 
-						<!-- <button class="btn btn-primary" click.delegate="saveitem(note,$index)">${ !note.edit ? 'Update' : 'Done' }</button> -->
-
+					
 						<button class="btn btn-sm btn-danger" click.delegate="remove(artist,$index)">Delete</button>
 
 					</td>

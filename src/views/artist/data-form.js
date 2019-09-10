@@ -81,13 +81,18 @@ export class DataForm {
   }
   async saveartist(option) {
     let response
+      console.log('this.artist.Died',this.artist.Died)
+      if( this.artist.Died===undefined) this.artist.Died=""
+    
     if (this.artist.id === 'create') {
+      
       this.artist.ArtistName = this.artist.LastName + ', ' + this.artist.FirstName
       response = await this.api.updateartistAA(this.artist);
 
       this.artist.id = response.data.id
     } else { 
        response = await this.api.updateartistAA(this.artist);
+       alert(response)
     }
 
     let response3 = await this.api.replaceartistinfo(this.artist);

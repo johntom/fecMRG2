@@ -7,10 +7,10 @@ import { ApiService } from '../../utils/servicesApi';
 @inject(ApplicationService, MyDataService, ApiService)
 
 export class Home {
-  heading = "MRG Home Page";
+  heading = "MRG HOME PAGE";
   footer = 'DataForm FOOTER...'
-  version = ' 304.69 '
-  versionDate = 'Mon 9/9/2019 12pm'
+  version = ' 304.70 '
+  versionDate = 'Tue 9/9/2019 10am'
   prevversion = ' 303.53 '
   prevversionDate = 'Mon 8/5/2019 5pm'
 

@@ -248,7 +248,7 @@ async loadArtistsAA() {
       this.api.findCodes()
         .then((jsonRes) => {
           var codesList = jsonRes.data;
-          console.log('codesList', codesList)
+         // console.log('codesList', codesList)
           resolve(codesList)
         })
     })
@@ -259,7 +259,7 @@ async loadArtistsAA() {
       this.api.findOrgs()
         .then((jsonRes) => {
           var orgsList = jsonRes.data;
-          console.log('orgsList', orgsList)
+         // console.log('orgsList', orgsList)
 
           resolve(orgsList);
         });
@@ -269,7 +269,7 @@ async loadArtistsAA() {
 
   loadCodesLocation(codesList) {
     return new Promise((resolve, reject) => {
-      console.log('codesList len ', codesList.length)
+     // console.log('codesList len ', codesList.length)
       let codesListLocation = []
 
       codesList.filter((item) => {
@@ -284,7 +284,7 @@ async loadArtistsAA() {
   // Medium/Support 12
   loadCodesMediumSupport(codesList) {
     return new Promise((resolve, reject) => {
-      console.log('codesList len ', codesList.length)
+    //  console.log('codesList len ', codesList.length)
       var codesListMediumSupport = []
       codesList.filter((item) => {
         if (item.CodeType === 12) {

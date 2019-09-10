@@ -231,7 +231,7 @@ export class Promptcontact {
 
     }
 
-    this.controller.ok('saved')//cancel()
+    this.controller.ok(this.currentItem)//'saved')//cancel()
   }
 }
 
