@@ -1,0 +1,23 @@
+// import 'pusher-js';
+// import environment from '../environment.js';
+// const {baseUrl, apiKey, cluster, forceTLS} = environment.pusherConfig;
+  
+export class PusherService {
+  // constructor() {
+  //   // Enable pusher logging - don't include this in production
+  //   // Pusher.logToConsole = true;
+ 
+  //   this.pusher = new Pusher(apiKey, {
+  //     cluster: cluster,
+  //     forceTLS: forceTLS,
+  //     authEndpoint: `${baseUrl}pusher/auth`
+  //   });
+  // }
+  // subscribe(channelName, eventName, dataHandler) {
+  //   const channel = this.pusher.subscribe(channelName);
+  //   channel.bind(eventName, dataHandler);
+  // }
+  // unsubscribe(channelName) {
+  //   this.pusher.unsubscribe(channelName);
+  // }
+}

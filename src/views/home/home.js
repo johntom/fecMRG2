@@ -2,18 +2,19 @@ import { inject } from 'aurelia-dependency-injection';
 import { ApplicationService } from '../../services/application-service';
 import { MyDataService } from "../../services/my-data-service";
 import { ApiService } from '../../utils/servicesApi';
-// import { Pusher } from 'pusher'; 
+import { bindable } from 'aurelia-framework';
+//  import { Pusher } from 'pusher'; 
 
 @inject(ApplicationService, MyDataService, ApiService)
 
 export class Home {
   heading = "MRG HOME PAGE";
   footer = 'DataForm FOOTER...'
-  version = ' 304.72 '
+  version = ' 304.73 '
   versionDate = 'Tue 9/9/2019 10am'
   prevversion = ' 303.53 '
   prevversionDate = 'Mon 8/5/2019 5pm'
-
+  newversion = 'none'
   issues = [
     // or press refresh button upper left corner',
     //https://circleci.com/workflow-run/1f3685ab-daba-41d7-8d25-6279df547b19
@@ -106,9 +107,9 @@ export class Home {
   majorfix = [
     "300.36 - rtf"
   ]
-  ninalist = [
+  ninalist = [ 
     'when selecting saved list inv/actions/batch go directly ...',
-  ]
+  ] 
   features = [
     `1. Open Word. Click the “File” tab on the ribbon. Click “Options” at the bottom of the drop-down menu.`,
     `2. Click "Advanced" in the left pane. In the right pane, scroll down to the General area. Select the "Confirm File Format Conversion on Open" check box and then click "OK."`,
@@ -148,13 +149,28 @@ export class Home {
     channel.publish('greeting', 'Hello from the browser');
 
   }
-
+   
   refreshSelection() {
     this.appService.LookupDataLoaded = false;
     this.activate()
   }
 
- attached() {
+  async attached() { 
+    // var channel = this.pusher. subscribe('my-channel');
+    this.channel.bind('my-event', function (data) {
+      alert(JSON.stringify(data));
+    });
+ 
+this.channel.bind('my-version', function(data) {
+       alert(JSON.stringify(data));
+       this.newversion= JSON.stringify(data.message);
+      // // this.version=  this.newversion;
+      //    this.appService.newversion = this.newversion
+        alert(this.newversion);
+    });
+
+    //  let response = await this.api.initPusher(); // do outside of app
+    // //https://artbased.com/api/v1/pusher
     //  var pusher = new Pusher('f9bf10dcb8b1659ebf68', {
     //   cluster: 'us2',
     //   forceTLS: true
@@ -164,11 +180,36 @@ export class Home {
     // channel.bind('my-event', function(data) {
     //   alert(JSON.stringify(data));
     // });
- }
+
+    
+  }
 
 
+  async checkVersion() {
+
+
+
+
+    this.channel.bind('my-version', function (data) {
+      this.newversion = JSON.stringify(data.message); //'500'//
+      //  this.newversion=  this.newversion;
+      //  this.appService.newversion = this.newversion
+      alert(this.newversion);
+    });
+
+  }
   async activate() {
     this.appService.version = this.version
+    const pusher = new Pusher('f9bf10dcb8b1659ebf68', {
+      cluster: 'us2',
+      forceTLS: true
+    });
+
+    this.channel = pusher.subscribe('my-channel');
+
+
+
+
     let response = await this.api.getCatalogsAA();
     this.appService.catalogList = response.data
     console.log('https://artbased.com/api/v1/catalog catalogList ', this.appService.catalogList)

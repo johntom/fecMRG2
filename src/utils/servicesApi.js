@@ -18,7 +18,15 @@ export class ApiService {
 
 
 
-
+initPusher(){
+  //https://artbased.com/api/v1/pusher
+    var url = this.baseweb + 'v1/pusher'// + search
+    console.log('url ', url)
+    return this.http.fetch(url, {
+      method: 'get',
+      mode: 'cors'
+    }).then((res) => res.json());
+}
 
   getUserJwt(username, pass) {
     var token = {};

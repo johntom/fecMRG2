@@ -20,14 +20,14 @@
 			vertical-align: middle;
 			height: 100%;
 		}
-
+  
 		.Aligner-item--top {
 			align-self: flex-start;
 		}
 
 		.Aligner-item--bottom {
 			align-self: flex-end;
-		}
+		}  
 	</style>
 	<section class="au-animate">
 		<div class="section-header flex-row-none">
@@ -36,10 +36,19 @@
 		<div class="section-content flex-row-1">
 			<!-- src="https://5924b98cbd966f546312882f.blob.core.windows.net/mrg-new/src/images/MRG_logo-white.png" -->
 
-			<h3> mrg.version ${version} date: ${versionDate } <br><br>Press F5 to fetch new version
+			<h3> mrg.version ${version} ${appService.version} date: ${versionDate } <br><br>Press F5 to fetch new version: ${newversion}
 				<br>
-				<button id="searchInputBtn " class="btn btn-sm btn-primary " type="button" click.delegate="refreshSelection()">Refresh Data</button>
+<span textcontent.bind="'Hello' + newversion"></span>
+  
+  <span>Hello ${newversion}</span>
+					
+          <button id="searchInputBtn " class="btn btn-sm btn-primary " type="button" click.delegate="checkVersion()">Check for Version</button>
+	<br>
+      
+        <button id="searchInputBtn " class="btn btn-sm btn-primary " type="button" click.delegate="refreshSelection()">Refresh Data</button>
+  
 
+  
 			</h3>
 			<img background-color="#38162E" src="https://johntom.github.io/fecMRG2/src/images/MRG_logo-white.png">
 		</div>
