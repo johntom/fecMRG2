@@ -10,8 +10,8 @@ import { bindable } from 'aurelia-framework';
 export class Home {
   heading = "MRG HOME PAGE";
   footer = 'DataForm FOOTER...'
-  version = ' 304.73 '
-  versionDate = 'Tue 9/9/2019 10am'
+  version = ' 304.74 '
+  versionDate = 'Thu 9/12/2019 3pm'
   prevversion = ' 303.53 '
   prevversionDate = 'Mon 8/5/2019 5pm'
   newversion = 'none'
@@ -107,9 +107,9 @@ export class Home {
   majorfix = [
     "300.36 - rtf"
   ]
-  ninalist = [ 
+  ninalist = [
     'when selecting saved list inv/actions/batch go directly ...',
-  ] 
+  ]
   features = [
     `1. Open Word. Click the “File” tab on the ribbon. Click “Options” at the bottom of the drop-down menu.`,
     `2. Click "Advanced" in the left pane. In the right pane, scroll down to the General area. Select the "Confirm File Format Conversion on Open" check box and then click "OK."`,
@@ -149,31 +149,36 @@ export class Home {
     channel.publish('greeting', 'Hello from the browser');
 
   }
-   
+
   refreshSelection() {
     this.appService.LookupDataLoaded = false;
     this.activate()
   }
 
-  async attached() { 
+  async attached() {
+     let newversion
     // var channel = this.pusher. subscribe('my-channel');
     this.channel.bind('my-event', function (data) {
       alert(JSON.stringify(data));
     });
- 
-this.channel.bind('my-version', function(data) {
-       alert(JSON.stringify(data));
-       this.newversion= JSON.stringify(data.message);
+
+     await this.channel.bind('my-version', function (data) {
+      alert(JSON.stringify('New version notification '+data.message));
+
+       newversion = JSON.stringify(data.message);
+
       // // this.version=  this.newversion;
       //    this.appService.newversion = this.newversion
-        alert(this.newversion);
+      // alert(this.newversion);
     });
-
+    //alert('in ')
+//     this.appService.version = newversion
+// alert('in '+ this.appService.version)
     //  let response = await this.api.initPusher(); // do outside of app
     // //https://artbased.com/api/v1/pusher
     //  var pusher = new Pusher('f9bf10dcb8b1659ebf68', {
     //   cluster: 'us2',
-    //   forceTLS: true
+    //   forceTLS: true 
     // });
 
     // var channel = pusher.subscribe('my-channel');
@@ -181,21 +186,16 @@ this.channel.bind('my-version', function(data) {
     //   alert(JSON.stringify(data));
     // });
 
-    
+
   }
 
 
   async checkVersion() {
 
+    this.appService.version = '500'
 
-
-
-    this.channel.bind('my-version', function (data) {
-      this.newversion = JSON.stringify(data.message); //'500'//
-      //  this.newversion=  this.newversion;
-      //  this.appService.newversion = this.newversion
-      alert(this.newversion);
-    });
+    this.appService.newversion = '500'//
+    alert(this.appService.newversion);
 
   }
   async activate() {
