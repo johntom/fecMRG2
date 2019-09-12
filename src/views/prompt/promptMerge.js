@@ -86,6 +86,32 @@ export class Promptmerge {
     );
 
 
+    html = segment;//window.docx.innerHTML;
+    blob = new Blob(['\ufeff', css + html], {
+      type: 'application/msword'
+    });
+    url = URL.createObjectURL(blob);
+    link = document.createElement('A');
+    link.href = url;
+    // Set default file name. 
+    // Word will append file extension - do not add an extension here.
+    link.download = this.savelistname;//'Document';
+    document.body.appendChild(link);
+    if (navigator.msSaveOrOpenBlob) navigator.msSaveOrOpenBlob(blob, this.savelistname + '.doc'); //'Document.doc' IE10-11
+    else link.click();  // other browsers
+    document.body.removeChild(link);
+    return segment
+  };
+
+  async wordportraitnoheader(segment) {
+    var html, link, blob, url, css;
+    css = (
+      '<style>' +
+      '@page WordSection1{size: 595.35pt 841.95pt;margin:10pt 36.0pt 36.0pt 36.0pt;}' +
+      'div.WordSection1 {page: WordSection1;}' +
+      'table{border-collapse:collapse;}td{border:0px none;width:1em;padding:2px;}' +
+      '</style>'
+    );
 
     html = segment;//window.docx.innerHTML;
     blob = new Blob(['\ufeff', css + html], {
@@ -103,6 +129,8 @@ export class Promptmerge {
     document.body.removeChild(link);
     return segment
   };
+
+
   async wordportrait(segment) {
     var html, link, blob, url, css;
 
@@ -233,7 +261,7 @@ export class Promptmerge {
 
   async activate(currentmodel) {
     this.currentmodel = currentmodel
-    this.slname  =this.currentmodel.head;
+    this.slname = this.currentmodel.head;
     this.listtype = currentmodel.listtype
     // let lname = currentmodel.listname;
     let dimwidth
@@ -250,7 +278,7 @@ export class Promptmerge {
 
     let sty1no = "padding:3px;font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;vertical-align:top;text-align:left;";
     let stycno = "bpadding:3px;font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;vertical-align:top;text-align:center;";
-
+    this.sty1no = sty1no
 
     let styhno = " border-width:1px;border-color:#336600;border-style:solid;padding:3px;font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;vertical-align:top;text-align:left;";
 
@@ -424,12 +452,15 @@ export class Promptmerge {
         hh = 160 * invitem.clientHeightRatio
         let wd
         if (invitem.Signed) wd = 'signed'
-        if (invitem.Dated) wd += ' and dated'
+        if (invitem.Signed && invitem.Dated) wd += ' and dated'
+        if (!invitem.Signed && invitem.Dated) wd += 'dated'
 
-        let sd = invitem.Signed // Dated
-
+        // let sd = invitem.Signed // Dated
+//  let sty1no = "font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;
+// width:70%; vertical-align:top;";// text-align:left;padding:3px
+   
         segment += `<tr style="height:17%;">`
-        segment += `<td style="width:70%;vertical-align:top">${invitem.rtf2}</br></br>`
+        segment += `<td style="${this.sty1no};width:70%;vertical-align:top">${invitem.rtf2}</br></br>`
         segment += `${wd}</td>`
         segment += `<td style="width:25%;vertical-align:top;text-align:center;"><img src="https://artbased.com/api/v1/getimage/inv/${invitem.InventoryCode}.jpg" alt="" width="${ww}" height=${hh} /></td>`
         segment += `</tr>`
@@ -441,10 +472,11 @@ export class Promptmerge {
 
 
       if (this.listtype === 1) {
-        // {id:1,name:"price list"}
+        // {id:1,name:"price list"} style=${this.sty1no}
+        let sty1no = "font-family:Calibri, Geneva, sans-serif;font-size:11.0pt; width:70%; vertical-align:top;";// text-align:left;padding:3px
         let oa = numeral(invitem.offeramount).format('($0,0.00)')
         segment += `<tr style="height:17%;">`
-        segment += `<td style="width:70%;vertical-align:top">${invitem.rtf2}</br></br>`
+        segment += `<td style="${sty1no}">${invitem.rtf2}</br></br>`
         segment += `${oa}</td>`
         segment += `<td style="width:25%;vertical-align:top;text-align:center;"><img src="https://artbased.com/api/v1/getimage/inv/${invitem.InventoryCode}.jpg" alt="" width="${ww}" height=${hh} /></td>`
         segment += `</tr>`
@@ -596,12 +628,17 @@ export class Promptmerge {
         hh = 160 * invitem.clientHeightRatio
         let wd
         if (invitem.Signed) wd = 'signed'
-        if (invitem.Dated) wd += ' and dated'
-
-        let sd = invitem.Signed
+        if (invitem.Signed && invitem.Dated) wd += ' and dated'
+        if (!invitem.Signed && invitem.Dated) wd += 'dated'
+        let sty1no = "font-family:Calibri, Geneva, sans-serif;font-size:11.0pt";// text-align:left;padding:3px
+  //   this.currentItem.rtf1 = '<span style="font-family:Calibri, Geneva, sans-serif;font-size:11.0pt">' + this.segment1 + '</span>';
+  //  this.segment1 += `<td style="font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;width:50%;vertical-align:top;text-align:left;padding-left:2px">${headerinfo1}</td>`
+    
+      //  let sty1no = "padding:3px;font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;vertical-align:top;text-align:left;";
+   // <span style=${sty1no};> </span>
         segment += `<tr style="height:17%;">`
-        segment += `<td style="width:70%;vertical-align:top">${invitem.rtf2}</br></br>`
-        segment += `${wd}</td>`
+        segment += `<td style="${sty1no};width:70%;vertical-align:top">${invitem.rtf2}</br></br>`
+        segment += ` ${wd}</td>`
         segment += `<td style="width:25%;vertical-align:top;text-align:center;"><img src="https://artbased.com/api/v1/getimage/inv/${invitem.InventoryCode}.jpg" alt="" width="${ww}" height=${hh} /></td>`
         segment += `</tr>`
         segment += `<tr ><td>&nbsp;</td></tr>`
@@ -639,7 +676,7 @@ export class Promptmerge {
     if (this.listtype === 3) {
       segment += `</tbody></table>`
       segment += `</div></div>`
-      this.wordportrait(segment);
+      this.wordportraitnoheader(segment);
 
       // this.wordlandscape(segment);
 

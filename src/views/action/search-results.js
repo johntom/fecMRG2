@@ -17,9 +17,9 @@ import { Promptmerge } from '../prompt/promptMerge';
 import { Promptmess } from '../../services/promptmess';
 import { Promptyn } from '../../services/promptyn';
 import { EventAggregator } from 'aurelia-event-aggregator';
+import { DialogImage } from '../inventory/dialogImage'
 
-
-// jrt
+// jrt 
 @inject(Router, ApiService, UtilService, ApplicationService, MyDataService, DialogService, EventAggregator)
 export class SearchResults {
   heading = 'Search Results...';
@@ -133,7 +133,7 @@ export class SearchResults {
         }
       }
     },
-    pageSize: 8,
+    // pageSize: 8,
 
   })
   // {id:0,name:"check list"},
@@ -287,7 +287,7 @@ export class SearchResults {
   }
   performAction1Refresh() {
     //console.log('performRefresh ')
-    alert('You have selected performRefresh')
+ //   alert('You have selected performRefresh')
     this.appService.rfreshLoaded = true;
     this.datasource.read()
   }

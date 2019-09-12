@@ -1,9 +1,9 @@
 <template>
-	<require from="aurelia-kendoui-bridge/grid/col"></require>
+	<!-- <require from="aurelia-kendoui-bridge/grid/col"></require>
 	<require from="aurelia-kendoui-bridge/common/template"></require>
 	<require from="../../../styles/kendo.css"></require>
 	<require from="../../../styles/flex.css"></require>
-	<require from="aurelia-kendoui-bridge/editor/editor"></require>
+	<require from="aurelia-kendoui-bridge/editor/editor"></require> -->
 	<!-- jrt -->
 	<style>
 		.k-grid tbody tr {
@@ -228,14 +228,16 @@
 						<a href="https://artbased.com/api/v1/downloadonepdf/lists/${savedlist}.doc" class="btn btn-sm btn-primary">
 							<span class="glyphicon glyphicon-th-list"></span> Download Doc Image Merge
 						</a>
-					</div>
+					</div> 
 					<b>  ${message} </b>
 				</div>
-				<div class="Rtable-cell-2">
+				<div class="Rtable-cell-2"> 
+          <!--  k-pageable.bind="true" -->
 					<ak-grid class="flex-row-1 overflow-y-auto" id="grid" k-data-source.bind="datasource" k-widget.bind="grid" k-sortable.bind="{ mode: 'multiple',   allowUnsort: 'true'}"
 					 k-filterable.bind="{  mode: 'row' }" k-editable="inline" k-reorderable.bind="true" k-resizable.bind="true" k-on-edit.delegate="onEdit($event.detail)"
-					 k-selectable="multiple" k-on-change.delegate="rowSelected($event.detail)" k-column-menu.bind="true" k-pageable.bind="true">
-						<div style="width: 1100px"></div>
+					 k-selectable="multiple" k-on-change.delegate="rowSelected($event.detail)" k-column-menu.bind="true"
+           k-scrollable.bind="scrollable">
+						<div style="width: 1100px;height:700px"></div>
           
           	<ak-col k-filterable.bind="false" k-width="120px" k-title="Cmd" k-command.bind="['edit']" k-title="&nbsp;" k-locked.bind="true"
 						 k-lockable.bind="false"></ak-col>
