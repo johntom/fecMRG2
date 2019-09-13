@@ -386,9 +386,14 @@ export class DataForm {
     const queryParams = {}
     let slname
     let ct = 0
+    this.itsaquickie = false
     pairs.forEach(p => {
       const kv = p.split('=')
-      if (ct === 0) slname = kv[1]
+      if (ct === 0) {
+    if (kv[0]==='itsaquickie' ) {
+      
+     this.itsaquickie = true ;// slname = kv[1]
+      }  
       ct++
     }); 
  
@@ -598,7 +603,6 @@ export class DataForm {
     return new Promise((resolve, reject) => {
       if (this.currentItem.clientHeight === undefined || this.currentItem.clientHeight === 0 || opt === 1) {
         let imageWidth, imageHeight, clientHeightRatio, clientWidthRatio
-
         this.currentItem.clientHeight = this.mainimage.clientHeight
         this.currentItem.clientWidth = this.mainimage.clientWidth
         if (this.currentItem.clientHeight === this.currentItem.clientWidth) {
@@ -646,7 +650,7 @@ export class DataForm {
         let createopt = 2; // 1 is from tab 2 is program
         let rr = this.rtfService.createRTF(createopt)
         this.eventAggregator.publish('rtfpayload', 'refresh');
-        this.itsaquickie = true
+        //this.itsaquickie = true
         this.saveinventory(0)
 
         // if (itsaquickie)  {
