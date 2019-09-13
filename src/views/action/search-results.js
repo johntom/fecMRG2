@@ -409,6 +409,18 @@ export class SearchResults {
     grid.select(targetRow);
     let selectedRow = grid.select();
     let dataItem = grid.dataItem(selectedRow);
+     let rt2 = `#/inventory/data/${dataItem.InventoryCode}?fulledit=true`;
+
+   await  this.router.navigate(rt2);// `#/inventory/${path}`);
+this.performAction1Refresh()
+  }
+
+  async detailsEditPop(e) {
+    let grid = this.grid;
+    let targetRow = $(e.target).closest("tr");
+    grid.select(targetRow);
+    let selectedRow = grid.select();
+    let dataItem = grid.dataItem(selectedRow);
      let rt2 = `#/inventory/data/${dataItem.InventoryCode}?itsaquickie=true`;
 
    await  this.router.navigate(rt2);// `#/inventory/${path}`);

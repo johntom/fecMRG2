@@ -103,7 +103,6 @@ export class DataForm {
     // }
     // if (this.artist.id === 'create') {
     //   let val = await this.api.findArtistsAA();
-
     //   // this.appService.artistList = val.data;
     //   this.artist.id = '';
     //   let nlist = []
@@ -113,7 +112,6 @@ export class DataForm {
     //   }
     //   this.appService.artistList = lodash.sortBy(nlist, 'ArtistName');
     // } else {
-
     // }
     let response2 = await this.api.findArtistsAA(this.artist);
     this.appService.artistList = response2.data
@@ -121,19 +119,14 @@ export class DataForm {
   }
 
   requestclose() {
-
     const resetFunc = () => { this.appService.originalrec = this.currentItem; };
     let tab = this.appService.tabs.find(f => f.isSelected);
     let index = this.appService.tabs.findIndex(f => f.isSelected)
     let rt2 = '#/artist/' + this.tabname
-
-
     let newIndex = (index > 0) ? index - 1 : 0;
     let newTab = this.appService.tabs[newIndex];
     this.appService.tryCloseTab(this.appService.currentView, tab, newTab.href);
-
-
-  }
+ }
 
 
 

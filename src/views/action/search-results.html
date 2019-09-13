@@ -242,7 +242,10 @@
           	<ak-col k-filterable.bind="false" k-width="120px" k-title="Cmd" k-command.bind="['edit']" k-title="&nbsp;" k-locked.bind="true"
 						 k-lockable.bind="false"></ak-col>
 						<ak-col k-field="InventoryCode" k-filterable.bind="false" k-column-menu.bind="false" k-lockable.bind="false" k-title="Inventory Code"
-						 k-width.bind="180" k-template="<button click.delegate='detailsEdit($event)' class='k-button'>#=InventoryCode#</button>">
+						 k-width.bind="120" k-template="<button click.delegate='detailsEdit($event)' class='k-button'>#=InventoryCode#</button>">
+						</ak-col>
+            	<ak-col k-field="InventoryCode" k-filterable.bind="false" k-column-menu.bind="false" k-lockable.bind="false" k-title="Update"
+						 k-width.bind="120" k-template="<button click.delegate='detailsEditPop($event)' class='k-button'>Populate RTF</button>">
 						</ak-col>
 						<ak-col k-title="Image" k-filterable.bind="false" k-field="InventoryCode" k-width="150px">
 							<ak-template>
