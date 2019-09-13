@@ -207,6 +207,9 @@ export class SearchResults {
       this.datasource.read()
       // make a dupe of folllowing to accoumodate 2 typeaheads
       this.codesListLocation = this.appService.codesListLocation
+this.performAction1Refresh()
+
+
     }
   }
 
