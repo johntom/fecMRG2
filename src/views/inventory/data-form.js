@@ -12,13 +12,14 @@ import { bindable } from 'aurelia-framework';
 import { RtfService } from '../../services/rtf-service';
 import { EventAggregator } from 'aurelia-event-aggregator';
 import { Promptmerge } from '../prompt/promptMerge';
+import { UtilService } from '../../services/util-service';
 
 // import { Pusher } from 'pusher';
 
 
 //  <strong> Owned Status ${currentItem.OwnedByLegacy}/ ${currentItem.OwnedBy}/ ${currentItem.ownedbyname} </strong> -->
 
-@inject(Router, ApiService, ApplicationService, MyDataService, DialogService, RtfService, EventAggregator)
+@inject(Router, UtilService,ApiService, ApplicationService, MyDataService, DialogService, RtfService, EventAggregator)
 // @inject(Router, ApiService, ApplicationService, MyDataService, DialogService)
 export class DataForm {
   // @bindable createRTF
@@ -153,7 +154,7 @@ export class DataForm {
     widget.refresh();// keep the focus
   }
   //controllerFactory
-  constructor(router, api, appService, dataService, dialogService, rtfService, eventAggregator) {
+  constructor(router, utilService, api, appService, dataService, dialogService, rtfService, eventAggregator) {
     //  constructor(router, api, appService, dataService, dialogService, controllerFactory) {
     this.api = api
     this.appService = appService
@@ -167,6 +168,7 @@ export class DataForm {
     this.epoch = moment().unix();
     // this.selectedlist = 5
     this.selectedlist = -1
+    this.utilService = utilService;  
   }
   // publish() {
   //   var payload = 'This is some data...';
@@ -325,9 +327,7 @@ export class DataForm {
   }
   showModalImg() {
     this.dialogService.open({ viewModel: DialogImage, model: this.currentItem, lock: false }).whenClosed(response => {
-
       if (!response.wasCancelled) {
-
       } else {
         console.log('cancel');
       }
@@ -378,8 +378,22 @@ export class DataForm {
   }
   DropdownChanged(changedVal) {
     //  alert(changedVal);
-  }
+  } 
   activate(params, routeConfig) {
+  this.queryParams = this.utilService.parseQueryStringUrl();
+    const qs = this.queryParams.substring(this.queryParams.indexOf('?') + 1)
+    const pairs = qs.split('&')
+    const queryParams = {}
+    let slname
+    let ct = 0
+    pairs.forEach(p => {
+      const kv = p.split('=')
+      if (ct === 0) slname = kv[1]
+      ct++
+    }); 
+ 
+
+// this.itsaquickie     this.itsaquickie = true
     //12  this.tabname = this.appService.currentSearch
     if (params.id) {
       this.recordId = params.id;
@@ -453,11 +467,8 @@ export class DataForm {
               // this.appService.originalrec.conservedbyname = this.currentItem.conservedbyname// fix dirty
               const currentJSON = JSON.stringify(this.currentItem);
               const originalJSON = JSON.stringify(this.appService.originalrec);
-
               console.log('currentJSON');
-
               console.log(currentJSON);
-
               console.log('==================================');
               console.log('originalJSON');
               console.log(originalJSON);
@@ -635,7 +646,14 @@ export class DataForm {
         let createopt = 2; // 1 is from tab 2 is program
         let rr = this.rtfService.createRTF(createopt)
         this.eventAggregator.publish('rtfpayload', 'refresh');
+        this.itsaquickie = true
         this.saveinventory(0)
+
+        // if (itsaquickie)  {
+        //    this.requestcloseNoCheck()
+        //   //  this.requestclose()
+        // } else {
+
         this.appService.originalrec = JSON.parse(JSON.stringify(this.currentItem))// inv[0]));
         let tabinfo, tabindex
         tabinfo = localStorage.getItem('tabinfo' + this.currentItem.InventoryCode);
@@ -649,6 +667,7 @@ export class DataForm {
           let tab = this.appService.dataFormOneToManyTabs[tabindex];
           this.selectOneToManyTab(tab);
         }
+        //  }
       })
       // // await this.getimageinfo(0)
       // //  this.rtfService.currentItem = this.currentItem
@@ -763,6 +782,10 @@ export class DataForm {
           let tab = this.appService.tabs.find(f => f.isSelected);
           // window.alert("Save successful!");
           this.message = "Save successful. Inventory updated @ " + savetime
+          if (this.itsaquickie) {
+
+            this.requestcloseNoCheck()
+          }
           this.appService.testrec = this.currentItem
           this.appService.currentView = this.currentItem
           this.appService.originalrec = JSON.parse(JSON.stringify(this.currentItem))
@@ -771,10 +794,13 @@ export class DataForm {
             // alert('jr')
             this.requestcloseNoCheck()
           } else {
-
           }
         });
       } else this.message = "No changes detected to save. "
+      if (this.itsaquickie) {
+
+        this.requestcloseNoCheck()
+      }
       if (option === 1) {
         //     this.requestclose()
       }
@@ -897,7 +923,7 @@ export class DataForm {
     const resetFunc = () => { this.appService.originalrec = this.currentItem; };
     let tab = this.appService.tabs.find(f => f.isSelected);
     let index = this.appService.tabs.findIndex(f => f.isSelected)
-    let rt2 = '#/org/' + this.tabname
+    let rt2 = '#/inventory/' + this.tabname
 
 
     let newIndex = (index > 0) ? index - 1 : 0;

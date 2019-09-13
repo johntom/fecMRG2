@@ -402,17 +402,17 @@ export class SearchResults {
     //  alert('rt2 '+rt2)
     window.open(rt2);
   }
-
-  detailsEdit(e) {
+ 
+  async detailsEdit(e) {
     let grid = this.grid;
     let targetRow = $(e.target).closest("tr");
     grid.select(targetRow);
     let selectedRow = grid.select();
     let dataItem = grid.dataItem(selectedRow);
-    let rt2 = '#/inventory/data/' + dataItem.InventoryCode;
+     let rt2 = `#/inventory/data/${dataItem.InventoryCode}?itsaquickie=true`;
 
-    this.router.navigate(rt2);// `#/inventory/${path}`);
-
+   await  this.router.navigate(rt2);// `#/inventory/${path}`);
+this.performAction1Refresh()
   }
 
   showModalImg(e) {
