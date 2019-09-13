@@ -207,7 +207,7 @@ export class SearchResults {
       this.datasource.read()
       // make a dupe of folllowing to accoumodate 2 typeaheads
       this.codesListLocation = this.appService.codesListLocation
-this.performAction1Refresh()
+      this.performAction1Refresh()
 
 
     }
@@ -290,7 +290,7 @@ this.performAction1Refresh()
   }
   performAction1Refresh() {
     //console.log('performRefresh ')
- //   alert('You have selected performRefresh')
+    //   alert('You have selected performRefresh')
     this.appService.rfreshLoaded = true;
     this.datasource.read()
   }
@@ -340,7 +340,7 @@ this.performAction1Refresh()
             this.datasource.read();
           });
         });
-       
+
       }
     }
     if (sels.length === 0) {
@@ -405,17 +405,17 @@ this.performAction1Refresh()
     //  alert('rt2 '+rt2)
     window.open(rt2);
   }
- 
+
   async detailsEdit(e) {
     let grid = this.grid;
     let targetRow = $(e.target).closest("tr");
     grid.select(targetRow);
     let selectedRow = grid.select();
     let dataItem = grid.dataItem(selectedRow);
-     let rt2 = `#/inventory/data/${dataItem.InventoryCode}?fulledit=true`;
+    let rt2 = `#/inventory/data/${dataItem.InventoryCode}?fulledit=true`;
 
-   await  this.router.navigate(rt2);// `#/inventory/${path}`);
-this.performAction1Refresh()
+    await this.router.navigate(rt2);// `#/inventory/${path}`);
+    this.performAction1Refresh()
   }
 
   async detailsEditPop(e) {
@@ -424,10 +424,10 @@ this.performAction1Refresh()
     grid.select(targetRow);
     let selectedRow = grid.select();
     let dataItem = grid.dataItem(selectedRow);
-     let rt2 = `#/inventory/data/${dataItem.InventoryCode}?itsaquickie=true`;
+    let rt2 = `#/inventory/data/${dataItem.InventoryCode}?itsaquickie=true`;
 
-   await  this.router.navigate(rt2);// `#/inventory/${path}`);
-this.performAction1Refresh()
+    await this.router.navigate(rt2);// `#/inventory/${path}`);
+    this.performAction1Refresh()
   }
 
   showModalImg(e) {

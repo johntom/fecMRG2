@@ -151,7 +151,7 @@ export class SearchResults {
         }
       }
     },
-     pageSize: 15,
+    pageSize: 15,
 
     height: 400,
 
@@ -354,11 +354,11 @@ export class SearchResults {
           //   this.appService.inventorysearchresults = inv;
           //   return inv
           // }
-            if (inv === 0 || inv.length === 0) {
-this.appService.inventorysearchresults = inv;
-this.recCount = 0
-            }
-            return inv
+          if (inv === 0 || inv.length === 0) {
+            this.appService.inventorysearchresults = inv;
+            this.recCount = 0
+          }
+          return inv
 
         });
     }
@@ -433,7 +433,7 @@ this.recCount = 0
       this.closeTab(tab);
     }
 
-    let rt2 = '#/inventory/data/' + dataItem.InventoryCode;
+    let rt2 = `#/inventory/data/${dataItem.InventoryCode}?fulledit=true`;
     this.router.navigate(rt2);// `#/inventory/${path}`);
 
   }
