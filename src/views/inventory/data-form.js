@@ -19,7 +19,7 @@ import { UtilService } from '../../services/util-service';
 
 //  <strong> Owned Status ${currentItem.OwnedByLegacy}/ ${currentItem.OwnedBy}/ ${currentItem.ownedbyname} </strong> -->
 
-@inject(Router, UtilService,ApiService, ApplicationService, MyDataService, DialogService, RtfService, EventAggregator)
+@inject(Router, UtilService, ApiService, ApplicationService, MyDataService, DialogService, RtfService, EventAggregator)
 // @inject(Router, ApiService, ApplicationService, MyDataService, DialogService)
 export class DataForm {
   // @bindable createRTF
@@ -168,7 +168,7 @@ export class DataForm {
     this.epoch = moment().unix();
     // this.selectedlist = 5
     this.selectedlist = -1
-    this.utilService = utilService;  
+    this.utilService = utilService;
   }
   // publish() {
   //   var payload = 'This is some data...';
@@ -378,9 +378,9 @@ export class DataForm {
   }
   DropdownChanged(changedVal) {
     //  alert(changedVal);
-  } 
+  }
   activate(params, routeConfig) {
-  this.queryParams = this.utilService.parseQueryStringUrl();
+    this.queryParams = this.utilService.parseQueryStringUrl();
     const qs = this.queryParams.substring(this.queryParams.indexOf('?') + 1)
     const pairs = qs.split('&')
     const queryParams = {}
@@ -390,15 +390,16 @@ export class DataForm {
     pairs.forEach(p => {
       const kv = p.split('=')
       if (ct === 0) {
-    if (kv[0]==='itsaquickie' ) {
-      
-     this.itsaquickie = true ;// slname = kv[1]
-      }  
-      ct++
-    }); 
- 
+        if (kv[0] === 'itsaquickie') {
 
-// this.itsaquickie     this.itsaquickie = true
+          this.itsaquickie = true;// slname = kv[1]
+        }
+      }
+      ct++
+    });
+
+
+    // this.itsaquickie     this.itsaquickie = true
     //12  this.tabname = this.appService.currentSearch
     if (params.id) {
       this.recordId = params.id;
