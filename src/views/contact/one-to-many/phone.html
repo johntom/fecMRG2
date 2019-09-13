@@ -10,7 +10,6 @@
 			width: 80% //1200px;//fixed width
 		}
 
-
 		table tbody {
 			display: block;
 			height: 250px;
@@ -18,7 +17,7 @@
 		}
 	</style>
 	<section class="docs full-height flex-column-1 overflow-y-auto ignore">
-	
+
 		<div class="Rtable Rtable--2cols">
 			<div class="Rtable-cell-50 Rtable-cell">
 				<h4>
@@ -46,11 +45,11 @@
 							<tr>
 								<th width="100px" class="header">Type
 								</th>
-                		<th width="100px" class="header">Area
+								<th width="100px" class="header">Area
 								</th>
 								<th width="200px" class="header">Phoneno
 								</th>
-						
+
 								<th width="100px" class="header">Ext
 								</th>
 								<th width="100px" class="header">Note
@@ -81,14 +80,14 @@
                     </select>
 
 							</td>
-              	<td width="100px">
-									<input class="form-control input-sm" type="text" value.bind="area">
+							<td width="100px">
+								<input class="form-control input-sm" type="text" value.bind="area">
 							</td>
 							<td width="200px">
-									<input class="form-control input-sm" type="phone" value.bind="phoneno">
+								<input class="form-control input-sm" type="phone" value.bind="phoneno">
 
 							</td>
-						
+
 							<td width="100px">
 								<input class="form-control input-sm" type="text" value.bind="ext">
 							</td>
@@ -97,22 +96,18 @@
 								<input class="form-control input-sm" type="text" value.bind="Note">
 
 							</td>
-							<!-- <td width="100px">
-							
-															<input class="form-control input-sm" type="text" value.bind="notes">
-							
-														</td> -->
-						<td width="100px">
-		<button class="btn btn-sm btn-danger" click.delegate="removePhone(phone,$index)">Delete</button>
 
-							</th>
+							<td width="100px">
+								<button class="btn btn-sm btn-danger" click.delegate="removePhone(phone,$index)">Delete</button>
+
+								</th>
 
 
 					</tbody>
 				</table>
 			</div>
 			<div class="Rtable-cell-50 Rtable-cell--highlight">
-			
+
 
 				<table class="table-condensed table">
 					<thead class="table-header-blue">
@@ -121,7 +116,9 @@
 							<tr>
 								<th width="100px" class="header">Type
 								</th>
-								<th width="200px" class="header">Email
+								<th width="300px" class="header">Email
+								</th>
+								<th width="200px" class="header">open
 								</th>
 								<th width="200px" class="header">Unsub
 								</th>
@@ -155,14 +152,20 @@
                     </select>
 
 							</td>
-							<td width="200px">
-						
+							<td width="300px">
+
 								<input class="form-control input-sm" type="email" value.bind="email">
 							</td>
+
 							<td width="200px">
-							
+								<a href="mailto:${email}"> ${email} </a>
+
+							</td>
+
+							<td width="200px">
+
 								<span if.bind="unsub===undefined">-</span>
-             	<input type="checkbox" id="unsub" checked.bind="unsub"> ${unsub}
+								<input type="checkbox" id="unsub" checked.bind="unsub"> ${unsub}
 							</td>
 							<td width="100px">
 								<input class="form-control input-sm" type="text" value.bind="Note">
