@@ -145,7 +145,7 @@ export class Inventory {
     //10-17  this.performSearch()
     //https://johntom.github.io/fecMRG2/#/inventory/data/PORTERC008
     //10-17   this.router.navigate(`#/inventory/data/${ this.search.inventorycode}`);
-    this.router.navigate(`#/inventory/data/${e}`);
+    this.router.navigate(`#/inventory/data/${e}?fulledit=true`);
   }
 
   performSearchSL() {
