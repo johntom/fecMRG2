@@ -334,12 +334,12 @@
 										<input type="text " xid="Dept " class="form-control input-sm " value.bind="currentItem.Dept">
 									</div>
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
-									
 
-									 <a href="http://${currentItem.Website}" target="_blank" class="btn btn-sm btn-primary" >	<strong>Open Website</strong></a>
+
+										<a href="http://${currentItem.Website}" target="_blank" class="btn btn-sm btn-primary"> <strong>Open Website</strong></a>
 									</div>
- 
-								
+
+
 
 									<div class="Rtable-cell-70  Rtable-cell--highlight">
 										<input type="text " xid="Website " class="form-control input-sm " value.bind="currentItem.Website">
@@ -395,41 +395,42 @@
 				</div>
 
 				<!-- flex row none -->
-		</div>
+				<!-- </div> -->
 
-		<!-- flex row none -->
+				<!-- flex row none -->
 
-		<!--top left  -->
+				<!--top left  -->
 
 
 
-		<!--  class="tab tab-top ${tab.isSelected ? 'tab-selected' : ''}"> -->
+				<!--  class="tab tab-top ${tab.isSelected ? 'tab-selected' : ''}"> -->
 
-		<div if.bind="recordId==='create'">Create Mode. Please save record before entering tabs </div>
-		<div else>
+				<div if.bind="recordId==='create'">Create Mode. Please save record before entering tabs </div>
+				<div else>
 
-			<div id="bottom-left" class="flex-row-3">
-				<div id="data-form-ext" class="flex-column-1">
-					<div id="dataFormOneToManyTabs3" class="flex-row-none flex-wrap">
-						<div repeat.for="tab of appService.dataFormOneToManyTabs3" class="tab ${tab.isSelected ? 'tab-selected' : ''}">
-							<div class="form-tab-box" click.delegate="selectOneToManyTab(tab)">
-								<span>${tab.name}</span>
+					<div id="bottom-left" class="flex-row-3">
+						<div id="data-form-ext" class="flex-column-1">
+							<div id="dataFormOneToManyTabs3" class="flex-row-none flex-wrap">
+								<div repeat.for="tab of appService.dataFormOneToManyTabs3" class="tab ${tab.isSelected ? 'tab-selected' : ''}">
+									<div class="form-tab-box" click.delegate="selectOneToManyTab(tab)">
+										<span>${tab.name}</span>
+									</div>
+								</div>
+							</div>
+							<div id="data-form-one-to-many-tab-content overflow-y-hidden" class="data-form flex-row-1" style="background:
+										 darkgray;">
+								<compose view-model.bind="currentOneToManyTab.viewModel"></compose>
 							</div>
 						</div>
 					</div>
-					<div id="data-form-one-to-many-tab-content overflow-y-hidden" class="data-form flex-row-1" style="background:
-										 darkgray;">
-						<compose view-model.bind="currentOneToManyTab.viewModel"></compose>
-					</div>
 				</div>
-			</div>
+
+
+			</form>
 		</div>
-
-
-		</form>
 		<!-- </div> -->
 		<footerform class="flex-row-none">
-	
+
 			<span>&nbsp;&nbsp;
 					<button class="btn btn-sm btn-primary " click.delegate="savecontact(0)">
 						Save & Stay

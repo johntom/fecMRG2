@@ -196,6 +196,8 @@ export class DataForm {
         this.currentItem = {}
         this.currentContactItem = {}
         this.currentContactItem.id = 'create'
+
+         this.currentItem.BusIndivid = 'I'
         this.currentItem.contacttypes = []
         this.currentItem.international = false
         this.currentItem.deceased = false
