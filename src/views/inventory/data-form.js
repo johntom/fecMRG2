@@ -122,16 +122,19 @@ export class DataForm {
   });
 
   addNew() {
-    var value = this.multiselect.input.val();
+    // strip * as last char of new string
+    let slen = this.multiselect.input.val().length
+    var value = this.multiselect.input.val().substring(0, slen-1);   
+    console.log('val ',value)
     var dataSource = this.multiselect.dataSource;
-    var widget = this.multiselect
+    var widget = this.multiselect 
 
     //  if (confirm("Are you sure?")) {
     let bod = {
       "CodeType": 3,
       "Description": value,
       "CodeTypeDesc": "Genre"
-    }
+    }  
 
     this.api.addmediumsupport(bod)
       .then((jsonRes) => {
@@ -731,7 +734,7 @@ export class DataForm {
       // || this.currentItem.MediumSupportobj === undefined this.currentItem.Title === undefined |
       if (this.currentItem.InventoryCode === undefined
         || this.currentItem.artist === undefined) {
-        alert('Please fix  Title, InventoryCode, Owned By and or Artist ')
+        alert('Please fix. InventoryCode  and/or Artist is missing')
       } else {
 
         /////////

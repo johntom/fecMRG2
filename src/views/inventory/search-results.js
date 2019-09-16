@@ -315,7 +315,7 @@ export class SearchResults {
     // let orgobj = this.appService.savedlists[0]
     // this.selectedids = orgobj.InventoryCodes
 
-  }
+  } 
 
   addinventory() {
 
@@ -334,6 +334,7 @@ export class SearchResults {
     if (this.appService.inventorysearchresults && !this.appService.refreshinvLoaded) {
       // this.spinner.remove()
       this.busy.active = false
+      
       return this.appService.inventorysearchresults;
 
     } else {
@@ -342,6 +343,7 @@ export class SearchResults {
           inv = jsonRes.data;
           this.inventory = jsonRes.data;
           this.recCount = inv.length;
+    
           // this.spinner.remove()
           this.busy.active = false
           // if (inv === 0 || inv.length === 0) {
@@ -354,10 +356,16 @@ export class SearchResults {
           //   this.appService.inventorysearchresults = inv;
           //   return inv
           // }
-          if (inv === 0 || inv.length === 0) {
+          // if (inv === 0 || inv.length === 0) {
+          //   this.appService.inventorysearchresults = inv;
+          //   this.recCount = 0
+          // }
+
+  if ( inv.length !== 0) {
             this.appService.inventorysearchresults = inv;
-            this.recCount = 0
+            this.recCount = inv.length
           }
+
           return inv
 
         });
@@ -390,7 +398,7 @@ export class SearchResults {
           this.router.navigate(rt2);
         } else return inv
       });
-
+ 
   }
 
 
@@ -549,14 +557,14 @@ export class SearchResults {
   // }
 
 
-  async addexistingSelection() {
+  async addexistingSelection() { 
     if (this.appService.currentsavedlist === "") {
       this.dialogService.open({ viewModel: Promptmess, model: `please select a saved list  `, lock: true }).whenClosed(async response => { });
     }
 
     let sels
     let newcount = 0
-    if (this.selectedids === undefined) {
+    if (this.selectedids === undefined || this.selectedids.length === 0) {
       sels = []
     } else sels = this.selectedids
 
@@ -565,9 +573,9 @@ export class SearchResults {
     if (selectedRows.length === 0) {
 
       this.dialogService.open({ viewModel: Promptmess, model: `please select a row to add  `, lock: true }).whenClosed(async response => { });
+ 
 
-
-
+ 
 
     } else {
       var maxRows = selectedRows.length / 2;
@@ -591,14 +599,20 @@ export class SearchResults {
           });
         }
       }
+      
 
     }
 
 
     let response = await this.api.findInventorySavedLists(this.appService.currentsavedlist);
-    this.sllen = response.data.length
+    this.sllen = response.data.length   
     console.log('this.repos ', this.api.currentsavedlist)
-    this.message = ` ${newcount} items added to list ${this.appService.currentsavedlist} count:${this.sllen}`
+    let totcount = newcount+this.sllen
+    this.message = ` ${newcount} item(s) added to list ${this.appService.currentsavedlist}`
+    // new count:${totcount}`
+    this.checkedIds = [];
+  
+    // this.recCount = inv.length;
   }
   showSelection() {
     var sels = [];

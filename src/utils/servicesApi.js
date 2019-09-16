@@ -603,9 +603,11 @@ async   findArtistsAA() {
     var url = this.baseweb + 'v1/codes';
     return this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())
 
-  }
+  } 
   addmediumsupport(rec) {
-    let url = this.baseweb + `v1/codes/create`
+    // let url = this.baseweb + `v1/codes/create`
+      let url = this.baseweb + `v1/codes` 
+  
     console.log('url ', url)
     return this.http.fetch(url, {
       method: 'post',
