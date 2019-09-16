@@ -433,7 +433,7 @@ export class SearchResults {
       this.closeTab(tab);
     }
 
-    let rt2 = `#/inventory/data/${dataItem.InventoryCode}?fulledit=true`;
+    let rt2 = `#/inventory/data/${dataItem.InventoryCode}`//?fulledit=true`;
     this.router.navigate(rt2);// `#/inventory/${path}`);
 
   }

@@ -10,7 +10,7 @@ import { bindable } from 'aurelia-framework';
 export class Home {
   heading = "MRG HOME PAGE";
   footer = 'DataForm FOOTER...'
-  version = ' 304.83' 
+  version = ' 304.84' 
   versionDate = 'Fri 9/13/2019 8am'
   prevversion = ' 303.53 '
   prevversionDate = 'Mon 8/5/2019 5pm'
@@ -20,7 +20,7 @@ export class Home {
     //https://circleci.com/workflow-run/1f3685ab-daba-41d7-8d25-6279df547b19
     // https://www.tutorialspoint.com/aurelia/aurelia_event_aggregator.htm
     // 'JUNE 15 CONV fix org/contacts save both cols before redo',
-    // ' check out mailing list check contact conversion ',
+    // ' check out mailing list check contact conversion ', 
     // 'a action abs exp',
     // 'mailing list 111test',
     // 'contact conversion ',

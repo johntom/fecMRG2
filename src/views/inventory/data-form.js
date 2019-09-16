@@ -381,7 +381,11 @@ export class DataForm {
   }
   activate(params, routeConfig) {
     this.queryParams = this.utilService.parseQueryStringUrl();
+    if(this.queryParams!==null){
     const qs = this.queryParams.substring(this.queryParams.indexOf('?') + 1)
+    
+    console.log('qs',qs)    
+ 
     const pairs = qs.split('&')
     const queryParams = {}
     let slname
@@ -397,7 +401,7 @@ export class DataForm {
       }
       ct++
     });
-
+    }
 
     // this.itsaquickie     this.itsaquickie = true
     //12  this.tabname = this.appService.currentSearch
