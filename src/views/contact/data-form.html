@@ -1,55 +1,14 @@
 <template>
-	<!-- <require from="../../value-converters/filter-by-code"></require> 
-  https://codepen.io/johntom/pen/ypZVaM  this.currentItem.ownername this.currentItem.soldtoname
-  -->
-
-	<!-- <require from="aurelia-kendoui-bridge/multiselect/multiselect"></require>
-	<require from="aurelia-kendoui-bridge/button/button"></require>
-	<require from="aurelia-kendoui-bridge/common/template"></require>
-	<require from="../../../styles/flex.css"></require> -->
-
 
 
 	<require from="../../resources/value-converters/date-format"></require>
-	<require from="../../resources/value-converters/upper-case"></require>
-	<style>
-		img.responsive-imgV {
-			max-height: 300px;
-			width: auto;
-			/* vertical */
-		}
-
-		img.responsive-img {
-			/* max-height:  auto;
-			width:300px; */
-			max-width: 325px;
-			max-height: 325px;
-			width: auto;
-			height: auto;
-
-			/* hor */
-		}
-
-		video.responsive-video {
-			max-width: 100%;
-			height: auto;
-		}
-
-		/* #data-form-ext .tab.tab-selected {
-   background-color: orange
- } */
-
+<style>
 		#data-form-ext .tab.tab-selected .form-tab-box {
 			background-color: lightblue;
 			border-color: #7bbbce
 		}
 
 		#cap {
-			// width: 242px;
-			//height: 225px;
-			//margin: 20px auto;
-			//  background-image: url('http://demos.telerik.com/kendo-ui/content/web/dropdownlist/cap.png');
-			//  background-repeat: no-repeat;
 			background-color: orange //transparent;
 		}
 
@@ -69,7 +28,7 @@
 		}
 
 		.custom-file-input::before {
-			content: 'Select image file and upload';
+			content: 'Select aimage file and upload';
 			display: inline-block;
 			background: -webkit-linear-gradient(top, #f9f9f9, #e3e3e3);
 			border: 1px solid #999;
@@ -97,8 +56,8 @@
 		<div class="flex-column-1 overflow-y-auto">
 
 			<form class="flex-column-1">
-				<div id="top" class="flex-row-3">
-					<!-- <div id="top" class="flex-row-none"> -->
+				<!-- <div id="top" class="flex-row-3"> -->
+				<div id="top" class="flex-row-none">
 					<div id="top-left" class="data-form overflow-y-auto flex-column-2">
 						<!-- row1 -->
 						<div class="flex-row-none">
@@ -397,18 +356,11 @@
 				<!-- flex row none -->
 				<!-- </div> -->
 
-				<!-- flex row none -->
-
-				<!--top left  -->
-
-
-
-				<!--  class="tab tab-top ${tab.isSelected ? 'tab-selected' : ''}"> -->
-
 				<div if.bind="recordId==='create'">Create Mode. Please save record before entering tabs </div>
 				<div else>
 
-					<div id="bottom-left" class="flex-row-3">
+					<!-- <div id="bottom-left" class="flex-row-3"> -->
+					<div id="data-form-ext" class="flex-column-1">
 						<div id="data-form-ext" class="flex-column-1">
 							<div id="dataFormOneToManyTabs3" class="flex-row-none flex-wrap">
 								<div repeat.for="tab of appService.dataFormOneToManyTabs3" class="tab ${tab.isSelected ? 'tab-selected' : ''}">
