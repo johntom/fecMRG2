@@ -120,12 +120,17 @@ export class DataForm {
       }
     }
   });
-
-  addNew() {
+ 
+  addNew() { 
     // strip * as last char of new string
     let slen = this.multiselect.input.val().length
-    var value = this.multiselect.input.val().substring(0, slen-1);   
-    console.log('val ',value)
+    let lastvalue = this.multiselect.input.val().substring(0, slen) ;
+    var value = this.multiselect.input.val()
+    if (lastvalue==='*')  { 
+    
+    value.substring(0, slen-1).trim()  ;  
+    }  
+        console.log('val ',value)
     var dataSource = this.multiselect.dataSource;
     var widget = this.multiselect 
 
