@@ -270,8 +270,13 @@
 					<div class="flex-row-none section-footer">
 						${footer} 
 						<span>&nbsp;&nbsp;	<button id="searchInputBtn" class="btn btn-primary" type="button" click.delegate="performAction1Refresh()">Refresh Updated list for Merge</button></span>
-						<span>&nbsp;&nbsp;	<button id="searchInputBtn" class="btn btn-danger" type="button" click.delegate="performAction1()">Delete from Saved List </button></span>
-						<a href="https://artbased.com/api/v1/downloadonepdf/lists/${savedlist}.doc" class="btn btn-warning">
+						<span>&nbsp;&nbsp;	<button id="searchInputBtn" class="btn btn-primary" type="button" click.delegate="performRTF()">Loop and update all RTF's</button></span>
+						
+            
+            <span>&nbsp;&nbsp;	<button id="searchInputBtn" class="btn btn-danger" type="button" click.delegate="performAction1()">Delete from Saved List </button></span>
+						
+            
+            <a href="https://artbased.com/api/v1/downloadonepdf/lists/${savedlist}.doc" class="btn btn-warning">
 							<span class="glyphicon glyphicon-th-list"></span> Download Merge
 						</a>
 					<span>  ${queryParams}</span>

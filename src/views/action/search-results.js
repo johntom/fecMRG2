@@ -412,24 +412,35 @@ export class SearchResults {
     grid.select(targetRow);
     let selectedRow = grid.select();
     let dataItem = grid.dataItem(selectedRow);
-    let rt2 = `#/inventory/data/${dataItem.InventoryCode}?fulledit=true`;
+    let rt2 = `#/inventory/data/${dataItem.InventoryCode}`// ?fulledit=true`;
 
     await this.router.navigate(rt2);// `#/inventory/${path}`);
     this.performAction1Refresh()
   }
-
+  
   async detailsEditPop(e) {
     let grid = this.grid;
     let targetRow = $(e.target).closest("tr");
     grid.select(targetRow);
     let selectedRow = grid.select();
     let dataItem = grid.dataItem(selectedRow);
-    let rt2 = `#/inventory/data/${dataItem.InventoryCode}?itsaquickie=true`;
-
-    await this.router.navigate(rt2);// `#/inventory/${path}`);
+    // let rt2 = `#/inventory/data/${dataItem.InventoryCode}?itsaquickie=true`;
+    let rt2 = `#/inventory/rtfcreate/${dataItem.InventoryCode}`
+    await this.router.navigate(rt2);
     this.performAction1Refresh()
   }
-
+  async performRTF() {
+    alert('this is a loop')
+    // let grid = this.grid;
+    // let targetRow = $(e.target).closest("tr");
+    // grid.select(targetRow);
+    // let selectedRow = grid.select();
+    // let dataItem = grid.dataItem(selectedRow);
+    // // let rt2 = `#/inventory/data/${dataItem.InventoryCode}?itsaquickie=true`;
+    // let rt2 = `#/inventory/rtfcreate/${dataItem.InventoryCode}`
+    // await this.router.navigate(rt2);
+    // this.performAction1Refresh()
+  }
   showModalImg(e) {
     let grid = this.grid;
     let targetRow = $(e.target).closest("tr");
