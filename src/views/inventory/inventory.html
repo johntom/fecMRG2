@@ -102,7 +102,7 @@
 					                    </select>
 											</ak-multiselect>
 										</div>
-									</div>
+									</div> 
 
 									<div class="flex-row-none">
 										<div class="form-group flex-column-1">
@@ -112,11 +112,11 @@
 												<option repeat.for="option of appService.savedlists">${option.name}</option>
 											</datalist>
 										</div>
-									</div>
+									</div> 
 
 									<div class="flex-row-none">
 										<div class="form-group flex-column-1">
-											<div class="form-group">search on sold
+											<div class="form-group">search on sold (must use other criterea)
 												<label repeat.for="sold of searchsold">
 					              <input type="radio" name="group1"
 					                    model.bind="sold.id" checked.bind="search.sold">
