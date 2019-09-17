@@ -468,7 +468,7 @@ async   findArtistsAA() {
 
 
   }
-
+  
 
   findContactOne(contactid) {
     // search has fullu formed query string

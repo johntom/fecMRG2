@@ -90,8 +90,8 @@ export class SearchResults {
         }
       }
     },
-    pageSize: 12, 
-sort: [{ field: 'LastName', dir: 'asc' }, { field: 'FirstName', dir: 'asc' }],
+    pageSize: 12,
+    sort: [{ field: 'LastName', dir: 'asc' }, { field: 'FirstName', dir: 'asc' }],
 
   })
 
@@ -247,7 +247,7 @@ sort: [{ field: 'LastName', dir: 'asc' }, { field: 'FirstName', dir: 'asc' }],
         str += `&notinternational=${search.notinternational}`
       }
       this.previnv = this.invdata
-     await  this.api.findContact(str, this.mailinglist)//this.listname)
+      await this.api.findContact(str, this.mailinglist)//this.listname)
         // return this.api.findContact(ds, this.listname)
         .then((jsonRes) => {
           this.invdata = jsonRes.data;
@@ -269,26 +269,26 @@ sort: [{ field: 'LastName', dir: 'asc' }, { field: 'FirstName', dir: 'asc' }],
           this.recct = this.invdata.length;
           if (this.recct !== 0) this.search.searchedCriteria += ';' + str + ' ct=' + this.recct
           //await this.loadData();
- this.search = {}
-    this.search.state = 'null'
-    // search.state='';
-    // search.state 'null'
-    // this.search.deceased = true
-    // this.search.nomailings = true
-    // this.search.noinfo = true
-    this.search.keywords = []
-    this.search.genres = []
-    this.search.mailingStatus = 0
-    this.search.searchedCriteria = ''
-  this.search.mailingStatus = 0
+          this.search = {}
+          this.search.state = 'null'
+          // search.state='';
+          // search.state 'null'
+          // this.search.deceased = true
+          // this.search.nomailings = true
+          // this.search.noinfo = true
+          this.search.keywords = []
+          this.search.genres = []
+          this.search.mailingStatus = 0
+          this.search.searchedCriteria = ''
+          this.search.mailingStatus = 0
 
         });
 
 
       // this.invdata = _.union(this.previnv, this.invdata);// sub arrasy show as object
-     await this.loadData();
+      await this.loadData();
       this.busy.active = false
-    return  this.datasource.read()
+      return this.datasource.read()
 
     }
   }
