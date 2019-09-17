@@ -24,7 +24,7 @@ export class Docs {
     transport: {
       read: (options) => {
         options.success(this.currentItem.docs);
-        this.currentItem.docs = this.datasource._data // sync to our model
+        // this.currentItem.docs = this.datasource._data // sync to our model
       },
       update: (options) => {
         let updatedItem = options.data;
@@ -68,6 +68,7 @@ export class Docs {
     this.dialogService = dialogService
     //////////////////////////////////////////////////////////////////////////////
     if (this.currentItem.docs === undefined) this.currentItem.docs = []
+    console.log('this.currentItem.docs ',this.currentItem.docs)
     //////////////////////////////////////////////////////////////////////////////
     this.epoch = moment().unix();
     //   id:this.epoch,

@@ -45,7 +45,11 @@
 					</br>
 					<hr>
 					<button id="image1" style="width:125px" class="btn btn-primary" type="button" click.delegate="action9()">Merge Images</button>
-					</br>
+					<!-- <button id="image1" style="width:125px" class="btn btn-primary" type="button" click.delegate="Sortmerge()">Sr Images</button> -->
+							<!-- <label repeat.for="srt of sortorder">
+               	<input type="radio" name="group1" model.bind="srt.id" checked.bind="selectedlist"> ${srt.name} &nbsp;
+						  </label> -->
+          </br>
 					<label repeat.for="list of listtypes">
                	<input type="radio" name="group1" model.bind="list.id" checked.bind="selectedlist"> ${list.name} &nbsp;
 						  </label>
@@ -260,6 +264,7 @@
 						</ak-col>
 						<ak-col k-title="Title" k-width="110px" k-field="Title"></ak-col>
 						<ak-col k-title="Artist" k-width="200px" k-field="artist.ArtistName"></ak-col>
+            <ak-col k-title="Year" k-width="200px" k-field="InvYear"></ak-col>
 					</ak-grid>
 					<div class="flex-row-none section-footer">
 						${footer} 

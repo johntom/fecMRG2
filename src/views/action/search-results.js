@@ -140,6 +140,11 @@ export class SearchResults {
   listtypes = [{ id: 0, name: "exhibition" }, { id: 1, name: "price list" },
   { id: 2, name: "location list" }, { id: 3, name: "box label" }, { id: 4, name: "condition" },
   { id: 5, name: "registrar" }, { id: 6, name: "presentation" }]
+
+         
+sortorder = [{ id: 0, name: "InventoryCode" }, { id: 1, name: "artist.ArtistName,Title" },  { id: 2, name: "artist.ArtistName,date" }]
+
+
   constructor(router, api, utilService, appService, dataService, dialogService, eventAggregator) {
     this.router = router;
     this.api = api;
@@ -688,8 +693,15 @@ export class SearchResults {
 
 
   //     } 
+async sortmerge() {
+  alert('not available yet. Sort grid and select rows to merge')
+    
+  }
   async action9() {
-
+// let provarray=[{id:1,sord:3,id:2,sord:1,id:3,sord:2}]
+//  this.testlodash = _.sortBy(provarray, 'sord');
+    
+//   }
 
     ////////////////////
     let currentModel = {}
