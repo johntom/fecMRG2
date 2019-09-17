@@ -10,7 +10,7 @@ import { bindable } from 'aurelia-framework';
 export class Home { 
   heading = "MRG HOME PAGE";
   footer = 'DataForm FOOTER...'
-  version = ' 304.96' 
+  version = ' 304.97' 
   versionDate = 'Mon 9/16/2019 8am'
   prevversion = ' 303.53 ' 
   prevversionDate = 'Mon 8/5/2019 5pm'
@@ -123,8 +123,11 @@ export class Home {
   ]
   todo = [
 
-    '!-- fix database spell ak-col k-field="Photogpraher" k-title="Photographer" k-width="140px" k-editor.bind="photograherDropDownEditor"></ak-col>',
-
+    // '!-- fix database spell ak-col k-field="Photogpraher" k-title="Photographer" k-width="140px" k-editor.bind="photograherDropDownEditor"></ak-col>',
+`add orgs logic to contact`,
+`add exhibit to repro`,
+'nina has 1 fact sheet not 100%',
+'test gross with sold, not, nfs..'
 
 
   ]
