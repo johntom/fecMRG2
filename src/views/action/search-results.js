@@ -430,7 +430,7 @@ export class SearchResults {
       mlist.push(item.InventoryCode)
     }
     //  alert('this is a loop') 
-    this.message = `All RTF's are updated `//${mlist} `
+    // this.message = `All RTF's are updated `//${mlist} `
     // this.performAction1Refresh() 
   }
   showModalImg(e) {

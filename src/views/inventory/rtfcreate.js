@@ -215,8 +215,8 @@ export class Rtfcreate {
 
        this.requestcloseNoCheck()
 
-
-
+ 
+ 
     });
   }
 
@@ -227,7 +227,15 @@ export class Rtfcreate {
     // let rt2 = '#/inventory/' + this.tabname
     let newIndex = (index > 0) ? index - 1 : 0;
     let newTab = this.appService.tabs[newIndex];
-    this.appService.tryCloseTab(this.appService.currentView, tab, newTab.href);
+
+    console.log('newIndex newTab ',newTab.href)//newIndex,newTab,tab)
+    let tabstr=newTab.href.substring(0,19)
+    console.log('tabstr ',tabstr )
+    // if (tabstr !=='#/action/Actionlist-')  this.appService.tryCloseTab(this.appService.currentView, tab, newTab.href);
+     if (tabstr ==='#/action') {
+
+     } else this.appService.tryCloseTab(this.appService.currentView, tab, newTab.href);
+  
   }
 
   // closeTab(tab) {
