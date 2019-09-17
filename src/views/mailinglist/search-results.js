@@ -194,11 +194,13 @@ export class SearchResults {
   }
   async performSearch() {
     // this.spinner.class 
-    this.busy.active = true
-    if (this.search) {
-
+    this.busy.active = true 
+    if (this.search) { 
+ 
       let search = this.search //JSON.stringify(this.search)    
-      let str = `?mailinglist=${search.mailinglist}`
+      ///// let str = `?mailinglist=${search.mailinglist}`
+      let str = `?billinglist=${search.mailinglist}`
+      //  let str =''
       if (search.artists !== undefined) {
         str += `&artists=${search.artists}`
         // str += `&artists="Bellows, George", "Lewis, Norman"`
