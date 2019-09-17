@@ -88,14 +88,30 @@
 									<strong> Location </strong>
 								</div>
 								<div class="Rtable-cell-70 Rtable-cell--light">
-									<select id="ReproductionLocation" class="form-control  input-sm" value.bind="item.ReproductionLocationDesc"> 
-                      <option model.bind="null">Choose...filterOnCode</option> 
-                         <option repeat.for="opt of appService.codesProvenanceLocation" model.bind="opt.Description">
-                    ${opt.Description} 
-                      </option> 
-                    </select>
-								</div>
+              <!-- <select id="ReproductionLocation" class="form-control  input-sm" value.bind="item.ReproductionLocationDesc"> 
+              <option model.bind="null">Choose...filterOnCode</option> 
+              <option repeat.for="opt of appService.codesProvenanceLocation" model.bind="opt.Description">
+              ${opt.Description} 
+              </option> 
+              </select> -->
+					<label for="reLocation">Location</label>
+					<input attach-focus="true" ref="myDatalist" type="text" list="myDatalist"
+           change.delegate="changeCallbackMedSup(selectedValue)"
+					 input.delegate="selectedValue = findOption($event.target.value)" />
+					<datalist id="myDatalist">
+						<option repeat.for="option of appService.codesProvenanceLocation">${option.Description} </option>
+					</datalist>
+				</div>
+				${selectedValue}
+			
+                
+                </div>
+
 							</div>
+
+
+
+
 
 
 

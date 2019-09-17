@@ -40,6 +40,9 @@ export class Promptrepro {
     //     currentModel.popuptype = 1;// from action
     //     currentModel.popuptype = 2;// from actionbatch
     // 1 this.item.exhibitsel=this.item.ReproductionExhibit
+
+// this.myDatalist.value = this.currentItem MedSup.Description
+
   }
 
   get ReproductionAuthor() {
