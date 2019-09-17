@@ -390,15 +390,7 @@ export class SearchResults {
     let selectedRow = grid.select();
     let dataItem = grid.dataItem(selectedRow);
 
-    // let rt2 = dataItem.InventoryCode;
-    // this.api.createFactSheet(rt2)
-    //   .then((jsonRes) => {
-    //     let success = jsonRes.data;
-    //     if (success === true) {
-    //       alert(' factsheet  created ')
 
-    //     } alert(' factsheet  failed ')
-    //   });
     //https://artbased.com/api/v1/downloadonepdf/output/SELIGE0327.doc
     let rt2 = `https://artbased.com/api/v1/downloadonepdf/output/${dataItem.InventoryCode}.doc`
 
@@ -417,7 +409,7 @@ export class SearchResults {
     await this.router.navigate(rt2);// `#/inventory/${path}`);
     this.performAction1Refresh()
   }
-  
+
   async detailsEditPop(e) {
     let grid = this.grid;
     let targetRow = $(e.target).closest("tr");
@@ -430,16 +422,16 @@ export class SearchResults {
     this.performAction1Refresh()
   }
   async performRTF() {
-    alert('this is a loop')
-    // let grid = this.grid;
-    // let targetRow = $(e.target).closest("tr");
-    // grid.select(targetRow);
-    // let selectedRow = grid.select();
-    // let dataItem = grid.dataItem(selectedRow);
-    // // let rt2 = `#/inventory/data/${dataItem.InventoryCode}?itsaquickie=true`;
-    // let rt2 = `#/inventory/rtfcreate/${dataItem.InventoryCode}`
-    // await this.router.navigate(rt2);
-    // this.performAction1Refresh()
+  let  mlist = []
+    for (const item of this.appService.actionsearchresults) {
+
+      let rt2 = `#/inventory/rtfcreate/${item.InventoryCode}`
+      await this.router.navigate(rt2);
+      mlist.push(item.InventoryCode)
+    }
+    //  alert('this is a loop') 
+    this.message = `All RTF's are updated `//${mlist} `
+    // this.performAction1Refresh() 
   }
   showModalImg(e) {
     let grid = this.grid;
@@ -448,7 +440,6 @@ export class SearchResults {
     let selectedRow = grid.select();
     let dataItem = grid.dataItem(selectedRow);
     this.dialogService.open({ viewModel: DialogImage, model: dataItem, lock: true }).whenClosed(response => {
-
 
 
       if (!response.wasCancelled) {

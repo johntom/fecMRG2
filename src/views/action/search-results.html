@@ -238,13 +238,12 @@
 					 k-selectable="multiple" k-on-change.delegate="rowSelected($event.detail)" k-column-menu.bind="true"
            k-scrollable.bind="scrollable">
 						<div style="width: 1100px;height:700px"></div>
-          
           	<ak-col k-filterable.bind="false" k-width="120px" k-title="Cmd" k-command.bind="['edit']" k-title="&nbsp;" k-locked.bind="true"
 						 k-lockable.bind="false"></ak-col>
 						<ak-col k-field="InventoryCode" k-filterable.bind="false" k-column-menu.bind="false" k-lockable.bind="false" k-title="Inventory Code"
 						 k-width.bind="120" k-template="<button click.delegate='detailsEdit($event)' class='k-button'>#=InventoryCode#</button>">
 						</ak-col>
-            	<ak-col k-field="InventoryCode" k-filterable.bind="false" k-column-menu.bind="false" k-lockable.bind="false" k-title="Update"
+          	<ak-col k-field="InventoryCode" k-filterable.bind="false" k-column-menu.bind="false" k-lockable.bind="false" k-title="Update"
 						 k-width.bind="120" k-template="<button click.delegate='detailsEditPop($event)' class='k-button'>Populate RTF</button>">
 						</ak-col>
 						<ak-col k-title="Image" k-filterable.bind="false" k-field="InventoryCode" k-width="150px">
@@ -254,39 +253,28 @@
 							</ak-template>
 						</ak-col>
 						<ak-col k-title="rtf2" k-width="140px" k-field="rtf2"></ak-col>
-
 						<ak-col k-title="Offer Amount" k-width="140px" k-field="offeramount"></ak-col>
 						<ak-col k-title=" Retail Price " k-width="140px" k-field="ArtValue"></ak-col>
-					
 						<ak-col k-filterable.bind="false" k-field="InventoryCode" k-filterable.bind="true" k-title="Factsheet<br>Download" k-width.bind="125"
 						 k-template="<button click.delegate='detailsFactSheet($event)' class='k-button'>#=InventoryCode#</button>">
 						</ak-col>
-
 						<ak-col k-title="Title" k-width="110px" k-field="Title"></ak-col>
 						<ak-col k-title="Artist" k-width="200px" k-field="artist.ArtistName"></ak-col>
 					</ak-grid>
-
-
 					<div class="flex-row-none section-footer">
 						${footer} 
-						<span>&nbsp;&nbsp;	<button id="searchInputBtn" class="btn btn-primary" type="button" click.delegate="performAction1Refresh()">Refresh Updated list for Merge</button></span>
-						<span>&nbsp;&nbsp;	<button id="searchInputBtn" class="btn btn-primary" type="button" click.delegate="performRTF()">Loop and update all RTF's</button></span>
-						
-            
-            <span>&nbsp;&nbsp;	<button id="searchInputBtn" class="btn btn-danger" type="button" click.delegate="performAction1()">Delete from Saved List </button></span>
-						
-            
-            <a href="https://artbased.com/api/v1/downloadonepdf/lists/${savedlist}.doc" class="btn btn-warning">
+						<!-- <span>&nbsp;&nbsp;	<button id="searchInputBtn" class="btn btn-primary" type="button" click.delegate="performAction1Refresh()">Refresh Updated list for Merge</button></span> -->
+						<span>&nbsp;&nbsp;	<button id="searchInputBtn" class="btn btn-primary" type="button" click.delegate="performRTF()">Update all RTF's for merge</button></span>
+						<span>&nbsp;&nbsp;	<button id="searchInputBtn" class="btn btn-danger" type="button" click.delegate="performAction1()">Delete from Saved List </button></span>
+						<a href="https://artbased.com/api/v1/downloadonepdf/lists/${savedlist}.doc" class="btn btn-warning">
 							<span class="glyphicon glyphicon-th-list"></span> Download Merge
 						</a>
-					<span>  ${queryParams}</span>
+					<span>  ${queryParams}</span>  ${message}
 					</div>
 				</div>
 			</div>
-		
 		</div>
 	</section>
-
 </template>
 	<!-- <ak-col k-field="InventoryCode" k-filterable.bind="true" k-title="Edit" k-width.bind="140"
              k-template="<button click.delegate='detailsEdit($event)' class='k-button'>#=InventoryCode#</button>">
