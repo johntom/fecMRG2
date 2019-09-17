@@ -7,15 +7,15 @@ import { bindable } from 'aurelia-framework';
 
 @inject(ApplicationService, MyDataService, ApiService)
 
-export class Home {
+export class Home { 
   heading = "MRG HOME PAGE";
   footer = 'DataForm FOOTER...'
-  version = ' 304.93' 
+  version = ' 304.94' 
   versionDate = 'Mon 9/16/2019 8am'
   prevversion = ' 303.53 ' 
   prevversionDate = 'Mon 8/5/2019 5pm'
   newversion = 'none'
-  issues = [
+  issues = [ 
     // or press refresh button upper left corner',
     //https://circleci.com/workflow-run/1f3685ab-daba-41d7-8d25-6279df547b19
     // https://www.tutorialspoint.com/aurelia/aurelia_event_aggregator.htm
