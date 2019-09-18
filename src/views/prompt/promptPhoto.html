@@ -1,0 +1,93 @@
+<template>
+	<require from="../../resources/value-converters/stringify"></require>
+	<require from="../../resources/value-converters/date-format"></require>
+	<ux-dialog>
+		<ux-dialog-header class="modal-header modal-header-success">
+			<div class="alert alert-danger">
+				<h3 style="width:400px">${heading} </h3>
+			</div>
+		</ux-dialog-header>
+		<ux-dialog-body>
+			<form autocomplete="off">
+				<div class="form-group flex-column-1">
+					<h2> ${doc} </h2>
+					<table class="table-condensed table">
+						<thead class="table-header-blue">
+						</thead>
+						<tfoot>
+							<tr>
+								<td></td>
+							</tr>
+						</tfoot>
+
+
+
+
+						<tbody>
+							<div class="Rtable Rtable--2cols">
+								<div class=" Rtable-cell-30 Rtable-cell--highlight">
+									<strong>  Photographer </strong>
+								</div>
+								<div class="Rtable-cell-70  Rtable-cell--light">
+									<select id="ProvLoc" class="form-control  input-sm" value.bind="item.Photographer"> 
+      
+									<option repeat.for="opt of appService.codesPhotographers " model.bind="opt.id">
+										${opt.Description}
+									</option>
+									</select>
+								</div>
+
+								<div class=" Rtable-cell-30 Rtable-cell--highlight">
+									<strong>  Photo Format </strong>
+								</div>
+								<div class="Rtable-cell-70  Rtable-cell--light">
+									<select id="ProvLoc" class="form-control  input-sm" value.bind="item.Format"> 
+      
+									<option repeat.for="opt of appService.codesPhotoFormat " model.bind="opt.id">
+										${opt.Description}
+									</option>
+									</select>
+								</div>
+
+
+								<div class=" Rtable-cell-30 Rtable-cell--highlight">
+									<strong> PhotoTaken </strong>
+								</div>
+								<div class="Rtable-cell-70  Rtable-cell--highlight">
+									<input type="text" id="PhotoTaken " class="form-control " value.bind="item.PhotoTaken "></textarea>
+								</div>
+								<div class=" Rtable-cell-30 Rtable-cell--highlight">
+									<strong> PhotoDate </strong>
+								</div>
+								<div class="Rtable-cell-70  Rtable-cell--light">
+									<input type="text" autocomplete="off" id="PhotoDate" class="form-control input-sm " value.bind="item.PhotoDate | dateFormat">
+
+								</div>
+
+
+
+								<div class=" Rtable-cell-30 Rtable-cell--highlight">
+									<strong> Note </strong>
+								</div>
+
+								<div class="Rtable-cell-70  Rtable-cell--highlight">
+									<textarea rows="4" cols="100" id="Issue " class="form-control " value.bind="item.PhotoMemo "></textarea>
+								</div>
+							</div>
+
+
+						</tbody>
+					</table>
+				</div>
+				<hr>
+			</form>
+		</ux-dialog-body>
+
+		<ux-dialog-footer>
+
+			<button click.trigger="controller.cancel() ">Cancel and Close </button>
+			<button click.trigger="save() ">Save Photo and Close </button>
+
+		</ux-dialog-footer>
+	</ux-dialog>
+</template>

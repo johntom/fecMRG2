@@ -40,23 +40,17 @@
 		 k-on-change.delegate="rowSelected($event.detail)" k-column-menu.bind="true" k-scrollable.bind="scrollable">
 
 			<div style="width: 1400px"></div>
-			<ak-col k-filterable.bind="false" k-width="160px" k-title="Cmd" k-command.bind="['edit','Delete']" k-title="&nbsp;" k-locked.bind="true"
-			 k-lockable.bind="false"></ak-col>
+			<!-- <ak-col k-filterable.bind="false" k-width="160px" k-title="Cmd" k-command.bind="['edit','Delete']" k-title="&nbsp;" k-locked.bind="true"
+			 k-lockable.bind="false"></ak-col> -->
 
-
-			<!-- <ak-col k-title="Image" k-filterable.bind="false" k-field="id" k-width="75px">
-				<ak-template>
-					<div class='customer-photo-sq' style="background-image: url(https://artbased.com/api/v1/getimagedetail/${currentItem.InventoryCode}/${FILE_NAME});"
-					 click.delegate="showModalImg($event)"></div>
-				</ak-template>
-			</ak-col> -->
-			<ak-col k-field="FILE_NAME" k-title="File Name" k-width="140px"></ak-col>
-<!-- fix database spell -->
+		<ak-col k-command="destroy" k-lockable.bind="true" k-title="Delete" k-width="85px"></ak-col>
+			<ak-col k-locked.bind="true" k-lockable.bind="true"  k-title="Edit" k-width.bind="45" k-template="<button click.delegate='detailsEdit($event)' ><i class='fa fa-edit'></i></button>"></ak-col>
+	
+		
+	
 			<ak-col k-field="Photographer" k-title="Photographer" k-width="140px" k-editor.bind="photograherDropDownEditor"></ak-col>
 			<ak-col k-field="Format" k-title="Format" k-width="140px" k-editor.bind="formatDropDownEditor"></ak-col>
-			<!-- <ak-col k-field="PhotographerID" k-title="Photographer ID" k-width="140px" k-editor.bind="formatDropDownEditor"></ak-col>
-			<ak-col k-field="PhotoFormatID" k-title="Photo Format ID" k-width="140px" k-editor.bind="formatDropDownEditor"></ak-col>
-		 -->
+		
     	<ak-col k-field="PhotoMemo" k-title="Note" k-width="340px" k-height="240px" k-editor.bind="textAreaEditor" k-filterable.bind="false"
 			 k-groupable.bind="false"></ak-col>
 			<ak-col k-field="PhotoTaken" k-title="# Taken" k-width="120px" k-filterable.bind="false" k-groupable.bind="false"></ak-col>
@@ -65,14 +59,27 @@
 			<ak-col k-title="Pre Cons" k-width="110px" k-field="Precons"></ak-col>
 
 			<ak-col k-field="PhotoDate" k-filterable.bind="true" k-format="{0:MM/dd/yyyy}" k-width.bind="120"> </ak-col>
-	<!-- <ak-col k-field="PhotoPhotoDate" k-filterable.bind="true" k-format="{0:MM/dd/yyyy}" k-width.bind="120"> </ak-col> -->
 
 		</ak-grid>
 	</section>
 </template>
+	<!-- <ak-col k-field="PhotoPhotoDate" k-filterable.bind="true" k-format="{0:MM/dd/yyyy}" k-width.bind="120"> </ak-col> -->
 
-
-<!--		<ak-grid class="flex-row-1 overflow-y-auto" id="grid" k-data-source.bind="datasource" k-widget.bind="grid" k-sortable.bind="{ mode: 'mutiple',   allowUnsort: 'true'}"
+	<!-- <ak-col k-title="Image" k-filterable.bind="false" k-field="id" k-width="75px">
+				<ak-template>
+					<div class='customer-photo-sq' style="background-image: url(https://artbased.com/api/v1/getimagedetail/${currentItem.InventoryCode}/${FILE_NAME});"
+					 click.delegate="showModalImg($event)"></div>
+				</ak-template>
+			</ak-col> -->
+	<!-- <ak-col k-field="PhotographerID" k-title="Photographer ID" k-width="140px" k-editor.bind="formatDropDownEditor"></ak-col>
+			<ak-col k-field="PhotoFormatID" k-title="Photo Format ID" k-width="140px" k-editor.bind="formatDropDownEditor"></ak-col>
+		 -->
+<!--	
+  
+  
+  		<ak-col k-field="FILE_NAME" k-title="File Name" k-width="140px"></ak-col>
+<!-- fix database spell
+  	<ak-grid class="flex-row-1 overflow-y-auto" id="grid" k-data-source.bind="datasource" k-widget.bind="grid" k-sortable.bind="{ mode: 'mutiple',   allowUnsort: 'true'}"
 		 k-editable="popup" k-reorderable.bind="true" k-resizable.bind="true" k-height.bind="300" k-column-menu.bind="true">-->
 
 <!--<ak-on-edit.delegate="onEdit($event.detail)" k-selectable="[row,multiple]" k-on-data-bound.delegate="onDataBound($event.detail)"k-pageable.bind="true" -->

@@ -6,6 +6,7 @@ import { DialogService } from 'aurelia-dialog';
 import { ynPrompt } from '../../../services/prompt';
 import { Prompt } from '../prompt';
 import { bindable } from 'aurelia-framework';
+import { Promptphoto } from '../../prompt/promptPhoto';
 
 // import { DialogImage } from '../dialogImage'
 import { DialogImagedetail } from '../dialogImagedetail'
@@ -285,56 +286,30 @@ export class Photo {
 
   }
 
-  async checkData(images, formData) {
-    let promises = []
-    let flag = true
-    return new Promise((resolve, reject) => {
-      let i = 0;
-      let dd = moment().format('YYYY-MM-DD')
-
-      let photo = this.currentItem.photo
-      if (photo === undefined) {
-        photo = []
-        flag = true
+ 
+detailsEdit(e) {
+    let grid = this.grid;
+    let targetRow = $(e.target).closest("tr");
+    grid.select(targetRow);
+    let selectedRow = grid.select();
+    let dataItem = grid.dataItem(selectedRow);
+    let currentModel = {}
+    currentModel.currentItem = this.currentItem
+    currentModel.item = dataItem
+    this.dialogService.open({ viewModel: Promptphoto, model: currentModel, lock: true }).whenClosed(response => {
+      if (!response.wasCancelled) {
+        console.log('dataItem', dataItem);
+        // not needed this.currentItem.reproduction[0]=dataItem
+         this.datasource.read()
+       
+      } else {
+        console.log('cancel');
       }
-      let imagelen = images.length
-      for (i = 0; i < images.length; i++) {
-        let ext = images[i].name.split('.').pop();
-        let fname = images[i].name
-        let mid = -100// not needed
-        let ival = i
-        if(!flag ) {
-        mid = photo.findIndex(x => x.FILE_NAME === fname)
-        }
-        if (mid > -1) {
-          let obj = { name: fname, val: ival, ext: ext }
-          var promise = this.promiseDialog(obj)
 
-          promises.push(promise);
-        } else {
-          // var item = { FILE_NAME: fname, FILE_EXT: '.' + ext, OVERWRITE: 'N' }
-          var item = { id: this.epoch, PhotoTaken: 1, Date: dd, Note: '', Photogpraher: 'Ryan Sobotka', Format: 'professional high-rez digital tiff', Precons: false, FILE_NAME: fname, FILE_EXT: '.' + ext, OVERWRITE: 'N' }
-          photo.unshift(item)
-          formData.append('file', images[ival]);
-          if (flag) this.currentItem.photo = photo
-          //
-
-
-
-        }
-      }
-      return Promise.all(promises).then(values => {
-        for (i = 0; i < values.length; i++) {
-          if (!values[i].resp) {
-            var item = { FILE_NAME: values[i].name, FILE_EXT: values[i].ext, OVERWRITE: 'Y' }
-            formData.append('file', images[values[i].val]);
-          }
-        }
-        resolve(formData)
-      })
-    })
+      // this.currentItem.reproduction = this.datasource._data 
+      console.log(response)//.output);
+    });
   }
-
 
   remove(item, index) {
     this.mode = 0

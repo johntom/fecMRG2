@@ -158,8 +158,8 @@ export class SearchResults {
 
     //  serverPaging: true,
     //   serverSorting: true,
-    // sort: { field: 'InventoryCode', dir: 'asc' },
-    sort: [{ field: 'ArtistName', dir: 'asc' }, { field: 'Title', dir: 'asc' }],
+    sort: { field: 'InventoryCode', dir: 'asc' },
+    // sort: [{ field: 'ArtistName', dir: 'asc' }, { field: 'Title', dir: 'asc' }],
 
 
     // aggregate: [{ field: "type", aggregate: "count" },
