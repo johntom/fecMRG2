@@ -410,7 +410,20 @@ export class SearchResults {
     this.router.navigate(rt2);
 
   }
+  requestclose() {
+    //console.log(this.appService.originalrec, this.currentItem)
 
+    const resetFunc = () => { this.appService.originalrec = this.currentItem; };
+    let tab = this.appService.tabs.find(f => f.isSelected);
+    let index = this.appService.tabs.findIndex(f => f.isSelected)
+
+    
+    let newIndex = (index > 0) ? index - 1 : 0;
+    let newTab = this.appService.tabs[newIndex];
+    this.appService.tryCloseTab(this.appService.currentView, tab, newTab.href);
+
+
+  }
 
   saveMerge() {
     let savetime = moment().format('MM/DD/YY h:mm:ss a')
