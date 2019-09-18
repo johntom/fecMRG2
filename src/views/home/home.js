@@ -10,7 +10,7 @@ import { bindable } from 'aurelia-framework';
 export class Home { 
   heading = "MRG HOME PAGE";
   footer = 'DataForm FOOTER...'
-  version = ' 305.04 ' 
+  version = ' 305.05 '  
   versionDate = 'Tues 9/17/2019 10am'
   prevversion = ' 303.53 ' 
   prevversionDate = 'Mon 8/5/2019 5pm'

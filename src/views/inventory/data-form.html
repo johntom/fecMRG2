@@ -465,9 +465,10 @@
 										<strong> Current Location</strong>
 									</div>
 									<div styles=" height:34px;" class="Rtable-cell-70 Rtable-cell--highlight">
-										<select id="CurrentLocation " class="form-control " value.bind="currentItem.CurrentLocation">
+										<select id="CurrentLocation " class="form-control "   change.delegate="changeLocation(changedValue)" value.bind="currentItem.CurrentLocation">
 											<option model.bind="''">Choose...</option>
 											<option repeat.for="opt of appService.codesInventoryLocation " model.bind="opt.id">
+                        <!-- <option repeat.for="opt of appService.codesInventoryLocation " model.bind="opt"> -->
 												${opt.Description}
 											</option>
 										</select>

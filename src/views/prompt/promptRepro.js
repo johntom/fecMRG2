@@ -10,6 +10,8 @@ import { computedFrom } from 'aurelia-framework';
 export class Promptrepro {
   static inject = [DialogController, ApplicationService, MyDataService, DialogService, ApiService];
 
+selectedValue = null;
+  findOption = value => this.appService.codesProvenanceLocation.find(x => x.Description === value)
 
   constructor(controller, appService, dataService, dialogService, api) {
     this.controller = controller;
@@ -25,7 +27,49 @@ export class Promptrepro {
     this.showbatch = false
   }
 
+changeCallbackLocation(selectedvalue) {
+    console.log('selectedvalue has undefined ', selectedvalue, "myDatalist this.myDatalist.value has the value", this.myDatalist.value);
+    let findvalue = this.myDatalist.value
+  let bod = {
+      "CodeType": 14,
+      "Description": value,
+      "CodeTypeDesc": "Genre"
+    }  
 
+    this.api.addmediumsupport(bod)
+      .then((jsonRes) => {
+        this.appService.codesGenre = jsonRes.data;
+        let oid = this.appService.codesGenre.findIndex(x => x.Description === value)
+        let codeobj = this.appService.codesGenre[oid]
+        let rec = {
+          "CodeType": 3,
+          "Description": value,
+          "CodeTypeDesc": "Genre",
+          id: codeobj.id
+        }
+        this.currentItem.keywords.push(value)
+        dataSource.add(rec)
+      });
+
+
+
+    if (this.selectedValue === undefined || this.selectedValue === null) {
+      let obj = {}
+      obj.type = 2
+      obj.name = `Add ${findvalue} to Location List or Cancel?`
+      this.dialogService.open({ viewModel: Promptyn, model: obj, lock: false }).whenClosed(response => {
+
+
+        if (!response.wasCancelled) {
+          this.addnewms(findvalue)
+        } else {
+          console.log('cancel');
+        }
+        console.log(response.output);
+      });
+    }
+
+  }
   activate(currentmodel) {
     // this.item = currentmodel.item;
 
@@ -41,7 +85,7 @@ export class Promptrepro {
     //     currentModel.popuptype = 2;// from actionbatch
     // 1 this.item.exhibitsel=this.item.ReproductionExhibit
 
-// this.myDatalist.value = this.currentItem MedSup.Description
+    // this.myDatalist.value = this.currentItem MedSup.Description
 
   }
 

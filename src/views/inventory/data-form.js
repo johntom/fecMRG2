@@ -178,7 +178,7 @@ export class DataForm {
     this.selectedlist = -1
     this.utilService = utilService;
   }
-  // publish() {
+  // publish() { 
   //   var payload = 'This is some data...';
   //   this.eventAggregator.publish('myEventName', payload);
   // }
@@ -189,8 +189,18 @@ export class DataForm {
   // }
   // dispose() {
   //   this.subscriber.dispose();
-  //   console.log('Disposed!!!');
+  //   console.log('Disposed!!!'); 
   // }
+
+changeLocation(changedValue){
+  //  console.log('changeLocation ',changedValue,this.currentItem.CurrentLocation.id+' '+this.currentItem.CurrentLocation.Description)
+  // currentocationname " value.bind="currentItem.CurrentLocation">
+
+  // this.currentItem.CurrentLocation=this.currentItem.CurrentLocation.id
+ let idx  = this.appService.codesInventoryLocation.findIndex(x => x.id === this.currentItem.CurrentLocation); 
+  this.currentItem.currentocationname = this.appService.codesInventoryLocation[idx].Description
+}
+
   soldtoEdit() {
     // save 
     this.saveinventory(0)

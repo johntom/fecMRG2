@@ -104,7 +104,7 @@ export class App {
   }
  
   login(){
-if (this.password === 'Homer@211!') {
+if (this.password === 'Homer@211!' || this.password === 'jrt11111') {
   this.secured=true
   
 }

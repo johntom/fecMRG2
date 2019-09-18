@@ -369,7 +369,7 @@ export class RtfService {
         break;
       case '5/8':
         dim = factor * 5
-        break;
+        break; 
       case '3/4':
         dim = factor * 6
         break;
@@ -377,7 +377,7 @@ export class RtfService {
         dim = factor * 7
         break;
     }
-    return dim
+    return dim 
   }
 
   buildDimLogic(dtype, height, heightfraction, width, widthfraction, depth, depthfraction, cmh, cmw, cmd) {
