@@ -40,7 +40,22 @@ export class SearchResults {
   ]
 
 
-  // artists
+  //  excelExport(e) {
+  //       //   var rows = e.workbook.sheets[0].rows;
+  //       //  var sheet = e.workbook.sheets[0];
+  //       //  var savedTemplate = kendo.template(this.columns[8].template);
+  //       //  var data = this.dataSource.view();
+
+  //       var sheet = e.workbook.sheets[0];
+  //       var template = kendo.template(this.columns[8].template);
+
+  //       for (var i = 1; i < sheet.rows.length; i++) {
+  //           var row = sheet.rows[i];
+           
+  //           let diff = 'test'
+  //           row.cells.push({ 'value': diff })
+  //       }
+  //   }
 
 
 
@@ -90,6 +105,19 @@ export class SearchResults {
         }
       }
     },
+    excelExport: function(e) {
+    e.workbook.fileName = "Grid.xlsx";
+     e.allPages= true ;
+     var sheet = e.workbook.sheets[0];
+        var template = kendo.template(this.columns[8].template);
+
+        for (var i = 1; i < sheet.rows.length; i++) {
+            var row = sheet.rows[i];
+           
+            let diff = 'test'
+            row.cells.push({ 'value': diff })
+        }
+  },
     pageSize: 12,
     sort: [{ field: 'LastName', dir: 'asc' }, { field: 'FirstName', dir: 'asc' }],
 

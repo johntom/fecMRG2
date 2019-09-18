@@ -115,27 +115,44 @@
 
 							<div class="flex-row-none">
 								<div class="form-group flex-column-1">
-									<!-- <script>
+									<script>
 									excelExport:
                         function (e) {
+                          alert('in ex')
                             var sheet = e.workbook.sheets[0];
                             var template = kendo.template(this.columns[8].template);
                             for (var i = 1; i < sheet.rows.length; i++) {
                                 var row = sheet.rows[i];
-                                let diff = row.cells[6].value - row.cells[7].value
+                                let diff = 'test'//row.cells[6].value - row.cells[7].value
                                 row.cells.push({ 'value': diff })
                             }
                         }
-								</script> -->
+								</script>
 
 									<div show.bind="busy.active" ref="spinner" class="splash">
 										<div class="message">fetching records</div>
 										<i class="fa fa-spinner fa-spin"></i>
 									</div>
-                
+                <!--   k-excel.bind="{ fileName:'Mailinglist.xlsx',allPages: true }"    
+                 <!-- k-toolbar.bind="['excel']"
+                    k-excel.bind="{ fileName:'Mailinglist.xlsx',allPages: true }"            
+                    k-excel.bind("excelExport", function(e) {
+                      alert('in ex')
+                            var sheet = e.workbook.sheets[0];
+                            var template = kendo.template(this.columns[8].template);
+                            for (var i = 1; i < sheet.rows.length; i++) {
+                                var row = sheet.rows[i];
+                                let diff = 'test'//row.cells[6].value - row.cells[7].value
+                                row.cells.push({ 'value': diff })
+                            }
+                        }
+    e.workbook.fileName = "Mailinglist.xlsx,allPages: true";
+});
+                        -->
 									<ak-grid class="flex-row-1 overflow-y-auto" id="grid" k-data-source.bind="datasource" k-widget.bind="grid" k-sortable.bind="{ mode: 'multiple',   allowUnsort: 'true'}"
 									 k-filterable.bind="{  mode: 'row' }" k-editable="popup" k-reorderable.bind="true" k-resizable.bind="true" k-on-edit.delegate="onEdit($event.detail)"
-									 k-toolbar.bind="['excel']" k-on-change.delegate="rowSelected($event.detail)" k-excel.bind="{ fileName:'Mailinglist.xlsx',allPages: true }"
+									  k-on-change.delegate="rowSelected($event.detail)" 
+                 
 									 k-column-menu.bind="true" k-pageable.bind="true">
                   <!-- <ak-col  k-template="#  #"></ak-col> -->
 										<ak-col k-filterable.bind="false" k-width="160px" k-title="Cmd" k-command.bind="['edit','delete']" k-title="&nbsp;" k-locked.bind="true"

@@ -50,11 +50,11 @@ export class SearchResults {
       read: (options) => {
         this.loadData()
           .then((inv) => {
-   
+
             options.success(inv);
-           
-          
-   
+
+
+
           });
       },
       // update: (options) => {
@@ -91,6 +91,12 @@ export class SearchResults {
             type: "string",
             from: "MediumSupportobj.Description"
           },
+
+          //   Notes:{type:"array"},
+          //  Note: {
+          //     type: "string",
+          //     from: "Notes[0].Notes"
+          //   },
           // insco: { defaultValue: {} },
           //           NAME: {
           //             type: "string",
@@ -98,6 +104,7 @@ export class SearchResults {
           //           },
           "currentocationname": { type: "string" },
           "ownedbyname": { type: "string" },// ownerstatus
+          PurchasedDate: { type: "date" },
           SoldDate: { type: "date" },
           "Sold": { type: "string" },
           "soldtoname": { type: "string" },
@@ -186,6 +193,10 @@ export class SearchResults {
     this.epoch = moment().unix();
     this.busy = {}
     this.busy.active = true
+    // if ( this.appService.loginuser==='dan'|| this.appService.loginuser==='mr') {
+    if (this.appService.gridview === 1) { 
+      this.smallview = true
+    } else this.smallview = false
   }
   save() {
     localStorage["kendo-grid-options"] = kendo.stringify(this.grid.getOptions());
@@ -289,7 +300,7 @@ export class SearchResults {
     // grid.thead.find("[data-index=1]>.k-header-column-menu").remove();
 
     // this.grid.column["Bin"].IncludeInMenu(false);// hideColumn(2) NOT AVAIL
-   // this.loadGrid() 
+    // this.loadGrid() 
   }
   activate(params, routeConfig) {
     this.queryParams = this.utilService.parseQueryStringUrl();
@@ -338,10 +349,10 @@ export class SearchResults {
     } else {
       return this.api.findInventory(this.queryParams)
         .then((jsonRes) => {
-          inv = jsonRes.data; 
+          inv = jsonRes.data;
           this.inventory = jsonRes.data;
           this.recCount = inv.length;
- 
+
           // this.spinner.remove()
           this.busy.active = false
           // if (inv === 0 || inv.length === 0) {
@@ -363,7 +374,7 @@ export class SearchResults {
             this.appService.inventorysearchresults = inv;
             this.recCount = inv.length
           }
-// this.loadGrid() 
+          // this.loadGrid() 
           return inv
 
         });
