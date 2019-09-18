@@ -168,23 +168,54 @@
 					<ak-col k-title="Bin" k-width="100px" k-field="Bin"></ak-col>
 					<ak-col k-title="Sold Date" k-width="110px" k-field="SoldDate" k-format="{0:MM/dd/yyyy}"></ak-col>
 				</ak-grid>
+				<div class="flex-row-none section-footer">
+					<button id="addInputBtn " class="btn btn-sm btn-success " type="button " click.delegate="addinventory() "><strong>A</strong>dd Inventory</button>					&nbsp;
+					<div show.bind="recCount!==0">
+						<button id="searchInputBtn " class="btn btn-sm btn-warning " type="button " click.delegate="showSavedlists() ">Select a Saved List or Create New </button>						&nbsp;
+						<button id="searchInputBtn " class="btn btn-sm btn-warning " type="button " click.delegate="addexistingSelection() ">Add To Saved List: ${appService.currentsavedlist}
+          </button> &nbsp;
+						<!-- <button show.bind="appService.currentsavedlist " id="searchInputBtn " class="btn btn-sm btn-primary " type="button"
+				 click.delegate="clearSelection()">Clear Selection</button> &nbsp;
+				<button id="searchInputBtn" class="btn btn-warning" type="button" click.delegate="performAction1Refresh()">Refresh Search List</button>	&nbsp;	 -->
+						<b>  ${message} </b></br>
+					</div>
+					<!-- ${footer} ${queryParams} &nbsp -->
+
+				</div>
+
+
 			</div>
 			<!-- //////////////// -->
 			<div show.bind="smallview===true">
-				<ak-grid class="flex-row-1 overflow-y-auto" id="grid" k-data-source.bind="datasource" k-widget.bind="grid" k-sortable.bind="{ mode: 'multiple',   allowUnsort: 'true'}"
-				 k-height.bind="700" k-filterable.bind="{  mode: 'row' }" k-editable="inline" k-reorderable.bind="true" k-groupable.bind="true"
+        	<div class="flex-row-none section-footer"> 
+					<button id="addInputBtn " class="btn btn-sm btn-success " type="button " click.delegate="addinventory() "><strong>A</strong>dd Inventory</button>					&nbsp;
+					<div show.bind="recCount!==0">
+						<button id="searchInputBtn " class="btn btn-sm btn-warning " type="button " click.delegate="showSavedlists() ">Select a Saved List or Create New </button>						&nbsp;
+						<button id="searchInputBtn " class="btn btn-sm btn-warning " type="button " click.delegate="addexistingSelection() ">Add To Saved List: ${appService.currentsavedlist}
+          </button> &nbsp;
+						<!-- <button show.bind="appService.currentsavedlist " id="searchInputBtn " class="btn btn-sm btn-primary " type="button"
+				 click.delegate="clearSelection()">Clear Selection</button> &nbsp;
+				<button id="searchInputBtn" class="btn btn-warning" type="button" click.delegate="performAction1Refresh()">Refresh Search List</button>	&nbsp;	 -->
+						<b>  ${message} </b></br>
+					</div>
+					<!-- ${footer} ${queryParams} &nbsp -->
+
+				</div>
+				<ak-grid class="flex-row-1 overflow-y-auto" id="grid2" k-data-source.bind="datasource" k-widget.bind="grid2" k-sortable.bind="{ mode: 'multiple',   allowUnsort: 'true'}"
+				 k-height.bind="900"
+          k-filterable.bind="{  mode: 'row' }" k-editable="inline" k-reorderable.bind="true" k-groupable.bind="true"
 				 k-selectable="[row,multiple]" k-resizable.bind="true" k-on-edit.delegate="onEdit($event.detail)" k-on-data-bound.delegate="onDataBound($event.detail)"
 				 k-on-change.delegate="rowSelected($event.detail)" k-toolbar.bind="['excel']" k-excel.bind="{ fileName: 'Inventory.xlsx',allPages: true }"
 				 k-pdf.bind="{ allPages: true, avoidLinks: true,landscape: true, repeatHeaders: true, paperSize: 'A4'}" k-column-menu.bind="true"
 				 k-scrollable.bind="scrollable">
 
-					<div style="width: 1750px"></div>
+					<div style="width: 1300px"></div>
 
 					<ak-col k-field="InventoryCode" k-locked.bind="true" k-lockable.bind="false" k-filterable.bind="true" k-title="Code" k-width.bind="140"
 					 k-template="<button class='btn btn-sm' click.delegate='detailsEdit($event)' class='k-button'>#=InventoryCode#</button>">
 					</ak-col>
 
-<!-- <ak-col k-field="InventoryCode" k-locked.bind="true" k-lockable.bind="false" k-filterable.bind="true" k-title="Code" k-width.bind="140"
+					<!-- <ak-col k-field="InventoryCode" k-locked.bind="true" k-lockable.bind="false" k-filterable.bind="true" k-title="Code" k-width.bind="140"
 					 k-template="<button class='btn btn-sm' click.delegate='detailsEdit($event)' class='k-button'>#=InventoryCode#</button>">
 					</ak-col> -->
 
@@ -208,7 +239,10 @@
 					<ak-col k-title="W" k-width="120px" k-field="UnframedWidth"></ak-col>
 					<ak-col k-title="D" k-width="120px" k-field="UnframedDepth"></ak-col>
 
-					<ak-col k-field="Medium" k-title="Medium" k-width="180px"> </ak-col>
+					<ak-col k-field="Medium" k-title="Medium" k-width="180px"  style='white-space: nowrap '> </ak-col>
+
+
+
 					<!-- <ak-col k-field="Note" k-title="Note" k-width="180px"> </ak-col> -->
 					<ak-col k-field="Note" k-title="Note" k-width="180px">
 						<ak-template>
@@ -217,37 +251,27 @@
 					</ak-col>
 
 
-					<ak-col k-title="Status" k-width="100px" k-field="ownedbyname"></ak-col>
+					<ak-col k-title="Owner" k-width="100px" k-field="ownedbyname"></ak-col>
 					<ak-col k-title="Sold" k-width="60px">
 						<ak-template>
 							${Sold | soldstatus}
 						</ak-template>
 					</ak-col>
-					<ak-col k-title="Purchased From" k-width="180px" k-field="purchasedfromname"></ak-col>
-					<ak-col k-title="Purchased Date" k-width="110px" k-field="PurchasedDate" k-format="{0:MM/dd/yyyy}"></ak-col>
-					
+					<!-- <ak-col k-title="Purchased From" k-width="180px" k-field="purchasedfromname"></ak-col>
+					<ak-col k-title="Purchased Date" k-width="110px" k-field="PurchasedDate" k-format="{0:MM/dd/yyyy}"></ak-col> -->
+
 					<ak-col k-title="Sold To " k-width="180px" k-field="soldtoname "></ak-col>
 					<ak-col k-title="Owned By" k-width="180px" k-field="ownername "></ak-col>
 					<ak-col k-title="Sold Date" k-width="110px" k-field="SoldDate" k-format="{0:MM/dd/yyyy}"></ak-col>
 				</ak-grid>
+
+          <br>	<br>	<br>	<br>	<br>	<br>
 			</div>
 			<!-- end -->
 
 		</div>
 
-		<div class="flex-row-none section-footer">
-			<button id="addInputBtn " class="btn btn-sm btn-success " type="button " click.delegate="addinventory() "><strong>A</strong>dd Inventory</button>			&nbsp;
-			<div show.bind="recCount!==0">
-				<button id="searchInputBtn " class="btn btn-sm btn-warning " type="button " click.delegate="showSavedlists() ">Select a Saved List or Create New </button>				&nbsp;
-				<button id="searchInputBtn " class="btn btn-sm btn-warning " type="button " click.delegate="addexistingSelection() ">Add To Saved List: ${appService.currentsavedlist}
-          </button> &nbsp;
-				<!-- <button show.bind="appService.currentsavedlist " id="searchInputBtn " class="btn btn-sm btn-primary " type="button"
-				 click.delegate="clearSelection()">Clear Selection</button> &nbsp;
-				<button id="searchInputBtn" class="btn btn-warning" type="button" click.delegate="performAction1Refresh()">Refresh Search List</button>	&nbsp;	 -->
-				<b>  ${message} </b></br>
-			</div>
-			<!-- ${footer} ${queryParams} &nbsp -->
 
-		</div>
 	</section>
 </template>
+<!--         	<br>	<br>	<br>	<br>	<br>	<br>	<br>	<br>	<br>	<br>	<br> -->

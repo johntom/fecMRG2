@@ -120,7 +120,14 @@ export class App {
 
       } else this.message='wrong password'
     }
+   if (this.user === 'francesca') {
+      if (this.password === 'Charlotte12!') {
+        this.appService.loginuser = this.user
+         this.appService.gridview = 0
+        this.secured = true
 
+      } else this.message='wrong password'
+    }
  if (this.user === 'elleng') {
       if (this.password === 'hihihi19') {
         this.appService.loginuser = this.user

@@ -89,9 +89,12 @@ export class SearchResults {
           MediumSupportobj: { defaultValue: {} },
           Medium: {
             type: "string",
-            from: "MediumSupportobj.Description"
+            from: "MediumSupportobj.Description",
+            
           },
-
+// { field: "Text", width: "200px", attributes: {
+//               style: 'white-space: nowrap '
+//             } 
           //   Notes:{type:"array"},
           //  Note: {
           //     type: "string",
@@ -159,9 +162,9 @@ export class SearchResults {
         }
       }
     },
-    pageSize: 15,
+    // pageSize: 15,
 
-    height: 400,
+    // height: 400,
 
     //  serverPaging: true,
     //   serverSorting: true,
@@ -289,7 +292,13 @@ export class SearchResults {
     //       console.log(response.output);
     //     });
   }
-  attached() {
+ attached() {
+// $("#grid").kendoTooltip({
+//     filter: ".k-header span"
+// });
+// this.grid.kendoTooltip({
+//     filter: ".k-header span"
+// });
     // this.grid = $("#grid").data("kendoGrid");
     // Removing The Ship Country Column Menu:      
     // By field  
@@ -436,7 +445,10 @@ export class SearchResults {
   }
 
   detailsEdit(e) {
-    let grid = this.grid;
+     let grid 
+      if (this.appService.gridview === 0) { 
+     grid = this.grid;
+      } else  grid = this.grid2;
     let targetRow = $(e.target).closest("tr");
     grid.select(targetRow);
     let selectedRow = grid.select();
