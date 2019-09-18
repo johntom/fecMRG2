@@ -16,6 +16,7 @@ export class DataForm {
     this.api = api;
     this.inv = '';
     this.appService = appService;
+    this.epoch = moment().unix();
   }
 
   async activate(params, routeConfig) {
@@ -23,9 +24,10 @@ export class DataForm {
     if (params.id) {
       if (this.recordId === 'create') {
         this.currentItem = {}
-
-        this.appService.testcontactrec = {}
-        this.appService.originalontactrec = {}
+       this.currentItem.CatalogTitle='';
+      this.currentItem.CatalogID=this.epoch
+      //  this.appService.testcontactrec = {}
+      //  this.appService.originalontactrec = {}
 
       } else {
         console.log('this.recordId ', this.recordId);
@@ -42,8 +44,6 @@ export class DataForm {
   }
 
   attached() {
-
-
     if (this.appService.dataFormOneToManyTabs5.length > 0) {
       let tab = this.appService.dataFormOneToManyTabs5[0];
       this.selectOneToManyTab(tab);
@@ -54,9 +54,12 @@ export class DataForm {
 
   async savecatalog(option) {
     if (this.recordId === 'create') {
-      // let val = await this.api.findArtistsAA();
-      // this.appService.artistList = val.data;
+      // this.currentItem = {}
+        // this.currentContactItem = {}
+      this.currentItem.id = 'create'
       this.recordId = '';
+      // this.currentItem.CatalogTitle='';
+      this.currentItem.CatalogID=this.epoch
       let response = await this.api.createcatalog(this.currentItem);
       this.requestclose()
     } else {

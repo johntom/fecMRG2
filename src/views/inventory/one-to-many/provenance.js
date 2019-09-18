@@ -19,8 +19,9 @@ import { ApplicationService } from '../../../services/application-service';
 import { DialogService } from 'aurelia-dialog';
 import { Prompt } from '../../../services/prompt';
 import { PromptForm } from '../promptForm';
-import { Promptrepro } from '../../prompt/promptRepro';
-import { Promptprov } from '../../prompt/promptProv';
+// import { Promptrepro } from '../../prompt/promptRepro';
+// import { Promptprov } from '../../prompt/promptProv';
+import { Promptprovenance } from '../../prompt/promptProvenance';
 
 @inject(ApiService, ApplicationService, DialogService)
 export class Reproduction {
@@ -111,7 +112,7 @@ export class Reproduction {
       }
       console.log(response.output);
     });
-  }
+  } 
 detailsEdit(e) {
     let grid = this.grid;
     let targetRow = $(e.target).closest("tr");
@@ -121,7 +122,11 @@ detailsEdit(e) {
     let currentModel = {}
     currentModel.currentItem = this.currentItem
     currentModel.item = dataItem
-    this.dialogService.open({ viewModel: Promptprov, model: currentModel, lock: true }).whenClosed(response => {
+// console.log('1', Promptrepro)
+// console.log('2', Promptprov)
+console.log('3', Promptprovenance)
+
+    this.dialogService.open({ viewModel: Promptprovenance, model: currentModel, lock: true }).whenClosed(response => {
       if (!response.wasCancelled) {
         console.log('dataItem', dataItem);
         // not needed this.currentItem.reproduction[0]=dataItem
@@ -150,7 +155,11 @@ addProv() {
     let currentModel = {}
     currentModel.currentItem = this.currentItem
     currentModel.item = item
-        this.dialogService.open({ viewModel: Promptprov, model: currentModel, lock: true }).whenClosed(response => {
+//     console.log('1', Promptrepro)
+// console.log('2', Promptprov)
+console.log('3', Promptprovenance)
+
+        this.dialogService.open({ viewModel: Promptprovenance, model: currentModel, lock: true }).whenClosed(response => {
 
       if (!response.wasCancelled) {
         console.log('dataItem', item);

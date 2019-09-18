@@ -1,0 +1,98 @@
+<template>
+	<require from="../../resources/value-converters/stringify"></require>
+	<require from="../../resources/value-converters/date-format"></require>
+	<ux-dialog>
+		<ux-dialog-header class="modal-header modal-header-success">
+			<div class="alert alert-danger">
+				<h1 style="width:600px">${heading}</h1>
+
+			</div>
+
+
+		</ux-dialog-header>
+		<ux-dialog-body>
+
+			<form autocomplete="off">
+				<div class="form-group flex-column-1">
+					<h2> ${doc} </h2>
+					<table class="table-condensed table">
+						<thead class="table-header-blue">
+						</thead>
+						<tfoot>
+							<tr>
+								<td></td>
+							</tr>
+						</tfoot>
+						<tbody>
+	<div class="Rtable Rtable--2cols">
+								<div class=" Rtable-cell-30 Rtable-cell--highlight">
+									<strong>  Owner </strong>
+								</div>
+								<div class="Rtable-cell-70  Rtable-cell--light">
+									<input type="text" autocomplete="off" id="xProvOwner" class="form-control input-sm au-target" value.bind="item.ProvOwner">
+								</div>
+							</div>
+							<div class="Rtable Rtable--2cols">
+								<div class=" Rtable-cell-30 Rtable-cell--highlight">
+									<strong> Location </strong>
+								</div>
+								<div class="Rtable-cell-70  Rtable-cell--light">
+									<select id="ProvLoc" class="form-control  input-sm"  change.delegate="changeLocation(changedValue)" value.bind="item.ProvLoc"> 
+        
+									<option repeat.for="opt of appService.codesProvenanceLocation " model.bind="opt.id">
+										${opt.Description}
+									</option>
+									</select>
+								</div>
+							</div>
+							<div class="Rtable Rtable--2cols">
+								<div class=" Rtable-cell-30 Rtable-cell--highlight">
+									<strong> Date </strong>
+								</div>
+								<div class="Rtable-cell-70  Rtable-cell--light">
+								<input type="text" autocomplete="off" id="zProvDate" class="form-control input-sm " value.bind="item.ProvDate">
+              
+              	</div>
+
+							</div>
+
+							<div class="Rtable Rtable--2cols">
+								<div class=" Rtable-cell-30 Rtable-cell--highlight">
+									<strong> Note </strong>
+								</div>
+
+								<div class="Rtable-cell-70  Rtable-cell--highlight">
+									<textarea rows="4" cols="100" id="Issue " class="form-control " value.bind="item.ProvMemo "></textarea>
+                </div>
+            </div>
+    		<div class="Rtable Rtable--2cols">
+								<div class=" Rtable-cell-30 Rtable-cell--highlight">
+									<strong> Sequence </strong>
+								</div>
+
+								<div class="Rtable-cell-70  Rtable-cell--highlight">
+									<input type ="text" id="Sequence " class="form-control " value.bind="item.Sequence "></textarea>
+                </div>
+            </div>
+					
+					
+
+						</tbody>
+					</table>
+				</div>
+
+
+
+
+				<hr>
+			</form>
+		</ux-dialog-body>
+
+		<ux-dialog-footer>
+
+			<button click.trigger="controller.cancel()">Cancel and Close </button>
+			<button click.trigger="save()">Save Provenance and Close </button>
+
+		</ux-dialog-footer>
+	</ux-dialog>
+</template>

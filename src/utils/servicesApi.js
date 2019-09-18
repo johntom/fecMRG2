@@ -363,7 +363,7 @@ async   findArtistsAA() {
     return res.json()
   }
   async findCatalogone2(id) { 
-
+ 
     var url = this.baseweb + `v1/catalog/find/${id}`;
     console.log('url', url)
     let res = await this.http.fetch(url, { mode: 'cors' })
@@ -375,6 +375,7 @@ async   findArtistsAA() {
 
   }
   async createcatalog(rec) {
+    console.log(rec)
     let url = this.baseweb + `v1/catalog/create`
     console.log('url ', url)
     return this.http.fetch(url, {

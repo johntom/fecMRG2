@@ -55,7 +55,7 @@ export class SearchResults {
         }
       }
     },
-    pageSize: 12,
+    pageSize: 20,
 
     // aggregate: [{ field: "type", aggregate: "count" },
     //   { field: "template", aggregate: "count" }
