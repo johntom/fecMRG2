@@ -468,7 +468,12 @@ export class SearchResults {
   }
 
   showModalImg(e) {
-    let grid = this.grid;
+    // let grid = this.grid;
+  let grid 
+      if (this.appService.gridview === 0) { 
+     grid = this.grid;
+      } else  grid = this.grid2;
+
     let targetRow = $(e.target).closest("tr");
     grid.select(targetRow);
     let selectedRow = grid.select();
@@ -499,7 +504,13 @@ export class SearchResults {
   }
 
   details(e) {
-    let grid = this.grid;
+    // let grid = this.grid;
+  let grid 
+      if (this.appService.gridview === 0) { 
+     grid = this.grid;
+      } else  grid = this.grid2;
+
+
     var targetRow = $(e.target).closest("tr");
 
     grid.select(targetRow);
@@ -507,26 +518,28 @@ export class SearchResults {
   }
 
   onEdit(e) {
+    
     let grid = e.sender;
+    
     var targetRow = $(e.container);
     grid.select(targetRow);
   }
-  addexistingCB() {
-    // alert('cb')
-    var maxRows = this.datasource.length - 1;
-    for (i = 0; i < maxRows; i++) {
-      a1 = selectedRows[i];
-      let dataItem = thid.grid.dataItem(a1);
+  // addexistingCB() {
+  //   // alert('cb')
+  //   var maxRows = this.datasource.length - 1;
+  //   for (i = 0; i < maxRows; i++) {
+  //     a1 = selectedRows[i];
+  //     let dataItem = thid.grid.dataItem(a1);
 
-      if (a1.isChecked === true) {
-        // alert('a1 ' + a1.InventoryCode)
-        // this.api.updateSavedlists(this.appService.currentsavedlist, this.selectedids).then((jsonRes) => {
-        //   console.log('jsonRes ', jsonRes);
-        //   // let tab = this.appService.tabs.find(f => f.isSelected);
-        // });
-      }
-    }
-  }
+  //     if (a1.isChecked === true) {
+  //       // alert('a1 ' + a1.InventoryCode)
+  //       // this.api.updateSavedlists(this.appService.currentsavedlist, this.selectedids).then((jsonRes) => {
+  //       //   console.log('jsonRes ', jsonRes);
+  //       //   // let tab = this.appService.tabs.find(f => f.isSelected);
+  //       // });
+  //     }
+  //   }
+  // }
   // addexistingSelection() {
 
   //   let sels
@@ -589,7 +602,15 @@ export class SearchResults {
       sels = []
     } else sels = this.selectedids
 
-    var grid = this.grid;
+    
+    
+    
+    var grid
+ if (this.appService.gridview === 0) { 
+     grid = this.grid;
+      } else  grid = this.grid2;
+
+
     var selectedRows = grid.select();
     if (selectedRows.length === 0) {
 
