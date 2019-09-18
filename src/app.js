@@ -115,70 +115,70 @@ export class App {
     if (this.user === 'michael') {
       if (this.password === 'Homer@211') {
         this.appService.loginuser = this.user
-         this.appService.gridview = 1
+        this.appService.gridview = 1
         this.secured = true
 
-      } else this.message='wrong password'
+      } else this.message = 'wrong password'
     }
-   if (this.user === 'francesca') {
+    if (this.user === 'francesca') {
       if (this.password === 'Charlotte12!') {
         this.appService.loginuser = this.user
-         this.appService.gridview = 0
+        this.appService.gridview = 0
         this.secured = true
 
-      } else this.message='wrong password'
+      } else this.message = 'wrong password'
     }
- if (this.user === 'elleng') {
+    if (this.user === 'elleng') {
       if (this.password === 'hihihi19') {
         this.appService.loginuser = this.user
-         this.appService.gridview = 0
+        this.appService.gridview = 0
         this.secured = true
       }
-    } else this.message='wrong password'
+    } else this.message = 'wrong password'
 
 
-     if (this.user === 'Matthew') {
+    if (this.user === 'Matthew') {
       if (this.password === 'MRG4data!') {
         this.appService.loginuser = this.user
-        this.appService.gridview = 1 
+        this.appService.gridview = 1
         this.secured = true
       }
-    } else this.message='wrong password'
+    } else this.message = 'wrong password'
     if (this.user === 'mdk') {
+      if (this.password === 'preparator') {
+        this.appService.loginuser = this.user
+        this.appService.gridview = 0
+        this.secured = true
+      }
+    } else this.message = 'wrong password'
+
+    if (this.user === 'jrt') {
+      // if (this.password === 'jrt11111') {
+      this.appService.loginuser = this.user
+      this.appService.gridview = 1
+      this.secured = true
+      // }
+    } else this.message = 'wrong password'
+
+
+    if (this.user === 'colleen') {
       if (this.password === 'MRG4data!') {
         this.appService.loginuser = this.user
-         this.appService.gridview = 1
+        this.appService.gridview = 0
         this.secured = true
       }
-    } else this.message='wrong password'
-
- if (this.user === 'jrt') {
-      if (this.password === 'jrt11111') {
-        this.appService.loginuser = this.user
-         this.appService.gridview = 1
-        this.secured = true
-      }
-    } else this.message='wrong password'
+    } else this.message = 'wrong password'
 
 
-     if (this.user === 'colleen') {
-      if (this.password === 'MRG4data!') {
-        this.appService.loginuser = this.user
-         this.appService.gridview = 0
-        this.secured = true
-      }
-    } else this.message='wrong password'
-   
-
-  if (this.user === 'mrg') {
+    if (this.user === 'mrg') {
       if (this.password === 'Homer@211!' || this.password === 'jrt11111') {
 
-      this.appService.loginuser = this.user
-       this.appService.gridview = 0
-      this.secured = true
+        this.appService.loginuser = this.user
+        this.appService.gridview = 0
+        this.secured = true
 
-    }
-    } else this.message='wrong password'
+      }
+    } else this.message = 'wrong password'
 
 
     // if (this.password === 'Homer@211!' || this.password === 'jrt11111') {

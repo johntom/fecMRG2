@@ -446,9 +446,12 @@ export class SearchResults {
 
   detailsEdit(e) {
      let grid 
-      if (this.appService.gridview === 0) { 
-     grid = this.grid;
-      } else  grid = this.grid2;
+    //   if (this.appService.gridview === 0) { 
+    //  grid = this.grid;
+    //   } else  grid = this.grid2;
+
+grid = this.grid;
+
     let targetRow = $(e.target).closest("tr");
     grid.select(targetRow);
     let selectedRow = grid.select();
@@ -470,10 +473,10 @@ export class SearchResults {
   showModalImg(e) {
     // let grid = this.grid;
   let grid 
-      if (this.appService.gridview === 0) { 
-     grid = this.grid;
-      } else  grid = this.grid2;
-
+    //   if (this.appService.gridview === 0) { 
+    //  grid = this.grid;
+    //   } else  grid = this.grid2;
+grid = this.grid;
     let targetRow = $(e.target).closest("tr");
     grid.select(targetRow);
     let selectedRow = grid.select();
@@ -506,10 +509,10 @@ export class SearchResults {
   details(e) {
     // let grid = this.grid;
   let grid 
-      if (this.appService.gridview === 0) { 
-     grid = this.grid;
-      } else  grid = this.grid2;
-
+    //   if (this.appService.gridview === 0) { 
+    //  grid = this.grid;
+    //   } else  grid = this.grid2;
+grid = this.grid;
 
     var targetRow = $(e.target).closest("tr");
 
@@ -606,10 +609,10 @@ export class SearchResults {
     
     
     var grid
- if (this.appService.gridview === 0) { 
-     grid = this.grid;
-      } else  grid = this.grid2;
-
+//  if (this.appService.gridview === 0) { 
+//      grid = this.grid;
+//       } else  grid = this.grid2;
+grid = this.grid;
 
     var selectedRows = grid.select();
     if (selectedRows.length === 0) {

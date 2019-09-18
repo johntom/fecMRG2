@@ -36,6 +36,66 @@ export class RtfService {
     this.currentprovenance = '';
 
   }
+  async wordlandscape(segment) {
+    // no lines in table
+    var html, link, blob, url, css;
+    // https://jsfiddle.net/78xa14vz/3/
+    // EU A4 use: size: 841.95pt 595.35pt;
+    // US Letter use: size:11.0in 8.5in;
+
+    css = (
+      '<style>' +
+      '@page WordSection1{size: 841.95pt 595.35pt;mso-page-orientation: landscape;}' +
+      'div.WordSection1 {page: WordSection1;}' +
+      'table{border-collapse:collapse;}td{border:0px none;width:5em;padding:2px;}' +
+      '</style>'
+    );
+
+    html = segment;//window.docx.innerHTML;
+    blob = new Blob(['\ufeff', css + html], {
+      type: 'application/msword'
+    });
+    url = URL.createObjectURL(blob);
+    link = document.createElement('A');
+    link.href = url;
+    // Set default file name. 
+    // Word will append file extension - do not add an extension here.
+    link.download = this.savelistname;//'Document';
+    document.body.appendChild(link);
+    if (navigator.msSaveOrOpenBlob) navigator.msSaveOrOpenBlob(blob, this.savelistname + '.doc'); //'Document.doc' IE10-11
+    else link.click();  // other browsers
+    document.body.removeChild(link);
+    return segment
+  };
+
+  async wordportrait(segment) {
+    var html, link, blob, url, css;
+    css = (
+      '<style>' +
+      '@page WordSection1{size: 595.35pt 841.95pt;margin:182.0pt 36.0pt 36.0pt 36.0pt;}' +
+      'div.WordSection1 {page: WordSection1;}' +
+      'table{border-collapse:collapse;}td{border:0px none;width:1em;padding:2px;}' +
+      '</style>'
+    );
+
+    html = segment;//window.docx.innerHTML;
+    blob = new Blob(['\ufeff', css + html], {
+      type: 'application/msword'
+    });
+    url = URL.createObjectURL(blob);
+    link = document.createElement('A');
+    link.href = url;
+    // Set default file name. 
+    // Word will append file extension - do not add an extension here.
+    link.download = this.savelistname;//'Document';
+    document.body.appendChild(link);
+    if (navigator.msSaveOrOpenBlob) navigator.msSaveOrOpenBlob(blob, this.savelistname + '.doc'); //'Document.doc' IE10-11
+    else link.click();  // other browsers
+    document.body.removeChild(link);
+    return segment
+  };
+
+
   created(owningView, myView) {
   }
   bind(bindingContext, overrideContext) {
@@ -139,9 +199,9 @@ export class RtfService {
         ct++
         // check to see if link in repo (loop thru exhibit and find repo match)
         if (reproduction !== undefined) {
-  // let eid = reproduction.findIndex(x => x.ReproductionExhibit === item.id)
-// i replace with exhibitsel
- let eid = reproduction.findIndex(x => x.exhibitsel === item.id)
+          // let eid = reproduction.findIndex(x => x.ReproductionExhibit === item.id)
+          // i replace with exhibitsel
+          let eid = reproduction.findIndex(x => x.exhibitsel === item.id)
           let reporec
           linkPageNo = ''
           if (eid !== -1) {
@@ -161,7 +221,7 @@ export class RtfService {
         // if (oid == -1) oid = 1
         // let ExhibitLocationDesc = provloc[oid].Description
         let ExhibitLocationDesc = item.ExhibitLocationDesc
- 
+
 
         let ExhibitMemo
         let lpn
@@ -271,13 +331,13 @@ export class RtfService {
           iLines.push(leftofcolonText + ' ' + rightofcolonTextem)
         } else {
           // rightofcolonTextem = '<em>' + rightofcolonbaseText.substr(1, semisPos - 1) + '</em><br>';
-           rightofcolonTextem = '<em>' + rightofcolonbaseText.substr(1, semisPos -1 ) + '</em><br>';
-        
-          restoftext = rightofcolonbaseText.substr(semisPos+1, rightofcolonbaseText.length);
+          rightofcolonTextem = '<em>' + rightofcolonbaseText.substr(1, semisPos - 1) + '</em><br>';
+
+          restoftext = rightofcolonbaseText.substr(semisPos + 1, rightofcolonbaseText.length);
           colonPos = restoftext.indexOf(":");
-          leftofcolonText2 = restoftext.substr(0, colonPos+1);
+          leftofcolonText2 = restoftext.substr(0, colonPos + 1);
           rightofcolonTextem2 = '<em>' + restoftext.substr(colonPos + 1, restoftext.length - colonPos) + '</em>';
- 
+
           iLines.push(leftofcolonText + ' ' + rightofcolonTextem + ' ' + leftofcolonText2 + ' ' + rightofcolonTextem2)
         }
       }
@@ -369,7 +429,7 @@ export class RtfService {
         break;
       case '5/8':
         dim = factor * 5
-        break; 
+        break;
       case '3/4':
         dim = factor * 6
         break;
@@ -377,7 +437,7 @@ export class RtfService {
         dim = factor * 7
         break;
     }
-    return dim 
+    return dim
   }
 
   buildDimLogic(dtype, height, heightfraction, width, widthfraction, depth, depthfraction, cmh, cmw, cmd) {
@@ -459,11 +519,11 @@ export class RtfService {
     if (edition !== undefined) {
       let a2 = ''
       let a3 = ''
-      
-       //this.inscribedText = '' //9-9
-      
-       this.EditionCommentFormat = ''
-      
+
+      //this.inscribedText = '' //9-9
+
+      this.EditionCommentFormat = ''
+
       let semisCount = (edition).match('/;/g')
       let strCount = (edition).match(new RegExp(";", "g"))
       let colonPos
@@ -511,8 +571,8 @@ export class RtfService {
   //   selectedtype = 0;
   async createRTF(createopt, selectedtype) {
     // 1 MEANS UI DISPLAYS HTML 2; // 1 is from tab
-    this.segment2 =''
-     this.segment1 =''
+    this.segment2 = ''
+    this.segment1 = ''
     if (selectedtype === undefined) selectedtype = 0;
 
     this.createDim()
@@ -590,7 +650,7 @@ export class RtfService {
     //  this.currentItem.inscribedText=this.currentItem.inscribedText+''
     // /?????????????????????????????????????????
     // if (this.currentItem.inscribedText !== '') {
-       if (this.inscribedText !== '') {
+    if (this.inscribedText !== '') {
       headerinfo1 += ` ${this.inscribedText}</br> `
       headerinfo2 += ` ${this.inscribedText}</br> `
     }
@@ -613,17 +673,40 @@ export class RtfService {
     // 
     this.segment2 = headerinfo2
 
-    if (selectedtype === 0) {
-      this.segment1 = `<p><img class="responsive-img" src="https://artbased.com/api/v1/getimage/inv/${this.currentItem.InventoryCode}.jpg" alt="" width="${ww}" height="${hh}" /></p>`
-      this.segment1 += headerinfo1
-    }
+
+
+
+    // if (selectedtype === 0) {
+    //   // landscape
+    //   this.segment1 = `<p><img class="responsive-img" src="https://artbased.com/api/v1/getimage/inv/${this.currentItem.InventoryCode}.jpg" alt="" width="${ww}" height="${hh}" /></p>`
+    //   this.segment1 += headerinfo1
+    // }
+    // if (selectedtype === 1) {
+    // portrait
+    //   this.segment1 = ` <table><scan style="text-align:center;width:1024px"></scan><tbody><tr>`
+    //   this.segment1 += `<td style="font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;width:50%;vertical-align:top;text-align:left;padding-left:2px">${headerinfo1}</td>`
+    //   this.segment1 += `<td style="width:50%;text-align:center;vertical-align:top;"><img src="https://artbased.com/api/v1/getimage/inv/${this.currentItem.InventoryCode}.jpg"
+    // alt="" width="${ww}" height=${hh} /></td>`
+    //   this.segment1 += `</tr></tbody></table>`
+    //   //
+    // }
+    let segment
     if (selectedtype === 1) {
-      this.segment1 = ` <table><scan style="text-align:center;width:1024px"></scan><tbody>`
-      this.segment1 += `<td style="font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;width:50%;vertical-align:top;text-align:left;padding-left:2px">${headerinfo1}</td>`
-      this.segment1 += `<td style="width:50%;text-align:center;vertical-align:top;"><img src="https://artbased.com/api/v1/getimage/inv/${this.currentItem.InventoryCode}.jpg" alt="" width="${ww}" height=${hh} /></td>`
-      this.segment1 += `</tr></tbody></table>`
-      //
+      // portrait
+      let sty1no = "font-family:Calibri, Geneva, sans-serif;font-size:11.0pt";
+      segment = `<div id="docx">`
+      segment += `<div class="WordSection1">`
+      segment += `<table style="width:650px; border-collapse:collapse;border-width:1px;"><tbody>`
+      segment += `<tr><td><h2 style="text-align:left;width:768px">TEST</h2></td></tr> `
+      segment += `<tr style="height:17%;">` 
+      segment += `<td style="${sty1no};width:50%;vertical-align:top">${headerinfo1}</br></br>`
+      segment += ` </td>`
+      segment += `<td style="width:50%;vertical-align:top;text-align:right;"><img src="https://artbased.com/api/v1/getimage/inv/${this.currentItem.InventoryCode}.jpg" alt="" width="${ww}" height=${hh} /></td>`
+      segment += `</tr>`
+      segment += `<tr ><td>&nbsp;</td></tr>`
+      segment += `<tr ><td>&nbsp;</td></tr>`
     }
+    this.segment1 = segment;
 
     this.buildEdition()
     this.buildProv()
@@ -632,6 +715,14 @@ export class RtfService {
     // WRAP IT ???
     this.currentItem.rtf1 = '<span style="font-family:Calibri, Geneva, sans-serif;font-size:11.0pt">' + this.segment1 + '</span>';
     this.currentItem.rtf2 = '<span style="font-family:Calibri, Geneva, sans-serif;font-size:11.0pt">' + this.segment2 + '</span>';
+    if (selectedtype === 1) {
+      // portrait
+      this.segment1 += `</tbody></table>`
+      this.segment1 += `</div></div>`
+      this.wordportrait(this.segment1);
+      // this.controller.ok('added')
+    }
+
     return
   }
 
