@@ -31,7 +31,7 @@
 								<div class="Rtable-cell-70  Rtable-cell--light">
 									<select id="ProvLoc" class="form-control  input-sm" value.bind="item.Photographer"> 
       
-									<option repeat.for="opt of appService.codesPhotographers " model.bind="opt.id">
+									<option repeat.for="opt of appService.codesPhotographers " model.bind="opt.Description">
 										${opt.Description}
 									</option>
 									</select>
@@ -43,7 +43,7 @@
 								<div class="Rtable-cell-70  Rtable-cell--light">
 									<select id="ProvLoc" class="form-control  input-sm" value.bind="item.Format"> 
       
-									<option repeat.for="opt of appService.codesPhotoFormat " model.bind="opt.id">
+									<option repeat.for="opt of appService.codesPhotoFormat " model.bind="opt.Description">
 										${opt.Description}
 									</option>
 									</select>

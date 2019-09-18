@@ -1,17 +1,30 @@
+// import { inject } from 'aurelia-dependency-injection';
+// import { ApiService } from '../../../utils/servicesApi';
+// import { ApplicationService } from '../../../services/application-service';
+// import { Aurelia } from 'aurelia-framework';
+// import { DialogService } from 'aurelia-dialog';
+// // import { Prompt } from '../../../services/prompt';
+
+// import { Promptprov } from '../../prompt/promptProv';
+
+// import { Promptyn } from '../../../services/promptyn';
+// import { Prompt } from '../prompt';
+
+// @inject(ApiService, ApplicationService, DialogService)
+// export class Provenance {
+
 import { inject } from 'aurelia-dependency-injection';
 import { ApiService } from '../../../utils/servicesApi';
 import { ApplicationService } from '../../../services/application-service';
-import { Aurelia } from 'aurelia-framework';
 import { DialogService } from 'aurelia-dialog';
-// import { Prompt } from '../../../services/prompt';
-
+import { Prompt } from '../../../services/prompt';
+import { PromptForm } from '../promptForm';
+import { Promptrepro } from '../../prompt/promptRepro';
 import { Promptprov } from '../../prompt/promptProv';
 
-import { Promptyn } from '../../../services/promptyn';
-import { Prompt } from '../prompt';
-
 @inject(ApiService, ApplicationService, DialogService)
-export class Provenance {
+export class Reproduction {
+
   heading = 'DataForm HEADER...';
   footer = 'DataForm FOOTER...';
   recordId = '';
@@ -50,7 +63,7 @@ export class Provenance {
     },
     // pageSize: 12,
   })
-
+ 
 
 
 
@@ -71,6 +84,7 @@ export class Provenance {
     //////////////////////////////////////////////////////////////////////////////
     if (this.currentItem.provenance === undefined) this.currentItem.provenance = []
     //////////////////////////////////////////////////////////////////////////////
+    this.epoch = moment().unix();
   }
   textAreaEditor(container, options) {
     $('<textarea class="k-textbox" name="' + options.field + '" style="width:100%;height:100%;" />').appendTo(container);
@@ -136,7 +150,8 @@ addProv() {
     let currentModel = {}
     currentModel.currentItem = this.currentItem
     currentModel.item = item
-    this.dialogService.open({ viewModel: Promptprov, model: currentModel, lock: true }).whenClosed(response => {
+        this.dialogService.open({ viewModel: Promptprov, model: currentModel, lock: true }).whenClosed(response => {
+
       if (!response.wasCancelled) {
         console.log('dataItem', item);
         //  needed this.currentItem.reproduction[0]=dataItem

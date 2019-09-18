@@ -81,7 +81,7 @@
 								<div class="Rtable-cell-70  Rtable-cell--light">
 									<input type="text" id="xReproductionName" class="form-control input-sm " value.bind="item.ReproductionName">
 								</div>
-							</div>
+							</div> 
 						
 							<div class="Rtable Rtable--2cols">
 								<div class=" Rtable-cell-30 Rtable-cell--highlight">
@@ -94,15 +94,15 @@
               ${opt.Description} 
               </option> 
               </select> -->
-					<label for="reLocation">Location</label>
+			
 					<input attach-focus="true" ref="myDatalist" type="text" list="myDatalist"
-           change.delegate="changeCallbackMedSup(selectedValue)"
+           change.delegate="changeCallbackLocation(selectedValue)"
 					 input.delegate="selectedValue = findOption($event.target.value)" />
 					<datalist id="myDatalist">
 						<option repeat.for="option of appService.codesProvenanceLocation">${option.Description} </option>
 					</datalist>
 				</div>
-				${selectedValue}
+				<!-- ${selectedValue} -->
 			
                 
                 </div>

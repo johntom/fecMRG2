@@ -77,12 +77,15 @@ export class Reproduction {
 
     let exdata = [];
     this.exhibitiondropdown = ''
+    if(this.currentItem.exhibition!==undefined){
     let exhibitiondropdownclone = JSON.parse(JSON.stringify(this.currentItem.exhibition));
     for (const item of exhibitiondropdownclone) {
       if (item.ExhibitTitle !== undefined) item.id = item.id + '|' + item.ExhibitTitle.substr(0, 20)
       exdata.push(item)
     }
+    } 
     this.exhibitiondropdown = exdata
+
     //////////////////////////////////////////////////////////////////////////
     if (this.currentItem.reproduction === undefined) this.currentItem.reproduction = []
     this.epoch = moment().unix();
@@ -106,42 +109,6 @@ export class Reproduction {
   }
 
 
-
-  // "legacyid" : NumberInt(16916), 
-  //             "ExhibitTitle" : "Arthur Dove", 
-  //             "ExhibitSponser" : "Albright-Knox Art Gallery", 
-  //             "ExhibitLocation" : "5d5009e9ee1af1dc544c0939", 
-  //             "ExhibitLocationDesc" : "Buffalo, NY", 
-  //             "ExhibitDates" : "January 27 - March 2, 1975", 
-  //             "ExhibitSortDate" : "1975-01-27T05:00:00.000Z", 
-  //             "Traveled" : "Y", 
-  //             "ExhibitMemo" : "", 
-  // "id" : NumberInt(8)
-  //options.field=ReproductionExhibit 
-  // exhibitionDropDownEditor(container, options) {
-  //   //  $('<input required data-text-field="ExhibitTitle" data-value-field="id" data-bind="value:' + options.field + '"/>')
-  //   console.log('options.field', container, options, options.field)
-  //   // $('<input  data-text-field="ExhibitTitle" data-value-field="id" data-bind="value:' + options.field + '"/>')
-  //   // must store id for factsheet as title is not uniq
-  //   //  
-  //   $('<input  data-text-field="id" data-value-field="id" data-bind="value:' + options.field + '"/>')
-  //     .appendTo(container)
-  //     .kendoDropDownList({
-  //       autoBind: false,
-  //       type: 'json',
-  //       dataSource: {
-  //         transport: {
-  //           read: (options) => {
-  //             options.success(this.exhibitiondropdown);
-  //             // this.loadExhData()
-  //             //   .then((exdata) => {
-  //             //     options.success(exdata);
-  //             //   });
-  //           },
-  //         }
-  //       }
-  //     });
-  // }
 
   typeDropDownEditor(container, options) {
     $('<input required data-text-field="Description" data-value-field="Description" data-bind="value:' + options.field + '"/>')

@@ -29,31 +29,18 @@ selectedValue = null;
 
 changeCallbackLocation(selectedvalue) {
     console.log('selectedvalue has undefined ', selectedvalue, "myDatalist this.myDatalist.value has the value", this.myDatalist.value);
+ let oid 
+ let codeobj 
     let findvalue = this.myDatalist.value
+       oid = this.appService.codesProvenanceLocation.findIndex(x => x.Description === findvalue)
+       codeobj = this.appService.codesProvenanceLocation[oid]
   let bod = {
       "CodeType": 14,
-      "Description": value,
-      "CodeTypeDesc": "Genre"
+      "Description": findvalue,
+      "CodeTypeDesc": "Provenance Location"
     }  
-
-    this.api.addmediumsupport(bod)
-      .then((jsonRes) => {
-        this.appService.codesGenre = jsonRes.data;
-        let oid = this.appService.codesGenre.findIndex(x => x.Description === value)
-        let codeobj = this.appService.codesGenre[oid]
-        let rec = {
-          "CodeType": 3,
-          "Description": value,
-          "CodeTypeDesc": "Genre",
-          id: codeobj.id
-        }
-        this.currentItem.keywords.push(value)
-        dataSource.add(rec)
-      });
-
-
-
-    if (this.selectedValue === undefined || this.selectedValue === null) {
+ if (this.selectedValue === undefined || this.selectedValue === null) {
+ 
       let obj = {}
       obj.type = 2
       obj.name = `Add ${findvalue} to Location List or Cancel?`
@@ -61,13 +48,40 @@ changeCallbackLocation(selectedvalue) {
 
 
         if (!response.wasCancelled) {
-          this.addnewms(findvalue)
+          // this.addnewms(findvalue)
+           this.api.addmediumsupport(bod)
+      .then((jsonRes) => {
+        this.appService.codesProvenanceLocation = jsonRes.data;
+         oid = this.appService.codesProvenanceLocation.findIndex(x => x.Description === findvalue)
+         codeobj = this.appService.codesProvenanceLocation[oid]
+        let rec = {
+          "CodeType": 14,
+          "Description": codeobj.Description,
+          "CodeTypeDesc": "Provenance Location",
+          id: codeobj.id
+        }
+      //  this.currentItem.codesGenre.push(rec)
+       // this.dataSource.add(rec)
+         this.item.ReproductionLocationDesc=codeobj.Description
+         this.item.ReproductionLocation=codeobj.id
+      });
         } else {
           console.log('cancel');
         }
+        
         console.log(response.output);
       });
+    } else {
+      //ReproductionLocationDesc
+ this.item.ReproductionLocationDesc=codeobj.Description
+         this.item.ReproductionLocation=codeobj.id
+
     }
+   
+
+
+
+   
 
   }
   activate(currentmodel) {
@@ -97,9 +111,9 @@ changeCallbackLocation(selectedvalue) {
 
   }
 
-  changeCallbackArtist(selectedValueA) {
-    let findvalue = this.myDatalistA.value
-  }
+  // changeCallbackArtist(selectedValueA) {
+  //   let findvalue = this.myDatalistA.value
+  // }
 
 
 

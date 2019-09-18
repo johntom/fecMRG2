@@ -223,10 +223,25 @@ export class Photo {
     // item = { id: this.epoch, PhotoTaken: 1, Date: dd, Note: '', Photographer: 'Ryan Sobotka', Format: 'professional high-rez digital tiff', Precons: false }
    item = { id: this.epoch, PhotoTaken: 1, PhotoDate: dd, Note: '', Photographer: 'Ryan Sobotka', Format: 'professional high-rez digital tiff', Precons: false }
    
-   
     photo.unshift(item)
     if (flag) this.currentItem.photo = photo
+    let currentModel = {}
+    currentModel.currentItem = this.currentItem
+    currentModel.item = item
+    this.dialogService.open({ viewModel: Promptphoto, model: currentModel, lock: true }).whenClosed(response => {
+      if (!response.wasCancelled) {
+        console.log('dataItem', item);
+        this.currentItem.photo[0]=item
+         this.datasource.read()
+      } else {
+        console.log('cancel');
+      }
+      // this.currentItem.reproduction = this.datasource._data 
+      console.log(response)//.output);
+    });
   }
+ 
+
   saveitem(item, index) {
     item.edit = !item.edit
 
@@ -254,25 +269,25 @@ export class Photo {
     // grid.select(false);
   }
 
-  addDocs(images) {
-    //images is file
-    //check for dups 2/21/2018
-    //https://stackoverflow.com/questions/32736599/html-file-upload-and-action-on-single-button
-    let docs = this.currentItem.docs
-    let formData = new FormData()
-    let newDate = moment().format('YYYY-MM-DD')
-    let flag = false 
-    let prom = Promise.resolve(this.checkData(images, formData)).then(values => {
-      let newform = values;
-      console.log('after checkdata1 ', this.status, newform);
-      // this.api.upload(formData, this.currentItem.CLAIM_NO)
-      this.api.uploadinvphotodetail(newform, this.currentItem.InventoryCode)
-        .then((jsonRes) => {
-          this.upmess = jsonRes.data
-          $("#file").val("");
-          formData=''
-        })
-    })
+  // addDocs(images) {
+  //   //images is file
+  //   //check for dups 2/21/2018
+  //   //https://stackoverflow.com/questions/32736599/html-file-upload-and-action-on-single-button
+  //   let docs = this.currentItem.docs
+  //   let formData = new FormData()
+  //   let newDate = moment().format('YYYY-MM-DD')
+  //   let flag = false 
+  //   let prom = Promise.resolve(this.checkData(images, formData)).then(values => {
+  //     let newform = values;
+  //     console.log('after checkdata1 ', this.status, newform);
+  //     // this.api.upload(formData, this.currentItem.CLAIM_NO)
+  //     this.api.uploadinvphotodetail(newform, this.currentItem.InventoryCode)
+  //       .then((jsonRes) => {
+  //         this.upmess = jsonRes.data
+  //         $("#file").val("");
+  //         formData=''
+  //       })
+  //   })
 
     // this is not a good way to get value this.items = Promise.resolve(this.checkData(images));
     //  console.log('after checkdata1 just a promise cant pick off value ',  this.status,this.items);
@@ -284,7 +299,7 @@ export class Photo {
     //     console.error("Error encountered while trying to get data.", error);
     //   });
 
-  }
+  
 
  
 detailsEdit(e) {
