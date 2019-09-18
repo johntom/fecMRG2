@@ -11,7 +11,13 @@
 		.col {
 			flex: 1;
 		}
-
+    body {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 12px;
+    line-height: 1.42857143;
+    color: #333;
+    background-color: #fff;
+}
 		.demo-section label {
 			display: block;
 			margin: 15px 0 5px 0;
@@ -106,7 +112,7 @@
 				 k-scrollable.bind="scrollable">
 					<div style="width: 1750px"></div>
 
-					<ak-col k-field="InventoryCode" k-locked.bind="true" k-lockable.bind="false" k-filterable.bind="true" k-title="Code" k-width.bind="180"
+					<ak-col k-field="InventoryCode" k-locked.bind="true" k-lockable.bind="false" k-filterable.bind="true" k-title="Code" k-width.bind="160"
 					 k-template="<button click.delegate='detailsEdit($event)' class='k-button'>#=InventoryCode#</button>">
 					</ak-col>
 					<ak-col k-title="Image" k-field="InventoryCode" k-width="90px" k-filterable.bind="false">
@@ -116,10 +122,10 @@
 						</ak-template>
 					</ak-col>
 
-					<ak-col k-field="ArtistName" k-title="Artist" k-width="180px"> </ak-col>
+					<ak-col k-field="ArtistName" k-title="Artist" k-width="160px"> </ak-col>
 
 					<ak-col k-title="Title" k-width="180px" k-field="Title"></ak-col>
-					<ak-col k-title="Year" k-width="110px" k-field="InvYear"></ak-col>
+					<ak-col k-title="Year" k-width="100px" k-field="InvYear"></ak-col>
 					<!-- <ak-col   k-title="Medium" k-width="180px" k-template="#= (typeof MediumSupportobj == 'undefined' || MediumSupportobj == null) ? '' : MediumSupportobj.Description #"></ak-col> -->
 					<ak-col k-field="Medium" k-title="Medium" k-width="180px"> </ak-col>
 
