@@ -200,6 +200,7 @@ changeLocation(changedValue){
   // this.currentItem.CurrentLocation=this.currentItem.CurrentLocation.id
  let idx  = this.appService.codesInventoryLocation.findIndex(x => x.id === this.currentItem.CurrentLocation); 
   this.currentItem.currentocationname = this.appService.codesInventoryLocation[idx].Description
+  alert(idx+' '+ this.currentItem.currentocationname)
 }
 
   soldtoEdit() {

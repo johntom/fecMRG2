@@ -62,7 +62,7 @@
 	<require from="../../resources/value-converters/upper-case"></require>
 	<require from="../../resources/value-converters/soldstatus"></require>
 	<require from="../../resources/value-converters/capitalize"></require>
-
+  <require from="../../resources/value-converters/date=format"></require>
 	<!-- <require from="aurelia-kendoui-bridge/button/button"></require> -->
 	<!-- <require from="./customers.css"></require> -->
 	<section class="customers au-animate">
@@ -72,9 +72,22 @@
     	<button class="btn btn-sm btn-primary " click.delegate="save()">Save Grid</button>
 			<button class="btn btn-sm btn-primary " click.delegate="load()">Load Settings</button>
 		</div>
-   
+    
+    	<!-- <button type="button" class="btn btn-sm btn-default" ak-button k-on-click.delegate="search()">
+                  <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Search
+                </button>
+			<button type="button" class="btn btn-sm btn-default" id="textButton" ak-button k-on-click.delegate="save()">
+                  <span class="glyphicon glyphicon-save" aria-hidden="true">  Save Grid
+                </button>
+			<button type="button" class="btn btn-sm btn-default" id="textButton" ak-button k-on-click.delegate="load()">
+                  <span class="glyphicon glyphicon-open" aria-hidden="true">   Load Grid
+                </button> -->
 		</h3>
 
+		<!-- <div ref="spinner" class="splash">
+			<div class="message">fetching records</div>
+			<i class="fa fa-spinner fa-spin"></i>
+		</div> -->
 		<div show.bind="busy.active" ref="spinner" class="splash">
 			<div class="message">fetching records</div>
 			<i class="fa fa-spinner fa-spin"></i>
@@ -152,17 +165,13 @@
 				<button id="searchInputBtn " class="btn btn-sm btn-warning " type="button " click.delegate="showSavedlists() ">Select a Saved List or Create New </button>				&nbsp;
 				<button id="searchInputBtn " class="btn btn-sm btn-warning " type="button " click.delegate="addexistingSelection() ">Add To Saved List: ${appService.currentsavedlist}
           </button>				&nbsp;
-          <b>  ${message} </b></br>
+        <!-- <button show.bind="appService.currentsavedlist " id="searchInputBtn " class="btn btn-sm btn-primary " type="button"
+				 click.delegate="clearSelection()">Clear Selection</button> &nbsp;
+				<button id="searchInputBtn" class="btn btn-warning" type="button" click.delegate="performAction1Refresh()">Refresh Search List</button>	&nbsp;	 -->
+         <b>  ${message} </b></br>
 			</div>
-		
+			<!-- ${footer} ${queryParams} &nbsp -->
+
 		</div>
 	</section>
 </template>
-
-
-	<!-- ${footer} ${queryParams} &nbsp -->
-
-     <!-- <button show.bind="appService.currentsavedlist " id="searchInputBtn " class="btn btn-sm btn-primary " type="button"
-				 click.delegate="clearSelection()">Clear Selection</button> &nbsp;
-				<button id="searchInputBtn" class="btn btn-warning" type="button" click.delegate="performAction1Refresh()">Refresh Search List</button>	&nbsp;	 -->
-  
