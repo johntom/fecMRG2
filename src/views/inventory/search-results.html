@@ -186,6 +186,18 @@
 
 			</div>
 			<!-- //////////////// -->
+      	<!-- <ak-col k-field="InventoryCode" k-locked.bind="true" k-lockable.bind="false" k-filterable.bind="true" k-title="Code" k-width.bind="140"
+					 k-template="<button class='btn btn-sm' click.delegate='detailsEdit($event)' class='k-button'>#=InventoryCode#</button>">
+					</ak-col> -->
+
+
+
+					<!-- <ak-col k-title="Image" k-field="InventoryCode" k-width="90px" k-filterable.bind="false" k-locked.bind="true" k-lockable.bind="false">
+						<ak-template>
+							<div class='customer-photo-sq' style="background-image: url(https://artbased.com/api/v1/getimage/inv/${InventoryCode}.jpg?${epoch};"
+							 click.delegate="showModalImg($event)"></div>
+						</ak-template>
+					</ak-col> -->
 			<div show.bind="smallview===true">
         	<div class="flex-row-none section-footer"> 
 					<button id="addInputBtn " class="btn btn-sm btn-success " type="button " click.delegate="addinventory() "><strong>A</strong>dd Inventory</button>					&nbsp;
@@ -211,26 +223,20 @@
 
 					<div style="width: 1300px"></div>
 
-					<ak-col k-field="InventoryCode" k-locked.bind="true" k-lockable.bind="false" k-filterable.bind="true" k-title="Code" k-width.bind="140"
-					 k-template="<button class='btn btn-sm' click.delegate='detailsEdit($event)' class='k-button'>#=InventoryCode#</button>">
-					</ak-col>
-
 					<!-- <ak-col k-field="InventoryCode" k-locked.bind="true" k-lockable.bind="false" k-filterable.bind="true" k-title="Code" k-width.bind="140"
 					 k-template="<button class='btn btn-sm' click.delegate='detailsEdit($event)' class='k-button'>#=InventoryCode#</button>">
-					</ak-col> -->
+					</ak-col>
+		<ak-col k-title="Title" k-width="180px" k-field="Title" k-locked.bind="true" k-lockable.bind="false"></ak-col> -->
+			<ak-col k-field="InventoryCode"  k-title="Code" k-width.bind="140"
+					 k-template="<button class='btn btn-sm' click.delegate='detailsEdit($event)' class='k-button'>#=InventoryCode#</button>">
+					</ak-col>
+		<ak-col k-title="Title" k-width="180px" k-field="Title"></ak-col>
+
+				
+				
 
 
-
-					<!-- <ak-col k-title="Image" k-field="InventoryCode" k-width="90px" k-filterable.bind="false" k-locked.bind="true" k-lockable.bind="false">
-						<ak-template>
-							<div class='customer-photo-sq' style="background-image: url(https://artbased.com/api/v1/getimage/inv/${InventoryCode}.jpg?${epoch};"
-							 click.delegate="showModalImg($event)"></div>
-						</ak-template>
-					</ak-col> -->
-
-
-					<ak-col k-title="Title" k-width="180px" k-field="Title" k-locked.bind="true" k-lockable.bind="false"></ak-col>
-
+			
 					<ak-col k-title="Year" k-width="100px" k-field="InvYear"></ak-col>
 					<!--  k-filterable.bind="true" -->
 					<ak-col k-title="Location" k-width="120px" k-field="currentocationname"></ak-col>
