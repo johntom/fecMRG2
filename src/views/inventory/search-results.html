@@ -105,7 +105,7 @@
 		</div>
 
 		<div class="flex-grid">
-			<!-- ${danview} -->
+			${smallview}
 			<div show.bind="smallview!==true">
 				<ak-grid class="flex-row-1 overflow-y-auto" id="grid" k-data-source.bind="datasource" k-widget.bind="grid" k-sortable.bind="{ mode: 'multiple',   allowUnsort: 'true'}"
 				 k-height.bind="700" k-filterable.bind="{  mode: 'row' }" k-editable="inline" k-reorderable.bind="true" k-groupable.bind="true"
@@ -184,9 +184,9 @@
 					 k-template="<button class='btn btn-sm' click.delegate='detailsEdit($event)' class='k-button'>#=InventoryCode#</button>">
 					</ak-col>
 
-<ak-col k-field="InventoryCode" k-locked.bind="true" k-lockable.bind="false" k-filterable.bind="true" k-title="Code" k-width.bind="140"
+<!-- <ak-col k-field="InventoryCode" k-locked.bind="true" k-lockable.bind="false" k-filterable.bind="true" k-title="Code" k-width.bind="140"
 					 k-template="<button class='btn btn-sm' click.delegate='detailsEdit($event)' class='k-button'>#=InventoryCode#</button>">
-					</ak-col>
+					</ak-col> -->
 
 
 
