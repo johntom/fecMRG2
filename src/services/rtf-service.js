@@ -36,39 +36,8 @@ export class RtfService {
     this.currentprovenance = '';
 
   }
-  async wordlandscape(segment) {
-    // no lines in table
-    var html, link, blob, url, css;
-    // https://jsfiddle.net/78xa14vz/3/
-    // EU A4 use: size: 841.95pt 595.35pt;
-    // US Letter use: size:11.0in 8.5in;
 
-    css = (
-      '<style>' +
-      '@page WordSection1{size: 841.95pt 595.35pt;mso-page-orientation: landscape;}' +
-      'div.WordSection1 {page: WordSection1;}' +
-      'table{border-collapse:collapse;}td{border:0px none;width:5em;padding:2px;}' +
-      '</style>'
-    );
-
-    html = segment;//window.docx.innerHTML;
-    blob = new Blob(['\ufeff', css + html], {
-      type: 'application/msword'
-    });
-    url = URL.createObjectURL(blob);
-    link = document.createElement('A');
-    link.href = url;
-    // Set default file name. 
-    // Word will append file extension - do not add an extension here.
-    link.download = this.savelistname;//'Document';
-    document.body.appendChild(link);
-    if (navigator.msSaveOrOpenBlob) navigator.msSaveOrOpenBlob(blob, this.savelistname + '.doc'); //'Document.doc' IE10-11
-    else link.click();  // other browsers
-    document.body.removeChild(link);
-    return segment
-  };
-
-  async wordportrait(segment) {
+async wordportrait(segment) {
     var html, link, blob, url, css;
     css = (
       '<style>' +
@@ -78,22 +47,82 @@ export class RtfService {
       '</style>'
     );
 
-    html = segment;//window.docx.innerHTML;
-    blob = new Blob(['\ufeff', css + html], {
-      type: 'application/msword'
-    });
-    url = URL.createObjectURL(blob);
-    link = document.createElement('A');
-    link.href = url;
-    // Set default file name. 
-    // Word will append file extension - do not add an extension here.
-    link.download = this.savelistname;//'Document';
-    document.body.appendChild(link);
-    if (navigator.msSaveOrOpenBlob) navigator.msSaveOrOpenBlob(blob, this.savelistname + '.doc'); //'Document.doc' IE10-11
-    else link.click();  // other browsers
-    document.body.removeChild(link);
+    // html = segment;//window.docx.innerHTML;
+    // blob = new Blob(['\ufeff', css + html], {
+    //   type: 'application/msword'
+    // });
+    // url = URL.createObjectURL(blob);
+    // link = document.createElement('A');
+    // link.href = url;
+    // // Set default file name. 
+    // // Word will append file extension - do not add an extension here.
+    // link.download = this.savelistname;//'Document';
+    // document.body.appendChild(link);
+    // if (navigator.msSaveOrOpenBlob) navigator.msSaveOrOpenBlob(blob, this.savelistname + '.doc'); //'Document.doc' IE10-11
+    // else link.click();  // other browsers
+    // document.body.removeChild(link);
     return segment
   };
+
+
+  // async wordlandscape(segment) {
+  //   // no lines in table
+  //   var html, link, blob, url, css;
+  //   // https://jsfiddle.net/78xa14vz/3/
+  //   // EU A4 use: size: 841.95pt 595.35pt;
+  //   // US Letter use: size:11.0in 8.5in;
+
+  //   css = (
+  //     '<style>' +
+  //     '@page WordSection1{size: 841.95pt 595.35pt;mso-page-orientation: landscape;}' +
+  //     'div.WordSection1 {page: WordSection1;}' +
+  //     'table{border-collapse:collapse;}td{border:0px none;width:5em;padding:2px;}' +
+  //     '</style>'
+  //   );
+
+  //   html = segment;//window.docx.innerHTML;
+  //   blob = new Blob(['\ufeff', css + html], {
+  //     type: 'application/msword'
+  //   });
+  //   url = URL.createObjectURL(blob);
+  //   link = document.createElement('A');
+  //   link.href = url;
+  //   // Set default file name. 
+  //   // Word will append file extension - do not add an extension here.
+  //   link.download = this.savelistname;//'Document';
+  //   document.body.appendChild(link);
+  //   if (navigator.msSaveOrOpenBlob) navigator.msSaveOrOpenBlob(blob, this.savelistname + '.doc'); //'Document.doc' IE10-11
+  //   else link.click();  // other browsers
+  //   document.body.removeChild(link);
+  //   return segment
+  // };
+
+  // async wordportrait(segment) {
+  //   var html, link, blob, url, css;
+  //   css = (
+  //     '<style>' +
+  //     '@page WordSection1{size: 595.35pt 841.95pt;margin:182.0pt 36.0pt 36.0pt 36.0pt;}' +
+  //     'div.WordSection1 {page: WordSection1;}' +
+  //     'table{border-collapse:collapse;}td{border:0px none;width:1em;padding:2px;}' +
+  //     '</style>'
+  //   );
+
+  //   html = segment;//window.docx.innerHTML;
+  //   blob = new Blob(['\ufeff', css + html], {
+  //     type: 'application/msword'
+  //   });
+  //   url = URL.createObjectURL(blob);
+  //   link = document.createElement('A');
+  //   link.href = url;
+  //   // Set default file name. 
+  //   // Word will append file extension - do not add an extension here.
+  //   link.download = this.savelistname;//'Document';
+  //   document.body.appendChild(link);
+  //   if (navigator.msSaveOrOpenBlob) navigator.msSaveOrOpenBlob(blob, this.savelistname + '.doc'); //'Document.doc' IE10-11
+  //   else link.click();  // other browsers
+  //   document.body.removeChild(link);
+  //   return segment
+  // };
 
 
   created(owningView, myView) {
@@ -690,23 +719,38 @@ export class RtfService {
     //   this.segment1 += `</tr></tbody></table>`
     //   //
     // }
+
+    //  //   css = (
+  //     '<style>' +
+  //     '@page WordSection1{size: 595.35pt 841.95pt;margin:182.0pt 36.0pt 36.0pt 36.0pt;}' +
+  //     'div.WordSection1 {page: WordSection1;}' +
+  //     'table{border-collapse:collapse;}td{border:0px none;width:1em;padding:2px;}' +
+  //     '</style>'
+  //   );
     let segment
     if (selectedtype === 1) {
       // portrait
       let sty1no = "font-family:Calibri, Geneva, sans-serif;font-size:11.0pt";
-      segment = `<div id="docx">`
-      segment += `<div class="WordSection1">`
-      segment += `<table style="width:650px; border-collapse:collapse;border-width:1px;"><tbody>`
-      segment += `<tr><td><h2 style="text-align:left;width:768px">TEST</h2></td></tr> `
-      segment += `<tr style="height:17%;">` 
-      segment += `<td style="${sty1no};width:50%;vertical-align:top">${headerinfo1}</br></br>`
-      segment += ` </td>`
-      segment += `<td style="width:50%;vertical-align:top;text-align:right;"><img src="https://artbased.com/api/v1/getimage/inv/${this.currentItem.InventoryCode}.jpg" alt="" width="${ww}" height=${hh} /></td>`
-      segment += `</tr>`
-      segment += `<tr ><td>&nbsp;</td></tr>`
-      segment += `<tr ><td>&nbsp;</td></tr>`
-    }
-    this.segment1 = segment;
+      segment = `<div id="docx">`  
+
+  //    segment +=  'css = ('
+  //  segment +=      '<style>'
+  // segment +=     '@page WordSection1{size: 595.35pt 841.95pt;margin:182.0pt 36.0pt 36.0pt 36.0pt;}' 
+  //  segment +=       'div.WordSection1 {page: WordSection1;}' 
+  //  segment +=      'table{border-collapse:collapse;}td{border:0px none;width:1em;padding:2px;}' 
+  //  segment +=      '</style>'
+      this.segment1 += `<div class="WordSection1">`
+      this.segment1 += `<table style="width:650px; border-collapse:collapse;border-width:1px;"><tbody>`
+      this.segment1 += `<tr><td><h2 style="text-align:left;width:768x"p>TEST</h2></td></tr> `
+      this.segment1 += `<tr style="height:17%;">` 
+      this.segment1 += `<td style="${sty1no};width:50%;vertical-align:top">${headerinfo1}</br></br>`
+      this.segment1 += ` </td>`
+      this.segment1 += `<td style="width:50%;vertical-align:top;text-align:right;"><img src="https://artbased.com/api/v1/getimage/inv/${this.currentItem.InventoryCode}.jpg" alt="" width="${ww}" height=${hh} /></td>`
+      this.segment1 += `</tr>`
+      this.segment1 += `<tr ><td>&nbsp;</td></tr>`
+      this.segment1 += `<tr ><td>&nbsp;</td></tr>`
+    } 
+    // this.segment1 = segment;
 
     this.buildEdition()
     this.buildProv()
@@ -719,7 +763,7 @@ export class RtfService {
       // portrait
       this.segment1 += `</tbody></table>`
       this.segment1 += `</div></div>`
-      this.wordportrait(this.segment1);
+      // this.wordportrait(this.segment1);
       // this.controller.ok('added')
     }
 
