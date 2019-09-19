@@ -10,12 +10,12 @@ import { bindable } from 'aurelia-framework';
 export class Home { 
   heading = "MRG HOME PAGE";
   footer = 'DataForm FOOTER...'
-  version = ' 305.22 '  
-  versionDate = 'Thur 9/20/2019 9am'
+  version = ' 305.24 '  
+  versionDate = 'Thur 9/19/2019 10am'
   prevversion = ' 303.53 ' 
   prevversionDate = 'Mon 8/5/2019 5pm'
   newversion = 'none'
-  issues = [ 
+  issues = [  
     // or press refresh button upper left corner',
     //https://circleci.com/workflow-run/1f3685ab-daba-41d7-8d25-6279df547b19
     // https://www.tutorialspoint.com/aurelia/aurelia_event_aggregator.htm

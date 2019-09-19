@@ -21,6 +21,7 @@ export class DataForm {
     this.eventAggregator = eventAggregator;
     this.createEventListeners();
     this.router = router
+    this.message = ""
   }
 
   async activate(params, routeConfig) {

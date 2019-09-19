@@ -190,25 +190,29 @@ export class Inventory {
       if (selecteddate !== 'undefined') this.search.selectedDateId = selecteddate
       if (owndedby !== 'undefined') this.search.owndedby = owndedby //search.owndedby
 
-      let qs = this.utilService.generateQueryString(this.search);
-      console.log('this.search ', this.search)
-      let counter = this.utilService.counter++
+      let qs = this.utilService.generateQueryString(this.search); 
+      if (qs === '?') {
+        alert('Please enter search criteria')
+      } else {
+        console.log('this.search ', this.search)
+        let counter = this.utilService.counter++
 
-      // opens multiple search results forms
-      //      let path = `searchInv${qs}&tabname=searchInv${this.utilService.counter++}`;
-      // opens 1 search results forms // to create a singleton find if last char of keyHashroot='-'
-      // add - at end before ${qs} its a singleton
-      let path = `searchInv-${qs}&tabname=Invsearch`;
-      // see authorize-step.js on how I make this a singleton with saving the result set
-      this.appService.inventorysearchresults = '';// reset not clicking on tab
-      // this.router.navigate(`#/action/${path}&tabname=actionlist`);
-let rt2 
-if (this.appService.gridview === 1){
- rt2 = `#/inventory/alt/${path}`
-} else  rt2 = `#/inventory/${path}`
-      this.router.navigate(rt2);
+        // opens multiple search results forms
+        //      let path = `searchInv${qs}&tabname=searchInv${this.utilService.counter++}`;
+        // opens 1 search results forms // to create a singleton find if last char of keyHashroot='-'
+        // add - at end before ${qs} its a singleton
+        let path = `searchInv-${qs}&tabname=Invsearch`;
+        // see authorize-step.js on how I make this a singleton with saving the result set
+        this.appService.inventorysearchresults = '';// reset not clicking on tab
+        // this.router.navigate(`#/action/${path}&tabname=actionlist`);
+        let rt2
+        if (this.appService.gridview === 1) {
+          rt2 = `#/inventory/alt/${path}`
+        } else rt2 = `#/inventory/${path}`
+        this.router.navigate(rt2);
 
-      this.appService.currentSearch = path //`Search${counter}`
+        this.appService.currentSearch = path //`Search${counter}`
+      }
     }
   }
 

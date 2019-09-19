@@ -127,13 +127,16 @@ export class Contact {
       // 
       this.search.deceased = '0'// bring up eveyone
       let qs = this.utilService.generateQueryString(this.search);
+       if (qs === '?') {
+        alert('Please enter search criteria')
+      } else {
       // let path = `searchContact${qs}&tabname=searchCntct${this.utilService.counter++}`;
       let path = `searchContact-${qs}&tabname=Contactsearch`;
       // see authorize-step.js on how I make this a singleton with saving the result set
       this.appService.contactsearchresults = '';// reset not clicking on tab
       let rt2 = `#/contact/${path}`
       this.router.navigate(rt2);
-
+      }
     }
   }
 

@@ -101,6 +101,9 @@ export class Org {
     if (this.search) {
       // console.log('this.search', this.search)
       let qs = this.utilService.generateQueryString(this.search);
+       if (qs === '?') {
+        alert('Please enter search criteria')
+      } else {
       // let path = `searchOrg${qs}&tabname=searchOrg${this.utilService.counter++}`;
       let path = `searchOrg-${qs}&tabname=Orgsearch`;
       // see authorize-step.js on how I make this a singleton with saving the result set
@@ -108,7 +111,7 @@ export class Org {
       let rt2 = `#/org/${path}`
       this.appService.currentSearch = path
       this.router.navigate(rt2)
-
+      }
     }
   }
 

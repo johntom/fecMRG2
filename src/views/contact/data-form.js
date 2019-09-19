@@ -70,6 +70,7 @@ export class DataForm {
     this.router = router
     this.dialogService = dialogService
     this.skippromt = false
+    this.message = ""
     // this.controller = controllerFactory.createForCurrentScope();
     // this.controller.addRenderer(new BootstrapFormRenderer());
     // this.controller.addObject(this);
