@@ -141,9 +141,9 @@ switch (user) {
       }
         break;
         case 'hooper':
-       if (this.password === 'GWENstefan:1231') {
+       if (this.password === 'GWENstefani1231') {
         this.appService.loginuser = this.user
-        this.appService.gridview = 1
+        this.appService.gridview = 0
         this.secured = true
 
       }
