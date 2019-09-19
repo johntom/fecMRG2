@@ -102,7 +102,7 @@
 						<div class="flex-row-none">
 							<!-- <div class="form-group flex-column-1"> -->
 							<div class="form-group flex-column-1 Rtable-cell--highlight">
-								<!--  class="form-control input-sm"  -->
+								<!--  class="form-controlfmedium input-sm"  -->
 
 								<div class="Rtable Rtable--2cols">
 
@@ -465,10 +465,9 @@
 										<strong> Current Location</strong>
 									</div>
 									<div styles=" height:34px;" class="Rtable-cell-70 Rtable-cell--highlight">
-										<select id="CurrentLocation " class="form-control "   change.delegate="changeLocation(changedValue)" value.bind="currentItem.CurrentLocation">
+										<select id="CurrentLocation " class="form-control " value.bind="currentItem.CurrentLocation">
 											<option model.bind="''">Choose...</option>
 											<option repeat.for="opt of appService.codesInventoryLocation " model.bind="opt.id">
-                        <!-- <option repeat.for="opt of appService.codesInventoryLocation " model.bind="opt"> -->
 												${opt.Description}
 											</option>
 										</select>
@@ -660,9 +659,9 @@
 					<button class="btn btn-sm btn-primary " click.delegate="saveinventory(0)">
 						Save & Stay
 					</button>
-					<!-- <button class="btn btn-sm btn-info " click.delegate="saveinventory(1)">
+					<button class="btn btn-sm btn-info " click.delegate="saveinventory(1)">
 						Save & Close
-					</button> -->
+					</button>
 &nbsp;&nbsp;
  
 <!-- <button click.delegate="addRTF()">addRTF</button> -->
