@@ -112,74 +112,207 @@ export class App {
     // colleen yemayah1
     // mdk   preparator
     // Matthew MRG4data!
+
+// Zachary  Serper100
+// Dan Serper-1
+// Valentina  calix18cup
+// mdk   preparato
+ let user  = this.user
  this.loginmessage = '';
-    if (this.user === 'michael') {
-      if (this.password === 'Homer@211') {
+ //this.loginmessage = 'wrong password!'
+switch (user) {
+      case null:
+        dim = 0
+        break;
+      case 'michael':
+       if (this.password === 'Homer211') {
         this.appService.loginuser = this.user
         this.appService.gridview = 1
         this.secured = true
 
-      } else this.loginmessage = 'wrong password!'
-    }
-    if (this.user === 'francesca') {
-      if (this.password === 'Charlotte12!') {
-        this.appService.loginuser = this.user
-        this.appService.gridview = 0
-        this.secured = true
-
-      } else this.loginmessage = 'wrong password!'
-    }
-    if (this.user === 'elleng') {
-      if (this.password === 'hihihi19') {
-        this.appService.loginuser = this.user
-        this.appService.gridview = 0
-        this.secured = true
       }
-    } else this.message = 'wrong password!'
+        break;
+        case 'halley':
+       if (this.password === 'Homer211') {
+        this.appService.loginuser = this.user
+        this.appService.gridview = 0
+        this.secured = true
 
-
-    if (this.user === 'Matthew') {
-      if (this.password === 'MRG4data!') {
+      }
+        break;
+        case 'hooper':
+       if (this.password === 'GWENstefan:1231') {
         this.appService.loginuser = this.user
         this.appService.gridview = 1
         this.secured = true
+
       }
-    } else this.loginmessage = 'wrong password!'
-    if (this.user === 'mdk') {
-      if (this.password === 'preparator') {
+        break;
+      case 'francesca':
+        if (this.password === 'Charlotte12!') {
         this.appService.loginuser = this.user
         this.appService.gridview = 0
         this.secured = true
-      }
-    } else this.loginmessage = 'wrong password!'
 
-    if (this.user === 'jrt') {
-      // if (this.password === 'jrt11111') {
-      this.appService.loginuser = this.user
-      this.appService.gridview = 1
-      this.secured = true
+      }
+        break;
+        case 'Matthew':
+        if (this.password === 'MRG4data!') {
+        this.appService.loginuser = this.user
+        this.appService.gridview = 1
+        this.secured = true
+
+      }
+        case 'mdk':
+        if (this.password === 'preparator') {
+        this.appService.loginuser = this.user
+        this.appService.gridview =0
+        this.secured = true
+
+      }
+        break;
+         case 'elleng':
+        if (this.password === 'hihihi19') {
+        this.appService.loginuser = this.user
+        this.appService.gridview =0
+        this.secured = true
+
+      }
+        break;
+       case 'jrt':
+      //  if (this.password === 'jrt11111') {
+        this.appService.loginuser = this.user
+        this.appService.gridview = 1
+        this.secured = true
+
       // }
-    } else this.loginmessage = 'wrong password!'
-
-
-    if (this.user === 'colleen') {
-      if (this.password === 'MRG4data!') {
-        this.appService.loginuser = this.user
-        this.appService.gridview = 0
-        this.secured = true
-      }
-    } else this.loginmessage = 'wrong password!'
-
-
-    if (this.user === 'mrg') {
-      if (this.password === 'Homer@211!' || this.password === 'jrt11111') {
-
+        break;
+          case 'jrt0':
+      //  if (this.password === 'jrt11111') {
         this.appService.loginuser = this.user
         this.appService.gridview = 0
         this.secured = true
 
+      // }
+        break;
+          case 'jrt2':
+      //  if (this.password === 'jrt11111') {
+        this.appService.loginuser = this.user
+        this.appService.gridview = 2
+        this.secured = true
+
+      // }
+        break;
+       case 'colleen':
+        if (this.password === 'MRG4data!') {
+        this.appService.loginuser = this.user
+        this.appService.gridview = 0
+        this.secured = true
+
       }
-    } else this.loginmessage = 'wrong password!'
+        break; 
+       case 'mrg':
+        if (this.password === 'Homer@211') {
+        this.appService.loginuser = this.user
+        this.appService.gridview = 1
+        this.secured = true
+
+      }
+        break;
+       case 'Zachary':
+        if (this.password === 'Serper100') {
+        this.appService.loginuser = this.user
+        this.appService.gridview = 0
+        this.secured = true
+
+      }
+        break;
+          case 'Dan':
+        if (this.password === 'Serper-1') {
+        this.appService.loginuser = this.user
+        this.appService.gridview = 1
+        this.secured = true
+
+      }
+      break;
+        case 'Valentina':
+        if (this.password === 'calix18cup') {
+        this.appService.loginuser = this.user
+        this.appService.gridview = 1
+        this.secured = true
+
+      }
+        break;
+    }
+
+
+    // if (this.user === 'michael') {
+    //   if (this.password === 'Homer@211') {
+    //     this.appService.loginuser = this.user
+    //     this.appService.gridview = 1
+    //     this.secured = true
+
+    //   } else this.loginmessage = 'wrong password!'
+    // }
+    // if (this.user === 'francesca') {
+    //   if (this.password === 'Charlotte12!') {
+    //     this.appService.loginuser = this.user
+    //     this.appService.gridview = 0
+    //     this.secured = true
+
+    //   } else this.loginmessage = 'wrong password!'
+    // }
+    // if (this.user === 'elleng') {
+    //   if (this.password === 'hihihi19') {
+    //     this.appService.loginuser = this.user
+    //     this.appService.gridview = 0
+    //     this.secured = true
+    //   }
+    // } else this.message = 'wrong password!'
+
+
+    // if (this.user === 'Matthew') {
+    //   if (this.password === 'MRG4data!') {
+    //     this.appService.loginuser = this.user
+    //     this.appService.gridview = 1
+    //     this.secured = true
+    //   }
+    // } else this.loginmessage = 'wrong password!'
+    // if (this.user === 'mdk') {
+    //   if (this.password === 'preparator') {
+    //     this.appService.loginuser = this.user
+    //     this.appService.gridview = 0
+    //     this.secured = true
+    //   }
+    // } else this.loginmessage = 'wrong password!'
+
+    // if (this.user === 'jrt') {
+    //   // if (this.password === 'jrt11111') {
+    //   this.appService.loginuser = this.user
+    //   this.appService.gridview = 1
+    //   this.secured = true
+    //   // }
+    // } else this.loginmessage = 'wrong password!'
+
+
+    // if (this.user === 'colleen') {
+    //   if (this.password === 'MRG4data!') {
+    //     this.appService.loginuser = this.user
+    //     this.appService.gridview = 0
+    //     this.secured = true
+    //   }
+    // } else this.loginmessage = 'wrong password!'
+
+
+    // if (this.user === 'mrg') {
+    //   if (this.password === 'Homer@211!' || this.password === 'jrt11111') {
+
+    //     this.appService.loginuser = this.user
+    //     this.appService.gridview = 0
+    //     this.secured = true
+
+    //   }
+    // } else this.loginmessage = 'wrong password!'
 
 
     // if (this.password === 'Homer@211!' || this.password === 'jrt11111') {

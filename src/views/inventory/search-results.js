@@ -154,8 +154,7 @@ export class SearchResults {
         }
       }
     },
-    pageSize: 15,
-
+   pageSize: 26,
     height: 500,
 
     //  serverPaging: true,
@@ -621,7 +620,7 @@ export class SearchResults {
     var sels = [];
     var grid = this.grid;
     var selectedRows = grid.select();
-    var maxRows = selectedRows.length / 2;
+    var maxRows = selectedRows.length ;/// 2;
 
     selectedRows.each(function (idx, el) {
       let dataItem = grid.dataItem(el);

@@ -610,7 +610,7 @@ this.grid.hideColumn("PurchasedDate");
 
 
     } else {
-      var maxRows = selectedRows.length / 2;
+      var maxRows = selectedRows.length ;// / 2;
       selectedRows.each(function (idx, el) {
         let dataItem = grid.dataItem(el);
       });
