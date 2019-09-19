@@ -10,7 +10,7 @@ import { bindable } from 'aurelia-framework';
 export class Home { 
   heading = "MRG HOME PAGE";
   footer = 'DataForm FOOTER...'
-  version = ' 305.19 '  
+  version = ' 305.20 '  
   versionDate = 'Wed 9/18/2019 8am'
   prevversion = ' 303.53 ' 
   prevversionDate = 'Mon 8/5/2019 5pm'
@@ -127,8 +127,10 @@ export class Home {
 `add orgs logic to contact`,
 `add exhibit to repro`,
 'nina has 1 fact sheet not 100%',
-'test gross with sold, not, nfs..'
-
+'test gross with sold, not, nfs..',
+'http://demos.codexworld.com/export-html-to-word-doc-docx-using-javascript/',
+'https://sebsauvage.net/wiki/doku.php?id=word_document_generation',
+'https://www.codexworld.com/export-html-to-word-doc-docx-using-javascript/',
 
   ]
   todocomplete = [

@@ -130,7 +130,35 @@ export class Promptmerge {
     return segment
   };
 
+  async wordportraitFixed(segment) {
+    var html, link, blob, url, css;
 
+
+    // css = (
+    //   '<style>' +
+    //   '@page WordSection1{size: 595.35pt 841.95pt;margin:182.0pt 36.0pt 36.0pt 36.0pt;}' +
+    //   'div.WordSection1 {page: WordSection1;}' +
+    //   'table{border-collapse:collapse;}td{border:0px none;width:1em;padding:2px;}' +
+    //   '</style>'
+    // );
+
+
+    html = segment;//window.docx.innerHTML;
+    blob = new Blob(['\ufeff', css + html], {
+      type: 'application/msword'
+    });
+    url = URL.createObjectURL(blob);
+    link = document.createElement('A');
+    link.href = url;
+    // Set default file name. 
+    // Word will append file extension - do not add an extension here.
+    link.download = this.savelistname;//'Document';
+    document.body.appendChild(link);
+    if (navigator.msSaveOrOpenBlob) navigator.msSaveOrOpenBlob(blob, this.savelistname + '.doc'); //'Document.doc' IE10-11
+    else link.click();  // other browsers
+    document.body.removeChild(link);
+    return segment
+  };
   async wordportrait(segment) {
     var html, link, blob, url, css;
 
@@ -456,9 +484,9 @@ export class Promptmerge {
         if (!invitem.Signed && invitem.Dated) wd += 'dated'
 
         // let sd = invitem.Signed // Dated
-//  let sty1no = "font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;
-// width:70%; vertical-align:top;";// text-align:left;padding:3px
-   
+        //  let sty1no = "font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;
+        // width:70%; vertical-align:top;";// text-align:left;padding:3px
+
         segment += `<tr style="height:17%;">`
         segment += `<td style="${this.sty1no};width:70%;vertical-align:top">${invitem.rtf2}</br></br>`
         segment += `${wd}</td>`
@@ -631,11 +659,11 @@ export class Promptmerge {
         if (invitem.Signed && invitem.Dated) wd += ' and dated'
         if (!invitem.Signed && invitem.Dated) wd += 'dated'
         let sty1no = "font-family:Calibri, Geneva, sans-serif;font-size:11.0pt";// text-align:left;padding:3px
-  //   this.currentItem.rtf1 = '<span style="font-family:Calibri, Geneva, sans-serif;font-size:11.0pt">' + this.segment1 + '</span>';
-  //  this.segment1 += `<td style="font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;width:50%;vertical-align:top;text-align:left;padding-left:2px">${headerinfo1}</td>`
-    
-      //  let sty1no = "padding:3px;font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;vertical-align:top;text-align:left;";
-   // <span style=${sty1no};> </span>
+        //   this.currentItem.rtf1 = '<span style="font-family:Calibri, Geneva, sans-serif;font-size:11.0pt">' + this.segment1 + '</span>';
+        //  this.segment1 += `<td style="font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;width:50%;vertical-align:top;text-align:left;padding-left:2px">${headerinfo1}</td>`
+
+        //  let sty1no = "padding:3px;font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;vertical-align:top;text-align:left;";
+        // <span style=${sty1no};> </span>
         segment += `<tr style="height:17%;">`
         segment += `<td style="${sty1no};width:70%;vertical-align:top">${invitem.rtf2}</br></br>`
         segment += ` ${wd}</td>`
@@ -706,7 +734,65 @@ export class Promptmerge {
       this.wordportrait(segment);
       this.controller.ok('added')
     }
-    // if (this.listtype === 4) {
+    if (this.listtype === 7) {
+      let htodoc
+      htodoc = `<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>`
+      htodoc += `<head><title>Microsoft Office HTML Example</title>`
+      htodoc += `<link rel=File-List href="mydocument_files/filelist.xml">`
+      htodoc += `<style><!-- `
+      htodoc += `@page`
+      htodoc += `{`
+      htodoc += `size:21cm 29.7cmt;  /* A4 */`
+      htodoc += `margin:1cm 1cm 1cm 1cm; /* Margins: 2.5 cm on each side */`
+      htodoc += `mso-page-orientation: portrait;  `
+      htodoc += `}`
+      htodoc += `@page Section1 { }`
+      htodoc += `div.Section1 { page:Section1; }`
+      htodoc += `p.MsoHeader, p.MsoFooter { border: 1px solid black; }`
+      htodoc += `--></style>`
+      htodoc += `</head>`
+      htodoc += `<body>`
+      htodoc += `<div class=Section1>`
+      htodoc += `Here is an image:<br>`
+      // htodoc += `<img src="mydocument_files/logo_google.png">`
+      htodoc += `<img src="https://johntom.github.io/fecMRG2/src/images/mrgFooterSM.png">`
+      // htodoc += `<img src="images/mrgFooterSM.png">`
+      // D:\Frameworks\fecMRG2
+
+      htodoc += `</div>`
+      htodoc += `</body>`
+      htodoc += `</html>`
+      this.wordportrait(htodoc);
+      this.controller.ok('added')
+    }
+
+    if (this.listtype === 8) {
+      let htodoc
+      htodoc = `<html xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns:m="http://schemas.microsoft.com/office/2004/12/omml"= xmlns="http://www.w3.org/TR/REC-html40">`
+      htodoc += `<body>`
+
+      htodoc += `<div style="mso-element:header;" id="h1">`
+      htodoc += `<p class=MsoHeader>Header</p>`
+      htodoc += `</div>`
+
+      htodoc += `<div style='mso-element:footer' id=f1>`
+      htodoc += `<p class=MsoFooter><span class=SpellE>Footer</span> page <!--[if supportFields]><span>`
+      htodoc += `class=MsoPageNumber><span style='mso-element:field-begin'></span><span>`
+      htodoc += `style='mso-spacerun:yes'> </span>PAGE <span style='mso-element:field-separator'></span></span><![endif]--><span>`
+      htodoc += `class=MsoPageNumber><span style='mso-no-proof:yes'>1</span></span><!--[if supportFields]><span>`
+      htodoc += `class=MsoPageNumber><span style='mso-element:field-end'></span></span><![endif]--><span`
+      htodoc += `class=MsoPageNumber>/</span><!--[if supportFields]><span class=MsoPageNumber><span`
+      htodoc += `style='mso-element:field-begin'></span> NUMPAGES <span style='mso-element:field-separator'></span></span><![endif]--><span`
+      htodoc += `class=MsoPageNumber><span style='mso-no-proof:yes'>1</span></span><!--[if supportFields]><span`
+      htodoc += `class=MsoPageNumber><span style='mso-element:field-end'></span></span><![endif]-->`
+      htodoc += `</p>`
+      htodoc += `</div>`
+
+      htodoc += `</body>`
+      htodoc += `</html>`
+      this.wordportraitFixed(htodoc);
+      this.controller.ok('added')
+    }
     //   //  segment += `</tbody></table>`
     //   // segment += `</div></div>`
     //   this.wordlandscape(segment);

@@ -98,70 +98,65 @@
 		<div class="flex-grid">
 				<ak-grid class="flex-row-1 overflow-y-auto" id="grid" k-data-source.bind="datasource" k-widget.bind="grid"
          k-sortable.bind="{ mode: 'multiple',   allowUnsort: 'true'}"
-				 k-height.bind="700" k-filterable.bind="{  mode: 'row' }" k-editable="inline" k-reorderable.bind="true" k-groupable.bind="true" 
+				 k-height.bind="900" k-filterable.bind="{  mode: 'row' }" k-editable="inline" k-reorderable.bind="true" k-groupable.bind="true" 
 				 k-selectable="[row,multiple]" 	 k-resizable.bind="true" 
          k-on-edit.delegate="onEdit($event.detail)" k-on-data-bound.delegate="onDataBound($event.detail)"
 				 k-on-change.delegate="rowSelected($event.detail)" k-toolbar.bind="['excel']" k-excel.bind="{ fileName: 'Inventory.xlsx',allPages: true }"
 				 k-pdf.bind="{ allPages: true, avoidLinks: true,landscape: true, repeatHeaders: true, paperSize: 'A4'}" k-column-menu.bind="true"
 				 k-scrollable.bind="scrollable">
-					<div style="width: 1750px"></div>
-
-					<ak-col k-field="InventoryCode" k-locked.bind="true" k-lockable.bind="false" k-filterable.bind="true"
-           k-title="Code" k-width.bind="160"
+					<div style="width: 1300px"></div>
+	<!-- <ak-col k-field="InventoryCode" k-locked.bind="true" k-lockable.bind="false" k-filterable.bind="true" -->
+         
+					<ak-col k-field="InventoryCode" 
+           k-title="Code" k-width.bind="130"
 					 k-template="<button click.delegate='detailsEdit($event)' class='k-button'>&nbsp;&nbsp;#=InventoryCode#</button>">
 					</ak-col>
-					<ak-col k-title="Image" k-field="InventoryCode" k-width="90px" k-filterable.bind="false">
-						<ak-template>
+          <!-- k-filterable.bind="false" -->
+					<!-- <ak-col k-title="Image" k-field="InventoryCode" k-width="90px" > -->
+					<ak-col k-title="Image" k-field="Image" k-width="90px" >
+					<ak-template>
 							<div class='customer-photo-sq' style="background-image: url(https://artbased.com/api/v1/getimage/inv/${InventoryCode}.jpg?${epoch};"
 							 click.delegate="showModalImg($event)"></div>
 						</ak-template>
 					</ak-col>
 
-					<ak-col k-field="ArtistName" k-title="Artist" k-width="160px"> </ak-col>
+				           <ak-col k-title="Title" k-width="180px" k-field="Title"></ak-col>
+                <ak-col k-title="Year" k-width="100px" k-field="InvYear"></ak-col>
+                <!--  k-filterable.bind="true" -->
+                <ak-col k-title="Location" k-width="120px" k-field="currentocationname"></ak-col>
+                <ak-col k-title="Bin" k-width="100px" k-field="Bin"></ak-col>
+                <ak-col k-title="H" k-width="120px" k-field="UnframedHeight"></ak-col>
+                <ak-col k-title="W" k-width="120px" k-field="UnframedWidth"></ak-col>
+                <ak-col k-title="D" k-width="120px" k-field="UnframedDepth"></ak-col>
 
-					<ak-col k-title="Title" k-width="180px" k-field="Title"></ak-col>
-					<ak-col k-title="Year" k-width="100px" k-field="InvYear"></ak-col>
-					<!-- <ak-col   k-title="Medium" k-width="180px" k-template="#= (typeof MediumSupportobj == 'undefined' || MediumSupportobj == null) ? '' : MediumSupportobj.Description #"></ak-col> -->
-					<ak-col k-field="Medium" k-title="Medium" k-width="180px"> </ak-col>
+                <ak-col k-field="Medium" k-title="Medium" k-width="180px" style='white-space: nowrap '> </ak-col>
 
-					<ak-col k-title="Unframed" k-width="340px">
-						<ak-col k-title="H" k-width.bind="50" k-field="UnframedHeight"></ak-col>
-						<ak-col k-title=" " k-width.bind="50" k-field="UnframedHeight16"></ak-col>
-						<ak-col k-title="W" k-width.bind="50" k-field="UnframedWidth"></ak-col>
-						<ak-col k-title=" " k-width.bind="50" k-field="UnframedWidth16"></ak-col>
-						<ak-col k-title="D" k-width.bind="50" k-field="UnframedDepth"></ak-col>
-						<ak-col k-title=" " k-width.bind="50" k-field="UnframedDepth16"></ak-col>
-					</ak-col>
-					<ak-col k-title="Framed" k-width="340px">
-						<ak-col k-title="H" k-width.bind="50" k-field="FramedHeight"></ak-col>
-						<ak-col k-title=" " k-width.bind="50" k-field="FramedHeight16"></ak-col>
-						<ak-col k-title="W" k-width.bind="50" k-field="FramedWidth"></ak-col>
-						<ak-col k-title=" " k-width.bind="50" k-field="FramedWidth16"></ak-col>
-						<ak-col k-title="D" k-width.bind="50" k-field="FramedDepth"></ak-col>
-						<ak-col k-title=" " k-width.bind="50" k-field="FramedDepth16"></ak-col>
-					</ak-col>
-					<ak-col k-title="Sight" k-width="340px">
-						<ak-col k-title="H" k-width.bind="50" k-field="SightHeight"></ak-col>
-						<ak-col k-title=" " k-width.bind="50" k-field="SightHeight16"></ak-col>
-						<ak-col k-title="W" k-width.bind="50" k-field="SightWidth"></ak-col>
-						<ak-col k-title=" " k-width.bind="50" k-field="SightWidth16"></ak-col>
-						<ak-col k-title="D" k-width.bind="50" k-field="SightDepth"></ak-col>
-						<ak-col k-title=" " k-width.bind="50" k-field="SightDepth16"></ak-col>
-					</ak-col>
-					<ak-col k-title="Location" k-width="120px" k-field="currentocationname"></ak-col>
-					<ak-col k-title="Status" k-width="100px" k-field="ownedbyname"></ak-col>
-					<ak-col k-title="Sold" k-width="60px">
-						<ak-template>
-							${Sold | soldstatus}
-						</ak-template>
-					</ak-col>
-					<ak-col k-title="Sold To " k-width="180px" k-field="soldtoname "></ak-col>
-					<ak-col k-title="Owned By" k-width="180px" k-field="ownername "></ak-col>
-					<ak-col k-title="Bin" k-width="100px" k-field="Bin"></ak-col>
-					<ak-col k-title="Sold Date" k-width="110px" k-field="SoldDate" k-format="{0:MM/dd/yyyy}"></ak-col>
+
+
+                <!-- <ak-col k-field="Note" k-title="Note" k-width="180px"> </ak-col> -->
+                <ak-col k-field="Note" k-title="Note" k-width="180px">
+                    <ak-template>
+                        ${notes[0].Notes}
+                    </ak-template>
+                </ak-col>
+
+
+                <ak-col k-title="Owner" k-width="100px" k-field="ownedbyname"></ak-col>
+                <ak-col k-title="Sold" k-width="60px">
+                    <ak-template>
+                        ${Sold | soldstatus}
+                    </ak-template>
+                </ak-col>
+                <!-- <ak-col k-title="Purchased From" k-width="180px" k-field="purchasedfromname"></ak-col>
+					<ak-col k-title="Purchased Date" k-width="110px" k-field="PurchasedDate" k-format="{0:MM/dd/yyyy}"></ak-col> -->
+
+                <ak-col k-title="Sold To " k-width="180px" k-field="soldtoname "></ak-col>
+                <ak-col k-title="Owned By" k-width="180px" k-field="ownername "></ak-col>
+                <ak-col k-title="Sold Date" k-width="110px" k-field="SoldDate" k-format="{0:MM/dd/yyyy}"></ak-col>
 				</ak-grid>
 			</div>
-		
+		  
+
 		<div class="flex-row-none section-footer">
 			<button id="addInputBtn " class="btn btn-sm btn-success " type="button " click.delegate="addinventory() "><strong>A</strong>dd Inventory</button>			&nbsp;
 			<div show.bind="recCount!==0">
@@ -176,5 +171,10 @@
 			<!-- ${footer} ${queryParams} &nbsp -->
 
 		</div>
+ 
 	</section>
 </template>
+<!-- 
+<br><br><br><br><br>
+<br><br><br><br><br>
+<br><br><br><br><br> -->

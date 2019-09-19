@@ -202,7 +202,10 @@ export class Inventory {
       // see authorize-step.js on how I make this a singleton with saving the result set
       this.appService.inventorysearchresults = '';// reset not clicking on tab
       // this.router.navigate(`#/action/${path}&tabname=actionlist`);
-      let rt2 = `#/inventory/${path}`
+let rt2 
+if (this.appService.gridview === 1){
+ rt2 = `#/inventory/alt/${path}`
+} else  rt2 = `#/inventory/${path}`
       this.router.navigate(rt2);
 
       this.appService.currentSearch = path //`Search${counter}`

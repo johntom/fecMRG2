@@ -3,7 +3,7 @@
   //     this.smallview = true
   //   } else this.smallview = false
   // }
-  import { ApiService } from '../../utils/servicesApi'
+ import { ApiService } from '../../utils/servicesApi'
 import { inject } from 'aurelia-dependency-injection'
 import { Router, Redirect } from 'aurelia-router'
 import { UtilService } from '../../services/util-service'
@@ -19,7 +19,7 @@ import { Promptyn } from '../../services/promptyn';
 // @inject(Router, ApiService, UtilService, ApplicationService, MyDataService, DialogService)
 
 @inject(Router, ApiService, UtilService, ApplicationService, MyDataService, DialogService, EventAggregator)
-export class SearchResults {
+export class SearchResults2 {
   heading = 'Search Results...';
   footer = 'Search Results...';
   recordId = '';
@@ -154,8 +154,9 @@ export class SearchResults {
         }
       }
     },
-    pageSize: 15,
-
+    // pageSize: 15,
+    // height: 400,
+    pageSize: 20,
     height: 500,
 
     //  serverPaging: true,
@@ -196,11 +197,15 @@ export class SearchResults {
 
   load() {
     //  this.busy.active = true
-    var options = localStorage["kendo-grid-options"];
-    if (options) {
-      this.grid.setOptions(JSON.parse(options));
-      //  this.busy.active = false
-    }
+    // var options = localStorage["kendo-grid-options"];
+    // if (options) {
+    //   this.grid.setOptions(JSON.parse(options));
+    //   //  this.busy.active = false
+    // }
+    // if(this.grid.hideColumn(1)===true)this.grid. hideColumn(1);
+this.grid.hideColumn(1);
+
+
   }
 
   reloadPage() {
@@ -294,7 +299,9 @@ export class SearchResults {
   
    
    
-    this.loadGrid() 
+    // this.loadGrid() 
+
+    
   }
   activate(params, routeConfig) {
     this.queryParams = this.utilService.parseQueryStringUrl();
@@ -329,6 +336,8 @@ export class SearchResults {
     if (options) {
       this.grid.setOptions(JSON.parse(options));
     }
+
+
   }
 
   async loadData() {

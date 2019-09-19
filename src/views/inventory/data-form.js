@@ -85,7 +85,10 @@ export class DataForm {
   // { id: 5, name: "registrar" }, { id: 6, name: "presentation(not avail yet)" }]
   listtypes = [{ id: -1, name: 'choose' }, { id: 0, name: "exhibition" }, { id: 1, name: "price list" },
   { id: 2, name: "location list" }, { id: 3, name: "box label" }, { id: 4, name: "condition" },
-  { id: 5, name: "registrar" }, { id: 6, name: "presention" }]
+  { id: 5, name: "registrar" }, { id: 6, name: "presention" } ,
+  { id: 7, name: "test1" }, { id: 8, name: "test2" } 
+  
+  ]
   //  listtypes = [{ id: 0, name: "exh(na)" }, { id: 1, name: "prce-lst" },
   //   { id: 2, name: "loc-list" }, { id: 3, name: "box label" }, { id: 4, name: "condition" },
   //   { id: 5, name: "registrar" }, { id: 6, name: "pres-na" }]
@@ -120,26 +123,26 @@ export class DataForm {
       }
     }
   });
- 
-  addNew() { 
+
+  addNew() {
     // strip * as last char of new string
     let slen = this.multiselect.input.val().length
-    let lastvalue = this.multiselect.input.val().substring(0, slen) ;
+    let lastvalue = this.multiselect.input.val().substring(0, slen);
     var value = this.multiselect.input.val()
-    if (lastvalue==='*')  { 
-    
-    value.substring(0, slen-1).trim()  ;  
-    }  
-        console.log('val ',value)
+    if (lastvalue === '*') {
+
+      value.substring(0, slen - 1).trim();
+    }
+    console.log('val ', value)
     var dataSource = this.multiselect.dataSource;
-    var widget = this.multiselect 
+    var widget = this.multiselect
 
     //  if (confirm("Are you sure?")) {
     let bod = {
       "CodeType": 3,
       "Description": value,
       "CodeTypeDesc": "Genre"
-    }  
+    }
 
     this.api.addmediumsupport(bod)
       .then((jsonRes) => {
@@ -177,7 +180,7 @@ export class DataForm {
     // this.selectedlist = 5
     this.selectedlist = -1
     this.utilService = utilService;
-   
+this.message = ""
   }
   // publish() { 
   //   var payload = 'This is some data...';
@@ -193,15 +196,15 @@ export class DataForm {
   //   console.log('Disposed!!!'); 
   // }
 
-changeLocation(changedValue){
-  //  console.log('changeLocation ',changedValue,this.currentItem.CurrentLocation.id+' '+this.currentItem.CurrentLocation.Description)
-  // currentocationname " value.bind="currentItem.CurrentLocation">
+  changeLocation(changedValue) {
+    //  console.log('changeLocation ',changedValue,this.currentItem.CurrentLocation.id+' '+this.currentItem.CurrentLocation.Description)
+    // currentocationname " value.bind="currentItem.CurrentLocation">
 
-  // this.currentItem.CurrentLocation=this.currentItem.CurrentLocation.id
- let idx  = this.appService.codesInventoryLocation.findIndex(x => x.id === this.currentItem.CurrentLocation); 
-  this.currentItem.currentocationname = this.appService.codesInventoryLocation[idx].Description
-  alert(idx+' '+ this.currentItem.currentocationname)
-}
+    // this.currentItem.CurrentLocation=this.currentItem.CurrentLocation.id
+    let idx = this.appService.codesInventoryLocation.findIndex(x => x.id === this.currentItem.CurrentLocation);
+    this.currentItem.currentocationname = this.appService.codesInventoryLocation[idx].Description
+    // alert(idx + ' ' + this.currentItem.currentocationname)
+  }
 
   soldtoEdit() {
     // save 
@@ -401,26 +404,26 @@ changeLocation(changedValue){
   }
   activate(params, routeConfig) {
     this.queryParams = this.utilService.parseQueryStringUrl();
-    if(this.queryParams!==null){
-    const qs = this.queryParams.substring(this.queryParams.indexOf('?') + 1)
-    
-    console.log('qs',qs)    
- 
-    const pairs = qs.split('&')
-    const queryParams = {}
-    let slname
-    let ct = 0
-    this.itsaquickie = false
-    pairs.forEach(p => {
-      const kv = p.split('=')
-      if (ct === 0) {
-        if (kv[0] === 'itsaquickie') {
+    if (this.queryParams !== null) {
+      const qs = this.queryParams.substring(this.queryParams.indexOf('?') + 1)
 
-          this.itsaquickie = true;// slname = kv[1]
-        }
-      }
-      ct++
-    });
+      console.log('qs', qs)
+
+      const pairs = qs.split('&')
+      const queryParams = {}
+      let slname
+      let ct = 0
+  //    this.itsaquickie = false
+      // pairs.forEach(p => {
+      //   const kv = p.split('=')
+      //   if (ct === 0) {
+      //     if (kv[0] === 'itsaquickie') {
+
+      //       this.itsaquickie = true;// slname = kv[1]
+      //     }
+      //   }
+      //   ct++
+      // });
     }
 
     // this.itsaquickie     this.itsaquickie = true
@@ -811,10 +814,10 @@ changeLocation(changedValue){
           let tab = this.appService.tabs.find(f => f.isSelected);
           // window.alert("Save successful!");
           this.message = "Save successful. Inventory updated @ " + savetime
-          if (this.itsaquickie) {
+          // if (this.itsaquickie) {
 
-            this.requestcloseNoCheck()
-          }
+          //   this.requestcloseNoCheck()
+          // }
           this.appService.testrec = this.currentItem
           this.appService.currentView = this.currentItem
           this.appService.originalrec = JSON.parse(JSON.stringify(this.currentItem))
@@ -826,10 +829,9 @@ changeLocation(changedValue){
           }
         });
       } else this.message = "No changes detected to save. "
-      if (this.itsaquickie) {
-
-        this.requestcloseNoCheck()
-      }
+      // if (this.itsaquickie) {
+      //   this.requestcloseNoCheck()
+      // }
       if (option === 1) {
         //     this.requestclose()
       }

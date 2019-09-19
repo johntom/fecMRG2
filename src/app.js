@@ -27,6 +27,7 @@ export class App {
       { "route": '', redirect: 'home' },
       { "route": 'home', name: 'home', moduleId: PLATFORM.moduleName('./views/home/home'), nav: true, title: 'Home' },
       { "route": 'inventory/:id', name: 'inventory-search-results', "moduleId": PLATFORM.moduleName('./views/inventory/search-results'), title: 'Search Results', activationStrategy: 'replace' },
+      { "route": 'inventory/alt/:id', name: 'inventory-search-results', "moduleId": PLATFORM.moduleName('./views/inventory/search-results2'), title: 'Search Results', activationStrategy: 'replace' },
       { "route": 'inventory/data/:id', name: 'inventory-data-form', "moduleId": PLATFORM.moduleName('./views/inventory/data-form'), title: 'Data Form', activationStrategy: 'replace' },
       { "route": 'inventory', name: 'inventory', "moduleId": PLATFORM.moduleName('./views/inventory/inventory'), nav: true, title: 'Inventory' },
       { "route": 'inventory/rtfcreate/:id', name: 'rtfcreate', "moduleId": PLATFORM.moduleName('./views/inventory/rtfcreate'), title: 'rtfcreate Form', activationStrategy: 'replace' },
@@ -38,7 +39,6 @@ export class App {
       { "route": 'catalog', name: 'catalog', moduleId: PLATFORM.moduleName('./views/catalog/catalog'), nav: true, title: 'Catalog' },
       { "route": 'catalog/:id', name: 'catalog-search-results', moduleId: PLATFORM.moduleName('./views/catalog/search-results'), title: 'Search Results', activationStrategy: 'replace' },
       { "route": 'catalog/data/:id', name: 'catalog-data-form', moduleId: PLATFORM.moduleName('./views/catalog/data-form'), title: 'Data Form', activationStrategy: 'replace' },
-
       { "route": 'contact/:id', name: 'contact-search-results', moduleId: PLATFORM.moduleName('./views/contact/search-results'), title: 'Search Results', activationStrategy: 'replace' },
       { "route": 'contact/data/:id', name: 'contact-data-form', moduleId: PLATFORM.moduleName('./views/contact/data-form'), title: 'Data Form', activationStrategy: 'replace' },
 
@@ -111,14 +111,14 @@ export class App {
     // colleen yemayah1
     // mdk   preparator
     // Matthew MRG4data!
-
+ this.loginmessage = '';
     if (this.user === 'michael') {
       if (this.password === 'Homer@211') {
         this.appService.loginuser = this.user
         this.appService.gridview = 1
         this.secured = true
 
-      } else this.message = 'wrong password'
+      } else this.loginmessage = 'wrong password!'
     }
     if (this.user === 'francesca') {
       if (this.password === 'Charlotte12!') {
@@ -126,7 +126,7 @@ export class App {
         this.appService.gridview = 0
         this.secured = true
 
-      } else this.message = 'wrong password'
+      } else this.loginmessage = 'wrong password!'
     }
     if (this.user === 'elleng') {
       if (this.password === 'hihihi19') {
@@ -134,7 +134,7 @@ export class App {
         this.appService.gridview = 0
         this.secured = true
       }
-    } else this.message = 'wrong password'
+    } else this.message = 'wrong password!'
 
 
     if (this.user === 'Matthew') {
@@ -143,14 +143,14 @@ export class App {
         this.appService.gridview = 1
         this.secured = true
       }
-    } else this.message = 'wrong password'
+    } else this.loginmessage = 'wrong password!'
     if (this.user === 'mdk') {
       if (this.password === 'preparator') {
         this.appService.loginuser = this.user
         this.appService.gridview = 0
         this.secured = true
       }
-    } else this.message = 'wrong password'
+    } else this.loginmessage = 'wrong password!'
 
     if (this.user === 'jrt') {
       // if (this.password === 'jrt11111') {
@@ -158,7 +158,7 @@ export class App {
       this.appService.gridview = 1
       this.secured = true
       // }
-    } else this.message = 'wrong password'
+    } else this.loginmessage = 'wrong password!'
 
 
     if (this.user === 'colleen') {
@@ -167,7 +167,7 @@ export class App {
         this.appService.gridview = 0
         this.secured = true
       }
-    } else this.message = 'wrong password'
+    } else this.loginmessage = 'wrong password!'
 
 
     if (this.user === 'mrg') {
@@ -178,7 +178,7 @@ export class App {
         this.secured = true
 
       }
-    } else this.message = 'wrong password'
+    } else this.loginmessage = 'wrong password!'
 
 
     // if (this.password === 'Homer@211!' || this.password === 'jrt11111') {
