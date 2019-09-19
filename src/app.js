@@ -141,7 +141,7 @@ switch (user) {
       }
         break;
         case 'hooper':
-       if (this.password === 'GWENstefani1231') {
+       if (this.password === 'GWENstefani123!') {
         this.appService.loginuser = this.user
         this.appService.gridview = 0
         this.secured = true
@@ -204,7 +204,7 @@ switch (user) {
       // }
         break;
        case 'colleen':
-        if (this.password === 'MRG4data!') {
+        if (this.password === 'yemayah1') {
         this.appService.loginuser = this.user
         this.appService.gridview = 0
         this.secured = true
