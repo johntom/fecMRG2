@@ -786,6 +786,11 @@ export class Promptmerge {
       htodoc += `class=MsoPageNumber><span style='mso-no-proof:yes'>1</span></span><!--[if supportFields]><span`
       htodoc += `class=MsoPageNumber><span style='mso-element:field-end'></span></span><![endif]-->`
       htodoc += `</p>`
+      htodoc += `<div class=Section1>`
+      htodoc += `Here is an image:<br>`
+      // htodoc += `<img src="mydocument_files/logo_google.png">`
+      htodoc += `<img src="https://johntom.github.io/fecMRG2/src/images/mrgFooterSM.png">`
+      
       htodoc += `</div>`
 
       htodoc += `</body>`
