@@ -156,7 +156,7 @@ export class SearchResults2 {
     },
     // pageSize: 15,
     // height: 400,
-    pageSize: 20,
+    pageSize: 26,
     height: 500,
 
     //  serverPaging: true,
@@ -191,11 +191,21 @@ export class SearchResults2 {
     this.busy.active = true
   }
   save() {
-    localStorage["kendo-grid-options"] = kendo.stringify(this.grid.getOptions());
-    alert("Saved to storage. Reload now and click the Load button");
+    // localStorage["kendo-grid-options"] = kendo.stringify(this.grid.getOptions());
+    // alert("Saved to storage. Reload now and click the Load button");
+// this.grid.hideColumn(1);
+// this.grid.hideColumn(16);//purchasedfromname
+// this.grid.hideColumn(17);//PurchasedDate
+// this.grid.Column[1].hidden=false 
+this.grid.showColumn("Image");
+this.grid.showColumn("purchasedfromname");
+this.grid.showColumn("PurchasedDate");
   }
 
   load() {
+    // grid.setOptions({
+    //       sortable: true
+    // });
     //  this.busy.active = true
     // var options = localStorage["kendo-grid-options"];
     // if (options) {
@@ -203,9 +213,14 @@ export class SearchResults2 {
     //   //  this.busy.active = false
     // }
     // if(this.grid.hideColumn(1)===true)this.grid. hideColumn(1);
-this.grid.hideColumn(1);
+// this.grid.hideColumn(1);
+// this.grid.hideColumn(16);//purchasedfromname
+// this.grid.hideColumn(17);//PurchasedDate
 
-
+this.grid.hideColumn("Image");
+this.grid.hideColumn("purchasedfromname");
+this.grid.hideColumn("PurchasedDate");
+   
   }
 
   reloadPage() {
@@ -300,7 +315,9 @@ this.grid.hideColumn(1);
    
    
     // this.loadGrid() 
-
+// this.grid.hideColumn("Image");
+// this.grid.hideColumn("purchasedfromname");
+// this.grid.hideColumn("PurchasedDate");
     
   }
   activate(params, routeConfig) {
@@ -378,8 +395,11 @@ this.grid.hideColumn(1);
             this.recCount = inv.length
           }
 // this.loadGrid() 
-          return inv
-
+        
+this.grid.hideColumn("Image");
+this.grid.hideColumn("purchasedfromname");
+this.grid.hideColumn("PurchasedDate");
+      return inv
         });
     }
   }

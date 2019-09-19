@@ -69,8 +69,8 @@
 		<h3>Inventory ( ${recCount})
 			<div show.bind="recCount!==0">
 		
-    <button class="btn btn-sm btn-primary " click.delegate="save()">Save Grid</button>
-	 <button class="btn btn-sm btn-primary " click.delegate="load()">Load Settings</button>
+    <button class="btn btn-sm btn-primary " click.delegate="save()">Show Hidden Columns</button>
+	 <button class="btn btn-sm btn-primary " click.delegate="load()">Hide Preset Columns</button>
       <!-- <button class="btn btn-sm btn-primary " click.delegate="performAction1Refresh()">Refresh Grid</button>
 		
 		</div>
@@ -147,13 +147,15 @@
                         ${Sold | soldstatus}
                     </ak-template>
                 </ak-col>
-                <!-- <ak-col k-title="Purchased From" k-width="180px" k-field="purchasedfromname"></ak-col>
-					<ak-col k-title="Purchased Date" k-width="110px" k-field="PurchasedDate" k-format="{0:MM/dd/yyyy}"></ak-col> -->
-
+        
                 <ak-col k-title="Sold To " k-width="180px" k-field="soldtoname "></ak-col>
                 <ak-col k-title="Owned By" k-width="180px" k-field="ownername "></ak-col>
                 <ak-col k-title="Sold Date" k-width="110px" k-field="SoldDate" k-format="{0:MM/dd/yyyy}"></ak-col>
-				</ak-grid>
+			        <ak-col k-title="Purchased From" k-width="180px" k-field="purchasedfromname"></ak-col>
+					<ak-col k-title="Purchased Date" k-width="110px" k-field="PurchasedDate" k-format="{0:MM/dd/yyyy}"></ak-col>
+
+    
+      	</ak-grid>
 			</div>
 		  
 

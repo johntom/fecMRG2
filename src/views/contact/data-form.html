@@ -2,7 +2,7 @@
 
 
 	<require from="../../resources/value-converters/date-format"></require>
-<style>
+	<style>
 		#data-form-ext .tab.tab-selected .form-tab-box {
 			background-color: lightblue;
 			border-color: #7bbbce
@@ -78,39 +78,14 @@
 									<div class="Rtable-cell-70  Rtable-cell--highlight">
 										<input type=" text " id="LastName" class=" form-control input-sm " value.bind="currentItem.LastName">
 									</div>
-									<div class="Rtable-cell-30 Rtable-cell--highlight">
-										<strong>Spouse</strong>
-									</div>
-									<div class="Rtable-cell-70  Rtable-cell--highlight">
-										<input type=" text " id="Spouse" class=" form-control input-sm " value.bind="currentItem.Spouse">
-									</div>
+
+
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
 										<strong> Salutation </strong>
 									</div>
-
 									<div class="Rtable-cell-70  Rtable-cell--highlight">
-										<!-- <input type="text " xid="Salutation " class="form-control input-sm " value.bind="currentItem.Salutation"> -->
-
 
 										<select id="phonetype" class="form-control  input-sm" value.bind="currentItem.Salutation"> 
-                      <option model.bind="null">Choose...</option> 
-                         <option repeat.for="opt of appService.codesSalutation " model.bind="opt.Description"> 
-                           <!-- //id"> -->
-                    ${opt.Description} 
-                      </option> 
-                    </select>
-									</div>
-
-
-									<div class="Rtable-cell-30 Rtable-cell--highlight">
-										<strong> Salutation 2</strong>
-									</div>
-
-									<div class="Rtable-cell-70  Rtable-cell--highlight">
-										<!-- <input type="text " xid="Salutation " class="form-control input-sm " value.bind="currentItem.Salutation"> -->
-
-
-										<select id="phonetype" class="form-control  input-sm" value.bind="currentItem.Salutation2"> 
                       <option model.bind="null">Choose...</option> 
                          <option repeat.for="opt of appService.codesSalutation " model.bind="opt.Description"> 
                            <!-- //id"> -->
@@ -133,6 +108,47 @@
                     </select>
 									</div>
 
+
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong> First Name 2</strong>
+									</div>
+
+									<div class="Rtable-cell-70  Rtable-cell--highlight">
+										<input type="text " xid="FirstName2" class="form-control input-sm " value.bind="currentItem.FirstName2">
+									</div>
+
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong> Last Name 2</strong>
+									</div>
+
+									<div class="Rtable-cell-70  Rtable-cell--highlight">
+										<input type="text" xid="LastName2" class="form-control input-sm " value.bind="currentItem.LastName2">
+									</div>
+
+
+
+
+
+
+
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong> Salutation 2</strong>
+									</div>
+
+									<div class="Rtable-cell-70  Rtable-cell--highlight">
+										<!-- <input type="text " xid="Salutation " class="form-control input-sm " value.bind="currentItem.Salutation"> -->
+
+
+										<select id="phonetype" class="form-control  input-sm" value.bind="currentItem.Salutation2"> 
+                      <option model.bind="null">Choose...</option> 
+                         <option repeat.for="opt of appService.codesSalutation " model.bind="opt.Description"> 
+                           <!-- //id"> -->
+                    ${opt.Description} 
+                      </option> 
+                    </select>
+									</div>
+
+
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
 										<strong> Suffix 2</strong>
 									</div>
@@ -148,28 +164,12 @@
 									</div>
 
 
-
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
-										<strong> Last Name 2</strong>
+										<strong>Spouse</strong>
 									</div>
-
 									<div class="Rtable-cell-70  Rtable-cell--highlight">
-										<input type="text" xid="LastName2" class="form-control input-sm " value.bind="currentItem.LastName2">
+										<input type=" text " id="Spouse" class=" form-control input-sm " value.bind="currentItem.Spouse">
 									</div>
-
-									<div class="Rtable-cell-30 Rtable-cell--highlight">
-										<strong> First Name 2</strong>
-									</div>
-
-									<div class="Rtable-cell-70  Rtable-cell--highlight">
-										<input type="text " xid="FirstName2" class="form-control input-sm " value.bind="currentItem.FirstName2">
-									</div>
-
-
-
-
-
-
 
 
 
@@ -197,85 +197,6 @@
 										</ak-multiselect>
 									</div>
 
-
-
-
-									<div class="Rtable-cell-30 Rtable-cell--highlight">
-										<strong> Mailing Status</strong>
-									</div>
-									<div class="Rtable-cell-70 Rtable-cell--highlight">
-										<label repeat.for="ml of mailingstatus">
-                     	<input type="radio" name="group1" model.bind="ml.id" checked.bind="currentItem.mailingStatus"> ${ml.name} &nbsp;
-										  </label>
-									</div>
-									<div class="Rtable-cell-30 Rtable-cell--highlight">
-										<strong> Note</strong>
-									</div>
-									<div class="Rtable-cell-70 Rtable-cell--highlight">
-										<textarea rows="6" cols="100" id="Notes" class="form-control input-sm" value.bind="currentItem.Notes"></textarea>
-									</div>
-
-
-
-									<div class="Rtable-cell-30 Rtable-cell--highlight">
-										<strong> Masterlist</strong>
-									</div>
-									<div class="Rtable-cell-70 Rtable-cell--highlight">
-										<input type="checkbox" id="ynMasterlist" checked.bind="currentItem.ynMasterlist">
-
-
-									</div>
-									<div class="Rtable-cell-30 Rtable-cell--highlight">
-										<strong> Holidaylist</strong>
-									</div>
-									<div class="Rtable-cell-70 Rtable-cell--highlight">
-										<input type="checkbox" id="ynHolidaylist" checked.bind="currentItem.ynHolidaylist">
-									</div>
-
-									<div class="Rtable-cell-30 Rtable-cell--highlight">
-										<strong> International</strong>
-									</div>
-									<div class="Rtable-cell-70 Rtable-cell--highlight">
-										<input type="checkbox" id="international" checked.bind="currentItem.international">
-									</div>
-
-									<div class="Rtable-cell-30 Rtable-cell--highlight">
-										<strong> Deceased</strong>
-									</div>
-									<div class="Rtable-cell-70 Rtable-cell--highlight">
-										<input type="checkbox" id="deceased" checked.bind="currentItem.deceased">
-									</div>
-									<div class="Rtable-cell-30 Rtable-cell--highlight">
-										<strong> nolongerherecatalogssent</strong>
-									</div>
-									<div class="Rtable-cell-70 Rtable-cell--highlight">
-										<input type="checkbox" id="deceased" checked.bind="currentItem.nolongerherecatalogssent">
-									</div>
-
-
-
-								</div>
-
-							</div>
-							<!-- 2nd -->
-							<!-- 3rd col -->
-							<div class="form-group flex-column-1 margin-left-10">
-								<div class="Rtable Rtable--2cols">
-									<div class="Rtable-cell-30 Rtable-cell--highlight">
-										<strong> Contact ID (${currentItem.ID})</strong>
-									</div>
-
-									<div class="Rtable-cell-70  Rtable-cell--highlight">
-										<input type="text " xid="ContactID " class="form-control input-sm " value.bind="currentItem.id">
-									</div>
-									<div class="Rtable-cell-30 Rtable-cell--highlight">
-										<strong> Assistant</strong>
-									</div>
-
-									<div class="Rtable-cell-70  Rtable-cell--highlight">
-										<input type="text " xid="Assistant " class="form-control input-sm " value.bind="currentItem.Assistant">
-									</div>
-
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
 										<strong> Title </strong>
 									</div>
@@ -284,39 +205,22 @@
 										<input type="text " xid="TitleDesc " class="form-control input-sm " value.bind="currentItem.TitleDesc">
 									</div>
 
-
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
-										<strong> Dept</strong>
+										<strong> Assistant</strong>
 									</div>
 
 									<div class="Rtable-cell-70  Rtable-cell--highlight">
-										<input type="text " xid="Dept " class="form-control input-sm " value.bind="currentItem.Dept">
+										<input type="text " xid="Assistant " class="form-control input-sm " value.bind="currentItem.Assistant">
 									</div>
+
+
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
 
 
 										<a href="http://${currentItem.Website}" target="_blank" class="btn btn-sm btn-primary"> <strong>Open Website</strong></a>
 									</div>
-
-
-
 									<div class="Rtable-cell-70  Rtable-cell--highlight">
 										<input type="text " xid="Website " class="form-control input-sm " value.bind="currentItem.Website">
-									</div>
-
-
-									<div class="Rtable-cell-30 Rtable-cell--highlight">
-										<strong> Bus/Individ</strong>
-									</div>
-
-									<div class="Rtable-cell-70  Rtable-cell--highlight">
-										<input type="text " xid="BusIndivid " class="form-control input-sm " value.bind="currentItem.BusIndivid">
-									</div>
-									<div class="Rtable-cell-30 Rtable-cell--highlight">
-										<strong> Address Label</strong>
-									</div>
-									<div class="Rtable-cell-70 Rtable-cell--highlight">
-										<textarea rows="3" cols="100" id="Notes" class="form-control input-sm" value.bind="fullName"></textarea>
 									</div>
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
 										<div if.bind="currentItem.BusIndivid==='B'">
@@ -341,6 +245,131 @@
 											${currentItem.ParentName} / id: ${currentItem.ID} - ${currentItem.ParentID}
 										</div>
 									</div>
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong> Dept</strong>
+									</div>
+									<div class="Rtable-cell-70  Rtable-cell--highlight">
+										<input type="text " xid="Dept " class="form-control input-sm " value.bind="currentItem.Dept">
+									</div>
+
+
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong> Bus/Individ</strong>
+									</div>
+
+									<div class="Rtable-cell-70  Rtable-cell--highlight">
+										<input type="text " xid="BusIndivid " class="form-control input-sm " value.bind="currentItem.BusIndivid">
+									</div>
+
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong> Contact ID (${currentItem.ID})</strong>
+									</div>
+
+									<div class="Rtable-cell-70  Rtable-cell--highlight">
+										<input type="text " xid="ContactID " class="form-control input-sm " value.bind="currentItem.id">
+									</div>
+
+							
+
+	<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong> 	Date Added</strong>
+									</div>
+	<div class="Rtable-cell-70  Rtable-cell--highlight">
+										<input type="date " xid="createdAt " class="form-control input-sm " value.bind="currentItem.createdAt |dateFormat">
+									</div>
+
+
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong> nolongerherecatalogssent</strong>
+									</div>
+									<div class="Rtable-cell-70 Rtable-cell--highlight">
+										<input type="checkbox" id="deceased" checked.bind="currentItem.nolongerherecatalogssent">
+									</div>
+
+
+
+
+
+
+
+
+								</div>
+
+							</div>
+							<!-- 2nd -->
+							<!-- 3rd col -->
+							<div class="form-group flex-column-1 margin-left-10">
+								<div class="Rtable Rtable--2cols">
+
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong> Mailing Status</strong>
+									</div>
+									<div class="Rtable-cell-70 Rtable-cell--highlight">
+										<label repeat.for="ml of mailingstatus">
+                     	<input type="radio" name="group1" model.bind="ml.id" checked.bind="currentItem.mailingStatus"> ${ml.name} &nbsp;
+										  </label>
+									</div>
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong> International</strong>
+									</div>
+									<div class="Rtable-cell-70 Rtable-cell--highlight">
+										<input type="checkbox" id="international" checked.bind="currentItem.international">
+									</div>
+
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong> Holiday List</strong>
+									</div>
+
+
+									<div class="Rtable-cell-70 Rtable-cell--highlight">
+										<input type="checkbox" id="ynHolidaylist" checked.bind="currentItem.ynHolidaylist">
+									</div>
+
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong> Deceased</strong>
+									</div>
+									<div class="Rtable-cell-70 Rtable-cell--highlight">
+										<input type="checkbox" id="deceased" checked.bind="currentItem.deceased">
+									</div>
+
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong> Note</strong>
+									</div>
+									<div class="Rtable-cell-70 Rtable-cell--highlight">
+										<textarea rows="6" cols="100" id="Notes" class="form-control input-sm" value.bind="currentItem.Notes"></textarea>
+									</div>
+
+
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong> Mailchimp</strong>
+									</div>
+									<div class="Rtable-cell-70 Rtable-cell--highlight">
+										<input type="checkbox" id="ynMasterlist" checked.bind="currentItem.email">
+
+
+									</div>
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong> Masterlist</strong>
+									</div>
+									<div class="Rtable-cell-70 Rtable-cell--highlight">
+										<input type="checkbox" id="ynMasterlist" checked.bind="currentItem.ynMasterlist">
+
+
+									</div>
+
+
+
+
+
+
+
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong> Address Label</strong>
+									</div>
+									<div class="Rtable-cell-70 Rtable-cell--highlight">
+										<textarea rows="3" cols="100" id="Notes" class="form-control input-sm" value.bind="fullName"></textarea>
+									</div>
+
 
 
 								</div>
