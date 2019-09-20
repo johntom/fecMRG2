@@ -138,9 +138,9 @@ export class RtfService {
         ct++
         // check to see if link in repo (loop thru exhibit and find repo match)
         if (reproduction !== undefined) {
-  // let eid = reproduction.findIndex(x => x.ReproductionExhibit === item.id)
-// i replace with exhibitsel
- let eid = reproduction.findIndex(x => x.exhibitsel === item.id)
+          // let eid = reproduction.findIndex(x => x.ReproductionExhibit === item.id)
+          // i replace with exhibitsel
+          let eid = reproduction.findIndex(x => x.exhibitsel === item.id)
           let reporec
           linkPageNo = ''
           if (eid !== -1) {
@@ -160,7 +160,7 @@ export class RtfService {
         // if (oid == -1) oid = 1
         // let ExhibitLocationDesc = provloc[oid].Description
         let ExhibitLocationDesc = item.ExhibitLocationDesc
- 
+
 
         let ExhibitMemo
         let lpn
@@ -208,7 +208,7 @@ export class RtfService {
             data = ppre + `${item.ReproductionAuthor}. <em>${item.ReproductionTitle}</em> ${preafter}`
           } else
             data = ppre + `${item.AuthorLast}, ${item.AuthorFirst}. <em>${item.ReproductionTitle}</em> ${preafter}`
-
+            if (item.no!==undefined && item.no!=="") data += ` ${item.no} `
           data += `(${ReproductionLocationDesc}: ${item.ReproductionName}, ${item.ReproductionDate}) <br>`
           data += `${item.ReproductionPage} <br> ${ppost}<br>`
 
@@ -270,13 +270,13 @@ export class RtfService {
           iLines.push(leftofcolonText + ' ' + rightofcolonTextem)
         } else {
           // rightofcolonTextem = '<em>' + rightofcolonbaseText.substr(1, semisPos - 1) + '</em><br>';
-           rightofcolonTextem = '<em>' + rightofcolonbaseText.substr(1, semisPos -1 ) + '</em><br>';
-        
-          restoftext = rightofcolonbaseText.substr(semisPos+1, rightofcolonbaseText.length);
+          rightofcolonTextem = '<em>' + rightofcolonbaseText.substr(1, semisPos - 1) + '</em><br>';
+
+          restoftext = rightofcolonbaseText.substr(semisPos + 1, rightofcolonbaseText.length);
           colonPos = restoftext.indexOf(":");
-          leftofcolonText2 = restoftext.substr(0, colonPos+1);
+          leftofcolonText2 = restoftext.substr(0, colonPos + 1);
           rightofcolonTextem2 = '<em>' + restoftext.substr(colonPos + 1, restoftext.length - colonPos) + '</em>';
- 
+
           iLines.push(leftofcolonText + ' ' + rightofcolonTextem + ' ' + leftofcolonText2 + ' ' + rightofcolonTextem2)
         }
       }
@@ -368,7 +368,7 @@ export class RtfService {
         break;
       case '5/8':
         dim = factor * 5
-        break; 
+        break;
       case '3/4':
         dim = factor * 6
         break;
@@ -376,7 +376,7 @@ export class RtfService {
         dim = factor * 7
         break;
     }
-    return dim 
+    return dim
   }
 
   buildDimLogic(dtype, height, heightfraction, width, widthfraction, depth, depthfraction, cmh, cmw, cmd) {
@@ -408,7 +408,7 @@ export class RtfService {
         if (cmh === 0) { frac = 0 } else frac = cmh * 2.54
         mdim = (this.currentItem[height] * 2.54) + cmh
         // this.dimscm += this.roundNumber(mdim, 2) + ' x '
-         this.dimscm += this.roundNumber(mdim, 1) + ' x '
+        this.dimscm += this.roundNumber(mdim, 1) + ' x '
       }
 
       if (this.currentItem[width] === '') {
@@ -418,7 +418,7 @@ export class RtfService {
         if (cmw === 0) { frac = 0 } else frac = cmw * 2.54
         mdim = (this.currentItem[width] * 2.54) + cmw
         // this.dimscm += this.roundNumber(mdim, 2)
-         this.dimscm += this.roundNumber(mdim, 1)
+        this.dimscm += this.roundNumber(mdim, 1)
       } else {
         this.dims += `${this.currentItem[width]} <span style="font-size:8.5pt;"> ${this.currentItem[widthfraction]}</span> `
         if (cmw === 0) { frac = 0 } else frac = cmw * 2.54
@@ -447,8 +447,8 @@ export class RtfService {
           mdim = (this.currentItem[depth] * 2.54) + cmd
           // this.dimscm += ' x ' + this.roundNumber((mdim * 1 + frac * 1).toPrecision(2), 1)
           this.dimscm += ' x ' + this.roundNumber((mdim * 1 + frac * 1).toPrecision(1), 1)
-          
-         
+
+
         }
       }
     }
@@ -464,8 +464,8 @@ export class RtfService {
     if (edition !== undefined) {
       let a2 = ''
       let a3 = ''
-     
-       //this.inscribedText = '' //9-9
+
+      //this.inscribedText = '' //9-9
       this.EditionCommentFormat = ''
       let semisCount = (edition).match('/;/g')
       let strCount = (edition).match(new RegExp(";", "g"))
@@ -514,8 +514,8 @@ export class RtfService {
   //   selectedtype = 0;
   async createRTF(createopt, selectedtype) {
     // 1 MEANS UI DISPLAYS HTML 2; // 1 is from tab
-    this.segment2 =''
-     this.segment1 =''
+    this.segment2 = ''
+    this.segment1 = ''
     if (selectedtype === undefined) selectedtype = 0;
 
     this.createDim()
@@ -593,7 +593,7 @@ export class RtfService {
     //  this.currentItem.inscribedText=this.currentItem.inscribedText+''
     // /?????????????????????????????????????????
     // if (this.currentItem.inscribedText !== '') {
-       if (this.inscribedText !== '') {
+    if (this.inscribedText !== '') {
       headerinfo1 += ` ${this.inscribedText}</br> `
       headerinfo2 += ` ${this.inscribedText}</br> `
     }
@@ -692,4 +692,3 @@ export class RtfService {
   //   } 
   //   // this.segment1 = segment;
 
-   
