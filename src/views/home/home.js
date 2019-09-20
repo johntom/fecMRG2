@@ -4,13 +4,13 @@ import { MyDataService } from "../../services/my-data-service";
 import { ApiService } from '../../utils/servicesApi';
 import { bindable } from 'aurelia-framework';
 //  import { Pusher } from 'pusher'; 
-
+ 
 @inject(ApplicationService, MyDataService, ApiService)
 
 export class Home { 
   heading = "MRG HOME PAGE";
   footer = 'DataForm FOOTER...'
-  version = ' 305.32 '  
+  version = ' 305.33 '  
   versionDate = 'Fri 9/20/2019 2pm'
   prevversion = ' 303.53 ' 
   prevversionDate = 'Mon 8/5/2019 5pm'

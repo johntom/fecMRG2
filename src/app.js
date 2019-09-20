@@ -238,7 +238,7 @@ switch (user) {
         case 'Valentina':
         if (this.password === 'calix18cup') {
         this.appService.loginuser = this.user
-        this.appService.gridview = 1
+        this.appService.gridview = 0
         this.secured = true
 
       }
