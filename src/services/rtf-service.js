@@ -407,7 +407,8 @@ export class RtfService {
         this.dims += `${this.currentItem[height]} <span style="font-size:8.5pt;"> ${this.currentItem[heightfraction]}</span> x `
         if (cmh === 0) { frac = 0 } else frac = cmh * 2.54
         mdim = (this.currentItem[height] * 2.54) + cmh
-        this.dimscm += this.roundNumber(mdim, 2) + ' x '
+        // this.dimscm += this.roundNumber(mdim, 2) + ' x '
+         this.dimscm += this.roundNumber(mdim, 1) + ' x '
       }
 
       if (this.currentItem[width] === '') {
@@ -416,12 +417,14 @@ export class RtfService {
         } else this.dims += ' x '
         if (cmw === 0) { frac = 0 } else frac = cmw * 2.54
         mdim = (this.currentItem[width] * 2.54) + cmw
-        this.dimscm += this.roundNumber(mdim, 2)
+        // this.dimscm += this.roundNumber(mdim, 2)
+         this.dimscm += this.roundNumber(mdim, 1)
       } else {
         this.dims += `${this.currentItem[width]} <span style="font-size:8.5pt;"> ${this.currentItem[widthfraction]}</span> `
         if (cmw === 0) { frac = 0 } else frac = cmw * 2.54
         mdim = (this.currentItem[width] * 2.54) + cmw
-        this.dimscm += this.roundNumber(mdim, 2)
+        // this.dimscm += this.roundNumber(mdim, 2)
+        this.dimscm += this.roundNumber(mdim, 1)
       }
 
       if (this.currentItem[depth] === '') {
@@ -430,7 +433,8 @@ export class RtfService {
           if (cmd === 0) { cmd = 0 } else frac = cmd * 2.54
           mdim = (this.currentItem[depth] * 2.54) + cmd
           // this.dimscm += ' x ' + this.roundNumber((mdim).toPrecision(2), 1)
-          this.dimscm += ' x ' + this.roundNumber(mdim, 2)
+          // this.dimscm += ' x ' + this.roundNumber(mdim, 2)
+          this.dimscm += ' x ' + this.roundNumber(mdim, 1)
         }
 
       } else {
@@ -441,8 +445,10 @@ export class RtfService {
           // frac = cmd * 2.54
           if (cmd === 0) { cmd = 0 } else frac = cmd * 2.54
           mdim = (this.currentItem[depth] * 2.54) + cmd
-          this.dimscm += ' x ' + this.roundNumber((mdim * 1 + frac * 1).toPrecision(2), 1)
-          //console.log('  this.dimscm ', this.dimscm)
+          // this.dimscm += ' x ' + this.roundNumber((mdim * 1 + frac * 1).toPrecision(2), 1)
+          this.dimscm += ' x ' + this.roundNumber((mdim * 1 + frac * 1).toPrecision(1), 1)
+          
+         
         }
       }
     }
@@ -458,11 +464,9 @@ export class RtfService {
     if (edition !== undefined) {
       let a2 = ''
       let a3 = ''
-      
+     
        //this.inscribedText = '' //9-9
-      
-       this.EditionCommentFormat = ''
-      
+      this.EditionCommentFormat = ''
       let semisCount = (edition).match('/;/g')
       let strCount = (edition).match(new RegExp(";", "g"))
       let colonPos

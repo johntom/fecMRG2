@@ -333,13 +333,17 @@ export class SearchResults {
   async loadData() {
     let inv;
     ///api/v1/inventory/getall
-    if (this.appService.inventorysearchresults && !this.appService.refreshinvLoaded) {
+    // if (this.appService.inventorysearchresults && !this.appService.refreshinvLoaded) {
+ if (this.appService.inventorysearchresults && !this.appService.refreshinvLoaded && !this.appService.Refreshsearchgrid ) {
+ 
+  // gets set when location changed this.appService.Refreshsearchgrid
       // this.spinner.remove()
       this.busy.active = false
 
       return this.appService.inventorysearchresults;
 
     } else {
+      this.appService.Refreshsearchgrid=false
       return this.api.findInventory(this.queryParams)
         .then((jsonRes) => {
           inv = jsonRes.data;
@@ -348,20 +352,7 @@ export class SearchResults {
 
           // this.spinner.remove()
           this.busy.active = false
-          // if (inv === 0 || inv.length === 0) {
-          //   this.dialogService.open({ viewModel: Promptmess, model: `no records found  `, lock: true }).whenClosed(async response => { });
-          //   let tab = this.appService.tabs.find(f => f.isSelected);
-          //   this.closeTab(tab);
-          //   let rt2 = '#/inventory';
-          //   this.router.navigate(rt2);
-          // } else {
-          //   this.appService.inventorysearchresults = inv;
-          //   return inv
-          // }
-          // if (inv === 0 || inv.length === 0) {
-          //   this.appService.inventorysearchresults = inv;
-          //   this.recCount = 0
-          // }
+          
 
           if (inv.length !== 0) {
             this.appService.inventorysearchresults = inv;

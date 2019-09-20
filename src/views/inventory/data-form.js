@@ -182,6 +182,8 @@ export class DataForm {
     this.utilService = utilService;
 this.message = ""
 this.errormessage= ""
+
+ this.appService.Refreshsearchgrid=false
   } 
   // publish() { 
   //   var payload = 'This is some data...';
@@ -195,20 +197,22 @@ this.errormessage= ""
   // dispose() {
   //   this.subscriber.dispose();
   //   console.log('Disposed!!!'); 
-  // }
+  // } 
 
-  changeLocation(changedValue) {
+  changeLocation(changedValue) { 
      console.log('changeLocation ',changedValue,this.currentItem.CurrentLocation);//.id+' '+this.currentItem.CurrentLocation.Description)
+      
+    this.appService.Refreshsearchgrid=true
     // currentocationname " value.bind="currentItem.CurrentLocation">
 
     // this.currentItem.CurrentLocation=this.currentItem.CurrentLocation.id
     let idx = this.appService.codesInventoryLocation.findIndex(x => x.id === this.currentItem.CurrentLocation);
   if(idx===-1 ){
-    this.currentItem.currentocationname = 'missing'
+    this.currentItem.currentocationname = 'missing. see form'
     this.errormessage='error: currentocationname not set for grid'
   }  this.currentItem.currentocationname = this.appService.codesInventoryLocation[idx].Description
     // alert(idx + ' ' + this.currentItem.currentocationname)
-  }
+  } 
 
   soldtoEdit() {
     // save 

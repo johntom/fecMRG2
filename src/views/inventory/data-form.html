@@ -402,17 +402,15 @@
 
 										<input type="text" xid="CatalogueNo" class="form-control" value.bind="currentItem.CatalogueNo">
 									</div>
-									<div class=" Rtable-cell-30 Rtable-cell--highlight">
+									<!-- <div class=" Rtable-cell-30 Rtable-cell--highlight">
 
-										<!-- style="color: purple" <div if.bind="recordId === 'create'"><strong> Artist >></strong></div>
-										<div else><strong> Artist </strong></div> -->
 										<strong> Prev Artist /ID</strong>
 
 									</div>
 
-									<!-- <div class="Rtable-cell-70  Rtable-cell--light"> -->
+								
 									<div class="Rtable-cell-70  Rtable-cell--highlight">
-										${currentItem.ArtistIDprev} / ${currentItem.ID}</div>
+										${currentItem.ArtistIDprev} / ${currentItem.ID}</div> -->
 
 
 
@@ -574,21 +572,24 @@
 									</div>
 
 
+									<!-- after convert use createdAt -->
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
-										<strong>Added/Updated</strong>
+										<strong> Added</strong>
+									</div>
+									<div style="padding-left:4px;" class="Rtable-cell-70 Rtable-cell--highlight">
+									
+
+										${currentItem.DateAdded | dateFormat }
+
+									</div>
+                  	<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong>Updated</strong>
 									</div>
 									<div style="padding-left:4px;" class="Rtable-cell-70 Rtable-cell--highlight">
 
 										${currentItem.DateAdded | dateFormat} / ${currentItem.updatedAt | dateFormat } </div>
-									<div class="Rtable-cell-30 Rtable-cell--highlight">
-										<strong>Legacy Modified</strong>
-									</div>
-									<div style="padding-left:4px;" class="Rtable-cell-70 Rtable-cell--highlight">
-										<!-- after convert use createdAt -->
 
-										${currentItem.ModifiedDate | dateFormat }
-
-									</div>
+                    
 
 									<input class="btn btn-primary" id="file" type="file" name="file" files.bind="file" change.delegate="addInventory(file)" accept='image/jpg'>
 								</div>
