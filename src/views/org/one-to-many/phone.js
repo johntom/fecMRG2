@@ -79,7 +79,7 @@ export class Phone {
     //Type Phoneno Area  Ext , edit: true 
     item = { type: '', Phoneno: ''}
     phones.unshift(item)
-    if (flag) this.currentItem.phones = phones
+    if (flag) this.currentItem.orgphones = phones
 
     this.newNoteWorkDate = '';
     this.newNoteNote = '';
