@@ -76,12 +76,14 @@
 	<!-- <require from="aurelia-kendoui-bridge/button/button"></require> -->
 	<!-- <require from="./customers.css"></require> -->
 	<section class="customers au-animate">
-		<h3>Inventory ( ${recCount})
 			<div show.bind="recCount!==0">
-
+<h3>Inventory ( ${recCount})
+		
 				<button class="btn btn-sm btn-primary " click.delegate="save()">Show Hidden Columns</button>
 				<button class="btn btn-sm btn-primary " click.delegate="load()">Hide Preset Columns</button>
-				<!-- <button class="btn btn-sm btn-primary " click.delegate="performAction1Refresh()">Refresh Grid</button>
+					<!-- <button id="searchInputBtn" class="btn btn-warning" type="button" click.delegate="performAction1Refresh()">Refresh Search List</button>				&nbsp; -->
+		
+      	<!-- <button class="btn btn-sm btn-primary " click.delegate="performAction1Refresh()">Refresh Grid</button>
 		
 		</div>
     
@@ -173,7 +175,6 @@
           </button> &nbsp;
 				<!-- <button show.bind="appService.currentsavedlist " id="searchInputBtn " class="btn btn-sm btn-primary " type="button"
 				 click.delegate="clearSelection()">Clear Selection</button> &nbsp;-->
-				<button id="searchInputBtn" class="btn btn-warning" type="button" click.delegate="performAction1Refresh()">Refresh Search List</button>				&nbsp;
 				<b>  ${message} </b></br>
 			</div>
 			<!-- ${footer} ${queryParams} &nbsp -->

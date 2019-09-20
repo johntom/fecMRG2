@@ -1,9 +1,9 @@
 
-  //   if (this.appService.gridview === 1) { 
-  //     this.smallview = true
-  //   } else this.smallview = false
-  // }
- import { ApiService } from '../../utils/servicesApi'
+//   if (this.appService.gridview === 1) { 
+//     this.smallview = true
+//   } else this.smallview = false
+// }
+import { ApiService } from '../../utils/servicesApi'
 import { inject } from 'aurelia-dependency-injection'
 import { Router, Redirect } from 'aurelia-router'
 import { UtilService } from '../../services/util-service'
@@ -29,6 +29,7 @@ export class SearchResults2 {
   checkedIds = {};
   message = ''//Hello Inventory !';
   scrollable = { virtual: true };
+
   datasource = new kendo.data.DataSource({
     //  toolbar: [{
     //       name: 'saveGrid',
@@ -56,7 +57,7 @@ export class SearchResults2 {
         this.loadData()
           .then((inv) => {
             options.success(inv);
-   
+
           });
       },
       // update: (options) => {
@@ -193,13 +194,13 @@ export class SearchResults2 {
   save() {
     // localStorage["kendo-grid-options"] = kendo.stringify(this.grid.getOptions());
     // alert("Saved to storage. Reload now and click the Load button");
-// this.grid.hideColumn(1);
-// this.grid.hideColumn(16);//purchasedfromname
-// this.grid.hideColumn(17);//PurchasedDate
-// this.grid.Column[1].hidden=false 
-this.grid.showColumn("Image");
-this.grid.showColumn("purchasedfromname");
-this.grid.showColumn("PurchasedDate");
+    // this.grid.hideColumn(1);
+    // this.grid.hideColumn(16);//purchasedfromname
+    // this.grid.hideColumn(17);//PurchasedDate
+    // this.grid.Column[1].hidden=false 
+    this.grid.showColumn("Image");
+    this.grid.showColumn("purchasedfromname");
+    this.grid.showColumn("PurchasedDate");
   }
 
   load() {
@@ -213,14 +214,14 @@ this.grid.showColumn("PurchasedDate");
     //   //  this.busy.active = false
     // }
     // if(this.grid.hideColumn(1)===true)this.grid. hideColumn(1);
-// this.grid.hideColumn(1);
-// this.grid.hideColumn(16);//purchasedfromname
-// this.grid.hideColumn(17);//PurchasedDate
+    // this.grid.hideColumn(1);
+    // this.grid.hideColumn(16);//purchasedfromname
+    // this.grid.hideColumn(17);//PurchasedDate
 
-this.grid.hideColumn("Image");
-this.grid.hideColumn("purchasedfromname");
-this.grid.hideColumn("PurchasedDate");
-   
+    this.grid.hideColumn("Image");
+    this.grid.hideColumn("purchasedfromname");
+    this.grid.hideColumn("PurchasedDate");
+
   }
 
   reloadPage() {
@@ -311,14 +312,14 @@ this.grid.hideColumn("PurchasedDate");
     // grid.thead.find("[data-index=1]>.k-header-column-menu").remove();
 
     // this.grid.column["Bin"].IncludeInMenu(false);// hideColumn(2) NOT AVAIL
-  
-   
-   
+
+
+
     // this.loadGrid() 
-// this.grid.hideColumn("Image");
-// this.grid.hideColumn("purchasedfromname");
-// this.grid.hideColumn("PurchasedDate");
-    
+    // this.grid.hideColumn("Image");
+    // this.grid.hideColumn("purchasedfromname");
+    // this.grid.hideColumn("PurchasedDate");
+
   }
   activate(params, routeConfig) {
     this.queryParams = this.utilService.parseQueryStringUrl();
@@ -360,49 +361,48 @@ this.grid.hideColumn("PurchasedDate");
   async loadData() {
     let inv;
     ///api/v1/inventory/getall
-    if (this.appService.inventorysearchresults && !this.appService.refreshinvLoaded) {
-      // this.spinner.remove()
-      this.busy.active = false
+    // if (this.appService.inventorysearchresults && !this.appService.refreshinvLoaded) {
+    // if (this.appService.inventorysearchresults==='dont') {
+    //   // this.spinner.remove()
+    //   this.busy.active = false
+    //   return this.appService.inventorysearchresults; 
+    // } else {
+    return this.api.findInventory(this.queryParams)
+      .then((jsonRes) => {
+        inv = jsonRes.data;
+        this.inventory = jsonRes.data;
+        this.recCount = inv.length;
 
-      return this.appService.inventorysearchresults;
+        // this.spinner.remove()
+        this.busy.active = false
+        // if (inv === 0 || inv.length === 0) {
+        //   this.dialogService.open({ viewModel: Promptmess, model: `no records found  `, lock: true }).whenClosed(async response => { });
+        //   let tab = this.appService.tabs.find(f => f.isSelected);
+        //   this.closeTab(tab);
+        //   let rt2 = '#/inventory';
+        //   this.router.navigate(rt2);
+        // } else {
+        //   this.appService.inventorysearchresults = inv;
+        //   return inv
+        // }
+        // if (inv === 0 || inv.length === 0) {
+        //   this.appService.inventorysearchresults = inv;
+        //   this.recCount = 0
+        // }
 
-    } else {
-      return this.api.findInventory(this.queryParams)
-        .then((jsonRes) => {
-          inv = jsonRes.data; 
-          this.inventory = jsonRes.data;
-          this.recCount = inv.length;
- 
-          // this.spinner.remove()
-          this.busy.active = false
-          // if (inv === 0 || inv.length === 0) {
-          //   this.dialogService.open({ viewModel: Promptmess, model: `no records found  `, lock: true }).whenClosed(async response => { });
-          //   let tab = this.appService.tabs.find(f => f.isSelected);
-          //   this.closeTab(tab);
-          //   let rt2 = '#/inventory';
-          //   this.router.navigate(rt2);
-          // } else {
-          //   this.appService.inventorysearchresults = inv;
-          //   return inv
-          // }
-          // if (inv === 0 || inv.length === 0) {
-          //   this.appService.inventorysearchresults = inv;
-          //   this.recCount = 0
-          // }
+        if (inv.length !== 0) {
+          this.appService.inventorysearchresults = inv;
+          this.recCount = inv.length
+        }
+        // this.loadGrid() 
 
-          if (inv.length !== 0) {
-            this.appService.inventorysearchresults = inv;
-            this.recCount = inv.length
-          }
-// this.loadGrid() 
-        
-this.grid.hideColumn("Image");
-this.grid.hideColumn("purchasedfromname");
-this.grid.hideColumn("PurchasedDate");
-      return inv
-        });
-    }
+        this.grid.hideColumn("Image");
+        this.grid.hideColumn("purchasedfromname");
+        this.grid.hideColumn("PurchasedDate");
+        return inv
+      });
   }
+  // }
 
 
 
@@ -592,59 +592,59 @@ this.grid.hideColumn("PurchasedDate");
   async addexistingSelection() {
     if (this.appService.currentsavedlist === "") {
       this.dialogService.open({ viewModel: Promptmess, model: `please select a saved list  `, lock: true }).whenClosed(async response => { });
-    }
-
-    let sels
-    let newcount = 0
-    if (this.selectedids === undefined || this.selectedids.length === 0) {
-      sels = []
-    } else sels = this.selectedids
-
-    var grid = this.grid;
-    var selectedRows = grid.select();
-    if (selectedRows.length === 0) {
-
-      this.dialogService.open({ viewModel: Promptmess, model: `please select a row to add  `, lock: true }).whenClosed(async response => { });
-
-
-
-
     } else {
-      var maxRows = selectedRows.length ;// / 2;
-      selectedRows.each(function (idx, el) {
-        let dataItem = grid.dataItem(el);
-      });
-      var i;
-      var a1;
-      for (i = 0; i < maxRows; i++) {
-        a1 = selectedRows[i];
-        let dataItem = grid.dataItem(a1);
-        let mid = sels.findIndex(x => x === dataItem.InventoryCode)
-        if (mid === -1) {
-          newcount++
-          sels.push(dataItem.InventoryCode);
+      let sels
+      let newcount = 0
+      if (this.selectedids === undefined || this.selectedids.length === 0) {
+        sels = []
+      } else sels = this.selectedids
+
+      var grid = this.grid;
+      var selectedRows = grid.select();
+      if (selectedRows.length === 0) {
+
+        this.dialogService.open({ viewModel: Promptmess, model: `please select a row to add  `, lock: true }).whenClosed(async response => { });
+
+
+
+
+      } else {
+        var maxRows = selectedRows.length;// / 2;
+        selectedRows.each(function (idx, el) {
+          let dataItem = grid.dataItem(el);
+        });
+        var i;
+        var a1;
+        for (i = 0; i < maxRows; i++) {
+          a1 = selectedRows[i];
+          let dataItem = grid.dataItem(a1);
+          let mid = sels.findIndex(x => x === dataItem.InventoryCode)
+          if (mid === -1) {
+            newcount++
+            sels.push(dataItem.InventoryCode);
+          }
+          if (i === maxRows - 1) {
+            this.selectedids = sels;
+            await this.api.updateSavedlists(this.appService.currentsavedlist, this.selectedids).then((jsonRes) => {
+              console.log('jsonRes ', jsonRes);
+            });
+          }
         }
-        if (i === maxRows - 1) {
-          this.selectedids = sels;
-          await this.api.updateSavedlists(this.appService.currentsavedlist, this.selectedids).then((jsonRes) => {
-            console.log('jsonRes ', jsonRes);
-          });
-        }
+
+
       }
 
 
+      let response = await this.api.findInventorySavedLists(this.appService.currentsavedlist);
+      this.sllen = response.data.length
+      console.log('this.repos ', this.api.currentsavedlist)
+      let totcount = newcount + this.sllen
+      this.message = ` ${newcount} item(s) added to list ${this.appService.currentsavedlist}`
+      // new count:${totcount}`
+      this.checkedIds = [];
+
+      // this.recCount = inv.length;
     }
-
-
-    let response = await this.api.findInventorySavedLists(this.appService.currentsavedlist);
-    this.sllen = response.data.length
-    console.log('this.repos ', this.api.currentsavedlist)
-    let totcount = newcount + this.sllen
-    this.message = ` ${newcount} item(s) added to list ${this.appService.currentsavedlist}`
-    // new count:${totcount}`
-    this.checkedIds = [];
-
-    // this.recCount = inv.length;
   }
   showSelection() {
     var sels = [];

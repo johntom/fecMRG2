@@ -10,8 +10,8 @@ import { bindable } from 'aurelia-framework';
 export class Home { 
   heading = "MRG HOME PAGE";
   footer = 'DataForm FOOTER...'
-  version = ' 305.28 '  
-  versionDate = 'Thur 9/19/2019 12pm'
+  version = ' 305.30 '  
+  versionDate = 'Fri 9/20/2019 10am'
   prevversion = ' 303.53 ' 
   prevversionDate = 'Mon 8/5/2019 5pm'
   newversion = 'none'
@@ -298,6 +298,8 @@ export class Home {
         let codesEmailType = []//new,
         let newi //= {}
 
+  console.log('got codes')
+
         for (i = 0; i < this.appService.codesList.length; i++) {
           item = this.appService.codesList[i]
           // console.log(' item ', item)
@@ -517,7 +519,7 @@ export class Home {
         console.log('artistList ', this.appService.artistList.length)
         console.log('orgsList ', this.appService.orgsList.length)
 
-
+   
 
         // [995,1067, 1096, 1096, 1711, 2176, 2802, 3056, 3142, 3142,3171 ,3349 ,3922 ,3940, 4461 ,5653, 5740, 6275, 6315, 6511, 6556 ,6921, 10059, 10094, 10635, 10965, 11362, 13715, 14491, 16358]
 

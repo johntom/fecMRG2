@@ -1,9 +1,9 @@
 
-  //   if (this.appService.gridview === 1) { 
-  //     this.smallview = true
-  //   } else this.smallview = false
-  // }
-  import { ApiService } from '../../utils/servicesApi'
+//   if (this.appService.gridview === 1) { 
+//     this.smallview = true
+//   } else this.smallview = false
+// }
+import { ApiService } from '../../utils/servicesApi'
 import { inject } from 'aurelia-dependency-injection'
 import { Router, Redirect } from 'aurelia-router'
 import { UtilService } from '../../services/util-service'
@@ -56,7 +56,7 @@ export class SearchResults {
         this.loadData()
           .then((inv) => {
             options.success(inv);
-   
+
           });
       },
       // update: (options) => {
@@ -154,7 +154,7 @@ export class SearchResults {
         }
       }
     },
-   pageSize: 26,
+    pageSize: 26,
     height: 500,
 
     //  serverPaging: true,
@@ -290,10 +290,10 @@ export class SearchResults {
     // grid.thead.find("[data-index=1]>.k-header-column-menu").remove();
 
     // this.grid.column["Bin"].IncludeInMenu(false);// hideColumn(2) NOT AVAIL
-  
-   
-   
-    this.loadGrid() 
+
+
+
+    this.loadGrid()
   }
   activate(params, routeConfig) {
     this.queryParams = this.utilService.parseQueryStringUrl();
@@ -342,10 +342,10 @@ export class SearchResults {
     } else {
       return this.api.findInventory(this.queryParams)
         .then((jsonRes) => {
-          inv = jsonRes.data; 
+          inv = jsonRes.data;
           this.inventory = jsonRes.data;
           this.recCount = inv.length;
- 
+
           // this.spinner.remove()
           this.busy.active = false
           // if (inv === 0 || inv.length === 0) {
@@ -367,7 +367,7 @@ export class SearchResults {
             this.appService.inventorysearchresults = inv;
             this.recCount = inv.length
           }
-// this.loadGrid() 
+          // this.loadGrid() 
           return inv
 
         });
@@ -558,69 +558,66 @@ export class SearchResults {
   //   this.message = `  all items added to list ${this.appService.currentsavedlist} count:${this.appService.currentsavedlist.length}`
   // }
 
-
+ 
   async addexistingSelection() {
     if (this.appService.currentsavedlist === "") {
       this.dialogService.open({ viewModel: Promptmess, model: `please select a saved list  `, lock: true }).whenClosed(async response => { });
-    }
-
-    let sels
-    let newcount = 0
-    if (this.selectedids === undefined || this.selectedids.length === 0) {
-      sels = []
-    } else sels = this.selectedids
-
-    var grid = this.grid;
-    var selectedRows = grid.select();
-    if (selectedRows.length === 0) {
-
-      this.dialogService.open({ viewModel: Promptmess, model: `please select a row to add  `, lock: true }).whenClosed(async response => { });
-
-
-
-
     } else {
-      var maxRows = selectedRows.length / 2;
-      selectedRows.each(function (idx, el) {
-        let dataItem = grid.dataItem(el);
-      });
-      var i;
-      var a1;
-      for (i = 0; i < maxRows; i++) {
-        a1 = selectedRows[i];
-        let dataItem = grid.dataItem(a1);
-        let mid = sels.findIndex(x => x === dataItem.InventoryCode)
-        if (mid === -1) {
-          newcount++
-          sels.push(dataItem.InventoryCode);
+
+      let sels
+      let newcount = 0
+      if (this.selectedids === undefined || this.selectedids.length === 0) {
+        sels = []
+      } else sels = this.selectedids
+
+      var grid = this.grid;
+      var selectedRows = grid.select();
+      if (selectedRows.length === 0) {
+        this.dialogService.open({ viewModel: Promptmess, model: `please select a row to add  `, lock: true }).whenClosed(async response => { });
+      } else {
+        var maxRows = selectedRows.length / 2;
+        selectedRows.each(function (idx, el) {
+          let dataItem = grid.dataItem(el);
+        });
+        var i;
+        var a1;
+        for (i = 0; i < maxRows; i++) {
+          a1 = selectedRows[i];
+          let dataItem = grid.dataItem(a1);
+          let mid = sels.findIndex(x => x === dataItem.InventoryCode)
+          if (mid === -1) {
+            newcount++
+            sels.push(dataItem.InventoryCode);
+          }
+          if (i === maxRows - 1) {
+            this.selectedids = sels;
+            await this.api.updateSavedlists(this.appService.currentsavedlist, this.selectedids).then((jsonRes) => {
+              console.log('jsonRes ', jsonRes);
+            });
+          }
         }
-        if (i === maxRows - 1) {
-          this.selectedids = sels;
-          await this.api.updateSavedlists(this.appService.currentsavedlist, this.selectedids).then((jsonRes) => {
-            console.log('jsonRes ', jsonRes);
-          });
-        }
-      }
 
 
+   
+
+
+      let response = await this.api.findInventorySavedLists(this.appService.currentsavedlist);
+      this.sllen = response.data.length
+      console.log('this.repos ', this.api.currentsavedlist)
+      let totcount = newcount + this.sllen
+      this.message = ` ${newcount} item(s) added to list ${this.appService.currentsavedlist}`
+      // new count:${totcount}`
+      this.checkedIds = [];
+
+      // this.recCount = inv.length;
+         }
     }
-
-
-    let response = await this.api.findInventorySavedLists(this.appService.currentsavedlist);
-    this.sllen = response.data.length
-    console.log('this.repos ', this.api.currentsavedlist)
-    let totcount = newcount + this.sllen
-    this.message = ` ${newcount} item(s) added to list ${this.appService.currentsavedlist}`
-    // new count:${totcount}`
-    this.checkedIds = [];
-
-    // this.recCount = inv.length;
   }
   showSelection() {
     var sels = [];
     var grid = this.grid;
     var selectedRows = grid.select();
-    var maxRows = selectedRows.length ;/// 2;
+    var maxRows = selectedRows.length;/// 2;
 
     selectedRows.each(function (idx, el) {
       let dataItem = grid.dataItem(el);
