@@ -120,10 +120,15 @@
 				<ak-col k-field="InventoryCode" k-title="Code" k-width.bind="130" k-template="<button click.delegate='detailsEdit($event)' class='k-button'>&nbsp;&nbsp;#=InventoryCode#</button>">
 				</ak-col>
 				<!-- k-filterable.bind="false" -->
-				<!-- <ak-col k-title="Image" k-field="InventoryCode" k-width="90px" > -->
-				<ak-col k-title="Image" k-field="Image" k-width="90px">
+				<!-- <ak-col k-title="Image" k-field="Image" k-width="90px">
 					<ak-template>
 						<div class='customer-photo-sq' style="background-image: url(https://artbased.com/api/v1/getimage/inv/${InventoryCode}.jpg?${epoch};"
+						 click.delegate="showModalImg($event)"></div>
+					</ak-template>
+				</ak-col> -->
+        <ak-col k-title="Image" k-field="Image" k-width="90px">
+					<ak-template> 
+						<div class='responsive-img' style="background-image: url(https://artbased.com/api/v1/getimage/inv/${InventoryCode}.jpg?${epoch};"
 						 click.delegate="showModalImg($event)"></div>
 					</ak-template>
 				</ak-col>
