@@ -234,6 +234,7 @@ export class SearchResults2 {
 
 
 
+
     this.grid.hideColumn("Note");
   }
 
@@ -404,6 +405,8 @@ export class SearchResults2 {
         this.grid.hideColumn("PurchasedDate");
         this.grid.hideColumn("soldtoname");
     this.grid.hideColumn("SoldDate");
+
+ this.grid.hideColumn("soldtoname");
 
 
    
