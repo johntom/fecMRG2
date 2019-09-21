@@ -204,7 +204,9 @@ export class SearchResults2 {
     this.grid.showColumn("PurchasedDate");
     this.grid.showColumn("soldtoname");
     this.grid.showColumn("SoldDate");
-    
+
+    this.grid.showColumn("Note");
+  
 
   }
 
@@ -227,9 +229,12 @@ export class SearchResults2 {
      this.grid.showColumn("Image");
     this.grid.hideColumn("purchasedfromname");
     this.grid.hideColumn("PurchasedDate");
-        this.grid.showColumn("soldtoname");
-    this.grid.showColumn("SoldDate");
+        this.grid.hideColumn("soldtoname");
+    this.grid.hideColumn("SoldDate");
 
+
+
+    this.grid.hideColumn("Note");
   }
 
   reloadPage() {
