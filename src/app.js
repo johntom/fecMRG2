@@ -212,7 +212,7 @@ switch (user) {
       }
         break; 
        case 'mrg':
-        if (this.password === 'Homer@211') {
+        if (this.password === 'Homer@211!') {
         this.appService.loginuser = this.user
         this.appService.gridview = 1
         this.secured = true
@@ -230,7 +230,7 @@ switch (user) {
           case 'Dan':
         if (this.password === 'Serper-1') {
         this.appService.loginuser = this.user
-        this.appService.gridview = 1
+        this.appService.gridview = 0
         this.secured = true
 
       }
