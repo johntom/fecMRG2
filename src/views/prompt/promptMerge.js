@@ -615,7 +615,8 @@ export class Promptmerge {
         hh = 95 * invitem.clientHeightRatio
 
 
-
+  // let sty1 = "border: 1px gray solid;padding: 4px;width: 5em;font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;vertical-align:top;text-align:left;";
+  
         // style="height:17%;"
         // segment += `<tr >`
         // segment += `<td style="${sty1},width:2%">${invitem.InventoryCode}</td>`

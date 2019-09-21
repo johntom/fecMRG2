@@ -432,6 +432,7 @@ sortorder = [{ id: 0, name: "InventoryCode" }, { id: 1, name: "artist.ArtistName
 
       let rt2 = `#/inventory/rtfcreate/${item.InventoryCode}`
       await this.router.navigate(rt2);
+        alert('close when record is finished updating')
       mlist.push(item.InventoryCode)
     }
     //  alert('this is a loop') 

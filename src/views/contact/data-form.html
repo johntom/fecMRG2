@@ -223,15 +223,15 @@
 										<input type="text " xid="Website " class="form-control input-sm " value.bind="currentItem.Website">
 									</div>
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
-										<div if.bind="currentItem.BusIndivid==='B'">
+										<!-- <div if.bind="currentItem.BusIndivid==='IB'"> -->
 
-											<button class="btn btn-success" click.delegate="modal(org)">View Org</button>
-											<button class="btn btn-success" click.delegate="editorg(org)">Edit Org</button>
+											<button class="btn btn-sm btn-primary" click.delegate="modal(org)">View Org</button>
+											<button class="btn btn-sm btn-primary" click.delegate="editorg(org)">Edit Org</button>
 										</div>
-										<div else>
+										<!-- <div else>
 											<strong> Parent OrgID:${currentItem.OrgID}</strong>
 										</div>
-									</div>
+									</div> -->
 									<div class="Rtable-cell-70  Rtable-cell--highlight">
                     <!-- <div if.bind="currentItem.BusIndivid==='B'"> -->
 										<div if.bind="currentItem.BusIndivid==='I'">

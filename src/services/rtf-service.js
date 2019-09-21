@@ -426,11 +426,11 @@ export class RtfService {
         // this.dimscm += this.roundNumber(mdim, 2)
         this.dimscm += this.roundNumber(mdim, 1)
       }
-
+ 
       if (this.currentItem[depth] === '') {
         if (this.currentItem[depthfraction] !== "") {
           this.dims += `  x  <span style="font-size:8.5pt;"> ${this.currentItem[depthfraction]} </span>`
-          if (cmd === 0) { cmd = 0 } else frac = cmd * 2.54
+          if (cmd === 0) { cmd = 0 } else frac = cmd * 2.54 
           mdim = (this.currentItem[depth] * 2.54) + cmd
           // this.dimscm += ' x ' + this.roundNumber((mdim).toPrecision(2), 1)
           // this.dimscm += ' x ' + this.roundNumber(mdim, 2)
@@ -445,8 +445,8 @@ export class RtfService {
           // frac = cmd * 2.54
           if (cmd === 0) { cmd = 0 } else frac = cmd * 2.54
           mdim = (this.currentItem[depth] * 2.54) + cmd
-          // this.dimscm += ' x ' + this.roundNumber((mdim * 1 + frac * 1).toPrecision(2), 1)
-          this.dimscm += ' x ' + this.roundNumber((mdim * 1 + frac * 1).toPrecision(1), 1)
+           this.dimscm += ' x ' + this.roundNumber((mdim * 1 + frac * 1).toPrecision(2), 1)
+          //this.dimscm += ' x ' + this.roundNumber((mdim * 1 + frac * 1).toPrecision(1), 1)
 
 
         }
