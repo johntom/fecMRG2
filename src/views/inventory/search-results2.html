@@ -122,13 +122,13 @@
 				<!-- k-filterable.bind="false" -->
 				<!-- <ak-col k-title="Image" k-field="Image" k-width="90px">
 					<ak-template>
-						<div class='customer-photo-sq' style="background-image: url(https://artbased.com/api/v1/getimage/inv/${InventoryCode}.jpg?${epoch};"
+						<div class='customer-photo-sq responsive-img' style="background-image: url(https://artbased.com/api/v1/getimage/inv/${InventoryCode}.jpg?${epoch};"
 						 click.delegate="showModalImg($event)"></div>
 					</ak-template>
 				</ak-col> -->
         <ak-col k-title="Image" k-field="Image" k-width="90px">
 					<ak-template> 
-						<div class='responsive-img' style="background-image: url(https://artbased.com/api/v1/getimage/inv/${InventoryCode}.jpg?${epoch};"
+						<div class='customer-photo-sq' style="background-image: url(https://artbased.com/api/v1/getimage/inv/${InventoryCode}.jpg?${epoch};"
 						 click.delegate="showModalImg($event)"></div>
 					</ak-template>
 				</ak-col>
@@ -139,13 +139,13 @@
 
 				<!--  k-filterable.bind="true" -->
 				<ak-col k-title="Location" k-width="120px" k-field="currentocationname"></ak-col>
-				<ak-col k-title="Bin" k-width="60px" k-field="Bin"></ak-col>
-				<ak-col k-title="H" k-width="60px" k-field="UnframedHeight"></ak-col>
-				<ak-col k-title="W" k-width="60px" k-field="UnframedWidth"></ak-col>
-				<ak-col k-title="D" k-width="60px" k-field="UnframedDepth"></ak-col>
+				<ak-col k-title="Bin" k-width="45px" k-field="Bin"></ak-col>
+				<ak-col k-title="H" k-width="45px" k-field="UnframedHeight"></ak-col>
+				<ak-col k-title="W" k-width="45x" k-field="UnframedWidth"></ak-col>
+				<ak-col k-title="D" k-width="45px" k-field="UnframedDepth"></ak-col>
 
 		
-<ak-col k-title="Sold" k-width="60px">
+<ak-col k-title="Sold" k-width="40px">
 					<ak-template>
 						${Sold | soldstatus}
 					</ak-template>

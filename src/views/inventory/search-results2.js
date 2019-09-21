@@ -397,6 +397,9 @@ export class SearchResults2 {
         // this.grid.hideColumn("Image");
         this.grid.hideColumn("purchasedfromname");
         this.grid.hideColumn("PurchasedDate");
+        this.grid.showColumn("soldtoname");
+    this.grid.showColumn("SoldDate");
+
         return inv
      
     })
