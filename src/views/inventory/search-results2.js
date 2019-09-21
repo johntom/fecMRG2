@@ -202,6 +202,10 @@ export class SearchResults2 {
     this.grid.hideColumn("Image"); 
     this.grid.showColumn("purchasedfromname");
     this.grid.showColumn("PurchasedDate");
+    this.grid.showColumn("soldtoname");
+    this.grid.showColumn("SoldDate");
+    
+
   }
 
   hide() { 
@@ -223,6 +227,8 @@ export class SearchResults2 {
      this.grid.showColumn("Image");
     this.grid.hideColumn("purchasedfromname");
     this.grid.hideColumn("PurchasedDate");
+        this.grid.showColumn("soldtoname");
+    this.grid.showColumn("SoldDate");
 
   }
 
