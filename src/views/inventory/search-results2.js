@@ -404,16 +404,8 @@ export class SearchResults2 {
         this.grid.hideColumn("purchasedfromname");
         this.grid.hideColumn("PurchasedDate");
         this.grid.hideColumn("soldtoname");
-    this.grid.hideColumn("SoldDate");
-
- this.grid.hideColumn("soldtoname");
-
-
-   
-
-
-
-    this.grid.hideColumn("Note");
+        this.grid.hideColumn("SoldDate");
+      this.grid.hideColumn("Note");
 
 
         return inv
