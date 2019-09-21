@@ -114,7 +114,7 @@
 			 k-on-change.delegate="rowSelected($event.detail)" k-toolbar.bind="['excel']" k-excel.bind="{ fileName: 'Inventory.xlsx',allPages: true }"
 			 k-pdf.bind="{ allPages: true, avoidLinks: true,landscape: true, repeatHeaders: true, paperSize: 'A4'}" k-column-menu.bind="true"
 			 k-scrollable.bind="scrollable">
-				<div style="width: 1300px"></div>
+				<div style="width: 1250px"></div>
 				<!-- <ak-col k-field="InventoryCode" k-locked.bind="true" k-lockable.bind="false" k-filterable.bind="true" -->
 
 				<ak-col k-field="InventoryCode" k-title="Code" k-width.bind="110" k-template="<button click.delegate='detailsEdit($event)' class='k-button'>&nbsp;&nbsp;#=InventoryCode#</button>">
