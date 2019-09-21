@@ -199,18 +199,18 @@ export class SearchResults2 {
     // this.grid.hideColumn(17);//PurchasedDate
     // this.grid.Column[1].hidden=false 
     // this.grid.showColumn("Image");
-    this.grid.hideColumn("Image"); 
+    this.grid.hideColumn("Image");
     this.grid.showColumn("purchasedfromname");
     this.grid.showColumn("PurchasedDate");
     this.grid.showColumn("soldtoname");
     this.grid.showColumn("SoldDate");
 
     this.grid.showColumn("Note");
-  
+
 
   }
 
-  hide() { 
+  hide() {
     // grid.setOptions({
     //       sortable: true
     // }); 
@@ -225,17 +225,19 @@ export class SearchResults2 {
     // this.grid.hideColumn(16);//purchasedfromname
     // this.grid.hideColumn(17);//PurchasedDate
 
-
-     this.grid.showColumn("Image");
+ 
+    this.grid.showColumn("Image");
     this.grid.hideColumn("purchasedfromname");
     this.grid.hideColumn("PurchasedDate");
-        this.grid.hideColumn("soldtoname");
+    this.grid.hideColumn("soldtoname");
     this.grid.hideColumn("SoldDate");
-
-
-
-
     this.grid.hideColumn("Note");
+          // this.grid.hideColumn("purchasedfromname");
+          // this.grid.hideColumn("PurchasedDate");
+          // this.grid.hideColumn("soldtoname");
+          // this.grid.hideColumn("SoldDate");
+          // this.grid.hideColumn("Note");
+
   }
 
   reloadPage() {
@@ -375,43 +377,43 @@ export class SearchResults2 {
   async loadData() {
     let inv;
     ///api/v1/inventory/getall
-  if (this.appService.inventorysearchresults && !this.appService.refreshinvLoaded && !this.appService.Refreshsearchgrid ) {
- 
-  // gets set when location changed this.appService.Refreshsearchgrid
+    if (this.appService.inventorysearchresults && !this.appService.refreshinvLoaded && !this.appService.Refreshsearchgrid) {
+
+      // gets set when location changed this.appService.Refreshsearchgrid
       // this.spinner.remove()
       this.busy.active = false
 
       return this.appService.inventorysearchresults;
 
     } else {
-      this.appService.Refreshsearchgrid=false
+      this.appService.Refreshsearchgrid = false
       return this.api.findInventory(this.queryParams)
         .then((jsonRes) => {
           inv = jsonRes.data;
           this.inventory = jsonRes.data;
           this.recCount = inv.length;
-           // this.spinner.remove()
+          // this.spinner.remove()
           this.busy.active = false
-      
-
-        if (inv.length !== 0) {
-          this.appService.inventorysearchresults = inv;
-          this.recCount = inv.length
-        }
-        // this.loadGrid() 
-
-        // this.grid.hideColumn("Image");
-        this.grid.hideColumn("purchasedfromname");
-        this.grid.hideColumn("PurchasedDate");
-        this.grid.hideColumn("soldtoname");
-        this.grid.hideColumn("SoldDate");
-      this.grid.hideColumn("Note");
 
 
-        return inv
-     
-    })
- }
+          if (inv.length !== 0) {
+            this.appService.inventorysearchresults = inv;
+            this.recCount = inv.length
+          }
+          // this.loadGrid() 
+
+          // this.grid.hideColumn("Image");
+          this.grid.hideColumn("purchasedfromname");
+          this.grid.hideColumn("PurchasedDate");
+          this.grid.hideColumn("soldtoname");
+          this.grid.hideColumn("SoldDate");
+          this.grid.hideColumn("Note");
+
+
+          return inv
+
+        })
+    }
 
   }
   // }
