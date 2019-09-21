@@ -527,12 +527,18 @@ export class RtfService {
       artistWdates += ` (b.${artist.yearofBirth})`
     }
     artistWdates += '</strong>'
+
     let artistWdates1 = `${artist.firstName} ${artist.lastName}`
     if (artist.died) {
       artistWdates1 += ` (${artist.yearofBirth}-${artist.died})`
     } else {
       artistWdates1 += ` (b.${artist.yearofBirth})`
     }
+
+
+
+
+
     this.buildInscribed(this.currentItem.Inscribed)
     this.segment2 = ` ${artistWdates1}<br>`
     this.segment2 += ` <em> ${this.currentItem.Title}</em>, ${this.currentItem.InvYear} <br> `
@@ -571,7 +577,13 @@ export class RtfService {
     headerinfo1 += ` <em>${this.currentItem.Title}</em>, ${this.currentItem.InvYear}<br>`
     if (this.currentItem.MediumSupportobj !== undefined)
       headerinfo1 += ` ${this.currentItem.MediumSupportobj.Description}  <br> `
-    headerinfo2 = headerinfo1
+    headerinfo2 =  ` ${artistWdates1}<br>`
+ headerinfo2 += ` <em>${this.currentItem.Title}</em>, ${this.currentItem.InvYear}<br>`
+    if (this.currentItem.MediumSupportobj !== undefined)
+      headerinfo2 += ` ${this.currentItem.MediumSupportobj.Description}  <br> `
+   
+
+
     if (this.dimsfactsheet !== undefined) {
       headerinfo1 += `  ${this.dimsfactsheet} in.`
       headerinfo2 += `  ${this.dimsfactsheet} in. `

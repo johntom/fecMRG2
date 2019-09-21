@@ -191,22 +191,23 @@ export class SearchResults2 {
     this.busy = {}
     this.busy.active = true
   }
-  save() {
+  show() {
     // localStorage["kendo-grid-options"] = kendo.stringify(this.grid.getOptions());
     // alert("Saved to storage. Reload now and click the Load button");
     // this.grid.hideColumn(1);
     // this.grid.hideColumn(16);//purchasedfromname
     // this.grid.hideColumn(17);//PurchasedDate
     // this.grid.Column[1].hidden=false 
-    this.grid.showColumn("Image");
+    // this.grid.showColumn("Image");
+    this.grid.hideColumn("Image"); 
     this.grid.showColumn("purchasedfromname");
     this.grid.showColumn("PurchasedDate");
   }
 
-  load() {
+  hide() { 
     // grid.setOptions({
     //       sortable: true
-    // });
+    // }); 
     //  this.busy.active = true
     // var options = localStorage["kendo-grid-options"];
     // if (options) {
@@ -218,7 +219,8 @@ export class SearchResults2 {
     // this.grid.hideColumn(16);//purchasedfromname
     // this.grid.hideColumn(17);//PurchasedDate
 
-    this.grid.hideColumn("Image");
+
+     this.grid.showColumn("Image");
     this.grid.hideColumn("purchasedfromname");
     this.grid.hideColumn("PurchasedDate");
 
@@ -386,7 +388,7 @@ export class SearchResults2 {
         }
         // this.loadGrid() 
 
-        this.grid.hideColumn("Image");
+        // this.grid.hideColumn("Image");
         this.grid.hideColumn("purchasedfromname");
         this.grid.hideColumn("PurchasedDate");
         return inv
@@ -595,11 +597,7 @@ export class SearchResults2 {
       var grid = this.grid;
       var selectedRows = grid.select();
       if (selectedRows.length === 0) {
-
         this.dialogService.open({ viewModel: Promptmess, model: `please select a row to add  `, lock: true }).whenClosed(async response => { });
-
-
-
 
       } else {
         var maxRows = selectedRows.length;// / 2;
@@ -623,10 +621,7 @@ export class SearchResults2 {
             });
           }
         }
-
-
       }
-
 
       let response = await this.api.findInventorySavedLists(this.appService.currentsavedlist);
       this.sllen = response.data.length
@@ -644,12 +639,10 @@ export class SearchResults2 {
     var grid = this.grid;
     var selectedRows = grid.select();
     var maxRows = selectedRows.length / 2;
-
     selectedRows.each(function (idx, el) {
       let dataItem = grid.dataItem(el);
       sels.push(dataItem.InventoryCode);
     });
-
 
     this.selectedids = sels;
     //   this.allselectedids =   this.allselectedids+sels;
@@ -659,9 +652,6 @@ export class SearchResults2 {
 
 
   selectAll() {
-
-
-
   }
 
   selectRow() {

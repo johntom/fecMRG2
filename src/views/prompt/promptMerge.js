@@ -674,6 +674,38 @@ export class Promptmerge {
         segment += `<tr ><td>&nbsp;</td></tr>`
 
       }
+
+
+ if (this.listtype === 7) {
+        // {id:5,name:"cehcklist"}]
+        // segment = `<h1 style="font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;text-align:center;"></h1> <table><tbody>`
+        ww = 95 * invitem.clientWidthRatio
+        hh = 95 * invitem.clientHeightRatio
+
+
+        segment += `<td style="${sty1},width:15%">${invitem.InventoryCode}</td>`
+        segment += `<td style="${sty1},width:40%">${invitem.rtf2}</td>`
+        segment += `<td style="width:20%;vertical-align:middle;text-align:center;"><img src="https://artbased.com/api/v1/getimage/inv/${invitem.InventoryCode}.jpg" alt="" width="${ww}" height=${hh} /></td>`
+
+
+
+
+        // vertical-align:middle;
+        // segment += `<td style="${sty1}">${invitem.InventoryCode}</td>`
+        // segment += `<td style="${sty1}">${invitem.rtf2}</td>`
+        // segment += `<td style="vertical-align:middle;text-align: center;"><img  src="https://artbased.com/api/v1/getimage/inv/${invitem.InventoryCode}.jpg" alt="" width="${ww}" height="${hh}" /></td>`
+        // vertical-align: middle;
+        // max-height: 25px;
+        // max-width: 160px;
+        // <td style="width:25%;vertical-align:top;text-align:center;">
+
+        segment += `</tr>`
+      }
+
+
+
+
+
     }
 
 

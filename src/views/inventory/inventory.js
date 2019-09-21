@@ -167,6 +167,8 @@ export class Inventory {
     let medsupport = `${this.DescriptionMS}`
     let currentlocation = `${this.DescriptionLoc}`
     let multikeys = `${this.multikeywords}`
+    let multilocs = `${this.multilocations}`
+ 
     // console.log('selectedSoldId', this.search.selectedSoldId)
     let sold = this.search.sold// `${this.search.sold}`
 
@@ -186,6 +188,9 @@ export class Inventory {
       if (medsupport !== 'undefined') this.search.mediumsupport = `${this.DescriptionMS.Description}`
       if (currentlocation !== 'undefined') this.search.currentlocation = `${this.DescriptionLoc.Description}`
       if (multikeys !== 'undefined') this.search.multikeywords = `${this.multikeywords}`
+      if (multilocs !== 'undefined') this.search.multilocations = `${this.multilocations}`
+
+
       if (sold !== 'undefined') this.search.sold = sold
       if (selecteddate !== 'undefined') this.search.selectedDateId = selecteddate
       if (owndedby !== 'undefined') this.search.owndedby = owndedby //search.owndedby
