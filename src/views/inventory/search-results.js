@@ -393,7 +393,7 @@ export class SearchResults {
       });
 
   }
-
+ 
 
   closeTab(tab) {
 

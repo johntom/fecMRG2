@@ -556,6 +556,8 @@ export class RtfService {
     // } else this.segment2 += '<br>' 
     ///////////////////////////////////////////////////////////////////////////  
     let fac = this.searchsold[this.selectedimagesize]
+
+    
     let ww = this.currentItem.clientWidth * fac.factor
     let hh = this.currentItem.clientHeight * fac.factor
     //console.log(hh, ww)

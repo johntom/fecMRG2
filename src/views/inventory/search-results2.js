@@ -390,9 +390,9 @@ export class SearchResults2 {
         this.grid.hideColumn("purchasedfromname");
         this.grid.hideColumn("PurchasedDate");
         return inv
-      }
-
-
+     
+    })
+ }
 
   }
   // }
