@@ -75,13 +75,7 @@
 	<require from="../../resources/value-converters/date-format"></require>
 	<!-- <require from="aurelia-kendoui-bridge/button/button"></require> -->
 	<!-- <require from="./customers.css"></require> -->
-	<section class="customers au-animate">
-		<div show.bind="recCount!==0">
-			<h3>Inventory ( ${recCount})
-
-				<button class="btn btn-sm btn-primary " click.delegate="show()">Show Hidden Columns</button>
-				<button class="btn btn-sm btn-primary " click.delegate="hide()">Hide Preset Columns</button>
-				<!-- <button id="searchInputBtn" class="btn btn-warning" type="button" click.delegate="performAction1Refresh()">Refresh Search List</button>				&nbsp; -->
+  		<!-- <button id="searchInputBtn" class="btn btn-warning" type="button" click.delegate="performAction1Refresh()">Refresh Search List</button>				&nbsp; -->
 
 				<!-- <button class="btn btn-sm btn-primary " click.delegate="performAction1Refresh()">Refresh Grid</button>
 		
@@ -96,7 +90,26 @@
 			<button type="button" class="btn btn-sm btn-default" id="textButton" ak-button k-on-click.delegate="load()">
                   <span class="glyphicon glyphicon-open" aria-hidden="true">   Load Grid
                 </button> -->
-			</h3>
+                 <!-- <span id="autohide-true"
+            class="k-button wider"
+            ak-tooltip="k-content: Hello!; k-position: top"
+            k-on-show.delegate="logger.log('show button 1')"
+            k-on-hide.delegate="logger.log('hide button 1')">Hover me!</span>
+
+      <span id="autohide-false"
+            class="k-button wider"
+            ak-tooltip="k-content: Hello!; k-position: top; k-auto-hide.bind: false"
+            k-on-show.delegate="logger.log('show button 2')"
+            k-on-hide.delegate="logger.log('hide button 2')">Hover me too!</span>
+		-->
+	<section class="customers au-animate">
+		<div show.bind="recCount!==0">
+			<h3>Inventory ( ${recCount})
+
+				<button class="btn btn-sm btn-primary "  ak-tooltip="k-content: hide image ,show: purchasedfromname, PurchasedDate, soldtoname, SoldDate & hide image!; k-position: bottom" click.delegate="show()">Show Hidden Columns</button>
+				<button class="btn btn-sm btn-primary "  ak-tooltip="k-content: show image ,hide: purchasedfromname, PurchasedDate, soldtoname, SoldDate!; k-position: bottom" click.delegate="hide()">Hide Preset Columns</button>
+            
+			</h3> 
 
 			<!-- <div ref="spinner" class="splash">
 			<div class="message">fetching records</div>
@@ -106,14 +119,38 @@
 				<div class="message">fetching records</div>
 				<i class="fa fa-spinner fa-spin"></i> 
 			</div>
-     
-			<div class="flex-grid">
-				<ak-grid class="flex-row-1 overflow-y-auto" id="grid" k-data-source.bind="datasource" k-widget.bind="grid" k-sortable.bind="{ mode: 'multiple',   allowUnsort: 'true'}"
-				 k-height.bind="640" k-filterable.bind="{  mode: 'row' }" k-editable="inline" k-reorderable.bind="true" k-groupable.bind="true"
-				 k-selectable="[row,multiple]" k-resizable.bind="true" k-on-edit.delegate="onEdit($event.detail)" k-on-data-bound.delegate="onDataBound($event.detail)"
-			   k-persistSelection.bind= "true"
-      	 k-on-change.delegate="rowSelected($event.detail)" k-toolbar.bind="['excel']" k-excel.bind="{ fileName: 'Inventory.xlsx',allPages: true }"
-				 k-pdf.bind="{ allPages: true, avoidLinks: true,landscape: true, repeatHeaders: true, paperSize: 'A4'}" k-column-menu.bind="true"
+     <!-- k-filterable.bind="{  mode: 'row' }" k-filterable.bind="{mode: 'menu' }" -->
+			<!--  k-editable="inline" -->
+    
+      <div class="flex-grid">
+		 <script>
+                        excelExport:
+                        function (e) {
+
+                            var sheet = e.workbook.sheets[0];
+                            var template = kendo.template(this.columns[8].template);
+
+                            for (var i = 1; i < sheet.rows.length; i++) {
+                                var row = sheet.rows[i];
+   alert('row '+row) 
+                                // let diff = row.cells[6].value - row.cells[7].value
+                                // row.cells.push({ 'value': diff })
+                            }
+                        }
+                    </script>
+    		<ak-grid class="flex-row-1 overflow-y-auto" id="grid" k-data-source.bind="datasource" k-widget.bind="grid" k-sortable.bind="{ mode: 'multiple',   allowUnsort: 'true'}"
+				 k-height.bind="640"  
+         k-filterable.bind="true" 
+         k-editable.bind="true"
+         k-editable="true"
+         k-reorderable.bind="true" k-groupable.bind="true"
+				 k-selectable="[row,multiple]" k-resizable.bind="true" 
+         k-on-edit.delegate="onEdit($event.detail)" k-on-data-bound.delegate="onDataBound($event.detail)"
+			   k-persist-selection.bind= "true"
+      	 k-on-change.delegate="rowSelected($event.detail)" k-toolbar.bind="['excel']"
+         k-excel.bind="{ fileName: 'Inventory.xlsx',allPages: true }"
+				 k-pdf.bind="{ allPages: true, avoidLinks: true,landscape: true, repeatHeaders: true, paperSize: 'A4'}"
+         k-column-menu.bind="true"
 				 k-scrollable.bind="scrollable">
 					<div style="width: 1100px"></div>
 					<!-- <ak-col k-field="InventoryCode" k-locked.bind="true" k-lockable.bind="false" k-filterable.bind="true" -->
@@ -125,8 +162,8 @@
 					<ak-template>
 						<div class='customer-photo-sq responsive-img' style="background-image: url(https://artbased.com/api/v1/getimage/inv/${InventoryCode}.jpg?${epoch};"
 						 click.delegate="showModalImg($event)"></div>
-					</ak-template>
-				</ak-col> -->
+					</ak-template>  
+				</ak-col> -->  
 					<ak-col k-title="Image" k-field="Image" k-width="90px">
 						<ak-template>
 							<div class='customer-photo-sq' style="background-image: url(https://artbased.com/api/v1/getimage/inv/${InventoryCode}.jpg?${epoch};"
@@ -135,14 +172,17 @@
 					</ak-col>
 
 					<ak-col k-title="Title" k-width="180px" k-field="Title"></ak-col>
-					<ak-col k-title="Year" k-width="50px" k-field="InvYear"></ak-col>
-					<ak-col k-field="Medium" k-title="Medium" k-width="160px" style='white-space: nowrap '> </ak-col>
+					<ak-col k-title="Year" k-filterable.bind="{ multi: true, search: true }" k-width="50px" k-field="InvYear"></ak-col>
+					<ak-col k-field="Medium" k-editor.bind="nonEditorLength" k-filterable.bind="{ multi: true }" k-title="Medium" k-width="160px" style='white-space: nowrap '> </ak-col>
 
-					<!--  k-filterable.bind="true" -->
-					<ak-col k-title="Location" k-width="100px" k-field="currentocationname"></ak-col>
-					<ak-col k-title="Bin" k-width="35px" k-field="Bin"></ak-col>
-					<ak-col k-title="H" k-width="25px" k-field="UnframedHeight"></ak-col>
-					<ak-col k-title="W" k-width="25px" k-field="UnframedWidth"></ak-col>
+ 	        <!-- <ak-col k-field="Medium" k-edit.bind="nonEditorLength" k-title="Medium2" k-width="160px"> </ak-col> -->
+	<ak-col k-field="Medium" k-title="MediumDD" k-width="100" k-editor.bind="ColorBWDropDownEditor" k-filterable.bind="false"
+						 k-groupable.bind="false"></ak-col>
+					<!--  k-filterable.bind="true"  filterable: { multi: true }  -->
+					<ak-col k-title="Location" k-filterable.bind="{ multi: true }" k-width="100px" k-field="currentocationname"></ak-col>
+					<ak-col k-title="Bin" k-filterable.bind="{ multi: true }" k-width="35px" k-field="Bin"></ak-col>
+					<ak-col k-title="H" k-width="25px" k-field="UnframedHeight" k-filterable.bind="{ multi: true }"></ak-col>
+					<ak-col k-title="W" k-width="25px" k-field="UnframedWidth" k-filterable.bind="{ multi: true }"></ak-col>
 					<ak-col k-title="D" k-width="25px" k-field="UnframedDepth"></ak-col>
 
 
@@ -180,6 +220,7 @@
 					<button id="searchInputBtn " class="btn btn-sm btn-warning " type="button " click.delegate="showSavedlists() ">Select a Saved List or Create New </button>					&nbsp;
 					<button id="searchInputBtn " class="btn btn-sm btn-warning " type="button " click.delegate="addexistingSelection() ">Add To Saved List: ${appService.currentsavedlist}
           </button> &nbsp;
+      
 					<!-- <button show.bind="appService.currentsavedlist " id="searchInputBtn " class="btn btn-sm btn-primary " type="button"
 				 click.delegate="clearSelection()">Clear Selection</button> &nbsp;-->
 					<b>  ${message} </b></br>

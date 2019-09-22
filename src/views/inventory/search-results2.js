@@ -29,7 +29,26 @@ export class SearchResults2 {
   checkedIds = {};
   message = ''//Hello Inventory !';
   scrollable = { virtual: true };
+excelExport(e) {
+        //   var rows = e.workbook.sheets[0].rows;
+        //  var sheet = e.workbook.sheets[0];
+        //  var savedTemplate = kendo.template(this.columns[8].template);
+        //  var data = this.dataSource.view();
 
+        var sheet = e.workbook.sheets[0];
+        var template = kendo.template(this.columns[8].template);
+
+        for (var i = 1; i < sheet.rows.length; i++) {
+            var row = sheet.rows[i];
+            // row.push[]
+            // var dataItem = {
+            //    UnitPrice: row.cells[1].value
+            // };
+            alert('row '+row)
+            // let diff = row.cells[6].value - row.cells[7].value
+            // row.cells.push({ 'value': diff })
+        }
+    }          
   datasource = new kendo.data.DataSource({
     //  toolbar: [{
     //       name: 'saveGrid',
@@ -136,7 +155,7 @@ export class SearchResults2 {
           }, {
             field: 'UnframedWidth16',
             title: ' ',
-            width: 50,
+            width: 50, 
             type: "string"
           },
           {
@@ -148,7 +167,7 @@ export class SearchResults2 {
             field: 'UnframedDepth16',
             title: ' ',
             width: 50,
-            type: "string"
+            type: "string" 
           }
           ],
           // Image : { type: "string", editable: false },
@@ -418,6 +437,21 @@ export class SearchResults2 {
   }
   // }
 
+  ColorBWDropDownEditor(container, options) {
+    $('<input required data-text-field="Description" data-value-field="Description" data-bind="value:' + options.field + '"/>')
+      .appendTo(container)
+      .kendoDropDownList({
+        autoBind: false,
+        type: 'json',
+        dataSource: {
+          transport: {
+            read: (options) => {
+              options.success(this.appService.codesListMediumSupport);
+            },
+          }
+        }
+      });
+  }
 
 
   performAction1Refresh() {
@@ -687,6 +721,9 @@ export class SearchResults2 {
     // alert('saveSelection')
     message = 'selection saved';
   }
-
+  nonEditorLength(container, options) {
+        container.text(options.field.substring(0, 25));
+        //   console.log('in nonEditorLength', options.field)
+    }
 
 }

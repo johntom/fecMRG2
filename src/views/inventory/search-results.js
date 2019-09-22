@@ -29,6 +29,26 @@ export class SearchResults {
   checkedIds = {};
   message = ''//Hello Inventory !';
   scrollable = { virtual: true };
+     excelExport(e) {
+        //   var rows = e.workbook.sheets[0].rows;
+        //  var sheet = e.workbook.sheets[0];
+        //  var savedTemplate = kendo.template(this.columns[8].template);
+        //  var data = this.dataSource.view();
+
+        var sheet = e.workbook.sheets[0];
+        var template = kendo.template(this.columns[8].template);
+
+        for (var i = 1; i < sheet.rows.length; i++) {
+            var row = sheet.rows[i];
+            // row.push[]
+            // var dataItem = {
+            //    UnitPrice: row.cells[1].value
+            // };
+            alert('row '+row)
+            // let diff = row.cells[6].value - row.cells[7].value
+            // row.cells.push({ 'value': diff })
+        }
+    }                       
   datasource = new kendo.data.DataSource({
     //  toolbar: [{
     //       name: 'saveGrid',
