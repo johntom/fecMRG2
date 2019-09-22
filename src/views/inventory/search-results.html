@@ -100,7 +100,8 @@
 			 k-height.bind="750" k-filterable.bind="{  mode: 'row' }" k-editable="inline" k-reorderable.bind="true" k-groupable.bind="true"
 			 k-selectable="[row,multiple]" k-resizable.bind="true" k-on-edit.delegate="onEdit($event.detail)" k-on-data-bound.delegate="onDataBound($event.detail)"
 			 k-on-change.delegate="rowSelected($event.detail)" k-toolbar.bind="['excel']" k-excel.bind="{ fileName: 'Inventory.xlsx',allPages: true }"
-			 k-pdf.bind="{ allPages: true, avoidLinks: true,landscape: true, repeatHeaders: true, paperSize: 'A4'}" k-column-menu.bind="true"
+		   k-persistSelection.bind= true
+       k-pdf.bind="{ allPages: true, avoidLinks: true,landscape: true, repeatHeaders: true, paperSize: 'A4'}" k-column-menu.bind="true"
 			 k-scrollable.bind="scrollable">
 				<div style="width: 1750px"></div>
 
