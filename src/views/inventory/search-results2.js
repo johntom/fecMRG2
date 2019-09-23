@@ -15,7 +15,7 @@ import { DialogImage } from './dialogImage'
 import { EventAggregator } from 'aurelia-event-aggregator';
 import { Promptmess } from '../../services/promptmess';
 import { Promptyn } from '../../services/promptyn';
-// import { googoose  } from './googoose';
+import { googoose  } from './googoose'; 
 // jrt
 // @inject(Router, ApiService, UtilService, ApplicationService, MyDataService, DialogService)
 

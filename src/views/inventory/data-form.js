@@ -13,7 +13,7 @@ import { RtfService } from '../../services/rtf-service';
 import { EventAggregator } from 'aurelia-event-aggregator';
 import { Promptmerge } from '../prompt/promptMerge';
 import { UtilService } from '../../services/util-service';
-// import { googoose } from './googoose';
+import { googoose } from './googoose';
 // import { Pusher } from 'pusher';
 
 

@@ -8,10 +8,10 @@ import { bindable } from 'aurelia-framework';
 @inject(ApplicationService, MyDataService, ApiService)
 
 export class Home {  
-  heading = "MRG HOME PAGE";
+  heading = "MRG HOME PAGE"; 
   footer = 'DataForm FOOTER...'
-  version = ' 305.53e '   
-  versionDate = 'Sun 9/21/2019 9am'
+  // version = ' 305.53g '   
+  versionDate = 'Mon 9/22/2019 9am'
   prevversion = ' 303.54 ' 
   prevversionDate = 'Mon 8/5/2019 5pm'
   newversion = 'none'
@@ -148,6 +148,7 @@ export class Home {
     this.dataService = dataService;
     this.api = api;
 
+this.version = this.appService.version 
   }
   //   this.dataService.loadCodes(values[1]), resolve all lists
 
