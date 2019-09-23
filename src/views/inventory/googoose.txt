@@ -1,0 +1,82 @@
+
+<style>
+    #googoose-footer {
+        margin-right: 1in;
+        position: absolute;
+        width: 100%;
+        text-align: right; 
+    }
+    #googoose-header {
+        width: 100%;
+        text-align: center;
+    }
+</style>
+
+$(document).googoose({
+
+  // default selector of html to wrap the Word doc in
+  area: 'div.googoose',
+
+  // used to manufacture headers and footers
+  headerfooterid: 'googoose-hdrftrtbl',
+
+  // CSS origins of the Word document
+  margins: '1.0in',
+
+  // zoom percentage when the Word document opens
+  zoom: '75',
+
+  // the file name to save as
+  filename: 'Doc1_' + now + '.doc',
+
+  // size of the Word document
+  size: '8.5in 11.0in',
+
+  // display mode to open the Word document in
+  display: 'Print',
+
+  //  the language on the page
+  lang: 'en-US',
+
+  // determines whether the page should be downloaded as a Word document or displayed as HTML
+  download: true,
+
+  // if used by the developer this jQuery selector will translate into a Word table of contents
+  toc: 'div.googoose.toc',
+
+  // f used by the developer at this jQuery selector will translate into a Microsoft Word page break
+  pagebreak: 'div.googoose.break',
+
+  // the content in this jQuery selector will be put in the Microsoft Word document header
+  headerarea: 'div.googoose.header',
+
+  // the content in this jQuery selector will be put in the document footer
+  footerarea: 'div.googoose.footer',
+
+  // used solely by the googoose internals
+  headerid: 'googoose-header',
+
+  // used solely by the googoose internals
+  footerid: 'googoose-footer',
+
+  // CSS margin for the header
+  headermargin: '.5in',
+
+  // CSS margin for the footer
+  footermargin: '.5in',
+
+  //  generally used in headers and Footers this whole display the current page number
+  currentpage: 'span.googoose.currentpage',
+
+  // generally displayed in headers and Footers this jQuery selector when put into the HTML content will display the number of total pages.
+  totalpage: 'span.googoose.totalpage',
+
+  // html boundary
+  htmlboundary: '--',
+
+  // called after the HTML has been rendered
+  finishaction: GG.finish,
+
+  // the root node
+  initobj: document
+});

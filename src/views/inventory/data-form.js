@@ -772,12 +772,19 @@ export class DataForm {
     }
   }
   createRTF(opt) {
-
+// ,margins left lrtb
+//   size: '8.5in 11.0in', //
+  //  size: '11.0in 8.5in',
+        
     $(document).ready(function () {
-   
       var o = {
-        download: 0,
-        filename: 'test.doc'
+        // download: 0,
+     
+        lang: 'en-US',
+        filename: 'test.doc',
+        margins: '0.5in',
+        footermargin: '.5in',
+         download: true,
       };
       $(document).googoose(o);
 

@@ -7,6 +7,20 @@
 	<require from="../../resources/value-converters/upper-case"></require>
 
 	<style>
+      #googoose-footer {
+        margin-top: 0.3in;
+         
+        /* margin-right: 0.3in; */
+        position: absolute;
+        width: 100%;
+        text-align: right; 
+    }
+    #googoose-header {
+        width: 100%;
+        text-align: center;
+    }
+
+    
 		#data-form-ext .tab.tab-selected .form-tab-box {
 			background-color: lightblue;
 			border-color: #7bbbce
@@ -658,8 +672,13 @@
           
 					</p>
 				</div> -->
-        <div class="googoose"> <span innerhtml.bind="currentItem.rtf1"></span></div>
-          
+        
+        <!-- <div class="googoose"> <span innerhtml.bind="currentItem.rtf1"></span></div> -->
+
+ <span class="googoose" innerhtml.bind="currentItem.rtf1"></span>
+        
+
+
 				<!-- <div class='googoose break'></div>
 				<div class='googoose toc'></div>
 				<div class='googoose break'></div> -->
@@ -694,6 +713,7 @@
 				<!-- <canvas id='hello-canvas'></canvas> ==============================================================-->
 
 				<div class='googoose footer'>
+<!-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -703,13 +723,13 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
 
-		Page <span class='googoose currentpage'></span> of <span class='googoose totalpage'></span>
+
+		 <span class='googoose currentpage'></span> of <span class='googoose totalpage'></span>
 			
-      	<br>
-        <img background-color="#38162E" src="https://johntom.github.io/fecMRG2/src/images/footerLogo.png" width="700" height="150">
+      
+        <img  src="https://johntom.github.io/fecMRG2/src/images/footerLogo.png" width="700" height="150">
    			<!-- <img background-color="#38162E" src="https://johntom.github.io/fecMRG2/src/images/MRG_logo-white.png"> -->
 
 
