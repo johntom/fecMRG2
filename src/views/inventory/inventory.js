@@ -172,7 +172,7 @@ export class Inventory {
 
     // console.log('selectedSoldId', this.search.selectedSoldId)
     let sold = this.search.sold// `${this.search.sold}`
-
+ 
     let owndedby = this.search.OwnedBy
     console.log('sold', this.search.sold)
     let selecteddate = this.search.selectedDateId//+''

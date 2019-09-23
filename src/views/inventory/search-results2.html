@@ -157,7 +157,7 @@
 	<section class="customers au-animate">
 		<div show.bind="recCount!==0">
 			<h3>Inventory ( ${recCount})
-
+ 
 				<button class="btn btn-sm btn-primary " ak-tooltip="k-content: hide image ,show: purchasedfromname, PurchasedDate, soldtoname, SoldDate & hide image!; k-position: bottom"
 				 click.delegate="show()">Show Hidden Columns</button>
 				<button class="btn btn-sm btn-primary " ak-tooltip="k-content: show image ,hide: purchasedfromname, PurchasedDate, soldtoname, SoldDate!; k-position: bottom"
@@ -203,8 +203,8 @@
 				 k-scrollable.bind="scrollable">
 					<div style="width: 1100px"></div>
 					<!-- <ak-col k-field="InventoryCode" k-locked.bind="true" k-lockable.bind="false" k-filterable.bind="true" -->
-					<ak-col k-command="edit" k-title="Edit" k-width.bind="45">
-					</ak-col>
+					<!-- <ak-col k-command="edit" k-title="Edit" k-width.bind="45">
+					</ak-col> -->
 					<ak-col k-field="InventoryCode" k-title="Code" k-width.bind="110" k-template="<button click.delegate='detailsEdit($event)' class='k-button'>&nbsp;&nbsp;#=InventoryCode#</button>">
 					</ak-col>
 					<!-- k-filterable.bind="false" -->
@@ -280,7 +280,10 @@
 					<button id="searchInputBtn " class="btn btn-sm btn-warning " type="button " click.delegate="showSavedlists() ">Select a Saved List or Create New </button>					&nbsp;
 					<button id="searchInputBtn " class="btn btn-sm btn-warning " type="button " click.delegate="addexistingSelection() ">Add To Saved List: ${appService.currentsavedlist}
           </button> &nbsp;
+<input type="checkbox" checked.bind="allgrid" ak-tooltip='k-content: "checkbox to use all items in grid "'> Select all</label>
 
+          <button id="searchInputBtn " class="btn btn-sm btn-warning " type="button " click.delegate="checklist() "> Checklist </button> &nbsp;  
+			
 					<!-- <button show.bind="appService.currentsavedlist " id="searchInputBtn " class="btn btn-sm btn-primary " type="button"
 				 click.delegate="clearSelection()">Clear Selection</button> &nbsp;-->
 					<b>  ${message} </b></br>
