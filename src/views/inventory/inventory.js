@@ -168,7 +168,8 @@ export class Inventory {
     let currentlocation = `${this.DescriptionLoc}`
     let multikeys = `${this.multikeywords}`
     let multilocs = `${this.multilocations}`
- 
+ let mrglocations = `${this.mrglocations}`
+
     // console.log('selectedSoldId', this.search.selectedSoldId)
     let sold = this.search.sold// `${this.search.sold}`
 
@@ -189,13 +190,15 @@ export class Inventory {
       if (currentlocation !== 'undefined') this.search.currentlocation = `${this.DescriptionLoc.Description}`
       if (multikeys !== 'undefined') this.search.multikeywords = `${this.multikeywords}`
       if (multilocs !== 'undefined') this.search.multilocations = `${this.multilocations}`
-
+      if (mrglocations !== 'undefined') {
+        this.search.mrglocations = `${this.mrglocations}`
+      } else this.search.mrglocations = false;
 
       if (sold !== 'undefined') this.search.sold = sold
       if (selecteddate !== 'undefined') this.search.selectedDateId = selecteddate
       if (owndedby !== 'undefined') this.search.owndedby = owndedby //search.owndedby
 
-      let qs = this.utilService.generateQueryString(this.search); 
+      let qs = this.utilService.generateQueryString(this.search);
       if (qs === '?') {
         alert('Please enter search criteria')
       } else {

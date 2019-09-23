@@ -89,6 +89,28 @@
 									</div>
 								</div>
 							</div>
+
+	<div class="flex-row-none">
+								<div class="form-group flex-column-1"> 
+									<div class="form-group">
+										<label><input type="checkbox" checked.bind="mrglocations">  Check box to return all locations at MRG</label>
+									</div>
+								</div> 
+							</div>
+
+
+ <div class="flex-row-none">
+										<div class="form-group flex-column-1">
+											<ak-multiselect k-value.two-way="multilocations">
+												<select multiple="multiple" k-height.bind="400" data-placeholder="Select mulitple locations...">
+					                       <option repeat.for="opt of appService.codesInventoryLocation" model.bind="opt.Description">
+					                        ${opt.Description} 
+					                      </option> 
+					                    </select>
+											</ak-multiselect>
+										</div>
+									</div> 
+
 							<div class="flex-row-none">
 								<div class="form-group flex-column-1">
 
@@ -106,17 +128,7 @@
 	
    
   
-  	          <div class="flex-row-none">
-										<div class="form-group flex-column-1">
-											<ak-multiselect k-value.two-way="multilocations">
-												<select multiple="multiple" k-height.bind="400" data-placeholder="Select mulitple locations...">
-					                       <option repeat.for="opt of appService.codesInventoryLocation" model.bind="opt.Description">
-					                        ${opt.Description} 
-					                      </option> 
-					                    </select>
-											</ak-multiselect>
-										</div>
-									</div> 
+  	         
 
 
 
@@ -132,7 +144,7 @@
 
 									<div class="flex-row-none">
 										<div class="form-group flex-column-1">
-											<div class="form-group">search on sold (must use other criterea)
+											<div class="form-group">search on sold (must use other criterea)<br>
 												<label repeat.for="sold of searchsold">
 					              <input type="radio" name="group1"
 					                    model.bind="sold.id" checked.bind="search.sold">

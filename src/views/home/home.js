@@ -187,31 +187,31 @@ export class Home {
     //  var pusher = new Pusher('f9bf10dcb8b1659ebf68', {
     //   cluster: 'us2',
     //   forceTLS: true 
-    // });
-
+    // }); 
+ 
     // var channel = pusher.subscribe('my-channel');
     // channel.bind('my-event', function(data) {
     //   alert(JSON.stringify(data));
     // });
-$(document).ready(function() {
-    var canvas = document.getElementById("hello-canvas");
-    var ctx = canvas.getContext("2d");
-   	function r(ctx, x, y, w, h, c) {
-	  ctx.beginPath();
-	  ctx.rect(x, y, w, h);
-	  ctx.strokeStyle = c;
-	  ctx.stroke();
-	}
-	r(ctx, 0, 0, 32, 32, "black");
-	r(ctx, 4, 4, 16, 16, "red");
-	r(ctx, 8, 8, 16, 16, "green");
-	r(ctx, 12, 12, 16, 16, "blue"); 
-    var o = {
-        download: 0,
-        filename: 'test.doc'
-    };
-    $(document).googoose(o);
-});
+// $(document).ready(function() {
+//     var canvas = document.getElementById("hello-canvas");
+//     var ctx = canvas.getContext("2d");
+//    	function r(ctx, x, y, w, h, c) {
+// 	  ctx.beginPath();
+// 	  ctx.rect(x, y, w, h);
+// 	  ctx.strokeStyle = c;
+// 	  ctx.stroke();
+// 	}
+// 	r(ctx, 0, 0, 32, 32, "black");
+// 	r(ctx, 4, 4, 16, 16, "red");
+// 	r(ctx, 8, 8, 16, 16, "green");
+// 	r(ctx, 12, 12, 16, 16, "blue"); 
+//     var o = {
+//         download: 0,
+//         filename: 'test.doc'
+//     };
+//     $(document).googoose(o);
+// });
 
   }
 
@@ -317,8 +317,9 @@ $(document).ready(function() {
         let codesAdmin = []//41,
         let codesEmailType = []//new,
         let newi //= {}
-
+ 
         console.log('got codes')
+ console.log('codesInventoryLocation codes',codesInventoryLocation)
 
         for (i = 0; i < this.appService.codesList.length; i++) {
           item = this.appService.codesList[i]

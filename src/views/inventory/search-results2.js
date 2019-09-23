@@ -339,48 +339,48 @@ export class SearchResults2 {
   }
    attached() {
     // this.altAKeyPressSubscription = this.eventAggregator.subscribe('keydown:alt-s', this.addinventory.bind(this));
-    $(document).ready(function () {
-    //   var o = {
-    //     filename: 'test.doc'
-    //   };
-    //   $(document).googoose(o);
-    // });
- var canvas = document.getElementById("hello-canvas");
-    var ctx = canvas.getContext("2d");
-   	function r(ctx, x, y, w, h, c) {
-	  ctx.beginPath();
-	  ctx.rect(x, y, w, h);
-	  ctx.strokeStyle = c;
-	  ctx.stroke();
-	}
-	r(ctx, 0, 0, 32, 32, "black");
-	r(ctx, 4, 4, 16, 16, "red");
-	r(ctx, 8, 8, 16, 16, "green");
-	r(ctx, 12, 12, 16, 16, "blue"); 
-    var o = {
-        download: 0,
-        filename: 'test.doc'
-    };
-    $(document).googoose(o);
+//     $(document).ready(function () {
+//     //   var o = {
+//     //     filename: 'test.doc'
+//     //   };
+//     //   $(document).googoose(o);
+//     // });
+//  var canvas = document.getElementById("hello-canvas");
+//     var ctx = canvas.getContext("2d");
+//    	function r(ctx, x, y, w, h, c) {
+// 	  ctx.beginPath();
+// 	  ctx.rect(x, y, w, h);
+// 	  ctx.strokeStyle = c;
+// 	  ctx.stroke();
+// 	}
+// 	r(ctx, 0, 0, 32, 32, "black");
+// 	r(ctx, 4, 4, 16, 16, "red");
+// 	r(ctx, 8, 8, 16, 16, "green");
+// 	r(ctx, 12, 12, 16, 16, "blue"); 
+//     var o = {
+//         download: 0,
+//         filename: 'test.doc'
+//     };
+//     $(document).googoose(o);
 
-    // this.grid = $("#grid").data("kendoGrid");
-    // Removing The Ship Country Column Menu:      
-    // By field  
-    // this.grid.find("[data-field=Bin]>.k-header-column-menu").remove();
-    // $('#GridName .k-header-column-menu').eq(2).hide()
-    // this.grid('k-header-column-menu').eq(2).hide()
-    // By Index  
-    // grid.thead.find("[data-index=1]>.k-header-column-menu").remove();
+//     // this.grid = $("#grid").data("kendoGrid");
+//     // Removing The Ship Country Column Menu:      
+//     // By field  
+//     // this.grid.find("[data-field=Bin]>.k-header-column-menu").remove();
+//     // $('#GridName .k-header-column-menu').eq(2).hide()
+//     // this.grid('k-header-column-menu').eq(2).hide()
+//     // By Index  
+//     // grid.thead.find("[data-index=1]>.k-header-column-menu").remove();
 
-    // this.grid.column["Bin"].IncludeInMenu(false);// hideColumn(2) NOT AVAIL
+//     // this.grid.column["Bin"].IncludeInMenu(false);// hideColumn(2) NOT AVAIL
 
 
 
-    // this.loadGrid() 
-    // this.grid.hideColumn("Image");
-    // this.grid.hideColumn("purchasedfromname");
-    // this.grid.hideColumn("PurchasedDate");
-    })
+//     // this.loadGrid() 
+//     // this.grid.hideColumn("Image");
+//     // this.grid.hideColumn("purchasedfromname");
+//     // this.grid.hideColumn("PurchasedDate");
+//     })
   }
   activate(params, routeConfig) {
     this.queryParams = this.utilService.parseQueryStringUrl();

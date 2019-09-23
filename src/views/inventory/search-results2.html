@@ -193,11 +193,13 @@
                         }
 				</script>
 				<!-- k-editable="true" -->
+     		 <!-- k-pdf.bind="{ allPages: true, avoidLinks: true,landscape: true, repeatHeaders: true, paperSize: 'A4'}" k-column-menu.bind="true" -->
+		
 				<ak-grid class="flex-row-1 overflow-y-auto" id="grid" k-data-source.bind="datasource" k-widget.bind="grid" k-sortable.bind="{ mode: 'multiple',   allowUnsort: 'true'}"
-				 k-height.bind="640" k-filterable.bind="true" k-editable.bind="true" k-editable="inline" k-reorderable.bind="true" k-groupable.bind="true"
+				 k-column-menu.bind="true" 
+         k-height.bind="640" k-filterable.bind="true" k-editable.bind="true" k-editable="inline" k-reorderable.bind="true" k-groupable.bind="true"
 				 k-selectable="[row,multiple]" k-resizable.bind="true" k-on-edit.delegate="onEdit($event.detail)" k-on-data-bound.delegate="onDataBound($event.detail)"
 				 k-persist-selection.bind="true" k-on-change.delegate="rowSelected($event.detail)" k-toolbar.bind="['excel']" k-excel.bind="{ fileName: 'Inventory.xlsx',allPages: true }"
-				 k-pdf.bind="{ allPages: true, avoidLinks: true,landscape: true, repeatHeaders: true, paperSize: 'A4'}" k-column-menu.bind="true"
 				 k-scrollable.bind="scrollable">
 					<div style="width: 1100px"></div>
 					<!-- <ak-col k-field="InventoryCode" k-locked.bind="true" k-lockable.bind="false" k-filterable.bind="true" -->
@@ -227,7 +229,7 @@
 						</ak-template>
 					</ak-col> -->
 
-					<ak-col k-title="Title" k-width="180px" k-field="Title"></ak-col>
+					<ak-col k-title="Title"  k-filterable.bind="{ multi: true, search: true }" k-width="180px" k-field="Title"></ak-col>
 					<ak-col k-title="Year" k-filterable.bind="{ multi: true, search: true }" k-width="50px" k-field="InvYear"></ak-col>
 					<!-- style='white-space: nowrap ' -->
 					<ak-col k-field="Medium" k-filterable.bind="{ multi: true, search: true  }" k-title="Medium" k-width="160px"> </ak-col>
@@ -245,18 +247,18 @@
 					<!-- <ak-col k-field="Medium" k-title="MediumDD" k-width="100px" k-editor.bind="ColorBWDropDownEditor" k-filterable.bind="false"
 						 k-groupable.bind="false"></ak-col> -->
 					<!--  k-filterable.bind="true"  filterable: { multi: true }  -->
-					<ak-col k-title="Location" k-filterable.bind="{ multi: true }" k-width="100px" k-field="currentocationname"></ak-col>
-					<ak-col k-title="Bin" k-filterable.bind="{ multi: true }" k-width="35px" k-field="Bin"></ak-col>
-					<ak-col k-title="H" k-width="25px" k-field="UnframedHeight" k-filterable.bind="{ multi: true }"></ak-col>
-					<ak-col k-title="W" k-width="25px" k-field="UnframedWidth" k-filterable.bind="{ multi: true }"></ak-col>
+					<ak-col k-title="Location"  k-filterable.bind="{ multi: true, search: true }" k-width="100px" k-field="currentocationname"></ak-col>
+					<ak-col k-title="Bin"  k-filterable.bind="{ multi: true, search: true }" k-width="35px" k-field="Bin"></ak-col>
+					<ak-col k-title="H" k-width="25px" k-field="UnframedHeight"  k-filterable.bind="{ multi: true, search: true }"></ak-col>
+					<ak-col k-title="W" k-width="25px" k-field="UnframedWidth"  k-filterable.bind="{ multi: true, search: true }"></ak-col>
 					<ak-col k-title="D" k-width="25px" k-field="UnframedDepth"></ak-col>
 					<ak-col k-title="Sold" k-width="35px">
 						<ak-template>
 							${Sold | soldstatus}
 						</ak-template>
 					</ak-col>
-					<ak-col k-title="Owner" k-width="95px" k-field="ownedbyname"></ak-col>
-					<ak-col k-title="Owned By" k-width="150px" k-field="ownername "></ak-col>
+					<ak-col k-title="Owner" k-width="95px" k-field="ownedbyname"  k-filterable.bind="{ multi: true, search: true }"></ak-col>
+					<ak-col k-title="Owned By" k-width="150px" k-field="ownername"  k-filterable.bind="{ multi: true, search: true }"></ak-col>
 
 					<!-- <ak-col k-field="Note" k-title="Note" k-width="180px"> </ak-col> -->
 					<ak-col k-field="Note" k-title="Note" k-width="170px">
@@ -264,9 +266,9 @@
 							${notes[0].Notes}
 						</ak-template>
 					</ak-col>
-					<ak-col k-title="Sold To" k-width="180px" k-field="soldtoname"></ak-col>
+					<ak-col k-title="Sold To" k-width="180px" k-field="soldtoname"  k-filterable.bind="{ multi: true, search: true }"></ak-col>
 					<ak-col k-title="Sold Date" k-width="110px" k-field="SoldDate" k-format="{0:MM/dd/yyyy}"></ak-col>
-					<ak-col k-title="Purchased From" k-width="180px" k-field="purchasedfromname"></ak-col>
+					<ak-col k-title="Purchased From" k-width="180px" k-field="purchasedfromname"  k-filterable.bind="{ multi: true, search: true }"></ak-col>
 					<ak-col k-title="Purchased Date" k-width="110px" k-field="PurchasedDate" k-format="{0:MM/dd/yyyy}"></ak-col>
 				</ak-grid>
 			</div>
@@ -287,7 +289,7 @@
 
 			</div>
 
-			<div class='googoose-wrapper'>
+			<!-- <div class='googoose-wrapper'>
 				<div class='googoose header'>
 					Hello World! Header 
 				</div>
@@ -331,7 +333,7 @@
 				<div class='googoose footer'>
 					Page <span class='googoose currentpage'></span> of <span class='googoose totalpage'></span>
 				</div>
-			</div>
+			</div> -->
 
 
 	</section>

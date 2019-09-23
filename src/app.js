@@ -15,7 +15,7 @@ export class App {
     this.eventAggregator = eventAggregator;
     this.secured = false
     this.user='jrt'
-    this.appService.version='405.55'   
+    this.appService.version='405.56'   
   }
  
   // use activationStrategy for all wildcards 
@@ -182,20 +182,19 @@ switch (user) {
       }
         break;
        case 'jrt':
-      //  if (this.password === 'jrt11111') {
+        if (this.password === '111') {
         this.appService.loginuser = this.user
         this.appService.gridview = 1
         this.secured = true
 
-      // }
+         }
         break;
-          case 'jrt0':
-      //  if (this.password === 'jrt11111') {
+        case 'jrt0':
+        if (this.password === '111') {
         this.appService.loginuser = this.user
         this.appService.gridview = 0
         this.secured = true
-
-      // }
+       }
         break;
           case 'jrt2':
       //  if (this.password === 'jrt11111') {
@@ -217,6 +216,14 @@ switch (user) {
         if (this.password === 'Homer@211!') {
         this.appService.loginuser = this.user
         this.appService.gridview = 0
+        this.secured = true
+
+      }
+        break;
+        case 'ap':
+        if (this.password === 'Test1234!') {
+        this.appService.loginuser = this.user
+        this.appService.gridview = 1
         this.secured = true
 
       }
