@@ -233,7 +233,7 @@
             html = thtml[0].outerHTML;
             return html;
         }
-
+ 
         GG.convert_totalpage = function(html) {
             if( options.debug )
                 GG.debug_fn('GG.convert_totalpage');

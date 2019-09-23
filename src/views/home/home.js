@@ -3,19 +3,20 @@ import { ApplicationService } from '../../services/application-service';
 import { MyDataService } from "../../services/my-data-service";
 import { ApiService } from '../../utils/servicesApi';
 import { bindable } from 'aurelia-framework';
+import { googoose } from '../inventory/googoose';
 //  import { Pusher } from 'pusher'; 
- 
+
 @inject(ApplicationService, MyDataService, ApiService)
 
-export class Home {  
-  heading = "MRG HOME PAGE"; 
+export class Home {
+  heading = "MRG HOME PAGE";
   footer = 'DataForm FOOTER...'
   // version = ' 305.53g '   
   versionDate = 'Mon 9/22/2019 9am'
-  prevversion = ' 303.54 ' 
+  prevversion = ' 303.54 '
   prevversionDate = 'Mon 8/5/2019 5pm'
   newversion = 'none'
-  issues = [  
+  issues = [
     // or press refresh button upper left corner',
     //https://circleci.com/workflow-run/1f3685ab-daba-41d7-8d25-6279df547b19
     // https://www.tutorialspoint.com/aurelia/aurelia_event_aggregator.htm
@@ -124,14 +125,14 @@ export class Home {
   todo = [
 
     // '!-- fix database spell ak-col k-field="Photogpraher" k-title="Photographer" k-width="140px" k-editor.bind="photograherDropDownEditor"></ak-col>',
-`add orgs logic to contact`,
-`add exhibit to repro`,
-'nina has 1 fact sheet not 100%',
-'test gross with sold, not, nfs..',
-'http://demos.codexworld.com/export-html-to-word-doc-docx-using-javascript/',
-'https://sebsauvage.net/wiki/doku.php?id=word_document_generation',
-'https://www.codexworld.com/export-html-to-word-doc-docx-using-javascript/',
-'C:\Users\john\AppData\Roaming\Microsoft\Templates -- C:\Users\john\Documents'
+    `add orgs logic to contact`,
+    `add exhibit to repro`,
+    'nina has 1 fact sheet not 100%',
+    'test gross with sold, not, nfs..',
+    'http://demos.codexworld.com/export-html-to-word-doc-docx-using-javascript/',
+    'https://sebsauvage.net/wiki/doku.php?id=word_document_generation',
+    'https://www.codexworld.com/export-html-to-word-doc-docx-using-javascript/',
+    'C:\Users\john\AppData\Roaming\Microsoft\Templates -- C:\Users\john\Documents'
 
   ]
   todocomplete = [
@@ -148,7 +149,7 @@ export class Home {
     this.dataService = dataService;
     this.api = api;
 
-this.version = this.appService.version 
+    this.version = this.appService.version
   }
   //   this.dataService.loadCodes(values[1]), resolve all lists
 
@@ -163,24 +164,24 @@ this.version = this.appService.version
   }
 
   async attached() {
-     let newversion
+    let newversion
     // var channel = this.pusher. subscribe('my-channel');
     this.channel.bind('my-event', function (data) {
       alert(JSON.stringify(data));
     });
 
-     await this.channel.bind('my-version', function (data) {
-      alert(JSON.stringify('New version notification '+data.message));
+    await this.channel.bind('my-version', function (data) {
+      alert(JSON.stringify('New version notification ' + data.message));
 
-       newversion = JSON.stringify(data.message);
+      newversion = JSON.stringify(data.message);
 
       // // this.version=  this.newversion;
       //    this.appService.newversion = this.newversion
       // alert(this.newversion);
     });
     //alert('in ')
-//     this.appService.version = newversion
-// alert('in '+ this.appService.version)
+    //     this.appService.version = newversion
+    // alert('in '+ this.appService.version)
     //  let response = await this.api.initPusher(); // do outside of app
     // //https://artbased.com/api/v1/pusher
     //  var pusher = new Pusher('f9bf10dcb8b1659ebf68', {
@@ -192,7 +193,25 @@ this.version = this.appService.version
     // channel.bind('my-event', function(data) {
     //   alert(JSON.stringify(data));
     // });
-
+$(document).ready(function() {
+    var canvas = document.getElementById("hello-canvas");
+    var ctx = canvas.getContext("2d");
+   	function r(ctx, x, y, w, h, c) {
+	  ctx.beginPath();
+	  ctx.rect(x, y, w, h);
+	  ctx.strokeStyle = c;
+	  ctx.stroke();
+	}
+	r(ctx, 0, 0, 32, 32, "black");
+	r(ctx, 4, 4, 16, 16, "red");
+	r(ctx, 8, 8, 16, 16, "green");
+	r(ctx, 12, 12, 16, 16, "blue"); 
+    var o = {
+        download: 0,
+        filename: 'test.doc'
+    };
+    $(document).googoose(o);
+});
 
   }
 
@@ -299,7 +318,7 @@ this.version = this.appService.version
         let codesEmailType = []//new,
         let newi //= {}
 
-  console.log('got codes')
+        console.log('got codes')
 
         for (i = 0; i < this.appService.codesList.length; i++) {
           item = this.appService.codesList[i]
@@ -520,7 +539,7 @@ this.version = this.appService.version
         console.log('artistList ', this.appService.artistList.length)
         console.log('orgsList ', this.appService.orgsList.length)
 
-   
+
 
         // [995,1067, 1096, 1096, 1711, 2176, 2802, 3056, 3142, 3142,3171 ,3349 ,3922 ,3940, 4461 ,5653, 5740, 6275, 6315, 6511, 6556 ,6921, 10059, 10094, 10635, 10965, 11362, 13715, 14491, 16358]
 
