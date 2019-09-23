@@ -13,7 +13,7 @@ import { RtfService } from '../../services/rtf-service';
 import { EventAggregator } from 'aurelia-event-aggregator';
 import { Promptmerge } from '../prompt/promptMerge';
 import { UtilService } from '../../services/util-service';
-
+import { googoose } from './googoose';
 // import { Pusher } from 'pusher';
 
 
@@ -32,7 +32,7 @@ export class DataForm {
   heading = 'DataForm HEADER...'
   footer = 'DataForm FOOTER...'
   recordId = '';
-  // people = ['Nancy King', 'Nancy Davolio', 'Robert Davolio' ]
+  // people = ['Nancy fattacKing', 'Nancy Davolio', 'Robert Davolio' ]
   orgfields = ['ConsignedTo', 'ConsignedFromID', 'ConsignmentShippingID', 'OwnerID',
     'PhotographerID', 'PurchasedFrom', 'ConservedBy',
     'SoldToID', 'SoldTo', 'LoanTo', 'ProvOwner']
@@ -85,9 +85,9 @@ export class DataForm {
   // { id: 5, name: "registrar" }, { id: 6, name: "presentation(not avail yet)" }]
   listtypes = [{ id: -1, name: 'choose' }, { id: 0, name: "exhibition" }, { id: 1, name: "price list" },
   { id: 2, name: "location list" }, { id: 3, name: "box label" }, { id: 4, name: "condition" },
-  { id: 5, name: "registrar" }, { id: 6, name: "presention" } ,
-  { id: 7, name: "test1" }, { id: 8, name: "test2" } 
-  
+  { id: 5, name: "registrar" }, { id: 6, name: "presention" },
+  { id: 7, name: "test1" }, { id: 8, name: "test2" }
+
   ]
   //  listtypes = [{ id: 0, name: "exh(na)" }, { id: 1, name: "prce-lst" },
   //   { id: 2, name: "loc-list" }, { id: 3, name: "box label" }, { id: 4, name: "condition" },
@@ -180,11 +180,11 @@ export class DataForm {
     // this.selectedlist = 5
     this.selectedlist = -1
     this.utilService = utilService;
-this.message = ""
-this.errormessage= ""
+    this.message = ""
+    this.errormessage = ""
 
- this.appService.Refreshsearchgrid=false
-  } 
+    this.appService.Refreshsearchgrid = false
+  }
   // publish() { 
   //   var payload = 'This is some data...';
   //   this.eventAggregator.publish('myEventName', payload);
@@ -199,20 +199,20 @@ this.errormessage= ""
   //   console.log('Disposed!!!'); 
   // } 
 
-  changeLocation(changedValue) { 
-     console.log('changeLocation ',changedValue,this.currentItem.CurrentLocation);//.id+' '+this.currentItem.CurrentLocation.Description)
-      
-    this.appService.Refreshsearchgrid=true
+  changeLocation(changedValue) {
+    console.log('changeLocation ', changedValue, this.currentItem.CurrentLocation);//.id+' '+this.currentItem.CurrentLocation.Description)
+
+    this.appService.Refreshsearchgrid = true
     // currentocationname " value.bind="currentItem.CurrentLocation">
 
     // this.currentItem.CurrentLocation=this.currentItem.CurrentLocation.id
     let idx = this.appService.codesInventoryLocation.findIndex(x => x.id === this.currentItem.CurrentLocation);
-  if(idx===-1 ){
-    this.currentItem.currentocationname = 'missing. see form'
-    this.errormessage='error: currentocationname not set for grid'
-  }  this.currentItem.currentocationname = this.appService.codesInventoryLocation[idx].Description
+    if (idx === -1) {
+      this.currentItem.currentocationname = 'missing. see form'
+      this.errormessage = 'error: currentocationname not set for grid'
+    } this.currentItem.currentocationname = this.appService.codesInventoryLocation[idx].Description
     // alert(idx + ' ' + this.currentItem.currentocationname)
-  } 
+  }
 
   soldtoEdit() {
     // save 
@@ -421,7 +421,7 @@ this.errormessage= ""
       const queryParams = {}
       let slname
       let ct = 0
-  //    this.itsaquickie = false
+      //    this.itsaquickie = false
       // pairs.forEach(p => {
       //   const kv = p.split('=')
       //   if (ct === 0) {
@@ -731,8 +731,77 @@ this.errormessage= ""
       // // this.tabindex=tabindex
       // // this.eventAggregator.publish('rtfpayload', 'refresh');
       // //            this.saveinventory(0)
+      $(document).ready(function () {
+        //   var o = {
+        //     filename: 'test.doc'
+        //   };
+        //   $(document).googoose(o);
+        // });
+        // var canvas = document.getElementById("hello-canvas");
+        // var ctx = canvas.getContext("2d");
+        // function r(ctx, x, y, w, h, c) {
+        //   ctx.beginPath();
+        //   ctx.rect(x, y, w, h);
+        //   ctx.strokeStyle = c;
+        //   ctx.stroke();
+        // }
+        // r(ctx, 0, 0, 32, 32, "black");
+        // r(ctx, 4, 4, 16, 16, "red");
+        // r(ctx, 8, 8, 16, 16, "green");
+        // r(ctx, 12, 12, 16, 16, "blue");
+        var o = {
+          download: 0,
+          filename: 'test.doc'
+        };
+        $(document).googoose(o);
 
+        // this.grid = $("#grid").data("kendoGrid");
+        // Removing The Ship Country Column Menu:      
+        // By field  
+        // this.grid.find("[data-field=Bin]>.k-header-column-menu").remove();
+        // $('#GridName .k-header-column-menu').eq(2).hide()
+        // this.grid('k-header-column-menu').eq(2).hide()
+        // By Index  
+        // grid.thead.find("[data-index=1]>.k-header-column-menu").remove();
+
+        // this.grid.column["Bin"].IncludeInMenu(false);// hideColumn(2) NOT AVAIL
+
+
+
+        // this.loadGrid() 
+        // this.grid.hideColumn("Image");
+        // this.grid.hideColumn("purchasedfromname");
+        // this.grid.hideColumn("PurchasedDate");
+      })
     }
+  }
+  createRTF(opt) {
+
+    $(document).ready(function () {
+      //   var o = {
+      //     filename: 'test.doc'
+      //   };
+      //   $(document).googoose(o);
+      // });
+      // var canvas = document.getElementById("hello-canvas");
+      // var ctx = canvas.getContext("2d");
+      // function r(ctx, x, y, w, h, c) {
+      //   ctx.beginPath();
+      //   ctx.rect(x, y, w, h);
+      //   ctx.strokeStyle = c;
+      //   ctx.stroke();
+      // }
+      // r(ctx, 0, 0, 32, 32, "black");
+      // r(ctx, 4, 4, 16, 16, "red");
+      // r(ctx, 8, 8, 16, 16, "green");
+      // r(ctx, 12, 12, 16, 16, "blue");
+      var o = {
+        download: 0,
+        filename: 'test.doc'
+      };
+      $(document).googoose(o);
+
+    })
   }
 
   async publish() {

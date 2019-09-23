@@ -31,8 +31,34 @@
 			/* float: left; */
 		}
 
-		.k-grid-header .k-header {
+		/* .k-grid-header .k-header {
 			height: 20px;
+			padding: 0;
+		} */
+
+		/* .k-grid-header th{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space:nowrap;
+}
+.k-grid td
+{
+    overflow: hidden;
+    text-overflow: ellipsis;
+} */
+
+		.k-grid-header th a {
+			overflow: hidden;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+		}
+
+		.k-grid-header .k-filterable .k-link {
+			padding-right: 0;
+		}
+
+		.k-grid-header .k-header .k-link {
+			margin: 0;
 			padding: 0;
 		}
 
@@ -49,6 +75,33 @@
 			margin: 25px auto 0;
 		}
 
+		/* img.responsive-img, video.responsive-video { */
+
+		/* max-width: 100%;
+    height: auto; } 
+    
+    		box-shadow: inset 0 0 1px #999, inset 0 0 10px rgba(0, 0, 0, .2);
+	
+    */
+
+		.cust-photo {
+			display: inline-block;
+			/* 	width: 50px;
+			height: 50px; 	height: auto;*/
+			/* max-height: 50px;
+			max-width: 100%; */
+			/* width: 50px;
+			height: auto;  */
+			max-height: 50px;
+			max-width: 100%;
+			background-size: 50px 53px;
+			background-position: center center;
+			vertical-align: middle;
+			line-height: 50px;
+			margin-left: 5px;
+		}
+
+
 		.customer-photo-sq {
 			display: inline-block;
 			width: 50px;
@@ -57,7 +110,6 @@
 			background-position: center center;
 			vertical-align: middle;
 			line-height: 50px;
-			box-shadow: inset 0 0 1px #999, inset 0 0 10px rgba(0, 0, 0, .2);
 			margin-left: 5px;
 		}
 
@@ -75,9 +127,9 @@
 	<require from="../../resources/value-converters/date-format"></require>
 	<!-- <require from="aurelia-kendoui-bridge/button/button"></require> -->
 	<!-- <require from="./customers.css"></require> -->
-  		<!-- <button id="searchInputBtn" class="btn btn-warning" type="button" click.delegate="performAction1Refresh()">Refresh Search List</button>				&nbsp; -->
+	<!-- <button id="searchInputBtn" class="btn btn-warning" type="button" click.delegate="performAction1Refresh()">Refresh Search List</button>				&nbsp; -->
 
-				<!-- <button class="btn btn-sm btn-primary " click.delegate="performAction1Refresh()">Refresh Grid</button>
+	<!-- <button class="btn btn-sm btn-primary " click.delegate="performAction1Refresh()">Refresh Grid</button>
 		
 		</div>
      
@@ -90,7 +142,7 @@
 			<button type="button" class="btn btn-sm btn-default" id="textButton" ak-button k-on-click.delegate="load()">
                   <span class="glyphicon glyphicon-open" aria-hidden="true">   Load Grid
                 </button> -->
-                 <!-- <span id="autohide-true"
+	<!-- <span id="autohide-true"
             class="k-button wider"
             ak-tooltip="k-content: Hello!; k-position: top"
             k-on-show.delegate="logger.log('show button 1')"
@@ -106,10 +158,12 @@
 		<div show.bind="recCount!==0">
 			<h3>Inventory ( ${recCount})
 
-				<button class="btn btn-sm btn-primary "  ak-tooltip="k-content: hide image ,show: purchasedfromname, PurchasedDate, soldtoname, SoldDate & hide image!; k-position: bottom" click.delegate="show()">Show Hidden Columns</button>
-				<button class="btn btn-sm btn-primary "  ak-tooltip="k-content: show image ,hide: purchasedfromname, PurchasedDate, soldtoname, SoldDate!; k-position: bottom" click.delegate="hide()">Hide Preset Columns</button>
-            
-			</h3> 
+				<button class="btn btn-sm btn-primary " ak-tooltip="k-content: hide image ,show: purchasedfromname, PurchasedDate, soldtoname, SoldDate & hide image!; k-position: bottom"
+				 click.delegate="show()">Show Hidden Columns</button>
+				<button class="btn btn-sm btn-primary " ak-tooltip="k-content: show image ,hide: purchasedfromname, PurchasedDate, soldtoname, SoldDate!; k-position: bottom"
+				 click.delegate="hide()">Hide Preset Columns</button>
+
+			</h3>
 
 			<!-- <div ref="spinner" class="splash">
 			<div class="message">fetching records</div>
@@ -117,14 +171,14 @@
 		</div> -->
 			<div show.bind="busy.active" ref="spinner" class="splash">
 				<div class="message">fetching records</div>
-				<i class="fa fa-spinner fa-spin"></i> 
+				<i class="fa fa-spinner fa-spin"></i>
 			</div>
-     <!-- k-filterable.bind="{  mode: 'row' }" k-filterable.bind="{mode: 'menu' }" -->
+			<!-- k-filterable.bind="{  mode: 'row' }" k-filterable.bind="{mode: 'menu' }" -->
 			<!--  k-editable="inline" -->
-    
-      <div class="flex-grid">
-		 <script>
-                        excelExport:
+
+			<div class="flex-grid">
+				<script>
+					excelExport:
                         function (e) {
 
                             var sheet = e.workbook.sheets[0];
@@ -132,29 +186,23 @@
 
                             for (var i = 1; i < sheet.rows.length; i++) {
                                 var row = sheet.rows[i];
-   alert('row '+row) 
+  //  alert('row '+row) 
                                 // let diff = row.cells[6].value - row.cells[7].value
                                 // row.cells.push({ 'value': diff })
                             }
                         }
-                    </script>
-    		<ak-grid class="flex-row-1 overflow-y-auto" id="grid" k-data-source.bind="datasource" k-widget.bind="grid" k-sortable.bind="{ mode: 'multiple',   allowUnsort: 'true'}"
-				 k-height.bind="640"  
-         k-filterable.bind="true" 
-         k-editable.bind="true"
-         k-editable="true"
-         k-reorderable.bind="true" k-groupable.bind="true"
-				 k-selectable="[row,multiple]" k-resizable.bind="true" 
-         k-on-edit.delegate="onEdit($event.detail)" k-on-data-bound.delegate="onDataBound($event.detail)"
-			   k-persist-selection.bind= "true"
-      	 k-on-change.delegate="rowSelected($event.detail)" k-toolbar.bind="['excel']"
-         k-excel.bind="{ fileName: 'Inventory.xlsx',allPages: true }"
-				 k-pdf.bind="{ allPages: true, avoidLinks: true,landscape: true, repeatHeaders: true, paperSize: 'A4'}"
-         k-column-menu.bind="true"
+				</script>
+				<!-- k-editable="true" -->
+				<ak-grid class="flex-row-1 overflow-y-auto" id="grid" k-data-source.bind="datasource" k-widget.bind="grid" k-sortable.bind="{ mode: 'multiple',   allowUnsort: 'true'}"
+				 k-height.bind="640" k-filterable.bind="true" k-editable.bind="true" k-editable="inline" k-reorderable.bind="true" k-groupable.bind="true"
+				 k-selectable="[row,multiple]" k-resizable.bind="true" k-on-edit.delegate="onEdit($event.detail)" k-on-data-bound.delegate="onDataBound($event.detail)"
+				 k-persist-selection.bind="true" k-on-change.delegate="rowSelected($event.detail)" k-toolbar.bind="['excel']" k-excel.bind="{ fileName: 'Inventory.xlsx',allPages: true }"
+				 k-pdf.bind="{ allPages: true, avoidLinks: true,landscape: true, repeatHeaders: true, paperSize: 'A4'}" k-column-menu.bind="true"
 				 k-scrollable.bind="scrollable">
 					<div style="width: 1100px"></div>
 					<!-- <ak-col k-field="InventoryCode" k-locked.bind="true" k-lockable.bind="false" k-filterable.bind="true" -->
-
+					<ak-col k-command="edit" k-title="Edit" k-width.bind="45">
+					</ak-col>
 					<ak-col k-field="InventoryCode" k-title="Code" k-width.bind="110" k-template="<button click.delegate='detailsEdit($event)' class='k-button'>&nbsp;&nbsp;#=InventoryCode#</button>">
 					</ak-col>
 					<!-- k-filterable.bind="false" -->
@@ -163,29 +211,45 @@
 						<div class='customer-photo-sq responsive-img' style="background-image: url(https://artbased.com/api/v1/getimage/inv/${InventoryCode}.jpg?${epoch};"
 						 click.delegate="showModalImg($event)"></div>
 					</ak-template>  
-				</ak-col> -->  
+				</ak-col> -->
 					<ak-col k-title="Image" k-field="Image" k-width="90px">
 						<ak-template>
-							<div class='customer-photo-sq' style="background-image: url(https://artbased.com/api/v1/getimage/inv/${InventoryCode}.jpg?${epoch};"
+							<div class='customer-photo-sq' style="background-image: url(https://artbased.com/api/v1/getimage/inv/${InventoryCode}.jpg?${epoch})"
 							 click.delegate="showModalImg($event)"></div>
 						</ak-template>
 					</ak-col>
 
+					<!-- 
+					<ak-col k-title="Image" k-field="Image" k-width="90px">
+						<ak-template>
+							<div class='cust-photo' style='background-image: url(https://artbased.com/api/v1/getimage/inv/${InventoryCode}.jpg?${epoch})'
+							 click.delegate="showModalImg($event)"></div>
+						</ak-template>
+					</ak-col> -->
+
 					<ak-col k-title="Title" k-width="180px" k-field="Title"></ak-col>
 					<ak-col k-title="Year" k-filterable.bind="{ multi: true, search: true }" k-width="50px" k-field="InvYear"></ak-col>
-					<ak-col k-field="Medium" k-editor.bind="nonEditorLength" k-filterable.bind="{ multi: true }" k-title="Medium" k-width="160px" style='white-space: nowrap '> </ak-col>
+					<!-- style='white-space: nowrap ' -->
+					<ak-col k-field="Medium" k-filterable.bind="{ multi: true, search: true  }" k-title="Medium" k-width="160px"> </ak-col>
 
- 	        <!-- <ak-col k-field="Medium" k-edit.bind="nonEditorLength" k-title="Medium2" k-width="160px"> </ak-col> -->
-	<ak-col k-field="Medium" k-title="MediumDD" k-width="100" k-editor.bind="ColorBWDropDownEditor" k-filterable.bind="false"
-						 k-groupable.bind="false"></ak-col>
+					<!-- <ak-col k-field="Medium"  k-filterable.bind="{ multi: true, search: true  }" k-title="Medium2" 
+ k-width="160px"   k-template="(#=truncate()#)" > </ak-col> -->
+
+					<!-- <ak-col k-field="Medium"  k-filterable.bind="{ multi: true, search: true  }" k-title="Medium3"  k-width="160px"  > 
+	<ak-template>
+						 <div>#=truncate(${Medium},50)#</div>
+						</ak-template>
+					</ak-col> -->
+
+					<!-- <ak-col k-field="Medium" k-editor.bind="nonEditorLength" k-title="Medium2" k-width="160px"> </ak-col> -->
+					<!-- <ak-col k-field="Medium" k-title="MediumDD" k-width="100px" k-editor.bind="ColorBWDropDownEditor" k-filterable.bind="false"
+						 k-groupable.bind="false"></ak-col> -->
 					<!--  k-filterable.bind="true"  filterable: { multi: true }  -->
 					<ak-col k-title="Location" k-filterable.bind="{ multi: true }" k-width="100px" k-field="currentocationname"></ak-col>
 					<ak-col k-title="Bin" k-filterable.bind="{ multi: true }" k-width="35px" k-field="Bin"></ak-col>
 					<ak-col k-title="H" k-width="25px" k-field="UnframedHeight" k-filterable.bind="{ multi: true }"></ak-col>
 					<ak-col k-title="W" k-width="25px" k-field="UnframedWidth" k-filterable.bind="{ multi: true }"></ak-col>
 					<ak-col k-title="D" k-width="25px" k-field="UnframedDepth"></ak-col>
-
-
 					<ak-col k-title="Sold" k-width="35px">
 						<ak-template>
 							${Sold | soldstatus}
@@ -200,16 +264,10 @@
 							${notes[0].Notes}
 						</ak-template>
 					</ak-col>
-
-
-
-
 					<ak-col k-title="Sold To" k-width="180px" k-field="soldtoname"></ak-col>
 					<ak-col k-title="Sold Date" k-width="110px" k-field="SoldDate" k-format="{0:MM/dd/yyyy}"></ak-col>
 					<ak-col k-title="Purchased From" k-width="180px" k-field="purchasedfromname"></ak-col>
 					<ak-col k-title="Purchased Date" k-width="110px" k-field="PurchasedDate" k-format="{0:MM/dd/yyyy}"></ak-col>
-
-
 				</ak-grid>
 			</div>
 
@@ -220,7 +278,7 @@
 					<button id="searchInputBtn " class="btn btn-sm btn-warning " type="button " click.delegate="showSavedlists() ">Select a Saved List or Create New </button>					&nbsp;
 					<button id="searchInputBtn " class="btn btn-sm btn-warning " type="button " click.delegate="addexistingSelection() ">Add To Saved List: ${appService.currentsavedlist}
           </button> &nbsp;
-      
+
 					<!-- <button show.bind="appService.currentsavedlist " id="searchInputBtn " class="btn btn-sm btn-primary " type="button"
 				 click.delegate="clearSelection()">Clear Selection</button> &nbsp;-->
 					<b>  ${message} </b></br>
@@ -228,6 +286,52 @@
 				<!-- ${footer} ${queryParams} &nbsp -->
 
 			</div>
+
+			<div class='googoose-wrapper'>
+				<div class='googoose header'>
+					Hello World! Header
+				</div>
+				<div class='googoose cover'>
+					<p style='font-size:42px;text-align:center;'>
+						Hello World!
+					</p>
+				</div>
+				<div class='googoose break'></div>
+				<div class='googoose toc'></div>
+				<div class='googoose break'></div>
+				<h1>Hello World!</h1>
+				<p>
+					This is the standard hello world sort of example.
+				</p>
+				${datasource._data[0].rtf2}
+				<ul>
+					<li>Look at my unordered lists</li>
+					<li>Very neat!</li>
+					<li>I’ve made sure unique character sets are handled </li>
+				</ul>
+				<ol>
+					<li>Ordered lists work the same way</li>
+					<li>Numbering is automatic</li>
+				</ol>
+				<h2>Child Elememts</h2>
+				<p>
+					When I have a child header Word automatically determines that it belongs to the parent.
+				</p>
+				<div class='googoose break'></div>
+				<h1>Page Breaks</h1>
+				<p>
+					You can even define and make page breaks
+				</p>
+
+				<div class='googoose break'></div>
+
+				<canvas id='hello-canvas'></canvas>
+
+				<div class='googoose footer'>
+					Page <span class='googoose currentpage'></span> of <span class='googoose totalpage'></span>
+				</div>
+			</div>
+
 
 	</section>
 </template>

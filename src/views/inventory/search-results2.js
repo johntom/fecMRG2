@@ -15,6 +15,7 @@ import { DialogImage } from './dialogImage'
 import { EventAggregator } from 'aurelia-event-aggregator';
 import { Promptmess } from '../../services/promptmess';
 import { Promptyn } from '../../services/promptyn';
+import { googoose  } from './googoose';
 // jrt
 // @inject(Router, ApiService, UtilService, ApplicationService, MyDataService, DialogService)
 
@@ -29,26 +30,26 @@ export class SearchResults2 {
   checkedIds = {};
   message = ''//Hello Inventory !';
   scrollable = { virtual: true };
-excelExport(e) {
-        //   var rows = e.workbook.sheets[0].rows;
-        //  var sheet = e.workbook.sheets[0];
-        //  var savedTemplate = kendo.template(this.columns[8].template);
-        //  var data = this.dataSource.view();
+  excelExport(e) {
+    //   var rows = e.workbook.sheets[0].rows;
+    //  var sheet = e.workbook.sheets[0];
+    //  var savedTemplate = kendo.template(this.columns[8].template);
+    //  var data = this.dataSource.view();
 
-        var sheet = e.workbook.sheets[0];
-        var template = kendo.template(this.columns[8].template);
+    var sheet = e.workbook.sheets[0];
+    var template = kendo.template(this.columns[8].template);
 
-        for (var i = 1; i < sheet.rows.length; i++) {
-            var row = sheet.rows[i];
-            // row.push[]
-            // var dataItem = {
-            //    UnitPrice: row.cells[1].value
-            // };
-            alert('row '+row)
-            // let diff = row.cells[6].value - row.cells[7].value
-            // row.cells.push({ 'value': diff })
-        }
-    }          
+    for (var i = 1; i < sheet.rows.length; i++) {
+      var row = sheet.rows[i];
+      // row.push[]
+      // var dataItem = {
+      //    UnitPrice: row.cells[1].value
+      // };
+      alert('row ' + row)
+      // let diff = row.cells[6].value - row.cells[7].value
+      // row.cells.push({ 'value': diff })
+    }
+  }
   datasource = new kendo.data.DataSource({
     //  toolbar: [{
     //       name: 'saveGrid',
@@ -155,7 +156,7 @@ excelExport(e) {
           }, {
             field: 'UnframedWidth16',
             title: ' ',
-            width: 50, 
+            width: 50,
             type: "string"
           },
           {
@@ -167,7 +168,7 @@ excelExport(e) {
             field: 'UnframedDepth16',
             title: ' ',
             width: 50,
-            type: "string" 
+            type: "string"
           }
           ],
           // Image : { type: "string", editable: false },
@@ -244,18 +245,18 @@ excelExport(e) {
     // this.grid.hideColumn(16);//purchasedfromname
     // this.grid.hideColumn(17);//PurchasedDate
 
- 
+
     this.grid.showColumn("Image");
     this.grid.hideColumn("purchasedfromname");
     this.grid.hideColumn("PurchasedDate");
     this.grid.hideColumn("soldtoname");
     this.grid.hideColumn("SoldDate");
     this.grid.hideColumn("Note");
-          // this.grid.hideColumn("purchasedfromname");
-          // this.grid.hideColumn("PurchasedDate");
-          // this.grid.hideColumn("soldtoname");
-          // this.grid.hideColumn("SoldDate");
-          // this.grid.hideColumn("Note");
+    // this.grid.hideColumn("purchasedfromname");
+    // this.grid.hideColumn("PurchasedDate");
+    // this.grid.hideColumn("soldtoname");
+    // this.grid.hideColumn("SoldDate");
+    // this.grid.hideColumn("Note");
 
   }
 
@@ -336,7 +337,32 @@ excelExport(e) {
     //       console.log(response.output);
     //     });
   }
-  attached() {
+   attached() {
+    // this.altAKeyPressSubscription = this.eventAggregator.subscribe('keydown:alt-s', this.addinventory.bind(this));
+    $(document).ready(function () {
+    //   var o = {
+    //     filename: 'test.doc'
+    //   };
+    //   $(document).googoose(o);
+    // });
+ var canvas = document.getElementById("hello-canvas");
+    var ctx = canvas.getContext("2d");
+   	function r(ctx, x, y, w, h, c) {
+	  ctx.beginPath();
+	  ctx.rect(x, y, w, h);
+	  ctx.strokeStyle = c;
+	  ctx.stroke();
+	}
+	r(ctx, 0, 0, 32, 32, "black");
+	r(ctx, 4, 4, 16, 16, "red");
+	r(ctx, 8, 8, 16, 16, "green");
+	r(ctx, 12, 12, 16, 16, "blue"); 
+    var o = {
+        download: 0,
+        filename: 'test.doc'
+    };
+    $(document).googoose(o);
+
     // this.grid = $("#grid").data("kendoGrid");
     // Removing The Ship Country Column Menu:      
     // By field  
@@ -354,7 +380,7 @@ excelExport(e) {
     // this.grid.hideColumn("Image");
     // this.grid.hideColumn("purchasedfromname");
     // this.grid.hideColumn("PurchasedDate");
-
+    })
   }
   activate(params, routeConfig) {
     this.queryParams = this.utilService.parseQueryStringUrl();
@@ -379,6 +405,8 @@ excelExport(e) {
     // this.selectedids = orgobj.InventoryCodes
 
   }
+
+
 
   addinventory() {
 
@@ -437,21 +465,21 @@ excelExport(e) {
   }
   // }
 
-  ColorBWDropDownEditor(container, options) {
-    $('<input required data-text-field="Description" data-value-field="Description" data-bind="value:' + options.field + '"/>')
-      .appendTo(container)
-      .kendoDropDownList({
-        autoBind: false,
-        type: 'json',
-        dataSource: {
-          transport: {
-            read: (options) => {
-              options.success(this.appService.codesListMediumSupport);
-            },
-          }
-        }
-      });
-  }
+  // ColorBWDropDownEditor(container, options) {
+  //   $('<input required data-text-field="Description" data-value-field="Description" data-bind="value:' + options.field + '"/>')
+  //     .appendTo(container)
+  //     .kendoDropDownList({
+  //       autoBind: false,
+  //       type: 'json',
+  //       dataSource: {
+  //         transport: {
+  //           read: (options) => {
+  //             options.success(this.appService.codesListMediumSupport);
+  //           },
+  //         }
+  //       }
+  //     });
+  // }
 
 
   performAction1Refresh() {
@@ -543,13 +571,10 @@ excelExport(e) {
       console.log(response.output);
     });
   }
-  // attached() {
-  //     this.altAKeyPressSubscription = this.eventAggregator.subscribe('keydown:alt-s', this.addinventory.bind(this));
 
-  //   }
-  //   detached() {
-  //     this.altAKeyPressSubscription.dispose();
-  //   }
+  // detached() {
+  //   this.altAKeyPressSubscription.dispose();
+  // }
   ////////////////////
 
   onDataBound(e) {
@@ -722,8 +747,21 @@ excelExport(e) {
     message = 'selection saved';
   }
   nonEditorLength(container, options) {
-        container.text(options.field.substring(0, 25));
-        //   console.log('in nonEditorLength', options.field)
-    }
+    // container.text(options.field.substring(0, 25));
+    let a = options.model[options.field]
+    container.text(a.substring(0, 25));
+
+    //   console.log('in nonEditorLength', options.field)
+  }
+  // truncate(field,len) {
+  truncate() {
+    // container.text(options.field.substring(0, 25));
+    let a = 'this a test this a test2 this a test3'
+
+    return a.substring(0, len)
+    //   container.text(a.substring(0, len));
+
+    //   console.log('in nonEditorLength', options.field)
+  }
 
 }
