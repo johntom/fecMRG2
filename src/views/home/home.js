@@ -12,7 +12,7 @@ export class Home {
   footer = 'DataForm FOOTER...'
   version = ' 305.53e '   
   versionDate = 'Sun 9/21/2019 9am'
-  prevversion = ' 303.53 ' 
+  prevversion = ' 303.54 ' 
   prevversionDate = 'Mon 8/5/2019 5pm'
   newversion = 'none'
   issues = [  

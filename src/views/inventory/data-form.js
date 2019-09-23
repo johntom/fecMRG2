@@ -731,12 +731,16 @@ export class DataForm {
       // // this.tabindex=tabindex
       // // this.eventAggregator.publish('rtfpayload', 'refresh');
       // //            this.saveinventory(0)
-       $(document).ready(function () {
-           var o = {
-             filename: 'test.doc'
-           };
-           $(document).googoose(o);
-         });
+       
+      //  $(document).ready(function () {
+      //      var o = {
+      //         // size: '8.5in 11.0in', 
+      //        filename: 'test.doc'
+      //      };
+      //      $(document).googoose(o);
+      //    });
+
+
         // var canvas = document.getElementById("hello-canvas");
         // var ctx = canvas.getContext("2d");
         // function r(ctx, x, y, w, h, c) {
@@ -775,16 +779,18 @@ export class DataForm {
 // ,margins left lrtb
 //   size: '8.5in 11.0in', //
   //  size: '11.0in 8.5in',
+        let fn =     `${this.currentItem.InventoryCode}.doc`// test.doc',
+   
+        // footermargin: '.5in',
+    // lang: 'en-US',
         
     $(document).ready(function () {
       var o = {
-        // download: 0,
-     
-        lang: 'en-US',
-        filename: 'test.doc',
-        margins: '0.5in',
-        footermargin: '.5in',
-         download: true,
+        download: 0,
+        size: '8.5in 11.0in',
+        filename: fn,// test.doc',
+        margins: '0.5in'
+        //  download: true,
       };
       $(document).googoose(o);
 
