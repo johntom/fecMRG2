@@ -136,7 +136,7 @@ export class Home {
 
   ]
   todocomplete = [
-    "To insert an ASCII character, press and hold down ALT while typing the character code. For example, to insert the degree (º) symbol, press and hold down ALT while typing 0176 on the numeric keypad. You must use the numeric keypad to type the numbers, and not the keyboard.",
+    "To insert an ASCII character, press and hold down ALT while typing the character code. For example, to insert the degree (º) symbol,Press Num lock then  press and hold down ALT while typing 0176 on the numeric keypad. You must use the numeric keypad to type the numbers, and not the keyboard.",
     , "https://support.office.com/en-us/article/insert-ascii-or-unicode-latin-based-symbols-and-characters-d13f58d3-7bcb-44a7-a4d5-972ee12e50e0"
     , 'CTRL+SHIFT+F to find'
 

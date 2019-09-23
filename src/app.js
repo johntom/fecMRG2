@@ -10,14 +10,14 @@ export class App {
     return [ApplicationService, EventAggregator];
   }
 
-  constructor(appService, eventAggregator) {
+  constructor(appService, eventAggregator) { 
     this.appService = appService;
     this.eventAggregator = eventAggregator;
     this.secured = false
     this.user='jrt'
-    this.appService.version='405.54a' 
+    this.appService.version='405.54b'   
   }
-
+ 
   // use activationStrategy for all wildcards 
   // { route: 'claim/:id', name: 'claim-search-results', moduleId: PLATFORM.moduleName('./views/claim/search-results'), title: 'Search Results' ,activationStrategy:'replace'  },
 
