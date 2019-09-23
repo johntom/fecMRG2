@@ -7,7 +7,7 @@ import { bindable } from 'aurelia-framework';
  
 @inject(ApplicationService, MyDataService, ApiService)
 
-export class Home { 
+export class Home {  
   heading = "MRG HOME PAGE";
   footer = 'DataForm FOOTER...'
   version = ' 305.53e '   
