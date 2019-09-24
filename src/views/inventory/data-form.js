@@ -1068,7 +1068,7 @@ export class DataForm {
     function tabinfo(temp) {
       this.recid = temp[0];
       this.tabindex = temp[1];
-
+ 
     }
     var temp = [this.currentItem.InventoryCode, tabindex];
     tabinfo = new tabinfo(temp);

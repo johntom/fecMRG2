@@ -14,7 +14,9 @@ import { Prompt } from './prompt'
 import { DialogImage } from './dialogImage'
 import { EventAggregator } from 'aurelia-event-aggregator';
 import { Promptmess } from '../../services/promptmess';
-import { Promptyn } from '../../services/promptyn';
+// import { Promptyn } from '../../services/promptyn';
+
+import { Promptmerge } from '../prompt/promptMerge';
 // jrt
 // @inject(Router, ApiService, UtilService, ApplicationService, MyDataService, DialogService)
 
@@ -27,28 +29,34 @@ export class SearchResults {
   invcode = '';
   queryParams = '';
   checkedIds = {};
-  message = ''//Hello Inventory !';
+  message = ''   //Hello Inventory !';
   scrollable = { virtual: true };
-     excelExport(e) {
-        //   var rows = e.workbook.sheets[0].rows;
-        //  var sheet = e.workbook.sheets[0];
-        //  var savedTemplate = kendo.template(this.columns[8].template);
-        //  var data = this.dataSource.view();
+    listtypes = [{ id: -1, name: 'choose' }, { id: 0, name: "exhibition" }, { id: 1, name: "price list" },
+  { id: 2, name: "location list" }, { id: 3, name: "box label" }, { id: 4, name: "condition" },
+  { id: 5, name: "registrar" }, { id: 6, name: "presention" },
+  { id: 7, name: "test1" }, { id: 8, name: "test2" }
 
-        var sheet = e.workbook.sheets[0];
-        var template = kendo.template(this.columns[8].template);
+  ]
+  excelExport(e) {
+    //   var rows = e.workbook.sheets[0].rows;
+    //  var sheet = e.workbook.sheets[0];
+    //  var savedTemplate = kendo.template(this.columns[8].template);
+    //  var data = this.dataSource.view();
 
-        for (var i = 1; i < sheet.rows.length; i++) {
-            var row = sheet.rows[i];
-            // row.push[]
-            // var dataItem = {
-            //    UnitPrice: row.cells[1].value
-            // };
-            alert('row '+row)
-            // let diff = row.cells[6].value - row.cells[7].value
-            // row.cells.push({ 'value': diff })
-        }
-    }                       
+    var sheet = e.workbook.sheets[0];
+    var template = kendo.template(this.columns[8].template);
+
+    for (var i = 1; i < sheet.rows.length; i++) {
+      var row = sheet.rows[i];
+      // row.push[]
+      // var dataItem = {
+      //    UnitPrice: row.cells[1].value
+      // };
+      alert('row ' + row)
+      // let diff = row.cells[6].value - row.cells[7].value
+      // row.cells.push({ 'value': diff })
+    }
+  }
   datasource = new kendo.data.DataSource({
     //  toolbar: [{
     //       name: 'saveGrid',
@@ -91,9 +99,7 @@ export class SearchResults {
     },
 
     schema: {
-
       model: {
-
         id: "id", // Must assign id for update to work
         fields: {
           // LegacyID: { type: "number" }, // scan template
@@ -207,6 +213,7 @@ export class SearchResults {
     this.epoch = moment().unix();
     this.busy = {}
     this.busy.active = true
+     this.selectedlist = -1
   }
   save() {
     localStorage["kendo-grid-options"] = kendo.stringify(this.grid.getOptions());
@@ -291,7 +298,6 @@ export class SearchResults {
     //         if (mid !== -1) {
     //           let orgobj = this.appService.savedlists[mid]
     //           this.selectedids = orgobj.InventoryCodes
-
     //         }
     //       } else {
     //         console.log('cancel');
@@ -308,11 +314,7 @@ export class SearchResults {
     // this.grid('k-header-column-menu').eq(2).hide()
     // By Index  
     // grid.thead.find("[data-index=1]>.k-header-column-menu").remove();
-
     // this.grid.column["Bin"].IncludeInMenu(false);// hideColumn(2) NOT AVAIL
-
-
-
     this.loadGrid()
   }
   activate(params, routeConfig) {
@@ -354,37 +356,29 @@ export class SearchResults {
     let inv;
     ///api/v1/inventory/getall
     // if (this.appService.inventorysearchresults && !this.appService.refreshinvLoaded) {
- if (this.appService.inventorysearchresults && !this.appService.refreshinvLoaded && !this.appService.Refreshsearchgrid ) {
- 
-  // gets set when location changed this.appService.Refreshsearchgrid
+    if (this.appService.inventorysearchresults && !this.appService.refreshinvLoaded && !this.appService.Refreshsearchgrid) {
+      // gets set when location changed this.appService.Refreshsearchgrid
       // this.spinner.remove()
       this.busy.active = false
-
       return this.appService.inventorysearchresults;
-
     } else {
-      this.appService.Refreshsearchgrid=false
+      this.appService.Refreshsearchgrid = false
       return this.api.findInventory(this.queryParams)
         .then((jsonRes) => {
           inv = jsonRes.data;
           this.inventory = jsonRes.data;
           this.recCount = inv.length;
-
           // this.spinner.remove()
           this.busy.active = false
-          
-
           if (inv.length !== 0) {
             this.appService.inventorysearchresults = inv;
             this.recCount = inv.length
           }
           // this.loadGrid() 
           return inv
-
         });
     }
   }
-
 
 
   performAction1Refresh() {
@@ -413,7 +407,7 @@ export class SearchResults {
       });
 
   }
- 
+
 
   closeTab(tab) {
 
@@ -524,8 +518,6 @@ export class SearchResults {
   //   let sels
   //   if (this.selectedids === undefined) {
   //     sels = []
-
-
   //   } else sels = this.selectedids
 
   //   var grid = this.grid;
@@ -569,18 +561,16 @@ export class SearchResults {
   //   this.message = `  all items added to list ${this.appService.currentsavedlist} count:${this.appService.currentsavedlist.length}`
   // }
 
- 
+
   async addexistingSelection() {
     if (this.appService.currentsavedlist === "") {
       this.dialogService.open({ viewModel: Promptmess, model: `please select a saved list  `, lock: true }).whenClosed(async response => { });
     } else {
-
       let sels
       let newcount = 0
       if (this.selectedids === undefined || this.selectedids.length === 0) {
         sels = []
       } else sels = this.selectedids
-
       var grid = this.grid;
       var selectedRows = grid.select();
       if (selectedRows.length === 0) {
@@ -607,23 +597,97 @@ export class SearchResults {
             });
           }
         }
+        let response = await this.api.findInventorySavedLists(this.appService.currentsavedlist);
+        this.sllen = response.data.length
+        console.log('this.repos ', this.api.currentsavedlist)
+        let totcount = newcount + this.sllen
+        this.message = ` ${newcount} item(s) added to list ${this.appService.currentsavedlist}`
+        // new count:${totcount}`
+        this.checkedIds = [];
 
-
-   
-
-
-      let response = await this.api.findInventorySavedLists(this.appService.currentsavedlist);
-      this.sllen = response.data.length
-      console.log('this.repos ', this.api.currentsavedlist)
-      let totcount = newcount + this.sllen
-      this.message = ` ${newcount} item(s) added to list ${this.appService.currentsavedlist}`
-      // new count:${totcount}`
-      this.checkedIds = [];
-
-      // this.recCount = inv.length;
-         }
+        // this.recCount = inv.length;
+      }
     }
   }
+
+  async addSelection() {
+    //  not for savedlist
+
+    let sels
+    let newcount = 0
+    if (this.selectedids === undefined || this.selectedids.length === 0) {
+      sels = []
+    } else sels = this.selectedids
+    var grid = this.grid;
+    var selectedRows = grid.select();
+    if (selectedRows.length === 0) {
+      this.dialogService.open({ viewModel: Promptmess, model: `please select a row to add  `, lock: true }).whenClosed(async response => { });
+    } else {
+
+      var maxRows = selectedRows.length / 2;
+      // var maxRows = selectedRows.length;
+
+
+      // selectedRows.each(function (idx, el) {
+      //   let dataItem = grid.dataItem(el);
+      // });
+      var i;
+      var a1;
+      for (i = 0; i < maxRows; i++) {
+        a1 = selectedRows[i];
+        let dataItem = grid.dataItem(a1);
+        let mid = sels.findIndex(x => x === dataItem.InventoryCode)
+        if (mid === -1) {
+          newcount++
+          sels.push(dataItem)//.InventoryCode);
+        }
+        if (i === maxRows - 1) {
+          this.selectedids = sels;
+
+        }
+      }
+      // let response = await this.api.findInventorySavedLists(this.appService.currentsavedlist);
+      // this.sllen = response.data.length
+      // console.log('this.repos ', this.api.currentsavedlist)
+      // let totcount = newcount + this.sllen
+      // this.message = ` ${newcount} item(s) added to list ${this.appService.currentsavedlist}`
+      // // new count:${totcount}`
+      // this.checkedIds = [];
+
+    }
+  }
+
+
+// this.currentmodel = currentmodel
+//     this.slname = this.currentmodel.head;
+//     this.listtype = currentmodel.listtype
+//     // let lname = currentmodel.listname;
+//     let dimwidth
+//     thi
+
+  wordmerge() { 
+    if (this.selectedlist !== -1) {
+      let detail = []
+      detail.push(this.currentItem)
+      this.dialogService.open({
+        viewModel: Promptmerge, model: {
+          head: 'inventory',
+          // listtype: this.selectedlist, listname: 'inventory', detail: detail
+           listtype: this.selectedlist, listname: 'inventory', detail:  this.selectedids
+        }, lock: true
+      }).whenClosed(async response => {
+        console.log('this.item', response, this.item)
+        if (!response.wasCancelled) {
+          this.saveMerge
+        } else {
+          console.log('cancel');
+        }
+        this.selectedlist = -1
+        console.log(response)//.output);
+      });
+    }
+  }
+
   showSelection() {
     var sels = [];
     var grid = this.grid;
