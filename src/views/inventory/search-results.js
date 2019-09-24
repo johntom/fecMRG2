@@ -125,6 +125,9 @@ export class SearchResults {
           //             type: "string",
           //             from: "insco.FIRST_NAME"
           //           },
+       
+         "Signed": { type: "string" },
+      
           "currentocationname": { type: "string" },
           "ownedbyname": { type: "string" },// ownerstatus
           SoldDate: { type: "date" },

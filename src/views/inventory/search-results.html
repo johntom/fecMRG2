@@ -132,10 +132,15 @@
 							${Sold | soldstatus}
 						</ak-template>
 					</ak-col>
-					<ak-col k-title="Sold To " k-filterable.bind="{ multi: true, search: true }" k-width="180px" k-field="soldtoname "></ak-col>
-					<ak-col k-title="Owned By" k-filterable.bind="{ multi: true, search: true }" k-width="180px" k-field="ownername "></ak-col>
-					<ak-col k-title="Sold Date" k-width="110px" k-field="SoldDate" k-format="{0:MM/dd/yyyy}"></ak-col>
 
+				
+
+					<ak-col k-title="Sold To " k-filterable.bind="{ multi: true, search: true }" k-width="180px" k-field="soldtoname "></ak-col>
+				
+        	<ak-col k-title="Owned By" k-filterable.bind="{ multi: true, search: true }" k-width="180px" k-field="ownername "></ak-col>
+					<ak-col k-title="Sold Date" k-width="110px" k-field="SoldDate" k-format="{0:MM/dd/yyyy}"></ak-col>
+		<ak-col k-title="Signed" k-width="100px" k-filterable.bind="{ multi: true, search: true }" k-field="Signed"></ak-col>
+				
 					<ak-col k-title="Unframed" k-width="340px">
 						<ak-col k-title="H" k-filterable.bind="{ multi: true, search: true }" k-width.bind="50" k-field="UnframedHeight"></ak-col>
 						<ak-col k-title=" " k-width.bind="50" k-field="UnframedHeight16"></ak-col>

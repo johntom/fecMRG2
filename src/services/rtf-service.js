@@ -583,7 +583,6 @@ export class RtfService {
       headerinfo2 += ` ${this.currentItem.MediumSupportobj.Description}  <br> `
 
 
-
     if (this.dimsfactsheet !== undefined) {
       headerinfo1 += `  ${this.dimsfactsheet} in.`
       headerinfo2 += `  ${this.dimsfactsheet} in. `
@@ -611,7 +610,6 @@ export class RtfService {
       headerinfo1 += ` ${this.inscribedText}</br> `
       headerinfo2 += ` ${this.inscribedText}</br> `
     }
-
 
     // if (this.currentItem.CatalogueNo !== undefined && this.currentItem.CatalogueNo !== '')
     let mustaddbr = true
