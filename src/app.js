@@ -8,14 +8,14 @@ import { EventAggregator } from 'aurelia-event-aggregator';
 export class App {
   static inject() {
     return [ApplicationService, EventAggregator];
-  }
+  } 
 
   constructor(appService, eventAggregator) { 
     this.appService = appService;
     this.eventAggregator = eventAggregator;
     this.secured = false
     // this.user='jrt'
-    this.appService.version='405.62'   
+    this.appService.version='405.64 '   
   }
  
   // use activationStrategy for all wildcards 

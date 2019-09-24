@@ -68,6 +68,58 @@ export class Promptmerge {
   //     // Invoked when component is unbound...
   //  }
   //WordSectionP
+  async exporttoword() {
+    var html, link, blob, url, css;
+
+    let ht1 = `<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>`
+    ht1 += `<head><title>Microsoft Office HTML Example</title>`
+    ht1 += `<link rel=File-List href="mydocument_files/filelist.xml">`
+    ht1 += `<style><!-- `
+    ht1 += `@page`
+    ht1 += `{`
+    ht1 += `size:21cm 29.7cmt;  /* A4 */`
+    // ht1 += `margin:1cm 1cm 1cm 1cm; /* Margins: 2.5 cm on each side */`
+    //  ht1 += `margin: 0.5in 0.5in 1in 1in; /* Margins: 2.5 cm on each side */`
+     
+    ht1 += `margin:2cm 2cm 2cm 2cm;` /* Margins: 2.5 cm on each side */
+    // mso-page-orientation: portrait;  
+    ht1 += `mso-page-orientation: portrait;  `
+    // ht1 += `mso-header: url("docs/headerfooter.htm") h1;`
+    // ht1 += `mso-footer: url("docs/headerfooter.htm") f1;`
+      ht1 += `mso-footer: url("https://johntom.github.io/fecMRG2/src/docs/headerfooter.htm") f1;`
+    ht1 += `}`
+    ht1 += `@page Section1 { }`
+    ht1 += `div.Section1 { page:Section1; }`
+    ht1 += `p.MsoHeader, p.MsoFooter { border: 1px solid black; }`
+    ht1 += `--></style>`
+    ht1 += `</head>`
+    ht1 += `<body>`
+    ht1 += `<div class=Section1>`
+    ht1 += `I'm page 1.`
+    ht1 += `<br clear=all style='mso-special-character:line-break;page-break-before:always'>`
+    ht1 += `I'm page 2. raisonné`
+    ht1 += `</div>`
+    ht1 += `</body>`
+    ht1 += `</html>` 
+    html = ht1;//window.docx.innerHTML;
+    blob = new Blob(['\ufeff', css + html], {
+      type: 'application/msword'
+    });
+    url = URL.createObjectURL(blob);
+    link = document.createElement('A');
+    link.href = url;
+    // Set default file name. 
+    // Word will append file extension - do not add an extension here.
+    link.download = 'Document'//this.savelistname;//'Document';
+    document.body.appendChild(link);
+    if (navigator.msSaveOrOpenBlob) navigator.msSaveOrOpenBlob(blob, this.savelistname + '.doc'); //'Document.doc' IE10-11
+    else link.click();  // other browsers
+    document.body.removeChild(link);
+  
+     return html
+
+  }
+
   async wordportraitlines(segment) {
     var html, link, blob, url, css;
     // https://jsfiddle.net/78xa14vz/3/
@@ -100,6 +152,7 @@ export class Promptmerge {
     if (navigator.msSaveOrOpenBlob) navigator.msSaveOrOpenBlob(blob, this.savelistname + '.doc'); //'Document.doc' IE10-11
     else link.click();  // other browsers
     document.body.removeChild(link);
+    
     return segment
   };
 
@@ -413,7 +466,7 @@ export class Promptmerge {
 
     }
 
-if (this.listtype === 7) {
+    if (this.listtype === 7) {
       segment = `<div id="docx">`
       segment += `<div class="WordSection1">`
       segment += `<table style="width:650px; border-collapse:collapse;border-width:1px;"><tbody>`
@@ -780,6 +833,13 @@ if (this.listtype === 7) {
       this.wordportrait(segment);
       this.controller.ok('added')
     }
+
+    if (this.listtype === 8) {
+      this.exporttoword();
+        this.controller.ok('added')
+    }
+
+
     if (this.listtype === 77) {
       let htodoc
       htodoc = `<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>`
@@ -812,7 +872,7 @@ if (this.listtype === 7) {
       this.controller.ok('added')
     }
 
-    if (this.listtype === 8) {
+    if (this.listtype === 88) {
       let htodoc
       htodoc = `<html xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns:m="http://schemas.microsoft.com/office/2004/12/omml"= xmlns="http://www.w3.org/TR/REC-html40">`
       htodoc += `<body>`
