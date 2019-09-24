@@ -412,6 +412,13 @@ export class Promptmerge {
       //  segment += `<table style="width:650px; border-style:solid;border-color:black;border-collapse:collapse;border-width:1px;"><tbody>`
 
     }
+
+if (this.listtype === 7) {
+      segment = `<div id="docx">`
+      segment += `<div class="WordSection1">`
+      segment += `<table style="width:650px; border-collapse:collapse;border-width:1px;"><tbody>`
+    }
+
     //else segment = `<h1 style="text-align:center;width:768px">${currentmodel.head}</h1> <table><tbody>`
     // }
     // 768px  1024px
@@ -615,8 +622,8 @@ export class Promptmerge {
         hh = 95 * invitem.clientHeightRatio
 
 
-  // let sty1 = "border: 1px gray solid;padding: 4px;width: 5em;font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;vertical-align:top;text-align:left;";
-  
+        // let sty1 = "border: 1px gray solid;padding: 4px;width: 5em;font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;vertical-align:top;text-align:left;";
+
         // style="height:17%;"
         // segment += `<tr >`
         // segment += `<td style="${sty1},width:2%">${invitem.InventoryCode}</td>`
@@ -676,15 +683,15 @@ export class Promptmerge {
       }
 
 
- if (this.listtype === 7) {
+      if (this.listtype === 7) {
         // {id:5,name:"cehcklist"}]
         // segment = `<h1 style="font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;text-align:center;"></h1> <table><tbody>`
-        ww = 95 * invitem.clientWidthRatio
-        hh = 95 * invitem.clientHeightRatio
+        ww = 295 * invitem.clientWidthRatio
+        hh = 295 * invitem.clientHeightRatio
 
 
-        segment += `<td style="${sty1},width:15%">${invitem.InventoryCode}</td>`
-        segment += `<td style="${sty1},width:40%">${invitem.rtf2}</td>`
+        segment += `<td style="${sty1},width:25%">${invitem.InventoryCode}</td>`
+        segment += `<td style="${sty1},width:30%">${invitem.rtf2}</td>`
         segment += `<td style="width:20%;vertical-align:middle;text-align:center;"><img src="https://artbased.com/api/v1/getimage/inv/${invitem.InventoryCode}.jpg" alt="" width="${ww}" height=${hh} /></td>`
 
 
@@ -768,6 +775,12 @@ export class Promptmerge {
       this.controller.ok('added')
     }
     if (this.listtype === 7) {
+      segment += `</tbody></table>`
+      segment += `</div></div>`
+      this.wordportrait(segment);
+      this.controller.ok('added')
+    }
+    if (this.listtype === 77) {
       let htodoc
       htodoc = `<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>`
       htodoc += `<head><title>Microsoft Office HTML Example</title>`
@@ -823,7 +836,7 @@ export class Promptmerge {
       htodoc += `Here is an image:<br>`
       // htodoc += `<img src="mydocument_files/logo_google.png">`
       htodoc += `<img src="https://johntom.github.io/fecMRG2/src/images/mrgFooterSM.png">`
-      
+
       htodoc += `</div>`
 
       htodoc += `</body>`

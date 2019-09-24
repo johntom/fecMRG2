@@ -19,7 +19,7 @@ import { Promptmess } from '../../services/promptmess';
 import { Promptmerge } from '../prompt/promptMerge';
 // jrt
 // @inject(Router, ApiService, UtilService, ApplicationService, MyDataService, DialogService)
-
+ 
 @inject(Router, ApiService, UtilService, ApplicationService, MyDataService, DialogService, EventAggregator)
 export class SearchResults {
   heading = 'Search Results...';
@@ -34,7 +34,8 @@ export class SearchResults {
     listtypes = [{ id: -1, name: 'choose' }, { id: 0, name: "exhibition" }, { id: 1, name: "price list" },
   { id: 2, name: "location list" }, { id: 3, name: "box label" }, { id: 4, name: "condition" },
   { id: 5, name: "registrar" }, { id: 6, name: "presention" },
-  { id: 7, name: "test1" }, { id: 8, name: "test2" }
+  { id: 7, name: "checklist" }
+  // , { id: 8, name: "test2" }
 
   ]
   excelExport(e) {

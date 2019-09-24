@@ -208,7 +208,7 @@ export class RtfService {
             data = ppre + `${item.ReproductionAuthor}. <em>${item.ReproductionTitle}</em> ${preafter}`
           } else
             data = ppre + `${item.AuthorLast}, ${item.AuthorFirst}. <em>${item.ReproductionTitle}</em> ${preafter}`
-            if (item.no!==undefined && item.no!=="") data += ` ${item.no} `
+          if (item.no !== undefined && item.no !== "") data += ` ${item.no} `
           data += `(${ReproductionLocationDesc}: ${item.ReproductionName}, ${item.ReproductionDate}) <br>`
           data += `${item.ReproductionPage} <br> ${ppost}<br>`
 
@@ -426,11 +426,11 @@ export class RtfService {
         // this.dimscm += this.roundNumber(mdim, 2)
         this.dimscm += this.roundNumber(mdim, 1)
       }
- 
+
       if (this.currentItem[depth] === '') {
         if (this.currentItem[depthfraction] !== "") {
           this.dims += `  x  <span style="font-size:8.5pt;"> ${this.currentItem[depthfraction]} </span>`
-          if (cmd === 0) { cmd = 0 } else frac = cmd * 2.54 
+          if (cmd === 0) { cmd = 0 } else frac = cmd * 2.54
           mdim = (this.currentItem[depth] * 2.54) + cmd
           // this.dimscm += ' x ' + this.roundNumber((mdim).toPrecision(2), 1)
           // this.dimscm += ' x ' + this.roundNumber(mdim, 2)
@@ -445,7 +445,7 @@ export class RtfService {
           // frac = cmd * 2.54
           if (cmd === 0) { cmd = 0 } else frac = cmd * 2.54
           mdim = (this.currentItem[depth] * 2.54) + cmd
-           this.dimscm += ' x ' + this.roundNumber((mdim * 1 + frac * 1).toPrecision(2), 1)
+          this.dimscm += ' x ' + this.roundNumber((mdim * 1 + frac * 1).toPrecision(2), 1)
           //this.dimscm += ' x ' + this.roundNumber((mdim * 1 + frac * 1).toPrecision(1), 1)
 
 
@@ -563,7 +563,7 @@ export class RtfService {
     ///////////////////////////////////////////////////////////////////////////  
     let fac = this.searchsold[this.selectedimagesize]
 
-    
+
     let ww = this.currentItem.clientWidth * fac.factor
     let hh = this.currentItem.clientHeight * fac.factor
     //console.log(hh, ww)
@@ -577,11 +577,11 @@ export class RtfService {
     headerinfo1 += ` <em>${this.currentItem.Title}</em>, ${this.currentItem.InvYear}<br>`
     if (this.currentItem.MediumSupportobj !== undefined)
       headerinfo1 += ` ${this.currentItem.MediumSupportobj.Description}  <br> `
-    headerinfo2 =  ` ${artistWdates1}<br>`
- headerinfo2 += ` <em>${this.currentItem.Title}</em>, ${this.currentItem.InvYear}<br>`
+    headerinfo2 = ` ${artistWdates1}<br>`
+    headerinfo2 += ` <em>${this.currentItem.Title}</em>, ${this.currentItem.InvYear}<br>`
     if (this.currentItem.MediumSupportobj !== undefined)
       headerinfo2 += ` ${this.currentItem.MediumSupportobj.Description}  <br> `
-   
+
 
 
     if (this.dimsfactsheet !== undefined) {
