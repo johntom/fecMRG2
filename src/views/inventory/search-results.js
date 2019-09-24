@@ -34,7 +34,7 @@ export class SearchResults {
     listtypes = [{ id: -1, name: 'choose' }, { id: 0, name: "exhibition" }, { id: 1, name: "price list" },
   { id: 2, name: "location list" }, { id: 3, name: "box label" }, { id: 4, name: "condition" },
   { id: 5, name: "registrar" }, { id: 6, name: "presention" },
-  { id: 7, name: "checklist" }
+  { id: 7, name: "checklist" } ,   { id: 8, name: "test" }
   // , { id: 8, name: "test2" }
 
   ]
@@ -217,7 +217,8 @@ export class SearchResults {
     this.epoch = moment().unix();
     this.busy = {}
     this.busy.active = true
-     this.selectedlist = -1
+     this.selectedlist = 8
+     
   }
   save() {
     localStorage["kendo-grid-options"] = kendo.stringify(this.grid.getOptions());
@@ -616,7 +617,7 @@ export class SearchResults {
 
   async addSelection() {
     //  not for savedlist
-
+  this.selectedids ='';
     let sels
     let newcount = 0
     if (this.selectedids === undefined || this.selectedids.length === 0) {
@@ -659,6 +660,7 @@ export class SearchResults {
       // this.checkedIds = [];
 
     }
+    this.wordmerge()
   }
 
 
