@@ -31,10 +31,13 @@ export class SearchResults {
   checkedIds = {};
   message = ''   //Hello Inventory !';
   scrollable = { virtual: true };
-    listtypes = [{ id: -1, name: 'choose' }, { id: 0, name: "exhibition" }, { id: 1, name: "price list" },
-  { id: 2, name: "location list" }, { id: 3, name: "box label" }, { id: 4, name: "condition" },
-  { id: 5, name: "registrar" }, { id: 6, name: "presention" },
-  { id: 7, name: "checklist" } ,   { id: 8, name: "test" }
+  //   listtypes = [{ id: -1, name: 'choose' }, { id: 0, name: "exhibition" }, { id: 1, name: "price list" },
+  // { id: 2, name: "location list" }, { id: 3, name: "box label" }, { id: 4, name: "condition" },
+  // { id: 5, name: "registrar" }, { id: 6, name: "presention" },
+  // { id: 7, name: "checklist" } ,   { id: 8, name: "test" }
+
+
+   listtypes = [  { id: 8, name: "checklist" }
   // , { id: 8, name: "test2" }
 
   ]
