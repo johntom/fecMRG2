@@ -5,7 +5,7 @@ import { AuthorizeStep } from './services/authorize-step';
 
 import { EventAggregator } from 'aurelia-event-aggregator';
 
-export class App {
+export class App { 
   static inject() {
     return [ApplicationService, EventAggregator];
   } 
@@ -15,7 +15,7 @@ export class App {
     this.eventAggregator = eventAggregator;
     this.secured = false
     // this.user='jrt'
-    this.appService.version='405.69 '   
+    this.appService.version='405.70 '   
   }
  
   // use activationStrategy for all wildcards 
