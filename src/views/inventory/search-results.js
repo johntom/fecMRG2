@@ -17,6 +17,7 @@ import { Promptmess } from '../../services/promptmess';
 // import { Promptyn } from '../../services/promptyn';
 
 import { Promptmerge } from '../prompt/promptMerge';
+import { Promptmergeword } from '../prompt/promptMergeword';
 // jrt
 // @inject(Router, ApiService, UtilService, ApplicationService, MyDataService, DialogService)
  
@@ -679,7 +680,7 @@ export class SearchResults {
       let detail = []
       detail.push(this.currentItem)
       this.dialogService.open({
-        viewModel: Promptmerge, model: {
+        viewModel: Promptmergeword, model: {
           head: 'inventory',
           // listtype: this.selectedlist, listname: 'inventory', detail: detail
            listtype: this.selectedlist, listname: 'inventory', detail:  this.selectedids
