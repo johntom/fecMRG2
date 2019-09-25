@@ -17,7 +17,7 @@
       }
     </style>
 		<h4>
-			<i class="fa fa-folder-open"></i> Docs for ${currentItem.InventoryCode} 
+			<i class="fa fa-folder-open"></i> Docs for ${currentItem.InventoryCode} Not Available until  9/26
    <!-- <a slot="buttons-slot" class="btn btn-primary" click.delegate="addPhoto()">
 				<i class="fa fa-plus"></i> Add Doc Rec
 			</a> 
@@ -26,10 +26,10 @@
 				<i class="material-icons prefix">search</i>
 			</a>
 -->
-			<input class="btn btn-success" style='height:88' ref='file' id='file' type="file" name="file" files.bind="file" multiple>
+			<!-- <input ak-tooltip='k-content: "Click to open or drap and drop file over button"' class="btn btn-success" style='height:88' ref='file' id='file' type="file" name="file" files.bind="file" multiple>
 	<a slot="buttons-slot" class="btn btn-success" click.delegate="addDocs(file)">
 			</i>Upload Files
-			</a> 
+			</a>  -->
   
 		</h4>
    <!-- k-filterable.bind="{  mode: 'row' }" --> 
@@ -59,13 +59,7 @@
 
 <ak-col k-field="FILE_NAME" k-title="FILE_NAME" k-filterable.bind="true" k-width.bind="190"> </ak-col>
 
-  <!-- <ak-col k-field="FILE_NAME" k-locked.bind="true" k-lockable.bind="false" k-filterable.bind="true" k-title="Download"
-		 k-width.bind="280" k-template="<button click.delegate='detailsdownload($event)' class='k-button'>#=FILE_NAME#</button>">
-		</ak-col> -->
-
-			<!-- https://artbased.com/api/v1/getimagedetail/${currentItem.InventoryCode}/${FILE_NAME} -->
-	<!-- <ak-col k-field="FILE_NAME" k-title="File name" k-filterable.bind="true"k-width.bind="120"> </ak-col> -->
-<ak-col k-field="FileNamePath" k-title="File path" k-filterable.bind="true" k-width.bind="390"> </ak-col>
+  <ak-col k-field="FileNamePath" k-title="File path" k-filterable.bind="true" k-width.bind="390"> </ak-col>
 
 
     	<ak-col k-field="Date" k-filterable.bind="true" k-format="{0:MM/dd/yyyy}" k-width.bind="120"> </ak-col>
@@ -82,3 +76,11 @@
 					 click.delegate="showModalImg($event)"></div>
 				</ak-template>
 			</ak-col> -->
+
+
+      <!-- <ak-col k-field="FILE_NAME" k-locked.bind="true" k-lockable.bind="false" k-filterable.bind="true" k-title="Download"
+		 k-width.bind="280" k-template="<button click.delegate='detailsdownload($event)' class='k-button'>#=FILE_NAME#</button>">
+		</ak-col> -->
+
+			<!-- https://artbased.com/api/v1/getimagedetail/${currentItem.InventoryCode}/${FILE_NAME} -->
+	<!-- <ak-col k-field="FILE_NAME" k-title="File name" k-filterable.bind="true"k-width.bind="120"> </ak-col> -->

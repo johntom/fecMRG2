@@ -606,7 +606,7 @@ export class DataForm {
       }
       // this.mainimage.src = `https://artbased.com/api/v1/getimage/inv/${this.currentItem.InventoryCode}.jpg`;
 
-      this.mainimage.src = `https://artbased.com/api/v1/getimage/inv/${this.currentItem.InventoryCode}.jpg?random=${epoch}`;
+      this.mainimage.src = `https://artbased.com/api/v1/getimage/inv/${this.currentItem.InventoryCode}.jpg?random=${this.epoch}`;
     })
   }
 
@@ -952,6 +952,14 @@ getnow(){
   return moment().unix();
 }
   addInventory(images) {
+    this.epoch=moment().unix();// image cache buster
+ 
+      let tab = this.appService.dataFormOneToManyTabs[1];
+          this.selectOneToManyTab(tab);
+         
+
+
+
     let formData = new FormData()
     formData.append('file', images[0])
     console.log('file', images[0]);
@@ -964,7 +972,7 @@ getnow(){
         //force rediplay not to use browser cache var url = 'http://.../?' + escape(new Date())
         let fd = new Date();
         // this.mainimage.src = `https://artbased.com/api/v1/getimage/inv/${this.currentItem.InventoryCode}.jpg?${fd}`;
-        this.mainimage.src = `https://artbased.com/api/v1/getimage/inv/${this.currentItem.InventoryCode}.jpg?random=${epoch}`;
+        this.mainimage.src = `https://artbased.com/api/v1/getimage/inv/${this.currentItem.InventoryCode}.jpg?random=${this.epoch}`;
         // "http://localhost/image/id/image" + count++ + ".jpg";
         this.getimageinfo(0)
         $("#file").val("");
