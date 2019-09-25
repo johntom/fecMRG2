@@ -86,7 +86,7 @@ export class Promptmerge {
     ht1 += `mso-page-orientation: portrait;  `
     // ht1 += `mso-header: url("docs/headerfooter.htm") h1;`
     // ht1 += `mso-footer: url("docs/headerfooter.htm") f1;`
-    ht1 += `mso-footer: url("https://johntom.github.io/fecMRG2/src/docs/headerfooter.htm") f1;`
+    // ht1 += `mso-footer: url("https://johntom.github.io/fecMRG2/src/docs/headerfooter.htm") f1;`
     ht1 += `}`
     ht1 += `@page Section1 { }`
     ht1 += `div.Section1 { page:Section1; }`
@@ -113,7 +113,6 @@ export class Promptmerge {
     if (navigator.msSaveOrOpenBlob) navigator.msSaveOrOpenBlob(blob, this.savelistname + '.doc'); //'Document.doc' IE10-11
     else link.click();  // other browsers
     document.body.removeChild(link);
-
     return html
 
   }
