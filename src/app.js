@@ -9,13 +9,13 @@ export class App {
   static inject() {
     return [ApplicationService, EventAggregator];
   } 
-
+ 
   constructor(appService, eventAggregator) { 
     this.appService = appService;
     this.eventAggregator = eventAggregator;
     this.secured = false
     // this.user='jrt'
-    this.appService.version='405.70 '   
+    this.appService.version='405.71 '   
   }
  
   // use activationStrategy for all wildcards 
