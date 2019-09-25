@@ -15,7 +15,7 @@ export class App {
     this.eventAggregator = eventAggregator;
     this.secured = false
     // this.user='jrt'
-    this.appService.version='405.64 '   
+    this.appService.version='405.65 '   
   }
  
   // use activationStrategy for all wildcards 

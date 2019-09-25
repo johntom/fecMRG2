@@ -6,9 +6,10 @@
 	<require from="../../resources/value-converters/date-format"></require>
 	<require from="../../resources/value-converters/upper-case"></require>
 
-	<style> 
-         /* margin-right: 0.3in; */
-      /* #googoose-footer {
+	<style>
+		/* margin-right: 0.3in; */
+
+		/* #googoose-footer {
         margin-top: 0.3in;
          
    
@@ -21,7 +22,6 @@
         text-align: center;
     } */
 
-    
 		#data-form-ext .tab.tab-selected .form-tab-box {
 			background-color: lightblue;
 			border-color: #7bbbce
@@ -150,10 +150,10 @@
 										<div style="height:12px;margin-left:4px;margin-top:2px;margin-bottom:5px" else>
 											<a click.delegate="showModal( 'Artist')">${currentItem.artist.lastName}, ${currentItem.artist.firstName}
 												<span show.bind="currentItem.artist.died==='' || currentItem.artist.died===0 || currentItem.artist.died===undefined || currentItem.artist.died===null"> (b.${currentItem.artist.yearofBirth})</span>
-												<span show.bind="currentItem.artist.died!==''  && currentItem.artist.died!==0 && currentItem.artist.died !==undefined && currentItem.artist.died!==null"> (${currentItem.artist.yearofBirth}-${currentItem.artist.died})</span>			</strong>
+												<span show.bind="currentItem.artist.died!==''  && currentItem.artist.died!==0 && currentItem.artist.died !==undefined && currentItem.artist.died!==null"> (${currentItem.artist.yearofBirth}-${currentItem.artist.died})</span>												</strong>
 												</span>
 											</a>
-										</div> 
+										</div>
 									</div>
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
 										<strong> Year</strong>
@@ -330,7 +330,7 @@
 											</select>
 										</div>
 										<!-- end seight -->
-	<div class="Rtable-cell Rtable-cell--highlight">
+										<div class="Rtable-cell Rtable-cell--highlight">
 											<strong>Framed</strong>
 										</div>
 										<div class="Rtable-cell">
@@ -374,7 +374,7 @@
 										</div>
 										<!-- end framed -->
 									</div>
-								</div> 
+								</div>
 							</div>
 
 							<!-- demo middle col -->
@@ -389,10 +389,10 @@
 									<div class="Rtable-cell-70 Rtable-cell--highlight">
 
 
-<!--  id="multiselect-customizing-templates-codes" -->
+										<!--  id="multiselect-customizing-templates-codes" -->
 										<ak-multiselect k-value.two-way="currentItem.keywords" k-placeholder="Select keywords..." k-data-text-field="Description"
 										 k-data-value-field="Description" k-height.bind="400" k-data-source.bind="dataSource" k-widget.two-way="multiselect"
-                  	 id="multiselect" ref="multiselect">
+										 id="multiselect" ref="multiselect">
 											<ak-template for="noDataTemplate">
 												<div>
 													<button ak-button click.delegate="addNew()">addNew</button>
@@ -478,7 +478,7 @@
 										<strong> Current Location</strong>
 									</div>
 									<div styles=" height:34px;" class="Rtable-cell-70 Rtable-cell--highlight">
-										<select id="CurrentLocation " class="form-control "   change.delegate="changeLocation(changedValue)" value.bind="currentItem.CurrentLocation">
+										<select id="CurrentLocation " class="form-control " change.delegate="changeLocation(changedValue)" value.bind="currentItem.CurrentLocation">
 											<option model.bind="''">Choose...</option>
 											<option repeat.for="opt of appService.codesInventoryLocation " model.bind="opt.id">
                         <!-- <option repeat.for="opt of appService.codesInventoryLocation " model.bind="opt"> -->
@@ -495,10 +495,10 @@
 									<div class="Rtable-cell-70 Rtable-cell--highlight">
 										<input type="text " id="Bin" class="form-control " value.bind="currentItem.Bin">
 									</div>
-	<button class="btn btn-sm btn-success" click.delegate="createRTF(1)">
+									<button class="btn btn-sm btn-success" click.delegate="createRTF(1)">
 						Create Label and Fact Sheet v103
 					</button>
-         
+
 
 
 
@@ -595,22 +595,27 @@
 										<strong> Added</strong>
 									</div>
 									<div style="padding-left:4px;" class="Rtable-cell-70 Rtable-cell--highlight">
-									
+
 
 										${currentItem.DateAdded | dateFormat }
 
 									</div>
-                  	<div class="Rtable-cell-30 Rtable-cell--highlight">
+									<div class="Rtable-cell-30 Rtable-cell--highlight">
 										<strong>Updated</strong>
 									</div>
 									<div style="padding-left:4px;" class="Rtable-cell-70 Rtable-cell--highlight">
 
 										${currentItem.DateAdded | dateFormat} / ${currentItem.updatedAt | dateFormat } </div>
 
-                    
 
-									<input class="btn btn-primary" id="file" type="file" name="file" files.bind="file" change.delegate="addInventory(file)" accept='image/jpg'>
-								</div>
+
+									<input ak-tooltip='k-content: "Click to open or drap and drop file over button"' class="btn btn-large btn-primary" id="file"
+									 type="file" name="file" files.bind="file" change.delegate="addInventory(file)" accept='image/jpg'>
+								
+              
+                
+                
+                </div>
 
 								<!-- 2nd -->
 							</div>
@@ -625,14 +630,18 @@
 					<div else>
 
 						<div id="top-right" class="flex-column-none data-form-image" if.bind="recordId !== 'create'">
-							<img ref="mainimage" class="responsive-img" src="https://artbased.com/api/v1/getimage/inv/${currentItem.InventoryCode}.jpg?${epoch}"
+							<img ref="mainimage" class="responsive-img" src="https://artbased.com/api/v1/getimage/inv/${currentItem.InventoryCode}.jpg?file=${epoch}"
 							 click.delegate="showModalImg()">
-               <!-- https://artbased.com/api/v1/getimage/inv/${currentItem.InventoryCode}.jpg?${epoch} -->
+							<!-- https://artbased.com/api/v1/getimage/inv/${currentItem.InventoryCode}.jpg?${epoch} -->
 							<!-- <input class="btn btn-primary" id="file" type="file" name="file" files.bind="file" change.delegate="addInventory(file)" accept='image/jpg'> -->
 
 
 
 						</div>
+
+  
+               
+
 						<!-- <div else>
 							<input class="btn btn-primary" id="file" type="file" name="file" files.bind="file" change.delegate="addInventory(file)" accept='image/jpg'>
 						</div> -->
@@ -641,21 +650,26 @@
 
 					<!-- end middle and top right -->
 				</div>
-
+<!-- <div>
+                  	<a  class="form-control  input-sm" target="_blank" 
+                href="https://artbased.com/api/v1/getimage/inv/${currentItem.InventoryCode}.jpg?random=performance.now()">
+							https://artbased.com/api/v1/getimage/inv/${currentItem.InventoryCode}.jpg?random=getnow()</a>
+									</div> -->
 
 				<!--  class="tab tab-top ${tab.isSelected ? 'tab-selected' : ''}"> -->
 
 				<div if.bind="recordId==='create'">Create Mode. Please save record before entering tabs </div>
 				<div else>
- 
+
 					<!-- <div id="bottom-left" class="flex-row-3"> -->
 					<div id="data-form-ext" class="flex-column-1">
+             
 						<div id="data-form-one-to-many-tabs" class="flex-row-none flex-wrap">
 							<div repeat.for="tab of appService.dataFormOneToManyTabs" class="tab ${tab.isSelected ? 'tab-selected' : ''}">
 								<div class="form-tab-box" click.delegate="selectOneToManyTab(tab)">
 									<span>${tab.name}</span>
 								</div>
-							</div> 
+							</div>
 						</div>
 						<div id="data-form-one-to-many-tab-content overflow-y-hidden" class="data-form flex-row-1" style="background:
 										 darkgray;">
@@ -663,7 +677,7 @@
 						</div>
 					</div>
 				</div>
-	<!-- <div class='googoose-wrapper'> -->
+				<!-- <div class='googoose-wrapper'> -->
 				<!-- <div class='googoose header'>
 					Hello World! Header
 				</div>
@@ -673,12 +687,12 @@
           
 					</p>
 				</div> -->
-        
-        
-         
-        <!-- <div class="googoose"> <span innerhtml.bind="currentItem.rtf1"></span></div> -->
 
-  
+
+
+				<!-- <div class="googoose"> <span innerhtml.bind="currentItem.rtf1"></span></div> -->
+
+
 
 
 				<!-- <div class='googoose break'></div>
@@ -715,7 +729,7 @@
 				<!-- <canvas id='hello-canvas'></canvas> ==============================================================-->
 
 				<!-- <div class='googoose footer'> -->
-<!-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<!-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -728,7 +742,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
 
 
-		 <!-- <span class='googoose currentpage'></span> of <span class='googoose totalpage'></span>
+				<!-- <span class='googoose currentpage'></span> of <span class='googoose totalpage'></span>
 			
       
         <img  src="https://johntom.github.io/fecMRG2/src/images/footerLogo.png" width="700" height="150">
@@ -736,14 +750,14 @@
 
       	</div>
 			</div> -->
-	<!-- <img background-color="#38162E" src="https://johntom.github.io/fecMRG2/src/images/MRG_logo-white.png"> -->
+				<!-- <img background-color="#38162E" src="https://johntom.github.io/fecMRG2/src/images/MRG_logo-white.png"> -->
 
 
 
 			</form>
 			<!-- </div> -->
 			<footerform class="flex-row-none">
-	
+
 				<span>&nbsp;&nbsp;
 					<button class="btn btn-sm btn-primary " click.delegate="saveinventory(0)">
 						Save & Stay
@@ -759,13 +773,12 @@
 				<!-- <button class="btn btn-sm btn-primary " click.delegate="factsheet()">
 					FactSheet
 				</button> -->
-				<a href="https://artbased.com/api/v1/downloadonepdf/output/${currentItem.InventoryCode}.doc"
-        class="btn btn-sm btn-warning">
+				<a href="https://artbased.com/api/v1/downloadonepdf/output/${currentItem.InventoryCode}.doc" class="btn btn-sm btn-warning">
 					<span class="glyphicon glyphicon-th-list"></span> Download Doc FactSheet
 				</a>
 				&nbsp;
 
-		
+
 				<button class="btn btn-sm btn-warning " click.delegate="wordmerge()">
 						wordmerge
 					</button>

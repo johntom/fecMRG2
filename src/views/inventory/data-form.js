@@ -604,7 +604,9 @@ export class DataForm {
         imageWidth = this.width
         resolve(imageWidth);
       }
-      this.mainimage.src = `https://artbased.com/api/v1/getimage/inv/${this.currentItem.InventoryCode}.jpg`;
+      // this.mainimage.src = `https://artbased.com/api/v1/getimage/inv/${this.currentItem.InventoryCode}.jpg`;
+
+      this.mainimage.src = `https://artbased.com/api/v1/getimage/inv/${this.currentItem.InventoryCode}.jpg?random=${epoch}`;
     })
   }
 
@@ -946,7 +948,9 @@ export class DataForm {
       })
     })
   }
-
+getnow(){
+  return moment().unix();
+}
   addInventory(images) {
     let formData = new FormData()
     formData.append('file', images[0])
@@ -959,7 +963,8 @@ export class DataForm {
         this.upmess = jsonRes.data
         //force rediplay not to use browser cache var url = 'http://.../?' + escape(new Date())
         let fd = new Date();
-        this.mainimage.src = `https://artbased.com/api/v1/getimage/inv/${this.currentItem.InventoryCode}.jpg?${fd}`;
+        // this.mainimage.src = `https://artbased.com/api/v1/getimage/inv/${this.currentItem.InventoryCode}.jpg?${fd}`;
+        this.mainimage.src = `https://artbased.com/api/v1/getimage/inv/${this.currentItem.InventoryCode}.jpg?random=${epoch}`;
         // "http://localhost/image/id/image" + count++ + ".jpg";
         this.getimageinfo(0)
         $("#file").val("");

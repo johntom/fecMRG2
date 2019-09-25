@@ -33,7 +33,7 @@ export class RtfService {
     this.editrec = '';
     this.isDisableEdit = true
     this.currentprovenance = '';
-
+ this.epoch = moment().unix();
   }
   created(owningView, myView) {
   }
@@ -619,7 +619,7 @@ export class RtfService {
     } else
       if (this.currentItem.CatalogueNo !== '') headerinfo1 += ` no. ${this.currentItem.CatalogueNo} <br>   `
     // console.log('this.currentItem.AltID', this.currentItem.AltID)
-    this.currentItem.AltID = this.currentItem.AltID + ''// good for test
+    this.currentItem.AltID = this.currentItem.AltID + ''// good for test 
     if (this.currentItem.AltID !== '') {
       headerinfo1 += ` ${this.currentItem.AltID} <br> <br>`
       mustaddbr = false
@@ -629,7 +629,9 @@ export class RtfService {
     this.segment2 = headerinfo2
 
     if (selectedtype === 0) {
-      this.segment1 = `<p><img class="responsive-img" src="https://artbased.com/api/v1/getimage/inv/${this.currentItem.InventoryCode}.jpg" alt="" width="${ww}" height="${hh}" /></p>`
+     
+      this.segment1 = `<p><img class="responsive-img" src="https://artbased.com/api/v1/getimage/inv/${this.currentItem.InventoryCode}.jpg?random=${this.epoch}" alt="" width="${ww}" height="${hh}" /></p>`
+      // this.segment1 = `<p>https://artbased.com/api/v1/getimage/inv/${this.currentItem.InventoryCode}.jpg?random=${this.epoch}`
       this.segment1 += headerinfo1
     }
 
@@ -638,7 +640,7 @@ export class RtfService {
       // portrait
       this.segment1 = ` <table><scan style="text-align:center;width:768x"></scan><tbody>`
       this.segment1 += `<tr><td style="font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;width:50%;vertical-align:top;text-align:left;padding-left:2px">${headerinfo1}</td>`
-      this.segment1 += `<td style="width:50%;text-align:right;vertical-align:top;"><img src="https://artbased.com/api/v1/getimage/inv/${this.currentItem.InventoryCode}.jpg" alt="" width="${ww}" height=${hh} /></td>`
+      this.segment1 += `<td style="width:50%;text-align:right;vertical-align:top;"><img src="https://artbased.com/api/v1/getimage/inv/${this.currentItem.InventoryCode}.jpg?random=${this.epoch}" alt="" width="${ww}" height=${hh} /></td>`
       this.segment1 += `</tr></tbody></table>`
       //
     }
