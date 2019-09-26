@@ -100,6 +100,21 @@ export class Contact {
       if (this.mruinfo.mru5 !== undefined) {
         this.mru.push(this.mruinfo.mru5)
       }
+       if (this.mruinfo.mru6 !== undefined) {
+        this.mru.push(this.mruinfo.mru6)
+      }
+       if (this.mruinfo.mru7 !== undefined) {
+        this.mru.push(this.mruinfo.mru7)
+      }
+       if (this.mruinfo.mru8 !== undefined) {
+        this.mru.push(this.mruinfo.mru8)
+      }
+       if (this.mruinfo.mru9 !== undefined) {
+        this.mru.push(this.mruinfo.mru9)
+      }
+       if (this.mruinfo.mru10 !== undefined) {
+        this.mru.push(this.mruinfo.mru10)
+      }
     }
 
   }

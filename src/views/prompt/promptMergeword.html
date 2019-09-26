@@ -1,0 +1,39 @@
+
+<template>
+
+	<require from="../../resources/value-converters/date-format"></require>
+	<require from="../../resources/value-converters/currency-format"></require>
+	<ux-dialog style="width:900px;height: 650px;">
+		<ux-dialog-header class="modal-header modal-header-success">
+			<div class="alert alert-danger">
+				<h3>${heading}</h3>
+			</div>
+			<button click.trigger="controller.cancel()">Cancel and Close </button>
+			<button click.trigger="saveMerge()">Save Doc </button>
+			<!-- <a href="https://artbased.com/api/v1/downloadonepdf/lists/${currentmodel.head}.doc" class="btn btn-sm btn-primary"> -->
+
+
+
+			<span if.bind="filename===0 ">
+
+				<strong> Save Doc before download </strong>
+			</span>
+			<span else>
+				<a href="https://artbased.com/api/v1/downloadonepdf/lists/${filename}.doc" class="btn btn-sm btn-primary">
+					<span class="glyphicon glyphicon-th-list"></span> Download Merge ${filename}
+			</a>
+ 
+			</span>
+
+		</ux-dialog-header>
+		<ux-dialog-body>
+			<textarea style="height:650px;width:900px" ak-rich-editor="k-tools.bind: tools; k-resizable.bind: resizable;k-widget.two-way: editor"
+			 k-on-ready.delegate="setInitialValue($event.detail)">
+           </textarea>
+		</ux-dialog-body>
+		<ux-dialog-footer>
+			<button click.trigger="controller.cancel()">Cancel and Close </button>
+			<button click.trigger="saveMerge()">Save Doc</button>
+		</ux-dialog-footer>
+	</ux-dialog>
+</template>

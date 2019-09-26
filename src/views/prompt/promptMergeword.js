@@ -24,6 +24,8 @@ export class Promptmergeword {
     this.dialogService = dialogService
     this.api = api
     this.allcontacts = []
+    this.epoch = moment().unix();
+  
   }
 
 
@@ -36,13 +38,21 @@ export class Promptmergeword {
     ht1 += `<style><!-- `
     ht1 += `@page`;
     ht1 += `{`;
-    if (orientation === 'portrait') { ht1 += 'size:21cm 29.7cmt;' } else { ht1 += 'size:29.7cmt 21cm ;' }// ht1 += `size:21cm 29.7cmt;}
+    if (orientation === 'portrait') { ht1 += 'size:21cm 29.7cm;' } else { ht1 += 'size:29.7cm 21cm ;' }// ht1 += `size:21cm 29.7cmt;}
     // ht1 += `margin:1cm 1cm 1cm 1cm; /* Margins: 2.5 cm on each side */`
     //  ht1 += `margin: 0.5in 0.5in 1in 1in; /* Margins: 2.5 cm on each side */`
+    if (margins === 1) {
+      ht1 += `margin:1cm 1cm 1cm 1cm;`
+    } else {
+      ht1 += `margin:2cm 2cm 2cm 2cm;`
 
-    ht1 += `margin:2cm 2cm 2cm 2cm;` /* Margins: 2.5 cm on each side */
+    }
     // mso-page-orientation: portrait;  
-    ht1 += `mso-page-orientation: portrait;  `;
+    // ht1 += `mso-page-orientation: portrait;  `; 
+    // '@page WordSection1{size: 841.95pt 595.35pt;mso-page-orientation: landscape;}' +
+
+    if (orientation === 'portrait') { ht1 += `mso-page-orientation: portrait;  `; } else { ht1 += `mso-page-orientation: landscape;  `; }// ht1 += `size:21cm 29.7cmt;}
+
     // (header === true) ? ht1 += `mso-header: url("docs/headerfooter.htm") h1;` : '';
     if (header === true) { ht1 += `mso-header: url("docs/headerfooter.htm") h1;` }
     if (footer === true) {
@@ -125,19 +135,31 @@ export class Promptmergeword {
     if (this.listtype === 0) {
       //exhibition
       let segment = `<table style="width:650px; border-collapse:collapse;border-width:1px;"><tbody>`
+      // segment += `<br><br><br><br>`
+      segment += `<tr><td style="${this.sty1no};width:5%;vertical-align:top">&nbsp;</td></tr>`
+      segment += `<tr><td style="${this.sty1no};width:5%;vertical-align:top">&nbsp;</td></tr>`
       for (const invitem of currentmodel.detail) { //this.datasource._data) {
         let wwr = invitem.clientWidthRatio
         let hhr = invitem.clientHeightRatio
         if (wwr === undefined) wwr = 1
         if (hhr === undefined) hhr = 1
-        let ww = 295 * wwr
-        let hh = 295 * hhr
-        segment += `<td style="${sty1},width:25%">${invitem.InventoryCode}</td>`
-        segment += `<td style="${sty1},width:30%">${invitem.rtf2}</td>`
-        segment += `<td style="${sty1},width:20%;vertical-align:middle;text-align:center;"><img src="https://artbased.com/api/v1/getimage/inv/${invitem.InventoryCode}.jpg" alt="" width="${ww}" height=${hh} /></td>`
+        let ww = 145 * wwr 
+        let hh = 145 * hhr 
+        let wd
+        if (invitem.Signed) wd = 'signed'  
+        if (invitem.Signed && invitem.Dated) wd += ' and dated'
+        if (!invitem.Signed && invitem.Dated) wd += 'dated'
+        segment += `<td style="${this.sty1no};width:5%;vertical-align:top">&nbsp;</td>`
+        segment += `<td style="${this.sty1no};width:50%;vertical-align:top">${invitem.rtf2}</td>`
+//  segment += `<td style="${this.sty1no};width:50%;vertical-align:top">${invitem.rtf2}<br>${wd}</td>`
+
+  
+        segment += `<td style="${sty1no},width:45%;vertical-align:middle;text-align:center;"><img src="https://artbased.com/api/v1/getimage/inv/${invitem.InventoryCode}.jpg" alt="" width="${ww}" height=${hh} /></td>`
         segment += `</tr>`
+        segment += `<tr><td style="${this.sty1no};width:5%;vertical-align:top">&nbsp;</td></tr>`
       }
-      this.exporttoword(segment);
+      this.exporttoword(segment, true, false, true, 'portrait', 2);
+
       this.controller.ok('added')
     }
     if (this.listtype === 1) {
@@ -166,7 +188,7 @@ export class Promptmergeword {
       // ht1 += `<style><!-- `
       // ht1 += `@page`;
       // ht1 += `{`;
-      let  segment = `<table style="width:950px; border-style:solid;border-color:gray;border-collapse:collapse;border-width:1px;"><tbody>`
+      let segment = `<table style="width:950px; border-style:solid;border-color:gray;border-collapse:collapse;border-width:1px;"><tbody>`
 
       // let segment = `<table style="width:950px; border-style:solid;border-color:gray;border-collapse:collapse;border-width:1px;">`
       segment += `<tr>`
@@ -187,14 +209,10 @@ export class Promptmergeword {
         let hhr = invitem.clientHeightRatio
         if (wwr === undefined) wwr = 1
         if (hhr === undefined) hhr = 1
-        // let ww = 90 * wwr
-        // let hh = 90 * hhr
-         let ww = 295 * wwr
-        let hh = 295 * hhr
- 
-
-
-
+        let ww = 190 * wwr
+        let hh = 190 * hhr
+        //  let ww = 295 * wwr
+        // let hh = 295 * hhr
         // segment += `<td style="${styhc},width:12%" >Image</td>`
         // segment += `<tr style="height:17%;">`
         segment += `<tr style="height:17%;">`
@@ -209,11 +227,11 @@ export class Promptmergeword {
         segment += `<td style="${styc},width:6%;">${invitem.currentocationname}</td>`
         segment += `<td style="${sty1},width:6%;">${invitem.Bin}</td>`
         // segment += `<td style="${styc},width:12%;">${invitem.InventoryCode}/></td>`
-         segment += `<td style="${sty1},width:12%;vertical-align:middle;text-align:center;"><img src="https://artbased.com/api/v1/getimage/inv/${invitem.InventoryCode}.jpg" alt="" width="${ww}" height=${hh} /></td>`
-      // text-align:center;
- segment += `</tr>`
+        segment += `<td style="${styc},width:12%;vertical-align:middle;text-align:center;"><img src="https://artbased.com/api/v1/getimage/inv/${invitem.InventoryCode}.jpg" alt="" width="${ww}" height=${hh} /></td>`
+        // text-align:center;
+        segment += `</tr>`
       }
-     
+
       // segment += `</table>`
       //  segment += `</tbody></table>`
       this.exporttoword(segment, false, false, true, 'landscape', '');
@@ -221,21 +239,45 @@ export class Promptmergeword {
     }
 
     if (this.listtype === 3) {
-      // box label
-      let segment = `<table style="width:650px; border-collapse:collapse;border-width:1px;"><tbody>`
+      // bo x label
+      // segment = `<table style="width:650px; border-collapse:collapse;border-width:1px;"><tbody>`
+      let segment = `<table style="width:650px; border-style:none;border-color:gray;border-collapse:collapse;border-width:0px;"><tbody>`
+
       for (const invitem of currentmodel.detail) { //this.datasource._data) {
         let wwr = invitem.clientWidthRatio
         let hhr = invitem.clientHeightRatio
         if (wwr === undefined) wwr = 1
         if (hhr === undefined) hhr = 1
-        let ww = 295 * wwr
-        let hh = 295 * hhr
-        segment += `<td style="${sty1},width:25%">${invitem.InventoryCode}</td>`
-        segment += `<td style="${sty1},width:30%">${invitem.rtf2}</td>`
-        segment += `<td style="${sty1},width:20%;vertical-align:middle;text-align:center;"><img src="https://artbased.com/api/v1/getimage/inv/${invitem.InventoryCode}.jpg" alt="" width="${ww}" height=${hh} /></td>`
-        segment += `</tr>`
+        let ww = 114 * wwr
+        let hh = 114 * hhr
+
+        let titletruncate = invitem.Title.substring(0, 24);// DEPENDS ON SPACES AND case
+        //// segment += `<td style="width:75%;vertical-align:top;text-align:left;font-size: 48pt;font-family:Helvetica, sans-serif;"><strong>${invitem.InventoryCode}</strong><br><span style="font-family:Helvetica, sans-serif;text-align:left;vertical-align:top;font-size:30pt;">${invitem.Title}</span></td>`
+
+        var i;
+        for (i = 0; i < 7; i++) {
+          // segment +=  `<tr >` 
+          // segment += `<td style="width:25%;vertical-align:top"><img src="https://artbased.com/api/v1/getimage/inv/${invitem.InventoryCode}.jpg" alt="" width="${ww}" height=${hh} /></td>`
+          // segment += `<td style="width:75%;vertical-align:top;text-align:left;font-size: 42pt;font-family:Helvetica, sans-serif;"><strong>${invitem.InventoryCode}</strong><br><span style="font-family:Helvetica, sans-serif;text-align:left;vertical-align:top;font-size:30pt;">${titletruncate}</span></td>`
+          // segment += `</tr>`
+
+
+          segment += `<tr >`
+          segment += `<td style="width:25%;vertical-align:top"><img src="https://artbased.com/api/v1/getimage/inv/${invitem.InventoryCode}.jpg" alt="" width="${ww}" height=${hh} /></td>`
+          segment += `<td style="width:75%;vertical-align:top;text-align:left;font-size: 38pt;font-family:Helvetica, sans-serif;"><strong>${invitem.InventoryCode}</strong><br><span style="font-family:Helvetica, sans-serif;text-align:left;vertical-align:top;font-size:30pt;">${titletruncate}</span>`
+          segment += `<br><span style="font-family:Helvetica, sans-serif;text-align:left;vertical-align:top;font-size:10pt;">${invitem.Title}</span></td>`
+          segment += `</tr>`
+          segment += `<tr ><td>__</td></tr>`
+          //  segment +=  `<br >`
+
+
+        }
+        // segment += `<div style="page-break-after: always"><span style="display: none;">&nbsp;</span></div>`
+        // segment += `<div style="page-break-after: always"><span style="display: none;">&nbsp;</span></div>`
+
+        // segment += `</tr>`
       }
-      this.exporttoword(segment, false, false, false, 'portrait', '');
+      this.exporttoword(segment, false, false, false, 'portrait', 1);
       this.controller.ok('added')
     }
     if (this.listtype === 4) {
@@ -258,22 +300,50 @@ export class Promptmergeword {
     }
     if (this.listtype === 5) {
       //registrar
-      let segment = `<table style="width:650px; border-collapse:collapse;border-width:1px;"><tbody>`
+      // let segment = `<table style="width:650px; border-collapse:collapse;border-width:1px;"><tbody>`
+      let segment = `<table style="width:650px; border-style:solid;border-color:gray;border-collapse:collapse;border-width:1px;"><tbody>`
+      segment += '<br>'
       for (const invitem of currentmodel.detail) { //this.datasource._data) {
         let wwr = invitem.clientWidthRatio
         let hhr = invitem.clientHeightRatio
         if (wwr === undefined) wwr = 1
         if (hhr === undefined) hhr = 1
-        let ww = 295 * wwr
-        let hh = 295 * hhr
-        segment += `<td style="${sty1},width:25%">${invitem.InventoryCode}</td>`
-        segment += `<td style="${sty1},width:30%">${invitem.rtf2}</td>`
+        let ww = 155 * wwr
+        let hh = 155 * hhr
+        segment += `<td style="${sty1},width:15%">${invitem.InventoryCode}</td>`
+        segment += `<td style="${sty1},width:45%">${invitem.rtf2}</td>`
         segment += `<td style="${sty1},width:20%;vertical-align:middle;text-align:center;"><img src="https://artbased.com/api/v1/getimage/inv/${invitem.InventoryCode}.jpg" alt="" width="${ww}" height=${hh} /></td>`
         segment += `</tr>`
       }
-      this.exporttoword(segment, false, false, false, 'portrait', '');
+      // async exporttoword(segment, header, footer, logo, orientation, margins) {
+      this.exporttoword(segment, true, false, true, 'portrait', '');
+      this.controller.ok('added')
+    } 
+
+ if (this.listtype === 'factsheet') {
+      //factsheet 
+      // let segment = `<table style="width:650px; border-collapse:collapse;border-width:1px;"><tbody>`
+      // let segment = `<table style="width:650px; border-style:solid;border-color:gray;border-collapse:collapse;border-width:1px;"><tbody>`
+    let segment = `<table style="width:650px; border-collapse:collapse;border-width:1px;"><tbody>`
+      segment += '<br>'
+      // for (const invitem of currentmodel.detail) { //this.datasource._data) {
+        let invitem = currentmodel.detail
+        // let wwr = invitem.clientWidthRatio
+        // let hhr = invitem.clientHeightRatio
+        // if (wwr === undefined) wwr = 1
+        // if (hhr === undefined) hhr = 1
+        // let ww = 155 * wwr
+        // let hh = 155 * hhr
+        // segment += `<td style="${sty1},width:15%">${invitem.InventoryCode}</td>`
+        // segment += `<td style="${sty1},width:95%">${invitem.rtf1}</td>`
+        segment += `<td "style=width:100%">${invitem.rtf1}</td>`
+        segment += `</tr>`
+      // }
+      // async exporttoword(segment, header, footer, logo, orientation, margins) {
+      this.exporttoword(segment, false, true , true, 'portrait', 1);
       this.controller.ok('added')
     }
+
 
     if (this.listtype === 6) {
       //presention
@@ -295,53 +365,45 @@ export class Promptmergeword {
     }
     if (this.listtype === 7) {
       //checklist
-      segment = `<table style="width:650px; border-collapse:collapse;border-width:1px;"><tbody>`
+      // ?ramdom=${this.epoch}
+      let segment = `<table style="width:650px; border-collapse:collapse;border-width:1px;"><tbody>`
       for (const invitem of currentmodel.detail) { //this.datasource._data) {
         let wwr = invitem.clientWidthRatio
         let hhr = invitem.clientHeightRatio
         if (wwr === undefined) wwr = 1
         if (hhr === undefined) hhr = 1
-        let ww = 295 * wwr
-        let hh = 295 * hhr
-        segment += `<td style="${sty1},width:25%">${invitem.InventoryCode}</td>`
-        segment += `<td style="${sty1},width:30%">${invitem.rtf2}</td>`
-        segment += `<td style="${sty1},width:20%;vertical-align:middle;text-align:center;"><img src="https://artbased.com/api/v1/getimage/inv/${invitem.InventoryCode}.jpg" alt="" width="${ww}" height=${hh} /></td>`
-        segment += `</tr>`
+        let ww = 195 * wwr
+        let hh = 195 * hhr
+        segment += `<td style="${sty1},width:15%">${invitem.InventoryCode}</td>`
+        segment += `<td style="${sty1},width:50%">${invitem.rtf2}</td>`
+        segment += `<td style="${sty1},width:35%;vertical-align:middle;text-align:center;"><img src="https://artbased.com/api/v1/getimage/inv/${invitem.InventoryCode}.jpg" alt="" width="${ww}" height=${hh} /></td>`
+        segment += `</tr>` 
       }
       this.exporttoword(segment, false, false, false, 'portrait', '');
       this.controller.ok('added')
-    }
+    } 
 
     if (this.listtype === 8) {
-      //
-      //  let sty1 = "border: 1px gray solid;padding: 4px;width: 5em;font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;vertical-align:top;text-align:left;";
-      //    #content img { 
-      //    max-width: 620px;
-      //    height: auto;
-      // }
-      // segment += `<td style="${sty1},width:20%;vertical-align:middle;text-align:center;"><img src="https://artbased.com/api/v1/getimage/inv/${invitem.InventoryCode}.jpg" alt="" max-width="250px"; width="100%"; height="auto"; /></td>`
-
-      segment = `<table style="width:650px; border-collapse:collapse;border-width:1px;"><tbody>`
+      // checklist
+ 
+      // ?ramdom=${this.epoch}
+     let segment = `<table style="width:650px; border-collapse:collapse;border-width:1px;"><tbody>`
       for (const invitem of currentmodel.detail) { //this.datasource._data) {
         let wwr = invitem.clientWidthRatio
         let hhr = invitem.clientHeightRatio
         if (wwr === undefined) wwr = 1
         if (hhr === undefined) hhr = 1
-        let ww = 295 * wwr
-        let hh = 295 * hhr
-        segment += `<td style="${sty1},width:25%">${invitem.InventoryCode}</td>`
-        segment += `<td style="${sty1},width:30%">${invitem.rtf2}</td>`
-        segment += `<td style="${sty1},width:20%;vertical-align:middle;text-align:center;"><img src="https://artbased.com/api/v1/getimage/inv/${invitem.InventoryCode}.jpg" alt="" width="${ww}" height=${hh} /></td>`
-        segment += `</tr>`
-
+        let ww = 195 * wwr
+        let hh = 195 * hhr
+        segment += `<td style="${sty1},width:15%">${invitem.InventoryCode}</td>`
+        segment += `<td style="${sty1},width:50%">${invitem.rtf2}</td>`
+        segment += `<td style="${sty1},width:35%;vertical-align:middle;text-align:center;"><img src="https://artbased.com/api/v1/getimage/inv/${invitem.InventoryCode}.jpg" alt="" width="${ww}" height=${hh} /></td>`
+        segment += `</tr>` 
       }
-      // async exporttoword(segment, header, footer, orientation, margins) {
-
       this.exporttoword(segment, false, false, false, 'portrait', '');
       this.controller.ok('added')
-    }
   }
-
+  }
 
 
   //   //  segment += `</tbody></table>`

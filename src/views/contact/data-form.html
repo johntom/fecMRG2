@@ -213,9 +213,9 @@
 										<input type="text " xid="Assistant " class="form-control input-sm " value.bind="currentItem.Assistant">
 									</div>
 
-
+ 
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
-
+ 
 
 										<a href="http://${currentItem.Website}" target="_blank" class="btn btn-sm btn-primary"> <strong>Open Website</strong></a>
 									</div>
@@ -223,28 +223,28 @@
 										<input type="text " xid="Website " class="form-control input-sm " value.bind="currentItem.Website">
 									</div>
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
-										<!-- <div if.bind="currentItem.BusIndivid==='IB'"> -->
+										<div if.bind="currentItem.BusIndivid==='I'">
 
 											<button class="btn btn-sm btn-primary" click.delegate="modal(org)">View Org</button>
 											<button class="btn btn-sm btn-primary" click.delegate="editorg(org)">Edit Org</button>
 										</div>
-										<!-- <div else>
+										<div else>
 											<strong> Parent OrgID:${currentItem.OrgID}</strong>
 										</div>
-									</div> -->
+									</div>
 									<div class="Rtable-cell-70  Rtable-cell--highlight">
                     <!-- <div if.bind="currentItem.BusIndivid==='B'"> -->
-										<div if.bind="currentItem.BusIndivid==='I'">
-											<div style="height:15px;margin-left:10px;margin-top:5px;margin-bottom:10px" if.bind="currentItem.org.OrgName===undefined || currentItem.org.OrgName==='' ">
+										<!-- <div if.bind="currentItem.BusIndivid==='I'"> -->
+											<div style="height:15px;margin-left:10px;margin-top:5px;margin-bottom:10px" if.bind="currentItem.org.OrgName===undefined || currentItem.org.OrgName==='' || currentItem.org===null ">
 												<a click.delegate="showModal( 'OrgID')">select_link </a>
 											</div>
 											<div style="height:15px;margin-left:10px;margin-top:5px;margin-bottom:10px" else>
 												<a click.delegate="showModal( 'OrgID')">${currentItem.org.OrgName} </a>
 											</div>
-										</div>
+										<!-- </div>
 										<div else>
 											${currentItem.ParentName} / id: ${currentItem.ID} - ${currentItem.ParentID}
-										</div>
+										</div> -->
 									</div>
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
 										<strong> Dept</strong>

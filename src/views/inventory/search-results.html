@@ -133,14 +133,14 @@
 						</ak-template>
 					</ak-col>
 
-				
+
 
 					<ak-col k-title="Sold To " k-filterable.bind="{ multi: true, search: true }" k-width="180px" k-field="soldtoname "></ak-col>
-				
-        	<ak-col k-title="Owned By" k-filterable.bind="{ multi: true, search: true }" k-width="180px" k-field="ownername "></ak-col>
+
+					<ak-col k-title="Owned By" k-filterable.bind="{ multi: true, search: true }" k-width="180px" k-field="ownername "></ak-col>
 					<ak-col k-title="Sold Date" k-width="110px" k-field="SoldDate" k-format="{0:MM/dd/yyyy}"></ak-col>
-		<ak-col k-title="Signed" k-width="100px" k-filterable.bind="{ multi: true, search: true }" k-field="Signed"></ak-col>
-				
+					<ak-col k-title="Signed" k-width="100px" k-filterable.bind="{ multi: true, search: true }" k-field="Signed"></ak-col>
+
 					<ak-col k-title="Unframed" k-width="340px">
 						<ak-col k-title="H" k-filterable.bind="{ multi: true, search: true }" k-width.bind="50" k-field="UnframedHeight"></ak-col>
 						<ak-col k-title=" " k-width.bind="50" k-field="UnframedHeight16"></ak-col>
@@ -175,16 +175,12 @@
 					<button id="searchInputBtn " class="btn btn-sm btn-warning " type="button " click.delegate="addexistingSelection() ">Add To Saved List: ${appService.currentsavedlist}
           </button> &nbsp;
 					<!--  k-on-change.delegate="wordmerge()" <button id="searchInputBtn " class="btn btn-sm btn-warning " type="button " click.delegate="selectAll() ">Select all </button> &nbsp;   -->
-        <ak-drop-down-list k-data-text-field="name" k-data-value-field="id" k-data-source.bind="listtypes" k-value.two-way="selectedlist"
-				 style="width: 100px;">
-				</ak-drop-down-list>
-
-					<!-- <input type="checkbox" checked.bind="allgrid" ak-tooltip='k-content: "checkbox to use all items in grid "'> Select all</label> -->
-
-					<button id="searchInputBtn " class="btn btn-sm btn-warning " type="button " click.delegate="addSelection() "> Checklist </button>					&nbsp;
-				
-        
-        	<b>  ${message} </b></br>
+        	<!-- <input type="checkbox" checked.bind="allgrid" ak-tooltip='k-content: "checkbox to use all items in grid "'> Select all</label> -->
+        	<ak-drop-down-list k-data-text-field="name" k-data-value-field="id" k-data-source.bind="listtypes" k-value.two-way="selectedlist"
+					 style="width: 100px;">
+					</ak-drop-down-list>
+					<button id="searchInputBtn " class="btn btn-sm btn-warning " type="button " click.delegate="addSelection() "> Word Merge </button>					&nbsp;
+					<b>  ${message} </b></br>
 				</div>
 
 			</div>

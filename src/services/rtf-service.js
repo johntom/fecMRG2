@@ -538,8 +538,9 @@ export class RtfService {
 
 
 
-
+let ins = this.currentItem.Inscribed;
     this.buildInscribed(this.currentItem.Inscribed)
+    this.currentItem.Inscribed
     this.segment2 = ` ${artistWdates1}<br>`
     this.segment2 += ` <em> ${this.currentItem.Title}</em>, ${this.currentItem.InvYear} <br> `
 
@@ -602,12 +603,13 @@ export class RtfService {
     if (this.currentItem.inscribedText === undefined) this.currentItem.inscribedText = ''
     if (this.currentItem.CatalogueNo === undefined) this.currentItem.CatalogueNo = ''
     if (this.currentItem.AltID === undefined) this.currentItem.AltID = ''
-
+ 
     //  this.currentItem.inscribedText=this.currentItem.inscribedText+''
     // /?????????????????????????????????????????
     // if (this.currentItem.inscribedText !== '') {
     if (this.inscribedText !== '') {
-      headerinfo1 += ` ${this.inscribedText}</br> `
+      // headerinfo1 += ` ${this.inscribedText}</br> `
+       headerinfo1 += ` ${this.inscribedText} `
       headerinfo2 += ` ${this.inscribedText}</br> `
     }
 
@@ -630,6 +632,7 @@ export class RtfService {
 
     if (selectedtype === 0) {
      
+    //  this.segment1 = `<p><img class="responsive-img" src="https://artbased.com/api/v1/getimage/inv/${this.currentItem.InventoryCode}.jpg?random=${this.epoch}" alt="" width="${ww}" height="${hh}" /></p>`
       this.segment1 = `<p><img class="responsive-img" src="https://artbased.com/api/v1/getimage/inv/${this.currentItem.InventoryCode}.jpg?random=${this.epoch}" alt="" width="${ww}" height="${hh}" /></p>`
       // this.segment1 = `<p>https://artbased.com/api/v1/getimage/inv/${this.currentItem.InventoryCode}.jpg?random=${this.epoch}`
       this.segment1 += headerinfo1

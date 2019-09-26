@@ -15,7 +15,8 @@ import { DialogImage } from './dialogImage'
 import { EventAggregator } from 'aurelia-event-aggregator';
 import { Promptmess } from '../../services/promptmess';
 import { Promptyn } from '../../services/promptyn';
-import { googoose  } from './googoose'; 
+import { Promptmergeword } from '../prompt/promptMergeword';
+// import { googoose  } from './googoose'; 
 // jrt
 // @inject(Router, ApiService, UtilService, ApplicationService, MyDataService, DialogService)
 
@@ -30,6 +31,10 @@ export class SearchResults2 {
   checkedIds = {};
   message = ''//Hello Inventory !';
   scrollable = { virtual: true };
+
+  listtypes = [{ id: 0, name: "exhibition" }, { id: 2, name: "location list" }, { id: 3, name: "box label" }, { id: 5, name: "registrar" }, { id: 8, name: "checklist" }
+  ]
+
   excelExport(e) {
     //   var rows = e.workbook.sheets[0].rows;
     //  var sheet = e.workbook.sheets[0];
@@ -190,7 +195,7 @@ export class SearchResults2 {
     //   { field: "template", aggregate: "count" }
     // ]
   })
-  //Reference the Kendo Grid  
+  //Reference the Kendo Grid   
   constructor(router, api, utilService, appService, dataService, dialogService, eventAggregator) {
     this.router = router;
     this.api = api;
@@ -210,6 +215,7 @@ export class SearchResults2 {
     this.epoch = moment().unix();
     this.busy = {}
     this.busy.active = true
+    this.selectedlist = 8
   }
   show() {
     // localStorage["kendo-grid-options"] = kendo.stringify(this.grid.getOptions());
@@ -337,50 +343,8 @@ export class SearchResults2 {
     //       console.log(response.output);
     //     });
   }
-   attached() {
-    // this.altAKeyPressSubscription = this.eventAggregator.subscribe('keydown:alt-s', this.addinventory.bind(this));
-//     $(document).ready(function () {
-//     //   var o = {
-//     //     filename: 'test.doc'
-//     //   };
-//     //   $(document).googoose(o);
-//     // });
-//  var canvas = document.getElementById("hello-canvas");
-//     var ctx = canvas.getContext("2d");
-//    	function r(ctx, x, y, w, h, c) {
-// 	  ctx.beginPath();
-// 	  ctx.rect(x, y, w, h);
-// 	  ctx.strokeStyle = c;
-// 	  ctx.stroke();
-// 	}
-// 	r(ctx, 0, 0, 32, 32, "black");
-// 	r(ctx, 4, 4, 16, 16, "red");
-// 	r(ctx, 8, 8, 16, 16, "green");
-// 	r(ctx, 12, 12, 16, 16, "blue"); 
-//     var o = {
-//         download: 0,
-//         filename: 'test.doc'
-//     };
-//     $(document).googoose(o);
+  attached() {
 
-//     // this.grid = $("#grid").data("kendoGrid");
-//     // Removing The Ship Country Column Menu:      
-//     // By field  
-//     // this.grid.find("[data-field=Bin]>.k-header-column-menu").remove();
-//     // $('#GridName .k-header-column-menu').eq(2).hide()
-//     // this.grid('k-header-column-menu').eq(2).hide()
-//     // By Index  
-//     // grid.thead.find("[data-index=1]>.k-header-column-menu").remove();
-
-//     // this.grid.column["Bin"].IncludeInMenu(false);// hideColumn(2) NOT AVAIL
-
-
-
-//     // this.loadGrid() 
-//     // this.grid.hideColumn("Image");
-//     // this.grid.hideColumn("purchasedfromname");
-//     // this.grid.hideColumn("PurchasedDate");
-//     })
   }
   activate(params, routeConfig) {
     this.queryParams = this.utilService.parseQueryStringUrl();
@@ -590,6 +554,88 @@ export class SearchResults2 {
     // redirect if required
   }
 
+
+async addSelection() {
+    //  not for savedlist
+  this.selectedids ='';
+    let sels
+    let newcount = 0
+    if (this.selectedids === undefined || this.selectedids.length === 0) {
+      sels = []
+    } else sels = this.selectedids
+    var grid = this.grid;
+    var selectedRows = grid.select();
+    if (selectedRows.length === 0) {
+      this.dialogService.open({ viewModel: Promptmess, model: `please select a row to add  `, lock: true }).whenClosed(async response => { });
+    } else {
+
+      var maxRows = selectedRows.length / 2;
+      // var maxRows = selectedRows.length;
+
+
+      // selectedRows.each(function (idx, el) {
+      //   let dataItem = grid.dataItem(el);
+      // });
+      var i;
+      var a1;
+      for (i = 0; i < maxRows; i++) {
+        a1 = selectedRows[i];
+        let dataItem = grid.dataItem(a1);
+        let mid = sels.findIndex(x => x === dataItem.InventoryCode)
+        if (mid === -1) {
+          newcount++
+          sels.push(dataItem)//.InventoryCode);
+        }
+        if (i === maxRows - 1) {
+          this.selectedids = sels;
+
+        }
+      }
+      // let response = await this.api.findInventorySavedLists(this.appService.currentsavedlist);
+      // this.sllen = response.data.length
+      // console.log('this.repos ', this.api.currentsavedlist)
+      // let totcount = newcount + this.sllen
+      // this.message = ` ${newcount} item(s) added to list ${this.appService.currentsavedlist}`
+      // // new count:${totcount}`
+      // this.checkedIds = [];
+ 
+    }
+    this.wordmerge()
+  }
+
+
+// this.currentmodel = currentmodel
+//     this.slname = this.currentmodel.head;
+//     this.listtype = currentmodel.listtype
+//     // let lname = currentmodel.listname;
+//     let dimwidth
+//     thi
+
+  wordmerge() { 
+    if (this.selectedlist !== -1) {
+      let detail = []
+      detail.push(this.currentItem)
+      this.dialogService.open({
+        viewModel: Promptmergeword, model: {
+          head: 'inventory',
+          // listtype: this.selectedlist, listname: 'inventory', detail: detail
+           listtype: this.selectedlist, listname: 'inventory', detail:  this.selectedids
+        }, lock: true
+      }).whenClosed(async response => {
+        console.log('this.item', response, this.item)
+        if (!response.wasCancelled) {
+          this.saveMerge
+        } else {
+          console.log('cancel');
+        }
+        this.selectedlist = -1
+        console.log(response)//.output);
+      });
+    }
+  }
+
+
+
   onEdit(e) {
     let grid = e.sender;
     var targetRow = $(e.container);
@@ -765,3 +811,49 @@ export class SearchResults2 {
   }
 
 }
+
+
+
+  // this.altAKeyPressSubscription = this.eventAggregator.subscribe('keydown:alt-s', this.addinventory.bind(this));
+//     $(document).ready(function () {
+//     //   var o = {
+//     //     filename: 'test.doc'
+//     //   };
+//     //   $(document).googoose(o);
+//     // });
+//  var canvas = document.getElementById("hello-canvas");
+//     var ctx = canvas.getContext("2d");
+//    	function r(ctx, x, y, w, h, c) {
+// 	  ctx.beginPath();
+// 	  ctx.rect(x, y, w, h);
+// 	  ctx.strokeStyle = c;
+// 	  ctx.stroke();
+// 	}
+// 	r(ctx, 0, 0, 32, 32, "black");
+// 	r(ctx, 4, 4, 16, 16, "red");
+// 	r(ctx, 8, 8, 16, 16, "green");
+// 	r(ctx, 12, 12, 16, 16, "blue"); 
+//     var o = {
+//         download: 0, 
+//         filename: 'test.doc'
+//     };
+//     $(document).googoose(o);
+
+//     // this.grid = $("#grid").data("kendoGrid");
+//     // Removing The Ship Country Column Menu:      
+//     // By field  
+//     // this.grid.find("[data-field=Bin]>.k-header-column-menu").remove();
+//     // $('#GridName .k-header-column-menu').eq(2).hide()
+//     // this.grid('k-header-column-menu').eq(2).hide()
+//     // By Index  
+//     // grid.thead.find("[data-index=1]>.k-header-column-menu").remove();
+
+//     // this.grid.column["Bin"].IncludeInMenu(false);// hideColumn(2) NOT AVAIL
+
+
+
+//     // this.loadGrid() 
+//     // this.grid.hideColumn("Image");
+//     // this.grid.hideColumn("purchasedfromname");
+//     // this.grid.hideColumn("PurchasedDate");
+//     })

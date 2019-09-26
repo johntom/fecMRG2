@@ -14,9 +14,9 @@ export class App {
     this.appService = appService;
     this.eventAggregator = eventAggregator;
     this.secured = false
-    this.user='jrt0'
-    this.password='111'
-    this.appService.version=' 405.74 '   
+    // this.user='jrt0'
+    // this.password='111'
+    this.appService.version=' 405.76 '   
   }
  
   // use activationStrategy for all wildcards 

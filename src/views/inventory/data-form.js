@@ -13,7 +13,8 @@ import { RtfService } from '../../services/rtf-service';
 import { EventAggregator } from 'aurelia-event-aggregator';
 import { Promptmerge } from '../prompt/promptMerge';
 import { UtilService } from '../../services/util-service';
-import { googoose } from './googoose';
+// import { googoose } from './googoose';
+import { Promptmergeword } from '../prompt/promptMergeword';
 // import { Pusher } from 'pusher';
 
 
@@ -711,70 +712,7 @@ export class DataForm {
         }
         //  }
       })
-      // // await this.getimageinfo(0)
-      // //  this.rtfService.currentItem = this.currentItem
-      // let createopt = 1;//2; // 1 is from tab 2 is program
-      // let rr = await this.rtfService.createRTF(createopt)
-      // await this.eventAggregator.publish('rtfpayload', 'refresh');
-      // await this.saveinventory(0)
-      // let tabinfo, tabindex
-      // tabinfo = localStorage.getItem('tabinfo' + this.currentItem.InventoryCode);
-      // if (tabinfo === null) {
-      //   tabindex = 0
-      // } else {
-      //   tabinfo = JSON.parse(tabinfo)
-      //   tabindex = tabinfo.tabindex
-      // }
-      // if (this.appService.dataFormOneToManyTabs.length > 0) {
-      //   let tab = this.appService.dataFormOneToManyTabs[tabindex];
-      //   this.selectOneToManyTab(tab);
-      // }
-      // //    this.getimageinfo(0)
-      // // this.tabindex=tabindex
-      // // this.eventAggregator.publish('rtfpayload', 'refresh');
-      // //            this.saveinventory(0)
-       
-      //  $(document).ready(function () {
-      //      var o = {
-      //         // size: '8.5in 11.0in', 
-      //        filename: 'test.doc'
-      //      };
-      //      $(document).googoose(o);
-      //    });
-
-
-        // var canvas = document.getElementById("hello-canvas");
-        // var ctx = canvas.getContext("2d");
-        // function r(ctx, x, y, w, h, c) {
-        //   ctx.beginPath();
-        //   ctx.rect(x, y, w, h);
-        //   ctx.strokeStyle = c;
-        //   ctx.stroke();
-        // }
-        // r(ctx, 0, 0, 32, 32, "black");
-        // r(ctx, 4, 4, 16, 16, "red");
-        // r(ctx, 8, 8, 16, 16, "green");
-        // r(ctx, 12, 12, 16, 16, "blue");
-        // var o = {
-        //   download: 0,
-        //   filename: 'test.doc'
-        // };
-        // $(document).googoose(o);
-
-        // this.grid = $("#grid").data("kendoGrid");
-        // Removing The Ship Country Column Menu:      
-        // By field  
-        // this.grid.find("[data-field=Bin]>.k-header-column-menu").remove();
-        // $('#GridName .k-header-column-menu').eq(2).hide()
-        // this.grid('k-header-column-menu').eq(2).hide()
-        // By Index  
-        // grid.thead.find("[data-index=1]>.k-header-column-menu").remove();
-        // this.grid.column["Bin"].IncludeInMenu(false);// hideColumn(2) NOT AVAIL
-        // this.loadGrid() 
-        // this.grid.hideColumn("Image");
-        // this.grid.hideColumn("purchasedfromname");
-        // this.grid.hideColumn("PurchasedDate");
-      // 
+     
     }
   }
   createRTF(opt) {
@@ -786,17 +724,16 @@ export class DataForm {
         // footermargin: '.5in',
     // lang: 'en-US',
         
-    $(document).ready(function () {
-      var o = {
-        download: 0,
-        size: '8.5in 11.0in',
-        filename: fn,// test.doc',
-        margins: '0.5in'
-        //  download: true,
-      };
-      $(document).googoose(o);
-
-    })
+    // $(document).ready(function () {
+    //   var o = {
+    //     download: 0,
+    //     size: '8.5in 11.0in',
+    //     filename: fn,// test.doc',
+    //     margins: '0.5in'
+    //     //  download: true,
+    //   };
+    //   $(document).googoose(o);
+    // })
   }
 
   async publish() {
@@ -1093,27 +1030,26 @@ getnow(){
 
   // wordmerge(selectedlist) {
 
-  wordmerge() {
-    if (this.selectedlist !== -1) {
+ wordmerge() { 
       let detail = []
       detail.push(this.currentItem)
       this.dialogService.open({
-        viewModel: Promptmerge, model: {
+        viewModel: Promptmergeword, model: {
           head: 'inventory',
-          listtype: this.selectedlist, listname: 'inventory', detail: detail
+          // listtype: this.selectedlist, listname: 'inventory', detail: detail
+           listtype: 'factsheet', listname: 'inventory', detail: this.currentItem//.id// this.selectedids
         }, lock: true
       }).whenClosed(async response => {
         console.log('this.item', response, this.item)
         if (!response.wasCancelled) {
           this.saveMerge
         } else {
-
           console.log('cancel');
         }
-        this.selectedlist = -1
+        // this.selectedlist = -1
         console.log(response)//.output);
       });
-    }
+    
   }
 
   listChanged() {
@@ -1127,3 +1063,67 @@ getnow(){
 
 }
 
+ // // await this.getimageinfo(0)
+      // //  this.rtfService.currentItem = this.currentItem
+      // let createopt = 1;//2; // 1 is from tab 2 is program
+      // let rr = await this.rtfService.createRTF(createopt)
+      // await this.eventAggregator.publish('rtfpayload', 'refresh');
+      // await this.saveinventory(0)
+      // let tabinfo, tabindex
+      // tabinfo = localStorage.getItem('tabinfo' + this.currentItem.InventoryCode);
+      // if (tabinfo === null) {
+      //   tabindex = 0
+      // } else {
+      //   tabinfo = JSON.parse(tabinfo)
+      //   tabindex = tabinfo.tabindex
+      // }
+      // if (this.appService.dataFormOneToManyTabs.length > 0) {
+      //   let tab = this.appService.dataFormOneToManyTabs[tabindex];
+      //   this.selectOneToManyTab(tab);
+      // }
+      // //    this.getimageinfo(0)
+      // // this.tabindex=tabindex
+      // // this.eventAggregator.publish('rtfpayload', 'refresh');
+      // //            this.saveinventory(0)
+       
+      //  $(document).ready(function () {
+      //      var o = {
+      //         // size: '8.5in 11.0in', 
+      //        filename: 'test.doc'
+      //      };
+      //      $(document).googoose(o);
+      //    });
+
+
+        // var canvas = document.getElementById("hello-canvas");
+        // var ctx = canvas.getContext("2d");
+        // function r(ctx, x, y, w, h, c) {
+        //   ctx.beginPath();
+        //   ctx.rect(x, y, w, h);
+        //   ctx.strokeStyle = c;
+        //   ctx.stroke();
+        // }
+        // r(ctx, 0, 0, 32, 32, "black");
+        // r(ctx, 4, 4, 16, 16, "red");
+        // r(ctx, 8, 8, 16, 16, "green");
+        // r(ctx, 12, 12, 16, 16, "blue");
+        // var o = {
+        //   download: 0,
+        //   filename: 'test.doc'
+        // };
+        // $(document).googoose(o);
+
+        // this.grid = $("#grid").data("kendoGrid");
+        // Removing The Ship Country Column Menu:      
+        // By field  
+        // this.grid.find("[data-field=Bin]>.k-header-column-menu").remove();
+        // $('#GridName .k-header-column-menu').eq(2).hide()
+        // this.grid('k-header-column-menu').eq(2).hide()
+        // By Index  
+        // grid.thead.find("[data-index=1]>.k-header-column-menu").remove();
+        // this.grid.column["Bin"].IncludeInMenu(false);// hideColumn(2) NOT AVAIL
+        // this.loadGrid() 
+        // this.grid.hideColumn("Image");
+        // this.grid.hideColumn("purchasedfromname");
+        // this.grid.hideColumn("PurchasedDate");
+      // 
