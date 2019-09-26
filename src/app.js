@@ -16,12 +16,11 @@ export class App {
     this.secured = false
     this.user='jrt0'
     this.password='111'
-    this.appService.version=' 405.73 '   
+    this.appService.version=' 405.74 '   
   }
  
   // use activationStrategy for all wildcards 
   // { route: 'claim/:id', name: 'claim-search-results', moduleId: PLATFORM.moduleName('./views/claim/search-results'), title: 'Search Results' ,activationStrategy:'replace'  },
-
 
   configureRouter(config, router) {
     config.title = 'MRG Layout';
@@ -62,16 +61,12 @@ export class App {
       { route: 'contactdups', name: 'contactdups', moduleId: PLATFORM.moduleName('./views/contactdups/contactdups'), title: 'Contactdups', activationStrategy: 'replace' },
 
 
-
       //   { "route": 'batchupdate/batchupdate', name: 'batchupdate', nav: true, moduleId: PLATFORM.moduleName('./views/batchupdate/search-results'), title: 'BatchUpdate', activationStrategy: 'replace' },
-
-
       //{ "route": 'batchupdate', name: 'batchupdate', moduleId: PLATFORM.moduleName('./views/batchupdate/batchupdate'),{ "route": 'batchupdate/:id', name: 'batchupdate-search-results', moduleId: PLATFORM.moduleName('./views/batchupdate/search-results'), title: 'Search Results', activationStrategy: 'replace' },
       //{ "route": 'batchupdate/:id', name: 'batchupdate-search-results', moduleId: PLATFORM.moduleName('./views/batchupdate/search-results'), title: 'Search Results', activationStrategy: 'replace' },
       // { "route": 'batchupdate/data/:id', name: 'batchupdate-data-form', moduleId: PLATFORM.moduleName('./views/batchupdate/data-form'), title: 'Data Form', activationStrategy: 'replace' },
       // { "route": 'batchupdate', name: 'batchupdate', moduleId: PLATFORM.moduleName('./views/batchupdate/batchupdate'), nav: true, title: 'Search Results', activationStrategy: 'replace' },
       // { "route": 'batchupdate', name: 'batchupdate', moduleId: PLATFORM.moduleName('./views/batchupdate/search-results'), title: 'Batch' },
-
       // { route: 'email/:id', name: 'email-search-results', moduleId: PLATFORM.moduleName('./views/emaillist/search-results'), title: 'Search Results', activationStrategy: 'replace' },
       // { route: 'email/data/:id', name: 'email-data-form', moduleId: PLATFORM.moduleName('./views/emaillist/data-form'), title: 'Data Form', activationStrategy: 'replace' },
       // { route: 'email', name: 'email', moduleId: PLATFORM.moduleName('./views/emaillist/email'), nav: false, title: 'Email' },
