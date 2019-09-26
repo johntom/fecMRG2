@@ -14,8 +14,9 @@ export class App {
     this.appService = appService;
     this.eventAggregator = eventAggregator;
     this.secured = false
-    // this.user='jrt'
-    this.appService.version='405.71 '   
+    this.user='jrt0'
+    this.password='111'
+    this.appService.version=' 405.73 '   
   }
  
   // use activationStrategy for all wildcards 
@@ -33,7 +34,6 @@ export class App {
       { "route": 'inventory/data/:id', name: 'inventory-data-form', "moduleId": PLATFORM.moduleName('./views/inventory/data-form'), title: 'Data Form', activationStrategy: 'replace' },
       { "route": 'inventory', name: 'inventory', "moduleId": PLATFORM.moduleName('./views/inventory/inventory'), nav: true, title: 'Inventory' },
       { "route": 'inventory/rtfcreate/:id', name: 'rtfcreate', "moduleId": PLATFORM.moduleName('./views/inventory/rtfcreate'), title: 'rtfcreate Form', activationStrategy: 'replace' },
-
       { "route": 'action', name: 'action', moduleId: PLATFORM.moduleName('./views/action/action'), nav: true, title: 'Action' },
       { "route": 'action/:id', name: 'action-search-results', moduleId: PLATFORM.moduleName('./views/action/search-results'), title: 'Search Results', activationStrategy: 'replace' },
       { "route": 'action/data/:id', name: 'action-data-form', moduleId: PLATFORM.moduleName('./views/action/data-form'), title: 'Data Form', activationStrategy: 'replace' },
@@ -43,30 +43,22 @@ export class App {
       { "route": 'catalog', name: 'catalog', moduleId: PLATFORM.moduleName('./views/catalog/catalog'), nav: true, title: 'Catalog' },
       { "route": 'catalog/:id', name: 'catalog-search-results', moduleId: PLATFORM.moduleName('./views/catalog/search-results'), title: 'Search Results', activationStrategy: 'replace' },
       { "route": 'catalog/data/:id', name: 'catalog-data-form', moduleId: PLATFORM.moduleName('./views/catalog/data-form'), title: 'Data Form', activationStrategy: 'replace' },
-
       { "route": 'org', name: 'org', moduleId: PLATFORM.moduleName('./views/org/org'), nav: true, title: 'Org' },
       { "route": 'org/:id', name: 'org-search-results', moduleId: PLATFORM.moduleName('./views/org/search-results'), title: 'Search Results', activationStrategy: 'replace' },
       { "route": 'org/data/:id', name: 'org-data-form', moduleId: PLATFORM.moduleName('./views/org/data-form'), title: 'Data Form' }, // ,activationStrategy:'replace'
-
       { route: 'mailinglist/:id', name: 'mailinglist-search-results', moduleId: PLATFORM.moduleName('./views/mailinglist/search-results'), title: 'Search Results', activationStrategy: 'replace' },
       { route: 'mailinglist/data/:id', name: 'mailinglist-data-form', moduleId: PLATFORM.moduleName('./views/mailinglist/data-form'), title: 'Data Form', activationStrategy: 'replace' },
       { route: 'mailinglist', name: 'email', moduleId: PLATFORM.moduleName('./views/mailinglist/mailinglist'), nav: true, title: 'Mailing list' },
-
-
       { route: 'maint', name: 'maint', moduleId: PLATFORM.moduleName('./views/maint/maint'), nav: true, title: 'Maintenance' },
-
-
       { "route": 'artist', name: 'artist', moduleId: PLATFORM.moduleName('./views/artist/artist'), nav: false, title: 'Artist' },
       { "route": 'artist/:id', name: 'artist-search-results', moduleId: PLATFORM.moduleName('./views/artist/search-results'), title: 'Search Results', activationStrategy: 'replace' },
       { "route": 'artist/data/:id', name: 'artist-data-form', moduleId: PLATFORM.moduleName('./views/artist/data-form'), title: 'Data Form' }, // ,activationStrategy:'replace'
-
       { route: 'code/:id', name: 'code-search-results', moduleId: PLATFORM.moduleName('./views/code/search-results'), title: 'Search Results', activationStrategy: 'replace' },
       { route: 'code/data/:id', name: 'code-data-form', moduleId: PLATFORM.moduleName('./views/code/data-form'), title: 'Data Form', activationStrategy: 'replace' },
       { route: 'code', name: 'code', moduleId: PLATFORM.moduleName('./views/code/code'), nav: false, title: 'Code' },
       { route: 'todo/:id', name: 'todo-search-results', moduleId: PLATFORM.moduleName('./views/todo/search-results'), title: 'Search Results', activationStrategy: 'replace' },
       { route: 'todo/data/:id', name: 'todo-data-form', moduleId: PLATFORM.moduleName('./views/todo/data-form'), title: 'Data Form', activationStrategy: 'replace' },
       { route: 'todo', name: 'todo', moduleId: PLATFORM.moduleName('./views/todo/todo'), nav: false, title: 'Todo' },
-
       { route: 'contactdups', name: 'contactdups', moduleId: PLATFORM.moduleName('./views/contactdups/contactdups'), title: 'Contactdups', activationStrategy: 'replace' },
 
 

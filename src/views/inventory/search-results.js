@@ -38,7 +38,7 @@ export class SearchResults {
   // { id: 7, name: "checklist" } ,   { id: 8, name: "test" }
 
 
-   listtypes = [  { id: 8, name: "checklist" }
+   listtypes = [  { id: 2, name: "location list" },{ id: 8, name: "checklist" }
   // , { id: 8, name: "test2" }
 
   ]

@@ -28,7 +28,7 @@ export class Promptmergeword {
 
 
 
-  async exporttoword(segment, header, footer, orientation, margins) {
+  async exporttoword(segment, header, footer,logo, orientation, margins) {
     var html, link, blob, url, css;
 
     let ht1 = `<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>`
@@ -37,7 +37,7 @@ export class Promptmergeword {
     ht1 += `<style><!-- `
     ht1 += `@page`
     ht1 += `{`
-    ht1 += `size:21cm 29.7cmt;  /* A4 */`
+    ( orientation === 'portrait' ) ?  ht1 += 'size:21cm 29.7cmt;' :  ht1 += 'size:29.7cmt 21cm ;' // ht1 += `size:21cm 29.7cmt;
     // ht1 += `margin:1cm 1cm 1cm 1cm; /* Margins: 2.5 cm on each side */`
     //  ht1 += `margin: 0.5in 0.5in 1in 1in; /* Margins: 2.5 cm on each side */`
 
@@ -45,7 +45,9 @@ export class Promptmergeword {
     // mso-page-orientation: portrait;  
     ht1 += `mso-page-orientation: portrait;  `;
     (header === true) ? ht1 += `mso-header: url("docs/headerfooter.htm") h1;` : '';
-    (footer === true) ? ht1 += `mso-footer: url("docs/headerfooter.htm") f1;` : '';
+    if (footer === true) {
+     (logo===true) ? ht1 += `mso-footer: url("docs/headerfooter.htm") f1;` :  `mso-footer: url("docs/footernologo.htm") f1;`;
+    }
     // ht1 += `mso-footer: url("https://johntom.github.io/fecMRG2/src/docs/headerfooter.htm") f1;`
     ht1 += `}`
     ht1 += `@page Section1 { }`
@@ -106,7 +108,35 @@ export class Promptmergeword {
   this.exporttoword(segment);
   this.controller.ok('added')
 }
+
+
+  //   listtypes = [{ id: -1, name: 'choose' }, { id: 0, name: "exhibition" }, { id: 1, name: "price list" },
+  // { id: 2, name: "location list" }, { id: 3, name: "box label" }, { id: 4, name: "condition" },
+  // { id: 5, name: "registrar" }, { id: 6, name: "presention" },
+  // { id: 7, name: "checklist" } ,   { id: 8, name: "test" }
+if (this.listtype === 0) {
+  //exhibition
+  segment = `<table style="width:650px; border-collapse:collapse;border-width:1px;"><tbody>`
+  for (const invitem of currentmodel.detail) { //this.datasource._data) {
+    let wwr = invitem.clientWidthRatio
+    let hhr = invitem.clientHeightRatio
+    if (wwr === undefined) wwr = 1
+    if (hhr === undefined) hhr = 1
+    let ww = 295 * wwr
+    let hh = 295 * hhr
+    segment += `<td style="${sty1},width:25%">${invitem.InventoryCode}</td>`
+    segment += `<td style="${sty1},width:30%">${invitem.rtf2}</td>`
+
+    segment += `<td style="${sty1},width:20%;vertical-align:middle;text-align:center;"><img src="https://artbased.com/api/v1/getimage/inv/${invitem.InventoryCode}.jpg" alt="" width="${ww}" height=${hh} /></td>`
+
+    segment += `</tr>`
+
+  }
+  this.exporttoword(segment);
+  this.controller.ok('added')
+}
 if (this.listtype === 1) {
+  //price list
   segment = `<table style="width:650px; border-collapse:collapse;border-width:1px;"><tbody>`
   for (const invitem of currentmodel.detail) { //this.datasource._data) {
     let wwr = invitem.clientWidthRatio
@@ -127,27 +157,54 @@ if (this.listtype === 1) {
   this.controller.ok('added')
 }
 if (this.listtype === 2) {
+  //location list
   segment = `<table style="width:650px; border-collapse:collapse;border-width:1px;"><tbody>`
   for (const invitem of currentmodel.detail) { //this.datasource._data) {
     let wwr = invitem.clientWidthRatio
     let hhr = invitem.clientHeightRatio
     if (wwr === undefined) wwr = 1
     if (hhr === undefined) hhr = 1
-    let ww = 295 * wwr
-    let hh = 295 * hhr
-    segment += `<td style="${sty1},width:25%">${invitem.InventoryCode}</td>`
-    segment += `<td style="${sty1},width:30%">${invitem.rtf2}</td>`
+    ww = 90 * wwr
+    hh = 90 * hhr
 
-    segment += `<td style="${sty1},width:20%;vertical-align:middle;text-align:center;"><img src="https://artbased.com/api/v1/getimage/inv/${invitem.InventoryCode}.jpg" alt="" width="${ww}" height=${hh} /></td>`
 
-    segment += `</tr>`
+segment += `<table style="width:950px; border-style:solid;border-color:gray;border-collapse:collapse;border-width:1px;"><tbody>`
+      segment += `<tr>`
+      segment += `<td style="${styh},width:11%">Inventory Code</td>`
+      segment += `<td style="${styh},width:11%">Artist</td>`
+      segment += `<td style="${styh},width:11%">Title</td>`
+      segment += `<td style="${styh},width:6%" >Date</td>`
+      segment += `<td style="${styh},width:9%" >Medium</td>`
+      segment += `<td style="${styh},width:5%">Hght</td>`
+      segment += `<td style="${styh},width:5%" >Wdth</td>`
+      segment += `<td style="${styh},width:5%">Dpth</td>`
+      segment += `<td style="${styh},width:8%">Current<br> Location</td>`
+      segment += `<td style="${styh},width:6%">Bin</td>`
+      segment += `<td style="${styhc},width:12%" >Image</td>`
+      segment += `</tr>`
+
+      segment += `<tr style="height:17%;">`
+        segment += `<td style="${sty1},width:11%">${invitem.InventoryCode}</td>`
+        segment += `<td style="${sty1},width:11%">${invitem.artist.ArtistName}</td>`
+        segment += `<td style="${sty1},width:11%">${invitem.Title}</td>`
+        segment += `<td style="${sty1},width:6%;">${invitem.InvYear}</td>`
+        segment += `<td style="${sty1},width:9%">${invitem.MediumSupportobj.Description}</td>`
+        segment += `<td style="${styc},width:5%">${invitem.UnframedHeight}</td>`
+        segment += `<td style="${styc},width:5%;">${invitem.UnframedWidth}</td>`
+        segment += `<td style="${styc},width:5%;">${invitem.UnframedDepth}</td>`
+        segment += `<td style="${styc},width:6%;">${invitem.currentocationname}</td>`
+        segment += `<td style="${sty1},width:6%;">${invitem.Bin}</td>`
+        segment += `<td style="${styc},width:12%;"><img src="https://artbased.com/api/v1/getimage/inv/${invitem.InventoryCode}.jpg" alt="" width="${ww}" height=${hh} /></td>`
+        // text-align:center;
+        segment += `</tr>`
 
   }
-  this.exporttoword(segment);
+ this.exporttoword(segment, false, false,true, 'landscape', '');
   this.controller.ok('added')
 }
 
 if (this.listtype === 3) {
+  // box label
   segment = `<table style="width:650px; border-collapse:collapse;border-width:1px;"><tbody>`
   for (const invitem of currentmodel.detail) { //this.datasource._data) {
     let wwr = invitem.clientWidthRatio
@@ -164,10 +221,11 @@ if (this.listtype === 3) {
     segment += `</tr>`
 
   }
-  this.exporttoword(segment);
+  this.exporttoword(segment, false, false,false, 'portrait', '');
   this.controller.ok('added')
 }
 if (this.listtype === 4) {
+  //condition
   segment = `<table style="width:650px; border-collapse:collapse;border-width:1px;"><tbody>`
   for (const invitem of currentmodel.detail) { //this.datasource._data) {
     let wwr = invitem.clientWidthRatio
@@ -184,10 +242,11 @@ if (this.listtype === 4) {
     segment += `</tr>`
 
   }
-  this.exporttoword(segment);
+  this.exporttoword(segment, false, false,false, 'portrait', '');
   this.controller.ok('added')
 }
 if (this.listtype === 5) {
+  //registrar
   segment = `<table style="width:650px; border-collapse:collapse;border-width:1px;"><tbody>`
   for (const invitem of currentmodel.detail) { //this.datasource._data) {
     let wwr = invitem.clientWidthRatio
@@ -204,11 +263,12 @@ if (this.listtype === 5) {
     segment += `</tr>`
 
   }
-  this.exporttoword(segment);
+ this.exporttoword(segment, false, false,false, 'portrait', '');
   this.controller.ok('added')
 }
 
 if (this.listtype === 6) {
+  //presention
   segment = `<table style="width:650px; border-collapse:collapse;border-width:1px;"><tbody>`
   for (const invitem of currentmodel.detail) { //this.datasource._data) {
     let wwr = invitem.clientWidthRatio
@@ -225,10 +285,11 @@ if (this.listtype === 6) {
     segment += `</tr>`
 
   }
-  this.exporttoword(segment);
+  this.exporttoword(segment, false, false,false, 'portrait', '');
   this.controller.ok('added')
 }
 if (this.listtype === 7) {
+  //checklist
   segment = `<table style="width:650px; border-collapse:collapse;border-width:1px;"><tbody>`
   for (const invitem of currentmodel.detail) { //this.datasource._data) {
     let wwr = invitem.clientWidthRatio
@@ -245,7 +306,7 @@ if (this.listtype === 7) {
     segment += `</tr>`
 
   }
-  this.exporttoword(segment);
+  this.exporttoword(segment, false, false, false,'portrait', '');
   this.controller.ok('added')
 }
 
@@ -274,7 +335,7 @@ if (this.listtype === 8) {
   }
   // async exporttoword(segment, header, footer, orientation, margins) {
 
-  this.exporttoword(segment, false, false, 'portrait', '');
+  this.exporttoword(segment, false, false,false, 'portrait', '');
   this.controller.ok('added')
 }
 
