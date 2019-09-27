@@ -1,6 +1,6 @@
 <template>
-		<require from="../../resources/value-converters/stringify"></require>
-    	<require from="../../resources/value-converters/date-format"></require>
+	<require from="../../resources/value-converters/stringify"></require>
+	<require from="../../resources/value-converters/date-format"></require>
 	<ux-dialog>
 		<ux-dialog-header class="modal-header modal-header-success">
 			<div class="alert alert-danger">
@@ -19,7 +19,7 @@
 						</tr>
 					</tfoot>
 					<tbody>
-	
+
 						<div class="Rtable Rtable--2cols">
 							<div class=" Rtable-cell-30 Rtable-cell--highlight">
 								<strong> Title </strong>
@@ -35,27 +35,35 @@
 							</div>
 							<div class="Rtable-cell-70  Rtable-cell--light">
 								<textarea rows="2" cols="66" id="xExhibitSponser" wrap class="form-control input-sm" value.bind="item.ExhibitSponser"></textarea>
+							</div>
 						</div>
-						</div>
-						<div class="Rtable Rtable--2cols">
+						<!-- <div class="Rtable Rtable--2cols">
 							<div class="Rtable-cell-30 Rtable-cell--highlight">
 								<strong>Location </strong>
 							</div>
 							<div class="Rtable-cell-70  Rtable-cell--light">
 								<select id="ExhibitLocation" class="form-control input-sm" value.bind="item.ExhibitLocationDesc"> 
                       <option model.bind="null">Choose...</option> 
-                     <option repeat.for="opt of appService.codesProvenanceLocation" model.bind="opt.Description">
-                       <!-- codesProvenanceLocation -->
+                     <option repeat.for="opt of appService.codesProvenanceLocsation" model.bind="opt.Description">
+                      
                            ${opt.Description} 
                       </option> 
                     </select>
 
 							</div>
+						</div> -->
+						<div class="Rtable Rtable--2cols">
+							<div class=" Rtable-cell-30 Rtable-cell--highlight">
+								<strong> Location </strong>
+							</div>
+							<div class="Rtable-cell-70 Rtable-cell--light">
+								<input attach-focus="true" ref="myDatalist" type="text" list="myDatalist" change.delegate="changeCallbackLocation(selectedValue)"
+								 input.delegate="selectedValue = findOption($event.target.value)" />
+								<datalist id="myDatalist">
+									<option repeat.for="option of appService.codesProvenanceLocation">${option.Description} </option>
+								</datalist>
+							</div>
 						</div>
-						
-
-
-
 
 						<div class="Rtable Rtable--2cols">
 							<div class=" Rtable-cell-30 Rtable-cell--highlight">
@@ -75,9 +83,9 @@
 								<input type="date" id="ExhibitSortDate" class="form-control input-sm au-target" value.bind="item.ExhibitSortDate | dateFormat">
 							</div>
 						</div>
- <!-- <ak-col k-title="Sort Date"  k-field="ExhibitSortDate" k-filterable.bind="true" k-format="{0:MM/dd/yyyy}" k-width.bind="90">	</ak-col> 
+						<!-- <ak-col k-title="Sort Date"  k-field="ExhibitSortDate" k-filterable.bind="true" k-format="{0:MM/dd/yyyy}" k-width.bind="90">	</ak-col> 
 		  -->
-   
+
 
 
 						<div class="Rtable Rtable--2cols">
@@ -98,7 +106,7 @@
 								<textarea id="ExhibitMemo" cols="66" rows="10" class="form-control input-sm" wrap value.bind="item.ExhibitMemo">	</textarea>
 							</div>
 						</div>
-          
+
 
 
 
@@ -115,7 +123,7 @@
 
 		<ux-dialog-footer>
 
-	<button click.trigger="controller.cancel()">Cancel and Close </button>
+			<button click.trigger="controller.cancel()">Cancel and Close </button>
 			<button click.trigger="save()">Save Exhibition and Close </button>
 		</ux-dialog-footer>
 	</ux-dialog>

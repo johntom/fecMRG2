@@ -32,17 +32,32 @@
 									<input type="text" autocomplete="off" id="xProvOwner" class="form-control input-sm au-target" value.bind="item.ProvOwner">
 								</div>
 							</div>
-							<div class="Rtable Rtable--2cols">
+							<!-- <div class="Rtable Rtable--2cols">
 								<div class=" Rtable-cell-30 Rtable-cell--highlight">
 									<strong> Location </strong>
 								</div>
 								<div class="Rtable-cell-70  Rtable-cell--light">
-									<select id="ProvLoc" class="form-control  input-sm"  change.delegate="changeLocation(changedValue)" value.bind="item.ProvLoc"> 
+									<select id="ProvLoc" class="form-control  input-sm"  change.delegate="changeLocation(changedValue)" 
+                  value.bind="item.ProvLoc"> 
         
 									<option repeat.for="opt of appService.codesProvenanceLocation " model.bind="opt.id">
 										${opt.Description}
 									</option>
 									</select>
+								</div>
+							</div> -->
+              	<div class="Rtable Rtable--2cols">
+								<div class=" Rtable-cell-30 Rtable-cell--highlight">
+									<strong> Location </strong>
+								</div>
+								<div class="Rtable-cell-70 Rtable-cell--light">
+
+
+									<input attach-focus="true" ref="myDatalist" type="text" list="myDatalist" change.delegate="changeCallbackLocation(selectedValue)"
+									 input.delegate="selectedValue = findOption($event.target.value)" />
+									<datalist id="myDatalist">
+										<option repeat.for="option of appService.codesProvenanceLocation">${option.Description} </option>
+									</datalist>
 								</div>
 							</div>
 							<div class="Rtable Rtable--2cols">

@@ -28,7 +28,58 @@ export class Promptexhibit {
     this.currentItem = currentmodel.currentItem
     this.heading = "Exhibition"
   }
+changeCallbackLocation(selectedvalue) {
+    console.log('selectedvalue has undefined ', selectedvalue, "myDatalist this.myDatalist.value has the value", this.myDatalist.value);
+    let oid
+    let codeobj
+    let findvalue = this.myDatalist.value
+    oid = this.appService.codesProvenanceLocation.findIndex(x => x.Description === findvalue)
+    codeobj = this.appService.codesProvenanceLocation[oid]
+    let bod = {
+      "CodeType": 14,
+      "Description": findvalue,
+      "CodeTypeDesc": "Provenance Location"
+    }
+    if (this.selectedValue === undefined || this.selectedValue === null) {
 
+      let obj = {}
+      obj.type = 2
+      obj.name = `Add ${findvalue} to Location List or Cancel?`
+      this.dialogService.open({ viewModel: Promptyn, model: obj, lock: false }).whenClosed(response => {
+
+
+        if (!response.wasCancelled) {
+          // this.addnewms(findvalue)
+          this.api.addmediumsupport(bod)
+            .then((jsonRes) => {
+              this.appService.codesProvenanceLocation = jsonRes.data;
+              oid = this.appService.codesProvenanceLocation.findIndex(x => x.Description === findvalue)
+              codeobj = this.appService.codesProvenanceLocation[oid]
+              let rec = {
+                "CodeType": 14,
+                "Description": codeobj.Description,
+                "CodeTypeDesc": "Provenance Location",
+                id: codeobj.id
+              }
+              //  this.currentItem.codesGenre.push(rec)
+              // this.dataSource.add(rec)
+              this.item.ExhibitLocationDesc = codeobj.Description
+              this.item.ExhibitLocation = codeobj.id
+            });
+        } else {
+          console.log('cancel');
+        }
+
+        console.log(response.output);
+      });
+    } else {
+      //ReproductionLocationDesc
+      this.item.ExhibitLocationDesc = codeobj.Description
+      this.item.ExhibitLocation = codeobj.id
+
+    }
+
+  }
   populate() {
     this.item.ExhibitTitle = 'test '
     this.item.ExhibitSponser = 'test spn'

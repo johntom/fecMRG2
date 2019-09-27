@@ -81,81 +81,75 @@
 								<div class="Rtable-cell-70  Rtable-cell--light">
 									<input type="text" id="xReproductionName" class="form-control input-sm " value.bind="item.ReproductionName">
 								</div>
-							</div> 
-						
-							<div class="Rtable Rtable--2cols">
+							</div>
+
+						<div class="Rtable Rtable--2cols">
 								<div class=" Rtable-cell-30 Rtable-cell--highlight">
 									<strong> Location </strong>
 								</div>
 								<div class="Rtable-cell-70 Rtable-cell--light">
-              <!-- <select id="ReproductionLocation" class="form-control  input-sm" value.bind="item.ReproductionLocationDesc"> 
+									<input attach-focus="true" ref="myDatalist" type="text" list="myDatalist" change.delegate="changeCallbackLocation(selectedValue)"
+									 input.delegate="selectedValue = findOption($event.target.value)" />
+									<datalist id="myDatalist">
+										<option repeat.for="option of appService.codesProvenanceLocation">${option.Description} </option>
+									</datalist>
+								</div>
+							</div>
+
+				</div>
+				<!-- <select id="ReproductionLocation" class="form-control  input-sm" value.bind="item.ReproductionLocationDesc"> 
               <option model.bind="null">Choose...filterOnCode</option> 
               <option repeat.for="opt of appService.codesProvenanceLocation" model.bind="opt.Description">
               ${opt.Description} 
               </option> 
               </select> -->
-			
-					<input attach-focus="true" ref="myDatalist" type="text" list="myDatalist"
-           change.delegate="changeCallbackLocation(selectedValue)"
-					 input.delegate="selectedValue = findOption($event.target.value)" />
-					<datalist id="myDatalist">
-						<option repeat.for="option of appService.codesProvenanceLocation">${option.Description} </option>
-					</datalist>
+
+
+
+
+
+
+				<div class="Rtable Rtable--2cols">
+					<div class=" Rtable-cell-30 Rtable-cell--highlight">
+						<strong>Date </strong>
+					</div>
+					<div class="Rtable-cell-70  Rtable-cell--light">
+						<input type="text" id="xReproductionDate" class="form-control input-sm " value.bind="item.ReproductionDate">
+					</div>
 				</div>
-				<!-- ${selectedValue} -->
-			
-                
-                </div>
+				<div class="Rtable Rtable--2cols">
+					<div class=" Rtable-cell-30 Rtable-cell--highlight">
+						<strong>Sort Date </strong>
+					</div>
+					<div class="Rtable-cell-70  Rtable-cell--light">
+						<input type="date" id="xReproductionSortDate" class="form-control input-sm " value.bind="item.ReproductionSortDate  | dateFormat ">
 
-							</div>
-
-
-
-
-
+					</div>
+				</div>
 
 
-							<div class="Rtable Rtable--2cols">
-								<div class=" Rtable-cell-30 Rtable-cell--highlight">
-									<strong>Date </strong>
-								</div>
-								<div class="Rtable-cell-70  Rtable-cell--light">
-									<input type="text" id="xReproductionDate" class="form-control input-sm " value.bind="item.ReproductionDate">
-								</div>
-							</div>
-							<div class="Rtable Rtable--2cols">
-								<div class=" Rtable-cell-30 Rtable-cell--highlight">
-									<strong>Sort Date </strong>
-								</div>
-								<div class="Rtable-cell-70  Rtable-cell--light">
-									<input type="date" id="xReproductionSortDate" class="form-control input-sm " value.bind="item.ReproductionSortDate  | dateFormat ">
+				<div class="Rtable Rtable--2cols">
+					<div class=" Rtable-cell-30 Rtable-cell--highlight">
+						<strong>Number </strong>
+					</div>
+					<div class="Rtable-cell-70  Rtable-cell--light">
+						<input type="text" id="xNumber" class="form-control input-sm " value.bind="item.no">
+					</div>
+				</div>
 
-								</div>
-							</div>
-
-
-							<div class="Rtable Rtable--2cols">
-								<div class=" Rtable-cell-30 Rtable-cell--highlight">
-									<strong>Number </strong>
-								</div>
-								<div class="Rtable-cell-70  Rtable-cell--light">
-									<input type="text" id="xNumber" class="form-control input-sm " value.bind="item.no">
-								</div>
-							</div>
-
-							<div class="Rtable Rtable--2cols">
-								<div class=" Rtable-cell-30 Rtable-cell--highlight">
-									<strong>Page </strong>
-								</div>
-								<div class="Rtable-cell-70  Rtable-cell--light">
-									<input type="text" id="xReproductionPage" class="form-control input-sm " value.bind="item.ReproductionPage">
-								</div>
-							</div>
+				<div class="Rtable Rtable--2cols">
+					<div class=" Rtable-cell-30 Rtable-cell--highlight">
+						<strong>Page </strong>
+					</div>
+					<div class="Rtable-cell-70  Rtable-cell--light">
+						<input type="text" id="xReproductionPage" class="form-control input-sm " value.bind="item.ReproductionPage">
+					</div>
+				</div>
 
 
 
 
-							<!-- <div class=" Rtable-cell-30 Rtable-cell--highlight">
+				<!-- <div class=" Rtable-cell-30 Rtable-cell--highlight">
 									<strong>Type </strong>
 								</div>
 								<div class="Rtable-cell-70  Rtable-cell--light">
@@ -168,55 +162,55 @@
 								</div>
 							</div> -->
 
-							<div class="Rtable Rtable--2cols">
-								<div class=" Rtable-cell-30 Rtable-cell--highlight">
-									<strong>Type </strong>
-								</div>
-								<div class="Rtable-cell-70  Rtable-cell--light">
-									<select id="ReproductionType" class="form-control  input-sm" value.bind="item.ReproductionTypeDesc"> 
+				<div class="Rtable Rtable--2cols">
+					<div class=" Rtable-cell-30 Rtable-cell--highlight">
+						<strong>Type </strong>
+					</div>
+					<div class="Rtable-cell-70  Rtable-cell--light">
+						<select id="ReproductionType" class="form-control  input-sm" value.bind="item.ReproductionTypeDesc"> 
                       <option model.bind="null">Choose...</option> 
                          <option repeat.for="opt of appService.codesPublicationType " model.bind="opt.Description">
                     ${opt.Description} 
                       </option> 
                     </select>
-								</div>
-							</div>
-							<!-- <select id="ColorBW" class="form-control  input-sm" value.bind="item.ColorBW"> 
+					</div>
+				</div>
+				<!-- <select id="ColorBW" class="form-control  input-sm" value.bind="item.ColorBW"> 
                       <option model.bind="null">Choose...</option> 
                          <option repeat.for="opt of appService.codesReproductionType" model.bind="opt.id">
                     ${opt.Description} 
                       </option>  -->
-							<div class="Rtable Rtable--2cols">
-								<div class=" Rtable-cell-30 Rtable-cell--highlight">
-									<strong>Color BW </strong>
-								</div>
-								<div class="Rtable-cell-70  Rtable-cell--light">
-									<select id="ColorBW" class="form-control  input-sm" value.bind="item.ColorBWDesc"> 
+				<div class="Rtable Rtable--2cols">
+					<div class=" Rtable-cell-30 Rtable-cell--highlight">
+						<strong>Color BW </strong>
+					</div>
+					<div class="Rtable-cell-70  Rtable-cell--light">
+						<select id="ColorBW" class="form-control  input-sm" value.bind="item.ColorBWDesc"> 
                       <option model.bind="null">Choose...</option> 
                          <option repeat.for="opt of appService.codesReproductionType" model.bind="opt.Description">
                     ${opt.Description} 
                       </option> 
                     </select>
-								</div>
-							</div>
-							<div show.bind="showbatch">
-								<div class="Rtable Rtable--2cols">
-									<div class=" Rtable-cell-30 Rtable-cell--highlight">
-										<strong>if executed from batch the batch-no is needed to get exhibit-id from previous step </strong>
-									</div>
-									<div class="Rtable-cell-70  Rtable-cell--light">
-										<input type="text" id="exhibitionbatchno" class="form-control input-sm " value.bind="item.ReproductionExhibitBatchNo">
-										<!-- ${batchno} --> 
-										<!-- <textarea id="exhibitionbatchno" cols="66" rows="10" class="form-control input-sm" wrap value.bind="item.ReproductionExhibit">	</textarea> -->
-									</div>
-								</div>
-							</div>
-							<div class="Rtable Rtable--2cols">
-								<div class=" Rtable-cell-30 Rtable-cell--highlight">
-									<strong> Select Exhibition: ${item.ReproductionExhibit} </strong> 
-								</div>
-								<div class="Rtable-cell-70  Rtable-cell--light">
-									<select id="ReproductionExhibit" class="form-control  input-sm" value.bind="item.ReproductionExhibit"> 
+					</div>
+				</div>
+				<div show.bind="showbatch">
+					<div class="Rtable Rtable--2cols">
+						<div class=" Rtable-cell-30 Rtable-cell--highlight">
+							<strong>if executed from batch the batch-no is needed to get exhibit-id from previous step </strong>
+						</div>
+						<div class="Rtable-cell-70  Rtable-cell--light">
+							<input type="text" id="exhibitionbatchno" class="form-control input-sm " value.bind="item.ReproductionExhibitBatchNo">
+							<!-- ${batchno} -->
+							<!-- <textarea id="exhibitionbatchno" cols="66" rows="10" class="form-control input-sm" wrap value.bind="item.ReproductionExhibit">	</textarea> -->
+						</div>
+					</div>
+				</div>
+				<div class="Rtable Rtable--2cols">
+					<div class=" Rtable-cell-30 Rtable-cell--highlight">
+						<strong> Select Exhibition: ${item.ReproductionExhibit} </strong>
+					</div>
+					<div class="Rtable-cell-70  Rtable-cell--light">
+						<select id="ReproductionExhibit" class="form-control  input-sm" value.bind="item.ReproductionExhibit"> 
                       <option model.bind="null" >Choose...</option> 
                          <option change.delegate="changeSelect(opt)" repeat.for="opt of currentItem.exhibition " 
                          model.bind="opt.id">
@@ -224,9 +218,9 @@
                       </option> 
                     </select>
 
-								</div>
-							</div>
-	<!-- <div class="Rtable Rtable--2cols">
+					</div>
+				</div>
+				<!-- <div class="Rtable Rtable--2cols">
 								<div class=" Rtable-cell-30 Rtable-cell--highlight">
 									<strong> Select Exhibition </strong>
 								</div>
@@ -241,8 +235,8 @@
 								</div>
 							</div> -->
 
-						</tbody>
-					</table>
+				</tbody>
+				</table>
 				</div>
 
 

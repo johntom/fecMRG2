@@ -10,7 +10,7 @@ import { computedFrom } from 'aurelia-framework';
 export class Promptrepro {
   static inject = [DialogController, ApplicationService, MyDataService, DialogService, ApiService];
 
-selectedValue = null;
+  selectedValue = null;
   findOption = value => this.appService.codesProvenanceLocation.find(x => x.Description === value)
 
   constructor(controller, appService, dataService, dialogService, api) {
@@ -27,20 +27,20 @@ selectedValue = null;
     this.showbatch = false
   }
 
-changeCallbackLocation(selectedvalue) {
+  changeCallbackLocation(selectedvalue) {
     console.log('selectedvalue has undefined ', selectedvalue, "myDatalist this.myDatalist.value has the value", this.myDatalist.value);
- let oid 
- let codeobj 
+    let oid
+    let codeobj
     let findvalue = this.myDatalist.value
-       oid = this.appService.codesProvenanceLocation.findIndex(x => x.Description === findvalue)
-       codeobj = this.appService.codesProvenanceLocation[oid]
-  let bod = {
+    oid = this.appService.codesProvenanceLocation.findIndex(x => x.Description === findvalue)
+    codeobj = this.appService.codesProvenanceLocation[oid]
+    let bod = {
       "CodeType": 14,
       "Description": findvalue,
       "CodeTypeDesc": "Provenance Location"
-    }  
- if (this.selectedValue === undefined || this.selectedValue === null) {
- 
+    }
+    if (this.selectedValue === undefined || this.selectedValue === null) {
+
       let obj = {}
       obj.type = 2
       obj.name = `Add ${findvalue} to Location List or Cancel?`
@@ -49,39 +49,34 @@ changeCallbackLocation(selectedvalue) {
 
         if (!response.wasCancelled) {
           // this.addnewms(findvalue)
-           this.api.addmediumsupport(bod)
-      .then((jsonRes) => {
-        this.appService.codesProvenanceLocation = jsonRes.data;
-         oid = this.appService.codesProvenanceLocation.findIndex(x => x.Description === findvalue)
-         codeobj = this.appService.codesProvenanceLocation[oid]
-        let rec = {
-          "CodeType": 14,
-          "Description": codeobj.Description,
-          "CodeTypeDesc": "Provenance Location",
-          id: codeobj.id
-        }
-      //  this.currentItem.codesGenre.push(rec)
-       // this.dataSource.add(rec)
-         this.item.ReproductionLocationDesc=codeobj.Description
-         this.item.ReproductionLocation=codeobj.id
-      });
+          this.api.addmediumsupport(bod)
+            .then((jsonRes) => {
+              this.appService.codesProvenanceLocation = jsonRes.data;
+              oid = this.appService.codesProvenanceLocation.findIndex(x => x.Description === findvalue)
+              codeobj = this.appService.codesProvenanceLocation[oid]
+              let rec = {
+                "CodeType": 14,
+                "Description": codeobj.Description,
+                "CodeTypeDesc": "Provenance Location",
+                id: codeobj.id
+              }
+              //  this.currentItem.codesGenre.push(rec)
+              // this.dataSource.add(rec)
+              this.item.ReproductionLocationDesc = codeobj.Description
+              this.item.ReproductionLocation = codeobj.id
+            });
         } else {
           console.log('cancel');
         }
-        
+
         console.log(response.output);
       });
     } else {
       //ReproductionLocationDesc
- this.item.ReproductionLocationDesc=codeobj.Description
-         this.item.ReproductionLocation=codeobj.id
+      this.item.ReproductionLocationDesc = codeobj.Description
+      this.item.ReproductionLocation = codeobj.id
 
     }
-   
-
-
-
-   
 
   }
   activate(currentmodel) {

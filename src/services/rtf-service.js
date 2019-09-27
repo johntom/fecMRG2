@@ -33,7 +33,7 @@ export class RtfService {
     this.editrec = '';
     this.isDisableEdit = true
     this.currentprovenance = '';
- this.epoch = moment().unix();
+    this.epoch = moment().unix();
   }
   created(owningView, myView) {
   }
@@ -517,7 +517,7 @@ export class RtfService {
     this.segment2 = ''
     this.segment1 = ''
     if (selectedtype === undefined) selectedtype = 0;
-
+ 
     this.createDim()
     let artist = this.currentItem.artist
     let artistWdates = `<strong>${artist.firstName} ${artist.lastName}`
@@ -538,7 +538,7 @@ export class RtfService {
 
 
 
-let ins = this.currentItem.Inscribed;
+    let ins = this.currentItem.Inscribed;
     this.buildInscribed(this.currentItem.Inscribed)
     this.currentItem.Inscribed
     this.segment2 = ` ${artistWdates1}<br>`
@@ -561,15 +561,108 @@ let ins = this.currentItem.Inscribed;
     //     this.segment2 += ' and dated<br> '
     //   } else this.segment2 += 'dated <br>'
     // } else this.segment2 += '<br>' 
-    ///////////////////////////////////////////////////////////////////////////  
-    let fac = this.searchsold[this.selectedimagesize]
+    ///////////////////////////////////////////////////////////////////////////
+    let ww        
+    let hh  
+    let fac = this.searchsold[this.selectedimagesize] // factor 1
+    // original
+    ww = this.currentItem.clientWidth //* fac.factor
+    hh = this.currentItem.clientHeight // * fac.factor
+   
+    // if (selectedtype === 0) {
+    //   // lansc 1 cols
+    //   // if (ww<450) ww=450 * this.currentItem.clientWidthRatio
+    //   // if (ww === 0)
+    //    ww = ww * this.currentItem.clientWidthRatio
+    //   // if (hh === 0) hh = 450 * this.currentItem.clientHeightRatio
+    //    hh= hh * this.currentItem.clientHeightRatio
+    // }
+    // if (selectedtype === 1) {
+    //   // port 1 cols
+    //   // if (ww<350) ww=350 * this.currentItem.clientWidthRatio
+    //   // if (ww === 0) ww = 350 * this.currentItem.clientWidthRatio
+    //   // if (hh === 0) hh = 350 * this.currentItem.clientHeightRatio
+    //    ww = ww * this.currentItem.clientWidthRatio
+    //   hh=hh * this.currentItem.clientHeightRatio
+    // }
 
 
-    let ww = this.currentItem.clientWidth * fac.factor
-    let hh = this.currentItem.clientHeight * fac.factor
-    //console.log(hh, ww)
-    if (ww === 0) ww = 450 * this.currentItem.clientWidthRatio
-    if (hh === 0) hh = 450 * this.currentItem.clientHeightRatio
+
+
+
+ //console.log(hh, ww)
+    // if (ww === 0) ww = 450 * this.currentItem.clientWidthRatio
+    // if (hh === 0) hh = 450 * this.currentItem.clientHeightRatio
+
+
+
+
+    //     if (selectedtype === 0) {
+    //       // lansc 1 cols
+    //       if (this.currentItem.clientWidthRatio < 1) {
+    //         // port
+    //         let ww = this.currentItem.clientWidth * fac.factor
+    //         if (ww > 450) ww = 450
+    //       }
+    //       if (this.currentItem.clientHeightRatio < 1) {
+    //         // port 2 cols
+    //         let ww = this.currentItem.clientWidth * fac.factor
+    //         if (ww > 450) ww = 450
+    //       }
+    //       if (this.currentItem.clientWidthRatio===1 && this.currentItem.clientHeightRatio==1) {
+    //         //  a square
+    //         ww = 450
+    //         hh = 450
+    //       }
+    //     }
+
+    // if (selectedtype === 1) {
+    //     // portrait 2 cols 
+
+    //       if (this.currentItem.clientWidthRatio < 1) {
+    //         // port
+    //         let ww = this.currentItem.clientWidth * fac.factor
+    //         if (ww > 350) ww = 350
+    //       }
+    //       if (this.currentItem.clientHeightRatio < 1) {
+    //         // port 2 cols
+    //         let hh = this.currentItem.clientHeight * fac.factor
+    //         // if (hh > 450) hh = 450
+    //         if (ww > 350) ww = 350
+    //       }
+    //       if (this.currentItem.clientWidthRatio===1 && this.currentItem.clientHeightRatio==1) {
+    //         // a square
+    //         ww = 350
+    //         hh = 350
+    //       }
+    //     }
+
+    // let hh = this.currentItem.clientHeight * fac.factor
+    // //console.log(hh, ww)
+
+    // if (selectedtype === 1) {
+    //   // portrait
+    //   if (ww > 325 || ww < 325) ww === 325
+    //   if (hh > 325 || hh < 325) hh === 325
+    //   if (this.currentItem.clientWidthRatio < 1) {
+    //     if (ww === 0 || ww < 325) ww = 325 * this.currentItem.clientWidthRatio
+    //   }
+    //   if (this.currentItem.clientHieghtRatio < 1) {
+    //     if (ww === 0 || ww < 425) ww = 325 * this.currentItem.clientWidthRatio
+    //   }
+
+    //   // if (hh === 0 || hh < 325) hh = 325 * this.currentItem.clientHeightRatio
+
+    // } else {
+    //   // hori
+    //   if (ww > 400 || ww < 400) ww === 400
+    //   if (hh > 400 || hh < 400) hh === 400
+    //   if (ww === 0 || ww < 400) ww = 400 * this.currentItem.clientWidthRatio
+    //   if (hh === 0 || ww < 400) hh = 400 * this.currentItem.clientHeightRatio
+
+    // }
+
+
     let headerinfo1 = '', headerinfo2 = ''
 
     // this.segment1 = `<p><img class="responsive-img" src="https://artbased.com/api/v1/getimage/inv/${this.currentItem.InventoryCode}.jpg" alt="" width="${ww}" height="${hh}" /></p>`
@@ -603,13 +696,13 @@ let ins = this.currentItem.Inscribed;
     if (this.currentItem.inscribedText === undefined) this.currentItem.inscribedText = ''
     if (this.currentItem.CatalogueNo === undefined) this.currentItem.CatalogueNo = ''
     if (this.currentItem.AltID === undefined) this.currentItem.AltID = ''
- 
+
     //  this.currentItem.inscribedText=this.currentItem.inscribedText+''
     // /?????????????????????????????????????????
     // if (this.currentItem.inscribedText !== '') {
     if (this.inscribedText !== '') {
       // headerinfo1 += ` ${this.inscribedText}</br> `
-       headerinfo1 += ` ${this.inscribedText} `
+      headerinfo1 += ` ${this.inscribedText} `
       headerinfo2 += ` ${this.inscribedText}</br> `
     }
 
@@ -631,8 +724,8 @@ let ins = this.currentItem.Inscribed;
     this.segment2 = headerinfo2
 
     if (selectedtype === 0) {
-     
-    //  this.segment1 = `<p><img class="responsive-img" src="https://artbased.com/api/v1/getimage/inv/${this.currentItem.InventoryCode}.jpg?random=${this.epoch}" alt="" width="${ww}" height="${hh}" /></p>`
+
+      //  this.segment1 = `<p><img class="responsive-img" src="https://artbased.com/api/v1/getimage/inv/${this.currentItem.InventoryCode}.jpg?random=${this.epoch}" alt="" width="${ww}" height="${hh}" /></p>`
       this.segment1 = `<p><img class="responsive-img" src="https://artbased.com/api/v1/getimage/inv/${this.currentItem.InventoryCode}.jpg?random=${this.epoch}" alt="" width="${ww}" height="${hh}" /></p>`
       // this.segment1 = `<p>https://artbased.com/api/v1/getimage/inv/${this.currentItem.InventoryCode}.jpg?random=${this.epoch}`
       this.segment1 += headerinfo1
