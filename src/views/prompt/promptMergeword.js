@@ -25,7 +25,7 @@ export class Promptmergeword {
     this.api = api
     this.allcontacts = []
     this.epoch = moment().unix();
-  
+
   }
 
 
@@ -41,11 +41,18 @@ export class Promptmergeword {
     if (orientation === 'portrait') { ht1 += 'size:21cm 29.7cm;' } else { ht1 += 'size:29.7cm 21cm ;' }// ht1 += `size:21cm 29.7cmt;}
     // ht1 += `margin:1cm 1cm 1cm 1cm; /* Margins: 2.5 cm on each side */`
     //  ht1 += `margin: 0.5in 0.5in 1in 1in; /* Margins: 2.5 cm on each side */`
+    //top  right, bot ,  left 
+    // t r b l
     if (margins === 1) {
       ht1 += `margin:1cm 1cm 1cm 1cm;`
-    } else {
-      ht1 += `margin:2cm 2cm 2cm 2cm;`
+    }
+    if (margins === 2) {
 
+      ht1 += `margin:2cm 2cm 2cm 2cm;`
+    }
+    if (margins === 3) {
+
+      ht1 += `margin:1cm 2cm 1cm 2cm;`
     }
     // mso-page-orientation: portrait;  
     // ht1 += `mso-page-orientation: portrait;  `; 
@@ -134,7 +141,7 @@ export class Promptmergeword {
     // { id: 7, name: "checklist" } ,   { id: 8, name: "test" }
     if (this.listtype === 0) {
       //exhibition
-      let segment = `<table style="width:650px; border-collapse:collapse;border-width:1px;"><tbody>`
+      let segment = `<table style="width:550px; border-collapse:collapse;border-width:1px;"><tbody>`
       // segment += `<br><br><br><br>`
       segment += `<tr><td style="${this.sty1no};width:5%;vertical-align:top">&nbsp;</td></tr>`
       segment += `<tr><td style="${this.sty1no};width:5%;vertical-align:top">&nbsp;</td></tr>`
@@ -143,17 +150,17 @@ export class Promptmergeword {
         let hhr = invitem.clientHeightRatio
         if (wwr === undefined) wwr = 1
         if (hhr === undefined) hhr = 1
-        let ww = 145 * wwr 
+        let ww = 145 * wwr
         let hh = 145 * hhr 
         let wd
-        if (invitem.Signed) wd = 'signed'  
+        if (invitem.Signed) wd = 'signed'
         if (invitem.Signed && invitem.Dated) wd += ' and dated'
         if (!invitem.Signed && invitem.Dated) wd += 'dated'
         segment += `<td style="${this.sty1no};width:5%;vertical-align:top">&nbsp;</td>`
         segment += `<td style="${this.sty1no};width:50%;vertical-align:top">${invitem.rtf2}</td>`
-//  segment += `<td style="${this.sty1no};width:50%;vertical-align:top">${invitem.rtf2}<br>${wd}</td>`
+        //  segment += `<td style="${this.sty1no};width:50%;vertical-align:top">${invitem.rtf2}<br>${wd}</td>`
 
-  
+
         segment += `<td style="${sty1no},width:45%;vertical-align:middle;text-align:center;"><img src="https://artbased.com/api/v1/getimage/inv/${invitem.InventoryCode}.jpg" alt="" width="${ww}" height=${hh} /></td>`
         segment += `</tr>`
         segment += `<tr><td style="${this.sty1no};width:5%;vertical-align:top">&nbsp;</td></tr>`
@@ -318,29 +325,22 @@ export class Promptmergeword {
       // async exporttoword(segment, header, footer, logo, orientation, margins) {
       this.exporttoword(segment, true, false, true, 'portrait', '');
       this.controller.ok('added')
-    } 
+    }
 
- if (this.listtype === 'factsheet') {
+    if (this.listtype === 'factsheet') {
       //factsheet 
       // let segment = `<table style="width:650px; border-collapse:collapse;border-width:1px;"><tbody>`
       // let segment = `<table style="width:650px; border-style:solid;border-color:gray;border-collapse:collapse;border-width:1px;"><tbody>`
-    let segment = `<table style="width:650px; border-collapse:collapse;border-width:1px;"><tbody>`
+      let segment = `<table style="width:650px; border-collapse:collapse;border-width:1px;"><tbody>`
       segment += '<br>'
       // for (const invitem of currentmodel.detail) { //this.datasource._data) {
-        let invitem = currentmodel.detail
-        // let wwr = invitem.clientWidthRatio
-        // let hhr = invitem.clientHeightRatio
-        // if (wwr === undefined) wwr = 1
-        // if (hhr === undefined) hhr = 1
-        // let ww = 155 * wwr
-        // let hh = 155 * hhr
-        // segment += `<td style="${sty1},width:15%">${invitem.InventoryCode}</td>`
-        // segment += `<td style="${sty1},width:95%">${invitem.rtf1}</td>`
-        segment += `<td "style=width:100%">${invitem.rtf1}</td>`
-        segment += `</tr>`
+      let invitem = currentmodel.detail
+
+      segment += `<td "style=width:100%">${invitem.rtf1}</td>`
+      segment += `</tr>`
       // }
       // async exporttoword(segment, header, footer, logo, orientation, margins) {
-      this.exporttoword(segment, false, true , true, 'portrait', 1);
+      this.exporttoword(segment, false, true, true, 'portrait', 3);
       this.controller.ok('added')
     }
 
@@ -377,17 +377,17 @@ export class Promptmergeword {
         segment += `<td style="${sty1},width:15%">${invitem.InventoryCode}</td>`
         segment += `<td style="${sty1},width:50%">${invitem.rtf2}</td>`
         segment += `<td style="${sty1},width:35%;vertical-align:middle;text-align:center;"><img src="https://artbased.com/api/v1/getimage/inv/${invitem.InventoryCode}.jpg" alt="" width="${ww}" height=${hh} /></td>`
-        segment += `</tr>` 
+        segment += `</tr>`
       }
       this.exporttoword(segment, false, false, false, 'portrait', '');
       this.controller.ok('added')
-    } 
+    }
 
     if (this.listtype === 8) {
       // checklist
- 
+
       // ?ramdom=${this.epoch}
-     let segment = `<table style="width:650px; border-collapse:collapse;border-width:1px;"><tbody>`
+      let segment = `<table style="width:650px; border-collapse:collapse;border-width:1px;"><tbody>`
       for (const invitem of currentmodel.detail) { //this.datasource._data) {
         let wwr = invitem.clientWidthRatio
         let hhr = invitem.clientHeightRatio
@@ -398,11 +398,11 @@ export class Promptmergeword {
         segment += `<td style="${sty1},width:15%">${invitem.InventoryCode}</td>`
         segment += `<td style="${sty1},width:50%">${invitem.rtf2}</td>`
         segment += `<td style="${sty1},width:35%;vertical-align:middle;text-align:center;"><img src="https://artbased.com/api/v1/getimage/inv/${invitem.InventoryCode}.jpg" alt="" width="${ww}" height=${hh} /></td>`
-        segment += `</tr>` 
+        segment += `</tr>`
       }
       this.exporttoword(segment, false, false, false, 'portrait', '');
       this.controller.ok('added')
-  }
+    }
   }
 
 

@@ -118,9 +118,14 @@ export class Home {
     `4. Protected View.Uncheck Enable Protected View for files originating from the internet.Mar 22, 2018`,
     'to assign F5 on Mac if Cmd+R does not work',
     'system preferences —> keyboard—>shortcuts tab—>AppShortcuts—> + —>application: GoogleChrome—>Menu Title: Reload This Page—>Keyboard Shortcut: [press F5 key]Press f5 key or cmd+shift+R on mac to fetch new release',
+`//adjusted height = <user-chosen width> * original height / original width.`,
+`// 300 * ( 263  / 191)`,
+`// 263/191 = 1.37`,
+`// 300 * 1.37 =`,
+`//  adjusted width is`,
+`//  adjusted width = <user-chosen height> * original width / original height`
 
-
-
+ 
   ]
   todo = [
 
