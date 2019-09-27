@@ -68,36 +68,33 @@ export class Docs {
     this.dialogService = dialogService
     //////////////////////////////////////////////////////////////////////////////
     if (this.currentItem.docs === undefined) this.currentItem.docs = []
-    console.log('this.currentItem.docs ',this.currentItem.docs)
+    console.log('this.currentItem.docs ', this.currentItem.docs)
     //////////////////////////////////////////////////////////////////////////////
     this.epoch = moment().unix();
     //   id:this.epoch,
   }
 
   activate(params, routeConfig) {
-
+ 
   }
 
   // https://artbased.com/api/v1/downloadonedetail/DOVEAR0014/26492.pdf
-
   //     		<!-- div class='customer-photo-sq' style="background-image: url(https://artbased.com/api/v1/getimagedetail/${currentItem.InventoryCode}/${FILE_NAME});"-->
-
   //    	<ak-col k-field="FILE_NAME" k-title="download" k-width="140px" ></ak-col>
-
   // <a size='100' class="form-control  input-sm" href="https://artbased.com/api/v1/downloadonedetail/${currentItem.InventoryCode}/${currentItem.FILE_NAME};">
+
   detailsdownload(e) {
     let grid = this.grid;
-
     var targetRow = $(e.target).closest("tr");
     grid.select(targetRow);
     let selectedRow = grid.select();
     let dataItem = grid.dataItem(selectedRow);
     // let rt2 = 'http://jif.bergenrisk.com:8080/api/v1/downloadonepdf/' + dataItem.template + '/' + dataItem.filename + '.pdf'
     let rtdown = `https://artbased.com/api/v1/downloadonedetail/${this.currentItem.InventoryCode}/${dataItem.FILE_NAME}`// + '.pdf'
-
-    //  alert('rt2 '+rt2)
-    window.open(rtdown);
+    window.open(rtdown,"_blank" );
+    //  window.open(rtdown );
   }
+
   // https://artbased.com/api/v1/downloadonedetail/${currentItem.InventoryCode}/${currentItem.FILE_NAME}
 
 
@@ -111,22 +108,7 @@ export class Docs {
 
 
 
-  // addPhoto() {
-  //   let docs = this.currentItem.docs
-  //   let flag = false
-  //   let item
-  //   let dd = moment().format('YYYY-MM-DD')
 
-  //   if (docs === undefined) {
-  //     flag = true
-  //     docs = []
-  //   }
-  //   // Photogpraher: { defaultValue:'Ryan Sobotka' },
-  //   // Format: { defaultValue:'8 x 10' },
-  //   item = { id: this.epoch, PhotoTaken: 1, Date: dd, Note: '', Photogpraher: 'Ryan Sobotka', Format: 'professional high-rez digital tiff', Precons: true }
-  //   docs.unshift(item)
-  //   if (flag) this.currentItem.docs = docs
-  // }
   saveitem(item, index) {
     item.edit = !item.edit
 
@@ -149,8 +131,23 @@ export class Docs {
     });
 
   }
+  async addDocdata(filename) {
+    let docs = this.currentItem.docs
+    let flag = false
+    let item
+    let dd = moment().format('YYYY-MM-DD')
 
-  addDocs(images) {
+    if (docs === undefined) {
+      flag = true
+      docs = []
+    }
+    //FILE_NAME
+    item = { id: this.epoch, FILE_NAME: filename, Date: dd, FileNamePath: '' }
+    docs.unshift(item)
+    // if (flag) 
+    this.currentItem.docs = docs
+  }
+  async addDocs(images) {
     //images is file
     //check for dups 2/21/2018
     //https://stackoverflow.com/questions/32736599/html-file-upload-and-action-on-single-button
@@ -158,14 +155,30 @@ export class Docs {
     let formData = new FormData()
     let newDate = moment().format('YYYY-MM-DD')
     let flag = false
+    // for (const item of this.appService.artistList) {
+    //   item.ArtistName = item.LastName + ', ' + item.FirstName
+    //   nlist.push(item) 
+    // }  
+    // for (const doc of images) {
+    //  console.log('after checkdata1 ',doc.name);
+    //  await this.addDocdata(doc.name)
+    // }  
+    // docs get added in checkData
+   
     let prom = Promise.resolve(this.checkData(images, formData)).then(values => {
       let newform = values;
       console.log('after checkdata1 ', this.status, newform);
       // this.api.upload(formData, this.currentItem.CLAIM_NO)
       this.api.uploadinvphotodetail(newform, this.currentItem.InventoryCode)
         .then((jsonRes) => {
-         // this.upmess = jsonRes.message
-          $("#file").val("");
+          // this.upmess = jsonRes.message
+          //  console.log( $("#file").val())
+          // $("#file").val("");
+          // this.file.val(""); 
+          this.datasource.read()
+   $('#mcontrol').val(""); 
+          // document.getElementById("#file").value = "";
+        
         })
     })
   }
@@ -185,7 +198,7 @@ export class Docs {
       let imagelen = images.length
       for (i = 0; i < images.length; i++) {
         let ext = images[i].name.split('.').pop();
-        let fname = images[i].name
+        let fname = images[i].name.toLowerCase()
         let mid = -100// not needed
         let ival = i
         if (!flag) {
@@ -208,7 +221,7 @@ export class Docs {
       return Promise.all(promises).then(values => {
         for (i = 0; i < values.length; i++) {
           if (!values[i].resp) {
-            var item = { FILE_NAME: values[i].name, FILE_EXT: values[i].ext }
+            var item = { FILE_NAME: values[i].name.toLowerCase(), FILE_EXT: values[i].ext.toLowerCase() }
             formData.append('file', images[values[i].val]);
           }
         }

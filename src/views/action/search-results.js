@@ -12,7 +12,9 @@ import { Promptexhibit } from '../prompt/promptExhibit';
 import { Promptrepro } from '../prompt/promptRepro';
 import { Prompttransport } from '../prompt/promptTransport';
 import { Promptprov } from '../prompt/promptProv';
+
 import { Promptmerge } from '../prompt/promptMerge';
+import { Promptmergeword } from '../prompt/promptMergeword';
 
 import { Promptmess } from '../../services/promptmess';
 import { Promptyn } from '../../services/promptyn';
@@ -141,8 +143,9 @@ export class SearchResults {
   { id: 2, name: "location list" }, { id: 3, name: "box label" }, { id: 4, name: "condition" },
   { id: 5, name: "registrar" }, { id: 6, name: "presentation" }]
 
-         
-sortorder = [{ id: 0, name: "InventoryCode" }, { id: 1, name: "artist.ArtistName,Title" },  { id: 2, name: "artist.ArtistName,date" }]
+
+
+  sortorder = [{ id: 0, name: "InventoryCode" }, { id: 1, name: "artist.ArtistName,Title" }, { id: 2, name: "artist.ArtistName,date" }]
 
 
   constructor(router, api, utilService, appService, dataService, dialogService, eventAggregator) {
@@ -388,20 +391,20 @@ sortorder = [{ id: 0, name: "InventoryCode" }, { id: 1, name: "artist.ArtistName
 
 
   // }
-  detailsFactSheet(e) {
-    let grid = this.grid;
-    let targetRow = $(e.target).closest("tr");
-    grid.select(targetRow);
-    let selectedRow = grid.select();
-    let dataItem = grid.dataItem(selectedRow);
+  // detailsFactSheet(e) {
+  //   let grid = this.grid;
+  //   let targetRow = $(e.target).closest("tr");
+  //   grid.select(targetRow);
+  //   let selectedRow = grid.select();
+  //   let dataItem = grid.dataItem(selectedRow);
 
 
-    //https://artbased.com/api/v1/downloadonepdf/output/SELIGE0327.doc
-    let rt2 = `https://artbased.com/api/v1/downloadonepdf/output/${dataItem.InventoryCode}.doc`
+  //   //https://artbased.com/api/v1/downloadonepdf/output/SELIGE0327.doc
+  //   let rt2 = `https://artbased.com/api/v1/downloadonepdf/output/${dataItem.InventoryCode}.doc`
 
-    //  alert('rt2 '+rt2)
-    window.open(rt2);
-  }
+  //   //  alert('rt2 '+rt2)
+  //   window.open(rt2);
+  // }
 
   async detailsEdit(e) {
     let grid = this.grid;
@@ -427,12 +430,12 @@ sortorder = [{ id: 0, name: "InventoryCode" }, { id: 1, name: "artist.ArtistName
     this.performAction1Refresh()
   }
   async performRTF() {
-  let  mlist = []
+    let mlist = []
     for (const item of this.appService.actionsearchresults) {
 
       let rt2 = `#/inventory/rtfcreate/${item.InventoryCode}`
       await this.router.navigate(rt2);
-    ////    // alert('close when record is finished updating')
+      ////    // alert('close when record is finished updating')
       mlist.push(item.InventoryCode)
     }
     //  alert('this is a loop') 
@@ -593,27 +596,6 @@ sortorder = [{ id: 0, name: "InventoryCode" }, { id: 1, name: "artist.ArtistName
   }
 
   action4() {
-    // this.hide1 = true
-    // this.hide2 = true
-    // this.hide3 = true
-    // this.hide5 = true
-    // this.hide6 = true
-    // this.hide7 = true
-    // this.hide8 = true
-    // this.hide9 = true
-    // this.hide4 ? this.hide4 = false : this.hide4 = true
-    // Owner <input type="text" id="ProvOwner" class="form-control input-sm" value.bind="item.ProvOwner"> ProvLoc
-    // 					<aubs-typeahead ref='provlocation' data.bind="appService.codesListLocation" value.bind="item.Description" debounce.bind="350"
-    // 					 placeholder="mrg location" open-on-focus.bind="true" key="Description" results-limit.bind="12" select-single-result.bind="true">
-    // 					</aubs-typeahead>
-
-
-    // 					Date <input type="text" id="ProvDate" class="form-control input-sm" value.bind="item.ProvDate"> ProvMemo
-    // 					<input type="text" id="ProvMemo" class="form-control input-sm" value.bind="item.ProvMemo"> ProvSortDate <input type="text"
-    // 					 id="ProvSortDate" class="form-control input-sm" value.bind="item.ProvSortDate"> Sequence
-    // 					<input type="text" id="Sequence" class="form-control input-sm" value.bind="item.Sequence">
-    // 					<button id="save4" class="btn btn-primary" type="button" click.delegate="save4()">Save Prov</button>
-
     let currentModel = {}
     currentModel.currentItem = this.item
     currentModel.item = this.item
@@ -694,15 +676,15 @@ sortorder = [{ id: 0, name: "InventoryCode" }, { id: 1, name: "artist.ArtistName
 
 
   //     } 
-async sortmerge() {
-  alert('not available yet. Sort grid and select rows to merge')
-    
+  async sortmerge() {
+    alert('not available yet. Sort grid and select rows to merge')
+
   }
   async action9() {
-// let provarray=[{id:1,sord:3,id:2,sord:1,id:3,sord:2}]
-//  this.testlodash = _.sortBy(provarray, 'sord');
-    
-//   }
+    // let provarray=[{id:1,sord:3,id:2,sord:1,id:3,sord:2}]
+    //  this.testlodash = _.sortBy(provarray, 'sord');
+
+    //   }
 
     ////////////////////
     let currentModel = {}
@@ -748,21 +730,45 @@ async sortmerge() {
     if (newcount === 0) sels = this.datasource._data
     // this.dialogService.open({ viewModel: Promptmerge, model: sels, lock: true }).whenClosed(async response => {
     let listname = this.listtypes[this.selectedlist].name
-    this.dialogService.open({ viewModel: Promptmerge, model: { head: this.savedlist, listtype: this.selectedlist, listname: listname, detail: sels }, lock: true }).whenClosed(async response => {
 
-      // this.dialogService.open({ viewModel: Promptmerge, model: this.datasource._data, lock: true }).whenClosed(async response => {
-      console.log('this.item', response, this.item)
-      if (!response.wasCancelled) {
-        // this.item.Provenance = null
-        // this.save4()
-        this.saveMerge
-      } else {
-        // if (this.currentItem.artist === null) { 
-        // }
-        console.log('cancel');
-      }
-      console.log(response)//.output);
-    });
+
+
+    //  listtypes = [ { id: 0, name: "exhibition" },  { id: 2, name: "location list" },
+    //    { id: 3, name: "box label" }, { id: 5, name: "registrar" },{ id: 8, name: "checklist" }
+    if (this.selectedlist === 0 || this.selectedlist === 2 || this.selectedlist === 3 || this.selectedlist === 5 || this.selectedlist === 8) {
+
+      this.dialogService.open({ viewModel: Promptmergeword, model: { head: this.savedlist, listtype: this.selectedlist, listname: listname, detail: sels }, lock: true }).whenClosed(async response => {
+
+        // this.dialogService.open({ viewModel: Promptmerge, model: this.datasource._data, lock: true }).whenClosed(async response => {
+        console.log('this.item', response, this.item)
+        if (!response.wasCancelled) {
+          // this.item.Provenance = null
+          // this.save4()
+          this.saveMerge
+        } else {
+          // if (this.currentItem.artist === null) { 
+          // }
+          console.log('cancel');
+        }
+        console.log(response)//.output);
+      });
+    } else {
+      this.dialogService.open({ viewModel: Promptmerge, model: { head: this.savedlist, listtype: this.selectedlist, listname: listname, detail: sels }, lock: true }).whenClosed(async response => {
+
+        // this.dialogService.open({ viewModel: Promptmerge, model: this.datasource._data, lock: true }).whenClosed(async response => {
+        console.log('this.item', response, this.item)
+        if (!response.wasCancelled) {
+          // this.item.Provenance = null
+          // this.save4()
+          this.saveMerge
+        } else {
+          // if (this.currentItem.artist === null) { 
+          // }
+          console.log('cancel');
+        }
+        console.log(response)//.output);
+      });
+    }
     ////////////
   }
 

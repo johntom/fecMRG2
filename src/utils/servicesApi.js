@@ -1292,7 +1292,22 @@ async   findArtistsAA() {
     // .then(data => console.log('data.message', data.message))
     // .catch(error => console.log(error));
   }
+uploadinvdoc(formData, id) {
+    var url = this.baseweb + `v1/uploadinvdoc/${id}` 
+   
+    console.log('url ', url, formData);
+    return this.http.fetch(url, {
+      mode: 'cors',
+      method: 'POST',
+      headers: {
+        'enctype': "multipart/form-data"
+      },
+      body: formData
 
+      // body: JSON.stringify(formData)
+    }).then((res) => res.json());
+    
+  }
   uploadinvphoto(formData, id) {
     //http://arabsight.github.io/uploading-files-with-aurelia
     var url = this.baseweb + `v1/uploadinvphoto/${id}`

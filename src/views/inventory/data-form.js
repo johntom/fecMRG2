@@ -891,9 +891,11 @@ getnow(){
   addInventory(images) {
     this.epoch=moment().unix();// image cache buster
  
+ if (this.appService.loginuser==='ryan'){
+ } else{
       let tab = this.appService.dataFormOneToManyTabs[1];
           this.selectOneToManyTab(tab);
-         
+ } 
 
 
 
@@ -912,7 +914,7 @@ getnow(){
         this.mainimage.src = `https://artbased.com/api/v1/getimage/inv/${this.currentItem.InventoryCode}.jpg?random=${this.epoch}`;
         // "http://localhost/image/id/image" + count++ + ".jpg";
         this.getimageinfo(0)
-        $("#file").val("");
+        $("#myfile").val("");
       })
     //})
 

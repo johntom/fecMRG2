@@ -289,15 +289,6 @@ export class Photo {
   //       })
   //   })
 
-    // this is not a good way to get value this.items = Promise.resolve(this.checkData(images));
-    //  console.log('after checkdata1 just a promise cant pick off value ',  this.status,this.items);
-
-    //  return Promise.all([  this.checkData(images)]).then(values => {
-    //     this.items = values[0];
-    //      console.log('after checkdata1 ',  this.status,this.items);
-    //   }).catch(error => {
-    //     console.error("Error encountered while trying to get data.", error);
-    //   });
 
   
 
