@@ -297,88 +297,6 @@ export class RtfService {
   // 1811 3/4 in unframed
   // 45.72 cm x 27.94 NaN cm unframed
   // toma 14 x 22 x 1 in. / NaN cm 
-  createDim() {
-    let cmuh = this.currentItem.UnframedHeight16
-    let cmfh = this.currentItem.FramedHeight16
-    let cmuw = this.currentItem.UnframedWidth16
-    let cmfw = this.currentItem.FramedWidth16
-    let cmud = this.currentItem.UnframedDepth16
-    let cmfd = this.currentItem.FramedDepth16
-    // num.toPrecision(2)
-    this.dims = '';//undefined
-    this.dimscm = '';// undefined 
-    this.dimsf = undefined
-    this.dimscmf = undefined
-    let ufwcm
-    let cmh = this.buildFactor(this.currentItem.UnframedHeight16)
-    let cmw = this.buildFactor(this.currentItem.UnframedWidth16)
-    let cmd = this.buildFactor(this.currentItem.UnframedDepth16)
-    this.buildDimLogic('unframed', 'UnframedHeight', 'UnframedHeight16', 'UnframedWidth', 'UnframedWidth16', 'UnframedDepth', 'UnframedDepth16', cmh, cmw, cmd)
-    this.dimsfactsheet = this.dims
-    this.dimscmfactsheet = this.dimscm
-    this.dims = ''
-    this.dimscm = ''
-    this.dimsight = ''
-    this.dimscmsight = ''
-    cmh = this.buildFactor(this.currentItem.SightHeight16)
-    cmw = this.buildFactor(this.currentItem.SightWidth16)
-    cmd = this.buildFactor(this.currentItem.SightDepth16)
-    this.buildDimLogic('sight', 'SightHeight', 'SightHeight16', 'SightWidth', 'SightWidth16', 'SightDepth', 'SightDepth16', cmh, cmw, cmd)
-    if (this.dims !== '') {
-      this.dimsight = this.dims
-      this.dimscmsight = this.dimscm
-    }
-
-    this.dims = ''
-    this.dimscm = ''
-    this.dimframed = ''
-    this.dimcmframed = ''
-
-    cmh = this.buildFactor(this.currentItem.FramedHeight16)
-    cmw = this.buildFactor(this.currentItem.FramedWidth16)
-    cmd = this.buildFactor(this.currentItem.FramedDepth16)
-
-    this.buildDimLogic('framed', 'FramedHeight', 'FramedHeight16', 'FramedWidth', 'FramedWidth16', 'FramedDepth', 'FramedDepth16', cmh, cmw, cmd)
-    if (this.dims !== '') {
-      this.dimframed = this.dims
-      this.dimcmframed = this.dimscm
-    }
-
-  }
-  buildFactor(dim) {
-    if (dim === '') dim = 0
-    let factor = 0.3175 //.125 * 2.54 
-    switch (dim) {
-      case null:
-        dim = 0
-        break;
-      case '0/0':
-        dim = 0
-        break;
-      case '1/8':
-        dim = factor
-        break;
-      case '1/4':
-        dim = factor * 2
-      case '3/8':
-        dim = factor * 3
-        break;
-      case '1/2':
-        dim = factor * 4
-        break;
-      case '5/8':
-        dim = factor * 5
-        break;
-      case '3/4':
-        dim = factor * 6
-        break;
-      case '7/8':
-        dim = factor * 7
-        break;
-    }
-    return dim
-  }
-
   buildDimLogic(dtype, height, heightfraction, width, widthfraction, depth, depthfraction, cmh, cmw, cmd) {
     let ufwcm
     let frac
@@ -448,11 +366,215 @@ export class RtfService {
           this.dimscm += ' x ' + this.roundNumber((mdim * 1 + frac * 1).toPrecision(2), 1)
           //this.dimscm += ' x ' + this.roundNumber((mdim * 1 + frac * 1).toPrecision(1), 1)
 
-
         }
       }
     }
   }
+  async  buildDimLogicunframed(currentItem, uhf, uwf, udf, cmhfrac, cmwfrac, cmdfrac) {
+    // unframed
+    let height = currentItem.UnframedHeight
+    let width = currentItem.UnframedWidth
+    let depth = currentItem.UnframedDepth
+    //  console.log('1===============in sub buildDimLogic.dim', uhf, uwf, udf, cmhfrac, cmwfrac, cmdfrac)
+    let ufwcm
+    let frac
+    let mdim
+    // let cmh = 0
+    // let cmw = 0
+    // let cmd = 0;
+    if (cmhfrac === undefined || cmhfrac === '' || cmhfrac === '0' || cmhfrac === 0 || cmhfrac === null) cmwfrac = 0;
+    if (cmwfrac === undefined || cmwfrac === '' || cmwfrac === '0' || cmwfrac === 0 || cmwfrac === null) cmwfrac = 0;
+    if (cmdfrac === undefined || cmdfrac === '' || cmdfrac === '0' || cmdfrac === 0 || cmdfrac === null) cmdfrac = 0;
+    let dims = ''
+    let dimscm = ''
+    if (uhf === undefined || uhf === '' || uhf === '0' || uhf === 0 || uhf === null) uhf = 0;
+    if (uwf === undefined || uwf === '' || uwf === '0' || uwf === 0 || uwf === null) uwf = 0;
+    if (udf === undefined || udf === '' || udf === '0' || udf === 0 || udf === null) udf = 0;
+
+    // if (cmhfrac === 0) { currentItem.UnframedHeight16 = ''; cmuh = 0; cmw = 0; cmd = 0; }
+    // if (cmwfrac === 0) { currentItem.UnframedWidth16 = ''; cmuh = 0; cmw = 0; cmd = 0; }
+    // if (cmdfrac === 0) { currentItem.UnframedDepth16 = ''; cmuh = 0; cmw = 0; cmd = 0; }
+    if (height === undefined || height === '' || height === '0' || height === 0 || height === null) height = 0;
+    if (width === undefined || width === '' || width === '0' || width === 0 || width === null) width = 0;
+    if (depth === undefined || depth === '' || depth === '0' || depth === 0 || depth === null) depth = 0;
+
+
+    if (width === 0) currentItem.UnframedWidth = ''
+    if (depth === 0) currentItem.UnframedDepth = ''
+    if (height === 0) currentItem.UnframedHeight = ''
+    if (width === 0) currentItem.UnframedWidth = ''
+    if (depth === 0) currentItem.UnframedDepth = ''
+
+    // if (height === 0) {
+    //   if (cmhfrac !== 0) {
+    //     dims += `<span style="font-size:8.5pt;">${uhf} x `
+    //   } else dims += ' x '
+    // } else {
+    //   // dims += `${height} <span style="font-size:8.5pt;"> ${uhf}</span> x `
+    //     dims += `${height} x `
+
+    //   if (cmhfrac === 0) { frac = 0 } else frac = cmhfrac * 2.54
+    //   mdim = (height * 2.54) + cmhfrac
+    //   // dimscm += accounting.formatNumber(mdim, { precision: 1, thousand: " " }) + ' x ';
+    //   dimscm += this.roundNumber(mdim.toPrecision(2), 1) + ' x '
+    // } 
+    if (height === 0 && cmhfrac === 0) {
+      //  console.log('==1no depthdims ', dims)
+
+    }
+    if (height !== 0 && cmhfrac === 0) {
+      // console.log('==2no depthdims ', depth,cmdfrac)
+      dims += `${height}  `
+      mdim = (height * 2.54) + cmhfrac
+      dimscm += this.roundNumber(mdim.toPrecision(2), 1)
+    }
+    if (height !== 0 && cmhfrac !== 0) {
+      // console.log('==3no depthdims ', width,cmwfrac)
+      dims += `${height}  x <span style="font-size:8.5pt;">${uhf} </span> `
+      mdim = (height * 2.54) + cmhfrac
+      // dimscm += accounting.formatNumber(mdim, { precision: 1, thousand: " " });
+      dimscm += this.roundNumber(mdim.toPrecision(2), 1)
+    }
+
+    if (width === 0 && cmwfrac === 0) {
+
+    }
+    if (width !== 0 && cmwfrac === 0) {
+      dims += ` x ${width}  `
+      mdim = (width * 2.54) + cmwfrac
+      // dimscm += accounting.formatNumber(mdim, { precision: 1, thousand: " " });
+      dimscm += ` x `+this.roundNumber(mdim.toPrecision(2), 1)
+    }
+    if (width !== 0 && cmwfrac !== 0) {
+      dims += ` x ${width} x <span style="font-size:8.5pt;">${uwf} </span>`
+      mdim = (width * 2.54) + cmwfrac
+      // dimscm += accounting.formatNumber(mdim, { precision: 1, thousand: " " });
+      dimscm += ` x `+this.roundNumber(mdim.toPrecision(2), 1)
+    } 
+
+
+    if (depth === 0 && cmdfrac === 0) {
+
+    } 
+    if (depth !== 0 && cmdfrac === 0) {
+      dims += ` x ${depth}  `
+      mdim = (depth * 2.54) + cmdfrac
+      // dimscm += accounting.formatNumber(mdim, { precision: 1, thousand: " " });
+      dimscm += ` x `+this.roundNumber(mdim.toPrecision(1), 1)
+    }
+    if (depth !== 0 && cmdfrac !== 0) {
+      dims += ` x ${depth} x <span style="font-size:8.5pt;">${udf} </span> `
+      mdim = (depth * 2.54) + cmdfrac
+      // dimscm += accounting.formatNumber(mdim, { precision: 1, thousand: " " });
+      dimscm += ` x `+ this.roundNumber(mdim.toPrecision(2), 1)
+    }
+    if (depth === 0 && cmdfrac !== 0) {
+      dims += ` x <span style="font-size:8.5pt;">${udf} </span> `
+      mdim = (depth * 2.54) + cmdfrac
+      // dimscm += accounting.formatNumber(mdim, { precision: 1, thousand: " " });
+      dimscm += ` x `+ this.roundNumber(mdim.toPrecision(2), 1)
+    }
+ this.dims = dims
+ this.dimscm = dimscm
+  
+
+  }
+
+  async createDim() {
+    let cmuh = this.currentItem.UnframedHeight16
+    let cmfh = this.currentItem.FramedHeight16
+    let cmuw = this.currentItem.UnframedWidth16
+    let cmfw = this.currentItem.FramedWidth16
+    let cmud = this.currentItem.UnframedDepth16
+    let cmfd = this.currentItem.FramedDepth16
+    // num.toPrecision(2)
+    this.dims = '';//undefined
+    this.dimscm = '';// undefined 
+    this.dimsf = undefined
+    this.dimscmf = undefined
+    let ufwcm
+    let cmh = await this.buildFactor(this.currentItem.UnframedHeight16)
+    let cmw = await this.buildFactor(this.currentItem.UnframedWidth16)
+    let cmd = await this.buildFactor(this.currentItem.UnframedDepth16)
+    // this.buildDimLogic('unframed', 'UnframedHeight', 'UnframedHeight16', 'UnframedWidth', 'UnframedWidth16', 'UnframedDepth', 'UnframedDepth16', cmh, cmw, cmd)
+    // let currentItem = this.currentItem
+    let uhf = this.currentItem.UnframedHeight16
+    let uwf = this.currentItem.UnframedWidth16
+    let udf = this.currentItem.UnframedDepth16
+    let dims = '';//undefined
+    let dimscm = '';// undefined 
+    let cmhfrac = await this.buildFactor(this.currentItem.UnframedHeight16)
+    let cmwfrac = await this.buildFactor(this.currentItem.UnframedWidth16)
+    let cmdfrac = await this.buildFactor(this.currentItem.UnframedDepth16)
+    let bb = await this.buildDimLogicunframed(this.currentItem, uhf, uwf, udf, cmhfrac, cmwfrac, cmdfrac)
+    this.dimsfactsheet = this.dims
+    this.dimscmfactsheet = this.dimscm
+
+
+    this.dims = ''
+    this.dimscm = ''
+    this.dimsight = ''
+    this.dimscmsight = ''
+    cmh = await this.buildFactor(this.currentItem.SightHeight16)
+    cmw = await this.buildFactor(this.currentItem.SightWidth16)
+    cmd = await this.buildFactor(this.currentItem.SightDepth16)
+    this.buildDimLogic('sight', 'SightHeight', 'SightHeight16', 'SightWidth', 'SightWidth16', 'SightDepth', 'SightDepth16', cmh, cmw, cmd)
+    if (this.dims !== '') {
+      this.dimsight = this.dims
+      this.dimscmsight = this.dimscm
+    }
+
+    this.dims = ''
+    this.dimscm = ''
+    this.dimframed = ''
+    this.dimcmframed = ''
+
+    cmh = this.buildFactor(this.currentItem.FramedHeight16)
+    cmw = this.buildFactor(this.currentItem.FramedWidth16)
+    cmd = this.buildFactor(this.currentItem.FramedDepth16)
+
+    this.buildDimLogic('framed', 'FramedHeight', 'FramedHeight16', 'FramedWidth', 'FramedWidth16', 'FramedDepth', 'FramedDepth16', cmh, cmw, cmd)
+    if (this.dims !== '') {
+      this.dimframed = this.dims
+      this.dimcmframed = this.dimscm
+    }
+
+  }
+  async buildFactor(dim) {
+    if (dim === '') dim = 0
+    let factor = 0.3175 //.125 * 2.54 
+    switch (dim) {
+      case null:
+        dim = 0
+        break;
+      case '0/0':
+        dim = 0
+        break;
+      case '1/8':
+        dim = factor
+        break;
+      case '1/4':
+        dim = factor * 2
+      case '3/8':
+        dim = factor * 3
+        break;
+      case '1/2':
+        dim = factor * 4
+        break;
+      case '5/8':
+        dim = factor * 5
+        break;
+      case '3/4':
+        dim = factor * 6
+        break;
+      case '7/8':
+        dim = factor * 7
+        break;
+    }
+    return await dim
+  }
+
+
   buildEditionLogic(edition) {
     // rules:
     // 1 everying to left of : is plain text and to right is em
@@ -519,6 +641,7 @@ export class RtfService {
     if (selectedtype === undefined) selectedtype = 0;
 
     this.createDim()
+
     let artist = this.currentItem.artist
     let artistWdates = `<strong>${artist.firstName} ${artist.lastName}`
     if (artist.died) {
@@ -534,9 +657,6 @@ export class RtfService {
     } else {
       artistWdates1 += ` (b.${artist.yearofBirth})`
     }
-
-
-
 
     let ins = this.currentItem.Inscribed;
     this.buildInscribed(this.currentItem.Inscribed)
@@ -574,7 +694,7 @@ export class RtfService {
     //  adjusted width is
     //  adjusted width = <user-chosen height> * original width / original height
 
-    let ww 
+    let ww
     let hh
     let fac = this.searchsold[this.selectedimagesize] // factor 1
     // original
@@ -594,7 +714,7 @@ export class RtfService {
       // port 1 cols
       if (ww < 300 || ww > 300) {
         hh = 300 * (hh / ww)
-        ww=300
+        ww = 300
       }
     }
 
@@ -626,12 +746,12 @@ export class RtfService {
       headerinfo2 += ` / ${this.dimscmfactsheet} cm  <br>  `
     }
     if (this.dimsight !== '') {
-      headerinfo2 += ` ${this.dimsight} in`
-      headerinfo2 += ` / ${this.dimscmsight} cm sight size</br>  `
+      headerinfo1 += ` ${this.dimsight} in`
+      headerinfo1 += ` / ${this.dimscmsight} cm sight size</br>  `
     }
     if (this.dimframed !== '') {
-      headerinfo2 += ` ${this.dimframed} in`
-      headerinfo2 += ` / ${this.dimcmframed} cm framed size </br>  `
+      headerinfo1 += ` ${this.dimframed} in`
+      headerinfo1 += ` / ${this.dimcmframed} cm framed size </br>  `
     }
     if (this.currentItem.inscribedText === undefined) this.currentItem.inscribedText = ''
     if (this.currentItem.CatalogueNo === undefined) this.currentItem.CatalogueNo = ''

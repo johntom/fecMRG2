@@ -37,6 +37,8 @@ export class DataForm {
   orgfields = ['ConsignedTo', 'ConsignedFromID', 'ConsignmentShippingID', 'OwnerID',
     'PhotographerID', 'PurchasedFrom', 'ConservedBy',
     'SoldToID', 'SoldTo', 'LoanTo', 'ProvOwner']
+
+
   measuresOld = [
     { id: 0, name: '1/16' },
     { id: 1, name: '2/16' },
@@ -84,17 +86,17 @@ export class DataForm {
   // listtypes = [{ id: 0, name: "exhibition(not avail yet)" }, { id: 1, name: "price list" },
   // { id: 2, name: "location list" }, { id: 3, name: "box label" }, { id: 4, name: "condition" },
   // { id: 5, name: "registrar" }, { id: 6, name: "presentation(not avail yet)" }]
-  listtypes = [{ id: -1, name: 'choose' }, { id: 0, name: "exhibition" }, { id: 1, name: "price list" },
-  { id: 2, name: "location list" }, { id: 3, name: "box label" }, { id: 4, name: "condition" },
-  { id: 5, name: "registrar" }, { id: 6, name: "presention" },
-  { id: 7, name: "test1" }, { id: 8, name: "test2" }
-
-  ]
+  // listtypes = [{ id: -1, name: 'choose' }, { id: 0, name: "exhibition" }, { id: 1, name: "price list" },
+  // { id: 2, name: "location list" }, { id: 3, name: "box label" }, { id: 4, name: "condition" },
+  // { id: 5, name: "registrar" }, { id: 6, name: "presention" },
+  // { id: 7, name: "test1" }, { id: 8, name: "test2" }
+ 
   //  listtypes = [{ id: 0, name: "exh(na)" }, { id: 1, name: "prce-lst" },
   //   { id: 2, name: "loc-list" }, { id: 3, name: "box label" }, { id: 4, name: "condition" },
   //   { id: 5, name: "registrar" }, { id: 6, name: "pres-na" }]
-
-  fieldname = ''
+   listtypes = [ { id: 0, name: "exhibition" },  { id: 2, name: "location list" },
+   { id: 3, name: "box label" }, { id: 5, name: "registrar" },{ id: 8, name: "checklist" }   ]
+  fieldname = '' 
   error = "";
   division = {
     div_id: 1,
@@ -712,18 +714,18 @@ export class DataForm {
         }
         //  }
       })
-     
+
     }
   }
   createRTF(opt) {
-// ,margins left lrtb
-//   size: '8.5in 11.0in', //
-  //  size: '11.0in 8.5in',
-        let fn =     `${this.currentItem.InventoryCode}.doc`// test.doc',
-   
-        // footermargin: '.5in',
+    // ,margins left lrtb
+    //   size: '8.5in 11.0in', //
+    //  size: '11.0in 8.5in',
+    let fn = `${this.currentItem.InventoryCode}.doc`// test.doc',
+
+    // footermargin: '.5in',
     // lang: 'en-US',
-        
+
     // $(document).ready(function () {
     //   var o = {
     //     download: 0,
@@ -885,17 +887,17 @@ export class DataForm {
       })
     })
   }
-getnow(){
-  return moment().unix();
-}
+  getnow() {
+    return moment().unix();
+  }
   addInventory(images) {
-    this.epoch=moment().unix();// image cache buster
- 
- if (this.appService.loginuser==='ryan'){
- } else{
+    this.epoch = moment().unix();// image cache buster
+
+    if (this.appService.loginuser === 'ryan') {
+    } else {
       let tab = this.appService.dataFormOneToManyTabs[1];
-          this.selectOneToManyTab(tab);
- } 
+      this.selectOneToManyTab(tab);
+    }
 
 
 
@@ -1020,7 +1022,7 @@ getnow(){
     function tabinfo(temp) {
       this.recid = temp[0];
       this.tabindex = temp[1];
- 
+
     }
     var temp = [this.currentItem.InventoryCode, tabindex];
     tabinfo = new tabinfo(temp);
@@ -1032,26 +1034,26 @@ getnow(){
 
   // wordmerge(selectedlist) {
 
- wordmerge() { 
-      let detail = []
-      detail.push(this.currentItem)
-      this.dialogService.open({
-        viewModel: Promptmergeword, model: {
-          head: 'inventory',
-          // listtype: this.selectedlist, listname: 'inventory', detail: detail
-           listtype: 'factsheet', listname: 'inventory', detail: this.currentItem//.id// this.selectedids
-        }, lock: true
-      }).whenClosed(async response => {
-        console.log('this.item', response, this.item)
-        if (!response.wasCancelled) {
-          this.saveMerge
-        } else {
-          console.log('cancel');
-        }
-        // this.selectedlist = -1
-        console.log(response)//.output);
-      });
-    
+  wordmerge() {
+    let detail = []
+    detail.push(this.currentItem)
+    this.dialogService.open({
+      viewModel: Promptmergeword, model: {
+        head: 'inventory',
+        // listtype: this.selectedlist, listname: 'inventory', detail: detail
+        listtype: 'factsheet', listname: 'inventory', detail: this.currentItem//.id// this.selectedids
+      }, lock: true
+    }).whenClosed(async response => {
+      console.log('this.item', response, this.item)
+      if (!response.wasCancelled) {
+        this.saveMerge
+      } else {
+        console.log('cancel');
+      }
+      // this.selectedlist = -1
+      console.log(response)//.output);
+    });
+
   }
 
   listChanged() {
@@ -1087,7 +1089,7 @@ getnow(){
       // // this.tabindex=tabindex
       // // this.eventAggregator.publish('rtfpayload', 'refresh');
       // //            this.saveinventory(0)
-       
+
       //  $(document).ready(function () {
       //      var o = {
       //         // size: '8.5in 11.0in', 

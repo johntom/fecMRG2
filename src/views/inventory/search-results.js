@@ -39,10 +39,7 @@ export class SearchResults {
 
 
    listtypes = [ { id: 0, name: "exhibition" },  { id: 2, name: "location list" },
-   { id: 3, name: "box label" }, { id: 5, name: "registrar" },{ id: 8, name: "checklist" }
-  // , { id: 8, name: "test2" }
-
-  ]
+   { id: 3, name: "box label" }, { id: 5, name: "registrar" },{ id: 8, name: "checklist" }   ]
   excelExport(e) {
     //   var rows = e.workbook.sheets[0].rows;
     //  var sheet = e.workbook.sheets[0];
@@ -633,11 +630,11 @@ export class SearchResults {
     if (selectedRows.length === 0) {
       this.dialogService.open({ viewModel: Promptmess, model: `please select a row to add  `, lock: true }).whenClosed(async response => { });
     } else {
-
+ 
       var maxRows = selectedRows.length / 2;
       // var maxRows = selectedRows.length;
 
-
+ 
       // selectedRows.each(function (idx, el) {
       //   let dataItem = grid.dataItem(el);
       // });
@@ -668,7 +665,7 @@ export class SearchResults {
     this.wordmerge()
   }
 
-
+ 
 // this.currentmodel = currentmodel
 //     this.slname = this.currentmodel.head;
 //     this.listtype = currentmodel.listtype

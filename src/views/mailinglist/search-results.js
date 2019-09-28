@@ -118,7 +118,8 @@ export class SearchResults {
             row.cells.push({ 'value': diff })
         }
   },
-    pageSize: 12,
+    pageSize: 15, 
+    // height: 500,
     sort: [{ field: 'LastName', dir: 'asc' }, { field: 'FirstName', dir: 'asc' }],
 
   })

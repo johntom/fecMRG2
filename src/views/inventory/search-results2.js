@@ -549,15 +549,13 @@ export class SearchResults2 {
   details(e) {
     let grid = this.grid;
     var targetRow = $(e.target).closest("tr");
-
     grid.select(targetRow);
     // redirect if required
   }
 
-
 async addSelection() {
     //  not for savedlist
-  this.selectedids ='';
+this.selectedids ='';
     let sels
     let newcount = 0
     if (this.selectedids === undefined || this.selectedids.length === 0) {
@@ -568,11 +566,10 @@ async addSelection() {
     if (selectedRows.length === 0) {
       this.dialogService.open({ viewModel: Promptmess, model: `please select a row to add  `, lock: true }).whenClosed(async response => { });
     } else {
-
-      var maxRows = selectedRows.length / 2;
+ 
+      // var maxRows = selectedRows.length / 2;
+      var maxRows = selectedRows.length 
       // var maxRows = selectedRows.length;
-
-
       // selectedRows.each(function (idx, el) {
       //   let dataItem = grid.dataItem(el);
       // });
@@ -588,7 +585,6 @@ async addSelection() {
         }
         if (i === maxRows - 1) {
           this.selectedids = sels;
-
         }
       }
       // let response = await this.api.findInventorySavedLists(this.appService.currentsavedlist);
@@ -598,7 +594,6 @@ async addSelection() {
       // this.message = ` ${newcount} item(s) added to list ${this.appService.currentsavedlist}`
       // // new count:${totcount}`
       // this.checkedIds = [];
- 
     }
     this.wordmerge()
   }

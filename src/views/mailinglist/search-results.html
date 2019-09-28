@@ -115,7 +115,7 @@
 
 							<div class="flex-row-none">
 								<div class="form-group flex-column-1">
-									<script>
+									<script> 
 									excelExport:
                         function (e) {
                           alert('in ex')
@@ -133,8 +133,8 @@
 										<div class="message">fetching records</div>
 										<i class="fa fa-spinner fa-spin"></i>
 									</div>
-                <!--   k-excel.bind="{ fileName:'Mailinglist.xlsx',allPages: true }"    
-                 <!-- k-toolbar.bind="['excel']"
+                 <!-- k-excel.bind="{ fileName:'Mailinglist.xlsx',allPages: true }"    
+                  k-toolbar.bind="['excel']"
                     k-excel.bind="{ fileName:'Mailinglist.xlsx',allPages: true }"            
                     k-excel.bind("excelExport", function(e) {
                       alert('in ex')
@@ -147,36 +147,50 @@
                             }
                         }
     e.workbook.fileName = "Mailinglist.xlsx,allPages: true";
-});
-                        -->
-									<ak-grid class="flex-row-1 overflow-y-auto" id="grid" k-data-source.bind="datasource" k-widget.bind="grid" k-sortable.bind="{ mode: 'multiple',   allowUnsort: 'true'}"
-									 k-filterable.bind="{  mode: 'row' }" k-editable="popup" k-reorderable.bind="true" k-resizable.bind="true" k-on-edit.delegate="onEdit($event.detail)"
+}); --> 
+                       <!-- k-pageable.bind="true" 
+                       				<ak-grid class="flex-row-1 overflow-y-auto" id="grid" k-data-source.bind="datasource" k-widget.bind="grid" k-sortable.bind="{ mode: 'multiple',   allowUnsort: 'true'}"
+				 k-height.bind="700" k-filterable.bind="{  mode: 'row' }" k-editable="inline" k-reorderable.bind="true" k-groupable.bind="true"
+				 k-selectable="[row,multiple]" k-resizable.bind="true" k-on-edit.delegate="onEdit($event.detail)" k-on-data-bound.delegate="onDataBound($event.detail)"
+				 k-on-change.delegate="rowSelected($event.detail)" k-toolbar.bind="['excel']" k-excel.bind="{ fileName: 'Inventory.xlsx',allPages: true }"
+				 k-persist-selection.bind="true" k-pdf.bind="{ allPages: true, avoidLinks: true,landscape: true, repeatHeaders: true, paperSize: 'A4'}"
+				 k-column-menu.bind="true" k-scrollable.bind="scrollable">
+                       
+                       
+                       -->
+									<ak-grid class="flex-row-1 overflow-y-auto" id="grid" k-data-source.bind="datasource" k-widget.bind="grid" 
+                  k-sortable.bind="{ mode: 'multiple',   allowUnsort: 'true'}"
+									 k-filterable.bind="{  mode: 'row' }" k-editable="popup" k-reorderable.bind="true" k-resizable.bind="true" 
+                   k-on-edit.delegate="onEdit($event.detail)"
 									 k-on-change.delegate="rowSelected($event.detail)" 
                    k-toolbar.bind="['excel']"
+                   k-persist-selection.bind="true" 
+                  
+                   k-pageable.bind="true"
                    k-excel.bind="{ fileName:'Mailinglist.xlsx',allPages: true }"     
-									 k-column-menu.bind="true" k-pageable.bind="true">
+									 k-column-menu.bind="true" >
                   <!-- <ak-col  k-template="#  #"></ak-col> -->
 										<ak-col k-filterable.bind="false" k-width="160px" k-title="Cmd" k-command.bind="['edit','delete']" k-title="&nbsp;" k-locked.bind="true"
 										 k-lockable.bind="true"></ak-col>
-										<ak-col k-title="Salutation" k-width="110px" k-field="Salutation"></ak-col>
-										<ak-col k-field="LastName" k-filterable.bind="true" k-title="Last Name" k-width.bind="180" k-template="<button click.delegate='detailsEdit($event)' class='k-button'>#=LastName#</button>">
+										<ak-col k-title="Salutation" k-width="110px" k-filterable.bind="{ multi: true, search: true }"  k-field="Salutation"></ak-col>
+										<ak-col k-field="LastName"  k-title="Last Name" k-filterable.bind="{ multi: true, search: true }"   k-width.bind="180" k-template="<button click.delegate='detailsEdit($event)' class='k-button'>#=LastName#</button>">
 										</ak-col>
-										<ak-col k-title="First Name" k-width="110px" k-field="FirstName"></ak-col>
-										<ak-col k-title="Types" k-width="110px" k-field="types" k-editor.bind="textAreaEditor"></ak-col>
-										<ak-col k-title="Artists" k-width="190px" k-field="artists" k-editor.bind="textAreaEditor"></ak-col>
+										<ak-col k-title="First Name" k-width="110px" k-field="FirstName" k-filterable.bind="{ multi: true, search: true }" ></ak-col>
+										<ak-col k-title="Types" k-width="110px" k-field="types" k-filterable.bind="{ multi: true, search: true }"  k-editor.bind="textAreaEditor"></ak-col>
+										<ak-col k-title="Artists" k-width="190px" k-field="artists" k-filterable.bind="{ multi: true, search: true }"  k-editor.bind="textAreaEditor"></ak-col>
 
-										<ak-col k-title="Genres" k-width="110px" k-field="genres" k-editor.bind="textAreaEditor"></ak-col>
-										<ak-col k-title="Addr" k-width="110px" k-field="addr"></ak-col>
-										<ak-col k-title="City" k-width="110px" k-field="city"></ak-col>
+										<ak-col k-title="Genres" k-width="110px" k-field="genres" k-filterable.bind="{ multi: true, search: true }"  k-editor.bind="textAreaEditor"></ak-col>
+										<ak-col k-title="Addr" k-width="110px" k-field="addr" k-filterable.bind="{ multi: true, search: true }"  ></ak-col>
+										<ak-col k-title="City" k-width="110px" k-field="city" k-filterable.bind="{ multi: true, search: true }" ></ak-col>
 
-										<ak-col k-title="State" k-width="110px" k-field="state"></ak-col>
-										<ak-col k-title="Zip" k-width="110px" k-field="zip"></ak-col>
-										<ak-col k-title="Country" k-width="110px" k-field="country"></ak-col>
+										<ak-col k-title="State" k-width="110px" k-field="state" k-filterable.bind="{ multi: true, search: true }" ></ak-col>
+										<ak-col k-title="Zip" k-width="110px" k-field="zip" k-filterable.bind="{ multi: true, search: true }" ></ak-col>
+										<ak-col k-title="Country" k-width="110px" k-field="country" k-filterable.bind="{ multi: true, search: true }" ></ak-col>
 
 
 									</ak-grid>
 
-
+ 
 								</div>
 
 
