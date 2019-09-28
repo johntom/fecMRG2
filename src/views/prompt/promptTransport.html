@@ -1,5 +1,7 @@
 
 <template>
+
+  <require from="../../resources/value-converters/date-format"></require>
 	<style>
 		ai-dialog-container {
 			display: flex;
@@ -30,7 +32,7 @@
 								<strong> Transport Date </strong>
 							</div>
 							<div class="Rtable-cell-70  Rtable-cell--light">
-							<input type="date" id="ExhibitSortDate" class="form-control input-sm au-target" value.bind="item.TransportDate">  
+							<input type="date" id="ExhibitSortDate" class="form-control input-sm au-target" value.bind="item.TransportDate  | dateFormat">  
 							</div>
 						</div>
 
