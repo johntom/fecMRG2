@@ -115,8 +115,8 @@
 
 							<div class="flex-row-none">
 								<div class="form-group flex-column-1">
-									<script> 
-									excelExport:
+									<script>
+										excelExport:
                         function (e) {
                           alert('in ex')
                             var sheet = e.workbook.sheets[0];
@@ -127,13 +127,13 @@
                                 row.cells.push({ 'value': diff })
                             }
                         }
-								</script>
+									</script>
 
 									<div show.bind="busy.active" ref="spinner" class="splash">
 										<div class="message">fetching records</div>
 										<i class="fa fa-spinner fa-spin"></i>
 									</div>
-                 <!-- k-excel.bind="{ fileName:'Mailinglist.xlsx',allPages: true }"    
+									<!-- k-excel.bind="{ fileName:'Mailinglist.xlsx',allPages: true }"    
                   k-toolbar.bind="['excel']"
                     k-excel.bind="{ fileName:'Mailinglist.xlsx',allPages: true }"            
                     k-excel.bind("excelExport", function(e) {
@@ -147,8 +147,8 @@
                             }
                         }
     e.workbook.fileName = "Mailinglist.xlsx,allPages: true";
-}); --> 
-                       <!-- k-pageable.bind="true" 
+}); -->
+									<!-- k-pageable.bind="true" 
                        				<ak-grid class="flex-row-1 overflow-y-auto" id="grid" k-data-source.bind="datasource" k-widget.bind="grid" k-sortable.bind="{ mode: 'multiple',   allowUnsort: 'true'}"
 				 k-height.bind="700" k-filterable.bind="{  mode: 'row' }" k-editable="inline" k-reorderable.bind="true" k-groupable.bind="true"
 				 k-selectable="[row,multiple]" k-resizable.bind="true" k-on-edit.delegate="onEdit($event.detail)" k-on-data-bound.delegate="onDataBound($event.detail)"
@@ -158,39 +158,36 @@
                        
                        
                        -->
-									<ak-grid class="flex-row-1 overflow-y-auto" id="grid" k-data-source.bind="datasource" k-widget.bind="grid" 
-                  k-sortable.bind="{ mode: 'multiple',   allowUnsort: 'true'}"
-									 k-filterable.bind="{  mode: 'row' }" k-editable="popup" k-reorderable.bind="true" k-resizable.bind="true" 
-                   k-on-edit.delegate="onEdit($event.detail)"
-									 k-on-change.delegate="rowSelected($event.detail)" 
-                   k-toolbar.bind="['excel']"
-                   k-persist-selection.bind="true" 
-                  
-                   k-pageable.bind="true"
-                   k-excel.bind="{ fileName:'Mailinglist.xlsx',allPages: true }"     
-									 k-column-menu.bind="true" >
-                  <!-- <ak-col  k-template="#  #"></ak-col> -->
+									<ak-grid class="flex-row-1 overflow-y-auto" id="grid" k-data-source.bind="datasource" k-widget.bind="grid" k-sortable.bind="{ mode: 'multiple',   allowUnsort: 'true'}"
+									 k-filterable.bind="{  mode: 'row' }" k-editable="popup" k-reorderable.bind="true" k-resizable.bind="true" k-on-edit.delegate="onEdit($event.detail)"
+									 k-on-change.delegate="rowSelected($event.detail)" k-toolbar.bind="['excel']" k-persist-selection.bind="true" k-pageable.bind="true"
+									 k-excel.bind="{ fileName:'Mailinglist.xlsx',allPages: true }" k-column-menu.bind="true">
+										<!-- <ak-col  k-template="#  #"></ak-col> -->
 										<ak-col k-filterable.bind="false" k-width="160px" k-title="Cmd" k-command.bind="['edit','delete']" k-title="&nbsp;" k-locked.bind="true"
 										 k-lockable.bind="true"></ak-col>
-										<ak-col k-title="Salutation" k-width="110px" k-filterable.bind="{ multi: true, search: true }"  k-field="Salutation"></ak-col>
-										<ak-col k-field="LastName"  k-title="Last Name" k-filterable.bind="{ multi: true, search: true }"   k-width.bind="180" k-template="<button click.delegate='detailsEdit($event)' class='k-button'>#=LastName#</button>">
+										<ak-col k-title="Salutation" k-width="110px" k-filterable.bind="{ multi: true, search: true }" k-field="Salutation"></ak-col>
+										<ak-col k-field="LastName" k-title="Last Name" k-filterable.bind="{ multi: true, search: true }" k-width.bind="180" k-template="<button click.delegate='detailsEdit($event)' class='k-button'>#=LastName#</button>">
 										</ak-col>
-										<ak-col k-title="First Name" k-width="110px" k-field="FirstName" k-filterable.bind="{ multi: true, search: true }" ></ak-col>
-										<ak-col k-title="Types" k-width="110px" k-field="types" k-filterable.bind="{ multi: true, search: true }"  k-editor.bind="textAreaEditor"></ak-col>
-										<ak-col k-title="Artists" k-width="190px" k-field="artists" k-filterable.bind="{ multi: true, search: true }"  k-editor.bind="textAreaEditor"></ak-col>
+										<ak-col k-title="First Name" k-width="110px" k-field="FirstName" k-filterable.bind="{ multi: true, search: true }"></ak-col>
+										<ak-col k-title="Types" k-width="110px" k-field="types" k-filterable.bind="{ multi: true, search: true }" k-editor.bind="textAreaEditor"></ak-col>
+										<ak-col k-title="Artists" k-width="190px" k-field="artists" k-filterable.bind="{ multi: true, search: true }" k-editor.bind="textAreaEditor"></ak-col>
 
-										<ak-col k-title="Genres" k-width="110px" k-field="genres" k-filterable.bind="{ multi: true, search: true }"  k-editor.bind="textAreaEditor"></ak-col>
-										<ak-col k-title="Addr" k-width="110px" k-field="addr" k-filterable.bind="{ multi: true, search: true }"  ></ak-col>
-										<ak-col k-title="City" k-width="110px" k-field="city" k-filterable.bind="{ multi: true, search: true }" ></ak-col>
+										<ak-col k-title="Genres" k-width="110px" k-field="genres" k-filterable.bind="{ multi: true, search: true }" k-editor.bind="textAreaEditor"></ak-col>
+										<ak-col k-title="Addr1" k-width="110px" k-field="add1" k-filterable.bind="{ multi: true, search: true }"></ak-col>
+										<ak-col k-title="Addr2" k-width="110px" k-field="add2" k-filterable.bind="{ multi: true, search: true }"></ak-col>
+										<ak-col k-title="Addr3" k-width="110px" k-field="add3" k-filterable.bind="{ multi: true, search: true }"></ak-col>
 
-										<ak-col k-title="State" k-width="110px" k-field="state" k-filterable.bind="{ multi: true, search: true }" ></ak-col>
-										<ak-col k-title="Zip" k-width="110px" k-field="zip" k-filterable.bind="{ multi: true, search: true }" ></ak-col>
-										<ak-col k-title="Country" k-width="110px" k-field="country" k-filterable.bind="{ multi: true, search: true }" ></ak-col>
+										<ak-col k-title="City" k-width="110px" k-field="city" k-filterable.bind="{ multi: true, search: true }"></ak-col>
+
+										<ak-col k-title="State" k-width="110px" k-field="state" k-filterable.bind="{ multi: true, search: true }"></ak-col>
+										<ak-col k-title="Zip" k-width="110px" k-field="zip" k-filterable.bind="{ multi: true, search: true }"></ak-col>
+										<ak-col k-title="Country" k-width="110px" k-field="country" k-filterable.bind="{ multi: true, search: true }"></ak-col>
+										<ak-col k-title="Addr" k-width="110px" k-field="addr" k-filterable.bind="{ multi: true, search: true }"></ak-col>
 
 
 									</ak-grid>
 
- 
+
 								</div>
 
 
@@ -330,7 +327,7 @@
 				</form>
 			</div>
 			<footerform class="flex-row-none">
-<!-- 		
+				<!-- 		
 				<span>&nbsp;&nbsp;
 					<button class="btn btn-sm btn-primary " click.delegate="saveinventory(0)">
 						Save & Stay
@@ -342,7 +339,7 @@
 
 				</span> -->
 
-			
+
 				<span>&nbsp;&nbsp;
 					<button class="btn btn-sm btn-danger " click.delegate="requestclose()">
 						Close
