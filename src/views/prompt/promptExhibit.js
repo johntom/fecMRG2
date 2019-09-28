@@ -22,13 +22,18 @@ export class Promptexhibit {
     this.api = api
   }
 
-
   activate(currentmodel) {
     this.item = currentmodel.item;
     this.currentItem = currentmodel.currentItem
     this.heading = "Exhibition"
+
+    // let   findOptionA = value => this.appService.artistList.find(x => x.ArtistName === value)
+
+      
+     
+
   }
-changeCallbackLocation(selectedvalue) {
+  changeCallbackLocation(selectedvalue) {
     console.log('selectedvalue has undefined ', selectedvalue, "myDatalist this.myDatalist.value has the value", this.myDatalist.value);
     let oid
     let codeobj
@@ -40,14 +45,12 @@ changeCallbackLocation(selectedvalue) {
       "Description": findvalue,
       "CodeTypeDesc": "Provenance Location"
     }
-    if (this.selectedValue === undefined || this.selectedValue === null) {
+    if (codeobj === undefined || codeobj === null) {
 
       let obj = {}
       obj.type = 2
       obj.name = `Add ${findvalue} to Location List or Cancel?`
       this.dialogService.open({ viewModel: Promptyn, model: obj, lock: false }).whenClosed(response => {
-
-
         if (!response.wasCancelled) {
           // this.addnewms(findvalue)
           this.api.addmediumsupport(bod)
@@ -88,9 +91,9 @@ changeCallbackLocation(selectedvalue) {
     this.item.ExhibitMemo = 'test memp'
   }
   attached() {
-
+this.myDatalist.value = this.item.ExhibitLocationDesc //ExhibitLocation
+  
   }
-
   changeCallbackArtist(selectedValueA) {
     let findvalue = this.myDatalistA.value
   }

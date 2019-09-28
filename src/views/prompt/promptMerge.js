@@ -724,9 +724,24 @@ export class Promptmerge {
       if (this.listtype === 5) {
         // {id:5,name:"registrar"}]
         // segment = `<h1 style="font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;text-align:center;"></h1> <table><tbody>`
-        ww = 95 * invitem.clientWidthRatio
-        hh = 95 * invitem.clientHeightRatio
+        // ww = 95 * invitem.clientWidthRatio
+        // hh = 95 * invitem.clientHeightRatio
 
+
+    let ww
+    let hh
+  
+    ww = this.currentItem.clientWidth //* fac.factor
+    hh = this.currentItem.clientHeight // * fac.factor
+
+
+    // calc size
+      // lansc 1 cols
+      if (ww < 300 || ww > 300) {
+        hh = 300 * (hh / ww)
+        ww = 300
+      }
+  
 
         // let sty1 = "border: 1px gray solid;padding: 4px;width: 5em;font-family:Calibri, Geneva, sans-serif;font-size:11.0pt;vertical-align:top;text-align:left;";
 
@@ -746,8 +761,8 @@ export class Promptmerge {
 
 
         segment += `<td style="${sty1},width:15%">${invitem.InventoryCode}</td>`
-        segment += `<td style="${sty1},width:40%">${invitem.rtf2}</td>`
-        segment += `<td style="width:20%;vertical-align:middle;text-align:center;"><img src="https://artbased.com/api/v1/getimage/inv/${invitem.InventoryCode}.jpg" alt="" width="${ww}" height=${hh} /></td>`
+        segment += `<td style="${sty1},width:45%">${invitem.rtf2}.trim()</td>`
+        segment += `<td style="width:35%;vertical-align:middle;text-align:center;"><img src="https://artbased.com/api/v1/getimage/inv/${invitem.InventoryCode}.jpg" alt="" width="${ww}" height=${hh} /></td>`
 
 
 

@@ -27,7 +27,7 @@ export class Promptprovenance {
   activate(currentmodel) {
     this.item = currentmodel.item;
     this.currentItem = currentmodel.currentItem
-    this.heading = "Provenance"
+    this.heading = "Provenance-"
       
 
   } 
@@ -38,12 +38,12 @@ changeCallbackLocation(selectedvalue) {
     let findvalue = this.myDatalist.value
     oid = this.appService.codesProvenanceLocation.findIndex(x => x.Description === findvalue)
     codeobj = this.appService.codesProvenanceLocation[oid]
-    let bod = {
+    let bod = { 
       "CodeType": 14,
       "Description": findvalue,
       "CodeTypeDesc": "Provenance Location"
     }
-    if (this.selectedValue === undefined || this.selectedValue === null) {
+    if (codeobj === undefined || codeobj === null) {
 
       let obj = {}
       obj.type = 2
@@ -114,7 +114,10 @@ changeLocation(changedValue){
 
 }
   
-
+  attached() {
+this.myDatalist.value = this.item.ProvLocDesc //
+  
+  }
 
 
   save() {

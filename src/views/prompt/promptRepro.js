@@ -39,8 +39,9 @@ export class Promptrepro {
       "Description": findvalue,
       "CodeTypeDesc": "Provenance Location"
     }
-    if (this.selectedValue === undefined || this.selectedValue === null) {
-
+    // if (this.selectedValue === undefined || this.selectedValue === null) {
+       if (codeobj === undefined || codeobj === null) {
+ 
       let obj = {}
       obj.type = 2
       obj.name = `Add ${findvalue} to Location List or Cancel?`
@@ -101,9 +102,9 @@ export class Promptrepro {
   get ReproductionAuthor() {
     return `${this.item.AuthorLast},  ${this.item.AuthorFirst}`;
   }
-  attached() {
-
-
+   attached() {
+this.myDatalist.value = this.item.ReproductionLocationDesc //ExhibitLocation
+  
   }
 
   // changeCallbackArtist(selectedValueA) {
