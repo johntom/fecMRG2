@@ -124,7 +124,7 @@ export class Home {
     `// 300 * 1.37 =`,
     `//  adjusted width is`,
     `//  adjusted width = <user-chosen height> * original width / original height`
-
+    ,'grid.clearSelection();'
 
   ]
   todo = [
