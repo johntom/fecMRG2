@@ -12,9 +12,9 @@ export class Home {
   heading = "MRG HOME PAGE";
   footer = 'DataForm FOOTER...'
   // version = ' 305.53g '   
-  versionDate = 'Tue 10/2/2019 3pm'
-  prevversion = ' 303.55 '
-  prevversionDate = 'Mon 8/5/2019 5pm'
+  versionDate = 'Thur 10/3/2019 3pm'
+  prevversion = ' 303.56 '
+  prevversionDate = ' 8/5/2019 5pm'
   newversion = 'none'
   issues = [
     // or press refresh button upper left corner',
@@ -124,8 +124,8 @@ export class Home {
     `// 300 * 1.37 =`,
     `//  adjusted width is`,
     `//  adjusted width = <user-chosen height> * original width / original height`
-    ,'grid.clearSelection();'
-
+    ,'grid.clearSelection();',
+,`db.mailinglist.distinct( "listName" );`
   ]
   todo = [
 
@@ -562,6 +562,12 @@ export class Home {
       });
     }
   }
+
+
+  
+
+  }
+
   // activateXX() {
   //   if (this.appService.LookupDataLoaded) {
   //     console.log('using data cache from home....')

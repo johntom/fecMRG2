@@ -626,6 +626,7 @@ this.selectedids ='';
         this.selectedlist = -1
         console.log(response)//.output);
       });
+           this.grid.clearSelection();
     }
   }
 

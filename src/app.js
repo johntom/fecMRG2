@@ -5,20 +5,20 @@ import { AuthorizeStep } from './services/authorize-step';
 
 import { EventAggregator } from 'aurelia-event-aggregator';
 
-export class App { 
+export class App {
   static inject() {
     return [ApplicationService, EventAggregator];
-  } 
- 
-  constructor(appService, eventAggregator) { 
+  }
+
+  constructor(appService, eventAggregator) {
     this.appService = appService;
     this.eventAggregator = eventAggregator;
     this.secured = false
     // this.user='jrt0'
     // this.password='111'
-    this.appService.version=' 405.88 '    
+    this.appService.version = ' 405.89 '
   }
- 
+
   // use activationStrategy for all wildcards 
   // { route: 'claim/:id', name: 'claim-search-results', moduleId: PLATFORM.moduleName('./views/claim/search-results'), title: 'Search Results' ,activationStrategy:'replace'  },
 
@@ -98,152 +98,152 @@ export class App {
     // mdk   preparator
     // Matthew MRG4data!
 
-// Zachary  Serper100
-// Dan Serper-1
-// Valentina  calix18cup
-// mdk   preparato
- let user  = this.user
- this.loginmessage = '';
- //this.loginmessage = 'wrong password!'
-switch (user) {
+    // Zachary  Serper100
+    // Dan Serper-1
+    // Valentina  calix18cup
+    // mdk   preparato
+    let user = this.user
+    this.loginmessage = '';
+    //this.loginmessage = 'wrong password!'
+    switch (user) {
       case null:
         dim = 0
         break;
       case 'michael':
-       if (this.password === 'Homer211') {
-        this.appService.loginuser = this.user
-        this.appService.gridview = 1
-        this.secured = true
+        if (this.password === 'Homer211') {
+          this.appService.loginuser = this.user
+          this.appService.gridview = 1
+          this.secured = true
 
-      }
+        }
         break;
-        case 'halley':
-       if (this.password === 'Homer211') {
-        this.appService.loginuser = this.user
-        this.appService.gridview = 0
-        this.secured = true
+      case 'halley':
+        if (this.password === 'Homer211') {
+          this.appService.loginuser = this.user
+          this.appService.gridview = 0
+          this.secured = true
 
-      }
+        }
         break;
-          case 'ryan':
-       if (this.password === 'Homer211') {
-        this.appService.loginuser = this.user
-        this.appService.gridview = 0
-        this.secured = true
+      case 'ryan':
+        if (this.password === 'Homer211') {
+          this.appService.loginuser = this.user
+          this.appService.gridview = 0
+          this.secured = true
 
-      }
+        }
         break;
-       
-       
-        case 'hooper':
-       if (this.password === 'GWENstefani123!') {
-        this.appService.loginuser = this.user
-        this.appService.gridview = 0
-        this.secured = true
 
-      }
+
+      case 'hooper':
+        if (this.password === 'GWENstefani123!') {
+          this.appService.loginuser = this.user
+          this.appService.gridview = 0
+          this.secured = true
+
+        }
         break;
       case 'francesca':
         if (this.password === 'Charlotte12!') {
-        this.appService.loginuser = this.user
-        this.appService.gridview = 0
-        this.secured = true
+          this.appService.loginuser = this.user
+          this.appService.gridview = 0
+          this.secured = true
 
-      }
+        }
         break;
-        case 'Matthew':
+      case 'Matthew':
         if (this.password === 'MRG4data!') {
-        this.appService.loginuser = this.user
-        this.appService.gridview = 1
-        this.secured = true
+          this.appService.loginuser = this.user
+          this.appService.gridview = 1
+          this.secured = true
 
-      }
-        case 'mdk':
+        }
+      case 'mdk':
         if (this.password === 'preparator') {
-        this.appService.loginuser = this.user
-        this.appService.gridview =0
-        this.secured = true
+          this.appService.loginuser = this.user
+          this.appService.gridview = 0
+          this.secured = true
 
-      }
+        }
         break;
-         case 'elleng':
+      case 'elleng':
         if (this.password === 'hihihi19') {
-        this.appService.loginuser = this.user
-        this.appService.gridview =0
-        this.secured = true
+          this.appService.loginuser = this.user
+          this.appService.gridview = 0
+          this.secured = true
 
-      }
+        }
         break;
-       case 'jrt':
+      case 'jrt':
         if (this.password === '111') {
-        this.appService.loginuser = this.user
-        this.appService.gridview = 1
-        this.secured = true
+          this.appService.loginuser = this.user
+          this.appService.gridview = 1
+          this.secured = true
 
-         }
+        }
         break;
-        case 'jrt0':
+      case 'jrt0':
         if (this.password === '111') {
-        this.appService.loginuser = this.user
-        this.appService.gridview = 0
-        this.secured = true
-       }
+          this.appService.loginuser = this.user
+          this.appService.gridview = 0
+          this.secured = true
+        }
         break;
-          case 'jrt2':
-      //  if (this.password === 'jrt11111') {
+      case 'jrt2':
+        //  if (this.password === 'jrt11111') {
         this.appService.loginuser = this.user
         this.appService.gridview = 2
         this.secured = true
 
-      // }
+        // }
         break;
-       case 'colleen':
+      case 'colleen':
         if (this.password === 'yemayah1') {
-        this.appService.loginuser = this.user
-        this.appService.gridview = 0
-        this.secured = true
+          this.appService.loginuser = this.user
+          this.appService.gridview = 0
+          this.secured = true
 
-      }
-        break; 
-       case 'mrg':
+        }
+        break;
+      case 'mrg':
         if (this.password === 'Homer@211!') {
-        this.appService.loginuser = this.user
-        this.appService.gridview = 0
-        this.secured = true
+          this.appService.loginuser = this.user
+          this.appService.gridview = 0
+          this.secured = true
 
-      }
+        }
         break;
-        case 'ap':
+      case 'ap':
         if (this.password === 'Test1234!') {
-        this.appService.loginuser = this.user
-        this.appService.gridview = 1
-        this.secured = true
+          this.appService.loginuser = this.user
+          this.appService.gridview = 1
+          this.secured = true
 
-      }
+        }
         break;
-       case 'Zachary':
+      case 'Zachary':
         if (this.password === 'Serper100') {
-        this.appService.loginuser = this.user
-        this.appService.gridview = 0
-        this.secured = true
+          this.appService.loginuser = this.user
+          this.appService.gridview = 0
+          this.secured = true
 
-      }
+        }
         break;
-          case 'Dan':
+      case 'Dan':
         if (this.password === 'Serper-1') {
-        this.appService.loginuser = this.user
-        this.appService.gridview = 0
-        this.secured = true
+          this.appService.loginuser = this.user
+          this.appService.gridview = 0
+          this.secured = true
 
-      }
-      break;
-        case 'Valentina':
+        }
+        break;
+      case 'Valentina':
         if (this.password === 'calix18cup') {
-        this.appService.loginuser = this.user
-        this.appService.gridview = 0
-        this.secured = true
+          this.appService.loginuser = this.user
+          this.appService.gridview = 0
+          this.secured = true
 
-      }
+        }
         break;
     }
 
