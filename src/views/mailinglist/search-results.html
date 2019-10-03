@@ -162,6 +162,7 @@
 									 k-filterable.bind="{  mode: 'row' }" k-editable="popup" k-reorderable.bind="true" k-resizable.bind="true" k-on-edit.delegate="onEdit($event.detail)"
 									 k-on-change.delegate="rowSelected($event.detail)" k-toolbar.bind="['excel']" k-persist-selection.bind="true" k-pageable.bind="true"
 									 k-excel.bind="{ fileName:'Mailinglist.xlsx',allPages: true }" k-column-menu.bind="true">
+                   	<div style="width: 1100px"></div>
 										<!-- <ak-col  k-template="#  #"></ak-col> -->
 										<ak-col k-filterable.bind="false" k-width="160px" k-title="Cmd" k-command.bind="['edit','delete']" k-title="&nbsp;" k-locked.bind="true"
 										 k-lockable.bind="true"></ak-col>
