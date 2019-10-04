@@ -124,8 +124,8 @@ export class Home {
     `// 300 * 1.37 =`,
     `//  adjusted width is`,
     `//  adjusted width = <user-chosen height> * original width / original height`
-    ,'grid.clearSelection();',
-,`db.mailinglist.distinct( "listName" );`
+    , 'grid.clearSelection();',
+    , `db.mailinglist.distinct( "listName" );`
   ]
   todo = [
 
@@ -555,16 +555,16 @@ export class Home {
         //       //  console.log('bk2 ', bk2)
         //       bk.ArtistName = bk.lastName+', '+bk.firstName
         //}
- 
+
         console.log('finished loadiong data ')
       }).catch(error => {
         console.error("Error encountered while trying to get data.", error);
       });
     }
-  }
 
 
-  
+
+
 
   }
 
