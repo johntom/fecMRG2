@@ -51,7 +51,7 @@ export class SearchResults {
 
   //       for (var i = 1; i < sheet.rows.length; i++) {
   //           var row = sheet.rows[i];
-           
+
   //           let diff = 'test'
   //           row.cells.push({ 'value': diff })
   //       }
@@ -105,20 +105,20 @@ export class SearchResults {
         }
       }
     },
-    excelExport: function(e) {
-    e.workbook.fileName = "Grid.xlsx";
-     e.allPages= true ;
-     var sheet = e.workbook.sheets[0];
-        var template = kendo.template(this.columns[8].template);
+    excelExport: function (e) {
+      e.workbook.fileName = "Grid.xlsx";
+      e.allPages = true;
+      var sheet = e.workbook.sheets[0];
+      var template = kendo.template(this.columns[8].template);
 
-        for (var i = 1; i < sheet.rows.length; i++) {
-            var row = sheet.rows[i];
-           
-            let diff = 'test'
-            row.cells.push({ 'value': diff })
-        }
-  },
-    pageSize: 15, 
+      for (var i = 1; i < sheet.rows.length; i++) {
+        var row = sheet.rows[i];
+
+        let diff = 'test'
+        row.cells.push({ 'value': diff })
+      }
+    },
+    pageSize: 15,
     // height: 500,
     sort: [{ field: 'LastName', dir: 'asc' }, { field: 'FirstName', dir: 'asc' }],
 
@@ -135,6 +135,7 @@ export class SearchResults {
     this.appService.rfreshLoaded = false;
     this.search = {}
     this.search.state = 'null'
+    this.search.catalogid = 'null'
     // search.state='';
     // search.state 'null'
     // this.search.deceased = true
@@ -212,8 +213,13 @@ export class SearchResults {
     this.datasource.read()
   }
   performClear() {
-    this.search.mailingStatus = 0
-
+       this.search.keywords = []
+    //  this.multiselect-keywords=''
+      this.search.genres = []
+      this.search.mailingStatus = 0
+      this.search.searchedCriteria = ''
+      this.search.mailingStatus = 0
+      this.busy.active = false
   }
   performDefault() {
     this.search.mailingStatus = 1
@@ -223,9 +229,9 @@ export class SearchResults {
   }
   async performSearch() {
     // this.spinner.class 
-    this.busy.active = true 
-    if (this.search) { 
- 
+    this.busy.active = true
+    if (this.search) {
+
       let search = this.search //JSON.stringify(this.search)    
       ///// let str = `?mailinglist=${search.mailinglist}`
       let str = `?billinglist=${search.mailinglist}`
@@ -261,6 +267,12 @@ export class SearchResults {
       if (search.mailingStatus !== undefined) {
         str += `&mailingStatus=${search.mailingStatus}`
       }
+
+
+      if (search.catalogid !== undefined) {
+        str += `&catalogid=${search.catalogid}`
+      }
+
       console.log('\n\n================= ')
       // if (search.nomailings === true) {
       //   str += `&nomailings=${search.nomailings}`
@@ -278,6 +290,25 @@ export class SearchResults {
         str += `&notinternational=${search.notinternational}`
       }
       this.previnv = this.invdata
+      // alert test
+      // this.search = {}
+      // this.search.state = 'null'
+      // this.search.catalogid = 'null'
+
+
+      // // search.state='';
+      // // search.state 'null'
+      // // this.search.deceased = true
+      // // this.search.nomailings = true
+      // // this.search.noinfo = true
+      // this.search.keywords = []
+      // this.search.genres = []
+      // this.search.mailingStatus = 0
+      // this.search.searchedCriteria = ''
+      // this.search.mailingStatus = 0
+      // this.busy.active = false
+      // alert test
+
       await this.api.findContact(str, this.mailinglist)//this.listname)
         // return this.api.findContact(ds, this.listname)
         .then((jsonRes) => {
@@ -302,13 +333,16 @@ export class SearchResults {
           //await this.loadData();
           this.search = {}
           this.search.state = 'null'
+             this.search.catalogid = 'null'
+
+
           // search.state='';
           // search.state 'null'
           // this.search.deceased = true
           // this.search.nomailings = true
           // this.search.noinfo = true
-          this.search.keywords = []
-          this.search.genres = []
+          // this.search.keywords = []
+          // this.search.genres = []
           this.search.mailingStatus = 0
           this.search.searchedCriteria = ''
           this.search.mailingStatus = 0
@@ -320,6 +354,8 @@ export class SearchResults {
       await this.loadData();
       this.busy.active = false
       return this.datasource.read()
+
+
 
     }
   }
@@ -418,7 +454,7 @@ export class SearchResults {
     let tab = this.appService.tabs.find(f => f.isSelected);
     let index = this.appService.tabs.findIndex(f => f.isSelected)
 
-    
+
     let newIndex = (index > 0) ? index - 1 : 0;
     let newTab = this.appService.tabs[newIndex];
     this.appService.tryCloseTab(this.appService.currentView, tab, newTab.href);

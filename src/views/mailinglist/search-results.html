@@ -162,7 +162,7 @@
 									 k-filterable.bind="{  mode: 'row' }" k-editable="popup" k-reorderable.bind="true" k-resizable.bind="true" k-on-edit.delegate="onEdit($event.detail)"
 									 k-on-change.delegate="rowSelected($event.detail)" k-toolbar.bind="['excel']" k-persist-selection.bind="true" k-pageable.bind="true"
 									 k-excel.bind="{ fileName:'Mailinglist.xlsx',allPages: true }" k-column-menu.bind="true">
-                   	<div style="width: 1100px"></div>
+										<div style="width: 1100px"></div>
 										<!-- <ak-col  k-template="#  #"></ak-col> -->
 										<ak-col k-filterable.bind="false" k-width="160px" k-title="Cmd" k-command.bind="['edit','delete']" k-title="&nbsp;" k-locked.bind="true"
 										 k-lockable.bind="true"></ak-col>
@@ -244,7 +244,7 @@
 										<div class="Rtable-cell-70 Rtable-cell--highlight">
 											<ak-multiselect k-value.two-way="search.keywords" k-placeholder="Select ContactTypes..." k-data-text-field="Description"
 											 k-data-value-field="Description" k-height.bind="400" k-data-source.bind="appService.codesOrgContactTypes" k-widget.two-way="multiselect"
-											 id="multiselect-keywords">
+										 id="multiselect-keywords">
 
 											</ak-multiselect>
 										</div>
@@ -280,12 +280,7 @@
 										<div class="Rtable-cell-30 Rtable-cell--highlight">
 											<strong>State </strong>
 										</div>
-
-
 										<div class="Rtable-cell-70  Rtable-cell--highlight">
-
-
-
 											<select id="state" class="form-control " value.bind="search.state">
 											<option model.bind="null">Choose...</option>
 											<option repeat.for="opt of appService.stateList " model.bind="opt.value">
@@ -303,10 +298,24 @@
 										<div class="Rtable-cell-30 Rtable-cell--highlight">
 											<strong> First Name</strong>
 										</div>
-
 										<div class="Rtable-cell-70  Rtable-cell--highlight">
 											<input type="text " xid="State " class="form-control input-sm " value.bind="search.contactf">
 										</div>
+ 
+										<div class="Rtable-cell-30 Rtable-cell--highlight">
+											<strong>Catalog Sent </strong>
+										</div>
+										<div class="Rtable-cell-70  Rtable-cell--highlight">
+											<select id="catsent" class="form-control " value.bind="search.catalogid">
+											<option style="width:200px" model.bind="null">Choose...</option>
+											<option repeat.for="opt of appService.catalogList " style="width:200px"  model.bind="opt.ID">
+												${opt.CatalogTitle}
+											</option>
+										</select>
+										</div> 
+  
+ 
+
 										<div class="Rtable-cell-30 Rtable-cell--highlight">
 											<strong>Search Criteria</strong>
 										</div>
