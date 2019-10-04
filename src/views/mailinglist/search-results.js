@@ -269,10 +269,7 @@ export class SearchResults {
       }
 
 
-      if (search.catalogid !== undefined) {
-        str += `&catalogid=${search.catalogid}`
-      }
-
+      
       console.log('\n\n================= ')
       // if (search.nomailings === true) {
       //   str += `&nomailings=${search.nomailings}`
@@ -289,6 +286,14 @@ export class SearchResults {
       if (search.notinternational === true) {
         str += `&notinternational=${search.notinternational}`
       }
+
+if (search.catalogid !== undefined) {
+        // only allowed
+         str = `?billinglist=${search.mailinglist}`
+        str += `&catalogid=${search.catalogid}`
+      }
+
+
       this.previnv = this.invdata
       // alert test
       // this.search = {}
