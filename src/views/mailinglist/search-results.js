@@ -287,11 +287,11 @@ export class SearchResults {
         str += `&notinternational=${search.notinternational}`
       }
 
-if (search.catalogid !== undefined) {
-        // only allowed
-         str = `?billinglist=${search.mailinglist}`
-        str += `&catalogid=${search.catalogid}`
-      }
+// if (search.catalogid !== undefined null) {
+//         // only allowed
+//          str = `?billinglist=${search.mailinglist}`
+//         str += `&catalogid=${search.catalogid}`
+//       }
 
 
       this.previnv = this.invdata
