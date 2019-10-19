@@ -219,8 +219,8 @@
 	<div show.bind="currentItem.Website">
 										<a href="http://${currentItem.Website}" target="_blank" class="btn btn-sm btn-primary"> <strong>Open Website</strong></a>
 	</div>
-        <div show.bind="!currentItem.Website">
-               	<strong> Assistant</strong>
+        <div show.bind="currentItem.Website===undefined">
+               	<strong> Website</strong>
                 	</div>
 								   
               		</div>
