@@ -109,8 +109,6 @@ export class Promptcontact {
       obj.type = 2
       obj.name = `Add ${findvalue} to Medium Support List or Cancel?`
       this.dialogService.open({ viewModel: Promptyn, model: obj, lock: false }).whenClosed(response => {
-
-
         if (!response.wasCancelled) {
           this.addnewms(findvalue)
         } else {
@@ -123,7 +121,7 @@ export class Promptcontact {
   }
   attached() {
     if (this.fieldname === 'OrgID') {
-      this.doc = `Select Org or add new if not in list.`
+      this.doc = `Select Org or add new if not in list. <>`
       this.heading = `Select Org or add new if not in list.`
       this.placeholder = `Select Org or add new if not in list.`
       // if (this.currentItem.OrgID === undefined || this.currentItem.OrgID === '') {
@@ -148,7 +146,7 @@ export class Promptcontact {
 
     }
     if (this.fieldname === 'Catalog') {
-
+ 
       // this.doc = `Select Catalog or add new if not in list.`
       // this.heading = `Select Catalog or add new if not in list.`
       // this.placeholder = `Select Catalog or add new if not in list.`
@@ -163,11 +161,17 @@ export class Promptcontact {
       }
 
     }
-    this.hasFocus = true;
+    this.hasFocus = true; 
   }
 
   changeCallbackOrg(selectedValueO) {
-    let findvalue = this.myDatalistO.value
+    let findvalue = this.myDatalistO.value.trim()
+// this.selectedValueO =findvalue
+//  this.selectedValueO = value => this.appService.orgsList.find(x => x.OrgName === value)
+//  this.selectedValueO = this.appService.orgsList.find(x => x.OrgName === findvalue)
+//  let idx = this.appService.orgsList.findIndex(x => x.OrgName.trim() === findvalue)
+//   this.selectedValueO= this.appService.orgsList[idx]
+ this.selectedValueO = this.appService.orgsList.find(x => x.OrgName.trim() === findvalue)
 
   }
   changeCallbackArtist(selectedValueA) {
@@ -245,33 +249,22 @@ export class Promptcontact {
       //       }
 
 // if (this.fieldname === 'MediumSupportobj') {
-
 //       this.doc = `type any characters of the   "Medium/Support: select or add new."`
 //       this.heading = `Search Medium/Support: select or add new.`
 //       this.placeholder = `Enter any characters on Medium/Support: select or add new.`
-
 //       if (this.currentItem.MediumSupportobj === undefined) {
-
 //         // this.MedSup = this.appService.codesListMediumSupport[1]
 //       } else {
 //          this.MedSup = this.currentItem.MediumSupportobj
 //       // if (this.MedSup.Description === undefined) this.MedSup.Description = this.currentItem.MediumSupportobj.Description
 //       // this.dmediumsupport.value = this.MedSup
-
 //       //  if (this.MedSup.Description === undefined) {
-
 //       //  }
 //       // this.dmediumsupport.value = this.MedSup
-
 // // datlist
 // this.myDatalist.value=this.MedSup.Description
-
 //       }
-
-
-
 //     }
-
   // created(SearchResults,prompt){
   // if (this.fieldname === 'selectedids') {
   //       // we dont send a name of the list
@@ -284,14 +277,11 @@ export class Promptcontact {
   //       //   this.OrgName = orgobj
   //       //   this.dsaved.value = this.OrgName
   //       // }
-
-
   //       // let meds = this.appService.savedlists
   //       // let orgobj = this.appService.savedlists[0]
   //       // this.appService.selectedids = orgobj.InventoryCodes
   //       //this.myMultiSelect.kWidget.dataSource.add(this.appService.selectedids);
   //       let ss = this.appService.selectedids
   //        this.myMultiSelect.kWidget.setDataSource(ss);
-
   //     }
   // }

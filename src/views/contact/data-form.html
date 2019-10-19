@@ -216,9 +216,14 @@
  
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
  
-
+	<div show.bind="currentItem.Website">
 										<a href="http://${currentItem.Website}" target="_blank" class="btn btn-sm btn-primary"> <strong>Open Website</strong></a>
-									</div>
+	</div>
+        <div show.bind="!currentItem.Website">
+               	<strong> Assistant</strong>
+                	</div>
+								   
+              		</div>
 									<div class="Rtable-cell-70  Rtable-cell--highlight">
 										<input type="text " xid="Website " class="form-control input-sm " value.bind="currentItem.Website">
 									</div>

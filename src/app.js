@@ -16,7 +16,7 @@ export class App {
     this.secured = false
     // this.user='jrt0'
     // this.password='111'
-    this.appService.version = ' 405.94 '
+    this.appService.version = ' 405.97 '
   }
 
   // use activationStrategy for all wildcards 

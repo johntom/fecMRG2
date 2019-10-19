@@ -108,19 +108,21 @@ export class DataForm {
     currentModel.currentItem = JSON.parse(JSON.stringify(this.currentItem))
 
     // currentModel.item = item
-    currentModel.currentItem.hide1 = false
+    
+    if (this.currentItem.org !== undefined && this.currentItem.org !== null) {
+      currentModel.currentItem.hide1 = false
 
-    // this.dialogService.open({ viewModel: PromptForm, model: currentModel, lock: false }).whenClosed(response => {
-    this.dialogService.open({ viewModel: Promptorg, model: currentModel, lock: true }).whenClosed(response => {
+      this.dialogService.open({ viewModel: Promptorg, model: currentModel, lock: true }).whenClosed(response => {
 
-      if (!response.wasCancelled) {
-        console.log('item', item);
-        item.edit = false//this.saveitem(item, index)
-      } else {
-        console.log('cancel');
-      }
-      console.log(response)//.output);
-    });
+        if (!response.wasCancelled) {
+          console.log('item', item);
+          item.edit = false//this.saveitem(item, index)
+        } else {
+          console.log('cancel');
+        }
+        console.log(response)//.output);
+      });
+    }
   }
 
 
@@ -128,8 +130,11 @@ export class DataForm {
     // let rt2 = '#/org/data/' + dataItem.id + '?' + name
     // let rt2 = '#/org/data/' + dataItem.id + '?' + name
     // alert(this.currentItem )
-    let rt2 = '#/org/data/' + this.currentItem.org._id + '?' + this.currentItem.org.OrgName
-    this.router.navigate(rt2);
+    if (this.currentItem.org !== undefined && this.currentItem.org !== null) {
+      //  if (this.currentItem.org===undefined){
+      let rt2 = '#/org/data/' + this.currentItem.org._id + '?' + this.currentItem.org.OrgName
+      this.router.navigate(rt2);
+    }
 
   }
 
@@ -145,7 +150,6 @@ export class DataForm {
       prevorgid = ""
       prevorg = ""
     }
-
     this.dialogService.open({ viewModel: Promptcontact, model: this.currentItem, lock: true }).whenClosed(response => {
       if (!response.wasCancelled) {
         if (this.currentItem.prevorgs !== undefined) {
@@ -197,17 +201,14 @@ export class DataForm {
         this.currentItem = {}
         this.currentContactItem = {}
         this.currentContactItem.id = 'create'
-
-         this.currentItem.BusIndivid = 'I'
+        this.currentItem.BusIndivid = 'I'
         this.currentItem.contacttypes = []
         this.currentItem.international = false
         this.currentItem.deceased = false
         this.currentItem.mailingStatus = 2;
         this.appService.testcontactrec = {}
         this.appService.originalontactrec = {}
-
         this.currentItem.addresses = []
-
         this.currentItem.addresses = []
         this.currentItem.artists = []
         this.currentItem.catalogsold = []
@@ -273,7 +274,7 @@ export class DataForm {
     if (prevtemp[2] != undefined && newrec.id === prevtemp[2].id) this.skip = true;
     if (prevtemp[3] != undefined && newrec.id === prevtemp[3].id) this.skip = true;
     if (prevtemp[4] != undefined && newrec.id === prevtemp[4].id) this.skip = true;
-      if (prevtemp[5] != undefined && newrec.id === prevtemp[5].id) this.skip = true;
+    if (prevtemp[5] != undefined && newrec.id === prevtemp[5].id) this.skip = true;
     if (prevtemp[6] != undefined && newrec.id === prevtemp[6].id) this.skip = true;
     if (prevtemp[7] != undefined && newrec.id === prevtemp[7].id) this.skip = true;
     if (prevtemp[8] != undefined && newrec.id === prevtemp[8].id) this.skip = true;

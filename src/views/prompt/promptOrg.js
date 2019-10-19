@@ -23,7 +23,6 @@ export class Promptorg {
     this.allcontacts = []
   }
 
-
   async activate(currentmodel) {
     this.item = currentmodel.currentItem//.item;
     this.currentItem = currentmodel.currentItem
