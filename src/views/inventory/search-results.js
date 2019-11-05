@@ -353,10 +353,10 @@ export class SearchResults {
     this.router.navigate(`#/inventory/data/create`);
   }
   loadGrid() {
-    let options = localStorage["kendo-grid-mail"];
-    if (options) {
-      this.grid.setOptions(JSON.parse(options));
-    }
+    // let options = localStorage["kendo-grid-mail"];
+    // if (options) {
+    //   this.grid.setOptions(JSON.parse(options));
+    // }
   }
 
   async loadData() {
