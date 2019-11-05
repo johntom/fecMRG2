@@ -16,7 +16,7 @@ export class App {
     this.secured = false
     // this.user='jrt0'
     // this.password='111'
-    this.appService.version = ' 406.01 '
+    this.appService.version = ' 406.02 '
   }
 
   // use activationStrategy for all wildcards 
@@ -103,7 +103,7 @@ export class App {
     // Valentina  calix18cup
     // mdk   preparato
     let user = this.user
-    this.loginmessage = '';
+    this.loginmessage = '11/5/2019'; 
     //this.loginmessage = 'wrong password!'
     switch (user) {
       case null:

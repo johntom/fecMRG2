@@ -134,7 +134,7 @@ export class DataForm {
       //  if (this.currentItem.org===undefined){
       let rt2 = '#/org/data/' + this.currentItem.org._id + '?' + this.currentItem.org.OrgName
       this.router.navigate(rt2);
-    }
+    } 
 
   }
 
@@ -142,7 +142,7 @@ export class DataForm {
     this.currentItem.fieldname = fieldname
     this.currentItem.recordId = this.recordId
     let prevorgid; let prevorg
-    if (this.currentItem.org !== undefined) {
+    if (this.currentItem.org !== undefined && this.currentItem.org !== null) {
       prevorgid = this.currentItem.org._id;
       prevorg = this.currentItem.org
     }

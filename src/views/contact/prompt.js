@@ -128,7 +128,7 @@ export class Promptcontact {
       // } else {
       //   this.myDatalistO.value = this.currentItem.org.OrgName
       // }
-      if (this.currentItem.org === undefined || this.currentItem.org === '') {
+      if (this.currentItem.org === undefined || this.currentItem.org === '' || this.currentItem.org === null) {
       } else {
         this.myDatalistO.value = this.currentItem.org.OrgName
       }
