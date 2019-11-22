@@ -172,7 +172,9 @@
 										<ak-col k-field="LastName" k-title="Last Name" k-filterable.bind="{ multi: true, search: true }" k-width.bind="180" k-template="<button click.delegate='detailsEdit($event)' class='k-button'>#=LastName#</button>">
 										</ak-col>
 										<ak-col k-title="First Name" k-width="110px" k-field="FirstName" k-filterable.bind="{ multi: true, search: true }"></ak-col>
-										<ak-col k-title="Types" k-width="110px" k-field="types" k-filterable.bind="{ multi: true, search: true }" k-editor.bind="textAreaEditor"></ak-col>
+									<ak-col k-title="Emails" k-width="120px" k-field="Emails" k-filterable.bind="{ multi: true, search: true }"></ak-col>
+								
+                		<ak-col k-title="Types" k-width="110px" k-field="types" k-filterable.bind="{ multi: true, search: true }" k-editor.bind="textAreaEditor"></ak-col>
 										<ak-col k-title="Artists" k-width="190px" k-field="artists" k-filterable.bind="{ multi: true, search: true }" k-editor.bind="textAreaEditor"></ak-col>
 
 										<ak-col k-title="Genres" k-width="110px" k-field="genres" k-filterable.bind="{ multi: true, search: true }" k-editor.bind="textAreaEditor"></ak-col>
