@@ -108,7 +108,7 @@ export class DataForm {
     currentModel.currentItem = JSON.parse(JSON.stringify(this.currentItem))
 
     // currentModel.item = item
-    
+
     if (this.currentItem.org !== undefined && this.currentItem.org !== null) {
       currentModel.currentItem.hide1 = false
 
@@ -134,7 +134,7 @@ export class DataForm {
       //  if (this.currentItem.org===undefined){
       let rt2 = '#/org/data/' + this.currentItem.org._id + '?' + this.currentItem.org.OrgName
       this.router.navigate(rt2);
-    } 
+    }
 
   }
 
@@ -203,9 +203,7 @@ export class DataForm {
         this.currentContactItem.id = 'create'
         this.currentItem.BusIndivid = 'I'
         this.currentItem.contacttypes = []
-        this.currentItem.international = false
-        this.currentItem.deceased = false
-        this.currentItem.mailingStatus = 2;
+       
         this.appService.testcontactrec = {}
         this.appService.originalontactrec = {}
         this.currentItem.addresses = []
@@ -215,6 +213,18 @@ export class DataForm {
         this.currentItem.phones = []
         this.currentItem.emails = []
         this.currentItem.addresses = []
+
+
+        // this.currentItem.unsubscribed = false part of mailingStatus
+        this.currentItem.international = false
+        this.currentItem.deceased = false
+        this.currentItem.mailingStatus = 2; // no mailing
+        this.currentItem.email = false
+        this.currentItem.ynHolidaylist = false
+        this.currentItem.ynMasterlist = false
+
+
+
 
         // let checkbox
         // let checkbox = document.getElementById("mailings");

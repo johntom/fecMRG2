@@ -4,6 +4,7 @@ import { Router, Redirect } from 'aurelia-router';
 import { ApplicationService } from './application-service';
 // import {SessionService} from './session-service';
 
+
 export class AuthorizeStep {
   // static inject = [Aurelia, Router, ApplicationService, SessionService];
   static inject = [Aurelia, Router, ApplicationService];
