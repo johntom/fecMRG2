@@ -48,7 +48,7 @@ export class DataForm {
         // console.log('this.org ', this.org)
         // let response2 = await this.api.findorgContacts(this.org.id)// ID);
         // alert('dd '+this.org)
-        let response2 = await this.api.findorgContacts(this.recordId)// ID);
+        let response2 = await this.api.findorgContacts(this.recordId)// ID); 
         if (response2.data = '0') {
           //   return 'No contacts found';
           this.contacts = [];
@@ -204,14 +204,14 @@ export class DataForm {
   }
   requestclose() {
     let savetime = moment().format('MM/DD/YY h:mm:ss a')
-    this.message = "Save successful. org updated @ " + savetime
+  //12-9  this.message = "Save successful. org updated @ " + savetime
     let tab = this.appService.tabs.find(f => f.isSelected);
     // Next, we navigate to the newly created claim
     // Finally, we close out this tab
     this.closeTab(tab);
     let rt2
     // (this.tabname === 0) ? rt2 = '#/org/' : rt2 = '#/org/' + this.tabname
-    (this.appService.currentorgCount === 1) ? rt2 = '#/org/' : rt2 = '#/org/' + this.tabname
+    (this.appService.currentorgCount === 1 || this.appService.currentorgCount ===undefined) ? rt2 = '#/org/' : rt2 = '#/org/' + this.tabname
     this.router.navigate(rt2);
 
   }

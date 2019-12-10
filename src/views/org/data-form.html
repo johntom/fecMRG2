@@ -50,14 +50,22 @@
 									<div class="Rtable-cell-70  Rtable-cell--highlight">
 										<input type="text" id="Zip" class="form-control input-sm" value.bind="org.Zip">
 									</div>
-
-
-									<div class="Rtable-cell-30 Rtable-cell--highlight">
-										<strong> Status</strong>
+	<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong> Country</strong>
 									</div>
-									<div class="Rtable-cell-70  Rtable-cell--highlight">
-										<input type="text" id="PurchasedDate" class="form-control input-sm" value.bind="org.Status">
-									</div>
+
+<div class="Rtable-cell-70  Rtable-cell--highlight">
+									
+	<select id="country" class="form-control  input-sm" value.bind="org.Country"> 
+                      <option model.bind="null">Choose...</option> 
+                         <option repeat.for="opt of appService.codesCountry" model.bind="opt.Description"> 
+                           
+                    ${opt.Description} 
+                      </option> 
+                    </select>
+
+	</div>
+								
 
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
 									 <a href="http://${org.Website}" target="_blank" class="btn btn-sm btn-primary" >	<strong>Open Website</strong></a>
@@ -76,7 +84,18 @@
 
 							</div>
 							<div class="form-group flex-column-1 margin-left-10">
+
+
+              
 								<div class="Rtable Rtable--2cols">
+
+	<div class="Rtable-cell-30 Rtable-cell--highlight">
+										<strong> Status</strong>
+									</div>
+									<div class="Rtable-cell-70  Rtable-cell--highlight">
+										<input type="text" id="Status" class="form-control input-sm" value.bind="org.Status">
+									</div>
+
 									<div class="Rtable-cell-30 Rtable-cell--highlight">
 										<strong> Note</strong>
 									</div>
