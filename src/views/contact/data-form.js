@@ -222,8 +222,7 @@ export class DataForm {
         this.currentItem.email = false
         this.currentItem.ynHolidaylist = false
         this.currentItem.ynMasterlist = false
-
-
+        this.currentItem.org= null;
 
 
         // let checkbox
@@ -420,6 +419,7 @@ export class DataForm {
         this.message = `Save successful. contact ${this.recordId} added @ ${savetime} `
         // }
         //this.mrubuild() it will add if when opening
+        this.appService.orgsList.push( this.currentItem)
         this.requestclose()
         let rte = `#/contact/data/${this.currentItem.id}?${this.currentItem.LastName},${this.currentItem.FirstName}-1`
         this.router.navigate(rte)

@@ -166,7 +166,7 @@ export class DataForm {
   //   this.message = "Save successful. org updated @ " + savetime
   // }
 
-
+ 
   async saveorg(opt) {
     if (this.recordId === 'create') {
       this.org.BusIndivid = "B";
@@ -176,6 +176,9 @@ export class DataForm {
       this.appService.currentorgCount = 1
       let response2 = await this.api.createorg(this.org)// ID);
       this.recordId = response2.data.id;//
+this.appService.orgsList.push( response2.data )
+
+
     } else {
       let response2 = await this.api.saveorg(this.org)// ID);
     }

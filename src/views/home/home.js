@@ -12,8 +12,8 @@ export class Home {
   heading = "MRG HOME PAGE";
   footer = 'DataForm FOOTER...'
   // version = ' 305.53g '   
-  versionDate = 'Tue 12/10/2019 8am'
-  prevversion = ' 303.56 '
+  versionDate = 'THU 12/12/2019 2Pm'
+  prevversion = ' 303.57 '
   prevversionDate = ' 8/5/2019 5pm'
   newversion = 'none'
   issues = [
