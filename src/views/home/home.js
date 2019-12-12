@@ -3,8 +3,8 @@ import { ApplicationService } from '../../services/application-service';
 import { MyDataService } from "../../services/my-data-service";
 import { ApiService } from '../../utils/servicesApi';
 import { bindable } from 'aurelia-framework';
-import { googoose } from '../inventory/googoose';
-//  import { Pusher } from 'pusher'; 
+import { googoose } from '../inventory/googoose'; 
+//  import { Pusher } from 'pusher';  
 
 @inject(ApplicationService, MyDataService, ApiService)
 
@@ -13,7 +13,7 @@ export class Home {
   footer = 'DataForm FOOTER...'
   // version = ' 305.53g '   
   versionDate = 'THU 12/12/2019 2Pm'
-  prevversion = ' 303.57 '
+  prevversion = ' 303.58 '
   prevversionDate = ' 8/5/2019 5pm'
   newversion = 'none'
   issues = [
