@@ -137,7 +137,7 @@ export class DataForm {
     }
 
   }
-
+ 
   showModal(fieldname) {
     this.currentItem.fieldname = fieldname
     this.currentItem.recordId = this.recordId
@@ -161,6 +161,24 @@ export class DataForm {
           this.currentItem.prevorgs = []
           this.currentItem.prevorgs.push(prevorg);
         }
+
+
+this.currentItem.unshift(this.currentItem.org)
+  // "addresses" : [
+  //       {
+  //           "_id" : "5d7e631a7a045b44755bf063", 
+  //           "ID" : NumberInt(996), 
+  //           "OrgName" : "Boston Public Library", 
+  //           "address" : "700 Boylston Street", 
+  //           "city" : "Boston", 
+  //           "state" : "MA", 
+  //           "zip" : "02116", 
+  //           "Country" : "", 
+  //           "Primary" : true
+  //       }
+  //   ], 
+
+
       }
       console.log(response)
     });
