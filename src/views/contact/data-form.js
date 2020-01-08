@@ -137,7 +137,7 @@ export class DataForm {
     }
 
   }
- 
+
   showModal(fieldname) {
     this.currentItem.fieldname = fieldname
     this.currentItem.recordId = this.recordId
@@ -162,25 +162,27 @@ export class DataForm {
           this.currentItem.prevorgs.push(prevorg);
         }
 
-          let neworg = response.output.org
-let newaddr = {_id: neworg_id    , OrgName:neworg.OrgName , address: neworg.address ,city: neworg.city ,
-state:neworg.state,zip:neworg.zip}
-
-this.currentItem.addresses.unshift(newaddr) 
-  // "addresses" : [
-  //       {
-  //           "_id" : "5d7e631a7a045b44755bf063", 
-  //           "ID" : NumberInt(996), 
-  //           "OrgName" : "Boston Public Library", 
-  //           "address" : "700 Boylston Street", 
-  //           "city" : "Boston", 
-  //           "state" : "MA", 
-  //           "zip" : "02116", 
-  //           "Country" : "", 
-  //           "Primary" : true
-  //       }
-  //   ], 
-
+        let neworg = JSON.stringify(response.output.org);
+       
+        // let newaddr = {
+        //   _id: neworg._id, OrgName: neworg.OrgName, address: neworg.address, city: neworg.city,
+        //   state: neworg.state, zip: neworg.zip
+        // }
+        alert(neworg)
+        this.currentItem.addresses.unshift(neworg)
+        // "addresses" : [
+        //       {
+        //           "_id" : "5d7e631a7a045b44755bf063", 
+        //           "ID" : NumberInt(996), 
+        //           "OrgName" : "Boston Public Library", 
+        //           "address" : "700 Boylston Street", 
+        //           "city" : "Boston", 
+        //           "state" : "MA", 
+        //           "zip" : "02116", 
+        //           "Country" : "", 
+        //           "Primary" : true
+        //       }
+       //   ], 
 
       }
       console.log(response)
@@ -224,7 +226,7 @@ this.currentItem.addresses.unshift(newaddr)
         this.currentContactItem.id = 'create'
         this.currentItem.BusIndivid = 'I'
         this.currentItem.contacttypes = []
-       
+
         this.appService.testcontactrec = {}
         this.appService.originalontactrec = {}
         this.currentItem.addresses = []
@@ -243,7 +245,7 @@ this.currentItem.addresses.unshift(newaddr)
         this.currentItem.email = false
         this.currentItem.ynHolidaylist = false
         this.currentItem.ynMasterlist = false
-        this.currentItem.org= null;
+        this.currentItem.org = null;
 
 
         // let checkbox
@@ -440,7 +442,7 @@ this.currentItem.addresses.unshift(newaddr)
         this.message = `Save successful. contact ${this.recordId} added @ ${savetime} `
         // }
         //this.mrubuild() it will add if when opening
-        this.appService.orgsList.push( this.currentItem)
+        this.appService.orgsList.push(this.currentItem)
         this.requestclose()
         let rte = `#/contact/data/${this.currentItem.id}?${this.currentItem.LastName},${this.currentItem.FirstName}-1`
         this.router.navigate(rte)
