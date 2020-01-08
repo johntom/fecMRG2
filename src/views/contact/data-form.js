@@ -163,7 +163,7 @@ export class DataForm {
         }
 
 
-this.currentItem.unshift(this.currentItem.org)
+this.currentItem.addresses.unshift(this.currentItem.org)
   // "addresses" : [
   //       {
   //           "_id" : "5d7e631a7a045b44755bf063", 
