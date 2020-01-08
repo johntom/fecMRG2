@@ -162,8 +162,11 @@ export class DataForm {
           this.currentItem.prevorgs.push(prevorg);
         }
 
+          let neworg = response.output.org
+let newaddr = {_id: neworg_id    , OrgName:neworg.OrgName , address: neworg.address ,city: neworg.city ,
+state:neworg.state,zip:neworg.zip}
 
-this.currentItem.addresses.unshift(this.currentItem.org)
+this.currentItem.addresses.unshift(newaddr) 
   // "addresses" : [
   //       {
   //           "_id" : "5d7e631a7a045b44755bf063", 

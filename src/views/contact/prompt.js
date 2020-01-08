@@ -220,8 +220,9 @@ export class Promptcontact {
   save() {
 
     if (this.fieldname === 'OrgID') {
-
+ //   this.ApiService.org = this.selectedValueO
       this.currentItem.org = this.selectedValueO
+      /////// this.ApiService.currentItem.org =this.currentItem.org
     }
 
     if (this.fieldname === 'Artist') {
