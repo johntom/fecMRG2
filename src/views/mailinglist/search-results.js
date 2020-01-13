@@ -358,6 +358,7 @@ export class SearchResults {
       // this.invdata = _.union(this.previnv, this.invdata);// sub arrasy show as object
       await this.loadData();
       this.busy.active = false
+      this.performClear(); // jan 2020
       return this.datasource.read()
 
 
