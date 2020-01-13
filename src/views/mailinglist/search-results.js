@@ -180,7 +180,27 @@ export class SearchResults {
 
     })
   }
+  async deletelist() {
+// 2020
+let name = this.mailinglist;
 
+  let obj = {}
+      obj.type = 2
+      obj.name = `You are about to delete all items in the mailinglist ${name} Press Yes or Cancel?`
+    let res = await  this.dialogService.open({ viewModel: Promptyn, model: obj, lock: false }).whenClosed(response => {
+        if (!response.wasCancelled) {
+          this.addnewms(findvalue)
+        } else {
+          console.log('cancel');
+        }
+        console.log(response.output);
+      });
+
+alert('res+'+res) 
+
+    // let response = await this.api.deletemlistname(name);
+    // this.datasource.read()
+  }
   async activate(params, routeConfig) {
     // //http://74.114.164.24/api/v1/inventorycontent?artistl=s%26artistf=c 
     this.queryParams = this.utilService.parseQueryStringUrl();
