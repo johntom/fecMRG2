@@ -157,6 +157,7 @@ export class SearchResults {
   async deleteData(updatedItem) {
 
     let response = await this.api.deletemlrow(updatedItem);
+      await this.loadData();
     this.datasource.read()
 
 
@@ -181,22 +182,30 @@ export class SearchResults {
     })
   }
   async deletelist() {
-// 2020
-let name = this.mailinglist;
+    // 2020
+    let name = this.mailinglist;
 
-  let obj = {}
-      obj.type = 2
-      obj.name = `You are about to delete all items in the mailinglist ${name} Press Yes or Cancel?`
-    let res = await  this.dialogService.open({ viewModel: Promptyn, model: obj, lock: false }).whenClosed(response => {
-        if (!response.wasCancelled) {
-          this.addnewms(findvalue)
-        } else {
-          console.log('cancel');
-        }
-        console.log(response.output);
-      });
+    let obj = {}
+    obj.type = 1 //question.type 
+    obj.name = `You are about to delete all items in the mailinglist ${name} Press Cancel or Delete?`
+    let ans = ''
+    let res = await this.dialogService.open({ viewModel: Promptyn, model: obj, lock: false }).whenClosed(response => {
+      if (!response.wasCancelled) {
+        // this.addnewms(findvalue)
+        ans = false
+      } else {
+        console.log('cancel');
+        ans = true
+      }
+      console.log(response.output);
+    });
 
-alert('res+'+res) 
+    // alert('res '+ans) 
+    if (!ans) {
+      let response = await this.api.deletemlistname(name);
+      await this.loadData();
+      this.datasource.read()
+    }
 
     // let response = await this.api.deletemlistname(name);
     // this.datasource.read()
@@ -233,13 +242,13 @@ alert('res+'+res)
     this.datasource.read()
   }
   performClear() {
-       this.search.keywords = []
+    this.search.keywords = []
     //  this.multiselect-keywords=''
-      this.search.genres = []
-      this.search.mailingStatus = 0
-      this.search.searchedCriteria = ''
-      this.search.mailingStatus = 0
-      this.busy.active = false
+    this.search.genres = []
+    this.search.mailingStatus = 0
+    this.search.searchedCriteria = ''
+    this.search.mailingStatus = 0
+    this.busy.active = false
   }
   performDefault() {
     this.search.mailingStatus = 1
@@ -254,7 +263,8 @@ alert('res+'+res)
 
       let search = this.search //JSON.stringify(this.search)    
       ///// let str = `?mailinglist=${search.mailinglist}`
-      let str = `?billinglist=${search.mailinglist}`
+      let strStart = `?billinglist=${search.mailinglist}`
+      let str = ''
       //  let str =''
       if (search.artists !== undefined) {
         str += `&artists=${search.artists}`
@@ -269,7 +279,7 @@ alert('res+'+res)
       if (search.city !== undefined) {
         str += `&city=${search.city}`
       }
-      if (search.state !== undefined) {
+      if (search.state !== undefined && search.state !== null) {
         str += `&state=${search.state}`
       }
       if (search.contactl !== undefined) {
@@ -284,12 +294,14 @@ alert('res+'+res)
       if (search.masterlist === true) {
         str += `&masterlist=${search.masterlist}`
       }
-      if (search.mailingStatus !== undefined) {
+      // if (search.mailingStatus !== undefined) {
+      if (search.mailingStatus !== undefined && search.mailingStatus !== 0) {
+
         str += `&mailingStatus=${search.mailingStatus}`
       }
 
 
-      
+
       console.log('\n\n================= ')
       // if (search.nomailings === true) {
       //   str += `&nomailings=${search.nomailings}`
@@ -307,81 +319,80 @@ alert('res+'+res)
         str += `&notinternational=${search.notinternational}`
       }
 
-// if (search.catalogid !== undefined null) {
-//         // only allowed
-//          str = `?billinglist=${search.mailinglist}`
-//         str += `&catalogid=${search.catalogid}`
-//       }
+      // if (search.catalogid !== undefined null) {
+      //         // only allowed
+      //          str = `?billinglist=${search.mailinglist}`
+      //         str += `&catalogid=${search.catalogid}`
+      //       }
+
+      if (str === '') {
+        alert(' you must add a filter')
+        this.busy.active = false
+      } else {
+        str = strStart + str
+        this.previnv = this.invdata
+        // alert test
+        // this.search = {}
+        // this.search.state = 'null'
+        // this.search.catalogid = 'null'
 
 
-      this.previnv = this.invdata
-      // alert test
-      // this.search = {}
-      // this.search.state = 'null'
-      // this.search.catalogid = 'null'
+        // search.state='';
+        // search.state 'null'
+        // this.search.deceased = true
+        // this.search.nomailings = true
+        // this.search.noinfo = true
+        this.search.keywords = []
+        this.search.genres = []
+        this.search.mailingStatus = 0
+        this.search.searchedCriteria = ''
+        this.search.mailingStatus = 0
+        this.busy.active = false
+        // alert test
 
 
-      // // search.state='';
-      // // search.state 'null'
-      // // this.search.deceased = true
-      // // this.search.nomailings = true
-      // // this.search.noinfo = true
-      // this.search.keywords = []
-      // this.search.genres = []
-      // this.search.mailingStatus = 0
-      // this.search.searchedCriteria = ''
-      // this.search.mailingStatus = 0
-      // this.busy.active = false
-      // alert test
-
-      await this.api.findContact(str, this.mailinglist)//this.listname)
-        // return this.api.findContact(ds, this.listname)
-        .then((jsonRes) => {
-          this.invdata = jsonRes.data;
-
-          //  var hege = ["Cecilie", "Lone"];
-          // var stale = ["Emil", "Tobias", "Linus"];
-          // var children = hege.concat(stale);
-          // this.invdata = jsonRes.data//inv;
-          //  this.invdata = inv.concat( previnv);
-
-          // this.invdata = list(set(first_list+second_list))
-          // first_list = [1, 2, 2, 5]
-          // second_list = [2, 5, 7, 9]
-
-          // this.invdata = list(set(inv+previnv))
-          //  this.appService.artistList = lodash.sortBy(nlist, 'ArtistName');
 
 
-          this.recct = this.invdata.length;
-          if (this.recct !== 0) this.search.searchedCriteria += ';' + str + ' ct=' + this.recct
-          //await this.loadData();
-          this.search = {}
-          this.search.state = 'null'
-             this.search.catalogid = 'null'
+
+        await this.api.findContact(str, this.mailinglist)//this.listname)
+          // return this.api.findContact(ds, this.listname)
+          .then((jsonRes) => {
+            this.invdata = jsonRes.data;
+
+            //  var hege = ["Cecilie", "Lone"];
+            // var stale = ["Emil", "Tobias", "Linus"];
+            // var children = hege.concat(stale);
+            // this.invdata = jsonRes.data//inv;
+            //  this.invdata = inv.concat( previnv);
+            // this.invdata = list(set(first_list+second_list))
+            // first_list = [1, 2, 2, 5]
+            // second_list = [2, 5, 7, 9]
+            // this.invdata = list(set(inv+previnv))
+            //  this.appService.artistList = lodash.sortBy(nlist, 'ArtistName');
 
 
-          // search.state='';
-          // search.state 'null'
-          // this.search.deceased = true
-          // this.search.nomailings = true
-          // this.search.noinfo = true
-          // this.search.keywords = []
-          // this.search.genres = []
-          this.search.mailingStatus = 0
-          this.search.searchedCriteria = ''
-          this.search.mailingStatus = 0
-
-        });
+            this.recct = this.invdata.length;
+            if (this.recct !== 0) this.search.searchedCriteria += ';' + str + ' ct=' + this.recct
+            //await this.loadData();
+            this.search = {}
+            this.search.state = 'null'
+               this.search.catalogid = 'null'
 
 
-      // this.invdata = _.union(this.previnv, this.invdata);// sub arrasy show as object
-      await this.loadData();
-      this.busy.active = false
-      this.performClear(); // jan 2020
-      return this.datasource.read()
+
+            this.search.mailingStatus = 0
+            this.search.searchedCriteria = ''
+            this.search.mailingStatus = 0
+
+          });
 
 
+        await this.loadData();
+        this.busy.active = false
+        this.performClear(); // jan 2020
+        return this.datasource.read()
+
+      }
 
     }
   }

@@ -9,11 +9,11 @@ export class Promptyn {
 
     controller.settings.lock = false;
   }
-
+ 
   activate(question) {
-    if ( question.type === undefined)  {
+    if ( question.type === undefined || question.type === 1)  {
 
-     this.question = question;
+     (question.name===undefined) ? this.question= qustion : this.question =  question.name; // question
      this.questiontype = 1
     } else {
       if ( question.type === 2) {

@@ -107,7 +107,7 @@ initPusher(){
     // var url = this.baseweb + `v1/replaceartistinfo/${artist}`
     // return await this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())
 
-
+ 
   }
   //https://artbased.com/api/v1/fincontactdups
   async findContactdups() {
@@ -116,13 +116,31 @@ initPusher(){
     return await this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())
 
 
-  }
+  } 
 
+
+async  deletemlistname(name){ 
+//let url = this.baseweb + `v1/mailinglist/deletelist/${name}`
+ let url = this.baseweb + `v1/mailinglist/deletelist` 
+let body={}
+body.listName=name
+    return await this.http.fetch(url, {
+      method: 'delete',
+      mode: 'cors',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+        //    , 'Authorization': 'JWT ' + token
+      },
+      body: JSON.stringify(body)
+    }).then((res) => res.json());
+  }
 
 
 
   async deletemlrow(row) {
 
+    // let url = this.baseweb + `v1/mailinglist/delete/${rowd}` /${row._id}
     let url = this.baseweb + `v1/mailinglist/delete`
     return await this.http.fetch(url, {
       method: 'delete',
