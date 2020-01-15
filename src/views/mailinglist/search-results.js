@@ -178,7 +178,7 @@ export class SearchResults {
     e.container.find(".k-grid-cancel").bind("click", function () {
       flag = true
       datasource.read()
-
+ 
     })
   }
   async deletelist() {
@@ -197,10 +197,11 @@ export class SearchResults {
         console.log('cancel');
         ans = true
       }
+      return ans
       console.log(response.output);
     });
 
-    // alert('res '+ans) 
+    // alert('res '+res+' ans '+ans) 
     if (!ans) {
       let response = await this.api.deletemlistname(name);
       await this.loadData();
