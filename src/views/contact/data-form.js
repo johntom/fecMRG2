@@ -138,7 +138,7 @@ export class DataForm {
 
   }
 
- async showModal(fieldname) {
+  async showModal(fieldname) {
     this.currentItem.fieldname = fieldname
     this.currentItem.recordId = this.recordId
     let prevorgid; let prevorg
@@ -150,8 +150,8 @@ export class DataForm {
       prevorgid = ""
       prevorg = ""
     }
-      let neworg
- let res= await  this.dialogService.open({ viewModel: Promptcontact, model: this.currentItem, lock: true }).whenClosed(response => {
+    let neworg
+    let res = await this.dialogService.open({ viewModel: Promptcontact, model: this.currentItem, lock: true }).whenClosed(response => {
       if (!response.wasCancelled) {
         if (this.currentItem.prevorgs !== undefined) {
           // see if it exists in the array (only one for now)
@@ -164,12 +164,12 @@ export class DataForm {
         }
 
         // neworg = JSON.stringify(response.output.org);
- neworg =response.output.org
+        neworg = response.output.org
         // let newaddr = {
         //   _id: neworg._id, OrgName: neworg.OrgName, address: neworg.address, city: neworg.city,
         //   state: neworg.state, zip: neworg.zip
         // }
-      
+ 
         // "addresses" : [
         //       {
         //           "_id" : "5d7e631a7a045b44755bf063", 
@@ -187,17 +187,17 @@ export class DataForm {
       }
       console.log(response)
     });
-      let newaddr = {} 
-        newaddr._id = neworg._id;
-        newaddr.OrgName = neworg.OrgName;
-        newaddr.address = neworg.Address;
-        newaddr.city = neworg.City;
-        newaddr.state = neworg.State;
-        newaddr.zip = ''//neworg.zip;
-       // alert(newaddr) 
-        alert('addresses'+newaddr)//this.currentItem.addresses)
-        this.currentItem.addresses.unshift(newaddr)
-     alert('newaddr'+this.currentItem.addresses)//+' '+neworg) 
+    let newaddr = {}
+    newaddr._id = neworg._id;
+    newaddr.OrgName = neworg.OrgName;
+    newaddr.address = neworg.Address;
+    newaddr.city = neworg.City;
+    newaddr.state = neworg.State;
+    newaddr.zip = neworg.Zip;
+    // alert(newaddr) 
+    alert('addresses' + newaddr)//this.currentItem.addresses)
+    this.currentItem.addresses.unshift(newaddr)
+    alert('newaddr' + this.currentItem.addresses)//+' '+neworg) 
   }
 
   saveRecord() {

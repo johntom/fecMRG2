@@ -12,8 +12,8 @@ export class Home {
   heading = "MRG HOME PAGE";
   footer = 'DataForm FOOTER...'
   // version = ' 305.53g '   
-  versionDate = 'Wed 1/15/2020 9 AM'
-  prevversion = ' 303.58 '
+  versionDate = 'Wed 1/22/2020 5 PM'
+  prevversion = ' 303.59 '
   prevversionDate = ' 8/5/2019 5pm'
   newversion = 'none'
   issues = [
@@ -272,7 +272,7 @@ export class Home {
         this.appService.savedlists = values[3];
         this.appService.stateList = values[4];
         //            this.appService.catalogList = values[5];
-        console.log('using data orgsList....', this.appService.orgsList)
+        console.log('using data orgsList....', this.appService.orgsList) 
 
         let i, item, ct
         this.appService.LookupDataLoaded = true;
