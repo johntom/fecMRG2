@@ -12,7 +12,7 @@ export class Home {
   heading = "MRG HOME PAGE";
   footer = 'DataForm FOOTER...'
   // version = ' 305.53g '   
-  versionDate = 'Wed 1/22/2020 5 PM'
+  versionDate = 'Thu 1/30/2020 11 AM'
   prevversion = ' 303.59 '
   prevversionDate = ' 8/5/2019 5pm'
   newversion = 'none'
@@ -517,11 +517,11 @@ export class Home {
         this.appService.codesSuffix = codesSuffix//40,
         this.appService.codesAdmin = codesAdmin//41,
         // console.log(' this.orgsList', this.appService.orgsList)
-        console.log(' this.appService.codesGenre', this.appService.codesGenre)
+        //console.log(' this.appService.codesGenre', this.appService.codesGenre)
         // console.log(' this.artistList', this.appService.artistList.length)
-        console.log(' this.codesPhotoFormat', this.appService.codesPhotoFormat)//codesProvenanceLocation) 
-
-
+        //console.log(' this.codesPhotoFormat', this.appService.codesPhotoFormat)//codesProvenanceLocation) 
+ 
+ 
         // bad   this.currentItem = this.items.find(f => f.id == params.id);
         // for (i = 0; i < this.appService.artistList.length; i++) {
         //   this.appService.artistList[i].ArtistName = this.appService.artistList[i].lastName + ', ' + this.appService.artistList[i].firstName
@@ -535,14 +535,17 @@ export class Home {
         // }
         // this.appService.artistList = _.sortBy(nlist, 'ArtistName');
 
-        this.appService.artistList = _.sortBy(this.appService.artistList, 'ArtistName');
+//         this.appService.artistList = _.sortBy(this.appService.artistList, 'ArtistName');
+// for (const art of this.appService.artistList ){
+// console.log(art.LastName)
 
+// }
         // this.appService.artistList = nlist.sort(function (a, b) {
         //   var textA = a.ArtistName.toUpperCase();
         //   var textB = b.ArtistName.toUpperCase();
         //   return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
         // });
-        console.log('artistList ', this.appService.artistList.length)
+        console.log('artistList ', this.appService.artistList)// .length)
         console.log('orgsList ', this.appService.orgsList.length)
 
 

@@ -72,7 +72,7 @@ export class DataForm {
 
   }
 
-
+ 
 
 
   detached() {
@@ -83,10 +83,10 @@ export class DataForm {
     let response
       console.log('this.artist.Died',this.artist.Died)
       if( this.artist.Died===undefined) this.artist.Died=""
+      this.artist.ArtistName = this.artist.LastName + ', ' + this.artist.FirstName
     
     if (this.artist.id === 'create') {
       
-      this.artist.ArtistName = this.artist.LastName + ', ' + this.artist.FirstName
       response = await this.api.updateartistAA(this.artist);
 
       this.artist.id = response.data.id
