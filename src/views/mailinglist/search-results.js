@@ -157,7 +157,7 @@ export class SearchResults {
   async deleteData(updatedItem) {
 
     let response = await this.api.deletemlrow(updatedItem);
-      await this.loadData();
+    await this.loadData();
     this.datasource.read()
 
 
@@ -178,7 +178,7 @@ export class SearchResults {
     e.container.find(".k-grid-cancel").bind("click", function () {
       flag = true
       datasource.read()
- 
+
     })
   }
   async deletelist() {
@@ -296,14 +296,17 @@ export class SearchResults {
         str += `&masterlist=${search.masterlist}`
       }
       // if (search.mailingStatus !== undefined) {
-      if (search.mailingStatus !== undefined && search.mailingStatus !== 0) {
+      // if (search.mailingStatus !== undefined && search.mailingStatus !== 0) {
 
-        str += `&mailingStatus=${search.mailingStatus}`
-      }
+      //   str += `&mailingStatus=${search.mailingStatus}`
+      // }
+
+      if (search.mailingStatus === undefined || search.mailingStatus === 0) {
 
 
+      } else str += `&mailingStatus=${search.mailingStatus}`
 
-      console.log('\n\n================= ')
+      console.log('\n\n================= ', str)
       // if (search.nomailings === true) {
       //   str += `&nomailings=${search.nomailings}`
       // }
@@ -352,7 +355,7 @@ export class SearchResults {
         // alert test
 
 
-
+        console.log('str ', str)
 
 
         await this.api.findContact(str, this.mailinglist)//this.listname)
@@ -377,7 +380,7 @@ export class SearchResults {
             //await this.loadData();
             this.search = {}
             this.search.state = 'null'
-               this.search.catalogid = 'null'
+            this.search.catalogid = 'null'
 
 
 

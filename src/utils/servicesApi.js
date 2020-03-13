@@ -502,7 +502,7 @@ async   findArtistsAA() {
   async findContact(search, listname) {
     //  search= JSON.stringify(search) 
     let url = this.baseweb + `v1/contactcontent${search}&buildlist=${listname}`
-    console.log('url ', url)
+    console.log('findContact url ', url)
     return await this.http.fetch(url, {
       method: 'get',
       mode: 'cors',
