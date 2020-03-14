@@ -318,29 +318,26 @@ export class SearchResults {
       // }
       if (search.international === true) {
         str += `&international=${search.international}`
-      }
+      } 
       if (search.notinternational === true) {
         str += `&notinternational=${search.notinternational}`
-      }
-
+      } 
       // if (search.catalogid !== undefined null) {
       //         // only allowed
       //          str = `?billinglist=${search.mailinglist}`
       //         str += `&catalogid=${search.catalogid}`
-      //       }
-
-      if (str === '') {
-        alert(' you must add a filter')
+      //       }  
+ 
+      if (str === '') {  
+        alert(' you must add a filter') 
         this.busy.active = false
-      } else {
-        str = strStart + str
+      } else {  
+        str = strStart + str  
         this.previnv = this.invdata
         // alert test
         // this.search = {}
         // this.search.state = 'null'
         // this.search.catalogid = 'null'
-
-
         // search.state='';
         // search.state 'null'
         // this.search.deceased = true
@@ -353,16 +350,12 @@ export class SearchResults {
         this.search.mailingStatus = 0
         this.busy.active = false
         // alert test
-
-
-        console.log('str ', str)
-
-
+        console.log('str ', str) 
+        // alert('str '+ str)
         await this.api.findContact(str, this.mailinglist)//this.listname)
           // return this.api.findContact(ds, this.listname)
           .then((jsonRes) => {
             this.invdata = jsonRes.data;
-
             //  var hege = ["Cecilie", "Lone"];
             // var stale = ["Emil", "Tobias", "Linus"];
             // var children = hege.concat(stale);
@@ -373,24 +366,23 @@ export class SearchResults {
             // second_list = [2, 5, 7, 9]
             // this.invdata = list(set(inv+previnv))
             //  this.appService.artistList = lodash.sortBy(nlist, 'ArtistName');
-
-
             this.recct = this.invdata.length;
+            alert('rec ct ', this.recct)
             if (this.recct !== 0) this.search.searchedCriteria += ';' + str + ' ct=' + this.recct
             //await this.loadData();
             this.search = {}
             this.search.state = 'null'
             this.search.catalogid = 'null'
 
-
-
             this.search.mailingStatus = 0
             this.search.searchedCriteria = ''
             this.search.mailingStatus = 0
 
+
+
           });
 
-
+        alert('loadData ')
         await this.loadData();
         this.busy.active = false
         this.performClear(); // jan 2020
