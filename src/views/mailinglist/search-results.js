@@ -367,7 +367,8 @@ export class SearchResults {
             // this.invdata = list(set(inv+previnv))
             //  this.appService.artistList = lodash.sortBy(nlist, 'ArtistName');
             this.recct = this.invdata.length;
-            alert('rec ct ', this.recct)
+            // alert('rec ct '+ this.recct)
+              console.log('str ',  this.recct)
             if (this.recct !== 0) this.search.searchedCriteria += ';' + str + ' ct=' + this.recct
             //await this.loadData();
             this.search = {}
@@ -382,7 +383,7 @@ export class SearchResults {
 
           });
 
-        alert('loadData ')
+        // alert('loadData ')
         await this.loadData();
         this.busy.active = false
         this.performClear(); // jan 2020
