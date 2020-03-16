@@ -151,7 +151,7 @@ export class SearchResults {
     this.showhelp = false
     // this.selectedContent = '<b>' + imageCat[this.imageindex].Title + '</b> </br>' + imageCat[this.imageindex].Caption;
 
-    let help = 'Each Seperate search is build with <b>And Logic</b></br>'
+    let help = 'Each Seperate search is build with <b>And Logic</b> except where noted in label with [or]</br>'
     help = help + 'Each Addional search is build with <b>Or Logic</b></br>'
     help = help + 'i.e Select Mailing Status=nomail, domestic and type= Art Fair & Billionaire</br>'
     help = help + 'will fetch every contact with all those consitions using <b>And Logic</b></br>'
