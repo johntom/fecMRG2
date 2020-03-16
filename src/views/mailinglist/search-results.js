@@ -32,13 +32,22 @@ export class SearchResults {
   hide9 = true
   item = {}
   message = ''
-
+  
   mailingstatus = [
     { id: 1, name: 'Mailing list' },
     { id: 2, name: 'No Mailings' },
     { id: 3, name: 'Unsubscribed' }
   ]
-
+  showhelp= false
+//   help='Each Seperate search is build with And Logic'
+//  help=help+'Each Seperate search is build with Or Logic'
+//  help=help+'i.e Select Mailing Status=nomail, domestic and type= Art Fair & Billionare'
+//  help=help+'will fetch every contact with all those consitions'
+//  help=help+'if you select i.e Select Mailing Status=nomail, domestic and type= Art Fair & Billionare'
+//  help=help+'press search '
+//  help=help+'then if you select i.e Select Mailing Status=nomail, domestic and type=Billionaire'
+//  help=help+'you will have a larger result set where each contact will have one or both types'
+ 
 
   //  excelExport(e) {
   //       //   var rows = e.workbook.sheets[0].rows;
@@ -123,7 +132,7 @@ export class SearchResults {
     sort: [{ field: 'LastName', dir: 'asc' }, { field: 'FirstName', dir: 'asc' }],
 
   })
-
+ 
   constructor(router, api, utilService, appService, dataService, dialogService) {
     this.router = router;
     this.api = api;
@@ -148,7 +157,18 @@ export class SearchResults {
     //http://www.sobell.net/busy-spinner-in-aurelia/
     this.busy = {}
     this.busy.active = true
-
+this.showhelp= false 
+      // this.selectedContent = '<b>' + imageCat[this.imageindex].Title + '</b> </br>' + imageCat[this.imageindex].Caption;
+    
+let  help='Each Seperate search is build with <b>And Logic</b></br>'
+ help=help+'Each Addional search is build with <b>Or Logic</b></br>'
+ help=help+'i.e Select Mailing Status=nomail, domestic and type= Art Fair & Billionaire</br>'
+ help=help+'will fetch every contact with all those consitions using <b>And Logic</b></br>'
+ help=help+'if you select i.e Select Mailing Status=nomail, domestic and type= Art Fair & Billionare</br>'
+ help=help+'press search </br>'
+ help=help+'then if you select i.e Select Mailing Status=nomail, domestic and type=Billionaire</br>'
+ help=help+'you will have a larger result set where each contact will have one or both types using <b>Or Logic</b></br>'
+ this.help=help;
   }
 
   textAreaEditor(container, options) {
@@ -211,6 +231,13 @@ export class SearchResults {
     // let response = await this.api.deletemlistname(name);
     // this.datasource.read()
   }
+
+
+async showhelpfunc(){
+this.showhelp=!this.showhelp;
+}
+
+
   async activate(params, routeConfig) {
     // //http://74.114.164.24/api/v1/inventorycontent?artistl=s%26artistf=c 
     this.queryParams = this.utilService.parseQueryStringUrl();
@@ -295,15 +322,8 @@ export class SearchResults {
       if (search.masterlist === true) {
         str += `&masterlist=${search.masterlist}`
       }
-      // if (search.mailingStatus !== undefined) {
-      // if (search.mailingStatus !== undefined && search.mailingStatus !== 0) {
-
-      //   str += `&mailingStatus=${search.mailingStatus}`
-      // }
-
+     
       if (search.mailingStatus === undefined || search.mailingStatus === 0) {
-
-
       } else str += `&mailingStatus=${search.mailingStatus}`
 
       console.log('\n\n================= ', str)
@@ -334,66 +354,40 @@ export class SearchResults {
       } else {  
         str = strStart + str  
         this.previnv = this.invdata
-        // alert test
-        // this.search = {}
-        // this.search.state = 'null'
-        // this.search.catalogid = 'null'
-        // search.state='';
-        // search.state 'null'
-        // this.search.deceased = true
-        // this.search.nomailings = true
-        // this.search.noinfo = true
-        this.search.keywords = []
-        this.search.genres = []
-        this.search.mailingStatus = 0
-        this.search.searchedCriteria = ''
-        this.search.mailingStatus = 0
-        this.busy.active = false
-        // alert test
+       ////  this.performClear();
+        // this.search.keywords = []
+        // this.search.genres = []
+        // this.search.mailingStatus = 0
+        // this.search.searchedCriteria = ''
+        // this.search.mailingStatus = 0
+        // this.busy.active = false
         console.log('str ', str) 
-        // alert('str '+ str)
         await this.api.findContact(str, this.mailinglist)//this.listname)
-          // return this.api.findContact(ds, this.listname)
           .then((jsonRes) => {
             this.invdata = jsonRes.data;
-            //  var hege = ["Cecilie", "Lone"];
-            // var stale = ["Emil", "Tobias", "Linus"];
-            // var children = hege.concat(stale);
-            // this.invdata = jsonRes.data//inv;
-            //  this.invdata = inv.concat( previnv);
-            // this.invdata = list(set(first_list+second_list))
-            // first_list = [1, 2, 2, 5]
-            // second_list = [2, 5, 7, 9]
-            // this.invdata = list(set(inv+previnv))
-            //  this.appService.artistList = lodash.sortBy(nlist, 'ArtistName');
             this.recct = this.invdata.length;
             // alert('rec ct '+ this.recct)
               console.log('str ',  this.recct)
             if (this.recct !== 0) this.search.searchedCriteria += ';' + str + ' ct=' + this.recct
-            //await this.loadData();
-            this.search = {}
-            this.search.state = 'null'
-            this.search.catalogid = 'null'
-
-            this.search.mailingStatus = 0
-            this.search.searchedCriteria = ''
-            this.search.mailingStatus = 0
-
-
-
+        // mar16     this.search = {}
+        // mar16     this.search.state = 'null'
+        // mar16     this.search.catalogid = 'null'
+        // mar16     this.search.mailingStatus = 0
+        // mar16     this.search.searchedCriteria = ''
+       
           });
 
         // alert('loadData ')
         await this.loadData();
         this.busy.active = false
-        this.performClear(); // jan 2020
+        // mar16 this.performClear(); // jan 2020
         return this.datasource.read()
 
       }
 
     }
   }
-
+ 
 
   loadGrid() {
     let options = localStorage["kendo-grid-mail"]
@@ -418,19 +412,12 @@ export class SearchResults {
     });
   }
   async loadData() {
-    console.log('this.loadData ')
-    let s2 = '1-1-2016';
-    let s3 = '10-21-2016';
-    //let inv;
-
+    //console.log('this.loadData ')
+    //let s2 = '1-1-2016';
+    //let s3 = '10-21-2016';
     return this.api.findmailinglist(this.mailinglist).then((jsonRes) => {
-
       this.invdata = jsonRes.data;
-      // this.invdata = inv;
       this.recct = this.invdata.length;
-      // this.busy.active = false
-
-      // return this.invdata
     });
   }
 

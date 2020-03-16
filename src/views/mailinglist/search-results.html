@@ -51,6 +51,19 @@
 		.custom-file-input:active::before {
 			background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
 		}
+    .help {
+  text-align: left;
+  /* margin: 10% 0 0 0; */
+   margin: 10 0 10 0;
+  box-sizing: border-box;
+}
+ .help .message{
+  font-size: 18px; 
+  line-height: 18px;
+  /* text-shadow: rgba(0, 0, 0, 0.5) 0 0 15px; */
+  /* text-transform: uppercase; */
+  /* font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; */
+  }
 	</style>
 	<div class="modal fade" id="myModal" ref="myModal">
 		<div class="modal-dialog">
@@ -112,7 +125,7 @@
 									</strong>
 							</div>
 						</div> -->
-
+ 
 							<div class="flex-row-none">
 								<div class="form-group flex-column-1">
 									<script>
@@ -133,6 +146,15 @@
 										<div class="message">fetching records</div>
 										<i class="fa fa-spinner fa-spin"></i>
 									</div>
+ 
+									<div show.bind="showhelp" ref="showhelpref" class="help">
+										<!-- <div  class="message">${help}</div> -->
+   <div class="message" style="margin-left:10px" innerHTML.bind='help'></div>
+
+									</div>
+
+
+
 									<!-- k-excel.bind="{ fileName:'Mailinglist.xlsx',allPages: true }"    
                   k-toolbar.bind="['excel']"
                     k-excel.bind="{ fileName:'Mailinglist.xlsx',allPages: true }"            
@@ -162,8 +184,7 @@
 									<ak-grid class="flex-row-1 overflow-y-auto" id="grid" k-data-source.bind="datasource" k-widget.bind="grid" k-sortable.bind="{ mode: 'multiple',   allowUnsort: 'true'}"
 									 k-filterable.bind="{  mode: 'row' }" k-editable="popup" k-reorderable.bind="true" k-resizable.bind="true" k-on-edit.delegate="onEdit($event.detail)"
 									 k-on-change.delegate="rowSelected($event.detail)" k-toolbar.bind="['excel']" k-persist-selection.bind="true" k-pageable.bind="true"
-									k-groupable.bind="true"
-                   k-excel.bind="{ fileName:'Mailinglist.xlsx',allPages: true }" k-column-menu.bind="true">
+									 k-groupable.bind="true" k-excel.bind="{ fileName:'Mailinglist.xlsx',allPages: true }" k-column-menu.bind="true">
 										<div style="width: 1100px"></div>
 										<!-- <ak-col  k-template="#  #"></ak-col> -->
 										<ak-col k-filterable.bind="false" k-width="160px" k-title="Cmd" k-command.bind="['edit','delete']" k-title="&nbsp;" k-locked.bind="true"
@@ -172,9 +193,9 @@
 										<ak-col k-field="LastName" k-title="Last Name" k-filterable.bind="{ multi: true, search: true }" k-width.bind="180" k-template="<button click.delegate='detailsEdit($event)' class='k-button'>#=LastName#</button>">
 										</ak-col>
 										<ak-col k-title="First Name" k-width="110px" k-field="FirstName" k-filterable.bind="{ multi: true, search: true }"></ak-col>
-									<ak-col k-title="Emails" k-width="120px" k-field="Emails" k-filterable.bind="{ multi: true, search: true }"></ak-col>
-								
-                		<ak-col k-title="Types" k-width="110px" k-field="types" k-filterable.bind="{ multi: true, search: true }" k-editor.bind="textAreaEditor"></ak-col>
+										<ak-col k-title="Emails" k-width="120px" k-field="Emails" k-filterable.bind="{ multi: true, search: true }"></ak-col>
+
+										<ak-col k-title="Types" k-width="110px" k-field="types" k-filterable.bind="{ multi: true, search: true }" k-editor.bind="textAreaEditor"></ak-col>
 										<ak-col k-title="Artists" k-width="190px" k-field="artists" k-filterable.bind="{ multi: true, search: true }" k-editor.bind="textAreaEditor"></ak-col>
 
 										<ak-col k-title="Genres" k-width="110px" k-field="genres" k-filterable.bind="{ multi: true, search: true }" k-editor.bind="textAreaEditor"></ak-col>
@@ -248,7 +269,7 @@
 										<div class="Rtable-cell-70 Rtable-cell--highlight">
 											<ak-multiselect k-value.two-way="search.keywords" k-placeholder="Select ContactTypes..." k-data-text-field="Description"
 											 k-data-value-field="Description" k-height.bind="400" k-data-source.bind="appService.codesOrgContactTypes" k-widget.two-way="multiselect"
-										 id="multiselect-keywords">
+											 id="multiselect-keywords">
 
 											</ak-multiselect>
 										</div>
@@ -305,7 +326,7 @@
 										<div class="Rtable-cell-70  Rtable-cell--highlight">
 											<input type="text " xid="State " class="form-control input-sm " value.bind="search.contactf">
 										</div>
- 
+
 										<div class="Rtable-cell-30 Rtable-cell--highlight">
 											<strong>Catalog Sent (exclusive) </strong>
 										</div>
@@ -316,9 +337,9 @@
 												${opt.CatalogTitle}
 											</option>
 										</select>
-										</div> 
-  
-  
+										</div>
+
+
 
 										<div class="Rtable-cell-30 Rtable-cell--highlight">
 											<strong>Search Criteria</strong>
@@ -329,7 +350,8 @@
 
 									</div>
 									<button id="searchInputBtn" class="btn btn-primary" click.delegate="performSearch()" type="button"><strong>S</strong>earch & Build list! </button>
-<button id="deleteListBtn" class="btn btn-danger" click.delegate="deletelist()" type="button">Delete all records in this mailiinglist! </button>
+									<button id="deleteListBtn" class="btn btn-danger" click.delegate="deletelist()" type="button">Delete all records in this mailiinglist! </button>
+									<button id="helpBtn" class="btn btn-info" click.delegate="showhelpfunc()" type="button">show help toggle </button>
 
 									<!-- 2nd -->
 
