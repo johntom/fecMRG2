@@ -51,19 +51,21 @@
 		.custom-file-input:active::before {
 			background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
 		}
-    .help {
-  text-align: left;
-  /* margin: 10% 0 0 0; */
-   margin: 10 0 10 0;
-  box-sizing: border-box;
-}
- .help .message{
-  font-size: 18px; 
-  line-height: 18px;
-  /* text-shadow: rgba(0, 0, 0, 0.5) 0 0 15px; */
-  /* text-transform: uppercase; */
-  /* font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; */
-  }
+
+		.help {
+			text-align: left;
+			/* margin: 10% 0 0 0; */
+			margin: 10 0 10 0;
+			box-sizing: border-box;
+		}
+
+		.help .message {
+			font-size: 18px;
+			line-height: 18px;
+			/* text-shadow: rgba(0, 0, 0, 0.5) 0 0 15px; */
+			/* text-transform: uppercase; */
+			/* font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; */
+		}
 	</style>
 	<div class="modal fade" id="myModal" ref="myModal">
 		<div class="modal-dialog">
@@ -125,7 +127,7 @@
 									</strong>
 							</div>
 						</div> -->
- 
+
 							<div class="flex-row-none">
 								<div class="form-group flex-column-1">
 									<script>
@@ -146,10 +148,10 @@
 										<div class="message">fetching records</div>
 										<i class="fa fa-spinner fa-spin"></i>
 									</div>
- 
+
 									<div show.bind="showhelp" ref="showhelpref" class="help">
 										<!-- <div  class="message">${help}</div> -->
-   <div class="message" style="margin-left:10px" innerHTML.bind='help'></div>
+										<div class="message" style="margin-left:10px" innerHTML.bind='help'></div>
 
 									</div>
 
@@ -367,17 +369,7 @@
 				</form>
 			</div>
 			<footerform class="flex-row-none">
-				<!-- 		
-				<span>&nbsp;&nbsp;
-					<button class="btn btn-sm btn-primary " click.delegate="saveinventory(0)">
-						Save & Stay
-					</button>
-					<button class="btn btn-sm btn-info " click.delegate="saveinventory(1)">
-						Save & Close
-					</button>
-           &nbsp;&nbsp;
 
-				</span> -->
 
 
 				<span>&nbsp;&nbsp;

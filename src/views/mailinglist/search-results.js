@@ -26,28 +26,19 @@ export class SearchResults {
   title = '';
   invcode = '';
   queryParams = '';
-  hide1 = true
-  hide2 = true
+  hide1 = true;
+  hide2 = true;
 
-  hide9 = true
-  item = {}
-  message = ''
-  
+  hide9 = true;
+  item = {};
+  message = '';
+  showhelp = false;
   mailingstatus = [
     { id: 1, name: 'Mailing list' },
     { id: 2, name: 'No Mailings' },
     { id: 3, name: 'Unsubscribed' }
   ]
-  showhelp= false
-//   help='Each Seperate search is build with And Logic'
-//  help=help+'Each Seperate search is build with Or Logic'
-//  help=help+'i.e Select Mailing Status=nomail, domestic and type= Art Fair & Billionare'
-//  help=help+'will fetch every contact with all those consitions'
-//  help=help+'if you select i.e Select Mailing Status=nomail, domestic and type= Art Fair & Billionare'
-//  help=help+'press search '
-//  help=help+'then if you select i.e Select Mailing Status=nomail, domestic and type=Billionaire'
-//  help=help+'you will have a larger result set where each contact will have one or both types'
- 
+
 
   //  excelExport(e) {
   //       //   var rows = e.workbook.sheets[0].rows;
@@ -132,7 +123,7 @@ export class SearchResults {
     sort: [{ field: 'LastName', dir: 'asc' }, { field: 'FirstName', dir: 'asc' }],
 
   })
- 
+
   constructor(router, api, utilService, appService, dataService, dialogService) {
     this.router = router;
     this.api = api;
@@ -157,18 +148,21 @@ export class SearchResults {
     //http://www.sobell.net/busy-spinner-in-aurelia/
     this.busy = {}
     this.busy.active = true
-this.showhelp= false 
-      // this.selectedContent = '<b>' + imageCat[this.imageindex].Title + '</b> </br>' + imageCat[this.imageindex].Caption;
-    
-let  help='Each Seperate search is build with <b>And Logic</b></br>'
- help=help+'Each Addional search is build with <b>Or Logic</b></br>'
- help=help+'i.e Select Mailing Status=nomail, domestic and type= Art Fair & Billionaire</br>'
- help=help+'will fetch every contact with all those consitions using <b>And Logic</b></br>'
- help=help+'if you select i.e Select Mailing Status=nomail, domestic and type= Art Fair & Billionare</br>'
- help=help+'press search </br>'
- help=help+'then if you select i.e Select Mailing Status=nomail, domestic and type=Billionaire</br>'
- help=help+'you will have a larger result set where each contact will have one or both types using <b>Or Logic</b></br>'
- this.help=help;
+    this.showhelp = false
+    // this.selectedContent = '<b>' + imageCat[this.imageindex].Title + '</b> </br>' + imageCat[this.imageindex].Caption;
+
+    let help = 'Each Seperate search is build with <b>And Logic</b></br>'
+    help = help + 'Each Addional search is build with <b>Or Logic</b></br>'
+    help = help + 'i.e Select Mailing Status=nomail, domestic and type= Art Fair & Billionaire</br>'
+    help = help + 'will fetch every contact with all those consitions using <b>And Logic</b></br>'
+    help = help + 'if you select i.e Select Mailing Status=nomail, domestic and type= Art Fair & Billionare</br>'
+    help = help + 'press search </br>'
+    help = help + 'then if you select i.e Select Mailing Status=nomail, domestic and type=Billionaire</br>'
+    help = help + 'you will have a larger result set where each contact will have one or both types using <b>Or Logic</b></br>'
+    help = help + '</br>'
+    help = help + 'Some large searches might require closing form and reopening</br>'
+
+    this.help = help;
   }
 
   textAreaEditor(container, options) {
@@ -231,13 +225,6 @@ let  help='Each Seperate search is build with <b>And Logic</b></br>'
     // let response = await this.api.deletemlistname(name);
     // this.datasource.read()
   }
-
-
-async showhelpfunc(){
-this.showhelp=!this.showhelp;
-}
-
-
   async activate(params, routeConfig) {
     // //http://74.114.164.24/api/v1/inventorycontent?artistl=s%26artistf=c 
     this.queryParams = this.utilService.parseQueryStringUrl();
@@ -322,7 +309,7 @@ this.showhelp=!this.showhelp;
       if (search.masterlist === true) {
         str += `&masterlist=${search.masterlist}`
       }
-     
+
       if (search.mailingStatus === undefined || search.mailingStatus === 0) {
       } else str += `&mailingStatus=${search.mailingStatus}`
 
@@ -338,43 +325,46 @@ this.showhelp=!this.showhelp;
       // }
       if (search.international === true) {
         str += `&international=${search.international}`
-      } 
+      }
       if (search.notinternational === true) {
         str += `&notinternational=${search.notinternational}`
-      } 
+      }
       // if (search.catalogid !== undefined null) {
       //         // only allowed
       //          str = `?billinglist=${search.mailinglist}`
       //         str += `&catalogid=${search.catalogid}`
       //       }  
- 
-      if (str === '') {  
-        alert(' you must add a filter') 
+
+      if (str === '') {
+        alert(' you must add a filter')
         this.busy.active = false
-      } else {  
-        str = strStart + str  
+      } else {
+        str = strStart + str
         this.previnv = this.invdata
-       ////  this.performClear();
+        ////  this.performClear();
         // this.search.keywords = []
         // this.search.genres = []
         // this.search.mailingStatus = 0
         // this.search.searchedCriteria = ''
         // this.search.mailingStatus = 0
         // this.busy.active = false
-        console.log('str ', str) 
+        console.log('str ', str)
+        //       doWork(callback) {
+        //  setTimeout(() => callback(this.name), 15); 
+        // }
         await this.api.findContact(str, this.mailinglist)//this.listname)
           .then((jsonRes) => {
             this.invdata = jsonRes.data;
             this.recct = this.invdata.length;
             // alert('rec ct '+ this.recct)
-              console.log('str ',  this.recct)
+            console.log('str ', this.recct)
             if (this.recct !== 0) this.search.searchedCriteria += ';' + str + ' ct=' + this.recct
-        // mar16     this.search = {}
-        // mar16     this.search.state = 'null'
-        // mar16     this.search.catalogid = 'null'
-        // mar16     this.search.mailingStatus = 0
-        // mar16     this.search.searchedCriteria = ''
-       
+            // mar16     this.search = {}
+            // mar16     this.search.state = 'null'
+            // mar16     this.search.catalogid = 'null'
+            // mar16     this.search.mailingStatus = 0
+            // mar16     this.search.searchedCriteria = ''
+
           });
 
         // alert('loadData ')
@@ -383,11 +373,13 @@ this.showhelp=!this.showhelp;
         // mar16 this.performClear(); // jan 2020
         return this.datasource.read()
 
-      }
 
+      }
     }
   }
- 
+  async showhelpfunc() {
+    this.showhelp = !this.showhelp;
+  }
 
   loadGrid() {
     let options = localStorage["kendo-grid-mail"]
@@ -412,12 +404,19 @@ this.showhelp=!this.showhelp;
     });
   }
   async loadData() {
-    //console.log('this.loadData ')
-    //let s2 = '1-1-2016';
-    //let s3 = '10-21-2016';
+    console.log('this.loadData ')
+    let s2 = '1-1-2016';
+    let s3 = '10-21-2016';
+    //let inv;
+
     return this.api.findmailinglist(this.mailinglist).then((jsonRes) => {
+
       this.invdata = jsonRes.data;
+      // this.invdata = inv;
       this.recct = this.invdata.length;
+      // this.busy.active = false
+
+      // return this.invdata
     });
   }
 
