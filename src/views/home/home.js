@@ -12,10 +12,10 @@ export class Home {
   heading = "MRG HOME PAGE";
   footer = 'DataForm FOOTER...'
   // version = ' 305.53g '   
-  versionDate = 'Fri 3/313/2020 11 AM'
+  versionDate = 'Sat 4/4/2020 11 PM'
   prevversion = ' 303.59 '
   prevversionDate = ' 8/5/2019 5pm'
-  newversion = 'none'
+  newversion = 'none '
   issues = [
     // or press refresh button upper left corner',
     //https://circleci.com/workflow-run/1f3685ab-daba-41d7-8d25-6279df547b19

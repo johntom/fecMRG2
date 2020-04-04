@@ -83,10 +83,15 @@ export class SearchResults {
     let selectedRow = grid.select();
     let dataItem = grid.dataItem(selectedRow);
 
+    
+    // 4/3/2020
     if (this.datasource._data.length === 1) {
       let tab = this.appService.tabs.find(f => f.isSelected);
       this.closeTab(tab);
     }
+
+
+
     // find index
     //  let garray = this.datasource._data;
     // let gid = this.invdata.findIndex(x => x.id === dataItem.id)
@@ -128,12 +133,13 @@ export class SearchResults {
           this.recct = inv.length;
           // this.spinner.remove()
           this.busy.active = false
-          if (this.recct === 1) {
-            let rt2 = '#/contact/data/' + inv[0].id + '?' + inv[0].LastName + ',' + inv[0].FirstName
-            this.router.navigate(rt2);
-            let tab = this.appService.tabs.find(f => f.isSelected);
-            this.closeTab(tab);
-          } else
+           // 4/3/2020
+          // if (this.recct === 1) {
+          //   let rt2 = '#/contact/data/' + inv[0].id + '?' + inv[0].LastName + ',' + inv[0].FirstName
+          //   this.router.navigate(rt2);
+          //   let tab = this.appService.tabs.find(f => f.isSelected);
+          //   this.closeTab(tab);
+          // } else
             if (inv === 0 || this.recct === 0) {
               this.message = ' no records found '
               let tab = this.appService.tabs.find(f => f.isSelected);
