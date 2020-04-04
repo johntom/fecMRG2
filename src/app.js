@@ -16,7 +16,7 @@ export class App {
     this.secured = false
     // this.user='jrt0'
     // this.password='111'
-    this.appService.version = '406.27' 
+    this.appService.version = '406.28' 
   }
 
   // use activationStrategy for all wildcards 
@@ -141,7 +141,7 @@ export class App {
           this.appService.gridview = 0
           this.secured = true
 
-        }
+        } 
         break;
       case 'francesca':
         if (this.password === 'Charlotte12!') {

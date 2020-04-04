@@ -1,68 +1,23 @@
-<!-- <template>
-	<require from="aurelia-kendoui-bridge/multiselect/multiselect"></require>
-	<require from="../../resources/value-converters/stringify"></require>
-	<require from="../../../styles/flex.css"></require>
-	 <ux-dialog style="width:400px; height: 250px;">
-    
-		<ux-dialog-header class="modal-header modal-header-success">
-			<div class="alert alert-danger">
-					 <h1 style="width:400px">${heading}</h1>
-          	
-			</div>
-		</ux-dialog-header>
-	
-		<ux-dialog-body>
-
-			<div class="form-group flex-column-1">
-				<h2> ${doc} </h2>
-				<table class="table-condensed table">
-					<thead class="table-header-blue">
-
-					</thead>
-					<tfoot>
-						<tr>
-							<td></td>
-						</tr>
-					</tfoot>
-					<tbody>
-					
-
-
-					</tbody>
-				</table>
-			</div>
-			<hr>
-		</ux-dialog-body>
-
-		<ux-dialog-footer>
-			<button click.trigger="controller.cancel()">Cancel and Close </button>
-			<button click.trigger="save()">Save Reproduction and Close </button>
-
-		</ux-dialog-footer>
-	</ux-dialog>
-</template> -->
-
-
 <template>
+	<style>
+		ai-dialog-container {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
 
-<style>
-ai-dialog-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-ai-dialog-container > div {
-  margin: auto !important;
-}
-</style>
+		ai-dialog-container>div {
+			margin: auto !important;
+		}
+	</style>
 	<ux-dialog style="width:800px; height: 550px;">
-	
+
 		<ux-dialog-header class="modal-header modal-header-success">
 			<div class="alert alert-danger">
-				<h1>${heading}</h1>
+				<h2>${heading}
 
-	<button click.trigger="controller.cancel()">Close </button>
-
+					<button click.trigger="controller.cancel()">Close </button>
+				</h2>
 			</div>
 		</ux-dialog-header>
 
@@ -74,15 +29,15 @@ ai-dialog-container > div {
 				</div>
 				<div class="Rtable-cell-70  Rtable-cell--highlight">
 					<input type="text" id="OrgName" class="form-control input-sm" value.bind="item.OrgName" disabled>
-    		
+
 				</div>
 				<div class="Rtable-cell-30 Rtable-cell--highlight">
 					<strong> Address</strong>
 				</div>
 				<div class="Rtable-cell-70  Rtable-cell--highlight">
 					<input type="text" id="Address" class="form-control input-sm" value.bind="item.Address" disabled>
-				
-      	</div>
+
+				</div>
 				<div class="Rtable-cell-30 Rtable-cell--highlight">
 					<strong> City</strong>
 				</div>
@@ -114,23 +69,21 @@ ai-dialog-container > div {
 				</div>
 				<div class="Rtable-cell-70  Rtable-cell--highlight">
 
-          	<textarea rows="6" cols="100" id="Notes" class="form-control input-sm" value.bind="item.Notes" ng-disabled=""></textarea>
+					<textarea rows="6" cols="100" id="Notes" class="form-control input-sm" value.bind="item.Notes" ng-disabled=""></textarea>
 
 				</div>
 			</div>
 
 			<h4>
-				<i class="fa fa-folder-open"></i> Phone
-	
-
-
-			</h4>
-			<table class="table-condensed table">
+				<i class="fa fa-folder-open"></i> Phone 
+			</h4> 
+			<table class="table-condensed table" style="height:150px">
+    		
 				<thead class="table-header-blue">
-					<tr>
+					<tr>  
 
 						<tr>
-							<th width="300px" class="header">type
+							<th width="150px" class="header">type
 							</th>
 							<th width="200px" class="header">phoneno
 							</th>
@@ -152,10 +105,10 @@ ai-dialog-container > div {
 						<td></td>
 					</tr>
 				</tfoot>
-				<tbody>
+				<tbody style="height:150px">
 					<tr repeat.for="phone of item.orgphones" with.bind="phone">
 
-						<td width="300px">
+						<td width="150px">
 							<select id="phonetype" class="form-control  input-sm" value.bind="type"> 
                       <option model.bind="null">Choose...filterOnCode</option> 
                          <option repeat.for="opt of appService.codesPhoneType " model.bind="opt.id">
@@ -186,7 +139,7 @@ ai-dialog-container > div {
 						</td>
 						<td width="225px">
 
-				
+
 							<!-- <button class="btn btn-danger" click.delegate="remove(note,$index)">Delete</button> -->
 
 						</td>
@@ -196,23 +149,28 @@ ai-dialog-container > div {
 			</table>
 
 
- <div class="input-field col s6">
-                                <i class="material-icons prefix">search</i>
-                                <input id="icon_prefix" type="text" value.bind="searchcontact & debounce" class="validate">
-                            </div>
-	<table class="table-condensed table">
+			<div class="input-field col s6">
+				<i class="material-icons prefix">search lastname</i>
+				<input id="icon_prefix" type="text" value.bind="searchcontactp & debounce" 
+        class="validate">
+			</div>
+			<table class="table-condensed table">
 				<thead class="table-header-blue">
 					<tr>
 
 						<tr>
 							<th width="350px" class="header">name
 							</th>
-							<th width="200px" class="header">phone 1 
+              		<th width="300px" class="header">emails
 							</th>
-							<th width="200px" class="header">phone 2
+							<!-- <th width="200px" class="header">email 2
+							</th> -->
+							<th width="200px" class="header">phones
 							</th>
-							
-							<th width="200px" class="header">phone 3
+							<!-- <th width="100px" class="header">phone 2
+							</th> -->
+
+							<!-- <th width="125px" class="header">phone 3 -->
 
 							</th>
 						</tr>
@@ -227,24 +185,30 @@ ai-dialog-container > div {
 				<tbody>
 					<tr repeat.for="contact of item.contacts" with.bind="contact">
 
-					
+
 						<td width="350px">
-							<span >${LastName},  ${FirstName}</span>
+							<span>${LastName},  ${FirstName} / ${TitleDesc}</span>
 
-							</td>
-              <td width="200px">
-							<span >${phones[0].phoneno}, ${phones[0].ext}</span>
+						</td>
+<td width="300px">
+							<span>${emails[0].email};${emails[1].email}</span>
 
-							</td>
-                <td width="200px">
-							<span >${phones[1].phoneno}, ${phones[1].ext}</span>
+						</td>
 
-							</td>
-                <td width="200px">
-							<span >${phones[2].phoneno}, ${phones[2].ext}</span>
+             
+						<td width="200px">
+							<span>${phones[0].phoneno}, ${phones[0].ext} / ${phones[1].phoneno}, ${phones[1].ext}</span>
 
-							</td>
-				
+						</td>
+						<!-- <td width="100px">
+							<span>${phones[1].phoneno}, ${phones[1].ext}</span>
+
+						</td> -->
+						<!-- <td width="200px">
+							<span>${phones[2].phoneno}, ${phones[2].ext}</span>
+
+						</td> -->
+
 
 				</tbody>
 			</table>
