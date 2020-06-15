@@ -37,6 +37,7 @@ export class SearchResults {
     { id: 1, name: 'Mailing list' },
     { id: 2, name: 'No Mailings' },
     { id: 3, name: 'Unsubscribed' }
+    
   ]
 
 
