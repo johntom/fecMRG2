@@ -38,9 +38,13 @@ export class SearchResults {
     { id: 2, name: 'No Mailings' },
     { id: 3, name: 'Unsubscribed' }
     
+  ] 
+
+deceasedstatus = [
+    { id: 1, name: 'not deceased' },
+    { id: 2, name: 'deceased' },
+    { id: 3, name: 'either' }
   ]
-
-
   //  excelExport(e) {
   //       //   var rows = e.workbook.sheets[0].rows;
   //       //  var sheet = e.workbook.sheets[0];
@@ -250,6 +254,7 @@ export class SearchResults {
     //  this.datasource.read()
     await this.loadData();
     this.busy.active = false
+    this.search.deceasedStatus=1
   }
   async attached() {
     // await this.loadData();
@@ -310,7 +315,7 @@ export class SearchResults {
       if (search.masterlist === true) {
         str += `&masterlist=${search.masterlist}`
       }
-
+ 
       if (search.mailingStatus === undefined || search.mailingStatus === 0) {
       } else str += `&mailingStatus=${search.mailingStatus}`
 
@@ -318,9 +323,11 @@ export class SearchResults {
       // if (search.nomailings === true) {
       //   str += `&nomailings=${search.nomailings}`
       // }
-      if (search.deceased === true) {
-        str += `&deceased=${search.deceased}`
+      if (search.deceasedStatus !== undefined) {
+        // str += `&deceased=${search.deceased}`
+        str += `&deceasedStatus=${search.deceasedStatus}`
       }
+      console.log('\n\n===search.deceasedStatus============== ', search.deceasedStatus,str)
       // if (search.noinfo === true) {
       //   str += `&noinfo=${search.noinfo}`
       // }
@@ -335,7 +342,8 @@ export class SearchResults {
       //          str = `?billinglist=${search.mailinglist}`
       //         str += `&catalogid=${search.catalogid}`
       //       }  
-
+ ///// this.search.deceased = this.search.deceasedStatus// bring up eveyone
+    
       if (str === '') {
         alert(' you must add a filter')
         this.busy.active = false
@@ -349,7 +357,7 @@ export class SearchResults {
         // this.search.searchedCriteria = ''
         // this.search.mailingStatus = 0
         // this.busy.active = false
-        console.log('str ', str)
+        console.log('str ', str) 
         //       doWork(callback) {
         //  setTimeout(() => callback(this.name), 15); 
         // }

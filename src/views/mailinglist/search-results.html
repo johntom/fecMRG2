@@ -253,6 +253,18 @@
                     	<input type="radio" name="group1" model.bind="ml.id" checked.bind="search.mailingStatus"> ${ml.name} &nbsp;
 										  </label>
 										</div>
+	<div class="Rtable-cell-30 Rtable-cell--highlight">
+											<strong> Deceased Status</strong>
+										</div>
+										<div class="Rtable-cell-70 Rtable-cell--highlight">
+										<label repeat.for="mld of deceasedstatus">
+               	<input type="radio" name="group1" model.bind="mld.id" checked.bind="search.deceasedStatus"> ${mld.name} &nbsp;
+						  </label>
+										</div>
+
+
+
+
 
 										<div class="Rtable-cell-100 Rtable-cell--highlight">
 

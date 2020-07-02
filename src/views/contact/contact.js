@@ -23,9 +23,9 @@ export class Contact {
   ]
 
 deceasedstatus = [
-    { id: 0, name: 'not deceased' },
-    { id: 1, name: 'deceased' },
-    { id: 2, name: 'either' }
+    { id: 1, name: 'not deceased' },
+    { id: 2, name: 'deceased' },
+    { id: 3, name: 'either' }
   ]
 
   constructor(router, utilService, api, eventAggregator, appService) {
@@ -63,13 +63,13 @@ deceasedstatus = [
   performDefault() {
     this.search.mailingStatus = 1
     this.search.notinternational = true
-    this.search.deceasedStatus=2
+    this.search.deceasedStatus=1
   }
   activate() {
     console.log('name-tag activate before attached ');
     this.mru = []
     let mruinfo, tabindex
-    this.search.deceasedStatus=2
+    this.search.deceasedStatus=1
     mruinfo = localStorage.getItem('mru-mrgc');
     if (mruinfo === null) {
       // tabindex = 0
@@ -168,8 +168,10 @@ deceasedstatus = [
   //           _.extend(searchObj, { "deceased": false });
   //            }
   //       }
-      this.search.deceased = this.search.deceasedStatus// bring up eveyone
+
+      // this.search.deceased = this.search.deceasedStatus // bring up eveyone
       let qs = this.utilService.generateQueryString(this.search);
+      // alert(this.search.deceasedStatus+' '+qs)//this.search.deceased)
        if (qs === '?') {
         alert('Please enter search criteria')
       } else {
