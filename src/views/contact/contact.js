@@ -21,6 +21,13 @@ export class Contact {
     { id: 2, name: 'No Mailings' },
     { id: 3, name: 'Unsubscribed' }
   ]
+
+deceasedstatus = [
+    { id: 0, name: 'not deceased' },
+    { id: 1, name: 'deceased' },
+    { id: 2, name: 'either' }
+  ]
+
   constructor(router, utilService, api, eventAggregator, appService) {
     this.router = router;
     this.utilService = utilService;
@@ -42,24 +49,27 @@ export class Contact {
   }
   detached() {
     this.altAKeyPressSubscription.dispose();
-    this.altSKeyPressSubscription.dispose();
+    this.altSKeyPressSubscription.dispose(); 
   }
   addinventory() {
-    alert('add')
+    alert('add') 
     // this.router.navigate(`#/inventory/data/create`);
   }
 
   performClear() {
     this.search.mailingStatus = ''
+     this.search.deceasedStatus = 2
   }
   performDefault() {
     this.search.mailingStatus = 1
     this.search.notinternational = true
+    this.search.deceasedStatus=2
   }
   activate() {
     console.log('name-tag activate before attached ');
     this.mru = []
     let mruinfo, tabindex
+    this.search.deceasedStatus=2
     mruinfo = localStorage.getItem('mru-mrgc');
     if (mruinfo === null) {
       // tabindex = 0
@@ -115,11 +125,11 @@ export class Contact {
        if (this.mruinfo.mru10 !== undefined) {
         this.mru.push(this.mruinfo.mru10)
       }
-    }
+    }    
 
   }
-  performSearch() {
-    if (this.search) {
+  performSearch() {  
+    if (this.search) {   
       // 
       let keyword = `${this.keywordDescription}`
       let medsupport = `${this.DescriptionMS}`
@@ -140,7 +150,25 @@ export class Contact {
       // console.log('this.search ', this.search)
       // let counter = this.utilService.counter++ 
       // 
-      this.search.deceased = '0'// bring up eveyone
+//if (deceased === 0 || deceased === '0') deceased = false;
+  //  if ((deceased === '0'  || deceased == true )) {
+
+  //           //    validsearch = true
+  //           // {international:{$exists:false}}
+
+  //           //  _.extend(searchObj, { "deceased": { $exists: true } });
+  //           _.extend(searchObj, { "deceased": true });
+  //           console.log('deceased ', searchObj)
+  //       } else {
+  //            if (deceased === '-1' || deceased == false) {
+  //           validsearch = true
+  //           console.log('deceased ml ', searchObj)
+  //           // _.extend(searchObj, { "deceased": { $exists: false } });
+  //           // nov 27 2019
+  //           _.extend(searchObj, { "deceased": false });
+  //            }
+  //       }
+      this.search.deceased = this.search.deceasedStatus// bring up eveyone
       let qs = this.utilService.generateQueryString(this.search);
        if (qs === '?') {
         alert('Please enter search criteria')
