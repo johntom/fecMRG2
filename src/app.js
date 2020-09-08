@@ -16,7 +16,7 @@ export class App {
     this.secured = false
     // this.user='jrt0'
     // this.password='111'
-    this.appService.version = '406.31' 
+    this.appService.version = 's406.32' 
   }
 
   // use activationStrategy for all wildcards 
@@ -134,7 +134,14 @@ export class App {
         }
         break;
 
+   case 'Artlogic':
+        if (this.password === 'MRG100!') {
+          this.appService.loginuser = this.user
+          this.appService.gridview = 1
+          this.secured = true
 
+        }
+        break;
       case 'hooper':
         if (this.password === 'GWENstefani123!') {
           this.appService.loginuser = this.user
