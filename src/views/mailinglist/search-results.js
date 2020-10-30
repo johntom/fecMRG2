@@ -37,10 +37,10 @@ export class SearchResults {
     { id: 1, name: 'Mailing list' },
     { id: 2, name: 'No Mailings' },
     { id: 3, name: 'Unsubscribed' }
-    
-  ] 
 
-deceasedstatus = [
+  ]
+
+  deceasedstatus = [
     { id: 1, name: 'not deceased' },
     { id: 2, name: 'deceased' },
     { id: 3, name: 'either' }
@@ -254,7 +254,7 @@ deceasedstatus = [
     //  this.datasource.read()
     await this.loadData();
     this.busy.active = false
-    this.search.deceasedStatus=1
+    this.search.deceasedStatus = 1
   }
   async attached() {
     // await this.loadData();
@@ -315,7 +315,7 @@ deceasedstatus = [
       if (search.masterlist === true) {
         str += `&masterlist=${search.masterlist}`
       }
- 
+
       if (search.mailingStatus === undefined || search.mailingStatus === 0) {
       } else str += `&mailingStatus=${search.mailingStatus}`
 
@@ -327,7 +327,7 @@ deceasedstatus = [
         // str += `&deceased=${search.deceased}`
         str += `&deceasedStatus=${search.deceasedStatus}`
       }
-      console.log('\n\n===search.deceasedStatus============== ', search.deceasedStatus,str)
+      console.log('\n\n===search.deceasedStatus============== ', search.deceasedStatus, str)
       // if (search.noinfo === true) {
       //   str += `&noinfo=${search.noinfo}`
       // }
@@ -337,13 +337,17 @@ deceasedstatus = [
       if (search.notinternational === true) {
         str += `&notinternational=${search.notinternational}`
       }
+
+      if (search.nolongerherecatalogssent === true) {
+        str += `&nolongerherecatalogssent=${search.nolongerherecatalogssent}`
+      }
       // if (search.catalogid !== undefined null) {
       //         // only allowed
       //          str = `?billinglist=${search.mailinglist}`
       //         str += `&catalogid=${search.catalogid}`
       //       }  
- ///// this.search.deceased = this.search.deceasedStatus// bring up eveyone
-    
+      ///// this.search.deceased = this.search.deceasedStatus// bring up eveyone
+
       if (str === '') {
         alert(' you must add a filter')
         this.busy.active = false
@@ -357,7 +361,7 @@ deceasedstatus = [
         // this.search.searchedCriteria = ''
         // this.search.mailingStatus = 0
         // this.busy.active = false
-        console.log('str ', str) 
+        console.log('str ', str)
         //       doWork(callback) {
         //  setTimeout(() => callback(this.name), 15); 
         // }
