@@ -7,12 +7,12 @@ export class ApiService {
     this.http = http;
     this.upmess = ''
     //    new fastify backend
-    this.baseweb = 'https://artbased.com/api/'
-	  this.baseweb_home = 'https://home.artbased.com/api/'
+    this.baseweb = 'https://artbased.com/api/';
+	this.baseweb_home = 'https://home.artbased.com/api/';
 	
     // fastify with static routes
     //  this.basewebfastify = 'https://artbased.com/api/v0/mrg/'
-
+c
     //  this.basewebfastify = 'https://artbased.com/api/gofer/v0/mrg/'
 
   }
@@ -2193,10 +2193,11 @@ uploadinvdoc(formData, id) {
 
       // var url = this.baseweb + 'v1/clientsall'
 	  
-	  var url = this. baseweb_home+ 'v1/clientsall'
+	  var url = this.baseweb_home+ 'v1/clientsall'
 
-	  
-    } else var url = this.baseweb + 'v1/clientsall' + search
+	 //  } else var url = this.baseweb + 'v1/clientsall' + search  
+    } else var url = baseweb_home + 'v1/clientsall' + search
+	
     console.log('url ', url)
     return this.http.fetch(url, {
       method: 'get',
@@ -2263,5 +2264,3 @@ uploadinvdoc(formData, id) {
 
 
 }
-
-
