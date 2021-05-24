@@ -7,8 +7,9 @@ export class ApiService {
     this.http = http;
     this.upmess = ''
     //    new fastify backend
-    this.baseweb = 'https://artbased.com/api/';
-	this.baseweb_home = 'https://home.artbased.com/api/';
+    // this.baseweb = 'https://artbased.com/api/';
+    this.baseweb = 'https://home.artbased.com/api/';
+    this.baseweb_home = 'https://home.artbased.com/api/';
 	
     // fastify with static routes
     //  this.basewebfastify = 'https://artbased.com/api/v0/mrg/'
