@@ -12,7 +12,7 @@ export class ApiService {
 	
     // fastify with static routes
     //  this.basewebfastify = 'https://artbased.com/api/v0/mrg/'
-c
+
     //  this.basewebfastify = 'https://artbased.com/api/gofer/v0/mrg/'
 
   }
