@@ -11,7 +11,7 @@ import { googoose } from '../inventory/googoose';
 export class Home {
   heading = "MRG HOME PAGE";
   footer = 'DataForm FOOTER...'
-  // version = ' 305.53g '   
+  // version = ' 305.53g '   test
   versionDate = 'Fri 10/2/2020 10 AM'
   prevversion = ' 303.59 ' 
   prevversionDate = ' 8/5/2019 5pm'
