@@ -7,15 +7,36 @@ export class ApiService {
     this.http = http;
     this.upmess = ''
     //    new fastify backend
-    // this.baseweb = 'https://artbased.com/api/';
-    this.baseweb = 'https://home.artbased.com/api/';
-    this.baseweb_home = 'https://home.artbased.com/api/';
-	
-    // fastify with static routes
-    //  this.basewebfastify = 'https://artbased.com/api/v0/mrg/'
+  	
 
-    //  this.basewebfastify = 'https://artbased.com/api/gofer/v0/mrg/'
+// trails backend which I stopped on june 25 2021
+// this.baseweb = 'https://artbased.com/api/';
+// this.baseweb = 'https://home.artbased.com/api/';
+//  this.baseweb_home = 'https://home.artbased.com/api/';
 
+    this.baseweb = 'https://backend.gtztest.com/api/v1/'  // clients
+    this.MongodonApi = 'https://backend.gtztest.com/api/contacts/' //   contactsall/'
+
+/*
+test remote 
+ 
+https://backend.gtztest.com/api/v1/client
+https://backend.gtztest.com/api/v1/contacts
+local 
+http://127.0.0.1:9020/api/v1/client
+http://127.0.0.1:9020/api/v1/contacts
+https://backend.gtztest.com/api/v1/clients
+remote
+https://backend.gtztest.com/api/clientbase/clients
+local    
+http://127.0.0.1:9020/api/mrg/contacts
+http://127.0.0.1:9020/api/mrg/codes
+http://127.0.0.1:9020/api/v1/client
+http://127.0.0.1:9020/api/v1/contacts
+http://127.0.0.1:9020/api/mrg/contacts'
+*/	
+	  
+	  
   }
 
 
