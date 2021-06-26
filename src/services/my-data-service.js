@@ -201,11 +201,11 @@ async loadArtistsAA() {
 
  loadCatalog() {
     return new Promise((resolve, reject) => {
-      this.api.findArtists2()
+      this.api.getCatalogsAA()
         .then((jsonRes) => {
-          var artistList = jsonRes
-          console.log('artistList', artistList)
-          resolve(artistList);
+          var catalogList = jsonRes
+          console.log('catalogList', getCatalogsAA)
+          resolve(catalogList);
         });
     });
   }
