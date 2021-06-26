@@ -13,11 +13,18 @@ export class ApiService {
 // this.baseweb = 'https://artbased.com/api/';
 // this.baseweb = 'https://home.artbased.com/api/';
 //  this.baseweb_home = 'https://home.artbased.com/api/';
+ this.baseweb = 'https://backend.gtztest.com//api/';
+ this.baseweb_home = 'https://backend.gtztest.com//api/';  // /contacts/contactsall/'
+
+
+/*
+//  var url = this.baseweb + 'v1/artist';
+ https://backend.gtztest.com//api/v1/artist
+
 
     this.baseweb = 'https://backend.gtztest.com/api/v1/'  // clients
     this.MongodonApi = 'https://backend.gtztest.com/api/contacts/' //   contactsall/'
 
-/*
 test remote 
  
 https://backend.gtztest.com/api/v1/client
