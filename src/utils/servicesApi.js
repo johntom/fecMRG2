@@ -7,8 +7,17 @@ export class ApiService {
     this.http = http;
     this.upmess = ''
     //    new fastify backend
-    this.baseweb = 'https://backend.gtztest.com/api/';
-    this.baseweb_home = 'https://backend.gtztest.com/api/';  // /contacts/contactsall/'
+    // fios
+     this.baseweb = 'https://artbased.com/api/';
+     this.baseweb_home = 'https://artbased.com/api/';
+     
+    
+//      this.baseweb = 'https://artbased.com/api/';
+//      this.baseweb = 'https://home.artbased.com/api/';
+    
+    //gcp
+    //this.baseweb = 'https://backend.gtztest.com/api/';
+    //this.baseweb_home = 'https://backend.gtztest.com/api/';  // /contacts/contactsall/'
 
     /*
     
