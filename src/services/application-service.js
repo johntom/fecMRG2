@@ -12,6 +12,7 @@ export class ApplicationService {
   currentItem;
   currentView;
   tabs = [];
+  version = '304.00'
   asyncHandleDirty() {
     const model = 'You have unsaved changes. '//Cancel to stay OK to leave';
 
