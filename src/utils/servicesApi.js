@@ -7,8 +7,11 @@ export class ApiService {
     this.http = http;
     this.upmess = ''
     //    new fastify backend
+    this.baseweb = 'https://backend.gtztest.com/api/';
+    this.baseweb_home = 'https://backend.gtztest.com/api/';  // /contacts/contactsall/'
 
-
+    /*
+    
     // trails backend which I stopped on june 25 2021
     // this.baseweb = 'https://artbased.com/api/';
     // this.baseweb = 'https://home.artbased.com/api/';
@@ -18,12 +21,6 @@ export class ApiService {
     // this.MongodonApi = 'https://backend.gtztest.com/api/contacts/' //   contactsall/'
 
 
-    this.baseweb = 'https://backend.gtztest.com//api/';
-    this.baseweb_home = 'https://backend.gtztest.com//api/';  // /contacts/contactsall/'
-
-
-
-    /*
     //  var url = this.baseweb + 'mrg/artist';
      https://backend.gtztest.com//api/mrg/artist
     
