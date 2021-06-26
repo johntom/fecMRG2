@@ -152,8 +152,9 @@ export class MyDataService {
     return new Promise((resolve, reject) => {
       this.api.findArtists()
         .then((jsonRes) => {
-          var artistList = jsonRes.data
-          // console.log('artistList loadArtistsOrig', artistList)
+          // var artistList = jsonRes.data
+          var artistList = jsonRes // gcp
+          
           resolve(artistList);
         });
     });
@@ -216,21 +217,7 @@ async loadArtistsAA() {
 //   return "done"
 // }
 
-  async  loadPayeeAsync() {
-    let payeeList
-    await this.api.findPayees()
-      .then((jsonRes) => {
-        payeeList = jsonRes.data
-        //console.log('async payeeList', resolve(payeeList);)
-      });
-    return await (payeeList)
-  }
-
-  loadGenders() {
-    return new Promise((resolve, reject) => {
-      resolve(this.genderList);
-    });
-  }
+  
   loadStatus() {
     return new Promise((resolve, reject) => {
       resolve(this.statusList);
@@ -247,7 +234,7 @@ async loadArtistsAA() {
     return new Promise((resolve, reject) => {
       this.api.findCodes()
         .then((jsonRes) => {
-          var codesList = jsonRes.data;
+          var codesList = jsonRes// gcp .data;
          // console.log('codesList', codesList)
           resolve(codesList)
         })
@@ -258,7 +245,7 @@ async loadArtistsAA() {
     return new Promise((resolve, reject) => {
       this.api.findOrgs()
         .then((jsonRes) => {
-          var orgsList = jsonRes.data;
+          var orgsList = jsonRes// gcp .data;
          // console.log('orgsList', orgsList)
 
           resolve(orgsList);
@@ -307,7 +294,7 @@ async loadArtistsAA() {
       // })
       this.api.findSavedlists()
         .then((jsonRes) => {
-          var savedlists = jsonRes.data;
+          var savedlists = jsonRes// gcp .data;
           console.log('savedlists', savedlists)
 
           resolve(savedlists);
@@ -317,15 +304,7 @@ async loadArtistsAA() {
   }
   loadKeywordsArch(codeList) {
     return new Promise((resolve, reject) => {
-      //   console.log('codesList len ', codeList.length)
-      //   var keywords = []
-      //   codeList.filter((item) => {
-      //     if (item.CodeType === 3) {
-      //       keywords.push(item)
-      //     }
-      //   })
-      //   resolve(keywords)
-      // })
+    
       var keywords = this.appService.codesGenre
       resolve(keywords)
     })
