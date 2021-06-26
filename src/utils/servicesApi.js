@@ -56,21 +56,23 @@ export class ApiService {
 
 
 
-  initPusher() {
-    //https://artbased.com/api/mrgpusher
-    var url = this.baseweb + 'mrg/pusher'// + search
+ 
+
+initPusher(){
+  //https://artbased.com/api/v1/pusher
+    var url = this.baseweb + 'v1/pusher'// + search
     console.log('url ', url)
     return this.http.fetch(url, {
       method: 'get',
       mode: 'cors'
     }).then((res) => res.json());
-  }
+}
 
   getUserJwt(username, pass) {
     var token = {};
     token.username = username;
     token.password = pass;
-    var url = this.baseweb + 'mrg/auth/local';
+    var url = this.baseweb + 'v1/auth/local';
     console.log('url ', url)
     return this.http.fetch(url, {
       method: 'post',
@@ -85,11 +87,11 @@ export class ApiService {
   }
 
   // mrg
-  // https://artbased.com/api/mrg/batchupdates
+  // https://artbased.com/api/v1/batchupdates
 
   findbatchupdates() {
     // search has fullu formed query string
-    var url = this.baseweb + 'mrg/batchupdates'// + search
+    var url = this.baseweb + 'v1/batchupdates'// + search
     console.log('url ', url)
     return this.http.fetch(url, {
       method: 'get',
@@ -100,7 +102,7 @@ export class ApiService {
     // search has fullu formed query string
     https://artbased.com/api/mrg/inventory?filter={"artist.lastName":{"$regex":"sel","$options":"i"}} 
     // var url = this.baseweb + 'inventory' + search
-    var url = this.baseweb + 'mrg/inventorycontent' + search
+    var url = this.baseweb + 'v1/inventorycontent' + search
 
     console.log('url ', url)
     return this.http.fetch(url, {
@@ -111,10 +113,10 @@ export class ApiService {
   }
 
 
-  // { method: ['get'], path: '/api/mrg/mailinglist/:id', handler: 'MailinglistController.findone' },
-  findmailinglist(listname) {
-    // since listname can have / title use params
-    var url = this.baseweb + `mrg/mailinglistparam?id=${listname}`
+  // { method: ['get'], path: '/api/v1/mailinglist/:id', handler: 'MailinglistController.findone' },
+   findmailinglist(listname) {
+   // since listname can have / title use params
+    var url = this.baseweb + `v1/mailinglistparam?id=${listname}`
     console.log('url ', url)
     return this.http.fetch(url, {
       method: 'get',
@@ -123,7 +125,7 @@ export class ApiService {
     //return this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())
   }
   findmailinglistHold(listname) {
-    var url = this.baseweb + `mrg/mailinglist/${listname}`
+    var url = this.baseweb + `v1/mailinglist/${listname}`
     console.log('url ', url)
     return this.http.fetch(url, {
       method: 'get',
@@ -133,53 +135,35 @@ export class ApiService {
   }
 
 
-  async replaceartistinfo(artist) {
-    let url = this.baseweb + `mrg/replaceartistinfo`
-    return await this.http.fetch(url, {
-      method: 'put', mode: 'cors', headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(artist)
-    }).then((res) => res.json())
-    // var url = this.baseweb + `mrg/replaceartistinfo/${artist}`
+ async replaceartistinfo(artist) {
+ let url = this.baseweb + `v1/replaceartistinfo`
+      return await this.http.fetch(url, {
+        method: 'put', mode: 'cors', headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(artist)
+      }).then((res) => res.json())
+    // var url = this.baseweb + `v1/replaceartistinfo/${artist}`
     // return await this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())
 
 
   }
-  //https://artbased.com/api/mrg/fincontactdups
+  //https://artbased.com/api/v1/fincontactdups
   async findContactdups() {
 
-    var url = this.baseweb + 'mrg/fincontactdups'
+    var url = this.baseweb + 'v1/fincontactdups'
     return await this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())
 
 
   }
 
 
-  async  deletemlistname(name) {
-    //let url = this.baseweb + `mrg/mailinglist/deletelist/${name}`
-    let url = this.baseweb + `mrg/mailinglist/deletelist`
-    let body = {}
-    body.listName = name
-    return await this.http.fetch(url, {
-      method: 'delete',
-      mode: 'cors',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-        //    , 'Authorization': 'JWT ' + token
-      },
-      body: JSON.stringify(body)
-    }).then((res) => res.json());
-  }
-
 
 
   async deletemlrow(row) {
 
-    // let url = this.baseweb + `mrg/mailinglist/delete/${rowd}` /${row._id}
-    let url = this.baseweb + `mrg/mailinglist/delete`
+    let url = this.baseweb + `v1/mailinglist/delete`
     return await this.http.fetch(url, {
       method: 'delete',
       mode: 'cors',
@@ -196,7 +180,7 @@ export class ApiService {
     // search has fullu formed query string 
     // can only search for mutikeywords as a sep searcg
     let url
-    url = this.baseweb + 'mrg/findmultikeywords' + search
+    url = this.baseweb + 'v1/findmultikeywords' + search
     console.log('url ', url)
     return this.http.fetch(url, {
       method: 'get',
@@ -206,7 +190,7 @@ export class ApiService {
   }
   findInventoryOne(inventorycode) {
     // search has fullu formed query string
-    var url = this.baseweb + `mrg/inventory/${inventorycode}`
+    var url = this.baseweb + `v1/inventory/${inventorycode}`
     console.log('url ', url)
     return this.http.fetch(url, {
       method: 'get',
@@ -215,67 +199,67 @@ export class ApiService {
     //return this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())
   }
   findInventoryorig(search) {
-    var url = this.baseweb + 'mrg/inventory';
+    var url = this.baseweb + 'v1/inventory';
     return this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())
   }
 
 
 
   findusers() {
-    var url = this.baseweb + 'mrg/findusers';
+    var url = this.baseweb + 'v1/findusers';
     return this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())
 
   }
-  // http://74.114.164.24/api/mrg/artist  https://artbased.com/api/mrg/artist
+  // http://74.114.164.24/api/v1/artist  https://artbased.com/api/v1/artist
   findArtists() {
-    var url = this.baseweb + 'mrg/artist';
+    var url = this.baseweb + 'v1/artist';
     return this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())
   }
-  async   findArtistsAA() {
-    var url = this.baseweb + 'mrg/artist';
+async   findArtistsAA() {
+    var url = this.baseweb + 'v1/artist';
     return await this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())
   }
-
-
+  
+  
   // all new 2019 AA methods
 
-  // https://artbased.com/api/mrg/savedlists/getinventory/ { method: ['get'], path: '/api/mrg/savedlists/getinventory/:id', handler: 'SavedlistsController.getinventory' },
+  // https://artbased.com/api/v1/savedlists/getinventory/ { method: ['get'], path: '/api/v1/savedlists/getinventory/:id', handler: 'SavedlistsController.getinventory' },
   async findInventorySavedLists(search) {
-    var url = this.baseweb + 'mrg/savedlists/getinventory/' + search
+    var url = this.baseweb + 'v1/savedlists/getinventory/' + search
     return await this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())
 
   }
 
   async findArtistsContent(search) {
-    var url = this.baseweb + 'mrg/artistcontent' + search
+    var url = this.baseweb + 'v1/artistcontent' + search
     return await this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())
 
   }
   async findArtistid(search) {
-    var url = this.baseweb + 'mrg/artist/' + search
+    var url = this.baseweb + 'v1/artist/' + search
     return await this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())
 
   }
   async getCatalogsent(cat) {
-    var url = this.baseweb + 'mrg/catalog/getcatalogsent/' + cat
+    var url = this.baseweb + 'v1/catalog/getcatalogsent/' + cat
     return await this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())
 
   }
   async getcatalogsenttocontact(cat) {
-    var url = this.baseweb + 'mrg/catalog/getcatalogsenttocontact/' + cat
+    var url = this.baseweb + 'v1/catalog/getcatalogsenttocontact/' + cat
     return await this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())
 
   }
   async findTodo(search) {
-    var url = this.baseweb + 'mrg/todo/' + search// + cat
+    var url = this.baseweb + 'v1/todo/' + search// + cat
     return await this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())
 
   }
 
   async updatetodo(rec) {
     let id = rec.id
-    // var url = this.baseweb + `mrg/todo/:${id}` // + cat
-    var url = this.baseweb + `mrg/todoupdate/`
+    // var url = this.baseweb + `v1/todo/:${id}` // + cat
+    var url = this.baseweb + `v1/todoupdate/`
     //"never pass id to put or post",
     return this.http.fetch(url, {
       method: 'put',
@@ -290,7 +274,7 @@ export class ApiService {
   }
 
   async createtodo(rec) {
-    var url = this.baseweb + 'mrg/todo/' // + cat
+    var url = this.baseweb + 'v1/todo/' // + cat
 
     return await this.http.fetch(url, {
       method: 'post', mode: 'cors', headers: {
@@ -300,13 +284,13 @@ export class ApiService {
       body: JSON.stringify(rec)
     }).then((res) => res.json());
   }
-  // { method: ['put'], path: '/api/mrg/todo/:id', handler: 'TodoController.customUpdate' },
-  // { method: ['post'], path: '/api/mrg/todo', handler: 'TodoController.create' },
+  // { method: ['put'], path: '/api/v1/todo/:id', handler: 'TodoController.customUpdate' },
+  // { method: ['post'], path: '/api/v1/todo', handler: 'TodoController.create' },
 
-  //  { method: ['post'], path: '/api/mrg/artist/create', handler: 'ArtistController.create' },
-  //  { method: ['put'], path: '/api/mrg/artist/update', handler: 'ArtistController.update' },
+  //  { method: ['post'], path: '/api/v1/artist/create', handler: 'ArtistController.create' },
+  //  { method: ['put'], path: '/api/v1/artist/update', handler: 'ArtistController.update' },
   // async  updateartist(rec) {  
-  //   let url = this.baseweb + `mrg/artist/update`
+  //   let url = this.baseweb + `v1/artist/update`
   //   // console.log('url ', url)
   //      return await this.http.fetch(url, { method: 'put', mode: 'cors',headers: {
   //       'Accept': 'application/json',
@@ -315,7 +299,7 @@ export class ApiService {
   //     body: JSON.stringify(rec) }).then((res) => res.json())
   updateartist(rec) {
     // if(rec.id==='create')// on server logic
-    let url = this.baseweb + `mrg/artist/update`
+    let url = this.baseweb + `v1/artist/update`
     return this.http.fetch(url, {
       method: 'put',
       mode: 'cors',
@@ -331,7 +315,7 @@ export class ApiService {
 
   async insertartist(findvalue) {
 
-    let url = this.baseweb + `mrg/artist/create`
+    let url = this.baseweb + `v1/artist/create`
     return await this.http.fetch(url, {
       method: 'post', mode: 'cors', headers: {
         'Accept': 'application/json',
@@ -343,7 +327,7 @@ export class ApiService {
   async updateartistAA(rec) {
 
     if (rec.id === 'create') {
-      let url = this.baseweb + `mrg/artist/create`
+      let url = this.baseweb + `v1/artist/create`
       return await this.http.fetch(url, {
         method: 'post', mode: 'cors', headers: {
           'Accept': 'application/json',
@@ -352,7 +336,7 @@ export class ApiService {
         body: JSON.stringify(rec)
       }).then((res) => res.json())
     } else {
-      let url = this.baseweb + `mrg/artist/update`
+      let url = this.baseweb + `v1/artist/update`
       return await this.http.fetch(url, {
         method: 'put', mode: 'cors', headers: {
           'Accept': 'application/json',
@@ -365,7 +349,7 @@ export class ApiService {
   }
 
   async createartist(rec) {
-    let url = this.baseweb + `mrg/artist/create`
+    let url = this.baseweb + `v1/artist/create`
     console.log('url ', url)
     return await this.http.fetch(url, {
       method: 'post',
@@ -382,45 +366,45 @@ export class ApiService {
   async findArtistsAA1() {
 
 
-    var url = this.baseweb + 'mrg/artist';
+    var url = this.baseweb + 'v1/artist';
     return await this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())
   }
 
   async findArtistsAA() {
-    var url = this.baseweb + 'mrg/artist';
+    var url = this.baseweb + 'v1/artist';
+    let res = await this.http.fetch(url, { mode: 'cors' })
+    return res.json()
+  } 
+    async getCatalogsAA() {
+    var url = this.baseweb + 'v1/catalog';
     let res = await this.http.fetch(url, { mode: 'cors' })
     return res.json()
   }
-  async getCatalogsAA() {
-    var url = this.baseweb + 'mrg/catalog';
-    let res = await this.http.fetch(url, { mode: 'cors' })
-    return res.json()
-  }
-  // catalog  https://artbased.com/api/https://artbased.com/api/mrg/catalog
+  // catalog  https://artbased.com/api/https://artbased.com/api/v1/catalog
   async getpublisher() {
-    var url = this.baseweb + 'mrg/publisher';
+    var url = this.baseweb + 'v1/publisher';
     let res = await this.http.fetch(url, { mode: 'cors' })
     return res.json()
   }
   async findCatalog(search) {
-    // var url = this.baseweb + 'mrg/inventorycontent' + search
-    // var url = this.baseweb + `mrg/catalog/find${search}`;
-    var url = this.baseweb + `mrg/catalog/find/${search}`;
+    // var url = this.baseweb + 'v1/inventorycontent' + search
+    // var url = this.baseweb + `v1/catalog/find${search}`;
+    var url = this.baseweb + `v1/catalog/find/${search}`;
     console.log('url', url)
 
     let res = await this.http.fetch(url, { mode: 'cors' })
     return res.json()
   }
-  async findCatalogone(id) {
-    // var url = this.baseweb + 'mrg/inventorycontent' + search
-    var url = this.baseweb + `mrg/catalog/find/${id}`;
+  async findCatalogone(id) { 
+    // var url = this.baseweb + 'v1/inventorycontent' + search
+    var url = this.baseweb + `v1/catalog/find/${id}`;
     console.log('url', url)
     let res = await this.http.fetch(url, { mode: 'cors' })
     return res.json()
   }
-  async findCatalogone2(id) {
-
-    var url = this.baseweb + `mrg/catalog/find/${id}`;
+  async findCatalogone2(id) { 
+ 
+    var url = this.baseweb + `v1/catalog/find/${id}`;
     console.log('url', url)
     let res = await this.http.fetch(url, { mode: 'cors' })
     if (res.status === 404) {
@@ -432,7 +416,7 @@ export class ApiService {
   }
   async createcatalog(rec) {
     console.log(rec)
-    let url = this.baseweb + `mrg/catalog/create`
+    let url = this.baseweb + `v1/catalog/create`
     console.log('url ', url)
     return this.http.fetch(url, {
       method: 'post',
@@ -445,7 +429,7 @@ export class ApiService {
     }).then((res) => res.json());
   }
   updatecatalog(rec) {
-    let url = this.baseweb + `mrg/catalog/update`
+    let url = this.baseweb + `v1/catalog/update`
     console.log('url ', url)
     return this.http.fetch(url, {
       method: 'put',
@@ -464,15 +448,15 @@ export class ApiService {
 
   ///////////////////////////
 
-  // https://artbased.com/api/mrg/findofferings/5c14696ba3e3847c0f5a62c3
+  // https://artbased.com/api/v1/findofferings/5c14696ba3e3847c0f5a62c3
   async findofferings(id) {
-    var url = this.baseweb + `mrg/findofferings/${id}`;
+    var url = this.baseweb + `v1/findofferings/${id}`;
     let res = await this.http.fetch(url, { mode: 'cors' });//.then((res) => res.json())
     return res.json()
   }
-  async createorg(rec) {
+ async createorg(rec) {
     console.log('addorg rec', rec)
-    let url = this.baseweb + `mrg/orgs/create`
+    let url = this.baseweb + `v1/orgs/create`
     console.log('url ', url)
     //return {'data': true}
     return await this.http.fetch(url, {
@@ -489,7 +473,7 @@ export class ApiService {
 
   async saveorg(rec) {
     //alert('in saveclaim')
-    let url = this.baseweb + `mrg/orgs/update`
+    let url = this.baseweb + `v1/orgs/update`
     console.log('url ', url)
     //return {'data': true}
     return this.http.fetch(url, {
@@ -505,8 +489,8 @@ export class ApiService {
   }
 
   async findorgOne(orgid) {
-    // search has fullu formed query string  mrg/claim/
-    var url = this.baseweb + `mrg/orgs/${orgid}`
+    // search has fullu formed query string  v1/claim/
+    var url = this.baseweb + `v1/orgs/${orgid}`
     let res = await this.http.fetch(url, { mode: 'cors' });
     return res.json()
     // console.log('url ', url)
@@ -518,18 +502,18 @@ export class ApiService {
   }
 
   async findorgOnemongo(orgid) {
-    // search has fullu formed query string  mrg/claim/
-    var url = this.baseweb + `mrg/orgs/findonemongo/${orgid}`
+    // search has fullu formed query string  v1/claim/
+    var url = this.baseweb + `v1/orgs/findonemongo/${orgid}`
     let res = await this.http.fetch(url, { mode: 'cors' });
     return res.json()
 
 
   }
-
+  
 
   findContactOne(contactid) {
     // search has fullu formed query string
-    var url = this.baseweb + `mrg/contact/${contactid}`
+    var url = this.baseweb + `v1/contact/${contactid}`
     console.log('url ', url)
     return this.http.fetch(url, {
       method: 'get',
@@ -539,8 +523,8 @@ export class ApiService {
   }
   async findContact(search, listname) {
     //  search= JSON.stringify(search) 
-    let url = this.baseweb + `mrg/contactcontent${search}&buildlist=${listname}`
-    console.log('findContact url ', url)
+    let url = this.baseweb + `v1/contactcontent${search}&buildlist=${listname}`
+    console.log('url ', url)
     return await this.http.fetch(url, {
       method: 'get',
       mode: 'cors',
@@ -553,7 +537,7 @@ export class ApiService {
   async findContactasync(search) {
     // search has fullu formed query string
     search.buildlist = 'test'
-    var url = this.baseweb + 'mrg/contactcontent'
+    var url = this.baseweb + 'v1/contactcontent'
     let res = await this.http.fetch(url, {
       mode: 'cors',
 
@@ -563,7 +547,7 @@ export class ApiService {
 
   }
   async createcontact(rec) {
-    let url = this.baseweb + `mrg/contact/create`
+    let url = this.baseweb + `v1/contact/create`
     console.log('url ', url)
     return this.http.fetch(url, {
       method: 'post',
@@ -577,7 +561,7 @@ export class ApiService {
   }
   savecontact(rec) {
     //alert('in saveclaim')
-    let url = this.baseweb + `mrg/contact/update`
+    let url = this.baseweb + `v1/contact/update`
     console.log('url ', url)
     //return {'data': true}
     return this.http.fetch(url, {
@@ -594,7 +578,7 @@ export class ApiService {
 
 
   async savedups(rec) {
-    let url = this.baseweb + `mrg/contact/updatedups`
+    let url = this.baseweb + `v1/contact/updatedups`
     console.log('url ', url)
     //return {'data': true}
     return await this.http.fetch(url, {
@@ -611,7 +595,7 @@ export class ApiService {
 
   addcontact(rec) {
     console.log('addcontact rec', rec)
-    let url = this.baseweb + `mrg/contact/create`
+    let url = this.baseweb + `v1/contact/create`
     console.log('url ', url)
     //return {'data': true}
     return this.http.fetch(url, {
@@ -625,46 +609,46 @@ export class ApiService {
       body: JSON.stringify(rec)
     }).then((res) => res.json());
   }
-  //https://artbased.com/api/mrg/orgs
-  async findOrgs() {
-    var url = this.baseweb + 'mrg/orgs';
+  //https://artbased.com/api/v1/orgs
+ async findOrgs() {
+    var url = this.baseweb + 'v1/orgs';
     return await this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())
   }
-
-
+ 
+  
 
   async findorgContacts(orgid) {
-    // search has fullu formed query string  mrg/claim/
-    var url = this.baseweb + `mrg/orgs/findcontacts/${orgid}`
-    console.log('url', url)
+    // search has fullu formed query string  v1/claim/
+    var url = this.baseweb + `v1/orgs/findcontacts/${orgid}`
+    console.log('url',url)
     let res = await this.http.fetch(url, { mode: 'cors' });
-    console.log('res', res)
-    if (res.status === 500) {
-      return { data: '0' }
-    } else return res.json()
-
+    console.log('res',res) 
+      if (res.status === 500) {
+        return  { data: '0' }
+      } else return res.json()
+  
   }
   async findallorgs(search) {
-    var url = this.baseweb + 'mrg/orgs/findall' + search
+    var url = this.baseweb + 'v1/orgs/findall' + search
     return await this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())
 
   }
 
-  // https://artbased.com/api/mrg/orgs/findcontacts/1119
+  // https://artbased.com/api/v1/orgs/findcontacts/1119
 
 
 
 
-  //http://localhost:8080/api/mrg/artist
+  //http://localhost:8080/api/v1/artist
   findCodes() {
-    var url = this.baseweb + 'mrg/codes';
+    var url = this.baseweb + 'v1/codes';
     return this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())
 
-  }
+  } 
   addmediumsupport(rec) {
-    // let url = this.baseweb + `mrg/codes/create`
-    let url = this.baseweb + `mrg/codes`
-
+    // let url = this.baseweb + `v1/codes/create`
+      let url = this.baseweb + `v1/codes` 
+  
     console.log('url ', url)
     return this.http.fetch(url, {
       method: 'post',
@@ -681,7 +665,7 @@ export class ApiService {
 
   //1
   async  batchTransport(rec) {
-    let url = this.baseweb + `mrg/inventory/batchTransport`
+    let url = this.baseweb + `v1/inventory/batchTransport`
     console.log('url ', url)
     // return {'data': true}
     return await this.http.fetch(url, {
@@ -698,7 +682,7 @@ export class ApiService {
 
 
   async batchExhibit(rec) {
-    let url = this.baseweb + `mrg/inventory/batchExhibit`
+    let url = this.baseweb + `v1/inventory/batchExhibit`
     console.log('url ', url)
     // return {'data': true}
     return await this.http.fetch(url, {
@@ -716,7 +700,7 @@ export class ApiService {
   //3
   async batchReproduction(rec) {
 
-    let url = this.baseweb + `mrg/inventory/batchReproduction`
+    let url = this.baseweb + `v1/inventory/batchReproduction`
     console.log('url ', url, rec)
     // return {'data': true}
     return await this.http.fetch(url, {
@@ -732,7 +716,7 @@ export class ApiService {
   }
 
   async batchExhibitUpdate(rec) {
-    let url = this.baseweb + `mrg/inventory/batchExhibitUpdate`
+    let url = this.baseweb + `v1/inventory/batchExhibitUpdate`
     console.log('url ', url)
     // return {'data': true}
     return await this.http.fetch(url, {
@@ -749,7 +733,7 @@ export class ApiService {
 
   //3
   batchReproductionUpdate(rec) {
-    let url = this.baseweb + `mrg/inventory/batchReproductionUpdate`
+    let url = this.baseweb + `v1/inventory/batchReproductionUpdate`
     console.log('url ', url)
     // return {'data': true}
     return this.http.fetch(url, {
@@ -767,7 +751,7 @@ export class ApiService {
 
   //4
   batchProvenance(rec) {
-    let url = this.baseweb + `mrg/inventory/batchProvenance`
+    let url = this.baseweb + `v1/inventory/batchProvenance`
     console.log('url ', url)
     // return {'data': true}
     return this.http.fetch(url, {
@@ -784,7 +768,7 @@ export class ApiService {
 
   batchMrglocation(rec) {
     alert(rec.batchno)
-    let url = this.baseweb + `mrg/inventory/batchMrglocation`
+    let url = this.baseweb + `v1/inventory/batchMrglocation`
     console.log('url ', url)
     // return {'data': true}
     return this.http.fetch(url, {
@@ -800,7 +784,7 @@ export class ApiService {
   }
   //6
   batchTemplocation(rec) {
-    let url = this.baseweb + `mrg/inventory/batchTemplocation`
+    let url = this.baseweb + `v1/inventory/batchTemplocation`
     console.log('url ', url)
     // return {'data': true}
     return this.http.fetch(url, {
@@ -818,7 +802,7 @@ export class ApiService {
   //7 inventory/Transport Exhibit Reproduction Provenance batchMrglocation batchTemplocation batchOfferings
   addOfferings(offerings) {
 
-    var url = this.baseweb + 'mrg/inventory/offerings';
+    var url = this.baseweb + 'v1/inventory/offerings';
     return this.http.fetch(url, {
       method: 'post',
       mode: 'cors',
@@ -832,7 +816,7 @@ export class ApiService {
 
   }
   // batchOfferings(rec) {
-  //   let url = this.baseweb + `mrg/inventory/batchOfferings`
+  //   let url = this.baseweb + `v1/inventory/batchOfferings`
   //   console.log('url ', url)
   //   // return {'data': true}
   //   return this.http.fetch(url, {
@@ -856,7 +840,7 @@ export class ApiService {
   // }
   createinventory(rec) {
     //alert('in saveclaim')
-    let url = this.baseweb + `mrg/inventory/create`
+    let url = this.baseweb + `v1/inventory/create`
     console.log('url ', url)
     //return {'data': true}
     return this.http.fetch(url, {
@@ -872,7 +856,7 @@ export class ApiService {
   }
   saveinventory(rec) {
     //alert('in saveclaim')
-    let url = this.baseweb + `mrg/inventory/update`
+    let url = this.baseweb + `v1/inventory/update`
     console.log('url ', url)
     //return {'data': true}
     return this.http.fetch(url, {
@@ -888,17 +872,17 @@ export class ApiService {
   }
 
   findinveall() {
-    var url = this.baseweb + 'mrg/case/findall'
+    var url = this.baseweb + 'v1/case/findall'
     return this.http.fetch(url).then((res) => res.json())
   }
   findcase(roles, auth) {
-    let url = this.baseweb + `mrg/case/find/${auth.user.id}`
+    let url = this.baseweb + `v1/case/find/${auth.user.id}`
     return this.http.fetch(url).then((res) => res.json())
   }
 
   findcontents(content, completed) {
     console.log(' content  ', content, completed)
-    let url = this.baseweb + `mrg/case/findcontents/${content}/${completed}`
+    let url = this.baseweb + `v1/case/findcontents/${content}/${completed}`
     return this.http.fetch(url).then((res) => res.json())
   }
 
@@ -916,7 +900,7 @@ export class ApiService {
     newrow.filename = row.filename
     newrow.createdAt = row.createdAt
     newrow.assignfrom = user.userid // matched staffid unless we use init
-    let url = this.baseweb + `mrg/case/update`
+    let url = this.baseweb + `v1/case/update`
     return this.http.fetch(url, {
       method: 'put',
       mode: 'cors',
@@ -932,7 +916,7 @@ export class ApiService {
   deletecase(row, token) {
     console.log('this.e ', row.id)
     let pid = row.id
-    let url = this.baseweb + `mrg/case/deletecase`///${pid}`
+    let url = this.baseweb + `v1/case/deletecase`///${pid}`
     // return this.http.fetch(url).then((res) => res.json())
     return this.http.fetch(url, {
       method: 'delete',
@@ -948,7 +932,7 @@ export class ApiService {
   }
   updateUser2(user, token) { //token, customer) {
 
-    let url = this.baseweb + `mrg/staff/update`
+    let url = this.baseweb + `v1/staff/update`
     let umodel = {
       id: user.id,
       email: user.email,
@@ -983,8 +967,8 @@ export class ApiService {
       password: user.password
     }
     console.log('user ', umodel)
-    //   let url = this.baseweb + `mrg/staff/updateuser`
-    let url = this.baseweb + `mrg/case/updateuser`
+    //   let url = this.baseweb + `v1/staff/updateuser`
+    let url = this.baseweb + `v1/case/updateuser`
     return this.http.fetch(url, {
       method: 'put',
       mode: 'cors',
@@ -999,21 +983,21 @@ export class ApiService {
   }
 
   // savedlists 
-  //  { method: ['get'], path: '/api/mrg/savedlists/:id', handler: 'SavedlistsController.findone' },
-  //   { method: ['get'], path: '/api/mrg/savedlists', handler: 'SavedlistsController.findall' },
-  //   { method: ['put'], path: '/api/mrg/savedlists/update', handler: 'SavedlistsController.update' },
-  //   { method: ['post'], path: '/api/mrg/savedlists/create', handler: 'SavedlistsController.create' },
+  //  { method: ['get'], path: '/api/v1/savedlists/:id', handler: 'SavedlistsController.findone' },
+  //   { method: ['get'], path: '/api/v1/savedlists', handler: 'SavedlistsController.findall' },
+  //   { method: ['put'], path: '/api/v1/savedlists/update', handler: 'SavedlistsController.update' },
+  //   { method: ['post'], path: '/api/v1/savedlists/create', handler: 'SavedlistsController.create' },
 
 
   findSavedlists() {
     //all
-    var url = this.baseweb + 'mrg/savedlists';
+    var url = this.baseweb + 'v1/savedlists';
     return this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())
   }
 
   async getbatchno() {
     // search has fullu formed query string
-    var url = this.baseweb + 'mrg/batch/'
+    var url = this.baseweb + 'v1/batch/'
     console.log('url ', url)
     return await this.http.fetch(url, {
       method: 'get',
@@ -1023,7 +1007,7 @@ export class ApiService {
   }
   // getbatchno() {
   //   // search has fullu formed query string
-  //   var url = this.baseweb + 'mrg/batch/'
+  //   var url = this.baseweb + 'v1/batch/'
   //   console.log('url ', url)
   //   return this.http.fetch(url, {
   //     method: 'get',
@@ -1031,27 +1015,27 @@ export class ApiService {
   //   }).then((res) => res.json());
   // }
 
-  updateSavedlists(slname, slids) {
+  updateSavedlists(slname, slids) { 
     //all   this.api.updateSavedlists(this.appService.currentsavedlist, this.selectedids).then((jsonRes) => {
-    // var url = this.baseweb + `mrg/savedlists/update/${slname}`;
-    var url = this.baseweb + `mrg/savedlists/updatesl`;
+    // var url = this.baseweb + `v1/savedlists/update/${slname}`;
+    var url = this.baseweb + `v1/savedlists/updatesl`;
     return this.http.fetch(url, {
       method: 'put',
       mode: 'cors',
       headers: {
         'Accept': 'application/json',
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json' 
         // , 'Authorization': 'JWT ' + token
       },
       //  body: JSON.stringify(slids)
-      body: JSON.stringify({ slname: slname, thelist: slids })
+       body: JSON.stringify({slname:slname,thelist:slids})
     }).then((res) => res.json());
   }
 
   deleteSavedlists(slname, slids) {
     //all   this.api.updateSavedlists(this.appService.currentsavedlist, this.selectedids).then((jsonRes) => {
 
-    var url = this.baseweb + `mrg/savedlists/delete/${slname}`;
+    var url = this.baseweb + `v1/savedlists/delete/${slname}`;
     console.log('url ', url)
     return this.http.fetch(url, {
       method: 'put',
@@ -1069,7 +1053,7 @@ export class ApiService {
 
 
   // updateSavedlists(recid, rec) {
-  //   let url = this.baseweb + `mrg/savedlists/update/${recid}`
+  //   let url = this.baseweb + `v1/savedlists/update/${recid}`
   //   console.log('url ', url)
 
   //   return this.http.fetch(url, {
@@ -1087,10 +1071,10 @@ export class ApiService {
   //  this.api.saveMerge(this.savedlist, this.editor.value())
 
   saveMerge(slname, editorval) {
-    //all http://74.114.164.24/api/mrg/savedlists/create/ 
+    //all http://74.114.164.24/api/v1/savedlists/create/ 
     // let sl = {}
     let rec = { merge: editorval }
-    var url = this.baseweb + `mrg/savedlists/savemerge/${slname}`;
+    var url = this.baseweb + `v1/savedlists/savemerge/${slname}`;
     return this.http.fetch(url, {
       method: 'post',
       mode: 'cors',
@@ -1103,9 +1087,9 @@ export class ApiService {
     }).then((res) => res.json());
   }
   createSavedlists(slname) {
-    //all http://74.114.164.24/api/mrg/savedlists/create/ 
+    //all http://74.114.164.24/api/v1/savedlists/create/ 
     let sl = {}
-    var url = this.baseweb + `mrg/savedlists/create/${slname}`;
+    var url = this.baseweb + `v1/savedlists/create/${slname}`;
     return this.http.fetch(url, {
       method: 'post',
       mode: 'cors',
@@ -1120,7 +1104,7 @@ export class ApiService {
 
   addcodegenre(rec) {
     let sl = {}
-    var url = this.baseweb + `mrg/codes`;
+    var url = this.baseweb + `v1/codes`;
     return this.http.fetch(url, {
       method: 'post',
       mode: 'cors',
@@ -1137,10 +1121,10 @@ export class ApiService {
 
   createFactSheet(rt2) {
 
-    // { method: ['get'], path: '/api/mrg/docx/create/:id', handler: 'DocxController.create' },
-    // http://74.114.164.24/api/mrg/docx/create/HOFMAN0015 
-    //http://localhost:3000/api/mrg/docx/create/HOFMAN0015
-    var url = this.baseweb + `mrg/docx/create/${rt2}`;
+    // { method: ['get'], path: '/api/v1/docx/create/:id', handler: 'DocxController.create' },
+    // http://74.114.164.24/api/v1/docx/create/HOFMAN0015 
+    //http://localhost:3000/api/v1/docx/create/HOFMAN0015
+    var url = this.baseweb + `v1/docx/create/${rt2}`;
     return this.http.fetch(url, {
       method: 'get'
 
@@ -1148,20 +1132,20 @@ export class ApiService {
   }
 
   walkdir() {
-    let url = this.baseweb + 'mrg/walkdir/getFiles'
+    let url = this.baseweb + 'v1/walkdir/getFiles'
     console.log('walkdir', url)
     return this.http.fetch(url).then((res) => res.json())
   }
 
   walkdirQF() {
-    let url = baseweb + 'mrg/walkdir/getFilesQF'
+    let url = baseweb + 'v1/walkdir/getFilesQF'
     return this.http.fetch(url).then((res) => res.json())
   }
 
 
   getLiability(s1, s2, s3) {
-    //  var url = `http://localhost:8080/api/mrg/wc/test/${s1}/${s2}/${s3}`;
-    var url = this.baseweb + `mrg/wc/test/${s1}/${s2}/${s3}`;
+    //  var url = `http://localhost:8080/api/v1/wc/test/${s1}/${s2}/${s3}`;
+    var url = this.baseweb + `v1/wc/test/${s1}/${s2}/${s3}`;
     return this.http.fetch(url).then((res) => res.json())
   }
 
@@ -1171,7 +1155,7 @@ export class ApiService {
 
 
   findPayees() {
-    var url = this.baseweb + 'mrg/payee/'
+    var url = this.baseweb + 'v1/payee/'
     console.log('url payee ', url)
     return this.http.fetch(url, {
       method: 'get',
@@ -1183,7 +1167,7 @@ export class ApiService {
 
 
   updateInmates(rec) {
-    let url = this.baseweb + `mrg/inmate/updateinmates`
+    let url = this.baseweb + `v1/inmate/updateinmates`
     console.log('url ', url)
     //return {'data': true}
     return this.http.fetch(url, {
@@ -1200,7 +1184,7 @@ export class ApiService {
   }
   updatepayee(rec) {
     //alert('in saveclaim')
-    let url = this.baseweb + `mrg/payee/update`
+    let url = this.baseweb + `v1/payee/update`
     console.log('url ', url)
     //return {'data': true}
     return this.http.fetch(url, {
@@ -1219,7 +1203,7 @@ export class ApiService {
   addpayee(rec) {
     //alert('in saveclaim')
     console.log('addinmate rec', rec)
-    let url = this.baseweb + `mrg/payee/create`
+    let url = this.baseweb + `v1/payee/create`
     console.log('url ', url)
     //return {'data': true}
     return this.http.fetch(url, {
@@ -1235,7 +1219,7 @@ export class ApiService {
   }
 
   getInmates() {
-    var url = this.baseweb + 'mrg/inmate/'
+    var url = this.baseweb + 'v1/inmate/'
     console.log('url inmate ', url)
     return this.http.fetch(url, {
       method: 'get',
@@ -1243,7 +1227,7 @@ export class ApiService {
     }).then((res) => res.json());
   }
   getInmatesExpanded() {
-    var url = this.baseweb + 'mrg/findallexpand/'
+    var url = this.baseweb + 'v1/findallexpand/'
     console.log('url inmate ', url)
     return this.http.fetch(url, {
       method: 'get',
@@ -1251,7 +1235,7 @@ export class ApiService {
     }).then((res) => res.json());
   }
   getInmatesServiceExpanded() {
-    var url = this.baseweb + 'mrg/findallserviceexpand/'
+    var url = this.baseweb + 'v1/findallserviceexpand/'
     console.log('url inmate ', url)
     return this.http.fetch(url, {
       method: 'get',
@@ -1265,10 +1249,10 @@ export class ApiService {
   //     //http://arabsight.github.io/uploading-files-with-aurelia
   //      let baseweb ='http://parktowergroupmanagement.com:9002/api/v1' 
 
-  //     // var url = baseweb + `mrg/uploadinventory/${id}`
+  //     // var url = baseweb + `v1/uploadinventory/${id}`
   //     //  var url = baseweb + `gym/upload`
   //        var url = baseweb + `/uploadgym`
-  //     ///  var url = this.basewebjif + `mrg/upload/01-03166`
+  //     ///  var url = this.basewebjif + `v1/upload/01-03166`
 
   //     console.log('url ', url, formData);
   //     return this.http.fetch(url, {
@@ -1289,8 +1273,8 @@ export class ApiService {
 
   upload(formData, id) {
     //http://arabsight.github.io/uploading-files-with-aurelia
-    var url = this.baseweb + `mrg/uploadinventory/${id}`
-    ///  var url = this.basewebjif + `mrg/upload/01-03166`
+    var url = this.baseweb + `v1/uploadinventory/${id}`
+    ///  var url = this.basewebjif + `v1/upload/01-03166`
     console.log('url ', url, formData);
     return this.http.fetch(url, {
       mode: 'cors',
@@ -1329,10 +1313,10 @@ export class ApiService {
     // .catch(error => console.log(error));
   }
 
-  uploadinvphotodetail(formData, id) {
+ uploadinvphotodetail(formData, id) {
     //http://arabsight.github.io/uploading-files-with-aurelia
-    var url = this.baseweb + `mrg/uploadinvphotodetail/${id}`
-    ///  var url = this.basewebjif + `mrg/upload/01-03166`
+    var url = this.baseweb + `v1/uploadinvphotodetail/${id}` 
+    ///  var url = this.basewebjif + `v1/upload/01-03166`
 
     console.log('url ', url, formData);
     return this.http.fetch(url, {
@@ -1348,9 +1332,9 @@ export class ApiService {
     // .then(data => console.log('data.message', data.message))
     // .catch(error => console.log(error));
   }
-  uploadinvdoc(formData, id) {
-    var url = this.baseweb + `mrg/uploadinvdoc/${id}`
-
+uploadinvdoc(formData, id) {
+    var url = this.baseweb + `v1/uploadinvdoc/${id}` 
+   
     console.log('url ', url, formData);
     return this.http.fetch(url, {
       mode: 'cors',
@@ -1362,12 +1346,12 @@ export class ApiService {
 
       // body: JSON.stringify(formData)
     }).then((res) => res.json());
-
+    
   }
   uploadinvphoto(formData, id) {
     //http://arabsight.github.io/uploading-files-with-aurelia
-    var url = this.baseweb + `mrg/uploadinvphoto/${id}`
-    ///  var url = this.basewebjif + `mrg/upload/01-03166`
+    var url = this.baseweb + `v1/uploadinvphoto/${id}`
+    ///  var url = this.basewebjif + `v1/upload/01-03166`
 
     console.log('url ', url, formData);
     return this.http.fetch(url, {
@@ -1387,8 +1371,8 @@ export class ApiService {
 
   uploadInvoice(formData, invoice) {
     //http://arabsight.github.io/uploading-files-with-aurelia
-    var url = this.baseweb + `mrg/uploadinvoice/${invoice.invno}`
-    ///  var url = this.basewebjif + `mrg/upload/01-03166`
+    var url = this.baseweb + `v1/uploadinvoice/${invoice.invno}`
+    ///  var url = this.basewebjif + `v1/upload/01-03166`
     console.log('url ', url, formData);
     return this.http.fetch(url, {
       mode: 'cors',
@@ -1407,7 +1391,7 @@ export class ApiService {
 
   // ============================== \\
   arprep() {
-    var url = this.baseweb + 'mrg/arprep/'
+    var url = this.baseweb + 'v1/arprep/'
     console.log('url arprep ', url)
     return this.http.fetch(url, {
       method: 'get',
@@ -1415,7 +1399,7 @@ export class ApiService {
     }).then((res) => res.json());
   }
   updatecode(row) {
-    let url = this.baseweb + `mrg/code/update`
+    let url = this.baseweb + `v1/code/update`
     return this.http.fetch(url, {
       method: 'put',
       mode: 'cors',
@@ -1431,7 +1415,7 @@ export class ApiService {
 
 
   arprepDocument() {
-    var url = this.baseweb + 'mrg/arprep/'
+    var url = this.baseweb + 'v1/arprep/'
     console.log('url arprep ', url)
     return this.http.fetch(url, {
       method: 'get',
@@ -1447,9 +1431,9 @@ export class ApiService {
     }));
   }
 
-  //  { method: ['get'], path: '/api/mrg/arprepone/:id', handler: 'DailyController.arprepone' },
+  //  { method: ['get'], path: '/api/v1/arprepone/:id', handler: 'DailyController.arprepone' },
   arprepone(claimno) {
-    var url = this.baseweb + 'mrg/arprepone/' + claimno
+    var url = this.baseweb + 'v1/arprepone/' + claimno
     console.log('url ', url)
     return this.http.fetch(url, {
       method: 'get',
@@ -1458,7 +1442,7 @@ export class ApiService {
   }
 
   adjusterprep() {
-    var url = this.baseweb + 'mrg/adjusterprep/'
+    var url = this.baseweb + 'v1/adjusterprep/'
     console.log('url ', url)
     return this.http.fetch(url, {
       method: 'get',
@@ -1467,10 +1451,10 @@ export class ApiService {
     // }).then((res) => res.json());
   }
 
-  //  { method: ['get'], path: '/api/mrg/arprepone/:id', handler: 'DailyController.arprepone' },
+  //  { method: ['get'], path: '/api/v1/arprepone/:id', handler: 'DailyController.arprepone' },
   adjusterprepone(adjuster) {
-    // var url = this.baseweb + 'mrg/adjusterprepone/' + adjuster
-    var url = this.baseweb + 'mrg/adjusterprep/' + adjuster
+    // var url = this.baseweb + 'v1/adjusterprepone/' + adjuster
+    var url = this.baseweb + 'v1/adjusterprep/' + adjuster
     console.log('url ', url)
     return this.http.fetch(url, {
       method: 'get',
@@ -1480,7 +1464,7 @@ export class ApiService {
 
   getbatchno() {
     // search has fullu formed query string
-    var url = this.baseweb + 'mrg/batch/'
+    var url = this.baseweb + 'v1/batch/'
     console.log('url ', url)
     return this.http.fetch(url, {
       method: 'get',
@@ -1490,7 +1474,7 @@ export class ApiService {
   }
 
   saveDaily(rec, status) {
-    let url = this.baseweb + `mrg/daily/update`
+    let url = this.baseweb + `v1/daily/update`
     let i
     for (i = 0; i < rec.length; i++) {
       if (rec[i].$isSelected === true) {
@@ -1509,7 +1493,7 @@ export class ApiService {
     }).then((res) => res.json());
   }
   saveDailyforar(rec, status) {
-    let url = this.baseweb + `mrg/daily/updatepdf`
+    let url = this.baseweb + `v1/daily/updatepdf`
     console.log('saveDaily url ', url)
     let i
     for (i = 0; i < rec.length; i++) {
@@ -1530,10 +1514,10 @@ export class ApiService {
     }).then((res) => res.json())
   }
 
-  // { method: ['get'], path: '/api/mrg/walkpayments/:id', handler: 'WalkAdjusterdirController.walkpayments' },
+  // { method: ['get'], path: '/api/v1/walkpayments/:id', handler: 'WalkAdjusterdirController.walkpayments' },
 
   walkpayments(adjusterid) {
-    var url = this.baseweb + `mrg/walkpayments/${adjusterid}`
+    var url = this.baseweb + `v1/walkpayments/${adjusterid}`
     console.log('url ', url)
     return this.http.fetch(url, {
       method: 'get',
@@ -1542,7 +1526,7 @@ export class ApiService {
   }
 
   walkinvoices(claimno) {
-    var url = this.baseweb + `mrg/walkinvoices/${claimno}`
+    var url = this.baseweb + `v1/walkinvoices/${claimno}`
     console.log('url ', url)
     return this.http.fetch(url, {
       method: 'get',
@@ -1551,7 +1535,7 @@ export class ApiService {
   }
 
   findCodes() {
-    var url = this.baseweb + 'mrg/codes';
+    var url = this.baseweb + 'v1/codes';
     return this.http.fetch(url, {
       method: 'get',
       mode: 'cors'
@@ -1563,7 +1547,7 @@ export class ApiService {
 
   createAR(dailies, claim, status) {
     // saveDailyforar is run first
-    let url = this.baseweb + `mrg/ar/create`
+    let url = this.baseweb + `v1/ar/create`
     console.log('createAR url status ', status, url)
 
     let detail = []
@@ -1608,7 +1592,7 @@ export class ApiService {
     }).then((res) => res.json());
   }
   findAR(claimno) {
-    let url = this.baseweb + `mrg/ar/${claimno}`
+    let url = this.baseweb + `v1/ar/${claimno}`
 
     return this.http.fetch(url, {
       method: 'get',
@@ -1618,7 +1602,7 @@ export class ApiService {
 
   saveDailyAdjuster(dailies, status, adjno, currentpayperiod) {
     console.log('params  ', status, adjno, currentpayperiod)
-    let url = this.baseweb + `mrg/adjusterpayment/create`
+    let url = this.baseweb + `v1/adjusterpayment/create`
     console.log('createAR url ', url)
     // console.log('adjuster ', adjuster)
     let rec = {}
@@ -1698,7 +1682,7 @@ export class ApiService {
       newarray.push(newrec)
     }
 
-    var url = this.baseweb + 'mrg/daily/create';
+    var url = this.baseweb + 'v1/daily/create';
     //  console.log('url ', url)
     return this.http.fetch(url, {
       method: 'post',
@@ -1740,7 +1724,7 @@ export class ApiService {
       Head: 'test',
       dailies: dailies
     }
-    var url = this.baseweb + 'mrg/daily/create';
+    var url = this.baseweb + 'v1/daily/create';
     console.log('url ', url)
     return this.http.fetch(url, {
       method: 'post',
@@ -1755,13 +1739,13 @@ export class ApiService {
 
   }
   //findclaim() {
-  //   // http://localhost:8080/api/mrg/claim
-  //   var url = this.baseweb + 'mrg/claimcontent';
+  //   // http://localhost:8080/api/v1/claim
+  //   var url = this.baseweb + 'v1/claimcontent';
   //   return this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())
   // }
   findclaim(search) {
     // search has fullu formed query string
-    var url = this.baseweb + 'mrg/claimcontent/' + search
+    var url = this.baseweb + 'v1/claimcontent/' + search
     console.log('url ', url)
     return this.http.fetch(url, {
       method: 'get',
@@ -1771,8 +1755,8 @@ export class ApiService {
   }
 
   findclaimOne(claimid) {
-    // search has fullu formed query string  mrg/claim/
-    var url = this.baseweb + `mrg/claim/${claimid}`
+    // search has fullu formed query string  v1/claim/
+    var url = this.baseweb + `v1/claim/${claimid}`
     console.log('url ', url)
     return this.http.fetch(url, {
       method: 'get',
@@ -1782,16 +1766,16 @@ export class ApiService {
   }
 
   //this.api.updateSavedlists(appService.currentsavedlist,this.selectedids).then((jsonRes) => {
-  //    { method: ['get'], path: '/api/mrg/savedlists/:id', handler: 'SavedlistsController.findone' },
-  // { method: ['get'], path: '/api/mrg/savedlists', handler: 'SavedlistsController.findall' },
-  // { method: ['put'], path: '/api/mrg/savedlists/update', handler: 'SavedlistsController.update' },
-  // { method: ['post'], path: '/api/mrg/savedlists/create', handler: 'SavedlistsController.create' },
+  //    { method: ['get'], path: '/api/v1/savedlists/:id', handler: 'SavedlistsController.findone' },
+  // { method: ['get'], path: '/api/v1/savedlists', handler: 'SavedlistsController.findall' },
+  // { method: ['put'], path: '/api/v1/savedlists/update', handler: 'SavedlistsController.update' },
+  // { method: ['post'], path: '/api/v1/savedlists/create', handler: 'SavedlistsController.create' },
 
 
 
 
   saveinsco(rec) {
-    let url = this.baseweb + `mrg/insurancecompany/update`
+    let url = this.baseweb + `v1/insurancecompany/update`
     console.log('url ', url)
     return this.http.fetch(url, {
       method: 'put',
@@ -1807,7 +1791,7 @@ export class ApiService {
 
   addinsco(rec) {
     //alert('in saveclaim')
-    let url = this.baseweb + `mrg/insurancecompany/create`
+    let url = this.baseweb + `v1/insurancecompany/create`
     console.log('url ', url)
     return this.http.fetch(url, {
       method: 'post',
@@ -1824,8 +1808,8 @@ export class ApiService {
 
   // claimant
   findclaimantOne(claimantid) {
-    // search has fullu formed query string  mrg/claim/
-    var url = this.baseweb + `mrg/claimant/${claimantid}`
+    // search has fullu formed query string  v1/claim/
+    var url = this.baseweb + `v1/claimant/${claimantid}`
     console.log('url ', url)
     return this.http.fetch(url, {
       method: 'get',
@@ -1834,7 +1818,7 @@ export class ApiService {
 
   }
   saveclaimant(rec) {
-    let url = this.baseweb + `mrg/claimant/update`
+    let url = this.baseweb + `v1/claimant/update`
     console.log('url ', url)
     return this.http.fetch(url, {
       method: 'put',
@@ -1849,7 +1833,7 @@ export class ApiService {
   }
 
   addclaimant(rec) {
-    let url = this.baseweb + `mrg/claimant/create`
+    let url = this.baseweb + `v1/claimant/create`
     console.log('url ', url)
     return this.http.fetch(url, {
       method: 'post',
@@ -1864,8 +1848,8 @@ export class ApiService {
 
   // insured
   findinsuredOne(id) {
-    // search has fullu formed query string  mrg/claim/
-    var url = this.baseweb + `mrg/insured/${id}`
+    // search has fullu formed query string  v1/claim/
+    var url = this.baseweb + `v1/insured/${id}`
     console.log('url ', url)
     return this.http.fetch(url, {
       method: 'get',
@@ -1874,7 +1858,7 @@ export class ApiService {
 
   }
   saveinsured(rec) {
-    let url = this.baseweb + `mrg/insured/update`
+    let url = this.baseweb + `v1/insured/update`
     console.log('url ', url)
     return this.http.fetch(url, {
       method: 'put',
@@ -1889,7 +1873,7 @@ export class ApiService {
   }
 
   addinsured(rec) {
-    let url = this.baseweb + `mrg/insured/create`
+    let url = this.baseweb + `v1/insured/create`
     console.log('url ', url)
     return this.http.fetch(url, {
       method: 'post',
@@ -1902,10 +1886,10 @@ export class ApiService {
     }).then((res) => res.json());
   }
 
-  // http://jif.bergenrisk.com:8081/api/mrg/adjuster
+  // http://jif.bergenrisk.com:8081/api/v1/adjuster
   findAdjusters() {
-    // search has fullu formed query string  mrg/claim/
-    var url = this.baseweb + `mrg/adjuster`
+    // search has fullu formed query string  v1/claim/
+    var url = this.baseweb + `v1/adjuster`
     console.log('url ', url)
     return this.http.fetch(url, {
       method: 'get',
@@ -1913,8 +1897,8 @@ export class ApiService {
     }).then((res) => res.json());
   }
   findMasrep() {
-    // search has fullu formed query string  http://jif.bergenrisk.com:8081/api/mrg/masrep/
-    var url = this.baseweb + `mrg/masrep`
+    // search has fullu formed query string  http://jif.bergenrisk.com:8081/api/v1/masrep/
+    var url = this.baseweb + `v1/masrep`
     console.log('url findMasrep ', url)
     return this.http.fetch(url, {
       method: 'get',
@@ -1922,8 +1906,8 @@ export class ApiService {
     }).then((res) => res.json());
   }
   findPayperiod() {
-    // search has fullu formed query string  http://jif.bergenrisk.com:8081/api/mrg/masrep/
-    var url = this.baseweb + `mrg/payperiod`
+    // search has fullu formed query string  http://jif.bergenrisk.com:8081/api/v1/masrep/
+    var url = this.baseweb + `v1/payperiod`
     console.log('url payperiod ', url)
     return this.http.fetch(url, {
       method: 'get',
@@ -1931,7 +1915,7 @@ export class ApiService {
     }).then((res) => res.json());
   }
   //  findmarep() {
-  //     var url = this.baseweb + `mrg/marep`
+  //     var url = this.baseweb + `v1/marep`
   //     console.log('url ', url)
   //     return this.http.fetch(url, {
   //       method: 'get',
@@ -1940,8 +1924,18 @@ export class ApiService {
   //   }
   // new
   findinsurancecompany() {
-    // search has fullu formed query string  mrg/claim/
-    var url = this.baseweb + `mrg/insurancecompany`
+    // search has fullu formed query string  v1/claim/
+    var url = this.baseweb + `v1/insurancecompany`
+    console.log('url insurancecompany ', url)
+    return this.http.fetch(url, {
+      method: 'get',
+      mode: 'cors'
+    }).then((res) => res.json());
+  }
+
+  findinsurancecompanyquery(search) {
+    // search has fullu formed query string  v1/claim/
+    let url = this.baseweb + `v1/insurancecompanyquery/` + search
     console.log('url insurancecompany ', url)
     return this.http.fetch(url, {
       method: 'get',
@@ -1950,9 +1944,8 @@ export class ApiService {
   }
 
 
-
   findinvoicequery(search) {
-    let url = this.baseweb + `mrg/arcontent/` + search
+    let url = this.baseweb + `v1/arcontent/` + search
 
     console.log('url ', url)
     return this.http.fetch(url, {
@@ -1968,7 +1961,74 @@ export class ApiService {
   }
 
 
+  findinsuredquery(search) {
+    // search has fullu formed query string  v1/claim/
+    var url = this.baseweb + `v1/insuredquery/` + search
+    console.log('url insuredquery ', url)
+    return this.http.fetch(url, {
+      method: 'get',
+      mode: 'cors'
+    }).then((res) => res.json());
+  }
 
+  finddailyquery(search) {
+    // search has fullu formed query string  v1/claim/
+    var url = this.baseweb + `v1/dailyquery/` + search
+    console.log('url dailyquery ', url)
+    return this.http.fetch(url, {
+      method: 'get',
+      mode: 'cors'
+    }).then((res) => res.json());
+  }
+
+
+
+
+  findclaimantquery(search) {
+    // search has fullu formed query string  v1/claim/
+    var url = this.baseweb + `v1/claimantquery/` + search
+    console.log('url claimantquery ', url)
+    return this.http.fetch(url, {
+      method: 'get',
+      mode: 'cors'
+    }).then((res) => res.json());
+  }
+
+
+  // { method: ['get'], path: '/api/v1/insuredquery', handler: 'InsuredController.search' },
+  //   { method: ['get'], path: '/api/v1/claimantquery', handler: 'ClaimantController.search' },
+
+
+  // http://jif.bergenrisk.com:8081/api/v1/insurancecompany
+
+
+  // http://jif.bergenrisk.com:8081/api/v1/claimtype
+  findclaimType() {
+    var url = this.baseweb + `v1/claimtype`
+    console.log('url ', url)
+    return this.http.fetch(url, {
+      method: 'get',
+      mode: 'cors'
+    }).then((res) => res.json());
+  }
+
+  findinsured() {
+    var url = this.baseweb + `v1/insured`
+    console.log('url ', url)
+    return this.http.fetch(url, {
+      method: 'get',
+      mode: 'cors'
+    }).then((res) => res.json());
+  }
+  // new
+  //  findclaimant() {
+  //     var url = this.baseweb + `v1/claimant`
+  //     console.log('url ', url)
+  //     return this.http.fetch(url, {
+  //       method: 'get',
+  //       mode: 'cors'
+  //     }).then((res) => res.json());
+  //   }
 
 
 
@@ -1983,7 +2043,148 @@ export class ApiService {
 
   }
 
+  findclaimlist() {
+    var url = this.baseweb + 'v1/findclaim' // findclaim
+    console.log('findclaimlist ', url)
+    return this.http.fetch(url, {
+      mode: 'cors'
+    }).then((res) => res.json())
 
+  }
+  findexpense() {
+    var url = this.baseweb + 'v1/findexpense';
+    return this.http.fetch(url, {
+      mode: 'cors'
+    }).then((res) => res.json())
+
+  }
+  findservice() {
+    var url = this.baseweb + 'v1/findservice';
+    return this.http.fetch(url, {
+      mode: 'cors'
+    }).then((res) => res.json())
+
+  }
+
+
+
+  // getUsers() {
+  //     var url = baseCms + 'http://jif.bergenrisk.com:8080/api/';
+  //     return this.http.fetch(url, { mode: 'cors' }).then((res) => res.json())
+
+  // }
+
+  findinveall() {
+    var url = this.baseweb + 'v1/case/findall'
+    return this.http.fetch(url).then((res) => res.json())
+  }
+  findcase(roles, auth) {
+    let url = this.baseweb + `v1/case/find/${auth.user.id}`
+    return this.http.fetch(url).then((res) => res.json())
+  }
+
+  findcontents(content, completed) {
+    console.log(' content  ', content, completed)
+    let url = this.baseweb + `v1/case/findcontents/${content}/${completed}`
+    return this.http.fetch(url).then((res) => res.json())
+  }
+
+
+  updatecase(row, user) {
+    let newrow = {}
+    newrow._id = row._id
+    newrow.assignto = row.assignto
+    newrow.billedamt = row.billedamt
+    newrow.completed = row.completed
+    newrow.payamt = row.payamt
+    newrow.savedamt = row.savedamt
+    newrow.template = row.template
+    newrow.type = row.type
+    newrow.memo = row.memo
+    newrow.filename = row.filename
+    newrow.createdAt = row.createdAt
+    newrow.assignfrom = user.userid // matched staffid unless we use init
+    let url = this.baseweb + `v1/case/update`
+    return this.http.fetch(url, {
+      method: 'put',
+      mode: 'cors',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+        // , 'Authorization': 'JWT ' + token
+      },
+      body: JSON.stringify(newrow)
+    }).then((res) => res.json());
+
+  }
+  deletecase(row, token) {
+    console.log('this.e ', row.id)
+    let pid = row.id
+    let url = this.baseweb + `v1/case/deletecase` ///${pid}`
+    // return this.http.fetch(url).then((res) => res.json())
+    return this.http.fetch(url, {
+      method: 'delete',
+      mode: 'cors',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': 'JWT ' + token
+      },
+      body: JSON.stringify(row)
+    }).then((res) => res.json());
+
+  }
+  updateUser2(user, token) { //token, customer) {
+
+    let url = this.baseweb + `v1/staff/update`
+    let umodel = {
+      id: user.id,
+      email: user.email,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      roles: user.roles,
+      templates: user.templates
+    }
+    console.log('user', umodel)
+    return this.http.fetch(url, {
+      method: 'put',
+      mode: 'cors',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+        // , 'Authorization': 'JWT ' + token
+      },
+      body: JSON.stringify(umodel)
+    }).then((res) => res.json())
+
+  }
+
+
+  updateUser(user) {
+    let umodel = {
+      id: user.id,
+      email: user.email,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      roles: user.roles,
+      templates: user.templates,
+      password: user.password
+    }
+    console.log('user ', umodel)
+    //   let url = this.baseweb + `v1/staff/updateuser`
+    let url = this.baseweb + `v1/case/updateuser`
+    return this.http.fetch(url, {
+      method: 'put',
+      mode: 'cors',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+        // , 'Authorization': 'JWT ' + token
+      },
+      body: JSON.stringify(user)
+    }).then((res) => res.json());
+
+  }
 
 
 
@@ -2011,13 +2212,8 @@ export class ApiService {
     // gail p clientsall
     if (search === undefined) {
 
-      // var url = this.baseweb + 'v1/clientsall'
-
-      var url = this.baseweb_home + 'v1/clientsall'
-
-      //  } else var url = this.baseweb + 'v1/clientsall' + search  
-    } else var url = baseweb_home + 'v1/clientsall' + search
-
+      var url = this.baseweb + 'v1/clientsall'
+    } else var url = this.baseweb + 'v1/clientsall' + search
     console.log('url ', url)
     return this.http.fetch(url, {
       method: 'get',
